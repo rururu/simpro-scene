@@ -1,6 +1,6 @@
 # simpro-scene
 
-###Integrated development environment for visual creation and simulation of spatial processes. It Based on ontology editor Protege-frames (https://protege.stanford.edu/), GIS library  OpenMap (http://openmap-java.org/) and rule engine and expert system shell  rete4frames (https://github.com/rururu/rete4frames). Uses concept of "Scenario" for describing spatial processes [1] and programming language Clojure for executive parts of rules and auxilliary scripts.
+### Integrated development environment for visual creation and simulation of spatial processes. It Based on ontology editor Protege-frames (https://protege.stanford.edu/), GIS library  OpenMap (http://openmap-java.org/) and rule engine and expert system shell  rete4frames (https://github.com/rururu/rete4frames). Uses concept of "Scenario" for describing spatial processes [1] and programming language Clojure for executive parts of rules and auxilliary scripts.
 
 Includes general IDE for Clojure.
 
