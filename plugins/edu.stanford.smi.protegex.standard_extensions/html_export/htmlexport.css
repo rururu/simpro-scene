@@ -1,0 +1,161 @@
+/* Hyperlink Styles */
+a {text-decoration: none;}
+a:hover {color: red;}
+
+/* List Styles */
+.iconList { 
+	list-style-type: none;
+	/* top, right, bottom, left */
+	margin: 0px 0px 0px 16px;
+	padding-left: 0px;
+}
+
+.iconListNoPad { 
+	list-style-type: none;
+	margin: 0px 0px 0px 0px;
+	padding-left: 0px;
+}
+
+li.concreteClass
+{
+	background-image: url("images/class.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.abstractClass
+{
+	background-image: url("images/class.abstract.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.metaclass {
+	background-image: url("images/class.metaclass.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.abstractMetaclass {
+	background-image: url("images/class.metaclass.abstract.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.directInstance {
+	background-image: url("images/instance.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.slot {
+	background-image: url("images/slot.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+li.facet {
+	background-image: url("images/facet.gif");
+	background-repeat: no-repeat;
+	padding-left: 16px;
+}
+
+/* Misc. */
+.classBorder {
+	background-color: #F0E6CA; /* protege's class selection color */
+	border: 1px solid;
+	border-color: #BFBCB5; /* medium grey */
+	padding: 2px;
+}
+
+.facetBorder {
+	background-color: #FFE4E1; /* MistyRose */
+	border: 1px solid;
+	border-color: #BFBCB5; /* medium grey */
+	padding: 2px;
+}
+
+.generalContent {
+	background-color: #FFFFF0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.generalContentBold {
+	background-color: #FFFFF0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.heirarchyBorder {
+	border: 1px solid;
+	border-color: #BFBCB5; /* medium grey */
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.instanceBorder {
+	background-color: #E9E2E7; /* protege's instance selection color */
+	border: 1px solid;
+	border-color: #BFBCB5; /* medium grey */
+	padding: 2px;
+}
+
+.instances {
+	background-color: #E9E2E7; /* protege's instance selection color */
+	line-height: 16px;
+	/* top, right, bottom, left */
+	margin: 2px 0px 2px 0px; 
+	padding: 2px;
+}
+
+.legal {
+	color: #327BAA;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.mozillaTableHack {
+	border: 1px solid #BFBCB5;
+}
+
+.pageTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.sectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.sectionTitleItalic {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.slotBorder {
+	background-color: #F0F8FF; /* AliceBlue */
+	border: 1px solid;
+	border-color: #BFBCB5; /* medium grey */
+	padding: 2px;
+}
+
+.specialLink {
+	color: #327BAA;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.instancesLink {
+	color: #696969; /* dimgray */
+	font-style: italic;
+}

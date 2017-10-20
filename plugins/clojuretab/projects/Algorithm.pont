@@ -1,0 +1,225 @@
+; Tue Jul 04 17:00:45 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot but-start
+		(type STRING)
+		(default "Start/algo.exe/start-algorithm")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot currents
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess)
+		(create-accessor read-write))
+	(multislot flow-chart
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+		(create-accessor read-write))
+	(single-slot variable
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wait
+		(type INSTANCE)
+;+		(allowed-classes Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(multislot objects
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write))
+	(single-slot next
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot variants
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input Concurrent Wait PredefinedProcess)
+		(create-accessor read-write))
+	(single-slot begin
+		(type INSTANCE)
+;+		(allowed-classes Input Process Decision PredefinedProcess Concurrent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot debug
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot object-rows
+		(type INSTANCE)
+;+		(allowed-classes ObjectRow)
+		(create-accessor read-write))
+	(single-slot algorithm
+		(type INSTANCE)
+;+		(allowed-classes Algorithm)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot trace
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Algorithm+Ontology
+	(is-a USER)
+	(role abstract))
+
+(defclass Algorithm
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot but-start
+		(type STRING)
+		(default "Start/algo.exe/start-algorithm")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot begin
+		(type INSTANCE)
+;+		(allowed-classes Input Process Decision PredefinedProcess Concurrent)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot trace
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot debug
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot flow-chart
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+		(create-accessor read-write)))
+
+(defclass Process
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot next
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Decision
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot variants
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input Concurrent Wait PredefinedProcess)
+		(create-accessor read-write)))
+
+(defclass Input
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot code
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot next
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot object-rows
+		(type INSTANCE)
+;+		(allowed-classes ObjectRow)
+		(create-accessor read-write)))
+
+(defclass PredefinedProcess
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot algorithm
+		(type INSTANCE)
+;+		(allowed-classes Algorithm)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot next
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ObjectRow
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot variable
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot objects
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass Concurrent
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wait
+		(type INSTANCE)
+;+		(allowed-classes Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot currents
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess)
+		(create-accessor read-write)))
+
+(defclass Wait
+	(is-a Algorithm+Ontology)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot next
+		(type INSTANCE)
+;+		(allowed-classes Process Decision Input PredefinedProcess Concurrent Wait)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
