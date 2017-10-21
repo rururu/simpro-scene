@@ -263,3 +263,20 @@ s)
 (defn typ [instance]
   (.getName (.getDirectType instance)))
 
+(defn ldns
+  ([ins]
+  (let [ns (if (instance? Instance ins) (sv ins "title") ins)
+         pth (.replace ns "." "/")]
+    (try
+      (load (str "/" pth))
+      true
+      (catch Exception e
+        false))))
+([hm inst]
+  (let [mp (into {} hm)
+        clw (mp "clsWidget")
+        pms (.getSelection (.getSlotWidget clw (slt "cloPrograms")))]
+    (println "Loading programs:")
+    (doseq [pm pms]
+      (println (str (if (ldns (sv pm "cloNamespace")) " + " " - ") (sv pm "title")))))))
+

@@ -1,0 +1,107 @@
+; Sat Oct 21 22:26:41 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot assert-strings
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot test
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot plane
+		(type INSTANCE)
+;+		(allowed-classes NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot onto-topclasses
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot params
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot return-type
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot packages
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot label2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot globals
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot then
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot course2
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot when
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot imports
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot resolve
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot onto-package
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot working-memory
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot onto-classpath
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot scripts
+;+		(type ANY)
+		(create-accessor read-write)))
+
+(defclass Bearing1
+	(is-a Artefact)
+	(role concrete)
+	(single-slot bearing
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed2
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot label2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course2
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

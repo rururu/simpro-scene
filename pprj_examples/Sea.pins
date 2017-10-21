@@ -1,0 +1,3186 @@
+; Sat Oct 21 22:26:41 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Sea3_Class10004] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 14.9")
+	(lineColor "FFFF0000")
+	(longitude "28 46.59")
+	(mapob [Sea_Class346]))
+
+([Sea3_Class10005] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.4")
+	(lineColor "FFFF0000")
+	(longitude "28 47.6")
+	(mapob [Sea_Class346]))
+
+([Sea3_Class10007] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.92")
+	(lineColor "FF000000")
+	(longitude "28 48.6")
+	(mapob [Sea_Class237]))
+
+([Sea3_Class10008] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.92")
+	(lineColor "FF000000")
+	(longitude "28 48.6")
+	(mapob [Sea_Class228]))
+
+([Sea3_Class2] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 14.75")
+	(lineColor "FFFF0000")
+	(longitude "28 45.99")
+	(mapob [Sea_Class346]))
+
+([Sea3_Class3] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.25")
+	(lineColor "FFFF0000")
+	(longitude "28 47")
+	(mapob [Sea_Class346]))
+
+([Sea3_Class7] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.76")
+	(lineColor "FF000000")
+	(longitude "28 48")
+	(mapob [Sea_Class237]))
+
+([Sea3_Class8] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.76")
+	(lineColor "FF000000")
+	(longitude "28 48")
+	(mapob [Sea_Class228]))
+
+([Sea_Class0] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "StartMap")
+	(%3ACREATION-TIMESTAMP "2010.07.10 14:21:50.705 MSD"))
+
+([Sea_Class100] of  Position
+
+	(object [Sea_Class229])
+	(observer [Sea_Class240])
+	(position-angle "90")
+	(position-distance "0.5")
+	(position-speed "16")
+	(radius 0.1)
+	(relative FALSE)
+	(title "s1.SA to Damaged Ship2"))
+
+([Sea_Class10000] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Brest Spill1")
+	(poly [Sea_Class30000]))
+
+([Sea_Class100000] of  Scenario
+
+	(context [Sea_Class120001])
+	(final_tasks [Sea_Class130004])
+	(finish_type AND)
+	(initial_tasks [Sea_Class130004])
+	(scenario_scheme [Sea_Class130004])
+	(title "Tsk: Go to Point"))
+
+([Sea_Class100001] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "ls1")
+	(latitude "60 14.92")
+	(lineColor "00666600")
+	(longitude "28 47.59")
+	(N 32)
+	(radius 3.5)
+	(speed 0.0015))
+
+([Sea_Class100002] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Light Spill1")
+	(poly [Sea_Class100001]))
+
+([Sea_Class100003] of  Delay
+
+	(delay "5 min")
+	(next_actions [Sea_Class90002])
+	(title "ar.Third Heavy Delay"))
+
+([Sea_Class100004] of  Field
+)
+
+([Sea_Class100005] of  Calculus
+
+	(input_data [Sea_Class110017])
+	(next_actions [Sea_Class80003])
+	(source "import ru.igis.omtab.MapOb\nlat = MapOb.getDegMin( coords[0] )\nlon = MapOb.getDegMin( coords[1] )\nstr = ctxmap[ \"?spills\" ]\nss = str.split( \",\" )\ns1 = dro.findForSlotValue( \"Spill\", \"label\", ss[0] )\ns2 = dro.findForSlotValue( \"Spill\", \"label\", ss[1] )\ns3 = dro.findForSlotValue( \"Spill\", \"label\", ss[2] )\ns4 = dro.findForSlotValue( \"Spill\", \"label\", ss[3] )\ns1.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns1.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )\ns2.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns2.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )\ns3.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns3.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )\ns4.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns4.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )")
+	(title "ar.Set Heavy Spill Coordinates"))
+
+([Sea_Class100006] of  Variable
+
+	(title "?spills"))
+
+([Sea_Class100007] of  ValuePair
+
+	(title "ar.Four Spills Spill")
+	(value "hs1,hs2,hs3,hs4")
+	(variable [Sea_Class100006]))
+
+([Sea_Class10001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "Start Base")
+	(%3ACREATION-TIMESTAMP "2010.07.10 14:22:12.658 MSD"))
+
+([Sea_Class100020] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Brest Spill2")
+	(poly [Sea_Class70001]))
+
+([Sea_Class100021] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Brest Spill3")
+	(poly [Sea_Class80001]))
+
+([Sea_Class100022] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Brest Spill4")
+	(poly [Sea_Class80002]))
+
+([Sea_Class100023] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Brest Spill Go1")
+	(poly [Sea_Class30000]))
+
+([Sea_Class100024] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Brest Spill Go2")
+	(poly [Sea_Class70001]))
+
+([Sea_Class100025] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Brest Spill Go3")
+	(poly [Sea_Class80001]))
+
+([Sea_Class100031] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class100021]
+		[Sea_Class100025])
+	(flag TRUE)
+	(next_actions [Sea_Class100003])
+	(title "ar.Start Heavy Spill 3"))
+
+([Sea_Class100032] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class100020]
+		[Sea_Class100024])
+	(flag TRUE)
+	(next_actions [Sea_Class90001])
+	(title "ar.Start Heavy Spill 2"))
+
+([Sea_Class101] of  Position
+
+	(object [Sea_Class237])
+	(observer [Sea_Class240])
+	(position-angle "180")
+	(position-distance "0.5")
+	(position-speed "20")
+	(radius 0.1)
+	(relative FALSE)
+	(title "s1.SM to Damaged Ship2"))
+
+([Sea_Class102] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FFFF0000")
+	(next_actions [Sea_Class103])
+	(object [Sea_Class240])
+	(observer [Sea_Class227])
+	(title "s1.CP Hose Ship2"))
+
+([Sea_Class103] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FFFF0000")
+	(next_actions [Sea_Class107])
+	(object [Sea_Class240])
+	(observer [Sea_Class228])
+	(title "s1.CZ Hose Ship2"))
+
+([Sea_Class104] of  Delay
+
+	(delay "4 min")
+	(next_actions
+		[Sea_Class105]
+		[Sea_Class106])
+	(title "s1.Delay before Oil Barrier"))
+
+([Sea_Class105] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FF000000")
+	(object [Sea_Class228])
+	(observer [Sea_Class229])
+	(title "s1.Oil Barrier SA - CZ"))
+
+([Sea_Class106] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FF000000")
+	(object [Sea_Class237])
+	(observer [Sea_Class229])
+	(title "s1.Oil Barrier SA - SM"))
+
+([Sea_Class107] of  Delay
+
+	(delay "1 hrs")
+	(next_actions
+		[Sea_Class108]
+		[Sea_Class109]
+		[Sea_Class110])
+	(title "s1.Fire Fight Time"))
+
+([Sea_Class108] of  PutOffMap
+
+	(object [Sea_Class234])
+	(title "s1.Cease Fire"))
+
+([Sea_Class109] of  LinkOnOff
+
+	(flag FALSE)
+	(object [Sea_Class240])
+	(observer [Sea_Class227])
+	(title "s1.CP Delete Hose"))
+
+([Sea_Class110] of  LinkOnOff
+
+	(flag FALSE)
+	(object [Sea_Class240])
+	(observer [Sea_Class228])
+	(title "s1.CZ Delete Hose"))
+
+([Sea_Class110000] of  PutOnPlace
+
+	(object [Sea_Class238])
+	(observer [Sea_Class130003])
+	(title "Tsk. PoP"))
+
+([Sea_Class110001] of  PutOffMap
+
+	(object [Sea_Class235])
+	(title "c1.Coming Home"))
+
+([Sea_Class110002] of  PutOnMap
+
+	(latitude "60 19.04")
+	(longitude "28 44.48")
+	(next_actions [Sea_Class120003])
+	(object [Sea_Class235])
+	(title "c1.Launch at Primorsk"))
+
+([Sea_Class110003] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Light Spill2")
+	(poly [Sea_Class70000]))
+
+([Sea_Class110004] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Light Spill Go1")
+	(poly [Sea_Class100001]))
+
+([Sea_Class110005] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Light Spill Go2")
+	(poly [Sea_Class70000]))
+
+([Sea_Class110006] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class100002]
+		[Sea_Class110004])
+	(flag TRUE)
+	(next_actions [Sea_Class110008])
+	(title "ar.Start Light Spill 1"))
+
+([Sea_Class110007] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class110003]
+		[Sea_Class110005])
+	(flag TRUE)
+	(title "ar.Start Light Spill 2"))
+
+([Sea_Class110008] of  Delay
+
+	(delay "5 min")
+	(next_actions [Sea_Class110007])
+	(title "ar.First Light Delay"))
+
+([Sea_Class110009] of  Calculus
+
+	(input_data [Sea_Class110017])
+	(next_actions [Sea_Class110006])
+	(source "import ru.igis.omtab.MapOb\nlat = MapOb.getDegMin( coords[0] )\nlon = MapOb.getDegMin( coords[1] )\nstr = str = ctxmap[ \"?spills\" ]\nss = str.split( \",\" )\ns1 = dro.findForSlotValue( \"Spill\", \"label\", ss[0] )\ns2 = dro.findForSlotValue( \"Spill\", \"label\", ss[1] )\ns1.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns1.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )\ns2.setOwnSlotValue( kb.getSlot( \"latitude\" ), lat )\ns2.setOwnSlotValue( kb.getSlot( \"longitude\" ), lon )")
+	(title "ar.Set Light Spill Coordinates"))
+
+([Sea_Class110010] of  Task
+
+	(final_actions [Sea_Class110007])
+	(finish_type AND)
+	(initial_actions [Sea_Class110009])
+	(task_scheme
+		[Sea_Class110009]
+		[Sea_Class110008]
+		[Sea_Class110006]
+		[Sea_Class110007])
+	(title "ar.Create and Start Light Spills"))
+
+([Sea_Class110011] of  Scenario
+
+	(context [Sea_Class110012])
+	(final_tasks [Sea_Class110010])
+	(finish_type AND)
+	(initial_tasks [Sea_Class110010])
+	(scenario_scheme [Sea_Class110010])
+	(title "ar.Two Spills"))
+
+([Sea_Class110012] of  Context
+
+	(pairs
+		[Sea_Class110013]
+		[Sea_Class110019])
+	(title "ar.Two Spills Context"))
+
+([Sea_Class110013] of  ValuePair
+
+	(title "ar.Two Spills Spill")
+	(value "ls1,ls2")
+	(variable [Sea_Class100006]))
+
+([Sea_Class110014] of  Subscenario
+
+	(context [Sea_Class110022])
+	(sub_scenario [Sea_Class110011])
+	(title "s1.Start Light Spill")
+	(wait_subscenario TRUE))
+
+([Sea_Class110015] of  Delay
+
+	(delay "10 min")
+	(next_actions [Sea_Class110014])
+	(title "s1.Delay before Light Spill"))
+
+([Sea_Class110016] of  Subscenario
+
+	(context [Sea_Class110020])
+	(sub_scenario [Sea_Class80004])
+	(title "s1.Start Heavy Spill")
+	(wait_subscenario TRUE))
+
+([Sea_Class110017] of  InputData
+
+	(ob_property COORDINATES)
+	(object [Sea_Class235])
+	(title "ar.Spills Input")
+	(variable [Sea_Class110018]))
+
+([Sea_Class110018] of  Variable
+
+	(title "coords"))
+
+([Sea_Class110019] of  ObjectPair
+
+	(object [Sea_Class229])
+	(title "ar.TS Ship")
+	(variable [Sea_Class235]))
+
+([Sea_Class110020] of  Context
+
+	(pairs [Sea_Class110021])
+	(title "s1.HS Context"))
+
+([Sea_Class110021] of  ObjectPair
+
+	(object [Sea_Class219])
+	(title "s1.HS Ship")
+	(variable [Sea_Class235]))
+
+([Sea_Class110022] of  Context
+
+	(pairs [Sea_Class110023])
+	(title "s1.LS Context"))
+
+([Sea_Class110023] of  ObjectPair
+
+	(object [Sea_Class240])
+	(title "s1.LS Ship")
+	(variable [Sea_Class235]))
+
+([Sea_Class110027] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 15.33")
+	(lineColor "FF000000")
+	(longitude "28 49.08")
+	(mapob [Sea_Class237]))
+
+([Sea_Class110028] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 15.33")
+	(lineColor "FF000000")
+	(longitude "28 49.08")
+	(mapob [Sea_Class228]))
+
+([Sea_Class110029] of  TwoObRelation
+
+	(ob_relation INSIDE)
+	(object [Sea_Class238])
+	(observer [Sea_Class100001])
+	(title "s1.Buoy inside Light Stain"))
+
+([Sea_Class111] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class112])
+	(repeat-action [Sea_Class260])
+	(title "s1.Start Light Spill"))
+
+([Sea_Class112] of  Delay
+
+	(delay "30 min")
+	(next_actions [Sea_Class113])
+	(title "s1.Light Spill Time"))
+
+([Sea_Class113] of  RepeatActionOnOff
+
+	(flag FALSE)
+	(repeat-action [Sea_Class260])
+	(title "s1.Stop Light Spill"))
+
+([Sea_Class114] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class115])
+	(repeat-action [Sea_Class261])
+	(title "s1.Start Radio SOS"))
+
+([Sea_Class115] of  Delay
+
+	(delay "4 min")
+	(next_actions
+		[Sea_Class116]
+		[Sea_Class125])
+	(title "s1.Radio SOS Time"))
+
+([Sea_Class116] of  RepeatActionOnOff
+
+	(flag FALSE)
+	(repeat-action [Sea_Class261])
+	(title "s1.Stop Radio SOS"))
+
+([Sea_Class117] of  PutOnMap
+
+	(latitude "60 21.39")
+	(longitude "28 37.62")
+	(next_actions
+		[Sea_Class119]
+		[Sea_Class123])
+	(object [Sea_Class226])
+	(title "s1.Launch Rescue Helicopter"))
+
+([Sea_Class118] of  PutOnPlace
+
+	(next_actions [Sea_Class120])
+	(object [Sea_Class243])
+	(observer [Sea_Class235])
+	(title "s1.Wounded on Deck"))
+
+([Sea_Class119] of  Position
+
+	(next_actions
+		[Sea_Class118]
+		[Sea_Class124])
+	(object [Sea_Class226])
+	(observer [Sea_Class235])
+	(position-angle "0")
+	(position-distance "0.5")
+	(position-speed "100")
+	(radius 0.5)
+	(relative FALSE)
+	(title "s1.Helicopter to Wreck"))
+
+([Sea_Class120] of  TowOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class121])
+	(object [Sea_Class243])
+	(observer [Sea_Class226])
+	(position-angle "180")
+	(position-distance "0.5")
+	(relative FALSE)
+	(title "s1.Lift Wounded"))
+
+([Sea_Class120000] of  NavObTask
+
+	(label "Tsk: Put Buoy"))
+
+([Sea_Class120001] of  Context
+
+	(pairs
+		[Sea_Class120002]
+		[Sea_Class300]
+		[Sea_Class301])
+	(title "Tsk: Go to Point Ctx"))
+
+([Sea_Class120002] of  ObjectPair
+
+	(object [Sea_Class226])
+	(title "Pair ?navob")
+	(variable [Sea_Class130003]))
+
+([Sea_Class120003] of  Arrive
+
+	(latitude "60 19.64")
+	(longitude "28 42.87")
+	(next_actions [Sea_Class120008])
+	(object [Sea_Class235])
+	(radius 0.1)
+	(speed 22.0)
+	(title "c1.Mooring"))
+
+([Sea_Class120004] of  Delay
+
+	(delay "22 min")
+	(next_actions [Sea_Class120005])
+	(title "c1.Cargo Loading 2"))
+
+([Sea_Class120005] of  GoRoute
+
+	(next_actions [Sea_Class120006])
+	(object [Sea_Class235])
+	(radius 0.1)
+	(route [Sea_Class251])
+	(title "c1.Route to Sea"))
+
+([Sea_Class120006] of  PutOffMap
+
+	(object [Sea_Class235])
+	(title "c1.Coming Home 2"))
+
+([Sea_Class120007] of  Scenario
+
+	(context [Sea_Class363])
+	(final_tasks [Sea_Class80000])
+	(finish_type AND)
+	(initial_tasks [Sea_Class80000])
+	(scenario_scheme [Sea_Class80000])
+	(title "c1.Cruise from Primorsk"))
+
+([Sea_Class120008] of  TimeMessage
+
+	(category "0")
+	(next_actions [Sea_Class120004])
+	(text "Exxon Cargo Loading")
+	(title "Cargo Loading Message"))
+
+([Sea_Class120018] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 12.08")
+	(lineColor "FFFF0000")
+	(longitude "28 31.03")
+	(mapob [Sea_Class346]))
+
+([Sea_Class120019] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 12.58")
+	(lineColor "FFFF0000")
+	(longitude "28 32.04")
+	(mapob [Sea_Class346]))
+
+([Sea_Class121] of  Arrive
+
+	(latitude "60 21.39")
+	(longitude "28 37.62")
+	(next_actions [Sea_Class122])
+	(object [Sea_Class226])
+	(radius 0.5)
+	(speed 100.0)
+	(title "s1.Helicopter Return"))
+
+([Sea_Class122] of  PutOffMap
+
+	(object [Sea_Class243])
+	(title "s1.Wounded to Hospital"))
+
+([Sea_Class123] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FF00CC00")
+	(object [Sea_Class235])
+	(observer [Sea_Class226])
+	(title "s1.Eye Collision Place"))
+
+([Sea_Class124] of  LinkOnOff
+
+	(flag FALSE)
+	(object [Sea_Class235])
+	(observer [Sea_Class226])
+	(title "s1.Cease Eye Collision"))
+
+([Sea_Class125] of  ObjectMessage
+
+	(category "2")
+	(next_actions [Sea_Class117])
+	(object [Sea_Class240])
+	(text "Medical assistance urgently required by ? in position: latitude ?, longitude ?.")
+	(title "SOS Medical Assistance Needed")
+	(url "file:data/html/SOSMessage.html"))
+
+([Sea_Class126] of  PutOnPlace
+
+	(next_actions [Sea_Class111])
+	(object [Sea_Class248])
+	(observer [Sea_Class235])
+	(title "s1.Light Spill to Collision"))
+
+([Sea_Class127] of  PutOnPlace
+
+	(next_actions [Sea_Class114])
+	(object [Sea_Class249])
+	(observer [Sea_Class235])
+	(title "s1.Radio SOS to Collision"))
+
+([Sea_Class129] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class130])
+	(repeat-action [Sea_Class262])
+	(title "s1.Start Radiation"))
+
+([Sea_Class130] of  Delay
+
+	(delay "1 min")
+	(next_actions [Sea_Class131])
+	(title "s1.Radiation Time"))
+
+([Sea_Class130000] of  GeneralDecision
+
+	(conditions "sum-speed <= 40")
+	(input_data [Sea_Class150001])
+	(title "s1.Heavy or Light?")
+	(variants
+		[Sea_Class20048]
+		[Sea_Class20049]))
+
+([Sea_Class130001] of  Task
+
+	(final_actions [Sea_Class110000])
+	(finish_type AND)
+	(initial_actions [Sea_Class110000])
+	(task_scheme [Sea_Class110000])
+	(title "Tsk. Put Buoy"))
+
+([Sea_Class130002] of  Scenario
+
+	(context [Sea_Class140003])
+	(final_tasks [Sea_Class130001])
+	(finish_type AND)
+	(initial_tasks [Sea_Class130001])
+	(scenario_scheme [Sea_Class130001])
+	(title "Tsk: Put Buoy"))
+
+([Sea_Class130003] of  Variable
+
+	(title "?navob"))
+
+([Sea_Class130004] of  Task
+
+	(final_actions [Sea_Class130005])
+	(finish_type AND)
+	(initial_actions [Sea_Class130005])
+	(task_scheme [Sea_Class130005])
+	(title "Tsk. Go to Point T1"))
+
+([Sea_Class130005] of  Arrive
+
+	(latitude "?lat1")
+	(longitude "?lon1")
+	(object [Sea_Class130003])
+	(radius 0.2)
+	(speed 220.0)
+	(title "Tsk. GTP "))
+
+([Sea_Class130006] of  ValuePair
+
+	(title "f1. ?spd")
+	(value "22")
+	(variable [Sea_Class130007]))
+
+([Sea_Class130007] of  Variable
+
+	(title "?spd"))
+
+([Sea_Class130008] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.41")
+	(lineColor "FF000000")
+	(longitude "28 46.61")
+	(mapob [Sea_Class237]))
+
+([Sea_Class130009] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.41")
+	(lineColor "FF000000")
+	(longitude "28 46.61")
+	(mapob [Sea_Class228]))
+
+([Sea_Class130039] of  Task
+
+	(finish_type AND)
+	(task_scheme
+		[Sea_Class130045]
+		[Sea_Class130046]
+		[Sea_Class130047]
+		[Sea_Class130048]
+		[Sea_Class130049])
+	(title "s1.Simple Rescue Operation"))
+
+([Sea_Class130045] of  PutOnPlace
+
+	(next_actions [Sea_Class130046])
+	(title "s1.Radio SOS"))
+
+([Sea_Class130046] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class130047]))
+
+([Sea_Class130047] of  Delay
+)
+
+([Sea_Class130048] of  Delay
+
+	(next_actions [Sea_Class130049]))
+
+([Sea_Class130049] of  Subscenario
+
+	(wait_subscenario TRUE))
+
+([Sea_Class131] of  RepeatActionOnOff
+
+	(flag FALSE)
+	(repeat-action [Sea_Class262])
+	(title "s1.Stop Radiation"))
+
+([Sea_Class133] of  PutOnPlace
+
+	(next_actions [Sea_Class129])
+	(object [Sea_Class239])
+	(observer [Sea_Class238])
+	(title "s1.Show Radio Figure"))
+
+([Sea_Class134] of  Position
+
+	(next_actions [Sea_Class135])
+	(object [Sea_Class221])
+	(observer [Sea_Class240])
+	(position-angle "50")
+	(position-distance "2")
+	(position-speed "100")
+	(radius 0.2)
+	(relative FALSE)
+	(title "s1.To 1st Posution"))
+
+([Sea_Class135] of  PutOnPlace
+
+	(next_actions
+		[Sea_Class136]
+		[Sea_Class142])
+	(object [Sea_Class244])
+	(observer [Sea_Class221])
+	(title "s1.Place 1st Buoy"))
+
+([Sea_Class136] of  Position
+
+	(next_actions [Sea_Class137])
+	(object [Sea_Class221])
+	(observer [Sea_Class240])
+	(position-angle "145")
+	(position-distance "4")
+	(position-speed "100")
+	(radius 0.2)
+	(relative FALSE)
+	(title "s1.To 2nd Position"))
+
+([Sea_Class137] of  PutOnPlace
+
+	(next_actions
+		[Sea_Class138]
+		[Sea_Class143])
+	(object [Sea_Class245])
+	(observer [Sea_Class221])
+	(title "s1.Place 2nd Buoy"))
+
+([Sea_Class138] of  Position
+
+	(next_actions [Sea_Class139])
+	(object [Sea_Class221])
+	(observer [Sea_Class240])
+	(position-angle "215")
+	(position-distance "4")
+	(position-speed "100")
+	(radius 0.2)
+	(relative FALSE)
+	(title "s1.To 3d Position"))
+
+([Sea_Class139] of  PutOnPlace
+
+	(next_actions
+		[Sea_Class140]
+		[Sea_Class144])
+	(object [Sea_Class246])
+	(observer [Sea_Class221])
+	(title "s1.Place 3d Buoy"))
+
+([Sea_Class140] of  Position
+
+	(next_actions [Sea_Class141])
+	(object [Sea_Class221])
+	(observer [Sea_Class240])
+	(position-angle "310")
+	(position-distance "2")
+	(position-speed "100")
+	(radius 0.2)
+	(relative FALSE)
+	(title "s1.To 4th Position"))
+
+([Sea_Class140001] of  Openmap
+
+	(BackgroundColor "FFDDEEFF")
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[igis_Class23]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "Collision Map")
+	(Latitude "60.266")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "28.66")
+	(Scale "300000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([Sea_Class140002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Sea_Class140001])
+	(%3ACREATION-TIMESTAMP "2017.10.21 21:15:53.999 MSK")
+	(%3ACREATOR "ru"))
+
+([Sea_Class140003] of  Context
+
+	(pairs
+		[Sea_Class120002]
+		[Sea_Class311])
+	(title "Tsk: Put Buoy Ctx"))
+
+([Sea_Class140008] of  Type
+
+	(label "Air Forces")
+	(tasks
+		[Sea_Class140009]
+		[Sea_Class120000]))
+
+([Sea_Class140009] of  NavObTask
+
+	(label "Tsk: Go to Point"))
+
+([Sea_Class141] of  PutOnPlace
+
+	(next_actions [Sea_Class145])
+	(object [Sea_Class247])
+	(observer [Sea_Class221])
+	(title "s1.Place 4th Buoy"))
+
+([Sea_Class142] of  Subscenario
+
+	(context [Sea_Class274])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 1 Start")
+	(wait_subscenario FALSE))
+
+([Sea_Class143] of  Subscenario
+
+	(context [Sea_Class275])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 2 Start")
+	(wait_subscenario FALSE))
+
+([Sea_Class144] of  Subscenario
+
+	(context [Sea_Class276])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 3 Start")
+	(wait_subscenario FALSE))
+
+([Sea_Class145] of  Subscenario
+
+	(context [Sea_Class73])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 4 Start")
+	(wait_subscenario FALSE))
+
+([Sea_Class146] of  Subscenario
+
+	(context [Sea_Class277])
+	(next_actions [Sea_Class147])
+	(sub_scenario [Sea_Class20002])
+	(title "s1.Check First Buoy")
+	(wait_subscenario TRUE))
+
+([Sea_Class147] of  Subscenario
+
+	(context [Sea_Class278])
+	(next_actions [Sea_Class148])
+	(sub_scenario [Sea_Class20002])
+	(title "s1.Check Second Buoy")
+	(wait_subscenario TRUE))
+
+([Sea_Class148] of  Subscenario
+
+	(context [Sea_Class279])
+	(next_actions [Sea_Class149])
+	(sub_scenario [Sea_Class20002])
+	(title "s1.Check Third Buoy")
+	(wait_subscenario TRUE))
+
+([Sea_Class149] of  Subscenario
+
+	(context [Sea_Class280])
+	(next_actions [Sea_Class150])
+	(sub_scenario [Sea_Class20002])
+	(title "s1.Check Fourth Buoy")
+	(wait_subscenario TRUE))
+
+([Sea_Class150] of  PutObAttributes
+
+	(attributes [Sea_Class220])
+	(object [Sea_Class221])
+	(title "s1.Fuel Consumption on Round")
+	(values "-=80"))
+
+([Sea_Class150001] of  InputData
+
+	(attribute [Sea_Class150003])
+	(object [Sea_Class219])
+	(title "IDs1magnit")
+	(variable [Sea_Class150002]))
+
+([Sea_Class150002] of  Variable
+
+	(title "sum-speed"))
+
+([Sea_Class150003] of  Attribute
+
+	(title "MUTUAL SPEED"))
+
+([Sea_Class151] of  Arrive
+
+	(latitude "60 21")
+	(longitude "29 1")
+	(object [Sea_Class221])
+	(radius 0.2)
+	(speed 100.0)
+	(title "s1.Airplane to Base"))
+
+([Sea_Class152] of  Position
+
+	(object [Sea_Class221])
+	(observer [Sea_Class238])
+	(position-angle "0")
+	(position-distance "0")
+	(position-speed "100")
+	(radius 0.2)
+	(relative FALSE)
+	(title "s1.Go to Buoy Place"))
+
+([Sea_Class153] of  Search
+
+	(detect-distance "0.75")
+	(detect-probability "0.8")
+	(object [Sea_Class238])
+	(observer [Sea_Class221])
+	(time "2 hrs")
+	(title "s1.Search Buoy"))
+
+([Sea_Class154] of  Break
+
+	(activity [Sea_Class153])
+	(next_actions [Sea_Class155])
+	(title "s1.Stop Search Buoy"))
+
+([Sea_Class155] of  PutObAttributes
+
+	(object [Sea_Class221])
+	(title "s1.Forget Detected Buoy")
+	(values "null"))
+
+([Sea_Class156] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FF00FF00")
+	(next_actions [Sea_Class157])
+	(object [Sea_Class265])
+	(observer [Sea_Class221])
+	(title "s1.Begin Transmission"))
+
+([Sea_Class157] of  Delay
+
+	(delay "30 sec")
+	(next_actions [Sea_Class158])
+	(title "s1.Transmission Time"))
+
+([Sea_Class158] of  LinkOnOff
+
+	(flag FALSE)
+	(object [Sea_Class265])
+	(observer [Sea_Class221])
+	(title "s1.End Transmission"))
+
+([Sea_Class159] of  Break
+
+	(activity [Sea_Class152])
+	(next_actions [Sea_Class154])
+	(title "s1.Stop Go to Buoy"))
+
+([Sea_Class162] of  PutOnMap
+
+	(latitude "60 11")
+	(longitude "28 23")
+	(next_actions [Sea_Class163])
+	(object [Sea_Class235])
+	(title "c1.Launch at Sea"))
+
+([Sea_Class163] of  GoRoute
+
+	(next_actions [Sea_Class164])
+	(object [Sea_Class235])
+	(radius 0.1)
+	(route [Sea_Class250])
+	(title "c1.Route to Terminal Primorsk"))
+
+([Sea_Class164] of  Delay
+
+	(delay "15 min")
+	(next_actions [Sea_Class165])
+	(title "c1.Cargo Loading"))
+
+([Sea_Class165] of  GoRoute
+
+	(next_actions [Sea_Class110001])
+	(object [Sea_Class235])
+	(radius 0.1)
+	(route [Sea_Class251])
+	(title "c1.Route Back"))
+
+([Sea_Class168] of  PutOffMap
+
+	(mapob
+		[Sea_Class236]
+		[Sea_Class237])
+	(title "ru0.SE and SM remove from Map"))
+
+([Sea_Class18] of  Context
+
+	(pairs
+		[Sea_Class345]
+		[Sea_Class331]
+		[Sea_Class333])
+	(title "s1.Airplane context"))
+
+([Sea_Class190] of  PutOnMap
+
+	(latitude "60 14.01")
+	(longitude "28 46.7")
+	(next_actions [Sea_Class191])
+	(object [Sea_Class236])
+	(title "ru0.SE to Original Position"))
+
+([Sea_Class191] of  GoRoute
+
+	(object [Sea_Class236])
+	(radius 0.2)
+	(route [Sea_Class252])
+	(title "ru0.SE Go"))
+
+([Sea_Class192] of  PutOnMap
+
+	(latitude "60 14.01")
+	(longitude "28 59.84")
+	(next_actions [Sea_Class193])
+	(object [Sea_Class237])
+	(title "ru0.SM to Original Position"))
+
+([Sea_Class193] of  GoRoute
+
+	(object [Sea_Class237])
+	(radius 0.2)
+	(route [Sea_Class253])
+	(title "ru0.SM Go"))
+
+([Sea_Class199] of  PutOnMap
+
+	(latitude "60 11")
+	(longitude "28 25")
+	(next_actions [Sea_Class200])
+	(object [Sea_Class229])
+	(title "o1.Put Santa-Anna on Map"))
+
+([Sea_Class200] of  Arrive
+
+	(latitude "60 11")
+	(longitude "28 35")
+	(object [Sea_Class229])
+	(radius 0.2)
+	(speed 48.0)
+	(title "o1.Santa-Anna goes to finish"))
+
+([Sea_Class20000] of  Scenario
+
+	(final_tasks [Sea_Class20001])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20001])
+	(scenario_scheme [Sea_Class20001])
+	(title "s1.Simple Scenario"))
+
+([Sea_Class20001] of  Task
+
+	(final_actions
+		[Sea_Class122]
+		[Sea_Class116]
+		[Sea_Class124]
+		[Sea_Class123]
+		[Sea_Class110014])
+	(finish_type AND)
+	(initial_actions
+		[Sea_Class127]
+		[Sea_Class110015])
+	(task_scheme
+		[Sea_Class123]
+		[Sea_Class124]
+		[Sea_Class122]
+		[Sea_Class121]
+		[Sea_Class120]
+		[Sea_Class118]
+		[Sea_Class119]
+		[Sea_Class117]
+		[Sea_Class125]
+		[Sea_Class116]
+		[Sea_Class115]
+		[Sea_Class114]
+		[Sea_Class127]
+		[Sea_Class110014]
+		[Sea_Class110015])
+	(title "s1.Simple Scenario Phase"))
+
+([Sea_Class20002] of  Scenario
+
+	(final_tasks [Sea_Class20003])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20006])
+	(scenario_scheme
+		[Sea_Class20003]
+		[Sea_Class20004]
+		[Sea_Class20006])
+	(title "s1.Buoy Check"))
+
+([Sea_Class20003] of  Task
+
+	(final_actions [Sea_Class155])
+	(finish_type AND)
+	(initial_actions [Sea_Class159])
+	(task_scheme
+		[Sea_Class155]
+		[Sea_Class154]
+		[Sea_Class159])
+	(title "s1.End Buoy Seek"))
+
+([Sea_Class20004] of  Task
+
+	(final_actions [Sea_Class158])
+	(finish_type AND)
+	(initial_actions [Sea_Class156])
+	(next_tasks [Sea_Class20003])
+	(task_scheme
+		[Sea_Class158]
+		[Sea_Class157]
+		[Sea_Class156])
+	(title "s1.Message to Base"))
+
+([Sea_Class20006] of  Task
+
+	(final_actions
+		[Sea_Class152]
+		[Sea_Class153])
+	(finish_type OR)
+	(initial_actions
+		[Sea_Class152]
+		[Sea_Class153])
+	(task_scheme
+		[Sea_Class153]
+		[Sea_Class152])
+	(title "s1.Seek the Buoy"))
+
+([Sea_Class20007] of  Scenario
+
+	(final_tasks [Sea_Class20008])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20008])
+	(scenario_scheme [Sea_Class20008])
+	(title "s1.Buoy Monitoring Stain"))
+
+([Sea_Class20008] of  Task
+
+	(finish_type AND)
+	(task_scheme
+		[Sea_Class131]
+		[Sea_Class130]
+		[Sea_Class129]
+		[Sea_Class133])
+	(title "s1.Buoy Works"))
+
+([Sea_Class20009] of  Scenario
+
+	(context [Sea_Class18])
+	(final_tasks [Sea_Class20010])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20013])
+	(scenario_scheme
+		[Sea_Class20010]
+		[Sea_Class20011]
+		[Sea_Class20012]
+		[Sea_Class20013])
+	(title "s1.Airplane Scenario"))
+
+([Sea_Class20010] of  Task
+
+	(final_actions [Sea_Class151])
+	(finish_type AND)
+	(initial_actions [Sea_Class151])
+	(task_scheme [Sea_Class151])
+	(title "s1.Airplane Returns"))
+
+([Sea_Class20011] of  Task
+
+	(final_actions [Sea_Class150])
+	(finish_type AND)
+	(initial_actions [Sea_Class146])
+	(task_scheme
+		[Sea_Class150]
+		[Sea_Class149]
+		[Sea_Class148]
+		[Sea_Class147]
+		[Sea_Class146])
+	(title "s1.Airplane Monitoring Round"))
+
+([Sea_Class20012] of  Task
+
+	(final_actions
+		[Sea_Class142]
+		[Sea_Class143]
+		[Sea_Class144]
+		[Sea_Class145])
+	(finish_type AND)
+	(initial_actions [Sea_Class134])
+	(next_tasks [Sea_Class20011])
+	(task_scheme
+		[Sea_Class142]
+		[Sea_Class143]
+		[Sea_Class144]
+		[Sea_Class145]
+		[Sea_Class141]
+		[Sea_Class140]
+		[Sea_Class139]
+		[Sea_Class138]
+		[Sea_Class137]
+		[Sea_Class136]
+		[Sea_Class135]
+		[Sea_Class134])
+	(title "s1.Airplane Places Buoys"))
+
+([Sea_Class20013] of  Task
+
+	(final_actions [Sea_Class211])
+	(finish_type AND)
+	(initial_actions [Sea_Class210])
+	(next_tasks [Sea_Class20012])
+	(task_scheme
+		[Sea_Class211]
+		[Sea_Class210])
+	(title "s1.Launch Airplane"))
+
+([Sea_Class20016] of  Scenario
+
+	(final_tasks [Sea_Class20017])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20018])
+	(scenario_scheme
+		[Sea_Class20017]
+		[Sea_Class20018])
+	(title "s1.Task Forces Operation"))
+
+([Sea_Class20017] of  Task
+
+	(final_actions
+		[Sea_Class105]
+		[Sea_Class106]
+		[Sea_Class108]
+		[Sea_Class109]
+		[Sea_Class110])
+	(finish_type AND)
+	(initial_actions
+		[Sea_Class102]
+		[Sea_Class104])
+	(task_scheme
+		[Sea_Class106]
+		[Sea_Class105]
+		[Sea_Class104]
+		[Sea_Class103]
+		[Sea_Class110]
+		[Sea_Class109]
+		[Sea_Class108]
+		[Sea_Class107]
+		[Sea_Class102])
+	(title "s2.TF Actions"))
+
+([Sea_Class20018] of  Task
+
+	(final_actions
+		[Sea_Class100]
+		[Sea_Class99]
+		[Sea_Class101]
+		[Sea_Class98])
+	(finish_type AND)
+	(initial_actions
+		[Sea_Class94]
+		[Sea_Class93]
+		[Sea_Class95]
+		[Sea_Class92])
+	(next_tasks [Sea_Class20017])
+	(task_scheme
+		[Sea_Class98]
+		[Sea_Class96]
+		[Sea_Class92]
+		[Sea_Class101]
+		[Sea_Class95]
+		[Sea_Class99]
+		[Sea_Class97]
+		[Sea_Class93]
+		[Sea_Class100]
+		[Sea_Class94])
+	(title "s1.TF Deployment"))
+
+([Sea_Class20019] of  Scenario
+
+	(context [Sea_Class363])
+	(final_tasks [Sea_Class20020])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20020])
+	(scenario_scheme [Sea_Class20020])
+	(title "c1.Cruise to Primorsk"))
+
+([Sea_Class20020] of  Task
+
+	(final_actions [Sea_Class110001])
+	(initial_actions [Sea_Class162])
+	(task_scheme
+		[Sea_Class165]
+		[Sea_Class164]
+		[Sea_Class163]
+		[Sea_Class162]
+		[Sea_Class110001])
+	(title "c1.Cruise to and from Primorsk"))
+
+([Sea_Class20035] of  Scenario
+
+	(final_tasks [Sea_Class20038])
+	(finish_type AND)
+	(initial_tasks
+		[Sea_Class20037]
+		[Sea_Class20036])
+	(scenario_scheme
+		[Sea_Class20036]
+		[Sea_Class50]
+		[Sea_Class20037]
+		[Sea_Class20038])
+	(title "ru0.Danger Approach"))
+
+([Sea_Class20036] of  Task
+
+	(final_actions [Sea_Class193])
+	(finish_type AND)
+	(initial_actions [Sea_Class192])
+	(next_tasks [Sea_Class50])
+	(task_scheme
+		[Sea_Class193]
+		[Sea_Class192])
+	(title "ru0.Santa-Maria Actions"))
+
+([Sea_Class20037] of  Task
+
+	(final_actions [Sea_Class191])
+	(finish_type AND)
+	(initial_actions [Sea_Class190])
+	(next_tasks [Sea_Class50])
+	(task_scheme
+		[Sea_Class191]
+		[Sea_Class190])
+	(title "ru0.Santa-Eleonora Actions"))
+
+([Sea_Class20038] of  Task
+
+	(final_actions [Sea_Class168])
+	(finish_type AND)
+	(initial_actions [Sea_Class168])
+	(task_scheme [Sea_Class168])
+	(title "ru0.Remove from Map"))
+
+([Sea_Class20043] of  Scenario
+
+	(final_tasks [Sea_Class20044])
+	(finish_type AND)
+	(initial_tasks [Sea_Class20045])
+	(scenario_scheme
+		[Sea_Class20044]
+		[Sea_Class20045])
+	(title "o1.Obstinate"))
+
+([Sea_Class20044] of  Task
+
+	(final_actions [Sea_Class202])
+	(finish_type AND)
+	(initial_actions [Sea_Class203])
+	(task_scheme
+		[Sea_Class202]
+		[Sea_Class203])
+	(title "o1.Race Done"))
+
+([Sea_Class20045] of  Task
+
+	(final_actions [Sea_Class200])
+	(finish_type AND)
+	(initial_actions [Sea_Class201])
+	(task_scheme
+		[Sea_Class200]
+		[Sea_Class199]
+		[Sea_Class201])
+	(title "o1.Race"))
+
+([Sea_Class20046] of  Scenario
+
+	(context [Sea_Class70])
+	(final_tasks
+		[Sea_Class20049]
+		[Sea_Class20047]
+		[Sea_Class20048])
+	(finish_type OR)
+	(initial_tasks [Sea_Class20051])
+	(scenario_scheme
+		[Sea_Class20048]
+		[Sea_Class20049]
+		[Sea_Class20050]
+		[Sea_Class20051]
+		[Sea_Class90000]
+		[Sea_Class130000])
+	(title "s1.Collision"))
+
+([Sea_Class20047] of  Task
+
+	(final_actions [Sea_Class75])
+	(finish_type AND)
+	(initial_actions [Sea_Class75])
+	(task_scheme [Sea_Class75])
+	(title "s1.End Phase"))
+
+([Sea_Class20048] of  Task
+
+	(final_actions [Sea_Class77])
+	(finish_type AND)
+	(initial_actions [Sea_Class76])
+	(task_scheme
+		[Sea_Class77]
+		[Sea_Class76])
+	(title "s1.Simple Rescue Operation"))
+
+([Sea_Class20049] of  Task
+
+	(final_actions
+		[Sea_Class79]
+		[Sea_Class81]
+		[Sea_Class80]
+		[Sea_Class87]
+		[Sea_Class90]
+		[Sea_Class110016])
+	(finish_type AND)
+	(initial_actions
+		[Sea_Class78]
+		[Sea_Class89]
+		[Sea_Class91]
+		[Sea_Class110016])
+	(task_scheme
+		[Sea_Class90]
+		[Sea_Class91]
+		[Sea_Class79]
+		[Sea_Class80]
+		[Sea_Class88]
+		[Sea_Class87]
+		[Sea_Class86]
+		[Sea_Class85]
+		[Sea_Class84]
+		[Sea_Class89]
+		[Sea_Class81]
+		[Sea_Class78]
+		[Sea_Class110016])
+	(title "s1.Complex Rescue Operation"))
+
+([Sea_Class20050] of  Task
+
+	(final_actions [Sea_Class74])
+	(finish_type AND)
+	(initial_actions [Sea_Class74])
+	(next_tasks [Sea_Class130000])
+	(task_scheme [Sea_Class74])
+	(title "s1.Collision Assessment"))
+
+([Sea_Class20051] of  Task
+
+	(final_actions [Sea_Class207])
+	(finish_type OR)
+	(initial_actions [Sea_Class208])
+	(next_tasks [Sea_Class90000])
+	(task_scheme
+		[Sea_Class207]
+		[Sea_Class204]
+		[Sea_Class206]
+		[Sea_Class208])
+	(title "s1.Watch"))
+
+([Sea_Class201] of  Calculus
+
+	(next_actions [Sea_Class199])
+	(source "mess = \"You may want to remove obstinate Santa-Anna from the Map:\\nGo to menu Protege > Remove Objects > ...\\nOr let it go to 28 35 of Longitude\"\njavax.swing.JOptionPane.showMessageDialog( null, mess )")
+	(title "o1.Start Message"))
+
+([Sea_Class202] of  PutOffMap
+
+	(object [Sea_Class229])
+	(title "o1.Santa-Anna off Map"))
+
+([Sea_Class203] of  Calculus
+
+	(next_actions [Sea_Class202])
+	(source "mess = \"Santa-Anna won!\\nThis is the end of Scenario\"\njavax.swing.JOptionPane.showMessageDialog( null, mess )")
+	(title "o1.Final Message"))
+
+([Sea_Class204] of  Delay
+
+	(delay "15 min")
+	(next_actions [Sea_Class207])
+	(title "s1.Cruise Shift"))
+
+([Sea_Class205] of  Delay
+
+	(delay "8 hrs")
+	(title "s1.Watch Time"))
+
+([Sea_Class206] of  Subscenario
+
+	(context [Sea_Class272])
+	(next_actions [Sea_Class204])
+	(sub_scenario [Sea_Class120007])
+	(title "s1.Start Cruise from Primorsk")
+	(wait_subscenario FALSE))
+
+([Sea_Class207] of  Subscenario
+
+	(context [Sea_Class273])
+	(sub_scenario [Sea_Class20019])
+	(title "s1.Second Cruise")
+	(wait_subscenario TRUE))
+
+([Sea_Class208] of  PutOnMap
+
+	(mapob
+		[Sea_Class230]
+		[Sea_Class231]
+		[Sea_Class232]
+		[Sea_Class233])
+	(next_actions [Sea_Class206])
+	(title "s1.Ports on Map"))
+
+([Sea_Class21] of  Context
+
+	(pairs
+		[Sea_Class299]
+		[Sea_Class300]
+		[Sea_Class301])
+	(title "f1.Build Airport Context"))
+
+([Sea_Class210] of  PutOnMap
+
+	(latitude "60 21")
+	(longitude "29 1")
+	(next_actions
+		[Sea_Class211]
+		[Sea_Class211])
+	(object [Sea_Class221])
+	(title "s1.Launch Ecological Patrol"))
+
+([Sea_Class211] of  PutObAttributes
+
+	(attributes [Sea_Class220])
+	(object [Sea_Class221])
+	(title "s1.Fuel Loading")
+	(values "500"))
+
+([Sea_Class216] of  TwoObRelation
+
+	(ob_relation INSIDE)
+	(object [Sea_Class238])
+	(observer [Sea_Class30000])
+	(title "s1.Buoy inside Heavy Stain"))
+
+([Sea_Class217] of  TwoObRelation
+
+	(ob_relation NEAR)
+	(object [Sea_Class219])
+	(observer [Sea_Class240])
+	(radius 0.5)
+	(title "s1.CloseApproach"))
+
+([Sea_Class218] of  Attribute
+
+	(title "CollisionSeriousness"))
+
+([Sea_Class219] of  Variable
+
+	(title "?ship1"))
+
+([Sea_Class220] of  Attribute
+
+	(title "fuel"))
+
+([Sea_Class221] of  Variable
+
+	(title "?plane"))
+
+([Sea_Class222] of  Variable
+
+	(title "?city1"))
+
+([Sea_Class226] of  NavOb
+
+	(course 0)
+	(label "Fly")
+	(latitude "60 00")
+	(longitude "30 00")
+	(speed 0.0)
+	(type [Sea_Class140008])
+	(url "file:data/images/helr.gif"))
+
+([Sea_Class227] of  NavOb
+
+	(course 270)
+	(label "Cpt-Plahin")
+	(latitude "60 21.42")
+	(longitude "28 37.67")
+	(url "file:data/images/rscr.gif"))
+
+([Sea_Class228] of  NavOb
+
+	(course 270)
+	(label "Cpt-Zarubin")
+	(latitude "60 21.52")
+	(longitude "28 48.35")
+	(url "file:data/images/tanker.gif"))
+
+([Sea_Class229] of  NavOb
+
+	(course 270)
+	(label "Santa-Anna")
+	(latitude "60 16.23")
+	(longitude "28 56.7")
+	(url "file:data/images/seiner.gif"))
+
+([Sea_Class230] of  NavOb
+
+	(course 0)
+	(label "Dubkova")
+	(latitude "60 14.01")
+	(longitude "28 59.84")
+	(speed 0.0)
+	(url "file:data/images/home.gif"))
+
+([Sea_Class231] of  NavOb
+
+	(course 0)
+	(label "Ermilovo")
+	(latitude "60 21.52")
+	(longitude "28 48.35")
+	(speed 0.0)
+	(url "file:data/images/home.gif"))
+
+([Sea_Class232] of  NavOb
+
+	(course 0)
+	(label "Kyroniemi")
+	(latitude "60 16.23")
+	(longitude "28 56.7")
+	(speed 0.0)
+	(url "file:data/images/home.gif"))
+
+([Sea_Class233] of  NavOb
+
+	(course 0)
+	(label "Primorsk")
+	(latitude "60 21.42")
+	(longitude "28 37.67")
+	(speed 0.0)
+	(url "file:data/images/home.gif"))
+
+([Sea_Class234] of  NavOb
+
+	(course 0)
+	(label "Fire")
+	(latitude "60 12.22")
+	(longitude "28 33.02")
+	(speed 0.0)
+	(url "file:data/images/fire1.gif"))
+
+([Sea_Class235] of  Variable
+
+	(title "?ship"))
+
+([Sea_Class236] of  NavOb
+
+	(course 135)
+	(label "Santa-Eleonora")
+	(latitude "60 14.01")
+	(longitude "28 46.7")
+	(speed 20.0)
+	(url "file:data/images/tall.gif"))
+
+([Sea_Class237] of  NavOb
+
+	(course 225)
+	(label "Santa-Maria")
+	(latitude "60 14.01")
+	(longitude "28 59.84")
+	(speed 20.0)
+	(url "file:data/images/yachtp.png"))
+
+([Sea_Class238] of  Variable
+
+	(title "?buoy"))
+
+([Sea_Class239] of  Variable
+
+	(title "?figure"))
+
+([Sea_Class240] of  Variable
+
+	(title "?ship2"))
+
+([Sea_Class241] of  Drift
+
+	(course 300)
+	(fillColor "40666600")
+	(isPolygon TRUE)
+	(label "Heavy Stain")
+	(latitude "60 13.33")
+	(lineColor "FF666600")
+	(longitude "28 43.83")
+	(N 32)
+	(radius 2.8)
+	(speed 0.09)
+	(speed2 0.01))
+
+([Sea_Class242] of  Spill
+
+	(fillColor "40FFFF00")
+	(isPolygon TRUE)
+	(label "RadioEmergency")
+	(latitude "60 13.33")
+	(lineColor "FFFFFF00")
+	(longitude "28 43.83")
+	(N 32)
+	(radius 20.0)
+	(speed 0.05))
+
+([Sea_Class243] of  NavOb
+
+	(course 0)
+	(label "Wounded")
+	(latitude "60 14")
+	(longitude "28 43.69")
+	(speed 0.0)
+	(url "file:data/images/nerd.gif"))
+
+([Sea_Class244] of  NavOb
+
+	(course 180)
+	(label "Bs1")
+	(latitude "60 14.63")
+	(longitude "28 46.97")
+	(speed 0.0)
+	(url "file:data/images/buoyb.gif"))
+
+([Sea_Class245] of  NavOb
+
+	(course 270)
+	(label "Bs2")
+	(latitude "60 10.2")
+	(longitude "28 48.38")
+	(speed 0.0)
+	(url "file:data/images/buoyb.gif"))
+
+([Sea_Class246] of  NavOb
+
+	(course 0)
+	(label "Bs3")
+	(latitude "60 10.05")
+	(longitude "28 39.36")
+	(speed 0.0)
+	(url "file:data/images/buoyb.gif"))
+
+([Sea_Class247] of  NavOb
+
+	(course 0)
+	(label "Bs4")
+	(latitude "60 14.49")
+	(longitude "28 40.7")
+	(speed 0.0)
+	(url "file:data/images/buoyr.gif"))
+
+([Sea_Class248] of  Spill
+
+	(fillColor "40CC6600")
+	(isPolygon TRUE)
+	(label "Light Spill")
+	(latitude "60 14")
+	(lineColor "FFCC3300")
+	(longitude "28 43.69")
+	(N 32)
+	(radius 6.0)
+	(speed 0.07))
+
+([Sea_Class249] of  Spill
+
+	(fillColor "40FF3399")
+	(isPolygon TRUE)
+	(label "RadioSOS")
+	(latitude "60 14")
+	(lineColor "FFFF3399")
+	(longitude "28 43.69")
+	(N 32)
+	(radius 20.0)
+	(speed 0.05))
+
+([Sea_Class250] of  Route
+
+	(points
+		"60 11 28 23"
+		"60 13 28 40"
+		"60 15 28 48"
+		"60 16.95 28 48.11"
+		"60 18.05 28 44.88"
+		"60 19.04 28 44.48"
+		"60 19.64 28 42.87")
+	(title "c1.To Terminal Primorsk"))
+
+([Sea_Class251] of  Route
+
+	(points
+		"60 19.64 28 42.87"
+		"60 19.04 28 44.48"
+		"60 18.05 28 44.88"
+		"60 16.95 28 48.11"
+		"60 15 28 48"
+		"60 13 28 40"
+		"60 11 28 23")
+	(title "c1.From Terminal Primorsk"))
+
+([Sea_Class252] of  Route
+
+	(points
+		"60 7.92 28 58.91"
+		"60 7.92 28 47.63")
+	(title "ru0.Santa-Eleonora Route"))
+
+([Sea_Class253] of  Route
+
+	(points
+		"60 7.92 28 47.63"
+		"60 7.92 28 58.91")
+	(title "ru0.Santa-Maria Route"))
+
+([Sea_Class257] of  DriftRepeatAction
+
+	(interval MINUTE)
+	(label "Heavy Drift")
+	(poly [Sea_Class241]))
+
+([Sea_Class258] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class381])
+	(interval MINUTE)
+	(label "Heavy Spill Go")
+	(poly [Sea_Class241]))
+
+([Sea_Class259] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Radio Emergency Spread")
+	(poly [Sea_Class242]))
+
+([Sea_Class260] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "Light Spill Spread")
+	(poly [Sea_Class248]))
+
+([Sea_Class261] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "Radio SOS Spread")
+	(poly [Sea_Class249]))
+
+([Sea_Class262] of  Variable
+
+	(title "?radiation"))
+
+([Sea_Class265] of  Variable
+
+	(title "?base"))
+
+([Sea_Class266] of  Variable
+
+	(title "?city2"))
+
+([Sea_Class267] of  Result
+
+	(attribute [Sea_Class218])
+	(object [Sea_Class219])
+	(title "s1.Collision Asses R1")
+	(variable [Sea_Class283]))
+
+([Sea_Class268] of  Result
+
+	(ob_property SPEED)
+	(object [Sea_Class219])
+	(title "s1.Collision Assessment Calc R2")
+	(variable [Sea_Class281]))
+
+([Sea_Class269] of  Result
+
+	(ob_property SPEED)
+	(object [Sea_Class240])
+	(title "s1.Collision Assessment Calc R3")
+	(variable [Sea_Class282]))
+
+([Sea_Class270] of  InputData
+
+	(ob_property SPEED)
+	(object [Sea_Class219])
+	(title "s1.Id1")
+	(variable [Sea_Class281]))
+
+([Sea_Class271] of  InputData
+
+	(ob_property SPEED)
+	(object [Sea_Class240])
+	(title "s1.Id2")
+	(variable [Sea_Class282]))
+
+([Sea_Class272] of  Context
+
+	(pairs [Sea_Class340])
+	(title "s1.Ship1 to Ship"))
+
+([Sea_Class273] of  Context
+
+	(pairs [Sea_Class341])
+	(title "s1.Ship2 to Ship"))
+
+([Sea_Class274] of  Context
+
+	(pairs
+		[Sea_Class311]
+		[Sea_Class312]
+		[Sea_Class314])
+	(title "s1.Buoy1 Context"))
+
+([Sea_Class275] of  Context
+
+	(pairs
+		[Sea_Class316]
+		[Sea_Class325]
+		[Sea_Class319])
+	(title "s1.Buoy2 Context"))
+
+([Sea_Class276] of  Context
+
+	(pairs
+		[Sea_Class317]
+		[Sea_Class327]
+		[Sea_Class321])
+	(title "s1.Buoy3 Context"))
+
+([Sea_Class277] of  Context
+
+	(pairs
+		[Sea_Class295]
+		[Sea_Class334])
+	(title "s1.Check1 Context"))
+
+([Sea_Class278] of  Context
+
+	(pairs
+		[Sea_Class296]
+		[Sea_Class335])
+	(title "s1.Check2 Context"))
+
+([Sea_Class279] of  Context
+
+	(pairs
+		[Sea_Class297]
+		[Sea_Class336])
+	(title "s1.Check3 Context"))
+
+([Sea_Class280] of  Context
+
+	(pairs
+		[Sea_Class298]
+		[Sea_Class337])
+	(title "s1.Check4 Context"))
+
+([Sea_Class281] of  Variable
+
+	(title "speed1"))
+
+([Sea_Class282] of  Variable
+
+	(title "speed2"))
+
+([Sea_Class283] of  Variable
+
+	(title "seriousness"))
+
+([Sea_Class284] of  Result
+
+	(attribute [Sea_Class220])
+	(object [Sea_Class221])
+	(title "s1.Fuel Loading R1")
+	(variable [Sea_Class285]))
+
+([Sea_Class285] of  Variable
+
+	(title "fuel"))
+
+([Sea_Class286] of  Variable
+
+	(title "?buoyName"))
+
+([Sea_Class287] of  Variable
+
+	(title "?period"))
+
+([Sea_Class288] of  Variable
+
+	(title "?lat1"))
+
+([Sea_Class289] of  Variable
+
+	(title "?lat2"))
+
+([Sea_Class29] of  Context
+
+	(pairs [Sea_Class303])
+	(title "ru0.Assert Targets Context"))
+
+([Sea_Class290] of  Variable
+
+	(title "?lon1"))
+
+([Sea_Class291] of  Variable
+
+	(title "?lon2"))
+
+([Sea_Class292] of  Variable
+
+	(title "?name1"))
+
+([Sea_Class293] of  Variable
+
+	(title "?name2"))
+
+([Sea_Class294] of  Variable
+
+	(title "?ship3"))
+
+([Sea_Class295] of  ValuePair
+
+	(title "buoy1 Name")
+	(value "Bs1")
+	(variable [Sea_Class286]))
+
+([Sea_Class296] of  ValuePair
+
+	(title "buoy2 Name")
+	(value "Bs2")
+	(variable [Sea_Class286]))
+
+([Sea_Class297] of  ValuePair
+
+	(title "buoy3 Name")
+	(value "Bs3")
+	(variable [Sea_Class286]))
+
+([Sea_Class298] of  ValuePair
+
+	(title "buoy4 Name")
+	(value "Bs4")
+	(variable [Sea_Class286]))
+
+([Sea_Class299] of  ValuePair
+
+	(title "f1.Name1")
+	(value "Saint Petersburg")
+	(variable [Sea_Class292]))
+
+([Sea_Class300] of  ValuePair
+
+	(title "f1.Lat1")
+	(value "60 0")
+	(variable [Sea_Class288]))
+
+([Sea_Class30000] of  Spill
+
+	(fillColor "20CC6600")
+	(isPolygon TRUE)
+	(label "hs1")
+	(latitude "60 14.55")
+	(lineColor "00CC3300")
+	(longitude "28 46.2")
+	(N 32)
+	(radius 5.0)
+	(speed 0.003))
+
+([Sea_Class30001] of  Rule
+
+	(title "TC.Create Targets"))
+
+([Sea_Class301] of  ValuePair
+
+	(title "f1.Lon1")
+	(value "30 0")
+	(variable [Sea_Class290]))
+
+([Sea_Class302] of  ValuePair
+
+	(title "ru6.Ship")
+	(value "Santa-Eleonora")
+	(variable [Sea_Class235]))
+
+([Sea_Class303] of  ValuePair
+
+	(title "ru0.20sec")
+	(value "20 sec")
+	(variable [Sea_Class287]))
+
+([Sea_Class304] of  ValuePair
+
+	(title "ru6.1 min")
+	(value "60 sec")
+	(variable [Sea_Class287]))
+
+([Sea_Class305] of  ValuePair
+
+	(title "f1.Lat2")
+	(value "59 16.25")
+	(variable [Sea_Class289]))
+
+([Sea_Class306] of  ValuePair
+
+	(title "f1.Lon2")
+	(value "24 46")
+	(variable [Sea_Class291]))
+
+([Sea_Class307] of  ValuePair
+
+	(title "f1.Town1Label")
+	(value "Saint Petersburg")
+	(variable [Sea_Class292]))
+
+([Sea_Class308] of  ValuePair
+
+	(title "f1.Town2Label")
+	(value "Tallinn")
+	(variable [Sea_Class293]))
+
+([Sea_Class309] of  ValuePair
+
+	(title "f1.Name2")
+	(value "Tallinn")
+	(variable [Sea_Class293]))
+
+([Sea_Class310] of  ObjectPair
+
+	(object [Sea_Class244])
+	(title "Stain Sensor")
+	(variable [Sea_Class238]))
+
+([Sea_Class311] of  ObjectPair
+
+	(object [Sea_Class244])
+	(title "buoy1")
+	(variable [Sea_Class238]))
+
+([Sea_Class312] of  ObjectPair
+
+	(object [Sea_Class313])
+	(title "buoy1 radio")
+	(variable [Sea_Class239]))
+
+([Sea_Class313] of  Spill
+
+	(fillColor "400000FF")
+	(isPolygon TRUE)
+	(label "Br1")
+	(latitude "60 14.63")
+	(lineColor "FF0000FF")
+	(longitude "28 46.97")
+	(N 16)
+	(radius 1.2)
+	(speed 0.01))
+
+([Sea_Class314] of  ObjectPair
+
+	(object [Sea_Class315])
+	(title "buoy1 radiation")
+	(variable [Sea_Class262]))
+
+([Sea_Class315] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "BRad1")
+	(poly [Sea_Class313]))
+
+([Sea_Class316] of  ObjectPair
+
+	(object [Sea_Class245])
+	(title "buoy2")
+	(variable [Sea_Class238]))
+
+([Sea_Class317] of  ObjectPair
+
+	(object [Sea_Class246])
+	(title "buoy3")
+	(variable [Sea_Class238]))
+
+([Sea_Class318] of  ObjectPair
+
+	(object [Sea_Class247])
+	(title "buoy4")
+	(variable [Sea_Class238]))
+
+([Sea_Class319] of  ObjectPair
+
+	(object [Sea_Class320])
+	(title "buoy2 radiation")
+	(variable [Sea_Class262]))
+
+([Sea_Class32] of  Context
+
+	(pairs
+		[Sea_Class302]
+		[Sea_Class304])
+	(title "ru6.TC Start Context"))
+
+([Sea_Class320] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "BRad2")
+	(poly [Sea_Class326]))
+
+([Sea_Class321] of  ObjectPair
+
+	(object [Sea_Class322])
+	(title "buoy3 radiation")
+	(variable [Sea_Class262]))
+
+([Sea_Class322] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "BRad3")
+	(poly [Sea_Class328]))
+
+([Sea_Class323] of  ObjectPair
+
+	(object [Sea_Class324])
+	(title "buoy4 radiation")
+	(variable [Sea_Class262]))
+
+([Sea_Class324] of  SpillRepeatAction
+
+	(interval SECOND)
+	(label "BRad4")
+	(poly [Sea_Class330]))
+
+([Sea_Class325] of  ObjectPair
+
+	(object [Sea_Class326])
+	(title "buoy2 radio")
+	(variable [Sea_Class239]))
+
+([Sea_Class326] of  Spill
+
+	(fillColor "400000FF")
+	(isPolygon TRUE)
+	(label "Br2")
+	(latitude "60 10.2")
+	(lineColor "FF0000FF")
+	(longitude "28 48.38")
+	(N 16)
+	(radius 1.2)
+	(speed 0.01))
+
+([Sea_Class327] of  ObjectPair
+
+	(object [Sea_Class328])
+	(title "buoy3 radio")
+	(variable [Sea_Class239]))
+
+([Sea_Class328] of  Spill
+
+	(fillColor "400000FF")
+	(isPolygon TRUE)
+	(label "Br3")
+	(latitude "60 8.7")
+	(lineColor "FF0000FF")
+	(longitude "28 29.6")
+	(N 16)
+	(radius 1.2)
+	(speed 0.01))
+
+([Sea_Class329] of  ObjectPair
+
+	(object [Sea_Class330])
+	(title "buoy4 radio")
+	(variable [Sea_Class239]))
+
+([Sea_Class330] of  Spill
+
+	(fillColor "40FF0000")
+	(isPolygon TRUE)
+	(label "Br4")
+	(latitude "60 14.49")
+	(lineColor "FFFF0000")
+	(longitude "28 40.7")
+	(N 16)
+	(radius 1.2)
+	(speed 0.02))
+
+([Sea_Class331] of  ObjectPair
+
+	(object [Sea_Class332])
+	(title "Ecological Patrol")
+	(variable [Sea_Class221]))
+
+([Sea_Class332] of  NavOb
+
+	(course 0)
+	(label "Magpie")
+	(latitude "60 0")
+	(longitude "30 0")
+	(speed 0.0)
+	(url "file:data/images/plnb.gif"))
+
+([Sea_Class333] of  ObjectPair
+
+	(object [Sea_Class233])
+	(title "Control Center")
+	(variable [Sea_Class265]))
+
+([Sea_Class334] of  ObjectPair
+
+	(object [Sea_Class244])
+	(title "buoy1 Object")
+	(variable [Sea_Class238]))
+
+([Sea_Class335] of  ObjectPair
+
+	(object [Sea_Class245])
+	(title "buoy2 Object")
+	(variable [Sea_Class238]))
+
+([Sea_Class336] of  ObjectPair
+
+	(object [Sea_Class246])
+	(title "buoy3 Object")
+	(variable [Sea_Class238]))
+
+([Sea_Class337] of  ObjectPair
+
+	(object [Sea_Class247])
+	(title "buoy4 Object")
+	(variable [Sea_Class238]))
+
+([Sea_Class338] of  ObjectPair
+
+	(title "Tanker")
+	(variable [Sea_Class235]))
+
+([Sea_Class339] of  ObjectPair
+
+	(object [Sea_Class332])
+	(title "f1.Plane")
+	(variable [Sea_Class221]))
+
+([Sea_Class340] of  ObjectPair
+
+	(object [Sea_Class219])
+	(title "s1s")
+	(variable [Sea_Class235]))
+
+([Sea_Class341] of  ObjectPair
+
+	(object [Sea_Class240])
+	(title "s2s")
+	(variable [Sea_Class235]))
+
+([Sea_Class342] of  ObjectPair
+
+	(object [Sea_Class294])
+	(title "s3s")
+	(variable [Sea_Class235]))
+
+([Sea_Class343] of  ObjectPair
+
+	(object [Sea_Class344])
+	(title "Tanker1")
+	(variable [Sea_Class219]))
+
+([Sea_Class344] of  NavOb
+
+	(course 270)
+	(label "Exxon")
+	(latitude "60 21")
+	(longitude "28 48")
+	(url "file:data/images/t1.gif"))
+
+([Sea_Class345] of  ObjectPair
+
+	(object [Sea_Class346])
+	(title "Tanker2")
+	(variable [Sea_Class240]))
+
+([Sea_Class346] of  NavOb
+
+	(course 270)
+	(label "Valdes")
+	(latitude "60 12")
+	(longitude "28 34")
+	(url "file:data/images/t2.gif"))
+
+([Sea_Class35] of  Context
+
+	(pairs [Sea_Class302])
+	(title "ru6.TC Stop Context"))
+
+([Sea_Class363] of  Context
+
+	(pairs [Sea_Class338])
+	(title "c1.Cruise Context"))
+
+([Sea_Class377] of  VPFLayer
+
+	(area "polbnda")
+	(class "com.bbn.openmap.layer.vpf.VPFLayer")
+	(coverageType "bnd")
+	(edge "polbndl")
+	(featureTypes "edge area")
+	(fillColor "FFCCDDBB")
+	(label "vpfPoliticalForCollision")
+	(lineColor "FFFF0000")
+	(prettyName "VPF политические границы")
+	(vpfPath "data/vpf/v0eur/vmaplv0"))
+
+([Sea_Class378] of  Type
+
+	(label "Civil Aircraft")
+	(tasks [Sea_Class388]))
+
+([Sea_Class38] of  Context
+
+	(pairs
+		[Sea_Class339]
+		[Sea_Class300]
+		[Sea_Class301]
+		[Sea_Class305]
+		[Sea_Class306])
+	(title "f1.Flight Context"))
+
+([Sea_Class380] of  Line
+
+	(capDecoration BUTT)
+	(dashPattern "10 4")
+	(jointDecoration BEVEL)
+	(label "Dashed1")
+	(lineType GREAT_CIRCLE)
+	(lineWidth "1"))
+
+([Sea_Class381] of  Field
+
+	(csv_delimiter COMMA)
+	(east "29 24")
+	(fillColor "1F000FFF")
+	(label "Bjork Stream")
+	(latitude "60 30")
+	(lineColor "FFFFFF00")
+	(longitude "27 30")
+	(north "60 18")
+	(south "59 48")
+	(west "28 24"))
+
+([Sea_Class383] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.96")
+	(lineColor "FF000000")
+	(longitude "28 48.77")
+	(mapob [Sea_Class237]))
+
+([Sea_Class384] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.96")
+	(lineColor "FF000000")
+	(longitude "28 48.77")
+	(mapob [Sea_Class228]))
+
+([Sea_Class385] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.42")
+	(lineColor "FFFF0000")
+	(longitude "28 47.7")
+	(mapob [Sea_Class346]))
+
+([Sea_Class386] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 14.92")
+	(lineColor "FFFF0000")
+	(longitude "28 46.69")
+	(mapob [Sea_Class346]))
+
+([Sea_Class387] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class344]))
+
+([Sea_Class388] of  NavObTask
+
+	(label "Info"))
+
+([Sea_Class40000] of  Rule
+
+	(title "TC.Create Bearing1"))
+
+([Sea_Class40001] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.5")
+	(lineColor "FFFF0000")
+	(longitude "28 48")
+	(mapob [Sea_Class346]))
+
+([Sea_Class40002] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "28 46.99")
+	(mapob [Sea_Class346]))
+
+([Sea_Class40003] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 15.11")
+	(lineColor "FF000000")
+	(longitude "28 49.03")
+	(mapob [Sea_Class237]))
+
+([Sea_Class40004] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 15.11")
+	(lineColor "FF000000")
+	(longitude "28 49.03")
+	(mapob [Sea_Class228]))
+
+([Sea_Class40006] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.5")
+	(lineColor "FFFF0000")
+	(longitude "28 48")
+	(mapob [Sea_Class346]))
+
+([Sea_Class40007] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "28 46.99")
+	(mapob [Sea_Class346]))
+
+([Sea_Class41] of  Context
+
+	(pairs
+		[Sea_Class307]
+		[Sea_Class308]
+		[Sea_Class300]
+		[Sea_Class301]
+		[Sea_Class305]
+		[Sea_Class306])
+	(title "f1.Flight2 Context"))
+
+([Sea_Class425] of  Script
+
+	(source "ol = wm.getGlobal( \"traceLevel\" )\ndro.printout( \"Old Trace Level \"+ol )\nwm.setGlobal( \"traceLevel\", 4 )")
+	(title "Trace Level 4"))
+
+([Sea_Class44] of  Context
+
+	(pairs
+		[Sea_Class299]
+		[Sea_Class309])
+	(title "f1.Link/Unlink Two Cities Context"))
+
+([Sea_Class50] of  Join
+
+	(join_tasks
+		[Sea_Class20037]
+		[Sea_Class20036])
+	(next_tasks [Sea_Class20038])
+	(title "ru0.J1"))
+
+([Sea_Class50000] of  Rule
+
+	(title "TC.Constant Bearing"))
+
+([Sea_Class50001] of  Rule
+
+	(salience 100)
+	(title "TC.Delete Old Target"))
+
+([Sea_Class50002] of  Rule
+
+	(title "TC.Dangerous Approach"))
+
+([Sea_Class50003] of  Rule
+
+	(title "TC.Dangerous Overtake"))
+
+([Sea_Class50004] of  Rule
+
+	(title "TC.Dangerous Towards"))
+
+([Sea_Class50006] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.88")
+	(lineColor "FF000000")
+	(longitude "28 48.46")
+	(mapob [Sea_Class237]))
+
+([Sea_Class50007] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.88")
+	(lineColor "FF000000")
+	(longitude "28 48.46")
+	(mapob [Sea_Class228]))
+
+([Sea_Class54] of  Context
+
+	(pairs [Sea_Class339])
+	(title "f1.Flight View Context"))
+
+([Sea_Class60000] of  Delay
+
+	(delay "5 min")
+	(next_actions [Sea_Class100032])
+	(title "ar.First Heavy Delay"))
+
+([Sea_Class60009] of  Rule
+
+	(salience -100)
+	(title "TC.Delete Bearing1"))
+
+([Sea_Class65] of  UserDecision
+
+	(title "s1.Next Watch?"))
+
+([Sea_Class70] of  Context
+
+	(pairs
+		[Sea_Class343]
+		[Sea_Class345])
+	(title "s1.Collision Handling Context"))
+
+([Sea_Class70000] of  Spill
+
+	(fillColor "20339900")
+	(isPolygon TRUE)
+	(label "ls2")
+	(latitude "60 14.92")
+	(lineColor "00339900")
+	(longitude "28 47.59")
+	(N 32)
+	(radius 3.5)
+	(speed 0.0015))
+
+([Sea_Class70001] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "hs2")
+	(latitude "60 14.55")
+	(lineColor "00EE3300")
+	(longitude "28 46.2")
+	(N 32)
+	(radius 5.0)
+	(speed 0.003))
+
+([Sea_Class70002] of  OMTPolyOnFieldRepeatAction
+
+	(field [Sea_Class70003])
+	(interval SECOND)
+	(label "Brest Spill Go4")
+	(poly [Sea_Class80002]))
+
+([Sea_Class70003] of  Field
+
+	(csv_delimiter COMMA)
+	(east "-4 0")
+	(fillColor "10CCEEFF")
+	(label "Brest Tide")
+	(latitude "60 45")
+	(lineColor "FFFFFF00")
+	(longitude "28 24")
+	(north "48 42")
+	(south "47 42")
+	(west "-6 0"))
+
+([Sea_Class73] of  Context
+
+	(pairs
+		[Sea_Class318]
+		[Sea_Class329]
+		[Sea_Class323])
+	(title "s1.Buoy4 Context"))
+
+([Sea_Class74] of  Calculus
+
+	(input_data
+		[Sea_Class270]
+		[Sea_Class271])
+	(results
+		[Sea_Class267]
+		[Sea_Class268]
+		[Sea_Class269])
+	(source "if( speed1+speed2 > 40 )\n seriousness = \"HEAVY\"\nelse\n seriousness = \"LIGHT\"\nspeed1 = 0\nspeed2 = 0")
+	(title "s1.Collision Assessment Calculation"))
+
+([Sea_Class75] of  Break
+
+	(activity [Sea_Class20019])
+	(title "s1.Break Cruises3"))
+
+([Sea_Class76] of  Break
+
+	(activity [Sea_Class20019])
+	(next_actions [Sea_Class77])
+	(title "s1.Break Cruises"))
+
+([Sea_Class77] of  Subscenario
+
+	(context [Sea_Class272])
+	(sub_scenario [Sea_Class20000])
+	(title "s1.Start Simple Scenario")
+	(wait_subscenario TRUE))
+
+([Sea_Class78] of  Break
+
+	(activity [Sea_Class20019])
+	(next_actions [Sea_Class81])
+	(title "s1.Break Cruises2"))
+
+([Sea_Class79] of  Subscenario
+
+	(context [Sea_Class273])
+	(sub_scenario [Sea_Class20009])
+	(title "s1.Start Airplane Scenario")
+	(wait_subscenario TRUE))
+
+([Sea_Class80] of  Subscenario
+
+	(context [Sea_Class273])
+	(sub_scenario [Sea_Class20016])
+	(title "s1.Start Task Forces Scenario")
+	(wait_subscenario TRUE))
+
+([Sea_Class80000] of  Task
+
+	(final_actions [Sea_Class120006])
+	(initial_actions [Sea_Class110002])
+	(task_scheme
+		[Sea_Class110002]
+		[Sea_Class120003]
+		[Sea_Class120004]
+		[Sea_Class120005]
+		[Sea_Class120006]
+		[Sea_Class120008])
+	(title "c1.Cruise from Primorsk"))
+
+([Sea_Class80001] of  Spill
+
+	(fillColor "20DD6600")
+	(isPolygon TRUE)
+	(label "hs3")
+	(latitude "60 14.55")
+	(lineColor "00DD3300")
+	(longitude "28 46.2")
+	(N 32)
+	(radius 5.0)
+	(speed 0.003))
+
+([Sea_Class80002] of  Spill
+
+	(fillColor "20CC6600")
+	(isPolygon TRUE)
+	(label "hs4")
+	(latitude "60 14.55")
+	(lineColor "00CC3300")
+	(longitude "28 46.2")
+	(N 32)
+	(radius 5.0)
+	(speed 0.003))
+
+([Sea_Class80003] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class10000]
+		[Sea_Class100023])
+	(flag TRUE)
+	(next_actions [Sea_Class60000])
+	(title "ar.Start Heavy Spill 1"))
+
+([Sea_Class80004] of  Scenario
+
+	(context [Sea_Class80006])
+	(final_tasks [Sea_Class80005])
+	(finish_type AND)
+	(initial_tasks [Sea_Class80005])
+	(scenario_scheme [Sea_Class80005])
+	(title "ar.Four Spills"))
+
+([Sea_Class80005] of  Task
+
+	(final_actions [Sea_Class90002])
+	(finish_type AND)
+	(initial_actions [Sea_Class100005])
+	(task_scheme
+		[Sea_Class80003]
+		[Sea_Class100005]
+		[Sea_Class60000]
+		[Sea_Class100032]
+		[Sea_Class90001]
+		[Sea_Class100031]
+		[Sea_Class90002]
+		[Sea_Class100003])
+	(title "ar.Create and Start Heavy Spills"))
+
+([Sea_Class80006] of  Context
+
+	(pairs
+		[Sea_Class100007]
+		[Sea_Class110019])
+	(title "ar.Four Spills Context"))
+
+([Sea_Class80007] of  ValuePair
+
+	(title "ar.Spills Lat1")
+	(value "60 13.33")
+	(variable [Sea_Class288]))
+
+([Sea_Class80008] of  ValuePair
+
+	(title "ar.Spills Lon1")
+	(value "28 43.83")
+	(variable [Sea_Class290]))
+
+([Sea_Class81] of  Subscenario
+
+	(context [Sea_Class272])
+	(sub_scenario [Sea_Class20000])
+	(title "s1.Start Simple Scenario2")
+	(wait_subscenario TRUE))
+
+([Sea_Class82] of  PutOnPlace
+
+	(next_actions [Sea_Class83])
+	(object [Sea_Class241])
+	(observer [Sea_Class240])
+	(title "s1.Heavy Stain to Collision"))
+
+([Sea_Class83] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class257]
+		[Sea_Class258])
+	(flag TRUE)
+	(title "s1.Start Heavy Stain"))
+
+([Sea_Class84] of  PutOnPlace
+
+	(next_actions [Sea_Class85])
+	(object [Sea_Class242])
+	(observer [Sea_Class240])
+	(title "s1.Radio Emergency to Collision"))
+
+([Sea_Class85] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(next_actions [Sea_Class86])
+	(repeat-action [Sea_Class259])
+	(title "s1.Start Radio Emergency"))
+
+([Sea_Class86] of  Delay
+
+	(delay "4 min")
+	(next_actions
+		[Sea_Class87]
+		[Sea_Class88])
+	(title "s1.Radio Emergency Time"))
+
+([Sea_Class87] of  RepeatActionOnOff
+
+	(flag FALSE)
+	(repeat-action [Sea_Class259])
+	(title "s1.Stop Radio Emergency"))
+
+([Sea_Class88] of  ObjectMessage
+
+	(category "3")
+	(next_actions
+		[Sea_Class80]
+		[Sea_Class79])
+	(object [Sea_Class219])
+	(text "Emergency message from ? in position: latitude ?, longitude ?. Collision with another ship.")
+	(title "Emergency Message")
+	(url "file:data/html/EmergencyMessage.html"))
+
+([Sea_Class89] of  Delay
+
+	(delay "2 min")
+	(next_actions [Sea_Class84])
+	(title "s1Radio Emergency Delay"))
+
+([Sea_Class90] of  Position
+
+	(object [Sea_Class234])
+	(observer [Sea_Class240])
+	(position-angle "-90")
+	(position-distance "0.2")
+	(position-speed "0")
+	(radius 0.1)
+	(relative TRUE)
+	(title "s1.Fire to leeward"))
+
+([Sea_Class90000] of  EventDecision
+
+	(events [Sea_Class217])
+	(title "s1.Collision or Next Watch?")
+	(variants
+		[Sea_Class20050]
+		[Sea_Class20051]))
+
+([Sea_Class90001] of  Delay
+
+	(delay "5 min")
+	(next_actions [Sea_Class100031])
+	(title "ar.Second Heavy Delay"))
+
+([Sea_Class90002] of  RepeatActionOnOff
+
+	(collection
+		[Sea_Class100022]
+		[Sea_Class70002])
+	(flag TRUE)
+	(title "ar.Start Heavy Spill 4"))
+
+([Sea_Class90003] of  Field
+
+	(csv_delimiter COMMA)
+	(east "-4 0")
+	(fillColor "10CCEEFF")
+	(label "Brest Tide")
+	(latitude "60 45")
+	(lineColor "FFFFFF00")
+	(longitude "28 24")
+	(north "48 42")
+	(south "47 42")
+	(west "-6 0"))
+
+([Sea_Class91] of  PutOnMap
+
+	(mapob [Sea_Class234])
+	(next_actions [Sea_Class90])
+	(title "s1.Ship2 on Fire"))
+
+([Sea_Class92] of  PutOnPlace
+
+	(next_actions [Sea_Class96])
+	(object [Sea_Class227])
+	(observer [Sea_Class233])
+	(title "s1.Deploy CP"))
+
+([Sea_Class93] of  PutOnPlace
+
+	(next_actions [Sea_Class97])
+	(object [Sea_Class228])
+	(observer [Sea_Class231])
+	(title "s1.Deploy CZ"))
+
+([Sea_Class94] of  PutOnPlace
+
+	(next_actions [Sea_Class100])
+	(object [Sea_Class229])
+	(observer [Sea_Class232])
+	(title "s1.Deploy SA"))
+
+([Sea_Class95] of  PutOnPlace
+
+	(next_actions [Sea_Class101])
+	(object [Sea_Class237])
+	(observer [Sea_Class230])
+	(title "s1.Deploy SM"))
+
+([Sea_Class96] of  Arrive
+
+	(latitude "60 17.0")
+	(longitude "28 47.4")
+	(next_actions [Sea_Class98])
+	(object [Sea_Class227])
+	(radius 0.2)
+	(speed 22.0)
+	(title "s1.CP outoff Bjorke-Sund"))
+
+([Sea_Class97] of  Arrive
+
+	(latitude "60 15.8")
+	(longitude "28 49.8")
+	(next_actions [Sea_Class99])
+	(object [Sea_Class228])
+	(radius 0.2)
+	(speed 16.0)
+	(title "s1.CZ to Sarka-Luoto"))
+
+([Sea_Class98] of  Position
+
+	(object [Sea_Class227])
+	(observer [Sea_Class219])
+	(position-angle "270")
+	(position-distance "0.5")
+	(position-speed "20")
+	(radius 0.1)
+	(relative FALSE)
+	(title "s1.CP to Damaged Ship1"))
+
+([Sea_Class99] of  Position
+
+	(object [Sea_Class228])
+	(observer [Sea_Class219])
+	(position-angle "0")
+	(position-distance "0.5")
+	(position-speed "16")
+	(radius 0.1)
+	(relative FALSE)
+	(title "s1.CZ to Damaged Sip1"))
