@@ -1,4 +1,4 @@
-; Sat Oct 21 22:26:41 MSK 2017
+; Sun Oct 22 22:34:16 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,6 +9,11 @@
 	(role abstract)
 	(multislot assert-strings
 ;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot %3Fship
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot test
 		(type STRING)
@@ -28,8 +33,23 @@
 	(multislot return-type
 ;+		(type ANY)
 		(create-accessor read-write))
+	(single-slot %3Fspill
+		(type INSTANCE)
+;+		(allowed-classes Spill Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Fspill-ra
+		(type INSTANCE)
+;+		(allowed-classes RepeatAction Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot packages
 ;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot %3Fra-onoff
+		(type INSTANCE)
+;+		(allowed-classes RepeatActionOnOff Variable)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot label2
 		(type STRING)
@@ -104,4 +124,32 @@
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass PrepareSpill
+	(is-a Computation)
+	(role concrete)
+	(single-slot %3Fspill-ra
+		(type INSTANCE)
+;+		(allowed-classes RepeatAction Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Fra-onoff
+		(type INSTANCE)
+;+		(allowed-classes RepeatActionOnOff Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Fship
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Fspill
+		(type INSTANCE)
+;+		(allowed-classes Spill Variable)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
