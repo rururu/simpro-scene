@@ -1,4 +1,4 @@
-; Sun Oct 22 22:34:16 MSK 2017
+; Mon Oct 23 22:01:51 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -132,10 +132,6 @@
 	(single-slot %3Fspill-ra
 		(type INSTANCE)
 ;+		(allowed-classes RepeatAction Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot %3Fra-onoff

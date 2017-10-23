@@ -1,7 +1,8 @@
 (ns ru.rules
 (:require
   [protege.core :as p]
-  [rete.core :as rete])
+  [rete.core :as rete]
+  [clojure.inspector :as cin])
 (:import
   edu.stanford.smi.protege.model.ValueType
   edu.stanford.smi.protege.ui.DisplayUtilities
@@ -11,7 +12,7 @@
 (def RUN nil)
 (defn mk-templates [clss]
   (letfn [(mk-tpl [cls]
-	(concat [(symbol (.getName cls)) 'INSTANCE]
+	(concat [(symbol (.getName cls)) 'instance]
 	  (map #(symbol (.getName %)) (.getTemplateSlots cls))))]
   (if (seq? clss)
     (map mk-tpl clss)
@@ -43,7 +44,7 @@
   (let [typ (.getDirectType ins)
         slots (.getTemplateSlots typ)
         svls (mapcat #(list (symbol (.getName %)) (sval % ins)) slots)
-        svls (cons 'INSTANCE (cons (.getName ins) svls))]
+        svls (cons 'instance (cons ins svls))]
     (cons (symbol (.getName typ)) svls))))
 
 (defn facts-from-classes [fcs]
@@ -91,7 +92,7 @@
 
 (defn retract-instances [inss]
   (doseq [ins inss]
-  (doseq [fact (rete/facts-with-slot-value 'INSTANCE = (.getName ins))]
+  (doseq [fact (rete/facts-with-slot-value 'instance = ins)]
     (rete/retract-fact (first fact) true))))
 
 (defn ass-inss [hm inst]
@@ -256,4 +257,7 @@
     (mk-instance typ mp dep)))
 ([typ mp dep]
   (p/mti (assoc mp :DIRTYP typ :DEPTH dep))))
+
+(defn fact-inspector []
+  (cin/inspect-tree (sort-by #(name (second %)) (rete.core/fact-list))))
 

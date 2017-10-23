@@ -118,15 +118,15 @@
       (do-next (sv (sv conc "wait") "next") id)))))
 
 (defn do-next [inst id]
+  (when (some? inst)
   (do-trace inst id)
-(if (some? inst)
   (condp = (typ inst)
     "Process" (do-process inst id)
-    "Decision" (do-decision inst id)
+    "AlgoDecision" (do-decision inst id)
     "PredefinedProcess" (do-preproc inst id)
     "Input" (do-input inst id)
     "Concurrent" (do-concurrent inst id)
-    "Wait" id
+    "AlgoWait" id
     (do (println (str "Unknown type: " typ)) nil))
   id))
 

@@ -1,4 +1,4 @@
-; Sat Apr 08 20:17:34 MSK 2017
+; Fri Sep 01 18:31:53 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -15,7 +15,7 @@
 
 ([RuleEngine_Class0] of  CloFunction
 
-	(source "(letfn [(mk-tpl [cls]\n	(concat [(symbol (.getName cls)) 'INSTANCE]\n	  (map #(symbol (.getName %)) (.getTemplateSlots cls))))]\n  (if (seq? clss)\n    (map mk-tpl clss)\n    (mk-templates (.getSubclasses clss)) ))")
+	(source "(letfn [(mk-tpl [cls]\n	(concat [(symbol (.getName cls)) 'instance]\n	  (map #(symbol (.getName %)) (.getTemplateSlots cls))))]\n  (if (seq? clss)\n    (map mk-tpl clss)\n    (mk-templates (.getSubclasses clss)) ))")
 	(title "mk-templates [clss]"))
 
 ([RuleEngine_Class10000] of  CloFunction
@@ -120,13 +120,18 @@
 
 ([RuleEngine_Class230000] of  CloFunction
 
-	(source "(doseq [ins inss]\n  (doseq [fact (rete/facts-with-slot-value 'INSTANCE = (.getName ins))]\n    (rete/retract-fact (first fact) true)))")
+	(source "(doseq [ins inss]\n  (doseq [fact (rete/facts-with-slot-value 'instance = ins)]\n    (rete/retract-fact (first fact) true)))")
 	(title "retract-instances [inss]"))
 
 ([RuleEngine_Class240000] of  CloFunction
 
 	(source "(let [mp (into {} hm)\n      clw (mp \"clsWidget\")\n      sel (.getSelection (.getSlotWidget clw (p/slt \"instances\")))]\n  (if (seq sel)\n    (retract-instances sel)))")
 	(title "retr-inss [hm inst]"))
+
+([RuleEngine_Class250000] of  CloFunction
+
+	(source "(cin/inspect-tree (sort-by #(name (second %)) (rete.core/fact-list)))")
+	(title "fact-inspector []"))
 
 ([RuleEngine_Class30000] of  CloProgram
 
@@ -158,7 +163,8 @@
 		[RuleEngine_Class180000]
 		[RuleEngine_Class190000]
 		[RuleEngine_Class200002]
-		[RuleEngine_Class200000])
+		[RuleEngine_Class200000]
+		[RuleEngine_Class250000])
 	(cloNamespace [RuleEngine_Class40000])
 	(cloVars
 		[RuleEngine_Class180001]
@@ -167,7 +173,7 @@
 
 ([RuleEngine_Class40000] of  CloNamespace
 
-	(source "(:require\n  [protege.core :as p]\n  [rete.core :as rete])\n(:import\n  edu.stanford.smi.protege.model.ValueType\n  edu.stanford.smi.protege.ui.DisplayUtilities\n  javax.swing.JOptionPane)")
+	(source "(:require\n  [protege.core :as p]\n  [rete.core :as rete]\n  [clojure.inspector :as cin])\n(:import\n  edu.stanford.smi.protege.model.ValueType\n  edu.stanford.smi.protege.ui.DisplayUtilities\n  javax.swing.JOptionPane)")
 	(title "ru.rules"))
 
 ([RuleEngine_Class50000] of  CloFunction
@@ -197,5 +203,5 @@
 
 ([RuleEngine_Class90000] of  CloFunction
 
-	(source "(letfn [(sval [slt ins]\n	(if (.getAllowsMultipleValues slt)\n	  (vec (map #(single-value % slt) (.getOwnSlotValues ins slt)))\n                          (if-let [val (.getOwnSlotValue ins slt)]\n                            (single-value val slt)\n                            :?)))]\n  (let [typ (.getDirectType ins)\n        slots (.getTemplateSlots typ)\n        svls (mapcat #(list (symbol (.getName %)) (sval % ins)) slots)\n        svls (cons 'INSTANCE (cons (.getName ins) svls))]\n    (cons (symbol (.getName typ)) svls)))")
+	(source "(letfn [(sval [slt ins]\n	(if (.getAllowsMultipleValues slt)\n	  (vec (map #(single-value % slt) (.getOwnSlotValues ins slt)))\n                          (if-let [val (.getOwnSlotValue ins slt)]\n                            (single-value val slt)\n                            :?)))]\n  (let [typ (.getDirectType ins)\n        slots (.getTemplateSlots typ)\n        svls (mapcat #(list (symbol (.getName %)) (sval % ins)) slots)\n        svls (cons 'instance (cons ins svls))]\n    (cons (symbol (.getName typ)) svls)))")
 	(title "mk-frame [ins]"))
