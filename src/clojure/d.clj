@@ -22,7 +22,7 @@
 		(sv evt "value")
 		p r) vrn)
 	  "ObProperty" (if (ob-property
-		(sv evt "ob_property")
+		(symbol (sv evt "ob_property"))
 		(sv evt "object")
 		(sv evt "radius")
 		(sv evt "latitude")
@@ -30,7 +30,7 @@
 		(sv evt "value")
 		p r) vrn)
 	  "TwoObRelation" (if (two-ob-relation 
-		(sv evt "ob_relation")
+		(symbol (sv evt "ob_relation"))
 		(sv evt "object")
 		(sv evt "observer")
 		(sv evt "radius")
@@ -42,21 +42,21 @@
 
 (defn ob-prop-val [obp obj]
   (condp = obp
-  "NAME" (.getName obj)
-  "COURSE" (.getCourse obj)
-  "SPEED" (.getSpeed obj)
-  "COORDINATES" [(.getLatitude obj) (.getLongitude obj)]
-  "VISIBLE" (.isVisible obj)
+  'NAME (.getName obj)
+  'COURSE (.getCourse obj)
+  'SPEED (.getSpeed obj)
+  'COORDINATES [(.getLatitude obj) (.getLongitude obj)]
+  'VISIBLE (.isVisible obj)
   (println (str "Unimplemented: " obp " " obj))))
 
 (defn ob-rel-val [obr obj obs]
   (condp = obr
-  "DISTANCE" (.distanceNM obs obj)
-  "BEARING" (.bearingsDeg obs obj)
-  "COURSE-ANGLE" (course-angle obs obj)
-  "ABAFT" (.abaft obs obj)
-  "AHEAD" (not (or (.abaft obs obj) (on-beam obs obj)))
-  "ON-BEAM" (on-beam obs obj)
+  'DISTANCE (.distanceNM obs obj)
+  'BEARING (.bearingsDeg obs obj)
+  'COURSE-ANGLE (course-angle obs obj)
+  'ABAFT (.abaft obs obj)
+  'AHEAD (not (or (.abaft obs obj) (on-beam obs obj)))
+  'ON-BEAM (on-beam obs obj)
   (println (str "Unimplemented: " obr " " obs obj))))
 
 (defn val-from-str [s]
@@ -98,9 +98,9 @@
       var (symbol varn)]
   (cond
     (and (some? obj) (some? obr) (some? obs))
-      [var (ob-rel-val obr obj obs)]
+      [var (ob-rel-val (symbol obr) obj obs)]
     (and (some? obj) (some? obp))
-      [var (ob-prop-val obp obj)]
+      [var (ob-prop-val (symbol obp) obj)]
     (and (some? obj) (some? atr))
       [var (to-clj-type (.getAttribute obj (sv atr "title")))]
     (some? obj)
@@ -184,9 +184,9 @@
 
 (defn set-ob-prop [obp obj val]
   (condp = obp
-  "COURSE" (.setCourse obj (int val))
-  "SPEED" (.setSpeed obj (double val))
-  "COORDINATES" (.setLocation (first val) (second val))
+  'COURSE (.setCourse obj (int val))
+  'SPEED (.setSpeed obj (double val))
+  'COORDINATES (.setLocation (first val) (second val))
   (println (str "Unimplemented: " obp " " obj " " val))))
 
 (defn to-result-var-val [result vvmap p r]
@@ -199,7 +199,7 @@
   (cond
     (nil? obj) (pvv var val p r)
     (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr "title") val)
-    (and (some? obj) (some? obp) (some? val)) (set-ob-prop obp obj val))))
+    (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val))))
 
 (defn o-decision [ida bef chs vrs p r]
   (let [bnd1 (mapcat #(input-var-val % p r) ida)

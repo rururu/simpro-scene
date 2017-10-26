@@ -1,4 +1,4 @@
-; Mon Oct 23 22:00:42 MSK 2017
+; Thu Oct 26 21:37:57 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -57,7 +57,8 @@
 		[ScenarioN_Class340025]
 		[ScenarioN_Class580000]
 		[Scenario_Class230005]
-		[Scenario_Class230006])
+		[Scenario_Class230006]
+		[Scenario_Class230008])
 	(rules [Scenario_Class220001]))
 
 ([CatchException] of  DecisionClass
@@ -343,8 +344,8 @@
 
 ([Scenario_Class100000] of  Rule
 
-	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n	(= (count ?nacts) 0))\n?t (Task status \"DOING\"\n	id ?pid\n	final_actions ?facts \n	finish_type OR\n	((s/include? ?facts ?ain)\n	 (> (count ?facts) 1)))")
-	(rhs "(println (str \"Task (OR type) DONE: \" ?tit))\n(modify ?t status \"DONE\")\n(retract ?a)")
+	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n	(= (count ?nacts) 0))\n?t (Task status \"DOING\"\n	title ?tit\n	id ?pid\n	final_actions ?facts \n	finish_type OR\n	((s/include? ?facts ?ain)\n	 (> (count ?facts) 1)))")
+	(rhs "(println \"Task (OR type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
 	(salience 0)
 	(title "s:FirstFinalActionDone"))
 
@@ -429,7 +430,6 @@
 		[ScenarioN_Class250001]
 		[ScenarioN_Class460005]
 		[ScenarioN_Class460000]
-		[ScenarioN_Class230002]
 		[ScenarioN_Class520001]
 		[ScenarioN_Class530013]
 		[ScenarioN_Class530012]
@@ -486,7 +486,6 @@
 		[UseResource]
 		[CircleScan]
 		[ConfirmPosition]
-		[SendSpecSignal]
 		[RetractObjects]
 		[PolyMoving]
 		[PolyMovingN]
@@ -507,7 +506,7 @@
 ([Scenario_Class110001] of  Rule
 
 	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain \n	next_actions ?nacts\n	(= (count ?nacts) 0))\n?t (Task status \"DOING\"\n	title ?tit\n	id ?pid\n	final_actions ?facts \n	finish_type AND\n	((s/include? ?facts ?ain)\n	 (= (count ?facts) 1)))")
-	(rhs "(println (str \"Task (AND type) DONE: \" ?tit))\n(modify ?t status \"DONE\")\n(retract ?a)")
+	(rhs "(println \"Task (AND type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
 	(salience 0)
 	(title "s:LastFinalActionDone"))
 
@@ -526,7 +525,7 @@
 ([Scenario_Class120000] of  Rule
 
 	(lhs "?pom (PutOnMap status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	mapob ?mos \n	run ?run\n	protagonist ?pro\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" PutOnMap\"))\n(let [obj (a/vv ?obj ?pro ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]\n      (let [lat (a/vv ?lat ?pro ?run)\n            lon (a/vv ?lon ?pro ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/addMapOb mo))\n(retract ?pom)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?pro ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]\n      (let [lat (a/vv ?lat ?pro ?run)\n            lon (a/vv ?lon ?pro ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/addMapOb mo))\n(retract ?pom)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:PutOnMap"))
 
@@ -543,7 +542,7 @@
 ([Scenario_Class120017] of  Rule
 
 	(lhs "?arr (Arrive status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	speed ?spd \n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Arrive\"))\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [lt (a/degmin-to-deg ?lat ?pro ?run)\n        ln (a/degmin-to-deg ?lon ?pro ?run)]\n    (if (or (nil? lt) (nil? ln))\n      (modify ?arr status \"FAILED\")\n      (do (a/go mo lt ln ?spd)\n        (modify ?arr status \"REPEAT\" latitude lt longitude ln))))\n  (modify ?arr status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"Arrive\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [lt (a/degmin-to-deg ?lat ?pro ?run)\n        ln (a/degmin-to-deg ?lon ?pro ?run)]\n    (if (or (nil? lt) (nil? ln))\n      (modify ?arr status \"FAILED\")\n      (do (a/go mo lt ln ?spd)\n        (modify ?arr status \"REPEAT\" latitude lt longitude ln))))\n  (modify ?arr status \"FAILED\"))")
 	(salience 0)
 	(title "a:ArriveStart"))
 
@@ -621,8 +620,6 @@
 		[ScenarioN_Class240002]
 		[ScenarioN_Class260003]
 		[ScenarioN_Class400000]
-		[ScenarioN_Class400025]
-		[ScenarioN_Class230003]
 		[ScenarioN_Class460006]
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
@@ -653,7 +650,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?sa (Subscenario status \"START\"\n	id ?pid\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Subscenario\"))\n(modify ?sa status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(modify ?sa status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -672,7 +669,7 @@
 ([Scenario_Class140000] of  Rule
 
 	(lhs "?tm (TimeMessage status \"START\"\n	title ?tit\n	clients ?cls\n	category ?cat\n	text ?txt\n	instance ?ain \n	parent ?par\n	protagonist ?pro\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" TimeMessage\"))\n(a/time-message ?txt ?cat ?cls ?pro ?run)\n(retract ?tm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"TimeMessage\")\n(a/time-message ?txt ?cat ?cls ?pro ?run)\n(retract ?tm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:TimeMessage"))
 
@@ -689,14 +686,14 @@
 ([Scenario_Class150001] of  Rule
 
 	(lhs "?pom (PutOffMap status \"START\"\n	title ?tit\n	mapob ?mos\n	object ?obj\n	delete ?del\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" PutOffMap\"))\n(a/put-off-map ?obj ?mos ?del ?pro ?run)\n(retract ?pom)\n(asser Action status \"DONE\"\n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"PutOffMap\")\n(a/put-off-map ?obj ?mos ?del ?pro ?run)\n(retract ?pom)\n(asser Action status \"DONE\"\n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:PutOffMap"))
 
 ([Scenario_Class160000] of  Rule
 
 	(lhs "?gor (GoRoute status \"START\"\n	title ?tit\n	object ?obj\n	route ?rou\n	spd ?spd\n	backward ?bwd\n	radius ?rad\n	run ?run\n	parent ?par\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" GoRoute\"))\n(let [rou (a/vv ?rou ?pro ?run)\n       obj (a/vv ?obj ?pro ?run)\n       pts (protege.core/svs rou \"points\")\n       cnt (count pts)\n       pnt (if (protege.core/is? ?bwd)\n              (dec cnt)\n              0)] \n  (modify ?gor status (a/arriveN ?tit obj rou pnt ?spd ?rad ?pro ?run ?par)\n	object obj\n	route rou\n	N pnt))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?pro ?run)\n       obj (a/vv ?obj ?pro ?run)\n       pts (protege.core/svs rou \"points\")\n       cnt (count pts)\n       pnt (if (protege.core/is? ?bwd)\n              (dec cnt)\n              0)] \n  (modify ?gor status (a/arriveN ?tit obj rou pnt ?spd ?rad ?pro ?run ?par)\n	object obj\n	route rou\n	N pnt))")
 	(salience 0)
 	(title "a:GoRouteStart"))
 
@@ -773,14 +770,14 @@
 ([Scenario_Class20000] of  Rule
 
 	(lhs "?t (Task status \"DONE\" \n	parent ?pid\n	instance ?tin)\n?s (Scenario status \"DOING\"\n	id ?pid\n	title ?tit\n	final_tasks ?ftasks\n	((s/include? ?ftasks ?tin)\n	 (= (count ?ftasks) 1)))")
-	(rhs "(println (str \"Scenario DONE: \" ?tit))\n(modify ?s status \"DONE\")\n(retract ?t)")
+	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
 	(salience 0)
 	(title "s:LastFinalTaskDone"))
 
 ([Scenario_Class200000] of  Rule
 
 	(lhs "?we (WaitEvent status \"START\"\n	id ?pid\n	title ?tit\n	event ?evt\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" WaitEvent\"))\n(modify ?we status (a/wait-event ?evt ?pid ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(modify ?we status (a/wait-event ?evt ?pid ?pro ?run))")
 	(salience 0)
 	(title "a:WaitEventStart"))
 
@@ -860,13 +857,13 @@
 ([Scenario_Class220001] of  Rule
 
 	(lhs "?clc (Calculus status \"START\" \n	title ?tit \n	input_data ?ida \n	source ?src \n	results ?res\n	instance ?ain\n	run ?run\n	parent ?par \n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" Calculus\"))\n(let [bnd (mapcat #(d/input-var-val % ?pro ?run) ?ida)\n       bnd2 (if (not (a/null? ?pro))\n	(d/proto-var-val ?pro ?run))\n       bnd3  (d/parse-let-body (d/uncomment  ?src))\n       bnd4 (vec (concat bnd bnd2 bnd3))\n       vvm (d/var-val-map bnd4)\n       exp `(let ~bnd4 ~vvm)\n       vvm2 (eval exp)]\n  (d/to-proto-var-val bnd2 vvm2 ?pro ?run)\n  (doseq [re ?res]\n    (d/to-result-var-val re vvm2 ?pro ?run)))\n(retract ?clc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?pro ?run) ?ida)\n       bnd2 (if (not (a/null? ?pro))\n	(d/proto-var-val ?pro ?run))\n       bnd3  (d/parse-let-body (d/uncomment  ?src))\n       bnd4 (vec (concat bnd bnd2 bnd3))\n       vvm (d/var-val-map bnd4)\n       exp `(let ~bnd4 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (d/to-proto-var-val bnd2 vvm2 ?pro ?run)\n  (doseq [re ?res]\n    (d/to-result-var-val re vvm2 ?pro ?run)))\n(retract ?clc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:Calculus"))
 
 ([Scenario_Class220002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       obsi (vv ?obs p r)\n       val (vv ?val p r)]\n  (if (not (or (nil? obj) (null? obsi)))\n    (if-let [obs (OMT/getMapOb obsi)]\n      (condp = obr\n        \"NEAR\" (.near obs obj rad)\n        \"FAR\" (>= (.distanceNM obs obj) rad)\n        \"DISTANCE\" (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)\n        \"BEARING\" (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)\n        \"ABAFT\" (.abaft obs obj)\n        \"AHEAD\" (not (or (.abaft obj obs) (on-beam obs obj)))\n        \"ON-BEAM\" (on-beam obs obj)\n        \"COURSE-ANGLE\" (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)\n        \"SAME\" (= obj obs)\n        false)\n      (condp = obr\n        \"INSIDE\" (contains-with (sv obsi \"label\") obj)\n        \"OUTSIDE\" (not (contains-with (sv obsi \"label\") obj))\n        false))\n    false))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       obsi (vv ?obs p r)\n       val (vv ?val p r)]\n  (if (not (or (nil? obj) (null? obsi)))\n    (if-let [obs (OMT/getMapOb obsi)]\n      (condp = obr\n        'NEAR (.near obs obj rad)\n        'FAR (>= (.distanceNM obs obj) rad)\n        'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)\n        'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)\n        'ABAFT (.abaft obs obj)\n        'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))\n        'ON-BEAM (on-beam obs obj)\n        'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)\n        'SAME (= obj obs)\n        false)\n      (condp = obr\n        'INSIDE (contains-with (sv obsi \"label\") obj)\n        'OUTSIDE (not (contains-with (sv obsi \"label\") obj))\n        false))\n    false))")
 	(title "two-ob-relation [obr ?obj ?obs rad ?val p r]"))
 
 ([Scenario_Class220003] of  CloProgram
@@ -891,13 +888,13 @@
 ([Scenario_Class230000] of  Rule
 
 	(lhs "?ed (EventDecision status \"START\" \n	title ?tit\n	events ?evs\n	variants ?vrs\n	parent ?pid\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Decision: \" ?tit \" EventDecision\"))\n(s/start-tasks-actions (d/event-decision ?evs ?vrs ?pro ?run) ?pid ?run ?pro)\n(retract ?ed)")
+	(rhs "(println \"Decision:\" ?tit \"EventDecision\")\n(s/start-tasks-actions (d/event-decision ?evs ?vrs ?pro ?run) ?pid ?run ?pro)\n(retract ?ed)")
 	(salience 0)
 	(title "d:EventDecision"))
 
 ([Scenario_Class230001] of  CloFunction
 
-	(source "(letfn [(if-event-variant [evt vrn p r]\n	(condp =  (.getName (.getDirectType evt))\n	  \"ObAttribute\" (if (ob-attribute\n		(sv evt \"attribute\")\n		(sv evt \"object\")\n		(sv evt \"relation\")\n		(sv evt \"value\")\n		p r) vrn)\n	  \"ObProperty\" (if (ob-property\n		(sv evt \"ob_property\")\n		(sv evt \"object\")\n		(sv evt \"radius\")\n		(sv evt \"latitude\")\n		(sv evt \"longitude\")\n		(sv evt \"value\")\n		p r) vrn)\n	  \"TwoObRelation\" (if (two-ob-relation \n		(sv evt \"ob_relation\")\n		(sv evt \"object\")\n		(sv evt \"observer\")\n		(sv evt \"radius\")\n		(sv evt \"value\")\n		p r) vrn)))]\n  (or \n    (seq (filter #(not (nil? %)) (map #(if-event-variant %1 %2 p r) evs (butlast vrs))))\n    [(last vrs)]))")
+	(source "(letfn [(if-event-variant [evt vrn p r]\n	(condp =  (.getName (.getDirectType evt))\n	  \"ObAttribute\" (if (ob-attribute\n		(sv evt \"attribute\")\n		(sv evt \"object\")\n		(sv evt \"relation\")\n		(sv evt \"value\")\n		p r) vrn)\n	  \"ObProperty\" (if (ob-property\n		(symbol (sv evt \"ob_property\"))\n		(sv evt \"object\")\n		(sv evt \"radius\")\n		(sv evt \"latitude\")\n		(sv evt \"longitude\")\n		(sv evt \"value\")\n		p r) vrn)\n	  \"TwoObRelation\" (if (two-ob-relation \n		(symbol (sv evt \"ob_relation\"))\n		(sv evt \"object\")\n		(sv evt \"observer\")\n		(sv evt \"radius\")\n		(sv evt \"value\")\n		p r) vrn)))]\n  (or \n    (seq (filter #(not (nil? %)) (map #(if-event-variant %1 %2 p r) evs (butlast vrs))))\n    [(last vrs)]))")
 	(title "event-decision [evs vrs p r]"))
 
 ([Scenario_Class230002] of  CloFunction
@@ -907,27 +904,27 @@
 
 ([Scenario_Class230004] of  CloFunction
 
-	(source "(let [iobj (vv (sv idata \"object\") p r)\n      iobs (vv (sv idata \"observer\") p r)\n      varn (sv (sv idata \"variable\") \"title\")\n      atr (sv idata \"attribute\")\n      obp (sv idata \"ob_property\")\n      obr (sv idata \"ob_relation\")\n      obj (OMT/getMapOb iobj)\n      obs (OMT/getMapOb iobs)\n      var (symbol varn)]\n  (cond\n    (and (some? obj) (some? obr) (some? obs))\n      [var (ob-rel-val obr obj obs)]\n    (and (some? obj) (some? obp))\n      [var (ob-prop-val obp obj)]\n    (and (some? obj) (some? atr))\n      [var (to-clj-type (.getAttribute obj (sv atr \"title\")))]\n    (some? obj)\n      [var (to-clj-type (vv (sv idata \"variable\") p r))]))")
+	(source "(let [iobj (vv (sv idata \"object\") p r)\n      iobs (vv (sv idata \"observer\") p r)\n      varn (sv (sv idata \"variable\") \"title\")\n      atr (sv idata \"attribute\")\n      obp (sv idata \"ob_property\")\n      obr (sv idata \"ob_relation\")\n      obj (OMT/getMapOb iobj)\n      obs (OMT/getMapOb iobs)\n      var (symbol varn)]\n  (cond\n    (and (some? obj) (some? obr) (some? obs))\n      [var (ob-rel-val (symbol obr) obj obs)]\n    (and (some? obj) (some? obp))\n      [var (ob-prop-val (symbol obp) obj)]\n    (and (some? obj) (some? atr))\n      [var (to-clj-type (.getAttribute obj (sv atr \"title\")))]\n    (some? obj)\n      [var (to-clj-type (vv (sv idata \"variable\") p r))]))")
 	(title "input-var-val [idata p r]"))
 
 ([Scenario_Class230005] of  CloFunction
 
-	(source "(let [iobj (vv (sv result \"object\") p r)\n      var (sv (sv result \"variable\") \"title\")\n      atr (sv result \"attribute\")\n      obp (sv result \"ob_property\")\n      obj (OMT/getMapOb iobj)\n      val (from-clj-type (get vvmap var))]\n  (cond\n    (nil? obj) (pvv var val p r)\n    (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr \"title\") val)\n    (and (some? obj) (some? obp) (some? val)) (set-ob-prop obp obj val)))")
+	(source "(let [iobj (vv (sv result \"object\") p r)\n      var (sv (sv result \"variable\") \"title\")\n      atr (sv result \"attribute\")\n      obp (sv result \"ob_property\")\n      obj (OMT/getMapOb iobj)\n      val (from-clj-type (get vvmap var))]\n  (cond\n    (nil? obj) (pvv var val p r)\n    (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr \"title\") val)\n    (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val)))")
 	(title "to-result-var-val [result vvmap p r]"))
 
 ([Scenario_Class230006] of  CloFunction
 
-	(source "(condp = obp\n  \"NAME\" (.getName obj)\n  \"COURSE\" (.getCourse obj)\n  \"SPEED\" (.getSpeed obj)\n  \"COORDINATES\" [(.getLatitude obj) (.getLongitude obj)]\n  \"VISIBLE\" (.isVisible obj)\n  (println (str \"Unimplemented: \" obp \" \" obj)))")
+	(source "(condp = obp\n  'NAME (.getName obj)\n  'COURSE (.getCourse obj)\n  'SPEED (.getSpeed obj)\n  'COORDINATES [(.getLatitude obj) (.getLongitude obj)]\n  'VISIBLE (.isVisible obj)\n  (println (str \"Unimplemented: \" obp \" \" obj)))")
 	(title "ob-prop-val [obp obj]"))
 
 ([Scenario_Class230007] of  CloFunction
 
-	(source "(condp = obr\n  \"DISTANCE\" (.distanceNM obs obj)\n  \"BEARING\" (.bearingsDeg obs obj)\n  \"COURSE-ANGLE\" (course-angle obs obj)\n  \"ABAFT\" (.abaft obs obj)\n  \"AHEAD\" (not (or (.abaft obs obj) (on-beam obs obj)))\n  \"ON-BEAM\" (on-beam obs obj)\n  (println (str \"Unimplemented: \" obr \" \" obs obj)))")
+	(source "(condp = obr\n  'DISTANCE (.distanceNM obs obj)\n  'BEARING (.bearingsDeg obs obj)\n  'COURSE-ANGLE (course-angle obs obj)\n  'ABAFT (.abaft obs obj)\n  'AHEAD (not (or (.abaft obs obj) (on-beam obs obj)))\n  'ON-BEAM (on-beam obs obj)\n  (println (str \"Unimplemented: \" obr \" \" obs obj)))")
 	(title "ob-rel-val [obr obj obs]"))
 
 ([Scenario_Class230008] of  CloFunction
 
-	(source "(condp = obp\n  \"COURSE\" (.setCourse obj (int val))\n  \"SPEED\" (.setSpeed obj (double val))\n  \"COORDINATES\" (.setLocation (first val) (second val))\n  (println (str \"Unimplemented: \" obp \" \" obj \" \" val)))")
+	(source "(condp = obp\n  'COURSE (.setCourse obj (int val))\n  'SPEED (.setSpeed obj (double val))\n  'COORDINATES (.setLocation (first val) (second val))\n  (println (str \"Unimplemented: \" obp \" \" obj \" \" val)))")
 	(title "set-ob-prop [obp obj val]"))
 
 ([Scenario_Class240000] of  CloFunction
@@ -938,19 +935,19 @@
 ([Scenario_Class250000] of  Rule
 
 	(lhs "?loo (LinkOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	lineColor ?lic\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" LinkOnOff\"))\n(modify ?loo status (a/link-on-off ?obj ?obs ?flg ?lic ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"LinkOnOff\")\n(modify ?loo status (a/link-on-off ?obj ?obs ?flg ?lic ?pro ?run))")
 	(salience 0)
 	(title "a:LinkOnOffStart"))
 
 ([Scenario_Class250003] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (not (nil? obj))\n    (condp = prop\n      \"NAME\" (= (.getName obj) val)\n      \"MOVING\" (not (= (.getSpeed obj) 0))\n      \"STOPPED\" (= (.getSpeed obj) 0)\n      \"COURSE\" (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getCourse obj) vvl)) rad))\n      \"SPEED\" (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getSpeed obj) vvl)) rad))\n      \"ALTITUDE\" (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getAltitude obj) vvl)) rad))\n      \"NEAR-POINT\" (< (.distanceNM obj \n	(MapOb/getDeg (vv ?lat p r))\n	(MapOb/getDeg (vv ?lon p r))) rad)\n      \"COORDINATES\" (let [lat (vv ?lat p r) lon (vv ?lon p r)] (and\n	(or (nil? lat) (< (Math/abs (- (.getLatitude obj) (MapOb/getDeg lat))) (/ rad 60)))\n	(or (nil? lon) (< (Math/abs (- (.getLongitude obj) (MapOb/getDeg lon))) (/ rad 60))) ))\n      false)\n    false))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (not (nil? obj))\n    (condp = prop\n      'NAME (= (.getName obj) val)\n      'MOVING (not (= (.getSpeed obj) 0))\n      'STOPPED (= (.getSpeed obj) 0)\n      'COURSE (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getCourse obj) vvl)) rad))\n      'SPEED (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getSpeed obj) vvl)) rad))\n      'ALTITUDE (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getAltitude obj) vvl)) rad))\n      'NEAR-POINT (< (.distanceNM obj \n	(MapOb/getDeg (vv ?lat p r))\n	(MapOb/getDeg (vv ?lon p r))) rad)\n      'COORDINATES (let [lat (vv ?lat p r) lon (vv ?lon p r)] (and\n	(or (nil? lat) (< (Math/abs (- (.getLatitude obj) (MapOb/getDeg lat))) (/ rad 60)))\n	(or (nil? lon) (< (Math/abs (- (.getLongitude obj) (MapOb/getDeg lon))) (/ rad 60))) ))\n      false)\n    false))")
 	(title "ob-property [prop ?obj rad ?lat ?lon ?val p r]"))
 
 ([Scenario_Class250007] of  Rule
 
 	(lhs "?ud (UserDecision status \"START\" \n	title ?tit \n	parent ?par\n	run ?run\n	protagonist ?pro\n	variants ?vrs)")
-	(rhs "(println (str \"Decision: \" ?tit \" UserDecision\"))\n(s/start-tasks-actions (d/user-decision ?vrs) ?par ?run ?pro)\n(retract ?ud)")
+	(rhs "(println \"Decision:\" ?tit \"UserDecision\")\n(s/start-tasks-actions (d/user-decision ?vrs) ?par ?run ?pro)\n(retract ?ud)")
 	(salience 0)
 	(title "d:UserDecision"))
 
@@ -1021,7 +1018,7 @@
 ([Scenario_Class260000] of  Rule
 
 	(lhs "?rao (RepeatActionOnOff status \"START\" \n	title ?tit \n	collection ?col\n	flag ?flg \n	repeat-action ?ra\n	instance ?ain \n	run ?run\n	parent ?par \n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" RepeatActionOnOff\"))\n(a/repeat-action-onoff ?ra ?col ?flg ?pro ?run)\n(retract ?rao)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"RepeatActionOnOff\")\n(a/repeat-action-onoff ?ra ?col ?flg ?pro ?run)\n(retract ?rao)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:RepeatActionOnOff"))
 
@@ -1069,7 +1066,7 @@
 ([Scenario_Class260009] of  Rule
 
 	(lhs "?gd (GeneralDecision status \"START\" \n	title ?tit\n	input_data ?ida\n	conditions ?cds\n	variants ?vrs\n	parent ?par\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Decision: \" ?tit \" GeneralDecision\"))\n(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?gd)")
+	(rhs "(println \"Decision:\" ?tit \"GeneralDecision\")\n(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?gd)")
 	(salience 0)
 	(title "d:GeneralDecision"))
 
@@ -1086,14 +1083,14 @@
 ([Scenario_Class270000] of  Rule
 
 	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Position\"))\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?pro ?run)\n          (modify ?pos status \"DONE\")))\n  (modify ?pos status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"Position\")\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?pro ?run)\n          (modify ?pos status \"DONE\")))\n  (modify ?pos status \"FAILED\"))")
 	(salience 0)
 	(title "a:PositionStart"))
 
 ([Scenario_Class270000pop] of  Rule
 
 	(lhs "?pop (PutOnPlace status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	mapob ?mos\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" PutOnPlace\"))\n(modify ?pop status (a/put-on-place ?obj ?obs ?mos ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"PutOnPlace\")\n(modify ?pop status (a/put-on-place ?obj ?obs ?mos ?pro ?run))")
 	(salience 0)
 	(title "a:PutOnPlaceStart"))
 
@@ -1149,7 +1146,7 @@
 ([Scenario_Class290000] of  Rule
 
 	(lhs "?om (ObjectMessage status \"START\"\n	title ?tit\n	clients ?cls\n	object ?obj\n	category ?cat\n	text ?txt\n	url ?url\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" ObjectMessage\"))\n(modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectMessage\")\n(modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run))")
 	(salience 0)
 	(title "a:ObjectMessageStart"))
 
@@ -1203,7 +1200,7 @@
 ([Scenario_Class310000] of  Rule
 
 	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	task-scenario ?tks\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" Break\"))\n(let [act (a/vv ?act ?pro ?run)\n       tks (a/vv ?tks ?pro ?run)]\n  (println :BREAK :ACT act :TKS tks)\n  (if (and (some? act) (some? tks))\n    (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario [act tks])\n	\"Task\" (a/break-task [act tks])\n	(a/break-action [act tks]))\n      (retract ?brk)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n    (modify ?brk status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(let [act (a/vv ?act ?pro ?run)\n       tks (a/vv ?tks ?pro ?run)]\n  (if (and (some? act) (some? tks))\n    (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario [act tks])\n	\"Task\" (a/break-task [act tks])\n	(a/break-action [act tks]))\n      (retract ?brk)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n    (modify ?brk status \"FAILED\")))")
 	(salience 0)
 	(title "a:Break"))
 
@@ -1223,7 +1220,7 @@
 ([Scenario_Class350000] of  Rule
 
 	(lhs "?too (TowOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	position-angle ?poa\n	position-distance ?pod\n	relative ?rel\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" TowOnOff\"))\n(modify ?too status (a/tow-on-off ?obj ?obs ?flg ?poa ?pod ?rel ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"TowOnOff\")\n(modify ?too status (a/tow-on-off ?obj ?obs ?flg ?poa ?pod ?rel ?pro ?run))")
 	(salience 0)
 	(title "a:TowOnOffStart"))
 
@@ -1242,7 +1239,7 @@
 ([Scenario_Class350003] of  Rule
 
 	(lhs "?sea (Search status \"START\" \n	title ?tit \n	time ?tim\n	run ?run\n	protagonist ?pro)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" Search\"))\n(modify ?sea status \"OUTSIDE\" \n	N (a/to-be ?t (a/vv ?tim ?pro ?run)))")
+	(rhs "(println \"Action started:\" ?tit \"Search\")\n(modify ?sea status \"OUTSIDE\" \n	N (a/to-be ?t (a/vv ?tim ?pro ?run)))")
 	(salience 0)
 	(title "a:SearchStart"))
 
@@ -1292,7 +1289,7 @@
 ([Scenario_Class390000] of  Rule
 
 	(lhs "?poa (PutObAttributes status \"START\"\n	title ?tit\n	object ?obj\n	attributes ?atrs\n	values ?vals\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" PutObAttributes\"))\n(modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"PutObAttributes\")\n(modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?pro ?run))")
 	(salience 0)
 	(title "a:PutObAttributesStart"))
 
@@ -1321,7 +1318,7 @@
 ([Scenario_Class40000] of  Rule
 
 	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin)\n?s (Scenario status \"DOING\" \n	id ?pid\n	title ?tit\n	final_tasks ?ftasks \n	finish_type OR\n	((s/include? ?ftasks ?tin)\n	 (>= (count ?ftasks) 1)))")
-	(rhs "(println (str \"Scenario DONE: \" ?tit))\n(modify ?s status \"DONE\")\n(retract ?t)")
+	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
 	(salience 0)
 	(title "s:FirstFinalTaskDone"))
 
@@ -1362,7 +1359,7 @@
 ([Scenario_Class430001] of  Rule
 
 	(lhs "?am (AttributeMessage status \"START\"\n	title ?tit\n	clients ?cls\n	category ?cat\n	text ?txt\n	object ?obj\n	attribute ?atr\n	instance ?ain \n	parent ?par\n	protagonist ?pro\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" AttributeMessage\"))\n(a/attribute-message ?txt ?obj ?atr ?cat ?cls ?pro ?run)\n(retract ?am)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AttributeMessage\")\n(a/attribute-message ?txt ?obj ?atr ?cat ?cls ?pro ?run)\n(retract ?am)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:AttributeMessage"))
 
@@ -1401,14 +1398,14 @@
 ([Scenario_Class490000] of  Rule
 
 	(lhs "?dis (Show status \"START\" \n	title ?tit \n	thing ?thi\n	text ?txt\n	label ?lab\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Show\"))\n(modify ?dis status (a/show ?tit ?thi ?txt ?lab ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"Show\")\n(modify ?dis status (a/show ?tit ?thi ?txt ?lab ?pro ?run))")
 	(salience 0)
 	(title "a:ShowStart"))
 
 ([Scenario_Class490002] of  Rule
 
 	(lhs "?cmp (Compute status \"START\" \n	title ?tit \n	computation ?com \n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Compute\"))\n(modify ?cmp status (d/compute ?com ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"Compute\")\n(modify ?cmp status (d/compute ?com ?pro ?run))")
 	(salience 0)
 	(title "a:ComputeStart"))
 
@@ -1427,14 +1424,14 @@
 ([Scenario_Class50000] of  Rule
 
 	(lhs "?t (Task status \"START\" \n	title ?tit\n	id ?id\n	run ?run\n	initial_actions ?iacts\n	protagonist ?pro)")
-	(rhs "(println (str \"Task started: \" ?tit))\n(modify ?t status \"DOING\")\n(s/start-tasks-actions ?iacts ?id ?run ?pro)")
+	(rhs "(println \"Task started:\" ?tit)\n(modify ?t status \"DOING\")\n(s/start-tasks-actions ?iacts ?id ?run ?pro)")
 	(salience 0)
 	(title "s:StartTask"))
 
 ([Scenario_Class500000] of  Rule
 
 	(lhs "?pop (PutObProperties status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	new_course ?crs\n	new_speed ?spd\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" PutObProperties\"))\n(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"PutObProperties\")\n(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?pro ?run))")
 	(salience 0)
 	(title "a:PutObPropertiesStart"))
 
@@ -1446,7 +1443,7 @@
 ([Scenario_Class50001] of  Rule
 
 	(lhs "?s (Scenario status \"START\" \n	title ?tit\n	id ?id \n	initial_tasks ?itasks\n	protagonist ?pro)")
-	(rhs "(println (str \"Scenario started: \" ?tit))\n(modify ?s status \"DOING\")\n(s/start-tasks-actions ?itasks ?id ?id ?pro)")
+	(rhs "(println \"Scenario started:\" ?tit)\n(modify ?s status \"DOING\")\n(s/start-tasks-actions ?itasks ?id ?id ?pro)")
 	(salience 0)
 	(title "s:StartScenario"))
 
@@ -1509,7 +1506,7 @@
 ([Scenario_Class540001] of  Rule
 
 	(lhs "?cbm (CreateByModel status \"START\"\n	title ?tit\n	model ?mod\n	object ?obj\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" CreateByModel\"))\n(a/create-by-model ?mod ?obj ?pro ?run)\n(retract ?cbm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"CreateByModel\")\n(a/create-by-model ?mod ?obj ?pro ?run)\n(retract ?cbm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:CreateByModel"))
 
@@ -1540,7 +1537,7 @@
 ([Scenario_Class560002] of  Rule
 
 	(lhs "?j (Join status \"REPEAT\"\n	title ?tit\n	run ?run\n	parent ?pid\n	protagonist ?pro\n	join_tasks ?jtasks\n	next_tasks ?ntasks\n	(= (count ?jtasks) 0))")
-	(rhs "(println (str \"Join DONE: \" ?tit))\n(retract ?j)\n(s/start-tasks-actions ?ntasks ?pid ?run ?pro)")
+	(rhs "(println \"Join DONE:\" ?tit)\n(retract ?j)\n(s/start-tasks-actions ?ntasks ?pid ?run ?pro)")
 	(salience 0)
 	(title "s:JoinDone"))
 
@@ -1571,7 +1568,7 @@
 ([Scenario_Class80000] of  Rule
 
 	(lhs "?ts (Task status \"START\" \n	title ?tit \n	task_scheme ?tsc\n	(empty? ?tsc))")
-	(rhs "(println (str \"Empty Task DONE: \" ?tit))\n(modify ?ts status \"DONE\")")
+	(rhs "(println \"Empty Task DONE:\" ?tit)\n(modify ?ts status \"DONE\")")
 	(salience 0)
 	(title "s:EndEmptyTask"))
 
@@ -1583,7 +1580,7 @@
 ([Scenario_Class90005] of  Rule
 
 	(lhs "?d (Delay status \"START\" \n	title ?tit \n	delay ?del\n	protagonist ?pro\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" Delay\"))\n(if-let [del (a/vv ?del ?pro ?run)]\n  (modify ?d status \"REPEAT\" \n	N (a/to-be ?t del))\n  (modify ?d status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit  \"Delay\")\n(if-let [del (a/vv ?del ?pro ?run)]\n  (modify ?d status \"REPEAT\" \n	N (a/to-be ?t del))\n  (modify ?d status \"FAILED\"))")
 	(salience 0)
 	(title "a:DelayStart"))
 
@@ -1807,7 +1804,7 @@
 ([ScenarioN_Class130001] of  Rule
 
 	(lhs "?aos (AssertObjects status \"START\"\n	title ?tit\n	object ?obj\n	collection ?col\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" AssertObjects\"))\n(let [obj (a/vv ?obj ?pro ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (ru.rules/assert-instances inss))\n(retract ?aos)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AssertObjects\")\n(let [obj (a/vv ?obj ?pro ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (ru.rules/assert-instances inss))\n(retract ?aos)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:AssertObjects"))
 
@@ -1829,42 +1826,42 @@
 ([ScenarioN_Class160000] of  Rule
 
 	(lhs "?vis (Visible status \"START\"\n	title ?tit\n	object ?obj\n	mapob ?mos\n	flag ?flg\n	client ?cli\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" Visible\"))\n(let [cli (a/vv ?cli ?pro ?run)]\n  (if (not (a/null? cli))\n    (let [visi (protege.core/is? ?flg)\n           clid (protege.core/sv cli \"id\")]\n      (if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n        (navobs.commands/set-visible (.getName mo) visi clid))\n      (doseq [mo ?mos]\n        (if-let [mo (ru.igis.omtab.OMT/getMapOb mo)]\n          (navobs.commands/set-visible (.getName mo) visi clid))))))\n(retract ?vis)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Visible\")\n(let [cli (a/vv ?cli ?pro ?run)]\n  (if (not (a/null? cli))\n    (let [visi (protege.core/is? ?flg)\n           clid (protege.core/sv cli \"id\")]\n      (if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n        (navobs.commands/set-visible (.getName mo) visi clid))\n      (doseq [mo ?mos]\n        (if-let [mo (ru.igis.omtab.OMT/getMapOb mo)]\n          (navobs.commands/set-visible (.getName mo) visi clid))))))\n(retract ?vis)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:Visible"))
 
 ([ScenarioN_Class160001] of  Rule
 
 	(lhs "?atv (AttributesToVariables status \"START\"\n	title ?tit\n	objects ?obs\n	attributes ?ats\n	variables ?vrs\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" AttributesToVariables\"))\n(loop [oo ?obs aa ?ats vv ?vrs]\n  (if (and (seq oo) (seq aa) (seq vv))\n    (if-let [mo (a/mapob-vv (first oo) ?pro ?run)]\n      (when-let [avl (.getAttribute mo (protege.core/sv (first aa) \"title\"))]\n        (a/pvv (first vv) avl ?pro ?run)\n        (recur (rest oo) (rest aa) (rest vv))) )))\n(retract ?atv)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AttributesToVariables\")\n(loop [oo ?obs aa ?ats vv ?vrs]\n  (if (and (seq oo) (seq aa) (seq vv))\n    (if-let [mo (a/mapob-vv (first oo) ?pro ?run)]\n      (when-let [avl (.getAttribute mo (protege.core/sv (first aa) \"title\"))]\n        (a/pvv (first vv) avl ?pro ?run)\n        (recur (rest oo) (rest aa) (rest vv))) )))\n(retract ?atv)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:AttributesToVariables"))
 
 ([ScenarioN_Class170000] of  Rule
 
 	(lhs "?wms (WaitModelClock status \"START\" \n	title ?tit \n	time ?tim\n	protagonist ?pro\n	run ?run)")
-	(rhs "(println (str \"Action started: \" ?tit \" WaitModelClock\"))\n(if-let [tim (a/vv ?tim ?pro ?run)]\n  (modify ?wms status \"REPEAT\" \n	N (a/op-time-sec tim))\n  (modify ?wms status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"WaitModelClock\")\n(if-let [tim (a/vv ?tim ?pro ?run)]\n  (modify ?wms status \"REPEAT\" \n	N (a/op-time-sec tim))\n  (modify ?wms status \"FAILED\"))")
 	(salience 0)
 	(title "a:WaitModelClockStart"))
 
 ([ScenarioN_Class170001] of  Rule
 
 	(lhs "?smc (SetModelClock status \"START\"\n	title ?tit\n	time ?tim\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" SetModelClock\"))\n(let [tim (a/vv ?tim ?pro ?run)\n      sec (a/op-time-sec tim)]\n    (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))\n(retract ?smc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetModelClock\")\n(let [tim (a/vv ?tim ?pro ?run)\n      sec (a/op-time-sec tim)]\n    (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))\n(retract ?smc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:SetModelClock"))
 
 ([ScenarioN_Class170002] of  Rule
 
 	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" LoadResource\"))\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (do (.putAttribute mo (protege.core/sv ?res \"title\") ?mos)\n    (retract ?lr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?lr status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"LoadResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (do (.putAttribute mo (protege.core/sv ?res \"title\") ?mos)\n    (retract ?lr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?lr status \"FAILED\"))")
 	(salience 0)
 	(title "a:LoadResource"))
 
 ([ScenarioN_Class180000] of  Rule
 
 	(lhs "?od (ODecision status \"START\" \n	title ?tit\n	input_data ?ida\n	before ?bef\n	choices ?chs\n	variants ?vrs\n	parent ?par\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Decision: \" ?tit \" ODecision\"))\n(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?od)")
+	(rhs "(println \"Decision:\" ?tit \"ODecision\")\n(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?od)")
 	(salience 0)
 	(title "d:ODecision"))
 
@@ -1883,7 +1880,7 @@
 ([ScenarioN_Class190002] of  Rule
 
 	(lhs "?ict (Intercept status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	radius ?rad\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" Intercept\"))\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]\n  (do (a/go mob lat lon spdb)\n    (modify ?ict status \"REPEAT\"\n	course crss\n	speed spds))\n  (modify ?ict status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"Intercept\")\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]\n  (do (a/go mob lat lon spdb)\n    (modify ?ict status \"REPEAT\"\n	course crss\n	speed spds))\n  (modify ?ict status \"FAILED\"))")
 	(salience 0)
 	(title "a:InterceptStart"))
 
@@ -1924,7 +1921,7 @@
 ([ScenarioN_Class210000] of  Rule
 
 	(lhs "?ias (IfActivityStatus status \"START\" \n	title ?tit \n	activities ?ats\n	statuses ?sts\n	parent ?par\n	run ?run\n	protagonist ?pro\n	variants ?vrs)")
-	(rhs "(println (str \"Decision: \" ?tit \" IfActivityStatus\"))\n(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?par ?run ?pro)\n(retract ?ias)")
+	(rhs "(println \"Decision:\" ?tit \"IfActivityStatus\")\n(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?par ?run ?pro)\n(retract ?ias)")
 	(salience 0)
 	(title "d:IfActivityStatus"))
 
@@ -1941,7 +1938,7 @@
 ([ScenarioN_Class220001] of  Rule
 
 	(lhs "?mom (MovingObjectMessage status \"START\"\n	title ?tit\n	clients ?cls\n	object ?obj\n	category ?cat\n	text ?txt\n	url ?url\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" MovingObjectMessage\"))\n(modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"MovingObjectMessage\")\n(modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run))")
 	(salience 0)
 	(title "a:MovingObjectMessageStart"))
 
@@ -1959,18 +1956,6 @@
 
 	(label "Toggle Visible Zones")
 	(scenario "clojuretab.ClojureTab invoke sim toggle-visible-zones"))
-
-([ScenarioN_Class230002] of  Rule
-
-	(lhs "?sss (SendSpecSignal status \"START\"\n	title ?tit\n	object ?obj\n	entries ?ens\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" SendSpecSignal\"))\n(a/send-spec-signal ?obj ?ens ?pro ?run)\n(retract ?sss)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
-	(salience 0)
-	(title "a:SendSpecSignal"))
-
-([ScenarioN_Class230003] of  CloFunction
-
-	(source "(let [obj (vv ?obj p r)\n      eos (map #(vv % p r) ens)\n      fd (map #(if (instance? Instance %) (sv % \"title\") %) eos)\n      fds (map str fd)]\n  (println [:SEND-SPEC-SIGNAL :FIELDS fds])\n  (to-sintis obj fds))")
-	(title "send-spec-signal [?obj ens p r]"))
 
 ([ScenarioN_Class230006] of  Rule
 
@@ -2025,14 +2010,14 @@
 ([ScenarioN_Class250001] of  Rule
 
 	(lhs "?ur (UseResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	variable ?var\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" UseResource\"))\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [atr (protege.core/sv ?res \"title\")\n        res (.getAttribute mo atr)]\n    (a/pvv ?var (first res) ?pro ?run)\n    (.putAttribute mo atr (rest res))\n    (retract ?ur)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?ur status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"UseResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [atr (protege.core/sv ?res \"title\")\n        res (.getAttribute mo atr)]\n    (a/pvv ?var (first res) ?pro ?run)\n    (.putAttribute mo atr (rest res))\n    (retract ?ur)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?ur status \"FAILED\"))")
 	(salience 0)
 	(title "a:UseResource"))
 
 ([ScenarioN_Class250002] of  Rule
 
 	(lhs "?wiz (WaitInZone status \"START\"\n	title ?tit)")
-	(rhs "(println (str \"Action started: \" ?tit \" WaitInZone\"))\n(modify ?wiz status \"REPEAT\")")
+	(rhs "(println \"Action started:\" ?tit \"WaitInZone\")\n(modify ?wiz status \"REPEAT\")")
 	(salience 0)
 	(title "a:WaitInZoneStart"))
 
@@ -2099,14 +2084,14 @@
 ([ScenarioN_Class280001] of  Rule
 
 	(lhs "?aip (ArriveIntoPolygon status \"START\" \n	title ?tit \n	object ?obj \n	polygon ?pol \n	spd ?spd \n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" ArriveIntoPolygon\"))\n(if-let [pol (a/vv ?pol ?pro ?run)]\n  (let [lat (protege.core/sv pol \"latitude\")\n        lon (protege.core/sv pol \"longitude\")\n        spd (a/vv ?spd ?pro ?run)]\n    (retract ?aip)\n    (asser Arrive status \"START\"\n	title ?tit\n	object ?obj\n	latitude lat\n	longitude lon\n	speed (Float. spd)\n	radius 0.2\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts))\n  (modify ?aip status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"ArriveIntoPolygon\")\n(if-let [pol (a/vv ?pol ?pro ?run)]\n  (let [lat (protege.core/sv pol \"latitude\")\n        lon (protege.core/sv pol \"longitude\")\n        spd (a/vv ?spd ?pro ?run)]\n    (retract ?aip)\n    (asser Arrive status \"START\"\n	title ?tit\n	object ?obj\n	latitude lat\n	longitude lon\n	speed (Float. spd)\n	radius 0.2\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts))\n  (modify ?aip status \"FAILED\"))")
 	(salience 0)
 	(title "a:ArriveIntoPolygon"))
 
 ([ScenarioN_Class280002] of  Rule
 
 	(lhs "?ss (StartScenarios status \"START\"\n	id ?pid\n	title ?tit\n	scenarios ?scs\n	default_parameters ?dfs\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" StartScenarios\"))\n(loop [ss ?scs dd ?dfs]\n  (when (seq ss)\n    (if (= (first dd) true) \n      (a/subscenario (first ss) nil nil false ?pid ?pro ?run)\n      (s/start-scenario (first ss) nil))\n    (recur (rest ss) (rest dd))))\n(retract ?ss)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"StartScenarios\")\n(loop [ss ?scs dd ?dfs]\n  (when (seq ss)\n    (if (= (first dd) true) \n      (a/subscenario (first ss) nil nil false ?pid ?pro ?run)\n      (s/start-scenario (first ss) nil))\n    (recur (rest ss) (rest dd))))\n(retract ?ss)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:StartScenarios"))
 
@@ -2162,7 +2147,7 @@
 ([ScenarioN_Class300006] of  Rule
 
 	(lhs "?vc (VerticalControl status \"START\" \n	title ?tit \n	object ?obj\n	vc_type ?vct\n	height ?hgt\n	time ?tim\n	alt_profile ?apf\n	protagonist ?pro\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" VerticalControl\"))\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (do (.putAttribute mo \"VC_TYPE\" ?vct)\n    (condp = ?vct\n      \"PROFILE\"\n      (if-let[apf (a/vv ?apf ?pro ?run)]\n        (let [[s1 s2 & secs] (seq (protege.core/svs apf \"second\"))\n               [a1 a2 & alts] (seq (protege.core/svs apf \"alt\"))]\n          (.setAltitude mo a1)\n          (modify ?vc status \"REPEAT\"\n	speed (float (/ (- a2 a1) (- s2 s1)))\n	time1  (+ ?t s2)\n	N 1\n	period (+ ?t (last secs))))\n        (modify ?vc status \"FAILED\"))\n      \"RELIEF\"\n      (let [hgt (a/vv ?hgt ?pro ?run)\n            tim (a/vv ?tim ?pro ?run)]\n        (if (not (or (nil? hgt) (nil? tim)))\n          (do (.setAltitude mo (Integer. hgt))\n            (modify ?vc status \"REPEAT\"\n	period (+ ?t (Integer. ?tim)) )) )) ))\n  (modify ?vc status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"VerticalControl\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (do (.putAttribute mo \"VC_TYPE\" ?vct)\n    (condp = ?vct\n      \"PROFILE\"\n      (if-let[apf (a/vv ?apf ?pro ?run)]\n        (let [[s1 s2 & secs] (seq (protege.core/svs apf \"second\"))\n               [a1 a2 & alts] (seq (protege.core/svs apf \"alt\"))]\n          (.setAltitude mo a1)\n          (modify ?vc status \"REPEAT\"\n	speed (float (/ (- a2 a1) (- s2 s1)))\n	time1  (+ ?t s2)\n	N 1\n	period (+ ?t (last secs))))\n        (modify ?vc status \"FAILED\"))\n      \"RELIEF\"\n      (let [hgt (a/vv ?hgt ?pro ?run)\n            tim (a/vv ?tim ?pro ?run)]\n        (if (not (or (nil? hgt) (nil? tim)))\n          (do (.setAltitude mo (Integer. hgt))\n            (modify ?vc status \"REPEAT\"\n	period (+ ?t (Integer. ?tim)) )) )) ))\n  (modify ?vc status \"FAILED\"))")
 	(salience 0)
 	(title "a:VerticalControlStart"))
 
@@ -2176,7 +2161,7 @@
 ([ScenarioN_Class310002] of  Rule
 
 	(lhs "?sts (SetTimeScale status \"START\"\n	title ?tit \n	scale ?scl\n	instance ?ain\n	run ?run\n	parent ?par \n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" SetTimeScale\"))\n(if-let [scl (a/vv ?scl ?pro ?run)]\n  (ru.igis.omtab.OMT/setTimeScale scl))\n(retract ?sts)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetTimeScale\")\n(if-let [scl (a/vv ?scl ?pro ?run)]\n  (ru.igis.omtab.OMT/setTimeScale scl))\n(retract ?sts)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:SetTimeScale"))
 
@@ -2346,11 +2331,6 @@
 	(source "(OMT/getMapOb (vv ?obj ?pro ?run))")
 	(title "mapob-vv [?obj ?pro ?run]"))
 
-([ScenarioN_Class400025] of  CloFunction
-
-	(source "(let [tit (sv obj \"title\")]\n  (spit (str \"SINTIS/\" tit \".txt\") (str [:SEND-SPEC-SIGNAL :OBJ tit :FDS fds] \"\\n\") :append true))")
-	(title "to-sintis [obj fds]"))
-
 ([ScenarioN_Class410000] of  CloVar
 
 	(source "nil")
@@ -2426,14 +2406,14 @@
 ([ScenarioN_Class460000] of  Rule
 
 	(lhs "?cp (ConfirmPosition status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	client ?cli\n	run ?run\n	protagonist ?pro\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" ConfirmPosition\"))\n(let [obj (a/vv ?obj ?pro ?run)\n       lat (a/degmin-to-deg ?lat ?pro ?run)\n       lon (a/degmin-to-deg ?lon ?pro ?run)\n       cli (a/vv ?cli ?pro ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))\n    (do (modify ?cp status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [bb (int (.bearingsDeg mo lat lon))\n           dir (or (.getAttribute mo \"SAT-DIR\")\n	(let [newdir \"FORWARD\"]\n	  (.putAttribute mo \"SAT-DIR\" newdir)\n	  newdir))\n           old (or (.getAttribute mo \"SAT-BBEAR\") bb)\n           dif (if (> old bb) (- old bb) (- bb old))\n           dir (if (>= dif 180)  (let [newdir (if (= dir \"FORWARD\") \"BACKWARD\" \"FORWARD\")]\n		(.putAttribute mo \"SAT-DIR\" newdir)\n		newdir)\n 	                 dir)\n           crs (if (= dir \"FORWARD\")\n	(+ bb 180)\n	bb)\n           crs (if (>= crs 360) (- crs 360) crs)]\n      ;; (navobs.commands/pump-in-evt (protege.core/sv cli \"id\")\n	;; {:event :update-navob \n	;;	:name (.getName mo)\n	;;	:lat (.getLatitude mo)\n	;;	:lon (.getLongitude mo)\n	;;	:crs crs\n	;;	:spd (.getSpeed mo)\n	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})\n      (.putAttribute mo \"SAT-BBEAR\" bb)\n      (retract ?cp)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))))")
+	(rhs "(println \"Action started:\" ?tit \"ConfirmPosition\")\n(let [obj (a/vv ?obj ?pro ?run)\n       lat (a/degmin-to-deg ?lat ?pro ?run)\n       lon (a/degmin-to-deg ?lon ?pro ?run)\n       cli (a/vv ?cli ?pro ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))\n    (do (modify ?cp status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [bb (int (.bearingsDeg mo lat lon))\n           dir (or (.getAttribute mo \"SAT-DIR\")\n	(let [newdir \"FORWARD\"]\n	  (.putAttribute mo \"SAT-DIR\" newdir)\n	  newdir))\n           old (or (.getAttribute mo \"SAT-BBEAR\") bb)\n           dif (if (> old bb) (- old bb) (- bb old))\n           dir (if (>= dif 180)  (let [newdir (if (= dir \"FORWARD\") \"BACKWARD\" \"FORWARD\")]\n		(.putAttribute mo \"SAT-DIR\" newdir)\n		newdir)\n 	                 dir)\n           crs (if (= dir \"FORWARD\")\n	(+ bb 180)\n	bb)\n           crs (if (>= crs 360) (- crs 360) crs)]\n      ;; (navobs.commands/pump-in-evt (protege.core/sv cli \"id\")\n	;; {:event :update-navob \n	;;	:name (.getName mo)\n	;;	:lat (.getLatitude mo)\n	;;	:lon (.getLongitude mo)\n	;;	:crs crs\n	;;	:spd (.getSpeed mo)\n	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})\n      (.putAttribute mo \"SAT-BBEAR\" bb)\n      (retract ?cp)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))))")
 	(salience 0)
 	(title "a:ConfirmPosition"))
 
 ([ScenarioN_Class460005] of  Rule
 
 	(lhs "?cs (CircleScan status \"START\"\n	title ?tit \n	object ?obj \n	detector ?det\n	client ?cli\n	text ?txt\n	run ?run\n	protagonist ?pro\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" CircleScan\"))\n(let [obj (a/vv ?obj ?pro ?run)\n       det (a/vv ?det ?pro ?run)\n       cli (a/vv ?cli ?pro ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (a/null? det))\n    (do (modify ?cs status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [types (protege.core/svs det \"types\")\n           ranges (protege.core/svs det \"ranges\")\n           probs (protege.core/svs det \"probabilities\")]\n      (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]\n        (if (a/detected mo tgt types ranges probs)\n          (let [tgn (.getName tgt)]\n            (asser Exception status \"ОБНАРУЖЕН\" title (eval tgn) run ?run)\n            (.putAttribute mo \"DETECT\" (.getName tgt))\n            (.putAttribute tgt \"DETECTED-BY\" (.getName mo)))))\n            ;;(if (a/null? cli)\n            ;;  (navobs.commands/set-visible tgn true)\n            ;;  (let [clid (protege.core/sv cli \"id\")]\n            ;;    (a/es-mess (str (a/op-time) \" Докладывает \" (.getName mo) \": \" ?txt \" \" tgn\n	;; (format \" ш %.3f\" (.getLatitude tgt))\n	;; (format \" д %.3f\" (.getLongitude tgt))\n	;; \" курс \" (.getCourse tgt)\n	;; \" скорость \" (.getSpeed tgt)) {} 0 clid)\n                ;; (navobs.commands/set-visible true tgt clid))) )))\n      (retract ?cs)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))))")
+	(rhs "(println \"Action started:\" ?tit \"CircleScan\")\n(let [obj (a/vv ?obj ?pro ?run)\n       det (a/vv ?det ?pro ?run)\n       cli (a/vv ?cli ?pro ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (a/null? det))\n    (do (modify ?cs status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [types (protege.core/svs det \"types\")\n           ranges (protege.core/svs det \"ranges\")\n           probs (protege.core/svs det \"probabilities\")]\n      (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]\n        (if (a/detected mo tgt types ranges probs)\n          (let [tgn (.getName tgt)]\n            (asser Exception status \"ОБНАРУЖЕН\" title (eval tgn) run ?run)\n            (.putAttribute mo \"DETECT\" (.getName tgt))\n            (.putAttribute tgt \"DETECTED-BY\" (.getName mo)))))\n            ;;(if (a/null? cli)\n            ;;  (navobs.commands/set-visible tgn true)\n            ;;  (let [clid (protege.core/sv cli \"id\")]\n            ;;    (a/es-mess (str (a/op-time) \" Докладывает \" (.getName mo) \": \" ?txt \" \" tgn\n	;; (format \" ш %.3f\" (.getLatitude tgt))\n	;; (format \" д %.3f\" (.getLongitude tgt))\n	;; \" курс \" (.getCourse tgt)\n	;; \" скорость \" (.getSpeed tgt)) {} 0 clid)\n                ;; (navobs.commands/set-visible true tgt clid))) )))\n      (retract ?cs)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))))")
 	(salience 0)
 	(title "a:CircleScan"))
 
@@ -2457,7 +2437,7 @@
 ([ScenarioN_Class470002] of  Rule
 
 	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?par\n	run ?run\n	protagonist ?pro\n	variants ?vrs)\n?ex (Exception run ?run\n	status ?sta\n	title ?tit2\n	(some #{?sta} ?sts))")
-	(rhs "(println (str \"Decision: \" ?tit \" CatchException status WAIT\"))\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?tit2) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?par ?run ?pro)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))\n    (modify ?ce status \"FAILED\")))")
+	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?tit2) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?par ?run ?pro)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))\n    (modify ?ce status \"FAILED\")))")
 	(salience 0)
 	(title "d:CatchExceptionWait"))
 
@@ -2562,7 +2542,7 @@
 ([ScenarioN_Class520001] of  Rule
 
 	(lhs "?ros (RetractObjects status \"START\"\n	title ?tit\n	object ?obj\n	collection ?col\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" RetractObjects\"))\n(let [obj (a/vv ?obj ?pro ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (ru.rules/retract-instances inss))\n(retract ?ros)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"RetractObjects\")\n(let [obj (a/vv ?obj ?pro ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (ru.rules/retract-instances inss))\n(retract ?ros)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:RetractObjects"))
 
@@ -2601,14 +2581,14 @@
 ([ScenarioN_Class530011] of  Rule
 
 	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	time ?tim\n	run ?run\n	protagonist ?pro)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" PolyMoving\"))\n(let [mob (a/mapob-vv ?obj ?pro ?run)\n       obs (a/vv ?obs ?pro ?run)\n       tim (a/vv ?tim ?pro ?run)]\n  (if (or (nil? mob)\n            (a/null? obs)\n            (a/null? tim)\n            (< (poly.moving/pm-start mob obs (a/to-be tim) ?t) 0))\n      (modify ?pm status \"FAILED\")\n      (modify ?pm status \"REPEAT\")))")
+	(rhs "(println \"Action started:\" ?tit \"PolyMoving\")\n(let [mob (a/mapob-vv ?obj ?pro ?run)\n       obs (a/vv ?obs ?pro ?run)\n       tim (a/vv ?tim ?pro ?run)]\n  (if (or (nil? mob)\n            (a/null? obs)\n            (a/null? tim)\n            (< (poly.moving/pm-start mob obs (a/to-be tim) ?t) 0))\n      (modify ?pm status \"FAILED\")\n      (modify ?pm status \"REPEAT\")))")
 	(salience 0)
 	(title "a:PolyMovingStart"))
 
 ([ScenarioN_Class530012] of  Rule
 
 	(lhs "?pmn (PolyMovingN status \"START\"\n	title ?tit\n	mapob ?mpb\n	time ?tim\n	run ?run\n	protagonist ?pro)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" PolyMovingN\"))\n(let [tim (a/vv ?tim ?pro ?run)]\n  (if (or (empty? ?mpb)\n            (a/null? tim)\n            (< (poly.moving/pm-start-n ?mpb (a/to-be tim) ?t) 0))\n      (modify ?pmn status \"FAILED\")\n      (modify ?pmn status \"REPEAT\"\n	N 1\n	time (a/to-be tim))))")
+	(rhs "(println \"Action started:\" ?tit \"PolyMovingN\")\n(let [tim (a/vv ?tim ?pro ?run)]\n  (if (or (empty? ?mpb)\n            (a/null? tim)\n            (< (poly.moving/pm-start-n ?mpb (a/to-be tim) ?t) 0))\n      (modify ?pmn status \"FAILED\")\n      (modify ?pmn status \"REPEAT\"\n	N 1\n	time (a/to-be tim))))")
 	(salience 0)
 	(title "a:PolyMovingNStart"))
 
@@ -2761,7 +2741,7 @@
 ([ScenarioN_Class580002] of  Rule
 
 	(lhs "?mt (MovingTrace status \"START\"\n	title ?tit\n	object ?obj\n	polygon ?pol\n	instance ?ain\n	parent ?par \n	next_actions ?nacts\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" MovingTrace\"))\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n      pol (a/vv ?pol ?pro ?run)]\n  (if (and (some? mo) (not (a/null? pol)))\n    (let [mt {:ompoly (-> (ru.igis.omtab.OMT/getOrAdd pol)\n		.getLocationMarker)\n                        :crs1crs2 [0 0]\n	:x1y1 [0 0]}]\n      (.putAttribute mo \"MOTRACE\" mt)\n      (modify ?mt status \"REPEAT\"\n	polygon pol))\n    (do (retract ?mt)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))))")
+	(rhs "(println \"Action started:\" ?tit \"MovingTrace\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n      pol (a/vv ?pol ?pro ?run)]\n  (if (and (some? mo) (not (a/null? pol)))\n    (let [mt {:ompoly (-> (ru.igis.omtab.OMT/getOrAdd pol)\n		.getLocationMarker)\n                        :crs1crs2 [0 0]\n	:x1y1 [0 0]}]\n      (.putAttribute mo \"MOTRACE\" mt)\n      (modify ?mt status \"REPEAT\"\n	polygon pol))\n    (do (retract ?mt)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))))")
 	(salience 0)
 	(title "a:MovingTraceStart"))
 
@@ -2857,7 +2837,7 @@
 ([ScenarioN_Class630000] of  Rule
 
 	(lhs "?td (TDecision status \"START\" \n	title ?tit\n	script ?scr\n	variants ?vrs\n	parent ?par\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Decision: \" ?tit \" TDecision\"))\n(s/start-tasks-actions (d/t-decision ?scr ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?td)")
+	(rhs "(println \"Decision:\" ?tit \"TDecision\")\n(s/start-tasks-actions (d/t-decision ?scr ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?td)")
 	(salience 0)
 	(title "d:TDecision"))
 
@@ -2879,7 +2859,7 @@
 ([ScenarioN_Class640000] of  Rule
 
 	(lhs "?hd (Hard status \"START\" \n	title ?tit \n	number ?num\n	parent ?par\n	run ?run\n	protagonist ?pro\n	variants ?vrs)")
-	(rhs "(println (str \"Decision: \" ?tit \" Hard\"))\n(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?pro ?run)))] ?par ?run ?pro)\n(retract ?hd)")
+	(rhs "(println \"Decision:\" ?tit \"Hard\")\n(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?pro ?run)))] ?par ?run ?pro)\n(retract ?hd)")
 	(salience 0)
 	(title "d:Hard"))
 
@@ -2906,7 +2886,7 @@
 ([ScenarioN_Class660000] of  Rule
 
 	(lhs "?cb (Comb status \"START\"\n	title ?tit \n	object ?obj \n	polygon ?pol\n	algo ?alg\n	range ?rng\n	spd ?spd\n	time ?tim\n	route ?rte\n	run ?run\n	protagonist ?pro\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(println (str \"Action started: \" ?tit \" Comb\"))\n(let [obj (a/mapob-vv ?obj ?pro ?run)\n       pol (a/mapob-vv ?pol ?pro ?run)\n       alg (a/vv ?alg ?pro ?run)\n       rng (a/vv ?rng ?pro ?run)\n       spd (a/vv ?spd ?pro ?run)\n       tim (a/vv ?tim ?pro ?run)\n       rte (a/vv ?rte ?pro ?run)\n       dsp (a/vv ?dsp ?pro ?run)]\n  (if (every? some? [obj pol alg  rng spd tim rte])\n    (let [hrs (/ (a/to-be tim) 3600)]\n      (algo.exe/do-algorithm alg\n	{\"район\" (.getInstance pol)\n	 \"объект\" (.getInstance obj)\n	 \"Наше-место\" [(.getLatitude obj) (.getLongitude obj)]\n	 \"маршрут\" rte\n	 \"Добн\" (read-string rng)\n	 \"Скорость\" (read-string spd)\n	 \"Время\" hrs})\n      (modify ?cb status \"REPEAT\"))\n    (modify ?cb status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Comb\")\n(let [obj (a/mapob-vv ?obj ?pro ?run)\n       pol (a/mapob-vv ?pol ?pro ?run)\n       alg (a/vv ?alg ?pro ?run)\n       rng (a/vv ?rng ?pro ?run)\n       spd (a/vv ?spd ?pro ?run)\n       tim (a/vv ?tim ?pro ?run)\n       rte (a/vv ?rte ?pro ?run)\n       dsp (a/vv ?dsp ?pro ?run)]\n  (if (every? some? [obj pol alg  rng spd tim rte])\n    (let [hrs (/ (a/to-be tim) 3600)]\n      (algo.exe/do-algorithm alg\n	{\"район\" (.getInstance pol)\n	 \"объект\" (.getInstance obj)\n	 \"Наше-место\" [(.getLatitude obj) (.getLongitude obj)]\n	 \"маршрут\" rte\n	 \"Добн\" (read-string rng)\n	 \"Скорость\" (read-string spd)\n	 \"Время\" hrs})\n      (modify ?cb status \"REPEAT\"))\n    (modify ?cb status \"FAILED\")))")
 	(salience 0)
 	(title "a:CombStart"))
 
@@ -2944,7 +2924,7 @@
 ([ScenarioN_Class690000] of  Rule
 
 	(lhs "?sor (StopRoute status \"START\"\n	title ?tit\n	object ?obj\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" StopRoute\"))\n(if-let [obj (a/vv ?obj ?pro ?run)]\n  (modify ?sor object obj\n	status \"WORK\")\n  (modify ?sor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"StopRoute\")\n(if-let [obj (a/vv ?obj ?pro ?run)]\n  (modify ?sor object obj\n	status \"WORK\")\n  (modify ?sor status \"FAILED\")))")
 	(salience 0)
 	(title "a:StopRouteStart"))
 
@@ -2972,7 +2952,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	id ?pid\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println (str \"Action started: \" ?tit \" ObjectTask\"))\n(modify ?ot status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(modify ?ot status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 
@@ -3043,7 +3023,7 @@
 ([ScenarioN_Class80008] of  Rule
 
 	(lhs "?woa (WaitObAttributes status \"START\"\n	title ?tit)")
-	(rhs "(println (str \"Action started: \" ?tit \" WaitObAttributes\"))\n(modify ?woa status \"REPEAT\")")
+	(rhs "(println \"Action started:\" ?tit \"WaitObAttributes\")\n(modify ?woa status \"REPEAT\")")
 	(salience 0)
 	(title "a:WaitObAttributesStart"))
 
@@ -3112,13 +3092,6 @@
 
 ([SendSignal] of  ActionClass
 )
-
-([SendSpecSignal] of  ActionClass
-
-	(functions
-		[ScenarioN_Class230003]
-		[ScenarioN_Class400025])
-	(rules [ScenarioN_Class230002]))
 
 ([SetCenter] of  ActionClass
 )

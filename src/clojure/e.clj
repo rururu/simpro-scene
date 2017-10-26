@@ -41,19 +41,19 @@
   (if (not (or (nil? obj) (null? obsi)))
     (if-let [obs (OMT/getMapOb obsi)]
       (condp = obr
-        "NEAR" (.near obs obj rad)
-        "FAR" (>= (.distanceNM obs obj) rad)
-        "DISTANCE" (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)
-        "BEARING" (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)
-        "ABAFT" (.abaft obs obj)
-        "AHEAD" (not (or (.abaft obj obs) (on-beam obs obj)))
-        "ON-BEAM" (on-beam obs obj)
-        "COURSE-ANGLE" (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)
-        "SAME" (= obj obs)
+        'NEAR (.near obs obj rad)
+        'FAR (>= (.distanceNM obs obj) rad)
+        'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)
+        'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)
+        'ABAFT (.abaft obs obj)
+        'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))
+        'ON-BEAM (on-beam obs obj)
+        'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)
+        'SAME (= obj obs)
         false)
       (condp = obr
-        "INSIDE" (contains-with (sv obsi "label") obj)
-        "OUTSIDE" (not (contains-with (sv obsi "label") obj))
+        'INSIDE (contains-with (sv obsi "label") obj)
+        'OUTSIDE (not (contains-with (sv obsi "label") obj))
         false))
     false)))
 
@@ -62,19 +62,19 @@
        val (vv ?val p r)]
   (if (not (nil? obj))
     (condp = prop
-      "NAME" (= (.getName obj) val)
-      "MOVING" (not (= (.getSpeed obj) 0))
-      "STOPPED" (= (.getSpeed obj) 0)
-      "COURSE" (let [vvl (if (string? val) (read-string val) val)] 
+      'NAME (= (.getName obj) val)
+      'MOVING (not (= (.getSpeed obj) 0))
+      'STOPPED (= (.getSpeed obj) 0)
+      'COURSE (let [vvl (if (string? val) (read-string val) val)] 
 	(< (Math/abs (- (.getCourse obj) vvl)) rad))
-      "SPEED" (let [vvl (if (string? val) (read-string val) val)] 
+      'SPEED (let [vvl (if (string? val) (read-string val) val)] 
 	(< (Math/abs (- (.getSpeed obj) vvl)) rad))
-      "ALTITUDE" (let [vvl (if (string? val) (read-string val) val)] 
+      'ALTITUDE (let [vvl (if (string? val) (read-string val) val)] 
 	(< (Math/abs (- (.getAltitude obj) vvl)) rad))
-      "NEAR-POINT" (< (.distanceNM obj 
+      'NEAR-POINT (< (.distanceNM obj 
 	(MapOb/getDeg (vv ?lat p r))
 	(MapOb/getDeg (vv ?lon p r))) rad)
-      "COORDINATES" (let [lat (vv ?lat p r) lon (vv ?lon p r)] (and
+      'COORDINATES (let [lat (vv ?lat p r) lon (vv ?lon p r)] (and
 	(or (nil? lat) (< (Math/abs (- (.getLatitude obj) (MapOb/getDeg lat))) (/ rad 60)))
 	(or (nil? lon) (< (Math/abs (- (.getLongitude obj) (MapOb/getDeg lon))) (/ rad 60))) ))
       false)

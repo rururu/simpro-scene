@@ -600,18 +600,6 @@
 (defn clock []
   (int (/ (Clock/getClock) 1000)))
 
-(defn to-sintis [obj fds]
-  (let [tit (sv obj "title")]
-  (spit (str "SINTIS/" tit ".txt") (str [:SEND-SPEC-SIGNAL :OBJ tit :FDS fds] "\n") :append true)))
-
-(defn send-spec-signal [?obj ens p r]
-  (let [obj (vv ?obj p r)
-      eos (map #(vv % p r) ens)
-      fd (map #(if (instance? Instance %) (sv % "title") %) eos)
-      fds (map str fd)]
-  (println [:SEND-SPEC-SIGNAL :FIELDS fds])
-  (to-sintis obj fds)))
-
 (defn detected [mo tgt types ranges probs]
   (if (instance? NavOb tgt)
   (let [typ (.getType tgt)]
