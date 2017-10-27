@@ -1,4 +1,4 @@
-; Thu Oct 26 21:29:15 MSK 2017
+; Fri Oct 27 21:55:23 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -267,14 +267,14 @@
 
 ([Sea_Class110002] of  PutOnMap
 
-	(id "c1.Launc2017")
+	(id "c1.Launc2023")
 	(latitude "60 19.04")
 	(longitude "28 44.48")
 	(next_actions [Sea_Class120003])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2016")
+	(parent "c1.Cruis2022")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2014")
+	(run "s1.Colli2015")
 	(status "START")
 	(title "c1.Launch at Primorsk"))
 
@@ -473,15 +473,15 @@
 
 ([Sea_Class120003] of  Arrive
 
-	(id "c1.Moori2018")
+	(id "c1.Moori2024")
 	(latitude "60 19.64")
 	(longitude "28 42.87")
 	(next_actions [Sea_Class120008])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2016")
+	(parent "c1.Cruis2022")
 	(protagonist [Sea_Class344])
 	(radius 0.1)
-	(run "c1.Cruis2014")
+	(run "s1.Colli2015")
 	(speed 22.0)
 	(status "START")
 	(title "c1.Mooring"))
@@ -513,7 +513,12 @@
 
 ([Sea_Class120006] of  PutOffMap
 
+	(id "c1.Comin2042")
 	(object [Sea_Class235])
+	(parent "c1.Cruis2016")
+	(protagonist [Sea_Class344])
+	(run "c1.Cruis2014")
+	(status "START")
 	(title "c1.Coming Home 2"))
 
 ([Sea_Class120007] of  Scenario
@@ -521,11 +526,11 @@
 	(context [Sea_Class363])
 	(final_tasks [Sea_Class80000])
 	(finish_type AND)
-	(id "c1.Cruis2014")
+	(id "c1.Cruis2020")
 	(initial_tasks [Sea_Class80000])
-	(parent "s1.Start2013")
+	(parent "s1.Start2019")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2014")
+	(run "s1.Colli2015")
 	(scenario_scheme [Sea_Class80000])
 	(status "START")
 	(title "c1.Cruise from Primorsk"))
@@ -776,10 +781,10 @@
 ([Sea_Class140000] of  WaitEvent
 
 	(event [Sea_Class160001])
-	(id "s1.Wait_2012")
-	(parent "s1.Watch2010")
+	(id "s1.Wait_2018")
+	(parent "s1.Watch2016")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(title "s1.Wait Collision"))
 
@@ -1035,15 +1040,14 @@
 	(ob_relation NEAR)
 	(object [Sea_Class219])
 	(observer [Sea_Class240])
-	(parent "s1.Wait_2012")
+	(parent "s1.Wait_2018")
 	(radius 0.5)
 	(title "s1.CloseApproach"))
 
 ([Sea_Class160002] of  Break
 
 	(activity [Sea_Class120007])
-	(id "s1.Break2038")
-	(next_actions [Sea_Class160003])
+	(id "s1.Break2041")
 	(parent "s1.Colli2037")
 	(protagonist [Sea_Class160021])
 	(run "s1.Colli2009")
@@ -1054,8 +1058,7 @@
 ([Sea_Class160003] of  Break
 
 	(activity [Sea_Class20019])
-	(id "s1.Break2039")
-	(next_actions [Sea_Class74])
+	(id "s1.Break2043")
 	(parent "s1.Colli2037")
 	(protagonist [Sea_Class160021])
 	(run "s1.Colli2009")
@@ -1144,27 +1147,27 @@
 
 ([Sea_Class162] of  PutOnMap
 
-	(id "c1.Launc2024")
+	(id "c1.Launc2028")
 	(latitude "60 11")
 	(longitude "28 23")
 	(next_actions [Sea_Class163])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2023")
+	(parent "c1.Cruis2027")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2022")
+	(run "s1.Colli2015")
 	(status "START")
 	(title "c1.Launch at Sea"))
 
 ([Sea_Class163] of  GoRoute
 
-	(id "c1.Route2025")
+	(id "c1.Route2029")
 	(next_actions [Sea_Class164])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2023")
+	(parent "c1.Cruis2027")
 	(protagonist [Sea_Class346])
 	(radius 0.1)
 	(route [Sea_Class250])
-	(run "c1.Cruis2022")
+	(run "s1.Colli2015")
 	(spd "?spd")
 	(status "START")
 	(title "c1.Route to Terminal Primorsk"))
@@ -1172,7 +1175,12 @@
 ([Sea_Class164] of  Delay
 
 	(delay "1 min")
+	(id "c1.Cargo2044")
 	(next_actions [Sea_Class165])
+	(parent "c1.Cruis2023")
+	(protagonist [Sea_Class346])
+	(run "c1.Cruis2022")
+	(status "START")
 	(title "c1.Cargo Loading"))
 
 ([Sea_Class165] of  GoRoute
@@ -1210,6 +1218,16 @@
 
 	(pairs [Sea_Class180043])
 	(title "Ctx3"))
+
+([Sea_Class180000] of  StopRoute
+
+	(id "c1.Stop_2040")
+	(object [Sea_Class219])
+	(parent "s1.Colli2037")
+	(protagonist [Sea_Class160021])
+	(run "s1.Colli2009")
+	(status "START")
+	(title "c1.Stop Route to Sea"))
 
 ([Sea_Class180001] of  TwoObRelation
 
@@ -1546,6 +1564,10 @@
 	(object [Sea_Class236])
 	(title "ru0.SE to Original Position"))
 
+([Sea_Class190000] of  CloFuncall
+
+	(source "(ru.rules/f 109)"))
+
 ([Sea_Class190001] of  CloFuncall
 
 	(source "(cls-instances \"TwoObRealation)"))
@@ -1610,6 +1632,20 @@
 	(protagonist [Sea_Class160021])
 	(scenario_scheme [Sea_Class130039])
 	(title "s1.Simple Scenario"))
+
+([Sea_Class200000] of  CloFuncall
+
+	(source "(ru.rules/f2 28)"))
+
+([Sea_Class200001] of  StopRoute
+
+	(id "c1.Stop_2039")
+	(object [Sea_Class240])
+	(parent "s1.Colli2037")
+	(protagonist [Sea_Class160021])
+	(run "s1.Colli2009")
+	(status "START")
+	(title "c1.Stop Route Back"))
 
 ([Sea_Class20002] of  Scenario
 
@@ -1831,11 +1867,11 @@
 	(context [Sea_Class180020])
 	(final_tasks [Sea_Class20020])
 	(finish_type AND)
-	(id "c1.Cruis2022")
+	(id "c1.Cruis2026")
 	(initial_tasks [Sea_Class20020])
-	(parent "s1.Secon2021")
+	(parent "s1.Secon2025")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2022")
+	(run "s1.Colli2015")
 	(scenario_scheme [Sea_Class20020])
 	(status "START")
 	(title "c1.Cruise to Primorsk"))
@@ -1843,11 +1879,11 @@
 ([Sea_Class20020] of  Task
 
 	(final_actions [Sea_Class110001])
-	(id "c1.Cruis2023")
+	(id "c1.Cruis2027")
 	(initial_actions [Sea_Class162])
-	(parent "c1.Cruis2022")
+	(parent "c1.Cruis2026")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2022")
+	(run "s1.Colli2015")
 	(status "START")
 	(task_scheme
 		[Sea_Class165]
@@ -1906,10 +1942,10 @@
 	(context [Sea_Class70])
 	(final_tasks [Sea_Class20049])
 	(finish_type OR)
-	(id "s1.Colli2009")
+	(id "s1.Colli2015")
 	(initial_tasks [Sea_Class20051])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(scenario_scheme
 		[Sea_Class20049]
 		[Sea_Class20050]
@@ -1946,10 +1982,16 @@
 
 ([Sea_Class20050] of  Task
 
-	(final_actions [Sea_Class74])
+	(final_actions
+		[Sea_Class74]
+		[Sea_Class160002]
+		[Sea_Class160003])
 	(finish_type AND)
 	(id "s1.Colli2037")
-	(initial_actions [Sea_Class160002])
+	(initial_actions
+		[Sea_Class74]
+		[Sea_Class160002]
+		[Sea_Class160003])
 	(next_tasks [Sea_Class130000])
 	(parent "s1.Colli2009")
 	(protagonist [Sea_Class160021])
@@ -1958,7 +2000,9 @@
 	(task_scheme
 		[Sea_Class74]
 		[Sea_Class160002]
-		[Sea_Class160003])
+		[Sea_Class160003]
+		[Sea_Class180000]
+		[Sea_Class200001])
 	(title "s1.Collision Assessment"))
 
 ([Sea_Class20051] of  Task
@@ -1967,14 +2011,14 @@
 		[Sea_Class207]
 		[Sea_Class140000])
 	(finish_type OR)
-	(id "s1.Watch2010")
+	(id "s1.Watch2016")
 	(initial_actions
 		[Sea_Class208]
 		[Sea_Class140000])
 	(next_tasks [Sea_Class90000])
-	(parent "s1.Colli2009")
+	(parent "s1.Colli2015")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(task_scheme
 		[Sea_Class207]
@@ -1992,22 +2036,22 @@
 ([Sea_Class204] of  Delay
 
 	(delay "10 min")
-	(id "s1.Cruis2015")
+	(id "s1.Cruis2021")
 	(next_actions [Sea_Class207])
-	(parent "s1.Watch2010")
+	(parent "s1.Watch2016")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(title "s1.Cruise Shift"))
 
 ([Sea_Class206] of  Subscenario
 
-	(id "s1.Start2013")
+	(id "s1.Start2019")
 	(next_actions [Sea_Class204])
-	(parent "s1.Watch2010")
+	(parent "s1.Watch2016")
 	(player [Sea_Class219])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(sub_scenario [Sea_Class120007])
 	(title "s1.Start Cruise from Primorsk")
@@ -2015,11 +2059,11 @@
 
 ([Sea_Class207] of  Subscenario
 
-	(id "s1.Secon2021")
-	(parent "s1.Watch2010")
+	(id "s1.Secon2025")
+	(parent "s1.Watch2016")
 	(player [Sea_Class240])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(sub_scenario [Sea_Class20019])
 	(title "s1.Second Cruise")
@@ -2027,16 +2071,16 @@
 
 ([Sea_Class208] of  PutOnMap
 
-	(id "s1.Ports2011")
+	(id "s1.Ports2017")
 	(mapob
 		[Sea_Class230]
 		[Sea_Class231]
 		[Sea_Class232]
 		[Sea_Class233])
 	(next_actions [Sea_Class206])
-	(parent "s1.Watch2010")
+	(parent "s1.Watch2016")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2009")
+	(run "s1.Colli2015")
 	(status "START")
 	(title "s1.Ports on Map"))
 
@@ -2058,6 +2102,14 @@
 	(object [ScenarioN_Class570000])
 	(title "s1.Launch Ecological Patrol"))
 
+([Sea_Class210001] of  CloFuncall
+
+	(source "(ru.rules/f 110)"))
+
+([Sea_Class210002] of  CloFuncall
+
+	(source "(ru.rules/f 134)"))
+
 ([Sea_Class211] of  PutObAttributes
 
 	(attributes [Sea_Class220])
@@ -2076,6 +2128,72 @@
 ([Sea_Class220] of  Attribute
 
 	(title "FUEL"))
+
+([Sea_Class220001] of  Table2
+
+	(column1
+		"object"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"speed"
+		"next_actions"
+		"longitude"
+		"radius"
+		"title"
+		"status"
+		"id"
+		"latitude")
+	(column2
+		"SimpleInstance(Sea_Class235 of [Cls(Variable)])"
+		"SimpleInstance(Sea_Class344 of [Cls(NavOb)])"
+		"s1.Colli2015"
+		"c1.Cruis2022"
+		"SimpleInstance(Sea_Class120003 of [Cls(Arrive)])"
+		"22.0"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x4bf17877 \"SimpleInstance(Sea_Class120008 of [Cls(TimeMessage)])\"]]"
+		"28 42.87"
+		"0.1"
+		"c1.Mooring"
+		"FAILED"
+		"c1.Moori2024"
+		"60 19.64")
+	(title "Arrive 28"))
+
+([Sea_Class220002] of  CloFuncall
+
+	(source "(ru.rules/f2 22)"))
+
+([Sea_Class220003] of  Table2
+
+	(column1
+		"final_tasks"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"scenario_scheme"
+		"finish_type"
+		"title"
+		"status"
+		"id"
+		"initial_tasks"
+		"context")
+	(column2
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x714c0943 \"SimpleInstance(Sea_Class80000 of [Cls(Task)])\"]]"
+		"SimpleInstance(Sea_Class344 of [Cls(NavOb)])"
+		"s1.Colli2015"
+		"s1.Start2019"
+		"SimpleInstance(Sea_Class120007 of [Cls(Scenario)])"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x714c0943 \"SimpleInstance(Sea_Class80000 of [Cls(Task)])\"]]"
+		"AND"
+		"c1.Cruise from Primorsk"
+		"DOING"
+		"c1.Cruis2020"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x714c0943 \"SimpleInstance(Sea_Class80000 of [Cls(Task)])\"]]"
+		"SimpleInstance(Sea_Class363 of [Cls(Context)])")
+	(title "Scenario 22"))
 
 ([Sea_Class221] of  Variable
 
@@ -3262,7 +3380,7 @@
 
 ([Sea_Class74] of  Calculus
 
-	(id "s1.Colli2040")
+	(id "s1.Colli2038")
 	(input_data
 		[Sea_Class270]
 		[Sea_Class271])
@@ -3301,11 +3419,11 @@
 ([Sea_Class80000] of  Task
 
 	(final_actions [Sea_Class120006])
-	(id "c1.Cruis2016")
+	(id "c1.Cruis2022")
 	(initial_actions [Sea_Class110002])
-	(parent "c1.Cruis2014")
+	(parent "c1.Cruis2020")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2014")
+	(run "s1.Colli2015")
 	(status "START")
 	(task_scheme
 		[Sea_Class110002]

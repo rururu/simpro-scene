@@ -261,3 +261,15 @@
 (defn fact-inspector []
   (cin/inspect-tree (sort-by #(name (second %)) (rete.core/fact-list))))
 
+(defn f2 [n]
+  ;; display fact as table
+(let [all (rete/fact-list)
+      fact (first (filter #(= (first %) n) all))]
+  (if fact
+    (let [[[n typ] & rp] (partition-all 2 fact)
+           t2 (p/crin "Table2")]
+      (p/ssv t2 "title" (str typ " " n))
+      (p/ssvs t2 "column1" (map str (map first rp)))
+      (p/ssvs t2 "column2" (map str (map second rp)))
+      (.show p/*prj* t2)))))
+

@@ -176,7 +176,7 @@
           (.putAttribute mo id hm))))
     (ssv sub "parent" pid)
     (ssv sub "id" id)
-    (ssv sub "run" id)
+    (ssv sub "run" r)
     (ssv sub "status" "START")
     (assert-instances [sub])
     (if (= wai true)
@@ -639,6 +639,7 @@
     (break-action (sv act "title") (re/slot-value 'run tkf))))
 
 ([tit run]
+  (println :BA :TIT tit :RUN run)
   (doseq [fact (re/facts-with-slot-value 'title = tit)]
     (if (= (re/slot-value 'run fact) run)
       (re/retract-fact (first fact))))))
@@ -662,6 +663,7 @@
     (break-task act (re/slot-value 'run tkf))))
 
 ([act run]
+  (println :BT :INS act :RUN run)
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
@@ -680,9 +682,10 @@
     (break-scenario act (re/slot-value 'run tkf))))
 
 ([act run]
+  (println :BS :INS act :RUN run)
   (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
-        (break-task (re/slot-value 'instance tsf) run))
+        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
       (re/retract-fact (first fact))))))
 

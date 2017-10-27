@@ -1,4 +1,4 @@
-; Fri Sep 01 18:31:53 MSK 2017
+; Fri Oct 27 18:48:42 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -65,6 +65,34 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_216745_Class355] of  Map
+
+	(entries
+		[KB_216745_Class356]
+		[KB_216745_Class357]
+		[KB_216745_Class358]))
+
+([KB_216745_Class356] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_216745_Class357] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_216745_Class358] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_622506_Class0] of  String
 
@@ -163,34 +191,6 @@
 	(name "instances_file_name")
 	(string_value "RuleEngine.pins"))
 
-([KB_736631_Class355] of  Map
-
-	(entries
-		[KB_736631_Class356]
-		[KB_736631_Class357]
-		[KB_736631_Class358]))
-
-([KB_736631_Class356] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_736631_Class357] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_736631_Class358] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -274,7 +274,6 @@
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
-		[RETE_ProjectKB_Class10212]
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
@@ -282,8 +281,10 @@
 		[RuleEngine_ProjectKB_Class30213]
 		[RETE_ProjectKB_Class10245]
 		[RETE_ProjectKB_Class10226]
-		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET])
+		[PAL_FORM_WIDGET]
+		[RETE_ProjectKB_Class10212]
+		[RuleEngine_ProjectKB_Class10361]
+		[STANDARD_FACET_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
@@ -576,6 +577,159 @@
 	(width 200)
 	(x 200)
 	(y 470))
+
+([RuleEngine_ProjectKB_Class10361] of  Widget
+
+	(is_hidden FALSE)
+	(name "Table2")
+	(property_list [RuleEngine_ProjectKB_Class10362])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([RuleEngine_ProjectKB_Class10362] of  Property_List
+
+	(properties
+		[RuleEngine_ProjectKB_Class10363]
+		[RuleEngine_ProjectKB_Class10364]
+		[RuleEngine_ProjectKB_Class10366]
+		[RuleEngine_ProjectKB_Class10368]))
+
+([RuleEngine_ProjectKB_Class10363] of  Property_List
+
+	(name "layout properties"))
+
+([RuleEngine_ProjectKB_Class10364] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [RuleEngine_ProjectKB_Class10365])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 320)
+	(x 0)
+	(y 0))
+
+([RuleEngine_ProjectKB_Class10365] of  Property_List
+)
+
+([RuleEngine_ProjectKB_Class10366] of  Widget
+
+	(height 260)
+	(is_hidden FALSE)
+	(label "Column2")
+	(name "column2")
+	(property_list [RuleEngine_ProjectKB_Class10367])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 120)
+	(y 60))
+
+([RuleEngine_ProjectKB_Class10367] of  Property_List
+
+	(properties
+		[RuleEngine_ProjectKB_Class10378]
+		[RuleEngine_ProjectKB_Class10379]
+		[RuleEngine_ProjectKB_Class10380]
+		[RuleEngine_ProjectKB_Class10381]
+		[RuleEngine_ProjectKB_Class10382]
+		[RuleEngine_ProjectKB_Class10383]
+		[RuleEngine_ProjectKB_Class10384]
+		[RuleEngine_ProjectKB_Class10385]))
+
+([RuleEngine_ProjectKB_Class10368] of  Widget
+
+	(height 260)
+	(is_hidden FALSE)
+	(label "Column1")
+	(name "column1")
+	(property_list [RuleEngine_ProjectKB_Class10369])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 120)
+	(x 0)
+	(y 60))
+
+([RuleEngine_ProjectKB_Class10369] of  Property_List
+
+	(properties
+		[RuleEngine_ProjectKB_Class10370]
+		[RuleEngine_ProjectKB_Class10371]
+		[RuleEngine_ProjectKB_Class10372]
+		[RuleEngine_ProjectKB_Class10373]
+		[RuleEngine_ProjectKB_Class10374]
+		[RuleEngine_ProjectKB_Class10375]
+		[RuleEngine_ProjectKB_Class10376]
+		[RuleEngine_ProjectKB_Class10377]))
+
+([RuleEngine_ProjectKB_Class10370] of  String
+
+	(name "tooltip_text"))
+
+([RuleEngine_ProjectKB_Class10371] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View Value"))
+
+([RuleEngine_ProjectKB_Class10372] of  String
+
+	(name "ButtonDescription-View Value"))
+
+([RuleEngine_ProjectKB_Class10373] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Add Value"))
+
+([RuleEngine_ProjectKB_Class10374] of  String
+
+	(name "ButtonDescription-Add Value"))
+
+([RuleEngine_ProjectKB_Class10375] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Remove Value"))
+
+([RuleEngine_ProjectKB_Class10376] of  String
+
+	(name "ButtonDescription-Remove Value"))
+
+([RuleEngine_ProjectKB_Class10377] of  Boolean
+
+	(boolean_value FALSE)
+	(name "readOnly_configured"))
+
+([RuleEngine_ProjectKB_Class10378] of  String
+
+	(name "tooltip_text"))
+
+([RuleEngine_ProjectKB_Class10379] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View Value"))
+
+([RuleEngine_ProjectKB_Class10380] of  String
+
+	(name "ButtonDescription-View Value"))
+
+([RuleEngine_ProjectKB_Class10381] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Add Value"))
+
+([RuleEngine_ProjectKB_Class10382] of  String
+
+	(name "ButtonDescription-Add Value"))
+
+([RuleEngine_ProjectKB_Class10383] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Remove Value"))
+
+([RuleEngine_ProjectKB_Class10384] of  String
+
+	(name "ButtonDescription-Remove Value"))
+
+([RuleEngine_ProjectKB_Class10385] of  Boolean
+
+	(boolean_value FALSE)
+	(name "readOnly_configured"))
 
 ([RuleEngine_ProjectKB_Class20204] of  Widget
 
