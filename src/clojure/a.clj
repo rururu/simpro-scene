@@ -323,6 +323,7 @@
 (defn put-on-place [?obj ?obs mos p r]
   (let [obj (vv ?obj p r)
        obs (vv ?obs p r)]
+  (println :POP ?obj ?obs mos p r)
   (if (and (or (null? obj) (null? obs)) (empty? mos))
     "FAILED"
     (if-let [mobs (OMT/getMapOb obs)]
@@ -639,7 +640,6 @@
     (break-action (sv act "title") (re/slot-value 'run tkf))))
 
 ([tit run]
-  (println :BA :TIT tit :RUN run)
   (doseq [fact (re/facts-with-slot-value 'title = tit)]
     (if (= (re/slot-value 'run fact) run)
       (re/retract-fact (first fact))))))
@@ -663,7 +663,6 @@
     (break-task act (re/slot-value 'run tkf))))
 
 ([act run]
-  (println :BT :INS act :RUN run)
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
@@ -682,7 +681,6 @@
     (break-scenario act (re/slot-value 'run tkf))))
 
 ([act run]
-  (println :BS :INS act :RUN run)
   (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]

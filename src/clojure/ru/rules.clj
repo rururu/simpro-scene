@@ -271,5 +271,6 @@
       (p/ssv t2 "title" (str typ " " n))
       (p/ssvs t2 "column1" (map str (map first rp)))
       (p/ssvs t2 "column2" (map str (map second rp)))
-      (.show p/*prj* t2)))))
+      (.show p/*prj* t2)
+      (str "Fact-" n)))))
 

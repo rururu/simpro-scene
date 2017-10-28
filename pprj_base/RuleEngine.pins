@@ -1,4 +1,4 @@
-; Fri Oct 27 18:48:42 MSK 2017
+; Sat Oct 28 19:01:27 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -135,7 +135,7 @@
 
 ([RuleEngine_Class260004] of  CloFunction
 
-	(source ";; display fact as table\n(let [all (rete/fact-list)\n      fact (first (filter #(= (first %) n) all))]\n  (if fact\n    (let [[[n typ] & rp] (partition-all 2 fact)\n           t2 (p/crin \"Table2\")]\n      (p/ssv t2 \"title\" (str typ \" \" n))\n      (p/ssvs t2 \"column1\" (map str (map first rp)))\n      (p/ssvs t2 \"column2\" (map str (map second rp)))\n      (.show p/*prj* t2))))")
+	(source ";; display fact as table\n(let [all (rete/fact-list)\n      fact (first (filter #(= (first %) n) all))]\n  (if fact\n    (let [[[n typ] & rp] (partition-all 2 fact)\n           t2 (p/crin \"Table2\")]\n      (p/ssv t2 \"title\" (str typ \" \" n))\n      (p/ssvs t2 \"column1\" (map str (map first rp)))\n      (p/ssvs t2 \"column2\" (map str (map second rp)))\n      (.show p/*prj* t2)\n      (str \"Fact-\" n))))")
 	(title "f2 [n]"))
 
 ([RuleEngine_Class30000] of  CloProgram
