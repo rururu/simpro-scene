@@ -1,4 +1,4 @@
-; Sat Oct 28 19:01:27 MSK 2017
+; Sun Oct 29 12:38:39 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[RuleEngine_ProjectKB_Class20364]
-		[RuleEngine_ProjectKB_Class20365]
-		[RuleEngine_ProjectKB_Class20366]))
+		[RuleEngine_ProjectKB_Class361]
+		[RuleEngine_ProjectKB_Class362]
+		[RuleEngine_ProjectKB_Class363]))
 
 ([CLSES_TAB] of  Widget
 
@@ -163,28 +163,28 @@
 	(name "instances_file_name")
 	(string_value "RuleEngine.pins"))
 
-([KB_938367_Class355] of  Map
+([KB_962160_Class355] of  Map
 
 	(entries
-		[KB_938367_Class356]
-		[KB_938367_Class357]
-		[KB_938367_Class358]))
+		[KB_962160_Class356]
+		[KB_962160_Class357]
+		[KB_962160_Class358]))
 
-([KB_938367_Class356] of  Map_Entry
+([KB_962160_Class356] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_938367_Class357] of  Map_Entry
+([KB_962160_Class357] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_938367_Class358] of  Map_Entry
+([KB_962160_Class358] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -604,7 +604,7 @@
 	(name "title")
 	(property_list [RuleEngine_ProjectKB_Class10365])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 320)
+	(width 260)
 	(x 0)
 	(y 0))
 
@@ -619,7 +619,7 @@
 	(name "column2")
 	(property_list [RuleEngine_ProjectKB_Class10367])
 	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
-	(width 200)
+	(width 270)
 	(x 120)
 	(y 60))
 
@@ -809,21 +809,6 @@
 	(x 400)
 	(y 60))
 
-([RuleEngine_ProjectKB_Class20364] of  String
-
-	(name "Rule")
-	(string_value "title{+}salience"))
-
-([RuleEngine_ProjectKB_Class20365] of  String
-
-	(name "Run")
-	(string_value "title"))
-
-([RuleEngine_ProjectKB_Class20366] of  String
-
-	(name "RuleSet")
-	(string_value "title"))
-
 ([RuleEngine_ProjectKB_Class204] of  Property_List
 
 	(name "layout properties"))
@@ -1003,6 +988,21 @@
 
 ([RuleEngine_ProjectKB_Class360] of  Property_List
 )
+
+([RuleEngine_ProjectKB_Class361] of  String
+
+	(name "Rule")
+	(string_value "title{+}salience"))
+
+([RuleEngine_ProjectKB_Class362] of  String
+
+	(name "Run")
+	(string_value "title"))
+
+([RuleEngine_ProjectKB_Class363] of  String
+
+	(name "RuleSet")
+	(string_value "title"))
 
 ([RuleEngine_ProjectKB_Class364] of  Widget
 

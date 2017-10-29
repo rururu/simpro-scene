@@ -1,4 +1,4 @@
-; Sat Oct 28 21:25:56 MSK 2017
+; Sun Oct 29 22:43:16 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -199,12 +199,12 @@
 ([Sea_Class102] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.CP_Ho2164")
+	(id "s1.CP_Ho2156")
 	(lineColor "FFFF0000")
 	(next_actions [Sea_Class103])
 	(object [Sea_Class240])
 	(observer [Sea_Class227])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -213,12 +213,12 @@
 ([Sea_Class103] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.CZ_Ho2166")
+	(id "s1.CZ_Ho2158")
 	(lineColor "FFFF0000")
 	(next_actions [Sea_Class107])
 	(object [Sea_Class240])
 	(observer [Sea_Class228])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -227,11 +227,11 @@
 ([Sea_Class104] of  Delay
 
 	(delay "4 min")
-	(id "s1.Delay2165")
+	(id "s1.Delay2157")
 	(next_actions
 		[Sea_Class105]
 		[Sea_Class106])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -240,11 +240,11 @@
 ([Sea_Class105] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.Oil_B2168")
+	(id "s1.Oil_B2160")
 	(lineColor "FF000000")
 	(object [Sea_Class228])
 	(observer [Sea_Class229])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -253,11 +253,11 @@
 ([Sea_Class106] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.Oil_B2169")
+	(id "s1.Oil_B2161")
 	(lineColor "FF000000")
 	(object [Sea_Class237])
 	(observer [Sea_Class229])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -266,12 +266,12 @@
 ([Sea_Class107] of  Delay
 
 	(delay "1 hrs")
-	(id "s1.Fire_2167")
+	(id "s1.Fire_2159")
 	(next_actions
 		[Sea_Class108]
 		[Sea_Class109]
 		[Sea_Class110])
-	(parent "s2.TF_Ac2163")
+	(parent "s2.TF_Ac2155")
 	(protagonist [Sea_Class160021])
 	(run "s1.Task_2101")
 	(status "START")
@@ -322,14 +322,14 @@
 
 ([Sea_Class110002] of  PutOnMap
 
-	(id "c1.Launc2034")
+	(id "c1.Launc2029")
 	(latitude "60 19.04")
 	(longitude "28 44.48")
 	(next_actions [Sea_Class120003])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(status "START")
 	(title "c1.Launch at Primorsk"))
 
@@ -369,11 +369,11 @@
 ([Sea_Class110015] of  Delay
 
 	(delay "10 min")
-	(id "s1.Delay2069")
+	(id "s1.Delay2068")
 	(next_actions [Sea_Class180022])
-	(parent "s1.Simpl2067")
-	(protagonist [Sea_Class346])
-	(run "s1.Simpl2066")
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Delay before Light Spill"))
 
@@ -435,67 +435,97 @@
 ([Sea_Class111] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2078")
-	(parent "s1.Simpl2067")
-	(protagonist [Sea_Class346])
+	(id "s1.Start2077")
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class180024])
-	(run "s1.Simpl2066")
+	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Start Light Spill"))
 
 ([Sea_Class114] of  RepeatActionOnOff
 
 	(flag TRUE)
+	(id "s1.Start2069")
 	(next_actions [Sea_Class115])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class261])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Start Radio SOS"))
 
 ([Sea_Class115] of  Delay
 
-	(delay "12 min")
+	(delay "18 min")
+	(id "s1.Radio2070")
 	(next_actions [Sea_Class125])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Radio SOS Time"))
 
 ([Sea_Class117] of  PutOnMap
 
+	(id "s1.Launc2089")
 	(latitude "60 21.39")
 	(longitude "28 37.62")
 	(next_actions
 		[Sea_Class119]
 		[Sea_Class123])
 	(object [Sea_Class226])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Launch Rescue Helicopter"))
 
 ([Sea_Class118] of  PutOnPlace
 
+	(id "s1.Wound2112")
 	(next_actions [Sea_Class120])
 	(object [Sea_Class243])
-	(observer [Sea_Class240])
+	(observer [Sea_Class235])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Wounded on Deck"))
 
 ([Sea_Class119] of  Position
 
+	(id "s1.Helic2090")
 	(next_actions
 		[Sea_Class124]
 		[Sea_Class118])
 	(object [Sea_Class226])
 	(observer [Sea_Class235])
+	(parent "s1.Simpl2066")
 	(position-angle "0")
 	(position-distance "0.5")
 	(position-speed "100")
+	(protagonist [Sea_Class160021])
 	(radius 0.5)
 	(relative FALSE)
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Helicopter to Wreck"))
 
 ([Sea_Class120] of  TowOnOff
 
 	(flag TRUE)
+	(id "s1.Lift_2113")
 	(next_actions [Sea_Class121])
 	(object [Sea_Class243])
 	(observer [Sea_Class226])
+	(parent "s1.Simpl2066")
 	(position-angle "180")
 	(position-distance "0.5")
+	(protagonist [Sea_Class160021])
 	(relative FALSE)
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Lift Wounded"))
 
 ([Sea_Class120000] of  NavObTask
@@ -518,15 +548,15 @@
 
 ([Sea_Class120003] of  Arrive
 
-	(id "c1.Moori2035")
+	(id "c1.Moori2030")
 	(latitude "60 19.64")
 	(longitude "28 42.87")
 	(next_actions [Sea_Class120008])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
 	(radius 0.1)
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(speed 22.0)
 	(status "START")
 	(title "c1.Mooring"))
@@ -534,24 +564,24 @@
 ([Sea_Class120004] of  Delay
 
 	(delay "22 min")
-	(id "c1.Cargo2037")
+	(id "c1.Cargo2032")
 	(next_actions [Sea_Class210000])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(status "START")
 	(title "c1.Cargo Loading 2"))
 
 ([Sea_Class120005] of  GoRoute
 
-	(id "c1.To_Se2046")
+	(id "c1.To_Se2041")
 	(next_actions [Sea_Class120006])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
 	(radius 0.1)
 	(route [Sea_Class251])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(spd "?spd")
 	(status "START")
 	(title "c1.To Sea"))
@@ -571,11 +601,11 @@
 	(context [Sea_Class363])
 	(final_tasks [Sea_Class80000])
 	(finish_type AND)
-	(id "c1.Cruis2031")
+	(id "c1.Cruis2026")
 	(initial_tasks [Sea_Class80000])
-	(parent "s1.Start2030")
+	(parent "s1.Start2025")
 	(protagonist [Sea_Class344])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(scenario_scheme [Sea_Class80000])
 	(status "START")
 	(title "c1.Cruise from Primorsk"))
@@ -583,11 +613,11 @@
 ([Sea_Class120008] of  TimeMessage
 
 	(category "0")
-	(id "Cargo_Lo2036")
+	(id "Cargo_Lo2031")
 	(next_actions [Sea_Class120004])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(status "START")
 	(text "Exxon Cargo Loading")
 	(title "Cargo Loading Message"))
@@ -610,52 +640,77 @@
 
 ([Sea_Class121] of  Arrive
 
+	(id "s1.Helic2114")
 	(latitude "60 21.39")
 	(longitude "28 37.62")
 	(next_actions [Sea_Class122])
 	(object [Sea_Class226])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
 	(radius 0.5)
+	(run "s1.Simpl2065")
 	(speed 100.0)
+	(status "START")
 	(title "s1.Helicopter Return"))
 
 ([Sea_Class122] of  PutOffMap
 
+	(id "s1.Wound2129")
 	(object [Sea_Class243])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Wounded to Hospital"))
 
 ([Sea_Class123] of  LinkOnOff
 
 	(flag TRUE)
+	(id "s1.Eye_C2091")
 	(lineColor "FF00CC00")
 	(object [Sea_Class235])
 	(observer [Sea_Class226])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Eye Collision Place"))
 
 ([Sea_Class124] of  LinkOnOff
 
 	(flag FALSE)
+	(id "s1.Cease2111")
 	(object [Sea_Class240])
 	(observer [Sea_Class226])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(title "s1.Cease Eye Collision"))
 
 ([Sea_Class125] of  ObjectMessage
 
 	(category "2")
+	(id "SOS_Medi2088")
 	(next_actions [Sea_Class117])
 	(object [Sea_Class235])
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
+	(status "START")
 	(text "Medical assistance urgently required by ? in position: latitude ?, longitude ?.")
 	(title "SOS Medical Assistance Needed")
 	(url "file:data/html/SOSMessage.html"))
 
 ([Sea_Class127] of  PutOnPlace
 
-	(id "s1.Radio2068")
+	(id "s1.Radio2067")
 	(next_actions [Sea_Class114])
 	(object [Sea_Class249])
 	(observer [Sea_Class235])
-	(parent "s1.Simpl2067")
-	(protagonist [Sea_Class346])
-	(run "s1.Simpl2066")
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Radio SOS to Collision"))
 
@@ -667,16 +722,16 @@
 ([Sea_Class130000] of  GeneralDecision
 
 	(conditions "sum-speed <= 40")
-	(id "s1.Heavy2061")
+	(id "s1.Heavy2055")
 	(input_data [Sea_Class150001])
-	(parent "s1.Colli2025")
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Heavy or Light?")
 	(variants
-		[Sea_Class20049]
-		[Sea_Class240000]))
+		[Sea_Class240000]
+		[Sea_Class20049]))
 
 ([Sea_Class130003] of  Variable
 
@@ -724,13 +779,13 @@
 		[Sea_Class124]
 		[Sea_Class111])
 	(finish_type AND)
-	(id "s1.Simpl2067")
+	(id "s1.Simpl2066")
 	(initial_actions
 		[Sea_Class127]
 		[Sea_Class110015])
-	(parent "s1.Simpl2066")
-	(protagonist [Sea_Class346])
-	(run "s1.Simpl2066")
+	(parent "s1.Simpl2065")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
 	(status "START")
 	(task_scheme
 		[Sea_Class127]
@@ -776,7 +831,7 @@
 
 ([Sea_Class135] of  PutOnPlace
 
-	(id "s1.Place2111")
+	(id "s1.Place2115")
 	(next_actions
 		[Sea_Class136]
 		[Sea_Class142])
@@ -790,7 +845,7 @@
 
 ([Sea_Class136] of  Position
 
-	(id "s1.To_2n2112")
+	(id "s1.To_2n2116")
 	(next_actions [Sea_Class137])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
@@ -807,7 +862,7 @@
 
 ([Sea_Class137] of  PutOnPlace
 
-	(id "s1.Place2118")
+	(id "s1.Place2122")
 	(next_actions
 		[Sea_Class138]
 		[Sea_Class143])
@@ -821,7 +876,7 @@
 
 ([Sea_Class138] of  Position
 
-	(id "s1.To_3d2119")
+	(id "s1.To_3d2123")
 	(next_actions [Sea_Class139])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
@@ -838,7 +893,7 @@
 
 ([Sea_Class139] of  PutOnPlace
 
-	(id "s1.Place2125")
+	(id "s1.Place2130")
 	(next_actions
 		[Sea_Class140]
 		[Sea_Class144])
@@ -852,7 +907,7 @@
 
 ([Sea_Class140] of  Position
 
-	(id "s1.To_4t2126")
+	(id "s1.To_4t2131")
 	(next_actions [Sea_Class141])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
@@ -870,10 +925,10 @@
 ([Sea_Class140000] of  WaitEvent
 
 	(event [Sea_Class160001])
-	(id "s1.Wait_2029")
-	(parent "s1.Watch2028")
+	(id "s1.Wait_2024")
+	(parent "s1.Watch2023")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Wait Collision"))
 
@@ -944,7 +999,7 @@
 
 ([Sea_Class141] of  PutOnPlace
 
-	(id "s1.Place2132")
+	(id "s1.Place2137")
 	(next_actions [Sea_Class145])
 	(object [Sea_Class247])
 	(observer [ScenarioN_Class570000])
@@ -957,7 +1012,7 @@
 ([Sea_Class142] of  Subscenario
 
 	(context [Sea_Class274])
-	(id "s1.Buoy_2113")
+	(id "s1.Buoy_2117")
 	(parent "s1.Airpl2099")
 	(player [Sea_Class244])
 	(protagonist [Sea_Class332])
@@ -970,7 +1025,7 @@
 ([Sea_Class143] of  Subscenario
 
 	(context [Sea_Class275])
-	(id "s1.Buoy_2120")
+	(id "s1.Buoy_2124")
 	(parent "s1.Airpl2099")
 	(player [Sea_Class245])
 	(protagonist [Sea_Class332])
@@ -983,7 +1038,7 @@
 ([Sea_Class144] of  Subscenario
 
 	(context [Sea_Class276])
-	(id "s1.Buoy_2127")
+	(id "s1.Buoy_2132")
 	(parent "s1.Airpl2099")
 	(player [Sea_Class246])
 	(protagonist [Sea_Class332])
@@ -996,7 +1051,7 @@
 ([Sea_Class145] of  Subscenario
 
 	(context [Sea_Class73])
-	(id "s1.Buoy_2133")
+	(id "s1.Buoy_2138")
 	(parent "s1.Airpl2099")
 	(player [Sea_Class247])
 	(protagonist [Sea_Class332])
@@ -1009,9 +1064,9 @@
 ([Sea_Class146] of  Subscenario
 
 	(context [Sea_Class277])
-	(id "s1.Check2136")
+	(id "s1.Check2141")
 	(next_actions [Sea_Class147])
-	(parent "s1.Airpl2135")
+	(parent "s1.Airpl2140")
 	(player [ScenarioN_Class570000])
 	(protagonist [Sea_Class332])
 	(run "s1.Airpl2094")
@@ -1023,12 +1078,12 @@
 ([Sea_Class147] of  Subscenario
 
 	(context [Sea_Class278])
-	(id "s1.Check2150")
+	(id "s1.Check2151")
 	(next_actions [Sea_Class148])
-	(parent "s1.Airpl2135")
+	(parent "s1.Airpl2136")
 	(player [ScenarioN_Class570000])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2094")
+	(run "s1.Airpl2098")
 	(status "START")
 	(sub_scenario [Sea_Class20002])
 	(title "s1.Check Second Buoy")
@@ -1062,12 +1117,12 @@
 ([Sea_Class150000] of  WaitEvent
 
 	(event [Sea_Class170001])
-	(id "s1.Buoy_2143")
-	(parent "s1.Buoy_2141")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2134")
+	(id "s1.Buoy_2035")
+	(parent "s1.Buoy_2033")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_2032")
 	(status "START")
-	(title "s1.Buoy Waits When Inside Light Stain"))
+	(title "s1.Buoy Waits When Inside One Spill"))
 
 ([Sea_Class150001] of  InputData
 
@@ -1095,17 +1150,17 @@
 
 ([Sea_Class152] of  Position
 
-	(id "s1.Go_to2153")
+	(id "s1.Go_to2144")
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class238])
-	(parent "s1.Seek_2152")
+	(parent "s1.Seek_2143")
 	(position-angle "0")
 	(position-distance "0")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2142")
 	(status "START")
 	(title "s1.Go to Buoy Place"))
 
@@ -1113,13 +1168,13 @@
 
 	(detect-distance "0.75")
 	(detect-probability "0.8")
-	(id "s1.Searc2154")
+	(id "s1.Searc2145")
 	(next_actions [Sea_Class180028])
 	(object [Sea_Class238])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Seek_2152")
+	(parent "s1.Seek_2143")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2142")
 	(status "START")
 	(time "2 hrs")
 	(title "s1.Search Buoy"))
@@ -1127,11 +1182,10 @@
 ([Sea_Class154] of  Break
 
 	(activity [Sea_Class153])
-	(id "s1.Stop_2159")
-	(next_actions [Sea_Class155])
-	(parent "s1.End_B2158")
+	(id "s1.Stop_2151")
+	(parent "s1.Seek_2143")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2142")
 	(status "START")
 	(task-scenario [Sea_Class20046])
 	(title "s1.Stop Search Buoy"))
@@ -1139,11 +1193,11 @@
 ([Sea_Class155] of  PutObAttributes
 
 	(attributes [Sea_Class180027])
-	(id "s1.Forge2160")
+	(id "s1.Forge2152")
 	(object [ScenarioN_Class570000])
-	(parent "s1.End_B2158")
+	(parent "s1.Seek_2143")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2142")
 	(status "START")
 	(title "s1.Forget Detected Buoy")
 	(values "null"))
@@ -1175,36 +1229,40 @@
 ([Sea_Class159] of  Break
 
 	(activity [Sea_Class152])
-	(next_actions [Sea_Class154])
+	(id "s1.Stop_2150")
+	(parent "s1.Seek_2143")
+	(protagonist [Sea_Class332])
+	(run "s1.Buoy_2142")
+	(status "START")
 	(task-scenario [Sea_Class20046])
-	(title "s1.Stop Go to Buoy"))
+	(title "s1.Stop Go to Buoy Place"))
 
 ([Sea_Class160000] of  WaitEvent
 
 	(event [Sea_Class180001])
-	(id "s1.Buoy_2142")
-	(parent "s1.Buoy_2141")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2134")
+	(id "s1.Buoy_2034")
+	(parent "s1.Buoy_2033")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_2032")
 	(status "START")
-	(title "s1.Buoy Waits When Inside Heavy Stain"))
+	(title "s1.Buoy Waits When Inside Second Spill"))
 
 ([Sea_Class160001] of  TwoObRelation
 
 	(ob_relation NEAR)
 	(object [Sea_Class219])
 	(observer [Sea_Class240])
-	(parent "s1.Wait_2029")
+	(parent "s1.Wait_2024")
 	(radius 0.5)
 	(title "s1.CloseApproach"))
 
 ([Sea_Class160002] of  Break
 
 	(activity [Sea_Class120007])
-	(id "s1.Break2057")
-	(parent "s1.Colli2055")
+	(id "s1.Break2051")
+	(parent "s1.Colli2049")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task-scenario [Sea_Class20046])
 	(title "s1.Break Cruise from Primorsk"))
@@ -1212,10 +1270,10 @@
 ([Sea_Class160003] of  Break
 
 	(activity [Sea_Class20019])
-	(id "s1.Break2058")
-	(parent "s1.Colli2055")
+	(id "s1.Break2052")
+	(parent "s1.Colli2049")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task-scenario [Sea_Class20046])
 	(title "s1.Break Cruise to Primorsk"))
@@ -1223,11 +1281,11 @@
 ([Sea_Class160004] of  Compute
 
 	(computation [Sea_Class160015])
-	(id "s1.Prepa2084")
+	(id "s1.Prepa2080")
 	(next_actions [Sea_Class80003])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Prepare Heavy Spill"))
 
@@ -1287,13 +1345,13 @@
 ([Sea_Class160020] of  Delay
 
 	(delay "20 min")
-	(id "s1.Start2066")
+	(id "s1.Start2060")
 	(next_actions
 		[Sea_Class80]
 		[Sea_Class79])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Start Operation Delay"))
 
@@ -1311,27 +1369,27 @@
 
 ([Sea_Class162] of  PutOnMap
 
-	(id "c1.Launc2041")
+	(id "c1.Launc2036")
 	(latitude "60 11")
 	(longitude "28 23")
 	(next_actions [Sea_Class163])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2040")
+	(parent "c1.Cruis2035")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2039")
+	(run "c1.Cruis2034")
 	(status "START")
 	(title "c1.Launch at Sea"))
 
 ([Sea_Class163] of  GoRoute
 
-	(id "c1.To_Te2042")
+	(id "c1.To_Te2037")
 	(next_actions [Sea_Class164])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2040")
+	(parent "c1.Cruis2035")
 	(protagonist [Sea_Class346])
 	(radius 0.1)
 	(route [Sea_Class250])
-	(run "c1.Cruis2039")
+	(run "c1.Cruis2034")
 	(spd "?spd")
 	(status "START")
 	(title "c1.To Terminal Primorsk"))
@@ -1372,7 +1430,7 @@
 	(ob_relation INSIDE)
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class170002])
-	(parent "s1.Buoy_2143")
+	(parent "s1.Buoy_2035")
 	(title "s1.Buoy inside Light Stain"))
 
 ([Sea_Class170002] of  Variable
@@ -1388,12 +1446,12 @@
 
 	(final_actions [Sea_Class208])
 	(finish_type AND)
-	(id "s1.Situa2026")
+	(id "s1.Situa2021")
 	(initial_actions [Sea_Class208])
 	(next_tasks [Sea_Class20051])
-	(parent "s1.Colli2025")
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task_scheme [Sea_Class208])
 	(title "s1.Situation"))
@@ -1403,7 +1461,7 @@
 	(ob_relation INSIDE)
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180002])
-	(parent "s1.Buoy_2142")
+	(parent "s1.Buoy_2034")
 	(title "s1.Buoy inside Heavy Stain"))
 
 ([Sea_Class180002] of  Variable
@@ -1520,12 +1578,12 @@
 
 ([Sea_Class180018] of  Spill
 
-	(fillColor "10666600")
+	(fillColor "20666600")
 	(isPolygon TRUE)
 	(label "s2")
-	(latitude "60 14.61")
+	(latitude "60 14.82")
 	(lineColor "00666600")
-	(longitude "28 46.57")
+	(longitude "28 47.2")
 	(N 32)
 	(playground-index 2)
 	(radius 5.0)
@@ -1554,11 +1612,11 @@
 ([Sea_Class180022] of  Compute
 
 	(computation [Sea_Class180023])
-	(id "s1.Prepa2072")
+	(id "s1.Prepa2071")
 	(next_actions [Sea_Class111])
-	(parent "s1.Simpl2067")
-	(protagonist [Sea_Class346])
-	(run "s1.Simpl2066")
+	(parent "s1.Simpl2066")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Prepare Light Spill"))
 
@@ -1602,9 +1660,14 @@
 
 ([Sea_Class180028] of  PutObProperties
 
+	(id "s1.Stand2149")
 	(new_speed "0")
 	(next_actions [Sea_Class159])
 	(object [ScenarioN_Class570000])
+	(parent "s1.Seek_2143")
+	(protagonist [Sea_Class332])
+	(run "s1.Buoy_2142")
+	(status "START")
 	(title "s1.Stand Still in Box"))
 
 ([Sea_Class180029] of  ObjectPair
@@ -1667,13 +1730,13 @@
 ([Sea_Class180036] of  GeneralDecision
 
 	(conditions "target = buoy")
-	(id "s1.Buoy_2155")
+	(id "s1.Buoy_2145")
 	(input_data
 		[Sea_Class180037]
 		[Sea_Class180039])
-	(parent "s1.Buoy_2151")
+	(parent "s1.Buoy_2138")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2138")
 	(status "START")
 	(title "s1.Buoy Found?")
 	(variants
@@ -1733,7 +1796,7 @@
 
 ([Sea_Class180045] of  Context
 
-	(pairs [Sea_Class345])
+	(pairs [Sea_Class260000])
 	(title "Ctx6"))
 
 ([Sea_Class190] of  PutOnMap
@@ -1808,11 +1871,11 @@
 	(context [Sea_Class180045])
 	(final_tasks [Sea_Class130039])
 	(finish_type AND)
-	(id "s1.Simpl2066")
+	(id "s1.Simpl2065")
 	(initial_tasks [Sea_Class130039])
-	(parent "s1.Simpl2065")
-	(protagonist [Sea_Class346])
-	(run "s1.Colli2025")
+	(parent "s1.Run_S2064")
+	(protagonist [Sea_Class160021])
+	(run "s1.Colli2020")
 	(scenario_scheme [Sea_Class130039])
 	(status "START")
 	(title "s1.Simple Scenario"))
@@ -1826,9 +1889,9 @@
 	(context [Sea_Class180044])
 	(final_tasks [Sea_Class20003])
 	(finish_type AND)
-	(id "s1.Buoy_2151")
+	(id "s1.Buoy_2142")
 	(initial_tasks [Sea_Class20006])
-	(parent "s1.Check2150")
+	(parent "s1.Check2141")
 	(protagonist [Sea_Class332])
 	(run "s1.Airpl2094")
 	(scenario_scheme
@@ -1842,13 +1905,17 @@
 
 ([Sea_Class20003] of  Task
 
-	(final_actions [Sea_Class155])
-	(finish_type AND)
-	(id "s1.End_B2158")
-	(initial_actions [Sea_Class154])
-	(parent "s1.Buoy_2151")
+	(final_actions
+		[Sea_Class155]
+		[Sea_Class154])
+	(finish_type OR)
+	(id "s1.End_B2148")
+	(initial_actions
+		[Sea_Class154]
+		[Sea_Class155])
+	(parent "s1.Buoy_2138")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2138")
 	(status "START")
 	(task_scheme
 		[Sea_Class155]
@@ -1874,16 +1941,16 @@
 
 	(final_actions
 		[Sea_Class152]
-		[Sea_Class153])
+		[Sea_Class159])
 	(finish_type OR)
-	(id "s1.Seek_2152")
+	(id "s1.Seek_2143")
 	(initial_actions
 		[Sea_Class152]
 		[Sea_Class153])
 	(next_tasks [Sea_Class180036])
-	(parent "s1.Buoy_2151")
+	(parent "s1.Buoy_2142")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2151")
+	(run "s1.Buoy_2142")
 	(status "START")
 	(task_scheme
 		[Sea_Class153]
@@ -1896,16 +1963,16 @@
 
 	(context [Sea_Class180012])
 	(finish_type AND)
-	(id "s1.Buoy_2134")
+	(id "s1.Buoy_2032")
 	(initial_tasks [Sea_Class20008])
-	(parent "s1.Buoy_2133")
-	(protagonist [Sea_Class247])
-	(run "s1.Airpl2094")
+	(parent "s1.Buoy_2138")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_2032")
 	(scenario_scheme
 		[Sea_Class20008]
 		[Sea_Class180003])
 	(status "START")
-	(title "s1.Buoy Monitoring Stains"))
+	(title "s1.Buoy Monitoring Two Oil Spills"))
 
 ([Sea_Class20008] of  Task
 
@@ -1913,19 +1980,19 @@
 		[Sea_Class160000]
 		[Sea_Class150000])
 	(finish_type AND)
-	(id "s1.Buoy_2141")
+	(id "s1.Buoy_2033")
 	(initial_actions
 		[Sea_Class160000]
 		[Sea_Class150000])
 	(next_tasks [Sea_Class180003])
-	(parent "s1.Buoy_2134")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2134")
+	(parent "s1.Buoy_2032")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_2032")
 	(status "START")
 	(task_scheme
 		[Sea_Class150000]
 		[Sea_Class160000])
-	(title "s1.Buoy Waits When Inside Stain"))
+	(title "s1.Buoy Waits When Inside Oil Spill"))
 
 ([Sea_Class20009] of  Scenario
 
@@ -1936,7 +2003,7 @@
 	(initial_tasks [Sea_Class20013])
 	(parent "s1.Start2093")
 	(protagonist [Sea_Class332])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(scenario_scheme
 		[Sea_Class20010]
 		[Sea_Class20011]
@@ -1958,7 +2025,7 @@
 
 	(final_actions [Sea_Class150])
 	(finish_type AND)
-	(id "s1.Airpl2135")
+	(id "s1.Airpl2140")
 	(initial_actions [Sea_Class146])
 	(next_tasks [Sea_Class180034])
 	(parent "s1.Airpl2094")
@@ -2017,13 +2084,14 @@
 
 ([Sea_Class20016] of  Scenario
 
+	(context [Sea_Class70])
 	(final_tasks [Sea_Class20017])
 	(finish_type AND)
 	(id "s1.Task_2101")
 	(initial_tasks [Sea_Class20018])
 	(parent "s1.Start2092")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(scenario_scheme
 		[Sea_Class20017]
 		[Sea_Class20018])
@@ -2039,7 +2107,7 @@
 		[Sea_Class109]
 		[Sea_Class110])
 	(finish_type AND)
-	(id "s2.TF_Ac2163")
+	(id "s2.TF_Ac2155")
 	(initial_actions
 		[Sea_Class102]
 		[Sea_Class104])
@@ -2096,11 +2164,11 @@
 	(context [Sea_Class180020])
 	(final_tasks [Sea_Class20020])
 	(finish_type AND)
-	(id "c1.Cruis2039")
+	(id "c1.Cruis2034")
 	(initial_tasks [Sea_Class20020])
-	(parent "s1.Run_S2038")
-	(protagonist [Sea_Class240])
-	(run "s1.Colli2025")
+	(parent "s1.Run_S2033")
+	(protagonist [Sea_Class346])
+	(run "s1.Colli2020")
 	(scenario_scheme [Sea_Class20020])
 	(status "START")
 	(title "c1.Cruise to Primorsk"))
@@ -2108,11 +2176,11 @@
 ([Sea_Class20020] of  Task
 
 	(final_actions [Sea_Class110001])
-	(id "c1.Cruis2040")
+	(id "c1.Cruis2035")
 	(initial_actions [Sea_Class162])
-	(parent "c1.Cruis2039")
+	(parent "c1.Cruis2034")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2039")
+	(run "c1.Cruis2034")
 	(status "START")
 	(task_scheme
 		[Sea_Class165]
@@ -2173,10 +2241,10 @@
 		[Sea_Class20049]
 		[Sea_Class130039])
 	(finish_type OR)
-	(id "s1.Colli2025")
+	(id "s1.Colli2020")
 	(initial_tasks [Sea_Class180000])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(scenario_scheme
 		[Sea_Class20049]
 		[Sea_Class20050]
@@ -2197,14 +2265,14 @@
 		[Sea_Class90]
 		[Sea_Class80003])
 	(finish_type AND)
-	(id "s1.Compl2064")
+	(id "s1.Compl2058")
 	(initial_actions
 		[Sea_Class84]
 		[Sea_Class160020]
-		[Sea_Class81])
-	(parent "s1.Colli2025")
+		[Sea_Class300001])
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task_scheme
 		[Sea_Class90]
@@ -2218,7 +2286,8 @@
 		[Sea_Class81]
 		[Sea_Class160004]
 		[Sea_Class80003]
-		[Sea_Class160020])
+		[Sea_Class160020]
+		[Sea_Class300001])
 	(title "s1.Complex Rescue Operation"))
 
 ([Sea_Class20050] of  Task
@@ -2228,15 +2297,15 @@
 		[Sea_Class160002]
 		[Sea_Class160003])
 	(finish_type AND)
-	(id "s1.Colli2055")
+	(id "s1.Colli2049")
 	(initial_actions
 		[Sea_Class74]
 		[Sea_Class160002]
 		[Sea_Class160003])
 	(next_tasks [Sea_Class130000])
-	(parent "s1.Colli2025")
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task_scheme
 		[Sea_Class74]
@@ -2250,14 +2319,14 @@
 		[Sea_Class207]
 		[Sea_Class140000])
 	(finish_type OR)
-	(id "s1.Watch2028")
+	(id "s1.Watch2023")
 	(initial_actions
 		[Sea_Class140000]
 		[Sea_Class206])
 	(next_tasks [Sea_Class90000])
-	(parent "s1.Colli2025")
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(task_scheme
 		[Sea_Class207]
@@ -2274,23 +2343,23 @@
 ([Sea_Class204] of  Delay
 
 	(delay "10 min")
-	(id "s1.Cruis2032")
+	(id "s1.Cruis2027")
 	(next_actions [Sea_Class207])
-	(parent "s1.Watch2028")
+	(parent "s1.Watch2023")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Cruise Shift"))
 
 ([Sea_Class206] of  Subscenario
 
 	(context [Sea_Class363])
-	(id "s1.Start2030")
+	(id "s1.Start2025")
 	(next_actions [Sea_Class204])
-	(parent "s1.Watch2028")
+	(parent "s1.Watch2023")
 	(player [Sea_Class219])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(sub_scenario [Sea_Class120007])
 	(title "s1.Start First Cruise")
@@ -2299,11 +2368,11 @@
 ([Sea_Class207] of  Subscenario
 
 	(context [Sea_Class180020])
-	(id "s1.Run_S2038")
-	(parent "s1.Watch2028")
+	(id "s1.Run_S2033")
+	(parent "s1.Watch2023")
 	(player [Sea_Class240])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(sub_scenario [Sea_Class20019])
 	(title "s1.Run Second Cruise")
@@ -2311,15 +2380,15 @@
 
 ([Sea_Class208] of  PutOnMap
 
-	(id "s1.Ports2027")
+	(id "s1.Ports2022")
 	(mapob
 		[Sea_Class230]
 		[Sea_Class231]
 		[Sea_Class232]
 		[Sea_Class233])
-	(parent "s1.Situa2026")
+	(parent "s1.Situa2021")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Ports on Map"))
 
@@ -2349,11 +2418,11 @@
 ([Sea_Class210000] of  TimeMessage
 
 	(category "0")
-	(id "Goes_to_2045")
+	(id "Goes_to_2040")
 	(next_actions [Sea_Class120005])
-	(parent "c1.Cruis2033")
+	(parent "c1.Cruis2028")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(status "START")
 	(text "Exxon goes to Sea")
 	(title "Goes to Sea Message"))
@@ -2790,7 +2859,7 @@
 	(N 32)
 	(playground-index 1)
 	(radius 10.0)
-	(speed 200.0))
+	(speed 40.0))
 
 ([Sea_Class243] of  NavOb
 
@@ -2808,7 +2877,7 @@
 	(latitude "60 14.63")
 	(longitude "28 46.97")
 	(speed 0.0)
-	(url "file:data/images/buoyb.gif"))
+	(url "file:data/images/buoyb.png"))
 
 ([Sea_Class245] of  NavOb
 
@@ -2817,7 +2886,7 @@
 	(latitude "60 10.2")
 	(longitude "28 48.38")
 	(speed 0.0)
-	(url "file:data/images/buoyb.gif"))
+	(url "file:data/images/buoyb.png"))
 
 ([Sea_Class246] of  NavOb
 
@@ -2826,7 +2895,7 @@
 	(latitude "60 10.05")
 	(longitude "28 39.36")
 	(speed 0.0)
-	(url "file:data/images/buoyb.gif"))
+	(url "file:data/images/buoyb.png"))
 
 ([Sea_Class247] of  NavOb
 
@@ -2835,7 +2904,7 @@
 	(latitude "60 14.49")
 	(longitude "28 40.7")
 	(speed 0.0)
-	(url "file:data/images/buoyr.gif"))
+	(url "file:data/images/buoyr.png"))
 
 ([Sea_Class248] of  Spill
 
@@ -2859,8 +2928,8 @@
 	(longitude "28 43.69")
 	(N 32)
 	(playground-index 1)
-	(radius 10.0)
-	(speed 300.0))
+	(radius 9.0)
+	(speed 30.0))
 
 ([Sea_Class250] of  Route
 
@@ -2962,10 +3031,19 @@
 	(label "Light Spill Spread")
 	(poly [Sea_Class248]))
 
+([Sea_Class260000] of  ObjectPair
+
+	(object [Sea_Class346])
+	(title "Pr1")
+	(variable [Sea_Class235]))
+
 ([Sea_Class261] of  SpillRepeatAction
 
 	(interval SECOND)
 	(label "Radio SOS Spread")
+	(lifetime 1000)
+	(period 1)
+	(playground-index 1)
 	(poly [Sea_Class249]))
 
 ([Sea_Class262] of  Variable
@@ -3007,6 +3085,47 @@
 	(object [Sea_Class219])
 	(title "s1.Id1")
 	(variable [Sea_Class281]))
+
+([Sea_Class270000] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class270001] of  CloFuncall
+
+	(source "(ru.rules/f2 250)"))
+
+([Sea_Class270002] of  Table2
+
+	(column1
+		"observer"
+		"object"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"mapob"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(Sea_Class240 of [Cls(Variable)])"
+		"SimpleInstance(Sea_Class243 of [Cls(NavOb)])"
+		"SimpleInstance(Sea_Class346 of [Cls(NavOb)])"
+		"s1.Simpl2066"
+		"s1.Simpl2067"
+		"SimpleInstance(Sea_Class118 of [Cls(PutOnPlace)])"
+		"[]"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x64028c5e \"SimpleInstance(Sea_Class120 of [Cls(TowOnOff)])\"]]"
+		"s1.Wounded on Deck"
+		"FAILED"
+		"s1.Wound2084")
+	(title "PutOnPlace 250"))
 
 ([Sea_Class271] of  InputData
 
@@ -3075,6 +3194,47 @@
 		[Sea_Class180029])
 	(title "s1.Check4 Context"))
 
+([Sea_Class280000] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class280001] of  CloFuncall
+
+	(source "(ru.rules/f2 269)"))
+
+([Sea_Class280002] of  Table2
+
+	(column1
+		"observer"
+		"object"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"mapob"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(Sea_Class240 of [Cls(Variable)])"
+		"SimpleInstance(Sea_Class243 of [Cls(NavOb)])"
+		"SimpleInstance(Sea_Class160021 of [Cls(NavOb)])"
+		"s1.Simpl2068"
+		"s1.Simpl2069"
+		"SimpleInstance(Sea_Class118 of [Cls(PutOnPlace)])"
+		"[]"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x43ca40c3 \"SimpleInstance(Sea_Class120 of [Cls(TowOnOff)])\"]]"
+		"s1.Wounded on Deck"
+		"FAILED"
+		"s1.Wound2098")
+	(title "PutOnPlace 269"))
+
 ([Sea_Class281] of  Variable
 
 	(title "speed1"))
@@ -3122,6 +3282,15 @@
 ([Sea_Class290] of  Variable
 
 	(title "?lon1"))
+
+([Sea_Class290000] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class346])
+	(playground-index 0))
 
 ([Sea_Class291] of  Variable
 
@@ -3177,16 +3346,62 @@
 
 ([Sea_Class30000] of  Spill
 
-	(fillColor "10EE6600")
+	(fillColor "20EE6600")
 	(isPolygon TRUE)
 	(label "s1")
-	(latitude "60 15.83")
+	(latitude "60 15.09")
 	(lineColor "00EE3300")
-	(longitude "28 48.03")
+	(longitude "28 47.98")
 	(N 32)
 	(playground-index 2)
 	(radius 6.0)
 	(speed 4.0))
+
+([Sea_Class300000] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class300001] of  Delay
+
+	(delay "5 min")
+	(id "s1.Simpl2061")
+	(next_actions [Sea_Class81])
+	(parent "s1.Compl2058")
+	(protagonist [Sea_Class160021])
+	(run "s1.Colli2020")
+	(status "START")
+	(title "s1.Simple Scenario Delay"))
+
+([Sea_Class300002] of  CloFuncall
+
+	(source "(ru.rules/f2 315)"))
+
+([Sea_Class300003] of  Table2
+
+	(column1
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		":?"
+		":?"
+		"s1.TF_De2106"
+		"SimpleInstance(Sea_Class92 of [Cls(PutOnPlace)])"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x87e927b \"SimpleInstance(Sea_Class96 of [Cls(Arrive)])\"]]"
+		":?"
+		"FAILED"
+		":?")
+	(title "Action 315"))
 
 ([Sea_Class30001] of  Rule
 
@@ -3252,6 +3467,51 @@
 	(title "Stain Sensor")
 	(variable [Sea_Class238]))
 
+([Sea_Class310000] of  Link
+
+	(label "Fly0")
+	(latitude "60 21.39")
+	(lineColor "FF00CC00")
+	(longitude "28 37.62")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class310001] of  Link
+
+	(label "Cpt-Plahin0")
+	(latitude "60 15.09")
+	(lineColor "FFFF0000")
+	(longitude "28 46.97")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class310002] of  Link
+
+	(label "Cpt-Zarubin0")
+	(latitude "60 15.59")
+	(lineColor "FFFF0000")
+	(longitude "28 47.98")
+	(mapob [Sea_Class346])
+	(playground-index 0))
+
+([Sea_Class310003] of  Link
+
+	(label "Santa-Anna0")
+	(latitude "60 14.82")
+	(lineColor "FF000000")
+	(longitude "28 48.21")
+	(mapob [Sea_Class237])
+	(playground-index 0))
+
+([Sea_Class310004] of  Link
+
+	(label "Santa-Anna1")
+	(latitude "60 14.82")
+	(lineColor "FF000000")
+	(longitude "28 48.21")
+	(mapob [Sea_Class228])
+	(playground-index 0))
+
 ([Sea_Class311] of  ObjectPair
 
 	(object [Sea_Class244])
@@ -3266,7 +3526,7 @@
 
 ([Sea_Class313] of  Spill
 
-	(fillColor "400000FF")
+	(fillColor "300000FF")
 	(isPolygon TRUE)
 	(label "Br1")
 	(latitude "60 14.63")
@@ -3326,6 +3586,88 @@
 	(label "BRad2")
 	(poly [Sea_Class326]))
 
+([Sea_Class320000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Sea_Class20007])
+	(%3ACREATION-TIMESTAMP "2017.10.29 22:10:03.336 MSK")
+	(%3ACREATOR "ru"))
+
+([Sea_Class320001] of  CloFuncall
+
+	(source "(ru.rules/f2 541)"))
+
+([Sea_Class320002] of  Table2
+
+	(column1
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"title"
+		"event"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(Sea_Class247 of [Cls(NavOb)])"
+		"s1.Buoy_2020"
+		"s1.Buoy_2021"
+		"SimpleInstance(Sea_Class150000 of [Cls(WaitEvent)])"
+		"[]"
+		"s1.Buoy Waits When Inside One Spill"
+		"SimpleInstance(Sea_Class170001 of [Cls(TwoObRelation)])"
+		"REPEAT"
+		"s1.Buoy_2023")
+	(title "WaitEvent 541"))
+
+([Sea_Class320003] of  CloFuncall
+
+	(source "(ru.rules/f2 540)"))
+
+([Sea_Class320004] of  Table2
+
+	(column1
+		"observer"
+		"object"
+		"parent"
+		"instance"
+		"value"
+		"radius"
+		"title"
+		"ob_relation")
+	(column2
+		"SimpleInstance(Sea_Class170002 of [Cls(Variable)])"
+		"SimpleInstance(ScenarioN_Class570000 of [Cls(Variable)])"
+		"s1.Buoy_2023"
+		"SimpleInstance(Sea_Class170001 of [Cls(TwoObRelation)])"
+		":?"
+		":?"
+		"s1.Buoy inside Light Stain"
+		"INSIDE")
+	(title "TwoObRelation 540"))
+
+([Sea_Class320005] of  Table2
+
+	(column1
+		"observer"
+		"object"
+		"parent"
+		"instance"
+		"value"
+		"radius"
+		"title"
+		"ob_relation")
+	(column2
+		"SimpleInstance(Sea_Class170002 of [Cls(Variable)])"
+		"SimpleInstance(ScenarioN_Class570000 of [Cls(Variable)])"
+		"s1.Buoy_2023"
+		"SimpleInstance(Sea_Class170001 of [Cls(TwoObRelation)])"
+		":?"
+		":?"
+		"s1.Buoy inside Light Stain"
+		"INSIDE")
+	(title "TwoObRelation 540"))
+
 ([Sea_Class321] of  ObjectPair
 
 	(object [Sea_Class180031])
@@ -3358,15 +3700,16 @@
 
 ([Sea_Class326] of  Spill
 
-	(fillColor "400000FF")
+	(fillColor "300000FF")
 	(isPolygon TRUE)
 	(label "Br2")
 	(latitude "60 10.2")
 	(lineColor "FF0000FF")
 	(longitude "28 48.38")
 	(N 16)
+	(playground-index 1)
 	(radius 1.2)
-	(speed 0.01))
+	(speed 10.0))
 
 ([Sea_Class327] of  ObjectPair
 
@@ -3376,15 +3719,16 @@
 
 ([Sea_Class328] of  Spill
 
-	(fillColor "400000FF")
+	(fillColor "300000FF")
 	(isPolygon TRUE)
 	(label "Br3")
 	(latitude "60 8.7")
 	(lineColor "FF0000FF")
 	(longitude "28 29.6")
 	(N 16)
+	(playground-index 1)
 	(radius 1.2)
-	(speed 0.01))
+	(speed 10.0))
 
 ([Sea_Class329] of  ObjectPair
 
@@ -3394,15 +3738,24 @@
 
 ([Sea_Class330] of  Spill
 
-	(fillColor "40FF0000")
+	(fillColor "30FF0000")
 	(isPolygon TRUE)
 	(label "Br4")
 	(latitude "60 14.49")
 	(lineColor "FFFF0000")
 	(longitude "28 40.7")
 	(N 16)
+	(playground-index 1)
 	(radius 1.2)
-	(speed 0.02))
+	(speed 10.0))
+
+([Sea_Class330000] of  CloFuncall
+
+	(source "(rete.core/retract-fact 23)"))
+
+([Sea_Class330001] of  CloFuncall
+
+	(source "(rete.core/retract-fact 25)"))
 
 ([Sea_Class331] of  ObjectPair
 
@@ -3497,7 +3850,7 @@
 
 	(object [Sea_Class346])
 	(title "Tanker2")
-	(variable [Sea_Class235]))
+	(variable [Sea_Class240]))
 
 ([Sea_Class346] of  NavOb
 
@@ -3859,17 +4212,17 @@
 
 ([Sea_Class74] of  Calculus
 
-	(id "s1.Colli2056")
+	(id "s1.Colli2050")
 	(input_data
 		[Sea_Class270]
 		[Sea_Class271])
-	(parent "s1.Colli2055")
+	(parent "s1.Colli2049")
 	(protagonist [Sea_Class160021])
 	(results
 		[Sea_Class267]
 		[Sea_Class268]
 		[Sea_Class269])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(source "sum-speed (+ speed1 speed2)\nspeed1 0\nspeed2 0")
 	(status "START")
 	(title "s1.Collision Assessment Calculation"))
@@ -3878,10 +4231,10 @@
 
 	(context [Sea_Class18])
 	(id "s1.Start2093")
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(player [Sea_Class332])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(sub_scenario [Sea_Class20009])
 	(title "s1.Start Airplane Scenario")
@@ -3890,9 +4243,10 @@
 ([Sea_Class80] of  Subscenario
 
 	(id "s1.Start2092")
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
+	(player [Sea_Class160021])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(sub_scenario [Sea_Class20016])
 	(title "s1.Start Task Forces Scenario")
@@ -3901,11 +4255,11 @@
 ([Sea_Class80000] of  Task
 
 	(final_actions [Sea_Class120006])
-	(id "c1.Cruis2033")
+	(id "c1.Cruis2028")
 	(initial_actions [Sea_Class110002])
-	(parent "c1.Cruis2031")
+	(parent "c1.Cruis2026")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2031")
+	(run "c1.Cruis2026")
 	(status "START")
 	(task_scheme
 		[Sea_Class110002]
@@ -3944,11 +4298,11 @@
 ([Sea_Class80003] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2090")
-	(parent "s1.Compl2064")
+	(id "s1.Start2086")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class160016])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Start Heavy Spill"))
 
@@ -3974,11 +4328,11 @@
 ([Sea_Class81] of  Subscenario
 
 	(context [Sea_Class272])
-	(id "s1.Run_S2067")
-	(parent "s1.Compl2064")
+	(id "s1.Run_S2064")
+	(parent "s1.Compl2058")
 	(player [Sea_Class160021])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(sub_scenario [Sea_Class20000])
 	(title "s1.Run Simple Scenario")
@@ -3986,50 +4340,50 @@
 
 ([Sea_Class84] of  PutOnPlace
 
-	(id "s1.Radio2065")
+	(id "s1.Radio2059")
 	(next_actions [Sea_Class85])
 	(object [Sea_Class242])
 	(observer [Sea_Class219])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Radio Emergency to Collision"))
 
 ([Sea_Class85] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2072")
+	(id "s1.Start2062")
 	(next_actions [Sea_Class86])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class259])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Start Radio Emergency"))
 
 ([Sea_Class86] of  Delay
 
 	(delay "16 min")
-	(id "s1.Radio2073")
+	(id "s1.Radio2063")
 	(next_actions
 		[Sea_Class88]
 		[Sea_Class91]
 		[Sea_Class160004])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Radio Emergency Time"))
 
 ([Sea_Class88] of  ObjectMessage
 
 	(category "3")
-	(id "Emergenc2082")
+	(id "Emergenc2078")
 	(object [Sea_Class219])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(text "Emergency message from ? in position: latitude ?, longitude ?. Collision with another ship.")
 	(title "Emergency Message")
@@ -4037,27 +4391,27 @@
 
 ([Sea_Class90] of  Position
 
-	(id "s1.Fire_2091")
+	(id "s1.Fire_2087")
 	(object [Sea_Class234])
 	(observer [Sea_Class219])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(position-angle "-90")
 	(position-distance "0.2")
 	(position-speed "0")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative TRUE)
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Fire to leeward"))
 
 ([Sea_Class90000] of  EventDecision
 
 	(events [Sea_Class160001])
-	(id "s1.Colli2054")
-	(parent "s1.Colli2025")
+	(id "s1.Colli2048")
+	(parent "s1.Colli2020")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Collision or Next Watch?")
 	(variants
@@ -4079,14 +4433,14 @@
 
 ([Sea_Class91] of  PutOnMap
 
-	(id "s1.Ship22083")
+	(id "s1.Ship22079")
 	(latitude "60 0")
 	(longitude "30 0")
 	(next_actions [Sea_Class90])
 	(object [Sea_Class234])
-	(parent "s1.Compl2064")
+	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2025")
+	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Ship2 on Fire"))
 
@@ -4170,7 +4524,7 @@
 
 ([Sea_Class98] of  Position
 
-	(id "s1.CP_to2161")
+	(id "s1.CP_to2153")
 	(object [Sea_Class227])
 	(observer [Sea_Class219])
 	(parent "s1.TF_De2102")
@@ -4186,7 +4540,7 @@
 
 ([Sea_Class99] of  Position
 
-	(id "s1.CZ_to2162")
+	(id "s1.CZ_to2154")
 	(object [Sea_Class228])
 	(observer [Sea_Class219])
 	(parent "s1.TF_De2102")

@@ -320,23 +320,6 @@
       (.setSpeed obj (.getSpeed obs))
       (.setCourse obj (.getCourse obs)) ) )))
 
-(defn put-on-place [?obj ?obs mos p r]
-  (let [obj (vv ?obj p r)
-       obs (vv ?obs p r)]
-  (println :POP ?obj ?obs mos p r)
-  (if (and (or (null? obj) (null? obs)) (empty? mos))
-    "FAILED"
-    (if-let [mobs (OMT/getMapOb obs)]
-      (let [lat (.getLatitudeDM mobs)
-             lon (.getLongitudeDM mobs)]
-        (doseq [mo mos]
-          (-> (OMT/addMapOb mo) 
-            (.setLocation lat lon)))
-        (if (not (null? obj))
-          (.setLocation (OMT/addMapOb obj) lat lon))
-        "DONE")
-      "FAILED"))))
-
 (defn object-message [atit ?obj ?txt ?url cat cls p r]
   (if-let [obj (OMT/getMapOb (vv ?obj p r))]
   (let [txt (vv ?txt p r)

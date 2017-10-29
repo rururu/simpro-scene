@@ -69,7 +69,9 @@
         s)))))
 
 (defn to-clj-type [v]
-  (cond 
+  (cond
+  (nil? v)
+    v
   (number? v) 
     v
   (= (type v) java.util.Collections$UnmodifiableCollection)
@@ -243,7 +245,6 @@
 
 (defn compute [?com p r]
   (let [com (vv ?com p r)]
-  (println :P p :R r)
   (if (not (null? com))
     (let [typ (.getDirectType com)
            ns (sv typ "namespace")
@@ -256,7 +257,7 @@
 	(fn [[k v]] (list (symbol k) (to-clj-type (vv v p r)) )) 
 	sm) 
            s2 (str n2 " (let " (vec bi) " " sc ")")
-           _ (println :COMPUTE s2)
+           ;;_ (println :COMPUTE s2)
            rz (load-string s2)]
       (if (and (number? rz) (< rz 0))
         "FAILED"
