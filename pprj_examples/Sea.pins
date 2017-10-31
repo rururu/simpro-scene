@@ -1,9 +1,9 @@
-; Sun Oct 29 22:43:16 MSK 2017
+; Tue Oct 31 17:52:46 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([PrepareSpill] of  ComputationClass
+([MoveSpillToObject] of  ComputationClass
 
 	(namespace [Sea_Class160013])
 	(source "(let [ra-onoff (ins ?ra-onoff)\n       ship (ins ?ship)\n       spill (ins ?spill)\n       spill-ra (ins ?spill-ra)]\n  (println :PrepareSpill :ra-onoff ra-onoff :ship ship :spill spill :spill-ra spill-ra)\n  (when-let [mo (OMT/getMapOb ship)]\n    (ssv spill \"latitude\" (MapOb/getDegMin (.getLatitude mo)))\n    (ssv spill \"longitude\" (MapOb/getDegMin (.getLongitude mo)))\n    (ssv ra-onoff \"repeat-action\" spill-ra)))"))
@@ -310,10 +310,6 @@
 	(run "s1.Task_2099")
 	(status "START")
 	(title "s1.CZ Delete Hose"))
-
-([Sea_Class110000] of  CloFuncall
-
-	(source "(ru.rules/f 14)"))
 
 ([Sea_Class110001] of  PutOffMap
 
@@ -1287,14 +1283,14 @@
 	(protagonist [Sea_Class160021])
 	(run "s1.Colli2020")
 	(status "START")
-	(title "s1.Prepare Heavy Spill"))
+	(title "s1.Heavy Spill to Ship1"))
 
 ([Sea_Class160013] of  CloNamespace
 
 	(source "(:use protege.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
 	(title "comp.sea"))
 
-([Sea_Class160015] of  PrepareSpill
+([Sea_Class160015] of  MoveSpillToObject
 
 	(%3Fra-onoff [Sea_Class80003])
 	(%3Fship [Sea_Class219])
@@ -1420,10 +1416,6 @@
 		[Sea_Class236]
 		[Sea_Class237])
 	(title "ru0.SE and SM remove from Map"))
-
-([Sea_Class170000] of  CloFuncall
-
-	(source "(in-ns 'protege.core)"))
 
 ([Sea_Class170001] of  TwoObRelation
 
@@ -1618,9 +1610,9 @@
 	(protagonist [Sea_Class160021])
 	(run "s1.Simpl2065")
 	(status "START")
-	(title "s1.Prepare Light Spill"))
+	(title "s1.Light Spill to Ship"))
 
-([Sea_Class180023] of  PrepareSpill
+([Sea_Class180023] of  MoveSpillToObject
 
 	(%3Fra-onoff [Sea_Class111])
 	(%3Fship [Sea_Class235])
@@ -1807,26 +1799,6 @@
 	(object [Sea_Class236])
 	(title "ru0.SE to Original Position"))
 
-([Sea_Class190000] of  CloFuncall
-
-	(source "(ru.rules/f 109)"))
-
-([Sea_Class190001] of  CloFuncall
-
-	(source "(cls-instances \"TwoObRealation)"))
-
-([Sea_Class190002] of  CloFuncall
-
-	(source "(cls-instances \"TwoObRealation\")"))
-
-([Sea_Class190003] of  CloFuncall
-
-	(source "(cls-instances \"TwoObRelation\")"))
-
-([Sea_Class190004] of  CloFuncall
-
-	(source "(map #(sv % \"title\") (cls-instances \"TwoObRelation\"))"))
-
 ([Sea_Class191] of  GoRoute
 
 	(object [Sea_Class236])
@@ -1879,10 +1851,6 @@
 	(scenario_scheme [Sea_Class130039])
 	(status "START")
 	(title "s1.Simple Scenario"))
-
-([Sea_Class200000] of  CloFuncall
-
-	(source "(ru.rules/f2 28)"))
 
 ([Sea_Class20002] of  Scenario
 
@@ -1964,7 +1932,6 @@
 	(context [Sea_Class180012])
 	(finish_type AND)
 	(id "s1.Buoy_2032")
-	(initial_tasks [Sea_Class20008])
 	(parent "s1.Buoy_2138")
 	(protagonist [Sea_Class244])
 	(run "s1.Buoy_2032")
@@ -2427,14 +2394,6 @@
 	(text "Exxon goes to Sea")
 	(title "Goes to Sea Message"))
 
-([Sea_Class210001] of  CloFuncall
-
-	(source "(ru.rules/f 110)"))
-
-([Sea_Class210002] of  CloFuncall
-
-	(source "(ru.rules/f 134)"))
-
 ([Sea_Class211] of  PutObAttributes
 
 	(attributes [Sea_Class220])
@@ -2495,10 +2454,6 @@
 		"c1.Moori2024"
 		"60 19.64")
 	(title "Arrive 28"))
-
-([Sea_Class220002] of  CloFuncall
-
-	(source "(ru.rules/f2 22)"))
 
 ([Sea_Class220003] of  Table2
 
@@ -2617,10 +2572,6 @@
 	(mapob [Sea_Class228])
 	(playground-index 0))
 
-([Sea_Class230004] of  CloFuncall
-
-	(source "(ru.rules/f2 285)"))
-
 ([Sea_Class230005] of  Table2
 
 	(column1
@@ -2648,10 +2599,6 @@
 		"s1.Fuel_2098"
 		"[\"400\"]")
 	(title "PutObAttributes 285"))
-
-([Sea_Class230006] of  CloFuncall
-
-	(source "(ru.rules/f 285)"))
 
 ([Sea_Class231] of  NavOb
 
@@ -2768,10 +2715,6 @@
 	(mapob [Sea_Class228])
 	(playground-index 0))
 
-([Sea_Class240004] of  CloFuncall
-
-	(source "(ru.rules/f2 168)"))
-
 ([Sea_Class240005] of  Table2
 
 	(column1
@@ -2799,10 +2742,6 @@
 		"FAILED"
 		"s1.Radio2070")
 	(title "PutOnPlace 168"))
-
-([Sea_Class240006] of  CloFuncall
-
-	(source "(ru.rules/f2 222)"))
 
 ([Sea_Class240007] of  Table2
 
@@ -2942,10 +2881,6 @@
 		"60 19.04 28 44.48"
 		"60 19.64 28 42.87")
 	(title "c1.To Terminal Primorsk"))
-
-([Sea_Class250000] of  CloFuncall
-
-	(source "(ru.rules/f2 53)"))
 
 ([Sea_Class250001] of  Table2
 
@@ -3095,10 +3030,6 @@
 	(mapob [Sea_Class346])
 	(playground-index 0))
 
-([Sea_Class270001] of  CloFuncall
-
-	(source "(ru.rules/f2 250)"))
-
 ([Sea_Class270002] of  Table2
 
 	(column1
@@ -3202,10 +3133,6 @@
 	(longitude "28 37.62")
 	(mapob [Sea_Class346])
 	(playground-index 0))
-
-([Sea_Class280001] of  CloFuncall
-
-	(source "(ru.rules/f2 269)"))
 
 ([Sea_Class280002] of  Table2
 
@@ -3376,10 +3303,6 @@
 	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Simple Scenario Delay"))
-
-([Sea_Class300002] of  CloFuncall
-
-	(source "(ru.rules/f2 315)"))
 
 ([Sea_Class300003] of  Table2
 
@@ -3592,10 +3515,6 @@
 	(%3ACREATION-TIMESTAMP "2017.10.29 22:10:03.336 MSK")
 	(%3ACREATOR "ru"))
 
-([Sea_Class320001] of  CloFuncall
-
-	(source "(ru.rules/f2 541)"))
-
 ([Sea_Class320002] of  Table2
 
 	(column1
@@ -3619,10 +3538,6 @@
 		"REPEAT"
 		"s1.Buoy_2023")
 	(title "WaitEvent 541"))
-
-([Sea_Class320003] of  CloFuncall
-
-	(source "(ru.rules/f2 540)"))
 
 ([Sea_Class320004] of  Table2
 
@@ -3749,14 +3664,6 @@
 	(radius 1.2)
 	(speed 10.0))
 
-([Sea_Class330000] of  CloFuncall
-
-	(source "(rete.core/retract-fact 23)"))
-
-([Sea_Class330001] of  CloFuncall
-
-	(source "(rete.core/retract-fact 25)"))
-
 ([Sea_Class331] of  ObjectPair
 
 	(object [Sea_Class332])
@@ -3819,6 +3726,142 @@
 	(object [Sea_Class240])
 	(title "s2s")
 	(variable [Sea_Class235]))
+
+([Sea_Class340001] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"s1\")"))
+
+([Sea_Class340002] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"s10\")"))
+
+([Sea_Class340003] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Bs1\")"))
+
+([Sea_Class340004] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s10\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
+
+([Sea_Class340005] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
+
+([Sea_Class340006] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
+
+([Sea_Class340007] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s11\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
+
+([Sea_Class340008] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") 60.242 28.787)"))
+
+([Sea_Class340009] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.242) (double 28.787))"))
+
+([Sea_Class340010] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.242) (double 28.787))"))
+
+([Sea_Class340011] of  CloFuncall
+
+	(source "(.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\"))"))
+
+([Sea_Class340012] of  CloFuncall
+
+	(source "(map .toDgrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
+
+([Sea_Class340013] of  CloFuncall
+
+	(source "(map Math/toDgrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
+
+([Sea_Class340014] of  CloFuncall
+
+	(source "(map Math/toDegrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
+
+([Sea_Class340015] of  CloFuncall
+
+	(source "(map #(Math/toDegrees %) (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
+
+([Sea_Class340016] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.245) (double 28.786))"))
+
+([Sea_Class340017] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.245) (double 28.786))"))
+
+([Sea_Class340018] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s2\") (double 60.245) (double 28.786))"))
+
+([Sea_Class340019] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"s2\")"))
+
+([Sea_Class340020] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"s20\")"))
+
+([Sea_Class340021] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s2\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340022] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340023] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340024] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s22\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340025] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s10\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340026] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s11\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340027] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"RadioEmergensy\")"))
+
+([Sea_Class340028] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"RadioEmergency\")"))
+
+([Sea_Class340029] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (double 60.245) (double 28.789))"))
+
+([Sea_Class340030] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") 60.245 28.789)"))
+
+([Sea_Class340031] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
+
+([Sea_Class340032] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs2\"))"))
+
+([Sea_Class340033] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs3\"))"))
+
+([Sea_Class340034] of  CloFuncall
+
+	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs4\"))"))
 
 ([Sea_Class341] of  ObjectPair
 

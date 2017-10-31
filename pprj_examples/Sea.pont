@@ -1,4 +1,4 @@
-; Sun Oct 29 22:43:16 MSK 2017
+; Tue Oct 31 17:52:46 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -126,7 +126,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass PrepareSpill
+(defclass MoveSpillToObject
 	(is-a Computation)
 	(role concrete)
 	(single-slot %3Fspill-ra

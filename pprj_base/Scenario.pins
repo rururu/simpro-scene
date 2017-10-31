@@ -1,4 +1,4 @@
-; Sun Oct 29 19:56:19 MSK 2017
+; Tue Oct 31 20:18:59 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -208,9 +208,6 @@
 ([ObAttribute] of  EventClass
 
 	(functions [Scenario_Class230002]))
-
-([ObjectContainsObserver] of  DecisionClass
-)
 
 ([ObjectMessage] of  ActionClass
 
@@ -618,7 +615,8 @@
 		[ScenarioN_Class460006]
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
-		[ScenarioN_Class750002])
+		[ScenarioN_Class750002]
+		[Scenario_Class70003])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -997,7 +995,8 @@
 		[ScenarioN_Class470001]
 		[ScenarioN_Class470002]
 		[ScenarioN_Class630000]
-		[ScenarioN_Class640000])
+		[ScenarioN_Class640000]
+		[Scenario_Class60000])
 	(templates
 		[UserDecision]
 		[GeneralDecision]
@@ -1007,7 +1006,8 @@
 		[CatchException]
 		[Exception]
 		[TDecision]
-		[Hard])
+		[Hard]
+		[WithRespectPolygons])
 	(title "DecisionExecutor"))
 
 ([Scenario_Class260000] of  Rule
@@ -1529,6 +1529,13 @@
 	(source "(filter #(include? y1 %) y2)")
 	(title "conjunct [y1 y2]"))
 
+([Scenario_Class60000] of  Rule
+
+	(lhs "?wrp (WithRespectPolygons status \"START\" \n	title ?tit\n	object ?obj\n	observer ?obs\n	mapob ?mos\n	side ?sid\n	grouping ?gpg\n	variants ?vrs\n	parent ?par\n	run ?run\n	protagonist ?pro)")
+	(rhs "(println \"Decision:\" ?tit \"WithRespectPolygons\")\n(s/start-tasks-actions (d/with-respect-polygons ?obj ?obs ?mos ?sid ?gpg ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?wrp)")
+	(salience 0)
+	(title "d:WithRespectPolygons"))
+
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1547,6 +1554,11 @@
 	(rhs "(retract ?del)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:DelayRepeat"))
+
+([Scenario_Class70003] of  CloFunction
+
+	(source "(let [mo (mapob-vv ?obj p r)\n       obs (vv ?obs p r)\n       obs (if (pins? obs) [obs] obs)\n       obs (vec (concat obs mos))\n       pols (filter some? (map #(OMT/addMapOb %) obs))\n       all (= gpg 'ALL)\n       ins (= sid 'INSIDE)\n  (if (and mo (seq pols) (> (count vars) 1))\n    (loop [pol pols]\n      (if (.contains pol mo)\n        (if all\n          (if ins")
+	(title "with-respect-polygons [?obj ?obs mos sid gpg vars p r]"))
 
 ([Scenario_Class80000] of  Rule
 
@@ -3115,9 +3127,6 @@
 		[Scenario_Class490000]
 		[Scenario_Class460000]))
 
-([SignalControl] of  DecisionClass
-)
-
 ([StartScenarios] of  ActionClass
 
 	(rules [ScenarioN_Class280002]))
@@ -3140,6 +3149,7 @@
 
 ([TDecision] of  DecisionClass
 
+	(functions [ScenarioN_Class640001])
 	(rules [ScenarioN_Class630000]))
 
 ([TimeMessage] of  ActionClass
@@ -3218,3 +3228,8 @@
 		[ScenarioN_Class80008]
 		[ScenarioN_Class80009]
 		[ScenarioN_Class60000]))
+
+([WithRespectPolygons] of  DecisionClass
+
+	(functions [Scenario_Class70003])
+	(rules [Scenario_Class60000]))

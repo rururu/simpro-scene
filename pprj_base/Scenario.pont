@@ -1,4 +1,4 @@
-; Sun Oct 29 19:56:19 MSK 2017
+; Tue Oct 31 20:18:59 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -327,6 +327,12 @@
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot side
+		(type SYMBOL)
+		(allowed-values INSIDE OUTSIDE)
+		(default INSIDE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot input_data
 		(type INSTANCE)
 ;+		(allowed-classes InputData)
@@ -623,6 +629,12 @@
 	(single-slot event
 		(type INSTANCE)
 ;+		(allowed-classes Event Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot grouping
+		(type SYMBOL)
+		(allowed-values ALL ANY)
+		(default ALL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lla
@@ -2364,9 +2376,25 @@
 	(is-a Decision)
 	(role concrete))
 
-(defclass ObjectContainsObserver
+(defclass WithRespectPolygons
 	(is-a Decision)
 	(role concrete)
+	(single-slot grouping
+		(type SYMBOL)
+		(allowed-values ALL ANY)
+		(default ALL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot side
+		(type SYMBOL)
+		(allowed-values INSIDE OUTSIDE)
+		(default INSIDE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot observer
 		(type INSTANCE)
 ;+		(allowed-classes MapOb NavOb Variable)
@@ -2387,21 +2415,6 @@
 	(multislot activities
 		(type INSTANCE)
 ;+		(allowed-classes Activity)
-		(create-accessor read-write)))
-
-(defclass SignalControl
-	(is-a Decision)
-	(role concrete)
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot statuses
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass TDecision
