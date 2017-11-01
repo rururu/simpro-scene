@@ -1,4 +1,4 @@
-; Tue Oct 31 20:18:59 MSK 2017
+; Wed Nov 01 21:49:12 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -204,6 +204,10 @@
 	(rules
 		[ScenarioN_Class580002]
 		[ScenarioN_Class580001]))
+
+([MultiplyResource] of  ActionClass
+
+	(rules [Scenario_Class90003]))
 
 ([ObAttribute] of  EventClass
 
@@ -434,7 +438,8 @@
 		[ScenarioN_Class680007]
 		[ScenarioN_Class700000]
 		[ScenarioN_Class700001]
-		[ScenarioN_Class690000])
+		[ScenarioN_Class690000]
+		[Scenario_Class90003])
 	(templates
 		[Action]
 		[Arrive]
@@ -486,7 +491,8 @@
 		[Comb]
 		[StopRoute]
 		[Scenario]
-		[Task])
+		[Task]
+		[MultiplyResource])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -616,7 +622,7 @@
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
 		[ScenarioN_Class750002]
-		[Scenario_Class70003])
+		[Scenario_Class490003])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -970,7 +976,7 @@
 		[ScenarioN_Class180001]
 		[ScenarioN_Class210001]
 		[ScenarioN_Class480000]
-		[Scenario_Class490003])
+		[Scenario_Class70003])
 	(cloNamespace [Scenario_Class250009])
 	(title "Decision Functions"))
 
@@ -1031,7 +1037,7 @@
 
 ([Scenario_Class260003] of  CloFunction
 
-	(source "(if-let [hm (context-to-hm ctx)]\n  (when (if mp\n	(update-with-mp hm mp)\n	(not= (.update (Context.) hm \"Update Parameters\")\n	    ModalDialog/OPTION_CANCEL))\n    (.putAttribute mo run hm)\n    true))")
+	(source "(if-let [hm (context-to-hm ctx)]\n  (when (if mp\n              (update-with-mp hm mp)\n              (not= (.update (Context.) hm \"Update Parameters\")\n	    ModalDialog/OPTION_CANCEL))\n    (.putAttribute mo run hm)\n    true))")
 	(title "context-to-attributes [ctx mo mp run]"))
 
 ([Scenario_Class260005] of  Rule
@@ -1557,7 +1563,7 @@
 
 ([Scenario_Class70003] of  CloFunction
 
-	(source "(let [mo (mapob-vv ?obj p r)\n       obs (vv ?obs p r)\n       obs (if (pins? obs) [obs] obs)\n       obs (vec (concat obs mos))\n       pols (filter some? (map #(OMT/addMapOb %) obs))\n       all (= gpg 'ALL)\n       ins (= sid 'INSIDE)\n  (if (and mo (seq pols) (> (count vars) 1))\n    (loop [pol pols]\n      (if (.contains pol mo)\n        (if all\n          (if ins")
+	(source "(let [mo (mapob-vv ?obj p r)\n       obs (vv ?obs p r)\n       obs (if (pins? obs) [obs] obs)\n       obs (vec (concat obs mos))\n       pols (filter some? (map #(OMT/addMapOb %) obs))\n       all (= gpg 'ALL)\n       ins (= sid 'INSIDE)\n       res (if (and mo (seq pols) (> (count vars) 1))\n               (loop [pls pols]\n                 (if (seq pls)\n                   (if (.contains (first pls) mo)\n                     (if ins\n                       (if all\n                         (recur (rest pls))\n	 true)\n                       (if all\n                         false\n                         (recur (rest pls))))\n                     (if ins ;; not contains\n                       (if all\n                         false\n                         (recur (rest pls)))\n                       (if all\n                         (recur (rest pls))\n                         true)))\n                   true)))]\n  (if res\n    [(first vars)]\n    [(second vars)]))")
 	(title "with-respect-polygons [?obj ?obs mos sid gpg vars p r]"))
 
 ([Scenario_Class80000] of  Rule
@@ -1571,6 +1577,13 @@
 
 	(source "([del]\n (let [[n u] (seq (.split del \" \"))\n        d (read-string n)]\n   (condp = u\n     \"sec\" d\n     \"min\" (* d 60)\n     \"hrs\" (* d 3600)\n     \"days\" (* d 3600 24))))\n([sec del]\n (+ sec (to-be del)))")
 	(title "to-be"))
+
+([Scenario_Class90003] of  Rule
+
+	(lhs "?mr (MultiplyResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	seed ?sed\n                        N ?n\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [sed (a/vv ?sed ?pro ?run)\n         nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n         cc (repeat ?n (.shallowCopy sed protege.core/*kb* nil))\n         cc (if (protege.core/is? ?ren)\n               (map #(protege.core/ssv %1 nms (str (protege.core/sv sed nms) %2)) (range 1 (inc ?n)))\n               cc)]\n    (.putAttribute mo (protege.core/sv ?res \"title\") cc)\n    (retract ?mr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?mr status \"FAILED\"))")
+	(salience 0)
+	(title "a:MultiplyResource"))
 
 ([Scenario_Class90005] of  Rule
 

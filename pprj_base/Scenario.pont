@@ -1,4 +1,4 @@
-; Tue Oct 31 20:18:59 MSK 2017
+; Wed Nov 01 21:49:12 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -535,6 +535,11 @@
 		(default "Start CZML Server/czml/start-czml-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot seed
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot run
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -651,6 +656,11 @@
 	(single-slot entry_lane
 		(type INSTANCE)
 ;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rename
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot namespace
@@ -2349,6 +2359,34 @@
 	(single-slot remove_flag
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MultiplyResource
+	(is-a Action)
+	(role concrete)
+	(single-slot resource
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rename
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot seed
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
