@@ -1,4 +1,4 @@
-; Wed Nov 01 21:49:12 MSK 2017
+; Sun Nov 05 22:35:49 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -347,6 +347,10 @@
 	(salience 0)
 	(title "s:FirstFinalActionDone"))
 
+([Scenario_Class100003] of  Attribute
+
+	(title "POLYS"))
+
 ([Scenario_Class100006] of  RuleSet
 
 	(rules
@@ -622,6 +626,8 @@
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
 		[ScenarioN_Class750002]
+		[ScenarioN_Class670000]
+		[Scenario_Class450000]
 		[Scenario_Class490003])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
@@ -957,8 +963,6 @@
 		[Scenario_Class230001]
 		[Scenario_Class230006]
 		[Scenario_Class230007]
-		[ScenarioN_Class670000]
-		[Scenario_Class450000]
 		[ScenarioN_Class650000]
 		[Scenario_Class230004]
 		[ScenarioN_Class290003]
@@ -1181,6 +1185,30 @@
 	(source "(doseq [k (.keySet hm)]\n  (.put hm k (vv (.get hm k) p r)))")
 	(title "hm-varvals-to-vals [hm p r]"))
 
+([Scenario_Class300004] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"ship1\")"))
+
+([Scenario_Class300005] of  CloFuncall
+
+	(source "(.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))"))
+
+([Scenario_Class300006] of  CloFuncall
+
+	(source "((.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\")) \"POLYS\")"))
+
+([Scenario_Class300007] of  CloFuncall
+
+	(source "((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\")"))
+
+([Scenario_Class300008] of  CloFuncall
+
+	(source "(type ((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\"))"))
+
+([Scenario_Class300009] of  CloFuncall
+
+	(source "(count ((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\"))"))
+
 ([Scenario_Class30005] of  CloFunction
 
 	(source "(if-let [si (if (string? siorti) (fifos \"Scenario\" \"title\" siorti) siorti)]\n  (let [pro (sv si \"protagonist\")\n         ctx (sv si \"context\")\n         id (gen-id (sv si \"title\"))\n         mo (and pro (or (OMT/getMapOb pro)\n	           (OMT/addMapOb pro)))]\n    (when (or (nil? pro) \n	(and (some? mo)\n	  (context-to-attributes ctx mo mp id)))\n      (ssv si \"id\" id)\n      (ssv si \"run\" id)\n      (ssv si \"status\" \"START\")\n      (assert-instances [si])\n      true)))")
@@ -1364,7 +1392,7 @@
 
 ([Scenario_Class450000] of  CloFunction
 
-	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (instance? Instance v)\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"d/to-clj-type - unknown type of: \" v) v))")
+	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (instance? Instance v)\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
 	(title "to-clj-type [v]"))
 
 ([Scenario_Class460000] of  Rule
@@ -1394,7 +1422,7 @@
 ([Scenario_Class490002] of  Rule
 
 	(lhs "?cmp (Compute status \"START\" \n	title ?tit \n	computation ?com \n	run ?run\n	protagonist ?pro)")
-	(rhs "(println \"Action started:\" ?tit \"Compute\")\n(modify ?cmp status (d/compute ?com ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"Compute\")\n(modify ?cmp status (a/compute ?com ?pro ?run))")
 	(salience 0)
 	(title "a:ComputeStart"))
 
@@ -1578,10 +1606,32 @@
 	(source "([del]\n (let [[n u] (seq (.split del \" \"))\n        d (read-string n)]\n   (condp = u\n     \"sec\" d\n     \"min\" (* d 60)\n     \"hrs\" (* d 3600)\n     \"days\" (* d 3600 24))))\n([sec del]\n (+ sec (to-be del)))")
 	(title "to-be"))
 
+([Scenario_Class90000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Scenario_Class0])
+	(%3ACREATION-TIMESTAMP "2017.11.02 11:36:07.666 MSK")
+	(%3ACREATOR "ru"))
+
+([Scenario_Class90001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [ScenarioN_Class600000])
+	(%3ACREATION-TIMESTAMP "2017.11.02 11:36:23.025 MSK")
+	(%3ACREATOR "ru"))
+
+([Scenario_Class90002] of  MultiplyResource
+
+	(N 4)
+	(object [igis_Class10000])
+	(rename FALSE)
+	(resource [Scenario_Class100003])
+	(seed [igis_Class30001])
+	(status "START")
+	(title "test"))
+
 ([Scenario_Class90003] of  Rule
 
 	(lhs "?mr (MultiplyResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	seed ?sed\n                        N ?n\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [sed (a/vv ?sed ?pro ?run)\n         nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n         cc (repeat ?n (.shallowCopy sed protege.core/*kb* nil))\n         cc (if (protege.core/is? ?ren)\n               (map #(protege.core/ssv %1 nms (str (protege.core/sv sed nms) %2)) (range 1 (inc ?n)))\n               cc)]\n    (.putAttribute mo (protege.core/sv ?res \"title\") cc)\n    (retract ?mr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?mr status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [sed (a/vv ?sed ?pro ?run)\n         nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n         nam (protege.core/sv sed nms)\n         rng (range 1 (inc ?n))\n         cc (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	        (if (protege.core/is? ?ren)\n	          (protege.core/ssv c nms (str nam i))) c))]\n    (.putAttribute mo (protege.core/sv ?res \"title\") (vec cc))\n    (retract ?mr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?mr status \"FAILED\"))")
 	(salience 0)
 	(title "a:MultiplyResource"))
 

@@ -59,30 +59,6 @@
   'ON-BEAM (on-beam obs obj)
   (println (str "Unimplemented: " obr " " obs obj))))
 
-(defn val-from-str [s]
-  (try
-  (Integer/parseInt s)
-  (catch NumberFormatException e
-    (try
-      (Double/parseDouble s)
-      (catch NumberFormatException e
-        s)))))
-
-(defn to-clj-type [v]
-  (cond
-  (nil? v)
-    v
-  (number? v) 
-    v
-  (= (type v) java.util.Collections$UnmodifiableCollection)
-    (vec (map to-clj-type v))
-  (instance? Instance v)
-    (.getName v)
-  (string? v)
-    (val-from-str v)
-  true 
-    (do (println "d/to-clj-type - unknown type of: " v) v)))
-
 (defn from-clj-type [v]
   (if-let [ins (.getInstance *kb* (str v))]
   ins
@@ -243,24 +219,34 @@
 (defn label-or-title [obj]
   (or (sv obj "label") (sv obj "title")))
 
-(defn compute [?com p r]
-  (let [com (vv ?com p r)]
-  (if (not (null? com))
-    (let [typ (.getDirectType com)
-           ns (sv typ "namespace")
-           sc (sv typ "source")
-           n2 (if (nil? ns) 
-                  "" 
-                  (str "(in-ns '" (sv ns "title") ")"))
-           sm (partition 2 (rest (mk-frame com)))
-           bi (mapcat 
-	(fn [[k v]] (list (symbol k) (to-clj-type (vv v p r)) )) 
-	sm) 
-           s2 (str n2 " (let " (vec bi) " " sc ")")
-           ;;_ (println :COMPUTE s2)
-           rz (load-string s2)]
-      (if (and (number? rz) (< rz 0))
-        "FAILED"
-        "DONE"))
-    "FAILED")))
+(defn with-respect-polygons [?obj ?obs mos sid gpg vars p r]
+  (let [mo (mapob-vv ?obj p r)
+       obs (vv ?obs p r)
+       obs (if (pins? obs) [obs] obs)
+       obs (vec (concat obs mos))
+       pols (filter some? (map #(OMT/addMapOb %) obs))
+       all (= gpg 'ALL)
+       ins (= sid 'INSIDE)
+       res (if (and mo (seq pols) (> (count vars) 1))
+               (loop [pls pols]
+                 (if (seq pls)
+                   (if (.contains (first pls) mo)
+                     (if ins
+                       (if all
+                         (recur (rest pls))
+	 true)
+                       (if all
+                         false
+                         (recur (rest pls))))
+                     (if ins ;; not contains
+                       (if all
+                         false
+                         (recur (rest pls)))
+                       (if all
+                         (recur (rest pls))
+                         true)))
+                   true)))]
+  (if res
+    [(first vars)]
+    [(second vars)])))
 

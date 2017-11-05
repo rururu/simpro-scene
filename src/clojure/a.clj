@@ -670,3 +670,48 @@
         (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
       (re/retract-fact (first fact))))))
 
+(defn val-from-str [s]
+  (try
+  (Integer/parseInt s)
+  (catch NumberFormatException e
+    (try
+      (Double/parseDouble s)
+      (catch NumberFormatException e
+        s)))))
+
+(defn to-clj-type [v]
+  (cond
+  (nil? v)
+    v
+  (number? v) 
+    v
+  (= (type v) java.util.Collections$UnmodifiableCollection)
+    (vec (map to-clj-type v))
+  (instance? Instance v)
+    (.getName v)
+  (string? v)
+    (val-from-str v)
+  true 
+    (do (println "to-clj-type - unknown type of: " v) v)))
+
+(defn compute [?com p r]
+  (let [com (vv ?com p r)]
+  (if (not (null? com))
+    (let [typ (.getDirectType com)
+           ns (sv typ "namespace")
+           sc (sv typ "source")
+           n2 (if (nil? ns) 
+                  "" 
+                  (str "(in-ns '" (sv ns "title") ")"))
+           sm (partition 2 (rest (mk-frame com)))
+           bi (mapcat 
+	(fn [[k v]] (list (symbol k) (to-clj-type (vv v p r)) )) 
+	sm) 
+           s2 (str n2 " (let " (vec bi) " " sc ")")
+           ;;_ (println :COMPUTE s2)
+           rz (load-string s2)]
+      (if (and (number? rz) (< rz 0))
+        "FAILED"
+        "DONE"))
+    "FAILED")))
+

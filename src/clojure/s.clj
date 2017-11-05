@@ -39,8 +39,8 @@ true)
 (defn context-to-attributes [ctx mo mp run]
   (if-let [hm (context-to-hm ctx)]
   (when (if mp
-	(update-with-mp hm mp)
-	(not= (.update (Context.) hm "Update Parameters")
+              (update-with-mp hm mp)
+              (not= (.update (Context.) hm "Update Parameters")
 	    ModalDialog/OPTION_CANCEL))
     (.putAttribute mo run hm)
     true)))
