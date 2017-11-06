@@ -1,4 +1,4 @@
-; Sun Nov 05 22:35:49 MSK 2017
+; Mon Nov 06 23:30:26 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -104,6 +104,10 @@
 	(rules
 		[Scenario_Class90005]
 		[Scenario_Class70000]))
+
+([DeleteResource] of  ActionClass
+
+	(rules [Scenario_Class90000]))
 
 ([Event] of  EventClass
 )
@@ -347,10 +351,6 @@
 	(salience 0)
 	(title "s:FirstFinalActionDone"))
 
-([Scenario_Class100003] of  Attribute
-
-	(title "POLYS"))
-
 ([Scenario_Class100006] of  RuleSet
 
 	(rules
@@ -443,7 +443,8 @@
 		[ScenarioN_Class700000]
 		[ScenarioN_Class700001]
 		[ScenarioN_Class690000]
-		[Scenario_Class90003])
+		[Scenario_Class90003]
+		[Scenario_Class90000])
 	(templates
 		[Action]
 		[Arrive]
@@ -469,9 +470,7 @@
 		[AttributeMessage]
 		[PutObProperties]
 		[CreateByModel]
-		[Shot]
 		[AssertObjects]
-		[ShotOnRoute]
 		[ObjectTask]
 		[WaitObAttributes]
 		[AttributesToVariables]
@@ -496,7 +495,8 @@
 		[StopRoute]
 		[Scenario]
 		[Task]
-		[MultiplyResource])
+		[MultiplyResource]
+		[DeleteResource])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -1606,32 +1606,17 @@
 	(source "([del]\n (let [[n u] (seq (.split del \" \"))\n        d (read-string n)]\n   (condp = u\n     \"sec\" d\n     \"min\" (* d 60)\n     \"hrs\" (* d 3600)\n     \"days\" (* d 3600 24))))\n([sec del]\n (+ sec (to-be del)))")
 	(title "to-be"))
 
-([Scenario_Class90000] of  %3AINSTANCE-ANNOTATION
+([Scenario_Class90000] of  Rule
 
-	(%3AANNOTATED-INSTANCE [Scenario_Class0])
-	(%3ACREATION-TIMESTAMP "2017.11.02 11:36:07.666 MSK")
-	(%3ACREATOR "ru"))
-
-([Scenario_Class90001] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [ScenarioN_Class600000])
-	(%3ACREATION-TIMESTAMP "2017.11.02 11:36:23.025 MSK")
-	(%3ACREATOR "ru"))
-
-([Scenario_Class90002] of  MultiplyResource
-
-	(N 4)
-	(object [igis_Class10000])
-	(rename FALSE)
-	(resource [Scenario_Class100003])
-	(seed [igis_Class30001])
-	(status "START")
-	(title "test"))
+	(lhs "?dr (DeleteResource status \"START\"\n	title ?tit\n	variable ?var\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(if-let [ins (a/vv ?var ?pro ?run)]\n  (protege.core/delin ins))\n(retract ?dr)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(salience 0)
+	(title "a:DeleteResource"))
 
 ([Scenario_Class90003] of  Rule
 
-	(lhs "?mr (MultiplyResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	seed ?sed\n                        N ?n\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [sed (a/vv ?sed ?pro ?run)\n         nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n         nam (protege.core/sv sed nms)\n         rng (range 1 (inc ?n))\n         cc (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	        (if (protege.core/is? ?ren)\n	          (protege.core/ssv c nms (str nam i))) c))]\n    (.putAttribute mo (protege.core/sv ?res \"title\") (vec cc))\n    (retract ?mr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?mr status \"FAILED\"))")
+	(lhs "?mr (MultiplyResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	seed ?sed\n                        number ?num\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n       sed (a/vv ?sed ?pro ?run)\n       num (a/vv ?num ?pro ?run)]\n  (if (and mo sed num)\n    (let [nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n           nam (protege.core/sv sed nms)\n           rng (range 1 (inc (read-string num)))\n           cc (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	          (if (protege.core/is? ?ren)\n	          (  protege.core/ssv c nms (str nam i))) c))]\n      (.putAttribute mo (protege.core/sv ?res \"title\") (vec cc))\n      (retract ?mr)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?mr status \"FAILED\")))")
 	(salience 0)
 	(title "a:MultiplyResource"))
 
@@ -3165,23 +3150,6 @@
 ([SetTimeScale] of  ActionClass
 
 	(rules [ScenarioN_Class310002]))
-
-([Shot] of  ActionClass
-
-	(functions
-		[ScenarioN_Class40001]
-		[ScenarioN_Class60002]
-		[ScenarioN_Class80002]
-		[ScenarioN_Class200000]
-		[ScenarioN_Class220006]
-		[ScenarioN_Class220002]
-		[ScenarioN_Class210004]))
-
-([ShotOnRoute] of  ActionClass
-
-	(functions
-		[ScenarioN_Class80002]
-		[ScenarioN_Class40001]))
 
 ([Show] of  ActionClass
 

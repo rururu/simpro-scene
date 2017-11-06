@@ -1,12 +1,7 @@
-; Tue Oct 31 17:52:46 MSK 2017
+; Mon Nov 06 22:19:01 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
-
-([MoveSpillToObject] of  ComputationClass
-
-	(namespace [Sea_Class160013])
-	(source "(let [ra-onoff (ins ?ra-onoff)\n       ship (ins ?ship)\n       spill (ins ?spill)\n       spill-ra (ins ?spill-ra)]\n  (println :PrepareSpill :ra-onoff ra-onoff :ship ship :spill spill :spill-ra spill-ra)\n  (when-let [mo (OMT/getMapOb ship)]\n    (ssv spill \"latitude\" (MapOb/getDegMin (.getLatitude mo)))\n    (ssv spill \"longitude\" (MapOb/getDegMin (.getLongitude mo)))\n    (ssv ra-onoff \"repeat-action\" spill-ra)))"))
 
 ([Sea3_Class10004] of  Link
 
@@ -310,6 +305,23 @@
 	(run "s1.Task_2099")
 	(status "START")
 	(title "s1.CZ Delete Hose"))
+
+([Sea_Class110000] of  Scenario
+
+	(context [Sea_Class190007])
+	(final_tasks [Sea_Class170004])
+	(finish_type AND)
+	(id "ds.Dropp10212")
+	(initial_tasks [Sea_Class130001])
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(scenario_scheme
+		[Sea_Class130001]
+		[Sea_Class130002]
+		[Sea_Class170003]
+		[Sea_Class170004])
+	(status "START")
+	(title "ds.Dropper-Spiller"))
 
 ([Sea_Class110001] of  PutOffMap
 
@@ -728,6 +740,42 @@
 	(variants
 		[Sea_Class240000]
 		[Sea_Class20049]))
+
+([Sea_Class130001] of  Task
+
+	(final_actions [Sea_Class170006])
+	(finish_type AND)
+	(id "ds.Creat10213")
+	(initial_actions [Sea_Class170005])
+	(next_tasks [Sea_Class130002])
+	(parent "ds.Dropp10212")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(task_scheme
+		[Sea_Class170005]
+		[Sea_Class170006])
+	(title "ds.Create Drops and Drop Expanders"))
+
+([Sea_Class130002] of  Task
+
+	(final_actions [Sea_Class210018])
+	(finish_type AND)
+	(id "ds.One_D10252")
+	(initial_actions [Sea_Class170000])
+	(next_tasks [Sea_Class170003])
+	(parent "ds.Dropp10212")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(task_scheme
+		[Sea_Class170000]
+		[Sea_Class190002]
+		[Sea_Class190004]
+		[Sea_Class190005]
+		[Sea_Class210018]
+		[Sea_Class170007])
+	(title "ds.One Drop"))
 
 ([Sea_Class130003] of  Variable
 
@@ -1276,7 +1324,6 @@
 
 ([Sea_Class160004] of  Compute
 
-	(computation [Sea_Class160015])
 	(id "s1.Prepa2080")
 	(next_actions [Sea_Class80003])
 	(parent "s1.Compl2058")
@@ -1289,14 +1336,6 @@
 
 	(source "(:use protege.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
 	(title "comp.sea"))
-
-([Sea_Class160015] of  MoveSpillToObject
-
-	(%3Fra-onoff [Sea_Class80003])
-	(%3Fship [Sea_Class219])
-	(%3Fspill [Sea_Class30000])
-	(%3Fspill-ra [Sea_Class160016])
-	(title "s1.Heavy Spill Preparation"))
 
 ([Sea_Class160016] of  DropRepeatAction
 
@@ -1417,6 +1456,19 @@
 		[Sea_Class237])
 	(title "ru0.SE and SM remove from Map"))
 
+([Sea_Class170000] of  UseResource
+
+	(id "ds.Take_10253")
+	(next_actions [Sea_Class190002])
+	(object [ScenarioN_Class570000])
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(resource [Sea_Class170009])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Take Drop")
+	(variable [Sea_Class190001]))
+
 ([Sea_Class170001] of  TwoObRelation
 
 	(ob_relation INSIDE)
@@ -1428,6 +1480,89 @@
 ([Sea_Class170002] of  Variable
 
 	(title "?spill1"))
+
+([Sea_Class170003] of  EventDecision
+
+	(events [Sea_Class190006])
+	(id "ds.Drops10263")
+	(parent "ds.Dropp10212")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Drops Issued?")
+	(variants
+		[Sea_Class170004]
+		[Sea_Class130002]))
+
+([Sea_Class170004] of  Task
+
+	(finish_type AND)
+	(id "ds.End10264")
+	(parent "ds.Dropp10212")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.End"))
+
+([Sea_Class170005] of  MultiplyResource
+
+	(id "ds.Creat10214")
+	(next_actions [Sea_Class170006])
+	(number "?drops-number")
+	(object [ScenarioN_Class570000])
+	(parent "ds.Creat10213")
+	(protagonist [Sea_Class344])
+	(rename TRUE)
+	(resource [Sea_Class170009])
+	(run "ds.Dropp10212")
+	(seed [Sea_Class170010])
+	(status "START")
+	(title "ds.Create Drops"))
+
+([Sea_Class170006] of  MultiplyResource
+
+	(id "ds.Creat10215")
+	(number "?drops-number")
+	(object [ScenarioN_Class570000])
+	(parent "ds.Creat10213")
+	(protagonist [Sea_Class344])
+	(rename TRUE)
+	(resource [Sea_Class170011])
+	(run "ds.Dropp10212")
+	(seed [Sea_Class170012])
+	(status "START")
+	(title "ds.Create Drop Expanders"))
+
+([Sea_Class170007] of  Compute
+
+	(computation [Sea_Class210044])
+	(id "ds.Drop_10256")
+	(next_actions [Sea_Class190005])
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Drop to Drop Expander"))
+
+([Sea_Class170008] of  Variable
+
+	(title "?producer"))
+
+([Sea_Class170009] of  Attribute
+
+	(title "DROPS"))
+
+([Sea_Class170010] of  Variable
+
+	(title "?drop-origin"))
+
+([Sea_Class170011] of  Attribute
+
+	(title "DROP-EXPANDERS"))
+
+([Sea_Class170012] of  Variable
+
+	(title "?drop-expander-origin"))
 
 ([Sea_Class18] of  Context
 
@@ -1603,7 +1738,6 @@
 
 ([Sea_Class180022] of  Compute
 
-	(computation [Sea_Class180023])
 	(id "s1.Prepa2071")
 	(next_actions [Sea_Class111])
 	(parent "s1.Simpl2066")
@@ -1611,14 +1745,6 @@
 	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Light Spill to Ship"))
-
-([Sea_Class180023] of  MoveSpillToObject
-
-	(%3Fra-onoff [Sea_Class111])
-	(%3Fship [Sea_Class235])
-	(%3Fspill [Sea_Class180018])
-	(%3Fspill-ra [Sea_Class180024])
-	(title "s1.Light Spill Preparation"))
 
 ([Sea_Class180024] of  DropRepeatAction
 
@@ -1798,6 +1924,104 @@
 	(next_actions [Sea_Class191])
 	(object [Sea_Class236])
 	(title "ru0.SE to Original Position"))
+
+([Sea_Class190000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Sea_Class110000])
+	(%3ACREATION-TIMESTAMP "2017.11.06 19:07:56.350 MSK")
+	(%3ACREATOR "ru"))
+
+([Sea_Class190001] of  Variable
+
+	(title "?drop"))
+
+([Sea_Class190002] of  UseResource
+
+	(id "ds.Take_10254")
+	(next_actions [Sea_Class190004])
+	(object [ScenarioN_Class570000])
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(resource [Sea_Class170011])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Take Drop Expander")
+	(variable [Sea_Class190003]))
+
+([Sea_Class190003] of  Variable
+
+	(title "?drop-expander"))
+
+([Sea_Class190004] of  PutOnPlace
+
+	(id "ds.Drop_10255")
+	(next_actions [Sea_Class170007])
+	(object [Sea_Class190001])
+	(observer [ScenarioN_Class570000])
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Drop on Protagonist"))
+
+([Sea_Class190005] of  RepeatActionOnOff
+
+	(flag TRUE)
+	(id "ds.Start10261")
+	(next_actions [Sea_Class210018])
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(repeat-action [Sea_Class190003])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Start Drop Expander"))
+
+([Sea_Class190006] of  ObAttribute
+
+	(attribute [Sea_Class170009])
+	(object [ScenarioN_Class570000])
+	(relation empty)
+	(title "ds.Drops Empty"))
+
+([Sea_Class190007] of  Context
+
+	(pairs
+		[Sea_Class190008]
+		[Sea_Class190009]
+		[Sea_Class190011]
+		[Sea_Class210016])
+	(title "ds.Ctx"))
+
+([Sea_Class190008] of  ObjectPair
+
+	(object [Sea_Class30000])
+	(title "ds.p1")
+	(variable [Sea_Class170010]))
+
+([Sea_Class190009] of  ObjectPair
+
+	(object [Sea_Class190010])
+	(title "ds.p2")
+	(variable [Sea_Class170012]))
+
+([Sea_Class190010] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "ds.Drop1 Expander")
+	(lifetime 240)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class30000]))
+
+([Sea_Class190011] of  ValuePair
+
+	(title "ds.p3")
+	(value "4")
+	(variable [Sea_Class190012]))
+
+([Sea_Class190012] of  Variable
+
+	(title "?drops-number"))
 
 ([Sea_Class191] of  GoRoute
 
@@ -2393,6 +2617,36 @@
 	(status "START")
 	(text "Exxon goes to Sea")
 	(title "Goes to Sea Message"))
+
+([Sea_Class210016] of  ValuePair
+
+	(title "ds.p4")
+	(value "20 min")
+	(variable [Sea_Class210017]))
+
+([Sea_Class210017] of  Variable
+
+	(title "?interval"))
+
+([Sea_Class210018] of  Delay
+
+	(delay "?interval")
+	(id "ds.Inter10262")
+	(parent "ds.One_D10252")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp10212")
+	(status "START")
+	(title "ds.Interval between Drops"))
+
+([Sea_Class210035] of  CloFuncall
+
+	(source "(ru.rules/f 29)"))
+
+([Sea_Class210044] of  SpillToSpiller
+
+	(%3Fspill [Sea_Class190001])
+	(%3Fspill-ra [Sea_Class190003])
+	(title "ds.Comp Drop to Drop Expander"))
 
 ([Sea_Class211] of  PutObAttributes
 
@@ -3851,18 +4105,6 @@
 
 	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
 
-([Sea_Class340032] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs2\"))"))
-
-([Sea_Class340033] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs3\"))"))
-
-([Sea_Class340034] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"RadioEmergency\") (ru.igis.omtab.OMT/getMapOb \"Bs4\"))"))
-
 ([Sea_Class341] of  ObjectPair
 
 	(object [Sea_Class240])
@@ -4596,3 +4838,8 @@
 	(run "s1.Task_2101")
 	(status "START")
 	(title "s1.CZ to Damaged Sip1"))
+
+([SpillToSpiller] of  ComputationClass
+
+	(namespace [Sea_Class160013])
+	(source "(ssv (ins ?spill-ra) \"poly\" (ins ?spill))"))

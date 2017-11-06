@@ -1,4 +1,4 @@
-; Sun Nov 05 22:35:49 MSK 2017
+; Mon Nov 06 23:30:26 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1795,58 +1795,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Shot
-	(is-a Action)
-	(role concrete)
-	(single-slot bearing
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot radius
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot range
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot finish
-;+		(type ANY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot target
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot number
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot latitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass GiveAdvice
 	(is-a Action)
 	(role abstract)
@@ -1925,34 +1873,6 @@
 ;+		(allowed-classes %3ATHING)
 		(create-accessor read-write)))
 
-(defclass ShotOnRoute
-	(is-a Action)
-	(role concrete)
-	(single-slot radius
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot target
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot route
-		(type INSTANCE)
-;+		(allowed-classes Route OMTPoly Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass ObjectTask
 	(is-a Action)
 	(role concrete)
@@ -1992,24 +1912,6 @@
 	(multislot objects
 		(type INSTANCE)
 ;+		(allowed-classes NavOb Variable)
-		(create-accessor read-write)))
-
-(defclass LoadResource
-	(is-a Action)
-	(role concrete)
-	(single-slot resource
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Intercept
@@ -2143,25 +2045,6 @@
 	(single-slot polygon
 		(type INSTANCE)
 ;+		(allowed-classes OMTPoly Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass UseResource
-	(is-a Action)
-	(role concrete)
-	(single-slot variable
-		(type INSTANCE)
-;+		(allowed-classes Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot resource
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -2362,8 +2245,31 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass MultiplyResource
+(defclass Resource
 	(is-a Action)
+	(role abstract))
+
+(defclass UseResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot resource
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MultiplyResource
+	(is-a Resource)
 	(role concrete)
 	(single-slot resource
 		(type INSTANCE)
@@ -2375,18 +2281,45 @@
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot seed
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass LoadResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot resource
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DeleteResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
