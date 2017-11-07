@@ -1,4 +1,4 @@
-; Mon Nov 06 23:30:26 MSK 2017
+; Tue Nov 07 21:18:49 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -121,7 +121,7 @@
 		(create-accessor read-write))
 	(single-slot relation
 		(type SYMBOL)
-		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted)
 		(default %3D)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -2268,7 +2268,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass MultiplyResource
+(defclass LoadResource
 	(is-a Resource)
 	(role concrete)
 	(single-slot resource
@@ -2280,6 +2280,10 @@
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
 		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
@@ -2296,7 +2300,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass LoadResource
+(defclass DeleteResource
 	(is-a Resource)
 	(role concrete)
 	(single-slot resource
@@ -2304,22 +2308,9 @@
 ;+		(allowed-classes Attribute)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass DeleteResource
-	(is-a Resource)
-	(role concrete)
-	(single-slot variable
-		(type INSTANCE)
-;+		(allowed-classes Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -2802,7 +2793,7 @@
 		(create-accessor read-write))
 	(single-slot relation
 		(type SYMBOL)
-		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted)
 		(default %3D)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

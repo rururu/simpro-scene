@@ -1,4 +1,4 @@
-; Mon Nov 06 23:30:26 MSK 2017
+; Tue Nov 07 21:18:49 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -208,10 +208,6 @@
 	(rules
 		[ScenarioN_Class580002]
 		[ScenarioN_Class580001]))
-
-([MultiplyResource] of  ActionClass
-
-	(rules [Scenario_Class90003]))
 
 ([ObAttribute] of  EventClass
 
@@ -443,7 +439,6 @@
 		[ScenarioN_Class700000]
 		[ScenarioN_Class700001]
 		[ScenarioN_Class690000]
-		[Scenario_Class90003]
 		[Scenario_Class90000])
 	(templates
 		[Action]
@@ -495,7 +490,6 @@
 		[StopRoute]
 		[Scenario]
 		[Task]
-		[MultiplyResource]
 		[DeleteResource])
 	(title "ActionExecutor"))
 
@@ -904,7 +898,7 @@
 
 ([Scenario_Class230002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        \"=\" (= avl vvl)\n        \"!=\" (not= avl vvl)\n        \">\" (> avl vvl)\n        \"<\" (< avl vvl)\n        \">=\" (>= avl vvl)\n        \"<=\" (<= avl vvl)\n        \"starts-with\" (.startsWith (or avl \"\") (str vvl))\n        \"ends-with\" (.endsWith (or avl \"\") (str vvl))\n        \"empty\" (empty? avl)\n        false))\n    false))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        \"=\" (= avl vvl)\n        \"!=\" (not= avl vvl)\n        \">\" (> avl vvl)\n        \"<\" (< avl vvl)\n        \">=\" (>= avl vvl)\n        \"<=\" (<= avl vvl)\n        \"starts-with\" (.startsWith (or avl \"\") (str vvl))\n        \"ends-with\" (.endsWith (or avl \"\") (str vvl))\n        \"empty\" (empty? avl)\n        \"resource-exhausted\" (>= (first avl) (count (rest avl)))\n        false))\n    false))")
 	(title "ob-attribute [atr ?obj rel ?val p r]"))
 
 ([Scenario_Class230004] of  CloFunction
@@ -1185,29 +1179,16 @@
 	(source "(doseq [k (.keySet hm)]\n  (.put hm k (vv (.get hm k) p r)))")
 	(title "hm-varvals-to-vals [hm p r]"))
 
-([Scenario_Class300004] of  CloFuncall
+([Scenario_Class300002] of  DeleteResource
 
-	(source "(ru.igis.omtab.OMT/getMapOb \"ship1\")"))
+	(object [igis_Class10000])
+	(resource [Scenario_Class300003])
+	(status "START")
+	(title "test"))
 
-([Scenario_Class300005] of  CloFuncall
+([Scenario_Class300003] of  Attribute
 
-	(source "(.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))"))
-
-([Scenario_Class300006] of  CloFuncall
-
-	(source "((.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\")) \"POLYS\")"))
-
-([Scenario_Class300007] of  CloFuncall
-
-	(source "((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\")"))
-
-([Scenario_Class300008] of  CloFuncall
-
-	(source "(type ((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\"))"))
-
-([Scenario_Class300009] of  CloFuncall
-
-	(source "(count ((into {} (.getAttributes (ru.igis.omtab.OMT/getMapOb \"ship1\"))) \"POLYS\"))"))
+	(title "RES"))
 
 ([Scenario_Class30005] of  CloFunction
 
@@ -1220,6 +1201,10 @@
 	(rhs "(println \"Action started:\" ?tit \"Break\")\n(let [act (a/vv ?act ?pro ?run)\n       tks (a/vv ?tks ?pro ?run)]\n  (if (and (some? act) (some? tks))\n    (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario [act tks])\n	\"Task\" (a/break-task [act tks])\n	(a/break-action [act tks]))\n      (retract ?brk)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n    (modify ?brk status \"FAILED\")))")
 	(salience 0)
 	(title "a:Break"))
+
+([Scenario_Class310008] of  Variable
+
+	(title "V1"))
 
 ([Scenario_Class320000] of  CloFunction
 
@@ -1608,17 +1593,10 @@
 
 ([Scenario_Class90000] of  Rule
 
-	(lhs "?dr (DeleteResource status \"START\"\n	title ?tit\n	variable ?var\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(if-let [ins (a/vv ?var ?pro ?run)]\n  (protege.core/delin ins))\n(retract ?dr)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(lhs "?dr (DeleteResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n       atr (protege.core/sv ?res \"title\")\n       rr (.getAttribute mo atr)]\n  (if (seq rr)\n    (do (doseq [ins (rest rr)]\n            (protege.core/delin ins))\n        (.removeAttribute mo atr)\n        (retract ?dr)\n        (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?dr status \"FAILED\")))")
 	(salience 0)
 	(title "a:DeleteResource"))
-
-([Scenario_Class90003] of  Rule
-
-	(lhs "?mr (MultiplyResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	seed ?sed\n                        number ?num\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"MultiplyResource\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n       sed (a/vv ?sed ?pro ?run)\n       num (a/vv ?num ?pro ?run)]\n  (if (and mo sed num)\n    (let [nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n           nam (protege.core/sv sed nms)\n           rng (range 1 (inc (read-string num)))\n           cc (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	          (if (protege.core/is? ?ren)\n	          (  protege.core/ssv c nms (str nam i))) c))]\n      (.putAttribute mo (protege.core/sv ?res \"title\") (vec cc))\n      (retract ?mr)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?mr status \"FAILED\")))")
-	(salience 0)
-	(title "a:MultiplyResource"))
 
 ([Scenario_Class90005] of  Rule
 
@@ -1896,8 +1874,8 @@
 
 ([ScenarioN_Class170002] of  Rule
 
-	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"LoadResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (do (.putAttribute mo (protege.core/sv ?res \"title\") ?mos)\n    (retract ?lr)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?lr status \"FAILED\"))")
+	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	seed ?sed\n                        number ?num\n	rename ?ren\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"LoadResource\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n       sed (a/vv ?sed ?pro ?run)\n       num (a/vv ?num ?pro ?run)\n       rr (and mo\n            (or (seq ?mos) \n               (and sed num\n                 (let [nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n                        nam (protege.core/sv sed nms)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	              (if (protege.core/is? ?ren)\n	                (protege.core/ssv c nms (str nam i))) \n                                      c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?lr status \"FAILED\")))")
 	(salience 0)
 	(title "a:LoadResource"))
 
@@ -2053,7 +2031,7 @@
 ([ScenarioN_Class250001] of  Rule
 
 	(lhs "?ur (UseResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	variable ?var\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"UseResource\")\n(if-let [mo (a/mapob-vv ?obj ?pro ?run)]\n  (let [atr (protege.core/sv ?res \"title\")\n        res (.getAttribute mo atr)]\n    (a/pvv ?var (first res) ?pro ?run)\n    (.putAttribute mo atr (rest res))\n    (retract ?ur)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n  (modify ?ur status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"UseResource\")\n(let [mo (a/mapob-vv ?obj ?pro ?run)\n       atr (protege.core/sv ?res \"title\")\n       [idx & rr] (.getAttribute mo atr)]\n  (if (and mo atr idx rr)\n    (do (if (< idx (count rr))\n            (do (a/pvv ?var (nth rr idx) ?pro ?run)\n              (.putAttribute mo atr (vec (cons (inc idx) rr))))\n            (a/pvv ?var nil ?pro ?run))\n      (retract ?ur)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?ur status \"FAILED\")))")
 	(salience 0)
 	(title "a:UseResource"))
 

@@ -1,4 +1,4 @@
-; Mon Nov 06 22:19:01 MSK 2017
+; Tue Nov 07 22:59:04 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -311,10 +311,10 @@
 	(context [Sea_Class190007])
 	(final_tasks [Sea_Class170004])
 	(finish_type AND)
-	(id "ds.Dropp10212")
+	(id "ds.Dropp2062")
 	(initial_tasks [Sea_Class130001])
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(scenario_scheme
 		[Sea_Class130001]
 		[Sea_Class130002]
@@ -745,12 +745,12 @@
 
 	(final_actions [Sea_Class170006])
 	(finish_type AND)
-	(id "ds.Creat10213")
+	(id "ds.Creat2063")
 	(initial_actions [Sea_Class170005])
 	(next_tasks [Sea_Class130002])
-	(parent "ds.Dropp10212")
+	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(task_scheme
 		[Sea_Class170005]
@@ -761,12 +761,12 @@
 
 	(final_actions [Sea_Class210018])
 	(finish_type AND)
-	(id "ds.One_D10252")
+	(id "ds.One_D2102")
 	(initial_actions [Sea_Class170000])
 	(next_tasks [Sea_Class170003])
-	(parent "ds.Dropp10212")
+	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(task_scheme
 		[Sea_Class170000]
@@ -1458,13 +1458,13 @@
 
 ([Sea_Class170000] of  UseResource
 
-	(id "ds.Take_10253")
+	(id "ds.Take_2103")
 	(next_actions [Sea_Class190002])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D10252")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170009])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Take Drop")
 	(variable [Sea_Class190001]))
@@ -1484,10 +1484,10 @@
 ([Sea_Class170003] of  EventDecision
 
 	(events [Sea_Class190006])
-	(id "ds.Drops10263")
-	(parent "ds.Dropp10212")
+	(id "ds.Drops2113")
+	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Drops Issued?")
 	(variants
@@ -1496,39 +1496,45 @@
 
 ([Sea_Class170004] of  Task
 
+	(final_actions [Sea_Class200004])
 	(finish_type AND)
-	(id "ds.End10264")
-	(parent "ds.Dropp10212")
+	(id "ds.End2114")
+	(initial_actions [Sea_Class200002])
+	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
+	(task_scheme
+		[Sea_Class200002]
+		[Sea_Class200003]
+		[Sea_Class200004])
 	(title "ds.End"))
 
-([Sea_Class170005] of  MultiplyResource
+([Sea_Class170005] of  LoadResource
 
-	(id "ds.Creat10214")
+	(id "ds.Creat2064")
 	(next_actions [Sea_Class170006])
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat10213")
+	(parent "ds.Creat2063")
 	(protagonist [Sea_Class344])
 	(rename TRUE)
 	(resource [Sea_Class170009])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(seed [Sea_Class170010])
 	(status "START")
 	(title "ds.Create Drops"))
 
-([Sea_Class170006] of  MultiplyResource
+([Sea_Class170006] of  LoadResource
 
-	(id "ds.Creat10215")
+	(id "ds.Creat2065")
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat10213")
+	(parent "ds.Creat2063")
 	(protagonist [Sea_Class344])
 	(rename TRUE)
 	(resource [Sea_Class170011])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(seed [Sea_Class170012])
 	(status "START")
 	(title "ds.Create Drop Expanders"))
@@ -1536,11 +1542,11 @@
 ([Sea_Class170007] of  Compute
 
 	(computation [Sea_Class210044])
-	(id "ds.Drop_10256")
+	(id "ds.Drop_2106")
 	(next_actions [Sea_Class190005])
-	(parent "ds.One_D10252")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Drop to Drop Expander"))
 
@@ -1937,13 +1943,13 @@
 
 ([Sea_Class190002] of  UseResource
 
-	(id "ds.Take_10254")
+	(id "ds.Take_2104")
 	(next_actions [Sea_Class190004])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D10252")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170011])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Take Drop Expander")
 	(variable [Sea_Class190003]))
@@ -1954,25 +1960,25 @@
 
 ([Sea_Class190004] of  PutOnPlace
 
-	(id "ds.Drop_10255")
+	(id "ds.Drop_2105")
 	(next_actions [Sea_Class170007])
 	(object [Sea_Class190001])
 	(observer [ScenarioN_Class570000])
-	(parent "ds.One_D10252")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Drop on Protagonist"))
 
 ([Sea_Class190005] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start10261")
+	(id "ds.Start2111")
 	(next_actions [Sea_Class210018])
-	(parent "ds.One_D10252")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
 	(repeat-action [Sea_Class190003])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Start Drop Expander"))
 
@@ -1980,8 +1986,8 @@
 
 	(attribute [Sea_Class170009])
 	(object [ScenarioN_Class570000])
-	(relation empty)
-	(title "ds.Drops Empty"))
+	(relation resource-exhausted)
+	(title "ds.Drops Exhausted"))
 
 ([Sea_Class190007] of  Context
 
@@ -1989,7 +1995,8 @@
 		[Sea_Class190008]
 		[Sea_Class190009]
 		[Sea_Class190011]
-		[Sea_Class210016])
+		[Sea_Class210016]
+		[Sea_Class200000])
 	(title "ds.Ctx"))
 
 ([Sea_Class190008] of  ObjectPair
@@ -2075,6 +2082,50 @@
 	(scenario_scheme [Sea_Class130039])
 	(status "START")
 	(title "s1.Simple Scenario"))
+
+([Sea_Class200000] of  ValuePair
+
+	(title "ds.p5")
+	(value "6 hrs")
+	(variable [Sea_Class200001]))
+
+([Sea_Class200001] of  Variable
+
+	(title "?after-time"))
+
+([Sea_Class200002] of  Delay
+
+	(delay "?after-time")
+	(id "ds.Last_2115")
+	(next_actions [Sea_Class200003])
+	(parent "ds.End2114")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp2062")
+	(status "START")
+	(title "ds.Last Drop Lifetime"))
+
+([Sea_Class200003] of  DeleteResource
+
+	(id "ds.Delet4140")
+	(next_actions [Sea_Class200004])
+	(object [ScenarioN_Class570000])
+	(parent "ds.End4138")
+	(protagonist [Sea_Class344])
+	(resource [Sea_Class170009])
+	(run "ds.Dropp4086")
+	(status "START")
+	(title "ds.Delete Generated Drops"))
+
+([Sea_Class200004] of  DeleteResource
+
+	(id "ds.Delet4141")
+	(object [ScenarioN_Class570000])
+	(parent "ds.End4138")
+	(protagonist [Sea_Class344])
+	(resource [Sea_Class170011])
+	(run "ds.Dropp4086")
+	(status "START")
+	(title "ds.Delete Generated Drop Expanders"))
 
 ([Sea_Class20002] of  Scenario
 
@@ -2631,10 +2682,10 @@
 ([Sea_Class210018] of  Delay
 
 	(delay "?interval")
-	(id "ds.Inter10262")
-	(parent "ds.One_D10252")
+	(id "ds.Inter2112")
+	(parent "ds.One_D2102")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp10212")
+	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Interval between Drops"))
 
@@ -3136,6 +3187,19 @@
 		"60 19.64 28 42.87")
 	(title "c1.To Terminal Primorsk"))
 
+([Sea_Class250000] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s11")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 6.0)
+	(speed 4.0))
+
 ([Sea_Class250001] of  Table2
 
 	(column1
@@ -3225,6 +3289,85 @@
 	(object [Sea_Class346])
 	(title "Pr1")
 	(variable [Sea_Class235]))
+
+([Sea_Class260001] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s12")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 6.0)
+	(speed 4.0))
+
+([Sea_Class260002] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s13")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 6.0)
+	(speed 4.0))
+
+([Sea_Class260003] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s14")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 6.0)
+	(speed 4.0))
+
+([Sea_Class260004] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "ds.Drop1 Expander1")
+	(lifetime 240)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class250000]))
+
+([Sea_Class260005] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "ds.Drop1 Expander2")
+	(lifetime 240)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class260001]))
+
+([Sea_Class260006] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "ds.Drop1 Expander3")
+	(lifetime 240)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class260002]))
+
+([Sea_Class260007] of  SpillRepeatAction
+
+	(interval MINUTE)
+	(label "ds.Drop1 Expander4")
+	(lifetime 240)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class260003]))
+
+([Sea_Class260008] of  CloFuncall
+
+	(source "(ru.rules/f 194)"))
 
 ([Sea_Class261] of  SpillRepeatAction
 

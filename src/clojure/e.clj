@@ -96,6 +96,7 @@
         "starts-with" (.startsWith (or avl "") (str vvl))
         "ends-with" (.endsWith (or avl "") (str vvl))
         "empty" (empty? avl)
+        "resource-exhausted" (>= (first avl) (count (rest avl)))
         false))
     false)))
 
