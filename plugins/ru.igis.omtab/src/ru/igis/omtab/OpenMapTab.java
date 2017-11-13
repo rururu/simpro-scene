@@ -194,7 +194,7 @@ public class OpenMapTab extends AbstractTabWidget {
         return retval;
     }
     /**
-     * Return this object
+     * @return this object
      */    
     public static OpenMapTab getOpenMapTab(){
         return openMapTab;
@@ -210,6 +210,7 @@ public class OpenMapTab extends AbstractTabWidget {
      * Return Instance having annotation (Instance Notes)
      * @param inss - collection of instances to choose from, if null returns first instance with given annotation text
      * @param text - annotation text for search, if null returns first with any annotation
+     * @return anntotated Instance if found
      */    
 	public static Instance findAnnotated(Collection<Instance> inss, String text)
 	{
@@ -231,7 +232,7 @@ public class OpenMapTab extends AbstractTabWidget {
 	}
 
     /**
-     * Return properties loaded from Knowledge Base during initialization
+     * @return properties loaded from Knowledge Base during initialization
      */    
 	public static Properties getProperties() {
 		return properties;
@@ -279,7 +280,7 @@ public class OpenMapTab extends AbstractTabWidget {
         return null;
     }
 	/**
-	 * @returns Returns current KnowledgeBase.
+	 * @return Returns current KnowledgeBase.
 	 */
     public static KnowledgeBase getKb() {
 		return kb;

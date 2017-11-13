@@ -33,6 +33,7 @@ public class Bounds {
      * Create Bounds and load OMTPolys from corresponding slots.
      * Get OMTPolys and set arrays: 
      * included and excluded
+     * @param instance
      */
 	public Bounds(Instance instance){
 		Collection<?> inss = instance.getOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_INCLUDED));
@@ -59,6 +60,7 @@ public class Bounds {
      * Check if point fulfill restrictions of Bounds.
      * @param lat - latitude of point in degrees 
      * @param lon - longitude of point in degrees 
+     * @return true if point is in Bounds
      */
 	public boolean inBounds(double lat, double lon){
 		double lat1 = ProjMath.radToDeg(lat);

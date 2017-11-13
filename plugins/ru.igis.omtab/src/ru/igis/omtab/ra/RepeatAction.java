@@ -78,7 +78,9 @@ public abstract class RepeatAction implements ActionListener {
     public RepeatAction() {
     }
 	
-    /** Creates a new instance of ProtegeRepeatAction */
+    /** Creates a new instance of ProtegeRepeatAction
+     * @param instance -
+     *  */
     public RepeatAction(Instance instance) {
     	this.instance = instance;
     	KnowledgeBase kb =instance.getKnowledgeBase();
@@ -95,6 +97,7 @@ public abstract class RepeatAction implements ActionListener {
     
     /**
      * Starts execution of repeating action
+     * @param timer -
      */
     public void start(Timer timer) {
     	lasttime = Clock.getCurrentTime();
@@ -128,6 +131,7 @@ public abstract class RepeatAction implements ActionListener {
 
     /**
      * Stops the execution of repeating action 
+     * @param timer -
      */
     public void stop(Timer timer) {
     	timer.removeActionListener(this);

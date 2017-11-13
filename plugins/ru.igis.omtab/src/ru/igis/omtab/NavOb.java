@@ -15,7 +15,6 @@
 
 package ru.igis.omtab;
 
-import java.awt.Color;
 import java.util.*;
 
 import com.bbn.openmap.proj.*;
@@ -55,8 +54,6 @@ public class NavOb extends OMTRaster {
     private int lastTurnAlt;
     private NavObFrame navObFrame;
     private Collection<Tow> tows;
-    private Collection<Link> links;
-    private int linkNumber = 0;
     OMScalingIcon omsi;
     
     // Before the last turn parameters
@@ -93,6 +90,7 @@ public class NavOb extends OMTRaster {
      * @param type -
      * @param latitude -
      * @param longitude -
+     * @param altitude -
      * @param course -
      * @param speed -
      * @param url - path to Navigating Object Image Icon file
@@ -212,7 +210,7 @@ public class NavOb extends OMTRaster {
      * "deg min"
      * @param dmlat - Latitude as "deg min"
      * @param dmlon - Longitude as "deg min"
-     * @throws Exception 
+     * @throws Exception -
      */
     public void setLocation(String dmlat,String dmlon) throws Exception{
     	super.setLocation(dmlat,dmlon);
@@ -241,7 +239,7 @@ public class NavOb extends OMTRaster {
             if(tows!=null)
                 for(Iterator<Tow> i=tows.iterator();i.hasNext();){
                     Tow tow = i.next();
-                    tow.setCourse(deg);
+                    tow.turn(deg, getSpeed(), lat, lon);
                 }
             OMT.fireMOEvent(this, OMT.UPDATED);
         }
@@ -253,6 +251,11 @@ public class NavOb extends OMTRaster {
     public void setSpeed(double knots){
         speed = knots;
         updateNavObFrame();
+        if(tows!=null)
+            for(Iterator<Tow> i=tows.iterator();i.hasNext();){
+                Tow tow = i.next();
+                tow.turn(getCourse(), knots, lat, lon);
+            }
         OMT.fireMOEvent(this, OMT.UPDATED);
     }
     /**
@@ -367,20 +370,21 @@ public class NavOb extends OMTRaster {
             	double da = cm * Math.tan(tangage2*Pi180);
             	altitude = lastTurnAlt + (int) Math.round(da);
             }
-            if(tows!=null)
-                for(Iterator<Tow> i=tows.iterator();i.hasNext();){
-                    Tow tow = i.next();
-                    tow.tow(lat,lon);
-                }
+            // tow extended objects if speed > 0
+            if (speed2 > 0f)
+            	towExtended();
             updateNavObFrame();
         }
-        // tow objects if speed > 0 or links exist (linked objects may move)
-        if (tows != null && (speed2 > 0f || (links != null && !links.isEmpty()))) 
-            for(Iterator<Tow> i=tows.iterator();i.hasNext();){
-                Tow tow = i.next();
-                tow.tow(lat,lon);
-            }
     }
+    
+	protected void towExtended() {
+		if (tows!=null && !tows.isEmpty()) {
+			for (Iterator<Tow> i = tows.iterator(); i.hasNext();) {
+				Tow tow = i.next();
+				tow.towExtended(lat, lon);
+			}
+		}
+	}
     
     /**
      * Create NavObFrame for this object to control it
@@ -413,7 +417,6 @@ public class NavOb extends OMTRaster {
      * Setting main attributies of this object from slot values of
      * corresponding Protege Instance
      * @param instance - Protege Instance representing this Navigating Object
-     * @throws Exception -
      */    
     public void mapFromProtege(Instance instance) {
         fromSlotTYPE(instance);
@@ -467,7 +470,7 @@ public class NavOb extends OMTRaster {
     @SuppressWarnings("unchecked")
 	public void fromSlotTOW(Instance instance){
         Collection<Instance> towinss = instance.getOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_TOW));
-        if(towinss!=null){
+        if(!towinss.isEmpty()){
             tows = null;
             for(Iterator<Instance> i=towinss.iterator();i.hasNext();){
                 Instance tins = i.next();
@@ -482,13 +485,13 @@ public class NavOb extends OMTRaster {
                     addTow(tow);
                 }
             }
+            towExtended();
         }
     }
     /**
      * Returning Back to Protege changed attributies of this
      * Navigatin object
      * @param instance - Protege Instance describing this object
-     * @throws Exception -
      */    
     public void mapToProtege(Instance instance) {
 		super.mapToProtege(instance);
@@ -541,8 +544,7 @@ public class NavOb extends OMTRaster {
         if(tows==null)
             tows = Collections.synchronizedList(new ArrayList<Tow>());
         tows.add(tow);
-        tow.setCourse(getCourse());
-        tow.tow(lat,lon);
+        tow.turn(getCourse(), getSpeed(), lat, lon);
     }
     
     /**
@@ -611,14 +613,6 @@ public class NavOb extends OMTRaster {
         return tows;
     }
 
-    /**
-     * Return current links
-     * @return - Collection of current links
-     */    
-    public Collection<Link> getLinks() {
-		return links;
-	}
-
 	/**
      * Get Map Object on tow by this navob 
      * Both objects must be on a map
@@ -626,6 +620,7 @@ public class NavOb extends OMTRaster {
      * @param angle - tow angle
      * @param distance - tow distance
      * @param relative - if tow relative to this navov course
+     * @return true if success
      */    
     public boolean onTow(MapOb mo, double angle, double distance, boolean relative)
     {
@@ -640,71 +635,7 @@ public class NavOb extends OMTRaster {
     	else
     		return false;
     }
-    
-    private MultiLink mullk;
-
-    /**
-     * Link Map Object with this navob 
-     * Both objects must be on a map
-     * @param mo - Map Object 
-     * @param color - color of Link line in a form "AARRGGBB"
-     */    
-	public boolean linkMapOb(MapOb mo, String color)
-    {
-    	if(OMT.getMapOb(instance) != null && OMT.getMapOb(mo.instance) != null)
-			try {
-				Link link = Link.createLink(name+linkNumber++, getLatitudeDM(), getLongitudeDM(), color, mo.name);
-				link.pgid = pgid;
-				link.instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_PLAYGROUND_INDEX), ""+link.pgid);
-		        if(links==null)
-		        	links = Collections.synchronizedList(new ArrayList<Link>());
-				links.add(link);
-				OMT.addMapOb(link.instance);
-				onTow(link, 0f, 0f, false);
-				mo.addLinkToMe(link);
-				link.hideLabel();
-				mullk = new MultiLink(
-						this.getName()+"-"+mo.getName(),
-						new MapOb[]{this, mo},
-						Color.decode("0x"+color.substring(2)),
-						1);
-	            OMT.fireMOEvent(mullk, OMT.ADDED);
-				return true;
-			} catch (Exception e) {
-				System.out.println("Can't link "+name+" "+mo.name+" "+color);
-				e.printStackTrace();
-				return false;
-			}
-		else
-			return false;
-    }
-    
-    /**
-     * Link Map Object with this navob 
-     * @param mo - Map Object
-     */    
-    public synchronized void unlinkMapOb(MapOb mo)
-    {
-        if(tows!=null)
-            for(Iterator<Tow> i=tows.iterator();i.hasNext();){
-                Tow tow = i.next();
-                MapOb link = tow.getMapOb();
-                if(link instanceof Link)
-                {
-                    MapOb linked = ((Link)link).getMapOb();
-                    if(linked != null && linked.equals(mo)) {
-	            		mo.removeLinkToMe((Link) link);
-	               		OMT.removeMapOb(link.instance, true);
-	               		links.remove(link);
-	               		i.remove();
-	               		if(mullk!=null)
-	               			OMT.fireMOEvent(mullk, OMT.REMOVED);
-	               		return;
-               		}
-                }
-            }
-    }
-    
+       
     /**
      * Return type of this object
      * @return - String containing type
@@ -755,6 +686,7 @@ public class NavOb extends OMTRaster {
      * Check if point abaft the beam
      * @param lat - latitude of point in degrees
      * @param lon - longitude of point in degrees
+     * @return true if abaft
      */    
 	public boolean abaft(double lat, double lon)
 	{
@@ -766,6 +698,7 @@ public class NavOb extends OMTRaster {
     /**
      * Check if Map Object abaft the beam
      * @param mo - Map Object
+     * @return true if abaft
      */    
 	public boolean abaft(MapOb mo)
 	{
@@ -779,6 +712,7 @@ public class NavOb extends OMTRaster {
      * @param lat - latitude of point in degrees
      * @param lon - longitude of point in degrees
      * @param radius - radius in nautical miles
+     * @return true if near
      */    
 	public boolean near(double lat, double lon, double radius)
 	{
@@ -790,6 +724,7 @@ public class NavOb extends OMTRaster {
      * Check if Map Object near then radius
      * @param mo - Map Object
      * @param radius - radius in nautical miles
+     * @return true if near
      */    
 	public boolean near(MapOb mo, double radius)
 	{
@@ -797,23 +732,6 @@ public class NavOb extends OMTRaster {
 		return ( dist < radius );
 	}
 	
-	/**
-     * Check if Map Object linked to this NavOb
-     * @param mo - Map Object
-     */    
-	public synchronized boolean linked(MapOb mo)
-	{
-        if(links == null)
-        	return false;
-		for (Iterator<Link> iter = links.iterator(); iter.hasNext();) {
-			Link link = iter.next();
-			if(link.getMapOb().equals(mo))
-				return true;
-			
-		}
-		return false;
-	}
-
     /**
      * Method for altitude of this object
      * @return Altitude in meters

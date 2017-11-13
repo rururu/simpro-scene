@@ -15,13 +15,15 @@
 
 package ru.igis.omtab;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.*;
-import com.bbn.openmap.util.*;
+
 import com.bbn.openmap.omGraphics.*;
+import com.bbn.openmap.util.ColorFactory;
+
 import edu.stanford.smi.protege.model.*;
 /**
- * Class to represent some link between this Map Object and other Map Object,
+ * Class to represent some link between two MapObs,
  * tow rope, comunication link, pointig arrow and so on..
  * @author Ru
  */
@@ -32,9 +34,10 @@ public class Link extends MapOb {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private double[] points = new double[]{60f,30f,60f,30f};
-    private Instance moinst;
-    private MapOb mo;
+	private double[] points;
+    private Instance[] moinss;
+    private MapOb mo1;
+    private MapOb mo2;
 
     /** Creates a new instance of MapOb */
     public Link() {
@@ -48,103 +51,106 @@ public class Link extends MapOb {
     public Link(Instance instance) throws Exception {
         super(instance);
         mapFromProtege(instance);
-        coordFromProtege(instance);
     }
-    
+
+    /**
+     * Constructor of Link object from two MapObs
+     * @param mo1 - first MapOb
+     * @param mo2 - second MapOb
+     * @param lcolor - line color ("AARRGGBB") (optional)
+     * @param line - instance of Line (optional)
+     * @throws Exception -
+     */
+    public Link(String name, MapOb mo1, MapOb mo2, String lcolor, Instance line) throws Exception {
+        super();
+        putLocationMarker();
+        this.mo1 = mo1;
+        this.mo2 = mo2;
+        if(lcolor!=null){
+            Color lcol = ColorFactory.parseColor(lcolor);
+            ((OMLine)location).setLinePaint(lcol);
+        }
+        if(line != null)
+        	OMTPoly.setLineAttributies((OMLine)location, line);
+    	points = new double[4];
+    	setName(name);
+        updateLink();
+    }
+
     protected void putLocationMarker(){
         setLocationMarker(new OMLine());
         ((OMLine)location).setLineType(OMGraphicConstants.LINETYPE_GREATCIRCLE);
         ((OMLine)location).setRenderType(OMGraphicConstants.RENDERTYPE_LATLON);
     }
-    
+
     /**
      * Factory method for creating Link object from string parameters
      * @param label - name of Link object
-     * @param latitude - latitude in form "DD MM.M"
-     * @param longitude - longitude in form "DD MM.M"
      * @param lcolor - line color in form "AARRGGBB"
-     * @param molab - name of other Map Object
+     * @param line - instance of class Line
+     * @param mapob - collection of instances of class MapOb
      * @throws Exception -
      * @return - new Link Object
      */
     public static Link createLink(
-        String label,
-        String latitude,
-        String longitude,
-        String lcolor,
-        String molab
-    ) throws Exception {
-        Cls cls = OpenMapTab.kb.getCls(Ontology.C_LINK);
-        if(cls!=null){
-            Instance inst = OpenMapTab.kb.createInstance(null,cls);
-            if(inst!=null){
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LABEL),label);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LATITUDE),latitude);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
-                Cls mocls = OpenMapTab.kb.getCls(Ontology.C_MAPOB);
-                Collection<Instance> moiss = mocls.getInstances();
-                for(Iterator<Instance> i=moiss.iterator();i.hasNext();){
-                    Instance mois = (Instance)i.next();
-                    String moismk = (String)mois.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LABEL));
-                    if(moismk != null && moismk.equals(molab)){
-                        inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_MAPOB),mois);
-                        break;
-                    }
+            String label,
+            String lcolor,
+            Instance line,
+            Collection<Instance> mapob
+        ) throws Exception {
+            Cls cls = OpenMapTab.kb.getCls(Ontology.C_OMPOLY);
+            if(cls!=null){
+                Instance inst = OpenMapTab.kb.createInstance(null,cls);
+                if(inst!=null){
+                    inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LABEL),label);
+                    inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
+                    inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE),line);
+                    inst.setOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_MAPOB),mapob);
+                    return new Link(inst);
                 }
-                return new Link(inst);
             }
-        }
-        return null;
+            return null;
     }
 
     /**
      * Rewrite information from Protege Instance to this object.
      * @param instance - Protege Instance
      */
-    public void mapFromProtege(Instance instance) {
+    public void mapFromProtege(Instance instance){
         String lcolor = (String)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR));
         if(lcolor!=null){
             Color lcol = ColorFactory.parseColor(lcolor);
             ((OMLine)location).setLinePaint(lcol);
         }
-        moinst = (Instance)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_MAPOB));
-        if(moinst!=null){
-            updateLine();
+        Instance line = (Instance)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE));
+        if(line != null)
+        	OMTPoly.setLineAttributies((OMLine)location, line);
+    	@SuppressWarnings("unchecked")
+		Collection<Instance> mapob = instance.getOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_MAPOB));
+    	moinss = mapob.toArray(new DefaultInstance[mapob.size()]);
+    	points = new double[4];
+        if(moinss.length > 1){
+            updateLink();
         }
-        setRenderType(OMGraphicConstants.RENDERTYPE_LATLON);
     }
     
     /**
      * Method to update line if one of Map object moved
      */
-    public void updateLine(){
-    	if(pgid >= 0) {
-	        mo = OMT.playgrounds[pgid].getMapOb(moinst);
-	        if(mo!=null){
-	        	if(points==null)
-	        		points = new double[4];
-	            points[0] = lat;
-	            points[1] = lon;
-	            points[2] = mo.getLatitude();
-	            points[3] = mo.getLongitude();
-	            ((OMLine)location).setLL(points);
-	        }
-        }
-    }
-    
-    /**
-     * Standard Openmap method
-     * @param latitude - latitude in degrees
-     * @param longitude - longitude in degrees
-     */
-    public void setGraphicLocations(double latitude, double longitude){
-        updateLine();
-        label.setLat(latitude);
-        label.setLon(longitude);
-    }
-
-	public MapOb getMapOb() {
-		return mo;
+	public synchronized void updateLink() {
+		if (mo1 == null)
+			mo1 = OMT.getMapOb(moinss[0]);
+		if (mo2 == null)
+			mo2 = OMT.getMapOb(moinss[1]);
+		if (mo1 != null && mo2 != null) {
+			points[0] = mo1.getLatitude();
+			points[1] = mo1.getLongitude();
+			points[2] = mo2.getLatitude();
+			points[3] = mo2.getLongitude();
+			((OMLine) location).setLL(points);
+		} else {
+			OMT.removeMapOb(this.getInstance(), false);
+		}
 	}
+    
 }

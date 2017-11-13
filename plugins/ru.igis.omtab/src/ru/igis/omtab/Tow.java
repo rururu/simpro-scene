@@ -27,9 +27,9 @@ public class Tow {
     public static double Pim2 = Math.PI*2d;         
 
     MapOb mapOb;
-    double angl = 0f;
-    double dist = 0f;
-    double crs = 0f;
+    double angl = 0f; // rad
+    double dist = 0f; // rad
+    double crs = 0f; // rad
     double course_deg = 0f;
     boolean relative = true;
     Link link = null;
@@ -75,7 +75,7 @@ public class Tow {
     }
 
     /**
-     * Method of movement of towed object
+     * Method for towing to appropriate position
      * @param lat - latitude in degrees
      * @param lon - longitude in degrees
      */
@@ -92,8 +92,11 @@ public class Tow {
         } else {
         	mapOb.setLocation(Math.toDegrees(p[2]),Math.toDegrees(p[3]));
         }
-        if(link!=null)
-            link.updateLine();
+    }
+    
+    protected void towExtended(double lat,double lon){
+    	if(!(mapOb instanceof NavOb))
+    		tow(lat, lon);
     }
 
     /**
@@ -131,17 +134,21 @@ public class Tow {
     }
     
     /**
-     * Method to change rotation angle of towed object if it is relative
-     * @param deg - new rotation angle
+     * Method for turning towed object
+     * @param course - new course (int degrees)
+     * @parm speed - new speed (double knots)
+     * @parm lat - new latitude (double degrees)
+     * @parm lon - new longitude (double degrees)
      */
-    protected void setCourse(int deg){
-        if(relative){
-        	course_deg = deg;
-            crs = ProjMath.degToRad(deg);
-            if(mapOb instanceof NavOb)
-            	((NavOb) mapOb).setCourse(deg);
-            else if(mapOb instanceof OMTArc)
-            	((OMTArc) mapOb).setCourse(deg);
-        }
-    }
+	protected void turn(int course, double speed, double lat, double lon) {
+		course_deg = course;
+		crs = ProjMath.degToRad(course);
+		tow(lat, lon);
+		if (mapOb instanceof NavOb){
+			((NavOb) mapOb).setCourse(course);
+			((NavOb) mapOb).setSpeed(speed);
+		} else if (mapOb instanceof OMTArc) {
+			((OMTArc) mapOb).setCourse(course);
+		}
+	}
 }

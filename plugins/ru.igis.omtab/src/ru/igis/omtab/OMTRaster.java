@@ -94,7 +94,6 @@ public class OMTRaster extends MapOb {
      /**
      * Rewrite information from Protege Instance to this object.
      * @param instance - Protege Instance
-     * @throws Exception -
      */
     public void mapFromProtege(Instance instance) {
         fromSlotANGLE(instance);

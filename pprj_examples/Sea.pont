@@ -1,4 +1,4 @@
-; Wed Nov 08 22:42:47 MSK 2017
+; Mon Nov 13 22:03:03 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -51,19 +51,11 @@
 ;+		(allowed-classes RepeatActionOnOff Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot label2
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot globals
 ;+		(type ANY)
 		(create-accessor read-write))
 	(multislot then
 ;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot course2
-		(type INTEGER)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot when
 ;+		(type ANY)
@@ -85,45 +77,6 @@
 		(create-accessor read-write))
 	(multislot scripts
 ;+		(type ANY)
-		(create-accessor read-write)))
-
-(defclass Bearing1
-	(is-a Artefact)
-	(role concrete)
-	(single-slot bearing
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed2
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot course
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot label2
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot course2
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass SpillToSpiller

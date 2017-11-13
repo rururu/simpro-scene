@@ -237,7 +237,7 @@ public class Spill extends OMTSpline {
      * "deg min" and initialize its points to this new location
      * @param dmlat - Latitude as "deg min"
      * @param dmlon - Longitude as "deg min"
-     * @throws Exception 
+     * @throws Exception -
      */
     public void setLocation(String dmlat,String dmlon) throws Exception{
 		super.setLocation(dmlat,dmlon);

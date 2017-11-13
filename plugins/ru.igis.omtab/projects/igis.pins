@@ -1,4 +1,4 @@
-; Tue Oct 17 22:19:53 MSK 2017
+; Sun Nov 12 23:00:18 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -342,7 +342,26 @@
 	(source "file:plugins/ru.igis.omtab/src/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
 
+([igis_Class80000] of  Link
+
+	(label "link1")
+	(line [igis_Class90000])
+	(lineColor "FF0000FF")
+	(mapob
+		[igis_Class10000]
+		[igis_Class10001])
+	(playground-index 1))
+
 ([igis_Class9] of  Menu
 
 	(class "com.bbn.openmap.gui.LayersMenu")
 	(label "layersMenu"))
+
+([igis_Class90000] of  Line
+
+	(capDecoration BUTT)
+	(dashPattern "10 4")
+	(jointDecoration BEVEL)
+	(label "L1")
+	(lineType GREAT_CIRCLE)
+	(lineWidth "4"))

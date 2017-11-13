@@ -66,6 +66,8 @@ public class Playground extends MMLGraphicLoader {
             OMGraphic omg = (OMGraphic) it.next();
             if(omg instanceof NavOb)
             	((NavOb)omg).move(currentTime);
+            if(omg instanceof Link)
+            	((Link)omg).updateLink();;
             omg.generate(p);
         }
 
@@ -229,6 +231,7 @@ public class Playground extends MMLGraphicLoader {
      * Remove from Playground existing Map Object by Instance
      * @param inst - Instance of Map Object to remove
      * @param kbdelete Should corresponding Protege Instance be removed too
+     * @return removed MapOb
      */    
     public synchronized MapOb removeMapOb(Instance inst,boolean kbdelete){
     	MapOb mo = mapObsMap.get(inst);
@@ -246,7 +249,7 @@ public class Playground extends MMLGraphicLoader {
      */    
     public synchronized void removeMapOb(MapOb mo,boolean kbdelete){
         if(!(mo instanceof Link))
-        	clearLinksAndTows(mo);
+        	clearTows(mo);
     	mapObs.remove(mo);
     	mo.pgid = -1; // Mapob no longer belongs to any playground
         Instance inst = mo.getInstance();
@@ -255,21 +258,11 @@ public class Playground extends MMLGraphicLoader {
             OpenMapTab.kb.deleteInstance(inst);
     }
     
-    private void clearLinksAndTows(MapOb mo)
+    private void clearTows(MapOb mo)
     {
         mo.offTow();
         if(mo instanceof NavOb)
-        {
         	((NavOb)mo).clearTows();
-        	Collection<?> mapObLinks = ((NavOb)mo).getLinks();
-            if(mapObLinks != null)
-            	for (Iterator<?> iter = mapObLinks.iterator(); iter.hasNext();) 
-    				removeMapOb((MapOb) iter.next(), true);
-        }
-        Collection<?> linksToMapOb = mo.getLinksToMe();
-        if(linksToMapOb != null)
-        	for (Iterator<?> iter = linksToMapOb.iterator(); iter.hasNext();) 
-				removeMapOb((MapOb) iter.next(), true);
     }
 
     /**

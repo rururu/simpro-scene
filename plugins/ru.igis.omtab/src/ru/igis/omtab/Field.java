@@ -378,8 +378,8 @@ public class Field extends OMTRect {
      * @param la0 -Begin (leftmost) Longitude (radians)
      * @param dfi -Step along Latitude (radians)
      * @param dla -Step along Longitude (radians)
-     * -@return Array of points for new Location
-     * @return - array of data
+     * @param bounds - 
+     * @return Array of points for new Location
      */    
     public double[] moveLLPArray(
         double[] llp,double time,double[][] speed,double[][] course,int nfi,int nla,double fi0,double la0,double dfi,double dla, Bounds bounds){
@@ -406,6 +406,7 @@ public class Field extends OMTRect {
      * on one step along the time
      * @param llp - array of points
      * @param time - time in hours
+     * @param bounds -
      * @return - same array with new coordinates
      */
     public double[] moveLLPArray(double[] llp,double time,Bounds bounds){

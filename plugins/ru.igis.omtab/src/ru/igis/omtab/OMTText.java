@@ -49,6 +49,9 @@ public class OMTText extends MapOb {
     /**
      * Factory method for creating OMTPoint object from string parameters
      * @param label - name of OMTPoint object
+     * @param text -
+     * @param x -
+     * @param y -
      * @param latitude - latitude in form "DD MM.M"
      * @param longitude - longitude in form "DD MM.M"
      * @param tcolor - text color in form "AARRGGBB"
@@ -99,7 +102,6 @@ public class OMTText extends MapOb {
     /**
      * Rewrite information from Protege Instance to this object.
      * @param instance - Protege Instance
-     * @throws Exception 
      */
     public void mapFromProtege(Instance instance) {
         String text = (String)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TEXT));

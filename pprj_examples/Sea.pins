@@ -1,4 +1,4 @@
-; Wed Nov 08 22:42:47 MSK 2017
+; Mon Nov 13 22:03:03 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -88,11 +88,9 @@
 	(status "START")
 	(title "s1.SA to Damaged Ship2"))
 
-([Sea_Class10000] of  SpillRepeatAction
+([Sea_Class10000] of  CloFuncall
 
-	(interval SECOND)
-	(label "Brest Spill1")
-	(poly [Sea_Class30000]))
+	(source "(ru.igis.omtab.Util/createDrawnPolygons)"))
 
 ([Sea_Class100000] of  %3AINSTANCE-ANNOTATION
 
@@ -112,12 +110,6 @@
 	(radius 3.5)
 	(speed 0.0015))
 
-([Sea_Class100002] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "Light Spill1")
-	(poly [Sea_Class100001]))
-
 ([Sea_Class100004] of  Field
 )
 
@@ -135,24 +127,6 @@
 
 	(%3AANNOTATION-TEXT "Start Base")
 	(%3ACREATION-TIMESTAMP "2010.07.10 14:22:12.658 MSD"))
-
-([Sea_Class100020] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "Brest Spill2")
-	(poly [Sea_Class70001]))
-
-([Sea_Class100021] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "Brest Spill3")
-	(poly [Sea_Class80001]))
-
-([Sea_Class100022] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "Brest Spill4")
-	(poly [Sea_Class80002]))
 
 ([Sea_Class101] of  Position
 
@@ -320,12 +294,6 @@
 	(status "START")
 	(title "c1.Launch at Primorsk"))
 
-([Sea_Class110003] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "Light Spill2")
-	(poly [Sea_Class70000]))
-
 ([Sea_Class110012] of  Context
 
 	(pairs
@@ -411,7 +379,6 @@
 	(id "s1.Start2077")
 	(parent "s1.Simpl2066")
 	(protagonist [Sea_Class160021])
-	(repeat-action [Sea_Class180024])
 	(run "s1.Simpl2065")
 	(status "START")
 	(title "s1.Start Light Spill"))
@@ -731,7 +698,7 @@
 		[Sea_Class210018]
 		[Sea_Class190005])
 	(finish_type AND)
-	(id "ds.One_D2126")
+	(id "ds.One_D2124")
 	(initial_actions [Sea_Class170000])
 	(next_tasks [Sea_Class170003])
 	(parent "ds.Dropp2062")
@@ -982,7 +949,8 @@
 	(layers
 		[igis_Class40012]
 		[igis_Class1]
-		[igis_Class40011])
+		[igis_Class40011]
+		[igis_Class40010])
 	(Longitude "28.66")
 	(Scale "300000")
 	(startUpLayers
@@ -1310,19 +1278,6 @@
 	(source "(:use protege.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
 	(title "comp.sea"))
 
-([Sea_Class160016] of  DropRepeatAction
-
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(interval2 SECOND)
-	(label "ar.Repeat Drop Spill 1")
-	(lifetime 160)
-	(lifetime2 6400)
-	(period 12)
-	(period2 1)
-	(playground-index 2)
-	(spill [Sea_Class30000]))
-
 ([Sea_Class160017] of  Field
 
 	(csv_delimiter COMMA)
@@ -1431,12 +1386,12 @@
 
 ([Sea_Class170000] of  UseResource
 
-	(id "ds.Take_2127")
+	(id "ds.Take_2125")
 	(next_actions
 		[Sea_Class190002]
 		[Sea_Class330027])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170009])
 	(run "ds.Dropp2062")
@@ -1459,7 +1414,7 @@
 ([Sea_Class170003] of  EventDecision
 
 	(events [Sea_Class190006])
-	(id "ds.Drops2144")
+	(id "ds.Drops2142")
 	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
@@ -1471,9 +1426,12 @@
 
 ([Sea_Class170004] of  Task
 
-	(final_actions [Sea_Class200004])
+	(final_actions
+		[Sea_Class200003]
+		[Sea_Class200004]
+		[Sea_Class330012])
 	(finish_type AND)
-	(id "ds.End2145")
+	(id "ds.End2143")
 	(initial_actions [Sea_Class200002])
 	(parent "ds.Dropp2062")
 	(protagonist [Sea_Class344])
@@ -1482,7 +1440,8 @@
 	(task_scheme
 		[Sea_Class200002]
 		[Sea_Class200003]
-		[Sea_Class200004])
+		[Sea_Class200004]
+		[Sea_Class330012])
 	(title "ds.End"))
 
 ([Sea_Class170005] of  LoadResource
@@ -1519,9 +1478,9 @@
 ([Sea_Class170007] of  Compute
 
 	(computation [Sea_Class210044])
-	(id "ds.Drop_2138")
+	(id "ds.Drop_2136")
 	(next_actions [Sea_Class190005])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
 	(status "START")
@@ -1729,19 +1688,6 @@
 	(status "START")
 	(title "s1.Light Spill to Ship"))
 
-([Sea_Class180024] of  DropRepeatAction
-
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(interval2 SECOND)
-	(label "ar.Repeat Drop Spill 2")
-	(lifetime 64)
-	(lifetime2 3600)
-	(period 8)
-	(period2 1)
-	(playground-index 1)
-	(spill [Sea_Class180018]))
-
 ([Sea_Class180025] of  Delay
 
 	(delay "8 min")
@@ -1920,10 +1866,10 @@
 
 ([Sea_Class190002] of  UseResource
 
-	(id "ds.Take_2128")
+	(id "ds.Take_2126")
 	(next_actions [Sea_Class190004])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170011])
 	(run "ds.Dropp2062")
@@ -1937,11 +1883,11 @@
 
 ([Sea_Class190004] of  PutOnPlace
 
-	(id "ds.Drop_2137")
+	(id "ds.Drop_2135")
 	(next_actions [Sea_Class170007])
 	(object [Sea_Class190001])
 	(observer [ScenarioN_Class570000])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
 	(status "START")
@@ -1949,9 +1895,9 @@
 
 ([Sea_Class190005] of  RepeatActionOnOff
 
-	(flag FALSE)
-	(id "ds.Start2143")
-	(parent "ds.One_D2126")
+	(flag TRUE)
+	(id "ds.Start2141")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(repeat-action [Sea_Class190003])
 	(run "ds.Dropp2062")
@@ -1990,6 +1936,7 @@
 
 ([Sea_Class190010] of  SpillRepeatAction
 
+	(bounds [Sea_Class330013])
 	(interval MINUTE)
 	(label "ds.Drop1 Expander")
 	(lifetime 240)
@@ -2073,9 +2020,12 @@
 ([Sea_Class200002] of  Delay
 
 	(delay "?after-time")
-	(id "ds.Last_2146")
-	(next_actions [Sea_Class200003])
-	(parent "ds.End2145")
+	(id "ds.Last_2144")
+	(next_actions
+		[Sea_Class200003]
+		[Sea_Class330012]
+		[Sea_Class200004])
+	(parent "ds.End2143")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
 	(status "START")
@@ -2083,10 +2033,9 @@
 
 ([Sea_Class200003] of  DeleteResource
 
-	(id "ds.Delet2149")
-	(next_actions [Sea_Class200004])
+	(id "ds.Delet2145")
 	(object [ScenarioN_Class570000])
-	(parent "ds.End2145")
+	(parent "ds.End2143")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170009])
 	(run "ds.Dropp2062")
@@ -2095,14 +2044,68 @@
 
 ([Sea_Class200004] of  DeleteResource
 
-	(id "ds.Delet2150")
+	(id "ds.Delet2146")
 	(object [ScenarioN_Class570000])
-	(parent "ds.End2145")
+	(parent "ds.End2143")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170011])
 	(run "ds.Dropp2062")
 	(status "START")
 	(title "ds.Delete Generated Drop Expanders"))
+
+([Sea_Class20001] of  OMTPoly
+
+	(isPolygon TRUE)
+	(label "NearStirsudden")
+	(latitude "60 14.98")
+	(lineColor "FF00FF00")
+	(longitude "28 57.24")
+	(playground-index 1)
+	(points
+		"60 15.67 28 54.91"
+		"60 16.2 28 54.91"
+		"60 16.2 28 56.18"
+		"60 15.72 28 57.18"
+		"60 15.2 28 57.08"
+		"60 14.75 28 56.92"
+		"60 14.57 28 57.24"
+		"60 15.01 28 57.61"
+		"60 14.65 28 58.14"
+		"60 14.09 28 58.14"
+		"60 13.88 28 58.56"
+		"60 14.25 28 58.99"
+		"60 14.2 28 59.78"
+		"60 13.91 28 59.89"
+		"60 13.8 28 59.67"
+		"60 13.44 28 59.89"
+		"60 13.2 28 59.73"
+		"60 13.07 28 59.3"
+		"60 12.59 28 59.62"
+		"60 11.36 29 0.15"
+		"60 10.99 29 0.79"
+		"60 10.7 29 2.38"
+		"60 10.83 29 3.59"
+		"60 10.54 29 5.13"
+		"60 10.04 29 6.45"
+		"60 10.04 29 7.78"
+		"60 9.75 29 8.52"
+		"60 9.93 29 9.79"
+		"60 9.83 29 11.96"
+		"60 22.2 28 47.33"
+		"60 21.73 28 47.12"
+		"60 21.39 28 47.23"
+		"60 21.47 28 48.13"
+		"60 20.34 28 49.13"
+		"60 19.9 28 49.03"
+		"60 19.19 28 49.61"
+		"60 18.77 28 49.45"
+		"60 18.03 28 50.83"
+		"60 17.22 28 51.04"
+		"60 16.77 28 52.15"
+		"60 16.33 28 52.42"
+		"60 16.17 28 53.79"
+		"60 16.14 28 53.9")
+	(relative FALSE))
 
 ([Sea_Class20002] of  Scenario
 
@@ -2659,8 +2662,8 @@
 ([Sea_Class210018] of  Delay
 
 	(delay "?interval")
-	(id "ds.Inter2136")
-	(parent "ds.One_D2126")
+	(id "ds.Inter2134")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
 	(status "START")
@@ -3166,6 +3169,7 @@
 
 ([Sea_Class250000] of  OMTPolyOnFieldRepeatAction
 
+	(bounds [Sea_Class330013])
 	(field [Sea_Class160017])
 	(interval MINUTE)
 	(label "ds.Drop1 Deformer")
@@ -3230,12 +3234,6 @@
 		"60 7.92 28 58.91")
 	(title "ru0.Santa-Maria Route"))
 
-([Sea_Class257] of  DriftRepeatAction
-
-	(interval MINUTE)
-	(label "Heavy Drift")
-	(poly [Sea_Class241]))
-
 ([Sea_Class259] of  SpillRepeatAction
 
 	(interval SECOND)
@@ -3244,12 +3242,6 @@
 	(period 1)
 	(playground-index 1)
 	(poly [Sea_Class242]))
-
-([Sea_Class260] of  SpillRepeatAction
-
-	(interval MINUTE)
-	(label "Light Spill Spread")
-	(poly [Sea_Class248]))
 
 ([Sea_Class260000] of  ObjectPair
 
@@ -3761,12 +3753,6 @@
 	(title "buoy1 radiation")
 	(variable [Sea_Class262]))
 
-([Sea_Class315] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "BRad1")
-	(poly [Sea_Class313]))
-
 ([Sea_Class316] of  ObjectPair
 
 	(object [Sea_Class245])
@@ -3797,12 +3783,6 @@
 		[Sea_Class302]
 		[Sea_Class304])
 	(title "ru6.TC Start Context"))
-
-([Sea_Class320] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "BRad2")
-	(poly [Sea_Class326]))
 
 ([Sea_Class320000] of  %3AINSTANCE-ANNOTATION
 
@@ -3884,23 +3864,11 @@
 	(title "buoy3 radiation")
 	(variable [Sea_Class262]))
 
-([Sea_Class322] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "BRad3")
-	(poly [Sea_Class328]))
-
 ([Sea_Class323] of  ObjectPair
 
 	(object [Sea_Class180032])
 	(title "buoy4 radiation")
 	(variable [Sea_Class262]))
-
-([Sea_Class324] of  SpillRepeatAction
-
-	(interval SECOND)
-	(label "BRad4")
-	(poly [Sea_Class330]))
 
 ([Sea_Class325] of  ObjectPair
 
@@ -3959,6 +3927,134 @@
 	(radius 1.2)
 	(speed 10.0))
 
+([Sea_Class330000] of  OMTPoly
+
+	(isPolygon TRUE)
+	(label "BigBirchIsland")
+	(latitude "60 18.12")
+	(lineColor "FF00FF00")
+	(longitude "28 37.17")
+	(playground-index 1)
+	(points
+		"60 17.16 28 43.31"
+		"60 16.74 28 41.82"
+		"60 16.38 28 41.97"
+		"60 16.3 28 41.38"
+		"60 15.96 28 41.58"
+		"60 15.84 28 42.47"
+		"60 15.64 28 42.22"
+		"60 15.69 28 41.53"
+		"60 15.89 28 41.28"
+		"60 15.69 28 40.98"
+		"60 15.79 28 40.19"
+		"60 15.62 28 40.09"
+		"60 15.86 28 39.3"
+		"60 15.81 28 38.51"
+		"60 16.03 28 38.17"
+		"60 16.03 28 37.57"
+		"60 16.11 28 36.93"
+		"60 16.52 28 36.54"
+		"60 16.67 28 35.4"
+		"60 16.96 28 35.05"
+		"60 17.09 28 34.51"
+		"60 17.33 28 34.46"
+		"60 17.36 28 33.82"
+		"60 17.63 28 33.77"
+		"60 17.65 28 33.18"
+		"60 17.99 28 33.18"
+		"60 18.85 28 32.38"
+		"60 19.41 28 32.48"
+		"60 19.76 28 32.34"
+		"60 19.95 28 32.63"
+		"60 20.29 28 32.83"
+		"60 20.46 28 32.48"
+		"60 21.12 28 32.34"
+		"60 20.9 28 32.83"
+		"60 20.44 28 33.18"
+		"60 20.46 28 33.57"
+		"60 20.54 28 34.41"
+		"60 20.93 28 34.76"
+		"60 20.76 28 35"
+		"60 20.2 28 34.91"
+		"60 19.93 28 35.05"
+		"60 19.98 28 35.4"
+		"60 20.15 28 35.4"
+		"60 20.61 28 35.55"
+		"60 20.15 28 36.93"
+		"60 19.58 28 37.03"
+		"60 19.12 28 38.12"
+		"60 18.78 28 38.36"
+		"60 18.51 28 39.55"
+		"60 18.53 28 39.8"
+		"60 17.92 28 40.19"
+		"60 17.97 28 41.18"
+		"60 17.85 28 41.33"
+		"60 17.9 28 42.37"
+		"60 17.9 28 42.47")
+	(relative FALSE))
+
+([Sea_Class330002] of  OMTPoly
+
+	(isPolygon TRUE)
+	(label "Koporskaja Guba")
+	(latitude "59 52.51")
+	(lineColor "FF00FF00")
+	(longitude "28 56.95")
+	(playground-index 0)
+	(points
+		"59 44.66 28 26.6"
+		"59 47.79 28 26.31"
+		"59 49.88 28 28.98"
+		"59 50.92 28 32.93"
+		"59 50.03 28 33.72"
+		"59 48.59 28 40.24"
+		"59 47.44 28 41.63"
+		"59 46.3 28 44"
+		"59 46.95 28 46.77"
+		"59 48.09 28 47.26"
+		"59 47.54 28 48.15"
+		"59 46.9 28 48.54"
+		"59 47 28 50.62"
+		"59 47.89 28 52.2"
+		"59 48.29 28 52.1"
+		"59 48.44 28 54.38"
+		"59 48.19 28 55.07"
+		"59 49.43 28 59.91"
+		"59 51.27 29 2.09"
+		"59 51.91 29 3.86"
+		"59 53.4 29 3.96"
+		"59 53.8 29 3.17"
+		"59 54.64 28 59.42"
+		"59 55.29 29 2.68"
+		"59 56.18 29 3.67"
+		"59 57.41 29 3.47"
+		"59 57.81 29 4.56"
+		"59 57.91 29 6.04"
+		"59 58.26 29 7.52"
+		"59 58.9 29 7.32"
+		"59 59.29 29 8.11"
+		"59 59 29 8.41"
+		"59 59.1 29 11.57"
+		"59 58.9 29 12.07"
+		"59 59.29 29 12.96"
+		"59 59.64 29 12.36"
+		"59 58.95 29 15.13"
+		"59 58.85 29 19.97"
+		"59 58.16 29 25.11"
+		"59 46.15 29 25.11"
+		"59 44.46 28 26.9")
+	(relative FALSE))
+
+([Sea_Class330012] of  DeleteResource
+
+	(object [ScenarioN_Class570000])
+	(resource [Sea_Class330025])
+	(title "ds.Delete Generated Drop Deformers"))
+
+([Sea_Class330013] of  Bounds
+
+	(label "Between Primorsk and Sosnovyi Bor"))
+
 ([Sea_Class330024] of  LoadResource
 
 	(id "ds.Creat2066")
@@ -3983,10 +4079,10 @@
 
 ([Sea_Class330027] of  UseResource
 
-	(id "ds.Take_2129")
+	(id "ds.Take_2127")
 	(next_actions [Sea_Class330029])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class330025])
 	(run "ds.Dropp2062")
@@ -4001,9 +4097,9 @@
 ([Sea_Class330029] of  Compute
 
 	(computation [Sea_Class330030])
-	(id "ds.Drop_2130")
+	(id "ds.Drop_2128")
 	(next_actions [Sea_Class330031])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(run "ds.Dropp2062")
 	(status "START")
@@ -4018,9 +4114,9 @@
 ([Sea_Class330031] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start2135")
+	(id "ds.Start2133")
 	(next_actions [Sea_Class210018])
-	(parent "ds.One_D2126")
+	(parent "ds.One_D2124")
 	(protagonist [Sea_Class344])
 	(repeat-action [Sea_Class330028])
 	(run "ds.Dropp2062")
@@ -4688,7 +4784,6 @@
 	(id "s1.Start2086")
 	(parent "s1.Compl2058")
 	(protagonist [Sea_Class160021])
-	(repeat-action [Sea_Class160016])
 	(run "s1.Colli2020")
 	(status "START")
 	(title "s1.Start Heavy Spill"))

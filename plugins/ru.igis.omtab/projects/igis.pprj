@@ -1,4 +1,4 @@
-; Tue Oct 17 22:19:53 MSK 2017
+; Sun Nov 12 23:00:18 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[igis_ProjectKB_Class180072]
-		[igis_ProjectKB_Class180073]
-		[igis_ProjectKB_Class180074]
-		[igis_ProjectKB_Class180075]
-		[igis_ProjectKB_Class180076]
-		[igis_ProjectKB_Class180077]))
+		[igis_ProjectKB_Class140028]
+		[igis_ProjectKB_Class140029]
+		[igis_ProjectKB_Class140030]
+		[igis_ProjectKB_Class140031]
+		[igis_ProjectKB_Class140032]
+		[igis_ProjectKB_Class140033]))
 
 ([CLSES_TAB] of  Widget
 
@@ -645,7 +645,18 @@
 	(name "layout properties"))
 
 ([igis_ProjectKB_Class100007] of  Property_List
-)
+
+	(properties
+		[igis_ProjectKB_Class110008]
+		[igis_ProjectKB_Class110009]
+		[igis_ProjectKB_Class110011]
+		[igis_ProjectKB_Class110013]
+		[igis_ProjectKB_Class110017]
+		[igis_ProjectKB_Class120019]
+		[igis_ProjectKB_Class130030]
+		[igis_ProjectKB_Class130032]
+		[igis_ProjectKB_Class130034]
+		[igis_ProjectKB_Class130036]))
 
 ([igis_ProjectKB_Class100008] of  Widget
 
@@ -1243,56 +1254,80 @@
 	(x 0)
 	(y 180))
 
-([igis_ProjectKB_Class110008] of  Widget
+([igis_ProjectKB_Class110008] of  Property_List
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class110009])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
+	(name "layout properties")
+	(properties
+		[igis_ProjectKB_Class130040]
+		[igis_ProjectKB_Class130041]))
 
-([igis_ProjectKB_Class110009] of  Property_List
+([igis_ProjectKB_Class110009] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "longitude")
+	(property_list [igis_ProjectKB_Class110010])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([igis_ProjectKB_Class110010] of  Property_List
 )
 
-([igis_ProjectKB_Class110010] of  Widget
+([igis_ProjectKB_Class110011] of  Widget
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class110011])
-	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
+	(height 0)
+	(is_hidden FALSE)
+	(name "latitude")
+	(property_list [igis_ProjectKB_Class110012])
+	(width 0)
+	(x 0)
+	(y 0))
 
-([igis_ProjectKB_Class110011] of  Property_List
+([igis_ProjectKB_Class110012] of  Property_List
 )
 
-([igis_ProjectKB_Class110012] of  Widget
+([igis_ProjectKB_Class110013] of  Widget
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class110013])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.cls.OWLClassesTab"))
+	(height 60)
+	(is_hidden FALSE)
+	(name "label")
+	(property_list [igis_ProjectKB_Class110014])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
 
-([igis_ProjectKB_Class110013] of  Property_List
+([igis_ProjectKB_Class110014] of  Property_List
 )
 
-([igis_ProjectKB_Class110014] of  Widget
+([igis_ProjectKB_Class110015] of  Widget
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class110015])
-	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+	(height 60)
+	(is_hidden FALSE)
+	(name "fillColor")
+	(property_list [igis_ProjectKB_Class110016])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 180))
 
-([igis_ProjectKB_Class110015] of  Property_List
+([igis_ProjectKB_Class110016] of  Property_List
 )
 
-([igis_ProjectKB_Class110016] of  Widget
+([igis_ProjectKB_Class110017] of  Widget
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class110017])
-	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
+	(height 60)
+	(is_hidden FALSE)
+	(name "lineColor")
+	(property_list [igis_ProjectKB_Class110018])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 180))
 
-([igis_ProjectKB_Class110017] of  Property_List
+([igis_ProjectKB_Class110018] of  Property_List
 )
-
-([igis_ProjectKB_Class110018] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class120019])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
 ([igis_ProjectKB_Class110019] of  Boolean
 
@@ -1996,32 +2031,48 @@
 ([igis_ProjectKB_Class120010] of  Property_List
 )
 
-([igis_ProjectKB_Class120019] of  Property_List
-)
+([igis_ProjectKB_Class120019] of  Widget
 
-([igis_ProjectKB_Class120020] of  Widget
+	(height 60)
+	(is_hidden FALSE)
+	(name "line")
+	(property_list [igis_ProjectKB_Class120020])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 240))
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class120021])
-	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
+([igis_ProjectKB_Class120020] of  Property_List
 
-([igis_ProjectKB_Class120021] of  Property_List
-)
+	(properties
+		[igis_ProjectKB_Class120021]
+		[igis_ProjectKB_Class120022]
+		[igis_ProjectKB_Class120023]))
 
-([igis_ProjectKB_Class120022] of  Widget
+([igis_ProjectKB_Class120021] of  Boolean
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class120023])
-	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
 
-([igis_ProjectKB_Class120023] of  Property_List
-)
+([igis_ProjectKB_Class120022] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([igis_ProjectKB_Class120023] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
 ([igis_ProjectKB_Class120024] of  Widget
 
-	(is_hidden TRUE)
+	(height 0)
+	(is_hidden FALSE)
+	(name "relative")
 	(property_list [igis_ProjectKB_Class120025])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
+	(width 0)
+	(x 0)
+	(y 0))
 
 ([igis_ProjectKB_Class120025] of  Property_List
 )
@@ -2110,210 +2161,108 @@
 
 ([igis_ProjectKB_Class130026] of  Widget
 
-	(is_hidden TRUE)
+	(height 0)
+	(is_hidden FALSE)
+	(name "points")
 	(property_list [igis_ProjectKB_Class130027])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadatatab.OWLMetadataTab"))
+	(width 0)
+	(x 0)
+	(y 0))
 
 ([igis_ProjectKB_Class130027] of  Property_List
 )
 
 ([igis_ProjectKB_Class130028] of  Widget
 
-	(is_hidden TRUE)
+	(height 0)
+	(is_hidden FALSE)
+	(name "isPolygon")
 	(property_list [igis_ProjectKB_Class130029])
-	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
+	(width 0)
+	(x 0)
+	(y 0))
 
 ([igis_ProjectKB_Class130029] of  Property_List
 )
 
 ([igis_ProjectKB_Class130030] of  Widget
 
-	(is_hidden TRUE)
+	(height 60)
+	(is_hidden FALSE)
+	(name "tooltip")
 	(property_list [igis_ProjectKB_Class130031])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.individuals.OWLIndividualsTab"))
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 300))
 
 ([igis_ProjectKB_Class130031] of  Property_List
 )
 
 ([igis_ProjectKB_Class130032] of  Widget
 
-	(is_hidden TRUE)
+	(height 60)
+	(is_hidden FALSE)
+	(name "description")
 	(property_list [igis_ProjectKB_Class130033])
-	(widget_class_name "uk.ac.man.cs.mig.coode.debugger.test.DebuggerTestTab"))
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 360))
 
 ([igis_ProjectKB_Class130033] of  Property_List
 )
 
 ([igis_ProjectKB_Class130034] of  Widget
 
-	(is_hidden TRUE)
+	(height 60)
+	(is_hidden FALSE)
+	(name "playground-index")
 	(property_list [igis_ProjectKB_Class130035])
-	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 100)
+	(x 0)
+	(y 420))
 
 ([igis_ProjectKB_Class130035] of  Property_List
 )
 
 ([igis_ProjectKB_Class130036] of  Widget
 
-	(is_hidden TRUE)
+	(height 120)
+	(is_hidden FALSE)
+	(name "mapob")
 	(property_list [igis_ProjectKB_Class130037])
-	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 0)
+	(y 60))
 
 ([igis_ProjectKB_Class130037] of  Property_List
-)
 
-([igis_ProjectKB_Class130038] of  Widget
+	(properties
+		[igis_ProjectKB_Class130038]
+		[igis_ProjectKB_Class130039]))
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130039])
-	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
+([igis_ProjectKB_Class130038] of  Boolean
 
-([igis_ProjectKB_Class130039] of  Property_List
-)
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
 
-([igis_ProjectKB_Class130040] of  Widget
+([igis_ProjectKB_Class130039] of  Boolean
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130041])
-	(widget_class_name "TGViztab.TGVizTab"))
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
-([igis_ProjectKB_Class130041] of  Property_List
-)
+([igis_ProjectKB_Class130040] of  String
 
-([igis_ProjectKB_Class130042] of  Widget
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130043])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.properties.OWLPropertiesTab"))
+([igis_ProjectKB_Class130041] of  String
 
-([igis_ProjectKB_Class130043] of  Property_List
-)
-
-([igis_ProjectKB_Class130044] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130045])
-	(widget_class_name "uk.ac.man.ac.mig.coode.individuals.ui.OWLDLIndividualsTab"))
-
-([igis_ProjectKB_Class130045] of  Property_List
-)
-
-([igis_ProjectKB_Class130046] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130047])
-	(widget_class_name "edu.stanford.smi.protegex.evaluation.MetaAnalysis"))
-
-([igis_ProjectKB_Class130047] of  Property_List
-)
-
-([igis_ProjectKB_Class130048] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130049])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
-
-([igis_ProjectKB_Class130049] of  Property_List
-)
-
-([igis_ProjectKB_Class130050] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130051])
-	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
-
-([igis_ProjectKB_Class130051] of  Property_List
-)
-
-([igis_ProjectKB_Class130052] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130053])
-	(widget_class_name "se.liu.ida.JessTab.JessTab"))
-
-([igis_ProjectKB_Class130053] of  Property_List
-)
-
-([igis_ProjectKB_Class130054] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130055])
-	(widget_class_name "edu.stanford.smi.protegex.changeanalysis.ChangeAnalysisTab"))
-
-([igis_ProjectKB_Class130055] of  Property_List
-)
-
-([igis_ProjectKB_Class130056] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130057])
-	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
-
-([igis_ProjectKB_Class130057] of  Property_List
-)
-
-([igis_ProjectKB_Class130058] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130059])
-	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
-
-([igis_ProjectKB_Class130059] of  Property_List
-)
-
-([igis_ProjectKB_Class130060] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130061])
-	(widget_class_name "script.ProtegeScriptTab"))
-
-([igis_ProjectKB_Class130061] of  Property_List
-)
-
-([igis_ProjectKB_Class130062] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130063])
-	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
-
-([igis_ProjectKB_Class130063] of  Property_List
-)
-
-([igis_ProjectKB_Class130064] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130065])
-	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
-
-([igis_ProjectKB_Class130065] of  Property_List
-)
-
-([igis_ProjectKB_Class130066] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130067])
-	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
-
-([igis_ProjectKB_Class130067] of  Property_List
-)
-
-([igis_ProjectKB_Class130068] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130069])
-	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
-
-([igis_ProjectKB_Class130069] of  Property_List
-)
-
-([igis_ProjectKB_Class130070] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class130071])
-	(widget_class_name "ezpal.EZPalTab"))
-
-([igis_ProjectKB_Class130071] of  Property_List
-)
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
 
 ([igis_ProjectKB_Class130072] of  Widget
 
@@ -2725,6 +2674,57 @@
 ([igis_ProjectKB_Class14] of  Property_List
 )
 
+([igis_ProjectKB_Class140028] of  String
+
+	(name "IGIS")
+	(string_value "label"))
+
+([igis_ProjectKB_Class140029] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([igis_ProjectKB_Class140030] of  String
+
+	(name "Param")
+	(string_value "label"))
+
+([igis_ProjectKB_Class140031] of  String
+
+	(name "ShapeLayer")
+	(string_value "label"))
+
+([igis_ProjectKB_Class140032] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([igis_ProjectKB_Class140033] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([igis_ProjectKB_Class140034] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class140035] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class140036] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([igis_ProjectKB_Class140072] of  Widget
 
 	(is_hidden FALSE)
@@ -3024,57 +3024,6 @@
 
 ([igis_ProjectKB_Class18] of  Property_List
 )
-
-([igis_ProjectKB_Class180072] of  String
-
-	(name "IGIS")
-	(string_value "label"))
-
-([igis_ProjectKB_Class180073] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([igis_ProjectKB_Class180074] of  String
-
-	(name "Param")
-	(string_value "label"))
-
-([igis_ProjectKB_Class180075] of  String
-
-	(name "ShapeLayer")
-	(string_value "label"))
-
-([igis_ProjectKB_Class180076] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([igis_ProjectKB_Class180077] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([igis_ProjectKB_Class180078] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class180079] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class180080] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([igis_ProjectKB_Class180081] of  Widget
 
@@ -3791,9 +3740,10 @@
 
 ([igis_ProjectKB_Class30004] of  Widget
 
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class60005])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormsTab"))
+	(is_hidden FALSE)
+	(name "Link")
+	(property_list [igis_ProjectKB_Class100007])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
 ([igis_ProjectKB_Class30005] of  Widget
 
@@ -4847,15 +4797,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
-
-([igis_ProjectKB_Class60005] of  Property_List
-)
-
-([igis_ProjectKB_Class60006] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [igis_ProjectKB_Class100007])
-	(widget_class_name "org.protege.owl.mm.portability.protege3.MappingMasterTab"))
 
 ([igis_ProjectKB_Class60007] of  Property_List
 
@@ -7116,9 +7057,9 @@
 ([KB_266843_Class0] of  Map
 
 	(entries
-		[igis_ProjectKB_Class180078]
-		[igis_ProjectKB_Class180079]
-		[igis_ProjectKB_Class180080]))
+		[igis_ProjectKB_Class140034]
+		[igis_ProjectKB_Class140035]
+		[igis_ProjectKB_Class140036]))
 
 ([KB_337263_Instance_0] of  String
 
@@ -7528,7 +7469,7 @@
 	(x 0)
 	(y 120))
 
-([KB_736494_Class3] of  Map
+([KB_608897_Class3] of  Map
 )
 
 ([PAL_FORM_WIDGET] of  Widget
@@ -7546,43 +7487,30 @@
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
-		[igis_ProjectKB_Class40228]
 		[STANDARD_CLASS_FORM_WIDGET]
 		[igis_ProjectKB_Class150077]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[igis_ProjectKB_Class140086]
 		[igis_ProjectKB_Class30005]
 		[DroolsScenario_ProjectKB_Instance_60131]
-		[DroolsScenario_ProjectKB_Instance_60118]
-		[igis_ProjectKB_Class190112]
-		[igis_ProjectKB_Class130072]
 		[igis_ProjectKB_Class90131]
 		[igis_ProjectKB_Class180081]
 		[igis_ProjectKB_Class100019]
 		[igis_ProjectKB_Class110050]
-		[igis_ProjectKB_Class8]
-		[igis_ProjectKB_Class160072]
 		[igis_ProjectKB_Instance_64]
-		[igis_ProjectKB_Class20006]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[DroolsScenario_ProjectKB_Instance_60036]
-		[igis_ProjectKB_Class10079]
 		[igis_ProjectKB_Instance_10000]
-		[igis_ProjectKB_Class90063]
 		[PAL_FORM_WIDGET]
 		[DroolsScenario_ProjectKB_Instance_50000]
 		[igis_ProjectKB_Class150072]
-		[igis_ProjectKB_Class10083]
 		[igis_ProjectKB_Class140072]
 		[igis_ProjectKB_Class10004]
 		[igis_ProjectKB_Instance_30006]
 		[DroolsScenario_ProjectKB_Instance_40000]
-		[igis_ProjectKB_Class90100]
 		[igis_ProjectKB_Class110027]
 		[igis_ProjectKB_Class130137]
-		[igis_ProjectKB_Class50016]
 		[igis_ProjectKB_Class80004]
-		[igis_ProjectKB_Class40066]
 		[igis_ProjectKB_Class110067]
 		[igis_ProjectKB_Instance_102]
 		[igis_ProjectKB_Class50005]
@@ -7591,8 +7519,22 @@
 		[igis_ProjectKB_Instance_10073]
 		[STANDARD_FACET_FORM_WIDGET]
 		[igis_ProjectKB_Class10007]
-		[igis_ProjectKB_Class5]
-		[igis_ProjectKB_Class180101])
+		[igis_ProjectKB_Class180101]
+		[igis_ProjectKB_Class40228]
+		[DroolsScenario_ProjectKB_Instance_60118]
+		[igis_ProjectKB_Class190112]
+		[igis_ProjectKB_Class130072]
+		[igis_ProjectKB_Class8]
+		[igis_ProjectKB_Class160072]
+		[igis_ProjectKB_Class20006]
+		[igis_ProjectKB_Class10079]
+		[igis_ProjectKB_Class90063]
+		[igis_ProjectKB_Class10083]
+		[igis_ProjectKB_Class30004]
+		[igis_ProjectKB_Class90100]
+		[igis_ProjectKB_Class50016]
+		[igis_ProjectKB_Class40066]
+		[igis_ProjectKB_Class5])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")

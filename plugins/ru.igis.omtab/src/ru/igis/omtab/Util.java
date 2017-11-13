@@ -347,7 +347,7 @@ public class Util {
     /**
      * Create map from instance slots.
      * @param instance - Instance
-     * @return Map of {<slot_name>: <slot_value>}
+     * @return Map of {slot_name: slot_value}
      */
     public static Map<Object, Object> instanceMap(Instance instance){
         Map<Object, Object> map = new HashMap<Object, Object>();
@@ -363,7 +363,8 @@ public class Util {
     /**
      * Create object of instance direct type class.
      * @param inst - Instance
-     * @return pack - full name of class package
+     * @param pack - full name of class package
+     * @return created object
      */
     public static Object createObjectForInstance(Instance inst, String pack) {
         String clname = pack+"."+inst.getDirectType().getName();

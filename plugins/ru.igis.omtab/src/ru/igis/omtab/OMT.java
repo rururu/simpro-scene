@@ -82,6 +82,17 @@ public class OMT extends MapHandlerChild {
     	else
     		return null;
     }
+	
+	public static MapOb getMapOb(String label, int pgi) {
+		return playgrounds[pgi].getMapOb(label);
+	}
+	
+    public static MapOb addMapOb(MapOb mo, int pgi) {
+    	playgrounds[pgi].addMapOb(mo);
+    	mopgMap.put(mo.getInstance(), pgi);
+    	fireMOEvent(mo, ADDED);
+    	return mo;
+    }
     
     public static MapOb addMapOb(Instance inst) {
     	if(inst != null) {
@@ -112,6 +123,10 @@ public class OMT extends MapHandlerChild {
     		MapOb mo = playgrounds[pgi].removeMapOb(inst, kbdelete);
     		fireMOEvent (mo, REMOVED);
     	}
+    }
+    
+    public static void removeMapOb(MapOb mo, int pgi, boolean kbdelete) {
+    	playgrounds[pgi].removeMapOb(mo, kbdelete);
     }
     
     public static void clearMapObs(Collection<Instance> inss, boolean kbdelete) {
@@ -245,8 +260,8 @@ public class OMT extends MapHandlerChild {
     
     /**
      * Start RepeatAction from Instance 
-     * return false if it is already started or of error
      * @param inst - Intstance of class RepeatAction in Protege
+     * @return false if it is already started or of error
      */    
     public static synchronized boolean startProtegeRepeatAction(Instance inst) {
     	if(raMap.get(inst) == null) {

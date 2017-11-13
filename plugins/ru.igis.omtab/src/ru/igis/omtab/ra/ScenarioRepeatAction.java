@@ -43,7 +43,6 @@ public class ScenarioRepeatAction extends RepeatAction {
     /**
      * Method implementing periodically repeating action
      * @param time time elapsed between steps
-     * @throws Exception 
      */
     public synchronized void repeat(double time) {
     	try {
