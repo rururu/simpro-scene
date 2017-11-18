@@ -45,10 +45,10 @@ public class MapOb extends BasicLocation implements Protegian{
     
     private NavOb whoTows;
     private Collection<Link> linksToMe;
-    protected int pgid = -1; // Playground index
+    protected Playground playground = null; // Playground 
 
-    public int getPgid() {
-		return pgid;
+    public Playground getPlayground() {
+		return playground;
 	}
 
 	/** Creates a new instance of MapOb */

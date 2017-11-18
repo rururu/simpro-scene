@@ -143,8 +143,8 @@ public class OMTPoly extends MapOb  implements Container{
      * @return - true, if OMTPoly contains this point, else false
      */
     public synchronized boolean contains(double lat,double lon){
-    	if(pgid >= 0) {
-	    	Projection proj = OMT.playgrounds[pgid].getProjection();
+    	if(playground != null) {
+	    	Projection proj = playground.getProjection();
 	        Point2D point = (Point2D) proj.forward(lat,lon);
 	        ((OMPoly)location).generate(proj);
 	        return ((OMPoly)location).contains(point.getX(),point.getY());

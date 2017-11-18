@@ -172,8 +172,8 @@ public class OMTArc extends MapOb implements Container{
      * @return - true, if OMTCircle contains this point, else false
      */
     public boolean contains(double lat,double lon){
-    	if(pgid >= 0) {
-	        Projection proj = OMT.playgrounds[pgid].getProjection();
+    	if(playground != null) {
+	        Projection proj = playground.getProjection();
 	        generate(proj);
 	        Point2D point = proj.forward(lat,lon);
         return ((OMArc)location).contains(point.getX(),point.getY());

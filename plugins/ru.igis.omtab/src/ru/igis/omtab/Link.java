@@ -15,7 +15,9 @@
 
 package ru.igis.omtab;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Stroke;
 import java.util.*;
 
 import com.bbn.openmap.omGraphics.*;
@@ -38,6 +40,7 @@ public class Link extends MapOb {
     private Instance[] moinss;
     private MapOb mo1;
     private MapOb mo2;
+    private String color;
 
     /** Creates a new instance of MapOb */
     public Link() {
@@ -55,11 +58,12 @@ public class Link extends MapOb {
 
     /**
      * Constructor of Link object from two MapObs
-     * @param mo1 - first MapOb
-     * @param mo2 - second MapOb
-     * @param lcolor - line color ("AARRGGBB") (optional)
-     * @param line - instance of Line (optional)
-     * @throws Exception -
+     * @param name name of Link object
+     * @param mo1 first MapOb
+     * @param mo2 second MapOb
+     * @param lcolor line color ("AARRGGBB") (optional)
+     * @param line instance of Line (optional)
+     * @throws Exception throws
      */
     public Link(String name, MapOb mo1, MapOb mo2, String lcolor, Instance line) throws Exception {
         super();
@@ -67,6 +71,7 @@ public class Link extends MapOb {
         this.mo1 = mo1;
         this.mo2 = mo2;
         if(lcolor!=null){
+        	color = lcolor;
             Color lcol = ColorFactory.parseColor(lcolor);
             ((OMLine)location).setLinePaint(lcol);
         }
@@ -117,9 +122,9 @@ public class Link extends MapOb {
      * @param instance - Protege Instance
      */
     public void mapFromProtege(Instance instance){
-        String lcolor = (String)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR));
-        if(lcolor!=null){
-            Color lcol = ColorFactory.parseColor(lcolor);
+        color = (String)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR));
+        if(color!=null){
+            Color lcol = ColorFactory.parseColor(color);
             ((OMLine)location).setLinePaint(lcol);
         }
         Instance line = (Instance)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE));
@@ -151,6 +156,26 @@ public class Link extends MapOb {
 		} else {
 			OMT.removeMapOb(this.getInstance(), false);
 		}
+	}
+
+	public MapOb getMo1() {
+		return mo1;
+	}
+
+	public MapOb getMo2() {
+		return mo2;
+	}
+
+	public String getColor() {
+		return color;
+	}
+	
+	public float getWidth() {
+		Stroke stroke = ((OMLine) location).getStroke();
+		if(stroke!=null)
+			return ((BasicStroke) stroke).getLineWidth();
+		else
+			return 0;
 	}
     
 }

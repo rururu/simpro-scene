@@ -17,6 +17,8 @@ package ru.igis.omtab;
 
 import ru.igis.omtab.gui.RuMapMouseAdapter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.*;
 
@@ -42,11 +44,47 @@ public class Playground extends MMLGraphicLoader {
     private RuMapMouseAdapter ruMMAdapter;
     private PlugInLayer myPlugInLayer;
     private int pgid; // Playground index
+    protected ArrayList<ActionListener> molisteners = new ArrayList<ActionListener>();
+    
+	public int MO_EVENT = 0;
+	public static final String ADDED = "ADDED";
+	public static final String REMOVED = "REMOVED";
+	public static final String UPDATED = "UPDATED";
 
 	/**
      * Default constructor
      */    
     public Playground() {
+    }
+    
+	protected void fireMOEvent(Object mo, String command) {
+		if (mo != null) {
+			ActionEvent event = new ActionEvent(mo, MO_EVENT, command);
+			for (ActionListener listener : molisteners) {
+				listener.actionPerformed(event);
+			}
+		}
+	}
+	
+    /**
+     * Adds ActionListener for ActionEvents of creating, updating or removing MapObs 
+     * (NavObs updated by location or setCourse and setSpeed methods,
+     *  OMTPolies updated when towing, Links updated by method updateLine())
+     * @param al - ActionListener for ActionEvents(MapOb, MO_EVENT, command:
+     * 				{"ADDED" / "REMOVED" / "UPDATED" })
+     */    
+    public void addActionListener(ActionListener al) {
+    	molisteners.add(al);
+    }
+
+    public void removeActionListener(ActionListener al) {
+    	molisteners.remove(al);
+    }
+
+    public void clearActionListeners() {
+		for (ActionListener listener : molisteners) {
+			molisteners.remove(listener);
+		}
     }
     
     public int getPgid() {
@@ -93,14 +131,15 @@ public class Playground extends MMLGraphicLoader {
      */    
     public synchronized MapOb addMapOb(Instance inst) {
         MapOb mapOb = getMapOb(inst);
-        if(mapOb!=null){
+        if(mapOb != null){
         	mapOb.mapFromProtege(inst);
         }else {
         	mapOb =  (MapOb) Util.createObjectForInstance(inst, "ru.igis.omtab");
-        	mapOb.pgid = pgid; // Just created mapob belongs to this playground
-            if(mapOb!=null){
+        	mapOb.playground = this; // Just created mapob belongs to this playground
+            if(mapOb != null){
                 mapObs.add(mapOb);
                 mapObsMap.put(inst, mapOb); // accumulate all instances added from kb
+            	fireMOEvent(mapOb, ADDED);
             }
         }
         return mapOb;
@@ -220,11 +259,12 @@ public class Playground extends MMLGraphicLoader {
     public synchronized void addMapOb(MapOb mo){
         MapOb old = getMapOb(mo.getName());
         if(old!=null)
-            removeMapOb(old,false);
+            removeMapOb(old, false);
         mapObs.add(mo);
         Instance inst = mo.getInstance();
         if(inst != null)
         	mapObsMap.put(inst, mo);
+    	fireMOEvent(mo, ADDED);
     }
 
     /**
@@ -236,7 +276,8 @@ public class Playground extends MMLGraphicLoader {
     public synchronized MapOb removeMapOb(Instance inst,boolean kbdelete){
     	MapOb mo = mapObsMap.get(inst);
     	if(mo != null){
-    		removeMapOb(mo,kbdelete);
+    		removeMapOb(mo, kbdelete);
+    		fireMOEvent (mo, REMOVED);
     		return mo;
     	}
     	return null;
@@ -247,23 +288,30 @@ public class Playground extends MMLGraphicLoader {
      * @param mo - Map Object to remove
      * @param kbdelete Should corresponding Protege Instance be removed too
      */    
-    public synchronized void removeMapOb(MapOb mo,boolean kbdelete){
-        if(!(mo instanceof Link))
-        	clearTows(mo);
-    	mapObs.remove(mo);
-    	mo.pgid = -1; // Mapob no longer belongs to any playground
-        Instance inst = mo.getInstance();
-        mapObsMap.remove(inst);
-        if(kbdelete)
-            OpenMapTab.kb.deleteInstance(inst);
-    }
+	public synchronized void removeMapOb(MapOb mo, boolean kbdelete) {
+		if (!(mo instanceof Link))
+			offTowAndDeleteTows(mo);
+		mapObs.remove(mo);
+		mo.playground = null; // Mapob no longer belongs to any playground
+		Instance inst = mo.getInstance();
+		if (inst != null) {
+			mapObsMap.remove(inst);
+			if (kbdelete)
+				OpenMapTab.kb.deleteInstance(inst);
+		}
+	}
     
-    private void clearTows(MapOb mo)
-    {
-        mo.offTow();
-        if(mo instanceof NavOb)
-        	((NavOb)mo).clearTows();
-    }
+	private void offTowAndDeleteTows(MapOb mo) {
+		mo.offTow();
+		if (mo instanceof NavOb) {
+			NavOb no = (NavOb) mo;
+			Collection<Tow> tows = no.getTows();
+			if (tows != null)
+				for (Tow tow : tows)
+					removeMapOb(tow.getMapOb(), false);
+			no.clearTows();
+		}
+	}
 
     /**
      * Standard OpenMap Component method

@@ -185,25 +185,29 @@ public class NavOb extends OMTRaster {
      * Set Latitude from double
      * @param deglat - latitude in degrees
      */    
-    public void setLatitude(double deglat){
-        if(deglat>-90f && deglat<90f){
-            setLocation(deglat,lon);
-            updateRPNOF();
-            OMT.fireMOEvent(this, OMT.UPDATED);
-        }
-    }
+	public void setLatitude(double deglat) {
+		if (deglat > -90f && deglat < 90f) {
+			setLocation(deglat, lon);
+			updateRPNOF();
+			if (playground != null) {
+				playground.fireMOEvent(this, Playground.UPDATED);
+			}
+		}
+	}
     
     /**
      * Set Longitude from double
      * @param deglon - longitude in degrees
      */    
-    public void setLongitude(double deglon){
-        if(deglon>-180f && deglon<180f){
-            setLocation(lat,deglon);
-            updateRPNOF();
-            OMT.fireMOEvent(this, OMT.UPDATED);
-        }
-    }
+	public void setLongitude(double deglon) {
+		if (deglon > -180f && deglon < 180f) {
+			setLocation(lat, deglon);
+			updateRPNOF();
+			if (playground != null) {
+				playground.fireMOEvent(this, Playground.UPDATED);
+			}
+		}
+	}
     
     /**
      * Change coordinates of this Nav object from the string representation in degrees and minutes:
@@ -212,11 +216,13 @@ public class NavOb extends OMTRaster {
      * @param dmlon - Longitude as "deg min"
      * @throws Exception -
      */
-    public void setLocation(String dmlat,String dmlon) throws Exception{
-    	super.setLocation(dmlat,dmlon);
-    	updateRPNOF();
-        OMT.fireMOEvent(this, OMT.UPDATED);
-    }
+	public void setLocation(String dmlat, String dmlon) throws Exception {
+		super.setLocation(dmlat, dmlon);
+		updateRPNOF();
+		if (playground != null) {
+			playground.fireMOEvent(this, Playground.UPDATED);
+		}
+	}
     
     public void updateRPNOF(){
         lastTurnLat = ProjMath.degToRad(lat);
@@ -229,44 +235,65 @@ public class NavOb extends OMTRaster {
      * Set Course from int
      * @param deg - course in degrees
      */    
-    public void setCourse(int deg){
-        if(deg>=0f && deg<360f){
-        	course = deg;
-        	direction = ProjMath.degToRad(deg);
-        	mirror(deg);
-            ((OMRaster)location).setRotationAngle(direction);
-            updateNavObFrame();
-            if(tows!=null)
-                for(Iterator<Tow> i=tows.iterator();i.hasNext();){
-                    Tow tow = i.next();
-                    tow.turn(deg, getSpeed(), lat, lon);
-                }
-            OMT.fireMOEvent(this, OMT.UPDATED);
-        }
-    }
+	public void setCourse(int deg) {
+		if (deg >= 0f && deg < 360f) {
+			course = deg;
+			direction = ProjMath.degToRad(deg);
+			mirror(deg);
+			((OMRaster) location).setRotationAngle(direction);
+			updateNavObFrame();
+			if (tows != null)
+				for (Iterator<Tow> i = tows.iterator(); i.hasNext();) {
+					Tow tow = i.next();
+					tow.turn(deg, getSpeed(), lat, lon);
+				}
+			if (playground != null) {
+				playground.fireMOEvent(this, Playground.UPDATED);
+			}
+		}
+	}
+
     /**
      * Set Speed from double
      * @param knots - speed in knots (nautical miles per hour)
      */    
-    public void setSpeed(double knots){
-        speed = knots;
-        updateNavObFrame();
-        if(tows!=null)
-            for(Iterator<Tow> i=tows.iterator();i.hasNext();){
-                Tow tow = i.next();
-                tow.turn(getCourse(), knots, lat, lon);
-            }
-        OMT.fireMOEvent(this, OMT.UPDATED);
-    }
+	public void setSpeed(double knots) {
+		speed = knots;
+		updateNavObFrame();
+		if (tows != null)
+			for (Iterator<Tow> i = tows.iterator(); i.hasNext();) {
+				Tow tow = i.next();
+				tow.turn(getCourse(), knots, lat, lon);
+			}
+		if (playground != null) {
+			playground.fireMOEvent(this, Playground.UPDATED);
+		}
+	}
+
     /**
      * Set Tangage from double
      * @param angle - tangage in degrees
      */    
-    public void setTangage(double angle){
-        tangage = angle;
-        updateNavObFrame();
-        OMT.fireMOEvent(this, OMT.UPDATED);
-    }
+	public void setTangage(double angle) {
+		tangage = angle;
+		updateNavObFrame();
+		if (playground != null) {
+			playground.fireMOEvent(this, Playground.UPDATED);
+		}
+	}
+	
+    /**
+     * Method for setting altitude of this object
+     * @param altitude - Alitude in meters
+     */
+	public void setAltitude(int altitude) {
+		this.altitude = altitude;
+		updateNavObFrame();
+		if (playground != null) {
+			playground.fireMOEvent(this, Playground.UPDATED);
+		}
+	}
+
     /**
      * Return current course
      * @return - current course in degrees
@@ -274,6 +301,7 @@ public class NavOb extends OMTRaster {
     public int getCourse(){ // returns deg
         return course;
     }
+    
     /**
      * Return current course
      * @return - current course in radians
@@ -281,6 +309,7 @@ public class NavOb extends OMTRaster {
     public double getCourseRad(){ // returns rad
         return direction;
     }
+    
     /**
      * Return current speed
      * @return - current speed in knots
@@ -288,9 +317,19 @@ public class NavOb extends OMTRaster {
     public double getSpeed(){ // returns knots
         return speed;
     }
+    
     public double getTangage(){ // returns knots
         return tangage;
     }
+    
+    /**
+     * Method for altitude of this object
+     * @return Altitude in meters
+     */
+	public int getAltitude() {
+		return altitude;
+	}
+	
     /**
      * Return coordinates of object for given time (after last turn or before the last turn)
      * @param time - operation time in hours (ex. Clock.getCurrentTime())
@@ -395,7 +434,6 @@ public class NavOb extends OMTRaster {
         navObFrame.setSize(200,220);
         navObFrame.setVisible(true);
         updateNavObFrame();
-        OMT.fireMOEvent(this, OMT.UPDATED);
     }
     
     /**
@@ -646,32 +684,32 @@ public class NavOb extends OMTRaster {
     protected void setFormLatitude(String dmlat){
    		setLatitude(dmlat);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
     protected void setFormLongitude(String dmlon){
 		setLongitude(dmlon);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
     protected void setFormCourse(String course){
 		setCourse(course);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
     protected void setFormAltitude(String altitude){
 		setAltitude(altitude);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
     protected void setFormSpeed(String speed){
    		setSpeed(speed);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
     protected void setFormTangage(String angle){
    		setTangage(angle);
 		reflect();
-		OMT.playgrounds[pgid].manageGraphics();
+		playground.manageGraphics();
     }
 	public void reflect(){
     	if(OpenMapTab.reflectNavOb)
@@ -730,21 +768,5 @@ public class NavOb extends OMTRaster {
 	{
 		double dist = distanceNM(mo);
 		return ( dist < radius );
-	}
-	
-    /**
-     * Method for altitude of this object
-     * @return Altitude in meters
-     */
-	public int getAltitude() {
-		return altitude;
-	}
-    /**
-     * Method for setting altitude of this object
-     * @param altitude - Alitude in meters
-     */
-	public void setAltitude(int altitude) {
-		this.altitude = altitude;
-		updateNavObFrame();
 	}
 }

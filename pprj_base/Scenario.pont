@@ -1,4 +1,4 @@
-; Tue Nov 07 21:18:49 MSK 2017
+; Sat Nov 18 22:25:43 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -121,7 +121,7 @@
 		(create-accessor read-write))
 	(single-slot relation
 		(type SYMBOL)
-		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted in-some-resource in-all-resource)
 		(default %3D)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -325,12 +325,6 @@
 	(single-slot delete
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot side
-		(type SYMBOL)
-		(allowed-values INSIDE OUTSIDE)
-		(default INSIDE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot input_data
@@ -634,12 +628,6 @@
 	(single-slot event
 		(type INSTANCE)
 ;+		(allowed-classes Event Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot grouping
-		(type SYMBOL)
-		(allowed-values ALL ANY)
-		(default ALL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lla
@@ -1378,6 +1366,11 @@
 		(create-accessor read-write))
 	(single-slot lineColor
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot line
+		(type INSTANCE)
+;+		(allowed-classes Line)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -2338,36 +2331,6 @@
 	(is-a Decision)
 	(role concrete))
 
-(defclass WithRespectPolygons
-	(is-a Decision)
-	(role concrete)
-	(single-slot grouping
-		(type SYMBOL)
-		(allowed-values ALL ANY)
-		(default ALL)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot side
-		(type SYMBOL)
-		(allowed-values INSIDE OUTSIDE)
-		(default INSIDE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observer
-		(type INSTANCE)
-;+		(allowed-classes MapOb NavOb Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass IfActivityStatus
 	(is-a Decision)
 	(role concrete)
@@ -2793,7 +2756,7 @@
 		(create-accessor read-write))
 	(single-slot relation
 		(type SYMBOL)
-		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted in-some-resource in-all-resource)
 		(default %3D)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

@@ -15,8 +15,6 @@
 
 package ru.igis.omtab;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -38,59 +36,24 @@ import edu.stanford.smi.protege.util.CollectionUtilities;
 
 public class OMT extends MapHandlerChild {
 	
-    private static Map<Instance, Integer> mopgMap = new HashMap<Instance, Integer>();
+    private static Map<Instance, Playground> mopgMap = new HashMap<Instance, Playground>();
     private static Map<Instance, RepeatAction> raMap = new HashMap<Instance, RepeatAction>();
     private static Collection<TaskExecutor> taskExecutors = new ArrayList<TaskExecutor>();
     private static RunaControlPanel runaControlPanel;
     protected static Playground[] playgrounds;
     protected static Clock clock;
-    protected static ArrayList<ActionListener> molisteners = new ArrayList<ActionListener>();
-    
-	public static final int MO_EVENT = 0;
-	public static final String ADDED = "ADDED";
-	public static final String REMOVED = "REMOVED";
-	public static final String UPDATED = "UPDATED";
-
-	protected static void fireMOEvent(Object mo, String command) {
-		if (mo != null) {
-			ActionEvent event = new ActionEvent(mo, MO_EVENT, command);
-			for (ActionListener listener : molisteners) {
-				listener.actionPerformed(event);
-			}
-		}
-	}
-
-    /**
-     * Adds ActionListener for ActionEvents of creating, updating or removing MapObs 
-     * (NavObs updated by location or setCourse and setSpeed methods,
-     *  OMTPolies updated when towing, Links updated by method updateLine())
-     * @param al - ActionListener for ActionEvents(MapOb, MO_EVENT, command:
-     * 				{"ADDED" / "REMOVED" / "UPDATED" })
-     */    
-    public static void addActionListener(ActionListener al) {
-    	molisteners.add(al);
-    }
-
-    public static void removeActionListener(ActionListener al) {
-    	molisteners.remove(al);
-    }
 
 	public static MapOb getMapOb(Instance inst) {
-    	Integer pgi = mopgMap.get(inst);
-    	if(pgi != null)
-    		return playgrounds[pgi].getMapOb(inst);
+		Playground pg = mopgMap.get(inst);
+    	if(pg != null)
+    		return pg.getMapOb(inst);
     	else
     		return null;
     }
 	
-	public static MapOb getMapOb(String label, int pgi) {
-		return playgrounds[pgi].getMapOb(label);
-	}
-	
-    public static MapOb addMapOb(MapOb mo, int pgi) {
-    	playgrounds[pgi].addMapOb(mo);
-    	mopgMap.put(mo.getInstance(), pgi);
-    	fireMOEvent(mo, ADDED);
+    public static MapOb addMapOb(MapOb mo, Playground pg) {
+    	pg.addMapOb(mo);
+    	mopgMap.put(mo.getInstance(), pg);
     	return mo;
     }
     
@@ -103,8 +66,7 @@ public class OMT extends MapHandlerChild {
 	    	else
 	    		pgi = 0;
 	    	MapOb mo = playgrounds[pgi].addMapOb(inst);
-	    	mopgMap.put(inst, pgi);
-	    	fireMOEvent(mo, ADDED);
+	    	mopgMap.put(inst, playgrounds[pgi]);
 	    	return mo;
     	} else
     		return null;
@@ -118,16 +80,16 @@ public class OMT extends MapHandlerChild {
     }
     
     public static void removeMapOb(Instance inst, boolean kbdelete) {
-    	Integer pgi = mopgMap.get(inst);
-    	if(pgi != null){
-    		MapOb mo = playgrounds[pgi].removeMapOb(inst, kbdelete);
-    		fireMOEvent (mo, REMOVED);
+    	Playground pg = mopgMap.get(inst);
+    	if(pg != null){
+    		pg.removeMapOb(inst, kbdelete);
     	}
     }
     
-    public static void removeMapOb(MapOb mo, int pgi, boolean kbdelete) {
-    	playgrounds[pgi].removeMapOb(mo, kbdelete);
-    }
+	public static void removeMapOb(MapOb mo, boolean kbdelete) {
+		for (Playground pg : playgrounds)
+			pg.removeMapOb(mo, kbdelete);
+	}
     
     public static void clearMapObs(Collection<Instance> inss, boolean kbdelete) {
     	for(Instance inst: inss)
@@ -159,9 +121,8 @@ public class OMT extends MapHandlerChild {
     }
     
     public static MapOb getMapOb(String label) {
-    	Playground[] pgs = playgrounds;
-    	for(int i=0;i<pgs.length;i++) {
-			MapOb mob = pgs[i].getMapOb(label);
+    	for(Playground pg : playgrounds) {
+			MapOb mob = pg.getMapOb(label);
 			if(mob!=null)
 				return mob;
     	}
@@ -169,15 +130,15 @@ public class OMT extends MapHandlerChild {
     }
     
     public static void controlObject(Instance inst) {
-    	Integer pgi = mopgMap.get(inst);
-    	if(pgi != null)
-    		playgrounds[pgi].controlObject(inst);
+    	Playground pg = mopgMap.get(inst);
+    	if(pg != null)
+    		pg.controlObject(inst);
     }
 
     public static void mapBackMapOb(Instance inst) {
-    	Integer pgi = mopgMap.get(inst);
-    	if(pgi != null)
-    		playgrounds[pgi].mapBackMapOb(inst);
+    	Playground pg = mopgMap.get(inst);
+    	if(pg != null)
+    		pg.mapBackMapOb(inst);
     }
 
     private static void managePlaygroundsGraphics() {

@@ -49,7 +49,10 @@
   (if-let [mo (or (OMT/getMapOb proto) (OMT/addMapOb proto))]
     (if-let [hm (.getAttribute mo run)]
       (cond
-        (string? v) (or (.get hm v) v)
+        (string? v)
+          (if (= v "?protagonist")
+            proto
+            (or (.get hm v) v))
         (instance? Instance v)
           (let [tit (sv v "title")]
             (if (= tit "?protagonist")
@@ -339,19 +342,6 @@
         (es-mess (str tim " " txt2) mp cat (sv cli "id"))))
     "DONE")
   "FAILED"))
-
-(defn link-on-off [?obj ?obs flg ?lic p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-       obs (OMT/getMapOb (vv ?obs p r))
-       lic (vv ?lic p r)]
-  (if (not (or (nil? obj) (nil? obs)))
-    (do
-      (if (is? flg)
-        (if (not (null? lic))
-          (.linkMapOb obs obj lic))
-        (.unlinkMapOb obs obj))
-      "DONE")
-    "FAILED")))
 
 (defn frame-slot-val [frame slot]
   (let [dw (drop-while #(not= % slot) frame)]

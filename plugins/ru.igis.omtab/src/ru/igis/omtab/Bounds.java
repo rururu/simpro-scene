@@ -33,7 +33,7 @@ public class Bounds {
      * Create Bounds and load OMTPolys from corresponding slots.
      * Get OMTPolys and set arrays: 
      * included and excluded
-     * @param instance
+     * @param instance of cls Bounds
      */
 	public Bounds(Instance instance){
 		Collection<?> inss = instance.getOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_INCLUDED));

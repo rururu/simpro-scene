@@ -1,4 +1,4 @@
-; Sun Nov 12 23:00:18 MSK 2017
+; Tue Oct 17 22:19:53 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1484,11 +1484,6 @@
 	(multislot mapob
 		(type INSTANCE)
 ;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot line
-		(type INSTANCE)
-;+		(allowed-classes Line)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lineColor
 		(type STRING)

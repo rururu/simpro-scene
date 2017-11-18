@@ -151,8 +151,8 @@ public class OMTRect extends MapOb  implements Container{
      * @return - true, if OMTRect contains this point, else false
      */
     public boolean contains(double lat,double lon){
-    	if(pgid >= 0) {
-	    	Projection proj = OMT.playgrounds[pgid].getProjection();
+    	if(playground != null) {
+	    	Projection proj = playground.getProjection();
 	        Point2D point = proj.forward(lat,lon);
 	        return ((OMRect)location).contains(point.getX(),point.getY());
 		} else

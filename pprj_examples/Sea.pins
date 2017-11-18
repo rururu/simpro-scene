@@ -1,4 +1,4 @@
-; Mon Nov 13 22:03:03 MSK 2017
+; Sat Nov 18 20:16:26 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -264,10 +264,10 @@
 	(context [Sea_Class190007])
 	(final_tasks [Sea_Class170004])
 	(finish_type AND)
-	(id "ds.Dropp2062")
+	(id "ds.Dropp2055")
 	(initial_tasks [Sea_Class130001])
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(scenario_scheme
 		[Sea_Class130001]
 		[Sea_Class130002]
@@ -679,12 +679,12 @@
 		[Sea_Class170006]
 		[Sea_Class330024])
 	(finish_type AND)
-	(id "ds.Creat2063")
+	(id "ds.Creat2056")
 	(initial_actions [Sea_Class170005])
 	(next_tasks [Sea_Class130002])
-	(parent "ds.Dropp2062")
+	(parent "ds.Dropp2055")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(task_scheme
 		[Sea_Class170005]
@@ -698,12 +698,12 @@
 		[Sea_Class210018]
 		[Sea_Class190005])
 	(finish_type AND)
-	(id "ds.One_D2124")
+	(id "ds.One_D2117")
 	(initial_actions [Sea_Class170000])
 	(next_tasks [Sea_Class170003])
-	(parent "ds.Dropp2062")
+	(parent "ds.Dropp2055")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(task_scheme
 		[Sea_Class170000]
@@ -1101,13 +1101,13 @@
 
 ([Sea_Class150000] of  WaitEvent
 
-	(event [Sea_Class170001])
-	(id "s1.Buoy_2035")
-	(parent "s1.Buoy_2033")
+	(event [Sea_Class340000])
+	(id "s1.Buoy_2054")
+	(parent "s1.Buoy_2053")
 	(protagonist [Sea_Class244])
-	(run "s1.Buoy_2032")
+	(run "s1.Buoy_2052")
 	(status "START")
-	(title "s1.Buoy Waits When Inside One Spill"))
+	(title "s1.Buoy Waits When Inside Some Drop"))
 
 ([Sea_Class150001] of  InputData
 
@@ -1224,7 +1224,6 @@
 
 ([Sea_Class160000] of  WaitEvent
 
-	(event [Sea_Class180001])
 	(id "s1.Buoy_2034")
 	(parent "s1.Buoy_2033")
 	(protagonist [Sea_Class244])
@@ -1386,15 +1385,15 @@
 
 ([Sea_Class170000] of  UseResource
 
-	(id "ds.Take_2125")
+	(id "ds.Take_2118")
 	(next_actions
 		[Sea_Class190002]
 		[Sea_Class330027])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170009])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Take Drop")
 	(variable [Sea_Class190001]))
@@ -1414,10 +1413,10 @@
 ([Sea_Class170003] of  EventDecision
 
 	(events [Sea_Class190006])
-	(id "ds.Drops2142")
-	(parent "ds.Dropp2062")
+	(id "ds.Drops2116")
+	(parent "ds.Dropp2055")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Drops Issued?")
 	(variants
@@ -1431,11 +1430,11 @@
 		[Sea_Class200004]
 		[Sea_Class330012])
 	(finish_type AND)
-	(id "ds.End2143")
+	(id "ds.End2229")
 	(initial_actions [Sea_Class200002])
-	(parent "ds.Dropp2062")
+	(parent "ds.Dropp2148")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2148")
 	(status "START")
 	(task_scheme
 		[Sea_Class200002]
@@ -1446,31 +1445,31 @@
 
 ([Sea_Class170005] of  LoadResource
 
-	(id "ds.Creat2064")
+	(id "ds.Creat2057")
 	(next_actions
 		[Sea_Class170006]
 		[Sea_Class330024])
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2063")
+	(parent "ds.Creat2056")
 	(protagonist [Sea_Class344])
 	(rename TRUE)
 	(resource [Sea_Class170009])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(seed [Sea_Class170010])
 	(status "START")
 	(title "ds.Create Drops"))
 
 ([Sea_Class170006] of  LoadResource
 
-	(id "ds.Creat2065")
+	(id "ds.Creat2058")
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2063")
+	(parent "ds.Creat2056")
 	(protagonist [Sea_Class344])
 	(rename TRUE)
 	(resource [Sea_Class170011])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(seed [Sea_Class170012])
 	(status "START")
 	(title "ds.Create Drop Expanders"))
@@ -1478,11 +1477,11 @@
 ([Sea_Class170007] of  Compute
 
 	(computation [Sea_Class210044])
-	(id "ds.Drop_2136")
+	(id "ds.Drop_2129")
 	(next_actions [Sea_Class190005])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Drop to Drop Expander"))
 
@@ -1608,8 +1607,7 @@
 	(pairs
 		[Sea_Class180013]
 		[Sea_Class180014]
-		[Sea_Class180016]
-		[Sea_Class180017])
+		[Sea_Class350003])
 	(title "Ctx5"))
 
 ([Sea_Class180013] of  ObjectPair
@@ -1866,13 +1864,13 @@
 
 ([Sea_Class190002] of  UseResource
 
-	(id "ds.Take_2126")
+	(id "ds.Take_2119")
 	(next_actions [Sea_Class190004])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170011])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Take Drop Expander")
 	(variable [Sea_Class190003]))
@@ -1883,24 +1881,24 @@
 
 ([Sea_Class190004] of  PutOnPlace
 
-	(id "ds.Drop_2135")
+	(id "ds.Drop_2128")
 	(next_actions [Sea_Class170007])
 	(object [Sea_Class190001])
 	(observer [ScenarioN_Class570000])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Drop on Protagonist"))
 
 ([Sea_Class190005] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start2141")
-	(parent "ds.One_D2124")
+	(id "ds.Start2134")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
 	(repeat-action [Sea_Class190003])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Start Drop Expander"))
 
@@ -1939,7 +1937,7 @@
 	(bounds [Sea_Class330013])
 	(interval MINUTE)
 	(label "ds.Drop1 Expander")
-	(lifetime 240)
+	(lifetime 300)
 	(period 1)
 	(playground-index 0)
 	(poly [Sea_Class30000]))
@@ -2020,36 +2018,36 @@
 ([Sea_Class200002] of  Delay
 
 	(delay "?after-time")
-	(id "ds.Last_2144")
+	(id "ds.Last_2230")
 	(next_actions
 		[Sea_Class200003]
 		[Sea_Class330012]
 		[Sea_Class200004])
-	(parent "ds.End2143")
+	(parent "ds.End2229")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2148")
 	(status "START")
 	(title "ds.Last Drop Lifetime"))
 
 ([Sea_Class200003] of  DeleteResource
 
-	(id "ds.Delet2145")
+	(id "ds.Delet2231")
 	(object [ScenarioN_Class570000])
-	(parent "ds.End2143")
+	(parent "ds.End2229")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170009])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2148")
 	(status "START")
 	(title "ds.Delete Generated Drops"))
 
 ([Sea_Class200004] of  DeleteResource
 
-	(id "ds.Delet2146")
+	(id "ds.Delet2233")
 	(object [ScenarioN_Class570000])
-	(parent "ds.End2143")
+	(parent "ds.End2229")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class170011])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2148")
 	(status "START")
 	(title "ds.Delete Generated Drop Expanders"))
 
@@ -2186,35 +2184,30 @@
 
 	(context [Sea_Class180012])
 	(finish_type AND)
-	(id "s1.Buoy_2032")
+	(id "s1.Buoy_2052")
+	(initial_tasks [Sea_Class20008])
 	(parent "s1.Buoy_2138")
 	(protagonist [Sea_Class244])
-	(run "s1.Buoy_2032")
+	(run "s1.Buoy_2052")
 	(scenario_scheme
 		[Sea_Class20008]
 		[Sea_Class180003])
 	(status "START")
-	(title "s1.Buoy Monitoring Two Oil Spills"))
+	(title "s1.Buoy Monitoring Oil Spill"))
 
 ([Sea_Class20008] of  Task
 
-	(final_actions
-		[Sea_Class160000]
-		[Sea_Class150000])
+	(final_actions [Sea_Class150000])
 	(finish_type AND)
-	(id "s1.Buoy_2033")
-	(initial_actions
-		[Sea_Class160000]
-		[Sea_Class150000])
+	(id "s1.Buoy_2053")
+	(initial_actions [Sea_Class150000])
 	(next_tasks [Sea_Class180003])
-	(parent "s1.Buoy_2032")
+	(parent "s1.Buoy_2052")
 	(protagonist [Sea_Class244])
-	(run "s1.Buoy_2032")
+	(run "s1.Buoy_2052")
 	(status "START")
-	(task_scheme
-		[Sea_Class150000]
-		[Sea_Class160000])
-	(title "s1.Buoy Waits When Inside Oil Spill"))
+	(task_scheme [Sea_Class150000])
+	(title "s1.Buoy Waits When Inside Drops"))
 
 ([Sea_Class20009] of  Scenario
 
@@ -2662,10 +2655,10 @@
 ([Sea_Class210018] of  Delay
 
 	(delay "?interval")
-	(id "ds.Inter2134")
-	(parent "ds.One_D2124")
+	(id "ds.Inter2127")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Interval between Drops"))
 
@@ -3101,7 +3094,7 @@
 	(latitude "60 14.63")
 	(longitude "28 46.97")
 	(speed 0.0)
-	(url "file:data/images/buoyb.png"))
+	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class245] of  NavOb
 
@@ -3110,7 +3103,7 @@
 	(latitude "60 10.2")
 	(longitude "28 48.38")
 	(speed 0.0)
-	(url "file:data/images/buoyb.png"))
+	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class246] of  NavOb
 
@@ -3119,7 +3112,7 @@
 	(latitude "60 10.05")
 	(longitude "28 39.36")
 	(speed 0.0)
-	(url "file:data/images/buoyb.png"))
+	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class247] of  NavOb
 
@@ -3128,7 +3121,7 @@
 	(latitude "60 14.49")
 	(longitude "28 40.7")
 	(speed 0.0)
-	(url "file:data/images/buoyr.png"))
+	(url "file:data/images/buoyr.gif"))
 
 ([Sea_Class248] of  Spill
 
@@ -3173,7 +3166,7 @@
 	(field [Sea_Class160017])
 	(interval MINUTE)
 	(label "ds.Drop1 Deformer")
-	(lifetime 240)
+	(lifetime 300)
 	(period 1)
 	(playground-index 0)
 	(poly [Sea_Class30000]))
@@ -3568,7 +3561,7 @@
 	(longitude "28 47.98")
 	(N 32)
 	(playground-index 2)
-	(radius 6.0)
+	(radius 8.0)
 	(speed 4.0))
 
 ([Sea_Class300000] of  Link
@@ -4047,24 +4040,33 @@
 
 ([Sea_Class330012] of  DeleteResource
 
+	(id "ds.Delet2232")
 	(object [ScenarioN_Class570000])
+	(parent "ds.End2229")
+	(protagonist [Sea_Class344])
 	(resource [Sea_Class330025])
+	(run "ds.Dropp2148")
+	(status "START")
 	(title "ds.Delete Generated Drop Deformers"))
 
 ([Sea_Class330013] of  Bounds
 
+	(excluded
+		[Sea_Class330000]
+		[Sea_Class330002]
+		[Sea_Class20001])
 	(label "Between Primorsk and Sosnovyi Bor"))
 
 ([Sea_Class330024] of  LoadResource
 
-	(id "ds.Creat2066")
+	(id "ds.Creat2059")
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2063")
+	(parent "ds.Creat2056")
 	(protagonist [Sea_Class344])
 	(rename TRUE)
 	(resource [Sea_Class330025])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(seed [Sea_Class330026])
 	(status "START")
 	(title "ds.Create Drop Deformers"))
@@ -4079,13 +4081,13 @@
 
 ([Sea_Class330027] of  UseResource
 
-	(id "ds.Take_2127")
+	(id "ds.Take_2120")
 	(next_actions [Sea_Class330029])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
 	(resource [Sea_Class330025])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Take Drop Deformer")
 	(variable [Sea_Class330028]))
@@ -4097,11 +4099,11 @@
 ([Sea_Class330029] of  Compute
 
 	(computation [Sea_Class330030])
-	(id "ds.Drop_2128")
+	(id "ds.Drop_2121")
 	(next_actions [Sea_Class330031])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Drop to Drop Deformer"))
 
@@ -4114,12 +4116,12 @@
 ([Sea_Class330031] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start2133")
+	(id "ds.Start2126")
 	(next_actions [Sea_Class210018])
-	(parent "ds.One_D2124")
+	(parent "ds.One_D2117")
 	(protagonist [Sea_Class344])
 	(repeat-action [Sea_Class330028])
-	(run "ds.Dropp2062")
+	(run "ds.Dropp2055")
 	(status "START")
 	(title "ds.Start Drop Deformer"))
 
@@ -4185,6 +4187,15 @@
 	(object [Sea_Class240])
 	(title "s2s")
 	(variable [Sea_Class235]))
+
+([Sea_Class340000] of  ObAttribute
+
+	(attribute [Sea_Class170009])
+	(object [Sea_Class350002])
+	(parent "s1.Buoy_2054")
+	(relation in-some-resource)
+	(title "s1.Protagonist in Drops")
+	(value "?protagonist"))
 
 ([Sea_Class340001] of  CloFuncall
 
@@ -4354,6 +4365,155 @@
 
 	(pairs [Sea_Class302])
 	(title "ru6.TC Stop Context"))
+
+([Sea_Class350001] of  Attribute
+)
+
+([Sea_Class350002] of  Variable
+
+	(title "?source"))
+
+([Sea_Class350003] of  ObjectPair
+
+	(object [Sea_Class344])
+	(title "p")
+	(variable [Sea_Class350002]))
+
+([Sea_Class350004] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s11")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class350005] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s12")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class350006] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s13")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class350007] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s14")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 2)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class350008] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer1")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350004]))
+
+([Sea_Class350009] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer2")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350005]))
+
+([Sea_Class350010] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer3")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350006]))
+
+([Sea_Class350011] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer4")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350007]))
+
+([Sea_Class350012] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander1")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350004]))
+
+([Sea_Class350013] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander2")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350005]))
+
+([Sea_Class350014] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander3")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350006]))
+
+([Sea_Class350015] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander4")
+	(lifetime 300)
+	(period 1)
+	(playground-index 0)
+	(poly [Sea_Class350007]))
 
 ([Sea_Class363] of  Context
 

@@ -1,4 +1,4 @@
-; Tue Nov 07 21:18:49 MSK 2017
+; Sat Nov 18 22:25:43 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -184,10 +184,7 @@
 
 ([LinkOnOff] of  ActionClass
 
-	(functions [Scenario_Class260002])
-	(rules
-		[Scenario_Class250000]
-		[Scenario_Class260001]))
+	(rules [Scenario_Class250000]))
 
 ([LoadResource] of  ActionClass
 
@@ -373,7 +370,6 @@
 		[Scenario_Class160001]
 		[Scenario_Class170002]
 		[Scenario_Class250000]
-		[Scenario_Class260001]
 		[Scenario_Class390000]
 		[Scenario_Class390002]
 		[Scenario_Class120000]
@@ -595,7 +591,6 @@
 		[Scenario_Class280003]
 		[Scenario_Class280004]
 		[Scenario_Class290001]
-		[Scenario_Class260002]
 		[Scenario_Class320000]
 		[Scenario_Class350002]
 		[Scenario_Class390003]
@@ -674,7 +669,7 @@
 
 ([Scenario_Class140002] of  CloFunction
 
-	(source "(if (= proto :?)\n  v\n  (if-let [mo (or (OMT/getMapOb proto) (OMT/addMapOb proto))]\n    (if-let [hm (.getAttribute mo run)]\n      (cond\n        (string? v) (or (.get hm v) v)\n        (instance? Instance v)\n          (let [tit (sv v \"title\")]\n            (if (= tit \"?protagonist\")\n              proto\n              (or (.get hm tit) v)))\n        true v))\n    v))")
+	(source "(if (= proto :?)\n  v\n  (if-let [mo (or (OMT/getMapOb proto) (OMT/addMapOb proto))]\n    (if-let [hm (.getAttribute mo run)]\n      (cond\n        (string? v)\n          (if (= v \"?protagonist\")\n            proto\n            (or (.get hm v) v))\n        (instance? Instance v)\n          (let [tit (sv v \"title\")]\n            (if (= tit \"?protagonist\")\n              proto\n              (or (.get hm tit) v)))\n        true v))\n    v))")
 	(title "vv [v proto run]"))
 
 ([Scenario_Class150000] of  CloFunction
@@ -898,7 +893,7 @@
 
 ([Scenario_Class230002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        \"=\" (= avl vvl)\n        \"!=\" (not= avl vvl)\n        \">\" (> avl vvl)\n        \"<\" (< avl vvl)\n        \">=\" (>= avl vvl)\n        \"<=\" (<= avl vvl)\n        \"starts-with\" (.startsWith (or avl \"\") (str vvl))\n        \"ends-with\" (.endsWith (or avl \"\") (str vvl))\n        \"empty\" (empty? avl)\n        \"resource-exhausted\" (>= (first avl) (count (rest avl)))\n        false))\n    false))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       val (vv ?val p r)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        '= (= avl vvl)\n        '!= (not= avl vvl)\n        '> (> avl vvl)\n        '< (< avl vvl)\n        '>= (>= avl vvl)\n        '<= (<= avl vvl)\n        'starts-with (.startsWith (or avl \"\") (str vvl))\n        'ends-with (.endsWith (or avl \"\") (str vvl))\n        'empty (empty? avl)\n        'resource-exhausted (>= (first avl) (count (rest avl)))\n        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        false))\n    false))")
 	(title "ob-attribute [atr ?obj rel ?val p r]"))
 
 ([Scenario_Class230004] of  CloFunction
@@ -933,10 +928,10 @@
 
 ([Scenario_Class250000] of  Rule
 
-	(lhs "?loo (LinkOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	lineColor ?lic\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println \"Action started:\" ?tit \"LinkOnOff\")\n(modify ?loo status (a/link-on-off ?obj ?obs ?flg ?lic ?pro ?run))")
+	(lhs "?loo (LinkOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	lineColor ?col\n	line ?lin\n	run ?run\n	protagonist ?pro\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
+	(rhs "(println (str \"Action started: \" ?tit \" LinkOnOff\"))\n(let [obj (a/mapob-vv ?obj ?pro ?run)\n       obs (a/mapob-vv ?obs ?pro ?run)\n       col (a/vv ?col ?pro ?run)\n       lin (a/vv ?lin ?pro ?run)]\n  (if (and obj obs)\n    (let [pg (.getPlayground obs)\n           nam (str (.getName obs) \"-\" (.getName obj))]\n      (if (protege.core/is? ?flg)\n        (ru.igis.omtab.OMT/addMapOb (ru.igis.omtab.Link. nam obs obj col lin) pg)\n        (if-let[lnk (ru.igis.omtab.OMT/getMapOb nam)]\n          (ru.igis.omtab.OMT/removeMapOb lnk false)))\n      (retract ?loo)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts))\n    (modify ?loo status \"FAILED\")))")
 	(salience 0)
-	(title "a:LinkOnOffStart"))
+	(title "a:LinkOnOff"))
 
 ([Scenario_Class250003] of  CloFunction
 
@@ -973,8 +968,7 @@
 		[Scenario_Class230005]
 		[ScenarioN_Class180001]
 		[ScenarioN_Class210001]
-		[ScenarioN_Class480000]
-		[Scenario_Class70003])
+		[ScenarioN_Class480000])
 	(cloNamespace [Scenario_Class250009])
 	(title "Decision Functions"))
 
@@ -999,8 +993,7 @@
 		[ScenarioN_Class470001]
 		[ScenarioN_Class470002]
 		[ScenarioN_Class630000]
-		[ScenarioN_Class640000]
-		[Scenario_Class60000])
+		[ScenarioN_Class640000])
 	(templates
 		[UserDecision]
 		[GeneralDecision]
@@ -1010,8 +1003,7 @@
 		[CatchException]
 		[Exception]
 		[TDecision]
-		[Hard]
-		[WithRespectPolygons])
+		[Hard])
 	(title "DecisionExecutor"))
 
 ([Scenario_Class260000] of  Rule
@@ -1020,18 +1012,6 @@
 	(rhs "(println \"Action started:\" ?tit \"RepeatActionOnOff\")\n(a/repeat-action-onoff ?ra ?col ?flg ?pro ?run)\n(retract ?rao)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:RepeatActionOnOff"))
-
-([Scenario_Class260001] of  Rule
-
-	(lhs "?loo (LinkOnOff status \"DONE\" \n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(retract ?loo)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
-	(salience 0)
-	(title "a:LinkOnOffDone"))
-
-([Scenario_Class260002] of  CloFunction
-
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       obs (OMT/getMapOb (vv ?obs p r))\n       lic (vv ?lic p r)]\n  (if (not (or (nil? obj) (nil? obs)))\n    (do\n      (if (is? flg)\n        (if (not (null? lic))\n          (.linkMapOb obs obj lic))\n        (.unlinkMapOb obs obj))\n      \"DONE\")\n    \"FAILED\"))")
-	(title "link-on-off [?obj ?obs flg ?lic p r]"))
 
 ([Scenario_Class260003] of  CloFunction
 
@@ -1178,13 +1158,6 @@
 
 	(source "(doseq [k (.keySet hm)]\n  (.put hm k (vv (.get hm k) p r)))")
 	(title "hm-varvals-to-vals [hm p r]"))
-
-([Scenario_Class300002] of  DeleteResource
-
-	(object [igis_Class10000])
-	(resource [Scenario_Class300003])
-	(status "START")
-	(title "test"))
 
 ([Scenario_Class300003] of  Attribute
 
@@ -1548,13 +1521,6 @@
 	(source "(filter #(include? y1 %) y2)")
 	(title "conjunct [y1 y2]"))
 
-([Scenario_Class60000] of  Rule
-
-	(lhs "?wrp (WithRespectPolygons status \"START\" \n	title ?tit\n	object ?obj\n	observer ?obs\n	mapob ?mos\n	side ?sid\n	grouping ?gpg\n	variants ?vrs\n	parent ?par\n	run ?run\n	protagonist ?pro)")
-	(rhs "(println \"Decision:\" ?tit \"WithRespectPolygons\")\n(s/start-tasks-actions (d/with-respect-polygons ?obj ?obs ?mos ?sid ?gpg ?vrs ?pro ?run) ?par ?run ?pro)\n(retract ?wrp)")
-	(salience 0)
-	(title "d:WithRespectPolygons"))
-
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1573,11 +1539,6 @@
 	(rhs "(retract ?del)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:DelayRepeat"))
-
-([Scenario_Class70003] of  CloFunction
-
-	(source "(let [mo (mapob-vv ?obj p r)\n       obs (vv ?obs p r)\n       obs (if (pins? obs) [obs] obs)\n       obs (vec (concat obs mos))\n       pols (filter some? (map #(OMT/addMapOb %) obs))\n       all (= gpg 'ALL)\n       ins (= sid 'INSIDE)\n       res (if (and mo (seq pols) (> (count vars) 1))\n               (loop [pls pols]\n                 (if (seq pls)\n                   (if (.contains (first pls) mo)\n                     (if ins\n                       (if all\n                         (recur (rest pls))\n	 true)\n                       (if all\n                         false\n                         (recur (rest pls))))\n                     (if ins ;; not contains\n                       (if all\n                         false\n                         (recur (rest pls)))\n                       (if all\n                         (recur (rest pls))\n                         true)))\n                   true)))]\n  (if res\n    [(first vars)]\n    [(second vars)]))")
-	(title "with-respect-polygons [?obj ?obs mos sid gpg vars p r]"))
 
 ([Scenario_Class80000] of  Rule
 
@@ -3237,8 +3198,3 @@
 		[ScenarioN_Class80008]
 		[ScenarioN_Class80009]
 		[ScenarioN_Class60000]))
-
-([WithRespectPolygons] of  DecisionClass
-
-	(functions [Scenario_Class70003])
-	(rules [Scenario_Class60000]))

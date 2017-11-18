@@ -219,34 +219,3 @@
 (defn label-or-title [obj]
   (or (sv obj "label") (sv obj "title")))
 
-(defn with-respect-polygons [?obj ?obs mos sid gpg vars p r]
-  (let [mo (mapob-vv ?obj p r)
-       obs (vv ?obs p r)
-       obs (if (pins? obs) [obs] obs)
-       obs (vec (concat obs mos))
-       pols (filter some? (map #(OMT/addMapOb %) obs))
-       all (= gpg 'ALL)
-       ins (= sid 'INSIDE)
-       res (if (and mo (seq pols) (> (count vars) 1))
-               (loop [pls pols]
-                 (if (seq pls)
-                   (if (.contains (first pls) mo)
-                     (if ins
-                       (if all
-                         (recur (rest pls))
-	 true)
-                       (if all
-                         false
-                         (recur (rest pls))))
-                     (if ins ;; not contains
-                       (if all
-                         false
-                         (recur (rest pls)))
-                       (if all
-                         (recur (rest pls))
-                         true)))
-                   true)))]
-  (if res
-    [(first vars)]
-    [(second vars)])))
-
