@@ -274,3 +274,10 @@
       (.show p/*prj* t2)
       (str "Fact-" n)))))
 
+(defn di [nam]
+  (let [nam (if (.contains nam "(")
+                 (.substring nam (inc (.indexOf nam "(")) (.indexOf nam " "))
+                 nam)]
+  (.show p/*prj* (.getInstance p/*kb* nam))
+  nam))
+

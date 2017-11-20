@@ -86,9 +86,6 @@
   (if (and (some? obj) (some? atr))
     (let [avl (try-str-num (.getAttribute obj (sv atr "title")))
            vvl (try-str-num val)]
-      (dbg avl)
-      (println (OMT/getMapOb vvl))
-      (println (OMT/getMapOb (first (rest avl))))
       (condp = rel
         '= (= avl vvl)
         '!= (not= avl vvl)
