@@ -1,4 +1,4 @@
-; Mon Nov 20 16:09:56 MSK 2017
+; Tue Nov 21 21:51:38 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -342,7 +342,7 @@
 	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n	(= (count ?nacts) 0))\n?t (Task status \"DOING\"\n	title ?tit\n	id ?pid\n	final_actions ?facts \n	finish_type OR\n	((s/include? ?facts ?ain)\n	 (> (count ?facts) 1)))")
 	(rhs "(println \"Task (OR type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
 	(salience 0)
-	(title "s:FirstFinalActionDone"))
+	(title "s:FirstORFinalActionDone"))
 
 ([Scenario_Class100006] of  RuleSet
 
@@ -501,7 +501,7 @@
 	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain \n	next_actions ?nacts\n	(= (count ?nacts) 0))\n?t (Task status \"DOING\"\n	title ?tit\n	id ?pid\n	final_actions ?facts \n	finish_type AND\n	((s/include? ?facts ?ain)\n	 (= (count ?facts) 1)))")
 	(rhs "(println \"Task (AND type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
 	(salience 0)
-	(title "s:LastFinalActionDone"))
+	(title "s:LastANDFinalActionDone"))
 
 ([Scenario_Class110002] of  Rule
 
@@ -632,7 +632,7 @@
 ([Scenario_Class130000] of  Rule
 
 	(lhs "(Scenario status \"DONE\"\n	title ?tit\n	run ?run\n	protagonist ?pro)")
-	(rhs "(when-let [mo (if (not (s/qm ?pro)) (ru.igis.omtab.OMT/getMapOb ?pro))]\n  (.putAttribute mo \"SCENARIOS\" \n	(seq (remove #{?tit} (.getAttribute mo \"SCENARIOS\")))))\n  ;; (navobs.commands/remove-current-task ?tit (.getName mo)))\n(s/remove-context-attribute ?pro ?run)\n(s/clear-run-activities ?run)")
+	(rhs "(when-let [mo (if (not (s/qm ?pro)) (ru.igis.omtab.OMT/getMapOb ?pro))]\n  (.putAttribute mo \"SCENARIOS\" \n	(seq (remove #{?tit} (.getAttribute mo \"SCENARIOS\")))))\n(s/remove-context-attribute ?pro ?run)\n(s/clear-run-activities ?run)")
 	(salience 0)
 	(title "s:RetractDoneScenario"))
 
@@ -766,7 +766,7 @@
 	(lhs "?t (Task status \"DONE\" \n	parent ?pid\n	instance ?tin)\n?s (Scenario status \"DOING\"\n	id ?pid\n	title ?tit\n	final_tasks ?ftasks\n	((s/include? ?ftasks ?tin)\n	 (= (count ?ftasks) 1)))")
 	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
 	(salience 0)
-	(title "s:LastFinalTaskDone"))
+	(title "s:LastANDFinalTaskDone"))
 
 ([Scenario_Class200000] of  Rule
 
@@ -1170,8 +1170,8 @@
 
 ([Scenario_Class310000] of  Rule
 
-	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	task-scenario ?tks\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Break\")\n(let [act (a/vv ?act ?pro ?run)\n       tks (a/vv ?tks ?pro ?run)]\n  (if (and (some? act) (some? tks))\n    (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario [act tks])\n	\"Task\" (a/break-task [act tks])\n	(a/break-action [act tks]))\n      (retract ?brk)\n      (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n    (modify ?brk status \"FAILED\")))")
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	instance ?ain\n	parent ?par\n	run ?run\n	protagonist ?pro\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?pro ?run)]\n  (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario act ?run)\n	\"Task\" (a/break-task act ?run)\n	(a/break-action  act ?run))\n    (retract ?brk)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n  (modify ?brk status \"FAILED\"))")
 	(salience 0)
 	(title "a:Break"))
 
@@ -1295,7 +1295,7 @@
 	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin)\n?s (Scenario status \"DOING\" \n	id ?pid\n	title ?tit\n	final_tasks ?ftasks \n	finish_type OR\n	((s/include? ?ftasks ?tin)\n	 (>= (count ?ftasks) 1)))")
 	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
 	(salience 0)
-	(title "s:FirstFinalTaskDone"))
+	(title "s:FirstORFinalTaskDone"))
 
 ([Scenario_Class400000] of  Rule
 
@@ -2967,17 +2967,17 @@
 
 ([ScenarioN_Class750000] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [sins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) sins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (if-let [tins (DisplayUtilities/pickInstanceFromCollection nil tis 0 \"Select Task\")]\n          (let [tid (re/slot-value 'id (first (filter #(= (re/slot-value 'instance %) tins) tt)))\n                 aa (re/facts-with-slot-value 'parent = tid)\n                 tts (map #(re/slot-value 'title %) aa)\n                 xis (map #(foc \"Aux\" \"title\" %) tts)]\n            (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil xis \"Select Actions\")]\n              (break-action (sv ins \"title\") run))\n            (doseq [xi xis]\n              (delin xi))))))))\n\n([[act tks]]\n  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]\n    (break-action (sv act \"title\") (re/slot-value 'run tkf))))\n\n([tit run]\n  (doseq [fact (re/facts-with-slot-value 'title = tit)]\n    (if (= (re/slot-value 'run fact) run)\n      (re/retract-fact (first fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [sins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) sins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (if-let [tins (DisplayUtilities/pickInstanceFromCollection nil tis 0 \"Select Task\")]\n          (let [tid (re/slot-value 'id (first (filter #(= (re/slot-value 'instance %) tins) tt)))\n                 aa (re/facts-with-slot-value 'parent = tid)\n                 tts (map #(re/slot-value 'title %) aa)\n                 xis (map #(foc \"Aux\" \"title\" %) tts)]\n            (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil xis \"Select Actions\")]\n              (break-action (sv ins \"title\") run))\n            (doseq [xi xis]\n              (delin xi))))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (re/retract-fact (first fact)))))")
 	(title "break-action"))
 
 ([ScenarioN_Class750001] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([[act tks]]\n  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]\n    (break-task act (re/slot-value 'run tkf))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (break-action (re/slot-value 'title acf) run))\n      (re/retract-fact (first fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (break-action (re/slot-value 'title acf) run))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
 	(title "break-task"))
 
 ([ScenarioN_Class750002] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([[act tks]]\n  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]\n    (break-scenario act (re/slot-value 'run tkf))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))\n      (re/retract-fact (first fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))\n      (re/retract-fact (first fact)) \n      (println \"Scenario breaked \" (re/slot-value 'title fact)))))")
 	(title "break-scenario"))
 
 ([ScenarioN_Class760000] of  Command

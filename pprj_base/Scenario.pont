@@ -1,4 +1,4 @@
-; Mon Nov 20 16:09:56 MSK 2017
+; Tue Nov 21 21:51:38 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -807,11 +807,6 @@
 		(create-accessor read-write))
 	(multislot sse-port
 ;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot task-scenario
-		(type INSTANCE)
-;+		(allowed-classes Scenario Variable)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot sse-chans
 ;+		(type ANY)
@@ -1757,11 +1752,6 @@
 	(single-slot activity
 		(type INSTANCE)
 ;+		(allowed-classes Activity Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot task-scenario
-		(type INSTANCE)
-;+		(allowed-classes Scenario Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

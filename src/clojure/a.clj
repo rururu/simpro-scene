@@ -608,12 +608,8 @@
             (doseq [xi xis]
               (delin xi))))))))
 
-([[act tks]]
-  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]
-    (break-action (sv act "title") (re/slot-value 'run tkf))))
-
-([tit run]
-  (doseq [fact (re/facts-with-slot-value 'title = tit)]
+([act run]
+  (doseq [fact (re/facts-with-slot-value 'instance = act)]
     (if (= (re/slot-value 'run fact) run)
       (re/retract-fact (first fact))))))
 
@@ -631,16 +627,13 @@
         (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis "Select Tasks")]
           (break-task ins run))))))
 
-([[act tks]]
-  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]
-    (break-task act (re/slot-value 'run tkf))))
-
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
         (break-action (re/slot-value 'title acf) run))
-      (re/retract-fact (first fact))))))
+      (re/retract-fact (first fact))
+      (println "Task breaked " (re/slot-value 'title fact))))))
 
 (defn break-scenario
   ([]
@@ -649,16 +642,13 @@
     (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis "Select Scenarios")]
       (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
 
-([[act tks]]
-  (if-let [tkf (first (re/facts-with-slot-value 'Scenario 'instance = tks))]
-    (break-scenario act (re/slot-value 'run tkf))))
-
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
     (when (= (re/slot-value 'run fact) run)
       (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
         (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
-      (re/retract-fact (first fact))))))
+      (re/retract-fact (first fact)) 
+      (println "Scenario breaked " (re/slot-value 'title fact))))))
 
 (defn val-from-str [s]
   (try

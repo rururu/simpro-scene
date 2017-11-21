@@ -1,4 +1,4 @@
-; Mon Nov 20 21:59:35 MSK 2017
+; Tue Nov 21 22:24:22 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -76,6 +76,9 @@
 ;+		(type ANY)
 		(create-accessor read-write))
 	(multislot scripts
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot task-scenario
 ;+		(type ANY)
 		(create-accessor read-write)))
 
