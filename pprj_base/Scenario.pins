@@ -1,4 +1,4 @@
-; Tue Nov 21 21:51:38 MSK 2017
+; Wed Nov 22 22:47:18 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -857,14 +857,13 @@
 
 ([Scenario_Class220002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj p r))\n       obsi (vv ?obs p r)\n       val (vv ?val p r)]\n  (if (not (or (nil? obj) (null? obsi)))\n    (if-let [obs (OMT/getMapOb obsi)]\n      (condp = obr\n        'NEAR (.near obs obj rad)\n        'FAR (>= (.distanceNM obs obj) rad)\n        'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)\n        'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)\n        'ABAFT (.abaft obs obj)\n        'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))\n        'ON-BEAM (on-beam obs obj)\n        'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)\n        'SAME (= obj obs)\n        false)\n      (condp = obr\n        'INSIDE (contains-with (sv obsi \"label\") obj)\n        'OUTSIDE (not (contains-with (sv obsi \"label\") obj))\n        false))\n    false))")
+	(source "(let [obj (mapob-vv ?obj p r)\n       obs (mapob-vv ?obs p r)\n       val (vv ?val p r)]\n  (if (and obj obs)\n    (condp = obr\n      'NEAR (.near obs obj rad)\n      'FAR (>= (.distanceNM obs obj) rad)\n      'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)\n      'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)\n      'ABAFT (.abaft obs obj)\n      'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))\n      'ON-BEAM (on-beam obs obj)\n      'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)\n      'SAME (= obj obs)\n      'INSIDE (.contains obs obj)\n      'OUTSIDE (not (.contains obs obj))\n      false)))")
 	(title "two-ob-relation [obr ?obj ?obs rad ?val p r]"))
 
 ([Scenario_Class220003] of  CloProgram
 
 	(cloFunctions
 		[ScenarioN_Class730000]
-		[Scenario_Class380000]
 		[Scenario_Class260007]
 		[Scenario_Class270009]
 		[Scenario_Class260008]
@@ -1256,11 +1255,6 @@
 	(salience 0)
 	(title "a:SearchInside"))
 
-([Scenario_Class380000] of  CloFunction
-
-	(source "(let [lst (seq (OMT/getMapObs))\n       polys (filter #(.startsWith (.getName %) prefix) lst)]\n  (or (some #(.contains % mo) polys) false))")
-	(title "contains-with [prefix mo]"))
-
 ([Scenario_Class390000] of  Rule
 
 	(lhs "?poa (PutObAttributes status \"START\"\n	title ?tit\n	object ?obj\n	attributes ?atrs\n	values ?vals\n	run ?run\n	protagonist ?pro)")
@@ -1520,6 +1514,10 @@
 
 	(source "(filter #(include? y1 %) y2)")
 	(title "conjunct [y1 y2]"))
+
+([Scenario_Class60000] of  CloFuncall
+
+	(source "(.startsWith \"abcd\" \"abcd\")"))
 
 ([Scenario_Class60002] of  CloProgram
 
@@ -3141,7 +3139,6 @@
 		[Scenario_Class260008]
 		[Scenario_Class270009]
 		[Scenario_Class260007]
-		[Scenario_Class380000]
 		[Scenario_Class260008]))
 
 ([UserDecision] of  DecisionClass

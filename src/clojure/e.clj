@@ -12,11 +12,6 @@
     y 
     (if (some? x) x))))
 
-(defn contains-with [prefix mo]
-  (let [lst (seq (OMT/getMapObs))
-       polys (filter #(.startsWith (.getName %) prefix) lst)]
-  (or (some #(.contains % mo) polys) false)))
-
 (defn correct-ca [ca]
   (cond
   (> ca 180)  (- ca 360)
@@ -35,27 +30,23 @@
     (and (< ca -87) (> ca -93)))))
 
 (defn two-ob-relation [obr ?obj ?obs rad ?val p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-       obsi (vv ?obs p r)
+  (let [obj (mapob-vv ?obj p r)
+       obs (mapob-vv ?obs p r)
        val (vv ?val p r)]
-  (if (not (or (nil? obj) (null? obsi)))
-    (if-let [obs (OMT/getMapOb obsi)]
-      (condp = obr
-        'NEAR (.near obs obj rad)
-        'FAR (>= (.distanceNM obs obj) rad)
-        'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)
-        'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)
-        'ABAFT (.abaft obs obj)
-        'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))
-        'ON-BEAM (on-beam obs obj)
-        'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)
-        'SAME (= obj obs)
-        false)
-      (condp = obr
-        'INSIDE (contains-with (sv obsi "label") obj)
-        'OUTSIDE (not (contains-with (sv obsi "label") obj))
-        false))
-    false)))
+  (if (and obj obs)
+    (condp = obr
+      'NEAR (.near obs obj rad)
+      'FAR (>= (.distanceNM obs obj) rad)
+      'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)
+      'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)
+      'ABAFT (.abaft obs obj)
+      'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))
+      'ON-BEAM (on-beam obs obj)
+      'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)
+      'SAME (= obj obs)
+      'INSIDE (.contains obs obj)
+      'OUTSIDE (not (.contains obs obj))
+      false))))
 
 (defn ob-property [prop ?obj rad ?lat ?lon ?val p r]
   (let [obj (OMT/getMapOb (vv ?obj p r))
