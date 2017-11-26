@@ -1,4 +1,4 @@
-; Wed Nov 22 22:47:18 MSK 2017
+; Sun Nov 26 23:01:01 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -535,7 +535,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot run
-		(type STRING)
+;+		(type ANY)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot variables
@@ -952,16 +952,11 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot run
-		(type STRING)
+;+		(type ANY)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot id
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot protagonist
-		(type INSTANCE)
-;+		(allowed-classes Variable MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot parent
@@ -995,6 +990,11 @@
 	(single-slot context
 		(type INSTANCE)
 ;+		(allowed-classes Variable Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protagonist
+		(type INSTANCE)
+;+		(allowed-classes Variable MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

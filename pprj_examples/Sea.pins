@@ -1,4 +1,4 @@
-; Wed Nov 22 22:02:02 MSK 2017
+; Sat Nov 25 14:00:00 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -74,23 +74,19 @@
 
 ([Sea_Class100] of  Position
 
-	(id "s1.SA_to2175")
+	(id "s1.SA_to3584")
 	(object [Sea_Class229])
 	(observer [Sea_Class240])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(position-angle "90")
 	(position-distance "0.5")
 	(position-speed "16")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative FALSE)
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.SA to Damaged Ship2"))
-
-([Sea_Class10000] of  CloFuncall
-
-	(source "(ru.igis.omtab.Util/createDrawnPolygons)"))
 
 ([Sea_Class100000] of  %3AINSTANCE-ANNOTATION
 
@@ -130,98 +126,98 @@
 
 ([Sea_Class101] of  Position
 
-	(id "s1.SM_to2173")
+	(id "s1.SM_to3582")
 	(object [Sea_Class237])
 	(observer [Sea_Class240])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(position-angle "180")
 	(position-distance "0.5")
 	(position-speed "20")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative FALSE)
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.SM to Damaged Ship2"))
 
 ([Sea_Class102] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.CP_Ho2353")
+	(id "s1.CP_Ho2300")
 	(lineColor "FFFF0000")
 	(next_actions [Sea_Class103])
 	(object [Sea_Class240])
 	(observer [Sea_Class227])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.CP Hose Ship2"))
 
 ([Sea_Class103] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.CZ_Ho2355")
+	(id "s1.CZ_Ho2302")
 	(lineColor "FFFF0000")
 	(next_actions [Sea_Class107])
 	(object [Sea_Class240])
 	(observer [Sea_Class228])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.CZ Hose Ship2"))
 
 ([Sea_Class104] of  Delay
 
 	(delay "4 min")
-	(id "s1.Delay2354")
+	(id "s1.Delay2301")
 	(next_actions
 		[Sea_Class105]
 		[Sea_Class106])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.Delay before Oil Barrier"))
 
 ([Sea_Class105] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.Oil_B2373")
+	(id "s1.Oil_B2341")
 	(lineColor "FF000000")
 	(object [Sea_Class228])
 	(observer [Sea_Class229])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.Oil Barrier SA - CZ"))
 
 ([Sea_Class106] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.Oil_B2374")
+	(id "s1.Oil_B2342")
 	(lineColor "FF000000")
 	(object [Sea_Class237])
 	(observer [Sea_Class229])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.Oil Barrier SA - SM"))
 
 ([Sea_Class107] of  Delay
 
 	(delay "1 hrs")
-	(id "s1.Fire_2356")
+	(id "s1.Fire_2303")
 	(next_actions
 		[Sea_Class108]
 		[Sea_Class109]
 		[Sea_Class110])
-	(parent "s2.TF_Ac2352")
+	(parent "s2.TF_Ac2299")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.Fire Fight Time"))
 
@@ -264,11 +260,11 @@
 	(context [Sea_Class190007])
 	(final_tasks [Sea_Class170004])
 	(finish_type AND)
-	(id "ds.Dropp2097")
+	(id "ds.Dropp3590")
 	(initial_tasks [Sea_Class130001])
-	(parent "s1.Start2096")
-	(protagonist [Sea_Class344])
-	(run "s1.Colli2051")
+	(parent "s1.Start3589")
+	(protagonist [Sea_Class346])
+	(run "s1.Simpl3554")
 	(scenario_scheme
 		[Sea_Class130001]
 		[Sea_Class130002]
@@ -284,14 +280,14 @@
 
 ([Sea_Class110002] of  PutOnMap
 
-	(id "c1.Launc2060")
+	(id "c1.Launc3492")
 	(latitude "60 19.04")
 	(longitude "28 44.48")
 	(next_actions [Sea_Class120003])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(status "START")
 	(title "c1.Launch at Primorsk"))
 
@@ -311,11 +307,11 @@
 ([Sea_Class110015] of  Delay
 
 	(delay "10 min")
-	(id "s1.Delay2095")
+	(id "s1.Delay3557")
 	(next_actions [Sea_Class350000])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Delay before Light Spill"))
 
@@ -377,74 +373,74 @@
 ([Sea_Class114] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2096")
+	(id "s1.Start3558")
 	(next_actions [Sea_Class400002])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class261])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Start Radio SOS"))
 
 ([Sea_Class117] of  PutOnMap
 
-	(id "s1.Launc2099")
+	(id "s1.Launc3562")
 	(latitude "60 21.39")
 	(longitude "28 37.62")
 	(next_actions
 		[Sea_Class119]
 		[Sea_Class123])
 	(object [Sea_Class226])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Launch Rescue Helicopter"))
 
 ([Sea_Class118] of  PutOnPlace
 
-	(id "s1.Wound2154")
+	(id "s1.Wound3586")
 	(next_actions [Sea_Class120])
 	(object [Sea_Class243])
 	(observer [Sea_Class235])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Wounded on Deck"))
 
 ([Sea_Class119] of  Position
 
-	(id "s1.Helic2100")
+	(id "s1.Helic3563")
 	(next_actions
 		[Sea_Class124]
 		[Sea_Class118])
 	(object [Sea_Class226])
 	(observer [Sea_Class235])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(position-angle "0")
 	(position-distance "0.5")
 	(position-speed "100")
 	(protagonist [Sea_Class160021])
 	(radius 0.5)
 	(relative FALSE)
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Helicopter to Wreck"))
 
 ([Sea_Class120] of  TowOnOff
 
 	(flag TRUE)
-	(id "s1.Lift_2155")
+	(id "s1.Lift_3587")
 	(next_actions [Sea_Class121])
 	(object [Sea_Class243])
 	(observer [Sea_Class226])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(position-angle "180")
 	(position-distance "0.5")
 	(protagonist [Sea_Class160021])
 	(relative FALSE)
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Lift Wounded"))
 
@@ -468,15 +464,15 @@
 
 ([Sea_Class120003] of  Arrive
 
-	(id "c1.Moori2061")
+	(id "c1.Moori3493")
 	(latitude "60 19.64")
 	(longitude "28 42.87")
 	(next_actions [Sea_Class120008])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
 	(radius 0.1)
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(speed 22.0)
 	(status "START")
 	(title "c1.Mooring"))
@@ -484,24 +480,24 @@
 ([Sea_Class120004] of  Delay
 
 	(delay "22 min")
-	(id "c1.Cargo2063")
+	(id "c1.Cargo3495")
 	(next_actions [Sea_Class210000])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(status "START")
 	(title "c1.Cargo Loading 2"))
 
 ([Sea_Class120005] of  GoRoute
 
-	(id "c1.To_Se2072")
+	(id "c1.To_Se3504")
 	(next_actions [Sea_Class120006])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
 	(radius 0.1)
 	(route [Sea_Class251])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(spd "?spd")
 	(status "START")
 	(title "c1.To Sea"))
@@ -521,11 +517,11 @@
 	(context [Sea_Class363])
 	(final_tasks [Sea_Class80000])
 	(finish_type AND)
-	(id "c1.Cruis2057")
+	(id "c1.Cruis3489")
 	(initial_tasks [Sea_Class80000])
-	(parent "s1.Start2056")
+	(parent "s1.Start3488")
 	(protagonist [Sea_Class344])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(scenario_scheme [Sea_Class80000])
 	(status "START")
 	(title "c1.Cruise from Primorsk"))
@@ -533,11 +529,11 @@
 ([Sea_Class120008] of  TimeMessage
 
 	(category "0")
-	(id "Cargo_Lo2062")
+	(id "Cargo_Lo3494")
 	(next_actions [Sea_Class120004])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(status "START")
 	(text "Exxon Cargo Loading")
 	(title "Cargo Loading Message"))
@@ -560,63 +556,63 @@
 
 ([Sea_Class121] of  Arrive
 
-	(id "s1.Helic2156")
+	(id "s1.Helic3588")
 	(latitude "60 21.39")
 	(longitude "28 37.62")
 	(next_actions [Sea_Class122])
 	(object [Sea_Class226])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
 	(radius 0.5)
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(speed 100.0)
 	(status "START")
 	(title "s1.Helicopter Return"))
 
 ([Sea_Class122] of  PutOffMap
 
-	(id "s1.Wound2195")
+	(id "s1.Wound2180")
 	(object [Sea_Class243])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl2107")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl2106")
 	(status "START")
 	(title "s1.Wounded to Hospital"))
 
 ([Sea_Class123] of  LinkOnOff
 
 	(flag TRUE)
-	(id "s1.Eye_C2101")
+	(id "s1.Eye_C3564")
 	(lineColor "FF00CC00")
 	(object [Sea_Class235])
 	(observer [Sea_Class226])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Eye Collision Place"))
 
 ([Sea_Class124] of  LinkOnOff
 
 	(flag FALSE)
-	(id "s1.Cease2153")
+	(id "s1.Cease3585")
 	(object [Sea_Class235])
 	(observer [Sea_Class226])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Cease Eye Collision"))
 
 ([Sea_Class125] of  ObjectMessage
 
 	(category "2")
-	(id "SOS_Medi2098")
+	(id "SOS_Medi3561")
 	(next_actions [Sea_Class117])
 	(object [Sea_Class235])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(text "Medical assistance urgently required by ? in position: latitude ?, longitude ?.")
 	(title "SOS Medical Assistance Needed")
@@ -624,34 +620,34 @@
 
 ([Sea_Class127] of  PutOnPlace
 
-	(id "s1.Radio2094")
+	(id "s1.Radio3556")
 	(next_actions [Sea_Class114])
 	(object [Sea_Class249])
 	(observer [Sea_Class235])
-	(parent "s1.Simpl2093")
+	(parent "s1.Simpl3555")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(title "s1.Radio SOS to Collision"))
 
 ([Sea_Class130] of  Delay
 
 	(delay "4 min")
-	(id "s1.Radia2488")
-	(parent "s1.Buoy_2482")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2244")
+	(id "s1.Radia2416")
+	(parent "s1.Buoy_2410")
+	(protagonist [Sea_Class246])
+	(run "s1.Buoy_2172")
 	(status "START")
 	(title "s1.Radiation Time"))
 
 ([Sea_Class130000] of  GeneralDecision
 
 	(conditions "sum-speed <= 40")
-	(id "s1.Heavy2087")
+	(id "s1.Heavy3519")
 	(input_data [Sea_Class150001])
-	(parent "s1.Colli2051")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Heavy or Light?")
 	(variants
@@ -664,12 +660,12 @@
 		[Sea_Class170006]
 		[Sea_Class330024])
 	(finish_type AND)
-	(id "ds.Creat2098")
+	(id "ds.Creat3591")
 	(initial_actions [Sea_Class170005])
 	(next_tasks [Sea_Class130002])
-	(parent "ds.Dropp2097")
-	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(parent "ds.Dropp3590")
+	(protagonist [Sea_Class346])
+	(run "ds.Dropp3590")
 	(status "START")
 	(task_scheme
 		[Sea_Class170005]
@@ -683,12 +679,12 @@
 		[Sea_Class210018]
 		[Sea_Class190005])
 	(finish_type AND)
-	(id "ds.One_D2102")
+	(id "ds.One_D3595")
 	(initial_actions [Sea_Class170000])
 	(next_tasks [Sea_Class170003])
-	(parent "ds.Dropp2097")
-	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(parent "ds.Dropp3590")
+	(protagonist [Sea_Class346])
+	(run "ds.Dropp3590")
 	(status "START")
 	(task_scheme
 		[Sea_Class170000]
@@ -747,13 +743,13 @@
 		[Sea_Class122]
 		[Sea_Class124])
 	(finish_type AND)
-	(id "s1.Simpl2093")
+	(id "s1.Simpl3555")
 	(initial_actions
 		[Sea_Class127]
 		[Sea_Class110015])
-	(parent "s1.Simpl2092")
+	(parent "s1.Simpl3554")
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(task_scheme
 		[Sea_Class127]
@@ -775,132 +771,132 @@
 ([Sea_Class130046] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2487")
+	(id "s1.Start2415")
 	(next_actions [Sea_Class130])
-	(parent "s1.Buoy_2482")
-	(protagonist [Sea_Class247])
+	(parent "s1.Buoy_2410")
+	(protagonist [Sea_Class246])
 	(repeat-action [Sea_Class262])
-	(run "s1.Buoy_2244")
+	(run "s1.Buoy_2172")
 	(status "START")
 	(title "s1.Start Buoy Radiation"))
 
 ([Sea_Class134] of  Position
 
-	(id "s1.To_1s2165")
+	(id "s1.To_1s3574")
 	(next_actions [Sea_Class135])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl3573")
 	(position-angle "50")
 	(position-distance "1.5")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.To 1st Posution"))
 
 ([Sea_Class135] of  PutOnPlace
 
-	(id "s1.Place2196")
+	(id "s1.Place3607")
 	(next_actions
 		[Sea_Class136]
 		[Sea_Class142])
 	(object [Sea_Class244])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl3573")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.Place 1st Buoy"))
 
 ([Sea_Class136] of  Position
 
-	(id "s1.To_2n2197")
+	(id "s1.To_2n3608")
 	(next_actions [Sea_Class137])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl3573")
 	(position-angle "145")
 	(position-distance "3")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.To 2nd Position"))
 
 ([Sea_Class137] of  PutOnPlace
 
-	(id "s1.Place2202")
+	(id "s1.Place2174")
 	(next_actions
 		[Sea_Class138]
 		[Sea_Class143])
 	(object [Sea_Class245])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl2125")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(title "s1.Place 2nd Buoy"))
 
 ([Sea_Class138] of  Position
 
-	(id "s1.To_3d2203")
+	(id "s1.To_3d2175")
 	(next_actions [Sea_Class139])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl2125")
 	(position-angle "215")
 	(position-distance "3")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(title "s1.To 3d Position"))
 
 ([Sea_Class139] of  PutOnPlace
 
-	(id "s1.Place2227")
+	(id "s1.Place2200")
 	(next_actions
 		[Sea_Class140]
 		[Sea_Class144])
 	(object [Sea_Class246])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl2125")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(title "s1.Place 3d Buoy"))
 
 ([Sea_Class140] of  Position
 
-	(id "s1.To_4t2228")
+	(id "s1.To_4t2201")
 	(next_actions [Sea_Class141])
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class180026])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl2125")
 	(position-angle "310")
 	(position-distance "1.5")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(title "s1.To 4th Position"))
 
 ([Sea_Class140000] of  WaitEvent
 
 	(event [Sea_Class160001])
-	(id "s1.Wait_2055")
-	(parent "s1.Watch2054")
+	(id "s1.Wait_3487")
+	(parent "s1.Watch3486")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Wait Collision"))
 
@@ -972,24 +968,24 @@
 
 ([Sea_Class141] of  PutOnPlace
 
-	(id "s1.Place2233")
+	(id "s1.Place2206")
 	(next_actions [Sea_Class145])
 	(object [Sea_Class247])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Airpl2164")
+	(parent "s1.Airpl2125")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(title "s1.Place 4th Buoy"))
 
 ([Sea_Class142] of  Subscenario
 
 	(context [Sea_Class274])
-	(id "s1.Buoy_2198")
-	(parent "s1.Airpl2164")
+	(id "s1.Buoy_3609")
+	(parent "s1.Airpl3573")
 	(player [Sea_Class244])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
 	(title "s1.Buoy 1 Start")
@@ -998,11 +994,11 @@
 ([Sea_Class143] of  Subscenario
 
 	(context [Sea_Class275])
-	(id "s1.Buoy_2204")
-	(parent "s1.Airpl2164")
+	(id "s1.Buoy_2176")
+	(parent "s1.Airpl2125")
 	(player [Sea_Class245])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
 	(title "s1.Buoy 2 Start")
@@ -1011,11 +1007,11 @@
 ([Sea_Class144] of  Subscenario
 
 	(context [Sea_Class276])
-	(id "s1.Buoy_2229")
-	(parent "s1.Airpl2164")
+	(id "s1.Buoy_2202")
+	(parent "s1.Airpl2125")
 	(player [Sea_Class246])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
 	(title "s1.Buoy 3 Start")
@@ -1024,11 +1020,11 @@
 ([Sea_Class145] of  Subscenario
 
 	(context [Sea_Class73])
-	(id "s1.Buoy_2234")
-	(parent "s1.Airpl2164")
+	(id "s1.Buoy_2207")
+	(parent "s1.Airpl2125")
 	(player [Sea_Class247])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
 	(title "s1.Buoy 4 Start")
@@ -1037,12 +1033,12 @@
 ([Sea_Class146] of  Subscenario
 
 	(context [Sea_Class277])
-	(id "s1.Check2237")
+	(id "s1.Check2210")
 	(next_actions [Sea_Class147])
-	(parent "s1.Airpl2236")
+	(parent "s1.Airpl2209")
 	(player [ScenarioN_Class570000])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20002])
 	(title "s1.Check First Buoy")
@@ -1051,12 +1047,12 @@
 ([Sea_Class147] of  Subscenario
 
 	(context [Sea_Class278])
-	(id "s1.Check2250")
+	(id "s1.Check2225")
 	(next_actions [Sea_Class148])
-	(parent "s1.Airpl2236")
+	(parent "s1.Airpl2209")
 	(player [ScenarioN_Class570000])
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20002])
 	(title "s1.Check Second Buoy")
@@ -1090,10 +1086,10 @@
 ([Sea_Class150000] of  WaitEvent
 
 	(event [Sea_Class340000])
-	(id "s1.Buoy_2243")
-	(parent "s1.Buoy_2242")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2235")
+	(id "s1.Buoy_3612")
+	(parent "s1.Buoy_3611")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_3610")
 	(status "START")
 	(title "s1.Buoy Waits When Inside Spill 1"))
 
@@ -1123,17 +1119,17 @@
 
 ([Sea_Class152] of  Position
 
-	(id "s1.Go_to2253")
+	(id "s1.Go_to2228")
 	(object [ScenarioN_Class570000])
 	(observer [Sea_Class238])
-	(parent "s1.Seek_2252")
+	(parent "s1.Seek_2227")
 	(position-angle "0")
 	(position-distance "0")
 	(position-speed "100")
 	(protagonist [Sea_Class332])
 	(radius 0.2)
 	(relative FALSE)
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(title "s1.Go to Buoy Place"))
 
@@ -1141,13 +1137,13 @@
 
 	(detect-distance "0.75")
 	(detect-probability "0.8")
-	(id "s1.Searc2254")
+	(id "s1.Searc2229")
 	(next_actions [Sea_Class180028])
 	(object [Sea_Class238])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Seek_2252")
+	(parent "s1.Seek_2227")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(time "2 hrs")
 	(title "s1.Search Buoy"))
@@ -1155,21 +1151,21 @@
 ([Sea_Class154] of  Break
 
 	(activity [Sea_Class153])
-	(id "s1.Stop_2281")
-	(parent "s1.End_B2280")
+	(id "s1.Stop_2234")
+	(parent "s1.End_B2233")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(title "s1.Stop Search Buoy"))
 
 ([Sea_Class155] of  PutObAttributes
 
 	(attributes [Sea_Class180027])
-	(id "s1.Forge2282")
+	(id "s1.Forge2224")
 	(object [ScenarioN_Class570000])
-	(parent "s1.End_B2280")
+	(parent "s1.Reset2223")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2211")
 	(status "START")
 	(title "s1.Forget Detected Buoy")
 	(values "null"))
@@ -1201,10 +1197,10 @@
 ([Sea_Class159] of  Break
 
 	(activity [Sea_Class152])
-	(id "s1.Stop_2275")
-	(parent "s1.Seek_2252")
+	(id "s1.Stop_2218")
+	(parent "s1.Seek_2212")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2211")
 	(status "START")
 	(title "s1.Stop Go to Buoy Place"))
 
@@ -1222,27 +1218,27 @@
 	(ob_relation NEAR)
 	(object [Sea_Class219])
 	(observer [Sea_Class240])
-	(parent "s1.Wait_2055")
+	(parent "s1.Wait_3487")
 	(radius 0.5)
 	(title "s1.CloseApproach"))
 
 ([Sea_Class160002] of  Break
 
 	(activity [Sea_Class120007])
-	(id "s1.Break2083")
-	(parent "s1.Colli2081")
+	(id "s1.Break3515")
+	(parent "s1.Colli3513")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Break Cruise from Primorsk"))
 
 ([Sea_Class160003] of  Break
 
 	(activity [Sea_Class20019])
-	(id "s1.Break2084")
-	(parent "s1.Colli2081")
+	(id "s1.Break3516")
+	(parent "s1.Colli3513")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Break Cruise to Primorsk"))
 
@@ -1292,27 +1288,27 @@
 
 ([Sea_Class162] of  PutOnMap
 
-	(id "c1.Launc2067")
+	(id "c1.Launc3499")
 	(latitude "60 11")
 	(longitude "28 23")
 	(next_actions [Sea_Class163])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2066")
+	(parent "c1.Cruis3498")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2065")
+	(run "c1.Cruis3497")
 	(status "START")
 	(title "c1.Launch at Sea"))
 
 ([Sea_Class163] of  GoRoute
 
-	(id "c1.To_Te2068")
+	(id "c1.To_Te3500")
 	(next_actions [Sea_Class164])
 	(object [Sea_Class235])
-	(parent "c1.Cruis2066")
+	(parent "c1.Cruis3498")
 	(protagonist [Sea_Class346])
 	(radius 0.1)
 	(route [Sea_Class250])
-	(run "c1.Cruis2065")
+	(run "c1.Cruis3497")
 	(spd "?spd")
 	(status "START")
 	(title "c1.To Terminal Primorsk"))
@@ -1346,15 +1342,15 @@
 
 ([Sea_Class170000] of  UseResource
 
-	(id "ds.Take_2103")
+	(id "ds.Take_3596")
 	(next_actions
 		[Sea_Class190002]
 		[Sea_Class330027])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
 	(resource [Sea_Class170009])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Take Drop")
 	(variable [Sea_Class190001]))
@@ -1374,10 +1370,10 @@
 ([Sea_Class170003] of  EventDecision
 
 	(events [Sea_Class190006])
-	(id "ds.Drops2255")
-	(parent "ds.Dropp2103")
-	(protagonist [Sea_Class346])
-	(run "ds.Dropp2103")
+	(id "ds.Drops2181")
+	(parent "ds.Dropp2080")
+	(protagonist [Sea_Class344])
+	(run "ds.Dropp2080")
 	(status "START")
 	(title "ds.Drops Issued?")
 	(variants
@@ -1406,31 +1402,31 @@
 
 ([Sea_Class170005] of  LoadResource
 
-	(id "ds.Creat2099")
+	(id "ds.Creat3592")
 	(next_actions
 		[Sea_Class170006]
 		[Sea_Class330024])
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2098")
-	(protagonist [Sea_Class344])
+	(parent "ds.Creat3591")
+	(protagonist [Sea_Class346])
 	(rename TRUE)
 	(resource [Sea_Class170009])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(seed [Sea_Class170010])
 	(status "START")
 	(title "ds.Create Drops"))
 
 ([Sea_Class170006] of  LoadResource
 
-	(id "ds.Creat2100")
+	(id "ds.Creat3593")
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2098")
-	(protagonist [Sea_Class344])
+	(parent "ds.Creat3591")
+	(protagonist [Sea_Class346])
 	(rename TRUE)
 	(resource [Sea_Class170011])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(seed [Sea_Class170012])
 	(status "START")
 	(title "ds.Create Drop Expanders"))
@@ -1438,11 +1434,11 @@
 ([Sea_Class170007] of  Compute
 
 	(computation [Sea_Class210044])
-	(id "ds.Drop_2114")
+	(id "ds.Drop_3614")
 	(next_actions [Sea_Class190005])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Drop to Drop Expander"))
 
@@ -1478,12 +1474,12 @@
 
 	(final_actions [Sea_Class208])
 	(finish_type AND)
-	(id "s1.Situa2052")
+	(id "s1.Situa3484")
 	(initial_actions [Sea_Class208])
 	(next_tasks [Sea_Class20051])
-	(parent "s1.Colli2051")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(task_scheme [Sea_Class208])
 	(title "s1.Situation"))
@@ -1506,14 +1502,14 @@
 		[Sea_Class130]
 		[Sea_Class180005])
 	(finish_type AND)
-	(id "s1.Buoy_2482")
+	(id "s1.Buoy_2410")
 	(initial_actions
 		[Sea_Class180004]
 		[Sea_Class180005])
 	(next_tasks [Sea_Class20008])
-	(parent "s1.Buoy_2244")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2244")
+	(parent "s1.Buoy_2172")
+	(protagonist [Sea_Class246])
+	(run "s1.Buoy_2172")
 	(status "START")
 	(task_scheme
 		[Sea_Class180004]
@@ -1524,26 +1520,26 @@
 
 ([Sea_Class180004] of  PutOnPlace
 
-	(id "s1.Figur2483")
+	(id "s1.Figur2411")
 	(next_actions [Sea_Class130046])
 	(object [Sea_Class239])
 	(observer [ScenarioN_Class570000])
-	(parent "s1.Buoy_2482")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2244")
+	(parent "s1.Buoy_2410")
+	(protagonist [Sea_Class246])
+	(run "s1.Buoy_2172")
 	(status "START")
 	(title "s1.Figure on Buoy Place"))
 
 ([Sea_Class180005] of  Calculus
 
-	(id "s1.Colle2484")
+	(id "s1.Colle2412")
 	(input_data
 		[Sea_Class180006]
 		[Sea_Class180007])
-	(parent "s1.Buoy_2482")
-	(protagonist [Sea_Class247])
+	(parent "s1.Buoy_2410")
+	(protagonist [Sea_Class246])
 	(results [Sea_Class180009])
-	(run "s1.Buoy_2244")
+	(run "s1.Buoy_2172")
 	(source "lat (get coords 0)\nlon (get coords 1)\ninfo (str \"Oil: coordinates \" lat\n                        \" \" lon\n	\" data source \" name)")
 	(status "START")
 	(title "s1.Collect and preserve information"))
@@ -1674,13 +1670,13 @@
 
 ([Sea_Class180028] of  PutObProperties
 
-	(id "s1.Stand2274")
+	(id "s1.Stand2217")
 	(new_speed "0")
 	(next_actions [Sea_Class159])
 	(object [ScenarioN_Class570000])
-	(parent "s1.Seek_2252")
+	(parent "s1.Seek_2212")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2211")
 	(status "START")
 	(title "s1.Stand Still in Box"))
 
@@ -1744,13 +1740,13 @@
 ([Sea_Class180036] of  GeneralDecision
 
 	(conditions "target = buoy")
-	(id "s1.Buoy_2276")
+	(id "s1.Buoy_2230")
 	(input_data
 		[Sea_Class180037]
 		[Sea_Class180039])
-	(parent "s1.Buoy_2251")
+	(parent "s1.Buoy_2226")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(title "s1.Buoy Found?")
 	(variants
@@ -1782,10 +1778,10 @@
 ([Sea_Class180041] of  EventDecision
 
 	(events [Sea_Class180042])
-	(id "s1.Found2279")
-	(parent "s1.Buoy_2251")
+	(id "s1.Found2222")
+	(parent "s1.Buoy_2211")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2211")
 	(status "START")
 	(title "s1.Found Buoy Oil?")
 	(variants
@@ -1826,33 +1822,19 @@
 	(object [Sea_Class236])
 	(title "ru0.SE to Original Position"))
 
-([Sea_Class190000] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s21")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
 ([Sea_Class190001] of  Variable
 
 	(title "?drop"))
 
 ([Sea_Class190002] of  UseResource
 
-	(id "ds.Take_2104")
+	(id "ds.Take_3597")
 	(next_actions [Sea_Class190004])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
 	(resource [Sea_Class170011])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Take Drop Expander")
 	(variable [Sea_Class190003]))
@@ -1863,24 +1845,24 @@
 
 ([Sea_Class190004] of  PutOnPlace
 
-	(id "ds.Drop_2113")
+	(id "ds.Drop_3613")
 	(next_actions [Sea_Class170007])
 	(object [Sea_Class190001])
 	(observer [ScenarioN_Class570000])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Drop on Protagonist"))
 
 ([Sea_Class190005] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start2119")
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
+	(id "ds.Start3619")
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
 	(repeat-action [Sea_Class190003])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Start Drop Expander"))
 
@@ -1978,11 +1960,11 @@
 	(context [Sea_Class180045])
 	(final_tasks [Sea_Class130039])
 	(finish_type AND)
-	(id "s1.Simpl2092")
+	(id "s1.Simpl3554")
 	(initial_tasks [Sea_Class130039])
-	(parent "s1.Run_S2091")
+	(parent "s1.Run_S3553")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(scenario_scheme [Sea_Class130039])
 	(status "START")
 	(title "s1.Simple Scenario"))
@@ -2093,12 +2075,12 @@
 	(final_tasks
 		[Sea_Class20003]
 		[Sea_Class390031])
-	(finish_type AND)
-	(id "s1.Buoy_2251")
+	(finish_type OR)
+	(id "s1.Buoy_2226")
 	(initial_tasks [Sea_Class20006])
-	(parent "s1.Check2250")
+	(parent "s1.Check2225")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(scenario_scheme
 		[Sea_Class20003]
 		[Sea_Class20004]
@@ -2113,11 +2095,11 @@
 
 	(final_actions [Sea_Class154])
 	(finish_type AND)
-	(id "s1.End_B2280")
+	(id "s1.End_B2233")
 	(initial_actions [Sea_Class154])
-	(parent "s1.Buoy_2251")
+	(parent "s1.Buoy_2226")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(task_scheme [Sea_Class154])
 	(title "s1.End Buoy Seek"))
@@ -2143,14 +2125,14 @@
 		[Sea_Class152]
 		[Sea_Class159])
 	(finish_type OR)
-	(id "s1.Seek_2252")
+	(id "s1.Seek_2227")
 	(initial_actions
 		[Sea_Class152]
 		[Sea_Class153])
 	(next_tasks [Sea_Class180036])
-	(parent "s1.Buoy_2251")
+	(parent "s1.Buoy_2226")
 	(protagonist [Sea_Class332])
-	(run "s1.Buoy_2251")
+	(run "s1.Buoy_2226")
 	(status "START")
 	(task_scheme
 		[Sea_Class153]
@@ -2163,11 +2145,11 @@
 
 	(context [Sea_Class180012])
 	(finish_type AND)
-	(id "s1.Buoy_2235")
+	(id "s1.Buoy_3610")
 	(initial_tasks [Sea_Class20008])
-	(parent "s1.Buoy_2234")
-	(protagonist [Sea_Class247])
-	(run "s1.Airpl2159")
+	(parent "s1.Buoy_3609")
+	(protagonist [Sea_Class244])
+	(run "s1.Airpl3568")
 	(scenario_scheme
 		[Sea_Class20008]
 		[Sea_Class180003])
@@ -2180,12 +2162,12 @@
 		[Sea_Class150000]
 		[Sea_Class360000])
 	(finish_type OR)
-	(id "s1.Buoy_2242")
+	(id "s1.Buoy_3611")
 	(initial_actions [Sea_Class150000])
 	(next_tasks [Sea_Class180003])
-	(parent "s1.Buoy_2235")
-	(protagonist [Sea_Class247])
-	(run "s1.Buoy_2235")
+	(parent "s1.Buoy_3610")
+	(protagonist [Sea_Class244])
+	(run "s1.Buoy_3610")
 	(status "START")
 	(task_scheme
 		[Sea_Class150000]
@@ -2197,11 +2179,11 @@
 	(context [Sea_Class18])
 	(final_tasks [Sea_Class20010])
 	(finish_type AND)
-	(id "s1.Airpl2159")
+	(id "s1.Airpl3568")
 	(initial_tasks [Sea_Class20013])
-	(parent "s1.Start2158")
+	(parent "s1.Start3567")
 	(protagonist [Sea_Class332])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(scenario_scheme
 		[Sea_Class20010]
 		[Sea_Class20011]
@@ -2223,12 +2205,12 @@
 
 	(final_actions [Sea_Class150])
 	(finish_type AND)
-	(id "s1.Airpl2236")
+	(id "s1.Airpl2209")
 	(initial_actions [Sea_Class146])
 	(next_tasks [Sea_Class180034])
-	(parent "s1.Airpl2159")
+	(parent "s1.Airpl2120")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl2120")
 	(status "START")
 	(task_scheme
 		[Sea_Class150]
@@ -2242,12 +2224,12 @@
 
 	(final_actions [Sea_Class145])
 	(finish_type AND)
-	(id "s1.Airpl2164")
+	(id "s1.Airpl3573")
 	(initial_actions [Sea_Class134])
 	(next_tasks [Sea_Class20011])
-	(parent "s1.Airpl2159")
+	(parent "s1.Airpl3568")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(task_scheme
 		[Sea_Class142]
@@ -2268,12 +2250,12 @@
 
 	(final_actions [Sea_Class211])
 	(finish_type AND)
-	(id "s1.Launc2160")
+	(id "s1.Launc3569")
 	(initial_actions [Sea_Class210])
 	(next_tasks [Sea_Class20012])
-	(parent "s1.Airpl2159")
+	(parent "s1.Airpl3568")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(task_scheme
 		[Sea_Class211]
@@ -2285,11 +2267,11 @@
 	(context [Sea_Class70])
 	(final_tasks [Sea_Class20017])
 	(finish_type AND)
-	(id "s1.Task_2166")
+	(id "s1.Task_3575")
 	(initial_tasks [Sea_Class20018])
-	(parent "s1.Start2157")
+	(parent "s1.Start3565")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(scenario_scheme
 		[Sea_Class20017]
 		[Sea_Class20018])
@@ -2305,13 +2287,13 @@
 		[Sea_Class109]
 		[Sea_Class110])
 	(finish_type AND)
-	(id "s2.TF_Ac2352")
+	(id "s2.TF_Ac2299")
 	(initial_actions
 		[Sea_Class102]
 		[Sea_Class104])
-	(parent "s1.Task_2175")
+	(parent "s1.Task_2123")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(task_scheme
 		[Sea_Class106]
@@ -2333,16 +2315,16 @@
 		[Sea_Class101]
 		[Sea_Class98])
 	(finish_type AND)
-	(id "s1.TF_De2167")
+	(id "s1.TF_De3576")
 	(initial_actions
 		[Sea_Class94]
 		[Sea_Class93]
 		[Sea_Class95]
 		[Sea_Class92])
 	(next_tasks [Sea_Class20017])
-	(parent "s1.Task_2166")
+	(parent "s1.Task_3575")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(task_scheme
 		[Sea_Class98]
@@ -2362,11 +2344,11 @@
 	(context [Sea_Class180020])
 	(final_tasks [Sea_Class20020])
 	(finish_type AND)
-	(id "c1.Cruis2065")
+	(id "c1.Cruis3497")
 	(initial_tasks [Sea_Class20020])
-	(parent "s1.Run_S2064")
+	(parent "s1.Run_S3496")
 	(protagonist [Sea_Class346])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(scenario_scheme [Sea_Class20020])
 	(status "START")
 	(title "c1.Cruise to Primorsk"))
@@ -2374,11 +2356,11 @@
 ([Sea_Class20020] of  Task
 
 	(final_actions [Sea_Class110001])
-	(id "c1.Cruis2066")
+	(id "c1.Cruis3498")
 	(initial_actions [Sea_Class162])
-	(parent "c1.Cruis2065")
+	(parent "c1.Cruis3497")
 	(protagonist [Sea_Class346])
-	(run "c1.Cruis2065")
+	(run "c1.Cruis3497")
 	(status "START")
 	(task_scheme
 		[Sea_Class165]
@@ -2439,10 +2421,10 @@
 		[Sea_Class20049]
 		[Sea_Class130039])
 	(finish_type OR)
-	(id "s1.Colli2051")
+	(id "s1.Colli3483")
 	(initial_tasks [Sea_Class180000])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(scenario_scheme
 		[Sea_Class20049]
 		[Sea_Class20050]
@@ -2464,15 +2446,14 @@
 		[Sea_Class79]
 		[Sea_Class88])
 	(finish_type AND)
-	(id "s1.Compl2090")
+	(id "s1.Compl3522")
 	(initial_actions
 		[Sea_Class84]
 		[Sea_Class300001]
-		[Sea_Class380000]
 		[Sea_Class91])
-	(parent "s1.Colli2051")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(task_scheme
 		[Sea_Class90]
@@ -2485,7 +2466,8 @@
 		[Sea_Class81]
 		[Sea_Class300001]
 		[Sea_Class360010]
-		[Sea_Class380000])
+		[Sea_Class380000]
+		[Sea_Class400000])
 	(title "s1.Complex Rescue Operation"))
 
 ([Sea_Class20050] of  Task
@@ -2495,15 +2477,15 @@
 		[Sea_Class160002]
 		[Sea_Class160003])
 	(finish_type AND)
-	(id "s1.Colli2081")
+	(id "s1.Colli3513")
 	(initial_actions
 		[Sea_Class74]
 		[Sea_Class160002]
 		[Sea_Class160003])
 	(next_tasks [Sea_Class130000])
-	(parent "s1.Colli2051")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(task_scheme
 		[Sea_Class74]
@@ -2517,14 +2499,14 @@
 		[Sea_Class207]
 		[Sea_Class140000])
 	(finish_type OR)
-	(id "s1.Watch2054")
+	(id "s1.Watch3486")
 	(initial_actions
 		[Sea_Class140000]
 		[Sea_Class206])
 	(next_tasks [Sea_Class90000])
-	(parent "s1.Colli2051")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(task_scheme
 		[Sea_Class207]
@@ -2541,23 +2523,23 @@
 ([Sea_Class204] of  Delay
 
 	(delay "10 min")
-	(id "s1.Cruis2058")
+	(id "s1.Cruis3490")
 	(next_actions [Sea_Class207])
-	(parent "s1.Watch2054")
+	(parent "s1.Watch3486")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Cruise Shift"))
 
 ([Sea_Class206] of  Subscenario
 
 	(context [Sea_Class363])
-	(id "s1.Start2056")
+	(id "s1.Start3488")
 	(next_actions [Sea_Class204])
-	(parent "s1.Watch2054")
+	(parent "s1.Watch3486")
 	(player [Sea_Class219])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class120007])
 	(title "s1.Start First Cruise")
@@ -2566,11 +2548,11 @@
 ([Sea_Class207] of  Subscenario
 
 	(context [Sea_Class180020])
-	(id "s1.Run_S2064")
-	(parent "s1.Watch2054")
+	(id "s1.Run_S3496")
+	(parent "s1.Watch3486")
 	(player [Sea_Class240])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class20019])
 	(title "s1.Run Second Cruise")
@@ -2578,15 +2560,15 @@
 
 ([Sea_Class208] of  PutOnMap
 
-	(id "s1.Ports2053")
+	(id "s1.Ports3485")
 	(mapob
 		[Sea_Class230]
 		[Sea_Class231]
 		[Sea_Class232]
 		[Sea_Class233])
-	(parent "s1.Situa2052")
+	(parent "s1.Situa3484")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Ports on Map"))
 
@@ -2600,206 +2582,30 @@
 
 ([Sea_Class210] of  PutOnMap
 
-	(id "s1.Launc2161")
+	(id "s1.Launc3570")
 	(latitude "60 21")
 	(longitude "29 1")
 	(next_actions
 		[Sea_Class211]
 		[Sea_Class211])
 	(object [ScenarioN_Class570000])
-	(parent "s1.Launc2160")
+	(parent "s1.Launc3569")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.Launch Ecological Patrol"))
 
 ([Sea_Class210000] of  TimeMessage
 
 	(category "0")
-	(id "Goes_to_2071")
+	(id "Goes_to_3503")
 	(next_actions [Sea_Class120005])
-	(parent "c1.Cruis2059")
+	(parent "c1.Cruis3491")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(status "START")
 	(text "Exxon goes to Sea")
 	(title "Goes to Sea Message"))
-
-([Sea_Class210001] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s22")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class210002] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s23")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class210003] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s24")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class210004] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s25")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class210005] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s26")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class210006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class190000]))
-
-([Sea_Class210007] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210001]))
-
-([Sea_Class210008] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210002]))
-
-([Sea_Class210009] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210003]))
-
-([Sea_Class210010] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210004]))
-
-([Sea_Class210011] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210005]))
-
-([Sea_Class210012] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class190000]))
-
-([Sea_Class210013] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210001]))
-
-([Sea_Class210014] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210002]))
-
-([Sea_Class210015] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210003]))
 
 ([Sea_Class210016] of  ValuePair
 
@@ -2814,16 +2620,12 @@
 ([Sea_Class210018] of  Delay
 
 	(delay "?interval")
-	(id "ds.Inter2112")
-	(parent "ds.One_D2102")
+	(id "ds.Inter3543")
+	(parent "ds.One_D3533")
 	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3528")
 	(status "START")
 	(title "ds.Interval between Drops"))
-
-([Sea_Class210035] of  CloFuncall
-
-	(source "(ru.rules/f 29)"))
 
 ([Sea_Class210044] of  SpillToSpiller
 
@@ -2834,11 +2636,11 @@
 ([Sea_Class211] of  PutObAttributes
 
 	(attributes [Sea_Class220])
-	(id "s1.Fuel_2163")
+	(id "s1.Fuel_3572")
 	(object [ScenarioN_Class570000])
-	(parent "s1.Launc2160")
+	(parent "s1.Launc3569")
 	(protagonist [Sea_Class332])
-	(run "s1.Airpl2159")
+	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.Fuel Loading")
 	(values "400"))
@@ -2922,165 +2724,114 @@
 		"SimpleInstance(Sea_Class363 of [Cls(Context)])")
 	(title "Scenario 22"))
 
-([Sea_Class220016] of  SpillRepeatAction
+([Sea_Class220018] of  Variable
 
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210004]))
+	(title "?drop-deformer-origin1"))
 
-([Sea_Class220017] of  SpillRepeatAction
+([Sea_Class220019] of  Variable
 
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class210005]))
+	(title "?drop-deformer-origin2"))
 
-([Sea_Class220018] of  Spill
+([Sea_Class220020] of  Variable
 
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
+	(title "?drop-deformer-origin3"))
 
-([Sea_Class220019] of  Spill
+([Sea_Class220021] of  Variable
 
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
+	(title "?drop-deformer-origin4"))
 
-([Sea_Class220020] of  Spill
+([Sea_Class220022] of  Variable
 
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
+	(title "?drop-deformer-origin5"))
 
-([Sea_Class220021] of  Spill
+([Sea_Class220023] of  Variable
 
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
+	(title "?drop-deformer-origin6"))
 
-([Sea_Class220022] of  OMTPolyOnFieldRepeatAction
+([Sea_Class220024] of  Variable
 
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220018]))
+	(title "?drop-expander-origin1"))
 
-([Sea_Class220023] of  OMTPolyOnFieldRepeatAction
+([Sea_Class220025] of  Variable
 
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220019]))
+	(title "?drop-expander-origin2"))
 
-([Sea_Class220024] of  OMTPolyOnFieldRepeatAction
+([Sea_Class220026] of  Variable
 
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220020]))
+	(title "?drop-expander-origin3"))
 
-([Sea_Class220025] of  OMTPolyOnFieldRepeatAction
+([Sea_Class220027] of  Variable
 
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
+	(title "?drop-expander-origin4"))
 
-([Sea_Class220026] of  SpillRepeatAction
+([Sea_Class220028] of  Variable
 
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220018]))
+	(title "?drop-expander-origin5"))
 
-([Sea_Class220027] of  SpillRepeatAction
+([Sea_Class220029] of  Variable
 
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220019]))
-
-([Sea_Class220028] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class220020]))
-
-([Sea_Class220029] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
+	(title "?drop-expander-origin6"))
 
 ([Sea_Class220030] of  CloFuncall
 
-	(source "(sim/start"))
+	(source "(ru.rules/f2 389)"))
+
+([Sea_Class220031] of  Table2
+
+	(column1
+		"collection"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"flag"
+		"next_actions"
+		"title"
+		"status"
+		"id"
+		"repeat-action")
+	(column2
+		"[]"
+		"SimpleInstance(Sea_Class346 of [Cls(NavOb)])"
+		"ds.Dropp3590"
+		"ds.One_D3595"
+		"SimpleInstance(Sea_Class190005 of [Cls(RepeatActionOnOff)])"
+		"true"
+		"[]"
+		"ds.Start Drop Expander"
+		"START"
+		"ds.Start3619"
+		"SimpleInstance(Sea_Class190003 of [Cls(Variable)])")
+	(title "RepeatActionOnOff 389"))
+
+([Sea_Class220032] of  CloFuncall
+
+	(source "(ru.rules/di \"SimpleInstance(Sea_Class190003 of [Cls(Variable)])\")"))
+
+([Sea_Class220033] of  CloFuncall
+
+	(source "(ru.rules/di \"SimpleInstance(Sea_Class346 of [Cls(NavOb)])\")"))
+
+([Sea_Class220034] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class180018]))
+
+([Sea_Class220035] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class180018]))
 
 ([Sea_Class221] of  Variable
 
@@ -3464,7 +3215,7 @@
 	(longitude "28 43.69")
 	(N 32)
 	(playground-index 1)
-	(radius 8.0)
+	(radius 9.0)
 	(speed 90.0))
 
 ([Sea_Class250] of  Route
@@ -3566,10 +3317,6 @@
 	(object [Sea_Class250000])
 	(title "ds.p6")
 	(variable [Sea_Class330026]))
-
-([Sea_Class260008] of  CloFuncall
-
-	(source "(ru.rules/f 194)"))
 
 ([Sea_Class261] of  SpillRepeatAction
 
@@ -3894,12 +3641,12 @@
 
 ([Sea_Class300001] of  Delay
 
-	(delay "5 min")
-	(id "s1.Simpl2092")
+	(delay "2 min")
+	(id "s1.Simpl3524")
 	(next_actions [Sea_Class81])
-	(parent "s1.Compl2090")
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Simple Scenario Delay"))
 
@@ -4095,34 +3842,6 @@
 		[Sea_Class302]
 		[Sea_Class304])
 	(title "ru6.TC Start Context"))
-
-([Sea_Class320000] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s21")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class320001] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s22")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
 
 ([Sea_Class320002] of  Table2
 
@@ -4400,14 +4119,14 @@
 
 ([Sea_Class330024] of  LoadResource
 
-	(id "ds.Creat2101")
+	(id "ds.Creat3594")
 	(number "?drops-number")
 	(object [ScenarioN_Class570000])
-	(parent "ds.Creat2098")
-	(protagonist [Sea_Class344])
+	(parent "ds.Creat3591")
+	(protagonist [Sea_Class346])
 	(rename TRUE)
 	(resource [Sea_Class330025])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(seed [Sea_Class330026])
 	(status "START")
 	(title "ds.Create Drop Deformers"))
@@ -4422,13 +4141,13 @@
 
 ([Sea_Class330027] of  UseResource
 
-	(id "ds.Take_2105")
+	(id "ds.Take_3598")
 	(next_actions [Sea_Class330029])
 	(object [ScenarioN_Class570000])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
 	(resource [Sea_Class330025])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Take Drop Deformer")
 	(variable [Sea_Class330028]))
@@ -4440,11 +4159,11 @@
 ([Sea_Class330029] of  Compute
 
 	(computation [Sea_Class330030])
-	(id "ds.Drop_2106")
+	(id "ds.Drop_3599")
 	(next_actions [Sea_Class330031])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
-	(run "ds.Dropp2097")
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Drop to Drop Deformer"))
 
@@ -4457,12 +4176,12 @@
 ([Sea_Class330031] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "ds.Start2111")
+	(id "ds.Start3604")
 	(next_actions [Sea_Class210018])
-	(parent "ds.One_D2102")
-	(protagonist [Sea_Class344])
+	(parent "ds.One_D3595")
+	(protagonist [Sea_Class346])
 	(repeat-action [Sea_Class330028])
-	(run "ds.Dropp2097")
+	(run "ds.Dropp3590")
 	(status "START")
 	(title "ds.Start Drop Deformer"))
 
@@ -4533,118 +4252,10 @@
 
 	(attribute [Sea_Class170009])
 	(object [Sea_Class350002])
-	(parent "s1.Buoy_2243")
+	(parent "s1.Buoy_3612")
 	(relation in-some-resource)
 	(title "s1.Protagonist in Drops from Source 1")
 	(value "?protagonist"))
-
-([Sea_Class340001] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"s1\")"))
-
-([Sea_Class340002] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"s10\")"))
-
-([Sea_Class340003] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"Bs1\")"))
-
-([Sea_Class340004] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s10\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
-
-([Sea_Class340005] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
-
-([Sea_Class340006] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
-
-([Sea_Class340007] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s11\") (ru.igis.omtab.OMT/getMapOb \"Bs1\"))"))
-
-([Sea_Class340008] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") 60.242 28.787)"))
-
-([Sea_Class340009] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.242) (double 28.787))"))
-
-([Sea_Class340010] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.242) (double 28.787))"))
-
-([Sea_Class340011] of  CloFuncall
-
-	(source "(.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\"))"))
-
-([Sea_Class340012] of  CloFuncall
-
-	(source "(map .toDgrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
-
-([Sea_Class340013] of  CloFuncall
-
-	(source "(map Math/toDgrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
-
-([Sea_Class340014] of  CloFuncall
-
-	(source "(map Math/toDegrees (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
-
-([Sea_Class340015] of  CloFuncall
-
-	(source "(map #(Math/toDegrees %) (.getLLP (ru.igis.omtab.OMT/getMapOb \"s21\")))"))
-
-([Sea_Class340016] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.245) (double 28.786))"))
-
-([Sea_Class340017] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.245) (double 28.786))"))
-
-([Sea_Class340018] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s2\") (double 60.245) (double 28.786))"))
-
-([Sea_Class340019] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"s2\")"))
-
-([Sea_Class340020] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"s20\")"))
-
-([Sea_Class340021] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s2\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340022] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s20\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340023] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s21\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340024] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s22\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340025] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s10\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340026] of  CloFuncall
-
-	(source "(.contains (ru.igis.omtab.OMT/getMapOb \"s11\") (double 60.245) (double 28.789))"))
-
-([Sea_Class340027] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"RadioEmergensy\")"))
 
 ([Sea_Class341] of  ObjectPair
 
@@ -4694,11 +4305,11 @@
 ([Sea_Class350000] of  Subscenario
 
 	(context [Sea_Class360001])
-	(id "s1.Start2102")
-	(parent "s1.Simpl2093")
+	(id "s1.Start3589")
+	(parent "s1.Simpl3555")
 	(player [Sea_Class235])
 	(protagonist [Sea_Class160021])
-	(run "s1.Simpl2092")
+	(run "s1.Simpl3554")
 	(status "START")
 	(sub_scenario [Sea_Class110000])
 	(title "s1.Start Light Spill")
@@ -4716,142 +4327,6 @@
 	(object [Sea_Class344])
 	(title "p")
 	(variable [Sea_Class350002]))
-
-([Sea_Class350004] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 2)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class350005] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 2)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class350006] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 2)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class350007] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 2)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class350008] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350004]))
-
-([Sea_Class350009] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350005]))
-
-([Sea_Class350010] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350006]))
-
-([Sea_Class350011] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350007]))
-
-([Sea_Class350012] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350004]))
-
-([Sea_Class350013] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350005]))
-
-([Sea_Class350014] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350006]))
-
-([Sea_Class350015] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 0)
-	(poly [Sea_Class350007]))
 
 ([Sea_Class360000] of  WaitEvent
 
@@ -4877,36 +4352,15 @@
 
 ([Sea_Class360003] of  ObjectPair
 
-	(object [Sea_Class360004])
+	(object [Sea_Class220034])
 	(title "p")
 	(variable [Sea_Class170012]))
 
-([Sea_Class360004] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
-
 ([Sea_Class360005] of  ObjectPair
 
-	(object [Sea_Class360006])
+	(object [Sea_Class220035])
 	(title "p")
 	(variable [Sea_Class330026]))
-
-([Sea_Class360006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
 
 ([Sea_Class360007] of  ValuePair
 
@@ -4929,11 +4383,11 @@
 ([Sea_Class360010] of  Subscenario
 
 	(context [Sea_Class190007])
-	(id "s1.Start2096")
-	(parent "s1.Compl2090")
+	(id "s1.Start3527")
+	(parent "s1.Compl3522")
 	(player [Sea_Class219])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class110000])
 	(title "s1.Start Heavy Spill")
@@ -4945,20 +4399,6 @@
 		[Sea_Class338]
 		[Sea_Class180019])
 	(title "Ctx1"))
-
-([Sea_Class370000] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s21")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
 
 ([Sea_Class370001] of  ObAttribute
 
@@ -5018,356 +4458,13 @@
 ([Sea_Class380000] of  WaitEvent
 
 	(event [Sea_Class390001])
-	(id "s1.Wait_2093")
-	(next_actions
-		[Sea_Class80]
-		[Sea_Class79]
-		[Sea_Class88])
-	(parent "s1.Compl2090")
+	(id "s1.Wait_3552")
+	(next_actions [Sea_Class400000])
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Wait Radio Emergency"))
-
-([Sea_Class380001] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s22")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class380002] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s23")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class380003] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s24")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class380004] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s25")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class380005] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s26")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class380006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class370000]))
-
-([Sea_Class380007] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380001]))
-
-([Sea_Class380008] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380002]))
-
-([Sea_Class380009] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380003]))
-
-([Sea_Class380010] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380004]))
-
-([Sea_Class380011] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380005]))
-
-([Sea_Class380012] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class370000]))
-
-([Sea_Class380013] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380001]))
-
-([Sea_Class380014] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380002]))
-
-([Sea_Class380015] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380003]))
-
-([Sea_Class380016] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380004]))
-
-([Sea_Class380017] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class380005]))
-
-([Sea_Class380018] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class380019] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class380020] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class380021] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class380022] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class380018]))
-
-([Sea_Class380023] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class380019]))
-
-([Sea_Class380024] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class380025] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class380026] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class380018]))
-
-([Sea_Class380027] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class380019]))
-
-([Sea_Class380028] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class380029] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class380030] of  CloFuncall
-
-	(source "(ru.rules/f 678)"))
-
-([Sea_Class380031] of  CloFuncall
-
-	(source "(in-ns 'protege.core)"))
 
 ([Sea_Class380036] of  Table2
 
@@ -5496,350 +4593,24 @@
 
 	(label "Info"))
 
-([Sea_Class390000] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
 ([Sea_Class390001] of  TwoObRelation
 
 	(ob_relation INSIDE)
 	(object [Sea_Class160021])
 	(observer [Sea_Class242])
-	(parent "s1.Wait_2093")
+	(parent "s1.Wait_3552")
 	(title "s1.Radio Emergency reaches Control Center"))
-
-([Sea_Class390002] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s23")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class390003] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s24")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class390004] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s25")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class390005] of  Spill
-
-	(fillColor "20666600")
-	(isPolygon TRUE)
-	(label "s26")
-	(latitude "60 14.82")
-	(lineColor "00666600")
-	(longitude "28 47.2")
-	(N 32)
-	(playground-index 2)
-	(radius 5.0)
-	(relative FALSE)
-	(speed 3.0))
-
-([Sea_Class390006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class320000]))
-
-([Sea_Class390007] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class320001]))
-
-([Sea_Class390008] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class390002]))
-
-([Sea_Class390009] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class390003]))
-
-([Sea_Class390010] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
-
-([Sea_Class390011] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop2 Deformer6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
-
-([Sea_Class390012] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander1")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class320000]))
-
-([Sea_Class390013] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander2")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class320001]))
-
-([Sea_Class390014] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander3")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class390002]))
-
-([Sea_Class390015] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander4")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class390003]))
-
-([Sea_Class390016] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander5")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
-
-([Sea_Class390017] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop2 Expander6")
-	(lifetime 200)
-	(period 1)
-	(playground-index 2)
-	(poly [Sea_Class180018]))
-
-([Sea_Class390018] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class390019] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class390020] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class390021] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class390022] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class390018]))
-
-([Sea_Class390023] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class390024] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class390025] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class390026] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class390018]))
-
-([Sea_Class390027] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class390028] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class390029] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
 
 ([Sea_Class390031] of  Task
 
 	(final_actions [Sea_Class155])
 	(finish_type AND)
+	(id "s1.Reset2223")
 	(initial_actions [Sea_Class155])
+	(parent "s1.Buoy_2211")
+	(protagonist [Sea_Class332])
+	(run "s1.Buoy_2211")
+	(status "START")
 	(task_scheme [Sea_Class155])
 	(title "s1.Reset Buoy"))
 
@@ -5847,23 +4618,29 @@
 
 	(title "TC.Create Bearing1"))
 
-([Sea_Class400001] of  Spill
+([Sea_Class400000] of  Delay
 
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
+	(delay "4 min")
+	(id "s1.Compl3560")
+	(next_actions
+		[Sea_Class80]
+		[Sea_Class88]
+		[Sea_Class79])
+	(parent "s1.Compl3522")
+	(protagonist [Sea_Class160021])
+	(run "s1.Colli3483")
+	(status "START")
+	(title "s1.Complex Scenario Delay"))
 
 ([Sea_Class400002] of  WaitEvent
 
 	(event [Sea_Class400003])
+	(id "s1.Wait_3559")
 	(next_actions [Sea_Class125])
+	(parent "s1.Simpl3555")
+	(protagonist [Sea_Class160021])
+	(run "s1.Simpl3554")
+	(status "START")
 	(title "s1.Wait Radio SOS"))
 
 ([Sea_Class400003] of  TwoObRelation
@@ -5871,6 +4648,7 @@
 	(ob_relation INSIDE)
 	(object [Sea_Class160021])
 	(observer [Sea_Class249])
+	(parent "s1.Wait_3559")
 	(title "s1.Radio SOS reaches Control Center"))
 
 ([Sea_Class40001] of  Link
@@ -5932,120 +4710,6 @@
 		[Sea_Class306])
 	(title "f1.Flight2 Context"))
 
-([Sea_Class410002] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class410003] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class410004] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class390000]))
-
-([Sea_Class410005] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410007] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410008] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class390000]))
-
-([Sea_Class410009] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410010] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410011] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 300)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class30000]))
-
-([Sea_Class410012] of  CloFuncall
-
-	(source "(ru.rules/f2 213)"))
-
 ([Sea_Class410013] of  Table2
 
 	(column1
@@ -6070,10 +4734,6 @@
 		"s1.Wait_2093")
 	(title "WaitEvent 213"))
 
-([Sea_Class410014] of  CloFuncall
-
-	(source "(ru.rules/f2 212)"))
-
 ([Sea_Class410015] of  Table2
 
 	(column1
@@ -6095,14 +4755,6 @@
 		"s1.Radio Emergency reaches Control Center"
 		"INSIDE")
 	(title "TwoObRelation 212"))
-
-([Sea_Class410016] of  CloFuncall
-
-	(source "(ru.rules/di \"SimpleInstance(Sea_Class160021 of [Cls(NavOb)])\")"))
-
-([Sea_Class410017] of  CloFuncall
-
-	(source "(ru.rules/di \"SimpleInstance(Sea_Class242 of [Cls(Spill)])\")"))
 
 ([Sea_Class425] of  Script
 
@@ -6178,7 +4830,7 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(mode run)
+	(mode trace-long)
 	(rule-sets
 		[ScenarioN_Class550030]
 		[Scenario_Class100006]
@@ -6280,17 +4932,17 @@
 
 ([Sea_Class74] of  Calculus
 
-	(id "s1.Colli2082")
+	(id "s1.Colli3514")
 	(input_data
 		[Sea_Class270]
 		[Sea_Class271])
-	(parent "s1.Colli2081")
+	(parent "s1.Colli3513")
 	(protagonist [Sea_Class160021])
 	(results
 		[Sea_Class267]
 		[Sea_Class268]
 		[Sea_Class269])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(source "sum-speed (+ speed1 speed2)\nspeed1 0\nspeed2 0")
 	(status "START")
 	(title "s1.Collision Assessment Calculation"))
@@ -6298,11 +4950,11 @@
 ([Sea_Class79] of  Subscenario
 
 	(context [Sea_Class380039])
-	(id "s1.Start2158")
-	(parent "s1.Compl2085")
+	(id "s1.Start3567")
+	(parent "s1.Compl3522")
 	(player [Sea_Class332])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class20009])
 	(title "s1.Start Airplane Scenario")
@@ -6310,11 +4962,11 @@
 
 ([Sea_Class80] of  Subscenario
 
-	(id "s1.Start2157")
-	(parent "s1.Compl2085")
+	(id "s1.Start3565")
+	(parent "s1.Compl3522")
 	(player [Sea_Class160021])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class20016])
 	(title "s1.Start Task Forces Scenario")
@@ -6323,11 +4975,11 @@
 ([Sea_Class80000] of  Task
 
 	(final_actions [Sea_Class120006])
-	(id "c1.Cruis2059")
+	(id "c1.Cruis3491")
 	(initial_actions [Sea_Class110002])
-	(parent "c1.Cruis2057")
+	(parent "c1.Cruis3489")
 	(protagonist [Sea_Class344])
-	(run "c1.Cruis2057")
+	(run "c1.Cruis3489")
 	(status "START")
 	(task_scheme
 		[Sea_Class110002]
@@ -6385,11 +5037,11 @@
 ([Sea_Class81] of  Subscenario
 
 	(context [Sea_Class272])
-	(id "s1.Run_S2091")
-	(parent "s1.Compl2085")
+	(id "s1.Run_S3553")
+	(parent "s1.Compl3522")
 	(player [Sea_Class160021])
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(status "START")
 	(sub_scenario [Sea_Class20000])
 	(title "s1.Run Simple Scenario")
@@ -6397,35 +5049,36 @@
 
 ([Sea_Class84] of  PutOnPlace
 
-	(id "s1.Radio2091")
+	(id "s1.Radio3523")
 	(next_actions [Sea_Class85])
 	(object [Sea_Class242])
 	(observer [Sea_Class219])
-	(parent "s1.Compl2090")
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Radio Emergency to Collision"))
 
 ([Sea_Class85] of  RepeatActionOnOff
 
 	(flag TRUE)
-	(id "s1.Start2120")
-	(parent "s1.Compl2090")
+	(id "s1.Start3551")
+	(next_actions [Sea_Class380000])
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
 	(repeat-action [Sea_Class259])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Start Radio Emergency"))
 
 ([Sea_Class88] of  ObjectMessage
 
 	(category "3")
-	(id "Emergenc2126")
+	(id "Emergenc3566")
 	(object [Sea_Class219])
-	(parent "s1.Compl2085")
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2046")
+	(run "s1.Colli3483")
 	(status "START")
 	(text "Emergency message from ? in position: latitude ?, longitude ?. Collision with another ship.")
 	(title "Emergency Message")
@@ -6433,27 +5086,27 @@
 
 ([Sea_Class90] of  Position
 
-	(id "s1.Fire_2095")
+	(id "s1.Fire_3526")
 	(object [Sea_Class234])
 	(observer [Sea_Class219])
-	(parent "s1.Compl2090")
+	(parent "s1.Compl3522")
 	(position-angle "-90")
 	(position-distance "0.2")
 	(position-speed "0")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative TRUE)
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Fire to leeward of Ship 1"))
 
 ([Sea_Class90000] of  EventDecision
 
 	(events [Sea_Class160001])
-	(id "s1.Colli2080")
-	(parent "s1.Colli2051")
+	(id "s1.Colli3512")
+	(parent "s1.Colli3483")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Collision or Next Watch?")
 	(variants
@@ -6473,128 +5126,176 @@
 	(south "47 42")
 	(west "-6 0"))
 
+([Sea_Class90018] of  Variable
+
+	(title "?drop-deformer-origin1"))
+
+([Sea_Class90019] of  Variable
+
+	(title "?drop-deformer-origin2"))
+
+([Sea_Class90020] of  Variable
+
+	(title "?drop-deformer-origin3"))
+
+([Sea_Class90021] of  Variable
+
+	(title "?drop-deformer-origin4"))
+
+([Sea_Class90022] of  Variable
+
+	(title "?drop-deformer-origin5"))
+
+([Sea_Class90023] of  Variable
+
+	(title "?drop-deformer-origin6"))
+
+([Sea_Class90024] of  Variable
+
+	(title "?drop-expander-origin1"))
+
+([Sea_Class90025] of  Variable
+
+	(title "?drop-expander-origin2"))
+
+([Sea_Class90026] of  Variable
+
+	(title "?drop-expander-origin3"))
+
+([Sea_Class90027] of  Variable
+
+	(title "?drop-expander-origin4"))
+
+([Sea_Class90028] of  Variable
+
+	(title "?drop-expander-origin5"))
+
+([Sea_Class90029] of  Variable
+
+	(title "?drop-expander-origin6"))
+
 ([Sea_Class91] of  PutOnMap
 
-	(id "s1.Fire_2094")
+	(id "s1.Fire_3525")
 	(latitude "60 0")
 	(longitude "30 0")
 	(next_actions
 		[Sea_Class90]
 		[Sea_Class360010])
 	(object [Sea_Class234])
-	(parent "s1.Compl2090")
+	(parent "s1.Compl3522")
 	(protagonist [Sea_Class160021])
-	(run "s1.Colli2051")
+	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Fire Begins"))
 
 ([Sea_Class92] of  PutOnPlace
 
-	(id "s1.Deplo2171")
+	(id "s1.Deplo3580")
 	(next_actions [Sea_Class96])
 	(object [Sea_Class227])
 	(observer [Sea_Class233])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.Deploy CP"))
 
 ([Sea_Class93] of  PutOnPlace
 
-	(id "s1.Deplo2169")
+	(id "s1.Deplo3578")
 	(next_actions [Sea_Class97])
 	(object [Sea_Class228])
 	(observer [Sea_Class231])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.Deploy CZ"))
 
 ([Sea_Class94] of  PutOnPlace
 
-	(id "s1.Deplo2168")
+	(id "s1.Deplo3577")
 	(next_actions [Sea_Class100])
 	(object [Sea_Class229])
 	(observer [Sea_Class232])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.Deploy SA"))
 
 ([Sea_Class95] of  PutOnPlace
 
-	(id "s1.Deplo2170")
+	(id "s1.Deplo3579")
 	(next_actions [Sea_Class101])
 	(object [Sea_Class237])
 	(observer [Sea_Class230])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(status "START")
 	(title "s1.Deploy SM"))
 
 ([Sea_Class96] of  Arrive
 
-	(id "s1.CP_ou2172")
+	(id "s1.CP_ou3581")
 	(latitude "60 17.0")
 	(longitude "28 47.4")
 	(next_actions [Sea_Class98])
 	(object [Sea_Class227])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
 	(radius 0.2)
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(speed 22.0)
 	(status "START")
 	(title "s1.CP outoff Bjorke-Sund"))
 
 ([Sea_Class97] of  Arrive
 
-	(id "s1.CZ_to2174")
+	(id "s1.CZ_to3583")
 	(latitude "60 15.8")
 	(longitude "28 49.8")
 	(next_actions [Sea_Class99])
 	(object [Sea_Class228])
-	(parent "s1.TF_De2167")
+	(parent "s1.TF_De3576")
 	(protagonist [Sea_Class160021])
 	(radius 0.2)
-	(run "s1.Task_2166")
+	(run "s1.Task_3575")
 	(speed 16.0)
 	(status "START")
 	(title "s1.CZ to Sarka-Luoto"))
 
 ([Sea_Class98] of  Position
 
-	(id "s1.CP_to2305")
+	(id "s1.CP_to2235")
 	(object [Sea_Class227])
 	(observer [Sea_Class219])
-	(parent "s1.TF_De2176")
+	(parent "s1.TF_De2128")
 	(position-angle "270")
 	(position-distance "0.5")
 	(position-speed "20")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative FALSE)
-	(run "s1.Task_2175")
+	(run "s1.Task_2127")
 	(status "START")
 	(title "s1.CP to Damaged Ship1"))
 
 ([Sea_Class99] of  Position
 
-	(id "s1.CZ_to2325")
+	(id "s1.CZ_to2265")
 	(object [Sea_Class228])
 	(observer [Sea_Class219])
-	(parent "s1.TF_De2176")
+	(parent "s1.TF_De2124")
 	(position-angle "0")
 	(position-distance "0.5")
 	(position-speed "16")
 	(protagonist [Sea_Class160021])
 	(radius 0.1)
 	(relative FALSE)
-	(run "s1.Task_2175")
+	(run "s1.Task_2123")
 	(status "START")
 	(title "s1.CZ to Damaged Sip1"))
 

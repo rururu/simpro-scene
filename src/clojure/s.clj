@@ -158,8 +158,8 @@ true)
     (ssv si "protagonist" pla)
     (start-scenario si mp))))
 
-(defn clear-run-activities [run]
-  (let [acts (rete.core/facts-with-slot-value 'run = run)
+(defn clear-scenario-activities [id]
+  (let [acts (rete.core/facts-with-slot-value 'run = id)
        fids (map first acts)]
   (doseq [fid fids]
      (rete.core/retract-fact fid))))
