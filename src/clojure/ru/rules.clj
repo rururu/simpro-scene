@@ -47,6 +47,12 @@
         svls (cons 'instance (cons ins svls))]
     (cons (symbol (.getName typ)) svls))))
 
+(defn update-frame [frm mp]
+  (let [[typ & svals] frm
+       upf (fn [[k v]]
+	[k (or (mp k) v)])]
+  (cons typ (mapcat upf (partition 2 svals)))))
+
 (defn facts-from-classes [fcs]
   (mapcat #(.getInstances %) fcs))
 

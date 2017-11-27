@@ -73,17 +73,16 @@
 	longitude ?lon 
 	mapob ?mos 
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOnMap")
-(let [obj (a/vv ?obj ?pro ?run)]
+(let [obj (a/vv ?obj ?run)]
   (if (not (a/null? obj))
     (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]
-      (let [lat (a/vv ?lat ?pro ?run)
-            lon (a/vv ?lon ?pro ?run)]
+      (let [lat (a/vv ?lat ?run)
+            lon (a/vv ?lon ?run)]
         (if (not (or (a/null? lat) (a/null? lon)))
           (.setLocation mo lat lon))) )))
 (doseq [mo ?mos]
@@ -101,13 +100,12 @@
 	latitude ?lat 
 	longitude ?lon 
 	speed ?spd 
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Arrive")
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
-  (let [lt (a/degmin-to-deg ?lat ?pro ?run)
-        ln (a/degmin-to-deg ?lon ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
+  (let [lt (a/degmin-to-deg ?lat ?run)
+        ln (a/degmin-to-deg ?lon ?run)]
     (if (or (nil? lt) (nil? ln))
       (modify ?arr status "FAILED")
       (do (a/go mo lt ln ?spd)
@@ -120,11 +118,10 @@
 	latitude ?lat 
 	longitude ?lon 
 	radius ?rad
- 	run ?run
-	protagonist ?pro)
+ 	run ?run)
 (Clock time ?t)
 =>
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
   (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))
     (modify ?arr status "DONE")
     (if (> (.distanceNM mo ?lat ?lon) 100)
@@ -146,25 +143,32 @@
 (Scenario status "DONE"
 	title ?tit
 	id ?id
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
-(s/remove-context-attribute ?pro ?run)
 (s/clear-scenario-activities ?id))
 
 (a:SubscenarioStart 0
 ?sa (Subscenario status "START"
-	id ?pid
 	title ?tit
 	sub_scenario ?sub
 	context ?ctx 
-	player ?pla 
 	wait_subscenario ?wai
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Subscenario")
-(modify ?sa status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run)))
+(let [sub (a/vv ?sub ?run)
+       ctx (a/vv ?ctx ?run)]
+  (if (not (a/null? sub))
+    (let [hm (s/context-to-hm ctx)]
+      (a/merge-hm-run hm ?run)
+      (protege.core/ssv sub "id" (s/gen-id (protege.core/sv sub "title")))
+      (protege.core/ssv sub "run" hm)
+      (protege.core/ssv sub "status" "START")
+      (ru.rules/assert-instances [sub])
+      (modify ?ot status (if (= ?wai true)
+		"REPEAT"
+		"DONE")))
+    (modify ?ot status "FAILED"))))
 
 (a:SubscenarioDone 0
 ?sa (Subscenario status "DONE"
@@ -186,12 +190,11 @@
 	text ?txt
 	instance ?ain 
 	parent ?par
-	protagonist ?pro
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "TimeMessage")
-(a/time-message ?txt ?cat ?cls ?pro ?run)
+(a/time-message ?txt ?cat ?cls ?run)
 (retract ?tm)
 (asser Action status "DONE" 
 	parent ?par 
@@ -207,11 +210,10 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOffMap")
-(a/put-off-map ?obj ?mos ?del ?pro ?run)
+(a/put-off-map ?obj ?mos ?del ?run)
 (retract ?pom)
 (asser Action status "DONE"
 	parent ?par 
@@ -227,18 +229,17 @@
 	backward ?bwd
 	radius ?rad
 	run ?run
-	parent ?par
-	protagonist ?pro)
+	parent ?par)
 =>
 (println "Action started:" ?tit "GoRoute")
-(let [rou (a/vv ?rou ?pro ?run)
-       obj (a/vv ?obj ?pro ?run)
+(let [rou (a/vv ?rou ?run)
+       obj (a/vv ?obj ?run)
        pts (protege.core/svs rou "points")
        cnt (count pts)
        pnt (if (protege.core/is? ?bwd)
               (dec cnt)
               0)] 
-  (modify ?gor status (a/arriveN ?tit obj rou pnt ?spd ?rad ?pro ?run ?par)
+  (modify ?gor status (a/arriveN ?tit obj rou pnt ?spd ?rad ?run ?par)
 	object obj
 	route rou
 	N pnt)))
@@ -254,7 +255,6 @@
 	N ?n
 	run ?run
 	parent ?par
-	protagonist ?pro
 	((not= ?sts "START")
 	 (not= ?sts "DONE")))
 (Clock)
@@ -263,7 +263,7 @@
 (let [next (if (protege.core/is? ?bwd)
 	(dec ?n)
 	(inc ?n))]
-  (modify ?gor status (a/arriveN ?tit ?obj ?rou next ?spd ?rad ?pro ?run ?par)
+  (modify ?gor status (a/arriveN ?tit ?obj ?rou next ?spd ?rad ?run ?par)
 	N next)))
 
 (a:GoRouteDone 0
@@ -298,8 +298,7 @@
 	id ?pid
 	title ?tit
 	event ?evt
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "WaitEvent")
 (modify ?we status (a/wait-event ?evt ?pid ?pro ?run)))
@@ -319,7 +318,6 @@
 	instance ?ain 
 	parent ?par 
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 (Clock time ?t)
 ?tor (TwoObRelation title ?tit2
@@ -329,7 +327,7 @@
 	radius ?rad
 	value ?val
 	parent ?pid
-	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?pro ?run))
+	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?run))
 =>
 (retract ?we ?tor)
 (asser Action status "DONE" 
@@ -346,22 +344,19 @@
 	instance ?ain
 	run ?run
 	parent ?par 
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Calculus")
-(let [bnd (mapcat #(d/input-var-val % ?pro ?run) ?ida)
-       bnd2 (if (not (a/null? ?pro))
-	(d/proto-var-val ?pro ?run))
-       bnd3  (d/parse-let-body (d/uncomment  ?src))
-       bnd4 (vec (concat bnd bnd2 bnd3))
-       vvm (d/var-val-map bnd4)
-       exp `(let ~bnd4 ~vvm)
+(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)
+       bnd2  (d/parse-let-body (d/uncomment  ?src))
+       bnd3 (vec (concat bnd bnd2))
+       vvm (d/var-val-map bnd3)
+       exp `(let ~bnd3 ~vvm)
        ;;_ (println :EXP exp)
        vvm2 (eval exp)]
-  (d/to-proto-var-val bnd2 vvm2 ?pro ?run)
+  (d/var-val-to-run bnd2 vvm2 ?pro ?run)
   (doseq [re ?res]
-    (d/to-result-var-val re vvm2 ?pro ?run)))
+    (d/var-val-to-result re vvm2 ?pro ?run)))
 (retract ?clc)
 (asser Action status "DONE" 
 	parent ?par 
@@ -389,16 +384,15 @@
 	lineColor ?col
 	line ?lin
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 =>
 (println (str "Action started: " ?tit " LinkOnOff"))
-(let [obj (a/mapob-vv ?obj ?pro ?run)
-       obs (a/mapob-vv ?obs ?pro ?run)
-       col (a/vv ?col ?pro ?run)
-       lin (a/vv ?lin ?pro ?run)]
+(let [obj (a/mapob-vv ?obj ?run)
+       obs (a/mapob-vv ?obs ?run)
+       col (a/vv ?col ?run)
+       lin (a/vv ?lin ?run)]
   (if (and obj obs)
     (let [pg (.getPlayground obs)
            nam (str (.getName obs) "-" (.getName obj))]
@@ -433,11 +427,10 @@
 	instance ?ain 
 	run ?run
 	parent ?par 
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "RepeatActionOnOff")
-(a/repeat-action-onoff ?ra ?col ?flg ?pro ?run)
+(a/repeat-action-onoff ?ra ?col ?flg ?run)
 (retract ?rao)
 (asser Action status "DONE" 
 	parent ?par 
@@ -450,7 +443,6 @@
 	instance ?ain 
 	parent ?par 
 	run ?run
-	protagonist ?pro 
 	next_actions ?nacts)
 (Clock time ?t)
 ?op (ObProperty title ?tit2
@@ -461,7 +453,7 @@
 	longitude ?lon
 	value ?val
 	parent ?pid
-	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?pro ?run))
+	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?run))
 =>
 (retract ?we ?op)
 (asser Action status "DONE" 
@@ -475,7 +467,6 @@
 	instance ?ain 
 	parent ?par 
 	run ?run
-	protagonist ?pro 
 	next_actions ?nacts)
 (Clock time ?t)
 ?oa (ObAttribute title ?tit2
@@ -484,7 +475,7 @@
 	relation ?rel
 	value ?val
 	parent ?pid
-	(e/ob-attribute ?atr ?obj ?rel ?val ?pro ?run))
+	(e/ob-attribute ?atr ?obj ?rel ?val ?run))
 =>
 (retract ?we ?oa)
 (asser Action status "DONE" 
@@ -515,17 +506,16 @@
 	position-speed ?poss 
 	relative ?rel
 	radius ?rad
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Position")
-(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]
+(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
   (if (> spdb 0)
     (do (a/go mob lat lon spdb)
       (modify ?pos status "REPEAT"
 	course crss
 	speed spds))
-    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?pro ?run)
+    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
           (modify ?pos status "DONE")))
   (modify ?pos status "FAILED")))
 
@@ -536,14 +526,13 @@
 	observer ?obs 
 	mapob ?mos
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOnPlace")
-(let [obj (a/vv ?obj ?pro ?run)
-       obs (a/vv ?obs ?pro ?run)
+(let [obj (a/vv ?obj ?run)
+       obs (a/vv ?obs ?run)
        sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))
                "FAILED"
                (if-let [ms (ru.igis.omtab.OMT/getMapOb obs)]
@@ -574,10 +563,9 @@
 	relative ?rel 
 	radius ?rad
 	run ?run
-	protagonist ?pro
-	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run))
+	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
-(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?pro ?run)
+(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
 (modify ?pos status "DONE"))
 
 (a:ObjectMessageStart 0
@@ -588,11 +576,10 @@
 	category ?cat
 	text ?txt
 	url ?url
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "ObjectMessage")
-(modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run)))
+(modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?run)))
 
 (a:ObjectMessageDone 0
 ?om (ObjectMessage status "DONE"
@@ -613,11 +600,10 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Break")
-(if-let [act (a/vv ?act ?pro ?run)]
+(if-let [act (a/vv ?act ?run)]
   (do (condp = (protege.core/typ act)
 	"Scenario" (a/break-scenario act ?run)
 	"Task" (a/break-task act ?run)
@@ -638,11 +624,10 @@
 	position-angle ?poa
 	position-distance ?pod
 	relative ?rel
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "TowOnOff")
-(modify ?too status (a/tow-on-off ?obj ?obs ?flg ?poa ?pod ?rel ?pro ?run)))
+(modify ?too status (a/tow-on-off ?obj ?obs ?flg ?poa ?pod ?rel ?run)))
 
 (a:TowOnOffDone 0
 ?too (TowOnOff status "DONE" 
@@ -660,13 +645,12 @@
 ?sea (Search status "START" 
 	title ?tit 
 	time ?tim
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock time ?t)
 =>
 (println "Action started:" ?tit "Search")
 (modify ?sea status "OUTSIDE" 
-	N (a/to-be ?t (a/vv ?tim ?pro ?run))))
+	N (a/to-be ?t (a/vv ?tim ?run))))
 
 (a:SearchTimeEnd 0
 (Clock time ?t)
@@ -697,15 +681,14 @@
 	detect-distance ?dd
 	detect-probability ?dp
 	client ?cli
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock)
 =>
-(let [obs (a/mapob-vv ?obs ?pro ?run)
-       obj (a/mapob-vv ?obj ?pro ?run)
-       dd (a/vv ?dd ?pro ?run)
-       dp (a/vv ?dp ?pro ?run)
-       cli (a/vv ?cli ?pro ?run)]
+(let [obs (a/mapob-vv ?obs ?run)
+       obj (a/mapob-vv ?obj ?run)
+       dd (a/vv ?dd ?run)
+       dp (a/vv ?dp ?run)
+       cli (a/vv ?cli ?run)]
   (if (every? some? [obs obj dd dp])
     (if (<= (.distanceNM obs obj) (read-string dd))
       (if (<= (Math/random) (read-string dp))
@@ -722,13 +705,12 @@
 	object ?obj
 	observer ?obs
 	detect-distance ?dd
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock)
 =>
-(let [obs (a/mapob-vv ?obs ?pro ?run)
-       obj (a/mapob-vv ?obj ?pro ?run)
-       dd (a/vv ?dd ?pro ?run)]
+(let [obs (a/mapob-vv ?obs ?run)
+       obj (a/mapob-vv ?obj ?run)
+       dd (a/vv ?dd ?run)]
   (if (every? some? [obs obj dd])
     (if (> (.distanceNM obs obj) (read-string dd))
       (modify ?sea status "OUTSIDE"))
@@ -740,11 +722,10 @@
 	object ?obj
 	attributes ?atrs
 	values ?vals
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "PutObAttributes")
-(modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?pro ?run)))
+(modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?run)))
 
 (a:PutObAttributesDone 0
 ?poa (PutObAttributes status "DONE" 
@@ -805,12 +786,11 @@
 	attribute ?atr
 	instance ?ain 
 	parent ?par
-	protagonist ?pro
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "AttributeMessage")
-(a/attribute-message ?txt ?obj ?atr ?cat ?cls ?pro ?run)
+(a/attribute-message ?txt ?obj ?atr ?cat ?cls ?run)
 (retract ?am)
 (asser Action status "DONE" 
 	parent ?par 
@@ -835,21 +815,19 @@
 	thing ?thi
 	text ?txt
 	label ?lab
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Show")
-(modify ?dis status (a/show ?tit ?thi ?txt ?lab ?pro ?run)))
+(modify ?dis status (a/show ?tit ?thi ?txt ?lab ?run)))
 
 (a:ComputeStart 0
 ?cmp (Compute status "START" 
 	title ?tit 
 	computation ?com 
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Compute")
-(modify ?cmp status (a/compute ?com ?pro ?run)))
+(modify ?cmp status (a/compute ?com ?run)))
 
 (a:ComputeDone 0
 ?cmp (Compute status "DONE"
@@ -882,11 +860,10 @@
 	longitude ?lon
 	new_course ?crs
 	new_speed ?spd
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "PutObProperties")
-(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?pro ?run)))
+(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?run)))
 
 (s:StartScenario 0
 ?s (Scenario status "START" 
@@ -919,7 +896,6 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "CreateByModel")
@@ -1006,11 +982,10 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "DeleteResource")
-(let [mo (a/mapob-vv ?obj ?pro ?run)
+(let [mo (a/mapob-vv ?obj ?run)
        atr (protege.core/sv ?res "title")
        rr (.getAttribute mo atr)]
   (if (seq rr)
@@ -1028,12 +1003,11 @@
 ?d (Delay status "START" 
 	title ?tit 
 	delay ?del
-	protagonist ?pro
 	run ?run)
 (Clock time ?t)
 =>
 (println "Action started:" ?tit  "Delay")
-(if-let [del (a/vv ?del ?pro ?run)]
+(if-let [del (a/vv ?del ?run)]
   (modify ?d status "REPEAT" 
 	N (a/to-be ?t del))
   (modify ?d status "FAILED")))
@@ -1046,43 +1020,13 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "AssertObjects")
-(let [obj (a/vv ?obj ?pro ?run)
+(let [obj (a/vv ?obj ?run)
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (ru.rules/assert-instances inss))
 (retract ?aos)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
-
-(a:Visible 0
-?vis (Visible status "START"
-	title ?tit
-	object ?obj
-	mapob ?mos
-	flag ?flg
-	client ?cli
-	instance ?ain
-	parent ?par
-	run ?run
-	protagonist ?pro
-	next_actions ?nacts)
-=>
-(println "Action started:" ?tit "Visible")
-(let [cli (a/vv ?cli ?pro ?run)]
-  (if (not (a/null? cli))
-    (let [visi (protege.core/is? ?flg)
-           clid (protege.core/sv cli "id")]
-      (if-let [mo (a/mapob-vv ?obj ?pro ?run)]
-        (navobs.commands/set-visible (.getName mo) visi clid))
-      (doseq [mo ?mos]
-        (if-let [mo (ru.igis.omtab.OMT/getMapOb mo)]
-          (navobs.commands/set-visible (.getName mo) visi clid))))))
-(retract ?vis)
 (asser Action status "DONE" 
 	parent ?par 
 	instance ?ain
@@ -1097,15 +1041,14 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "AttributesToVariables")
 (loop [oo ?obs aa ?ats vv ?vrs]
   (if (and (seq oo) (seq aa) (seq vv))
-    (if-let [mo (a/mapob-vv (first oo) ?pro ?run)]
+    (if-let [mo (a/mapob-vv (first oo) ?run)]
       (when-let [avl (.getAttribute mo (protege.core/sv (first aa) "title"))]
-        (a/pvv (first vv) avl ?pro ?run)
+        (a/vvr (first vv) avl ?run)
         (recur (rest oo) (rest aa) (rest vv))) )))
 (retract ?atv)
 (asser Action status "DONE" 
@@ -1117,11 +1060,10 @@
 ?wms (WaitModelClock status "START" 
 	title ?tit 
 	time ?tim
-	protagonist ?pro
 	run ?run)
 =>
 (println "Action started:" ?tit "WaitModelClock")
-(if-let [tim (a/vv ?tim ?pro ?run)]
+(if-let [tim (a/vv ?tim ?run)]
   (modify ?wms status "REPEAT" 
 	N (a/op-time-sec tim))
   (modify ?wms status "FAILED")))
@@ -1133,11 +1075,10 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "SetModelClock")
-(let [tim (a/vv ?tim ?pro ?run)
+(let [tim (a/vv ?tim ?run)
       sec (a/op-time-sec tim)]
     (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))
 (retract ?smc)
@@ -1158,13 +1099,12 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "LoadResource")
-(let [mo (a/mapob-vv ?obj ?pro ?run)
-       sed (a/vv ?sed ?pro ?run)
-       num (a/vv ?num ?pro ?run)
+(let [mo (a/mapob-vv ?obj ?run)
+       sed (a/vv ?sed ?run)
+       num (a/vv ?num ?run)
        rr (and mo
             (or (seq ?mos) 
                (and sed num
@@ -1223,11 +1163,10 @@
 	position-speed ?poss 
 	relative ?rel 
 	radius ?rad
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "Intercept")
-(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]
+(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
   (do (a/go mob lat lon spdb)
     (modify ?ict status "REPEAT"
 	course crss
@@ -1248,11 +1187,10 @@
 	instance ?ain
 	parent ?par 
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts
-	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run))
+	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
-(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?pro ?run)
+(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
 (retract ?ict)
 (asser Action status "DONE" 
 	parent ?par 
@@ -1273,13 +1211,12 @@
 	instance ?ain
 	parent ?par 
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts
 	((not (s/qm ?shd))
-	 (a/on-shot-dist? ?obj ?obs ?shd ?pro ?run)))
+	 (a/on-shot-dist? ?obj ?obs ?shd ?run)))
 =>
-(let [mob (a/mapob-vv ?obj ?pro ?run)
-      mos (a/mapob-vv ?obs ?pro ?run)]
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
   (.setCourse mob (.getCourse mos)))
 (retract ?ict)
 (asser Action status "DONE" 
@@ -1308,11 +1245,10 @@
 	category ?cat
 	text ?txt
 	url ?url
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "MovingObjectMessage")
-(modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?pro ?run)))
+(modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?run)))
 
 (a:PositionObserverManeuver -5
 (Clock time ?t)
@@ -1327,10 +1263,9 @@
 	relative ?rel
 	radius ?rad
 	run ?run
-	protagonist ?pro
-	(a/observer-maneuver? ?obs ?crs ?spd ?pro ?run))
+	(a/observer-maneuver? ?obs ?crs ?spd ?run))
 =>
-(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]
+(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
   (a/go mob lat lon spdb)
   (modify ?pos course crss
 	speed spds)))
@@ -1348,10 +1283,9 @@
 	relative ?rel
 	radius ?rad
 	run ?run
-	protagonist ?pro
-	(a/observer-maneuver? ?obs ?crs ?spd ?pro ?run))
+	(a/observer-maneuver? ?obs ?crs ?spd ?run))
 =>
-(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?pro ?run)]
+(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
   (a/go mob lat lon spdb)
   (modify ?ict course crss
 	speed spds)))
@@ -1365,72 +1299,23 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "UseResource")
-(let [mo (a/mapob-vv ?obj ?pro ?run)
+(let [mo (a/mapob-vv ?obj ?run)
        atr (protege.core/sv ?res "title")
        [idx & rr] (.getAttribute mo atr)]
   (if (and mo atr idx rr)
     (do (if (< idx (count rr))
-            (do (a/pvv ?var (nth rr idx) ?pro ?run)
+            (do (a/vvr ?var (nth rr idx) ?run)
               (.putAttribute mo atr (vec (cons (inc idx) rr))))
-            (a/pvv ?var nil ?pro ?run))
+            (a/vvr ?var nil ?run))
       (retract ?ur)
       (asser Action status "DONE" 
 	parent ?par 
 	instance ?ain 
 	next_actions ?nacts))
     (modify ?ur status "FAILED"))))
-
-(a:WaitInZoneStart 0
-?wiz (WaitInZone status "START"
-	title ?tit)
-=>
-(println "Action started:" ?tit "WaitInZone")
-(modify ?wiz status "REPEAT"))
-
-(a:WaitInZoneRepeat 0
-?wiz (WaitInZone status "REPEAT"
-	object ?obj
-	observer ?obs
-	attribute ?atr
-	remove_flag ?rfl
-	resource ?res
-	protagonist ?pro
-	run ?run)
-(Clock time ?t)
-=>
-(let [mob (a/mapob-vv ?obj ?pro ?run)
-      mos (a/mapob-vv ?obs ?pro ?run)]
-  (if (not (or (nil? mob) (nil? mos)))
-    (let [atr (protege.core/sv ?atr "title")
-          res (protege.core/sv ?res "title")
-          coll (.getAttribute mob res)]
-      (loop [rr coll]
-        (if (seq rr)
-          (let [r1 (first rr)]
-            (if-let [mor (a/mapob-vv r1 ?pro ?run)]
-              (if (.contains mos mor)
-	(do (.putAttribute mob atr r1)
-	  (if (= ?rfl true)
-	    (.putAttribute mob res (remove #{r1} coll)))
-	  (modify ?wiz status "DONE"))
-	(recur (rest rr))) )) )))
-    (modify ?wiz status "FAILED"))))
-
-(a:WaitInZoneDone 0
-?wiz (WaitInZone status "DONE"
-	instance ?ain
-	parent ?par 
-	next_actions ?nacts)
-=>
-(retract ?wiz)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
 
 (a:MovingObjectMessageDone 0
 ?mom (MovingObjectMessage status "DONE"
@@ -1465,14 +1350,13 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "ArriveIntoPolygon")
-(if-let [pol (a/vv ?pol ?pro ?run)]
+(if-let [pol (a/vv ?pol ?run)]
   (let [lat (protege.core/sv pol "latitude")
         lon (protege.core/sv pol "longitude")
-        spd (a/vv ?spd ?pro ?run)]
+        spd (a/vv ?spd ?run)]
     (retract ?aip)
     (asser Arrive status "START"
 	title ?tit
@@ -1484,7 +1368,6 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts))
   (modify ?aip status "FAILED")))
 
@@ -1497,14 +1380,13 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "StartScenarios")
 (loop [ss ?scs dd ?dfs]
   (when (seq ss)
     (if (= (first dd) true) 
-      (a/subscenario (first ss) nil nil false ?pid ?pro ?run)
+      (a/subscenario (first ss) nil nil false ?pid ?run)
       (s/start-scenario (first ss) nil))
     (recur (rest ss) (rest dd))))
 (retract ?ss)
@@ -1523,13 +1405,12 @@
 	N ?n
 	speed ?spd
 	time1 ?tm1
-	protagonist ?pro
 	run ?run)
 (Clock time ?t)
 =>
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
   (let[a0 (.getAltitude mo)
-       apf (a/vv ?apf ?pro ?run)
+       apf (a/vv ?apf ?run)
        alts0 (nthrest (protege.core/svs apf "alt") ?n)
        [a1 a2 & alts] (seq alts0)]
     (.setAltitude mo (int (Math/round (+ a0 ?spd)) ))
@@ -1550,17 +1431,16 @@
 	vc_type ?vct
 	alt_profile ?apf
 	period ?prd 
-	protagonist ?pro
 	run ?run
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts
 	(> ?t ?prd))
 =>
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
   (do
     (if (= ?vct "PROFILE")
-      (let[apf (a/vv ?apf ?pro ?run)
+      (let[apf (a/vv ?apf ?run)
            alts (seq (protege.core/svs apf "alt"))]
         (.setAltitude mo (last alts))))
     (.removeAttribute mo "VC_TYPE")))
@@ -1578,16 +1458,15 @@
 	height ?hgt
 	time ?tim
 	alt_profile ?apf
-	protagonist ?pro
 	run ?run)
 (Clock time ?t)
 =>
 (println "Action started:" ?tit "VerticalControl")
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
   (do (.putAttribute mo "VC_TYPE" ?vct)
     (condp = ?vct
       "PROFILE"
-      (if-let[apf (a/vv ?apf ?pro ?run)]
+      (if-let[apf (a/vv ?apf ?run)]
         (let [[s1 s2 & secs] (seq (protege.core/svs apf "second"))
                [a1 a2 & alts] (seq (protege.core/svs apf "alt"))]
           (.setAltitude mo a1)
@@ -1598,8 +1477,8 @@
 	period (+ ?t (last secs))))
         (modify ?vc status "FAILED"))
       "RELIEF"
-      (let [hgt (a/vv ?hgt ?pro ?run)
-            tim (a/vv ?tim ?pro ?run)]
+      (let [hgt (a/vv ?hgt ?run)
+            tim (a/vv ?tim ?run)]
         (if (not (or (nil? hgt) (nil? tim)))
           (do (.setAltitude mo (Integer. hgt))
             (modify ?vc status "REPEAT"
@@ -1613,11 +1492,10 @@
 	instance ?ain
 	run ?run
 	parent ?par 
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "SetTimeScale")
-(if-let [scl (a/vv ?scl ?pro ?run)]
+(if-let [scl (a/vv ?scl ?run)]
   (ru.igis.omtab.OMT/setTimeScale scl))
 (retract ?sts)
 (asser Action status "DONE" 
@@ -1633,16 +1511,15 @@
 	longitude ?lon
 	client ?cli
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "ConfirmPosition")
-(let [obj (a/vv ?obj ?pro ?run)
-       lat (a/degmin-to-deg ?lat ?pro ?run)
-       lon (a/degmin-to-deg ?lon ?pro ?run)
-       cli (a/vv ?cli ?pro ?run)
+(let [obj (a/vv ?obj ?run)
+       lat (a/degmin-to-deg ?lat ?run)
+       lon (a/degmin-to-deg ?lon ?run)
+       cli (a/vv ?cli ?run)
        mo (ru.igis.omtab.OMT/getMapOb obj)]
   (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))
     (do (modify ?cp status "FAILED")
@@ -1686,15 +1563,14 @@
 	client ?cli
 	text ?txt
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "CircleScan")
-(let [obj (a/vv ?obj ?pro ?run)
-       det (a/vv ?det ?pro ?run)
-       cli (a/vv ?cli ?pro ?run)
+(let [obj (a/vv ?obj ?run)
+       det (a/vv ?det ?run)
+       cli (a/vv ?cli ?run)
        mo (ru.igis.omtab.OMT/getMapOb obj)]
   (if (or (nil? mo) (a/null? det))
     (do (modify ?cs status "FAILED")
@@ -1731,11 +1607,10 @@
 	statuses ?sts
 	parent ?par
 	run ?run
-	protagonist ?pro
 	variants ?vrs)
 =>
-(let [obs (map #(d/label-or-title (a/vv % ?pro ?run)) ?obs)
-       sts (map #(a/vv % ?pro ?run) ?sts)]
+(let [obs (map #(d/label-or-title (a/vv % ?run)) ?obs)
+       sts (map #(a/vv % ?run) ?sts)]
   (modify ?ce status "WAIT"
 	objects obs
 	statuses sts)))
@@ -1770,11 +1645,10 @@
 	instance ?ain
 	parent ?par
 	run ?run
-	protagonist ?pro
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "RetractObjects")
-(let [obj (a/vv ?obj ?pro ?run)
+(let [obj (a/vv ?obj ?run)
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (ru.rules/retract-instances inss))
 (retract ?ros)
@@ -1790,14 +1664,13 @@
 	observer ?obs
 	time ?tim
 	run ?run
-	protagonist ?pro
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts)
 
 (Clock time ?t)
 =>
-(if-let [mob (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mob (a/mapob-vv ?obj ?run)]
   (let [re (poly.moving/pm-repeat mob ?t)]
     (cond
       (< re 0) (modify ?pm status "FAILED")
@@ -1814,14 +1687,13 @@
 	object ?obj
 	observer ?obs
 	time ?tim
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock time ?t)
 =>
 (println "Action started:" ?tit "PolyMoving")
-(let [mob (a/mapob-vv ?obj ?pro ?run)
-       obs (a/vv ?obs ?pro ?run)
-       tim (a/vv ?tim ?pro ?run)]
+(let [mob (a/mapob-vv ?obj ?run)
+       obs (a/vv ?obs ?run)
+       tim (a/vv ?tim ?run)]
   (if (or (nil? mob)
             (a/null? obs)
             (a/null? tim)
@@ -1834,12 +1706,11 @@
 	title ?tit
 	mapob ?mpb
 	time ?tim
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock time ?t)
 =>
 (println "Action started:" ?tit "PolyMovingN")
-(let [tim (a/vv ?tim ?pro ?run)]
+(let [tim (a/vv ?tim ?run)]
   (if (or (empty? ?mpb)
             (a/null? tim)
             (< (poly.moving/pm-start-n ?mpb (a/to-be tim) ?t) 0))
@@ -1855,7 +1726,6 @@
 	N ?n
 	time ?tim
 	run ?run
-	protagonist ?pro
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts)
@@ -1901,11 +1771,10 @@
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts
-	run ?run
-	protagonist ?pro)
+	run ?run)
 (Clock time ?t)
 =>
-(let [mo (a/mapob-vv ?obj ?pro ?run)
+(let [mo (a/mapob-vv ?obj ?run)
        mt (if (some? mo)
 	(.getAttribute mo "MOTRACE"))]
   (if (some? mt)
@@ -1947,12 +1816,11 @@
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "MovingTrace")
-(let [mo (a/mapob-vv ?obj ?pro ?run)
-      pol (a/vv ?pol ?pro ?run)]
+(let [mo (a/mapob-vv ?obj ?run)
+      pol (a/vv ?pol ?run)]
   (if (and (some? mo) (not (a/null? pol)))
     (let [mt {:ompoly (-> (ru.igis.omtab.OMT/getOrAdd pol)
 		.getLocationMarker)
@@ -1997,7 +1865,6 @@
 	number ?num
 	parent ?par
 	run ?run
-	protagonist ?pro
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "Hard")
@@ -2015,20 +1882,19 @@
 	time ?tim
 	route ?rte
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Comb")
-(let [obj (a/mapob-vv ?obj ?pro ?run)
-       pol (a/mapob-vv ?pol ?pro ?run)
-       alg (a/vv ?alg ?pro ?run)
-       rng (a/vv ?rng ?pro ?run)
-       spd (a/vv ?spd ?pro ?run)
-       tim (a/vv ?tim ?pro ?run)
-       rte (a/vv ?rte ?pro ?run)
-       dsp (a/vv ?dsp ?pro ?run)]
+(let [obj (a/mapob-vv ?obj ?run)
+       pol (a/mapob-vv ?pol ?run)
+       alg (a/vv ?alg ?run)
+       rng (a/vv ?rng ?run)
+       spd (a/vv ?spd ?run)
+       tim (a/vv ?tim ?run)
+       rte (a/vv ?rte ?run)
+       dsp (a/vv ?dsp ?run)]
   (if (every? some? [obj pol alg  rng spd tim rte])
     (let [hrs (/ (a/to-be tim) 3600)]
       (algo.exe/do-algorithm alg
@@ -2049,15 +1915,14 @@
 	spd ?spd
 	route ?rte
 	run ?run
-	protagonist ?pro
 	instance ?ain 
 	parent ?par 
 	next_actions ?nacts)
 (Clock)
 =>
-(let [obj (a/vv ?obj ?pro ?run)
-       spd (a/vv ?spd ?pro ?run)
-       rte (a/vv ?rte ?pro ?run)
+(let [obj (a/vv ?obj ?run)
+       spd (a/vv ?spd ?run)
+       rte (a/vv ?rte ?run)
        tit (s/gen-id ?tit)]
   (when (every? some? [obj spd rte])
     (rete.core/assert-frame 
@@ -2074,11 +1939,10 @@
 ?sor (StopRoute status "START"
 	title ?tit
 	object ?obj
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "StopRoute")
-(if-let [obj (a/vv ?obj ?pro ?run)]
+(if-let [obj (a/vv ?obj ?run)]
   (modify ?sor object obj
 	status "WORK")
   (modify ?sor status "FAILED"))))
@@ -2091,10 +1955,9 @@
 	instance ?ain
 	parent ?par 
 	next_actions ?nacts
- 	run ?run
-	protagonist ?pro)
+ 	run ?run)
 =>
-(a/stop-moving ?obj ?lat ?lon ?pro ?run)
+(a/stop-moving ?obj ?lat ?lon ?run)
 (retract ?arr)
 (asser Action status "DONE" 
 	parent ?par 
@@ -2127,10 +1990,9 @@
 	run ?run
 	parent ?par 
 	instance ?ain
-	protagonist ?pro
 	next_actions ?nacts)
 =>
-(let [mo (a/mapob-vv ?obj ?pro ?run)]
+(let [mo (a/mapob-vv ?obj ?run)]
   (modify ?gor status "DONE")
   (modify ?arr status "DONE"
 	latitude (.getLatitude mo)
@@ -2143,17 +2005,29 @@
 
 (a:ObjectTaskStart 0
 ?ot (ObjectTask status "START"
-	id ?pid
 	title ?tit
 	sub_scenario ?sub
 	context ?ctx 
 	player ?pla 
 	wait_subscenario ?wai
-	run ?run
-	protagonist ?pro)
+	run ?run)
 =>
 (println "Action started:" ?tit "ObjectTask")
-(modify ?ot status (a/subscenario ?sub ?ctx ?pla ?wai ?pid ?pro ?run)))
+(let [sub (a/vv ?sub ?run)
+       ctx (a/vv ?ctx ?run)
+       pla (a/vv ?pla ?run)]
+  (if (not (or (a/null? sub) (a/null? pla)))
+    (let [hm (s/context-to-hm ctx)]
+      (a/merge-hm-run hm ?run)
+      (.put hm "?protagonist" pla)
+      (protege.core/ssv sub "id" (s/gen-id (protege.core/sv sub "title")))
+      (protege.core/ssv sub "run" hm)
+      (protege.core/ssv sub "status" "START")
+      (ru.rules/assert-instances [sub])
+      (modify ?ot status (if (= ?wai true)
+		"REPEAT"
+		"DONE")))
+    (modify ?ot status "FAILED"))))
 
 (a:ObjectTaskRepeat 5
 ?ot (ObjectTask status "REPEAT"
@@ -2196,17 +2070,15 @@
 	relations ?rls
 	values ?vls
 	connective ?cnv
-	run ?run
-	protagonist ?pro
 	run ?run)
 (Clock time ?t)
 =>
-(if-let [mo (a/mapob-vv ?obj ?pro ?run)]
+(if-let [mo (a/mapob-vv ?obj ?run)]
   (loop [ats ?ats rls ?rls vls ?vls]
     (if (and (seq ats) (seq rls) (seq vls))
       (let [atr (protege.core/sv (first ats) "title")
             rel (first rls)
-            val (a/vv (first vls) ?pro ?run)
+            val (a/vv (first vls) ?run)
             avl (.getAttribute mo atr)]
         (if (and avl (a/is-relation avl rel val))
           (if (= ?cnv 'OR)

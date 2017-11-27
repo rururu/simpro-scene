@@ -1,4 +1,4 @@
-; Mon Nov 20 21:45:17 MSK 2017
+; Mon Nov 27 20:29:08 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -143,6 +143,11 @@
 	(source ";; display fact as table\n(let [all (rete/fact-list)\n      fact (first (filter #(= (first %) n) all))]\n  (if fact\n    (let [[[n typ] & rp] (partition-all 2 fact)\n           t2 (p/crin \"Table2\")]\n      (p/ssv t2 \"title\" (str typ \" \" n))\n      (p/ssvs t2 \"column1\" (map str (map first rp)))\n      (p/ssvs t2 \"column2\" (map str (map second rp)))\n      (.show p/*prj* t2)\n      (str \"Fact-\" n))))")
 	(title "f2 [n]"))
 
+([RuleEngine_Class270000] of  CloFunction
+
+	(source "(let [[typ & svals] frm\n       upf (fn [[k v]]\n	[k (or (mp k) v)])]\n  (cons typ (mapcat upf (partition 2 svals))))")
+	(title "update-frame [frm mp]"))
+
 ([RuleEngine_Class30000] of  CloProgram
 
 	(cloFunctions
@@ -150,6 +155,7 @@
 		[RETE_Class2]
 		[RuleEngine_Class140000]
 		[RuleEngine_Class90000]
+		[RuleEngine_Class270000]
 		[RuleEngine_Class50000]
 		[RETE_Class4]
 		[RuleEngine_Class70000]

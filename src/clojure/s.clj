@@ -18,32 +18,32 @@
   (nil? x)
   (= x :?)))
 
-(defn context-to-hm [ctx]
-  (let [hm (HashMap.)]
-  (if ctx
-    (doseq [p (svs ctx "pairs")]
-      (let [var (sv p "variable")
-             tit (sv var "title")]
-        (condp = (.getName (.getDirectType p))
-          "ValuePair" (.put hm tit (sv p "value"))
-          "ObjectPair" (.put hm tit (sv p "object"))
-          "CollectionPair" (.put hm tit (svs p "collection"))
-          "StringCollectionPair" (.put hm tit (svs p "string-collection")) )) ))
-  hm))
-
-(defn update-with-mp [hm mp]
+(defn updated-with-mp? [hm mp]
+  (when mp
   (doseq [[k v] mp]
-  (.put hm k v))
-true)
+    (.put hm k v))
+  true))
 
-(defn context-to-attributes [ctx mo mp run]
-  (if-let [hm (context-to-hm ctx)]
-  (when (if mp
-              (update-with-mp hm mp)
-              (not= (.update (Context.) hm "Update Parameters")
-	    ModalDialog/OPTION_CANCEL))
-    (.putAttribute mo run hm)
-    true)))
+(defn context-to-hm
+  ([ctx]
+  (let [hm (HashMap.)]
+    (if ctx
+      (doseq [p (svs ctx "pairs")]
+        (let [var (sv p "variable")
+               tit (sv var "title")]
+          (condp = (.getName (.getDirectType p))
+            "ValuePair" (.put hm tit (sv p "value"))
+            "ObjectPair" (.put hm tit (sv p "object"))
+            "CollectionPair" (.put hm tit (svs p "collection"))
+            "StringCollectionPair" (.put hm tit (svs p "string-collection")) )) ))
+    hm))
+([ctx pro mp]
+  (let [hm (context-to-hm ctx)]
+    (if pro
+      (.put hm "?protagonist" pro))
+    (or (updated-with-mp? hm mp)
+         (.update (Context.) hm "Update Parameters"))
+    hm)))
 
 (defn gen-id [tit]
   (let [id (name (gensym (.substring tit 0 (min (count tit) 8))))]
@@ -51,30 +51,23 @@ true)
 
 (defn start-scenario [siorti mp]
   (if-let [si (if (string? siorti) (fifos "Scenario" "title" siorti) siorti)]
-  (let [pro (sv si "protagonist")
-         ctx (sv si "context")
-         id (gen-id (sv si "title"))
-         mo (and pro (or (OMT/getMapOb pro)
-	           (OMT/addMapOb pro)))]
-    (when (or (nil? pro) 
-	(and (some? mo)
-	  (context-to-attributes ctx mo mp id)))
-      (ssv si "id" id)
-      (ssv si "run" id)
-      (ssv si "status" "START")
-      (assert-instances [si])
-      true))))
+  (-> (ru.rules/mk-frame si)
+    (ru.rules/update-frame 
+	{'status "START"
+	 'id (gen-id (sv si "title"))
+	 'run (context-to-hm (sv si "context") (sv si "protagonist") mp)})
+    rete.core/assert-frame)
+  true))
 
-(defn start-tasks-actions [tas pid run proto]
-  (assert-instances 
-  (map 
-    #(do (ssv % "status" "START")
-	(ssv % "id" (gen-id (sv % "title")))
-	(ssv % "parent" pid)
-	(ssv % "run" run)
-	(or (= proto :?) (ssv % "protagonist" proto))
-	%)
-    tas)))
+(defn start-tasks-actions [tas pid run]
+  (doseq [ta tas]
+  (-> (ru.rules/mk-frame ta)
+    (ru.rules/update-frame
+	{'status "START"
+	 'id (gen-id (sv ta "title"))
+	 'parent pid
+	 'run run})
+    rete.core/assert-frame)))
 
 (defn include? [y x]
   (some #{x} y))
@@ -123,11 +116,6 @@ true)
   (OMT/clearTaskExecutors)
   (OMT/addTaskExecutor te)
   (println [:TE-ADDED te])))
-
-(defn remove-context-attribute [pro run]
-  (if (not= pro :?)
-  (if-let [mo (OMT/getMapOb pro)]
-    (.removeAttribute mo run))))
 
 (defn conjunct [y1 y2]
   (filter #(include? y1 %) y2))

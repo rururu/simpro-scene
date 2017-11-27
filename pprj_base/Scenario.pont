@@ -1,4 +1,4 @@
-; Sun Nov 26 23:01:01 MSK 2017
+; Mon Nov 27 22:24:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1239,30 +1239,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Visible
-	(is-a Action)
-	(role concrete)
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot client
-		(type INSTANCE)
-;+		(allowed-classes Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot flag
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Delay
 	(is-a Action)
 	(role concrete)
@@ -1426,11 +1402,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes Scenario)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot player
-		(type INSTANCE)
-;+		(allowed-classes MapOb Variable)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wait_subscenario
 		(type SYMBOL)
@@ -2149,7 +2120,7 @@
 
 (defclass Wait
 	(is-a Action)
-	(role concrete))
+	(role abstract))
 
 (defclass WaitEvent
 	(is-a Wait)
@@ -2196,35 +2167,6 @@
 		(type SYMBOL)
 		(allowed-values AND OR)
 		(default AND)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass WaitInZone
-	(is-a Wait)
-	(role concrete)
-	(single-slot attribute
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot resource
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observer
-		(type INSTANCE)
-;+		(allowed-classes MapOb NavOb Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot remove_flag
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

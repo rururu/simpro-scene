@@ -12,15 +12,15 @@
 (defn user-decision [vrs]
   [(invoke-later (DisplayUtilities/pickInstanceFromCollection nil vrs 0 "Select Variant"))])
 
-(defn event-decision [evs vrs p r]
-  (letfn [(if-event-variant [evt vrn p r]
+(defn event-decision [evs vrs r]
+  (letfn [(if-event-variant [evt vrn r]
 	(condp =  (.getName (.getDirectType evt))
 	  "ObAttribute" (if (ob-attribute
 		(sv evt "attribute")
 		(sv evt "object")
 		(sv evt "relation")
 		(sv evt "value")
-		p r) vrn)
+		r) vrn)
 	  "ObProperty" (if (ob-property
 		(symbol (sv evt "ob_property"))
 		(sv evt "object")
@@ -28,16 +28,16 @@
 		(sv evt "latitude")
 		(sv evt "longitude")
 		(sv evt "value")
-		p r) vrn)
+		r) vrn)
 	  "TwoObRelation" (if (two-ob-relation 
 		(symbol (sv evt "ob_relation"))
 		(sv evt "object")
 		(sv evt "observer")
 		(sv evt "radius")
 		(sv evt "value")
-		p r) vrn)))]
+		r) vrn)))]
   (or 
-    (seq (filter #(not (nil? %)) (map #(if-event-variant %1 %2 p r) evs (butlast vrs))))
+    (seq (filter #(not (nil? %)) (map #(if-event-variant %1 %2 r) evs (butlast vrs))))
     [(last vrs)])))
 
 (defn ob-prop-val [obp obj]
@@ -64,9 +64,9 @@
   ins
   v))
 
-(defn input-var-val [idata p r]
-  (let [iobj (vv (sv idata "object") p r)
-      iobs (vv (sv idata "observer") p r)
+(defn input-var-val [idata r]
+  (let [iobj (vv (sv idata "object") r)
+      iobs (vv (sv idata "observer") r)
       varn (sv (sv idata "variable") "title")
       atr (sv idata "attribute")
       obp (sv idata "ob_property")
@@ -82,16 +82,7 @@
     (and (some? obj) (some? atr))
       [var (to-clj-type (.getAttribute obj (sv atr "title")))]
     (some? obj)
-      [var (to-clj-type (vv (sv idata "variable") p r))])))
-
-(defn proto-var-val [proto run]
-  (if-let [mo (OMT/getMapOb proto)]
-  (if-let [hm (.getAttribute mo run)]
-    (let [keys (.keySet hm)
-            vars? (fn [x] (and (string? x) (not (.contains x " "))))
-            vars (filter vars? keys)
-            vv (mapcat #(list (symbol %) (to-clj-type (.get hm %))) vars)]
-      (concat vv ['?pro (to-clj-type proto) '?run run])))))
+      [var (to-clj-type (vv (sv idata "variable") r))])))
 
 (defn infix-to-prefix [exp]
   (letfn[(fwop [exp]
@@ -110,15 +101,12 @@
 (defn parse-cond [cnd]
   (infix-to-prefix (read-string (str "(" cnd ")"))))
 
-(defn general-decision [idata conditions variants p r]
+(defn general-decision [idata conditions variants r]
   (let [cds (map parse-cond conditions)
        prs (interleave cds (range (count cds)))
        body [(cons 'cond prs)]
-       bnd1 (vec (mapcat #(input-var-val % p r) idata))
-       bnd2 (if (not (null? p)) 
-	(proto-var-val p r))
-       bnd3 (vec (concat bnd1 bnd2))
-       exp `(let ~bnd3 ~@body)
+       bnd (vec (mapcat #(input-var-val % r) idata))
+       exp `(let ~bnd ~@body)
        nv (eval exp)]
   (if (number? nv)
     [(nth (seq variants) nv)]
@@ -156,9 +144,9 @@
   [cnd3 `(let ~bnd3
 	[~vn ~vvm4])]))
 
-(defn to-proto-var-val [bnd vvmap proto run]
+(defn var-val-to-run [bnd vvmap run]
   (doseq [var (map name (map first (partition 2 bnd)))]
-  (pvv var (from-clj-type (get vvmap var)) proto run)))
+  (vvr var (from-clj-type (get vvmap var)) run)))
 
 (defn set-ob-prop [obp obj val]
   (condp = obp
@@ -167,38 +155,36 @@
   'COORDINATES (.setLocation (first val) (second val))
   (println (str "Unimplemented: " obp " " obj " " val))))
 
-(defn to-result-var-val [result vvmap p r]
-  (let [iobj (vv (sv result "object") p r)
+(defn var-val-to-result [result vvmap r]
+  (let [iobj (vv (sv result "object") r)
       var (sv (sv result "variable") "title")
       atr (sv result "attribute")
       obp (sv result "ob_property")
       obj (OMT/getMapOb iobj)
       val (from-clj-type (get vvmap var))]
   (cond
-    (nil? obj) (pvv var val p r)
+    (nil? obj) (vvr var val r)
     (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr "title") val)
     (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val))))
 
-(defn o-decision [ida bef chs vrs p r]
-  (let [bnd1 (mapcat #(input-var-val % p r) ida)
-       bnd2 (if (not (null? p)) 
-	(proto-var-val p r))
-       bnd3 (if (not (null? bef)) 
+(defn o-decision [ida bef chs vrs r]
+  (let [bnd1 (mapcat #(input-var-val % r) ida)
+       bnd2 (if (not (null? bef)) 
                   (parse-let-body (uncomment (sv bef "source")))
                   [])
-       bnd4 (vec (concat bnd1 bnd2 bnd3))
-       vvm (var-val-map bnd4)
+       bnd3 (vec (concat bnd1 bnd2))
+       vvm (var-val-map bnd3)
        cchs (count chs)
        cvrs (count vrs)
        cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) 
        cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)
-       exp `(let ~bnd4 (cond ~@cprs2))
+       exp `(let ~bnd3 (cond ~@cprs2))
        [nv vvm2] (eval exp)]
   (if (< nv cchs)
     (let [cho ((vec chs) nv)]
-      (to-proto-var-val bnd2 vvm2 p r)
+      (var-val-to-run bnd2 vvm2 r)
       (doseq [res (svs cho "results")]
-        (to-result-var-val res vvm2 p r))))
+        (var-val-to-result res vvm2 r))))
   [((vec vrs) nv)]))
 
 (defn if-activity-status [ats sts vrs run]

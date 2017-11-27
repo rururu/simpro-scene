@@ -29,10 +29,10 @@
     (and (> ca 87) (< ca 93))
     (and (< ca -87) (> ca -93)))))
 
-(defn two-ob-relation [obr ?obj ?obs rad ?val p r]
-  (let [obj (mapob-vv ?obj p r)
-       obs (mapob-vv ?obs p r)
-       val (vv ?val p r)]
+(defn two-ob-relation [obr ?obj ?obs rad ?val r]
+  (let [obj (mapob-vv ?obj r)
+       obs (mapob-vv ?obs r)
+       val (vv ?val r)]
   (if (and obj obs)
     (condp = obr
       'NEAR (.near obs obj rad)
@@ -48,9 +48,9 @@
       'OUTSIDE (not (.contains obs obj))
       false))))
 
-(defn ob-property [prop ?obj rad ?lat ?lon ?val p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-       val (vv ?val p r)]
+(defn ob-property [prop ?obj rad ?lat ?lon ?val r]
+  (let [obj (OMT/getMapOb (vv ?obj r))
+       val (vv ?val r)]
   (if (not (nil? obj))
     (condp = prop
       'NAME (= (.getName obj) val)
@@ -63,17 +63,17 @@
       'ALTITUDE (let [vvl (if (string? val) (read-string val) val)] 
 	(< (Math/abs (- (.getAltitude obj) vvl)) rad))
       'NEAR-POINT (< (.distanceNM obj 
-	(MapOb/getDeg (vv ?lat p r))
-	(MapOb/getDeg (vv ?lon p r))) rad)
-      'COORDINATES (let [lat (vv ?lat p r) lon (vv ?lon p r)] (and
+	(MapOb/getDeg (vv ?lat r))
+	(MapOb/getDeg (vv ?lon r))) rad)
+      'COORDINATES (let [lat (vv ?lat r) lon (vv ?lon r)] (and
 	(or (nil? lat) (< (Math/abs (- (.getLatitude obj) (MapOb/getDeg lat))) (/ rad 60)))
 	(or (nil? lon) (< (Math/abs (- (.getLongitude obj) (MapOb/getDeg lon))) (/ rad 60))) ))
       false)
     false)))
 
-(defn ob-attribute [atr ?obj rel ?val p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-       val (vv ?val p r)]
+(defn ob-attribute [atr ?obj rel ?val r]
+  (let [obj (OMT/getMapOb (vv ?obj r))
+       val (vv ?val r)]
   (if (and (some? obj) (some? atr))
     (let [avl (try-str-num (.getAttribute obj (sv atr "title")))
            vvl (try-str-num val)]

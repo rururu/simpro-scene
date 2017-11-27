@@ -43,29 +43,14 @@
 ([sec del]
  (+ sec (to-be del))))
 
-(defn vv [v proto run]
-  (if (= proto :?)
-  v
-  (if-let [mo (or (OMT/getMapOb proto) (OMT/addMapOb proto))]
-    (if-let [hm (.getAttribute mo run)]
-      (cond
-        (string? v)
-          (if (= v "?protagonist")
-            proto
-            (or (.get hm v) v))
-        (instance? Instance v)
-          (let [tit (sv v "title")]
-            (if (= tit "?protagonist")
-              proto
-              (or (.get hm tit) v)))
-        true v))
-    v)))
+(defn vv [v run]
+  (if (instance? Instance v)
+  (or (.get run (sv v "title")) v)
+  (or (.get run v) v)))
 
-(defn pvv [var val proto run]
-  (if-let [mo (OMT/getMapOb proto)]
-  (if-let [hm (.getAttribute mo run)]
-    (let [varnam (if (instance? Instance var) (sv var "title") var)]
-      (.put hm varnam val)))))
+(defn vvr [var val run]
+  (let [varnam (if (instance? Instance var) (sv var "title") var)]
+  (.put run varnam val)))
 
 (defn es-mess
   ([txt mp category]
@@ -83,10 +68,10 @@
         (.setSpeed mo (double spd)))
       (.setCourse mo (int (Math/round deg)) )) )))
 
-(defn degmin-to-deg [?lat p r]
-  (MapOb/getDeg (vv ?lat p r)))
+(defn degmin-to-deg [?lat r]
+  (MapOb/getDeg (vv ?lat r)))
 
-(defn latlon-N [rou n p r]
+(defn latlon-N [rou n]
   (let [pts (seq (svs rou "points"))]
   (if (and (<= 0 n) (< n (count pts)))
     (let [poi (nth pts n)
@@ -96,8 +81,8 @@
       [lat lon])
     [nil nil])))
 
-(defn stop-moving [?obj lt ln p r]
-  (let [obj (vv ?obj p r)]
+(defn stop-moving [?obj lt ln r]
+  (let [obj (vv ?obj r)]
   (when-let [mo (OMT/getMapOb obj)]
     (.setSpeed mo (double 0))
     (.setLatitude mo (double lt))
@@ -109,25 +94,25 @@
 	(format "%02d" (Clock/getMinute)) ":"
 	(format "%02d" (Clock/getSecond))))
 
-(defn time-message [?txt cat cls p r]
-  (let [txt (vv ?txt p r)
+(defn time-message [?txt cat cls r]
+  (let [txt (vv ?txt r)
        tim (op-time)]
     (if (empty? cls)
       (es-mess (str tim " " txt) {} cat)
       (doseq [cli cls]
         (es-mess (str tim " " txt) {} cat (sv cli "id"))))))
 
-(defn put-off-map [?obj mos del p r]
-  (let [obj (vv ?obj p r)]
+(defn put-off-map [?obj mos del r]
+  (let [obj (vv ?obj r)]
   (if (not (null? obj))
     (if-let [mo (OMT/getMapOb obj)]
       (OMT/removeMapOb (.getInstance mo) (is? del))))
   (if (seq mos)
     (OMT/clearMapObs mos (is? del)))))
 
-(defn arriveN [tit obj rou n ?spd rad pro run par]
-  (let [[lat lon] (latlon-N rou n pro run)
-       spd (Double. (vv ?spd pro run))]
+(defn arriveN [tit obj rou n ?spd rad run par]
+  (let [[lat lon] (latlon-N rou n)
+       spd (Double. (vv ?spd run))]
   (if (nil? lat)
     "DONE"
     (let [gor-status (s/gen-id tit)
@@ -140,8 +125,7 @@
 	'radius rad
 	'next_actions []
 	'run run
-	'parent par
-	'protagonist pro]]
+	'parent par]]
       (rete.core/assert-frame arr)
       gor-status))))
 
@@ -159,36 +143,15 @@
     (.put hm1 k (vv (.get hm1 k) p)))
   (.setAttributes mo hm1)))
 
-(defn hm-varvals-to-vals [hm p r]
-  (doseq [k (.keySet hm)]
-  (.put hm k (vv (.get hm k) p r))))
+(defn merge-hm-run [hm run]
+  (doseq [h (.keySet hm)]
+  (.put hm h (vv (.get hm h) run)))
+(doseq [r (.keySet run)]
+  (if (nil? (.get hm r))
+    (.put hm r (.get run r)))))
 
-(defn subscenario [sub ?ctx ?pla wai pid p r]
-  (if (not (null? sub))
-  (let [ctx (if (null? ?ctx) (sv sub "context") (vv ?ctx p r))
-        pl0 (vv ?pla p r)
-        pla (if (null? pl0)  (sv sub "protagonist") pl0)
-        id (s/gen-id (sv sub "title"))]
-    (if (not (nil? pla))
-      (ssv sub "protagonist" pla))
-    (if (not (null? ctx))
-      (if-let [hm (s/context-to-hm ctx)]
-        (let [mo (or (OMT/getMapOb pla)
-	  (OMT/addMapOb pla))]
-          (hm-varvals-to-vals hm p r)
-          (.putAttribute mo id hm))))
-    (ssv sub "parent" pid)
-    (ssv sub "id" id)
-    (ssv sub "run" r)
-    (ssv sub "status" "START")
-    (assert-instances [sub])
-    (if (= wai true)
-      "REPEAT"
-      "DONE"))
-  "FAILED"))
-
-(defn wait-event [?evt pid p r]
-  (if-let [evt (vv ?evt p r)]
+(defn wait-event [?evt pid r]
+  (if-let [evt (vv ?evt r)]
   (do
     (ssv evt "parent" pid)
     (assert-instances [evt])
@@ -199,14 +162,14 @@
   (let [bnd (vec (interleave (keys ctx) (vals ctx)))]
   (eval `(let ~bnd ~@body))))
 
-(defn repeat-action-onoff [?ra col flg p r]
+(defn repeat-action-onoff [?ra col flg r]
   (if (= flg true)
   (do
-    (OMT/startProtegeRepeatAction (vv ?ra p r))
+    (OMT/startProtegeRepeatAction (vv ?ra r))
     (if (not (null? col))
       (OMT/startProtegeRepeatActions col)))
   (do
-    (OMT/removeProtegeRepeatAction (vv ?ra p r))
+    (OMT/removeProtegeRepeatAction (vv ?ra r))
     (if (not (null? col))
       (OMT/removeProtegeRepeatActions col)) )))
 
@@ -216,8 +179,8 @@
   (< a 0) (+ a 360)
   true a))
 
-(defn mapob-vv [?obj ?pro ?run]
-  (OMT/getMapOb (vv ?obj ?pro ?run)))
+(defn mapob-vv [?obj ?run]
+  (OMT/getMapOb (vv ?obj ?run)))
 
 (defn meeting-point
   ([mot mob spd radius]
@@ -262,12 +225,12 @@
 	    (and (< dt 0) (< dt meps)) (recur (+ d (/ (- ma d) 2)) ma d)
 	    true g3)) )) )))
 
-(defn future-position [?obj ?obs ?posa ?posd ?poss rel rad p r]
-  (let [mob (mapob-vv ?obj p r)
-      mos (mapob-vv ?obs p r)
-      posa (vv ?posa p r)
-      posd (vv ?posd p r)
-      poss (vv ?poss p r)]
+(defn future-position [?obj ?obs ?posa ?posd ?poss rel rad r]
+  (let [mob (mapob-vv ?obj r)
+      mos (mapob-vv ?obs r)
+      posa (vv ?posa r)
+      posd (vv ?posd r)
+      poss (vv ?poss r)]
   (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))
     (let [an1 (read-string posa)
           dist (read-string posd)
@@ -284,18 +247,18 @@
         (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]
           [mob lat2 lon2 spdb crss spds]))))))
 
-(defn observer-maneuver? [?obs crs spd p r]
-  (if-let [mos (mapob-vv ?obs p r)]
+(defn observer-maneuver? [?obs crs spd r]
+  (if-let [mos (mapob-vv ?obs r)]
   (let [crs2 (.getCourse mos)
         spd2 (.getSpeed mos)]
     (or (not= crs crs2) (not= spd spd2)))))
 
-(defn in-position? [?obj ?obs ?posa ?posd ?poss rel rad p r]
-  (let [mob (OMT/getMapOb (vv ?obj p r))
-      mos (OMT/getMapOb (vv ?obs p r))
-      posa (vv ?posa p r)
-      posd (vv ?posd p r)
-      poss (vv ?poss p r)]
+(defn in-position? [?obj ?obs ?posa ?posd ?poss rel rad r]
+  (let [mob (OMT/getMapOb (vv ?obj r))
+      mos (OMT/getMapOb (vv ?obs r))
+      posa (vv ?posa r)
+      posd (vv ?posd r)
+      poss (vv ?poss r)]
   (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))
     (let [an1 (read-string posa)
           dist (read-string posd)
@@ -304,12 +267,12 @@
           [lat lon] (seq (.position mos ang dist))]
       (or (.near mob lat lon rad) (.abaft mob lat lon)) ) )))
 
-(defn take-position [?obj ?obs ?posa ?posd ?poss rel p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-      obs (OMT/getMapOb (vv ?obs p r))
-      posa (vv ?posa p r)
-      posd (vv ?posd p r)
-      poss (vv ?poss p r)]
+(defn take-position [?obj ?obs ?posa ?posd ?poss rel r]
+  (let [obj (OMT/getMapOb (vv ?obj r))
+      obs (OMT/getMapOb (vv ?obs r))
+      posa (vv ?posa r)
+      posd (vv ?posd r)
+      poss (vv ?poss r)]
   (when (not (or (nil? obj) (nil? obs) (null? posa) (null? posd) (null? poss)))
     (let [an1 (read-string posa)
           dist (read-string posd)
@@ -323,10 +286,10 @@
       (.setSpeed obj (.getSpeed obs))
       (.setCourse obj (.getCourse obs)) ) )))
 
-(defn object-message [atit ?obj ?txt ?url cat cls p r]
-  (if-let [obj (OMT/getMapOb (vv ?obj p r))]
-  (let [txt (vv ?txt p r)
-         url (vv ?url p r)
+(defn object-message [atit ?obj ?txt ?url cat cls r]
+  (if-let [obj (OMT/getMapOb (vv ?obj r))]
+  (let [txt (vv ?txt r)
+         url (vv ?url r)
          spl (seq (.split txt "\\?"))
          lab (.getName obj)
          lat (.getLatitudeDM obj)
@@ -348,11 +311,11 @@
   (if (seq dw)
     (second dw))))
 
-(defn tow-on-off [?obj ?obs flg ?poa ?pod rel p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))
-       obs (OMT/getMapOb (vv ?obs p r))
-       poa (vv ?poa p r)
-       pod (vv ?pod p r)]
+(defn tow-on-off [?obj ?obs flg ?poa ?pod rel r]
+  (let [obj (OMT/getMapOb (vv ?obj r))
+       obs (OMT/getMapOb (vv ?obs r))
+       poa (vv ?poa r)
+       pod (vv ?pod r)]
   (if (not (or (nil? obj) (nil? obs) (null? poa) (null? pod)))
     (do
       (if (= flg true)
@@ -364,9 +327,9 @@
       "DONE")
     "FAILED")))
 
-(defn put-attr-val [obj ?atr ?val p r]
-  (let [atri (vv ?atr p r)
-       val (vv ?val p r)]
+(defn put-attr-val [obj ?atr ?val r]
+  (let [atri (vv ?atr r)
+       val (vv ?val r)]
   (if (not (or (null? atri) (null? val)))
     (let [num (read-string val)
            exp (seq (.split val "="))
@@ -383,18 +346,18 @@
 	"/" (.putAttribute obj atr (/ oldn newn)) ))
         true (.putAttribute obj atr val)) ) )))
 
-(defn put-ob-attributes [?obj atrs vals p r]
-  (let [obj (OMT/getMapOb (vv ?obj p r))]
+(defn put-ob-attributes [?obj atrs vals r]
+  (let [obj (OMT/getMapOb (vv ?obj r))]
   (if (null? obj)
     "FAILED"
     (do
-      (doall (map #(put-attr-val obj %1 %2 p r) atrs vals))
+      (doall (map #(put-attr-val obj %1 %2 r) atrs vals))
       "DONE"))))
 
-(defn show [atit ?thi ?txt ?lab p r]
-  (let [thi (vv ?thi p r)
-       txt (vv ?txt p r)
-       lab (vv ?lab p r)]
+(defn show [atit ?thi ?txt ?lab r]
+  (let [thi (vv ?thi r)
+       txt (vv ?txt r)
+       lab (vv ?lab r)]
   (if (not (null? thi))
     (if (ClojureTab/showModalInstance thi (or txt ""))
       "DONE"
@@ -409,9 +372,9 @@
     (recur a (dec i) (.replace r (str pfx i) (aget a (dec i))))
     r)))
 
-(defn attribute-message [?txt ?obj atr cat cls p r]
-  (let [txt (vv ?txt p r)
-       obj (vv ?obj p r)
+(defn attribute-message [?txt ?obj atr cat cls r]
+  (let [txt (vv ?txt r)
+       obj (vv ?obj r)
        tim (op-time)]
   (if-let [mo (OMT/getMapOb obj)]
     (let [avl (or (.getAttribute mo (sv atr "title")) "")
@@ -425,12 +388,12 @@
         (doseq [cli cls]
           (es-mess (str tim " " mes) nil cat (sv cli "id")))) ))))
 
-(defn put-ob-properties [?obj ?lat ?lon ?crs ?spd p r]
-  (let [obj (vv ?obj p r)
-       lat (vv ?lat p r)
-       lon (vv ?lon p r)
-       crs (vv ?crs p r)
-       spd (vv ?spd p r)]
+(defn put-ob-properties [?obj ?lat ?lon ?crs ?spd r]
+  (let [obj (vv ?obj r)
+       lat (vv ?lat r)
+       lon (vv ?lon r)
+       crs (vv ?crs r)
+       spd (vv ?spd r)]
   (if (null? obj)
     "FAILED"
     (if-let [mo (OMT/getMapOb obj)]
@@ -445,18 +408,18 @@
       (catch Exception e
         "FAILED")) ) )))
 
-(defn create-by-model [?mod ?obj p r]
-  (let [mod (vv ?mod p r)
-       obj (vv ?obj p r)
+(defn create-by-model [?mod ?obj r]
+  (let [mod (vv ?mod r)
+       obj (vv ?obj r)
        typ (.getDirectType mod)
        sls (.getTemplateSlots typ)
        ins (crin (.getName typ))]
   (doseq [slt sls]
     (let [sln (.getName slt)]
       (if (.getAllowsMultipleValues slt)
-        (ssvs ins sln (doall (map #(vv % p r) (svs mod sln))))
-        (ssv ins sln (vv (sv mod sln) p r)) ) ))
-  (pvv ?obj ins p r)))
+        (ssvs ins sln (doall (map #(vv % r) (svs mod sln))))
+        (ssv ins sln (vv (sv mod sln) r)) ) ))
+  (vvr ?obj ins r)))
 
 (defn place-on [mo1 mo2]
   (.setLatitude mo2 (.getLatitude mo1))
@@ -532,10 +495,10 @@
      (= avl val)
      false))))
 
-(defn on-shot-dist? [?obj ?obs ?shd p r]
-  (let [mob (mapob-vv ?obj p r)
-      mos (mapob-vv ?obs p r)
-      shd (vv ?shd p r)]
+(defn on-shot-dist? [?obj ?obs ?shd r]
+  (let [mob (mapob-vv ?obj r)
+      mos (mapob-vv ?obs r)
+      shd (vv ?shd r)]
   (if (not (or (null? mob) (null? mos) (null? shd)))
     (.near mob mos (Double. shd)))))
 
@@ -549,10 +512,10 @@
       ss (Integer. (aget hms 2))]
   (+ ds hs ms ss)))
 
-(defn moving-object-message [atit ?obj ?txt ?url cat cls p r]
-  (if-let [obj (OMT/getMapOb (vv ?obj p r))]
-  (let [txt (vv ?txt p r)
-         url (vv ?url p r)
+(defn moving-object-message [atit ?obj ?txt ?url cat cls r]
+  (if-let [obj (OMT/getMapOb (vv ?obj r))]
+  (let [txt (vv ?txt r)
+         url (vv ?url r)
          spl (seq (.split txt "\\?"))
          lab (.getName obj)
          lat (.getLatitudeDM obj)
@@ -674,8 +637,8 @@
   true 
     (do (println "to-clj-type - unknown type of: " v) v)))
 
-(defn compute [?com p r]
-  (let [com (vv ?com p r)]
+(defn compute [?com r]
+  (let [com (vv ?com r)]
   (if (not (null? com))
     (let [typ (.getDirectType com)
            ns (sv typ "namespace")
@@ -685,7 +648,7 @@
                   (str "(in-ns '" (sv ns "title") ")"))
            sm (partition 2 (rest (mk-frame com)))
            bi (mapcat 
-	(fn [[k v]] (list (symbol k) (to-clj-type (vv v p r)) )) 
+	(fn [[k v]] (list (symbol k) (to-clj-type (vv v r)) )) 
 	sm) 
            s2 (str n2 " (let " (vec bi) " " sc ")")
            ;;_ (println :COMPUTE s2)
