@@ -425,12 +425,6 @@
   (.setLatitude mo2 (.getLatitude mo1))
 (.setLongitude mo2 (.getLongitude mo1)))
 
-(defn getoradd-vv [?obj ?pro ?run]
-  (OMT/getOrAdd (vv ?obj ?pro ?run)))
-
-(defn deg-degmin-vv [?degmin ?pro ?run]
-  (MapOb/getDeg (vv ?degmin ?pro ?run)))
-
 (defn geo-azi [g1 g2]
   (let [nor (Geo. 0.0 0.0 0.1)
       ang (Geo/angle nor g1 g2)
@@ -573,7 +567,7 @@
 
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'instance = act)]
-    (if (= (re/slot-value 'run fact) run)
+    (if (identical? (re/slot-value 'run fact) run)
       (re/retract-fact (first fact))))))
 
 (defn break-task
@@ -592,7 +586,7 @@
 
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
-    (when (= (re/slot-value 'run fact) run)
+    (when (identical? (re/slot-value 'run fact) run)
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
         (break-action (re/slot-value 'title acf) run))
       (re/retract-fact (first fact))
@@ -607,7 +601,22 @@
 
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
-    (when (= (re/slot-value 'run fact) run)
+    (when (identical? (re/slot-value 'run fact) run)
+      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
+        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
+      (re/retract-fact (first fact)) 
+      (println "Scenario breaked " (re/slot-value 'title fact))))))
+
+(defn break-ot-scenario
+  ([]
+  (let [ss (re/fact-list 'Scenario)
+         sis (map #(re/slot-value 'instance %) ss)]
+    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis "Select Scenarios")]
+      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
+
+([act run]
+  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
+    (when (identical? (re/slot-value 'context fact) run)
       (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
         (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
       (re/retract-fact (first fact)) 

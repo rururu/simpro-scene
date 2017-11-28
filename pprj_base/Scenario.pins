@@ -1,4 +1,4 @@
-; Mon Nov 27 22:24:47 MSK 2017
+; Tue Nov 28 21:54:28 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -484,8 +484,8 @@
 
 ([Scenario_Class110000] of  Rule
 
-	(lhs "?sa (Subscenario status \"REPEAT\"\n	id ?pid\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?pid)")
-	(rhs "(retract ?sa)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(lhs "?ss (Subscenario status \"REPEAT\"\n	id ?pid\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?pid)")
+	(rhs "(retract ?ss)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 5)
 	(title "a:SubscenarioRepeat"))
 
@@ -593,8 +593,6 @@
 		[Scenario_Class530002]
 		[Scenario_Class540002]
 		[ScenarioN_Class80002]
-		[ScenarioN_Class200000]
-		[ScenarioN_Class60002]
 		[ScenarioN_Class110034]
 		[ScenarioN_Class220002]
 		[ScenarioN_Class220006]
@@ -607,6 +605,7 @@
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
 		[ScenarioN_Class750002]
+		[Scenario_Class300000]
 		[ScenarioN_Class670000]
 		[Scenario_Class450000]
 		[Scenario_Class490003])
@@ -635,15 +634,15 @@
 
 ([Scenario_Class130005] of  Rule
 
-	(lhs "?sa (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame \n	{'status \"START\"\n	 'id (s/gen-id (protege.core/sv sub \"title\"))\n	 'run hm})\n        rete.core/assert-frame)\n      (modify ?ot status (if (= ?wai true)\n		\"REPEAT\"\n		\"DONE\")))\n    (modify ?ot status \"FAILED\")))")
+	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'id (s/gen-id (protege.core/sv sub \"title\"))\n	 'run hm\n	 'context ?run})\n        rete.core/assert-frame)\n      (modify ?ss status (if (= ?wai true)\n		\"REPEAT\"\n		\"DONE\")))\n    (modify ?ss status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
 ([Scenario_Class130007] of  Rule
 
-	(lhs "?sa (Subscenario status \"DONE\"\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(retract ?sa)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
+	(lhs "?ss (Subscenario status \"DONE\"\n	instance ?ain \n	parent ?par \n	next_actions ?nacts)")
+	(rhs "(retract ?ss)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain \n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:SubscenarioDone"))
 
@@ -716,6 +715,7 @@
 		[Scenario_Class560001])
 	(templates
 		[Scenario]
+		[ObjectTaskScenario]
 		[Task]
 		[Join])
 	(title "ScenarioExecutor"))
@@ -739,7 +739,7 @@
 
 ([Scenario_Class180000] of  CloFunction
 
-	(source "(doseq [ta tas]\n  (-> (ru.rules/mk-frame ta)\n    (ru.rules/update-frame\n	{'status \"START\"\n	 'id (gen-id (sv ta \"title\"))\n	 'parent pid\n	 'run run})\n    rete.core/assert-frame))")
+	(source "(doseq [ta tas]\n  (-> (ru.rules/mk-frame ta)\n    (ru.rules/update-frame\n	:same-type\n	{'status \"START\"\n	 'id (gen-id (sv ta \"title\"))\n	 'parent pid\n	 'run run})\n    rete.core/assert-frame))")
 	(title "start-tasks-actions [tas pid run]"))
 
 ([Scenario_Class190000] of  CloFunction
@@ -757,7 +757,7 @@
 ([Scenario_Class200000] of  Rule
 
 	(lhs "?we (WaitEvent status \"START\"\n	id ?pid\n	title ?tit\n	event ?evt\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(modify ?we status (a/wait-event ?evt ?pid ?pro ?run))")
+	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(modify ?we status (a/wait-event ?evt ?pid ?run))")
 	(salience 0)
 	(title "a:WaitEventStart"))
 
@@ -837,7 +837,7 @@
 ([Scenario_Class220001] of  Rule
 
 	(lhs "?clc (Calculus status \"START\" \n	title ?tit \n	input_data ?ida \n	source ?src \n	results ?res\n	instance ?ain\n	run ?run\n	parent ?par \n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2  (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (d/var-val-to-run bnd2 vvm2 ?pro ?run)\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?pro ?run)))\n(retract ?clc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2  (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (d/var-val-to-run bnd2 vvm2 ?run)\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:Calculus"))
 
@@ -1136,19 +1136,24 @@
 	(source "(doseq [h (.keySet hm)]\n  (.put hm h (vv (.get hm h) run)))\n(doseq [r (.keySet run)]\n  (if (nil? (.get hm r))\n    (.put hm r (.get run r))))")
 	(title "merge-hm-run [hm run]"))
 
+([Scenario_Class300000] of  CloFunction
+
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (identical? (re/slot-value 'context fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))\n      (re/retract-fact (first fact)) \n      (println \"Scenario breaked \" (re/slot-value 'title fact)))))")
+	(title "break-ot-scenario"))
+
 ([Scenario_Class300003] of  Attribute
 
 	(title "RES"))
 
 ([Scenario_Class30005] of  CloFunction
 
-	(source "(if-let [si (if (string? siorti) (fifos \"Scenario\" \"title\" siorti) siorti)]\n  (-> (ru.rules/mk-frame si)\n    (ru.rules/update-frame \n	{'status \"START\"\n	 'id (gen-id (sv si \"title\"))\n	 'run (context-to-hm (sv si \"context\") (sv si \"protagonist\") mp)})\n    rete.core/assert-frame)\n  true)")
+	(source "(if-let [si (if (string? siorti) (fifos \"Scenario\" \"title\" siorti) siorti)]\n  (-> (ru.rules/mk-frame si)\n    (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'id (gen-id (sv si \"title\"))\n	 'run (context-to-hm (sv si \"context\") (sv si \"protagonist\") mp)})\n    rete.core/assert-frame)\n  true)")
 	(title "start-scenario [siorti mp]"))
 
 ([Scenario_Class310000] of  Rule
 
 	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	instance ?ain\n	parent ?par\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario act ?run)\n	\"Task\" (a/break-task act ?run)\n	(a/break-action  act ?run))\n    (retract ?brk)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n  (modify ?brk status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (condp = (protege.core/typ act)\n	\"Scenario\" (a/break-scenario act ?run)\n	\"ObjectTaskScenario\" (a/break-ot-scenario act ?run)\n	\"Task\" (a/break-task act ?run)\n	(a/break-action  act ?run))\n    (retract ?brk)\n    (asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts))\n  (modify ?brk status \"FAILED\"))")
 	(salience 0)
 	(title "a:Break"))
 
@@ -1448,7 +1453,7 @@
 ([Scenario_Class540001] of  Rule
 
 	(lhs "?cbm (CreateByModel status \"START\"\n	title ?tit\n	model ?mod\n	object ?obj\n	instance ?ain\n	parent ?par\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"CreateByModel\")\n(a/create-by-model ?mod ?obj ?pro ?run)\n(retract ?cbm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"CreateByModel\")\n(a/create-by-model ?mod ?obj ?run)\n(retract ?cbm)\n(asser Action status \"DONE\" \n	parent ?par \n	instance ?ain\n	next_actions ?nacts)")
 	(salience 0)
 	(title "a:CreateByModel"))
 
@@ -1848,11 +1853,6 @@
 
 	(source "(let [mob (mapob-vv ?obj r)\n      mos (mapob-vv ?obs r)\n      shd (vv ?shd r)]\n  (if (not (or (null? mob) (null? mos) (null? shd)))\n    (.near mob mos (Double. shd))))")
 	(title "on-shot-dist? [?obj ?obs ?shd r]"))
-
-([ScenarioN_Class200000] of  CloFunction
-
-	(source "(OMT/getOrAdd (vv ?obj ?pro ?run))")
-	(title "getoradd-vv [?obj ?pro ?run]"))
 
 ([ScenarioN_Class200001] of  Command
 
@@ -2727,11 +2727,6 @@
 	(prettyName "World Cities")
 	(useDeclutter "false"))
 
-([ScenarioN_Class60002] of  CloFunction
-
-	(source "(MapOb/getDeg (vv ?degmin ?pro ?run))")
-	(title "deg-degmin-vv [?degmin ?pro ?run]"))
-
 ([ScenarioN_Class60155] of  CloFunction
 
 	(source "(create-bare-instances)\n(fill-instances)\n(vreset! DATA {})")
@@ -2750,7 +2745,7 @@
 ([ScenarioN_Class630000] of  Rule
 
 	(lhs "?td (TDecision status \"START\" \n	title ?tit\n	script ?scr\n	variants ?vrs\n	parent ?par\n	run ?run)")
-	(rhs "(println \"Decision:\" ?tit \"TDecision\")\n(s/start-tasks-actions (d/t-decision ?scr ?vrs ?pro ?run) ?par ?run)\n(retract ?td)")
+	(rhs "(println \"Decision:\" ?tit \"TDecision\")\n(s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?par ?run)\n(retract ?td)")
 	(salience 0)
 	(title "d:TDecision"))
 
@@ -2865,7 +2860,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame \n	{'status \"START\"\n	 'id (s/gen-id (protege.core/sv sub \"title\"))\n	 'run hm})\n        rete.core/assert-frame)\n      (modify ?ot status (if (= ?wai true)\n		\"REPEAT\"\n		\"DONE\")))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'id (s/gen-id (protege.core/sv sub \"title\"))\n	 'run hm\n	 'context ?run})\n        rete.core/assert-frame)\n      (modify ?ot status (if (= ?wai true)\n		\"REPEAT\"\n		\"DONE\")))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 
@@ -2898,17 +2893,17 @@
 
 ([ScenarioN_Class750000] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [sins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) sins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (if-let [tins (DisplayUtilities/pickInstanceFromCollection nil tis 0 \"Select Task\")]\n          (let [tid (re/slot-value 'id (first (filter #(= (re/slot-value 'instance %) tins) tt)))\n                 aa (re/facts-with-slot-value 'parent = tid)\n                 tts (map #(re/slot-value 'title %) aa)\n                 xis (map #(foc \"Aux\" \"title\" %) tts)]\n            (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil xis \"Select Actions\")]\n              (break-action (sv ins \"title\") run))\n            (doseq [xi xis]\n              (delin xi))))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (re/retract-fact (first fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [sins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) sins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (if-let [tins (DisplayUtilities/pickInstanceFromCollection nil tis 0 \"Select Task\")]\n          (let [tid (re/slot-value 'id (first (filter #(= (re/slot-value 'instance %) tins) tt)))\n                 aa (re/facts-with-slot-value 'parent = tid)\n                 tts (map #(re/slot-value 'title %) aa)\n                 xis (map #(foc \"Aux\" \"title\" %) tts)]\n            (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil xis \"Select Actions\")]\n              (break-action (sv ins \"title\") run))\n            (doseq [xi xis]\n              (delin xi))))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (identical? (re/slot-value 'run fact) run)\n      (re/retract-fact (first fact)))))")
 	(title "break-action"))
 
 ([ScenarioN_Class750001] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (break-action (re/slot-value 'title acf) run))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (break-action (re/slot-value 'title acf) run))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
 	(title "break-task"))
 
 ([ScenarioN_Class750002] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (= (re/slot-value 'run fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))\n      (re/retract-fact (first fact)) \n      (println \"Scenario breaked \" (re/slot-value 'title fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))\n      (re/retract-fact (first fact)) \n      (println \"Scenario breaked \" (re/slot-value 'title fact)))))")
 	(title "break-scenario"))
 
 ([ScenarioN_Class760000] of  Command

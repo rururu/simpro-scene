@@ -1,4 +1,4 @@
-; Mon Nov 27 22:24:47 MSK 2017
+; Tue Nov 28 21:54:28 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -63,10 +63,6 @@
 		(create-accessor read-write))
 	(multislot butt-start-sse-server
 ;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot sub_task
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot default_parameters
 		(type SYMBOL)
@@ -419,7 +415,7 @@
 	(single-slot player
 		(type INSTANCE)
 ;+		(allowed-classes MapOb Variable)
-;+		(cardinality 0 1)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot types
 		(type INSTANCE)
@@ -997,6 +993,10 @@
 ;+		(allowed-classes Variable MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass ObjectTaskScenario
+	(is-a Scenario)
+	(role concrete))
 
 (defclass Task
 	(is-a Activity)
@@ -1838,7 +1838,7 @@
 	(single-slot player
 		(type INSTANCE)
 ;+		(allowed-classes MapOb Variable)
-;+		(cardinality 0 1)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot wait_subscenario
 		(type SYMBOL)

@@ -1,4 +1,4 @@
-; Mon Nov 27 22:24:47 MSK 2017
+; Tue Nov 28 21:54:28 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1247,6 +1247,129 @@
 	(x 0)
 	(y 120))
 
+([KB_331842_Class2219] of  Map
+
+	(entries
+		[KB_331842_Class2220]
+		[KB_331842_Class2222]
+		[KB_331842_Class2227]
+		[KB_331842_Class2228]
+		[KB_331842_Class2234]
+		[KB_331842_Class2235])
+	(referenced_maps
+		[KB_331842_Class2221]
+		[KB_331842_Class2223]
+		[KB_331842_Class2229]))
+
+([KB_331842_Class2220] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_331842_Class2221] of  Map
+)
+
+([KB_331842_Class2222] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_331842_Class2221")
+	(value_class "java.util.Map"))
+
+([KB_331842_Class2223] of  Map
+
+	(entries
+		[KB_331842_Class2224]
+		[KB_331842_Class2225]
+		[KB_331842_Class2226]))
+
+([KB_331842_Class2224] of  Map_Entry
+
+	(key "Algorithm_Class80012")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2225] of  Map_Entry
+
+	(key "Algorithm_Class80004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2226] of  Map_Entry
+
+	(key "Algorithm_Class100003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2227] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_331842_Class2223")
+	(value_class "java.util.Map"))
+
+([KB_331842_Class2228] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_331842_Class2229] of  Map
+
+	(entries
+		[KB_331842_Class2230]
+		[KB_331842_Class2231]
+		[KB_331842_Class2232]
+		[KB_331842_Class2233]))
+
+([KB_331842_Class2230] of  Map_Entry
+
+	(key "Algorithm_Class80001")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2231] of  Map_Entry
+
+	(key "Algorithm_Class90003")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2232] of  Map_Entry
+
+	(key "Algorithm_Class90004")
+	(key_class "java.lang.String")
+	(value "120 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2233] of  Map_Entry
+
+	(key "Algorithm_Class90002")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_331842_Class2234] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_331842_Class2229")
+	(value_class "java.util.Map"))
+
+([KB_331842_Class2235] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_337263_Instance_0] of  String
 
 	(name "factory_class_name")
@@ -1529,129 +1652,6 @@
 ([KB_458845_Class1116] of  Property_List
 )
 
-([KB_543625_Class2219] of  Map
-
-	(entries
-		[KB_543625_Class2220]
-		[KB_543625_Class2222]
-		[KB_543625_Class2227]
-		[KB_543625_Class2228]
-		[KB_543625_Class2234]
-		[KB_543625_Class2235])
-	(referenced_maps
-		[KB_543625_Class2221]
-		[KB_543625_Class2223]
-		[KB_543625_Class2229]))
-
-([KB_543625_Class2220] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_543625_Class2221] of  Map
-)
-
-([KB_543625_Class2222] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_543625_Class2221")
-	(value_class "java.util.Map"))
-
-([KB_543625_Class2223] of  Map
-
-	(entries
-		[KB_543625_Class2224]
-		[KB_543625_Class2225]
-		[KB_543625_Class2226]))
-
-([KB_543625_Class2224] of  Map_Entry
-
-	(key "Algorithm_Class80012")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2225] of  Map_Entry
-
-	(key "Algorithm_Class80004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2226] of  Map_Entry
-
-	(key "Algorithm_Class100003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2227] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_543625_Class2223")
-	(value_class "java.util.Map"))
-
-([KB_543625_Class2228] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_543625_Class2229] of  Map
-
-	(entries
-		[KB_543625_Class2230]
-		[KB_543625_Class2231]
-		[KB_543625_Class2232]
-		[KB_543625_Class2233]))
-
-([KB_543625_Class2230] of  Map_Entry
-
-	(key "Algorithm_Class80001")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2231] of  Map_Entry
-
-	(key "Algorithm_Class90003")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2232] of  Map_Entry
-
-	(key "Algorithm_Class90004")
-	(key_class "java.lang.String")
-	(value "120 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2233] of  Map_Entry
-
-	(key "Algorithm_Class90002")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_543625_Class2234] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_543625_Class2229")
-	(value_class "java.util.Map"))
-
-([KB_543625_Class2235] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([KB_809827_Class1011] of  Widget
 
 	(is_hidden FALSE)
@@ -1721,6 +1721,7 @@
 		[Scenario_ProjectKB_Instance_50418]
 		[Scenario_ProjectKB_Instance_32104]
 		[ScenarioN_ProjectKB_Class51692]
+		[Scenario_ProjectKB_Class72509]
 		[Scenario_ProjectKB_Instance_190501]
 		[Scenario_ProjectKB_Class41238]
 		[ScenarioN_ProjectKB_Class41967]
@@ -2064,14 +2065,14 @@
 
 ([Scenari0_ProjectKB_Class826] of  Widget
 
-	(height 200)
+	(height 220)
 	(is_hidden FALSE)
 	(name "initial_tasks")
 	(property_list [Scenari0_ProjectKB_Class827])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 200)
 	(x 720)
-	(y 300))
+	(y 260))
 
 ([Scenari0_ProjectKB_Class827] of  Property_List
 
@@ -2092,14 +2093,14 @@
 
 ([Scenari0_ProjectKB_Class830] of  Widget
 
-	(height 200)
+	(height 220)
 	(is_hidden FALSE)
 	(name "final_tasks")
 	(property_list [Scenari0_ProjectKB_Class831])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 200)
 	(x 720)
-	(y 500))
+	(y 480))
 
 ([Scenari0_ProjectKB_Class831] of  Property_List
 
@@ -3070,33 +3071,6 @@
 
 ([Scenario_ProjectKB_Class102203] of  Property_List
 )
-
-([Scenario_ProjectKB_Class1045] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "protagonist")
-	(property_list [Scenario_ProjectKB_Class1046])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 720)
-	(y 60))
-
-([Scenario_ProjectKB_Class1046] of  Property_List
-
-	(properties
-		[Scenario_ProjectKB_Class1047]
-		[Scenario_ProjectKB_Class1048]))
-
-([Scenario_ProjectKB_Class1047] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Scenario_ProjectKB_Class1048] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([Scenario_ProjectKB_Class10767] of  Widget
 
@@ -10643,6 +10617,19 @@
 ([Scenario_ProjectKB_Class61974] of  Property_List
 )
 
+([Scenario_ProjectKB_Class62236] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "protagonist")
+	(property_list [Scenario_ProjectKB_Class62237])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class62237] of  Property_List
+)
+
 ([Scenario_ProjectKB_Class62241] of  String
 
 	(name "ScenarioOntology")
@@ -13562,6 +13549,3453 @@
 	(value "Scenario_ProjectKB_Class72507")
 	(value_class "java.util.Map"))
 
+([Scenario_ProjectKB_Class72509] of  Widget
+
+	(is_hidden FALSE)
+	(name "ObjectTaskScenario")
+	(property_list [Scenario_ProjectKB_Class72512])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([Scenario_ProjectKB_Class72512] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class72513]
+		[Scenario_ProjectKB_Class72516]
+		[Scenario_ProjectKB_Class72518]
+		[Scenario_ProjectKB_Class73023]
+		[Scenario_ProjectKB_Class73028]
+		[Scenario_ProjectKB_Class73033]
+		[Scenario_ProjectKB_Class73035]
+		[Scenario_ProjectKB_Class73065]
+		[Scenario_ProjectKB_Class73067]
+		[Scenario_ProjectKB_Class73069]
+		[Scenario_ProjectKB_Class73071]
+		[Scenario_ProjectKB_Class73073]))
+
+([Scenario_ProjectKB_Class72513] of  Property_List
+
+	(name "layout properties")
+	(properties
+		[Scenario_ProjectKB_Class72514]
+		[Scenario_ProjectKB_Class72515]))
+
+([Scenario_ProjectKB_Class72514] of  String
+
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([Scenario_ProjectKB_Class72515] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([Scenario_ProjectKB_Class72516] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [Scenario_ProjectKB_Class72517])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 720)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class72517] of  Property_List
+)
+
+([Scenario_ProjectKB_Class72518] of  Widget
+
+	(height 700)
+	(is_hidden FALSE)
+	(label "scenario_scheme")
+	(name "scenario_scheme")
+	(property_list [Scenario_ProjectKB_Class72519])
+	(widget_class_name "edu.stanford.smi.protegex.widget.graph.GraphWidget")
+	(width 720)
+	(x 0)
+	(y 60))
+
+([Scenario_ProjectKB_Class72519] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class72520]
+		[Scenario_ProjectKB_Class72521]
+		[Scenario_ProjectKB_Class72522]
+		[Scenario_ProjectKB_Class72523]
+		[Scenario_ProjectKB_Class72524]
+		[Scenario_ProjectKB_Class72525]
+		[Scenario_ProjectKB_Class72526]
+		[Scenario_ProjectKB_Class72527]
+		[Scenario_ProjectKB_Class72528]
+		[Scenario_ProjectKB_Class72529]
+		[Scenario_ProjectKB_Class72530]
+		[Scenario_ProjectKB_Class72531]
+		[Scenario_ProjectKB_Class72532]
+		[Scenario_ProjectKB_Class72533]
+		[Scenario_ProjectKB_Class72534]
+		[Scenario_ProjectKB_Class72535]
+		[Scenario_ProjectKB_Class72536]
+		[Scenario_ProjectKB_Class72537]
+		[Scenario_ProjectKB_Class72538]
+		[Scenario_ProjectKB_Class72539]
+		[Scenario_ProjectKB_Class72540]
+		[Scenario_ProjectKB_Class72541]
+		[Scenario_ProjectKB_Class72542]
+		[Scenario_ProjectKB_Class72543]
+		[Scenario_ProjectKB_Class72544]
+		[Scenario_ProjectKB_Class72545]
+		[Scenario_ProjectKB_Class72546]
+		[Scenario_ProjectKB_Class72547]
+		[Scenario_ProjectKB_Class72548]
+		[Scenario_ProjectKB_Class72549]
+		[Scenario_ProjectKB_Class72550]
+		[Scenario_ProjectKB_Class72551]
+		[Scenario_ProjectKB_Class72552]
+		[Scenario_ProjectKB_Class72553]
+		[Scenario_ProjectKB_Class72554]
+		[Scenario_ProjectKB_Class72555]
+		[Scenario_ProjectKB_Class72556]
+		[Scenario_ProjectKB_Class72557]
+		[Scenario_ProjectKB_Class72558]
+		[Scenario_ProjectKB_Class72559]
+		[Scenario_ProjectKB_Class72560]
+		[Scenario_ProjectKB_Class72561]
+		[Scenario_ProjectKB_Class72562]
+		[Scenario_ProjectKB_Class72563]
+		[Scenario_ProjectKB_Class72564]
+		[Scenario_ProjectKB_Class72565]
+		[Scenario_ProjectKB_Class72566]
+		[Scenario_ProjectKB_Class72567]
+		[Scenario_ProjectKB_Class72568]
+		[Scenario_ProjectKB_Class72569]
+		[Scenario_ProjectKB_Class72570]
+		[Scenario_ProjectKB_Class72571]
+		[Scenario_ProjectKB_Class72572]
+		[Scenario_ProjectKB_Class72573]
+		[Scenario_ProjectKB_Class72574]
+		[Scenario_ProjectKB_Class72575]
+		[Scenario_ProjectKB_Class72576]
+		[Scenario_ProjectKB_Class72577]
+		[Scenario_ProjectKB_Class72578]
+		[Scenario_ProjectKB_Class72579]
+		[Scenario_ProjectKB_Class72580]
+		[Scenario_ProjectKB_Class72581]
+		[Scenario_ProjectKB_Class72582]
+		[Scenario_ProjectKB_Class72583]
+		[Scenario_ProjectKB_Class72584]
+		[Scenario_ProjectKB_Class72585]
+		[Scenario_ProjectKB_Class72586]
+		[Scenario_ProjectKB_Class72587]
+		[Scenario_ProjectKB_Class72588]
+		[Scenario_ProjectKB_Class72589]
+		[Scenario_ProjectKB_Class72590]
+		[Scenario_ProjectKB_Class72591]
+		[Scenario_ProjectKB_Class72592]
+		[Scenario_ProjectKB_Class72593]
+		[Scenario_ProjectKB_Class72594]
+		[Scenario_ProjectKB_Class72595]
+		[Scenario_ProjectKB_Class72596]
+		[Scenario_ProjectKB_Class72597]
+		[Scenario_ProjectKB_Class72598]
+		[Scenario_ProjectKB_Class72599]
+		[Scenario_ProjectKB_Class72600]
+		[Scenario_ProjectKB_Class72601]
+		[Scenario_ProjectKB_Class72602]
+		[Scenario_ProjectKB_Class72603]
+		[Scenario_ProjectKB_Class72604]
+		[Scenario_ProjectKB_Class72605]
+		[Scenario_ProjectKB_Class72606]
+		[Scenario_ProjectKB_Class72607]
+		[Scenario_ProjectKB_Class72608]
+		[Scenario_ProjectKB_Class72609]
+		[Scenario_ProjectKB_Class72610]
+		[Scenario_ProjectKB_Class72611]
+		[Scenario_ProjectKB_Class72612]
+		[Scenario_ProjectKB_Class72613]
+		[Scenario_ProjectKB_Class72614]
+		[Scenario_ProjectKB_Class72615]
+		[Scenario_ProjectKB_Class72616]
+		[Scenario_ProjectKB_Class72617]
+		[Scenario_ProjectKB_Class72618]
+		[Scenario_ProjectKB_Class72619]
+		[Scenario_ProjectKB_Class72620]
+		[Scenario_ProjectKB_Class72621]
+		[Scenario_ProjectKB_Class72622]
+		[Scenario_ProjectKB_Class72623]
+		[Scenario_ProjectKB_Class72624]
+		[Scenario_ProjectKB_Class72625]
+		[Scenario_ProjectKB_Class72626]
+		[Scenario_ProjectKB_Class72627]
+		[Scenario_ProjectKB_Class72628]
+		[Scenario_ProjectKB_Class72629]
+		[Scenario_ProjectKB_Class72630]
+		[Scenario_ProjectKB_Class72631]
+		[Scenario_ProjectKB_Class72632]
+		[Scenario_ProjectKB_Class72633]
+		[Scenario_ProjectKB_Class72634]
+		[Scenario_ProjectKB_Class72635]
+		[Scenario_ProjectKB_Class72636]
+		[Scenario_ProjectKB_Class72637]
+		[Scenario_ProjectKB_Class72638]
+		[Scenario_ProjectKB_Class72639]
+		[Scenario_ProjectKB_Class72640]
+		[Scenario_ProjectKB_Class72641]
+		[Scenario_ProjectKB_Class72642]
+		[Scenario_ProjectKB_Class72643]
+		[Scenario_ProjectKB_Class72644]
+		[Scenario_ProjectKB_Class72645]
+		[Scenario_ProjectKB_Class72646]
+		[Scenario_ProjectKB_Class72647]
+		[Scenario_ProjectKB_Class72648]
+		[Scenario_ProjectKB_Class72649]
+		[Scenario_ProjectKB_Class72650]
+		[Scenario_ProjectKB_Class72651]
+		[Scenario_ProjectKB_Class72652]
+		[Scenario_ProjectKB_Class72653]
+		[Scenario_ProjectKB_Class72654]
+		[Scenario_ProjectKB_Class72655]
+		[Scenario_ProjectKB_Class72656]
+		[Scenario_ProjectKB_Class72657]
+		[Scenario_ProjectKB_Class72658]
+		[Scenario_ProjectKB_Class72659]
+		[Scenario_ProjectKB_Class72660]
+		[Scenario_ProjectKB_Class72661]
+		[Scenario_ProjectKB_Class72662]
+		[Scenario_ProjectKB_Class72663]
+		[Scenario_ProjectKB_Class72664]
+		[Scenario_ProjectKB_Class72665]
+		[Scenario_ProjectKB_Class72666]
+		[Scenario_ProjectKB_Class72667]
+		[Scenario_ProjectKB_Class72668]
+		[Scenario_ProjectKB_Class72669]
+		[Scenario_ProjectKB_Class72670]
+		[Scenario_ProjectKB_Class72671]
+		[Scenario_ProjectKB_Class72672]
+		[Scenario_ProjectKB_Class72673]
+		[Scenario_ProjectKB_Class72674]
+		[Scenario_ProjectKB_Class72675]
+		[Scenario_ProjectKB_Class72676]
+		[Scenario_ProjectKB_Class72677]
+		[Scenario_ProjectKB_Class72678]
+		[Scenario_ProjectKB_Class72679]
+		[Scenario_ProjectKB_Class72680]
+		[Scenario_ProjectKB_Class72681]
+		[Scenario_ProjectKB_Class72682]
+		[Scenario_ProjectKB_Class72683]
+		[Scenario_ProjectKB_Class72684]
+		[Scenario_ProjectKB_Class72685]
+		[Scenario_ProjectKB_Class72686]
+		[Scenario_ProjectKB_Class72687]
+		[Scenario_ProjectKB_Class72688]
+		[Scenario_ProjectKB_Class72689]
+		[Scenario_ProjectKB_Class72690]
+		[Scenario_ProjectKB_Class72691]
+		[Scenario_ProjectKB_Class72692]
+		[Scenario_ProjectKB_Class72693]
+		[Scenario_ProjectKB_Class72694]
+		[Scenario_ProjectKB_Class72695]
+		[Scenario_ProjectKB_Class72696]
+		[Scenario_ProjectKB_Class72697]
+		[Scenario_ProjectKB_Class72698]
+		[Scenario_ProjectKB_Class72699]
+		[Scenario_ProjectKB_Class72700]
+		[Scenario_ProjectKB_Class72701]
+		[Scenario_ProjectKB_Class72702]
+		[Scenario_ProjectKB_Class72703]
+		[Scenario_ProjectKB_Class72704]
+		[Scenario_ProjectKB_Class72705]
+		[Scenario_ProjectKB_Class72706]
+		[Scenario_ProjectKB_Class72707]
+		[Scenario_ProjectKB_Class72708]
+		[Scenario_ProjectKB_Class72709]
+		[Scenario_ProjectKB_Class72710]
+		[Scenario_ProjectKB_Class72711]
+		[Scenario_ProjectKB_Class72712]
+		[Scenario_ProjectKB_Class72713]
+		[Scenario_ProjectKB_Class72714]
+		[Scenario_ProjectKB_Class72715]
+		[Scenario_ProjectKB_Class72716]
+		[Scenario_ProjectKB_Class72717]
+		[Scenario_ProjectKB_Class72718]
+		[Scenario_ProjectKB_Class72719]
+		[Scenario_ProjectKB_Class72720]
+		[Scenario_ProjectKB_Class72721]
+		[Scenario_ProjectKB_Class72722]
+		[Scenario_ProjectKB_Class72723]
+		[Scenario_ProjectKB_Class72724]
+		[Scenario_ProjectKB_Class72725]
+		[Scenario_ProjectKB_Class72726]
+		[Scenario_ProjectKB_Class72727]
+		[Scenario_ProjectKB_Class72728]
+		[Scenario_ProjectKB_Class72729]
+		[Scenario_ProjectKB_Class72730]
+		[Scenario_ProjectKB_Class72731]
+		[Scenario_ProjectKB_Class72732]
+		[Scenario_ProjectKB_Class72733]
+		[Scenario_ProjectKB_Class72734]
+		[Scenario_ProjectKB_Class72735]
+		[Scenario_ProjectKB_Class72736]
+		[Scenario_ProjectKB_Class72737]
+		[Scenario_ProjectKB_Class72738]
+		[Scenario_ProjectKB_Class72739]
+		[Scenario_ProjectKB_Class72740]
+		[Scenario_ProjectKB_Class72741]
+		[Scenario_ProjectKB_Class72742]
+		[Scenario_ProjectKB_Class72743]
+		[Scenario_ProjectKB_Class72744]
+		[Scenario_ProjectKB_Class72745]
+		[Scenario_ProjectKB_Class72746]
+		[Scenario_ProjectKB_Class72747]
+		[Scenario_ProjectKB_Class72748]
+		[Scenario_ProjectKB_Class72749]
+		[Scenario_ProjectKB_Class72750]
+		[Scenario_ProjectKB_Class72751]
+		[Scenario_ProjectKB_Class72752]
+		[Scenario_ProjectKB_Class72753]
+		[Scenario_ProjectKB_Class72754]
+		[Scenario_ProjectKB_Class72755]
+		[Scenario_ProjectKB_Class72756]
+		[Scenario_ProjectKB_Class72757]
+		[Scenario_ProjectKB_Class72758]
+		[Scenario_ProjectKB_Class72759]
+		[Scenario_ProjectKB_Class72760]
+		[Scenario_ProjectKB_Class72761]
+		[Scenario_ProjectKB_Class72762]
+		[Scenario_ProjectKB_Class72763]
+		[Scenario_ProjectKB_Class72764]
+		[Scenario_ProjectKB_Class72765]
+		[Scenario_ProjectKB_Class72766]
+		[Scenario_ProjectKB_Class72767]
+		[Scenario_ProjectKB_Class72768]
+		[Scenario_ProjectKB_Class72769]
+		[Scenario_ProjectKB_Class72770]
+		[Scenario_ProjectKB_Class72771]
+		[Scenario_ProjectKB_Class72772]
+		[Scenario_ProjectKB_Class72773]
+		[Scenario_ProjectKB_Class72774]
+		[Scenario_ProjectKB_Class72775]
+		[Scenario_ProjectKB_Class72776]
+		[Scenario_ProjectKB_Class72777]
+		[Scenario_ProjectKB_Class72778]
+		[Scenario_ProjectKB_Class72779]
+		[Scenario_ProjectKB_Class72780]
+		[Scenario_ProjectKB_Class72781]
+		[Scenario_ProjectKB_Class72782]
+		[Scenario_ProjectKB_Class72783]
+		[Scenario_ProjectKB_Class72784]
+		[Scenario_ProjectKB_Class72785]
+		[Scenario_ProjectKB_Class72786]
+		[Scenario_ProjectKB_Class72787]
+		[Scenario_ProjectKB_Class72788]
+		[Scenario_ProjectKB_Class72789]
+		[Scenario_ProjectKB_Class72790]
+		[Scenario_ProjectKB_Class72791]
+		[Scenario_ProjectKB_Class72792]
+		[Scenario_ProjectKB_Class72793]
+		[Scenario_ProjectKB_Class72794]
+		[Scenario_ProjectKB_Class72795]
+		[Scenario_ProjectKB_Class72796]
+		[Scenario_ProjectKB_Class72797]
+		[Scenario_ProjectKB_Class72798]
+		[Scenario_ProjectKB_Class72799]
+		[Scenario_ProjectKB_Class72800]
+		[Scenario_ProjectKB_Class72801]
+		[Scenario_ProjectKB_Class72802]
+		[Scenario_ProjectKB_Class72803]
+		[Scenario_ProjectKB_Class72804]
+		[Scenario_ProjectKB_Class72805]
+		[Scenario_ProjectKB_Class72806]
+		[Scenario_ProjectKB_Class72807]
+		[Scenario_ProjectKB_Class72808]
+		[Scenario_ProjectKB_Class72809]
+		[Scenario_ProjectKB_Class72810]
+		[Scenario_ProjectKB_Class72811]
+		[Scenario_ProjectKB_Class72812]
+		[Scenario_ProjectKB_Class72813]
+		[Scenario_ProjectKB_Class72814]
+		[Scenario_ProjectKB_Class72815]
+		[Scenario_ProjectKB_Class72816]
+		[Scenario_ProjectKB_Class72817]
+		[Scenario_ProjectKB_Class72818]
+		[Scenario_ProjectKB_Class72819]
+		[Scenario_ProjectKB_Class72820]
+		[Scenario_ProjectKB_Class72821]
+		[Scenario_ProjectKB_Class72822]
+		[Scenario_ProjectKB_Class72823]
+		[Scenario_ProjectKB_Class72824]
+		[Scenario_ProjectKB_Class72825]
+		[Scenario_ProjectKB_Class72826]
+		[Scenario_ProjectKB_Class72827]
+		[Scenario_ProjectKB_Class72828]
+		[Scenario_ProjectKB_Class72829]
+		[Scenario_ProjectKB_Class72830]
+		[Scenario_ProjectKB_Class72831]
+		[Scenario_ProjectKB_Class72832]
+		[Scenario_ProjectKB_Class72833]
+		[Scenario_ProjectKB_Class72834]
+		[Scenario_ProjectKB_Class72835]
+		[Scenario_ProjectKB_Class72836]
+		[Scenario_ProjectKB_Class72837]
+		[Scenario_ProjectKB_Class72838]
+		[Scenario_ProjectKB_Class72839]
+		[Scenario_ProjectKB_Class72840]
+		[Scenario_ProjectKB_Class72841]
+		[Scenario_ProjectKB_Class72842]
+		[Scenario_ProjectKB_Class72843]
+		[Scenario_ProjectKB_Class72844]
+		[Scenario_ProjectKB_Class72845]
+		[Scenario_ProjectKB_Class72846]
+		[Scenario_ProjectKB_Class72847]
+		[Scenario_ProjectKB_Class72848]
+		[Scenario_ProjectKB_Class72849]
+		[Scenario_ProjectKB_Class72850]
+		[Scenario_ProjectKB_Class72851]
+		[Scenario_ProjectKB_Class72852]
+		[Scenario_ProjectKB_Class72853]
+		[Scenario_ProjectKB_Class72854]
+		[Scenario_ProjectKB_Class72855]
+		[Scenario_ProjectKB_Class72856]
+		[Scenario_ProjectKB_Class72857]
+		[Scenario_ProjectKB_Class72858]
+		[Scenario_ProjectKB_Class72859]
+		[Scenario_ProjectKB_Class72860]
+		[Scenario_ProjectKB_Class72861]
+		[Scenario_ProjectKB_Class72862]
+		[Scenario_ProjectKB_Class72863]
+		[Scenario_ProjectKB_Class72864]
+		[Scenario_ProjectKB_Class72865]
+		[Scenario_ProjectKB_Class72866]
+		[Scenario_ProjectKB_Class72867]
+		[Scenario_ProjectKB_Class72868]
+		[Scenario_ProjectKB_Class72869]
+		[Scenario_ProjectKB_Class72870]
+		[Scenario_ProjectKB_Class72871]
+		[Scenario_ProjectKB_Class72872]
+		[Scenario_ProjectKB_Class72873]
+		[Scenario_ProjectKB_Class72874]
+		[Scenario_ProjectKB_Class72875]
+		[Scenario_ProjectKB_Class72876]
+		[Scenario_ProjectKB_Class72877]
+		[Scenario_ProjectKB_Class72878]
+		[Scenario_ProjectKB_Class72879]
+		[Scenario_ProjectKB_Class72880]
+		[Scenario_ProjectKB_Class72881]
+		[Scenario_ProjectKB_Class72882]
+		[Scenario_ProjectKB_Class72883]
+		[Scenario_ProjectKB_Class72884]
+		[Scenario_ProjectKB_Class72885]
+		[Scenario_ProjectKB_Class72886]
+		[Scenario_ProjectKB_Class72887]
+		[Scenario_ProjectKB_Class72888]
+		[Scenario_ProjectKB_Class72889]
+		[Scenario_ProjectKB_Class72890]
+		[Scenario_ProjectKB_Class72891]
+		[Scenario_ProjectKB_Class72892]
+		[Scenario_ProjectKB_Class72893]
+		[Scenario_ProjectKB_Class72894]
+		[Scenario_ProjectKB_Class72895]
+		[Scenario_ProjectKB_Class72896]
+		[Scenario_ProjectKB_Class72897]
+		[Scenario_ProjectKB_Class72898]
+		[Scenario_ProjectKB_Class72899]
+		[Scenario_ProjectKB_Class72900]
+		[Scenario_ProjectKB_Class72901]
+		[Scenario_ProjectKB_Class72902]
+		[Scenario_ProjectKB_Class72903]
+		[Scenario_ProjectKB_Class72904]
+		[Scenario_ProjectKB_Class72905]
+		[Scenario_ProjectKB_Class72906]
+		[Scenario_ProjectKB_Class72907]
+		[Scenario_ProjectKB_Class72908]
+		[Scenario_ProjectKB_Class72909]
+		[Scenario_ProjectKB_Class72910]
+		[Scenario_ProjectKB_Class72911]
+		[Scenario_ProjectKB_Class72912]
+		[Scenario_ProjectKB_Class72913]
+		[Scenario_ProjectKB_Class72914]
+		[Scenario_ProjectKB_Class72915]
+		[Scenario_ProjectKB_Class72916]
+		[Scenario_ProjectKB_Class72917]
+		[Scenario_ProjectKB_Class72918]
+		[Scenario_ProjectKB_Class72919]
+		[Scenario_ProjectKB_Class72920]
+		[Scenario_ProjectKB_Class72921]
+		[Scenario_ProjectKB_Class72922]
+		[Scenario_ProjectKB_Class72923]
+		[Scenario_ProjectKB_Class72924]
+		[Scenario_ProjectKB_Class72925]
+		[Scenario_ProjectKB_Class72926]
+		[Scenario_ProjectKB_Class72927]
+		[Scenario_ProjectKB_Class72928]
+		[Scenario_ProjectKB_Class72929]
+		[Scenario_ProjectKB_Class72930]
+		[Scenario_ProjectKB_Class72931]
+		[Scenario_ProjectKB_Class72932]
+		[Scenario_ProjectKB_Class72933]
+		[Scenario_ProjectKB_Class72934]
+		[Scenario_ProjectKB_Class72935]
+		[Scenario_ProjectKB_Class72936]
+		[Scenario_ProjectKB_Class72937]
+		[Scenario_ProjectKB_Class72938]
+		[Scenario_ProjectKB_Class72939]
+		[Scenario_ProjectKB_Class72940]
+		[Scenario_ProjectKB_Class72941]
+		[Scenario_ProjectKB_Class72942]
+		[Scenario_ProjectKB_Class72943]
+		[Scenario_ProjectKB_Class72944]
+		[Scenario_ProjectKB_Class72945]
+		[Scenario_ProjectKB_Class72946]
+		[Scenario_ProjectKB_Class72947]
+		[Scenario_ProjectKB_Class72948]
+		[Scenario_ProjectKB_Class72949]
+		[Scenario_ProjectKB_Class72950]
+		[Scenario_ProjectKB_Class72951]
+		[Scenario_ProjectKB_Class72952]
+		[Scenario_ProjectKB_Class72953]
+		[Scenario_ProjectKB_Class72954]
+		[Scenario_ProjectKB_Class72955]
+		[Scenario_ProjectKB_Class72956]
+		[Scenario_ProjectKB_Class72957]
+		[Scenario_ProjectKB_Class72958]
+		[Scenario_ProjectKB_Class72959]
+		[Scenario_ProjectKB_Class72960]
+		[Scenario_ProjectKB_Class72961]
+		[Scenario_ProjectKB_Class72962]
+		[Scenario_ProjectKB_Class72963]
+		[Scenario_ProjectKB_Class72964]
+		[Scenario_ProjectKB_Class72965]
+		[Scenario_ProjectKB_Class72966]
+		[Scenario_ProjectKB_Class72967]
+		[Scenario_ProjectKB_Class72968]
+		[Scenario_ProjectKB_Class72969]
+		[Scenario_ProjectKB_Class72970]
+		[Scenario_ProjectKB_Class72971]
+		[Scenario_ProjectKB_Class72972]
+		[Scenario_ProjectKB_Class72973]
+		[Scenario_ProjectKB_Class72974]
+		[Scenario_ProjectKB_Class72975]
+		[Scenario_ProjectKB_Class72976]
+		[Scenario_ProjectKB_Class72977]
+		[Scenario_ProjectKB_Class72978]
+		[Scenario_ProjectKB_Class72979]
+		[Scenario_ProjectKB_Class72980]
+		[Scenario_ProjectKB_Class72981]
+		[Scenario_ProjectKB_Class72982]
+		[Scenario_ProjectKB_Class72983]
+		[Scenario_ProjectKB_Class72984]
+		[Scenario_ProjectKB_Class72985]
+		[Scenario_ProjectKB_Class72986]
+		[Scenario_ProjectKB_Class72987]
+		[Scenario_ProjectKB_Class72988]
+		[Scenario_ProjectKB_Class72989]
+		[Scenario_ProjectKB_Class72990]
+		[Scenario_ProjectKB_Class72991]
+		[Scenario_ProjectKB_Class72992]
+		[Scenario_ProjectKB_Class72993]
+		[Scenario_ProjectKB_Class72994]
+		[Scenario_ProjectKB_Class72995]
+		[Scenario_ProjectKB_Class72996]
+		[Scenario_ProjectKB_Class72997]
+		[Scenario_ProjectKB_Class72998]
+		[Scenario_ProjectKB_Class72999]
+		[Scenario_ProjectKB_Class73000]
+		[Scenario_ProjectKB_Class73001]
+		[Scenario_ProjectKB_Class73002]
+		[Scenario_ProjectKB_Class73003]
+		[Scenario_ProjectKB_Class73004]
+		[Scenario_ProjectKB_Class73005]
+		[Scenario_ProjectKB_Class73006]
+		[Scenario_ProjectKB_Class73007]
+		[Scenario_ProjectKB_Class73008]
+		[Scenario_ProjectKB_Class73009]
+		[Scenario_ProjectKB_Class73010]
+		[Scenario_ProjectKB_Class73011]
+		[Scenario_ProjectKB_Class73012]
+		[Scenario_ProjectKB_Class73013]
+		[Scenario_ProjectKB_Class73014]
+		[Scenario_ProjectKB_Class73015]
+		[Scenario_ProjectKB_Class73016]
+		[Scenario_ProjectKB_Class73017]
+		[Scenario_ProjectKB_Class73018]
+		[Scenario_ProjectKB_Class73019]
+		[Scenario_ProjectKB_Class73020]
+		[Scenario_ProjectKB_Class73021]
+		[Scenario_ProjectKB_Class73022]
+		[Scenario_ProjectKB_Class73077]
+		[Scenario_ProjectKB_Class73078]
+		[Scenario_ProjectKB_Class73079]))
+
+([Scenario_ProjectKB_Class72520] of  String
+
+	(name "tooltip_text"))
+
+([Scenario_ProjectKB_Class72521] of  String
+
+	(name "Decision_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72522] of  Integer
+
+	(integer_value 255)
+	(name "Decision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72523] of  Integer
+
+	(integer_value 255)
+	(name "Decision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72524] of  Integer
+
+	(integer_value 0)
+	(name "Decision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72525] of  Integer
+
+	(integer_value 0)
+	(name "Decision_textColorRed"))
+
+([Scenario_ProjectKB_Class72526] of  Integer
+
+	(integer_value 0)
+	(name "Decision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72527] of  Integer
+
+	(integer_value 255)
+	(name "Decision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72528] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Decision_bold"))
+
+([Scenario_ProjectKB_Class72529] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Decision_italic"))
+
+([Scenario_ProjectKB_Class72530] of  String
+
+	(name "Decision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72531] of  String
+
+	(name "Decision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72532] of  String
+
+	(name "Decision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72533] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Decision_displayText"))
+
+([Scenario_ProjectKB_Class72534] of  String
+
+	(name "Phase_shape")
+	(string_value "Rounded Rectangle"))
+
+([Scenario_ProjectKB_Class72535] of  Integer
+
+	(integer_value 255)
+	(name "Phase_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72536] of  Integer
+
+	(integer_value 175)
+	(name "Phase_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72537] of  Integer
+
+	(integer_value 175)
+	(name "Phase_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72538] of  Integer
+
+	(integer_value 0)
+	(name "Phase_textColorRed"))
+
+([Scenario_ProjectKB_Class72539] of  Integer
+
+	(integer_value 0)
+	(name "Phase_textColorGreen"))
+
+([Scenario_ProjectKB_Class72540] of  Integer
+
+	(integer_value 0)
+	(name "Phase_textColorBlue"))
+
+([Scenario_ProjectKB_Class72541] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Phase_bold"))
+
+([Scenario_ProjectKB_Class72542] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Phase_italic"))
+
+([Scenario_ProjectKB_Class72543] of  String
+
+	(name "Phase_connectorSlot")
+	(string_value "next_phase"))
+
+([Scenario_ProjectKB_Class72544] of  String
+
+	(name "Phase_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72545] of  String
+
+	(name "Phase_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72546] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Phase_displayText"))
+
+([Scenario_ProjectKB_Class72547] of  String
+
+	(name "Scenario Scheme_gridStyle")
+	(string_value "Crosses"))
+
+([Scenario_ProjectKB_Class72548] of  String
+
+	(name "Scenario Scheme_snapOnMove")
+	(string_value "Afterwards"))
+
+([Scenario_ProjectKB_Class72549] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Scenario Scheme_wrapping"))
+
+([Scenario_ProjectKB_Class72550] of  String
+
+	(name "ScenarioScheme_gridStyle")
+	(string_value "Invisible"))
+
+([Scenario_ProjectKB_Class72551] of  String
+
+	(name "ScenarioScheme_snapOnMove")
+	(string_value "Jump"))
+
+([Scenario_ProjectKB_Class72552] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ScenarioScheme_wrapping"))
+
+([Scenario_ProjectKB_Class72553] of  String
+
+	(name "HardDecision_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72554] of  Integer
+
+	(integer_value 128)
+	(name "HardDecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72555] of  Integer
+
+	(integer_value 128)
+	(name "HardDecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72556] of  Integer
+
+	(integer_value 128)
+	(name "HardDecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72557] of  Integer
+
+	(integer_value 255)
+	(name "HardDecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72558] of  Integer
+
+	(integer_value 255)
+	(name "HardDecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72559] of  Integer
+
+	(integer_value 255)
+	(name "HardDecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72560] of  Boolean
+
+	(boolean_value FALSE)
+	(name "HardDecision_bold"))
+
+([Scenario_ProjectKB_Class72561] of  Boolean
+
+	(boolean_value FALSE)
+	(name "HardDecision_italic"))
+
+([Scenario_ProjectKB_Class72562] of  String
+
+	(name "HardDecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72563] of  String
+
+	(name "HardDecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72564] of  String
+
+	(name "HardDecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72565] of  Boolean
+
+	(boolean_value TRUE)
+	(name "HardDecision_displayText"))
+
+([Scenario_ProjectKB_Class72566] of  String
+
+	(name "UserDecision_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72567] of  Integer
+
+	(integer_value 153)
+	(name "UserDecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72568] of  Integer
+
+	(integer_value 255)
+	(name "UserDecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72569] of  Integer
+
+	(integer_value 102)
+	(name "UserDecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72570] of  Integer
+
+	(integer_value 0)
+	(name "UserDecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72571] of  Integer
+
+	(integer_value 0)
+	(name "UserDecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72572] of  Integer
+
+	(integer_value 0)
+	(name "UserDecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72573] of  Boolean
+
+	(boolean_value FALSE)
+	(name "UserDecision_bold"))
+
+([Scenario_ProjectKB_Class72574] of  Boolean
+
+	(boolean_value FALSE)
+	(name "UserDecision_italic"))
+
+([Scenario_ProjectKB_Class72575] of  String
+
+	(name "UserDecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72576] of  String
+
+	(name "UserDecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72577] of  String
+
+	(name "UserDecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72578] of  Boolean
+
+	(boolean_value TRUE)
+	(name "UserDecision_displayText"))
+
+([Scenario_ProjectKB_Class72579] of  String
+
+	(name "LevelBranch_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72580] of  Integer
+
+	(integer_value 255)
+	(name "LevelBranch_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72581] of  Integer
+
+	(integer_value 255)
+	(name "LevelBranch_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72582] of  Integer
+
+	(integer_value 0)
+	(name "LevelBranch_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72583] of  Integer
+
+	(integer_value 0)
+	(name "LevelBranch_textColorRed"))
+
+([Scenario_ProjectKB_Class72584] of  Integer
+
+	(integer_value 0)
+	(name "LevelBranch_textColorGreen"))
+
+([Scenario_ProjectKB_Class72585] of  Integer
+
+	(integer_value 0)
+	(name "LevelBranch_textColorBlue"))
+
+([Scenario_ProjectKB_Class72586] of  Boolean
+
+	(boolean_value FALSE)
+	(name "LevelBranch_bold"))
+
+([Scenario_ProjectKB_Class72587] of  Boolean
+
+	(boolean_value FALSE)
+	(name "LevelBranch_italic"))
+
+([Scenario_ProjectKB_Class72588] of  String
+
+	(name "LevelBranch_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72589] of  String
+
+	(name "LevelBranch_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72590] of  String
+
+	(name "LevelBranch_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72591] of  Boolean
+
+	(boolean_value TRUE)
+	(name "LevelBranch_displayText"))
+
+([Scenario_ProjectKB_Class72592] of  String
+
+	(name "OnTarget_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72593] of  Integer
+
+	(integer_value 255)
+	(name "OnTarget_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72594] of  Integer
+
+	(integer_value 0)
+	(name "OnTarget_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72595] of  Integer
+
+	(integer_value 255)
+	(name "OnTarget_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72596] of  Integer
+
+	(integer_value 255)
+	(name "OnTarget_textColorRed"))
+
+([Scenario_ProjectKB_Class72597] of  Integer
+
+	(integer_value 255)
+	(name "OnTarget_textColorGreen"))
+
+([Scenario_ProjectKB_Class72598] of  Integer
+
+	(integer_value 0)
+	(name "OnTarget_textColorBlue"))
+
+([Scenario_ProjectKB_Class72599] of  Boolean
+
+	(boolean_value FALSE)
+	(name "OnTarget_bold"))
+
+([Scenario_ProjectKB_Class72600] of  Boolean
+
+	(boolean_value FALSE)
+	(name "OnTarget_italic"))
+
+([Scenario_ProjectKB_Class72601] of  String
+
+	(name "OnTarget_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72602] of  String
+
+	(name "OnTarget_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72603] of  String
+
+	(name "OnTarget_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72604] of  Boolean
+
+	(boolean_value TRUE)
+	(name "OnTarget_displayText"))
+
+([Scenario_ProjectKB_Class72605] of  String
+
+	(name "CheckContextValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72606] of  Integer
+
+	(integer_value 0)
+	(name "CheckContextValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72607] of  Integer
+
+	(integer_value 255)
+	(name "CheckContextValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72608] of  Integer
+
+	(integer_value 255)
+	(name "CheckContextValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72609] of  Integer
+
+	(integer_value 0)
+	(name "CheckContextValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72610] of  Integer
+
+	(integer_value 0)
+	(name "CheckContextValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72611] of  Integer
+
+	(integer_value 255)
+	(name "CheckContextValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72612] of  Boolean
+
+	(boolean_value FALSE)
+	(name "CheckContextValue_bold"))
+
+([Scenario_ProjectKB_Class72613] of  Boolean
+
+	(boolean_value FALSE)
+	(name "CheckContextValue_italic"))
+
+([Scenario_ProjectKB_Class72614] of  String
+
+	(name "CheckContextValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72615] of  String
+
+	(name "CheckContextValue_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72616] of  String
+
+	(name "CheckContextValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72617] of  Boolean
+
+	(boolean_value TRUE)
+	(name "CheckContextValue_displayText"))
+
+([Scenario_ProjectKB_Class72618] of  String
+
+	(name "EqualContextValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72619] of  Integer
+
+	(integer_value 0)
+	(name "EqualContextValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72620] of  Integer
+
+	(integer_value 255)
+	(name "EqualContextValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72621] of  Integer
+
+	(integer_value 255)
+	(name "EqualContextValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72622] of  Integer
+
+	(integer_value 0)
+	(name "EqualContextValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72623] of  Integer
+
+	(integer_value 0)
+	(name "EqualContextValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72624] of  Integer
+
+	(integer_value 255)
+	(name "EqualContextValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72625] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EqualContextValue_bold"))
+
+([Scenario_ProjectKB_Class72626] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EqualContextValue_italic"))
+
+([Scenario_ProjectKB_Class72627] of  String
+
+	(name "EqualContextValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72628] of  String
+
+	(name "EqualContextValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72629] of  String
+
+	(name "EqualContextValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72630] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EqualContextValue_displayText"))
+
+([Scenario_ProjectKB_Class72631] of  String
+
+	(name "MoreContextValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72632] of  Integer
+
+	(integer_value 255)
+	(name "MoreContextValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72633] of  Integer
+
+	(integer_value 200)
+	(name "MoreContextValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72634] of  Integer
+
+	(integer_value 0)
+	(name "MoreContextValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72635] of  Integer
+
+	(integer_value 255)
+	(name "MoreContextValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72636] of  Integer
+
+	(integer_value 0)
+	(name "MoreContextValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72637] of  Integer
+
+	(integer_value 0)
+	(name "MoreContextValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72638] of  Boolean
+
+	(boolean_value FALSE)
+	(name "MoreContextValue_bold"))
+
+([Scenario_ProjectKB_Class72639] of  Boolean
+
+	(boolean_value FALSE)
+	(name "MoreContextValue_italic"))
+
+([Scenario_ProjectKB_Class72640] of  String
+
+	(name "MoreContextValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72641] of  String
+
+	(name "MoreContextValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72642] of  String
+
+	(name "MoreContextValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72643] of  Boolean
+
+	(boolean_value TRUE)
+	(name "MoreContextValue_displayText"))
+
+([Scenario_ProjectKB_Class72644] of  String
+
+	(name "ContainsContextValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72645] of  Integer
+
+	(integer_value 0)
+	(name "ContainsContextValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72646] of  Integer
+
+	(integer_value 0)
+	(name "ContainsContextValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72647] of  Integer
+
+	(integer_value 255)
+	(name "ContainsContextValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72648] of  Integer
+
+	(integer_value 255)
+	(name "ContainsContextValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72649] of  Integer
+
+	(integer_value 175)
+	(name "ContainsContextValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72650] of  Integer
+
+	(integer_value 175)
+	(name "ContainsContextValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72651] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainsContextValue_bold"))
+
+([Scenario_ProjectKB_Class72652] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainsContextValue_italic"))
+
+([Scenario_ProjectKB_Class72653] of  String
+
+	(name "ContainsContextValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72654] of  String
+
+	(name "ContainsContextValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72655] of  String
+
+	(name "ContainsContextValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72656] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ContainsContextValue_displayText"))
+
+([Scenario_ProjectKB_Class72657] of  String
+
+	(name "ContainContextValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72658] of  Integer
+
+	(integer_value 0)
+	(name "ContainContextValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72659] of  Integer
+
+	(integer_value 255)
+	(name "ContainContextValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72660] of  Integer
+
+	(integer_value 0)
+	(name "ContainContextValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72661] of  Integer
+
+	(integer_value 255)
+	(name "ContainContextValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72662] of  Integer
+
+	(integer_value 0)
+	(name "ContainContextValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72663] of  Integer
+
+	(integer_value 0)
+	(name "ContainContextValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72664] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainContextValue_bold"))
+
+([Scenario_ProjectKB_Class72665] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainContextValue_italic"))
+
+([Scenario_ProjectKB_Class72666] of  String
+
+	(name "ContainContextValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72667] of  String
+
+	(name "ContainContextValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72668] of  String
+
+	(name "ContainContextValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72669] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ContainContextValue_displayText"))
+
+([Scenario_ProjectKB_Class72670] of  String
+
+	(name "ContainsKeyValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72671] of  Integer
+
+	(integer_value 0)
+	(name "ContainsKeyValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72672] of  Integer
+
+	(integer_value 255)
+	(name "ContainsKeyValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72673] of  Integer
+
+	(integer_value 255)
+	(name "ContainsKeyValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72674] of  Integer
+
+	(integer_value 255)
+	(name "ContainsKeyValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72675] of  Integer
+
+	(integer_value 255)
+	(name "ContainsKeyValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72676] of  Integer
+
+	(integer_value 255)
+	(name "ContainsKeyValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72677] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainsKeyValue_bold"))
+
+([Scenario_ProjectKB_Class72678] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ContainsKeyValue_italic"))
+
+([Scenario_ProjectKB_Class72679] of  String
+
+	(name "ContainsKeyValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72680] of  String
+
+	(name "ContainsKeyValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72681] of  String
+
+	(name "ContainsKeyValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72682] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ContainsKeyValue_displayText"))
+
+([Scenario_ProjectKB_Class72683] of  String
+
+	(name "EqualKeyValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72684] of  Integer
+
+	(integer_value 255)
+	(name "EqualKeyValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72685] of  Integer
+
+	(integer_value 200)
+	(name "EqualKeyValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72686] of  Integer
+
+	(integer_value 0)
+	(name "EqualKeyValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72687] of  Integer
+
+	(integer_value 0)
+	(name "EqualKeyValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72688] of  Integer
+
+	(integer_value 0)
+	(name "EqualKeyValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72689] of  Integer
+
+	(integer_value 255)
+	(name "EqualKeyValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72690] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EqualKeyValue_bold"))
+
+([Scenario_ProjectKB_Class72691] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EqualKeyValue_italic"))
+
+([Scenario_ProjectKB_Class72692] of  String
+
+	(name "EqualKeyValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72693] of  String
+
+	(name "EqualKeyValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72694] of  String
+
+	(name "EqualKeyValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72695] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EqualKeyValue_displayText"))
+
+([Scenario_ProjectKB_Class72696] of  String
+
+	(name "MoreKeyValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72697] of  Integer
+
+	(integer_value 255)
+	(name "MoreKeyValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72698] of  Integer
+
+	(integer_value 200)
+	(name "MoreKeyValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72699] of  Integer
+
+	(integer_value 0)
+	(name "MoreKeyValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72700] of  Integer
+
+	(integer_value 255)
+	(name "MoreKeyValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72701] of  Integer
+
+	(integer_value 0)
+	(name "MoreKeyValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72702] of  Integer
+
+	(integer_value 0)
+	(name "MoreKeyValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72703] of  Boolean
+
+	(boolean_value TRUE)
+	(name "MoreKeyValue_bold"))
+
+([Scenario_ProjectKB_Class72704] of  Boolean
+
+	(boolean_value FALSE)
+	(name "MoreKeyValue_italic"))
+
+([Scenario_ProjectKB_Class72705] of  String
+
+	(name "MoreKeyValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72706] of  String
+
+	(name "MoreKeyValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72707] of  String
+
+	(name "MoreKeyValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72708] of  Boolean
+
+	(boolean_value TRUE)
+	(name "MoreKeyValue_displayText"))
+
+([Scenario_ProjectKB_Class72709] of  String
+
+	(name "Hard_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72710] of  Integer
+
+	(integer_value 70)
+	(name "Hard_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72711] of  Integer
+
+	(integer_value 130)
+	(name "Hard_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72712] of  Integer
+
+	(integer_value 180)
+	(name "Hard_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72713] of  Integer
+
+	(integer_value 0)
+	(name "Hard_textColorRed"))
+
+([Scenario_ProjectKB_Class72714] of  Integer
+
+	(integer_value 0)
+	(name "Hard_textColorGreen"))
+
+([Scenario_ProjectKB_Class72715] of  Integer
+
+	(integer_value 0)
+	(name "Hard_textColorBlue"))
+
+([Scenario_ProjectKB_Class72716] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Hard_bold"))
+
+([Scenario_ProjectKB_Class72717] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Hard_italic"))
+
+([Scenario_ProjectKB_Class72718] of  String
+
+	(name "Hard_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72719] of  String
+
+	(name "Hard_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72720] of  String
+
+	(name "Hard_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72721] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Hard_displayText"))
+
+([Scenario_ProjectKB_Class72722] of  String
+
+	(name "IndexBranch_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72723] of  Integer
+
+	(integer_value 192)
+	(name "IndexBranch_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72724] of  Integer
+
+	(integer_value 192)
+	(name "IndexBranch_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72725] of  Integer
+
+	(integer_value 192)
+	(name "IndexBranch_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72726] of  Integer
+
+	(integer_value 0)
+	(name "IndexBranch_textColorRed"))
+
+([Scenario_ProjectKB_Class72727] of  Integer
+
+	(integer_value 0)
+	(name "IndexBranch_textColorGreen"))
+
+([Scenario_ProjectKB_Class72728] of  Integer
+
+	(integer_value 0)
+	(name "IndexBranch_textColorBlue"))
+
+([Scenario_ProjectKB_Class72729] of  Boolean
+
+	(boolean_value FALSE)
+	(name "IndexBranch_bold"))
+
+([Scenario_ProjectKB_Class72730] of  Boolean
+
+	(boolean_value FALSE)
+	(name "IndexBranch_italic"))
+
+([Scenario_ProjectKB_Class72731] of  String
+
+	(name "IndexBranch_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72732] of  String
+
+	(name "IndexBranch_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72733] of  String
+
+	(name "IndexBranch_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72734] of  Boolean
+
+	(boolean_value TRUE)
+	(name "IndexBranch_displayText"))
+
+([Scenario_ProjectKB_Class72735] of  String
+
+	(name "MyEqualKeyValue_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72736] of  Integer
+
+	(integer_value 255)
+	(name "MyEqualKeyValue_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72737] of  Integer
+
+	(integer_value 0)
+	(name "MyEqualKeyValue_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72738] of  Integer
+
+	(integer_value 255)
+	(name "MyEqualKeyValue_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72739] of  Integer
+
+	(integer_value 0)
+	(name "MyEqualKeyValue_textColorRed"))
+
+([Scenario_ProjectKB_Class72740] of  Integer
+
+	(integer_value 0)
+	(name "MyEqualKeyValue_textColorGreen"))
+
+([Scenario_ProjectKB_Class72741] of  Integer
+
+	(integer_value 0)
+	(name "MyEqualKeyValue_textColorBlue"))
+
+([Scenario_ProjectKB_Class72742] of  Boolean
+
+	(boolean_value FALSE)
+	(name "MyEqualKeyValue_bold"))
+
+([Scenario_ProjectKB_Class72743] of  Boolean
+
+	(boolean_value FALSE)
+	(name "MyEqualKeyValue_italic"))
+
+([Scenario_ProjectKB_Class72744] of  String
+
+	(name "MyEqualKeyValue_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72745] of  String
+
+	(name "MyEqualKeyValue_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72746] of  String
+
+	(name "MyEqualKeyValue_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72747] of  Boolean
+
+	(boolean_value TRUE)
+	(name "MyEqualKeyValue_displayText"))
+
+([Scenario_ProjectKB_Class72748] of  String
+
+	(name "ObjectContainsObserver_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72749] of  Integer
+
+	(integer_value 153)
+	(name "ObjectContainsObserver_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72750] of  Integer
+
+	(integer_value 255)
+	(name "ObjectContainsObserver_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72751] of  Integer
+
+	(integer_value 255)
+	(name "ObjectContainsObserver_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72752] of  Integer
+
+	(integer_value 102)
+	(name "ObjectContainsObserver_textColorRed"))
+
+([Scenario_ProjectKB_Class72753] of  Integer
+
+	(integer_value 102)
+	(name "ObjectContainsObserver_textColorGreen"))
+
+([Scenario_ProjectKB_Class72754] of  Integer
+
+	(integer_value 255)
+	(name "ObjectContainsObserver_textColorBlue"))
+
+([Scenario_ProjectKB_Class72755] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ObjectContainsObserver_bold"))
+
+([Scenario_ProjectKB_Class72756] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ObjectContainsObserver_italic"))
+
+([Scenario_ProjectKB_Class72757] of  String
+
+	(name "ObjectContainsObserver_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72758] of  String
+
+	(name "ObjectContainsObserver_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72759] of  String
+
+	(name "ObjectContainsObserver_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72760] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ObjectContainsObserver_displayText"))
+
+([Scenario_ProjectKB_Class72761] of  String
+
+	(name "ContainsKeyValue_customDisplayName")
+	(string_value "ContainsKeyValue"))
+
+([Scenario_ProjectKB_Class72762] of  String
+
+	(name "EqualKeyValue_customDisplayName")
+	(string_value "EqualKeyValue"))
+
+([Scenario_ProjectKB_Class72763] of  String
+
+	(name "Hard_customDisplayName")
+	(string_value "Hard"))
+
+([Scenario_ProjectKB_Class72764] of  String
+
+	(name "IfActionStatus_customDisplayName")
+	(string_value "IfActionStatus"))
+
+([Scenario_ProjectKB_Class72765] of  String
+
+	(name "IfActionStatus_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72766] of  Integer
+
+	(integer_value 255)
+	(name "IfActionStatus_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72767] of  Integer
+
+	(integer_value 102)
+	(name "IfActionStatus_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72768] of  Integer
+
+	(integer_value 255)
+	(name "IfActionStatus_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72769] of  Integer
+
+	(integer_value 0)
+	(name "IfActionStatus_textColorRed"))
+
+([Scenario_ProjectKB_Class72770] of  Integer
+
+	(integer_value 0)
+	(name "IfActionStatus_textColorGreen"))
+
+([Scenario_ProjectKB_Class72771] of  Integer
+
+	(integer_value 255)
+	(name "IfActionStatus_textColorBlue"))
+
+([Scenario_ProjectKB_Class72772] of  Boolean
+
+	(boolean_value TRUE)
+	(name "IfActionStatus_bold"))
+
+([Scenario_ProjectKB_Class72773] of  Boolean
+
+	(boolean_value FALSE)
+	(name "IfActionStatus_italic"))
+
+([Scenario_ProjectKB_Class72774] of  String
+
+	(name "IfActionStatus_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72775] of  String
+
+	(name "IfActionStatus_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72776] of  String
+
+	(name "IfActionStatus_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72777] of  Boolean
+
+	(boolean_value TRUE)
+	(name "IfActionStatus_displayText"))
+
+([Scenario_ProjectKB_Class72778] of  String
+
+	(name "IfActivityStatus_customDisplayName")
+	(string_value "IfActivityStatus"))
+
+([Scenario_ProjectKB_Class72779] of  String
+
+	(name "IfActivityStatus_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72780] of  Integer
+
+	(integer_value 204)
+	(name "IfActivityStatus_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72781] of  Integer
+
+	(integer_value 153)
+	(name "IfActivityStatus_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72782] of  Integer
+
+	(integer_value 255)
+	(name "IfActivityStatus_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72783] of  Integer
+
+	(integer_value 255)
+	(name "IfActivityStatus_textColorRed"))
+
+([Scenario_ProjectKB_Class72784] of  Integer
+
+	(integer_value 0)
+	(name "IfActivityStatus_textColorGreen"))
+
+([Scenario_ProjectKB_Class72785] of  Integer
+
+	(integer_value 0)
+	(name "IfActivityStatus_textColorBlue"))
+
+([Scenario_ProjectKB_Class72786] of  Boolean
+
+	(boolean_value TRUE)
+	(name "IfActivityStatus_bold"))
+
+([Scenario_ProjectKB_Class72787] of  Boolean
+
+	(boolean_value FALSE)
+	(name "IfActivityStatus_italic"))
+
+([Scenario_ProjectKB_Class72788] of  String
+
+	(name "IfActivityStatus_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72789] of  String
+
+	(name "IfActivityStatus_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72790] of  String
+
+	(name "IfActivityStatus_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72791] of  Boolean
+
+	(boolean_value TRUE)
+	(name "IfActivityStatus_displayText"))
+
+([Scenario_ProjectKB_Class72792] of  String
+
+	(name "MoreKeyValue_customDisplayName")
+	(string_value "MoreKeyValue"))
+
+([Scenario_ProjectKB_Class72793] of  String
+
+	(name "ObjectContainsObserver_customDisplayName")
+	(string_value "ObjectContainsObserver"))
+
+([Scenario_ProjectKB_Class72794] of  String
+
+	(name "Phase_customDisplayName")
+	(string_value "Phase"))
+
+([Scenario_ProjectKB_Class72795] of  String
+
+	(name "UserDecision_customDisplayName")
+	(string_value "UserDecision"))
+
+([Scenario_ProjectKB_Class72796] of  String
+
+	(name "Task_customDisplayName")
+	(string_value "Task"))
+
+([Scenario_ProjectKB_Class72797] of  String
+
+	(name "Task_shape")
+	(string_value "Rounded Rectangle"))
+
+([Scenario_ProjectKB_Class72798] of  Integer
+
+	(integer_value 255)
+	(name "Task_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72799] of  Integer
+
+	(integer_value 175)
+	(name "Task_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72800] of  Integer
+
+	(integer_value 175)
+	(name "Task_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72801] of  Integer
+
+	(integer_value 0)
+	(name "Task_textColorRed"))
+
+([Scenario_ProjectKB_Class72802] of  Integer
+
+	(integer_value 0)
+	(name "Task_textColorGreen"))
+
+([Scenario_ProjectKB_Class72803] of  Integer
+
+	(integer_value 0)
+	(name "Task_textColorBlue"))
+
+([Scenario_ProjectKB_Class72804] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Task_bold"))
+
+([Scenario_ProjectKB_Class72805] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Task_italic"))
+
+([Scenario_ProjectKB_Class72806] of  String
+
+	(name "Task_connectorSlot")
+	(string_value "next_tasks"))
+
+([Scenario_ProjectKB_Class72807] of  String
+
+	(name "Task_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72808] of  String
+
+	(name "Task_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72809] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Task_displayText"))
+
+([Scenario_ProjectKB_Class72810] of  String
+
+	(name "Joint_customDisplayName")
+	(string_value "Joint"))
+
+([Scenario_ProjectKB_Class72811] of  String
+
+	(name "Joint_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72812] of  Integer
+
+	(integer_value 192)
+	(name "Joint_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72813] of  Integer
+
+	(integer_value 192)
+	(name "Joint_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72814] of  Integer
+
+	(integer_value 192)
+	(name "Joint_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72815] of  Integer
+
+	(integer_value 0)
+	(name "Joint_textColorRed"))
+
+([Scenario_ProjectKB_Class72816] of  Integer
+
+	(integer_value 0)
+	(name "Joint_textColorGreen"))
+
+([Scenario_ProjectKB_Class72817] of  Integer
+
+	(integer_value 0)
+	(name "Joint_textColorBlue"))
+
+([Scenario_ProjectKB_Class72818] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Joint_bold"))
+
+([Scenario_ProjectKB_Class72819] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Joint_italic"))
+
+([Scenario_ProjectKB_Class72820] of  String
+
+	(name "Joint_connectorSlot")
+	(string_value "next_tasks"))
+
+([Scenario_ProjectKB_Class72821] of  String
+
+	(name "Joint_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72822] of  String
+
+	(name "Joint_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72823] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Joint_displayText"))
+
+([Scenario_ProjectKB_Class72824] of  String
+
+	(name "Join_customDisplayName")
+	(string_value "Join"))
+
+([Scenario_ProjectKB_Class72825] of  String
+
+	(name "Join_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72826] of  Integer
+
+	(integer_value 230)
+	(name "Join_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72827] of  Integer
+
+	(integer_value 230)
+	(name "Join_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72828] of  Integer
+
+	(integer_value 255)
+	(name "Join_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72829] of  Integer
+
+	(integer_value 0)
+	(name "Join_textColorRed"))
+
+([Scenario_ProjectKB_Class72830] of  Integer
+
+	(integer_value 0)
+	(name "Join_textColorGreen"))
+
+([Scenario_ProjectKB_Class72831] of  Integer
+
+	(integer_value 0)
+	(name "Join_textColorBlue"))
+
+([Scenario_ProjectKB_Class72832] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Join_bold"))
+
+([Scenario_ProjectKB_Class72833] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Join_italic"))
+
+([Scenario_ProjectKB_Class72834] of  String
+
+	(name "Join_connectorSlot")
+	(string_value "next_tasks"))
+
+([Scenario_ProjectKB_Class72835] of  String
+
+	(name "Join_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72836] of  String
+
+	(name "Join_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72837] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Join_displayText"))
+
+([Scenario_ProjectKB_Class72838] of  String
+
+	(name "SignalControl_customDisplayName")
+	(string_value "SignalControl"))
+
+([Scenario_ProjectKB_Class72839] of  String
+
+	(name "SignalControl_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72840] of  Integer
+
+	(integer_value 153)
+	(name "SignalControl_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72841] of  Integer
+
+	(integer_value 204)
+	(name "SignalControl_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72842] of  Integer
+
+	(integer_value 0)
+	(name "SignalControl_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72843] of  Integer
+
+	(integer_value 0)
+	(name "SignalControl_textColorRed"))
+
+([Scenario_ProjectKB_Class72844] of  Integer
+
+	(integer_value 0)
+	(name "SignalControl_textColorGreen"))
+
+([Scenario_ProjectKB_Class72845] of  Integer
+
+	(integer_value 0)
+	(name "SignalControl_textColorBlue"))
+
+([Scenario_ProjectKB_Class72846] of  Boolean
+
+	(boolean_value FALSE)
+	(name "SignalControl_bold"))
+
+([Scenario_ProjectKB_Class72847] of  Boolean
+
+	(boolean_value FALSE)
+	(name "SignalControl_italic"))
+
+([Scenario_ProjectKB_Class72848] of  String
+
+	(name "SignalControl_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72849] of  String
+
+	(name "SignalControl_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72850] of  String
+
+	(name "SignalControl_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72851] of  Boolean
+
+	(boolean_value TRUE)
+	(name "SignalControl_displayText"))
+
+([Scenario_ProjectKB_Class72852] of  String
+
+	(name "TDecision_customDisplayName")
+	(string_value "TDecision"))
+
+([Scenario_ProjectKB_Class72853] of  String
+
+	(name "TDecision_shape")
+	(string_value "Triangle"))
+
+([Scenario_ProjectKB_Class72854] of  Integer
+
+	(integer_value 255)
+	(name "TDecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72855] of  Integer
+
+	(integer_value 51)
+	(name "TDecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72856] of  Integer
+
+	(integer_value 0)
+	(name "TDecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72857] of  Integer
+
+	(integer_value 0)
+	(name "TDecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72858] of  Integer
+
+	(integer_value 0)
+	(name "TDecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72859] of  Integer
+
+	(integer_value 0)
+	(name "TDecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72860] of  Boolean
+
+	(boolean_value FALSE)
+	(name "TDecision_bold"))
+
+([Scenario_ProjectKB_Class72861] of  Boolean
+
+	(boolean_value FALSE)
+	(name "TDecision_italic"))
+
+([Scenario_ProjectKB_Class72862] of  String
+
+	(name "TDecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72863] of  String
+
+	(name "TDecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72864] of  String
+
+	(name "TDecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72865] of  Boolean
+
+	(boolean_value TRUE)
+	(name "TDecision_displayText"))
+
+([Scenario_ProjectKB_Class72866] of  String
+
+	(name "EventFork_customDisplayName")
+	(string_value "EventFork"))
+
+([Scenario_ProjectKB_Class72867] of  String
+
+	(name "EventFork_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72868] of  Integer
+
+	(integer_value 153)
+	(name "EventFork_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72869] of  Integer
+
+	(integer_value 153)
+	(name "EventFork_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72870] of  Integer
+
+	(integer_value 255)
+	(name "EventFork_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72871] of  Integer
+
+	(integer_value 0)
+	(name "EventFork_textColorRed"))
+
+([Scenario_ProjectKB_Class72872] of  Integer
+
+	(integer_value 0)
+	(name "EventFork_textColorGreen"))
+
+([Scenario_ProjectKB_Class72873] of  Integer
+
+	(integer_value 0)
+	(name "EventFork_textColorBlue"))
+
+([Scenario_ProjectKB_Class72874] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EventFork_bold"))
+
+([Scenario_ProjectKB_Class72875] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EventFork_italic"))
+
+([Scenario_ProjectKB_Class72876] of  String
+
+	(name "EventFork_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72877] of  String
+
+	(name "EventFork_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72878] of  String
+
+	(name "EventFork_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72879] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EventFork_displayText"))
+
+([Scenario_ProjectKB_Class72880] of  String
+
+	(name "ObAttributesFork_customDisplayName")
+	(string_value "ObAttributesFork"))
+
+([Scenario_ProjectKB_Class72881] of  String
+
+	(name "ObAttributesFork_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72882] of  Integer
+
+	(integer_value 204)
+	(name "ObAttributesFork_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72883] of  Integer
+
+	(integer_value 0)
+	(name "ObAttributesFork_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72884] of  Integer
+
+	(integer_value 102)
+	(name "ObAttributesFork_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72885] of  Integer
+
+	(integer_value 255)
+	(name "ObAttributesFork_textColorRed"))
+
+([Scenario_ProjectKB_Class72886] of  Integer
+
+	(integer_value 255)
+	(name "ObAttributesFork_textColorGreen"))
+
+([Scenario_ProjectKB_Class72887] of  Integer
+
+	(integer_value 0)
+	(name "ObAttributesFork_textColorBlue"))
+
+([Scenario_ProjectKB_Class72888] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ObAttributesFork_bold"))
+
+([Scenario_ProjectKB_Class72889] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ObAttributesFork_italic"))
+
+([Scenario_ProjectKB_Class72890] of  String
+
+	(name "ObAttributesFork_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72891] of  String
+
+	(name "ObAttributesFork_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72892] of  String
+
+	(name "ObAttributesFork_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72893] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ObAttributesFork_displayText"))
+
+([Scenario_ProjectKB_Class72894] of  String
+
+	(name "BeginTask_customDisplayName")
+	(string_value "BeginTask"))
+
+([Scenario_ProjectKB_Class72895] of  String
+
+	(name "BeginTask_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72896] of  Integer
+
+	(integer_value 255)
+	(name "BeginTask_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72897] of  Integer
+
+	(integer_value 255)
+	(name "BeginTask_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72898] of  Integer
+
+	(integer_value 255)
+	(name "BeginTask_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72899] of  Integer
+
+	(integer_value 0)
+	(name "BeginTask_textColorRed"))
+
+([Scenario_ProjectKB_Class72900] of  Integer
+
+	(integer_value 0)
+	(name "BeginTask_textColorGreen"))
+
+([Scenario_ProjectKB_Class72901] of  Integer
+
+	(integer_value 0)
+	(name "BeginTask_textColorBlue"))
+
+([Scenario_ProjectKB_Class72902] of  Boolean
+
+	(boolean_value FALSE)
+	(name "BeginTask_bold"))
+
+([Scenario_ProjectKB_Class72903] of  Boolean
+
+	(boolean_value FALSE)
+	(name "BeginTask_italic"))
+
+([Scenario_ProjectKB_Class72904] of  String
+
+	(name "BeginTask_connectorSlot")
+	(string_value "next_tasks"))
+
+([Scenario_ProjectKB_Class72905] of  String
+
+	(name "BeginTask_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72906] of  String
+
+	(name "BeginTask_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72907] of  Boolean
+
+	(boolean_value TRUE)
+	(name "BeginTask_displayText"))
+
+([Scenario_ProjectKB_Class72908] of  String
+
+	(name "EndTask_customDisplayName")
+	(string_value "EndTask"))
+
+([Scenario_ProjectKB_Class72909] of  String
+
+	(name "EndTask_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72910] of  Integer
+
+	(integer_value 255)
+	(name "EndTask_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72911] of  Integer
+
+	(integer_value 255)
+	(name "EndTask_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72912] of  Integer
+
+	(integer_value 255)
+	(name "EndTask_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72913] of  Integer
+
+	(integer_value 0)
+	(name "EndTask_textColorRed"))
+
+([Scenario_ProjectKB_Class72914] of  Integer
+
+	(integer_value 0)
+	(name "EndTask_textColorGreen"))
+
+([Scenario_ProjectKB_Class72915] of  Integer
+
+	(integer_value 0)
+	(name "EndTask_textColorBlue"))
+
+([Scenario_ProjectKB_Class72916] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EndTask_bold"))
+
+([Scenario_ProjectKB_Class72917] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EndTask_italic"))
+
+([Scenario_ProjectKB_Class72918] of  String
+
+	(name "EndTask_connectorSlot")
+	(string_value "< none >"))
+
+([Scenario_ProjectKB_Class72919] of  String
+
+	(name "EndTask_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72920] of  String
+
+	(name "EndTask_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72921] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EndTask_displayText"))
+
+([Scenario_ProjectKB_Class72922] of  String
+
+	(name "Scenario_gridStyle")
+	(string_value "Invisible"))
+
+([Scenario_ProjectKB_Class72923] of  String
+
+	(name "Scenario_snapOnMove")
+	(string_value "No snap"))
+
+([Scenario_ProjectKB_Class72924] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Scenario_wrapping"))
+
+([Scenario_ProjectKB_Class72925] of  String
+
+	(name "Begin_customDisplayName")
+	(string_value "Begin"))
+
+([Scenario_ProjectKB_Class72926] of  String
+
+	(name "Begin_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72927] of  Integer
+
+	(integer_value 230)
+	(name "Begin_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72928] of  Integer
+
+	(integer_value 255)
+	(name "Begin_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72929] of  Integer
+
+	(integer_value 230)
+	(name "Begin_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72930] of  Integer
+
+	(integer_value 0)
+	(name "Begin_textColorRed"))
+
+([Scenario_ProjectKB_Class72931] of  Integer
+
+	(integer_value 0)
+	(name "Begin_textColorGreen"))
+
+([Scenario_ProjectKB_Class72932] of  Integer
+
+	(integer_value 0)
+	(name "Begin_textColorBlue"))
+
+([Scenario_ProjectKB_Class72933] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Begin_bold"))
+
+([Scenario_ProjectKB_Class72934] of  Boolean
+
+	(boolean_value FALSE)
+	(name "Begin_italic"))
+
+([Scenario_ProjectKB_Class72935] of  String
+
+	(name "Begin_connectorSlot")
+	(string_value "next_tasks"))
+
+([Scenario_ProjectKB_Class72936] of  String
+
+	(name "Begin_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72937] of  String
+
+	(name "Begin_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72938] of  Boolean
+
+	(boolean_value TRUE)
+	(name "Begin_displayText"))
+
+([Scenario_ProjectKB_Class72939] of  String
+
+	(name "End_customDisplayName")
+	(string_value "End"))
+
+([Scenario_ProjectKB_Class72940] of  String
+
+	(name "End_shape")
+	(string_value "Ellipse"))
+
+([Scenario_ProjectKB_Class72941] of  Integer
+
+	(integer_value 255)
+	(name "End_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72942] of  Integer
+
+	(integer_value 230)
+	(name "End_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72943] of  Integer
+
+	(integer_value 230)
+	(name "End_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72944] of  Integer
+
+	(integer_value 0)
+	(name "End_textColorRed"))
+
+([Scenario_ProjectKB_Class72945] of  Integer
+
+	(integer_value 0)
+	(name "End_textColorGreen"))
+
+([Scenario_ProjectKB_Class72946] of  Integer
+
+	(integer_value 0)
+	(name "End_textColorBlue"))
+
+([Scenario_ProjectKB_Class72947] of  Boolean
+
+	(boolean_value FALSE)
+	(name "End_bold"))
+
+([Scenario_ProjectKB_Class72948] of  Boolean
+
+	(boolean_value FALSE)
+	(name "End_italic"))
+
+([Scenario_ProjectKB_Class72949] of  String
+
+	(name "End_connectorSlot")
+	(string_value "< none >"))
+
+([Scenario_ProjectKB_Class72950] of  String
+
+	(name "End_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class72951] of  String
+
+	(name "End_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72952] of  Boolean
+
+	(boolean_value TRUE)
+	(name "End_displayText"))
+
+([Scenario_ProjectKB_Class72953] of  String
+
+	(name "GeneralDecision_customDisplayName")
+	(string_value "GeneralDecision"))
+
+([Scenario_ProjectKB_Class72954] of  String
+
+	(name "GeneralDecision_shape")
+	(string_value "Triangle"))
+
+([Scenario_ProjectKB_Class72955] of  Integer
+
+	(integer_value 102)
+	(name "GeneralDecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72956] of  Integer
+
+	(integer_value 204)
+	(name "GeneralDecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72957] of  Integer
+
+	(integer_value 255)
+	(name "GeneralDecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72958] of  Integer
+
+	(integer_value 0)
+	(name "GeneralDecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72959] of  Integer
+
+	(integer_value 0)
+	(name "GeneralDecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72960] of  Integer
+
+	(integer_value 0)
+	(name "GeneralDecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72961] of  Boolean
+
+	(boolean_value FALSE)
+	(name "GeneralDecision_bold"))
+
+([Scenario_ProjectKB_Class72962] of  Boolean
+
+	(boolean_value FALSE)
+	(name "GeneralDecision_italic"))
+
+([Scenario_ProjectKB_Class72963] of  String
+
+	(name "GeneralDecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72964] of  String
+
+	(name "GeneralDecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72965] of  String
+
+	(name "GeneralDecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72966] of  Boolean
+
+	(boolean_value TRUE)
+	(name "GeneralDecision_displayText"))
+
+([Scenario_ProjectKB_Class72967] of  String
+
+	(name "EventDecision_customDisplayName")
+	(string_value "EventDecision"))
+
+([Scenario_ProjectKB_Class72968] of  String
+
+	(name "EventDecision_shape")
+	(string_value "Diamond"))
+
+([Scenario_ProjectKB_Class72969] of  Integer
+
+	(integer_value 255)
+	(name "EventDecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72970] of  Integer
+
+	(integer_value 0)
+	(name "EventDecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72971] of  Integer
+
+	(integer_value 0)
+	(name "EventDecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72972] of  Integer
+
+	(integer_value 255)
+	(name "EventDecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72973] of  Integer
+
+	(integer_value 255)
+	(name "EventDecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72974] of  Integer
+
+	(integer_value 0)
+	(name "EventDecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72975] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EventDecision_bold"))
+
+([Scenario_ProjectKB_Class72976] of  Boolean
+
+	(boolean_value FALSE)
+	(name "EventDecision_italic"))
+
+([Scenario_ProjectKB_Class72977] of  String
+
+	(name "EventDecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72978] of  String
+
+	(name "EventDecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72979] of  String
+
+	(name "EventDecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72980] of  Boolean
+
+	(boolean_value TRUE)
+	(name "EventDecision_displayText"))
+
+([Scenario_ProjectKB_Class72981] of  String
+
+	(name "ODecision_customDisplayName")
+	(string_value "ODecision"))
+
+([Scenario_ProjectKB_Class72982] of  String
+
+	(name "ODecision_shape")
+	(string_value "Triangle"))
+
+([Scenario_ProjectKB_Class72983] of  Integer
+
+	(integer_value 153)
+	(name "ODecision_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72984] of  Integer
+
+	(integer_value 204)
+	(name "ODecision_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72985] of  Integer
+
+	(integer_value 255)
+	(name "ODecision_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class72986] of  Integer
+
+	(integer_value 0)
+	(name "ODecision_textColorRed"))
+
+([Scenario_ProjectKB_Class72987] of  Integer
+
+	(integer_value 0)
+	(name "ODecision_textColorGreen"))
+
+([Scenario_ProjectKB_Class72988] of  Integer
+
+	(integer_value 0)
+	(name "ODecision_textColorBlue"))
+
+([Scenario_ProjectKB_Class72989] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ODecision_bold"))
+
+([Scenario_ProjectKB_Class72990] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ODecision_italic"))
+
+([Scenario_ProjectKB_Class72991] of  String
+
+	(name "ODecision_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class72992] of  String
+
+	(name "ODecision_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class72993] of  String
+
+	(name "ODecision_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class72994] of  Boolean
+
+	(boolean_value TRUE)
+	(name "ODecision_displayText"))
+
+([Scenario_ProjectKB_Class72995] of  String
+
+	(name "CatchException_customDisplayName")
+	(string_value "CatchException"))
+
+([Scenario_ProjectKB_Class72996] of  String
+
+	(name "CatchException_shape")
+	(string_value "Pentagon"))
+
+([Scenario_ProjectKB_Class72997] of  Integer
+
+	(integer_value 255)
+	(name "CatchException_shapeColorRed"))
+
+([Scenario_ProjectKB_Class72998] of  Integer
+
+	(integer_value 153)
+	(name "CatchException_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class72999] of  Integer
+
+	(integer_value 0)
+	(name "CatchException_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class73000] of  Integer
+
+	(integer_value 0)
+	(name "CatchException_textColorRed"))
+
+([Scenario_ProjectKB_Class73001] of  Integer
+
+	(integer_value 0)
+	(name "CatchException_textColorGreen"))
+
+([Scenario_ProjectKB_Class73002] of  Integer
+
+	(integer_value 0)
+	(name "CatchException_textColorBlue"))
+
+([Scenario_ProjectKB_Class73003] of  Boolean
+
+	(boolean_value FALSE)
+	(name "CatchException_bold"))
+
+([Scenario_ProjectKB_Class73004] of  Boolean
+
+	(boolean_value FALSE)
+	(name "CatchException_italic"))
+
+([Scenario_ProjectKB_Class73005] of  String
+
+	(name "CatchException_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class73006] of  String
+
+	(name "CatchException_lineType")
+	(string_value "Dashed"))
+
+([Scenario_ProjectKB_Class73007] of  String
+
+	(name "CatchException_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class73008] of  Boolean
+
+	(boolean_value TRUE)
+	(name "CatchException_displayText"))
+
+([Scenario_ProjectKB_Class73009] of  String
+
+	(name "WithRespectPolygons_customDisplayName")
+	(string_value "WithRespectPolygons"))
+
+([Scenario_ProjectKB_Class73010] of  String
+
+	(name "WithRespectPolygons_shape")
+	(string_value "Hexagon"))
+
+([Scenario_ProjectKB_Class73011] of  Integer
+
+	(integer_value 204)
+	(name "WithRespectPolygons_shapeColorRed"))
+
+([Scenario_ProjectKB_Class73012] of  Integer
+
+	(integer_value 102)
+	(name "WithRespectPolygons_shapeColorGreen"))
+
+([Scenario_ProjectKB_Class73013] of  Integer
+
+	(integer_value 0)
+	(name "WithRespectPolygons_shapeColorBlue"))
+
+([Scenario_ProjectKB_Class73014] of  Integer
+
+	(integer_value 255)
+	(name "WithRespectPolygons_textColorRed"))
+
+([Scenario_ProjectKB_Class73015] of  Integer
+
+	(integer_value 204)
+	(name "WithRespectPolygons_textColorGreen"))
+
+([Scenario_ProjectKB_Class73016] of  Integer
+
+	(integer_value 51)
+	(name "WithRespectPolygons_textColorBlue"))
+
+([Scenario_ProjectKB_Class73017] of  Boolean
+
+	(boolean_value TRUE)
+	(name "WithRespectPolygons_bold"))
+
+([Scenario_ProjectKB_Class73018] of  Boolean
+
+	(boolean_value FALSE)
+	(name "WithRespectPolygons_italic"))
+
+([Scenario_ProjectKB_Class73019] of  String
+
+	(name "WithRespectPolygons_connectorSlot")
+	(string_value "variants"))
+
+([Scenario_ProjectKB_Class73020] of  String
+
+	(name "WithRespectPolygons_lineType")
+	(string_value "Solid"))
+
+([Scenario_ProjectKB_Class73021] of  String
+
+	(name "WithRespectPolygons_arrowheadType")
+	(string_value "Arrowhead"))
+
+([Scenario_ProjectKB_Class73022] of  Boolean
+
+	(boolean_value TRUE)
+	(name "WithRespectPolygons_displayText"))
+
+([Scenario_ProjectKB_Class73023] of  Widget
+
+	(height 200)
+	(is_hidden FALSE)
+	(name "initial_tasks")
+	(property_list [Scenario_ProjectKB_Class73024])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 720)
+	(y 300))
+
+([Scenario_ProjectKB_Class73024] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class73025]
+		[Scenario_ProjectKB_Class73026]
+		[Scenario_ProjectKB_Class73027]))
+
+([Scenario_ProjectKB_Class73025] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Scenario_ProjectKB_Class73026] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Scenario_ProjectKB_Class73027] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([Scenario_ProjectKB_Class73028] of  Widget
+
+	(height 200)
+	(is_hidden FALSE)
+	(name "final_tasks")
+	(property_list [Scenario_ProjectKB_Class73029])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 720)
+	(y 500))
+
+([Scenario_ProjectKB_Class73029] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class73030]
+		[Scenario_ProjectKB_Class73031]
+		[Scenario_ProjectKB_Class73032]))
+
+([Scenario_ProjectKB_Class73030] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Scenario_ProjectKB_Class73031] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Scenario_ProjectKB_Class73032] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([Scenario_ProjectKB_Class73033] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "finish_type")
+	(property_list [Scenario_ProjectKB_Class73034])
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 200)
+	(x 720)
+	(y 700))
+
+([Scenario_ProjectKB_Class73034] of  Property_List
+)
+
+([Scenario_ProjectKB_Class73035] of  Widget
+
+	(height 180)
+	(is_hidden FALSE)
+	(label "Context")
+	(name "context")
+	(property_list [Scenario_ProjectKB_Class73036])
+	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
+	(width 200)
+	(x 720)
+	(y 120))
+
+([Scenario_ProjectKB_Class73036] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class73037]
+		[Scenario_ProjectKB_Class73038]
+		[Scenario_ProjectKB_Class73039]
+		[Scenario_ProjectKB_Class73040]
+		[Scenario_ProjectKB_Class73041]
+		[Scenario_ProjectKB_Class73042]
+		[Scenario_ProjectKB_Class73043]
+		[Scenario_ProjectKB_Class73044]
+		[Scenario_ProjectKB_Class73045]
+		[Scenario_ProjectKB_Class73046]
+		[Scenario_ProjectKB_Class73047]
+		[Scenario_ProjectKB_Class73048]
+		[Scenario_ProjectKB_Class73049]
+		[Scenario_ProjectKB_Class73050]
+		[Scenario_ProjectKB_Class73051]
+		[Scenario_ProjectKB_Class73052]
+		[Scenario_ProjectKB_Class73053]
+		[Scenario_ProjectKB_Class73054]
+		[Scenario_ProjectKB_Class73055]
+		[Scenario_ProjectKB_Class73056]
+		[Scenario_ProjectKB_Class73057]
+		[Scenario_ProjectKB_Class73058]
+		[Scenario_ProjectKB_Class73059]
+		[Scenario_ProjectKB_Class73060]
+		[Scenario_ProjectKB_Class73061]
+		[Scenario_ProjectKB_Class73062]
+		[Scenario_ProjectKB_Class73063]
+		[Scenario_ProjectKB_Class73064]))
+
+([Scenario_ProjectKB_Class73037] of  String
+
+	(name "tooltip_text"))
+
+([Scenario_ProjectKB_Class73038] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Insert:At:Current:Selection"))
+
+([Scenario_ProjectKB_Class73039] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Select:New:Insertions"))
+
+([Scenario_ProjectKB_Class73040] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Create:Form:For:New:Instances"))
+
+([Scenario_ProjectKB_Class73041] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Subwidget:Selection:Enabled"))
+
+([Scenario_ProjectKB_Class73042] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Summary:Panel"))
+
+([Scenario_ProjectKB_Class73043] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Number:Of:Subordinates"))
+
+([Scenario_ProjectKB_Class73044] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
+
+([Scenario_ProjectKB_Class73045] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
+
+([Scenario_ProjectKB_Class73046] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
+
+([Scenario_ProjectKB_Class73047] of  Integer
+
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
+
+([Scenario_ProjectKB_Class73048] of  Integer
+
+	(integer_value 1)
+	(name ":Prototype:Depth"))
+
+([Scenario_ProjectKB_Class73049] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
+
+([Scenario_ProjectKB_Class73050] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
+
+([Scenario_ProjectKB_Class73051] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
+
+([Scenario_ProjectKB_Class73052] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([Scenario_ProjectKB_Class73053] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([Scenario_ProjectKB_Class73054] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([Scenario_ProjectKB_Class73055] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([Scenario_ProjectKB_Class73056] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([Scenario_ProjectKB_Class73057] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([Scenario_ProjectKB_Class73058] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([Scenario_ProjectKB_Class73059] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([Scenario_ProjectKB_Class73060] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([Scenario_ProjectKB_Class73061] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([Scenario_ProjectKB_Class73062] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([Scenario_ProjectKB_Class73063] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([Scenario_ProjectKB_Class73064] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([Scenario_ProjectKB_Class73065] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "parent")
+	(property_list [Scenario_ProjectKB_Class73066])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class73066] of  Property_List
+)
+
+([Scenario_ProjectKB_Class73067] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "run")
+	(property_list [Scenario_ProjectKB_Class73068])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class73068] of  Property_List
+)
+
+([Scenario_ProjectKB_Class73069] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "id")
+	(property_list [Scenario_ProjectKB_Class73070])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class73070] of  Property_List
+)
+
+([Scenario_ProjectKB_Class73071] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "status")
+	(property_list [Scenario_ProjectKB_Class73072])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Scenario_ProjectKB_Class73072] of  Property_List
+)
+
+([Scenario_ProjectKB_Class73073] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "protagonist")
+	(property_list [Scenario_ProjectKB_Class73074])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 720)
+	(y 60))
+
+([Scenario_ProjectKB_Class73074] of  Property_List
+
+	(properties
+		[Scenario_ProjectKB_Class73075]
+		[Scenario_ProjectKB_Class73076]))
+
+([Scenario_ProjectKB_Class73075] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Scenario_ProjectKB_Class73076] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Scenario_ProjectKB_Class73077] of  String
+
+	(name "ObjectTaskScenario_gridStyle")
+	(string_value "Dots"))
+
+([Scenario_ProjectKB_Class73078] of  String
+
+	(name "ObjectTaskScenario_snapOnMove")
+	(string_value "Afterwards"))
+
+([Scenario_ProjectKB_Class73079] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ObjectTaskScenario_wrapping"))
+
 ([Scenario_ProjectKB_Class75512] of  String
 
 	(name "tooltip_text"))
@@ -13970,7 +17404,7 @@
 
 ([Scenario_ProjectKB_Class81315] of  Widget
 
-	(height 180)
+	(height 200)
 	(is_hidden FALSE)
 	(label "Context")
 	(name "context")
@@ -13978,7 +17412,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
 	(width 200)
 	(x 720)
-	(y 120))
+	(y 60))
 
 ([Scenario_ProjectKB_Class81316] of  Property_List
 
@@ -16933,12 +20367,12 @@
 		[Scenari0_ProjectKB_Class826]
 		[Scenari0_ProjectKB_Class830]
 		[Scenari0_ProjectKB_Class22380]
-		[Scenario_ProjectKB_Class1045]
 		[Scenario_ProjectKB_Class81315]
 		[Scenario_ProjectKB_Class102200]
 		[Scenario_ProjectKB_Class102202]
 		[Scenario_ProjectKB_Class21154]
-		[Scenario_ProjectKB_Class21156]))
+		[Scenario_ProjectKB_Class21156]
+		[Scenario_ProjectKB_Class62236]))
 
 ([Scenario_ProjectKB_Instance_20370] of  Property_List
 

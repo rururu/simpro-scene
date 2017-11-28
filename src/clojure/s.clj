@@ -52,7 +52,8 @@
 (defn start-scenario [siorti mp]
   (if-let [si (if (string? siorti) (fifos "Scenario" "title" siorti) siorti)]
   (-> (ru.rules/mk-frame si)
-    (ru.rules/update-frame 
+    (ru.rules/update-frame
+	'Scenario
 	{'status "START"
 	 'id (gen-id (sv si "title"))
 	 'run (context-to-hm (sv si "context") (sv si "protagonist") mp)})
@@ -63,6 +64,7 @@
   (doseq [ta tas]
   (-> (ru.rules/mk-frame ta)
     (ru.rules/update-frame
+	:same-type
 	{'status "START"
 	 'id (gen-id (sv ta "title"))
 	 'parent pid
