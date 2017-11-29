@@ -1,4 +1,4 @@
-; Tue Nov 28 21:54:28 MSK 2017
+; Wed Nov 29 22:26:13 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -949,14 +949,6 @@
 		(create-accessor read-write))
 	(single-slot run
 ;+		(type ANY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot parent
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

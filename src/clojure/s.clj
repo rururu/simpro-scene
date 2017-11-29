@@ -55,19 +55,16 @@
     (ru.rules/update-frame
 	'Scenario
 	{'status "START"
-	 'id (gen-id (sv si "title"))
 	 'run (context-to-hm (sv si "context") (sv si "protagonist") mp)})
     rete.core/assert-frame)
   true))
 
-(defn start-tasks-actions [tas pid run]
+(defn start-tasks-actions [tas run]
   (doseq [ta tas]
   (-> (ru.rules/mk-frame ta)
     (ru.rules/update-frame
 	:same-type
 	{'status "START"
-	 'id (gen-id (sv ta "title"))
-	 'parent pid
 	 'run run})
     rete.core/assert-frame)))
 
@@ -119,9 +116,6 @@
   (OMT/addTaskExecutor te)
   (println [:TE-ADDED te])))
 
-(defn conjunct [y1 y2]
-  (filter #(include? y1 %) y2))
-
 (defn show-labels []
   (let [ii (OMT/getMapObInstances)
       tt (DisplayUtilities/pickInstancesFromCollection nil ii "Toggle Labels Visible")]
@@ -148,8 +142,8 @@
     (ssv si "protagonist" pla)
     (start-scenario si mp))))
 
-(defn clear-scenario-activities [id]
-  (let [acts (rete.core/facts-with-slot-value 'run = id)
+(defn clear-scenario-activities [run]
+  (let [acts (rete.core/facts-with-slot-value 'run = run)
        fids (map first acts)]
   (doseq [fid fids]
      (rete.core/retract-fact fid))))
