@@ -1,4 +1,4 @@
-; Wed Nov 29 22:26:13 MSK 2017
+; Thu Nov 30 21:36:04 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -988,7 +988,11 @@
 
 (defclass ObjectTaskScenario
 	(is-a Scenario)
-	(role concrete))
+	(role concrete)
+	(single-slot parent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Task
 	(is-a Activity)
@@ -1394,6 +1398,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Scenario)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wait_subscenario
 		(type SYMBOL)
@@ -1831,6 +1839,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes MapOb Variable)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wait_subscenario
 		(type SYMBOL)
