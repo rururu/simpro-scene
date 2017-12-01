@@ -1,14 +1,14 @@
 (s:FirstORFinalActionDone 0
-?a (Action status "DONE" 
-	parent ?pid
+?a (Action status "DONE"
+	run ?run
 	instance ?ain
 	next_actions ?nacts
 	(= (count ?nacts) 0))
 ?t (Task status "DOING"
-	title ?tit
-	id ?pid
-	final_actions ?facts 
+	run ?run
 	finish_type OR
+	title ?tit
+	final_actions ?facts 
 	((s/include? ?facts ?ain)
 	 (> (count ?facts) 1)))
 =>
@@ -17,31 +17,28 @@
 (retract ?a))
 
 (a:SubscenarioRepeat 5
-?sa (Subscenario status "REPEAT"
-	id ?pid
-	instance ?ain 
-	parent ?par 
+?ss (Subscenario status "REPEAT"
+	id ?id
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 (Scenario status "DONE"
-	parent ?pid)
+	parent ?id)
 =>
-(retract ?sa)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(retract ?ss)
+(a/start-next ?nacts ?pid ?run))
 
 (s:LastANDFinalActionDone 0
-?a (Action status "DONE" 
-	parent ?pid
+?a (Action status "DONE"
+	run ?run
 	instance ?ain 
 	next_actions ?nacts
 	(= (count ?nacts) 0))
 ?t (Task status "DOING"
-	title ?tit
-	id ?pid
-	final_actions ?facts 
+	run ?run
 	finish_type AND
+	title ?tit
+	final_actions ?facts 
 	((s/include? ?facts ?ain)
 	 (= (count ?facts) 1)))
 =>
@@ -51,14 +48,14 @@
 
 (s:InterimFinalActionDone 0
 ?a (Action status "DONE" 
-	parent ?pid
+	run ?run
 	instance ?ain
 	next_actions ?nacts
 	(= (count ?nacts) 0))
 ?t (Task status "DOING"
-	id ?pid
-	final_actions ?facts 
+	run ?run
 	finish_type AND
+	final_actions ?facts 
 	((s/include? ?facts ?ain)
 	 (> (count ?facts) 1)))
 =>
@@ -72,9 +69,8 @@
 	latitude ?lat 
 	longitude ?lon 
 	mapob ?mos 
+	parent ?pid
 	run ?run
-	instance ?ain 
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOnMap")
@@ -88,10 +84,7 @@
 (doseq [mo ?mos]
   (ru.igis.omtab.OMT/addMapOb mo))
 (retract ?pom)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ArriveStart 0
 ?arr (Arrive status "START" 
@@ -118,37 +111,28 @@
 	latitude ?lat 
 	longitude ?lon 
 	radius ?rad
+	parent ?pid
+	next_actions ?nacts
  	run ?run)
 (Clock time ?t)
 =>
 (if-let [mo (a/mapob-vv ?obj ?run)]
   (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))
-    (modify ?arr status "DONE")
+    (do (a/stop-moving mo ?lat ?lon)
+      (retract ?arr)
+      (a/start-next ?nacts ?pid ?run))
     (if (> (.distanceNM mo ?lat ?lon) 100)
       (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)) ) ))
   (modify ?arr status "FAILED")))
 
-(s:StartNextActions 0
-?a (Action status "DONE" 
-	parent ?pid
-	instance ?ain 
-	next_actions ?nacts
-	(> (count ?nacts) 0))
-(Task id ?pid run ?run)
-=>
-(s/start-tasks-actions ?nacts ?pid ?run)
-(retract ?a))
-
 (s:ClearScenarioActivities 0
 (Scenario status "DONE"
-	title ?tit
-	id ?id
 	run ?run)
 =>
-(s/clear-scenario-activities ?id))
+(s/clear-scenario-activities ?run))
 
 (a:SubscenarioStart 0
-?sa (Subscenario status "START"
+?ss (Subscenario status "START"
 	title ?tit
 	sub_scenario ?sub
 	context ?ctx 
@@ -159,28 +143,28 @@
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)]
   (if (not (a/null? sub))
-    (let [hm (s/context-to-hm ctx)]
+    (let [hm (s/context-to-hm ctx)
+           id (gensym "Sus")]
       (a/merge-hm-run hm ?run)
-      (protege.core/ssv sub "id" (s/gen-id (protege.core/sv sub "title")))
-      (protege.core/ssv sub "run" hm)
-      (protege.core/ssv sub "status" "START")
-      (ru.rules/assert-instances [sub])
-      (modify ?ot status (if (= ?wai true)
-		"REPEAT"
-		"DONE")))
+      (-> (ru.rules/mk-frame sub)
+        (ru.rules/update-frame
+	'Scenario
+	{'status "START"
+	 'run hm
+	 'parent id)
+        rete.core/assert-frame)
+      (modify ?ot status (if (= ?wai true) "REPEAT" "DONE")
+	id id)
     (modify ?ot status "FAILED"))))
 
 (a:SubscenarioDone 0
-?sa (Subscenario status "DONE"
-	instance ?ain 
-	parent ?par 
+?ss (Subscenario status "DONE"
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
-(retract ?sa)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(retract ?ss)
+(a/start-next ?nacts ?pid ?run))
 
 (a:TimeMessage 0
 ?tm (TimeMessage status "START"
@@ -188,18 +172,14 @@
 	clients ?cls
 	category ?cat
 	text ?txt
-	instance ?ain 
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "TimeMessage")
 (a/time-message ?txt ?cat ?cls ?run)
 (retract ?tm)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:PutOffMap 0
 ?pom (PutOffMap status "START"
@@ -207,18 +187,14 @@
 	mapob ?mos
 	object ?obj
 	delete ?del
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOffMap")
 (a/put-off-map ?obj ?mos ?del ?run)
 (retract ?pom)
-(asser Action status "DONE"
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:GoRouteStart 0
 ?gor (GoRoute status "START"
@@ -233,16 +209,18 @@
 =>
 (println "Action started:" ?tit "GoRoute")
 (let [rou (a/vv ?rou ?run)
-       obj (a/vv ?obj ?run)
-       pts (protege.core/svs rou "points")
-       cnt (count pts)
-       pnt (if (protege.core/is? ?bwd)
-              (dec cnt)
-              0)] 
-  (modify ?gor status (a/arriveN ?tit obj rou pnt ?spd ?rad ?run ?par)
-	object obj
-	route rou
-	N pnt)))
+       mo (a/mapob-vv ?obj ?run)
+       spd (a/vv ?spd ?run)]
+  (if (and rou mo)
+    (let [pts (protege.core/svs rou "points")
+           cnt (count pts)
+           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)
+           [lat lon] (a/latlon-N rou pnt)]
+      (a/go mo lat lon spd)
+      (modify ?gor route rou
+	N pnt
+	status "REPEAT"))
+    (modify ?gor status "FAILED"))))
 
 (a:GoRouteRepeat 0
 ?gor (GoRoute status ?sts
@@ -253,37 +231,33 @@
 	radius ?rad
 	backward ?bwd
 	N ?n
+	parent ?pid
 	run ?run
-	parent ?par
-	((not= ?sts "START")
-	 (not= ?sts "DONE")))
-(Clock)
-(not Arrive title ?sts)
-=>
-(let [next (if (protege.core/is? ?bwd)
-	(dec ?n)
-	(inc ?n))]
-  (modify ?gor status (a/arriveN ?tit ?obj ?rou next ?spd ?rad ?run ?par)
-	N next)))
-
-(a:GoRouteDone 0
-?gor (GoRoute status "DONE" 
-	instance ?ain
-	parent ?par 
 	next_actions ?nacts)
+(Clock)
 =>
-(retract ?gor)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(let [[lat lon] (a/latlon-N ?rou ?n)
+       next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))
+       spd (a/vv ?spd ?run)]
+  (if-let [mo (a/mapob-vv ?obj ?run)]
+    (if (or (.near mo lat lon ?rad) (.abaft mo lat lon))
+      (if (or (= next (count rou)) (< next 0))
+        (do (a/stop-moving mo lat lon)
+          (retract ?gor)
+          (a/start-next ?nacts ?pid ?run))
+        (let [[lat lon] (a/latlon-N ?rou next)]
+          (a/go mo lat lon spd)))
+      (if (> (.distanceNM mo lat lon) 100)
+        (.setCourse mo (int (.bearingsDeg mo lat lon)))))
+    (modify ?gor status "FAILED"))))
 
 (s:LastANDFinalTaskDone 0
-?t (Task status "DONE" 
-	parent ?pid
+?t (Task status "DONE"
+	run ?run
 	instance ?tin)
 ?s (Scenario status "DOING"
-	id ?pid
+	run ?run
+	finish_type AND
 	title ?tit
 	final_tasks ?ftasks
 	((s/include? ?ftasks ?tin)
@@ -301,22 +275,20 @@
 	run ?run)
 =>
 (println "Action started:" ?tit "WaitEvent")
-(modify ?we status (a/wait-event ?evt ?pid ?pro ?run)))
+(modify ?we status (a/wait-event ?evt ?pid ?run)))
 
 (s:StartNextTasks 0
 (Task status "DONE" 
-	parent ?pid
 	run ?run
 	next_tasks ?ntasks
 	(> (count ?ntasks) 0))
 =>
-(s/start-tasks-actions ?ntasks ?pid ?run))
+(s/start-tasks-actions ?ntasks ?run))
 
 (a:WaitEventRepeatTOR 0
 ?we (WaitEvent status "REPEAT"
 	id ?pid
-	instance ?ain 
-	parent ?par 
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 (Clock time ?t)
@@ -330,10 +302,7 @@
 	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?run))
 =>
 (retract ?we ?tor)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:Calculus 0
 ?clc (Calculus status "START" 
@@ -341,9 +310,8 @@
 	input_data ?ida 
 	source ?src 
 	results ?res
-	instance ?ain
+	parent ?pid
 	run ?run
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Calculus")
@@ -354,25 +322,21 @@
        exp `(let ~bnd3 ~vvm)
        ;;_ (println :EXP exp)
        vvm2 (eval exp)]
-  (d/var-val-to-run bnd2 vvm2 ?pro ?run)
+  (d/var-val-to-run bnd2 vvm2 ?run)
   (doseq [re ?res]
-    (d/var-val-to-result re vvm2 ?pro ?run)))
+    (d/var-val-to-result re vvm2 ?run)))
 (retract ?clc)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (d:EventDecision 0
 ?ed (EventDecision status "START" 
 	title ?tit
 	events ?evs
 	variants ?vrs
-	parent ?pid
 	run ?run)
 =>
 (println "Decision:" ?tit "EventDecision")
-(s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?pid ?run)
+(s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?run)
 (retract ?ed))
 
 (a:LinkOnOff 0
@@ -383,9 +347,8 @@
 	flag ?flg
 	lineColor ?col
 	line ?lin
+	parent ?pid
 	run ?run
-	instance ?ain 
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println (str "Action started: " ?tit " LinkOnOff"))
@@ -401,21 +364,17 @@
         (if-let[lnk (ru.igis.omtab.OMT/getMapOb nam)]
           (ru.igis.omtab.OMT/removeMapOb lnk false)))
       (retract ?loo)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+      (a/start-next ?nacts ?pid ?run))
     (modify ?loo status "FAILED"))))
 
 (d:UserDecision 0
 ?ud (UserDecision status "START" 
 	title ?tit 
-	parent ?par
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "UserDecision")
-(s/start-tasks-actions (d/user-decision ?vrs) ?par ?run)
+(s/start-tasks-actions (d/user-decision ?vrs) ?run)
 (retract ?ud))
 
 (a:RepeatActionOnOff 0
@@ -424,24 +383,19 @@
 	collection ?col
 	flag ?flg 
 	repeat-action ?ra
-	instance ?ain 
+	parent ?pid
 	run ?run
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "RepeatActionOnOff")
 (a/repeat-action-onoff ?ra ?col ?flg ?run)
 (retract ?rao)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:WaitEventRepeatOP 0
 ?we (WaitEvent status "REPEAT" 
 	id ?pid
-	instance ?ain 
-	parent ?par 
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 (Clock time ?t)
@@ -456,16 +410,12 @@
 	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?run))
 =>
 (retract ?we ?op)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:WaitEventRepeatOA 0
 ?we (WaitEvent status "REPEAT"
 	id ?pid
-	instance ?ain 
-	parent ?par 
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 (Clock time ?t)
@@ -478,10 +428,7 @@
 	(e/ob-attribute ?atr ?obj ?rel ?val ?run))
 =>
 (retract ?we ?oa)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (d:GeneralDecision 0
 ?gd (GeneralDecision status "START" 
@@ -489,11 +436,10 @@
 	input_data ?ida
 	conditions ?cds
 	variants ?vrs
-	parent ?par
 	run ?run)
 =>
 (println "Decision:" ?tit "GeneralDecision")
-(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?par ?run)
+(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?run)
 (retract ?gd))
 
 (a:PositionStart 0
@@ -525,9 +471,8 @@
 	object ?obj 
 	observer ?obs 
 	mapob ?mos
+	parent ?pid
 	run ?run
-	instance ?ain 
-	parent ?par
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOnPlace")
@@ -546,13 +491,9 @@
                    "DONE")
                  "FAILED"))]
   (retract ?pop)
-  (asser Action status sts 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts)))
+  (a/start-next ?nacts ?pid ?run)))
 
 (a:PositionRepeat 0
-(Clock time ?t)
 ?pos (Position status "REPEAT" 
 	title ?tit 
 	object ?obj
@@ -562,11 +503,15 @@
 	position-speed ?poss 
 	relative ?rel 
 	radius ?rad
+	parent ?pid
 	run ?run
+	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
+(Clock)
 =>
 (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-(modify ?pos status "DONE"))
+(retract ?pos)
+(a/start-next ?nacts ?pid ?run))
 
 (a:ObjectMessageStart 0
 ?om (ObjectMessage status "START"
@@ -583,22 +528,17 @@
 
 (a:ObjectMessageDone 0
 ?om (ObjectMessage status "DONE"
-	instance ?ain
-	parent ?par
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?om)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:Break 0
 ?brk (Break status "START"
 	title ?tit
 	activity ?act
-	instance ?ain
-	parent ?par
 	run ?run
 	next_actions ?nacts)
 =>
@@ -606,13 +546,11 @@
 (if-let [act (a/vv ?act ?run)]
   (do (condp = (protege.core/typ act)
 	"Scenario" (a/break-scenario act ?run)
+	"ObjectTaskScenario" (a/break-ot-scenario act ?run)
 	"Task" (a/break-task act ?run)
 	(a/break-action  act ?run))
     (retract ?brk)
-    (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+    (a/start-next ?nacts ?pid ?run))
   (modify ?brk status "FAILED")))
 
 (a:TowOnOffStart 0
@@ -631,15 +569,12 @@
 
 (a:TowOnOffDone 0
 ?too (TowOnOff status "DONE" 
-	instance ?ain 
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?too)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:SearchStart 0
 ?sea (Search status "START" 
@@ -656,23 +591,15 @@
 (Clock time ?t)
 ?sea (Search status ?sta
 	N ?n
+	parent ?pid
+	run ?run
+	next_actions ?nacts
 	((not= ?sta "DONE")
 	 (number? ?n)
 	 (> ?t ?n)))
 =>
-(modify ?sea status "DONE"))
-
-(a:SearchDone 0
-?sea (Search status "DONE"
-	instance ?ain
-	parent ?par
-	next_actions ?nacts)
-=>
 (retract ?sea)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:SearchOutside 0
 ?sea (Search status "OUTSIDE"
@@ -681,7 +608,9 @@
 	detect-distance ?dd
 	detect-probability ?dp
 	client ?cli
-	run ?run)
+	parent ?pid
+	run ?run
+	next_actions ?nacts)
 (Clock)
 =>
 (let [obs (a/mapob-vv ?obs ?run)
@@ -696,7 +625,8 @@
           (.putAttribute obj "DETECTED-BY" (.getName obs)) 
           ;;(if (not (a/null? cli))
           ;;  (navobs.commands/set-visible true obj (protege.core/sv cli "id")))
-          (modify ?sea status "DONE"))
+          (do (retract ?sea)
+            (a/start-next ?nacts ?pid ?run)))
         (modify ?sea status "INSIDE")))
     (modify ?sea status "FAILED"))))
 
@@ -729,25 +659,24 @@
 
 (a:PutObAttributesDone 0
 ?poa (PutObAttributes status "DONE" 
-	instance ?ain 
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?poa)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (s:FirstORFinalTaskDone 0
 ?t (Task status "DONE"
-	parent ?pid
-	instance ?tin)
+	run ?run
+	instance ?tin
+	next_tasks ?ntasks
+	(= (count ?ntasks) 0))
 ?s (Scenario status "DOING" 
-	id ?pid
+	run ?run
+	finish_type OR
 	title ?tit
 	final_tasks ?ftasks 
-	finish_type OR
 	((s/include? ?ftasks ?tin)
 	 (>= (count ?ftasks) 1)))
 =>
@@ -764,12 +693,12 @@
 
 (s:InterimFinalTaskDone 0
 ?t (Task status "DONE"
-	parent ?pid
+	run ?run
 	instance ?tin)
 ?s (Scenario status "DOING"
-	id ?pid
-	final_tasks ?ftasks 
+	run ?run
 	finish_type AND
+	final_tasks ?ftasks 
 	((s/include? ?ftasks ?tin)
 	 (> (count ?ftasks) 1)))
 =>
@@ -784,30 +713,23 @@
 	text ?txt
 	object ?obj
 	attribute ?atr
-	instance ?ain 
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "AttributeMessage")
 (a/attribute-message ?txt ?obj ?atr ?cat ?cls ?run)
 (retract ?am)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ShowDone 0
 ?dis (Show status "DONE" 
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?dis)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ShowStart 0
 ?dis (Show status "START" 
@@ -831,26 +753,24 @@
 
 (a:ComputeDone 0
 ?cmp (Compute status "DONE"
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?cmp)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (s:StartTask 0
 ?t (Task status "START" 
 	title ?tit
-	id ?id
 	run ?run
 	initial_actions ?iacts)
 =>
 (println "Task started:" ?tit)
-(modify ?t status "DOING")
-(s/start-tasks-actions ?iacts ?id ?run))
+(let [tid (gensym "Tsk")]
+  (modify ?t id tid
+	status "DOING")
+  (s/start-tasks-actions ?iacts ?tid ?run)))
 
 (a:PutObPropertiesStart 0
 ?pop (PutObProperties status "START" 
@@ -866,54 +786,46 @@
 (modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?run)))
 
 (s:StartScenario 0
-?s (Scenario status "START" 
+?s (Scenario status "START"
+	id ?sid
 	title ?tit
-	id ?id
-	run ?run)
+	run ?run
 	initial_tasks ?itasks)
 =>
 (println "Scenario started:" ?tit)
 (modify ?s status "DOING")
-(s/start-tasks-actions ?itasks ?id ?run))
+(s/start-tasks-actions ?itasks ?sid ?run))
 
 (a:PutObPropertiesDone 0
 ?pop (PutObProperties status "DONE" 
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?pop)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:CreateByModel 0
 ?cbm (CreateByModel status "START"
 	title ?tit
 	model ?mod
 	object ?obj
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "CreateByModel")
-(a/create-by-model ?mod ?obj ?pro ?run)
+(a/create-by-model ?mod ?obj ?run)
 (retract ?cbm)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (s:JoinTaskDone 0
 ?t (Task status "DONE"
 	run ?run
 	instance ?tin)
 ?j (Join status "START"
-	id ?id
-	title ?tit
 	run ?run
+	title ?tit
 	join_tasks ?jtasks
 	(s/include? ?jtasks ?tin))
 =>
@@ -923,47 +835,40 @@
 
 (s:RetractRedundantJoin 0
 ?j1 (Join status "REPEAT"
-	id ?id1
 	run ?run
 	instance ?jin
 	join_tasks ?jtasks1)
 ?j2 (Join status "REPEAT"
-	id ?id2
 	run ?run
 	instance ?jin
 	join_tasks ?jtasks2
-	(not= ?id1 ?id2))
+	(< (count ?jtasks1) (count ?jtasks2)))
 =>
-(retract ?j2)
-(modify ?j1 join_tasks (s/conjunct ?jtasks1 ?jtasks2)))
+(retract ?j2))
 
 (s:JoinDone 0
 ?j (Join status "REPEAT"
 	title ?tit
 	run ?run
-	parent ?pid
 	join_tasks ?jtasks
 	next_tasks ?ntasks
 	(= (count ?jtasks) 0))
 =>
 (println "Join DONE:" ?tit)
 (retract ?j)
-(s/start-tasks-actions ?ntasks ?pid ?run))
+(s/start-tasks-actions ?ntasks ?run))
 
 (a:DelayRepeat 0
 (Clock time ?t)
 ?del (Delay status "REPEAT" 
 	N ?n 
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts
 	(> ?t ?n))
 =>
 (retract ?del)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (s:EndEmptyTask 0
 ?ts (Task status "START" 
@@ -979,8 +884,7 @@
 	title ?tit
 	object ?obj
 	resource ?res
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -993,10 +897,7 @@
             (protege.core/delin ins))
         (.removeAttribute mo atr)
         (retract ?dr)
-        (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+        (a/start-next ?nacts ?pid ?run))
     (modify ?dr status "FAILED"))))
 
 (a:DelayStart 0
@@ -1017,8 +918,7 @@
 	title ?tit
 	object ?obj
 	collection ?col
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1027,10 +927,7 @@
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (ru.rules/assert-instances inss))
 (retract ?aos)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:AttributesToVariables 0
 ?atv (AttributesToVariables status "START"
@@ -1038,8 +935,7 @@
 	objects ?obs
 	attributes ?ats
 	variables ?vrs
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1051,10 +947,7 @@
         (a/vvr (first vv) avl ?run)
         (recur (rest oo) (rest aa) (rest vv))) )))
 (retract ?atv)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:WaitModelClockStart 0
 ?wms (WaitModelClock status "START" 
@@ -1072,8 +965,7 @@
 ?smc (SetModelClock status "START"
 	title ?tit
 	time ?tim
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1082,10 +974,7 @@
       sec (a/op-time-sec tim)]
     (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))
 (retract ?smc)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:LoadResource 0
 ?lr (LoadResource status "START"
@@ -1096,8 +985,7 @@
 	seed ?sed
                         number ?num
 	rename ?ren
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1118,10 +1006,7 @@
   (if (seq rr)
     (do (.putAttribute mo (protege.core/sv ?res "title") (vec (cons 0 rr)))
       (retract ?lr)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+      (a/start-next ?nacts ?pid ?run))
     (modify ?lr status "FAILED"))))
 
 (d:ODecision 0
@@ -1131,27 +1016,23 @@
 	before ?bef
 	choices ?chs
 	variants ?vrs
-	parent ?par
 	run ?run)
 =>
 (println "Decision:" ?tit "ODecision")
-(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?par ?run)
+(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?run)
 (retract ?od))
 
 (a:WaitModelClockRepeat 0
 (Clock time ?t)
 ?wms (WaitModelClock status "REPEAT" 
 	N ?n 
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts
 	(> ?t ?n))
 =>
 (retract ?wms)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:InterceptStart 0
 ?ict (Intercept status "START" 
@@ -1184,18 +1065,14 @@
 	position-speed ?poss 
 	relative ?rel 
 	radius ?rad
-	instance ?ain
-	parent ?par 
+	parent ?pid
 	run ?run
 	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
 (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
 (retract ?ict)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:InterceptOnShotDistance 5
 (Clock time ?t)
@@ -1208,8 +1085,7 @@
 	position-speed ?poss 
 	relative ?rel 
 	shot_distance ?shd
-	instance ?ain
-	parent ?par 
+	parent ?pid
 	run ?run
 	next_actions ?nacts
 	((not (s/qm ?shd))
@@ -1219,22 +1095,18 @@
        mos (a/mapob-vv ?obs ?run)]
   (.setCourse mob (.getCourse mos)))
 (retract ?ict)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (d:IfActivityStatus 0
 ?ias (IfActivityStatus status "START" 
 	title ?tit 
 	activities ?ats
 	statuses ?sts
-	parent ?par
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "IfActivityStatus")
-(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?par ?run)
+(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?run)
 (retract ?ias))
 
 (a:MovingObjectMessageStart 0
@@ -1296,8 +1168,7 @@
 	object ?obj
 	resource ?res
 	variable ?var
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1311,35 +1182,17 @@
               (.putAttribute mo atr (vec (cons (inc idx) rr))))
             (a/vvr ?var nil ?run))
       (retract ?ur)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+      (a/start-next ?nacts ?pid ?run))
     (modify ?ur status "FAILED"))))
 
 (a:MovingObjectMessageDone 0
 ?mom (MovingObjectMessage status "DONE"
-	instance ?ain
-	parent ?par
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?mom)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
-
-(a:PositionDone 0
-?pos (Position status "DONE"
-	instance ?ain
-	parent ?par 
-	next_actions ?nacts)
-=>
-(retract ?pos)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ArriveIntoPolygon 0
 ?aip (ArriveIntoPolygon status "START" 
@@ -1347,8 +1200,6 @@
 	object ?obj 
 	polygon ?pol 
 	spd ?spd 
-	instance ?ain
-	parent ?par
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1365,8 +1216,6 @@
 	longitude lon
 	speed (Float. spd)
 	radius 0.2
-	instance ?ain
-	parent ?par
 	run ?run
 	next_actions ?nacts))
   (modify ?aip status "FAILED")))
@@ -1377,26 +1226,19 @@
 	title ?tit
 	scenarios ?scs
 	default_parameters ?dfs
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "StartScenarios")
 (loop [ss ?scs dd ?dfs]
   (when (seq ss)
-    (if (= (first dd) true) 
-      (a/subscenario (first ss) nil nil false ?pid ?run)
-      (s/start-scenario (first ss) nil))
+    (s/start-scenario (first ss) (if (= (first dd) true) {}))
     (recur (rest ss) (rest dd))))
 (retract ?ss)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:VerticalControlProfile 0
-(Clock time ?t)
 ?vc (VerticalControl status "REPEAT" 
 	vc_type "PROFILE"
 	title ?tit 
@@ -1431,9 +1273,8 @@
 	vc_type ?vct
 	alt_profile ?apf
 	period ?prd 
+	parent ?pid
 	run ?run
-	instance ?ain
-	parent ?par 
 	next_actions ?nacts
 	(> ?t ?prd))
 =>
@@ -1445,10 +1286,7 @@
         (.setAltitude mo (last alts))))
     (.removeAttribute mo "VC_TYPE")))
 (retract ?vc)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:VerticalControlStart 0
 ?vc (VerticalControl status "START" 
@@ -1489,19 +1327,15 @@
 ?sts (SetTimeScale status "START"
 	title ?tit 
 	scale ?scl
-	instance ?ain
+	parent ?pid
 	run ?run
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "SetTimeScale")
 (if-let [scl (a/vv ?scl ?run)]
   (ru.igis.omtab.OMT/setTimeScale scl))
 (retract ?sts)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ConfirmPosition 0
 ?cp (ConfirmPosition status "START" 
@@ -1510,9 +1344,8 @@
 	latitude ?lat
 	longitude ?lon
 	client ?cli
+	parent ?pid
 	run ?run
-	instance ?ain 
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "ConfirmPosition")
@@ -1550,10 +1383,7 @@
 	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})
       (.putAttribute mo "SAT-BBEAR" bb)
       (retract ?cp)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts)))))
+      (a/start-next ?nacts ?pid ?run)))))
 
 (a:CircleScan 0
 ?cs (CircleScan status "START"
@@ -1562,9 +1392,8 @@
 	detector ?det
 	client ?cli
 	text ?txt
+	parent ?pid
 	run ?run
-	instance ?ain 
-	parent ?par 
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "CircleScan")
@@ -1595,17 +1424,13 @@
 	;; " скорость " (.getSpeed tgt)) {} 0 clid)
                 ;; (navobs.commands/set-visible true tgt clid))) )))
       (retract ?cs)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts)))))
+      (a/start-next ?nacts ?pid ?run)))))
 
 (d:CatchExceptionStart 0
 ?ce (CatchException status "START" 
 	title ?tit 
 	objects ?obs
 	statuses ?sts
-	parent ?par
 	run ?run
 	variants ?vrs)
 =>
@@ -1620,7 +1445,6 @@
 	title ?tit 
 	objects ?obs
 	statuses ?sts
-	parent ?par
 	run ?run
 	variants ?vrs)
 ?ex (Exception run ?run
@@ -1632,7 +1456,7 @@
 (loop [oo ?obs ss ?sts vv ?vrs]
   (if (seq oo)
     (if (and (= (first oo) ?tit2) (= (first ss) ?sta))
-      (do (s/start-tasks-actions [(first vv)] ?par ?run)
+      (do (s/start-tasks-actions [(first vv)] ?run)
         (retract ?ce ?ex))
       (recur (rest oo) (rest ss) (rest vv)))
     (modify ?ce status "FAILED"))))
@@ -1642,8 +1466,7 @@
 	title ?tit
 	object ?obj
 	collection ?col
-	instance ?ain
-	parent ?par
+	parent ?pid
 	run ?run
 	next_actions ?nacts)
 =>
@@ -1652,10 +1475,7 @@
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (ru.rules/retract-instances inss))
 (retract ?ros)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:PolyMovingRepeat 0
 ?pm (PolyMoving status "REPEAT"
@@ -1664,8 +1484,7 @@
 	observer ?obs
 	time ?tim
 	run ?run
-	instance ?ain
-	parent ?par 
+	parent ?pid
 	next_actions ?nacts)
 
 (Clock time ?t)
@@ -1675,10 +1494,7 @@
     (cond
       (< re 0) (modify ?pm status "FAILED")
       (= re 0) (do (retract ?pm)
-                       (asser Action status "DONE" 
-		parent ?par 
-		instance ?ain
-		next_actions ?nacts))))
+                       (a/start-next ?nacts ?pid ?run))))
   (modify ?pm status "FAILED")))
 
 (a:PolyMovingStart 0
@@ -1725,9 +1541,8 @@
 	mapob ?mpb
 	N ?n
 	time ?tim
+	parent ?pid
 	run ?run
-	instance ?ain
-	parent ?par 
 	next_actions ?nacts)
 
 (Clock time ?t)
@@ -1738,10 +1553,7 @@
       (= re 0) (let [nxt (inc ?n)]
 	(if (>= nxt (count ?mpb))
 	  (do (retract ?pmn)
-	     (asser Action status "DONE" 
-		parent ?par 
-		instance ?ain
-		next_actions ?nacts))
+	     (a/start-next ?nacts ?pid ?run))
 	  (modify ?pmn N nxt))))))
 
 (sim:RetractSecondClock 10
@@ -1768,8 +1580,7 @@
 	object ?obj
 	polygon ?pol
 	step ?stp
-	instance ?ain
-	parent ?par 
+	parent ?pid
 	next_actions ?nacts
 	run ?run)
 (Clock time ?t)
@@ -1803,18 +1614,14 @@
 			:crs1crs2 [crs0 crs1]
 			:x1y1 [x0 y0])))))
     (do (retract ?mt)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts)))))
+      (a/start-next ?nacts ?pid ?run)))))
 
 (a:MovingTraceStart 0
 ?mt (MovingTrace status "START"
 	title ?tit
 	object ?obj
 	polygon ?pol
-	instance ?ain
-	parent ?par 
+	parent ?pid
 	next_actions ?nacts
 	run ?run)
 =>
@@ -1830,45 +1637,37 @@
       (modify ?mt status "REPEAT"
 	polygon pol))
     (do (retract ?mt)
-      (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts)))))
+      (a/start-next ?nacts ?pid ?run)))))
 
 (a:WaitObAttributesDone 0
 ?woa (WaitObAttributes status "DONE" 
-	instance ?ain 
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?woa)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (d:TDecision 0
 ?td (TDecision status "START" 
 	title ?tit
 	script ?scr
 	variants ?vrs
-	parent ?par
 	run ?run)
 =>
 (println "Decision:" ?tit "TDecision")
-(s/start-tasks-actions (d/t-decision ?scr ?vrs ?pro ?run) ?par ?run)
+(s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?run)
 (retract ?td))
 
 (d:Hard 0
 ?hd (Hard status "START" 
 	title ?tit 
 	number ?num
-	parent ?par
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "Hard")
-(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?par ?run)
+(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?run)
 (retract ?hd))
 
 (a:CombStart 0
@@ -1881,10 +1680,7 @@
 	spd ?spd
 	time ?tim
 	route ?rte
-	run ?run
-	instance ?ain 
-	parent ?par 
-	next_actions ?nacts)
+	run ?run)
 =>
 (println "Action started:" ?tit "Comb")
 (let [obj (a/mapob-vv ?obj ?run)
@@ -1914,10 +1710,7 @@
 	object ?obj 
 	spd ?spd
 	route ?rte
-	run ?run
-	instance ?ain 
-	parent ?par 
-	next_actions ?nacts)
+	run ?run)
 (Clock)
 =>
 (let [obj (a/vv ?obj ?run)
@@ -1932,7 +1725,8 @@
 	 'object obj
 	 'route rte
 	 'spd spd
-	 'radius 0.2])
+	 'radius 0.2
+	 'run ?run])
     (modify ?cb status tit))))
 
 (a:StopRouteStart 0
@@ -1947,27 +1741,10 @@
 	status "WORK")
   (modify ?sor status "FAILED"))))
 
-(a:ArriveDone 0
-?arr (Arrive status "DONE"
-	object ?obj 
-	latitude ?lat 
-	longitude ?lon 
-	instance ?ain
-	parent ?par 
-	next_actions ?nacts
- 	run ?run)
-=>
-(a/stop-moving ?obj ?lat ?lon ?run)
-(retract ?arr)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
-
 (a:CombDone 0
 ?cb (Comb status ?sts
-	instance ?ain
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts
 	((not= ?sts "START")
 	 (not= ?sts "REPEAT")))
@@ -1975,10 +1752,7 @@
 (not GoRoute title ?sts)
 =>
 (retract ?cb)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:StopRouteWork 0
 ?gor (GoRoute object ?obj)
@@ -1987,9 +1761,8 @@
 ?sor (StopRoute status "WORK"
 	title ?tit
 	object ?obj
+	parent ?pid
 	run ?run
-	parent ?par 
-	instance ?ain
 	next_actions ?nacts)
 =>
 (let [mo (a/mapob-vv ?obj ?run)]
@@ -1998,10 +1771,7 @@
 	latitude (.getLatitude mo)
 	longitude (.getLongitude mo))
   (retract ?sor)
-  (asser Action status "DONE" 
-	parent ?par 
-	instance ?ain
-	next_actions ?nacts)))
+  (a/start-next ?nacts ?pid ?run)))
 
 (a:ObjectTaskStart 0
 ?ot (ObjectTask status "START"
@@ -2017,44 +1787,41 @@
        ctx (a/vv ?ctx ?run)
        pla (a/vv ?pla ?run)]
   (if (not (or (a/null? sub) (a/null? pla)))
-    (let [hm (s/context-to-hm ctx)]
+    (let [hm (s/context-to-hm ctx)
+           id (gensym "Ots")]
       (a/merge-hm-run hm ?run)
       (.put hm "?protagonist" pla)
-      (protege.core/ssv sub "id" (s/gen-id (protege.core/sv sub "title")))
-      (protege.core/ssv sub "run" hm)
-      (protege.core/ssv sub "status" "START")
-      (ru.rules/assert-instances [sub])
-      (modify ?ot status (if (= ?wai true)
-		"REPEAT"
-		"DONE")))
+      (-> (ru.rules/mk-frame sub)
+        (ru.rules/update-frame
+	'Scenario
+	{'status "START"
+	 'run hm
+	 'parent id)
+        rete.core/assert-frame)
+      (modify ?ot status (if (= ?wai true) "REPEAT" "DONE")
+	id id)
     (modify ?ot status "FAILED"))))
 
 (a:ObjectTaskRepeat 5
 ?ot (ObjectTask status "REPEAT"
-	id ?pid
-	instance ?ain 
-	parent ?par 
+	id ?id
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 (Scenario status "DONE"
-	parent ?pid)
+	parent ?id)
 =>
 (retract ?ot)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:ObjectTaskDone 0
 ?ot (ObjectTask status "DONE"
-	instance ?ain 
-	parent ?par 
+	parent ?pid
+	run ?run
 	next_actions ?nacts)
 =>
 (retract ?ot)
-(asser Action status "DONE" 
-	parent ?par 
-	instance ?ain 
-	next_actions ?nacts))
+(a/start-next ?nacts ?pid ?run))
 
 (a:WaitObAttributesStart 0
 ?woa (WaitObAttributes status "START"

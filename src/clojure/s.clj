@@ -45,26 +45,24 @@
          (.update (Context.) hm "Update Parameters"))
     hm)))
 
-(defn gen-id [tit]
-  (let [id (name (gensym (.substring tit 0 (min (count tit) 8))))]
-  (.replaceAll id " " "_")))
-
-(defn start-scenario [siorti mp]
+(defn start-scenario [siorti mp ipx]
   (if-let [si (if (string? siorti) (fifos "Scenario" "title" siorti) siorti)]
   (-> (ru.rules/mk-frame si)
     (ru.rules/update-frame
 	'Scenario
 	{'status "START"
-	 'run (context-to-hm (sv si "context") (sv si "protagonist") mp)})
+	 'run (context-to-hm (sv si "context") (sv si "protagonist") mp)
+	 'id (gensym ipx)})
     rete.core/assert-frame)
   true))
 
-(defn start-tasks-actions [tas run]
+(defn start-tasks-actions [tas pid run]
   (doseq [ta tas]
   (-> (ru.rules/mk-frame ta)
     (ru.rules/update-frame
 	:same-type
 	{'status "START"
+	 'parent pid
 	 'run run})
     rete.core/assert-frame)))
 
@@ -82,7 +80,7 @@
       (doseq [s ss]
         (if-let [pro (sv s "protagonist")]
           (or (OMT/getMapOb pro) (OMT/addMapOb pro)))
-        (start-scenario s nil)) ))
+        (start-scenario s nil "Adm")) ))
   (println "Simulation not started!")))
 
 (defn run-annotated-scenario []
@@ -99,7 +97,7 @@
       (doseq [s ss]
         (if-let [pro (sv s "protagonist")]
           (or (OMT/getMapOb pro) (OMT/addMapOb pro)))
-        (start-scenario s nil)) ))
+        (start-scenario s nil "Adm")) ))
   (println "Simulation not started!")))
 
 (defn task-button-support []
@@ -140,7 +138,7 @@
 	(or (fifos "Scenario" "title" siorti) (find-general-scenario siorti))
 	siorti)]
     (ssv si "protagonist" pla)
-    (start-scenario si mp))))
+    (start-scenario si mp "Pla"))))
 
 (defn clear-scenario-activities [run]
   (let [acts (rete.core/facts-with-slot-value 'run = run)
