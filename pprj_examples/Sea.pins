@@ -1,4 +1,4 @@
-; Tue Nov 28 21:02:57 MSK 2017
+; Sat Dec 02 18:48:45 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4760,7 +4760,7 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(mode run)
+	(mode trace-long)
 	(rule-sets
 		[ScenarioN_Class550030]
 		[Scenario_Class100006]

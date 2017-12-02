@@ -66,6 +66,15 @@
 	 'run run})
     rete.core/assert-frame)))
 
+(defn start-next [nacts pid ain run]
+  (if (empty? nacts)
+  (rete.core/assert-frame
+    ['Action 'status "DONE"
+	'parent pid
+	'instance ain
+	'next_actions nacts])
+  (s/start-tasks-actions nacts pid run)))
+
 (defn include? [y x]
   (some #{x} y))
 

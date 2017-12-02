@@ -1,4 +1,4 @@
-; Fri Dec 01 21:40:56 MSK 2017
+; Sat Dec 02 21:30:32 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1688,6 +1688,14 @@
 	(single-slot route
 		(type INSTANCE)
 ;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

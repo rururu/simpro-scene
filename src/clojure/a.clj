@@ -78,15 +78,13 @@
            dmdm (seq (.split poi " "))
            lat (str (nth dmdm 0) " " (nth dmdm 1))
            lon (str (nth dmdm 2) " " (nth dmdm 3))]
-      [lat lon])
+      [(MapOb/getDeg lat) (MapOb/getDeg lon)])
     [nil nil])))
 
-(defn stop-moving [?obj lt ln r]
-  (let [obj (vv ?obj r)]
-  (when-let [mo (OMT/getMapOb obj)]
-    (.setSpeed mo (double 0))
-    (.setLatitude mo (double lt))
-    (.setLongitude mo (double ln)))))
+(defn stop-moving [mo lat lon]
+  (.setSpeed mo (double 0))
+(.setLatitude mo (double lat))
+(.setLongitude mo (double lon)))
 
 (defn op-time []
   (str "D-" (Clock/getDay) " " 
@@ -109,25 +107,6 @@
       (OMT/removeMapOb (.getInstance mo) (is? del))))
   (if (seq mos)
     (OMT/clearMapObs mos (is? del)))))
-
-(defn arriveN [tit obj rou n ?spd rad run par]
-  (let [[lat lon] (latlon-N rou n)
-       spd (Double. (vv ?spd run))]
-  (if (nil? lat)
-    "DONE"
-    (let [gor-status (s/gen-id tit)
-           arr ['Arrive 'status "START"
-	'title gor-status
-	'object obj
-	'latitude lat
-	'longitude lon
-	'speed spd
-	'radius rad
-	'next_actions []
-	'run run
-	'parent par]]
-      (rete.core/assert-frame arr)
-      gor-status))))
 
 (defn update-attribute-set [pla ctx p]
   (let [mo (or (OMT/getMapOb pla) (OMT/addMapOb pla))
@@ -588,7 +567,7 @@
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
     (when (identical? (re/slot-value 'run fact) run)
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
-        (break-action (re/slot-value 'title acf) run))
+        (re/retract-fact acf))
       (re/retract-fact (first fact))
       (println "Task breaked " (re/slot-value 'title fact))))))
 
@@ -603,22 +582,7 @@
   (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
     (when (identical? (re/slot-value 'run fact) run)
       (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
-        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
-      (re/retract-fact (first fact)) 
-      (println "Scenario breaked " (re/slot-value 'title fact))))))
-
-(defn break-ot-scenario
-  ([]
-  (let [ss (re/fact-list 'Scenario)
-         sis (map #(re/slot-value 'instance %) ss)]
-    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis "Select Scenarios")]
-      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
-
-([act run]
-  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
-    (when (identical? (re/slot-value 'context fact) run)
-      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
-        (break-task (re/slot-value 'instance tsf) (re/slot-value 'id fact)))
+        (break-task (re/slot-value 'instance tsf) run))
       (re/retract-fact (first fact)) 
       (println "Scenario breaked " (re/slot-value 'title fact))))))
 

@@ -151,8 +151,11 @@
 	'Scenario
 	{'status "START"
 	 'run hm
-	 'parent id)
+	 'parent id})
         rete.core/assert-frame)
+      (asser TwoObRelation parent "Run"
+	observer ?run
+	object hm)
       (modify ?ot status (if (= ?wai true) "REPEAT" "DONE")
 	id id)
     (modify ?ot status "FAILED"))))
@@ -278,12 +281,13 @@
 (modify ?we status (a/wait-event ?evt ?pid ?run)))
 
 (s:StartNextTasks 0
-(Task status "DONE" 
+(Task status "DONE"
+	parent ?pid
 	run ?run
 	next_tasks ?ntasks
 	(> (count ?ntasks) 0))
 =>
-(s/start-tasks-actions ?ntasks ?run))
+(s/start-tasks-actions ?ntasks ?pid ?run))
 
 (a:WaitEventRepeatTOR 0
 ?we (WaitEvent status "REPEAT"
@@ -333,10 +337,11 @@
 	title ?tit
 	events ?evs
 	variants ?vrs
+	parent ?pid
 	run ?run)
 =>
 (println "Decision:" ?tit "EventDecision")
-(s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?run)
+(s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?pid ?run)
 (retract ?ed))
 
 (a:LinkOnOff 0
@@ -370,11 +375,12 @@
 (d:UserDecision 0
 ?ud (UserDecision status "START" 
 	title ?tit 
+	parent ?pid
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "UserDecision")
-(s/start-tasks-actions (d/user-decision ?vrs) ?run)
+(s/start-tasks-actions (d/user-decision ?vrs) ?pid ?run)
 (retract ?ud))
 
 (a:RepeatActionOnOff 0
@@ -436,10 +442,11 @@
 	input_data ?ida
 	conditions ?cds
 	variants ?vrs
+	parent ?pid
 	run ?run)
 =>
 (println "Decision:" ?tit "GeneralDecision")
-(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?run)
+(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?pid ?run)
 (retract ?gd))
 
 (a:PositionStart 0
@@ -535,20 +542,82 @@
 (retract ?om)
 (a/start-next ?nacts ?pid ?run))
 
-(a:Break 0
+(s:Transitivity of Runs 0
+(TwoObRelation parent "Run"
+	observer ?run1
+	object ?run2)
+(TwoObRelation parent "Run"
+	observer ?run2
+	object ?run3)
+=>
+(asser TwoObRelation parent "Run"
+	observer ?run1
+	object ?run3))
+
+(s:Retract Runs Relation for Observer 0
+(Scenario status "DONE"
+	run ?run)
+?tor (TwoObRelation observer ?run)
+=>
+(retract ?tor))
+
+(s:Retract Runs Relation for Object 0
+(Scenario status "DONE"
+	run ?run)
+?tor (TwoObRelation object ?run)
+=>
+(retract ?tor))
+
+(a:Break Tasks 0
 ?brk (Break status "START"
 	title ?tit
 	activity ?act
+	parent ?pid
 	run ?run
-	next_actions ?nacts)
+	next_actions ?nacts
+	(= (protege.core/typ act) "Task"))
 =>
 (println "Action started:" ?tit "Break")
 (if-let [act (a/vv ?act ?run)]
-  (do (condp = (protege.core/typ act)
-	"Scenario" (a/break-scenario act ?run)
-	"ObjectTaskScenario" (a/break-ot-scenario act ?run)
-	"Task" (a/break-task act ?run)
-	(a/break-action  act ?run))
+  (do (a/break-task act ?run)
+    (retract ?brk)
+    (a/start-next ?nacts ?pid ?run))
+  (modify ?brk status "FAILED")))
+
+(a:Break Actions 0
+?brk (Break status "START"
+	title ?tit
+	activity ?act
+	parent ?pid
+	run ?run
+	next_actions ?nacts
+	((not= (protege.core/typ act) "Task")
+	 (not= (protege.core/typ act) "Scenario")
+	 (not= (protege.core/typ act) "ObjectTaskScenario")))
+=>
+(println "Action started:" ?tit "Break")
+(if-let [act (a/vv ?act ?run)]
+  (do (a/break-action  act ?run)
+    (retract ?brk)
+    (a/start-next ?nacts ?pid ?run))
+  (modify ?brk status "FAILED")))
+
+(a:Break Scenarios 0
+?brk (Break status "START"
+	title ?tit
+	activity ?act
+	parent ?pid
+	run ?run
+	next_actions ?nacts
+	[(= (protege.core/typ act) "Scenario")
+	 (= (protege.core/typ act) "ObjectTaskScenario")])
+(TwoObRelation parent "Run"
+	observer ?run
+	object ?run2)
+=>
+(println "Action started:" ?tit "Break")
+(if-let [act (a/vv ?act ?run)]
+  (do (a/break-scenario act ?run2)
     (retract ?brk)
     (a/start-next ?nacts ?pid ?run))
   (modify ?brk status "FAILED")))
@@ -849,6 +918,7 @@
 (s:JoinDone 0
 ?j (Join status "REPEAT"
 	title ?tit
+	parent ?pid
 	run ?run
 	join_tasks ?jtasks
 	next_tasks ?ntasks
@@ -856,7 +926,7 @@
 =>
 (println "Join DONE:" ?tit)
 (retract ?j)
-(s/start-tasks-actions ?ntasks ?run))
+(s/start-tasks-actions ?ntasks ?pid ?run))
 
 (a:DelayRepeat 0
 (Clock time ?t)
@@ -1016,10 +1086,11 @@
 	before ?bef
 	choices ?chs
 	variants ?vrs
+	parent ?pid
 	run ?run)
 =>
 (println "Decision:" ?tit "ODecision")
-(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?run)
+(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?pid ?run)
 (retract ?od))
 
 (a:WaitModelClockRepeat 0
@@ -1102,11 +1173,12 @@
 	title ?tit 
 	activities ?ats
 	statuses ?sts
+	parent ?pid
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "IfActivityStatus")
-(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?run)
+(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?pid ?run)
 (retract ?ias))
 
 (a:MovingObjectMessageStart 0
@@ -1445,6 +1517,7 @@
 	title ?tit 
 	objects ?obs
 	statuses ?sts
+	parent ?pid
 	run ?run
 	variants ?vrs)
 ?ex (Exception run ?run
@@ -1456,7 +1529,7 @@
 (loop [oo ?obs ss ?sts vv ?vrs]
   (if (seq oo)
     (if (and (= (first oo) ?tit2) (= (first ss) ?sta))
-      (do (s/start-tasks-actions [(first vv)] ?run)
+      (do (s/start-tasks-actions [(first vv)] ?pid ?run)
         (retract ?ce ?ex))
       (recur (rest oo) (rest ss) (rest vv)))
     (modify ?ce status "FAILED"))))
@@ -1653,21 +1726,23 @@
 	title ?tit
 	script ?scr
 	variants ?vrs
+	parent ?pid
 	run ?run)
 =>
 (println "Decision:" ?tit "TDecision")
-(s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?run)
+(s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?pid ?run)
 (retract ?td))
 
 (d:Hard 0
 ?hd (Hard status "START" 
 	title ?tit 
 	number ?num
+	parent ?pid
 	run ?run
 	variants ?vrs)
 =>
 (println "Decision:" ?tit "Hard")
-(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?run)
+(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?pid ?run)
 (retract ?hd))
 
 (a:CombStart 0
@@ -1796,8 +1871,11 @@
 	'Scenario
 	{'status "START"
 	 'run hm
-	 'parent id)
+	 'parent id})
         rete.core/assert-frame)
+      (asser TwoObRelation parent "Run"
+	observer ?run
+	object hm)
       (modify ?ot status (if (= ?wai true) "REPEAT" "DONE")
 	id id)
     (modify ?ot status "FAILED"))))
