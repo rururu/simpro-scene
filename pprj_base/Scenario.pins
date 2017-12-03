@@ -1,4 +1,4 @@
-; Sat Dec 02 21:30:32 MSK 2017
+; Sun Dec 03 22:47:38 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -619,7 +619,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           id (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent id})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (= ?wai true) \"REPEAT\" \"DONE\")\n	id id))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -657,14 +657,14 @@
 ([Scenario_Class160000] of  Rule
 
 	(lhs "?gor (GoRoute status \"START\"\n	title ?tit\n	object ?obj\n	route ?rou\n	spd ?spd\n	backward ?bwd\n	radius ?rad\n	run ?run\n	parent ?par)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?run)\n       mo (a/mapob-vv ?obj ?run)\n       spd (a/vv ?spd ?run)]\n  (if (and rou mo spd)\n    (let [pts (protege.core/svs rou \"points\")\n           cnt (count pts)\n           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)\n           [lat lon] (a/latlon-N rou pnt)\n           spd (read-string spd)]\n      (println :LAT lat :LON lon)\n      (a/go mo lat lon spd)\n      (modify ?gor route rou\n	N pnt\n	spd spd\n	latitude lat\n	longitude lon\n	status \"REPEAT\"))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?run)\n       mo (a/mapob-vv ?obj ?run)\n       sps (a/vv ?spd ?run)]\n  (if (and rou mo sps)\n    (let [pts (vec (protege.core/svs rou \"points\"))\n           cnt (count pts)\n           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)\n           [lat lon] (a/latlon-N pts pnt)\n           spn (read-string sps)]\n      (a/go mo lat lon spn)\n      (modify ?gor route pts\n	N pnt\n	spd spn\n	latitude lat\n	longitude lon\n	status \"REPEAT\"))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteStart"))
 
 ([Scenario_Class160001] of  Rule
 
 	(lhs "?gor (GoRoute status \"REPEAT\"\n	title ?tit\n	object ?obj \n	latitude ?lat\n	longitude ?lon\n	route ?rou\n	spd ?spd \n	radius ?rad\n	backward ?bwd\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
-	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon)))\n      (if (> (.distanceNM mo lat lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo lat lon)))))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteRepeat"))
 
@@ -709,8 +709,8 @@
 
 ([Scenario_Class170000] of  CloFunction
 
-	(source "(let [pts (seq (svs rou \"points\"))]\n  (if (and (<= 0 n) (< n (count pts)))\n    (let [poi (nth pts n)\n           dmdm (seq (.split poi \" \"))\n           lat (str (nth dmdm 0) \" \" (nth dmdm 1))\n           lon (str (nth dmdm 2) \" \" (nth dmdm 3))]\n      [(MapOb/getDeg lat) (MapOb/getDeg lon)])\n    [nil nil]))")
-	(title "latlon-N [rou n]"))
+	(source "(if (and (<= 0 n) (< n (count pts)))\n  (let [poi (nth pts n)\n         dmdm (seq (.split poi \" \"))\n         lat (str (nth dmdm 0) \" \" (nth dmdm 1))\n         lon (str (nth dmdm 2) \" \" (nth dmdm 3))]\n      [(MapOb/getDeg lat) (MapOb/getDeg lon)])\n  [nil nil])")
+	(title "latlon-N [pts n]"))
 
 ([Scenario_Class180000] of  CloFunction
 
@@ -2838,7 +2838,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)\n           id (gensym \"Ots\")]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent id})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (= ?wai true) \"REPEAT\" \"DONE\")\n	id id))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 

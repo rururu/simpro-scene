@@ -1,4 +1,4 @@
-; Fri Apr 14 11:43:44 MSK 2017
+; Sun Dec 03 22:01:01 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -133,7 +133,7 @@
 
 ([Clojure_Class190000] of  CloFunction
 
-	(source "(not (or (nil? boolslot) \n           (= boolslot Boolean/FALSE)\n           (= boolslot '?)))")
+	(source "(not (or (nil? boolslot) \n           (= boolslot Boolean/FALSE)\n           (= boolslot :?)))")
 	(title "is? [boolslot]"))
 
 ([Clojure_Class20000] of  CloFunction

@@ -133,7 +133,7 @@ s)
 (defn is? [boolslot]
   (not (or (nil? boolslot) 
            (= boolslot Boolean/FALSE)
-           (= boolslot '?))))
+           (= boolslot :?))))
 
 (defn fainst [inss text]
   ;; Find annotated instance

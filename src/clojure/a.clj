@@ -71,15 +71,14 @@
 (defn degmin-to-deg [?lat r]
   (MapOb/getDeg (vv ?lat r)))
 
-(defn latlon-N [rou n]
-  (let [pts (seq (svs rou "points"))]
+(defn latlon-N [pts n]
   (if (and (<= 0 n) (< n (count pts)))
-    (let [poi (nth pts n)
-           dmdm (seq (.split poi " "))
-           lat (str (nth dmdm 0) " " (nth dmdm 1))
-           lon (str (nth dmdm 2) " " (nth dmdm 3))]
+  (let [poi (nth pts n)
+         dmdm (seq (.split poi " "))
+         lat (str (nth dmdm 0) " " (nth dmdm 1))
+         lon (str (nth dmdm 2) " " (nth dmdm 3))]
       [(MapOb/getDeg lat) (MapOb/getDeg lon)])
-    [nil nil])))
+  [nil nil]))
 
 (defn stop-moving [mo lat lon]
   (.setSpeed mo (double 0))
