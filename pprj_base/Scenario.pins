@@ -1,4 +1,4 @@
-; Sun Dec 03 22:47:38 MSK 2017
+; Mon Dec 04 22:36:38 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -564,7 +564,6 @@
 		[Scenario_Class160002]
 		[Scenario_Class130001]
 		[Scenario_Class30000]
-		[Scenario_Class210002]
 		[Scenario_Class220000]
 		[Scenario_Class270001]
 		[Scenario_Class280000]
@@ -619,7 +618,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -664,7 +663,7 @@
 ([Scenario_Class160001] of  Rule
 
 	(lhs "?gor (GoRoute status \"REPEAT\"\n	title ?tit\n	object ?obj \n	latitude ?lat\n	longitude ?lon\n	route ?rou\n	spd ?spd \n	radius ?rad\n	backward ?bwd\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
-	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon\n	N next)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteRepeat"))
 
@@ -731,8 +730,8 @@
 
 ([Scenario_Class200000] of  Rule
 
-	(lhs "?we (WaitEvent status \"START\"\n	id ?pid\n	title ?tit\n	event ?evt\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(modify ?we status (a/wait-event ?evt ?pid ?run))")
+	(lhs "?we (WaitEvent status \"START\"\n	title ?tit\n	event ?evt\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(if-let [evt (a/vv ?evt ?run)]\n  (let [wid (gensym \"Wte\")]\n    (-> (ru.rules/mk-frame evt)\n      (ru.rules/update-frame\n	:same-type\n	{'parent wid})\n        rete.core/assert-frame)\n    (modify ?we id wid\n	status \"REPEAT\"))\n  (modify ?we status \"FAILED\"))")
 	(salience 0)
 	(title "a:WaitEventStart"))
 
@@ -794,15 +793,10 @@
 
 ([Scenario_Class210000] of  Rule
 
-	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?pid\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?tor (TwoObRelation title ?tit2\n	ob_relation ?obr\n	object ?obj\n	observer ?obs\n	radius ?rad\n	value ?val\n	parent ?pid\n	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?run))")
+	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?tor (TwoObRelation title ?tit2\n	ob_relation ?obr\n	object ?obj\n	observer ?obs\n	radius ?rad\n	value ?val\n	parent ?id\n	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?run))")
 	(rhs "(retract ?we ?tor)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:WaitEventRepeatTOR"))
-
-([Scenario_Class210002] of  CloFunction
-
-	(source "(if-let [evt (vv ?evt r)]\n  (do\n    (ssv evt \"parent\" pid)\n    (assert-instances [evt])\n    \"REPEAT\")\n  \"FAILED\")")
-	(title "wait-event [?evt pid r]"))
 
 ([Scenario_Class220000] of  CloFunction
 
@@ -974,14 +968,14 @@
 
 ([Scenario_Class260005] of  Rule
 
-	(lhs "?we (WaitEvent status \"REPEAT\" \n	id ?pid\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?op (ObProperty title ?tit2\n	ob_property ?prop\n	object ?obj\n	radius ?rad\n	latitude ?lat\n	longitude ?lon\n	value ?val\n	parent ?pid\n	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?run))")
+	(lhs "?we (WaitEvent status \"REPEAT\" \n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?op (ObProperty title ?tit2\n	ob_property ?prop\n	object ?obj\n	radius ?rad\n	latitude ?lat\n	longitude ?lon\n	value ?val\n	parent ?id\n	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?run))")
 	(rhs "(retract ?we ?op)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:WaitEventRepeatOP"))
 
 ([Scenario_Class260006] of  Rule
 
-	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?pid\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?oa (ObAttribute title ?tit2\n	attribute ?atr\n	object ?obj\n	relation ?rel\n	value ?val\n	parent ?pid\n	(e/ob-attribute ?atr ?obj ?rel ?val ?run))")
+	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?oa (ObAttribute title ?tit2\n	attribute ?atr\n	object ?obj\n	relation ?rel\n	value ?val\n	parent ?id\n	(e/ob-attribute ?atr ?obj ?rel ?val ?run))")
 	(rhs "(retract ?we ?oa)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:WaitEventRepeatOA"))
@@ -3063,7 +3057,6 @@
 ([WaitEvent] of  ActionClass
 
 	(functions
-		[Scenario_Class210002]
 		[Scenario_Class220002]
 		[Scenario_Class230002]
 		[Scenario_Class250003])

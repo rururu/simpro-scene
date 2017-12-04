@@ -128,14 +128,6 @@
   (if (nil? (.get hm r))
     (.put hm r (.get run r)))))
 
-(defn wait-event [?evt pid r]
-  (if-let [evt (vv ?evt r)]
-  (do
-    (ssv evt "parent" pid)
-    (assert-instances [evt])
-    "REPEAT")
-  "FAILED"))
-
 (defn eval-with-context [ctx body]
   (let [bnd (vec (interleave (keys ctx) (vals ctx)))]
   (eval `(let ~bnd ~@body))))
