@@ -1,4 +1,4 @@
-; Mon Dec 04 22:36:38 MSK 2017
+; Tue Dec 05 22:08:32 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -663,7 +663,7 @@
 ([Scenario_Class160001] of  Rule
 
 	(lhs "?gor (GoRoute status \"REPEAT\"\n	title ?tit\n	object ?obj \n	latitude ?lat\n	longitude ?lon\n	route ?rou\n	spd ?spd \n	radius ?rad\n	backward ?bwd\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
-	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon\n	N next)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (.setLatitude mo ?lat)\n          (.setLongitude mo ?lon)\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon\n	N next)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteRepeat"))
 
@@ -1009,8 +1009,8 @@
 
 ([Scenario_Class270000] of  Rule
 
-	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Position\")\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n          (modify ?pos status \"DONE\")))\n  (modify ?pos status \"FAILED\"))")
+	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Position\")\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n          (retract ?pos)\n          (s/start-next ?nacts ?pid ?ain ?run)))\n  (modify ?pos status \"FAILED\"))")
 	(salience 0)
 	(title "a:PositionStart"))
 
@@ -1043,14 +1043,14 @@
 
 ([Scenario_Class280002] of  Rule
 
-	(lhs "?pos (Position status \"REPEAT\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))\n(Clock)")
+	(lhs "(Clock)\n?pos (Position status \"REPEAT\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))")
 	(rhs "(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n(retract ?pos)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:PositionRepeat"))
 
 ([Scenario_Class280003] of  CloFunction
 
-	(source "(let [mob (OMT/getMapOb (vv ?obj r))\n      mos (OMT/getMapOb (vv ?obs r))\n      posa (vv ?posa r)\n      posd (vv ?posd r)\n      poss (vv ?poss r)]\n  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spd (read-string poss)\n          ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)\n          [lat lon] (seq (.position mos ang dist))]\n      (or (.near mob lat lon rad) (.abaft mob lat lon)) ) ))")
+	(source "(let [mob (OMT/getMapOb (vv ?obj r))\n       mos (OMT/getMapOb (vv ?obs r))\n       posa (vv ?posa r)\n       posd (vv ?posd r)\n       poss (vv ?poss r)]\n  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spd (read-string poss)\n          ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)\n          [lat lon] (seq (.position mos ang dist))]\n      (or (.near mob lat lon rad) (.abaft mob lat lon)) ) ))")
 	(title "in-position? [?obj ?obs ?posa ?posd ?poss rel rad r]"))
 
 ([Scenario_Class280004] of  CloFunction

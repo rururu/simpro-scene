@@ -1,4 +1,4 @@
-; Mon Dec 04 20:36:58 MSK 2017
+; Tue Dec 05 22:09:09 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2445,6 +2445,7 @@
 		[Sea_Class231]
 		[Sea_Class232]
 		[Sea_Class233])
+	(object [Sea_Class160021])
 	(parent "s1.Situa3484")
 	(run "s1.Colli3483")
 	(status "START")

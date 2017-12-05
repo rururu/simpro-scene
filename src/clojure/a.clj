@@ -225,10 +225,10 @@
 
 (defn in-position? [?obj ?obs ?posa ?posd ?poss rel rad r]
   (let [mob (OMT/getMapOb (vv ?obj r))
-      mos (OMT/getMapOb (vv ?obs r))
-      posa (vv ?posa r)
-      posd (vv ?posd r)
-      poss (vv ?poss r)]
+       mos (OMT/getMapOb (vv ?obs r))
+       posa (vv ?posa r)
+       posd (vv ?posd r)
+       poss (vv ?poss r)]
   (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))
     (let [an1 (read-string posa)
           dist (read-string posd)
