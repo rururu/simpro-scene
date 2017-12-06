@@ -1,4 +1,4 @@
-; Tue Dec 05 22:08:32 MSK 2017
+; Wed Dec 06 22:48:05 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -618,7 +618,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -1150,7 +1150,7 @@
 
 ([Scenario_Class310005] of  Rule
 
-	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?run\n	object ?run2)")
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?obs\n	object ?obj)\n(Scenario run ?run2\n	((= (.hashCode ?run) ?obs)\n	 (= (.hashCode ?run2) ?obj)))")
 	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (a/break-scenario act ?run2)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
 	(salience 0)
 	(title "a:Break Scenarios"))
@@ -2832,7 +2832,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer ?run\n	object hm)\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 
