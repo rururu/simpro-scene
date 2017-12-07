@@ -1,4 +1,4 @@
-; Wed Dec 06 22:48:05 MSK 2017
+; Thu Dec 07 18:09:39 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -847,7 +847,7 @@
 
 ([Scenario_Class230002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        '= (= avl vvl)\n        '!= (not= avl vvl)\n        '> (> avl vvl)\n        '< (< avl vvl)\n        '>= (>= avl vvl)\n        '<= (<= avl vvl)\n        'starts-with (.startsWith (or avl \"\") (str vvl))\n        'ends-with (.endsWith (or avl \"\") (str vvl))\n        'empty (empty? avl)\n        'resource-exhausted (>= (first avl) (count (rest avl)))\n        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        false))\n    false))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)\n       rel (if (string? rel) (symbol rel) rel)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (println :OA :REL rel (type rel) (= rel 'resource-exhausted))\n      (if (and avl vvl)\n        (condp = rel\n          '= (= avl vvl)\n          '!= (not= avl vvl)\n          '> (> avl vvl)\n          '< (< avl vvl)\n          '>= (>= avl vvl)\n          '<= (<= avl vvl)\n          'starts-with (.startsWith avl (str vvl))\n          'ends-with (.endsWith avl (str vvl))\n          'empty (empty? avl)\n          'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))\n          'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n          'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n          false)))))")
 	(title "ob-attribute [atr ?obj rel ?val r]"))
 
 ([Scenario_Class230004] of  CloFunction
@@ -2850,7 +2850,7 @@
 
 ([ScenarioN_Class730000] of  CloFunction
 
-	(source "(let [y (and (string? x) (read-string x))]\n  (if (number? y) \n    y \n    (if (some? x) x)))")
+	(source "(if (string? x)\n  (try\n    (read-string x)\n    (catch Exception e\n      x))\n  x)")
 	(title "try-str-num [x]"))
 
 ([ScenarioN_Class740000] of  Command
@@ -2870,7 +2870,7 @@
 
 ([ScenarioN_Class750001] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (re/retract-fact acf))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (println :FACT fact)\n      (println :CHILDS (re/facts-with-slot-value 'parent = (re/slot-value 'id fact)))\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (println :ACF acf)\n        (re/retract-fact acf))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
 	(title "break-task"))
 
 ([ScenarioN_Class750002] of  CloFunction

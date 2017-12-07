@@ -1,4 +1,4 @@
-; Wed Dec 06 22:49:09 MSK 2017
+; Thu Dec 07 12:45:56 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -777,7 +777,7 @@
 	(id "s1.Place3607")
 	(next_actions
 		[Sea_Class136]
-		[Sea_Class142])
+		[Sea_Class390039])
 	(object [Sea_Class244])
 	(observer [ScenarioN_Class570000])
 	(parent "s1.Airpl3573")
@@ -806,7 +806,7 @@
 	(id "s1.Place2174")
 	(next_actions
 		[Sea_Class138]
-		[Sea_Class143])
+		[Sea_Class390040])
 	(object [Sea_Class245])
 	(observer [ScenarioN_Class570000])
 	(parent "s1.Airpl2125")
@@ -945,44 +945,24 @@
 	(status "START")
 	(title "s1.Place 4th Buoy"))
 
-([Sea_Class142] of  Subscenario
-
-	(context [Sea_Class274])
-	(id "s1.Buoy_3609")
-	(parent "s1.Airpl3573")
-	(run "s1.Airpl3568")
-	(status "START")
-	(sub_scenario [Sea_Class20007])
-	(title "s1.Buoy 1 Start")
-	(wait_subscenario FALSE))
-
-([Sea_Class143] of  Subscenario
-
-	(context [Sea_Class275])
-	(id "s1.Buoy_2176")
-	(parent "s1.Airpl2125")
-	(run "s1.Airpl2120")
-	(status "START")
-	(sub_scenario [Sea_Class20007])
-	(title "s1.Buoy 2 Start")
-	(wait_subscenario FALSE))
-
-([Sea_Class144] of  Subscenario
+([Sea_Class144] of  ObjectTask
 
 	(context [Sea_Class276])
 	(id "s1.Buoy_2202")
 	(parent "s1.Airpl2125")
+	(player [Sea_Class246])
 	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
 	(title "s1.Buoy 3 Start")
 	(wait_subscenario FALSE))
 
-([Sea_Class145] of  Subscenario
+([Sea_Class145] of  ObjectTask
 
 	(context [Sea_Class73])
 	(id "s1.Buoy_2207")
 	(parent "s1.Airpl2125")
+	(player [Sea_Class247])
 	(run "s1.Airpl2120")
 	(status "START")
 	(sub_scenario [Sea_Class20007])
@@ -2150,8 +2130,6 @@
 	(run "s1.Airpl3568")
 	(status "START")
 	(task_scheme
-		[Sea_Class142]
-		[Sea_Class143]
 		[Sea_Class144]
 		[Sea_Class145]
 		[Sea_Class141]
@@ -2161,7 +2139,9 @@
 		[Sea_Class137]
 		[Sea_Class136]
 		[Sea_Class135]
-		[Sea_Class134])
+		[Sea_Class134]
+		[Sea_Class390039]
+		[Sea_Class390040])
 	(title "s1.Airplane Places Buoys"))
 
 ([Sea_Class20013] of  Task
@@ -4392,6 +4372,82 @@
 	(status "START")
 	(title "s1.Wait Radio Emergency"))
 
+([Sea_Class380012] of  CloFuncall
+
+	(source "(ru.rules/sp 'Scenario)"))
+
+([Sea_Class380031] of  CloFuncall
+
+	(source "(ru.rules/sp 'Task)"))
+
+([Sea_Class380032] of  CloFuncall
+
+	(source "(ru.rules/f2 284)"))
+
+([Sea_Class380033] of  Table2
+
+	(column1
+		"final_tasks"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"scenario_scheme"
+		"finish_type"
+		"title"
+		"status"
+		"id"
+		"initial_tasks"
+		"context")
+	(column2
+		"[]"
+		"SimpleInstance(Sea_Class244 of [Cls(NavOb)])"
+		"{?protagonist=SimpleInstance(Sea_Class332 of [Cls(NavOb)]), sum-speed=44.0, ?radiation=SimpleInstance(Sea_Class180015 of [Cls(SpillRepeatAction)]), lon=28.809279961833436, ?figure=SimpleInstance(Sea_Class313 of [Cls(Spill)]), ?ship1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?source1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?ship2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), ?target=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), speed2=0, speed1=0, ?source2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), lat=60.23854847937202, info=Oil: coordinates 60.23854847937202 28.809279961833436 data source Magpie}"
+		"Sus2060"
+		"SimpleInstance(Sea_Class20007 of [Cls(ObjectTaskScenario)])"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"] #object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x457bbe9 \"SimpleInstance(Sea_Class180003 of [Cls(Task)])\"]]"
+		"AND"
+		"s1.Buoy Monitoring 2 Oil Spills"
+		"DOING"
+		"s1.Buoy_3610"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"]]"
+		"SimpleInstance(Sea_Class180012 of [Cls(Context)])")
+	(title "Scenario 284"))
+
+([Sea_Class380034] of  CloFuncall
+
+	(source "(ru.rules/f2 304)"))
+
+([Sea_Class380035] of  Table2
+
+	(column1
+		"final_tasks"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"scenario_scheme"
+		"finish_type"
+		"title"
+		"status"
+		"id"
+		"initial_tasks"
+		"context")
+	(column2
+		"[]"
+		"SimpleInstance(Sea_Class244 of [Cls(NavOb)])"
+		"{?protagonist=SimpleInstance(Sea_Class332 of [Cls(NavOb)]), sum-speed=44.0, ?radiation=SimpleInstance(Sea_Class180030 of [Cls(SpillRepeatAction)]), lon=28.809279961833436, ?figure=SimpleInstance(Sea_Class326 of [Cls(Spill)]), ?ship1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?source1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?ship2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), ?target=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), speed2=0, speed1=0, ?source2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), lat=60.23854847937202, info=Oil: coordinates 60.23854847937202 28.809279961833436 data source Magpie}"
+		"Sus2063"
+		"SimpleInstance(Sea_Class20007 of [Cls(ObjectTaskScenario)])"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"] #object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x457bbe9 \"SimpleInstance(Sea_Class180003 of [Cls(Task)])\"]]"
+		"AND"
+		"s1.Buoy Monitoring 2 Oil Spills"
+		"DOING"
+		"s1.Buoy_3610"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"]]"
+		"SimpleInstance(Sea_Class180012 of [Cls(Context)])")
+	(title "Scenario 304"))
+
 ([Sea_Class380036] of  Table2
 
 	(column1
@@ -4538,6 +4594,60 @@
 	(status "START")
 	(task_scheme [Sea_Class155])
 	(title "s1.Reset Buoy"))
+
+([Sea_Class390036] of  CloFuncall
+
+	(source "(ru.rules/di \"SimpleInstance(Sea_Class244 of [Cls(NavOb)])\")"))
+
+([Sea_Class390037] of  CloFuncall
+
+	(source "(ru.rules/f2 326)"))
+
+([Sea_Class390038] of  Table2
+
+	(column1
+		"final_tasks"
+		"protagonist"
+		"run"
+		"parent"
+		"instance"
+		"scenario_scheme"
+		"finish_type"
+		"title"
+		"status"
+		"id"
+		"initial_tasks"
+		"context")
+	(column2
+		"[]"
+		"SimpleInstance(Sea_Class244 of [Cls(NavOb)])"
+		"{?protagonist=SimpleInstance(Sea_Class332 of [Cls(NavOb)]), sum-speed=44.0, ?radiation=SimpleInstance(Sea_Class180031 of [Cls(SpillRepeatAction)]), lon=28.809279961833436, ?figure=SimpleInstance(Sea_Class328 of [Cls(Spill)]), ?ship1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?source1=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), ?ship2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), ?target=SimpleInstance(Sea_Class344 of [Cls(NavOb)]), speed2=0, speed1=0, ?source2=SimpleInstance(Sea_Class346 of [Cls(NavOb)]), lat=60.23854847937202, info=Oil: coordinates 60.23854847937202 28.809279961833436 data source Magpie}"
+		"Sus2066"
+		"SimpleInstance(Sea_Class20007 of [Cls(ObjectTaskScenario)])"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"] #object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x457bbe9 \"SimpleInstance(Sea_Class180003 of [Cls(Task)])\"]]"
+		"AND"
+		"s1.Buoy Monitoring 2 Oil Spills"
+		"DOING"
+		"s1.Buoy_3610"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x6c9068f1 \"SimpleInstance(Sea_Class20008 of [Cls(Task)])\"]]"
+		"SimpleInstance(Sea_Class180012 of [Cls(Context)])")
+	(title "Scenario 326"))
+
+([Sea_Class390039] of  ObjectTask
+
+	(context [Sea_Class274])
+	(player [Sea_Class244])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 1 Start")
+	(wait_subscenario FALSE))
+
+([Sea_Class390040] of  ObjectTask
+
+	(context [Sea_Class275])
+	(player [Sea_Class245])
+	(sub_scenario [Sea_Class20007])
+	(title "s1.Buoy 2 Start")
+	(wait_subscenario FALSE))
 
 ([Sea_Class40000] of  Rule
 

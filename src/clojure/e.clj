@@ -7,10 +7,12 @@
   ru.igis.omtab.MapOb))
 
 (defn try-str-num [x]
-  (let [y (and (string? x) (read-string x))]
-  (if (number? y) 
-    y 
-    (if (some? x) x))))
+  (if (string? x)
+  (try
+    (read-string x)
+    (catch Exception e
+      x))
+  x))
 
 (defn correct-ca [ca]
   (cond
@@ -73,25 +75,27 @@
 
 (defn ob-attribute [atr ?obj rel ?val r]
   (let [obj (OMT/getMapOb (vv ?obj r))
-       val (vv ?val r)]
+       val (vv ?val r)
+       rel (if (string? rel) (symbol rel) rel)]
   (if (and (some? obj) (some? atr))
     (let [avl (try-str-num (.getAttribute obj (sv atr "title")))
            vvl (try-str-num val)]
-      (condp = rel
-        '= (= avl vvl)
-        '!= (not= avl vvl)
-        '> (> avl vvl)
-        '< (< avl vvl)
-        '>= (>= avl vvl)
-        '<= (<= avl vvl)
-        'starts-with (.startsWith (or avl "") (str vvl))
-        'ends-with (.endsWith (or avl "") (str vvl))
-        'empty (empty? avl)
-        'resource-exhausted (>= (first avl) (count (rest avl)))
-        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] 
+      (println :OA :REL rel (type rel) (= rel 'resource-exhausted))
+      (if (and avl vvl)
+        (condp = rel
+          '= (= avl vvl)
+          '!= (not= avl vvl)
+          '> (> avl vvl)
+          '< (< avl vvl)
+          '>= (>= avl vvl)
+          '<= (<= avl vvl)
+          'starts-with (.startsWith avl (str vvl))
+          'ends-with (.endsWith avl (str vvl))
+          'empty (empty? avl)
+          'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))
+          'in-some-resource (some #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
-        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 
+          'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
-        false))
-    false)))
+          false))))))
 
