@@ -81,21 +81,20 @@
     (let [avl (try-str-num (.getAttribute obj (sv atr "title")))
            vvl (try-str-num val)]
       (println :OA :REL rel (type rel) (= rel 'resource-exhausted))
-      (if (and avl vvl)
-        (condp = rel
-          '= (= avl vvl)
-          '!= (not= avl vvl)
-          '> (> avl vvl)
-          '< (< avl vvl)
-          '>= (>= avl vvl)
-          '<= (<= avl vvl)
-          'starts-with (.startsWith avl (str vvl))
-          'ends-with (.endsWith avl (str vvl))
-          'empty (empty? avl)
-          'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))
-          'in-some-resource (some #(if-let[p (OMT/getMapOb %)] 
+      (condp = rel
+        '= (= avl vvl)
+        '!= (not= avl vvl)
+        '> (> avl vvl)
+        '< (< avl vvl)
+        '>= (>= avl vvl)
+        '<= (<= avl vvl)
+        'starts-with (and avl vvl(.startsWith avl (str vvl)))
+        'ends-with (and avl vvl(.endsWith avl (str vvl)))
+        'empty (empty? avl)
+        'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))
+        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
-          'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 
+        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
-          false))))))
+        false)))))
 

@@ -557,11 +557,8 @@
 ([act run]
   (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]
     (when (identical? (re/slot-value 'run fact) run)
-      (println :FACT fact)
-      (println :CHILDS (re/facts-with-slot-value 'parent = (re/slot-value 'id fact)))
       (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]
-        (println :ACF acf)
-        (re/retract-fact acf))
+        (re/retract-fact (first acf)))
       (re/retract-fact (first fact))
       (println "Task breaked " (re/slot-value 'title fact))))))
 

@@ -1,4 +1,4 @@
-; Thu Dec 07 12:45:56 MSK 2017
+; Fri Dec 08 11:53:15 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2563,7 +2563,7 @@
 	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.Fuel Loading")
-	(values "400"))
+	(values "600"))
 
 ([Sea_Class218] of  Attribute
 
@@ -4237,6 +4237,19 @@
 	(pairs [Sea_Class302])
 	(title "ru6.TC Stop Context"))
 
+([Sea_Class350000] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s11")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
 ([Sea_Class350001] of  Attribute
 )
 
@@ -4371,6 +4384,129 @@
 	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Wait Radio Emergency"))
+
+([Sea_Class380001] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s12")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class380002] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s13")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class380003] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s14")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class380004] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer1")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class350000]))
+
+([Sea_Class380005] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer2")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380001]))
+
+([Sea_Class380006] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer3")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380002]))
+
+([Sea_Class380007] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer4")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380003]))
+
+([Sea_Class380008] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander1")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class350000]))
+
+([Sea_Class380009] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander2")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380001]))
+
+([Sea_Class380010] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander3")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380002]))
+
+([Sea_Class380011] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander4")
+	(lifetime 300)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class380003]))
 
 ([Sea_Class380012] of  CloFuncall
 
@@ -4582,6 +4718,216 @@
 	(observer [Sea_Class242])
 	(parent "s1.Wait_3552")
 	(title "s1.Radio Emergency reaches Control Center"))
+
+([Sea_Class390012] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s21")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390013] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s22")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390014] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s23")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390015] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s24")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390016] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s25")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390017] of  Spill
+
+	(fillColor "20666600")
+	(isPolygon TRUE)
+	(label "s26")
+	(latitude "60 14.82")
+	(lineColor "00666600")
+	(longitude "28 47.2")
+	(N 32)
+	(playground-index 2)
+	(radius 5.0)
+	(relative FALSE)
+	(speed 3.0))
+
+([Sea_Class390018] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer1")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390012]))
+
+([Sea_Class390019] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer2")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390013]))
+
+([Sea_Class390020] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer3")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390014]))
+
+([Sea_Class390021] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer4")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390015]))
+
+([Sea_Class390022] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer5")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390016]))
+
+([Sea_Class390023] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop2 Deformer6")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390017]))
+
+([Sea_Class390024] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander1")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390012]))
+
+([Sea_Class390025] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander2")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390013]))
+
+([Sea_Class390026] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander3")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390014]))
+
+([Sea_Class390027] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander4")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390015]))
+
+([Sea_Class390028] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander5")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390016]))
+
+([Sea_Class390029] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop2 Expander6")
+	(lifetime 280)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class390017]))
 
 ([Sea_Class390031] of  Task
 

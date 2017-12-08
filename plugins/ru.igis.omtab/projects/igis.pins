@@ -1,4 +1,4 @@
-; Tue Oct 17 22:19:53 MSK 2017
+; Fri Dec 08 18:49:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,7 @@
 		[igis_Class40000]
 		[igis_Class40001]
 		[igis_Class70000]
+		[igis_Class80000]
 		[igis_Class14]
 		[igis_Class15]
 		[igis_Class16]
@@ -267,7 +268,7 @@
 ([igis_Class40004] of  HelpMenu
 
 	(class "com.bbn.openmap.gui.DefaultHelpMenu")
-	(items "omtHelp1 omtHelp2 omtHelp3")
+	(items "omtHelp1 omtHelp2 omtHelp3 omtHelp4")
 	(label "helpMenu"))
 
 ([igis_Class40010] of  EditorLayer
@@ -341,6 +342,13 @@
 	(label "omtHelp3")
 	(source "file:plugins/ru.igis.omtab/src/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
+
+([igis_Class80000] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.FXBrowserHelpMenuItem")
+	(label "omtHelp4")
+	(source "http://yandex.ru")
+	(text "FXBrowser"))
 
 ([igis_Class9] of  Menu
 
