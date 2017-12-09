@@ -1,4 +1,4 @@
-; Fri Dec 08 18:49:50 MSK 2017
+; Sat Dec 09 15:13:40 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -347,8 +347,8 @@
 
 	(class "ru.igis.omtab.menu.FXBrowserHelpMenuItem")
 	(label "omtHelp4")
-	(source "http://yandex.ru")
-	(text "FXBrowser"))
+	(source "https://protegewiki.stanford.edu/wiki/OpenMap_Tab_Plugin")
+	(text "OpenMapTab Protege wiki page"))
 
 ([igis_Class9] of  Menu
 

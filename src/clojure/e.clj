@@ -80,7 +80,6 @@
   (if (and (some? obj) (some? atr))
     (let [avl (try-str-num (.getAttribute obj (sv atr "title")))
            vvl (try-str-num val)]
-      (println :OA :REL rel (type rel) (= rel 'resource-exhausted))
       (condp = rel
         '= (= avl vvl)
         '!= (not= avl vvl)

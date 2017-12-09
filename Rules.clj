@@ -145,19 +145,22 @@
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)]
   (if (not (a/null? sub))
-    (let [hm (s/context-to-hm ctx)
+    (let [ctx0 (protege.core/sv sub "context")
+           hm0 (s/context-to-hm ctx0)
+           hm1 (s/context-to-hm ctx)
            gid (gensym "Sus")]
-      (a/merge-hm-run hm ?run)
+      (a/merge-hmm-run hm0 hm1 ?run)
+      (a/merge-hmm-run hm0 ?run nil)
       (-> (ru.rules/mk-frame sub)
         (ru.rules/update-frame
 	'Scenario
 	{'status "START"
-	 'run hm
+	 'run hm0
 	 'parent gid})
         rete.core/assert-frame)
       (asser TwoObRelation parent "Run"
-	observer ?run
-	object hm)
+	observer (.hashCode ?run)
+	object (.hashCode hm0))
       (modify ?ss status (if (protege.core/is? ?wai) "REPEAT" "DONE")
 	id gid))
     (modify ?ss status "FAILED"))))
@@ -259,6 +262,8 @@
           (retract ?gor)
           (s/start-next ?nacts ?pid ?ain ?run))
         (let [[lat lon] (a/latlon-N ?rou next)]
+          (.setLatitude mo ?lat)
+          (.setLongitude mo ?lon)
           (a/go mo lat lon ?spd)
           (modify ?gor 
 	latitude lat
@@ -488,7 +493,10 @@
 	position-speed ?poss 
 	relative ?rel
 	radius ?rad
-	run ?run)
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Position")
 (if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
@@ -498,7 +506,8 @@
 	course crss
 	speed spds))
     (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-          (modify ?pos status "DONE")))
+          (retract ?pos)
+          (s/start-next ?nacts ?pid ?ain ?run)))
   (modify ?pos status "FAILED")))
 
 (a:PutOnPlace 0
@@ -531,6 +540,7 @@
   (s/start-next ?nacts ?pid ?ain ?run)))
 
 (a:PositionRepeat 0
+(Clock)
 ?pos (Position status "REPEAT" 
 	title ?tit 
 	object ?obj
@@ -545,7 +555,6 @@
 	run ?run
 	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
-(Clock)
 =>
 (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
 (retract ?pos)
@@ -649,8 +658,11 @@
 	  (or (= (protege.core/typ act) "Scenario")
 	    (= (protege.core/typ act) "ObjectTaskScenario"))))
 (TwoObRelation parent "Run"
-	observer ?run
-	object ?run2)
+	observer ?obs
+	object ?obj)
+(Scenario run ?run2
+	((= (.hashCode ?run) ?obs)
+	 (= (.hashCode ?run2) ?obj)))
 =>
 (println "Action started:" ?tit "Break")
 (if-let [act (a/vv ?act ?run)]
@@ -1932,20 +1944,23 @@
        ctx (a/vv ?ctx ?run)
        pla (a/vv ?pla ?run)]
   (if (not (or (a/null? sub) (a/null? pla)))
-    (let [hm (s/context-to-hm ctx)
+    (let [ctx0 (protege.core/sv sub "context")
+           hm0 (s/context-to-hm ctx0)
+           hm1 (s/context-to-hm ctx)
            gid (gensym "Ots")]
-      (a/merge-hm-run hm ?run)
+      (a/merge-hmm-run hm0 hm1 ?run)
+      (a/merge-hmm-run hm0 ?run nil)
       (.put hm "?protagonist" pla)
       (-> (ru.rules/mk-frame sub)
         (ru.rules/update-frame
 	'Scenario
 	{'status "START"
-	 'run hm
+	 'run hm0
 	 'parent gid})
         rete.core/assert-frame)
       (asser TwoObRelation parent "Run"
-	observer ?run
-	object hm)
+	observer (.hashCode ?run)
+	object (.hashCode hm0))
       (modify ?ot status (if (protege.core/is? ?wai) "REPEAT" "DONE")
 	id gid))
     (modify ?ot status "FAILED"))))

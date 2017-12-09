@@ -121,13 +121,6 @@
     (.put hm1 k (vv (.get hm1 k) p)))
   (.setAttributes mo hm1)))
 
-(defn merge-hm-run [hm run]
-  (doseq [h (.keySet hm)]
-  (.put hm h (vv (.get hm h) run)))
-(doseq [r (.keySet run)]
-  (if (nil? (.get hm r))
-    (.put hm r (.get run r)))))
-
 (defn eval-with-context [ctx body]
   (let [bnd (vec (interleave (keys ctx) (vals ctx)))]
   (eval `(let ~bnd ~@body))))
@@ -621,4 +614,13 @@
         "FAILED"
         "DONE"))
     "FAILED")))
+
+(defn merge-hmm-run [hm1 hm2 run]
+  (if run
+  (doseq [k2 (.keySet hm2)]
+    (.put hm2 k2 (vv (.get hm2 k2) run))))
+(doseq [k1 (.keySet hm1)]
+  (if (nil? (.get hm2 k1))
+    (.put hm2 k1 (let [v1 (.get hm1 k1)]
+	    (if run (vv v1 run) v1))))))
 

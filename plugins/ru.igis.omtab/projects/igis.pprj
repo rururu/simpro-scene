@@ -1,4 +1,4 @@
-; Fri Dec 08 18:49:50 MSK 2017
+; Sat Dec 09 15:13:40 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7222,7 +7222,7 @@
 	(x 0)
 	(y 120))
 
-([KB_699968_Class3] of  Map
+([KB_745703_Class3] of  Map
 )
 
 ([PAL_FORM_WIDGET] of  Widget

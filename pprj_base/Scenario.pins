@@ -1,4 +1,4 @@
-; Fri Dec 08 15:13:49 MSK 2017
+; Sat Dec 09 21:26:32 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -214,7 +214,11 @@
 
 ([ObjectTask] of  ActionClass
 
-	(functions [Scenario_Class30000])
+	(functions
+		[Scenario_Class30000]
+		[Scenario_Class190000]
+		[RuleEngine_Class90000]
+		[RuleEngine_Class270000])
 	(rules
 		[ScenarioN_Class70001]
 		[ScenarioN_Class70002]
@@ -563,7 +567,6 @@
 		[Scenario_Class160003]
 		[Scenario_Class160002]
 		[Scenario_Class130001]
-		[Scenario_Class30000]
 		[Scenario_Class220000]
 		[Scenario_Class270001]
 		[Scenario_Class280000]
@@ -598,7 +601,8 @@
 		[ScenarioN_Class750002]
 		[ScenarioN_Class670000]
 		[Scenario_Class450000]
-		[Scenario_Class490003])
+		[Scenario_Class490003]
+		[Scenario_Class30000])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -618,7 +622,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hm-run hm ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hmm-run hm0 hm1 ?run)\n      (a/merge-hmm-run hm0 ?run nil)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -1101,8 +1105,8 @@
 
 ([Scenario_Class30000] of  CloFunction
 
-	(source "(doseq [h (.keySet hm)]\n  (.put hm h (vv (.get hm h) run)))\n(doseq [r (.keySet run)]\n  (if (nil? (.get hm r))\n    (.put hm r (.get run r))))")
-	(title "merge-hm-run [hm run]"))
+	(source "(if run\n  (doseq [k2 (.keySet hm2)]\n    (.put hm2 k2 (vv (.get hm2 k2) run))))\n(doseq [k1 (.keySet hm1)]\n  (if (nil? (.get hm2 k1))\n    (.put hm2 k1 (let [v1 (.get hm1 k1)]\n	    (if run (vv v1 run) v1)))))")
+	(title "merge-hmm-run [hm1 hm2 run]"))
 
 ([Scenario_Class300000] of  Rule
 
@@ -2832,7 +2836,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [hm (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hm-run hm ?run)\n      (.put hm \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hmm-run hm0 hm1 ?run)\n      (a/merge-hmm-run hm0 ?run nil)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 
@@ -3006,7 +3010,11 @@
 
 ([Subscenario] of  ActionClass
 
-	(functions [Scenario_Class30000])
+	(functions
+		[Scenario_Class30000]
+		[Scenario_Class190000]
+		[RuleEngine_Class90000]
+		[RuleEngine_Class270000])
 	(rules
 		[Scenario_Class130005]
 		[Scenario_Class130007]
