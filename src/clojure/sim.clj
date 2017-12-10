@@ -7,6 +7,7 @@
   ru.igis.omtab.Clock
   ru.igis.omtab.MapOb
   ru.igis.omtab.NavOb
+  java.util.HashMap
   edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def ES-TIMER nil)
@@ -63,7 +64,12 @@
          ins (or (get-old "Activity" "title" "test" clz) (p/foc cln "title" "test"))]
     (when (clojuretab.ClojureTab/showModalInstance ins (str cln ". Fill Slots as Needed"))
       (p/ssv ins "status" "START")
-      (ru.rules/assert-instances [ins])))))
+      (-> (ru.rules/mk-frame ins)
+        (ru.rules/update-frame
+	:same-type
+	{'status "START"
+	 'run (HashMap.)})
+        rete.core/assert-frame)))))
 
 (defn toggle-visible []
   (let [ii (OMT/getMapObInstances)

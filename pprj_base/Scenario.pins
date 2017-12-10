@@ -1,4 +1,4 @@
-; Sat Dec 09 21:26:32 MSK 2017
+; Sun Dec 10 22:02:59 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,7 +42,11 @@
 		[ScenarioN_Class750000]
 		[ScenarioN_Class750001]
 		[ScenarioN_Class750002])
-	(rules [Scenario_Class310000]))
+	(rules
+		[Scenario_Class310000]
+		[Scenario_Class310004]
+		[Scenario_Class330000]
+		[Scenario_Class310005]))
 
 ([CalcMessage] of  ActionClass
 )
@@ -290,7 +294,6 @@
 
 ([PutOffMap] of  ActionClass
 
-	(functions [Scenario_Class160002])
 	(rules [Scenario_Class150001]))
 
 ([PutOnMap] of  ActionClass
@@ -352,6 +355,7 @@
 		[Scenario_Class280002]
 		[Scenario_Class310004]
 		[Scenario_Class310000]
+		[Scenario_Class330000]
 		[Scenario_Class310005]
 		[Scenario_Class220001]
 		[Scenario_Class490002]
@@ -565,7 +569,6 @@
 		[Scenario_Class120020]
 		[Scenario_Class150000]
 		[Scenario_Class160003]
-		[Scenario_Class160002]
 		[Scenario_Class130001]
 		[Scenario_Class220000]
 		[Scenario_Class270001]
@@ -622,7 +625,7 @@
 ([Scenario_Class130005] of  Rule
 
 	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (a/merge-hmm-run hm0 hm1 ?run)\n      (a/merge-hmm-run hm0 ?run nil)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
 	(salience 0)
 	(title "a:SubscenarioStart"))
 
@@ -653,7 +656,7 @@
 ([Scenario_Class150001] of  Rule
 
 	(lhs "?pom (PutOffMap status \"START\"\n	title ?tit\n	mapob ?mos\n	object ?obj\n	delete ?del\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"PutOffMap\")\n(a/put-off-map ?obj ?mos ?del ?run)\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutOffMap\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (ru.igis.omtab.OMT/removeMapOb mo (protege.core/is? ?del)))\n(if (seq ?mos)\n  (ru.igis.omtab.OMT/clearMapObs ?mos (protege.core/is? ?del)))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:PutOffMap"))
 
@@ -670,11 +673,6 @@
 	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (a/latlon-N ?rou next)]\n          (.setLatitude mo ?lat)\n          (.setLongitude mo ?lon)\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon\n	N next)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteRepeat"))
-
-([Scenario_Class160002] of  CloFunction
-
-	(source "(let [obj (vv ?obj r)]\n  (if (not (null? obj))\n    (if-let [mo (OMT/getMapOb obj)]\n      (OMT/removeMapOb (.getInstance mo) (is? del))))\n  (if (seq mos)\n    (OMT/clearMapObs mos (is? del))))")
-	(title "put-off-map [?obj mos del r]"))
 
 ([Scenario_Class160003] of  CloFunction
 
@@ -785,8 +783,8 @@
 
 ([Scenario_Class20001] of  Rule
 
-	(lhs "(Task status \"DONE\"\n	parent ?pid\n	run ?run\n	next_tasks ?ntasks\n	(not (empty? ?ntasks)))")
-	(rhs "(s/start-tasks-actions ?ntasks ?pid ?run)")
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	run ?run\n	next_tasks ?ntasks\n	(not (empty? ?ntasks)))")
+	(rhs "(s/start-tasks-actions ?ntasks ?pid ?run)\n(retract ?t)")
 	(salience 0)
 	(title "s:StartNextTasks"))
 
@@ -851,7 +849,7 @@
 
 ([Scenario_Class230002] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)\n       rel (if (string? rel) (symbol rel) rel)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        '= (= avl vvl)\n        '!= (not= avl vvl)\n        '> (> avl vvl)\n        '< (< avl vvl)\n        '>= (>= avl vvl)\n        '<= (<= avl vvl)\n        'starts-with (and avl vvl(.startsWith avl (str vvl)))\n        'ends-with (and avl vvl(.endsWith avl (str vvl)))\n        'empty (empty? avl)\n        'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))\n        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        false))))")
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)\n       rel (if (string? rel) (symbol rel) rel)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        '= (= avl vvl)\n        '!= (not= avl vvl)\n        '> (> avl vvl)\n        '< (< avl vvl)\n        '>= (>= avl vvl)\n        '<= (<= avl vvl)\n        'starts-with (and avl vvl(.startsWith avl (str vvl)))\n        'ends-with (and avl vvl(.endsWith avl (str vvl)))\n        'empty (empty? avl)\n        'resource-exhausted (>= (first avl) (count (rest avl)))\n        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        false))))")
 	(title "ob-attribute [atr ?obj rel ?val r]"))
 
 ([Scenario_Class230004] of  CloFunction
@@ -1105,8 +1103,8 @@
 
 ([Scenario_Class30000] of  CloFunction
 
-	(source "(if run\n  (doseq [k2 (.keySet hm2)]\n    (.put hm2 k2 (vv (.get hm2 k2) run))))\n(doseq [k1 (.keySet hm1)]\n  (if (nil? (.get hm2 k1))\n    (.put hm2 k1 (let [v1 (.get hm1 k1)]\n	    (if run (vv v1 run) v1)))))")
-	(title "merge-hmm-run [hm1 hm2 run]"))
+	(source "(doseq [h (.keySet hm)]\n  (.put hm h (vv (.get hm h) run)))\n(doseq [r (.keySet run)]\n  (if (nil? (.get hm r))\n    (.put hm r (.get run r))))")
+	(title "merge-hm-run [hm run]"))
 
 ([Scenario_Class300000] of  Rule
 
@@ -1155,9 +1153,9 @@
 ([Scenario_Class310005] of  Rule
 
 	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?obs\n	object ?obj)\n(Scenario run ?run2\n	((= (.hashCode ?run) ?obs)\n	 (= (.hashCode ?run2) ?obj)))")
-	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (a/break-scenario act ?run2)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
-	(salience 0)
-	(title "a:Break Scenarios"))
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run2)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 1)
+	(title "a:Break Subscenarios"))
 
 ([Scenario_Class310008] of  Variable
 
@@ -1167,6 +1165,13 @@
 
 	(source "(let [dw (drop-while #(not= % slot) frame)]\n  (if (seq dw)\n    (second dw)))")
 	(title "frame-slot-val [frame slot]"))
+
+([Scenario_Class330000] of  Rule
+
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 0)
+	(title "a:Break Scenario"))
 
 ([Scenario_Class340000] of  RuleSet
 
@@ -2555,7 +2560,7 @@
 
 ([ScenarioN_Class550022] of  CloNamespace
 
-	(source "(:require\n  [protege.core :as p]\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.NavOb\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(source "(:require\n  [protege.core :as p]\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.NavOb\n  java.util.HashMap\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "sim"))
 
 ([ScenarioN_Class550030] of  RuleSet
@@ -2734,7 +2739,7 @@
 
 ([ScenarioN_Class630001] of  CloFunction
 
-	(source "(letfn [(get-old [cln sln slv clz]\n	(if-let [ins (p/fifos cln sln slv)]\n	  (let [cly (.getDirectType ins)]\n	    (.addDirectType ins clz)\n	    (.removeDirectType ins cly)\n	    ins)))]\n  (let [clz (edu.stanford.smi.protege.ui.DisplayUtilities/pickCls nil p/*kb* [(p/cls \"Activity\")])\n         cln (.getName clz)\n         ins (or (get-old \"Activity\" \"title\" \"test\" clz) (p/foc cln \"title\" \"test\"))]\n    (when (clojuretab.ClojureTab/showModalInstance ins (str cln \". Fill Slots as Needed\"))\n      (p/ssv ins \"status\" \"START\")\n      (ru.rules/assert-instances [ins]))))")
+	(source "(letfn [(get-old [cln sln slv clz]\n	(if-let [ins (p/fifos cln sln slv)]\n	  (let [cly (.getDirectType ins)]\n	    (.addDirectType ins clz)\n	    (.removeDirectType ins cly)\n	    ins)))]\n  (let [clz (edu.stanford.smi.protege.ui.DisplayUtilities/pickCls nil p/*kb* [(p/cls \"Activity\")])\n         cln (.getName clz)\n         ins (or (get-old \"Activity\" \"title\" \"test\" clz) (p/foc cln \"title\" \"test\"))]\n    (when (clojuretab.ClojureTab/showModalInstance ins (str cln \". Fill Slots as Needed\"))\n      (p/ssv ins \"status\" \"START\")\n      (-> (ru.rules/mk-frame ins)\n        (ru.rules/update-frame\n	:same-type\n	{'status \"START\"\n	 'run (HashMap.)})\n        rete.core/assert-frame))))")
 	(title "exec-activity []"))
 
 ([ScenarioN_Class630002] of  Command
@@ -2836,7 +2841,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (a/merge-hmm-run hm0 hm1 ?run)\n      (a/merge-hmm-run hm0 ?run nil)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:ObjectTaskStart"))
 
@@ -2879,7 +2884,7 @@
 
 ([ScenarioN_Class750002] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]\n        (break-task (re/slot-value 'instance tsf) run))\n      (re/retract-fact (first fact)) \n      (println \"Scenario breaked \" (re/slot-value 'title fact)))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([run]\n  (println :BS1 (.hashCode run) run)\n  (doseq [fact (re/facts-with-slot-value 'run = run)]\n    (re/retract-fact (first fact))))\n\n([act run]\n  (println :BS2 act (.hashCode run) run)\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (break-scenario run))))")
 	(title "break-scenario"))
 
 ([ScenarioN_Class760000] of  Command

@@ -90,7 +90,7 @@
         'starts-with (and avl vvl(.startsWith avl (str vvl)))
         'ends-with (and avl vvl(.endsWith avl (str vvl)))
         'empty (empty? avl)
-        'resource-exhausted (do (println :F (first avl) :R (count (rest avl)) (>= (first avl) (count (rest avl)))) (>= (first avl) (count (rest avl))))
+        'resource-exhausted (>= (first avl) (count (rest avl)))
         'in-some-resource (some #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
         'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 

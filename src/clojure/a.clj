@@ -560,15 +560,18 @@
   (let [ss (re/fact-list 'Scenario)
          sis (map #(re/slot-value 'instance %) ss)]
     (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis "Select Scenarios")]
-      (break-scenario ins (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
+      (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
+
+([run]
+  (println :BS1 (.hashCode run) run)
+  (doseq [fact (re/facts-with-slot-value 'run = run)]
+    (re/retract-fact (first fact))))
 
 ([act run]
-  (doseq [fact (re/facts-with-slot-value 'Scenario 'instance = act)]
-    (when (identical? (re/slot-value 'run fact) run)
-      (doseq [tsf (re/facts-with-slot-value 'Task 'parent = (re/slot-value 'id fact))]
-        (break-task (re/slot-value 'instance tsf) run))
-      (re/retract-fact (first fact)) 
-      (println "Scenario breaked " (re/slot-value 'title fact))))))
+  (println :BS2 act (.hashCode run) run)
+  (doseq [fact (re/facts-with-slot-value 'instance = act)]
+    (if (= (re/slot-value 'run fact) run)
+      (break-scenario run)))))
 
 (defn val-from-str [s]
   (try
@@ -615,12 +618,10 @@
         "DONE"))
     "FAILED")))
 
-(defn merge-hmm-run [hm1 hm2 run]
-  (if run
-  (doseq [k2 (.keySet hm2)]
-    (.put hm2 k2 (vv (.get hm2 k2) run))))
-(doseq [k1 (.keySet hm1)]
-  (if (nil? (.get hm2 k1))
-    (.put hm2 k1 (let [v1 (.get hm1 k1)]
-	    (if run (vv v1 run) v1))))))
+(defn merge-hm-run [hm run]
+  (doseq [h (.keySet hm)]
+  (.put hm h (vv (.get hm h) run)))
+(doseq [r (.keySet run)]
+  (if (nil? (.get hm r))
+    (.put hm r (.get run r)))))
 
