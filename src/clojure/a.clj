@@ -99,14 +99,6 @@
       (doseq [cli cls]
         (es-mess (str tim " " txt) {} cat (sv cli "id"))))))
 
-(defn put-off-map [?obj mos del r]
-  (let [obj (vv ?obj r)]
-  (if (not (null? obj))
-    (if-let [mo (OMT/getMapOb obj)]
-      (OMT/removeMapOb (.getInstance mo) (is? del))))
-  (if (seq mos)
-    (OMT/clearMapObs mos (is? del)))))
-
 (defn update-attribute-set [pla ctx p]
   (let [mo (or (OMT/getMapOb pla) (OMT/addMapOb pla))
        atts (.getAttributes mo)
@@ -222,7 +214,8 @@
        posa (vv ?posa r)
        posd (vv ?posd r)
        poss (vv ?poss r)]
-  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))
+  (if (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss))
+    true ;; we need to stop if something wrong
     (let [an1 (read-string posa)
           dist (read-string posd)
           spd (read-string poss)
@@ -230,13 +223,14 @@
           [lat lon] (seq (.position mos ang dist))]
       (or (.near mob lat lon rad) (.abaft mob lat lon)) ) )))
 
-(defn take-position [?obj ?obs ?posa ?posd ?poss rel r]
+(defn taken-position [?obj ?obs ?posa ?posd ?poss rel r]
   (let [obj (OMT/getMapOb (vv ?obj r))
       obs (OMT/getMapOb (vv ?obs r))
       posa (vv ?posa r)
       posd (vv ?posd r)
       poss (vv ?poss r)]
-  (when (not (or (nil? obj) (nil? obs) (null? posa) (null? posd) (null? poss)))
+  (if (or (nil? obj) (nil? obs) (null? posa) (null? posd) (null? poss))
+    false
     (let [an1 (read-string posa)
           dist (read-string posd)
           spd (read-string poss)
@@ -247,7 +241,8 @@
       (.setLatitude obj (double lat))
       (.setLongitude obj (double lon))
       (.setSpeed obj (.getSpeed obs))
-      (.setCourse obj (.getCourse obs)) ) )))
+      (.setCourse obj (.getCourse obs)) 
+      true))))
 
 (defn object-message [atit ?obj ?txt ?url cat cls r]
   (if-let [obj (OMT/getMapOb (vv ?obj r))]
@@ -563,12 +558,10 @@
       (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))
 
 ([run]
-  (println :BS1 (.hashCode run) run)
   (doseq [fact (re/facts-with-slot-value 'run = run)]
     (re/retract-fact (first fact))))
 
 ([act run]
-  (println :BS2 act (.hashCode run) run)
   (doseq [fact (re/facts-with-slot-value 'instance = act)]
     (if (= (re/slot-value 'run fact) run)
       (break-scenario run)))))

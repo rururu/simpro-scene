@@ -1,4 +1,4 @@
-; Sun Dec 10 22:02:59 MSK 2017
+; Mon Dec 11 22:17:25 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -65,7 +65,6 @@
 
 ([CatchException] of  DecisionClass
 
-	(functions [ScenarioN_Class480000])
 	(rules
 		[ScenarioN_Class470001]
 		[ScenarioN_Class470002]))
@@ -338,7 +337,7 @@
 
 ([Scenario_Class100000] of  Rule
 
-	(lhs "?a (Action status \"DONE\"\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n?t (Task status \"DOING\"\n	id ?pid\n	finish_type OR\n	title ?tit\n	final_actions ?facts \n	((s/include? ?facts ?ain)\n	 (> (count ?facts) 1)))")
+	(lhs "?a (Action status \"DONE\"\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n?t (Task status \"DOING\"\n	id ?pid\n	finish_type OR\n	title ?tit\n	final_actions ?facts \n	((s/include? ?facts ?ain)\n	 (not (empty? ?facts))))")
 	(rhs "(println \"Task (OR type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
 	(salience 0)
 	(title "s:FirstORFinalActionDone"))
@@ -922,8 +921,7 @@
 		[Scenario_Class230008]
 		[Scenario_Class230005]
 		[ScenarioN_Class180001]
-		[ScenarioN_Class210001]
-		[ScenarioN_Class480000])
+		[ScenarioN_Class210001])
 	(cloNamespace [Scenario_Class250009])
 	(title "Decision Functions"))
 
@@ -1012,7 +1010,7 @@
 ([Scenario_Class270000] of  Rule
 
 	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Position\")\n(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n          (retract ?pos)\n          (s/start-next ?nacts ?pid ?ain ?run)))\n  (modify ?pos status \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"Position\")\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)]\n(if-let [[mob lat lon spdb crss spds] (a/future-position mob mos ?posa ?posd ?poss ?rel ?rad ?run)]\n  (if (> spdb 0)\n    (do (a/go mob lat lon spdb)\n      (modify ?pos status \"REPEAT\"\n	course crss\n	speed spds))\n    (do (a/take-position mob mos ?posa ?posd ?poss ?rel ?run)\n      (retract ?pos)\n      (s/start-next ?nacts ?pid ?ain ?run))\n      (modify ?pos status \"FAILED\")))\n  (modify ?pos status \"FAILED\"))")
 	(salience 0)
 	(title "a:PositionStart"))
 
@@ -1040,25 +1038,25 @@
 
 ([Scenario_Class280001] of  CloFunction
 
-	(source "(let [mob (mapob-vv ?obj r)\n      mos (mapob-vv ?obs r)\n      posa (vv ?posa r)\n      posd (vv ?posd r)\n      poss (vv ?poss r)]\n  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spdb (read-string poss)\n          crss (.getCourse mos)\n          spds (.getSpeed mos)\n          ang (if (= rel true) (trim-angle (+ an1 crss)) an1)\n          [lat lon] (a/meeting-point mos mob spdb rad)]\n      (if (> lat 90)\n        (do (println (str \"Position off \" (.getName mos) \" unreachable by \" (.getName mob) \"!\"))\n          (println [:OBSERV (.getLatitude mos) (.getLongitude mos) (.getCourse mos) (.getSpeed mos)])\n          (println [:OBJECT (.getLatitude mob) (.getLongitude mob) (.getCourse mob) (.getSpeed mob)])\n          nil)\n        (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]\n          [mob lat2 lon2 spdb crss spds])))))")
-	(title "future-position [?obj ?obs ?posa ?posd ?poss rel rad r]"))
+	(source "(let [posa (vv ?posa r)\n       posd (vv ?posd r)\n       poss (vv ?poss r)]\n  (if (not (or (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spdb (read-string poss)\n          crss (.getCourse mos)\n          spds (.getSpeed mos)\n          ang (if (= rel true) (trim-angle (+ an1 crss)) an1)\n          [lat lon] (a/meeting-point mos mob spdb rad)]\n      (if (> lat 90)\n        (do (println (str \"Position off \" (.getName mos) \" unreachable by \" (.getName mob) \"!\"))\n          (println [:OBSERV (.getLatitude mos) (.getLongitude mos) (.getCourse mos) (.getSpeed mos)])\n          (println [:OBJECT (.getLatitude mob) (.getLongitude mob) (.getCourse mob) (.getSpeed mob)])\n          nil)\n        (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]\n          [mob lat2 lon2 spdb crss spds])))))")
+	(title "future-position [mob mos ?posa ?posd ?poss rel rad r]"))
 
 ([Scenario_Class280002] of  Rule
 
 	(lhs "(Clock)\n?pos (Position status \"REPEAT\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))")
-	(rhs "(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n(retract ?pos)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n  (do (retract ?pos)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?pos status \"FAILED\"))")
 	(salience 0)
 	(title "a:PositionRepeat"))
 
 ([Scenario_Class280003] of  CloFunction
 
-	(source "(let [mob (OMT/getMapOb (vv ?obj r))\n       mos (OMT/getMapOb (vv ?obs r))\n       posa (vv ?posa r)\n       posd (vv ?posd r)\n       poss (vv ?poss r)]\n  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spd (read-string poss)\n          ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)\n          [lat lon] (seq (.position mos ang dist))]\n      (or (.near mob lat lon rad) (.abaft mob lat lon)) ) ))")
+	(source "(let [mob (OMT/getMapOb (vv ?obj r))\n       mos (OMT/getMapOb (vv ?obs r))\n       posa (vv ?posa r)\n       posd (vv ?posd r)\n       poss (vv ?poss r)]\n  (if (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss))\n    true ;; we need to stop if something wrong\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spd (read-string poss)\n          ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)\n          [lat lon] (seq (.position mos ang dist))]\n      (or (.near mob lat lon rad) (.abaft mob lat lon)) ) ))")
 	(title "in-position? [?obj ?obs ?posa ?posd ?poss rel rad r]"))
 
 ([Scenario_Class280004] of  CloFunction
 
-	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n      obs (OMT/getMapOb (vv ?obs r))\n      posa (vv ?posa r)\n      posd (vv ?posd r)\n      poss (vv ?poss r)]\n  (when (not (or (nil? obj) (nil? obs) (null? posa) (null? posd) (null? poss)))\n    (let [an1 (read-string posa)\n          dist (read-string posd)\n          spd (read-string poss)\n          ang (if (= rel true) (trim-angle (+ an1 (.getCourse obs))) an1)\n          pos (.position obs ang dist)\n          lat (aget pos 0)\n          lon (aget pos 1)]\n      (.setLatitude obj (double lat))\n      (.setLongitude obj (double lon))\n      (.setSpeed obj (.getSpeed obs))\n      (.setCourse obj (.getCourse obs)) ) ))")
-	(title "take-position [?obj ?obs ?posa ?posd ?poss rel r]"))
+	(source "(let [posa (vv ?posa r)\n       posd (vv ?posd r)\n       poss (vv ?poss r)]\n       an1 (read-string posa)\n       dist (read-string posd)\n       spd (read-string poss)\n       ang (if (= rel true) (trim-angle (+ an1 (.getCourse obs))) an1)\n       pos (.position obs ang dist)\n       lat (aget pos 0)\n       lon (aget pos 1)]\n  (.setLatitude obj (double lat))\n  (.setLongitude obj (double lon))\n  (.setSpeed obj (.getSpeed obs))\n  (.setCourse obj (.getCourse obs)))")
+	(title "take-position [obj obs ?posa ?posd ?poss rel r]"))
 
 ([Scenario_Class290000] of  Rule
 
@@ -1115,14 +1113,14 @@
 
 ([Scenario_Class300001] of  Rule
 
-	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation observer ?run)")
+	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation observer ?obs\n	(= (.hashCode ?run) ?obs))")
 	(rhs "(retract ?tor)")
 	(salience 0)
 	(title "s:Retract Runs Relation for Observer"))
 
 ([Scenario_Class300002] of  Rule
 
-	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation object ?run)")
+	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation object ?obj\n	(= (.hashCode ?run) ?obj))")
 	(rhs "(retract ?tor)")
 	(salience 0)
 	(title "s:Retract Runs Relation for Object"))
@@ -1227,14 +1225,14 @@
 ([Scenario_Class370000] of  Rule
 
 	(lhs "?sea (Search status \"OUTSIDE\"\n	object ?obj\n	observer ?obs\n	detect-distance ?dd\n	detect-probability ?dp\n	client ?cli\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
-	(rhs "(let [obs (a/mapob-vv ?obs ?run)\n       obj (a/mapob-vv ?obj ?run)\n       dd (a/vv ?dd ?run)\n       dp (a/vv ?dp ?run)\n       cli (a/vv ?cli ?run)]\n  (if (every? some? [obs obj dd dp])\n    (if (<= (.distanceNM obs obj) (read-string dd))\n      (if (<= (Math/random) (read-string dp))\n        (do (.putAttribute obs \"DETECT\" (.getName obj))\n          (.putAttribute obj \"DETECTED-BY\" (.getName obs)) \n          ;;(if (not (a/null? cli))\n          ;;  (navobs.commands/set-visible true obj (protege.core/sv cli \"id\")))\n          (do (retract ?sea)\n            (s/start-next ?nacts ?pid ?ain ?run)))\n        (modify ?sea status \"INSIDE\")))\n    (modify ?sea status \"FAILED\")))")
+	(rhs "(let [obs (a/mapob-vv ?obs ?run)\n       obj (a/mapob-vv ?obj ?run)\n       dd (a/vv ?dd ?run)\n       dp (a/vv ?dp ?run)\n       cli (a/vv ?cli ?run)]\n  (if (every? some? [obs obj dd dp])\n    (if (<= (.distanceNM obs obj) (read-string dd))\n      (if (<= (Math/random) (read-string dp))\n        (do (.putAttribute obs \"DETECT\" (.getName obj))\n          (asser Exception status \"DETECTED\" object obj title (protege.core/sv obj \"label\") run ?run)\n          (.putAttribute obj \"DETECTED-BY\" (.getName obs)) \n          ;;(if (not (a/null? cli))\n          ;;  (navobs.commands/set-visible true obj (protege.core/sv cli \"id\")))\n          (do (retract ?sea)\n            (s/start-next ?nacts ?pid ?ain ?run)))\n        (modify ?sea status \"INSIDE\")))\n    (do (if (nil? ?obj)\n            (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run))\n      (modify ?sea status \"FAILED\"))))")
 	(salience 0)
 	(title "a:SearchOutside"))
 
 ([Scenario_Class370007] of  Rule
 
 	(lhs "?sea (Search status \"INSIDE\"\n	object ?obj\n	observer ?obs\n	detect-distance ?dd\n	run ?run)\n(Clock)")
-	(rhs "(let [obs (a/mapob-vv ?obs ?run)\n       obj (a/mapob-vv ?obj ?run)\n       dd (a/vv ?dd ?run)]\n  (if (every? some? [obs obj dd])\n    (if (> (.distanceNM obs obj) (read-string dd))\n      (modify ?sea status \"OUTSIDE\"))\n    (modify ?sea status \"FAILED\")))")
+	(rhs "(let [obs (a/mapob-vv ?obs ?run)\n       obj (a/mapob-vv ?obj ?run)\n       dd (a/vv ?dd ?run)]\n  (if (every? some? [obs obj dd])\n    (if (> (.distanceNM obs obj) (read-string dd))\n      (modify ?sea status \"OUTSIDE\"))\n    (do (if (nil? ?obj)\n            (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run))\n      (modify ?sea status \"FAILED\"))))")
 	(salience 0)
 	(title "a:SearchInside"))
 
@@ -1269,7 +1267,7 @@
 
 ([Scenario_Class40000] of  Rule
 
-	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin\n	next_tasks ?ntasks\n	(empty? ?ntasks))\n?s (Scenario status \"DOING\" \n	id ?pid\n	finish_type OR\n	title ?tit\n	final_tasks ?ftasks \n	((s/include? ?ftasks ?tin)\n	 (>= (count ?ftasks) 1)))")
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin\n	next_tasks ?ntasks\n	(empty? ?ntasks))\n?s (Scenario status \"DOING\" \n	id ?pid\n	finish_type OR\n	title ?tit\n	final_tasks ?ftasks \n	((s/include? ?ftasks ?tin)\n	 (not (empty? ?ftasks))))")
 	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
 	(salience 0)
 	(title "s:FirstORFinalTaskDone"))
@@ -1833,7 +1831,7 @@
 ([ScenarioN_Class190003] of  Rule
 
 	(lhs "(Clock time ?t)\n?ict (Intercept status \"REPEAT\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))")
-	(rhs "(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n(retract ?ict)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)\n  (do (retract ?ict)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?ict status \"FAILED\"))")
 	(salience 0)
 	(title "a:InterceptInPosition"))
 
@@ -2307,14 +2305,14 @@
 ([ScenarioN_Class460000] of  Rule
 
 	(lhs "?cp (ConfirmPosition status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	client ?cli\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"ConfirmPosition\")\n(let [obj (a/vv ?obj ?run)\n       lat (a/degmin-to-deg ?lat ?run)\n       lon (a/degmin-to-deg ?lon ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))\n    (do (modify ?cp status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [bb (int (.bearingsDeg mo lat lon))\n           dir (or (.getAttribute mo \"SAT-DIR\")\n	(let [newdir \"FORWARD\"]\n	  (.putAttribute mo \"SAT-DIR\" newdir)\n	  newdir))\n           old (or (.getAttribute mo \"SAT-BBEAR\") bb)\n           dif (if (> old bb) (- old bb) (- bb old))\n           dir (if (>= dif 180)  (let [newdir (if (= dir \"FORWARD\") \"BACKWARD\" \"FORWARD\")]\n		(.putAttribute mo \"SAT-DIR\" newdir)\n		newdir)\n 	                 dir)\n           crs (if (= dir \"FORWARD\")\n	(+ bb 180)\n	bb)\n           crs (if (>= crs 360) (- crs 360) crs)]\n      ;; (navobs.commands/pump-in-evt (protege.core/sv cli \"id\")\n	;; {:event :update-navob \n	;;	:name (.getName mo)\n	;;	:lat (.getLatitude mo)\n	;;	:lon (.getLongitude mo)\n	;;	:crs crs\n	;;	:spd (.getSpeed mo)\n	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})\n      (.putAttribute mo \"SAT-BBEAR\" bb)\n      (retract ?cp)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(rhs "(println \"Action started:\" ?tit \"ConfirmPosition\")\n(let [obj (a/vv ?obj ?run)\n       lat (a/degmin-to-deg ?lat ?run)\n       lon (a/degmin-to-deg ?lon ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))\n    (do (modify ?cp status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)))\n    (let [bb (int (.bearingsDeg mo lat lon))\n           dir (or (.getAttribute mo \"SAT-DIR\")\n	(let [newdir \"FORWARD\"]\n	  (.putAttribute mo \"SAT-DIR\" newdir)\n	  newdir))\n           old (or (.getAttribute mo \"SAT-BBEAR\") bb)\n           dif (if (> old bb) (- old bb) (- bb old))\n           dir (if (>= dif 180)  (let [newdir (if (= dir \"FORWARD\") \"BACKWARD\" \"FORWARD\")]\n		(.putAttribute mo \"SAT-DIR\" newdir)\n		newdir)\n 	                 dir)\n           crs (if (= dir \"FORWARD\")\n	(+ bb 180)\n	bb)\n           crs (if (>= crs 360) (- crs 360) crs)]\n      ;; (navobs.commands/pump-in-evt (protege.core/sv cli \"id\")\n	;; {:event :update-navob \n	;;	:name (.getName mo)\n	;;	:lat (.getLatitude mo)\n	;;	:lon (.getLongitude mo)\n	;;	:crs crs\n	;;	:spd (.getSpeed mo)\n	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})\n      (.putAttribute mo \"SAT-BBEAR\" bb)\n      (retract ?cp)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
 	(salience 0)
 	(title "a:ConfirmPosition"))
 
 ([ScenarioN_Class460005] of  Rule
 
 	(lhs "?cs (CircleScan status \"START\"\n	title ?tit \n	object ?obj \n	detector ?det\n	client ?cli\n	text ?txt\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"CircleScan\")\n(let [obj (a/vv ?obj ?run)\n       det (a/vv ?det ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (a/null? det))\n    (do (modify ?cs status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"ПОТЕРЯН\" title (protege.core/sv obj \"label\") run ?run)))\n    (let [types (protege.core/svs det \"types\")\n           ranges (protege.core/svs det \"ranges\")\n           probs (protege.core/svs det \"probabilities\")]\n      (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]\n        (if (a/detected mo tgt types ranges probs)\n          (let [tgn (.getName tgt)]\n            (asser Exception status \"ОБНАРУЖЕН\" title (eval tgn) run ?run)\n            (.putAttribute mo \"DETECT\" (.getName tgt))\n            (.putAttribute tgt \"DETECTED-BY\" (.getName mo)))))\n            ;;(if (a/null? cli)\n            ;;  (navobs.commands/set-visible tgn true)\n            ;;  (let [clid (protege.core/sv cli \"id\")]\n            ;;    (a/es-mess (str (a/op-time) \" Докладывает \" (.getName mo) \": \" ?txt \" \" tgn\n	;; (format \" ш %.3f\" (.getLatitude tgt))\n	;; (format \" д %.3f\" (.getLongitude tgt))\n	;; \" курс \" (.getCourse tgt)\n	;; \" скорость \" (.getSpeed tgt)) {} 0 clid)\n                ;; (navobs.commands/set-visible true tgt clid))) )))\n      (retract ?cs)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(rhs "(println \"Action started:\" ?tit \"CircleScan\")\n(let [obj (a/vv ?obj ?run)\n       det (a/vv ?det ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (a/null? det))\n    (do (modify ?cs status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)))\n    (let [types (protege.core/svs det \"types\")\n           ranges (protege.core/svs det \"ranges\")\n           probs (protege.core/svs det \"probabilities\")]\n      (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]\n        (if (a/detected mo tgt types ranges probs)\n          (let [tgn (.getName tgt)]\n            (asser Exception status \"DETECTED\" object obj title (eval tgn) run ?run)\n            (.putAttribute mo \"DETECT\" (.getName tgt))\n            (.putAttribute tgt \"DETECTED-BY\" (.getName mo)))))\n            ;;(if (a/null? cli)\n            ;;  (navobs.commands/set-visible tgn true)\n            ;;  (let [clid (protege.core/sv cli \"id\")]\n            ;;    (a/es-mess (str (a/op-time) \" Докладывает \" (.getName mo) \": \" ?txt \" \" tgn\n	;; (format \" ш %.3f\" (.getLatitude tgt))\n	;; (format \" д %.3f\" (.getLongitude tgt))\n	;; \" курс \" (.getCourse tgt)\n	;; \" скорость \" (.getSpeed tgt)) {} 0 clid)\n                ;; (navobs.commands/set-visible true tgt clid))) )))\n      (retract ?cs)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
 	(salience 0)
 	(title "a:CircleScan"))
 
@@ -2331,21 +2329,16 @@
 ([ScenarioN_Class470001] of  Rule
 
 	(lhs "?ce (CatchException status \"START\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	run ?run\n	variants ?vrs)")
-	(rhs "(let [obs (map #(d/label-or-title (a/vv % ?run)) ?obs)\n       sts (map #(a/vv % ?run) ?sts)]\n  (modify ?ce status \"WAIT\"\n	objects obs\n	statuses sts))")
+	(rhs "(modify ?ce status \"WAIT\"\n	objects (vec ?obs)\n	statuses (map #(a/vv % ?run) ?sts))")
 	(salience 0)
 	(title "d:CatchExceptionStart"))
 
 ([ScenarioN_Class470002] of  Rule
 
-	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)\n?ex (Exception run ?run\n	status ?sta\n	title ?tit2\n	(some #{?sta} ?sts))")
-	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?tit2) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?pid ?run)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))\n    (modify ?ce status \"FAILED\")))")
+	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)\n?ex (Exception run ?run\n	status ?sta\n	object ?obj\n	(some #{?sta} ?sts))")
+	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?obj) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?pid ?run)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))\n    (modify ?ce status \"FAILED\")))")
 	(salience 0)
 	(title "d:CatchExceptionWait"))
-
-([ScenarioN_Class480000] of  CloFunction
-
-	(source "(or (sv obj \"label\") (sv obj \"title\"))")
-	(title "label-or-title [obj]"))
 
 ([ScenarioN_Class490000] of  CloFunction
 
@@ -2884,7 +2877,7 @@
 
 ([ScenarioN_Class750002] of  CloFunction
 
-	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([run]\n  (println :BS1 (.hashCode run) run)\n  (doseq [fact (re/facts-with-slot-value 'run = run)]\n    (re/retract-fact (first fact))))\n\n([act run]\n  (println :BS2 act (.hashCode run) run)\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (break-scenario run))))")
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([run]\n  (doseq [fact (re/facts-with-slot-value 'run = run)]\n    (re/retract-fact (first fact))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (break-scenario run))))")
 	(title "break-scenario"))
 
 ([ScenarioN_Class760000] of  Command

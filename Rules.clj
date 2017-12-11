@@ -9,7 +9,7 @@
 	title ?tit
 	final_actions ?facts 
 	((s/include? ?facts ?ain)
-	 (> (count ?facts) 1)))
+	 (not (empty? ?facts))))
 =>
 (println "Task (OR type) DONE:" ?tit)
 (modify ?t status "DONE")
@@ -149,8 +149,8 @@
            hm0 (s/context-to-hm ctx0)
            hm1 (s/context-to-hm ctx)
            gid (gensym "Sus")]
-      (a/merge-hmm-run hm0 hm1 ?run)
-      (a/merge-hmm-run hm0 ?run nil)
+      (.putAll hm0 hm1)
+      (a/merge-hm-run hm0 ?run)
       (-> (ru.rules/mk-frame sub)
         (ru.rules/update-frame
 	'Scenario
@@ -203,7 +203,10 @@
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "PutOffMap")
-(a/put-off-map ?obj ?mos ?del ?run)
+(if-let [mo (a/mapob-vv ?obj ?run)]
+  (ru.igis.omtab.OMT/removeMapOb mo (protege.core/is? ?del)))
+(if (seq ?mos)
+  (ru.igis.omtab.OMT/clearMapObs ?mos (protege.core/is? ?del)))
 (retract ?pom)
 (s/start-next ?nacts ?pid ?ain ?run))
 
@@ -309,13 +312,14 @@
   (modify ?we status "FAILED")))
 
 (s:StartNextTasks 0
-(Task status "DONE"
+?t (Task status "DONE"
 	parent ?pid
 	run ?run
 	next_tasks ?ntasks
 	(not (empty? ?ntasks)))
 =>
-(s/start-tasks-actions ?ntasks ?pid ?run))
+(s/start-tasks-actions ?ntasks ?pid ?run)
+(retract ?t))
 
 (a:WaitEventRepeatTOR 0
 ?we (WaitEvent status "REPEAT"
@@ -505,9 +509,10 @@
       (modify ?pos status "REPEAT"
 	course crss
 	speed spds))
-    (do (a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-          (retract ?pos)
-          (s/start-next ?nacts ?pid ?ain ?run)))
+    (if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
+      (do (retract ?pos)
+        (s/start-next ?nacts ?pid ?ain ?run))
+      (modify ?pos status "FAILED")))
   (modify ?pos status "FAILED")))
 
 (a:PutOnPlace 0
@@ -556,9 +561,10 @@
 	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
-(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-(retract ?pos)
-(s/start-next ?nacts ?pid ?ain ?run))
+(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
+  (do (retract ?pos)
+    (s/start-next ?nacts ?pid ?ain ?run))
+  (modify ?pos status "FAILED")))
 
 (a:ObjectMessageStart 0
 ?om (ObjectMessage status "START"
@@ -598,14 +604,16 @@
 (s:Retract Runs Relation for Observer 0
 (Scenario status "DONE"
 	run ?run)
-?tor (TwoObRelation observer ?run)
+?tor (TwoObRelation observer ?obs
+	(= (.hashCode ?run) ?obs))
 =>
 (retract ?tor))
 
 (s:Retract Runs Relation for Object 0
 (Scenario status "DONE"
 	run ?run)
-?tor (TwoObRelation object ?run)
+?tor (TwoObRelation object ?obj
+	(= (.hashCode ?run) ?obj))
 =>
 (retract ?tor))
 
@@ -646,7 +654,7 @@
     (s/start-next ?nacts ?pid ?ain ?run))
   (modify ?brk status "FAILED")))
 
-(a:Break Scenarios 0
+(a:Break Subscenarios 1
 ?brk (Break status "START"
 	title ?tit
 	activity ?act
@@ -666,7 +674,28 @@
 =>
 (println "Action started:" ?tit "Break")
 (if-let [act (a/vv ?act ?run)]
-  (do (a/break-scenario act ?run2)
+  (do 
+    (a/break-scenario act ?run2)
+    (retract ?brk)
+    (s/start-next ?nacts ?pid ?ain ?run))
+  (modify ?brk status "FAILED")))
+
+(a:Break Scenario 0
+?brk (Break status "START"
+	title ?tit
+	activity ?act
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts
+	(let [act (a/vv ?act ?run)]
+	  (or (= (protege.core/typ act) "Scenario")
+	    (= (protege.core/typ act) "ObjectTaskScenario"))))
+=>
+(println "Action started:" ?tit "Break")
+(if-let [act (a/vv ?act ?run)]
+  (do 
+    (a/break-scenario act ?run)
     (retract ?brk)
     (s/start-next ?nacts ?pid ?ain ?run))
   (modify ?brk status "FAILED")))
@@ -743,13 +772,16 @@
     (if (<= (.distanceNM obs obj) (read-string dd))
       (if (<= (Math/random) (read-string dp))
         (do (.putAttribute obs "DETECT" (.getName obj))
+          (asser Exception status "DETECTED" object obj title (protege.core/sv obj "label") run ?run)
           (.putAttribute obj "DETECTED-BY" (.getName obs)) 
           ;;(if (not (a/null? cli))
           ;;  (navobs.commands/set-visible true obj (protege.core/sv cli "id")))
           (do (retract ?sea)
             (s/start-next ?nacts ?pid ?ain ?run)))
         (modify ?sea status "INSIDE")))
-    (modify ?sea status "FAILED"))))
+    (do (if (nil? ?obj)
+            (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run))
+      (modify ?sea status "FAILED")))))
 
 (a:SearchInside 0
 ?sea (Search status "INSIDE"
@@ -765,7 +797,9 @@
   (if (every? some? [obs obj dd])
     (if (> (.distanceNM obs obj) (read-string dd))
       (modify ?sea status "OUTSIDE"))
-    (modify ?sea status "FAILED"))))
+    (do (if (nil? ?obj)
+            (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run))
+      (modify ?sea status "FAILED")))))
 
 (a:PutObAttributesStart 0
 ?poa (PutObAttributes status "START"
@@ -800,7 +834,7 @@
 	title ?tit
 	final_tasks ?ftasks 
 	((s/include? ?ftasks ?tin)
-	 (>= (count ?ftasks) 1)))
+	 (not (empty? ?ftasks))))
 =>
 (println "Scenario DONE:" ?tit)
 (modify ?s status "DONE")
@@ -1208,9 +1242,10 @@
 	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
-(a/take-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-(retract ?ict)
-(s/start-next ?nacts ?pid ?ain ?run))
+(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
+  (do (retract ?ict)
+    (s/start-next ?nacts ?pid ?ain ?run))
+  (modify ?ict status "FAILED")))
 
 (a:InterceptOnShotDistance 5
 (Clock time ?t)
@@ -1507,7 +1542,7 @@
   (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))
     (do (modify ?cp status "FAILED")
       (if (and obj (nil? mo))
-        (asser Exception status "ПОТЕРЯН" title (protege.core/sv obj "label") run ?run)))
+        (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run)))
     (let [bb (int (.bearingsDeg mo lat lon))
            dir (or (.getAttribute mo "SAT-DIR")
 	(let [newdir "FORWARD"]
@@ -1555,14 +1590,14 @@
   (if (or (nil? mo) (a/null? det))
     (do (modify ?cs status "FAILED")
       (if (and obj (nil? mo))
-        (asser Exception status "ПОТЕРЯН" title (protege.core/sv obj "label") run ?run)))
+        (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run)))
     (let [types (protege.core/svs det "types")
            ranges (protege.core/svs det "ranges")
            probs (protege.core/svs det "probabilities")]
       (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]
         (if (a/detected mo tgt types ranges probs)
           (let [tgn (.getName tgt)]
-            (asser Exception status "ОБНАРУЖЕН" title (eval tgn) run ?run)
+            (asser Exception status "DETECTED" object obj title (eval tgn) run ?run)
             (.putAttribute mo "DETECT" (.getName tgt))
             (.putAttribute tgt "DETECTED-BY" (.getName mo)))))
             ;;(if (a/null? cli)
@@ -1585,11 +1620,9 @@
 	run ?run
 	variants ?vrs)
 =>
-(let [obs (map #(d/label-or-title (a/vv % ?run)) ?obs)
-       sts (map #(a/vv % ?run) ?sts)]
-  (modify ?ce status "WAIT"
-	objects obs
-	statuses sts)))
+(modify ?ce status "WAIT"
+	objects (vec ?obs)
+	statuses (map #(a/vv % ?run) ?sts)))
 
 (d:CatchExceptionWait 0
 ?ce (CatchException status "WAIT" 
@@ -1601,13 +1634,13 @@
 	variants ?vrs)
 ?ex (Exception run ?run
 	status ?sta
-	title ?tit2
+	object ?obj
 	(some #{?sta} ?sts))
 =>
 (println "Decision:" ?tit "CatchException status WAIT")
 (loop [oo ?obs ss ?sts vv ?vrs]
   (if (seq oo)
-    (if (and (= (first oo) ?tit2) (= (first ss) ?sta))
+    (if (and (= (first oo) ?obj) (= (first ss) ?sta))
       (do (s/start-tasks-actions [(first vv)] ?pid ?run)
         (retract ?ce ?ex))
       (recur (rest oo) (rest ss) (rest vv)))
@@ -1948,9 +1981,9 @@
            hm0 (s/context-to-hm ctx0)
            hm1 (s/context-to-hm ctx)
            gid (gensym "Ots")]
-      (a/merge-hmm-run hm0 hm1 ?run)
-      (a/merge-hmm-run hm0 ?run nil)
-      (.put hm "?protagonist" pla)
+      (.putAll hm0 hm1)
+      (a/merge-hm-run hm0 ?run)
+      (.put hm0 "?protagonist" pla)
       (-> (ru.rules/mk-frame sub)
         (ru.rules/update-frame
 	'Scenario
@@ -2020,44 +2053,4 @@
             (recur (rest ats) (rest rls) (rest vls)) ) ))
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
-
-(TC.Create Targets 
-
-=>
-)
-
-(TC.Create Bearing1 
-
-=>
-)
-
-(TC.Constant Bearing 
-
-=>
-)
-
-(TC.Delete Old Target 100
-
-=>
-)
-
-(TC.Dangerous Approach 
-
-=>
-)
-
-(TC.Dangerous Overtake 
-
-=>
-)
-
-(TC.Dangerous Towards 
-
-=>
-)
-
-(TC.Delete Bearing1 -100
-
-=>
-)
 

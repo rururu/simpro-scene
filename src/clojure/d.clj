@@ -188,11 +188,13 @@
   [((vec vrs) nv)]))
 
 (defn if-activity-status [ats sts vrs run]
-  (loop [aa ats ss sts vv (butlast vrs)]
+  (println :IAS ats sts vrs run)
+(loop [aa ats ss sts vv (butlast vrs)]
   (if (seq vv)
     (let [typ (.getDirectType (first aa))
            typ (symbol (.getName typ))
            tit (sv (first aa) "title")]
+      (println :TYP typ :TIT tit :FTS (seq (rete.core/facts-with-slot-value typ 'title = tit)))
       (if-let [fts (seq (rete.core/facts-with-slot-value typ 'title = tit))]
         (if-let [fts (seq (rete.core/facts-with-slot-value typ 'run = run fts))]
           (if (seq (rete.core/facts-with-slot-value typ 'status = (first ss) fts))
