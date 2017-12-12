@@ -1,4 +1,4 @@
-; Mon Dec 11 22:17:25 MSK 2017
+; Tue Dec 12 13:22:53 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1874,56 +1874,6 @@
 	(multislot objects
 		(type INSTANCE)
 ;+		(allowed-classes NavOb Variable)
-		(create-accessor read-write)))
-
-(defclass Intercept
-	(is-a Action)
-	(role concrete)
-	(single-slot radius
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot position-speed
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot relative
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot position-angle
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot position-distance
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observer
-		(type INSTANCE)
-;+		(allowed-classes MapOb Variable %3ATHING NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot course
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot shot_distance
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass SetModelClock

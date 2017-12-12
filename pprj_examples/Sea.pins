@@ -1,4 +1,4 @@
-; Mon Dec 11 18:12:25 MSK 2017
+; Tue Dec 12 12:56:26 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1927,12 +1927,11 @@
 	(context [Sea_Class180044])
 	(final_tasks
 		[Sea_Class20003]
-		[Sea_Class390031])
+		[Sea_Class390031]
+		[Sea_Class540001])
 	(finish_type OR)
 	(id "s1.Buoy_2226")
-	(initial_tasks
-		[Sea_Class20006]
-		[Sea_Class530030])
+	(initial_tasks [Sea_Class20006])
 	(parent "s1.Check2225")
 	(protagonist [Sea_Class332])
 	(run "s1.Airpl2120")
@@ -1943,8 +1942,8 @@
 		[Sea_Class180036]
 		[Sea_Class180041]
 		[Sea_Class390031]
-		[Sea_Class460030]
-		[Sea_Class530030])
+		[Sea_Class530000]
+		[Sea_Class540001])
 	(status "START")
 	(title "s1.Airplane Check Buoy"))
 
@@ -6018,20 +6017,6 @@
 	(playground-index 1)
 	(poly [Sea_Class180018]))
 
-([Sea_Class460030] of  IfActivityStatus
-
-	(activities
-		[Sea_Class153]
-		[Sea_Class152])
-	(statuses
-		"FAILED"
-		"FAILED")
-	(title "s1.Buoy Lost?")
-	(variants
-		[Sea_Class20003]
-		[Sea_Class20003]
-		[Sea_Class530030]))
-
 ([Sea_Class470000] of  Spill
 
 	(fillColor "20EE6600")
@@ -8479,6 +8464,13 @@
 
 	(source "(rete.core/facts-with-slot-value 'Search 'title = \"s1.Search Buoy\")"))
 
+([Sea_Class530000] of  CatchException
+
+	(objects [Sea_Class238])
+	(statuses "LOST")
+	(title "s1.Buoy Lost")
+	(variants [Sea_Class540001]))
+
 ([Sea_Class530001] of  Spill
 
 	(fillColor "20EE6600")
@@ -8812,20 +8804,6 @@
 	(playground-index 1)
 	(poly [Sea_Class180018]))
 
-([Sea_Class530030] of  Task
-
-	(final_actions [Sea_Class530031])
-	(finish_type AND)
-	(initial_actions [Sea_Class530031])
-	(next_tasks [Sea_Class460030])
-	(task_scheme [Sea_Class530031])
-	(title "s1.Buoy Lost Check Delay"))
-
-([Sea_Class530031] of  Delay
-
-	(delay "10 min")
-	(title "s1.Buoy Lost Check Interval"))
-
 ([Sea_Class530032] of  Break
 
 	(activity [Sea_Class152])
@@ -8835,6 +8813,16 @@
 
 	(pairs [Sea_Class339])
 	(title "f1.Flight View Context"))
+
+([Sea_Class540001] of  Task
+
+	(final_actions [Sea_Class550003])
+	(finish_type AND)
+	(initial_actions [Sea_Class550002])
+	(task_scheme
+		[Sea_Class550002]
+		[Sea_Class550003])
+	(title "s1.Cease Monitoring"))
 
 ([Sea_Class540002] of  Spill
 
@@ -9183,6 +9171,22 @@
 		"START"
 		":?")
 	(title "Delay 401"))
+
+([Sea_Class550002] of  AssertObjects
+
+	(next_actions [Sea_Class550003])
+	(object [Sea_Class550004])
+	(title "s1.Reproduce Exception"))
+
+([Sea_Class550003] of  Break
+
+	(activity [Sea_Class20002])
+	(title "s1.Cease Check Buoy"))
+
+([Sea_Class550004] of  Exception
+
+	(object [Sea_Class332])
+	(title "Airplane lost buoy"))
 
 ([Sea_Class60000] of  CloProgram
 

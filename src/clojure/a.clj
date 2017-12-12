@@ -180,13 +180,11 @@
 	    (and (< dt 0) (< dt meps)) (recur (+ d (/ (- ma d) 2)) ma d)
 	    true g3)) )) )))
 
-(defn future-position [?obj ?obs ?posa ?posd ?poss rel rad r]
-  (let [mob (mapob-vv ?obj r)
-      mos (mapob-vv ?obs r)
-      posa (vv ?posa r)
-      posd (vv ?posd r)
-      poss (vv ?poss r)]
-  (if (not (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss)))
+(defn future-position [mob mos ?posa ?posd ?poss rel rad r]
+  (let [posa (vv ?posa r)
+       posd (vv ?posd r)
+       poss (vv ?poss r)]
+  (if (not (or (null? posa) (null? posd) (null? poss)))
     (let [an1 (read-string posa)
           dist (read-string posd)
           spdb (read-string poss)
@@ -223,26 +221,21 @@
           [lat lon] (seq (.position mos ang dist))]
       (or (.near mob lat lon rad) (.abaft mob lat lon)) ) )))
 
-(defn taken-position [?obj ?obs ?posa ?posd ?poss rel r]
-  (let [obj (OMT/getMapOb (vv ?obj r))
-      obs (OMT/getMapOb (vv ?obs r))
-      posa (vv ?posa r)
-      posd (vv ?posd r)
-      poss (vv ?poss r)]
-  (if (or (nil? obj) (nil? obs) (null? posa) (null? posd) (null? poss))
-    false
-    (let [an1 (read-string posa)
-          dist (read-string posd)
-          spd (read-string poss)
-          ang (if (= rel true) (trim-angle (+ an1 (.getCourse obs))) an1)
-          pos (.position obs ang dist)
-          lat (aget pos 0)
-          lon (aget pos 1)]
-      (.setLatitude obj (double lat))
-      (.setLongitude obj (double lon))
-      (.setSpeed obj (.getSpeed obs))
-      (.setCourse obj (.getCourse obs)) 
-      true))))
+(defn take-position [obj obs ?posa ?posd ?poss rel r]
+  (let [posa (vv ?posa r)
+       posd (vv ?posd r)
+       poss (vv ?poss r)
+       an1 (read-string posa)
+       dist (read-string posd)
+       spd (read-string poss)
+       ang (if (= rel true) (trim-angle (+ an1 (.getCourse obs))) an1)
+       pos (.position obs ang dist)
+       lat (aget pos 0)
+       lon (aget pos 1)]
+  (.setLatitude obj (double lat))
+  (.setLongitude obj (double lon))
+  (.setSpeed obj (.getSpeed obs))
+  (.setCourse obj (.getCourse obs))))
 
 (defn object-message [atit ?obj ?txt ?url cat cls r]
   (if-let [obj (OMT/getMapOb (vv ?obj r))]
@@ -446,13 +439,6 @@
    (if (= rel "=")
      (= avl val)
      false))))
-
-(defn on-shot-dist? [?obj ?obs ?shd r]
-  (let [mob (mapob-vv ?obj r)
-      mos (mapob-vv ?obs r)
-      shd (vv ?shd r)]
-  (if (not (or (null? mob) (null? mos) (null? shd)))
-    (.near mob mos (Double. shd)))))
 
 (defn op-time-sec [tim]
   (let [dt (.split tim " ")
