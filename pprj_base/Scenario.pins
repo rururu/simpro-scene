@@ -1,4 +1,4 @@
-; Tue Dec 12 13:22:53 MSK 2017
+; Wed Dec 13 22:25:00 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1221,7 +1221,7 @@
 
 ([Scenario_Class380000] of  CloFunction
 
-	(source "(letfn [(ass-vtv [ins]\n            (let [[typ & kvs] (ru.rules/mk-frame ins)\n                   sub (fn [x y] (vv y run))\n                   kvs (merge-with sub kvs)]\n              (rete.core/assert-frame (cons typ kvs))))]\n  (map ass-vtv inss))")
+	(source "(letfn [(frm-suv [ins]\n            (let [[typ & svals] (ru.rules/mk-frame ins) \n                   suf (fn [[k v]]\n	   [k (vv v run)])]\n              (cons typ (mapcat suf (partition 2 svals)))))]\n  (doseq [ins inss]\n    (rete.core/assert-frame (frm-suv ins))))")
 	(title "assert-objects [inss run]"))
 
 ([Scenario_Class390000] of  Rule
@@ -1474,6 +1474,11 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
+([Scenario_Class60001] of  Context
+
+	(pairs [Scenario_Class70002])
+	(title "ctx"))
+
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1492,6 +1497,31 @@
 	(rhs "(retract ?del)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:DelayRepeat"))
+
+([Scenario_Class70002] of  ValuePair
+
+	(title "p1")
+	(value "LOST")
+	(variable [Scenario_Class70003]))
+
+([Scenario_Class70003] of  Variable
+
+	(title "?x"))
+
+([Scenario_Class70006] of  Exception
+
+	(object [Scenario_Class70007])
+	(status "?x")
+	(title "e1"))
+
+([Scenario_Class70007] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "p1")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0))
 
 ([Scenario_Class80000] of  Rule
 
@@ -2636,7 +2666,7 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(mode trace)
+	(mode run)
 	(rule-sets
 		[ScenarioN_Class550030]
 		[Scenario_Class100006]

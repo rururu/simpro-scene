@@ -604,3 +604,12 @@
   (if (nil? (.get hm r))
     (.put hm r (.get run r)))))
 
+(defn assert-objects [inss run]
+  (letfn [(frm-suv [ins]
+            (let [[typ & svals] (ru.rules/mk-frame ins) 
+                   suf (fn [[k v]]
+	   [k (vv v run)])]
+              (cons typ (mapcat suf (partition 2 svals)))))]
+  (doseq [ins inss]
+    (rete.core/assert-frame (frm-suv ins)))))
+
