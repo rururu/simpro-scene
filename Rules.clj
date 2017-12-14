@@ -503,17 +503,24 @@
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Position")
-(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
-  (if (> spdb 0)
-    (do (a/go mob lat lon spdb)
-      (modify ?pos status "REPEAT"
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
+  (cond
+    (nil? mob) (modify ?pos status "FAILED")
+    (nil? mos) (let [obs (a/vv ?obs ?run)]
+	(asser Exception status "LOST" object obs title (protege.core/sv obs "label") run ?run)
+	(modify ?pos status "FAILED"))
+    true
+      (if-let [[mob lat lon spdb crss spds] (a/future-position mob mos ?posa ?posd ?poss ?rel ?rad ?run)]
+        (if (> spdb 0)
+          (do (a/go mob lat lon spdb)
+            (modify ?pos status "REPEAT"
 	course crss
 	speed spds))
-    (if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-      (do (retract ?pos)
-        (s/start-next ?nacts ?pid ?ain ?run))
-      (modify ?pos status "FAILED")))
-  (modify ?pos status "FAILED")))
+          (do (a/take-position mob mos ?posa ?posd ?poss ?rel ?run)
+            (retract ?pos)
+            (s/start-next ?nacts ?pid ?ain ?run)))
+       (modify ?pos status "FAILED")))))
 
 (a:PutOnPlace 0
 ?pop (PutOnPlace status "START" 
@@ -561,10 +568,17 @@
 	next_actions ?nacts
 	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
 =>
-(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-  (do (retract ?pos)
-    (s/start-next ?nacts ?pid ?ain ?run))
-  (modify ?pos status "FAILED")))
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
+  (cond
+    (nil? mob) (modify ?pos status "FAILED")
+    (nil? mos) (let [obs (a/vv ?obs ?run)]
+	(asser Exception status "LOST" object obs title (protege.core/sv obs "label") run ?run)
+	(modify ?pos status "FAILED"))
+    true
+      (do (a/take-position mob mos ?posa ?posd ?poss ?rel ?run)
+        (retract ?pos)
+        (s/start-next ?nacts ?pid ?ain ?run)))))
 
 (a:ObjectMessageStart 0
 ?om (ObjectMessage status "START"
@@ -763,25 +777,25 @@
 	next_actions ?nacts)
 (Clock)
 =>
-(let [obs (a/mapob-vv ?obs ?run)
-       obj (a/mapob-vv ?obj ?run)
-       dd (a/vv ?dd ?run)
-       dp (a/vv ?dp ?run)
-       cli (a/vv ?cli ?run)]
-  (if (every? some? [obs obj dd dp])
-    (if (<= (.distanceNM obs obj) (read-string dd))
-      (if (<= (Math/random) (read-string dp))
-        (do (.putAttribute obs "DETECT" (.getName obj))
-          (asser Exception status "DETECTED" object obj title (protege.core/sv obj "label") run ?run)
-          (.putAttribute obj "DETECTED-BY" (.getName obs)) 
-          ;;(if (not (a/null? cli))
-          ;;  (navobs.commands/set-visible true obj (protege.core/sv cli "id")))
-          (do (retract ?sea)
-            (s/start-next ?nacts ?pid ?ain ?run)))
-        (modify ?sea status "INSIDE")))
-    (do (if (nil? ?obj)
-            (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run))
-      (modify ?sea status "FAILED")))))
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
+  (cond
+    (nil? mos) (modify ?sea status "FAILED")
+    (nil? mob) (let [obj (a/vv ?obj ?run)]
+	(asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run)
+	(modify ?sea status "FAILED"))
+    true
+      (let [dd (a/vv ?dd ?run)
+             dp (a/vv ?dp ?run)]
+        (if (not (or (a/null? dd) (a/null? dp)))
+          (if (<= (.distanceNM mos mob) (read-string dd))
+            (if (<= (Math/random) (read-string dp))
+              (do (.putAttribute mos "DETECT" (.getName mob))
+                (.putAttribute mob "DETECTED-BY" (.getName mos)) 
+                (retract ?sea)
+                (s/start-next ?nacts ?pid ?ain ?run))
+              (modify ?sea status "INSIDE")))
+          (modify ?sea status "FAILED"))))))
 
 (a:SearchInside 0
 ?sea (Search status "INSIDE"
@@ -791,15 +805,16 @@
 	run ?run)
 (Clock)
 =>
-(let [obs (a/mapob-vv ?obs ?run)
-       obj (a/mapob-vv ?obj ?run)
-       dd (a/vv ?dd ?run)]
-  (if (every? some? [obs obj dd])
-    (if (> (.distanceNM obs obj) (read-string dd))
-      (modify ?sea status "OUTSIDE"))
-    (do (if (nil? ?obj)
-            (asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run))
-      (modify ?sea status "FAILED")))))
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
+  (cond
+    (nil? mos) (modify ?sea status "FAILED")
+    (nil? mob) (let [obj (a/vv ?obj ?run)]
+	(asser Exception status "LOST" object obj title (protege.core/sv obj "label") run ?run)
+	(modify ?sea status "FAILED"))
+    true
+      (if (> (.distanceNM mos mob) (read-string (a/vv ?dd ?run)))
+        (modify ?sea status "OUTSIDE")))))
 
 (a:PutObAttributesStart 0
 ?poa (PutObAttributes status "START"
@@ -1091,7 +1106,7 @@
 (println "Action started:" ?tit "AssertObjects")
 (let [obj (a/vv ?obj ?run)
       inss (if (a/null? obj) ?col (cons obj ?col))]
-  (ru.rules/assert-instances inss))
+  (a/assert-objects inss ?run))
 (retract ?aos)
 (s/start-next ?nacts ?pid ?ain ?run))
 
@@ -1205,72 +1220,6 @@
 (retract ?wms)
 (s/start-next ?nacts ?pid ?ain ?run))
 
-(a:InterceptStart 0
-?ict (Intercept status "START" 
-	title ?tit 
-	object ?obj
-	observer ?obs
-	position-angle ?posa 
-	position-distance ?posd 
-	position-speed ?poss 
-	relative ?rel 
-	radius ?rad
-	run ?run)
-=>
-(println "Action started:" ?tit "Intercept")
-(if-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
-  (do (a/go mob lat lon spdb)
-    (modify ?ict status "REPEAT"
-	course crss
-	speed spds))
-  (modify ?ict status "FAILED")))
-
-(a:InterceptInPosition 0
-(Clock time ?t)
-?ict (Intercept status "REPEAT" 
-	title ?tit 
-	object ?obj
-	observer ?obs
-	position-angle ?posa 
-	position-distance ?posd 
-	position-speed ?poss 
-	relative ?rel 
-	radius ?rad
-	parent ?pid
-	instance ?ain
-	run ?run
-	next_actions ?nacts
-	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
-=>
-(if (a/taken-position ?obj ?obs ?posa ?posd ?poss ?rel ?run)
-  (do (retract ?ict)
-    (s/start-next ?nacts ?pid ?ain ?run))
-  (modify ?ict status "FAILED")))
-
-(a:InterceptOnShotDistance 5
-(Clock time ?t)
-?ict (Intercept status "REPEAT" 
-	title ?tit 
-	object ?obj
-	observer ?obs
-	position-angle ?posa 
-	position-distance ?posd 
-	position-speed ?poss 
-	relative ?rel 
-	shot_distance ?shd
-	parent ?pid
-	instance ?ain
-	run ?run
-	next_actions ?nacts
-	((not (s/qm ?shd))
-	 (a/on-shot-dist? ?obj ?obs ?shd ?run)))
-=>
-(let [mob (a/mapob-vv ?obj ?run)
-       mos (a/mapob-vv ?obs ?run)]
-  (.setCourse mob (.getCourse mos)))
-(retract ?ict)
-(s/start-next ?nacts ?pid ?ain ?run))
-
 (d:IfActivityStatus 0
 ?ias (IfActivityStatus status "START" 
 	title ?tit 
@@ -1312,30 +1261,14 @@
 	run ?run
 	(a/observer-maneuver? ?obs ?crs ?spd ?run))
 =>
-(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
-  (a/go mob lat lon spdb)
-  (modify ?pos course crss
-	speed spds)))
-
-(a:InterceptObserverManeuver 0
-(Clock time ?t)
-?ict (Intercept status "REPEAT" 
-	course ?crs
-	speed ?spd
-	object ?obj
-	observer ?obs
-	position-angle ?posa 
-	position-distance ?posd 
-	position-speed ?poss 
-	relative ?rel
-	radius ?rad
-	run ?run
-	(a/observer-maneuver? ?obs ?crs ?spd ?run))
-=>
-(when-let [[mob lat lon spdb crss spds] (a/future-position ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run)]
-  (a/go mob lat lon spdb)
-  (modify ?ict course crss
-	speed spds)))
+(let [mob (a/mapob-vv ?obj ?run)
+       mos (a/mapob-vv ?obs ?run)]
+  (if (nil? mob)
+    (modify ?pos status "FAILED")
+    (when-let [[mob lat lon spdb crss spds] (a/future-position mob mos ?posa ?posd ?poss ?rel ?rad ?run)]
+      (a/go mob lat lon spdb)
+      (modify ?pos course crss
+	speed spds)))))
 
 (a:UseResource 0
 ?ur (UseResource status "START"
@@ -1621,7 +1554,7 @@
 	variants ?vrs)
 =>
 (modify ?ce status "WAIT"
-	objects (vec ?obs)
+	objects (map #(a/vv % ?run) ?obs)
 	statuses (map #(a/vv % ?run) ?sts)))
 
 (d:CatchExceptionWait 0
@@ -1632,10 +1565,10 @@
 	parent ?pid
 	run ?run
 	variants ?vrs)
-?ex (Exception run ?run
-	status ?sta
+?ex (Exception status ?sta
 	object ?obj
-	(some #{?sta} ?sts))
+	((some #{?sta} ?sts)
+	 (some #{?obj} ?obs)))
 =>
 (println "Decision:" ?tit "CatchException status WAIT")
 (loop [oo ?obs ss ?sts vv ?vrs]
@@ -1643,8 +1576,7 @@
     (if (and (= (first oo) ?obj) (= (first ss) ?sta))
       (do (s/start-tasks-actions [(first vv)] ?pid ?run)
         (retract ?ce ?ex))
-      (recur (rest oo) (rest ss) (rest vv)))
-    (modify ?ce status "FAILED"))))
+      (recur (rest oo) (rest ss) (rest vv)))))
 
 (a:RetractObjects 0
 ?ros (RetractObjects status "START"
@@ -2053,4 +1985,44 @@
             (recur (rest ats) (rest rls) (rest vls)) ) ))
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
+
+(TC.Create Targets 
+
+=>
+)
+
+(TC.Create Bearing1 
+
+=>
+)
+
+(TC.Constant Bearing 
+
+=>
+)
+
+(TC.Delete Old Target 100
+
+=>
+)
+
+(TC.Dangerous Approach 
+
+=>
+)
+
+(TC.Dangerous Overtake 
+
+=>
+)
+
+(TC.Dangerous Towards 
+
+=>
+)
+
+(TC.Delete Bearing1 -100
+
+=>
+)
 

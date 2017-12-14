@@ -1,4 +1,4 @@
-; Wed Dec 13 22:25:00 MSK 2017
+; Thu Dec 14 22:37:35 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -179,6 +179,18 @@
 ([Maneuvering] of  ActionClass
 )
 
+([Mission] of  ActionClass
+
+	(functions
+		[Scenario_Class30000]
+		[Scenario_Class190000]
+		[RuleEngine_Class90000]
+		[RuleEngine_Class270000])
+	(rules
+		[ScenarioN_Class70001]
+		[ScenarioN_Class70002]
+		[ScenarioN_Class80003]))
+
 ([MovingObjectMessage] of  ActionClass
 
 	(functions [ScenarioN_Class260003])
@@ -202,18 +214,6 @@
 	(rules
 		[Scenario_Class290000]
 		[Scenario_Class290002]))
-
-([ObjectTask] of  ActionClass
-
-	(functions
-		[Scenario_Class30000]
-		[Scenario_Class190000]
-		[RuleEngine_Class90000]
-		[RuleEngine_Class270000])
-	(rules
-		[ScenarioN_Class70001]
-		[ScenarioN_Class70002]
-		[ScenarioN_Class80003]))
 
 ([ObProperty] of  EventClass
 
@@ -440,7 +440,7 @@
 		[PutObProperties]
 		[CreateByModel]
 		[AssertObjects]
-		[ObjectTask]
+		[Mission]
 		[WaitObAttributes]
 		[AttributesToVariables]
 		[LoadResource]
@@ -684,7 +684,7 @@
 		[Scenario_Class300002])
 	(templates
 		[Scenario]
-		[ObjectTaskScenario]
+		[MissionScenario]
 		[Task]
 		[Join]
 		[TwoObRelation])
@@ -1108,10 +1108,6 @@
 	(salience 0)
 	(title "s:Retract Runs Relation for Object"))
 
-([Scenario_Class300003] of  Attribute
-
-	(title "RES"))
-
 ([Scenario_Class30005] of  CloFunction
 
 	(source "(if-let [si (if (string? siorti) (fifos \"Scenario\" \"title\" siorti) siorti)]\n  (-> (ru.rules/mk-frame si)\n    (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run (context-to-hm (sv si \"context\") (sv si \"protagonist\") mp)\n	 'id (gensym ipx)})\n    rete.core/assert-frame)\n  true)")
@@ -1126,21 +1122,17 @@
 
 ([Scenario_Class310004] of  Rule
 
-	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (and (not= (protege.core/typ act) \"Task\")\n	    (not= (protege.core/typ act) \"Scenario\")\n	    (not= (protege.core/typ act) \"ObjectTaskScenario\"))))")
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (and (not= (protege.core/typ act) \"Task\")\n	    (not= (protege.core/typ act) \"Scenario\")\n	    (not= (protege.core/typ act) \"MissionScenario\"))))")
 	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (a/break-action  act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
 	(salience 0)
 	(title "a:Break Actions"))
 
 ([Scenario_Class310005] of  Rule
 
-	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?obs\n	object ?obj)\n(Scenario run ?run2\n	((= (.hashCode ?run) ?obs)\n	 (= (.hashCode ?run2) ?obj)))")
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"MissionScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?obs\n	object ?obj)\n(Scenario run ?run2\n	((= (.hashCode ?run) ?obs)\n	 (= (.hashCode ?run2) ?obj)))")
 	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run2)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
 	(salience 1)
 	(title "a:Break Subscenarios"))
-
-([Scenario_Class310008] of  Variable
-
-	(title "V1"))
 
 ([Scenario_Class320000] of  CloFunction
 
@@ -1149,7 +1141,7 @@
 
 ([Scenario_Class330000] of  Rule
 
-	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"ObjectTaskScenario\"))))")
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"MissionScenario\"))))")
 	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
 	(salience 0)
 	(title "a:Break Scenario"))
@@ -1474,11 +1466,6 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
-([Scenario_Class60001] of  Context
-
-	(pairs [Scenario_Class70002])
-	(title "ctx"))
-
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1497,31 +1484,6 @@
 	(rhs "(retract ?del)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:DelayRepeat"))
-
-([Scenario_Class70002] of  ValuePair
-
-	(title "p1")
-	(value "LOST")
-	(variable [Scenario_Class70003]))
-
-([Scenario_Class70003] of  Variable
-
-	(title "?x"))
-
-([Scenario_Class70006] of  Exception
-
-	(object [Scenario_Class70007])
-	(status "?x")
-	(title "e1"))
-
-([Scenario_Class70007] of  NavOb
-
-	(altitude 0)
-	(course 0)
-	(label "p1")
-	(playground-index 0)
-	(speed 0.0)
-	(tangage 0.0))
 
 ([Scenario_Class80000] of  Rule
 
@@ -2316,8 +2278,8 @@
 
 ([ScenarioN_Class470002] of  Rule
 
-	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)\n?ex (Exception run ?run\n	status ?sta\n	object ?obj\n	(some #{?sta} ?sts))")
-	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?obj) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?pid ?run)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))\n    (modify ?ce status \"FAILED\")))")
+	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)\n?ex (Exception status ?sta\n	object ?obj\n	((some #{?sta} ?sts)\n	 (some #{?obj} ?obs)))")
+	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?obj) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?pid ?run)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))))")
 	(salience 0)
 	(title "d:CatchExceptionWait"))
 
@@ -2806,17 +2768,17 @@
 
 ([ScenarioN_Class70001] of  Rule
 
-	(lhs "?ot (ObjectTask status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"ObjectTask\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(lhs "?ot (Mission status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Mission\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
-	(title "a:ObjectTaskStart"))
+	(title "a:MissionStart"))
 
 ([ScenarioN_Class70002] of  Rule
 
-	(lhs "?ot (ObjectTask status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?id)")
+	(lhs "?ot (Mission status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?id)")
 	(rhs "(retract ?ot)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 5)
-	(title "a:ObjectTaskRepeat"))
+	(title "a:MissionRepeat"))
 
 ([ScenarioN_Class710000] of  CloFunction
 
@@ -2825,7 +2787,7 @@
 
 ([ScenarioN_Class730000] of  CloFunction
 
-	(source "(if (string? x)\n  (try\n    (read-string x)\n    (catch Exception e\n      x))\n  x)")
+	(source "(if (string? x)\n  (try \n    (let [rs (read-string x)]\n      (if (number? rs) rs x))\n    (catch Exception e\n      x))\n  x)")
 	(title "try-str-num [x]"))
 
 ([ScenarioN_Class740000] of  Command
@@ -2870,10 +2832,10 @@
 
 ([ScenarioN_Class80003] of  Rule
 
-	(lhs "?ot (ObjectTask status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(lhs "?ot (Mission status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
 	(rhs "(retract ?ot)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
-	(title "a:ObjectTaskDone"))
+	(title "a:MissionDone"))
 
 ([ScenarioN_Class80008] of  Rule
 

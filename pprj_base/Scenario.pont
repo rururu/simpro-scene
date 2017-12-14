@@ -1,4 +1,4 @@
-; Wed Dec 13 22:25:00 MSK 2017
+; Thu Dec 14 22:37:35 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -994,7 +994,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass ObjectTaskScenario
+(defclass MissionScenario
 	(is-a Scenario)
 	(role concrete))
 
@@ -1835,7 +1835,7 @@
 ;+		(allowed-classes %3ATHING)
 		(create-accessor read-write)))
 
-(defclass ObjectTask
+(defclass Mission
 	(is-a Action)
 	(role concrete)
 	(single-slot sub_scenario

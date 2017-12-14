@@ -8,8 +8,9 @@
 
 (defn try-str-num [x]
   (if (string? x)
-  (try
-    (read-string x)
+  (try 
+    (let [rs (read-string x)]
+      (if (number? rs) rs x))
     (catch Exception e
       x))
   x))
