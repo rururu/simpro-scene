@@ -1,4 +1,4 @@
-; Thu Dec 14 21:56:14 MSK 2017
+; Fri Dec 15 18:29:54 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -374,7 +374,7 @@
 
 ([Sea_Class120000] of  NavObTask
 
-	(label "Tsk: Put Buoy"))
+	(label "c1.Cruise from Primorsk"))
 
 ([Sea_Class120003] of  Arrive
 
@@ -481,6 +481,7 @@
 ([Sea_Class122] of  PutOffMap
 
 	(id "s1.Wound2180")
+	(mapob [Sea_Class226])
 	(object [Sea_Class243])
 	(parent "s1.Simpl2107")
 	(run "s1.Simpl2106")
@@ -830,14 +831,7 @@
 
 ([Sea_Class140008] of  Type
 
-	(label "Air Forces")
-	(tasks
-		[Sea_Class140009]
-		[Sea_Class120000]))
-
-([Sea_Class140009] of  NavObTask
-
-	(label "Tsk: Go to Point"))
+	(label "Tanker"))
 
 ([Sea_Class141] of  PutOnPlace
 
@@ -2320,7 +2314,7 @@
 	(run "s1.Airpl3568")
 	(status "START")
 	(title "s1.Fuel Loading Initial")
-	(values "500"))
+	(values "400"))
 
 ([Sea_Class218] of  Attribute
 
@@ -3807,8 +3801,7 @@
 
 ([Sea_Class378] of  Type
 
-	(label "Civil Aircraft")
-	(tasks [Sea_Class388]))
+	(label "Air Patrol"))
 
 ([Sea_Class380] of  Line
 
@@ -4011,10 +4004,6 @@
 	(lineColor "FF00CC00")
 	(longitude "28 37.62")
 	(mapob [Sea_Class344]))
-
-([Sea_Class388] of  NavObTask
-
-	(label "Info"))
 
 ([Sea_Class390001] of  TwoObRelation
 
@@ -4690,6 +4679,45 @@
 		[Sea_Class345])
 	(title "Ctx6"))
 
+([Sea_Class70000] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s11")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class70001] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s12")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class70002] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s13")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
 ([Sea_Class70003] of  Field
 
 	(csv_delimiter COMMA)
@@ -4757,9 +4785,106 @@
 		[Sea_Class210000])
 	(title "c1.Cruise from Primorsk"))
 
+([Sea_Class80003] of  Spill
+
+	(fillColor "20EE6600")
+	(isPolygon TRUE)
+	(label "s14")
+	(latitude "60 15.09")
+	(lineColor "00EE3300")
+	(longitude "28 47.98")
+	(N 32)
+	(playground-index 1)
+	(radius 8.0)
+	(speed 4.0))
+
+([Sea_Class80004] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer1")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70000]))
+
+([Sea_Class80005] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer2")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70001]))
+
+([Sea_Class80006] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer3")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70002]))
+
+([Sea_Class80007] of  OMTPolyOnFieldRepeatAction
+
+	(bounds [Sea_Class330013])
+	(field [Sea_Class160017])
+	(interval MINUTE)
+	(label "ds.Drop1 Deformer4")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class80003]))
+
+([Sea_Class80008] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander1")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70000]))
+
+([Sea_Class80009] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander2")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70001]))
+
+([Sea_Class80010] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander3")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class70002]))
+
+([Sea_Class80011] of  SpillRepeatAction
+
+	(bounds [Sea_Class330013])
+	(interval MINUTE)
+	(label "ds.Drop1 Expander4")
+	(lifetime 240)
+	(period 1)
+	(playground-index 1)
+	(poly [Sea_Class80003]))
+
 ([Sea_Class80030] of  Delay
 
-	(delay "10 min")
+	(delay "6 min")
 	(title "s1.Refueling Time"))
 
 ([Sea_Class80031] of  Delay
@@ -4769,7 +4894,11 @@
 
 ([Sea_Class80032] of  Task
 
-	(final_actions [Sea_Class80042])
+	(final_actions
+		[Sea_Class80042]
+		[Sea_Class90033]
+		[Sea_Class90034]
+		[Sea_Class90035])
 	(finish_type AND)
 	(initial_actions
 		[Sea_Class80033]
@@ -4893,12 +5022,9 @@
 
 ([Sea_Class80042] of  PutOffMap
 
-	(mapob
-		[Sea_Class227]
-		[Sea_Class226]
-		[Sea_Class243])
+	(mapob [Sea_Class227])
 	(object [Sea_Class219])
-	(title "s1.Remove CP + Tow and othes"))
+	(title "s1.Remove CP + Tow"))
 
 ([Sea_Class81] of  Subscenario
 

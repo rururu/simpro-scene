@@ -1,4 +1,4 @@
-; Thu Dec 14 22:37:35 MSK 2017
+; Fri Dec 15 23:23:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -772,7 +772,7 @@
 
 ([Scenario_Class21] of  CloFunction
 
-	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"3. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"EXPERT SYSTEM INITIALIZED\")")
+	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"3. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"4. Mission Button Support.\")\n(ClojureTab/invoke \"s\" \"mission-button-support\")\n(println \"EXPERT SYSTEM INITIALIZED\")")
 	(title "clojure-work []"))
 
 ([Scenario_Class210000] of  Rule
@@ -1194,8 +1194,8 @@
 
 ([Scenario_Class360001] of  CloFunction
 
-	(source "(let [te (proxy [ru.igis.omtab.TaskExecutor] []\n	(execTask [no]\n	  (if-let [typ (sv (.getInstance no) \"type\")]\n	    (let [tt (svs typ \"tasks\")\n	           sel (DisplayUtilities/pickInstancesFromCollection nil tt \"SelectTasks\")]\n	       (doseq [ts sel]\n	         (when-let [si (fifos \"Scenario\" \"title\" (sv ts \"label\"))]\n	           (ssv si \"protagonist\" (.getInstance no))\n  	           (start-scenario si nil))) ) )))]\n  (OMT/clearTaskExecutors)\n  (OMT/addTaskExecutor te)\n  (println [:TE-ADDED te]))")
-	(title "task-button-support []"))
+	(source "(let [me (proxy [ru.igis.omtab.MissionExecutor] []\n	(execMission [no]\n	  (if-let [typ (sv (.getInstance no) \"type\")]\n	    (let [tt (svs typ \"missions\")\n	           sel (DisplayUtilities/pickInstancesFromCollection nil tt \"SelectMissions\")]\n	       (doseq [ms sel]\n	         (when-let [si (fifos \"Scenario\" \"title\" (sv ms \"label\"))]\n	           (ssv si \"protagonist\" (.getInstance no))\n  	           (start-scenario si nil \"Adm\"))) ) )))]\n  (OMT/clearMissionExecutors)\n  (OMT/addMissionExecutor me)\n  (println [:ME-ADDED me]))")
+	(title "mission-button-support []"))
 
 ([Scenario_Class370000] of  Rule
 
@@ -1466,6 +1466,12 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
+([Scenario_Class60000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Scenario_Class0])
+	(%3ACREATION-TIMESTAMP "2017.12.15 20:16:36.313 MSK")
+	(%3ACREATOR "ru"))
+
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1484,6 +1490,10 @@
 	(rhs "(retract ?del)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:DelayRepeat"))
+
+([Scenario_Class70005] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
 
 ([Scenario_Class80000] of  Rule
 

@@ -17,5 +17,7 @@
   (println "  Annotated instance of Run not found!"))
 (println "3. Starting Simulation.")
 (ClojureTab/invoke "sim" "start-sim")
+(println "4. Mission Button Support.")
+(ClojureTab/invoke "s" "mission-button-support")
 (println "EXPERT SYSTEM INITIALIZED"))
 

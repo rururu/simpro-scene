@@ -109,19 +109,19 @@
         (start-scenario s nil "Adm")) ))
   (println "Simulation not started!")))
 
-(defn task-button-support []
-  (let [te (proxy [ru.igis.omtab.TaskExecutor] []
-	(execTask [no]
+(defn mission-button-support []
+  (let [me (proxy [ru.igis.omtab.MissionExecutor] []
+	(execMission [no]
 	  (if-let [typ (sv (.getInstance no) "type")]
-	    (let [tt (svs typ "tasks")
-	           sel (DisplayUtilities/pickInstancesFromCollection nil tt "SelectTasks")]
-	       (doseq [ts sel]
-	         (when-let [si (fifos "Scenario" "title" (sv ts "label"))]
+	    (let [tt (svs typ "missions")
+	           sel (DisplayUtilities/pickInstancesFromCollection nil tt "SelectMissions")]
+	       (doseq [ms sel]
+	         (when-let [si (fifos "Scenario" "title" (sv ms "label"))]
 	           (ssv si "protagonist" (.getInstance no))
-  	           (start-scenario si nil))) ) )))]
-  (OMT/clearTaskExecutors)
-  (OMT/addTaskExecutor te)
-  (println [:TE-ADDED te])))
+  	           (start-scenario si nil "Adm"))) ) )))]
+  (OMT/clearMissionExecutors)
+  (OMT/addMissionExecutor me)
+  (println [:ME-ADDED me])))
 
 (defn show-labels []
   (let [ii (OMT/getMapObInstances)
