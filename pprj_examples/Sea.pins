@@ -1,4 +1,4 @@
-; Fri Dec 15 18:29:54 MSK 2017
+; Sat Dec 16 21:17:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -372,9 +372,17 @@
 	(status "START")
 	(title "s1.Lift Wounded"))
 
-([Sea_Class120000] of  NavObTask
+([Sea_Class120000] of  ObjectMission
 
 	(label "c1.Cruise from Primorsk"))
+
+([Sea_Class120001] of  ObjectMission
+
+	(label "c1.Cruise to Primorsk"))
+
+([Sea_Class120002] of  ObjectMission
+
+	(label "ds.Dropper-Expander-Deformer"))
 
 ([Sea_Class120003] of  Arrive
 
@@ -598,6 +606,14 @@
 		[Sea_Class330029]
 		[Sea_Class330031])
 	(title "ds.One Drop"))
+
+([Sea_Class130003] of  ObjectMission
+
+	(label "s1.Airplane Check Buoy"))
+
+([Sea_Class130004] of  ObjectMission
+
+	(label "s1.Airplane Monitoring Oil Spill"))
 
 ([Sea_Class130005] of  Arrive
 
@@ -829,9 +845,22 @@
 	(%3ACREATION-TIMESTAMP "2017.10.21 21:15:53.999 MSK")
 	(%3ACREATOR "ru"))
 
+([Sea_Class140005] of  ObjectMission
+
+	(label "s1.Buoy Monitoring 2 Oil Spills"))
+
+([Sea_Class140006] of  Type
+
+	(label "Buoy")
+	(missions [Sea_Class140005]))
+
 ([Sea_Class140008] of  Type
 
-	(label "Tanker"))
+	(label "Tanker")
+	(missions
+		[Sea_Class120000]
+		[Sea_Class120001]
+		[Sea_Class120002]))
 
 ([Sea_Class141] of  PutOnPlace
 
@@ -2007,7 +2036,7 @@
 		[Sea_Class107]
 		[Sea_Class102]
 		[Sea_Class80031])
-	(title "s2.TF Actions"))
+	(title "s1.TF Actions"))
 
 ([Sea_Class20018] of  Task
 
@@ -2768,6 +2797,7 @@
 	(latitude "60 14.63")
 	(longitude "28 46.97")
 	(speed 0.0)
+	(type [Sea_Class140006])
 	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class245] of  NavOb
@@ -2777,6 +2807,7 @@
 	(latitude "60 10.2")
 	(longitude "28 48.38")
 	(speed 0.0)
+	(type [Sea_Class140006])
 	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class246] of  NavOb
@@ -2786,6 +2817,7 @@
 	(latitude "60 10.05")
 	(longitude "28 39.36")
 	(speed 0.0)
+	(type [Sea_Class140006])
 	(url "file:data/images/buoyb.gif"))
 
 ([Sea_Class247] of  NavOb
@@ -2795,6 +2827,7 @@
 	(latitude "60 14.49")
 	(longitude "28 40.7")
 	(speed 0.0)
+	(type [Sea_Class140006])
 	(url "file:data/images/buoyr.gif"))
 
 ([Sea_Class249] of  Spill
@@ -3126,6 +3159,28 @@
 	(longitude "28 37.62")
 	(mapob [Sea_Class346])
 	(playground-index 0))
+
+([Sea_Class290030] of  CloFuncall
+
+	(source "(ru.rules/f 7597)"))
+
+([Sea_Class290031] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FFFF0000")
+	(next_actions [Sea_Class80035])
+	(object [Sea_Class227])
+	(observer [Sea_Class219])
+	(title "s1.Display Tow CP - S1"))
+
+([Sea_Class290032] of  LinkOnOff
+
+	(flag TRUE)
+	(lineColor "FFFF0000")
+	(next_actions [Sea_Class80036])
+	(object [Sea_Class228])
+	(observer [Sea_Class240])
+	(title "s1.Display Tow CZ - S2"))
 
 ([Sea_Class30000] of  Spill
 
@@ -3639,6 +3694,7 @@
 	(latitude "60 0")
 	(longitude "30 0")
 	(speed 0.0)
+	(type [Sea_Class378])
 	(url "file:data/images/plnb.gif"))
 
 ([Sea_Class334] of  ObjectPair
@@ -3682,6 +3738,7 @@
 	(label "Exxon")
 	(latitude "60 21")
 	(longitude "28 48")
+	(type [Sea_Class140008])
 	(url "file:data/images/t1.gif"))
 
 ([Sea_Class345] of  ObjectPair
@@ -3696,6 +3753,7 @@
 	(label "Valdes")
 	(latitude "60 12")
 	(longitude "28 34")
+	(type [Sea_Class140008])
 	(url "file:data/images/t2.gif"))
 
 ([Sea_Class350001] of  Attribute
@@ -3801,7 +3859,10 @@
 
 ([Sea_Class378] of  Type
 
-	(label "Air Patrol"))
+	(label "Air Patrol")
+	(missions
+		[Sea_Class130003]
+		[Sea_Class130004]))
 
 ([Sea_Class380] of  Line
 
@@ -4587,7 +4648,7 @@
 
 ([Sea_Class570004] of  Task
 
-	(final_actions [Sea_Class570005])
+	(final_actions [Sea_Class90036])
 	(finish_type AND)
 	(initial_actions [Sea_Class570005])
 	(task_scheme
@@ -4599,7 +4660,9 @@
 
 	(latitude "60 21")
 	(longitude "29 1")
-	(next_actions [Sea_Class570003])
+	(next_actions
+		[Sea_Class570003]
+		[Sea_Class90036])
 	(object [ScenarioN_Class570000])
 	(radius 0.2)
 	(speed 100.0)
@@ -4679,45 +4742,6 @@
 		[Sea_Class345])
 	(title "Ctx6"))
 
-([Sea_Class70000] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s11")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class70001] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s12")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class70002] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s13")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
 ([Sea_Class70003] of  Field
 
 	(csv_delimiter COMMA)
@@ -4785,103 +4809,6 @@
 		[Sea_Class210000])
 	(title "c1.Cruise from Primorsk"))
 
-([Sea_Class80003] of  Spill
-
-	(fillColor "20EE6600")
-	(isPolygon TRUE)
-	(label "s14")
-	(latitude "60 15.09")
-	(lineColor "00EE3300")
-	(longitude "28 47.98")
-	(N 32)
-	(playground-index 1)
-	(radius 8.0)
-	(speed 4.0))
-
-([Sea_Class80004] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer1")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70000]))
-
-([Sea_Class80005] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer2")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70001]))
-
-([Sea_Class80006] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer3")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70002]))
-
-([Sea_Class80007] of  OMTPolyOnFieldRepeatAction
-
-	(bounds [Sea_Class330013])
-	(field [Sea_Class160017])
-	(interval MINUTE)
-	(label "ds.Drop1 Deformer4")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class80003]))
-
-([Sea_Class80008] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander1")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70000]))
-
-([Sea_Class80009] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander2")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70001]))
-
-([Sea_Class80010] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander3")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class70002]))
-
-([Sea_Class80011] of  SpillRepeatAction
-
-	(bounds [Sea_Class330013])
-	(interval MINUTE)
-	(label "ds.Drop1 Expander4")
-	(lifetime 240)
-	(period 1)
-	(playground-index 1)
-	(poly [Sea_Class80003]))
-
 ([Sea_Class80030] of  Delay
 
 	(delay "6 min")
@@ -4919,24 +4846,26 @@
 		[Sea_Class90032]
 		[Sea_Class90033]
 		[Sea_Class90034]
-		[Sea_Class90035])
+		[Sea_Class90035]
+		[Sea_Class290031]
+		[Sea_Class290032])
 	(title "s1.TF Return"))
 
 ([Sea_Class80033] of  TowOnOff
 
 	(flag TRUE)
-	(next_actions [Sea_Class80035])
+	(next_actions [Sea_Class290031])
 	(object [Sea_Class219])
 	(observer [Sea_Class227])
 	(position-angle "180")
-	(position-distance "0.8")
+	(position-distance "1.0")
 	(relative TRUE)
 	(title "s1.CP Tow Ship1"))
 
 ([Sea_Class80034] of  TowOnOff
 
 	(flag TRUE)
-	(next_actions [Sea_Class80036])
+	(next_actions [Sea_Class290032])
 	(object [Sea_Class240])
 	(observer [Sea_Class228])
 	(position-angle "180")
@@ -5022,9 +4951,8 @@
 
 ([Sea_Class80042] of  PutOffMap
 
-	(mapob [Sea_Class227])
-	(object [Sea_Class219])
-	(title "s1.Remove CP + Tow"))
+	(object [Sea_Class227])
+	(title "s1.Remove CP"))
 
 ([Sea_Class81] of  Subscenario
 
@@ -5139,9 +5067,8 @@
 
 ([Sea_Class90033] of  PutOffMap
 
-	(mapob [Sea_Class228])
-	(object [Sea_Class240])
-	(title "s1.Remove CZ + Tow"))
+	(object [Sea_Class228])
+	(title "s1.Remove CZ"))
 
 ([Sea_Class90034] of  PutOffMap
 
