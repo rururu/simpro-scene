@@ -1,4 +1,4 @@
-; Sat Dec 16 20:45:30 MSK 2017
+; Sat Dec 16 22:33:23 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1487,7 +1487,7 @@
 
 ([Scenario_Class70005] of  CloFuncall
 
-	(source "(ru.rules/pp :all)"))
+	(source "(ru.rules/sp :all)"))
 
 ([Scenario_Class80000] of  Rule
 

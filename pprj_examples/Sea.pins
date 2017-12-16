@@ -1,4 +1,4 @@
-; Sat Dec 16 21:17:50 MSK 2017
+; Sat Dec 16 22:32:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -109,6 +109,28 @@
 
 	(%3AANNOTATION-TEXT "Start Base")
 	(%3ACREATION-TIMESTAMP "2010.07.10 14:22:12.658 MSD"))
+
+([Sea_Class100030] of  TowOnOff
+
+	(flag FALSE)
+	(next_actions [Sea_Class80042])
+	(object [Sea_Class219])
+	(observer [Sea_Class227])
+	(position-angle "180")
+	(position-distance "1.0")
+	(relative TRUE)
+	(title "s1.CP Off Tow Ship1"))
+
+([Sea_Class100031] of  TowOnOff
+
+	(flag FALSE)
+	(next_actions [Sea_Class90033])
+	(object [Sea_Class240])
+	(observer [Sea_Class228])
+	(position-angle "180")
+	(position-distance "0.8")
+	(relative TRUE)
+	(title "s1.CZ Off Tow Ship2"))
 
 ([Sea_Class101] of  Position
 
@@ -3160,10 +3182,6 @@
 	(mapob [Sea_Class346])
 	(playground-index 0))
 
-([Sea_Class290030] of  CloFuncall
-
-	(source "(ru.rules/f 7597)"))
-
 ([Sea_Class290031] of  LinkOnOff
 
 	(flag TRUE)
@@ -4605,10 +4623,6 @@
 	(task_scheme [Sea_Class570002])
 	(title "s1.Stop Monitoring Round"))
 
-([Sea_Class560030] of  CloFuncall
-
-	(source "(ru.rules/sp :all)"))
-
 ([Sea_Class560033] of  Table2
 
 	(column1
@@ -4848,7 +4862,9 @@
 		[Sea_Class90034]
 		[Sea_Class90035]
 		[Sea_Class290031]
-		[Sea_Class290032])
+		[Sea_Class290032]
+		[Sea_Class100030]
+		[Sea_Class100031])
 	(title "s1.TF Return"))
 
 ([Sea_Class80033] of  TowOnOff
@@ -4896,7 +4912,7 @@
 ([Sea_Class80038] of  Position
 
 	(course 0)
-	(next_actions [Sea_Class80042])
+	(next_actions [Sea_Class100030])
 	(object [Sea_Class227])
 	(observer [Sea_Class233])
 	(position-angle "0")
@@ -4910,7 +4926,7 @@
 ([Sea_Class80039] of  Position
 
 	(course 0)
-	(next_actions [Sea_Class90033])
+	(next_actions [Sea_Class100031])
 	(object [Sea_Class228])
 	(observer [Sea_Class231])
 	(position-angle "0")
