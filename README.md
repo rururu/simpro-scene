@@ -38,6 +38,7 @@ In Protege GUI:
 ## Screencasts of examples
 
 1. [Collision](https://youtu.be/-fDo9IdJ7RA)
+2. [Get started: Simple scenario](https://youtu.be/qb8EjnkyEFQ)
 
 ## License
 
