@@ -1,4 +1,4 @@
-; Sat Dec 09 15:13:39 MSK 2017
+; Sun Dec 17 13:14:27 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -130,10 +130,6 @@
 	(single-slot background.fillColor
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot tasks
-		(type INSTANCE)
-;+		(allowed-classes NavObTask)
 		(create-accessor read-write))
 	(single-slot line
 		(type INSTANCE)
@@ -342,6 +338,10 @@
 	(single-slot south
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot missions
+		(type INSTANCE)
+;+		(allowed-classes ObjectMission)
 		(create-accessor read-write))
 	(single-slot minScale
 		(type FLOAT)
@@ -1520,7 +1520,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass NavObTask
+(defclass ObjectMission
 	(is-a IGIS)
 	(role concrete)
 	(multislot parameters
@@ -1673,13 +1673,13 @@
 (defclass Type
 	(is-a IGIS)
 	(role concrete)
+	(multislot missions
+		(type INSTANCE)
+;+		(allowed-classes ObjectMission)
+		(create-accessor read-write))
 	(single-slot url
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot tasks
-		(type INSTANCE)
-;+		(allowed-classes NavObTask)
 		(create-accessor read-write)))
 
 (defclass IconScale

@@ -1,4 +1,4 @@
-; Fri Oct 13 12:50:41 MSK 2017
+; Sun Dec 17 12:56:10 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,8 +71,8 @@
 
 ([KB_344477_Class1] of  Map
 
-	(entries [OMTest_ProjectKB_Class1008])
-	(referenced_maps [OMTest_ProjectKB_Class1006]))
+	(entries [OMTest_ProjectKB_Class1011])
+	(referenced_maps [OMTest_ProjectKB_Class1009]))
 
 ([KB_344477_Class100] of  Property_List
 )
@@ -166,28 +166,28 @@
 ([KB_344477_Class99] of  Property_List
 )
 
-([KB_544554_Class1002] of  Map
+([KB_938153_Class1002] of  Map
 
 	(entries
-		[KB_544554_Class1003]
-		[KB_544554_Class1004]
-		[KB_544554_Class1005]))
+		[KB_938153_Class1003]
+		[KB_938153_Class1004]
+		[KB_938153_Class1005]))
 
-([KB_544554_Class1003] of  Map_Entry
+([KB_938153_Class1003] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_544554_Class1004] of  Map_Entry
+([KB_938153_Class1004] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_544554_Class1005] of  Map_Entry
+([KB_938153_Class1005] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -199,22 +199,22 @@
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
 
-([OMTest_ProjectKB_Class1006] of  Map
+([OMTest_ProjectKB_Class1009] of  Map
 
-	(entries [OMTest_ProjectKB_Class1007]))
+	(entries [OMTest_ProjectKB_Class1010]))
 
-([OMTest_ProjectKB_Class1007] of  Map_Entry
+([OMTest_ProjectKB_Class1010] of  Map_Entry
 
 	(key "OMTest_Class30002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "41 793 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([OMTest_ProjectKB_Class1008] of  Map_Entry
+([OMTest_ProjectKB_Class1011] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "OMTest_ProjectKB_Class1006")
+	(value "OMTest_ProjectKB_Class1009")
 	(value_class "java.util.Map"))
 
 ([OMTest_ProjectKB_Class105] of  String

@@ -1,4 +1,4 @@
-; Sat Dec 09 15:13:40 MSK 2017
+; Sun Dec 17 13:14:27 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[igis_ProjectKB_Class30004]
-		[igis_ProjectKB_Class60005]
-		[igis_ProjectKB_Class60006]
-		[igis_ProjectKB_Class100007]
-		[igis_ProjectKB_Class110008]
-		[igis_ProjectKB_Class110009]))
+		[igis_ProjectKB_Class130058]
+		[igis_ProjectKB_Class130059]
+		[igis_ProjectKB_Class130060]
+		[igis_ProjectKB_Class130061]
+		[igis_ProjectKB_Class130062]
+		[igis_ProjectKB_Class130063]))
 
 ([CLSES_TAB] of  Widget
 
@@ -638,16 +638,11 @@
 		[igis_ProjectKB_Class100006]
 		[igis_ProjectKB_Class110007]
 		[igis_ProjectKB_Class130009]
-		[igis_ProjectKB_Class130011]))
+		[igis_ProjectKB_Class70004]))
 
 ([igis_ProjectKB_Class100006] of  Property_List
 
 	(name "layout properties"))
-
-([igis_ProjectKB_Class100007] of  String
-
-	(name "ShapeLayer")
-	(string_value "label"))
 
 ([igis_ProjectKB_Class100008] of  Widget
 
@@ -1244,37 +1239,6 @@
 	(width 200)
 	(x 0)
 	(y 180))
-
-([igis_ProjectKB_Class110008] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([igis_ProjectKB_Class110009] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([igis_ProjectKB_Class110010] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class110011] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class110012] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([igis_ProjectKB_Class110019] of  Boolean
 
@@ -1961,6 +1925,11 @@
 ([igis_ProjectKB_Class120005] of  Property_List
 )
 
+([igis_ProjectKB_Class120007] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
 ([igis_ProjectKB_Class120008] of  Property_List
 )
 
@@ -2033,32 +2002,56 @@
 ([igis_ProjectKB_Class130010] of  Property_List
 )
 
-([igis_ProjectKB_Class130011] of  Widget
+([igis_ProjectKB_Class130058] of  String
 
-	(height 120)
-	(is_hidden FALSE)
-	(name "tasks")
-	(property_list [igis_ProjectKB_Class130012])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 0)
-	(y 60))
+	(name "IGIS")
+	(string_value "label"))
 
-([igis_ProjectKB_Class130012] of  Property_List
+([igis_ProjectKB_Class130059] of  String
 
-	(properties
-		[igis_ProjectKB_Class130013]
-		[igis_ProjectKB_Class130014]))
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
 
-([igis_ProjectKB_Class130013] of  Boolean
+([igis_ProjectKB_Class130060] of  String
 
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
+	(name "Param")
+	(string_value "label"))
 
-([igis_ProjectKB_Class130014] of  Boolean
+([igis_ProjectKB_Class130061] of  String
 
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
+	(name "ShapeLayer")
+	(string_value "label"))
+
+([igis_ProjectKB_Class130062] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([igis_ProjectKB_Class130063] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([igis_ProjectKB_Class130064] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class130065] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class130066] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([igis_ProjectKB_Class130072] of  Widget
 
@@ -3483,11 +3476,6 @@
 ([igis_ProjectKB_Class30] of  Property_List
 )
 
-([igis_ProjectKB_Class30004] of  String
-
-	(name "IGIS")
-	(string_value "label"))
-
 ([igis_ProjectKB_Class30005] of  Widget
 
 	(is_hidden FALSE)
@@ -4541,16 +4529,6 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
 
-([igis_ProjectKB_Class60005] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([igis_ProjectKB_Class60006] of  String
-
-	(name "Param")
-	(string_value "label"))
-
 ([igis_ProjectKB_Class60007] of  Property_List
 
 	(name "layout properties"))
@@ -4697,6 +4675,17 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([igis_ProjectKB_Class70004] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "missions")
+	(property_list [igis_ProjectKB_Class90005])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 0)
+	(y 60))
 
 ([igis_ProjectKB_Class70005] of  Property_List
 
@@ -4887,6 +4876,17 @@
 	(width 100)
 	(x 300)
 	(y 180))
+
+([igis_ProjectKB_Class90005] of  Property_List
+
+	(properties
+		[igis_ProjectKB_Class90006]
+		[igis_ProjectKB_Class120007]))
+
+([igis_ProjectKB_Class90006] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
 
 ([igis_ProjectKB_Class90007] of  Widget
 
@@ -6467,7 +6467,7 @@
 ([igis_ProjectKB_Instance_30006] of  Widget
 
 	(is_hidden FALSE)
-	(name "NavObTask")
+	(name "ObjectMission")
 	(property_list [igis_ProjectKB_Instance_30007])
 	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
@@ -6810,9 +6810,9 @@
 ([KB_266843_Class0] of  Map
 
 	(entries
-		[igis_ProjectKB_Class110010]
-		[igis_ProjectKB_Class110011]
-		[igis_ProjectKB_Class110012]))
+		[igis_ProjectKB_Class130064]
+		[igis_ProjectKB_Class130065]
+		[igis_ProjectKB_Class130066]))
 
 ([KB_337263_Instance_0] of  String
 
@@ -6843,6 +6843,9 @@
 
 	(name "instances_file_name")
 	(string_value "igis.pins"))
+
+([KB_539598_Class3] of  Map
+)
 
 ([KB_563022_Instance_0] of  Property_List
 
@@ -7222,9 +7225,6 @@
 	(x 0)
 	(y 120))
 
-([KB_745703_Class3] of  Map
-)
-
 ([PAL_FORM_WIDGET] of  Widget
 
 	(height 476)
@@ -7244,6 +7244,7 @@
 		[STANDARD_CLASS_FORM_WIDGET]
 		[igis_ProjectKB_Class150077]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[igis_ProjectKB_Instance_30006]
 		[igis_ProjectKB_Class140086]
 		[igis_ProjectKB_Class30005]
 		[DroolsScenario_ProjectKB_Instance_60131]
@@ -7269,7 +7270,6 @@
 		[igis_ProjectKB_Class10083]
 		[igis_ProjectKB_Class140072]
 		[igis_ProjectKB_Class10004]
-		[igis_ProjectKB_Instance_30006]
 		[DroolsScenario_ProjectKB_Instance_40000]
 		[igis_ProjectKB_Class90100]
 		[igis_ProjectKB_Class110027]

@@ -1,8 +1,7 @@
 (ns ru.rules
 (:require
   [protege.core :as p]
-  [rete.core :as rete]
-  [clojure.inspector :as cin])
+  [rete.core :as rete])
 (:import
   edu.stanford.smi.protege.model.ValueType
   edu.stanford.smi.protege.ui.DisplayUtilities
@@ -12,7 +11,7 @@
 (def RUN nil)
 (defn mk-templates [clss]
   (letfn [(mk-tpl [cls]
-	(concat [(symbol (.getName cls)) 'instance]
+	(concat [(symbol (.getName cls)) 'INSTANCE]
 	  (map #(symbol (.getName %)) (.getTemplateSlots cls))))]
   (if (seq? clss)
     (map mk-tpl clss)
@@ -44,15 +43,8 @@
   (let [typ (.getDirectType ins)
         slots (.getTemplateSlots typ)
         svls (mapcat #(list (symbol (.getName %)) (sval % ins)) slots)
-        svls (cons 'instance (cons ins svls))]
+        svls (cons 'INSTANCE (cons (.getName ins) svls))]
     (cons (symbol (.getName typ)) svls))))
-
-(defn update-frame [frm typ mp]
-  (let [[otype & svals] frm
-       upf (fn [[k v]]
-	[k (or (mp k) v)])]
-  (cons (if (= typ :same-type) otype typ)
-    (mapcat upf (partition 2 svals)))))
 
 (defn facts-from-classes [fcs]
   (mapcat #(.getInstances %) fcs))
@@ -99,7 +91,7 @@
 
 (defn retract-instances [inss]
   (doseq [ins inss]
-  (doseq [fact (rete/facts-with-slot-value 'instance = ins)]
+  (doseq [fact (rete/facts-with-slot-value 'INSTANCE = (.getName ins))]
     (rete/retract-fact (first fact) true))))
 
 (defn ass-inss [hm inst]
@@ -264,27 +256,4 @@
     (mk-instance typ mp dep)))
 ([typ mp dep]
   (p/mti (assoc mp :DIRTYP typ :DEPTH dep))))
-
-(defn fact-inspector []
-  (cin/inspect-tree (sort-by #(name (second %)) (rete.core/fact-list))))
-
-(defn f2 [n]
-  ;; display fact as table
-(let [all (rete/fact-list)
-      fact (first (filter #(= (first %) n) all))]
-  (if fact
-    (let [[[n typ] & rp] (partition-all 2 fact)
-           t2 (p/crin "Table2")]
-      (p/ssv t2 "title" (str typ " " n))
-      (p/ssvs t2 "column1" (map str (map first rp)))
-      (p/ssvs t2 "column2" (map str (map second rp)))
-      (.show p/*prj* t2)
-      (str "Fact-" n)))))
-
-(defn di [nam]
-  (let [nam (if (.contains nam "(")
-                 (.substring nam (inc (.indexOf nam "(")) (.indexOf nam " "))
-                 nam)]
-  (.show p/*prj* (.getInstance p/*kb* nam))
-  nam))
 

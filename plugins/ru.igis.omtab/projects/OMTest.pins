@@ -1,4 +1,4 @@
-; Fri Oct 13 12:50:41 MSK 2017
+; Sun Dec 17 12:56:10 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -81,6 +81,7 @@
 		[igis_Class40001]
 		[igis_Class40000]
 		[igis_Class70000]
+		[igis_Class80000]
 		[igis_Class14]
 		[igis_Class15]
 		[igis_Class16]
