@@ -39,6 +39,7 @@ In Protege GUI:
 
 1. [Collision](https://youtu.be/-fDo9IdJ7RA)
 2. [Get started: Simple scenario](https://youtu.be/qb8EjnkyEFQ)
+3. [Get started: New project](https://youtu.be/Y693nOxbWR0)
 
 ## License
 
