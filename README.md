@@ -6,6 +6,8 @@
 
 Includes general IDE for Clojure.
 
+![screenshot](screenshot1.png)
+
 [1] R. P. Sorokin Visual Simulation of Spatial Processes, In V.Popovich, M.Schrenk, K.Korolenko (Eds.) Information Fusion and  Geographic Information Systems, Springer 2007, pp. 263-271.
 
 ## Start
