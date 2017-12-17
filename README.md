@@ -2,7 +2,7 @@
 
 ### Integrated development environment for visual creation and simulation of spatial processes.
 
-####  Based on ontology editor [Protege-frames] (https://protege.stanford.edu/), GIS library  [OpenMap] (http://openmap-java.org/) and rule engine and expert system shell  [rete4frames] (https://github.com/rururu/rete4frames). Uses concept of "Scenario" for describing spatial processes [1] and programming language Clojure for executive parts of rules and auxilliary scripts.
+####  Based on ontology editor [Protege-frames](https://protege.stanford.edu/), GIS library  [OpenMap](http://openmap-java.org/) and rule engine and expert system shell  [rete4frames](https://github.com/rururu/rete4frames). Uses concept of "Scenario" for describing spatial processes [1] and programming language Clojure for executive parts of rules and auxilliary scripts.
 
 Includes general IDE for Clojure.
 
@@ -35,7 +35,7 @@ In Protege GUI:
 
 ## Screencasts of examples
 
-1. [Collision] (https://youtu.be/-fDo9IdJ7RA)
+1. [Collision](https://youtu.be/-fDo9IdJ7RA)
 
 ## License
 
