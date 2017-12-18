@@ -41,6 +41,8 @@ In Protege GUI:
 2. [Get started: Simple scenario](https://youtu.be/qb8EjnkyEFQ)
 3. [Get started: New project](https://youtu.be/Y693nOxbWR0)
 
+TO BE CONINUED
+
 ## License
 
 Copyright © 2017 Ruslan Sorokin
