@@ -6,6 +6,8 @@
   :resource-paths ["lib/protege.jar"
                    "lib/looks.jar"
                    "lib/unicode_panel.jar"
+                   "lib/clojure-csv-2.0.1.jar"
+                   "lib/semantic-csv-0.1.0.jar"
                    "plugins/ru.igis.omtab/OpenMapTab-5.2.jar"
                    "plugins/ru.igis.omtab/openmap.jar"
                    "plugins/clojuretab/ClojureTab-1.5git.jar"

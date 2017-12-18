@@ -1,4 +1,4 @@
-; Sat Dec 16 22:33:23 MSK 2017
+; Tue Dec 19 00:16:40 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,6 +29,10 @@
 		(create-accessor read-write))
 	(single-slot content
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot population
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot %3Fmissile
@@ -264,6 +268,11 @@
 ;+		(allowed-classes Variable Context)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot capital
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot clients
 		(type INSTANCE)
 ;+		(allowed-classes)
@@ -294,6 +303,11 @@
 		(create-accessor read-write))
 	(single-slot agroup
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-read
+		(type STRING)
+		(default "Read CSV Files/csv.imp/read-files")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot detect-distance
@@ -583,6 +597,10 @@
 	(multislot statuses
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot country
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot scenario_scheme
 		(type INSTANCE)
 ;+		(allowed-classes Decision Task)
@@ -709,6 +727,11 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-load-cities
+		(type STRING)
+		(default "Load Cities/csv.imp/load-cities")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING)
@@ -783,6 +806,11 @@
 		(create-accessor read-write))
 	(single-slot group_factor
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-create
+		(type STRING)
+		(default "Create Instances/csv.imp/crea-inst")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot choices
@@ -917,6 +945,23 @@
 (defclass Formatter
 	(is-a Component)
 	(role concrete))
+
+(defclass City
+	(is-a OMTRaster)
+	(role concrete)
+	(single-slot population
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot country
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot capital
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass TsunamiRA
 	(is-a SpillRepeatAction)
@@ -2773,5 +2818,24 @@
 		(create-accessor read-write))
 	(single-slot lat
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CSVImport
+	(is-a USER)
+	(role concrete)
+	(single-slot but-csv-read
+		(type STRING)
+		(default "Read CSV Files/csv.imp/read-files")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-create
+		(type STRING)
+		(default "Create Instances/csv.imp/crea-inst")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-load-cities
+		(type STRING)
+		(default "Load Cities/csv.imp/load-cities")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

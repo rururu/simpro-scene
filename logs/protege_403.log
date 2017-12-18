@@ -1,6 +1,0 @@
-2017.12.17 20:19:48.501 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
-2017.12.17 20:19:48.506 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_31-b13, memory=1908M, Mac OS X, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
-2017.12.17 20:19:49.082 MSK CONFIG: Loaded plugin clojuretab -- PluginUtilities.logClassLoaderInformation()
-2017.12.17 20:19:49.106 MSK CONFIG: Loaded plugin edu.stanford.smi.protegex.standard_extensions - Graph Widget, Table Widget -- PluginUtilities.logClassLoaderInformation()
-2017.12.17 20:19:49.166 MSK CONFIG: Loaded plugin ru.igis.omtab -- PluginUtilities.logClassLoaderInformation()
-2017.12.17 20:19:50.944 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()

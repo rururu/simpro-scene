@@ -1,4 +1,4 @@
-; Sat Dec 16 22:33:23 MSK 2017
+; Tue Dec 19 00:16:40 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1466,6 +1466,11 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
+([Scenario_Class60000] of  CloFunction
+
+	(source "(let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))\n       degmin (fn [x] (ru.igis.omtab.MapOb/getDegMin (read-string x)))]\n  (when (seq pths)\n    (doseq [pth pths]\n      (let [csv (read-csv pth)]\n        (println (str \"In file: \" pth \" \" (count csv) \" objects\"))\n        (vswap! DATA concat csv)))\n    (doseq [m @DATA]\n      (let [lab (:CITY_NAME m)\n             in (foc \"City\" \"label\" lab)]\n        (ssv in \"latitude\" (degmin (:LATITUDE m)))\n        (ssv in \"longitude\" (degmin (:LONGITUDE m)))\n        (ssv in \"country\" (:COUNTRY m))\n        (ssv in \"capital\" (= (:CAP m) \"Y\"))\n        (ssv in \"population\" (int (read-string (:POP m))))\n        (ssv in \"url\" \"file:data/images/star16.png\")\n        (ru.igis.omtab.OMT/addMapOb in)))))")
+	(title "load-cities [hm inst]"))
+
 ([Scenario_Class60002] of  CloProgram
 
 	(cloFunctions [Scenario_Class21])
@@ -1500,6 +1505,28 @@
 
 	(source "([del]\n (let [[n u] (seq (.split del \" \"))\n        d (read-string n)]\n   (condp = u\n     \"sec\" d\n     \"min\" (* d 60)\n     \"hrs\" (* d 3600)\n     \"days\" (* d 3600 24))))\n([sec del]\n (+ sec (to-be del)))")
 	(title "to-be"))
+
+([Scenario_Class80010] of  CSVImport
+
+	(but-csv-create "Create Instances/csv.imp/crea-inst")
+	(but-csv-read "Read CSV Files/csv.imp/read-files")
+	(but-load-cities "Load Cities/csv.imp/load-cities"))
+
+([Scenario_Class80012] of  CloFuncall
+
+	(source "(in-ns 'protege.core)"))
+
+([Scenario_Class80013] of  CloFuncall
+
+	(source "(cls \"City\")"))
+
+([Scenario_Class80014] of  CloFuncall
+
+	(source "(.getSuperclasses (cls \"City\"))"))
+
+([Scenario_Class80015] of  CloFuncall
+
+	(source "(.getDirectSuperclasses (cls \"City\"))"))
 
 ([Scenario_Class90000] of  Rule
 
@@ -1883,7 +1910,8 @@
 		[ScenarioN_Class390087]
 		[ScenarioN_Class50273]
 		[ScenarioN_Class390025]
-		[ScenarioN_Class60155])
+		[ScenarioN_Class60155]
+		[Scenario_Class60000])
 	(cloNamespace [ScenarioN_Class290001])
 	(cloVars
 		[ScenarioN_Class330006]
