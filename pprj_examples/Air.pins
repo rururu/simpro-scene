@@ -1,4 +1,4 @@
-; Mon Dec 18 19:40:36 MSK 2017
+; Tue Dec 19 20:26:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,6 +71,11 @@
 	(%3ACREATION-TIMESTAMP "2017.12.18 19:17:15.825 MSK")
 	(%3ACREATOR "ru"))
 
+([Air_Class20000] of  CloFunction
+
+	(source "(let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))\n       degmin (fn [x] (ru.igis.omtab.MapOb/getDegMin (read-string x)))]\n  (when (seq pths)\n    (doseq [pth pths]\n      (let [csv (read-csv pth)]\n        (println (str \"In file: \" pth \" \" (count csv) \" objects\"))\n        (vswap! DATA concat csv)))\n    (doseq [m @DATA]\n      (let [lab (:CITY_NAME m)\n             in (foc \"City\" \"label\" lab)]\n        (ssv in \"latitude\" (degmin (:LATITUDE m)))\n        (ssv in \"longitude\" (degmin (:LONGITUDE m)))\n        (ssv in \"country\" (:COUNTRY m))\n        (ssv in \"capital\" (= (:CAP m) \"Y\"))\n        (ssv in \"population\" (int (read-string (:POP m))))\n        (ssv in \"url\" \"file:data/images/star10.png\")\n        (ru.igis.omtab.OMT/addMapOb in)))))")
+	(title "load-cities [hm inst]"))
+
 ([Air_Class23] of  WorkingPrograms
 
 	(butt-load-progs "Load Programs/protege.core/ldns")
@@ -84,7 +89,8 @@
 		[Scenario_Class220003]
 		[Scenario_Class250008]
 		[ScenarioN_Class510000]
-		[ScenarioN_Class250000])
+		[ScenarioN_Class250000]
+		[Air_Class30005])
 	(title "Air Programs"))
 
 ([Air_Class24] of  %3AINSTANCE-ANNOTATION
@@ -92,6 +98,23 @@
 	(%3AANNOTATED-INSTANCE [Air_Class23])
 	(%3ACREATION-TIMESTAMP "2017.12.18 18:43:15.598 MSK")
 	(%3ACREATOR "ru"))
+
+([Air_Class30005] of  CloProgram
+
+	(cloFunctions [Air_Class20000])
+	(cloNamespace [Air_Class30006])
+	(title "CSVImport Cities"))
+
+([Air_Class30006] of  CloNamespace
+
+	(source "(:use protege.core\n  csv.imp)")
+	(title "csv.imp.cities"))
+
+([Air_Class30007] of  CVSCities
+
+	(but-csv-create "Create Instances/csv.imp/crea-inst")
+	(but-csv-read "Read CSV Files/csv.imp/read-files")
+	(but-load-cities "Load Cities/csv.imp.cities/load-cities"))
 
 ([Air_Class6] of  ShareOnto
 
@@ -101,4 +124,4 @@
 	(but-find-unref "Find Unreferenced/share.onto/find-unref")
 	(but-load-prj "Load Source Project/share.onto/load-src-prj")
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
-	(source-project "DefaultKnowledgeBase(ScenarioN)"))
+	(source-project "DefaultKnowledgeBase(Scenario)"))

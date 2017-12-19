@@ -1,4 +1,4 @@
-; Mon Dec 18 19:40:36 MSK 2017
+; Tue Dec 19 20:26:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,48 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot population
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot capital
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot country
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-load-cities
+		(type STRING)
+		(default "Load Cities/csv.imp.cities/load-cities")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CVSCities
+	(is-a CSVImport)
+	(role concrete)
+	(single-slot but-load-cities
+		(type STRING)
+		(default "Load Cities/csv.imp.cities/load-cities")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass City
+	(is-a OMTRaster)
+	(role concrete)
+	(single-slot population
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot country
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot capital
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

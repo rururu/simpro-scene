@@ -1,4 +1,4 @@
-; Tue Dec 19 00:16:40 MSK 2017
+; Tue Dec 19 15:41:35 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,10 +29,6 @@
 		(create-accessor read-write))
 	(single-slot content
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot population
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot %3Fmissile
@@ -266,11 +262,6 @@
 	(single-slot context
 		(type INSTANCE)
 ;+		(allowed-classes Variable Context)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot capital
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot clients
@@ -597,10 +588,6 @@
 	(multislot statuses
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot country
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot scenario_scheme
 		(type INSTANCE)
 ;+		(allowed-classes Decision Task)
@@ -725,11 +712,6 @@
 		(create-accessor read-write))
 	(single-slot lon
 		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-load-cities
-		(type STRING)
-		(default "Load Cities/csv.imp/load-cities")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road
@@ -946,23 +928,6 @@
 	(is-a Component)
 	(role concrete))
 
-(defclass City
-	(is-a OMTRaster)
-	(role concrete)
-	(single-slot population
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot country
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot capital
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass TsunamiRA
 	(is-a SpillRepeatAction)
 	(role concrete)
@@ -1166,6 +1131,11 @@
 	(role concrete)
 	(single-slot radius
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot speed
@@ -2832,10 +2802,5 @@
 	(single-slot but-csv-create
 		(type STRING)
 		(default "Create Instances/csv.imp/crea-inst")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-load-cities
-		(type STRING)
-		(default "Load Cities/csv.imp/load-cities")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
