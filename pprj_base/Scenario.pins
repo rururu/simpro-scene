@@ -1,4 +1,4 @@
-; Tue Dec 19 15:41:35 MSK 2017
+; Wed Dec 20 21:49:43 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1921,11 +1921,6 @@
 	(salience 0)
 	(title "a:UseResource"))
 
-([ScenarioN_Class260000] of  CloFunction
-
-	(source "(let [len (count crd)]\n  (if (<= len 20)\n    (call-geonames-20elevations crd)\n    (concat (call-geonames-20elevations crd)\n	(collect-elevations (take-last (- len 20) crd)))))")
-	(title "collect-elevations [crd]"))
-
 ([ScenarioN_Class260001] of  CloProgram
 
 	(cloFunctions
@@ -2213,38 +2208,6 @@
 	(source ";; left and right borders in table are exclusive\n(let [[lo hi] (split-with #(< (first %) x) table)]\n  (if (seq lo)\n    (if (seq hi)\n      (linint x (last lo) (first hi))\n      [:UB (second (last table))])\n    [:LB (second (first table))]))")
 	(title "tabfun [x table]"))
 
-([ScenarioN_Class420001] of  CloProgram
-
-	(cloFunctions
-		[ScenarioN_Class490000]
-		[ScenarioN_Class500000]
-		[ScenarioN_Class50000]
-		[ScenarioN_Class590010]
-		[ScenarioN_Class420005])
-	(cloNamespace [ScenarioN_Class430003])
-	(cloVars
-		[ScenarioN_Class500001]
-		[ScenarioN_Class500002]
-		[ScenarioN_Class50002]
-		[ScenarioN_Class530000]
-		[ScenarioN_Class440009])
-	(title "RA Tsunami"))
-
-([ScenarioN_Class420002] of  CloNamespace
-
-	(source "(gen-class\n  :name ru.igis.omtab.ra.Tsunami\n  :extends ru.igis.omtab.ra.SpillRepeatAction\n  :methods [[repeat [double] void]])")
-	(title "ra.tsunami"))
-
-([ScenarioN_Class420005] of  CloFunction
-
-	(source "(let [spi (.getSpill this)\n       llp (.getLLP spi)\n       crd (map #(Math/toDegrees %) llp)\n       crd (partition 2 crd)\n       len (count crd)\n       els (collect-elevations crd)\n       rad (.getCurrentRadius spi)\n       aal (c/smooth-tabfun rad TABFUN)]\n  (println [rad aal])\n  (if (empty? @FL-RCRD)\n    (vreset! FL-RCRD (map #(cons 1 %) (partition 2 llp)))\n    (vswap! FL-RCRD recalc-fl-rcrd aal els))\n  (.setLocation  FL-OMP \n	(double-array (mapcat rest @FL-RCRD))\n	(OMGraphic/RADIANS))\n  (.spill spi time))")
-	(title "-repeat [this ^double time]"))
-
-([ScenarioN_Class430003] of  CloNamespace
-
-	(source "(:use\n  protege.core\n  c)\n(:import\n  ru.igis.omtab.OMT\n  com.bbn.openmap.omGraphics.OMGraphic)\n(:gen-class\n  :name ru.igis.omtab.ra.TsunamiRA\n  :extends ru.igis.omtab.ra.SpillRepeatAction\n  :post-init pinit)")
-	(title "ra.tsunami"))
-
 ([ScenarioN_Class430004] of  CloFunction
 
 	(source "(println (str \"Hello \" greetee \"!\"))")
@@ -2264,11 +2227,6 @@
 
 	(source "(let [xx (svs inst \"x\")\n       yy (svs inst \"y\")]\n  (vec (map #(vector %1 %2) xx yy)))")
 	(title "create-tabfun [inst]"))
-
-([ScenarioN_Class440009] of  CloVar
-
-	(source "nil")
-	(title "TABFUN"))
 
 ([ScenarioN_Class460000] of  Rule
 
@@ -2308,40 +2266,10 @@
 	(salience 0)
 	(title "d:CatchExceptionWait"))
 
-([ScenarioN_Class490000] of  CloFunction
-
-	(source "(vreset! FL-RCRD (volatile! []))\n(let [tsu (sv obj \"poly\") \n       flo (sv obj \"flood\")\n       tfn (sv obj \"tabfun\")]\n  (println [:TSUNAMI (and tsu (sv tsu \"label\"))\n                :FLOOD (and flo (sv flo \"label\"))\n                :TABFUN (and tfn (sv tfn \"title\"))])\n  (if tsu\n    (def TABFUN (c/create-tabfun tfn)))\n  (if flo\n    (def FL-OMP (.getLocationMarker (OMT/addMapOb flo)))))")
-	(title "-pinit [this obj]"))
-
-([ScenarioN_Class50000] of  CloFunction
-
-	(source "(try\n(vec (map \n  #(if (> (first %1) 0)\n      (cons \n        (if (> aal (second %2)) 1 0) \n        (map (fn [x] (Math/toRadians x)) (first %2)))\n      %1)\n  fl-rcrd \n  crd-els))\n(catch Exception e\n  (println [:ERR (map second crd-els)])\n  (throw e)))")
-	(title "recalc-fl-rcrd [fl-rcrd aal crd-els]"))
-
-([ScenarioN_Class500000] of  CloFunction
-
-	(source ";: Get Elevation - Aster Global Digital Elevation Model V1 2009\n;: Returns map {coord1 elev1coord2 elev2 ..} \n(let [crds (take 20 coords)\n       lats (map first crds)\n       lngs (map second crds)\n       lats (apply str (interpose \",\" lats))\n       lngs (apply str (interpose \",\" lngs))\n       url (str *strm3-url* \"?lats=\" lats \"&lngs=\" lngs \"&username=\" *username*)]\n (try\n  (if-let [dat (slurp url)]\n    (let [v (read-string (str \"[\" dat \"]\"))\n           v (interleave coords v)]\n      (partition 2 v)))\n  (catch Exception e\n   (ctpl e)\n   nil)))")
-	(title "call-geonames-20elevations [coords]"))
-
-([ScenarioN_Class500001] of  CloVar
-
-	(source "\"http://api.geonames.org/srtm3\"")
-	(title "^:dynamic *strm3-url*"))
-
-([ScenarioN_Class500002] of  CloVar
-
-	(source "\"liikalanjoki\"")
-	(title "^:dynamic *username*"))
-
 ([ScenarioN_Class500009] of  %3AINSTANCE-ANNOTATION
 
 	(%3ACREATION-TIMESTAMP "2015.06.30 17:31:31.030 MSK")
 	(%3ACREATOR "ru"))
-
-([ScenarioN_Class50002] of  CloVar
-
-	(source "nil")
-	(title "FL-OMP"))
 
 ([ScenarioN_Class50273] of  CloFunction
 
@@ -2434,11 +2362,6 @@
 
 	(source "(println \"Directive: Listen MapOb Events\")\n(ru.igis.omtab.OMT/addActionListener\n  (proxy [java.awt.event.ActionListener] []\n    (actionPerformed [evt] \n      (sim/mapob-event evt))))")
 	(title "Listen MapOb Events"))
-
-([ScenarioN_Class530000] of  CloVar
-
-	(source "nil")
-	(title "FL-RCRD"))
 
 ([ScenarioN_Class530011] of  Rule
 
@@ -2547,42 +2470,9 @@
 	(salience -1)
 	(title "sim:RetractMapObEvent"))
 
-([ScenarioN_Class560000] of  CloFunction
-
-	(source "(def THIS this)")
-	(title "-pinit [this]"))
-
 ([ScenarioN_Class570000] of  Variable
 
 	(title "?protagonist"))
-
-([ScenarioN_Class570001] of  CloVar
-
-	(source "nil")
-	(title "THIS"))
-
-([ScenarioN_Class570008] of  CloProgram
-
-	(cloFunctions
-		[ScenarioN_Class560000]
-		[ScenarioN_Class570010])
-	(cloNamespace [ScenarioN_Class570009])
-	(cloVars
-		[ScenarioN_Class570001]
-		[ScenarioN_Class580009]
-		[ScenarioN_Class580010]
-		[ScenarioN_Class580012])
-	(title "ETOPOEleLayer"))
-
-([ScenarioN_Class570009] of  CloNamespace
-
-	(source "(:gen-class\n  :name com.bbn.openmap.layer.etopo.ETOPOEleLayer\n  :extends com.bbn.openmap.layer.etopo.ETOPOLayer\n  :exposes {dataBuffer {:get getDataBuffer}\n                  bufferWidth {:get getBufferWidth}\n                  bufferHeight {:get getBufferHeight}}\n  :post-init pinit)")
-	(title "subcla.etoele"))
-
-([ScenarioN_Class570010] of  CloFunction
-
-	(source "(let [bwd (or BUFWID (do (def BUFWID (.getBufferWidth THIS)) BUFWID))\n       scy (or SCY (do (def SCY (float (/ (.getBufferHeight THIS) 180.0))) SCY))\n       scx (or SCX (do (def SCX (float (/ bwd 360.0))) SCX))\n       lat_idx (int (* (- 90.0 lat) scy))\n       lon_idx (int (* lon scx))\n       ofs (+ lon_idx (* lat_idx bwd))]\n  (aget (.getDataBuffer THIS) ofs))")
-	(title "elevation [[lat lon]]"))
 
 ([ScenarioN_Class580000] of  CloFunction
 
@@ -2603,21 +2493,6 @@
 	(salience 0)
 	(title "a:MovingTraceStart"))
 
-([ScenarioN_Class580009] of  CloVar
-
-	(source "nil")
-	(title "SCY"))
-
-([ScenarioN_Class580010] of  CloVar
-
-	(source "nil")
-	(title "SCX"))
-
-([ScenarioN_Class580012] of  CloVar
-
-	(source "nil")
-	(title "BUFWID"))
-
 ([ScenarioN_Class590000] of  ETOPOLayer
 
 	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
@@ -2629,11 +2504,6 @@
 	(path "data/ETOPO")
 	(prettyName "ETOPO5 Elevations Access")
 	(view.type "1"))
-
-([ScenarioN_Class590010] of  CloFunction
-
-	(source "(map #(vector % (subcla.etoele/elevation %)) crd)")
-	(title "collect-elevations [crd]"))
 
 ([ScenarioN_Class590017] of  %3AINSTANCE-ANNOTATION
 
