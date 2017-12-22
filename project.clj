@@ -11,7 +11,8 @@
                    "plugins/ru.igis.omtab/OpenMapTab-5.2.jar"
                    "plugins/ru.igis.omtab/openmap.jar"
                    "plugins/clojuretab/ClojureTab-1.5git.jar"
-                   "plugins/clojuretab/rete-5.3.0-SNAPSHOT.jar"]
+                   "plugins/clojuretab/rete-5.3.0-SNAPSHOT.jar"
+                   "src/clojure"]
   :dependencies [[org.clojure/clojure "1.8.0"]]
   :main simpro-scene.core)
 

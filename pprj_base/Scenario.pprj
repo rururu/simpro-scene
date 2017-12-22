@@ -1,4 +1,4 @@
-; Wed Dec 20 21:49:43 MSK 2017
+; Fri Dec 22 22:09:03 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1529,123 +1529,123 @@
 ([KB_458845_Class1116] of  Property_List
 )
 
-([KB_790225_Class2219] of  Map
+([KB_476381_Class2219] of  Map
 
 	(entries
-		[KB_790225_Class2220]
-		[KB_790225_Class2222]
-		[KB_790225_Class2227]
-		[KB_790225_Class2228]
-		[KB_790225_Class2234]
-		[KB_790225_Class2235])
+		[KB_476381_Class2220]
+		[KB_476381_Class2222]
+		[KB_476381_Class2227]
+		[KB_476381_Class2228]
+		[KB_476381_Class2234]
+		[KB_476381_Class2235])
 	(referenced_maps
-		[KB_790225_Class2223]
-		[KB_790225_Class2229]
-		[KB_790225_Class2221]))
+		[KB_476381_Class2221]
+		[KB_476381_Class2223]
+		[KB_476381_Class2229]))
 
-([KB_790225_Class2220] of  Map_Entry
+([KB_476381_Class2220] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_790225_Class2221] of  Map
+([KB_476381_Class2221] of  Map
 )
 
-([KB_790225_Class2222] of  Map_Entry
+([KB_476381_Class2222] of  Map_Entry
 
 	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
 	(key_class "java.lang.String")
-	(value "KB_790225_Class2221")
+	(value "KB_476381_Class2221")
 	(value_class "java.util.Map"))
 
-([KB_790225_Class2223] of  Map
+([KB_476381_Class2223] of  Map
 
 	(entries
-		[KB_790225_Class2224]
-		[KB_790225_Class2225]
-		[KB_790225_Class2226]))
+		[KB_476381_Class2224]
+		[KB_476381_Class2225]
+		[KB_476381_Class2226]))
 
-([KB_790225_Class2224] of  Map_Entry
+([KB_476381_Class2224] of  Map_Entry
 
 	(key "Algorithm_Class80012")
 	(key_class "java.lang.String")
 	(value "70 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2225] of  Map_Entry
+([KB_476381_Class2225] of  Map_Entry
 
 	(key "Algorithm_Class80004")
 	(key_class "java.lang.String")
 	(value "70 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2226] of  Map_Entry
+([KB_476381_Class2226] of  Map_Entry
 
 	(key "Algorithm_Class100003")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2227] of  Map_Entry
+([KB_476381_Class2227] of  Map_Entry
 
 	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
 	(key_class "java.lang.String")
-	(value "KB_790225_Class2223")
+	(value "KB_476381_Class2223")
 	(value_class "java.util.Map"))
 
-([KB_790225_Class2228] of  Map_Entry
+([KB_476381_Class2228] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_790225_Class2229] of  Map
+([KB_476381_Class2229] of  Map
 
 	(entries
-		[KB_790225_Class2230]
-		[KB_790225_Class2231]
-		[KB_790225_Class2232]
-		[KB_790225_Class2233]))
+		[KB_476381_Class2230]
+		[KB_476381_Class2231]
+		[KB_476381_Class2232]
+		[KB_476381_Class2233]))
 
-([KB_790225_Class2230] of  Map_Entry
+([KB_476381_Class2230] of  Map_Entry
 
 	(key "Algorithm_Class80001")
 	(key_class "java.lang.String")
 	(value "120 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2231] of  Map_Entry
+([KB_476381_Class2231] of  Map_Entry
 
 	(key "Algorithm_Class90003")
 	(key_class "java.lang.String")
 	(value "220 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2232] of  Map_Entry
+([KB_476381_Class2232] of  Map_Entry
 
 	(key "Algorithm_Class90004")
 	(key_class "java.lang.String")
 	(value "120 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2233] of  Map_Entry
+([KB_476381_Class2233] of  Map_Entry
 
 	(key "Algorithm_Class90002")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_790225_Class2234] of  Map_Entry
+([KB_476381_Class2234] of  Map_Entry
 
 	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
 	(key_class "java.lang.String")
-	(value "KB_790225_Class2229")
+	(value "KB_476381_Class2229")
 	(value_class "java.util.Map"))
 
-([KB_790225_Class2235] of  Map_Entry
+([KB_476381_Class2235] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -1790,7 +1790,6 @@
 		[Scenario_ProjectKB_Instance_20368]
 		[Scenario_ProjectKB_Instance_31442]
 		[ScenarioN_ProjectKB_Class112221]
-		[ScenarioN_ProjectKB_Class1754]
 		[Scenario_ProjectKB_Class21234]
 		[Scenario_ProjectKB_Class80568]
 		[Scenario_ProjectKB_Class91525]
@@ -26435,365 +26434,6 @@
 
 ([ScenarioN_ProjectKB_Class1495] of  Property_List
 )
-
-([ScenarioN_ProjectKB_Class1754] of  Widget
-
-	(is_hidden FALSE)
-	(name "TsunamiRA")
-	(property_list [ScenarioN_ProjectKB_Class1757])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([ScenarioN_ProjectKB_Class1757] of  Property_List
-
-	(properties
-		[ScenarioN_ProjectKB_Class1758]
-		[ScenarioN_ProjectKB_Class1759]
-		[ScenarioN_ProjectKB_Class1761]
-		[ScenarioN_ProjectKB_Class1763]
-		[ScenarioN_ProjectKB_Class1765]
-		[ScenarioN_ProjectKB_Class1767]
-		[ScenarioN_ProjectKB_Class1769]
-		[ScenarioN_ProjectKB_Class1773]
-		[ScenarioN_ProjectKB_Class1777]
-		[ScenarioN_ProjectKB_Class1781]))
-
-([ScenarioN_ProjectKB_Class1758] of  Property_List
-
-	(name "layout properties"))
-
-([ScenarioN_ProjectKB_Class1759] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "lifetime")
-	(property_list [ScenarioN_ProjectKB_Class1760])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
-	(x 100)
-	(y 120))
-
-([ScenarioN_ProjectKB_Class1760] of  Property_List
-)
-
-([ScenarioN_ProjectKB_Class1761] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "interval")
-	(property_list [ScenarioN_ProjectKB_Class1762])
-	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([ScenarioN_ProjectKB_Class1762] of  Property_List
-)
-
-([ScenarioN_ProjectKB_Class1763] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "label")
-	(property_list [ScenarioN_ProjectKB_Class1764])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([ScenarioN_ProjectKB_Class1764] of  Property_List
-)
-
-([ScenarioN_ProjectKB_Class1765] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "period")
-	(property_list [ScenarioN_ProjectKB_Class1766])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
-	(x 0)
-	(y 120))
-
-([ScenarioN_ProjectKB_Class1766] of  Property_List
-)
-
-([ScenarioN_ProjectKB_Class1767] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "playground-index")
-	(property_list [ScenarioN_ProjectKB_Class1768])
-	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
-	(width 200)
-	(x 200)
-	(y 480))
-
-([ScenarioN_ProjectKB_Class1768] of  Property_List
-)
-
-([ScenarioN_ProjectKB_Class1769] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "poly")
-	(property_list [ScenarioN_ProjectKB_Class1770])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([ScenarioN_ProjectKB_Class1770] of  Property_List
-
-	(properties
-		[ScenarioN_ProjectKB_Class1771]
-		[ScenarioN_ProjectKB_Class1772]))
-
-([ScenarioN_ProjectKB_Class1771] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([ScenarioN_ProjectKB_Class1772] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([ScenarioN_ProjectKB_Class1773] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "bounds")
-	(property_list [ScenarioN_ProjectKB_Class1774])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 480))
-
-([ScenarioN_ProjectKB_Class1774] of  Property_List
-
-	(properties
-		[ScenarioN_ProjectKB_Class1775]
-		[ScenarioN_ProjectKB_Class1776]))
-
-([ScenarioN_ProjectKB_Class1775] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([ScenarioN_ProjectKB_Class1776] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([ScenarioN_ProjectKB_Class1777] of  Widget
-
-	(height 240)
-	(is_hidden FALSE)
-	(label "Tabfun")
-	(name "tabfun")
-	(property_list [ScenarioN_ProjectKB_Class1778])
-	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
-	(width 400)
-	(x 0)
-	(y 240))
-
-([ScenarioN_ProjectKB_Class1778] of  Property_List
-
-	(properties
-		[ScenarioN_ProjectKB_Class1785]
-		[ScenarioN_ProjectKB_Class1786]
-		[ScenarioN_ProjectKB_Class1787]
-		[ScenarioN_ProjectKB_Class1788]
-		[ScenarioN_ProjectKB_Class1789]
-		[ScenarioN_ProjectKB_Class1790]
-		[ScenarioN_ProjectKB_Class1791]
-		[ScenarioN_ProjectKB_Class1792]
-		[ScenarioN_ProjectKB_Class1793]
-		[ScenarioN_ProjectKB_Class1794]
-		[ScenarioN_ProjectKB_Class1795]
-		[ScenarioN_ProjectKB_Class1796]
-		[ScenarioN_ProjectKB_Class1797]
-		[ScenarioN_ProjectKB_Class1798]
-		[ScenarioN_ProjectKB_Class1799]
-		[ScenarioN_ProjectKB_Class1800]
-		[ScenarioN_ProjectKB_Class1801]
-		[ScenarioN_ProjectKB_Class1802]
-		[ScenarioN_ProjectKB_Class1803]
-		[ScenarioN_ProjectKB_Class1804]
-		[ScenarioN_ProjectKB_Class1805]
-		[ScenarioN_ProjectKB_Class1806]
-		[ScenarioN_ProjectKB_Class1807]
-		[ScenarioN_ProjectKB_Class1808]
-		[ScenarioN_ProjectKB_Class1809]
-		[ScenarioN_ProjectKB_Class1810]
-		[ScenarioN_ProjectKB_Class1811]
-		[ScenarioN_ProjectKB_Class1812]))
-
-([ScenarioN_ProjectKB_Class1781] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "flood")
-	(property_list [ScenarioN_ProjectKB_Class1782])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 200)
-	(y 180))
-
-([ScenarioN_ProjectKB_Class1782] of  Property_List
-
-	(properties
-		[ScenarioN_ProjectKB_Class1783]
-		[ScenarioN_ProjectKB_Class1784]))
-
-([ScenarioN_ProjectKB_Class1783] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([ScenarioN_ProjectKB_Class1784] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([ScenarioN_ProjectKB_Class1785] of  String
-
-	(name "tooltip_text"))
-
-([ScenarioN_ProjectKB_Class1786] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Insert:At:Current:Selection"))
-
-([ScenarioN_ProjectKB_Class1787] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Select:New:Insertions"))
-
-([ScenarioN_ProjectKB_Class1788] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Create:Form:For:New:Instances"))
-
-([ScenarioN_ProjectKB_Class1789] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Subwidget:Selection:Enabled"))
-
-([ScenarioN_ProjectKB_Class1790] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Summary:Panel"))
-
-([ScenarioN_ProjectKB_Class1791] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Number:Of:Subordinates"))
-
-([ScenarioN_ProjectKB_Class1792] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Subordinate:Browser:Keys"))
-
-([ScenarioN_ProjectKB_Class1793] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Use:Separators:Between:Subwidgets"))
-
-([ScenarioN_ProjectKB_Class1794] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Comtain:In:Vertical:Direction"))
-
-([ScenarioN_ProjectKB_Class1795] of  Integer
-
-	(integer_value 10)
-	(name ":Size:Of:Space:Between:Subwidgets"))
-
-([ScenarioN_ProjectKB_Class1796] of  Integer
-
-	(integer_value 1)
-	(name ":Prototype:Depth"))
-
-([ScenarioN_ProjectKB_Class1797] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Create:Instance:Button"))
-
-([ScenarioN_ProjectKB_Class1798] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Add:Instance:Button"))
-
-([ScenarioN_ProjectKB_Class1799] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:View:Instance:Button"))
-
-([ScenarioN_ProjectKB_Class1800] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Remove:Instance:Button"))
-
-([ScenarioN_ProjectKB_Class1801] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Delete:Instance:Button"))
-
-([ScenarioN_ProjectKB_Class1802] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Prototype:Button"))
-
-([ScenarioN_ProjectKB_Class1803] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Move:Instance:Buttons"))
-
-([ScenarioN_ProjectKB_Class1804] of  String
-
-	(name ":Create:Instance:Button:Tooltip")
-	(string_value "Create a new instance"))
-
-([ScenarioN_ProjectKB_Class1805] of  String
-
-	(name ":Add:Instance:Button:Tooltip")
-	(string_value "Select an already existing instance"))
-
-([ScenarioN_ProjectKB_Class1806] of  String
-
-	(name ":View:Instance:Button:Tooltip")
-	(string_value "View the selected instance"))
-
-([ScenarioN_ProjectKB_Class1807] of  String
-
-	(name ":Remove:Instance:Button:Tooltip")
-	(string_value "Remove the selected instance(s)"))
-
-([ScenarioN_ProjectKB_Class1808] of  String
-
-	(name ":Delete:Instance:Button:Tooltip")
-	(string_value "Delete the selected instance(s) from the knowledge base"))
-
-([ScenarioN_ProjectKB_Class1809] of  String
-
-	(name ":Prototype:Button:Tooltip")
-	(string_value "Create a new instance which is a duplicate of the selected instance"))
-
-([ScenarioN_ProjectKB_Class1810] of  String
-
-	(name ":Move:Instance:Buttons:Tooltip")
-	(string_value "Move the selected instance"))
-
-([ScenarioN_ProjectKB_Class1811] of  String
-
-	(name ":Create:Instance:Dialog:Title")
-	(string_value "Create a new instance"))
-
-([ScenarioN_ProjectKB_Class1812] of  String
-
-	(name ":Add:Instance:Dialog:Title")
-	(string_value "Select an already existing instance"))
 
 ([ScenarioN_ProjectKB_Class1906] of  String
 

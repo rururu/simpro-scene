@@ -1,4 +1,4 @@
-; Wed Dec 20 21:49:43 MSK 2017
+; Fri Dec 22 22:09:03 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1505,22 +1505,6 @@
 
 	(but-csv-create "Create Instances/csv.imp/crea-inst")
 	(but-csv-read "Read CSV Files/csv.imp/read-files"))
-
-([Scenario_Class80012] of  CloFuncall
-
-	(source "(in-ns 'protege.core)"))
-
-([Scenario_Class80013] of  CloFuncall
-
-	(source "(cls \"City\")"))
-
-([Scenario_Class80014] of  CloFuncall
-
-	(source "(.getSuperclasses (cls \"City\"))"))
-
-([Scenario_Class80015] of  CloFuncall
-
-	(source "(.getDirectSuperclasses (cls \"City\"))"))
 
 ([Scenario_Class90000] of  Rule
 

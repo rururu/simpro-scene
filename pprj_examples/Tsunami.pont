@@ -1,4 +1,4 @@
-; Wed Dec 20 21:49:51 MSK 2017
+; Fri Dec 22 22:15:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,28 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot flood
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot tabfun
+		(type INSTANCE)
+;+		(allowed-classes TableFunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TsunamiRA
+	(is-a SpillRepeatAction)
+	(role concrete)
+	(single-slot tabfun
+		(type INSTANCE)
+;+		(allowed-classes TableFunction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot flood
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Wed Dec 20 21:49:43 MSK 2017
+; Fri Dec 22 22:09:03 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -374,11 +374,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot flood
-		(type INSTANCE)
-;+		(allowed-classes OMTPoly)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot labels
 		(type STRING)
 		(create-accessor read-write))
@@ -484,11 +479,6 @@
 		(create-accessor read-write))
 	(single-slot locationFile
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot tabfun
-		(type INSTANCE)
-;+		(allowed-classes TableFunction)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot key
@@ -927,20 +917,6 @@
 (defclass Formatter
 	(is-a Component)
 	(role concrete))
-
-(defclass TsunamiRA
-	(is-a SpillRepeatAction)
-	(role concrete)
-	(single-slot tabfun
-		(type INSTANCE)
-;+		(allowed-classes TableFunction)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot flood
-		(type INSTANCE)
-;+		(allowed-classes OMTPoly)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
 
 (defclass ScenarioOntology
 	(is-a USER)

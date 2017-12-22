@@ -1,4 +1,4 @@
-; Wed Dec 20 21:49:51 MSK 2017
+; Fri Dec 22 22:15:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -27,8 +27,142 @@
 		[Tsunami_Class14]
 		[Tsunami_Class15]
 		[Tsunami_Class16]
-		[Tsunami_Class17])
+		[Tsunami_Class17]
+		[Tsunami_Class70004])
 	(title "RA Tsunami"))
+
+([Tsunami_Class10000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Tsunami_Class10005])
+	(%3ACREATION-TIMESTAMP "2017.12.21 19:25:04.561 MSK")
+	(%3ACREATOR "ru"))
+
+([Tsunami_Class10003] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[RuleEngine_Class30000]
+		[ScenarioN_Class550020]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[ScenarioN_Class330002])
+	(title "Tsunami Programs"))
+
+([Tsunami_Class10004] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Tsunami_Class10003])
+	(%3ACREATION-TIMESTAMP "2017.12.21 15:23:49.523 MSK")
+	(%3ACREATOR "ru"))
+
+([Tsunami_Class10005] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[igis_Class23]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "Tsunami Map")
+	(Latitude "35.0")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[ScenarioN_Class590000]
+		[igis_Class40011])
+	(Longitude "145.0")
+	(Scale "7500000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]
+		[ScenarioN_Class590000]))
+
+([Tsunami_Class10006] of  TsunamiRA
+
+	(flood [Tsunami_Class10008])
+	(interval SECOND)
+	(label "Tsunami1 RA")
+	(lifetime 15000)
+	(period 1)
+	(playground-index 0)
+	(poly [Tsunami_Class10007])
+	(tabfun [Tsunami_Class10009]))
+
+([Tsunami_Class10007] of  Spill
+
+	(isPolygon TRUE)
+	(label "Tsunami1")
+	(latitude "35 0")
+	(lineColor "FFFFFF00")
+	(longitude "145 0")
+	(N 600)
+	(playground-index 0)
+	(radius 1500.0)
+	(relative FALSE)
+	(speed 350.0))
+
+([Tsunami_Class10008] of  OMTSpline
+
+	(fillColor "500000FF")
+	(isPolygon TRUE)
+	(label "Tsunami1 Wave")
+	(latitude "35 0")
+	(lineColor "FF0000FF")
+	(longitude "145 0")
+	(playground-index 0)
+	(relative FALSE))
+
+([Tsunami_Class10009] of  TableFunction
+
+	(title "Tsunami1 Wave Height")
+	(x 0.0 1200.0)
+	(y 120.0 0.0))
+
+([Tsunami_Class10010] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(rule-sets
+		[ScenarioN_Class550030]
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class17]
+		[Scenario_Class340000])
+	(steps 1)
+	(title "TsunamiRun"))
+
+([Tsunami_Class10011] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Tsunami_Class10010])
+	(%3ACREATION-TIMESTAMP "2017.12.21 19:23:39.979 MSK")
+	(%3ACREATOR "ru"))
 
 ([Tsunami_Class11] of  CloFunction
 
@@ -57,7 +191,7 @@
 
 ([Tsunami_Class16] of  CloVar
 
-	(source "nil")
+	(source "(volatile! [])")
 	(title "FL-RCRD"))
 
 ([Tsunami_Class17] of  CloVar
@@ -110,7 +244,7 @@
 
 ([Tsunami_Class24] of  CloFunction
 
-	(source "(def THIS this)")
+	(source "(def THIS this)\n(println :THIS this)")
 	(title "-pinit [this]"))
 
 ([Tsunami_Class25] of  CloFunction
@@ -125,10 +259,20 @@
 
 ([Tsunami_Class7] of  CloFunction
 
-	(source "(vreset! FL-RCRD (volatile! []))\n(let [tsu (sv obj \"poly\") \n       flo (sv obj \"flood\")\n       tfn (sv obj \"tabfun\")]\n  (println [:TSUNAMI (and tsu (sv tsu \"label\"))\n                :FLOOD (and flo (sv flo \"label\"))\n                :TABFUN (and tfn (sv tfn \"title\"))])\n  (if tsu\n    (def TABFUN (c/create-tabfun tfn)))\n  (if flo\n    (def FL-OMP (.getLocationMarker (OMT/addMapOb flo)))))")
+	(source "(vreset! FL-RCRD [])\n(let [tsu (sv obj \"poly\") \n       flo (sv obj \"flood\")\n       tfn (sv obj \"tabfun\")]\n  (println [:TSUNAMI (and tsu (sv tsu \"label\"))\n                :FLOOD (and flo (sv flo \"label\"))\n                :TABFUN (and tfn (sv tfn \"title\"))])\n  (if tsu\n    (def TABFUN (c/create-tabfun tfn)))\n  (if flo\n    (def FL-OMP (.getLocationMarker (OMT/addMapOb flo)))))")
 	(title "-pinit [this obj]"))
+
+([Tsunami_Class70004] of  CloVar
+
+	(source "nil")
+	(title "TRA"))
 
 ([Tsunami_Class9] of  CloFunction
 
-	(source "(let [spi (.getSpill this)\n       llp (.getLLP spi)\n       crd (map #(Math/toDegrees %) llp)\n       crd (partition 2 crd)\n       len (count crd)\n       els (collect-elevations crd)\n       rad (.getCurrentRadius spi)\n       aal (c/smooth-tabfun rad TABFUN)]\n  (println [rad aal])\n  (if (empty? @FL-RCRD)\n    (vreset! FL-RCRD (map #(cons 1 %) (partition 2 llp)))\n    (vswap! FL-RCRD recalc-fl-rcrd aal els))\n  (.setLocation  FL-OMP \n	(double-array (mapcat rest @FL-RCRD))\n	(OMGraphic/RADIANS))\n  (.spill spi time))")
+	(source "(let [spi (.getSpill this)\n       llp (.getLLP spi)\n       crd (map #(Math/toDegrees %) llp)\n       crd (partition 2 crd)\n       len (count crd)\n       els (collect-elevations crd)\n       rad (.getCurrentRadius spi)\n       aal (c/smooth-tabfun rad TABFUN)]\n  (println :R rad :W aal )\n  (if (empty? @FL-RCRD)\n    (vreset! FL-RCRD (map #(cons 1 %) (partition 2 llp)))\n    (vswap! FL-RCRD recalc-fl-rcrd aal els))\n  (.setLocation  FL-OMP \n	(double-array (mapcat rest @FL-RCRD))\n	(OMGraphic/RADIANS))\n  (.spill spi time))")
 	(title "-repeat [this ^double time]"))
+
+([Tsunami_Class90009] of  CloFunction
+
+	(source "(let [len (count crd)]\n  (if (<= len 20)\n    (call-geonames-20elevations crd)\n    (concat (call-geonames-20elevations crd)\n	(collect-elevations (take-last (- len 20) crd)))))")
+	(title "collect-elevations [crd]"))
