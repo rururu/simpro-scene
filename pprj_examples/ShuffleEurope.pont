@@ -1,0 +1,48 @@
+; Sat Dec 23 13:26:17 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot assert-strings
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot m-polygons
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot onto-topclasses
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot packages
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot task_impl
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot pointer
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot programs
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot onto-package
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot working-memory
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot onto-classpath
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot scripts
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot m-layers
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write)))

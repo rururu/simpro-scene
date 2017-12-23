@@ -42,6 +42,7 @@ In Protege GUI:
 3. [Get started: New project](https://youtu.be/Y693nOxbWR0)
 4. [Get started: Object Mission](https://youtu.be/eT-2CQzGuEA)
 5. [Tsunami](https://youtu.be/pkF8BE74JAk)
+6. [Shuffle Europe](https://youtu.be/Jh6r9ytpkKQ)
 
 TO BE CONTINUED
 
