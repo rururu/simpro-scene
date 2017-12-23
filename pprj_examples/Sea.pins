@@ -1,4 +1,4 @@
-; Sat Dec 16 22:32:50 MSK 2017
+; Sat Dec 23 19:15:08 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -839,7 +839,7 @@
 		[igis_Class20]
 		[igis_Class21]
 		[igis_Class22]
-		[Scenario_Class520001]
+		[Scenario_Class60001]
 		[igis_Class25]
 		[igis_Class26]
 		[igis_Class27]

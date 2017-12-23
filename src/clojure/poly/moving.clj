@@ -69,7 +69,7 @@
   (try
   (let [att (.getAttribute mob "PM-PARAMS")
          finis (att :finish)]
-    (if (>= ?t finis)
+    (if (> ?t finis)
         0
         (let [llas (att :sta-points)
                llaf (att :fin-points)

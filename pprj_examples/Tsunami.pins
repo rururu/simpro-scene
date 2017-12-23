@@ -1,4 +1,4 @@
-; Fri Dec 22 22:15:50 MSK 2017
+; Sat Dec 23 19:24:58 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -78,7 +78,7 @@
 		[igis_Class20]
 		[igis_Class21]
 		[igis_Class22]
-		[igis_Class23]
+		[Scenario_Class60001]
 		[igis_Class25]
 		[igis_Class26]
 		[igis_Class27]
@@ -91,7 +91,7 @@
 	(layers
 		[igis_Class40012]
 		[igis_Class1]
-		[ScenarioN_Class590000]
+		[Tsunami_Class20000]
 		[igis_Class40011])
 	(Longitude "145.0")
 	(Scale "7500000")
@@ -99,7 +99,7 @@
 		[igis_Class40012]
 		[igis_Class1]
 		[igis_Class40011]
-		[ScenarioN_Class590000]))
+		[Tsunami_Class20000]))
 
 ([Tsunami_Class10006] of  TsunamiRA
 
@@ -226,6 +226,18 @@
 
 	(source "nil")
 	(title "THIS"))
+
+([Tsunami_Class20000] of  ETOPOLayer
+
+	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
+	(contrast "5")
+	(label "ETOPO5Ele")
+	(minute.spacing "5")
+	(number.colors "216")
+	(opaque "100")
+	(path "data/ETOPO")
+	(prettyName "ETOPO5 Elevations Access")
+	(view.type "1"))
 
 ([Tsunami_Class21] of  CloVar
 

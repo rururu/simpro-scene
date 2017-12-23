@@ -1,4 +1,4 @@
-; Sat Dec 23 13:26:17 MSK 2017
+; Sat Dec 23 19:34:11 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -46,3 +46,7 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write)))
+
+(defclass %3AUNDEFINED
+	(is-a USER)
+	(role concrete))

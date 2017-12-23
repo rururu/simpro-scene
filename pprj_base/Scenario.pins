@@ -1,4 +1,4 @@
-; Fri Dec 22 22:09:03 MSK 2017
+; Sat Dec 23 19:38:51 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -719,50 +719,6 @@
 	(salience 0)
 	(title "a:WaitEventStart"))
 
-([Scenario_Class200001] of  Openmap
-
-	(BackgroundColor "FFCCEEFF")
-	(components
-		[Scenario_Instance_100002]
-		[Scenario_Instance_100003]
-		[Scenario_Instance_100004]
-		[Scenario_Instance_100005]
-		[Scenario_Instance_100006]
-		[Scenario_Instance_100007]
-		[Scenario_Instance_100008]
-		[Scenario_Instance_100009]
-		[Scenario_Instance_100010]
-		[Scenario_Instance_100012]
-		[Scenario_Instance_100013]
-		[Scenario_Instance_100014]
-		[Scenario_Instance_100015]
-		[Scenario_Instance_100016]
-		[Scenario_Instance_100017]
-		[Scenario_Instance_100018]
-		[Scenario_Instance_100019]
-		[Scenario_Instance_100020]
-		[Scenario_Instance_100021]
-		[Scenario_Instance_100022]
-		[Scenario_Instance_100023]
-		[Scenario_Class520002]
-		[Scenario_Instance_100011]
-		[Scenario_Class520001]
-		[Scenario_Class520000]
-		[ScenarioN_Class550001]
-		[ScenarioN_Class540000]
-		[Scenario_Instance_10])
-	(label "openmap")
-	(Latitude "50.0")
-	(layers
-		[Scenario_Instance_100025]
-		[ScenarioN_Class590000]
-		[Sea_Class376])
-	(Longitude "30.0")
-	(Scale "80000000")
-	(startUpLayers
-		[Scenario_Instance_100025]
-		[Sea_Class376]))
-
 ([Scenario_Class20001] of  Rule
 
 	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	run ?run\n	next_tasks ?ntasks\n	(not (empty? ?ntasks)))")
@@ -1382,26 +1338,6 @@
 	(source "(let [varnam (if (instance? Instance var) (sv var \"title\") var)]\n  (.put run varnam val))")
 	(title "vvr [var val run]"))
 
-([Scenario_Class520000] of  SimpleComponent
-
-	(class "ru.igis.omtab.OMT")
-	(label "OMT"))
-
-([Scenario_Class520001] of  Playground
-
-	(class "ru.igis.omtab.Playground")
-	(label "runa")
-	(playground-index 0)
-	(prettyName "RuNA")
-	(scenario "clojuretab.ClojureTab invoke s run-annotated-scenario"))
-
-([Scenario_Class520002] of  Playground
-
-	(class "ru.igis.omtab.Playground")
-	(label "extobs1")
-	(playground-index 1)
-	(prettyName "Ext Objects 1"))
-
 ([Scenario_Class530000] of  CloFunction
 
 	(source "(MapOb/getDeg (vv ?lat r))")
@@ -1465,6 +1401,54 @@
 	(rhs "(println \"Join DONE:\" ?tit)\n(retract ?j)\n(s/start-tasks-actions ?ntasks ?pid ?run)")
 	(salience 0)
 	(title "s:JoinDone"))
+
+([Scenario_Class60000] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "Scenario Map")
+	(Latitude "60.0")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "30.0")
+	(Scale "10000000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([Scenario_Class60001] of  Playground
+
+	(class "ru.igis.omtab.Playground")
+	(label "runa")
+	(playground-index 0)
+	(prettyName "RuNA")
+	(scenario "clojuretab.ClojureTab invoke s run-annotated-scenario"))
 
 ([Scenario_Class60002] of  CloProgram
 
@@ -1534,148 +1518,6 @@
 	(prettyName "World Cities")
 	(showLocations "true")
 	(showNames "true"))
-
-([Scenario_Instance_100002] of  MenuList
-
-	(class "com.bbn.openmap.gui.menu.MenuList")
-	(label "menuList")
-	(menus
-		[Scenario_Instance_100003]
-		[Scenario_Instance_100004]
-		[Scenario_Instance_100005]
-		[Scenario_Instance_100006]
-		[Scenario_Instance_100007]
-		[Scenario_Instance_100008]
-		[Scenario_Instance_100009]))
-
-([Scenario_Instance_100003] of  Menu
-
-	(class "com.bbn.openmap.gui.ControlMenu")
-	(label "controlMenu"))
-
-([Scenario_Instance_100004] of  Menu
-
-	(class "com.bbn.openmap.gui.FileMenu")
-	(label "fileMenu"))
-
-([Scenario_Instance_100005] of  Menu
-
-	(class "com.bbn.openmap.gui.GoToMenu")
-	(label "gotoMenu"))
-
-([Scenario_Instance_100006] of  Menu
-
-	(class "com.bbn.openmap.gui.DefaultHelpMenu")
-	(label "helpMenu"))
-
-([Scenario_Instance_100007] of  Menu
-
-	(class "com.bbn.openmap.gui.LayersMenu")
-	(label "layersMenu"))
-
-([Scenario_Instance_100008] of  Menu
-
-	(class "com.bbn.openmap.gui.NavigateMenu")
-	(label "navigateMenu"))
-
-([Scenario_Instance_100009] of  Menu
-
-	(class "ru.igis.omtab.menu.ProtegeMenu")
-	(label "protegeMenu"))
-
-([Scenario_Instance_100010] of  LayerHandler
-
-	(class "com.bbn.openmap.LayerHandler")
-	(label "layerHandler"))
-
-([Scenario_Instance_100011] of  Playground
-
-	(class "ru.igis.omtab.Playground")
-	(label "extobs2")
-	(playground-index 2)
-	(prettyName "Ext Objects 2"))
-
-([Scenario_Instance_100012] of  GraphicLoaderConnector
-
-	(class "com.bbn.openmap.plugin.graphicLoader.GraphicLoaderConnector")
-	(label "graphicLoaderConnector"))
-
-([Scenario_Instance_100013] of  LayersPanel
-
-	(class "com.bbn.openmap.gui.LayersPanel")
-	(label "layersPanel"))
-
-([Scenario_Instance_100014] of  MouseMode
-
-	(class "com.bbn.openmap.MouseDelegator")
-	(label "mouseDelegator"))
-
-([Scenario_Instance_100015] of  MouseMode
-
-	(class "com.bbn.openmap.gui.MouseModeButtonPanel")
-	(label "mouseModeButtonPanel"))
-
-([Scenario_Instance_100016] of  MouseMode
-
-	(class "com.bbn.openmap.event.NavMouseMode2")
-	(label "navMouseMode"))
-
-([Scenario_Instance_100017] of  MouseMode
-
-	(class "com.bbn.openmap.event.NullMouseMode")
-	(label "nullMouseMode"))
-
-([Scenario_Instance_100018] of  MouseMode
-
-	(class "ru.igis.omtab.gui.RuDistanceMouseMode")
-	(label "RuDistanceMouseMode"))
-
-([Scenario_Instance_100019] of  MouseMode
-
-	(class "com.bbn.openmap.event.SelectMouseMode")
-	(label "selectMouseMode"))
-
-([Scenario_Instance_100020] of  SimpleComponent
-
-	(class "com.bbn.openmap.InformationDelegator")
-	(label "informationDelegator"))
-
-([Scenario_Instance_100021] of  SimpleComponent
-
-	(class "ru.igis.omtab.RunaControlPanel")
-	(label "runaControlPanel"))
-
-([Scenario_Instance_100022] of  SimpleComponent
-
-	(class "com.bbn.openmap.gui.ToolPanel")
-	(label "toolPanel"))
-
-([Scenario_Instance_100023] of  SimpleComponent
-
-	(class "com.bbn.openmap.gui.OMToolSet")
-	(label "toolSet"))
-
-([Scenario_Instance_100024] of  ProtegeReflector
-
-	(class "ru.igis.omtab.reflect.NavObReflector")
-	(label "navObReflector")
-	(reflectCreation "false"))
-
-([Scenario_Instance_100025] of  GraticuleLayer
-
-	(10DegreeColor "99000000")
-	(1DegreeColor "99003300")
-	(5DegreeColor "99009900")
-	(class "com.bbn.openmap.layer.GraticuleLayer")
-	(dateLineColor "99000000")
-	(equatorColor "99FF0000")
-	(label "graticule")
-	(prettyName "GraticuleLayer")
-	(show1And5Lines "true")
-	(showRuler "true")
-	(specialLineColor "99000000")
-	(textColor "99000000")
-	(threshold "2"))
 
 ([Scenario_Instance_210003] of  Command
 
@@ -2322,7 +2164,7 @@
 
 ([ScenarioN_Class520007] of  CloFunction
 
-	(source "(try\n  (let [att (.getAttribute mob \"PM-PARAMS\")\n         finis (att :finish)]\n    (if (>= ?t finis)\n        0\n        (let [llas (att :sta-points)\n               llaf (att :fin-points)\n               peri (att :period)\n               rest (- finis ?t)\n               ratio (/ (- peri rest) peri)\n               ipp (step-poly ratio llas llaf)\n               arr (double-array ipp)]\n           (.. mob (getLocationMarker) (setLocation arr (OMGraphic/RADIANS)))\n           1)))\n(catch Exception ex\n  (println ex)\n  -1))")
+	(source "(try\n  (let [att (.getAttribute mob \"PM-PARAMS\")\n         finis (att :finish)]\n    (if (> ?t finis)\n        0\n        (let [llas (att :sta-points)\n               llaf (att :fin-points)\n               peri (att :period)\n               rest (- finis ?t)\n               ratio (/ (- peri rest) peri)\n               ipp (step-poly ratio llas llaf)\n               arr (double-array ipp)]\n           (.. mob (getLocationMarker) (setLocation arr (OMGraphic/RADIANS)))\n           1)))\n(catch Exception ex\n  (println ex)\n  -1))")
 	(title "pm-repeat [mob ?t]"))
 
 ([ScenarioN_Class520008] of  CloFunction
@@ -2378,25 +2220,10 @@
 	(source "(let [mm (into [] ?mpb)\n       len (count mm)\n       fst (OMT/getMapOb (first mm))\n       nxt (inc ?n)\n       rep (pm-repeat fst ?t)]\n   (if (and (= rep 0)(< nxt len))\n       (pm-start fst (nth mm nxt) (/ tim len) ?t))\n   rep)")
 	(title "pm-repeat-n [?mpb tim ?n ?t]"))
 
-([ScenarioN_Class540000] of  SimpleComponent
-
-	(class "com.bbn.openmap.proj.ProjectionStack")
-	(label "ProjStack"))
-
 ([ScenarioN_Class540004] of  %3AINSTANCE-ANNOTATION
 
 	(%3ACREATION-TIMESTAMP "2015.08.30 17:43:14.178 MSK")
 	(%3ACREATOR "ru"))
-
-([ScenarioN_Class550001] of  MouseMode
-
-	(class "com.bbn.openmap.event.PanMouseMode")
-	(label "PanMouseMode"))
-
-([ScenarioN_Class550002] of  MouseMode
-
-	(class "com.bbn.openmap.event.DistanceMouseMode")
-	(label "DistanceMouseMode"))
 
 ([ScenarioN_Class550004] of  CloFunction
 
@@ -2476,18 +2303,6 @@
 	(rhs "(println \"Action started:\" ?tit \"MovingTrace\")\n(let [mo (a/mapob-vv ?obj ?run)\n      pol (a/vv ?pol ?run)]\n  (if (and (some? mo) (not (a/null? pol)))\n    (let [mt {:ompoly (-> (ru.igis.omtab.OMT/getOrAdd pol)\n		.getLocationMarker)\n                        :crs1crs2 [0 0]\n	:x1y1 [0 0]}]\n      (.putAttribute mo \"MOTRACE\" mt)\n      (modify ?mt status \"REPEAT\"\n	polygon pol))\n    (do (retract ?mt)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
 	(salience 0)
 	(title "a:MovingTraceStart"))
-
-([ScenarioN_Class590000] of  ETOPOLayer
-
-	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
-	(contrast "5")
-	(label "ETOPO5Ele")
-	(minute.spacing "5")
-	(number.colors "216")
-	(opaque "100")
-	(path "data/ETOPO")
-	(prettyName "ETOPO5 Elevations Access")
-	(view.type "1"))
 
 ([ScenarioN_Class590017] of  %3AINSTANCE-ANNOTATION
 
@@ -2734,48 +2549,6 @@
 
 	(source "(try\n  (let [dav (Double. avl)\n        dva (Double. val)]\n    (condp = rel\n      \"=\" (= dav dva)\n      \">\" (> dav dva)\n      \">=\" (>= dav dva)\n      \"<\" (< dav dva)\n      \"<=\" (<= dav dva)\n      \"!=\" (not= dav dva)\n      (do (println (str \"Wrong relation \" avl \" \" rel \" \" val))\n        false)))\n (catch NumberFormatException nfe\n   (if (= rel \"=\")\n     (= avl val)\n     false)))")
 	(title "is-relation [avl rel val]"))
-
-([ScenarioN_Class90001] of  MapTileLayer
-
-	(background.fillColor "FFFFFF")
-	(background.lineColor "FFFFFF")
-	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
-	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
-	(fileExt ".png")
-	(label "OSM_Tiles")
-	(land.fillColor "DECD8B")
-	(land.lineColor "DECD8B")
-	(localCacheRootDir "data/tiles/osmtiles")
-	(noCoverageZoom "13")
-	(prettyName "OSM Tiles")
-	(rootDir "http://a.tile.openstreetmap.org")
-	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
-
-([Sea3_Class4] of  MapTileLayer
-
-	(background.fillColor "FFFFFF")
-	(background.lineColor "FFFFFF")
-	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
-	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
-	(fileExt ".png")
-	(label "S57")
-	(land.fillColor "DECD8B")
-	(land.lineColor "DECD8B")
-	(localCacheRootDir "data/tiles/s57")
-	(noCoverageZoom "13")
-	(prettyName "S57")
-	(rootDir "http://172.21.0.13:8080/tms/rest/102")
-	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
-
-([Sea_Class376] of  ShapeLayer
-
-	(class "com.bbn.openmap.layer.shape.ShapeLayer")
-	(fillColor "FFFFCC99")
-	(label "BrowseWorld")
-	(lineColor "FF000000")
-	(prettyName "Browse World")
-	(shapeFile "data/shape/dcwpo-browse.shp")
-	(spatialIndex "data/shape/dcwpo-browse.ssx"))
 
 ([Search] of  ActionClass
 
