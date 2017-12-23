@@ -1,9 +1,9 @@
-#/target
-#/classes
+/target
+/classes
 /checkouts
 pom.xml
 pom.xml.asc
-#*.class
+*.class
 /.lein-*
 /.nrepl-port
 .hgignore
