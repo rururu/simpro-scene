@@ -1,4 +1,4 @@
-; Sat Dec 23 19:38:51 MSK 2017
+; Mon Dec 25 21:56:49 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -153,11 +153,6 @@
 		(create-accessor read-write))
 	(single-slot position-distance
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direction
-		(type SYMBOL)
-		(allowed-values FORWARD BACKWARD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot protagonist
@@ -739,10 +734,6 @@
 ;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot parameter
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot flag
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
@@ -751,6 +742,10 @@
 		(create-accessor read-write))
 	(single-slot ceiling
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot getPoliesFromTargets
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot user
@@ -1544,41 +1539,6 @@
 	(is-a Action)
 	(role abstract))
 
-(defclass GoRoad
-	(is-a Go)
-	(role concrete)
-	(single-slot spd
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot radius
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direction
-		(type SYMBOL)
-		(allowed-values FORWARD BACKWARD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot lla
-;+		(type ANY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot road
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass GoLayer
 	(is-a Go)
 	(role concrete)
@@ -1586,40 +1546,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot layer
+	(single-slot resource
 		(type INSTANCE)
-;+		(allowed-classes Layer Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot value
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direction
-		(type SYMBOL)
-		(allowed-values FORWARD BACKWARD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot parameter
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass GoPoly
-	(is-a Go)
-	(role concrete)
-	(single-slot spd
-		(type STRING)
+;+		(allowed-classes Attribute)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot layer
@@ -1627,8 +1556,13 @@
 ;+		(allowed-classes Layer Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot value
-		(type STRING)
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot backward
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot object
@@ -1636,17 +1570,7 @@
 ;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot direction
-		(type SYMBOL)
-		(allowed-values FORWARD BACKWARD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot parameter
+	(single-slot getPoliesFromTargets
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

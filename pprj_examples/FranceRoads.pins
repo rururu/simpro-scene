@@ -1,7 +1,147 @@
-; Sat Dec 23 23:14:36 MSK 2017
+; Mon Dec 25 18:01:57 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([FranceRoads_Class10] of  CloFuncall
+
+	(source "(.getList (ll \"France Roads\"))"))
+
+([FranceRoads_Class11] of  CloFuncall
+
+	(source "(.getTargets (.getList (ll \"France Roads\")))"))
+
+([FranceRoads_Class12] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"France Roads\"))))"))
+
+([FranceRoads_Class13] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"France Railroads\"))))"))
+
+([FranceRoads_Class14] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"France PopPoint\"))))"))
+
+([FranceRoads_Class15] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"Browse World\"))))"))
+
+([FranceRoads_Class16] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"Graticule\"))))"))
+
+([FranceRoads_Class17] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"RuNA\"))))"))
+
+([FranceRoads_Class18] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"Blue Playground\"))))"))
+
+([FranceRoads_Class19] of  CloFuncall
+
+	(source "(count (.getTargets (.getList (ll \"OSM Tiles\"))))"))
+
+([FranceRoads_Class20] of  CloFuncall
+
+	(source "(map .getClass (.getTargets (.getList (ll \"OSM Tiles\"))))"))
+
+([FranceRoads_Class21] of  CloFuncall
+
+	(source "(map #(.getClass #) (.getTargets (.getList (ll \"OSM Tiles\"))))"))
+
+([FranceRoads_Class22] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"OSM Tiles\"))))"))
+
+([FranceRoads_Class23] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"Graticule\"))))"))
+
+([FranceRoads_Class24] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"Browse World\"))))"))
+
+([FranceRoads_Class25] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France PopPoint\"))))"))
+
+([FranceRoads_Class26] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France Railroads\"))))"))
+
+([FranceRoads_Class27] of  CloFuncall
+
+	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France Roads\"))))"))
+
+([FranceRoads_Class28] of  CloFuncall
+
+	(source "(map #(.getTargets %) (.getTargets (.getList (ll \"France Roads\"))))"))
+
+([FranceRoads_Class29] of  CloFuncall
+
+	(source "(map #(count (.getTargets %)) (.getTargets (.getList (ll \"France Roads\"))))"))
+
+([FranceRoads_Class30] of  CloFuncall
+
+	(source "(map #(count (.getTargets %)) (.getTargets (.getList (ll \"France Railroads\"))))"))
+
+([FranceRoads_Class31] of  CloFuncall
+
+	(source "(read-string \"(fn[x] (+ x 5))\")"))
+
+([FranceRoads_Class32] of  CloFuncall
+
+	(source "(def f1 (read-string \"(fn[x] (+ x 5))\"))"))
+
+([FranceRoads_Class33] of  CloFuncall
+
+	(source "(f1 10)"))
+
+([FranceRoads_Class34] of  CloFuncall
+
+	(source "f1"))
+
+([FranceRoads_Class35] of  CloFuncall
+
+	(source "(type f1)"))
+
+([FranceRoads_Class36] of  CloFuncall
+
+	(source "(def f1 (eval (read-string \"(fn[x] (+ x 5))\")))"))
+
+([FranceRoads_Class37] of  CloFuncall
+
+	(source "(def f1 (eval (read-string \"#(+ % 5)\")))"))
+
+([FranceRoads_Class38] of  CloFuncall
+
+	(source "(def f2 (eval (read-string \"#(+ % 115)\")))"))
+
+([FranceRoads_Class39] of  CloFuncall
+
+	(source "(f2 10)"))
+
+([FranceRoads_Class5] of  CloFuncall
+
+	(source "(apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean))))"))
+
+([FranceRoads_Class6] of  CloFuncall
+
+	(source "(def ll (apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean)))))"))
+
+([FranceRoads_Class7] of  CloFuncall
+
+	(source "(keys ll)"))
+
+([FranceRoads_Class8] of  CloFuncall
+
+	(source "(ll \"\")"))
+
+([FranceRoads_Class9] of  CloFuncall
+
+	(source "(ll \"France Roads\")"))
 
 ([Ground_Class0] of  Openmap
 

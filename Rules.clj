@@ -91,13 +91,17 @@
 	object ?obj 
 	latitude ?lat 
 	longitude ?lon 
+	observer ?obs
 	speed ?spd 
 	run ?run)
 =>
 (println "Action started:" ?tit "Arrive")
 (if-let [mo (a/mapob-vv ?obj ?run)]
-  (let [lt (a/degmin-to-deg ?lat ?run)
-        ln (a/degmin-to-deg ?lon ?run)]
+  (let [[lt ln] (if-let [obs (a/mapob-vv ?obs ?run)]
+	[(.getLatitude obs)
+	 (.getLongitude obs)]
+	[(a/degmin-to-deg ?lat ?run)
+	 (a/degmin-to-deg ?lon ?run)])]
     (if (or (nil? lt) (nil? ln))
       (modify ?arr status "FAILED")
       (do (a/go mo lt ln ?spd)
@@ -659,7 +663,7 @@
 	(let [act (a/vv ?act ?run)]
 	  (and (not= (protege.core/typ act) "Task")
 	    (not= (protege.core/typ act) "Scenario")
-	    (not= (protege.core/typ act) "ObjectTaskScenario"))))
+	    (not= (protege.core/typ act) "MissionScenario"))))
 =>
 (println "Action started:" ?tit "Break")
 (if-let [act (a/vv ?act ?run)]
@@ -678,7 +682,7 @@
 	next_actions ?nacts
 	(let [act (a/vv ?act ?run)]
 	  (or (= (protege.core/typ act) "Scenario")
-	    (= (protege.core/typ act) "ObjectTaskScenario"))))
+	    (= (protege.core/typ act) "MissionScenario"))))
 (TwoObRelation parent "Run"
 	observer ?obs
 	object ?obj)
@@ -704,7 +708,7 @@
 	next_actions ?nacts
 	(let [act (a/vv ?act ?run)]
 	  (or (= (protege.core/typ act) "Scenario")
-	    (= (protege.core/typ act) "ObjectTaskScenario"))))
+	    (= (protege.core/typ act) "MissionScenario"))))
 =>
 (println "Action started:" ?tit "Break")
 (if-let [act (a/vv ?act ?run)]
@@ -1576,7 +1580,7 @@
     (if (and (= (first oo) ?obj) (= (first ss) ?sta))
       (do (s/start-tasks-actions [(first vv)] ?pid ?run)
         (retract ?ce ?ex))
-      (recur (rest oo) (rest ss) (rest vv)))))
+      (recur (rest oo) (rest ss) (rest vv))))))
 
 (a:RetractObjects 0
 ?ros (RetractObjects status "START"
@@ -1895,8 +1899,8 @@
   (retract ?sor)
   (s/start-next ?nacts ?pid ?ain ?run)))
 
-(a:ObjectTaskStart 0
-?ot (ObjectTask status "START"
+(a:MissionStart 0
+?ot (Mission status "START"
 	title ?tit
 	sub_scenario ?sub
 	context ?ctx 
@@ -1904,7 +1908,7 @@
 	wait_subscenario ?wai
 	run ?run)
 =>
-(println "Action started:" ?tit "ObjectTask")
+(println "Action started:" ?tit "Mission")
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)
        pla (a/vv ?pla ?run)]
@@ -1930,8 +1934,8 @@
 	id gid))
     (modify ?ot status "FAILED"))))
 
-(a:ObjectTaskRepeat 5
-?ot (ObjectTask status "REPEAT"
+(a:MissionRepeat 5
+?ot (Mission status "REPEAT"
 	id ?id
 	parent ?pid
 	instance ?ain
@@ -1943,8 +1947,8 @@
 (retract ?ot)
 (s/start-next ?nacts ?pid ?ain ?run))
 
-(a:ObjectTaskDone 0
-?ot (ObjectTask status "DONE"
+(a:MissionDone 0
+?ot (Mission status "DONE"
 	parent ?pid
 	instance ?ain
 	run ?run
@@ -1985,44 +1989,4 @@
             (recur (rest ats) (rest rls) (rest vls)) ) ))
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
-
-(TC.Create Targets 
-
-=>
-)
-
-(TC.Create Bearing1 
-
-=>
-)
-
-(TC.Constant Bearing 
-
-=>
-)
-
-(TC.Delete Old Target 100
-
-=>
-)
-
-(TC.Dangerous Approach 
-
-=>
-)
-
-(TC.Dangerous Overtake 
-
-=>
-)
-
-(TC.Dangerous Towards 
-
-=>
-)
-
-(TC.Delete Bearing1 -100
-
-=>
-)
 

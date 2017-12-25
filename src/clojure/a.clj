@@ -15,6 +15,7 @@
   clojuretab.ClojureTab
   com.bbn.openmap.geo.Intersection
   com.bbn.openmap.geo.Geo
+  com.bbn.openmap.proj.ProjMath
   edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def CATEGORY {
@@ -71,14 +72,11 @@
 (defn degmin-to-deg [?lat r]
   (MapOb/getDeg (vv ?lat r)))
 
-(defn latlon-N [pts n]
-  (if (and (<= 0 n) (< n (count pts)))
-  (let [poi (nth pts n)
-         dmdm (seq (.split poi " "))
-         lat (str (nth dmdm 0) " " (nth dmdm 1))
-         lon (str (nth dmdm 2) " " (nth dmdm 3))]
-      [(MapOb/getDeg lat) (MapOb/getDeg lon)])
-  [nil nil]))
+(defn pnt-latlon [pnt]
+  (let [dmdm (seq (.split pnt " "))
+       lat (str (nth dmdm 0) " " (nth dmdm 1))
+       lon (str (nth dmdm 2) " " (nth dmdm 3))]
+   [(MapOb/getDeg lat) (MapOb/getDeg lon)]))
 
 (defn stop-moving [mo lat lon]
   (.setSpeed mo (double 0))
@@ -612,4 +610,9 @@
               (cons typ (mapcat suf (partition 2 svals)))))]
   (doseq [ins inss]
     (rete.core/assert-frame (frm-suv ins)))))
+
+(defn omp-latlon-vec [omp]
+  (->> (.getLatLonArrayCopy omp)
+  (ProjMath/arrayRadToDeg)
+  (partition 2)))
 
