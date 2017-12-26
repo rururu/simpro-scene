@@ -78,6 +78,11 @@
        lon (str (nth dmdm 2) " " (nth dmdm 3))]
    [(MapOb/getDeg lat) (MapOb/getDeg lon)]))
 
+(defn omp-latlon-list [omp]
+  (->> (.getLatLonArrayCopy omp)
+  (ProjMath/arrayRadToDeg)
+  (partition 2)))
+
 (defn stop-moving [mo lat lon]
   (.setSpeed mo (double 0))
 (.setLatitude mo (double lat))
@@ -611,8 +616,11 @@
   (doseq [ins inss]
     (rete.core/assert-frame (frm-suv ins)))))
 
-(defn omp-latlon-vec [omp]
-  (->> (.getLatLonArrayCopy omp)
-  (ProjMath/arrayRadToDeg)
-  (partition 2)))
+(defn layer-targets [name]
+  (if-let [flt (seq (->> (ru.igis.omtab.OpenMapTab/getMapBean)
+	.getComponents
+	(filter #(= (.getName %) name))))]
+  (-> (first flt)
+    .getList
+    .getTargets)))
 

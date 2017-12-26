@@ -1,4 +1,4 @@
-; Mon Dec 25 21:56:49 MSK 2017
+; Tue Dec 26 21:50:50 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -144,7 +144,10 @@
 )
 
 ([GoLayer] of  ActionClass
-)
+
+	(rules
+		[Scenario_Class430000]
+		[Scenario_Class440003]))
 
 ([GoRoute] of  ActionClass
 
@@ -409,7 +412,9 @@
 		[ScenarioN_Class700000]
 		[ScenarioN_Class700001]
 		[ScenarioN_Class690000]
-		[Scenario_Class90000])
+		[Scenario_Class90000]
+		[Scenario_Class440003]
+		[Scenario_Class430000])
 	(templates
 		[Action]
 		[Arrive]
@@ -458,7 +463,8 @@
 		[StopRoute]
 		[Scenario]
 		[Task]
-		[DeleteResource])
+		[DeleteResource]
+		[GoLayer])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -584,7 +590,8 @@
 		[Scenario_Class450000]
 		[Scenario_Class490003]
 		[Scenario_Class30000]
-		[Scenario_Class380000])
+		[Scenario_Class380000]
+		[Scenario_Class440001])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -642,13 +649,13 @@
 ([Scenario_Class160000] of  Rule
 
 	(lhs "?gor (GoRoute status \"START\"\n	title ?tit\n	object ?obj\n	route ?rou\n	spd ?spd\n	backward ?bwd\n	radius ?rad\n	run ?run\n	parent ?par)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?run)\n       mo (a/mapob-vv ?obj ?run)\n       sps (a/vv ?spd ?run)]\n  (if (and rou mo sps)\n    (let [pts (if (instance?  com.bbn.openmap.omGraphics.OMPoly rou)\n                   (a/omp-latlon-list rou)\n                   (map a/pnt-latlon (protege.core/svs rou \"points\")))\n           cnt (count pts)\n           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)\n           [lat lon] (nth pts pnt)\n           spn (read-string sps)]\n      (a/go mo lat lon spn)\n      (modify ?gor route pts\n	N pnt\n	spd spn\n	latitude lat\n	longitude lon\n	status \"REPEAT\"))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?run)\n       mo (a/mapob-vv ?obj ?run)\n       sps (a/vv ?spd ?run)]\n  (if (and rou mo sps)\n    (let [pts (if (instance?  edu.stanford.smi.protege.model.Instance rou)\n                   (map a/pnt-latlon (protege.core/svs rou \"points\"))\n                   rou)\n           cnt (count pts)\n           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)\n           [lat lon] (nth pts pnt)\n           spn (read-string sps)]\n      (a/go mo lat lon spn)\n      (modify ?gor route pts\n	N pnt\n	spd spn\n	latitude lat\n	longitude lon\n	status \"REPEAT\"))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteStart"))
 
 ([Scenario_Class160001] of  Rule
 
-	(lhs "?gor (GoRoute status \"REPEAT\"\n	title ?tit\n	object ?obj \n	latitude ?lat\n	longitude ?lon\n	route ?rou\n	spd ?spd \n	radius ?rad\n	backward ?bwd\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
+	(lhs "?gor (GoRoute status \"REPEAT\"\n	object ?obj \n	latitude ?lat\n	longitude ?lon\n	route ?rou\n	spd ?spd \n	radius ?rad\n	backward ?bwd\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
 	(rhs "(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]\n  (if-let [mo (a/mapob-vv ?obj ?run)]\n    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))\n      (if (or (= next (count ?rou)) (< next 0))\n        (do (a/stop-moving mo ?lat ?lon)\n          (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [[lat lon] (nth ?rou next)]\n          (.setLatitude mo ?lat)\n          (.setLongitude mo ?lon)\n          (a/go mo lat lon ?spd)\n          (modify ?gor \n	latitude lat\n	longitude lon\n	N next)))\n      (if (> (.distanceNM mo ?lat ?lon) 100)\n        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRouteRepeat"))
@@ -1238,46 +1245,17 @@
 
 	(source "(ru.rules/dr)"))
 
-([Scenario_Class420001] of  CloFuncall
-
-	(source "(a/pnt-latlon \"61 25.3 29 56.1\")"))
-
 ([Scenario_Class420002] of  CloFunction
 
 	(source "(->> (.getLatLonArrayCopy omp)\n  (ProjMath/arrayRadToDeg)\n  (partition 2))")
 	(title "omp-latlon-list [omp]"))
 
-([Scenario_Class420003] of  CloFuncall
+([Scenario_Class430000] of  Rule
 
-	(source "(ru.igis.omtab.OpenMapTab/getMapBean)"))
-
-([Scenario_Class420004] of  CloFuncall
-
-	(source "(.getComponents (ru.igis.omtab.OpenMapTab/getMapBean))"))
-
-([Scenario_Class420005] of  CloFuncall
-
-	(source "(last (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean)))"))
-
-([Scenario_Class420006] of  CloFuncall
-
-	(source "(def lay (last (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean))))"))
-
-([Scenario_Class420007] of  CloFuncall
-
-	(source "(.getList lay)"))
-
-([Scenario_Class420008] of  CloFuncall
-
-	(source "(.getTargets (.getList lay))"))
-
-([Scenario_Class420009] of  CloFuncall
-
-	(source "(second (.getTargets (.getList lay)))"))
-
-([Scenario_Class420010] of  CloFuncall
-
-	(source "(def ep (second (.getTargets (.getList lay))))"))
+	(lhs "?gl (GoLayer status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mob\n	layer ?lay\n	getPoliesFromTargets ?pft\n	spd ?spd\n	backward ?bwd\n	run ?run\n	parent ?par)")
+	(rhs "(println \"Action started:\" ?tit \"GoLayer\")\n(let [obj (a/vv ?obj ?run)\n       res (a/vv ?res ?run)\n       lay (a/vv ?lay ?run)\n       pft (a/vv ?pft ?run)]\n  (if (not (or (a/null? lay) (a/null? pft)))\n    (if-let [tgs (a/layer-targets (protege.core/sv lay \"prettyName\"))]\n      (let [fun (eval (read-string pft))\n             ogs (fun tgs)\n             obs (if-let [mo (ru.igis.omtab.OMT/getMapOb obj)]\n	(if res\n	  (.getAttribute mo (protege.core/sv res \"title\"))\n	  [obj])\n	[])\n             obs (concat obs ?mob)\n             tit (name (gensym \"Gol\"))]\n           (loop [oo obs gg ogs]\n             (when (and (seq oo) (seq gg))\n               (let [ob1 (first oo)\n                      rou (a/omp-latlon-list (first gg))\n                      [lat lon] (nth rou (if (protege.core/is? ?bwd) (dec (count rou)) 0))]\n                 (.setLocation (ru.igis.omtab.OMT/addMapOb ob1) lat lon)\n                 (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title tit\n	 'object ob1\n	 'route rou\n	 'spd ?spd\n	 'backward ?bwd\n	 'radius 0.1\n	 'run ?run\n	 'parent ?par])\n                 (recur (rest oo) (rest gg)))))\n           (modify ?gl status \"REPEAT\"\n	object tit))\n      (do (println \"Layer not found: \" (protege.core/sv lay \"prettyName\"))\n        (modify ?gl status \"FAILED\")))\n    (modify ?gl status \"FAILED\")))")
+	(salience 0)
+	(title "a:GoLayerStart"))
 
 ([Scenario_Class430001] of  Rule
 
@@ -1295,6 +1273,18 @@
 
 	(source "(loop [a (.split avl \" \") i (count a) r txt]\n  (if (> i 0)\n    (recur a (dec i) (.replace r (str pfx i) (aget a (dec i))))\n    r))")
 	(title "ordered-subst [txt avl pfx]"))
+
+([Scenario_Class440001] of  CloFunction
+
+	(source "(if-let [flt (seq (->> (ru.igis.omtab.OpenMapTab/getMapBean)\n	.getComponents\n	(filter #(= (.getName %) name))))]\n  (-> (first flt)\n    .getList\n    .getTargets))")
+	(title "layer-targets [name]"))
+
+([Scenario_Class440003] of  Rule
+
+	(lhs "?gl (GoLayer status \"REPEAT\"\n	object ?obj\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?obj)")
+	(rhs "(retract ?gl)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:GoLayerRepeat"))
 
 ([Scenario_Class450000] of  CloFunction
 

@@ -230,10 +230,12 @@
        mo (a/mapob-vv ?obj ?run)
        sps (a/vv ?spd ?run)]
   (if (and rou mo sps)
-    (let [pts (vec (protege.core/svs rou "points"))
+    (let [pts (if (instance?  com.bbn.openmap.omGraphics.OMPoly rou)
+                   (a/omp-latlon-list rou)
+                   (map a/pnt-latlon (protege.core/svs rou "points")))
            cnt (count pts)
            pnt (if (protege.core/is? ?bwd) (dec cnt) 0)
-           [lat lon] (a/latlon-N pts pnt)
+           [lat lon] (nth pts pnt)
            spn (read-string sps)]
       (a/go mo lat lon spn)
       (modify ?gor route pts
@@ -246,7 +248,6 @@
 
 (a:GoRouteRepeat 0
 ?gor (GoRoute status "REPEAT"
-	title ?tit
 	object ?obj 
 	latitude ?lat
 	longitude ?lon
@@ -268,7 +269,7 @@
         (do (a/stop-moving mo ?lat ?lon)
           (retract ?gor)
           (s/start-next ?nacts ?pid ?ain ?run))
-        (let [[lat lon] (a/latlon-N ?rou next)]
+        (let [[lat lon] (nth ?rou next)]
           (.setLatitude mo ?lat)
           (.setLongitude mo ?lon)
           (a/go mo lat lon ?spd)
@@ -881,6 +882,53 @@
 (modify ?s final_tasks (s/exclude ?ftasks ?tin))
 (retract ?t))
 
+(a:GoLayerStart 0
+?gl (GoLayer status "START"
+	title ?tit
+	object ?obj
+	resource ?res
+	mapob ?mob
+	layer ?lay
+	getPoliesFromTargets ?pft
+	spd ?spd
+	backward ?bwd
+	run ?run
+	parent ?par)
+=>
+(println "Action started:" ?tit "GoLayer")
+(let [obj (a/vv ?obj ?run)
+       res (a/vv ?res ?run)
+       lay (a/vv ?lay ?run)
+       pft (a/vv ?pft ?run)]
+  (if (not (or (a/null? lay) (a/null? pft)))
+    (if-let [tgs (a/layer-targets (protege.core/sv lay "label"))]
+      (let [fun (eval (read-string pft))
+             ogs (fun tgs)
+             obs (if-let [mo (ru.igis.omtab.OMT/getMapOb obj)]
+	(if res
+	  (.getAttribute mo (protege.core/sv res "title"))
+	  [obj])
+	[])
+             obs (concat obs ?mob)
+             tit (name (gensym "Gol"))]
+           (loop [oo obs gg ogs]
+             (when (and (seq oo) (seq gg))
+               (rete.core/assert-frame
+	['GoRoute 'status "START"
+	 'title tit
+	 'object (first oo)
+	 'route (first gg)
+	 'spd ?spd
+	 'backward ?bwd
+	 'run ?run
+	 'parent ?par])
+               (recur (rest oo) (rest gg))))
+           (modify ?gl status "REPEAT"
+	object tit))
+      (do (println "Layer not found: " (protege.core/sv lay "label"))
+        (modify ?gl status "FAILED")))
+    (modify ?gl status "FAILED"))))
+
 (a:AttributeMessage 0
 ?am (AttributeMessage status "START"
 	title ?tit
@@ -897,6 +945,19 @@
 (println "Action started:" ?tit "AttributeMessage")
 (a/attribute-message ?txt ?obj ?atr ?cat ?cls ?run)
 (retract ?am)
+(s/start-next ?nacts ?pid ?ain ?run))
+
+(a:GoLayerRepeat 0
+?gl (GoLayer status "REPEAT"
+	object ?obj
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+(Clock)
+(not GoRoute title ?obj)
+=>
+(retract ?gl)
 (s/start-next ?nacts ?pid ?ain ?run))
 
 (a:ShowDone 0

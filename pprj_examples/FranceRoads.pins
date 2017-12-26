@@ -1,11 +1,70 @@
-; Mon Dec 25 18:01:57 MSK 2017
+; Tue Dec 26 21:57:48 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
+([FranceRoads_Class0] of  CloFuncall
+
+	(source "(a/layer-targets \"France Roads\")"))
+
+([FranceRoads_Class1] of  CloFuncall
+
+	(source "(clojure.inspector/inspect (a/layer-targets \"France Roads\"))"))
+
 ([FranceRoads_Class10] of  CloFuncall
 
 	(source "(.getList (ll \"France Roads\"))"))
+
+([FranceRoads_Class10000] of  CloFuncall
+
+	(source "(sim/start-sim)"))
+
+([FranceRoads_Class10005] of  Task
+
+	(final_actions [FranceRoads_Class10009])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class10009])
+	(task_scheme [FranceRoads_Class10009])
+	(title "fr1:One Car One Road"))
+
+([FranceRoads_Class10006] of  Context
+
+	(pairs [FranceRoads_Class10007])
+	(title "fr1.ctx"))
+
+([FranceRoads_Class10007] of  ValuePair
+
+	(title "p1")
+	(value "767")
+	(variable [FranceRoads_Class10008]))
+
+([FranceRoads_Class10008] of  Variable
+
+	(title "?road"))
+
+([FranceRoads_Class10009] of  GoLayer
+
+	(backward TRUE)
+	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) 1711)])")
+	(layer [Ground_Class10012])
+	(object [ScenarioN_Class570000])
+	(spd "40")
+	(title "fr1.One Goes One Road"))
+
+([FranceRoads_Class10010] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [FranceRoads_Class4])
+	(%3ACREATION-TIMESTAMP "2017.12.26 18:15:08.806 MSK")
+	(%3ACREATOR "ru"))
+
+([FranceRoads_Class10011] of  Type
+
+	(label "Cars")
+	(missions [FranceRoads_Class10012]))
+
+([FranceRoads_Class10012] of  ObjectMission
+
+	(label "fr1:One Car Tour"))
 
 ([FranceRoads_Class11] of  CloFuncall
 
@@ -43,9 +102,52 @@
 
 	(source "(count (.getTargets (.getList (ll \"OSM Tiles\"))))"))
 
+([FranceRoads_Class2] of  CloFuncall
+
+	(source "(clojure.inspector/inspect (first (a/layer-targets \"France Roads\")))"))
+
 ([FranceRoads_Class20] of  CloFuncall
 
 	(source "(map .getClass (.getTargets (.getList (ll \"OSM Tiles\"))))"))
+
+([FranceRoads_Class20000] of  CloFuncall
+
+	(source "(ru.rules/f2 26)"))
+
+([FranceRoads_Class20001] of  Table2
+
+	(column1
+		"N"
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"backward"
+		"route"
+		"radius"
+		"title"
+		"status"
+		"id"
+		"spd"
+		"latitude")
+	(column2
+		"0"
+		"SimpleInstance(FranceRoads_Class3 of [Cls(NavOb)])"
+		"{?protagonist=SimpleInstance(FranceRoads_Class3 of [Cls(NavOb)]), ?road=767}"
+		"Tsk2006"
+		":?"
+		":?"
+		"2.561220169067383"
+		"clojure.lang.LazySeq@956c82eb"
+		":?"
+		"Gol2011"
+		"REPEAT"
+		":?"
+		"40"
+		"51.069290161132805")
+	(title "GoRoute 26"))
 
 ([FranceRoads_Class21] of  CloFuncall
 
@@ -82,6 +184,19 @@
 ([FranceRoads_Class29] of  CloFuncall
 
 	(source "(map #(count (.getTargets %)) (.getTargets (.getList (ll \"France Roads\"))))"))
+
+([FranceRoads_Class3] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "c")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class10011])
+	(url "file:data/images/auto2.png"))
 
 ([FranceRoads_Class30] of  CloFuncall
 
@@ -123,6 +238,16 @@
 
 	(source "(f2 10)"))
 
+([FranceRoads_Class4] of  MissionScenario
+
+	(context [FranceRoads_Class10006])
+	(final_tasks [FranceRoads_Class10005])
+	(finish_type AND)
+	(initial_tasks [FranceRoads_Class10005])
+	(protagonist [FranceRoads_Class3])
+	(scenario_scheme [FranceRoads_Class10005])
+	(title "fr1:One Car Tour"))
+
 ([FranceRoads_Class5] of  CloFuncall
 
 	(source "(apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean))))"))
@@ -130,18 +255,6 @@
 ([FranceRoads_Class6] of  CloFuncall
 
 	(source "(def ll (apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean)))))"))
-
-([FranceRoads_Class7] of  CloFuncall
-
-	(source "(keys ll)"))
-
-([FranceRoads_Class8] of  CloFuncall
-
-	(source "(ll \"\")"))
-
-([FranceRoads_Class9] of  CloFuncall
-
-	(source "(ll \"France Roads\")"))
 
 ([Ground_Class0] of  Openmap
 
