@@ -624,3 +624,6 @@
     .getList
     .getTargets)))
 
+(defn subst-hm-vars [hm s]
+  (reduce #(.replaceAll %1 (str "\\" %2) (str (.get hm %2))) s (.keySet hm)))
+

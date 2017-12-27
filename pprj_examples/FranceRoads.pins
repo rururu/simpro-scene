@@ -1,23 +1,7 @@
-; Tue Dec 26 21:57:48 MSK 2017
+; Wed Dec 27 22:52:35 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
-
-([FranceRoads_Class0] of  CloFuncall
-
-	(source "(a/layer-targets \"France Roads\")"))
-
-([FranceRoads_Class1] of  CloFuncall
-
-	(source "(clojure.inspector/inspect (a/layer-targets \"France Roads\"))"))
-
-([FranceRoads_Class10] of  CloFuncall
-
-	(source "(.getList (ll \"France Roads\"))"))
-
-([FranceRoads_Class10000] of  CloFuncall
-
-	(source "(sim/start-sim)"))
 
 ([FranceRoads_Class10005] of  Task
 
@@ -29,13 +13,15 @@
 
 ([FranceRoads_Class10006] of  Context
 
-	(pairs [FranceRoads_Class10007])
+	(pairs
+		[FranceRoads_Class10007]
+		[FranceRoads_Class40000])
 	(title "fr1.ctx"))
 
 ([FranceRoads_Class10007] of  ValuePair
 
 	(title "p1")
-	(value "767")
+	(value "3767")
 	(variable [FranceRoads_Class10008]))
 
 ([FranceRoads_Class10008] of  Variable
@@ -44,8 +30,8 @@
 
 ([FranceRoads_Class10009] of  GoLayer
 
-	(backward TRUE)
-	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) 1711)])")
+	(direction "?direct")
+	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) ?road)])")
 	(layer [Ground_Class10012])
 	(object [ScenarioN_Class570000])
 	(spd "40")
@@ -65,54 +51,6 @@
 ([FranceRoads_Class10012] of  ObjectMission
 
 	(label "fr1:One Car Tour"))
-
-([FranceRoads_Class11] of  CloFuncall
-
-	(source "(.getTargets (.getList (ll \"France Roads\")))"))
-
-([FranceRoads_Class12] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"France Roads\"))))"))
-
-([FranceRoads_Class13] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"France Railroads\"))))"))
-
-([FranceRoads_Class14] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"France PopPoint\"))))"))
-
-([FranceRoads_Class15] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"Browse World\"))))"))
-
-([FranceRoads_Class16] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"Graticule\"))))"))
-
-([FranceRoads_Class17] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"RuNA\"))))"))
-
-([FranceRoads_Class18] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"Blue Playground\"))))"))
-
-([FranceRoads_Class19] of  CloFuncall
-
-	(source "(count (.getTargets (.getList (ll \"OSM Tiles\"))))"))
-
-([FranceRoads_Class2] of  CloFuncall
-
-	(source "(clojure.inspector/inspect (first (a/layer-targets \"France Roads\")))"))
-
-([FranceRoads_Class20] of  CloFuncall
-
-	(source "(map .getClass (.getTargets (.getList (ll \"OSM Tiles\"))))"))
-
-([FranceRoads_Class20000] of  CloFuncall
-
-	(source "(ru.rules/f2 26)"))
 
 ([FranceRoads_Class20001] of  Table2
 
@@ -149,94 +87,57 @@
 		"51.069290161132805")
 	(title "GoRoute 26"))
 
-([FranceRoads_Class21] of  CloFuncall
-
-	(source "(map #(.getClass #) (.getTargets (.getList (ll \"OSM Tiles\"))))"))
-
-([FranceRoads_Class22] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"OSM Tiles\"))))"))
-
-([FranceRoads_Class23] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"Graticule\"))))"))
-
-([FranceRoads_Class24] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"Browse World\"))))"))
-
-([FranceRoads_Class25] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France PopPoint\"))))"))
-
-([FranceRoads_Class26] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France Railroads\"))))"))
-
-([FranceRoads_Class27] of  CloFuncall
-
-	(source "(map #(.getClass %) (.getTargets (.getList (ll \"France Roads\"))))"))
-
-([FranceRoads_Class28] of  CloFuncall
-
-	(source "(map #(.getTargets %) (.getTargets (.getList (ll \"France Roads\"))))"))
-
-([FranceRoads_Class29] of  CloFuncall
-
-	(source "(map #(count (.getTargets %)) (.getTargets (.getList (ll \"France Roads\"))))"))
-
 ([FranceRoads_Class3] of  NavOb
 
 	(altitude 0)
 	(course 0)
-	(label "c")
+	(label "s")
 	(latitude "0 0")
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
 	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/auto2.png"))
+	(url "file:data/images/autos.png"))
 
-([FranceRoads_Class30] of  CloFuncall
+([FranceRoads_Class30000] of  NavOb
 
-	(source "(map #(count (.getTargets %)) (.getTargets (.getList (ll \"France Railroads\"))))"))
+	(altitude 0)
+	(course 0)
+	(label "r")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class10011])
+	(url "file:data/images/autor.png"))
 
-([FranceRoads_Class31] of  CloFuncall
+([FranceRoads_Class30001] of  NavOb
 
-	(source "(read-string \"(fn[x] (+ x 5))\")"))
+	(altitude 0)
+	(course 0)
+	(label "g")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class10011])
+	(url "file:data/images/autog.png"))
 
-([FranceRoads_Class32] of  CloFuncall
+([FranceRoads_Class30002] of  NavOb
 
-	(source "(def f1 (read-string \"(fn[x] (+ x 5))\"))"))
-
-([FranceRoads_Class33] of  CloFuncall
-
-	(source "(f1 10)"))
-
-([FranceRoads_Class34] of  CloFuncall
-
-	(source "f1"))
-
-([FranceRoads_Class35] of  CloFuncall
-
-	(source "(type f1)"))
-
-([FranceRoads_Class36] of  CloFuncall
-
-	(source "(def f1 (eval (read-string \"(fn[x] (+ x 5))\")))"))
-
-([FranceRoads_Class37] of  CloFuncall
-
-	(source "(def f1 (eval (read-string \"#(+ % 5)\")))"))
-
-([FranceRoads_Class38] of  CloFuncall
-
-	(source "(def f2 (eval (read-string \"#(+ % 115)\")))"))
-
-([FranceRoads_Class39] of  CloFuncall
-
-	(source "(f2 10)"))
+	(altitude 0)
+	(course 0)
+	(label "b")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class10011])
+	(url "file:data/images/autob.png"))
 
 ([FranceRoads_Class4] of  MissionScenario
 
@@ -244,17 +145,184 @@
 	(final_tasks [FranceRoads_Class10005])
 	(finish_type AND)
 	(initial_tasks [FranceRoads_Class10005])
-	(protagonist [FranceRoads_Class3])
+	(protagonist [FranceRoads_Class30002])
 	(scenario_scheme [FranceRoads_Class10005])
 	(title "fr1:One Car Tour"))
 
-([FranceRoads_Class5] of  CloFuncall
+([FranceRoads_Class40000] of  ValuePair
 
-	(source "(apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean))))"))
+	(title "p2")
+	(value "FORWARD")
+	(variable [FranceRoads_Class40001]))
 
-([FranceRoads_Class6] of  CloFuncall
+([FranceRoads_Class40001] of  Variable
 
-	(source "(def ll (apply hash-map (mapcat #(list (.getName %) %) (.getComponents (ru.igis.omtab.OpenMapTab/getMapBean)))))"))
+	(title "?direct"))
+
+([FranceRoads_Class50000] of  Scenario
+
+	(context [FranceRoads_Class50003])
+	(final_tasks [FranceRoads_Class50001])
+	(finish_type AND)
+	(initial_tasks [FranceRoads_Class50001])
+	(scenario_scheme [FranceRoads_Class50001])
+	(title "fr2:4 cars Tour"))
+
+([FranceRoads_Class50001] of  Task
+
+	(final_actions [FranceRoads_Class50008])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class50002])
+	(task_scheme
+		[FranceRoads_Class50002]
+		[FranceRoads_Class50008])
+	(title "fr2:4 Cars"))
+
+([FranceRoads_Class50002] of  GoLayer
+
+	(direction "FORWARD")
+	(getPoliesFromTargets "(fn[x] (let [rds (vec (first x))]\n  [(nth rds ?road)\n   (nth rds (+ ?road 1))\n   (nth rds (+ ?road 2))\n   (nth rds (+ ?road 3))]))")
+	(layer [Ground_Class10012])
+	(mapob
+		[FranceRoads_Class30002]
+		[FranceRoads_Class30001]
+		[FranceRoads_Class30000]
+		[FranceRoads_Class3])
+	(next_actions [FranceRoads_Class50008])
+	(spd "40")
+	(title "fr2:4 Cars 4 Roads"))
+
+([FranceRoads_Class50003] of  Context
+
+	(pairs [FranceRoads_Class10007])
+	(title "fr2:ctx"))
+
+([FranceRoads_Class50004] of  ValuePair
+
+	(title "p3")
+	(value "10")
+	(variable [FranceRoads_Class50005]))
+
+([FranceRoads_Class50005] of  Variable
+
+	(title "?scatter"))
+
+([FranceRoads_Class50006] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [FranceRoads_Class50000])
+	(%3ACREATION-TIMESTAMP "2017.12.27 18:57:16.579 MSK")
+	(%3ACREATOR "ru"))
+
+([FranceRoads_Class50008] of  PutOffMap
+
+	(mapob
+		[FranceRoads_Class30002]
+		[FranceRoads_Class30001]
+		[FranceRoads_Class30000]
+		[FranceRoads_Class3])
+	(title "fr2:4 Cars off Map"))
+
+([FranceRoads_Class60001] of  LoadResource
+
+	(next_actions [FranceRoads_Class60011])
+	(number "?number-cars")
+	(object [ScenarioN_Class570000])
+	(rename TRUE)
+	(resource [FranceRoads_Class60006])
+	(seed [FranceRoads_Class60014])
+	(title "fr3:Generate Cars"))
+
+([FranceRoads_Class60002] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "CC")
+	(latitude "48 52")
+	(longitude "2 20")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class60003])
+	(url "file:data/images/home.gif"))
+
+([FranceRoads_Class60003] of  Type
+
+	(label "Control Center")
+	(missions [FranceRoads_Class60004]))
+
+([FranceRoads_Class60004] of  ObjectMission
+
+	(label "fr3:Global Automobile Traffic"))
+
+([FranceRoads_Class60005] of  MissionScenario
+
+	(context [FranceRoads_Class60008])
+	(final_tasks [FranceRoads_Class60007])
+	(finish_type AND)
+	(initial_tasks [FranceRoads_Class60007])
+	(protagonist [FranceRoads_Class60002])
+	(scenario_scheme [FranceRoads_Class60007])
+	(title "fr3:Global Automobile Traffic"))
+
+([FranceRoads_Class60006] of  Attribute
+
+	(title "RED-CARS"))
+
+([FranceRoads_Class60007] of  Task
+
+	(final_actions [FranceRoads_Class60012])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class60001])
+	(task_scheme
+		[FranceRoads_Class60001]
+		[FranceRoads_Class60011]
+		[FranceRoads_Class60012])
+	(title "fr3:Global Traffic"))
+
+([FranceRoads_Class60008] of  Context
+
+	(pairs
+		[FranceRoads_Class60009]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class60013])
+	(title "fr3.ctx"))
+
+([FranceRoads_Class60009] of  ValuePair
+
+	(title "p4")
+	(value "11")
+	(variable [FranceRoads_Class60010]))
+
+([FranceRoads_Class60010] of  Variable
+
+	(title "?number-cars"))
+
+([FranceRoads_Class60011] of  GoLayer
+
+	(direction "?direct")
+	(getPoliesFromTargets "(fn[x] (vec (first x)))")
+	(layer [Ground_Class10012])
+	(next_actions [FranceRoads_Class60012])
+	(object [ScenarioN_Class570000])
+	(resource [FranceRoads_Class60006])
+	(spd "40")
+	(title "fr3:Cars Traffic"))
+
+([FranceRoads_Class60012] of  DeleteResource
+
+	(object [ScenarioN_Class570000])
+	(resource [FranceRoads_Class60006])
+	(title "f3.Clear Cars"))
+
+([FranceRoads_Class60013] of  ObjectPair
+
+	(object [FranceRoads_Class30000])
+	(title "p5")
+	(variable [FranceRoads_Class60014]))
+
+([FranceRoads_Class60014] of  Variable
+
+	(title "?seed-car"))
 
 ([Ground_Class0] of  Openmap
 

@@ -1,4 +1,4 @@
-; Tue Dec 26 21:50:50 MSK 2017
+; Wed Dec 27 22:54:46 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -152,6 +152,10 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot position-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1560,14 +1564,13 @@
 		(type INSTANCE)
 ;+		(allowed-classes MapOb)
 		(create-accessor read-write))
-	(single-slot backward
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot getPoliesFromTargets
