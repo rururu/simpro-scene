@@ -43,6 +43,9 @@ In Protege GUI:
 4. [Get started: Object Mission](https://youtu.be/eT-2CQzGuEA)
 5. [Tsunami](https://youtu.be/pkF8BE74JAk)
 6. [Shuffle Europe](https://youtu.be/Jh6r9ytpkKQ)
+7. [France Roads](https://youtu.be/IvKkSpa8x9Y)
+8. [France Roads: Stress test "Blue"](https://youtu.be/zp6VdtKYLtc)
+9. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)
 
 TO BE CONTINUED
 
