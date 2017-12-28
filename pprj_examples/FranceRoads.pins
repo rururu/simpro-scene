@@ -1,7 +1,47 @@
-; Wed Dec 27 22:52:35 MSK 2017
+; Thu Dec 28 23:26:01 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([FranceRoads_Class0] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "tcc3")
+	(latitude "43 15")
+	(longitude "5 24")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class60003])
+	(url "file:data/images/home.gif"))
+
+([FranceRoads_Class1] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "tcc2")
+	(latitude "48 24")
+	(longitude "-4 30")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class60003])
+	(url "file:data/images/home.gif"))
+
+([FranceRoads_Class10000] of  PutOnMap
+
+	(mapob
+		[FranceRoads_Class60002]
+		[FranceRoads_Class1]
+		[FranceRoads_Class0]
+		[FranceRoads_Class97021]
+		[FranceRoads_Class97020])
+	(next_actions
+		[FranceRoads_Class73002]
+		[FranceRoads_Class73003]
+		[FranceRoads_Class73004])
+	(title "fr4:Deploy Control Centers"))
 
 ([FranceRoads_Class10005] of  Task
 
@@ -21,7 +61,7 @@
 ([FranceRoads_Class10007] of  ValuePair
 
 	(title "p1")
-	(value "3767")
+	(value "4125")
 	(variable [FranceRoads_Class10008]))
 
 ([FranceRoads_Class10008] of  Variable
@@ -31,7 +71,7 @@
 ([FranceRoads_Class10009] of  GoLayer
 
 	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) ?road)])")
+	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) (dec ?road))])")
 	(layer [Ground_Class10012])
 	(object [ScenarioN_Class570000])
 	(spd "40")
@@ -51,6 +91,10 @@
 ([FranceRoads_Class10012] of  ObjectMission
 
 	(label "fr1:One Car Tour"))
+
+([FranceRoads_Class20000] of  CloFuncall
+
+	(source "(sim/start-sim)"))
 
 ([FranceRoads_Class20001] of  Table2
 
@@ -86,6 +130,19 @@
 		"40"
 		"51.069290161132805")
 	(title "GoRoute 26"))
+
+([FranceRoads_Class20012] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "w")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class10011])
+	(url "file:data/images/autow.png"))
 
 ([FranceRoads_Class3] of  NavOb
 
@@ -145,7 +202,7 @@
 	(final_tasks [FranceRoads_Class10005])
 	(finish_type AND)
 	(initial_tasks [FranceRoads_Class10005])
-	(protagonist [FranceRoads_Class30002])
+	(protagonist [FranceRoads_Class3])
 	(scenario_scheme [FranceRoads_Class10005])
 	(title "fr1:One Car Tour"))
 
@@ -181,7 +238,7 @@
 ([FranceRoads_Class50002] of  GoLayer
 
 	(direction "FORWARD")
-	(getPoliesFromTargets "(fn[x] (let [rds (vec (first x))]\n  [(nth rds ?road)\n   (nth rds (+ ?road 1))\n   (nth rds (+ ?road 2))\n   (nth rds (+ ?road 3))]))")
+	(getPoliesFromTargets "(fn[x] (let [rds (vec (first x))\n                road (dec ?road)]\n  [(nth rds road)\n   (nth rds (+ road 1))\n   (nth rds (+ road 2))\n   (nth rds (+ road 3))]))")
 	(layer [Ground_Class10012])
 	(mapob
 		[FranceRoads_Class30002]
@@ -236,7 +293,7 @@
 
 	(altitude 0)
 	(course 0)
-	(label "CC")
+	(label "tcc1")
 	(latitude "48 52")
 	(longitude "2 20")
 	(playground-index 0)
@@ -284,7 +341,8 @@
 	(pairs
 		[FranceRoads_Class60009]
 		[FranceRoads_Class40000]
-		[FranceRoads_Class60013])
+		[FranceRoads_Class60013]
+		[FranceRoads_Class10007])
 	(title "fr3.ctx"))
 
 ([FranceRoads_Class60009] of  ValuePair
@@ -300,7 +358,7 @@
 ([FranceRoads_Class60011] of  GoLayer
 
 	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] (vec (first x)))")
+	(getPoliesFromTargets "(fn[x] (nthrest (vec (first x)) ?road))")
 	(layer [Ground_Class10012])
 	(next_actions [FranceRoads_Class60012])
 	(object [ScenarioN_Class570000])
@@ -323,6 +381,216 @@
 ([FranceRoads_Class60014] of  Variable
 
 	(title "?seed-car"))
+
+([FranceRoads_Class73000] of  Scenario
+
+	(final_tasks [FranceRoads_Class73001])
+	(finish_type AND)
+	(initial_tasks [FranceRoads_Class73001])
+	(scenario_scheme [FranceRoads_Class73001])
+	(title "fr4:Traffic Stress Test"))
+
+([FranceRoads_Class73001] of  Task
+
+	(final_actions
+		[FranceRoads_Class73002]
+		[FranceRoads_Class73004]
+		[FranceRoads_Class73003])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class10000])
+	(task_scheme
+		[FranceRoads_Class73002]
+		[FranceRoads_Class73003]
+		[FranceRoads_Class73004]
+		[FranceRoads_Class10000]
+		[FranceRoads_Class97022]
+		[FranceRoads_Class97026])
+	(title "fr4:Stress Test"))
+
+([FranceRoads_Class73002] of  Mission
+
+	(context [FranceRoads_Class73005])
+	(player [FranceRoads_Class60002])
+	(sub_scenario [FranceRoads_Class60005])
+	(title "fr4:Blue Traffic")
+	(wait_subscenario TRUE))
+
+([FranceRoads_Class73003] of  Mission
+
+	(context [FranceRoads_Class73009])
+	(player [FranceRoads_Class1])
+	(sub_scenario [FranceRoads_Class60005])
+	(title "fr4:White Traffic")
+	(wait_subscenario TRUE))
+
+([FranceRoads_Class73004] of  Mission
+
+	(context [FranceRoads_Class73012])
+	(player [FranceRoads_Class0])
+	(sub_scenario [FranceRoads_Class60005])
+	(title "fr4:Red Traffic")
+	(wait_subscenario TRUE))
+
+([FranceRoads_Class73005] of  Context
+
+	(pairs
+		[FranceRoads_Class73006]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class73007]
+		[FranceRoads_Class73008])
+	(title "fr4:CtxBT"))
+
+([FranceRoads_Class73006] of  ValuePair
+
+	(title "pb1")
+	(value "2340")
+	(variable [FranceRoads_Class60010]))
+
+([FranceRoads_Class73007] of  ObjectPair
+
+	(object [FranceRoads_Class3])
+	(title "bp2")
+	(variable [FranceRoads_Class60014]))
+
+([FranceRoads_Class73008] of  ValuePair
+
+	(title "pb3")
+	(value "1")
+	(variable [FranceRoads_Class10008]))
+
+([FranceRoads_Class73009] of  Context
+
+	(pairs
+		[FranceRoads_Class73006]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class73010]
+		[FranceRoads_Class73011])
+	(title "fr4:CtxWT"))
+
+([FranceRoads_Class73010] of  ObjectPair
+
+	(object [FranceRoads_Class20012])
+	(title "pw2")
+	(variable [FranceRoads_Class60014]))
+
+([FranceRoads_Class73011] of  ValuePair
+
+	(title "pw3")
+	(value "2341")
+	(variable [FranceRoads_Class10008]))
+
+([FranceRoads_Class73012] of  Context
+
+	(pairs
+		[FranceRoads_Class73006]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class60013]
+		[FranceRoads_Class73013])
+	(title "fr4:CtxRT"))
+
+([FranceRoads_Class73013] of  ValuePair
+
+	(title "pr")
+	(value "4682")
+	(variable [FranceRoads_Class10008]))
+
+([FranceRoads_Class73014] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [FranceRoads_Class73000])
+	(%3ACREATION-TIMESTAMP "2017.12.28 15:20:17.964 MSK")
+	(%3ACREATOR "ru"))
+
+([FranceRoads_Class86996] of  OMTRaster
+
+	(label "s2317")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(url "file:data/images/autos.png"))
+
+([FranceRoads_Class97020] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "tcc5")
+	(latitude "45 45")
+	(longitude "4 54")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class60003])
+	(url "file:data/images/home.gif"))
+
+([FranceRoads_Class97021] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "tcc4")
+	(latitude "44 51")
+	(longitude "0 -35")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(type [FranceRoads_Class60003])
+	(url "file:data/images/home.gif"))
+
+([FranceRoads_Class97022] of  Mission
+
+	(context [FranceRoads_Class97023])
+	(player [FranceRoads_Class97020])
+	(sub_scenario [FranceRoads_Class60005])
+	(title "fr4.Green Traffic")
+	(wait_subscenario TRUE))
+
+([FranceRoads_Class97023] of  Context
+
+	(pairs
+		[FranceRoads_Class73006]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class97024]
+		[FranceRoads_Class97025])
+	(title "fr4:CtxGT"))
+
+([FranceRoads_Class97024] of  ObjectPair
+
+	(object [FranceRoads_Class30001])
+	(title "pg2")
+	(variable [FranceRoads_Class60014]))
+
+([FranceRoads_Class97025] of  ValuePair
+
+	(title "pg3")
+	(value "5620")
+	(variable [FranceRoads_Class10008]))
+
+([FranceRoads_Class97026] of  Mission
+
+	(context [FranceRoads_Class97027])
+	(player [FranceRoads_Class97021])
+	(sub_scenario [FranceRoads_Class60005])
+	(title "fr4:Black Traffic")
+	(wait_subscenario TRUE))
+
+([FranceRoads_Class97027] of  Context
+
+	(pairs
+		[FranceRoads_Class73006]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class97028]
+		[FranceRoads_Class97029])
+	(title "fr4:CtxBlT"))
+
+([FranceRoads_Class97028] of  ObjectPair
+
+	(object [FranceRoads_Class30002])
+	(title "pbl")
+	(variable [FranceRoads_Class60014]))
+
+([FranceRoads_Class97029] of  ValuePair
+
+	(title "pbl3")
+	(value "4215")
+	(variable [FranceRoads_Class10008]))
 
 ([Ground_Class0] of  Openmap
 

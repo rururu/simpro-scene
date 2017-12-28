@@ -1,4 +1,4 @@
-; Wed Dec 27 22:54:46 MSK 2017
+; Thu Dec 28 17:33:39 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1527,7 +1527,7 @@
 ([Scenario_Class90000] of  Rule
 
 	(lhs "?dr (DeleteResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       atr (protege.core/sv ?res \"title\")\n       rr (.getAttribute mo atr)]\n  (if (seq rr)\n    (do (doseq [ins (rest rr)]\n            (protege.core/delin ins))\n        (.removeAttribute mo atr)\n        (retract ?dr)\n        (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?dr status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       atr (protege.core/sv ?res \"title\")\n       rr (.getAttribute mo atr)]\n  (if (seq rr)\n    (do (doseq [ins (rest rr)]\n            (ru.igis.omtab.OMT/removeMapOb ins false)\n            (protege.core/delin ins))\n        (.removeAttribute mo atr)\n        (retract ?dr)\n        (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?dr status \"FAILED\")))")
 	(salience 0)
 	(title "a:DeleteResource"))
 
@@ -2497,7 +2497,7 @@
 ([ScenarioN_Class70001] of  Rule
 
 	(lhs "?ot (Mission status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"Mission\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)]\n  (if (not (or (a/null? sub) (a/null? pla)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"Mission\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)\n       mo (ru.igis.omtab.OMT/getMapOb pla)]\n  (if (and mo (not (a/null? sub)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
 	(salience 0)
 	(title "a:MissionStart"))
 
