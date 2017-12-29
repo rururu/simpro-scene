@@ -1,0 +1,362 @@
+; Fri Dec 29 10:18:11 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Functional_Class0] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "Start RB")
+	(%3ACREATION-TIMESTAMP "2010.09.01 16:27:33.100 MSD"))
+
+([Functional_Class1] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "Start Map")
+	(%3ACREATION-TIMESTAMP "2010.09.01 16:27:56.963 MSD"))
+
+([Functional_Class10085] of  CloFunction
+
+	(source "(del-m-polygons-and-layers)\n(def ^:dynamic *mem* [])\n(let [lsw (isw \"m-layers\")\n       psw (isw \"m-polygons\")]\n  (add-sel-fn0 lsw select-layer)\n  (add-sel-fn0 psw select-polygon)\n  (.setValues lsw (map foc-m-layer  (.getComponents *mb*)))\n  (show *inspector*))")
+	(title "new-inspector []"))
+
+([Functional_Class10089] of  CloFunction
+
+	(source "; Collect applications of function fn to every OMPoly in OMGraphicList\n(letfn [(om [oml fn]\n            (let [fir (first oml)\n                  rst (rest oml)\n                  one (cond\n	     (instance? OMPoly fir) (list (fn fir))\n	     (instance? OMGraphicList fir) (om (.getTargets fir) fn))\n                  two (if (seq rst)\n                             (om rst fn))]\n                 (concat one two)))]\n  (om (.getTargets omgl) fn))")
+	(title "omgl-map [omgl fn]"))
+
+([Functional_Class10091] of  CloFunction
+
+	(source "; Return MLayer instance slot m-polygons collection.\n; Create it if needed from pointer to Layer object.\n(or (seq (svs mlr \"m-polygons\"))\n     (let [lr (gem (sv mlr \"pointer\"))\n           tit (.getName lr)\n           mps (omgl-map (.getList lr) #(foc-m-polygon % tit))]\n        (ssvs mlr \"m-polygons\" mps)\n        mps))")
+	(title "m-layer-polygons [mlr]"))
+
+([Functional_Class10092] of  CloFunction
+
+	(title "actions"))
+
+([Functional_Class10095] of  CloNamespace
+
+	(source "(:use poly.moving)")
+	(title "scenario.actions"))
+
+([Functional_Class10099] of  CloNamespace
+
+	(source "(:use\n  protege.core\n  fit.points)\n(:import \n  ru.igis.omtab.OMT\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.proj.GreatCircle\n  com.bbn.openmap.proj.ProjMath\n  ru.igis.omtab.OMTPoly)\n(:gen-class)")
+	(title "poly.moving"))
+
+([Functional_Class10105] of  CloVar
+
+	(source "(.createRuntimeClsWidget *prj* (foc \"MInspector\" \"title\" \"Map Inspector\"))")
+	(title "^:dynamic *inspector*"))
+
+([Functional_Class10106] of  CloFunction
+
+	(source "(let  [sel (.getSelection (isw \"m-layers\"))]\n  (if (seq sel)\n      (let [mlr (first sel)\n            mps (m-layer-polygons mlr)]\n        (.setValues (isw \"m-polygons\") mps) )))")
+	(title "select-layer []"))
+
+([Functional_Class10107] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  clojure.stacktrace)\n(:import \n  ru.igis.omtab.OpenMapTab\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  javax.swing.JFrame\n  com.bbn.openmap.omGraphics.OMPoly\n  com.bbn.openmap.omGraphics.OMGraphicList\n  edu.stanford.smi.protege.util.SelectionListener)")
+	(title "map.inspector"))
+
+([Functional_Class10108] of  CloVar
+
+	(source "; MapBean\n(OpenMapTab/getMapBean)")
+	(title "^:dynamic *mb*"))
+
+([Functional_Class10109] of  CloFunction
+
+	(source "(let [f (JFrame. (.getName w))]\n  (.. f (getContentPane) (add  w))\n  (.setLocationRelativeTo f nil)\n  (.pack f)\n  (.setVisible f true))")
+	(title "show [w]"))
+
+([Functional_Class10110] of  CloFunction
+
+	(source "(when-let [ins (foc \"MLayer\" \"title\" (.getName lr))]\n  (ssv ins \"pointer\" (pum lr))\n  ins)")
+	(title "foc-m-layer [lr]"))
+
+([Functional_Class10125] of  CloFuncall
+
+	(source "(map.inspector/new-inspector)"))
+
+([Functional_Class10126] of  CloFunction
+
+	(source "(let [ao (.getAppObject pol)\n       tit (or ao (gensym pfx))\n       lla (.getLatLonArray pol)\n       ins (crin \"OMGContainer\")]\n  (ssv ins \"title\" tit)\n  (ssv ins \"lla\" tit)\n  ins)")
+	(title "new-polygon [pol pfx]"))
+
+([Functional_Class10133] of  CloProgram
+
+	(cloFunctions
+		[Functional_Class10134]
+		[Functional_Class10135]
+		[Functional_Class10109]
+		[Functional_Class10136]
+		[Functional_Class10110]
+		[Functional_Class10137]
+		[Functional_Class10138]
+		[Functional_Class10089]
+		[Functional_Class10091]
+		[Functional_Class10139]
+		[Functional_Class10106]
+		[Functional_Class10140]
+		[Functional_Class10141]
+		[Functional_Class10142]
+		[Functional_Class10143]
+		[Functional_Class10085])
+	(cloNamespace [Functional_Class10107])
+	(cloVars
+		[Functional_Class10108]
+		[Functional_Class10144]
+		[Functional_Class10105])
+	(title "Map Inspector"))
+
+([Functional_Class10134] of  CloFunction
+
+	(source "(if (< i (.size *mem*))\n    (nth *mem* i))")
+	(title "gem [i]"))
+
+([Functional_Class10135] of  CloFunction
+
+	(source "(def ^:dynamic *mem* (conj *mem* x))\n(Integer. (- (.size *mem*) 1))")
+	(title "pum [x]"))
+
+([Functional_Class10136] of  CloFunction
+
+	(source "(.getSlotWidget *inspector* (.getSlot *kb* s))")
+	(title "isw [s]"))
+
+([Functional_Class10137] of  CloFunction
+
+	(source "(let [lla (.getLatLonArray omp)\n      tit (str (gensym pfx) \" \" (/ (alength lla) 2))\n      ins (foc \"MPolygon\" \"title\" (str tit))]\n  (ssv ins \"pointer\" (pum omp))\n  ins)")
+	(title "foc-m-polygon [omp pfx]"))
+
+([Functional_Class10138] of  CloFunction
+
+	(source "(let [mps (cls-instances \"MPolygon\")]\n  (doseq [mp mps]\n     (delin mp)))\n(let [mps (cls-instances \"MLayer\")]\n  (doseq [mp mps]\n     (delin mp)))")
+	(title "del-m-polygons-and-layers []"))
+
+([Functional_Class10139] of  CloFunction
+
+	(source "(.addSelectionListener sw\n  (proxy [SelectionListener] []\n    (selectionChanged [evt] (fn0)) ))")
+	(title "add-sel-fn0 [sw fn0]"))
+
+([Functional_Class10140] of  CloFunction
+
+	(source "(letfn [(point [a i]\n            (let [la (Math/toDegrees (aget a i))\n                   lo (Math/toDegrees (aget a (+ i 1)))]\n              (str (MapOb/getDegMin la) \" \" (MapOb/getDegMin lo)) ))]\n  (loop [pp (vec '()) k 0 m (- (alength lla) 1)]\n    (if (>= k m)\n        pp\n        (recur (conj pp (point lla k)) (+ k 2) m) )))")
+	(title "points-from-lla [lla]"))
+
+([Functional_Class10141] of  CloFunction
+
+	(source "; Return MPolygon instance slot m-poly value: OMPoly instance.\n; Create it if needed from pointer to OMPoly object.\n(or (sv mp \"poly\")\n     (let [omp (gem (sv mp \"pointer\"))\n           lla (.getLatLonArray omp)\n           ins (crin \"OMTPoly\")\n           pts (points-from-lla lla)\n           fst (.split (first pts) \" \")]\n        (ssv ins \"label\" (sv mp \"title\"))\n        (ssvs ins \"points\" pts)\n        (ssv ins \"lineColor\" \"FFFF0000\")\n        (ssv ins \"latitude\" (str (aget fst 0) \" \" (aget fst 1)))\n        (ssv ins \"longitude\" (str (aget fst 2) \" \" (aget fst 3)))\n        (ssv ins \"line\" (foc \"Line\" \"label\" \"L2\"))\n        (ssv mp \"poly\" ins)\n        ins))")
+	(title "m-polygon-poly [mp]"))
+
+([Functional_Class10142] of  CloFunction
+
+	(source "(let [scl (.getScale *mb*)]\n  (.setScale *mb* (* scl 0.005))\n  (Thread/sleep 200)\n  (.setScale *mb* scl))")
+	(title "shake-map []"))
+
+([Functional_Class10143] of  CloFunction
+
+	(source "(let  [sel (.getSelection (isw \"m-polygons\"))]\n  (if (seq sel)\n      (let [mp (first sel)\n             pol (m-polygon-poly mp)]\n        (OMT/addMapOb pol)\n        (shake-map)\n        (.show *prj* pol) )))")
+	(title "select-polygon []"))
+
+([Functional_Class10144] of  CloVar
+
+	(source "[]")
+	(title "^:dynamic *mem*"))
+
+([Functional_Class10191] of  CloFunction
+
+	(source "(let [ins (ClojureTab/findForSlotValue cls \"title\" tit)]\n  (or ins (let [ins (crin cls)] (ssv ins \"title\" tit) ins)))")
+	(title "find-create [cls tit]"))
+
+([MapInspector_Class0] of  MInspector
+
+	(m-layers
+		[MapInspector_Class20000]
+		[MapInspector_Class20001]
+		[MapInspector_Class20002]
+		[MapInspector_Class20003]
+		[MapInspector_Class20004]
+		[MapInspector_Class20005])
+	(m-polygons
+		[MapInspector_Class20006]
+		[MapInspector_Class20007]
+		[MapInspector_Class20008]
+		[MapInspector_Class20009]
+		[MapInspector_Class20010]
+		[MapInspector_Class20011]
+		[MapInspector_Class20012]
+		[MapInspector_Class20013]
+		[MapInspector_Class20014]
+		[MapInspector_Class20015]
+		[MapInspector_Class20016]
+		[MapInspector_Class20017]
+		[MapInspector_Class20018])
+	(title "Map Inspector"))
+
+([MapInspector_Class10000] of  CloFuncall
+
+	(source "(ru.igis.omtab.OpenMapTab/getMapBean)"))
+
+([MapInspector_Class20000] of  MLayer
+
+	(pointer 0)
+	(title "RuNA"))
+
+([MapInspector_Class20001] of  MLayer
+
+	(pointer 1)
+	(title "Red Playground"))
+
+([MapInspector_Class20002] of  MLayer
+
+	(pointer 2)
+	(title "Blue Playground"))
+
+([MapInspector_Class20003] of  MLayer
+
+	(pointer 3)
+	(title "Graticule"))
+
+([MapInspector_Class20004] of  MLayer
+
+	(pointer 4)
+	(title "OSM Tiles"))
+
+([MapInspector_Class20005] of  MLayer
+
+	(m-polygons
+		[MapInspector_Class20006]
+		[MapInspector_Class20007]
+		[MapInspector_Class20008]
+		[MapInspector_Class20009]
+		[MapInspector_Class20010]
+		[MapInspector_Class20011]
+		[MapInspector_Class20012]
+		[MapInspector_Class20013]
+		[MapInspector_Class20014]
+		[MapInspector_Class20015]
+		[MapInspector_Class20016]
+		[MapInspector_Class20017]
+		[MapInspector_Class20018])
+	(pointer 5)
+	(title "Browse World"))
+
+([MapInspector_Class20006] of  MPolygon
+
+	(pointer 6)
+	(title "Browse World231 1908"))
+
+([MapInspector_Class20007] of  MPolygon
+
+	(pointer 7)
+	(title "Browse World232 364"))
+
+([MapInspector_Class20008] of  MPolygon
+
+	(pointer 8)
+	(title "Browse World233 159"))
+
+([MapInspector_Class20009] of  MPolygon
+
+	(pointer 9)
+	(title "Browse World234 238"))
+
+([MapInspector_Class20010] of  MPolygon
+
+	(pointer 10)
+	(title "Browse World235 7"))
+
+([MapInspector_Class20011] of  MPolygon
+
+	(pointer 11)
+	(title "Browse World236 66"))
+
+([MapInspector_Class20012] of  MPolygon
+
+	(pointer 12)
+	(title "Browse World237 7"))
+
+([MapInspector_Class20013] of  MPolygon
+
+	(pointer 13)
+	(title "Browse World238 12"))
+
+([MapInspector_Class20014] of  MPolygon
+
+	(pointer 14)
+	(title "Browse World239 81"))
+
+([MapInspector_Class20015] of  MPolygon
+
+	(pointer 15)
+	(title "Browse World240 13"))
+
+([MapInspector_Class20016] of  MPolygon
+
+	(pointer 16)
+	(title "Browse World241 9"))
+
+([MapInspector_Class20017] of  MPolygon
+
+	(pointer 17)
+	(title "Browse World242 76"))
+
+([MapInspector_Class20018] of  MPolygon
+
+	(pointer 18)
+	(title "Browse World243 36"))
+
+([MapInspector_Class20024] of  Line
+
+	(label "L2"))
+
+([MapInspector_Class30000] of  Command
+
+	(label "Create Drawn Polygons")
+	(scenario "ru.igis.omtab.Util createDrawnPolygons"))
+
+([MapInspector_Class30024] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[igis_Class23]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "MI Map")
+	(Latitude "60.0")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]
+		[igis_Class40010])
+	(Longitude "30.0")
+	(Scale "10000000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([MapInspector_Class30025] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [MapInspector_Class30024])
+	(%3ACREATION-TIMESTAMP "2017.12.29 10:03:43.891 MSK")
+	(%3ACREATOR "ru"))

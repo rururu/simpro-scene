@@ -41,11 +41,13 @@ In Protege GUI:
 2. [Get started: Simple scenario](https://youtu.be/qb8EjnkyEFQ)
 3. [Get started: New project](https://youtu.be/Y693nOxbWR0)
 4. [Get started: Object Mission](https://youtu.be/eT-2CQzGuEA)
-5. [Tsunami](https://youtu.be/pkF8BE74JAk)
-6. [Shuffle Europe](https://youtu.be/Jh6r9ytpkKQ)
-7. [France Roads](https://youtu.be/IvKkSpa8x9Y)
-8. [France Roads: Stress test "Blue"](https://youtu.be/zp6VdtKYLtc)
-9. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)
+5. [Get started: Map Inspector](https://youtu.be/QoTo5qYyJdQ)
+6. [Get started: Drawing Polygons](https://youtu.be/7P8Q9n0jLVM)
+7. [Tsunami](https://youtu.be/pkF8BE74JAk)
+8. [Shuffle Europe](https://youtu.be/Jh6r9ytpkKQ)
+9. [France Roads](https://youtu.be/IvKkSpa8x9Y)
+10. [France Roads: Stress test "Blue"](https://youtu.be/zp6VdtKYLtc)
+11. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)
 
 TO BE CONTINUED
 
