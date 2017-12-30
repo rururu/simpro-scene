@@ -1,0 +1,472 @@
+; Sat Dec 30 20:02:21 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Timeline_Class0] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(Digitizer)"))
+
+([Timeline_Class10000] of  WorkingPrograms
+
+	(cloPrograms
+		[RuleEngine_Class30000]
+		[Timeline_Class3]
+		[Timeline_Class40000])
+	(title "Timline Programs"))
+
+([Timeline_Class10001] of  Openmap
+
+	(BackgroundColor "FFCCEEFF")
+	(components
+		[Timeline_Class10002]
+		[Timeline_Class10003]
+		[Timeline_Class10004]
+		[Timeline_Class10005]
+		[Timeline_Class10006]
+		[Timeline_Class10007]
+		[Timeline_Class10008]
+		[Timeline_Class10009]
+		[Timeline_Class10010]
+		[Timeline_Class10011]
+		[Timeline_Class10012]
+		[Timeline_Class10013]
+		[Timeline_Class10014]
+		[Timeline_Class10015]
+		[Timeline_Class10016]
+		[Timeline_Class10017]
+		[Timeline_Class10018]
+		[Timeline_Class10019]
+		[Timeline_Class10020]
+		[Timeline_Class10021]
+		[Timeline_Class10022]
+		[Timeline_Class10023]
+		[Timeline_Class10024]
+		[Timeline_Class10025]
+		[Timeline_Class10026]
+		[Timeline_Class80000]
+		[Timeline_Class90002])
+	(label "Timline Map")
+	(Latitude "65.0")
+	(layers
+		[Timeline_Class10027]
+		[Timeline_Class10028]
+		[Timeline_Class10029])
+	(Longitude "27.0")
+	(Scale "16000000")
+	(startUpLayers
+		[Timeline_Class10027]
+		[Timeline_Class10029]))
+
+([Timeline_Class10002] of  MenuList
+
+	(class "com.bbn.openmap.gui.menu.MenuList")
+	(label "menuList")
+	(menus
+		[Timeline_Class10003]
+		[Timeline_Class10004]
+		[Timeline_Class10005]
+		[Timeline_Class10006]
+		[Timeline_Class10007]
+		[Timeline_Class10008]
+		[Timeline_Class10009]))
+
+([Timeline_Class10003] of  Menu
+
+	(class "com.bbn.openmap.gui.ControlMenu")
+	(label "controlMenu"))
+
+([Timeline_Class10004] of  Menu
+
+	(class "com.bbn.openmap.gui.FileMenu")
+	(label "fileMenu"))
+
+([Timeline_Class10005] of  Menu
+
+	(class "com.bbn.openmap.gui.GoToMenu")
+	(label "gotoMenu"))
+
+([Timeline_Class10006] of  Menu
+
+	(class "com.bbn.openmap.gui.DefaultHelpMenu")
+	(label "helpMenu"))
+
+([Timeline_Class10007] of  Menu
+
+	(class "com.bbn.openmap.gui.LayersMenu")
+	(label "layersMenu"))
+
+([Timeline_Class10008] of  Menu
+
+	(class "com.bbn.openmap.gui.NavigateMenu")
+	(label "navigateMenu"))
+
+([Timeline_Class10009] of  Menu
+
+	(class "ru.igis.omtab.menu.ProtegeMenu")
+	(label "protegeMenu"))
+
+([Timeline_Class10010] of  LayerHandler
+
+	(class "com.bbn.openmap.LayerHandler")
+	(label "layerHandler"))
+
+([Timeline_Class10011] of  GraphicLoaderConnector
+
+	(class "com.bbn.openmap.plugin.graphicLoader.GraphicLoaderConnector")
+	(label "graphicLoaderConnector"))
+
+([Timeline_Class10012] of  LayersPanel
+
+	(class "com.bbn.openmap.gui.LayersPanel")
+	(label "layersPanel"))
+
+([Timeline_Class10013] of  MouseMode
+
+	(class "com.bbn.openmap.MouseDelegator")
+	(label "mouseDelegator"))
+
+([Timeline_Class10014] of  MouseMode
+
+	(class "com.bbn.openmap.gui.MouseModeButtonPanel")
+	(label "mouseModeButtonPanel"))
+
+([Timeline_Class10015] of  MouseMode
+
+	(class "com.bbn.openmap.event.NavMouseMode2")
+	(label "navMouseMode"))
+
+([Timeline_Class10016] of  MouseMode
+
+	(class "com.bbn.openmap.event.NullMouseMode")
+	(label "nullMouseMode"))
+
+([Timeline_Class10017] of  MouseMode
+
+	(class "ru.igis.omtab.gui.RuDistanceMouseMode")
+	(label "RuDistanceMouseMode"))
+
+([Timeline_Class10018] of  MouseMode
+
+	(class "com.bbn.openmap.event.SelectMouseMode")
+	(label "selectMouseMode"))
+
+([Timeline_Class10019] of  SimpleComponent
+
+	(class "com.bbn.openmap.InformationDelegator")
+	(label "informationDelegator"))
+
+([Timeline_Class10020] of  SimpleComponent
+
+	(class "ru.igis.omtab.RunaControlPanel")
+	(label "runaControlPanel"))
+
+([Timeline_Class10021] of  SimpleComponent
+
+	(class "com.bbn.openmap.gui.ToolPanel")
+	(label "toolPanel"))
+
+([Timeline_Class10022] of  SimpleComponent
+
+	(class "com.bbn.openmap.gui.OMToolSet")
+	(label "toolSet"))
+
+([Timeline_Class10023] of  Playground
+
+	(class "ru.igis.omtab.Playground")
+	(label "extobs1")
+	(playground-index 1)
+	(prettyName "Ext Objects 1"))
+
+([Timeline_Class10024] of  Playground
+
+	(class "ru.igis.omtab.Playground")
+	(label "extobs2")
+	(playground-index 2)
+	(prettyName "Ext Objects 2"))
+
+([Timeline_Class10025] of  Playground
+
+	(class "ru.igis.omtab.Playground")
+	(label "runa")
+	(playground-index 0)
+	(prettyName "RuNA")
+	(scenario "clojuretab.ClojureTab invoke s run-annotated-scenario"))
+
+([Timeline_Class10026] of  SimpleComponent
+
+	(class "ru.igis.omtab.OMT")
+	(label "OMT"))
+
+([Timeline_Class10027] of  GraticuleLayer
+
+	(10DegreeColor "99000000")
+	(1DegreeColor "99003300")
+	(5DegreeColor "99009900")
+	(class "com.bbn.openmap.layer.GraticuleLayer")
+	(dateLineColor "99000000")
+	(equatorColor "99FF0000")
+	(label "graticule")
+	(prettyName "GraticuleLayer")
+	(show1And5Lines "true")
+	(showRuler "true")
+	(specialLineColor "99000000")
+	(textColor "99000000")
+	(threshold "2"))
+
+([Timeline_Class10028] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "FFFFEEDD")
+	(label "dcwpo")
+	(lineColor "ff000000")
+	(prettyName "DCWPO")
+	(shapeFile "data/shape/dcwpo-browse.shp"))
+
+([Timeline_Class10029] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "OSM_Tiles")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/osmtiles")
+	(noCoverageZoom "13")
+	(prettyName "OSM Tiles")
+	(rootDir "http://a.tile.openstreetmap.org")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
+
+([Timeline_Class11] of  CloFunction
+
+	(source "(slider \n  header \n  min \n  max \n  (fn [[head val tim]] \n	(rete.core/assert-frame ['Slider 'title head 'slider-value val 'time tim])\n	(rete.core/fire))\n  [1000 100]\n  mits\n  mats)")
+	(title "timeline [header min max mits mats]"))
+
+([Timeline_Class12] of  RuleSet
+
+	(rules
+		[Timeline_Class17]
+		[Timeline_Class50005]
+		[Timeline_Class50007])
+	(templates
+		[Slider]
+		[PolyLife])
+	(title "Timeline ES"))
+
+([Timeline_Class13] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(facts
+		[Timeline_Class30006]
+		[Timeline_Class30005]
+		[Timeline_Class30004]
+		[Timeline_Class30008])
+	(mode run)
+	(rule-sets [Timeline_Class12])
+	(title "Timeline ES Run"))
+
+([Timeline_Class17] of  Rule
+
+	(lhs "?s1 (Slider title ?tit time ?tim1)\n(Slider title ?tit time ?tim2\n	(> ?tim2 ?tim1))")
+	(rhs "(retract ?s1)")
+	(salience 1)
+	(title "tim:RetractOldSlider"))
+
+([Timeline_Class18] of  Rule
+
+	(lhs "(Slider title ?tit slider-value ?val)")
+	(rhs "(println [?tit ?val])")
+	(salience 0)
+	(title "tim:PrintSlider"))
+
+([Timeline_Class3] of  CloProgram
+
+	(cloFunctions
+		[Timeline_Class4]
+		[Timeline_Class5]
+		[Timeline_Class11])
+	(cloNamespace [Timeline_Class6])
+	(title "Seesaw"))
+
+([Timeline_Class30000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "u1")
+	(latitude "67 0")
+	(longitude "22 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/gerb25.png"))
+
+([Timeline_Class30001] of  OMTText
+
+	(BOLD TRUE)
+	(fontSize 24)
+	(label "Фин_в_сост")
+	(playground-index 0)
+	(text "Финляндия в составе")
+	(textColor "800000FF")
+	(X 200)
+	(Y 40))
+
+([Timeline_Class30002] of  OMTText
+
+	(BOLD TRUE)
+	(fontSize 24)
+	(label "Кор_швец")
+	(playground-index 0)
+	(text "Королевства Швеция")
+	(textColor "80663344")
+	(X 500)
+	(Y 40))
+
+([Timeline_Class30003] of  OMTText
+
+	(BOLD TRUE)
+	(fontSize 24)
+	(label "Росс")
+	(playground-index 0)
+	(text "Российской империи")
+	(textColor "80AA0000")
+	(X 500)
+	(Y 40))
+
+([Timeline_Class30004] of  PolyLife
+
+	(begin 1323)
+	(end 1917)
+	(polyobj [Timeline_Class30001])
+	(status OFFMAP)
+	(title "Годы"))
+
+([Timeline_Class30005] of  PolyLife
+
+	(begin 1809)
+	(end 1917)
+	(polyobj [Timeline_Class30003])
+	(status OFFMAP)
+	(title "Годы"))
+
+([Timeline_Class30006] of  PolyLife
+
+	(begin 1323)
+	(end 1809)
+	(polyobj [Timeline_Class30002])
+	(status OFFMAP)
+	(title "Годы"))
+
+([Timeline_Class30007] of  OMTText
+
+	(BOLD TRUE)
+	(fontSize 24)
+	(label "Фин_независ")
+	(playground-index 0)
+	(text "Независимая Финляндия")
+	(textColor "800000FF")
+	(X 400)
+	(Y 40))
+
+([Timeline_Class30008] of  PolyLife
+
+	(begin 1917)
+	(end 2000)
+	(polyobj [Timeline_Class30007])
+	(status OFFMAP)
+	(title "Годы"))
+
+([Timeline_Class4] of  CloFunction
+
+	(source "(.setLocationRelativeTo frame nil)")
+	(title "center! [frame]"))
+
+([Timeline_Class40000] of  CloProgram
+
+	(cloFunctions
+		[Timeline_Class50002]
+		[Timeline_Class50001]
+		[Timeline_Class50003])
+	(cloNamespace [Timeline_Class50000])
+	(title "Timeline"))
+
+([Timeline_Class5] of  CloFunction
+
+	(source "(let [[wid hig] size\n        sld (s/slider \n              :value 1994 \n              :min min \n              :max max\n              :minor-tick-spacing mits\n              :major-tick-spacing mats\n              :paint-ticks? true\n              :paint-labels? true\n              :paint-track? true)]\n    (s/invoke-later\n      (doto (s/frame :title head\n                     :content sld\n                     :on-close :dispose\n                     :size [wid :by hig])\n        center!\n        s/show!))\n    (s/listen sld \n              :state-changed (fn[e] (func [head (.getValue(.getSource e)) (System/currentTimeMillis)]))))")
+	(title "slider [head min max func size mits mats]"))
+
+([Timeline_Class50000] of  CloNamespace
+
+	(source "(:use protege.core)\n(:import \n  clojuretab.ClojureTab\n  ru.igis.omtab.OMT)")
+	(title "time.line"))
+
+([Timeline_Class50001] of  CloFunction
+
+	(source "(ru.igis.omtab.OMT/addMapOb mo)\n(manage-graphics)")
+	(title "add-mo [mo]"))
+
+([Timeline_Class50002] of  CloFunction
+
+	(source "(doseq [pg (ru.igis.omtab.OMT/getPlaygrounds)]\n  (.manageGraphics pg))")
+	(title "manage-graphics []"))
+
+([Timeline_Class50003] of  CloFunction
+
+	(source "(ru.igis.omtab.OMT/removeMapOb mo false)\n(manage-graphics)")
+	(title "remove-mo [mo]"))
+
+([Timeline_Class50005] of  Rule
+
+	(lhs "?pl (PolyLife status OFFMAP\n	title ?tit\n	polyobj ?pol\n	begin ?beg\n	end ?end\n                      N ?n)\n(Slider title ?tit slider-value ?val\n                      ((not= ?val ?n)\n	 (< ?beg ?val ?end)))")
+	(rhs ";;(println [:ON ?pol])\n(time.line/add-mo ?pol)\n(modify ?pl status ONMAP\n	N ?val)")
+	(salience 0)
+	(title "tim:PolyLifeOnMap"))
+
+([Timeline_Class50007] of  Rule
+
+	(lhs "?pl (PolyLife status ONMAP\n	title ?tit\n	polyobj ?pol\n	begin ?beg\n	end ?end\n                      N ?n)\n(Slider title ?tit slider-value ?val\n                      ((not= ?val ?n)\n	 [(< ?val ?beg)\n	  (< ?end ?val)]))")
+	(rhs ";;(println [:OFF ?pol])\n(time.line/remove-mo ?pol)\n(modify ?pl status OFFMAP\n	N ?val)")
+	(salience 0)
+	(title "tim:PolyLifeOffMap"))
+
+([Timeline_Class6] of  CloNamespace
+
+	(source "(:use\n  protege.core\n  rete.core)\n(:require\n  [seesaw.core :as s])")
+	(title "see.saw"))
+
+([Timeline_Class60000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "f1")
+	(latitude "60 0")
+	(longitude "30 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/finn5.png"))
+
+([Timeline_Class80000] of  SimpleComponent
+
+	(class "com.bbn.openmap.proj.ProjectionStack")
+	(label "ProjStack"))
+
+([Timeline_Class80001] of  CloFuncall
+
+	(source "(see.saw/timeline \"Годы\" 1300 2000 5 50)"))
+
+([Timeline_Class90001] of  SimpleComponent
+
+	(class "com.bbn.openmap.gui.ProjectionStackTool")
+	(label "ProjStackTool"))
+
+([Timeline_Class90002] of  MouseMode
+
+	(class "com.bbn.openmap.event.PanMouseMode")
+	(label "PanMouseMode"))

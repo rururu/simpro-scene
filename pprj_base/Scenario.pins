@@ -1,4 +1,4 @@
-; Thu Dec 28 17:33:39 MSK 2017
+; Sat Dec 30 18:13:04 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1263,7 +1263,7 @@
 
 ([Scenario_Class430002] of  CloFunction
 
-	(source "(let [txt (vv ?txt r)\n       obj (vv ?obj r)\n       tim (op-time)]\n  (if-let [mo (OMT/getMapOb obj)]\n    (let [avl (or (.getAttribute mo (sv atr \"title\")) \"\")\n           mes (cond\n	(null? txt) avl\n	(not (.contains txt \"?$\")) (str txt \" \" avl)\n	true (ordered-subst txt avl \"?$\"))\n           mes (.replace mes \"?obj\" (.getName mo))]\n      (if (empty? cls)\n        (es-mess (str tim \" \" mes) nil cat)\n        (doseq [cli cls]\n          (es-mess (str tim \" \" mes) nil cat (sv cli \"id\")))) )))")
+	(source "(let [txt (vv ?txt r)\n       obj (vv ?obj r)\n       tim (op-time)]\n  (if-let [mo (OMT/getMapOb obj)]\n    (let [avl (str (or (.getAttribute mo (sv atr \"title\")) \"\"))\n           mes (cond\n	(null? txt) avl\n	(not (.contains txt \"?$\")) (str txt \" \" avl)\n	true (ordered-subst txt avl \"?$\"))\n           mes (.replace mes \"?obj\" (.getName mo))]\n      (if (empty? cls)\n        (es-mess (str tim \" \" mes) nil cat)\n        (doseq [cli cls]\n          (es-mess (str tim \" \" mes) nil cat (sv cli \"id\")))) )))")
 	(title "attribute-message [?txt ?obj atr cat cls r]"))
 
 ([Scenario_Class430004] of  CloFunction

@@ -331,7 +331,7 @@
        obj (vv ?obj r)
        tim (op-time)]
   (if-let [mo (OMT/getMapOb obj)]
-    (let [avl (or (.getAttribute mo (sv atr "title")) "")
+    (let [avl (str (or (.getAttribute mo (sv atr "title")) ""))
            mes (cond
 	(null? txt) avl
 	(not (.contains txt "?$")) (str txt " " avl)

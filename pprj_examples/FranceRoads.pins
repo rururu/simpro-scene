@@ -1,4 +1,4 @@
-; Thu Dec 28 23:26:01 MSK 2017
+; Fri Dec 29 18:47:38 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -91,10 +91,6 @@
 ([FranceRoads_Class10012] of  ObjectMission
 
 	(label "fr1:One Car Tour"))
-
-([FranceRoads_Class20000] of  CloFuncall
-
-	(source "(sim/start-sim)"))
 
 ([FranceRoads_Class20001] of  Table2
 
@@ -358,7 +354,7 @@
 ([FranceRoads_Class60011] of  GoLayer
 
 	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] (nthrest (vec (first x)) ?road))")
+	(getPoliesFromTargets "(fn[x] (nthrest (vec (first x)) (dec ?road)))")
 	(layer [Ground_Class10012])
 	(next_actions [FranceRoads_Class60012])
 	(object [ScenarioN_Class570000])

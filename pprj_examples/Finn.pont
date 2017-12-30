@@ -1,0 +1,15 @@
+; Sat Dec 30 20:19:15 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot instance
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot task_impl
+;+		(type ANY)
+		(create-accessor read-write)))

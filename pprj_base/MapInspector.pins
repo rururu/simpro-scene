@@ -1,4 +1,4 @@
-; Fri Dec 29 10:18:11 MSK 2017
+; Sat Dec 30 11:56:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -307,7 +307,8 @@
 
 ([MapInspector_Class20024] of  Line
 
-	(label "L2"))
+	(label "L2")
+	(lineWidth "2"))
 
 ([MapInspector_Class30000] of  Command
 
@@ -354,9 +355,3 @@
 		[igis_Class40012]
 		[igis_Class1]
 		[igis_Class40011]))
-
-([MapInspector_Class30025] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [MapInspector_Class30024])
-	(%3ACREATION-TIMESTAMP "2017.12.29 10:03:43.891 MSK")
-	(%3ACREATOR "ru"))

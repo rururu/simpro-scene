@@ -1,0 +1,90 @@
+; Sat Dec 30 20:02:21 MSK 2017
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot slider-value
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values OFFMAP ONMAP)
+		(default OFFMAP)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot end
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot units
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot begin
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polyobj
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TimelineOnto
+	(is-a USER)
+	(role abstract))
+
+(defclass Slider
+	(is-a TimelineOnto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot slider-value
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PolyLife
+	(is-a TimelineOnto)
+	(role concrete)
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values OFFMAP ONMAP)
+		(default OFFMAP)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot end
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot begin
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polyobj
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

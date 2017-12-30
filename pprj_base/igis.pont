@@ -1,4 +1,4 @@
-; Fri Dec 15 18:33:17 MSK 2017
+; Sat Dec 30 19:53:22 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot number.colors
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot igis_Class80000
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1452,8 +1456,16 @@
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot X
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot igis_Class80000
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Y

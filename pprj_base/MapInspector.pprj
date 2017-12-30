@@ -1,4 +1,4 @@
-; Fri Dec 29 10:18:11 MSK 2017
+; Sat Dec 30 11:56:47 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,9 +21,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[MapInspector_ProjectKB_Class11439]
-		[MapInspector_ProjectKB_Class11440]
-		[MapInspector_ProjectKB_Class11441]))
+		[MapInspector_ProjectKB_Class21453]
+		[MapInspector_ProjectKB_Class21454]
+		[MapInspector_ProjectKB_Class21455]))
 
 ([CLSES_TAB] of  Widget
 
@@ -325,6 +325,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_196454_Class1434] of  Map
+
+	(entries
+		[KB_196454_Class1435]
+		[KB_196454_Class1436]
+		[KB_196454_Class1437]))
+
+([KB_196454_Class1435] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_196454_Class1436] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_196454_Class1437] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_347175_Class0] of  String
 
 	(name "factory_class_name")
@@ -333,13 +361,13 @@
 ([KB_347175_Class1] of  Map
 
 	(entries
-		[MapInspector_ProjectKB_Class11446]
-		[MapInspector_ProjectKB_Class11485]
-		[MapInspector_ProjectKB_Class11525])
+		[MapInspector_ProjectKB_Class21459]
+		[MapInspector_ProjectKB_Class21498]
+		[MapInspector_ProjectKB_Class21538])
 	(referenced_maps
-		[MapInspector_ProjectKB_Class11442]
-		[MapInspector_ProjectKB_Class11486]
-		[MapInspector_ProjectKB_Class11447]))
+		[MapInspector_ProjectKB_Class21499]
+		[MapInspector_ProjectKB_Class21456]
+		[MapInspector_ProjectKB_Class21460]))
 
 ([KB_347175_Class100] of  Property_List
 )
@@ -434,710 +462,10 @@
 ([KB_347175_Class99] of  Property_List
 )
 
-([KB_594966_Class1435] of  Map
-
-	(entries
-		[KB_594966_Class1436]
-		[KB_594966_Class1437]
-		[KB_594966_Class1438]))
-
-([KB_594966_Class1436] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_594966_Class1437] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_594966_Class1438] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
-
-([MapInspector_ProjectKB_Class11439] of  String
-
-	(name "MLayer")
-	(string_value "title"))
-
-([MapInspector_ProjectKB_Class11440] of  String
-
-	(name "MInspector")
-	(string_value "title"))
-
-([MapInspector_ProjectKB_Class11441] of  String
-
-	(name "MPolygon")
-	(string_value "title"))
-
-([MapInspector_ProjectKB_Class11442] of  Map
-
-	(entries
-		[MapInspector_ProjectKB_Class11443]
-		[MapInspector_ProjectKB_Class11444]
-		[MapInspector_ProjectKB_Class11445]))
-
-([MapInspector_ProjectKB_Class11443] of  Map_Entry
-
-	(key "Functional_Class1")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "-4 471 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11444] of  Map_Entry
-
-	(key "Functional_Class0")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 25 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11445] of  Map_Entry
-
-	(key "MapInspector_Class30025")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "116 365 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11446] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "MapInspector_ProjectKB_Class11442")
-	(value_class "java.util.Map"))
-
-([MapInspector_ProjectKB_Class11447] of  Map
-
-	(entries
-		[MapInspector_ProjectKB_Class11448]
-		[MapInspector_ProjectKB_Class11449]
-		[MapInspector_ProjectKB_Class11450]
-		[MapInspector_ProjectKB_Class11451]
-		[MapInspector_ProjectKB_Class11452]
-		[MapInspector_ProjectKB_Class11453]
-		[MapInspector_ProjectKB_Class11454]
-		[MapInspector_ProjectKB_Class11455]
-		[MapInspector_ProjectKB_Class11456]
-		[MapInspector_ProjectKB_Class11457]
-		[MapInspector_ProjectKB_Class11458]
-		[MapInspector_ProjectKB_Class11459]
-		[MapInspector_ProjectKB_Class11460]
-		[MapInspector_ProjectKB_Class11461]
-		[MapInspector_ProjectKB_Class11462]
-		[MapInspector_ProjectKB_Class11463]
-		[MapInspector_ProjectKB_Class11464]
-		[MapInspector_ProjectKB_Class11465]
-		[MapInspector_ProjectKB_Class11466]
-		[MapInspector_ProjectKB_Class11467]
-		[MapInspector_ProjectKB_Class11468]
-		[MapInspector_ProjectKB_Class11469]
-		[MapInspector_ProjectKB_Class11470]
-		[MapInspector_ProjectKB_Class11471]
-		[MapInspector_ProjectKB_Class11472]
-		[MapInspector_ProjectKB_Class11473]
-		[MapInspector_ProjectKB_Class11474]
-		[MapInspector_ProjectKB_Class11475]
-		[MapInspector_ProjectKB_Class11476]
-		[MapInspector_ProjectKB_Class11477]
-		[MapInspector_ProjectKB_Class11478]
-		[MapInspector_ProjectKB_Class11479]
-		[MapInspector_ProjectKB_Class11480]
-		[MapInspector_ProjectKB_Class11481]
-		[MapInspector_ProjectKB_Class11482]
-		[MapInspector_ProjectKB_Class11483]
-		[MapInspector_ProjectKB_Class11484]))
-
-([MapInspector_ProjectKB_Class11448] of  Map_Entry
-
-	(key "Functional_Class10168")
-	(key_class "java.lang.String")
-	(value "70 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11449] of  Map_Entry
-
-	(key "Functional_Class10146")
-	(key_class "java.lang.String")
-	(value "70 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11450] of  Map_Entry
-
-	(key "Functional_Class10147")
-	(key_class "java.lang.String")
-	(value "520 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11451] of  Map_Entry
-
-	(key "Functional_Class10149")
-	(key_class "java.lang.String")
-	(value "670 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11452] of  Map_Entry
-
-	(key "Functional_Class10129")
-	(key_class "java.lang.String")
-	(value "220 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11453] of  Map_Entry
-
-	(key "Functional_Class10160")
-	(key_class "java.lang.String")
-	(value "370 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11454] of  Map_Entry
-
-	(key "Functional_Class10161")
-	(key_class "java.lang.String")
-	(value "370 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11455] of  Map_Entry
-
-	(key "Functional_Class10162")
-	(key_class "java.lang.String")
-	(value "370 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11456] of  Map_Entry
-
-	(key "Functional_Class10163")
-	(key_class "java.lang.String")
-	(value "220 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11457] of  Map_Entry
-
-	(key "Functional_Class10164")
-	(key_class "java.lang.String")
-	(value "220 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11458] of  Map_Entry
-
-	(key "Functional_Class10120")
-	(key_class "java.lang.String")
-	(value "520 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11459] of  Map_Entry
-
-	(key "Functional_Class10165")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11460] of  Map_Entry
-
-	(key "Functional_Class10166")
-	(key_class "java.lang.String")
-	(value "70 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11461] of  Map_Entry
-
-	(key "Functional_Class10122")
-	(key_class "java.lang.String")
-	(value "670 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11462] of  Map_Entry
-
-	(key "Functional_Class10145")
-	(key_class "java.lang.String")
-	(value "70 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11463] of  Map_Entry
-
-	(key "Functional_Class10167")
-	(key_class "java.lang.String")
-	(value "70 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11464] of  Map_Entry
-
-	(key "Functional_Class10123")
-	(key_class "java.lang.String")
-	(value "670 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11465] of  Map_Entry
-
-	(key "Functional_Class10157")
-	(key_class "java.lang.String")
-	(value "520 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11466] of  Map_Entry
-
-	(key "Functional_Class10158")
-	(key_class "java.lang.String")
-	(value "520 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11467] of  Map_Entry
-
-	(key "Functional_Class10159")
-	(key_class "java.lang.String")
-	(value "520 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11468] of  Map_Entry
-
-	(key "Functional_Class10118")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11469] of  Map_Entry
-
-	(key "Functional_Class10119")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11470] of  Map_Entry
-
-	(key "Functional_Class10150")
-	(key_class "java.lang.String")
-	(value "670 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11471] of  Map_Entry
-
-	(key "Functional_Class10051")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11472] of  Map_Entry
-
-	(key "Functional_Class10096")
-	(key_class "java.lang.String")
-	(value "370 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11473] of  Map_Entry
-
-	(key "Functional_Class10151")
-	(key_class "java.lang.String")
-	(value "520 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11474] of  Map_Entry
-
-	(key "Functional_Class10052")
-	(key_class "java.lang.String")
-	(value "220 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11475] of  Map_Entry
-
-	(key "Functional_Class10097")
-	(key_class "java.lang.String")
-	(value "370 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11476] of  Map_Entry
-
-	(key "Functional_Class10152")
-	(key_class "java.lang.String")
-	(value "520 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11477] of  Map_Entry
-
-	(key "Functional_Class10130")
-	(key_class "java.lang.String")
-	(value "220 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11478] of  Map_Entry
-
-	(key "Functional_Class10131")
-	(key_class "java.lang.String")
-	(value "370 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11479] of  Map_Entry
-
-	(key "Functional_Class10076")
-	(key_class "java.lang.String")
-	(value "820 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11480] of  Map_Entry
-
-	(key "Functional_Class10132")
-	(key_class "java.lang.String")
-	(value "370 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11481] of  Map_Entry
-
-	(key "Functional_Class10154")
-	(key_class "java.lang.String")
-	(value "670 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11482] of  Map_Entry
-
-	(key "Functional_Class10077")
-	(key_class "java.lang.String")
-	(value "820 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11483] of  Map_Entry
-
-	(key "Functional_Class10155")
-	(key_class "java.lang.String")
-	(value "670 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11484] of  Map_Entry
-
-	(key "Functional_Class10156")
-	(key_class "java.lang.String")
-	(value "670 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11485] of  Map_Entry
-
-	(key "InstanceGraphWidget.Functional_Class40005.task_scheme")
-	(key_class "java.lang.String")
-	(value "MapInspector_ProjectKB_Class11447")
-	(value_class "java.util.Map"))
-
-([MapInspector_ProjectKB_Class11486] of  Map
-
-	(entries
-		[MapInspector_ProjectKB_Class11487]
-		[MapInspector_ProjectKB_Class11488]
-		[MapInspector_ProjectKB_Class11489]
-		[MapInspector_ProjectKB_Class11490]
-		[MapInspector_ProjectKB_Class11491]
-		[MapInspector_ProjectKB_Class11492]
-		[MapInspector_ProjectKB_Class11493]
-		[MapInspector_ProjectKB_Class11494]
-		[MapInspector_ProjectKB_Class11495]
-		[MapInspector_ProjectKB_Class11496]
-		[MapInspector_ProjectKB_Class11497]
-		[MapInspector_ProjectKB_Class11498]
-		[MapInspector_ProjectKB_Class11499]
-		[MapInspector_ProjectKB_Class11500]
-		[MapInspector_ProjectKB_Class11501]
-		[MapInspector_ProjectKB_Class11502]
-		[MapInspector_ProjectKB_Class11503]
-		[MapInspector_ProjectKB_Class11504]
-		[MapInspector_ProjectKB_Class11505]
-		[MapInspector_ProjectKB_Class11506]
-		[MapInspector_ProjectKB_Class11507]
-		[MapInspector_ProjectKB_Class11508]
-		[MapInspector_ProjectKB_Class11509]
-		[MapInspector_ProjectKB_Class11510]
-		[MapInspector_ProjectKB_Class11511]
-		[MapInspector_ProjectKB_Class11512]
-		[MapInspector_ProjectKB_Class11513]
-		[MapInspector_ProjectKB_Class11514]
-		[MapInspector_ProjectKB_Class11515]
-		[MapInspector_ProjectKB_Class11516]
-		[MapInspector_ProjectKB_Class11517]
-		[MapInspector_ProjectKB_Class11518]
-		[MapInspector_ProjectKB_Class11519]
-		[MapInspector_ProjectKB_Class11520]
-		[MapInspector_ProjectKB_Class11521]
-		[MapInspector_ProjectKB_Class11522]
-		[MapInspector_ProjectKB_Class11523]
-		[MapInspector_ProjectKB_Class11524]))
-
-([MapInspector_ProjectKB_Class11487] of  Map_Entry
-
-	(key "Functional_Class10168")
-	(key_class "java.lang.String")
-	(value "70 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11488] of  Map_Entry
-
-	(key "Functional_Class10146")
-	(key_class "java.lang.String")
-	(value "70 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11489] of  Map_Entry
-
-	(key "Functional_Class10169")
-	(key_class "java.lang.String")
-	(value "470 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11490] of  Map_Entry
-
-	(key "Functional_Class10147")
-	(key_class "java.lang.String")
-	(value "520 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11491] of  Map_Entry
-
-	(key "Functional_Class10149")
-	(key_class "java.lang.String")
-	(value "670 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11492] of  Map_Entry
-
-	(key "Functional_Class10129")
-	(key_class "java.lang.String")
-	(value "220 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11493] of  Map_Entry
-
-	(key "Functional_Class10160")
-	(key_class "java.lang.String")
-	(value "370 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11494] of  Map_Entry
-
-	(key "Functional_Class10161")
-	(key_class "java.lang.String")
-	(value "370 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11495] of  Map_Entry
-
-	(key "Functional_Class10162")
-	(key_class "java.lang.String")
-	(value "370 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11496] of  Map_Entry
-
-	(key "Functional_Class10163")
-	(key_class "java.lang.String")
-	(value "220 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11497] of  Map_Entry
-
-	(key "Functional_Class10164")
-	(key_class "java.lang.String")
-	(value "220 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11498] of  Map_Entry
-
-	(key "Functional_Class10120")
-	(key_class "java.lang.String")
-	(value "520 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11499] of  Map_Entry
-
-	(key "Functional_Class10165")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11500] of  Map_Entry
-
-	(key "Functional_Class10166")
-	(key_class "java.lang.String")
-	(value "70 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11501] of  Map_Entry
-
-	(key "Functional_Class10122")
-	(key_class "java.lang.String")
-	(value "670 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11502] of  Map_Entry
-
-	(key "Functional_Class10145")
-	(key_class "java.lang.String")
-	(value "70 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11503] of  Map_Entry
-
-	(key "Functional_Class10167")
-	(key_class "java.lang.String")
-	(value "70 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11504] of  Map_Entry
-
-	(key "Functional_Class10123")
-	(key_class "java.lang.String")
-	(value "670 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11505] of  Map_Entry
-
-	(key "Functional_Class10157")
-	(key_class "java.lang.String")
-	(value "520 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11506] of  Map_Entry
-
-	(key "Functional_Class10158")
-	(key_class "java.lang.String")
-	(value "520 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11507] of  Map_Entry
-
-	(key "Functional_Class10159")
-	(key_class "java.lang.String")
-	(value "520 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11508] of  Map_Entry
-
-	(key "Functional_Class10118")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11509] of  Map_Entry
-
-	(key "Functional_Class10119")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11510] of  Map_Entry
-
-	(key "Functional_Class10150")
-	(key_class "java.lang.String")
-	(value "670 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11511] of  Map_Entry
-
-	(key "Functional_Class10051")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11512] of  Map_Entry
-
-	(key "Functional_Class10096")
-	(key_class "java.lang.String")
-	(value "370 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11513] of  Map_Entry
-
-	(key "Functional_Class10151")
-	(key_class "java.lang.String")
-	(value "520 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11514] of  Map_Entry
-
-	(key "Functional_Class10052")
-	(key_class "java.lang.String")
-	(value "220 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11515] of  Map_Entry
-
-	(key "Functional_Class10097")
-	(key_class "java.lang.String")
-	(value "370 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11516] of  Map_Entry
-
-	(key "Functional_Class10152")
-	(key_class "java.lang.String")
-	(value "520 820 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11517] of  Map_Entry
-
-	(key "Functional_Class10130")
-	(key_class "java.lang.String")
-	(value "220 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11518] of  Map_Entry
-
-	(key "Functional_Class10131")
-	(key_class "java.lang.String")
-	(value "370 970 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11519] of  Map_Entry
-
-	(key "Functional_Class10076")
-	(key_class "java.lang.String")
-	(value "820 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11520] of  Map_Entry
-
-	(key "Functional_Class10132")
-	(key_class "java.lang.String")
-	(value "370 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11521] of  Map_Entry
-
-	(key "Functional_Class10154")
-	(key_class "java.lang.String")
-	(value "670 1120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11522] of  Map_Entry
-
-	(key "Functional_Class10077")
-	(key_class "java.lang.String")
-	(value "820 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11523] of  Map_Entry
-
-	(key "Functional_Class10155")
-	(key_class "java.lang.String")
-	(value "670 670 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11524] of  Map_Entry
-
-	(key "Functional_Class10156")
-	(key_class "java.lang.String")
-	(value "670 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MapInspector_ProjectKB_Class11525] of  Map_Entry
-
-	(key "InstanceGraphWidget.Functional_Class10153.task_scheme")
-	(key_class "java.lang.String")
-	(value "MapInspector_ProjectKB_Class11486")
-	(value_class "java.util.Map"))
 
 ([MapInspector_ProjectKB_Class1438] of  Widget
 
@@ -1225,6 +553,670 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
+
+([MapInspector_ProjectKB_Class21453] of  String
+
+	(name "MLayer")
+	(string_value "title"))
+
+([MapInspector_ProjectKB_Class21454] of  String
+
+	(name "MInspector")
+	(string_value "title"))
+
+([MapInspector_ProjectKB_Class21455] of  String
+
+	(name "MPolygon")
+	(string_value "title"))
+
+([MapInspector_ProjectKB_Class21456] of  Map
+
+	(entries
+		[MapInspector_ProjectKB_Class21457]
+		[MapInspector_ProjectKB_Class21458]))
+
+([MapInspector_ProjectKB_Class21457] of  Map_Entry
+
+	(key "Functional_Class1")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "-4 471 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21458] of  Map_Entry
+
+	(key "Functional_Class0")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21459] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "MapInspector_ProjectKB_Class21456")
+	(value_class "java.util.Map"))
+
+([MapInspector_ProjectKB_Class21460] of  Map
+
+	(entries
+		[MapInspector_ProjectKB_Class21461]
+		[MapInspector_ProjectKB_Class21462]
+		[MapInspector_ProjectKB_Class21463]
+		[MapInspector_ProjectKB_Class21464]
+		[MapInspector_ProjectKB_Class21465]
+		[MapInspector_ProjectKB_Class21466]
+		[MapInspector_ProjectKB_Class21467]
+		[MapInspector_ProjectKB_Class21468]
+		[MapInspector_ProjectKB_Class21469]
+		[MapInspector_ProjectKB_Class21470]
+		[MapInspector_ProjectKB_Class21471]
+		[MapInspector_ProjectKB_Class21472]
+		[MapInspector_ProjectKB_Class21473]
+		[MapInspector_ProjectKB_Class21474]
+		[MapInspector_ProjectKB_Class21475]
+		[MapInspector_ProjectKB_Class21476]
+		[MapInspector_ProjectKB_Class21477]
+		[MapInspector_ProjectKB_Class21478]
+		[MapInspector_ProjectKB_Class21479]
+		[MapInspector_ProjectKB_Class21480]
+		[MapInspector_ProjectKB_Class21481]
+		[MapInspector_ProjectKB_Class21482]
+		[MapInspector_ProjectKB_Class21483]
+		[MapInspector_ProjectKB_Class21484]
+		[MapInspector_ProjectKB_Class21485]
+		[MapInspector_ProjectKB_Class21486]
+		[MapInspector_ProjectKB_Class21487]
+		[MapInspector_ProjectKB_Class21488]
+		[MapInspector_ProjectKB_Class21489]
+		[MapInspector_ProjectKB_Class21490]
+		[MapInspector_ProjectKB_Class21491]
+		[MapInspector_ProjectKB_Class21492]
+		[MapInspector_ProjectKB_Class21493]
+		[MapInspector_ProjectKB_Class21494]
+		[MapInspector_ProjectKB_Class21495]
+		[MapInspector_ProjectKB_Class21496]
+		[MapInspector_ProjectKB_Class21497]))
+
+([MapInspector_ProjectKB_Class21461] of  Map_Entry
+
+	(key "Functional_Class10168")
+	(key_class "java.lang.String")
+	(value "70 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21462] of  Map_Entry
+
+	(key "Functional_Class10146")
+	(key_class "java.lang.String")
+	(value "70 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21463] of  Map_Entry
+
+	(key "Functional_Class10147")
+	(key_class "java.lang.String")
+	(value "520 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21464] of  Map_Entry
+
+	(key "Functional_Class10149")
+	(key_class "java.lang.String")
+	(value "670 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21465] of  Map_Entry
+
+	(key "Functional_Class10129")
+	(key_class "java.lang.String")
+	(value "220 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21466] of  Map_Entry
+
+	(key "Functional_Class10160")
+	(key_class "java.lang.String")
+	(value "370 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21467] of  Map_Entry
+
+	(key "Functional_Class10161")
+	(key_class "java.lang.String")
+	(value "370 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21468] of  Map_Entry
+
+	(key "Functional_Class10162")
+	(key_class "java.lang.String")
+	(value "370 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21469] of  Map_Entry
+
+	(key "Functional_Class10163")
+	(key_class "java.lang.String")
+	(value "220 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21470] of  Map_Entry
+
+	(key "Functional_Class10164")
+	(key_class "java.lang.String")
+	(value "220 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21471] of  Map_Entry
+
+	(key "Functional_Class10120")
+	(key_class "java.lang.String")
+	(value "520 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21472] of  Map_Entry
+
+	(key "Functional_Class10165")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21473] of  Map_Entry
+
+	(key "Functional_Class10166")
+	(key_class "java.lang.String")
+	(value "70 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21474] of  Map_Entry
+
+	(key "Functional_Class10122")
+	(key_class "java.lang.String")
+	(value "670 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21475] of  Map_Entry
+
+	(key "Functional_Class10145")
+	(key_class "java.lang.String")
+	(value "70 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21476] of  Map_Entry
+
+	(key "Functional_Class10167")
+	(key_class "java.lang.String")
+	(value "70 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21477] of  Map_Entry
+
+	(key "Functional_Class10123")
+	(key_class "java.lang.String")
+	(value "670 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21478] of  Map_Entry
+
+	(key "Functional_Class10157")
+	(key_class "java.lang.String")
+	(value "520 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21479] of  Map_Entry
+
+	(key "Functional_Class10158")
+	(key_class "java.lang.String")
+	(value "520 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21480] of  Map_Entry
+
+	(key "Functional_Class10159")
+	(key_class "java.lang.String")
+	(value "520 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21481] of  Map_Entry
+
+	(key "Functional_Class10118")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21482] of  Map_Entry
+
+	(key "Functional_Class10119")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21483] of  Map_Entry
+
+	(key "Functional_Class10150")
+	(key_class "java.lang.String")
+	(value "670 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21484] of  Map_Entry
+
+	(key "Functional_Class10051")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21485] of  Map_Entry
+
+	(key "Functional_Class10096")
+	(key_class "java.lang.String")
+	(value "370 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21486] of  Map_Entry
+
+	(key "Functional_Class10151")
+	(key_class "java.lang.String")
+	(value "520 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21487] of  Map_Entry
+
+	(key "Functional_Class10052")
+	(key_class "java.lang.String")
+	(value "220 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21488] of  Map_Entry
+
+	(key "Functional_Class10097")
+	(key_class "java.lang.String")
+	(value "370 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21489] of  Map_Entry
+
+	(key "Functional_Class10152")
+	(key_class "java.lang.String")
+	(value "520 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21490] of  Map_Entry
+
+	(key "Functional_Class10130")
+	(key_class "java.lang.String")
+	(value "220 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21491] of  Map_Entry
+
+	(key "Functional_Class10131")
+	(key_class "java.lang.String")
+	(value "370 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21492] of  Map_Entry
+
+	(key "Functional_Class10076")
+	(key_class "java.lang.String")
+	(value "820 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21493] of  Map_Entry
+
+	(key "Functional_Class10132")
+	(key_class "java.lang.String")
+	(value "370 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21494] of  Map_Entry
+
+	(key "Functional_Class10154")
+	(key_class "java.lang.String")
+	(value "670 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21495] of  Map_Entry
+
+	(key "Functional_Class10077")
+	(key_class "java.lang.String")
+	(value "820 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21496] of  Map_Entry
+
+	(key "Functional_Class10155")
+	(key_class "java.lang.String")
+	(value "670 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21497] of  Map_Entry
+
+	(key "Functional_Class10156")
+	(key_class "java.lang.String")
+	(value "670 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21498] of  Map_Entry
+
+	(key "InstanceGraphWidget.Functional_Class40005.task_scheme")
+	(key_class "java.lang.String")
+	(value "MapInspector_ProjectKB_Class21460")
+	(value_class "java.util.Map"))
+
+([MapInspector_ProjectKB_Class21499] of  Map
+
+	(entries
+		[MapInspector_ProjectKB_Class21500]
+		[MapInspector_ProjectKB_Class21501]
+		[MapInspector_ProjectKB_Class21502]
+		[MapInspector_ProjectKB_Class21503]
+		[MapInspector_ProjectKB_Class21504]
+		[MapInspector_ProjectKB_Class21505]
+		[MapInspector_ProjectKB_Class21506]
+		[MapInspector_ProjectKB_Class21507]
+		[MapInspector_ProjectKB_Class21508]
+		[MapInspector_ProjectKB_Class21509]
+		[MapInspector_ProjectKB_Class21510]
+		[MapInspector_ProjectKB_Class21511]
+		[MapInspector_ProjectKB_Class21512]
+		[MapInspector_ProjectKB_Class21513]
+		[MapInspector_ProjectKB_Class21514]
+		[MapInspector_ProjectKB_Class21515]
+		[MapInspector_ProjectKB_Class21516]
+		[MapInspector_ProjectKB_Class21517]
+		[MapInspector_ProjectKB_Class21518]
+		[MapInspector_ProjectKB_Class21519]
+		[MapInspector_ProjectKB_Class21520]
+		[MapInspector_ProjectKB_Class21521]
+		[MapInspector_ProjectKB_Class21522]
+		[MapInspector_ProjectKB_Class21523]
+		[MapInspector_ProjectKB_Class21524]
+		[MapInspector_ProjectKB_Class21525]
+		[MapInspector_ProjectKB_Class21526]
+		[MapInspector_ProjectKB_Class21527]
+		[MapInspector_ProjectKB_Class21528]
+		[MapInspector_ProjectKB_Class21529]
+		[MapInspector_ProjectKB_Class21530]
+		[MapInspector_ProjectKB_Class21531]
+		[MapInspector_ProjectKB_Class21532]
+		[MapInspector_ProjectKB_Class21533]
+		[MapInspector_ProjectKB_Class21534]
+		[MapInspector_ProjectKB_Class21535]
+		[MapInspector_ProjectKB_Class21536]
+		[MapInspector_ProjectKB_Class21537]))
+
+([MapInspector_ProjectKB_Class21500] of  Map_Entry
+
+	(key "Functional_Class10168")
+	(key_class "java.lang.String")
+	(value "70 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21501] of  Map_Entry
+
+	(key "Functional_Class10146")
+	(key_class "java.lang.String")
+	(value "70 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21502] of  Map_Entry
+
+	(key "Functional_Class10169")
+	(key_class "java.lang.String")
+	(value "470 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21503] of  Map_Entry
+
+	(key "Functional_Class10147")
+	(key_class "java.lang.String")
+	(value "520 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21504] of  Map_Entry
+
+	(key "Functional_Class10149")
+	(key_class "java.lang.String")
+	(value "670 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21505] of  Map_Entry
+
+	(key "Functional_Class10129")
+	(key_class "java.lang.String")
+	(value "220 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21506] of  Map_Entry
+
+	(key "Functional_Class10160")
+	(key_class "java.lang.String")
+	(value "370 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21507] of  Map_Entry
+
+	(key "Functional_Class10161")
+	(key_class "java.lang.String")
+	(value "370 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21508] of  Map_Entry
+
+	(key "Functional_Class10162")
+	(key_class "java.lang.String")
+	(value "370 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21509] of  Map_Entry
+
+	(key "Functional_Class10163")
+	(key_class "java.lang.String")
+	(value "220 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21510] of  Map_Entry
+
+	(key "Functional_Class10164")
+	(key_class "java.lang.String")
+	(value "220 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21511] of  Map_Entry
+
+	(key "Functional_Class10120")
+	(key_class "java.lang.String")
+	(value "520 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21512] of  Map_Entry
+
+	(key "Functional_Class10165")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21513] of  Map_Entry
+
+	(key "Functional_Class10166")
+	(key_class "java.lang.String")
+	(value "70 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21514] of  Map_Entry
+
+	(key "Functional_Class10122")
+	(key_class "java.lang.String")
+	(value "670 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21515] of  Map_Entry
+
+	(key "Functional_Class10145")
+	(key_class "java.lang.String")
+	(value "70 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21516] of  Map_Entry
+
+	(key "Functional_Class10167")
+	(key_class "java.lang.String")
+	(value "70 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21517] of  Map_Entry
+
+	(key "Functional_Class10123")
+	(key_class "java.lang.String")
+	(value "670 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21518] of  Map_Entry
+
+	(key "Functional_Class10157")
+	(key_class "java.lang.String")
+	(value "520 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21519] of  Map_Entry
+
+	(key "Functional_Class10158")
+	(key_class "java.lang.String")
+	(value "520 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21520] of  Map_Entry
+
+	(key "Functional_Class10159")
+	(key_class "java.lang.String")
+	(value "520 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21521] of  Map_Entry
+
+	(key "Functional_Class10118")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21522] of  Map_Entry
+
+	(key "Functional_Class10119")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21523] of  Map_Entry
+
+	(key "Functional_Class10150")
+	(key_class "java.lang.String")
+	(value "670 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21524] of  Map_Entry
+
+	(key "Functional_Class10051")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21525] of  Map_Entry
+
+	(key "Functional_Class10096")
+	(key_class "java.lang.String")
+	(value "370 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21526] of  Map_Entry
+
+	(key "Functional_Class10151")
+	(key_class "java.lang.String")
+	(value "520 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21527] of  Map_Entry
+
+	(key "Functional_Class10052")
+	(key_class "java.lang.String")
+	(value "220 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21528] of  Map_Entry
+
+	(key "Functional_Class10097")
+	(key_class "java.lang.String")
+	(value "370 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21529] of  Map_Entry
+
+	(key "Functional_Class10152")
+	(key_class "java.lang.String")
+	(value "520 820 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21530] of  Map_Entry
+
+	(key "Functional_Class10130")
+	(key_class "java.lang.String")
+	(value "220 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21531] of  Map_Entry
+
+	(key "Functional_Class10131")
+	(key_class "java.lang.String")
+	(value "370 970 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21532] of  Map_Entry
+
+	(key "Functional_Class10076")
+	(key_class "java.lang.String")
+	(value "820 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21533] of  Map_Entry
+
+	(key "Functional_Class10132")
+	(key_class "java.lang.String")
+	(value "370 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21534] of  Map_Entry
+
+	(key "Functional_Class10154")
+	(key_class "java.lang.String")
+	(value "670 1120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21535] of  Map_Entry
+
+	(key "Functional_Class10077")
+	(key_class "java.lang.String")
+	(value "820 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21536] of  Map_Entry
+
+	(key "Functional_Class10155")
+	(key_class "java.lang.String")
+	(value "670 670 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21537] of  Map_Entry
+
+	(key "Functional_Class10156")
+	(key_class "java.lang.String")
+	(value "670 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MapInspector_ProjectKB_Class21538] of  Map_Entry
+
+	(key "InstanceGraphWidget.Functional_Class10153.task_scheme")
+	(key_class "java.lang.String")
+	(value "MapInspector_ProjectKB_Class21499")
+	(value_class "java.util.Map"))
 
 ([option_instance] of  Options
 
