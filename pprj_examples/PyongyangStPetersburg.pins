@@ -1,4 +1,4 @@
-; Sat Dec 30 13:00:16 MSK 2017
+; Sun Dec 31 09:28:42 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -73,7 +73,7 @@
 
 ([PyongyangStPetersburg_Class10005] of  Variable
 
-	(title "?protagonist.Fri Dec 29 18:48:55 MSK 2017"))
+	(title "?speed"))
 
 ([PyongyangStPetersburg_Class10006] of  LoadResource
 
@@ -272,6 +272,104 @@
 ([PyongyangStPetersburg_Class20] of  CloFuncall
 
 	(source "(map println rrr)"))
+
+([PyongyangStPetersburg_Class20000] of  GoRoute
+
+	(object [ScenarioN_Class570000])
+	(radius 0.1)
+	(route [PyongyangStPetersburg_Class30006])
+	(spd "?speed")
+	(title "or:Forward"))
+
+([PyongyangStPetersburg_Class20001] of  GoRoute
+
+	(backward TRUE)
+	(object [ScenarioN_Class570000])
+	(radius 0.1)
+	(route [PyongyangStPetersburg_Class30006])
+	(spd "?speed")
+	(title "or:Backward"))
+
+([PyongyangStPetersburg_Class20002] of  PutOnMap
+
+	(object [PyongyangStPetersburg_Class30006])
+	(title "or:Track Laying"))
+
+([PyongyangStPetersburg_Class20003] of  MissionScenario
+
+	(context [PyongyangStPetersburg_Class20011])
+	(final_tasks [PyongyangStPetersburg_Class30005])
+	(finish_type AND)
+	(initial_tasks [PyongyangStPetersburg_Class30007])
+	(protagonist [PyongyangStPetersburg_Class10015])
+	(scenario_scheme
+		[PyongyangStPetersburg_Class20004]
+		[PyongyangStPetersburg_Class20006]
+		[PyongyangStPetersburg_Class20007]
+		[PyongyangStPetersburg_Class20008]
+		[PyongyangStPetersburg_Class30000]
+		[PyongyangStPetersburg_Class30003]
+		[PyongyangStPetersburg_Class30005]
+		[PyongyangStPetersburg_Class30007])
+	(title "or:Road Run"))
+
+([PyongyangStPetersburg_Class20004] of  GeneralDecision
+
+	(conditions "direction = \"FORWARD\"")
+	(input_data [PyongyangStPetersburg_Class20005])
+	(title "?What Direction?")
+	(variants
+		[PyongyangStPetersburg_Class20006]
+		[PyongyangStPetersburg_Class20007]))
+
+([PyongyangStPetersburg_Class20005] of  InputData
+
+	(attribute [PyongyangStPetersburg_Class20010])
+	(object [ScenarioN_Class570000])
+	(title "or:WhatDirect")
+	(variable [PyongyangStPetersburg_Class20009]))
+
+([PyongyangStPetersburg_Class20006] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class20000])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class20000])
+	(next_tasks [PyongyangStPetersburg_Class30003])
+	(task_scheme [PyongyangStPetersburg_Class20000])
+	(title "or:Forward Run"))
+
+([PyongyangStPetersburg_Class20007] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class20001])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class20001])
+	(next_tasks [PyongyangStPetersburg_Class30003])
+	(task_scheme [PyongyangStPetersburg_Class20001])
+	(title "or:Backward Run"))
+
+([PyongyangStPetersburg_Class20008] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class20002])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class20002])
+	(next_tasks [PyongyangStPetersburg_Class20004])
+	(task_scheme [PyongyangStPetersburg_Class20002])
+	(title "or:Laying of Track"))
+
+([PyongyangStPetersburg_Class20009] of  Variable
+
+	(title "direction"))
+
+([PyongyangStPetersburg_Class20010] of  Attribute
+
+	(title "DIRECTION"))
+
+([PyongyangStPetersburg_Class20011] of  Context
+
+	(pairs
+		[PyongyangStPetersburg_Class30013]
+		[PyongyangStPetersburg_Class10012])
+	(title "or:Ctx"))
 
 ([PyongyangStPetersburg_Class20012] of  OMTPoly
 
@@ -560,6 +658,78 @@
 ([PyongyangStPetersburg_Class30] of  CloFuncall
 
 	(source "(rr/dif-lon (nth rrr 4117))"))
+
+([PyongyangStPetersburg_Class30000] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class30001])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class30001])
+	(next_tasks [PyongyangStPetersburg_Class20008])
+	(task_scheme [PyongyangStPetersburg_Class30001])
+	(title "or:Next Track"))
+
+([PyongyangStPetersburg_Class30001] of  UseResource
+
+	(object [ScenarioN_Class570000])
+	(resource [PyongyangStPetersburg_Class30002])
+	(title "or:Use Next Track")
+	(variable [PyongyangStPetersburg_Class30006]))
+
+([PyongyangStPetersburg_Class30002] of  Attribute
+
+	(title "TRACKS"))
+
+([PyongyangStPetersburg_Class30003] of  EventDecision
+
+	(events [PyongyangStPetersburg_Class30004])
+	(title "or:All Tracks Passed?")
+	(variants
+		[PyongyangStPetersburg_Class30005]
+		[PyongyangStPetersburg_Class30000]))
+
+([PyongyangStPetersburg_Class30004] of  ObAttribute
+
+	(attribute [PyongyangStPetersburg_Class30002])
+	(object [ScenarioN_Class570000])
+	(relation resource-exhausted)
+	(title "or:Tracks Exhausted"))
+
+([PyongyangStPetersburg_Class30005] of  Task
+
+	(finish_type AND)
+	(title "or:End of Road"))
+
+([PyongyangStPetersburg_Class30006] of  Variable
+
+	(title "?route"))
+
+([PyongyangStPetersburg_Class30007] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class30008])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class30008])
+	(next_tasks [PyongyangStPetersburg_Class30000])
+	(task_scheme [PyongyangStPetersburg_Class30008])
+	(title "or:Set Direction"))
+
+([PyongyangStPetersburg_Class30008] of  PutObAttributes
+
+	(attributes [PyongyangStPetersburg_Class20010])
+	(object [ScenarioN_Class570000])
+	(title "or:Direction")
+	(values "?direct"))
+
+([PyongyangStPetersburg_Class30012] of  ObjectPair
+
+	(object [PyongyangStPetersburg_Class20024])
+	(title "p")
+	(variable [PyongyangStPetersburg_Class10019]))
+
+([PyongyangStPetersburg_Class30013] of  ValuePair
+
+	(title "p")
+	(value "40")
+	(variable [PyongyangStPetersburg_Class10005]))
 
 ([PyongyangStPetersburg_Class30056] of  OMTPoly
 
