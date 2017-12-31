@@ -1,4 +1,4 @@
-; Sun Dec 31 09:28:42 MSK 2017
+; Sun Dec 31 11:54:13 MSK 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -39,6 +39,15 @@
 	(but-load-prj "Load Source Project/share.onto/load-src-prj")
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(FranceRoads)"))
+
+([PyongyangStPetersburg_Class100000] of  GoRoute
+
+	(object [PyongyangStPetersburg_Class10015])
+	(radius 1.0)
+	(route [PyongyangStPetersburg_Class80013])
+	(spd "40")
+	(status "START")
+	(title "test"))
 
 ([PyongyangStPetersburg_Class10001] of  MissionScenario
 
@@ -152,7 +161,10 @@
 ([PyongyangStPetersburg_Class10016] of  Type
 
 	(label "Trains")
-	(missions [PyongyangStPetersburg_Class10017]))
+	(missions
+		[PyongyangStPetersburg_Class10017]
+		[PyongyangStPetersburg_Class60000]
+		[PyongyangStPetersburg_Class90000]))
 
 ([PyongyangStPetersburg_Class10017] of  ObjectMission
 
@@ -1505,23 +1517,6 @@
 		"56 3.71 37 4.65")
 	(relative FALSE))
 
-([PyongyangStPetersburg_Class30168] of  MLayer
-
-	(m-polygons [PyongyangStPetersburg_Class30170])
-	(pointer 4)
-	(title "Russian Railroads"))
-
-([PyongyangStPetersburg_Class30169] of  MLayer
-
-	(pointer 5)
-	(title "North Korea Railroads"))
-
-([PyongyangStPetersburg_Class30170] of  MPolygon
-
-	(pointer 7)
-	(poly [PyongyangStPetersburg_Class30171])
-	(title "Russian Railroads2773 15"))
-
 ([PyongyangStPetersburg_Class30171] of  OMTPoly
 
 	(label "p39")
@@ -1600,11 +1595,81 @@
 		[igis_Class1]
 		[igis_Class40011]))
 
+([PyongyangStPetersburg_Class40000] of  MissionScenario
+
+	(context [PyongyangStPetersburg_Class40002])
+	(final_tasks [PyongyangStPetersburg_Class40001])
+	(finish_type AND)
+	(initial_tasks [PyongyangStPetersburg_Class40001])
+	(protagonist [PyongyangStPetersburg_Class10015])
+	(scenario_scheme [PyongyangStPetersburg_Class40001])
+	(title "rr:StPetersburg-Moscow"))
+
+([PyongyangStPetersburg_Class40001] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class40006])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class40005])
+	(task_scheme
+		[PyongyangStPetersburg_Class40005]
+		[PyongyangStPetersburg_Class40006]
+		[PyongyangStPetersburg_Class70001])
+	(title "rr:SPb-Mos"))
+
+([PyongyangStPetersburg_Class40002] of  Context
+
+	(pairs [PyongyangStPetersburg_Class30013])
+	(title "rr:SM"))
+
+([PyongyangStPetersburg_Class40003] of  ObjectPair
+
+	(object [PyongyangStPetersburg_Class10015])
+	(title "p")
+	(variable [PyongyangStPetersburg_Class40004]))
+
+([PyongyangStPetersburg_Class40004] of  Variable
+
+	(title "?train"))
+
+([PyongyangStPetersburg_Class40005] of  LoadResource
+
+	(mapob
+		[PyongyangStPetersburg_Class20024]
+		[PyongyangStPetersburg_Class20028]
+		[PyongyangStPetersburg_Class20018]
+		[PyongyangStPetersburg_Class20034]
+		[PyongyangStPetersburg_Class20053]
+		[PyongyangStPetersburg_Class20068]
+		[PyongyangStPetersburg_Class20071]
+		[PyongyangStPetersburg_Class20012]
+		[PyongyangStPetersburg_Class20040])
+	(next_actions [PyongyangStPetersburg_Class70001])
+	(object [ScenarioN_Class570000])
+	(resource [PyongyangStPetersburg_Class30002])
+	(title "rr:SPb-Mos Road Tracks"))
+
+([PyongyangStPetersburg_Class40006] of  Mission
+
+	(context [PyongyangStPetersburg_Class40007])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [PyongyangStPetersburg_Class20003])
+	(title "rr:Spb-Mos Run")
+	(wait_subscenario TRUE))
+
+([PyongyangStPetersburg_Class40007] of  Context
+
+	(pairs [PyongyangStPetersburg_Class10012])
+	(title "rr:SM Ctx"))
+
 ([PyongyangStPetersburg_Class5] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [PyongyangStPetersburg_Class4])
 	(%3ACREATION-TIMESTAMP "2017.12.29 13:29:28.563 MSK")
 	(%3ACREATOR "ru"))
+
+([PyongyangStPetersburg_Class50000] of  CloFuncall
+
+	(source "(ru.rules/f 11)"))
 
 ([PyongyangStPetersburg_Class6] of  ShapeLayer
 
@@ -1616,6 +1681,10 @@
 	(shapeFile "data/shape/RUS_rrd/RUS_rails.shp")
 	(spatialIndex "data/shape/RUS_rrd/RUS_rails.shx"))
 
+([PyongyangStPetersburg_Class60000] of  ObjectMission
+
+	(label "rr:StPetersburg-Moscow"))
+
 ([PyongyangStPetersburg_Class7] of  ShapeLayer
 
 	(class "com.bbn.openmap.layer.shape.ShapeLayer")
@@ -1626,10 +1695,228 @@
 	(shapeFile "data/shape/PRK_rrd/PRK_rails.shp")
 	(spatialIndex "data/shape/PRK_rrd/PRK_rails.shx"))
 
+([PyongyangStPetersburg_Class70000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "St.Petersburg")
+	(latitude "59 55.56")
+	(longitude "30 21.81")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/home.gif"))
+
+([PyongyangStPetersburg_Class70001] of  PutOnPlace
+
+	(next_actions [PyongyangStPetersburg_Class40006])
+	(object [ScenarioN_Class570000])
+	(observer [PyongyangStPetersburg_Class70000])
+	(title "rr:SPb-Mos Train to Platform"))
+
 ([PyongyangStPetersburg_Class8] of  CloFuncall
 
 	(source "(a/layer-targets \"prkrails\")"))
 
+([PyongyangStPetersburg_Class80000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "Pyongyang")
+	(latitude "39 0.83")
+	(longitude "125 44.26")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/home.gif"))
+
+([PyongyangStPetersburg_Class80001] of  PutOnPlace
+
+	(next_actions
+		[PyongyangStPetersburg_Class40006]
+		[PyongyangStPetersburg_Class80003])
+	(object [ScenarioN_Class570000])
+	(observer [PyongyangStPetersburg_Class80000])
+	(title "rr:Py-Has Train to Platform"))
+
+([PyongyangStPetersburg_Class80002] of  LoadResource
+
+	(mapob
+		[PyongyangStPetersburg_Class80013]
+		[PyongyangStPetersburg_Class80012]
+		[PyongyangStPetersburg_Class80017]
+		[PyongyangStPetersburg_Class80021])
+	(next_actions
+		[PyongyangStPetersburg_Class70001]
+		[PyongyangStPetersburg_Class80001])
+	(object [ScenarioN_Class570000])
+	(resource [PyongyangStPetersburg_Class30002])
+	(title "rr:Py-Has Road Tracks"))
+
+([PyongyangStPetersburg_Class80003] of  Mission
+
+	(context [PyongyangStPetersburg_Class40007])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [PyongyangStPetersburg_Class20003])
+	(title "rr:Py-Has Run")
+	(wait_subscenario TRUE))
+
+([PyongyangStPetersburg_Class80004] of  Task
+
+	(final_actions [PyongyangStPetersburg_Class80003])
+	(finish_type AND)
+	(initial_actions [PyongyangStPetersburg_Class80002])
+	(task_scheme
+		[PyongyangStPetersburg_Class80002]
+		[PyongyangStPetersburg_Class80001]
+		[PyongyangStPetersburg_Class80003])
+	(title "rr:Py-Has"))
+
+([PyongyangStPetersburg_Class80005] of  MissionScenario
+
+	(context [PyongyangStPetersburg_Class40002])
+	(final_tasks [PyongyangStPetersburg_Class80004])
+	(finish_type AND)
+	(initial_tasks [PyongyangStPetersburg_Class80004])
+	(protagonist [PyongyangStPetersburg_Class10015])
+	(scenario_scheme [PyongyangStPetersburg_Class80004])
+	(title "rr:Pyongyang-Hasan"))
+
+([PyongyangStPetersburg_Class80012] of  OMTPoly
+
+	(label "ph2")
+	(latitude "39 5.08")
+	(line [MapInspector_Class20024])
+	(lineColor "FFFF0000")
+	(longitude "125 44.33")
+	(playground-index 0)
+	(points
+		"39 5.08 125 44.33"
+		"39 3.62 125 44.06")
+	(relative FALSE))
+
+([PyongyangStPetersburg_Class80013] of  OMTPoly
+
+	(label "ph1")
+	(latitude "39 0.92")
+	(line [MapInspector_Class20024])
+	(lineColor "FFFF0000")
+	(longitude "125 44.29")
+	(playground-index 0)
+	(points
+		"39 0.92 125 44.29"
+		"39 1.1 125 44.28"
+		"39 1.31 125 44.12"
+		"39 1.45 125 44.05"
+		"39 1.72 125 43.97"
+		"39 1.97 125 43.99"
+		"39 2.24 125 43.98"
+		"39 2.5 125 43.98"
+		"39 2.74 125 44.03"
+		"39 2.91 125 44.01"
+		"39 3.07 125 44.01"
+		"39 3.29 125 44"
+		"39 3.62 125 44.06")
+	(relative FALSE))
+
+([PyongyangStPetersburg_Class80017] of  OMTPoly
+
+	(label "ph3")
+	(latitude "39 18.09")
+	(line [MapInspector_Class20024])
+	(lineColor "FFFF0000")
+	(longitude "125 53.91")
+	(playground-index 0)
+	(points
+		"39 18.09 125 53.91"
+		"39 17.15 125 53.32"
+		"39 16.43 125 53.54"
+		"39 14.85 125 53.01"
+		"39 14.36 125 53.02"
+		"39 14.19 125 53.03"
+		"39 13.4 125 52.33"
+		"39 12.9 125 52.07"
+		"39 12.18 125 51.9"
+		"39 11.01 125 51.93"
+		"39 10.95 125 51.89"
+		"39 10.85 125 51.8"
+		"39 10.81 125 51.52"
+		"39 10.69 125 50.76"
+		"39 10.74 125 50.54"
+		"39 11.02 125 50.21"
+		"39 11.21 125 49.98"
+		"39 11.28 125 49.66"
+		"39 11.23 125 49.49"
+		"39 10.59 125 49.38"
+		"39 10.28 125 49.33"
+		"39 9.59 125 49.45"
+		"39 9.29 125 49.32"
+		"39 8.61 125 48.48"
+		"39 7.58 125 48.24"
+		"39 7.2 125 47.94"
+		"39 6.97 125 47.48"
+		"39 6.56 125 47.01"
+		"39 6.35 125 46.77"
+		"39 6.31 125 46.07"
+		"39 6.28 125 45.41"
+		"39 6.15 125 45"
+		"39 6.03 125 44.84"
+		"39 5.45 125 44.53"
+		"39 5.08 125 44.33")
+	(relative FALSE))
+
+([PyongyangStPetersburg_Class80018] of  MLayer
+
+	(pointer 4)
+	(title "Russian Railroads"))
+
+([PyongyangStPetersburg_Class80019] of  MLayer
+
+	(m-polygons [PyongyangStPetersburg_Class80020])
+	(pointer 5)
+	(title "North Korea Railroads"))
+
+([PyongyangStPetersburg_Class80020] of  MPolygon
+
+	(pointer 8)
+	(poly [PyongyangStPetersburg_Class80021])
+	(title "North Korea Railroads2125 20"))
+
+([PyongyangStPetersburg_Class80021] of  OMTPoly
+
+	(label "ph4")
+	(latitude "39 20.09")
+	(line [MapInspector_Class20024])
+	(lineColor "FFFF0000")
+	(longitude "125 53.24")
+	(playground-index 0)
+	(points
+		"39 20.09 125 53.24"
+		"39 20.72 125 53.37"
+		"39 20.87 125 53.53"
+		"39 20.96 125 54.08"
+		"39 21.1 125 54.28"
+		"39 21.46 125 54.49"
+		"39 23.14 125 54.71"
+		"39 23.23 125 54.75"
+		"39 23.74 125 54.98"
+		"39 24.03 125 55.36"
+		"39 24.17 125 55.75"
+		"39 24.24 125 55.93"
+		"39 24.24 125 55.93"
+		"39 24.26 125 55.98"
+		"39 24.3 125 56.03"
+		"39 24.54 125 56.3"
+		"39 24.76 125 56.34"
+		"39 25.5 125 56.48"
+		"39 25.52 125 56.48"
+		"39 26.25 125 56.4")
+	(relative FALSE))
+
 ([PyongyangStPetersburg_Class9] of  CloFuncall
 
 	(source "(a/layer-targets \"North Korea Railroads\")"))
+
+([PyongyangStPetersburg_Class90000] of  ObjectMission
+
+	(label "rr:Pyongyang-Hasan"))
