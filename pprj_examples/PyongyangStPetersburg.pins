@@ -1,4 +1,4 @@
-; Sun Dec 31 11:54:13 MSK 2017
+; Wed Jan 03 17:30:46 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -224,6 +224,90 @@
 ([PyongyangStPetersburg_Class11] of  CloFuncall
 
 	(source "(count prk)"))
+
+([PyongyangStPetersburg_Class110000] of  CloFuncall
+
+	(source "(ru.rules/f2 227)"))
+
+([PyongyangStPetersburg_Class110001] of  Table2
+
+	(column1
+		"N"
+		"time1"
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"backward"
+		"route"
+		"radius"
+		"title"
+		"status"
+		"id"
+		"spd"
+		"latitude")
+	(column2
+		"0"
+		"0"
+		"SimpleInstance(ScenarioN_Class570000 of [Cls(Variable)])"
+		"{?protagonist=SimpleInstance(PyongyangStPetersburg_Class10015 of [Cls(NavOb)]), ?speed=40, ?direct=FORWARD, ?route=SimpleInstance(PyongyangStPetersburg_Class80021 of [Cls(OMTPoly)])}"
+		"Tsk2111"
+		"SimpleInstance(PyongyangStPetersburg_Class20000 of [Cls(GoRoute)])"
+		"[]"
+		"125.88733336130778"
+		":?"
+		"clojure.lang.LazySeq@459dc166"
+		"0.1"
+		"or:Forward"
+		"REPEAT"
+		":?"
+		"40"
+		"39.33483333587647")
+	(title "GoRoute 227"))
+
+([PyongyangStPetersburg_Class110002] of  CloFuncall
+
+	(source "(ru.rules/f2 111)"))
+
+([PyongyangStPetersburg_Class110003] of  Table2
+
+	(column1
+		"N"
+		"time1"
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"backward"
+		"route"
+		"radius"
+		"title"
+		"status"
+		"id"
+		"spd"
+		"latitude")
+	(column2
+		"0"
+		"0"
+		"SimpleInstance(ScenarioN_Class570000 of [Cls(Variable)])"
+		"{?protagonist=SimpleInstance(PyongyangStPetersburg_Class10015 of [Cls(NavOb)]), ?speed=40, ?direct=FORWARD, ?route=SimpleInstance(PyongyangStPetersburg_Class80012 of [Cls(OMTPoly)])}"
+		"Tsk2099"
+		"SimpleInstance(PyongyangStPetersburg_Class20000 of [Cls(GoRoute)])"
+		"[]"
+		"125.73883336385092"
+		":?"
+		"clojure.lang.LazySeq@3fe90fc5"
+		"0.1"
+		"or:Forward"
+		"REPEAT"
+		":?"
+		"40"
+		"39.0846666653951")
+	(title "GoRoute 111"))
 
 ([PyongyangStPetersburg_Class12] of  CloFuncall
 
@@ -1732,9 +1816,7 @@
 
 ([PyongyangStPetersburg_Class80001] of  PutOnPlace
 
-	(next_actions
-		[PyongyangStPetersburg_Class40006]
-		[PyongyangStPetersburg_Class80003])
+	(next_actions [PyongyangStPetersburg_Class80003])
 	(object [ScenarioN_Class570000])
 	(observer [PyongyangStPetersburg_Class80000])
 	(title "rr:Py-Has Train to Platform"))
@@ -1746,9 +1828,7 @@
 		[PyongyangStPetersburg_Class80012]
 		[PyongyangStPetersburg_Class80017]
 		[PyongyangStPetersburg_Class80021])
-	(next_actions
-		[PyongyangStPetersburg_Class70001]
-		[PyongyangStPetersburg_Class80001])
+	(next_actions [PyongyangStPetersburg_Class80001])
 	(object [ScenarioN_Class570000])
 	(resource [PyongyangStPetersburg_Class30002])
 	(title "rr:Py-Has Road Tracks"))

@@ -1,4 +1,4 @@
-; Sat Dec 30 18:13:04 MSK 2017
+; Wed Jan 03 17:53:52 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1611,6 +1611,11 @@
 	(single-slot longitude
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot latitude
 		(type STRING)

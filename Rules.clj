@@ -81,6 +81,7 @@
         (if (not (or (a/null? lat) (a/null? lon)))
           (.setLocation mo lat lon))) )))
 (doseq [mo ?mos]
+  (println :POM mo)
   (ru.igis.omtab.OMT/addMapOb mo))
 (retract ?pom)
 (s/start-next ?nacts ?pid ?ain ?run))
@@ -230,9 +231,9 @@
        mo (a/mapob-vv ?obj ?run)
        sps (a/vv ?spd ?run)]
   (if (and rou mo sps)
-    (let [pts (if (instance?  com.bbn.openmap.omGraphics.OMPoly rou)
-                   (a/omp-latlon-list rou)
-                   (map a/pnt-latlon (protege.core/svs rou "points")))
+    (let [pts (if (instance?  edu.stanford.smi.protege.model.Instance rou)
+                   (map a/pnt-latlon (protege.core/svs rou "points"))
+                   rou)
            cnt (count pts)
            pnt (if (protege.core/is? ?bwd) (dec cnt) 0)
            [lat lon] (nth pts pnt)
@@ -256,28 +257,33 @@
 	radius ?rad
 	backward ?bwd
 	N ?n
+	time1 ?t1)
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
-(Clock)
+(Clock time ?t (> ?t ?t1))
 =>
 (let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]
   (if-let [mo (a/mapob-vv ?obj ?run)]
     (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))
       (if (or (= next (count ?rou)) (< next 0))
-        (do (a/stop-moving mo ?lat ?lon)
+        (do (println :STOP ?lat ?lon)
+          (a/stop-moving mo ?lat ?lon)
           (retract ?gor)
           (s/start-next ?nacts ?pid ?ain ?run))
         (let [[lat lon] (nth ?rou next)]
+          (println :NEXT next lat lon)
           (.setLatitude mo ?lat)
           (.setLongitude mo ?lon)
           (a/go mo lat lon ?spd)
           (modify ?gor 
 	latitude lat
 	longitude lon
-	N next)))
-      (if (> (.distanceNM mo ?lat ?lon) 100)
+	N next
+	time1 ?t)))
+      (when (> (.distanceNM mo ?lat ?lon) 100)
+        (println :CRS (int (.bearingsDeg mo ?lat ?lon)))
         (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))
     (modify ?gor status "FAILED"))))
 
@@ -891,7 +897,7 @@
 	layer ?lay
 	getPoliesFromTargets ?pft
 	spd ?spd
-	backward ?bwd
+	direction ?dir
 	run ?run
 	parent ?par)
 =>
@@ -899,33 +905,41 @@
 (let [obj (a/vv ?obj ?run)
        res (a/vv ?res ?run)
        lay (a/vv ?lay ?run)
-       pft (a/vv ?pft ?run)]
+       pft (a/vv ?pft ?run)
+       dir (a/vv ?dir ?run)]
   (if (not (or (a/null? lay) (a/null? pft)))
-    (if-let [tgs (a/layer-targets (protege.core/sv lay "label"))]
-      (let [fun (eval (read-string pft))
+    (if-let [tgs (a/layer-targets (protege.core/sv lay "prettyName"))]
+      (let [pft (a/subst-hm-vars ?run pft)
+             fun (eval (read-string pft))
              ogs (fun tgs)
              obs (if-let [mo (ru.igis.omtab.OMT/getMapOb obj)]
 	(if res
-	  (.getAttribute mo (protege.core/sv res "title"))
+	  (rest (.getAttribute mo (protege.core/sv res "title")))
 	  [obj])
 	[])
              obs (concat obs ?mob)
              tit (name (gensym "Gol"))]
            (loop [oo obs gg ogs]
              (when (and (seq oo) (seq gg))
-               (rete.core/assert-frame
+               (let [ob1 (first oo)
+                      rou (a/omp-latlon-list (first gg))
+                      bwd (= dir "BACKWARD")
+                      [lat lon] (nth rou (if bwd (dec (count rou)) 0))]
+                 (.setLocation (ru.igis.omtab.OMT/addMapOb ob1) lat lon)
+                 (rete.core/assert-frame
 	['GoRoute 'status "START"
 	 'title tit
-	 'object (first oo)
-	 'route (first gg)
+	 'object ob1
+	 'route rou
 	 'spd ?spd
-	 'backward ?bwd
+	 'backward bwd
+	 'radius 0.1
 	 'run ?run
 	 'parent ?par])
-               (recur (rest oo) (rest gg))))
+                 (recur (rest oo) (rest gg)))))
            (modify ?gl status "REPEAT"
 	object tit))
-      (do (println "Layer not found: " (protege.core/sv lay "label"))
+      (do (println "Layer not found: " (protege.core/sv lay "prettyName"))
         (modify ?gl status "FAILED")))
     (modify ?gl status "FAILED"))))
 
@@ -1139,6 +1153,7 @@
        rr (.getAttribute mo atr)]
   (if (seq rr)
     (do (doseq [ins (rest rr)]
+            (ru.igis.omtab.OMT/removeMapOb ins false)
             (protege.core/delin ins))
         (.removeAttribute mo atr)
         (retract ?dr)
@@ -1972,8 +1987,9 @@
 (println "Action started:" ?tit "Mission")
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)
-       pla (a/vv ?pla ?run)]
-  (if (not (or (a/null? sub) (a/null? pla)))
+       pla (a/vv ?pla ?run)
+       mo (ru.igis.omtab.OMT/getMapOb pla)]
+  (if (and mo (not (a/null? sub)))
     (let [ctx0 (protege.core/sv sub "context")
            hm0 (s/context-to-hm ctx0)
            hm1 (s/context-to-hm ctx)
