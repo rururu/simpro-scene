@@ -572,7 +572,7 @@
     v
   (= (type v) java.util.Collections$UnmodifiableCollection)
     (vec (map to-clj-type v))
-  (instance? Instance v)
+  (or (instance? Instance v) (instance? MapOb v))
     (.getName v)
   (string? v)
     (val-from-str v)

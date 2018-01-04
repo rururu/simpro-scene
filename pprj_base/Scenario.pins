@@ -1,4 +1,4 @@
-; Thu Jan 04 13:20:27 MSK 2018
+; Thu Jan 04 23:27:48 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -226,7 +226,9 @@
 		[ScenarioN_Class350009]
 		[Scenario_Class260011]
 		[Scenario_Class230006]
-		[Scenario_Class230007])
+		[Scenario_Class230007]
+		[Scenario_Class470000]
+		[Scenario_Class450000])
 	(rules [ScenarioN_Class180000]))
 
 ([PolyMoving] of  ActionClass
@@ -864,6 +866,7 @@
 		[ScenarioN_Class580000]
 		[Scenario_Class230008]
 		[Scenario_Class230005]
+		[Scenario_Class470000]
 		[ScenarioN_Class180001]
 		[ScenarioN_Class210001])
 	(cloNamespace [Scenario_Class250009])
@@ -1294,7 +1297,7 @@
 
 ([Scenario_Class450000] of  CloFunction
 
-	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (instance? Instance v)\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
+	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (or (instance? Instance v) (instance? MapOb v))\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
 	(title "to-clj-type [v]"))
 
 ([Scenario_Class460000] of  Rule
@@ -1308,6 +1311,15 @@
 
 	(source "(let [thi (vv ?thi r)\n       txt (vv ?txt r)\n       lab (vv ?lab r)]\n  (if (not (null? thi))\n    (if (ClojureTab/showModalInstance thi (or txt \"\"))\n      \"DONE\"\n      \"FAILED\")\n    (if (ClojureTab/showModal atit (javax.swing.JLabel. lab) (or txt \"\"))\n      \"DONE\"\n      \"FAILED\")))")
 	(title "show [atit ?thi ?txt ?lab r]"))
+
+([Scenario_Class470000] of  CloFunction
+
+	(source "(mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run))")
+	(title "embed-ctx-vars [run]"))
+
+([Scenario_Class470003] of  CloFuncall
+
+	(source "(sim/start-sim)"))
 
 ([Scenario_Class480000] of  CloVar
 
@@ -1676,7 +1688,7 @@
 
 ([ScenarioN_Class180001] of  CloFunction
 
-	(source "(let [bnd1 (mapcat #(input-var-val % r) ida)\n       bnd2 (if (not (null? bef)) \n                  (parse-let-body (uncomment (sv bef \"source\")))\n                  [])\n       bnd3 (vec (concat bnd1 bnd2))\n       vvm (var-val-map bnd3)\n       cchs (count chs)\n       cvrs (count vrs)\n       cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) \n       cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)\n       exp `(let ~bnd3 (cond ~@cprs2))\n       [nv vvm2] (eval exp)]\n  (if (< nv cchs)\n    (let [cho ((vec chs) nv)]\n      (var-val-to-run bnd2 vvm2 r)\n      (doseq [res (svs cho \"results\")]\n        (var-val-to-result res vvm2 r))))\n  [((vec vrs) nv)])")
+	(source "(let [bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) ida)\n       bnd2 (if (not (null? bef)) \n                  (parse-let-body (uncomment (sv bef \"source\")))\n                  [])\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (var-val-map bnd3)\n       cchs (count chs)\n       cvrs (count vrs)\n       cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) \n       cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)\n       exp `(let ~bnd3 (cond ~@cprs2))\n       ;;_ (println :EXP exp)\n       [nv vvm2] (eval exp)]\n  (if (< nv cchs)\n    (let [cho ((vec chs) nv)]\n      (var-val-to-run bnd2 vvm2 r)\n      (doseq [res (svs cho \"results\")]\n        (var-val-to-result res vvm2 r))))\n  [((vec vrs) nv)])")
 	(title "o-decision [ida bef chs vrs r]"))
 
 ([ScenarioN_Class190001] of  Rule
@@ -2325,7 +2337,7 @@
 
 ([ScenarioN_Class580000] of  CloFunction
 
-	(source "(doseq [var (map name (map first (partition 2 bnd)))]\n  (vvr var (from-clj-type (get vvmap var)) run))")
+	(source "(let [vars (->> (partition 2 bnd)\n	(map first)\n	(map name)\n	(filter #(.startsWith % \"?\")))]\n  (doseq [var vars]\n    (vvr var (from-clj-type (get vvmap var)) run)))")
 	(title "var-val-to-run [bnd vvmap run]"))
 
 ([ScenarioN_Class580001] of  Rule

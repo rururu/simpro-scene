@@ -145,8 +145,12 @@
 	[~vn ~vvm4])]))
 
 (defn var-val-to-run [bnd vvmap run]
-  (doseq [var (map name (map first (partition 2 bnd)))]
-  (vvr var (from-clj-type (get vvmap var)) run)))
+  (let [vars (->> (partition 2 bnd)
+	(map first)
+	(map name)
+	(filter #(.startsWith % "?")))]
+  (doseq [var vars]
+    (vvr var (from-clj-type (get vvmap var)) run))))
 
 (defn set-ob-prop [obp obj val]
   (condp = obp
@@ -167,18 +171,23 @@
     (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr "title") val)
     (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val))))
 
+(defn embed-ctx-vars [run]
+  (mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run)))
+
 (defn o-decision [ida bef chs vrs r]
-  (let [bnd1 (mapcat #(input-var-val % r) ida)
+  (let [bnd0 (embed-ctx-vars r) 
+       bnd1 (mapcat #(input-var-val % r) ida)
        bnd2 (if (not (null? bef)) 
                   (parse-let-body (uncomment (sv bef "source")))
                   [])
-       bnd3 (vec (concat bnd1 bnd2))
+       bnd3 (vec (concat bnd0 bnd1 bnd2))
        vvm (var-val-map bnd3)
        cchs (count chs)
        cvrs (count vrs)
        cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) 
        cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)
        exp `(let ~bnd3 (cond ~@cprs2))
+       ;;_ (println :EXP exp)
        [nv vvm2] (eval exp)]
   (if (< nv cchs)
     (let [cho ((vec chs) nv)]

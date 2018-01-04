@@ -1,4 +1,4 @@
-; Wed Jan 03 17:30:46 MSK 2018
+; Thu Jan 04 19:30:35 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -313,9 +313,19 @@
 
 	(source "(def rr (a/layer-targets \"Russian Railroads\"))"))
 
+([PyongyangStPetersburg_Class120000] of  Script
+
+	(source "_ (println :DIRECTION direction \n	:ROUTE ?route\n	:TRAIN ?protagonist)\npts (protege.core/svs (protege.core/ins ?route) \"points\")\ntrn (ru.igis.omtab.OMT/getMapOb (protege.core/ins ?protagonist))\nllp (ru.igis.omtab.OMTPoly/getLLPoints pts)\nla1 (first llp)\nlo1 (second llp)\nloe (last llp)\nlae (last (butlast llp))\n_ (println trn [la1 lo1] [lae loe])\ndib (.distanceNM trn la1 lo1)\ndie (.distanceNM trn lae loe)\n_  (println dib die)\ntrack-forward (<= dib die)")
+	(title "Track Direction Calc"))
+
 ([PyongyangStPetersburg_Class13] of  CloFuncall
 
 	(source "(count rr)"))
+
+([PyongyangStPetersburg_Class130000] of  Choice
+
+	(condition "((direction = \"FORWARD\") and track-forward) or ((direction = \"BACKWARD\") and (not track-forward))")
+	(title "Direction Choice"))
 
 ([PyongyangStPetersburg_Class14] of  CloFuncall
 
@@ -409,11 +419,12 @@
 		[PyongyangStPetersburg_Class30007])
 	(title "or:Road Run"))
 
-([PyongyangStPetersburg_Class20004] of  GeneralDecision
+([PyongyangStPetersburg_Class20004] of  ODecision
 
-	(conditions "direction = \"FORWARD\"")
+	(before [PyongyangStPetersburg_Class120000])
+	(choices [PyongyangStPetersburg_Class130000])
 	(input_data [PyongyangStPetersburg_Class20005])
-	(title "?What Direction?")
+	(title "What Direction?")
 	(variants
 		[PyongyangStPetersburg_Class20006]
 		[PyongyangStPetersburg_Class20007]))
