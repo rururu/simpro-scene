@@ -1,4 +1,4 @@
-; Sat Dec 23 19:15:08 MSK 2017
+; Thu Jan 04 12:55:33 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1592,6 +1592,12 @@
 	(pairs [Sea_Class260000])
 	(title "Ctx6"))
 
+([Sea_Class190000] of  PutOnMap
+
+	(next_actions [Sea_Class320000])
+	(object [Sea_Class332])
+	(title "s1.Airplane on Map"))
+
 ([Sea_Class190001] of  Variable
 
 	(title "?drop"))
@@ -2170,7 +2176,8 @@
 		[Sea_Class380000]
 		[Sea_Class400000]
 		[Sea_Class320000]
-		[Sea_Class320001])
+		[Sea_Class320001]
+		[Sea_Class190000])
 	(title "s1.Complex Rescue Operation"))
 
 ([Sea_Class20050] of  Task
@@ -2204,7 +2211,7 @@
 	(id "s1.Watch3486")
 	(initial_actions
 		[Sea_Class140000]
-		[Sea_Class10000])
+		[Sea_Class70001])
 	(next_tasks [Sea_Class90000])
 	(parent "s1.Colli3483")
 	(run "s1.Colli3483")
@@ -2213,7 +2220,9 @@
 		[Sea_Class204]
 		[Sea_Class140000]
 		[Sea_Class10000]
-		[Sea_Class60001])
+		[Sea_Class60001]
+		[Sea_Class70001]
+		[Sea_Class70002])
 	(title "s1.Watch"))
 
 ([Sea_Class202] of  PutOffMap
@@ -2225,7 +2234,7 @@
 
 	(delay "10 min")
 	(id "s1.Cruis3490")
-	(next_actions [Sea_Class60001])
+	(next_actions [Sea_Class70002])
 	(parent "s1.Watch3486")
 	(run "s1.Colli3483")
 	(status "START")
@@ -4161,7 +4170,7 @@
 	(next_actions
 		[Sea_Class80]
 		[Sea_Class88]
-		[Sea_Class320000])
+		[Sea_Class190000])
 	(parent "s1.Compl3522")
 	(run "s1.Colli3483")
 	(status "START")
@@ -4755,6 +4764,22 @@
 		[Sea_Class343]
 		[Sea_Class345])
 	(title "Ctx6"))
+
+([Sea_Class70000] of  CloFuncall
+
+	(source "(ru.rules/f 21)"))
+
+([Sea_Class70001] of  PutOnMap
+
+	(next_actions [Sea_Class10000])
+	(object [Sea_Class219])
+	(title "s1.Ship1 on Map"))
+
+([Sea_Class70002] of  PutOnMap
+
+	(next_actions [Sea_Class60001])
+	(object [Sea_Class240])
+	(title "s1.Ship2 on Map"))
 
 ([Sea_Class70003] of  Field
 

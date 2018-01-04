@@ -1,4 +1,4 @@
-; Wed Jan 03 17:53:52 MSK 2018
+; Thu Jan 04 13:20:27 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -496,7 +496,7 @@
 ([Scenario_Class120000] of  Rule
 
 	(lhs "?pom (PutOnMap status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	mapob ?mos \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]\n      (let [lat (a/vv ?lat ?run)\n            lon (a/vv ?lon ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (println :POM mo)\n  (ru.igis.omtab.OMT/addMapOb mo))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]\n      (let [lat (a/vv ?lat ?run)\n            lon (a/vv ?lon ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/addMapOb mo))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:PutOnMap"))
 
