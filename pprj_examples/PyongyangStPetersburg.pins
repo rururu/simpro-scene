@@ -1,4 +1,4 @@
-; Thu Jan 04 19:30:35 MSK 2018
+; Fri Jan 05 00:00:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -315,7 +315,7 @@
 
 ([PyongyangStPetersburg_Class120000] of  Script
 
-	(source "_ (println :DIRECTION direction \n	:ROUTE ?route\n	:TRAIN ?protagonist)\npts (protege.core/svs (protege.core/ins ?route) \"points\")\ntrn (ru.igis.omtab.OMT/getMapOb (protege.core/ins ?protagonist))\nllp (ru.igis.omtab.OMTPoly/getLLPoints pts)\nla1 (first llp)\nlo1 (second llp)\nloe (last llp)\nlae (last (butlast llp))\n_ (println trn [la1 lo1] [lae loe])\ndib (.distanceNM trn la1 lo1)\ndie (.distanceNM trn lae loe)\n_  (println dib die)\ntrack-forward (<= dib die)")
+	(source "_ (println :DIRECTION ?direct\n	:ROUTE ?route\n	:TRAIN ?protagonist)\npts (protege.core/svs (protege.core/ins ?route) \"points\")\ntrn (ru.igis.omtab.OMT/getMapOb (protege.core/ins ?protagonist))\nllp (ru.igis.omtab.OMTPoly/getLLPoints pts)\nla1 (first llp)\nlo1 (second llp)\nloe (last llp)\nlae (last (butlast llp))\ndib (.distanceNM trn la1 lo1)\ndie (.distanceNM trn lae loe)\ntrack-forward (<= dib die)")
 	(title "Track Direction Calc"))
 
 ([PyongyangStPetersburg_Class13] of  CloFuncall
@@ -324,7 +324,7 @@
 
 ([PyongyangStPetersburg_Class130000] of  Choice
 
-	(condition "((direction = \"FORWARD\") and track-forward) or ((direction = \"BACKWARD\") and (not track-forward))")
+	(condition "((?direct = \"FORWARD\") and track-forward) or ((?direct = \"BACKWARD\") and (not track-forward))")
 	(title "Direction Choice"))
 
 ([PyongyangStPetersburg_Class14] of  CloFuncall
@@ -406,7 +406,7 @@
 	(context [PyongyangStPetersburg_Class20011])
 	(final_tasks [PyongyangStPetersburg_Class30005])
 	(finish_type AND)
-	(initial_tasks [PyongyangStPetersburg_Class30007])
+	(initial_tasks [PyongyangStPetersburg_Class30000])
 	(protagonist [PyongyangStPetersburg_Class10015])
 	(scenario_scheme
 		[PyongyangStPetersburg_Class20004]
@@ -415,26 +415,17 @@
 		[PyongyangStPetersburg_Class20008]
 		[PyongyangStPetersburg_Class30000]
 		[PyongyangStPetersburg_Class30003]
-		[PyongyangStPetersburg_Class30005]
-		[PyongyangStPetersburg_Class30007])
+		[PyongyangStPetersburg_Class30005])
 	(title "or:Road Run"))
 
 ([PyongyangStPetersburg_Class20004] of  ODecision
 
 	(before [PyongyangStPetersburg_Class120000])
 	(choices [PyongyangStPetersburg_Class130000])
-	(input_data [PyongyangStPetersburg_Class20005])
 	(title "What Direction?")
 	(variants
 		[PyongyangStPetersburg_Class20006]
 		[PyongyangStPetersburg_Class20007]))
-
-([PyongyangStPetersburg_Class20005] of  InputData
-
-	(attribute [PyongyangStPetersburg_Class20010])
-	(object [ScenarioN_Class570000])
-	(title "or:WhatDirect")
-	(variable [PyongyangStPetersburg_Class20009]))
 
 ([PyongyangStPetersburg_Class20006] of  Task
 
@@ -809,22 +800,6 @@
 ([PyongyangStPetersburg_Class30006] of  Variable
 
 	(title "?route"))
-
-([PyongyangStPetersburg_Class30007] of  Task
-
-	(final_actions [PyongyangStPetersburg_Class30008])
-	(finish_type AND)
-	(initial_actions [PyongyangStPetersburg_Class30008])
-	(next_tasks [PyongyangStPetersburg_Class30000])
-	(task_scheme [PyongyangStPetersburg_Class30008])
-	(title "or:Set Direction"))
-
-([PyongyangStPetersburg_Class30008] of  PutObAttributes
-
-	(attributes [PyongyangStPetersburg_Class20010])
-	(object [ScenarioN_Class570000])
-	(title "or:Direction")
-	(values "?direct"))
 
 ([PyongyangStPetersburg_Class30012] of  ObjectPair
 

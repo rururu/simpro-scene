@@ -1,4 +1,4 @@
-; Thu Jan 04 23:27:48 MSK 2018
+; Thu Jan 04 23:45:23 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -58,7 +58,6 @@
 		[Scenario_Class230005]
 		[Scenario_Class230004]
 		[ScenarioN_Class340025]
-		[ScenarioN_Class580000]
 		[Scenario_Class230005]
 		[Scenario_Class230006]
 		[Scenario_Class230008])
@@ -753,7 +752,7 @@
 ([Scenario_Class220001] of  Rule
 
 	(lhs "?clc (Calculus status \"START\" \n	title ?tit \n	input_data ?ida \n	source ?src \n	results ?res\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2  (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (d/var-val-to-run bnd2 vvm2 ?run)\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2  (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:Calculus"))
 
@@ -863,7 +862,6 @@
 		[ScenarioN_Class610000]
 		[ScenarioN_Class640001]
 		[ScenarioN_Class350009]
-		[ScenarioN_Class580000]
 		[Scenario_Class230008]
 		[Scenario_Class230005]
 		[Scenario_Class470000]
@@ -1688,7 +1686,7 @@
 
 ([ScenarioN_Class180001] of  CloFunction
 
-	(source "(let [bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) ida)\n       bnd2 (if (not (null? bef)) \n                  (parse-let-body (uncomment (sv bef \"source\")))\n                  [])\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (var-val-map bnd3)\n       cchs (count chs)\n       cvrs (count vrs)\n       cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) \n       cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)\n       exp `(let ~bnd3 (cond ~@cprs2))\n       ;;_ (println :EXP exp)\n       [nv vvm2] (eval exp)]\n  (if (< nv cchs)\n    (let [cho ((vec chs) nv)]\n      (var-val-to-run bnd2 vvm2 r)\n      (doseq [res (svs cho \"results\")]\n        (var-val-to-result res vvm2 r))))\n  [((vec vrs) nv)])")
+	(source "(let [bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) ida)\n       bnd2 (if (not (null? bef)) \n                  (parse-let-body (uncomment (sv bef \"source\")))\n                  [])\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (var-val-map bnd3)\n       cchs (count chs)\n       cvrs (count vrs)\n       cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) \n       cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)\n       exp `(let ~bnd3 (cond ~@cprs2))\n       ;;_ (println :EXP exp)\n       [nv vvm2] (eval exp)]\n  (if (< nv cchs)\n    (let [cho ((vec chs) nv)]\n      (doseq [res (svs cho \"results\")]\n        (var-val-to-result res vvm2 r))))\n  [((vec vrs) nv)])")
 	(title "o-decision [ida bef chs vrs r]"))
 
 ([ScenarioN_Class190001] of  Rule
@@ -2334,11 +2332,6 @@
 ([ScenarioN_Class570000] of  Variable
 
 	(title "?protagonist"))
-
-([ScenarioN_Class580000] of  CloFunction
-
-	(source "(let [vars (->> (partition 2 bnd)\n	(map first)\n	(map name)\n	(filter #(.startsWith % \"?\")))]\n  (doseq [var vars]\n    (vvr var (from-clj-type (get vvmap var)) run)))")
-	(title "var-val-to-run [bnd vvmap run]"))
 
 ([ScenarioN_Class580001] of  Rule
 

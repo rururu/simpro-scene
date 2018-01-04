@@ -144,14 +144,6 @@
   [cnd3 `(let ~bnd3
 	[~vn ~vvm4])]))
 
-(defn var-val-to-run [bnd vvmap run]
-  (let [vars (->> (partition 2 bnd)
-	(map first)
-	(map name)
-	(filter #(.startsWith % "?")))]
-  (doseq [var vars]
-    (vvr var (from-clj-type (get vvmap var)) run))))
-
 (defn set-ob-prop [obp obj val]
   (condp = obp
   'COURSE (.setCourse obj (int val))
@@ -191,7 +183,6 @@
        [nv vvm2] (eval exp)]
   (if (< nv cchs)
     (let [cho ((vec chs) nv)]
-      (var-val-to-run bnd2 vvm2 r)
       (doseq [res (svs cho "results")]
         (var-val-to-result res vvm2 r))))
   [((vec vrs) nv)]))
