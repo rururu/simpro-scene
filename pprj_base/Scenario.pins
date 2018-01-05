@@ -1,10 +1,14 @@
-; Fri Jan 05 09:27:47 MSK 2018
+; Fri Jan 05 14:34:28 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([ActivityFlightView] of  ActionClass
 )
+
+([AddResource] of  ActionClass
+
+	(rules [Scenario_Class520002]))
 
 ([Arrive] of  ActionClass
 
@@ -416,7 +420,8 @@
 		[ScenarioN_Class690000]
 		[Scenario_Class90000]
 		[Scenario_Class440003]
-		[Scenario_Class430000])
+		[Scenario_Class430000]
+		[Scenario_Class520002])
 	(templates
 		[Action]
 		[Arrive]
@@ -466,7 +471,8 @@
 		[Scenario]
 		[Task]
 		[DeleteResource]
-		[GoLayer])
+		[GoLayer]
+		[AddResource])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -1386,6 +1392,13 @@
 	(source "(let [varnam (if (instance? Instance var) (sv var \"title\") var)]\n  (.put run varnam val))")
 	(title "vvr [var val run]"))
 
+([Scenario_Class520002] of  Rule
+
+	(lhs "?ar (AddResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	collection ?col\n	thing ?thi\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AddResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       thi (a/vv ?thi ?run)\n       col (concat ?col (if (not (a/null? thi)) [thi]))]\n  (if (and mo (not (a/null? ?res)) (seq col))\n    (let [atr (protege.core/sv ?res \"title\")\n           avv (.getAttribute mo atr)\n           nvv (vec (concat avv col))]\n      (.putAttribute mo atr nvv)\n      (retract ?ar)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ar status \"FAILED\")))")
+	(salience 0)
+	(title "a:AddResource"))
+
 ([Scenario_Class530000] of  CloFunction
 
 	(source "(MapOb/getDeg (vv ?lat r))")
@@ -1672,7 +1685,7 @@
 
 ([ScenarioN_Class170002] of  Rule
 
-	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	seed ?sed\n                        number ?num\n	rename ?ren\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	seed ?sed\n                      number ?num\n	rename ?ren\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
 	(rhs "(println \"Action started:\" ?tit \"LoadResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (and mo\n            (or (seq ?mos) \n               (and sed num\n                 (let [nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n                        nam (protege.core/sv sed nms)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	              (if (protege.core/is? ?ren)\n	                (protege.core/ssv c nms (str nam i))) \n                                      c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
 	(salience 0)
 	(title "a:LoadResource"))

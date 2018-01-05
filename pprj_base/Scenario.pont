@@ -1,4 +1,4 @@
-; Fri Jan 05 09:27:47 MSK 2018
+; Fri Jan 05 14:34:27 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2053,16 +2053,7 @@
 
 (defclass Resource
 	(is-a Action)
-	(role abstract))
-
-(defclass UseResource
-	(is-a Resource)
-	(role concrete)
-	(single-slot variable
-		(type INSTANCE)
-;+		(allowed-classes Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
+	(role abstract)
 	(single-slot resource
 		(type INSTANCE)
 ;+		(allowed-classes Attribute)
@@ -2074,14 +2065,18 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
+(defclass UseResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass LoadResource
 	(is-a Resource)
 	(role concrete)
-	(single-slot resource
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot rename
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
@@ -2090,11 +2085,6 @@
 	(multislot mapob
 		(type INSTANCE)
 ;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot number
 		(type STRING)
@@ -2108,16 +2098,19 @@
 
 (defclass DeleteResource
 	(is-a Resource)
+	(role concrete))
+
+(defclass AddResource
+	(is-a Resource)
 	(role concrete)
-	(single-slot resource
+	(single-slot thing
 		(type INSTANCE)
-;+		(allowed-classes Attribute)
+;+		(allowed-classes %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot object
+	(multislot collection
 		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
+;+		(allowed-classes %3ATHING)
 		(create-accessor read-write)))
 
 (defclass Exception

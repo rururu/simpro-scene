@@ -1,4 +1,4 @@
-; Fri Jan 05 00:00:47 MSK 2018
+; Fri Jan 05 14:49:18 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -40,12 +40,13 @@
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(FranceRoads)"))
 
-([PyongyangStPetersburg_Class100000] of  GoRoute
+([PyongyangStPetersburg_Class100000] of  AddResource
 
+	(collection
+		[PyongyangStPetersburg_Class80017]
+		[PyongyangStPetersburg_Class80021])
 	(object [PyongyangStPetersburg_Class10015])
-	(radius 1.0)
-	(route [PyongyangStPetersburg_Class80013])
-	(spd "40")
+	(resource [PyongyangStPetersburg_Class30002])
 	(status "START")
 	(title "test"))
 
@@ -1811,9 +1812,7 @@
 
 	(mapob
 		[PyongyangStPetersburg_Class80013]
-		[PyongyangStPetersburg_Class80012]
-		[PyongyangStPetersburg_Class80017]
-		[PyongyangStPetersburg_Class80021])
+		[PyongyangStPetersburg_Class80012])
 	(next_actions [PyongyangStPetersburg_Class80001])
 	(object [ScenarioN_Class570000])
 	(resource [PyongyangStPetersburg_Class30002])
