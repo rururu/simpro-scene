@@ -1,4 +1,4 @@
-; Thu Jan 04 23:45:23 MSK 2018
+; Fri Jan 05 09:27:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -60,7 +60,8 @@
 		[ScenarioN_Class340025]
 		[Scenario_Class230005]
 		[Scenario_Class230006]
-		[Scenario_Class230008])
+		[Scenario_Class230008]
+		[Scenario_Class470000])
 	(rules [Scenario_Class220001]))
 
 ([CatchException] of  DecisionClass
@@ -752,7 +753,7 @@
 ([Scenario_Class220001] of  Rule
 
 	(lhs "?clc (Calculus status \"START\" \n	title ?tit \n	input_data ?ida \n	source ?src \n	results ?res\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2  (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd0 (d/embed-ctx-vars ?run)\n       bnd1 (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2 (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:Calculus"))
 
@@ -803,7 +804,7 @@
 
 ([Scenario_Class230005] of  CloFunction
 
-	(source "(let [iobj (vv (sv result \"object\") r)\n      var (sv (sv result \"variable\") \"title\")\n      atr (sv result \"attribute\")\n      obp (sv result \"ob_property\")\n      obj (OMT/getMapOb iobj)\n      val (from-clj-type (get vvmap var))]\n  (cond\n    (nil? obj) (vvr var val r)\n    (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr \"title\") val)\n    (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val)))")
+	(source "(let [iobj (vv (sv result \"object\") r)\n      var (sv (sv result \"variable\") \"title\")\n      atr (sv result \"attribute\")\n      obp (sv result \"ob_property\")\n      obj (OMT/getMapOb iobj)\n      val (get vvmap var)]\n  (cond\n    (nil? obj) (vvr var val r)\n    (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr \"title\") val)\n    (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val)))")
 	(title "var-val-to-result [result vvmap r]"))
 
 ([Scenario_Class230006] of  CloFunction
@@ -852,10 +853,10 @@
 		[Scenario_Class230001]
 		[Scenario_Class230006]
 		[Scenario_Class230007]
-		[ScenarioN_Class650000]
 		[Scenario_Class230004]
 		[Scenario_Class260011]
 		[ScenarioN_Class680012]
+		[Scenario_Class470000]
 		[Scenario_Class260010]
 		[ScenarioN_Class340025]
 		[ScenarioN_Class340000]
@@ -864,7 +865,6 @@
 		[ScenarioN_Class350009]
 		[Scenario_Class230008]
 		[Scenario_Class230005]
-		[Scenario_Class470000]
 		[ScenarioN_Class180001]
 		[ScenarioN_Class210001])
 	(cloNamespace [Scenario_Class250009])
@@ -944,7 +944,7 @@
 
 ([Scenario_Class260010] of  CloFunction
 
-	(source "(let [cds (map parse-cond conditions)\n       prs (interleave cds (range (count cds)))\n       body [(cons 'cond prs)]\n       bnd (vec (mapcat #(input-var-val % r) idata))\n       exp `(let ~bnd ~@body)\n       nv (eval exp)]\n  (if (number? nv)\n    [(nth (seq variants) nv)]\n    [(last variants)]))")
+	(source "(let [cds (map parse-cond conditions)\n       prs (interleave cds (range (count cds)))\n       body [(cons 'cond prs)]\n       bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) idata)\n       bnd2 (vec (concat bnd0 bnd1))\n       exp `(let ~bnd2 ~@body)\n       nv (eval exp)]\n  (if (number? nv)\n    [(nth (seq variants) nv)]\n    [(last variants)]))")
 	(title "general-decision [idata conditions variants r]"))
 
 ([Scenario_Class260011] of  CloFunction
@@ -2437,11 +2437,6 @@
 
 	(%3ACREATION-TIMESTAMP "2017.05.17 19:26:30.339 MSK")
 	(%3ACREATOR "ru"))
-
-([ScenarioN_Class650000] of  CloFunction
-
-	(source "(if-let [ins (.getInstance *kb* (str v))]\n  ins\n  v)")
-	(title "from-clj-type [v]"))
 
 ([ScenarioN_Class650008] of  %3AINSTANCE-ANNOTATION
 

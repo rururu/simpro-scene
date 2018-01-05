@@ -59,11 +59,6 @@
   'ON-BEAM (on-beam obs obj)
   (println (str "Unimplemented: " obr " " obs obj))))
 
-(defn from-clj-type [v]
-  (if-let [ins (.getInstance *kb* (str v))]
-  ins
-  v))
-
 (defn input-var-val [idata r]
   (let [iobj (vv (sv idata "object") r)
       iobs (vv (sv idata "observer") r)
@@ -101,12 +96,17 @@
 (defn parse-cond [cnd]
   (infix-to-prefix (read-string (str "(" cnd ")"))))
 
+(defn embed-ctx-vars [run]
+  (mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run)))
+
 (defn general-decision [idata conditions variants r]
   (let [cds (map parse-cond conditions)
        prs (interleave cds (range (count cds)))
        body [(cons 'cond prs)]
-       bnd (vec (mapcat #(input-var-val % r) idata))
-       exp `(let ~bnd ~@body)
+       bnd0 (embed-ctx-vars r) 
+       bnd1 (mapcat #(input-var-val % r) idata)
+       bnd2 (vec (concat bnd0 bnd1))
+       exp `(let ~bnd2 ~@body)
        nv (eval exp)]
   (if (number? nv)
     [(nth (seq variants) nv)]
@@ -157,14 +157,11 @@
       atr (sv result "attribute")
       obp (sv result "ob_property")
       obj (OMT/getMapOb iobj)
-      val (from-clj-type (get vvmap var))]
+      val (get vvmap var)]
   (cond
     (nil? obj) (vvr var val r)
     (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr "title") val)
     (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val))))
-
-(defn embed-ctx-vars [run]
-  (mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run)))
 
 (defn o-decision [ida bef chs vrs r]
   (let [bnd0 (embed-ctx-vars r) 
