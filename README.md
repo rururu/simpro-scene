@@ -49,6 +49,7 @@ In Protege GUI:
 10. [France Roads: Stress test "Blue"](https://youtu.be/zp6VdtKYLtc)
 11. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)
 12. [Finland Histoty](https://youtu.be/A4x9YU3V5k0)
+13. [Pyongyang StPetersburg](https://youtu.be/xDyhu5_kVXE)
 
 TO BE CONTINUED
 
