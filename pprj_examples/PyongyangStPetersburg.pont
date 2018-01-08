@@ -1,4 +1,4 @@
-; Fri Jan 05 14:49:18 MSK 2018
+; Sat Jan 06 18:51:58 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,3 +7,11 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract))
+
+(defclass PyongyangHasan
+	(is-a OMTPoly)
+	(role concrete))
+
+(defclass StPetersburgMoscow
+	(is-a OMTPoly)
+	(role concrete))

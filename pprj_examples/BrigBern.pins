@@ -1,0 +1,227 @@
+; Tue Jan 09 00:23:27 MSK 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([BrigBern_Class0] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[RuleEngine_Class30000]
+		[ScenarioN_Class550020]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[BrigBern_Class7])
+	(title "BrigBern Programs"))
+
+([BrigBern_Class1] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [BrigBern_Class0])
+	(%3ACREATION-TIMESTAMP "2018.01.08 22:17:43.977 MSK")
+	(%3ACREATOR "ta"))
+
+([BrigBern_Class10] of  CloFunction
+
+	(source "(let [[w s e n] bbx] \n  (str \"http://api.openstreetmap.org/api/0.6/map?bbox=\" w \",\" s \",\" e \",\" n))")
+	(title "osm-api-url [bbx]"))
+
+([BrigBern_Class10000] of  CloFunction
+
+	(source "(let [[w s e n] bbx]\n  (str \"https://www.overpass-api.de/api/interpreter?data=[out:xml];(way[railway](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(title "railway-api-url [bbx]"))
+
+([BrigBern_Class10001] of  CloFunction
+
+	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (vreset! OSM-DATA (railway-data bbx)))")
+	(title "get-railway-data [[lat lon] rad]"))
+
+([BrigBern_Class10002] of  CloFuncall
+
+	(source "(osm.data/"))
+
+([BrigBern_Class10003] of  CloFuncall
+
+	(source "(osm.data/get-railway-data [46.3 7.8888] 1)"))
+
+([BrigBern_Class10004] of  CloFuncall
+
+	(source "osm.data/OSM-DATA"))
+
+([BrigBern_Class10005] of  CloFuncall
+
+	(source "(osm.data/get-railway-data [46.3 7.8888] 0.5)"))
+
+([BrigBern_Class10006] of  CloFunction
+
+	(source "(try\n  (let [curl (railway-api-url bbx)\n         xml (x/parse curl)\n         cnt (:content xml)]\n      cnt)\n  (catch Exception e\n    (println e)\n    nil))")
+	(title "railway-data [bbx]"))
+
+([BrigBern_Class10007] of  CloFuncall
+
+	(source "@osm.data/OSM-DATA"))
+
+([BrigBern_Class10008] of  CloFuncall
+
+	(source "(spit \"OSMDATA.clj\"@osm.data/OSM-DATA)"))
+
+([BrigBern_Class10009] of  CloFuncall
+
+	(source "(osm.data/get-railway-data [46.3 7.8888] 0.2)"))
+
+([BrigBern_Class11] of  CloFunction
+
+	(source "(let [cnt (:content tag)\n       tt (filter #(= (:tag %) :tag) cnt)\n       m {\"id\" (:id (:attrs tag))\n             \"lat\" (read-string (:lat (:attrs tag)))\n             \"lon\" (read-string (:lon (:attrs tag)))}\n       ml (cons m (map #(assoc {} (:k (:attrs %)) (:v (:attrs %))) tt))]\n  (apply merge ml))")
+	(title "tag-tags-namcor [tag]"))
+
+([BrigBern_Class12] of  CloFunction
+
+	(source "(try\n  (let [curl (osm-api-url bbx)\n         xml (x/parse curl)\n         cnt (:content xml)\n         nods (filter #(= (:tag %) :node) cnt)\n         nnn (filter #(some? (:content %)) nods)]\n      (map tag-tags-namcor nnn))\n  (catch Exception e\n    (println e)\n    nil))")
+	(title "osm-data [bbx]"))
+
+([BrigBern_Class13] of  CloFunction
+
+	(source "(filter #(some? (get % k)) data)")
+	(title "filter-k [k data]"))
+
+([BrigBern_Class14] of  CloFunction
+
+	(source "(filter #(= (get % k) v) data)")
+	(title "filter-kv [k v data]"))
+
+([BrigBern_Class15] of  CloFunction
+
+	(source "(filter #(not= (get % k) v) data)")
+	(title "filter-kv-not [k v data]"))
+
+([BrigBern_Class16] of  CloFunction
+
+	(source "(sort (set (mapcat keys data)))")
+	(title "tags [data]"))
+
+([BrigBern_Class17] of  CloFunction
+
+	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (vreset! OSM-DATA (osm-data bbx)))")
+	(title "get-osm-data [[lat lon] rad]"))
+
+([BrigBern_Class18] of  CloFunction
+
+	(source "(or (> (Math/abs (- lat1 lat2)) 0.02)\n     (> (Math/abs (- lon1 lon2)) 0.02))")
+	(title "obsolete [[lat1 lon1] [lat2 lon2]]"))
+
+([BrigBern_Class19] of  CloFunction
+
+	(source "(let [sta (for [t (tags @OSM-DATA)]\n	(let [fl (filter-k t @OSM-DATA)]\n	  [t (count fl)]))\n        sta  (filter #(> (second %) 0) sta)]\n  (sort second sta))")
+	(title "tag-stat []"))
+
+([BrigBern_Class2] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(rule-sets
+		[ScenarioN_Class550030]
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class17]
+		[Scenario_Class340000])
+	(steps 1)
+	(title "BrigBernRun"))
+
+([BrigBern_Class20] of  CloVar
+
+	(source "(volatile! [])")
+	(title "OSM-DATA"))
+
+([BrigBern_Class3] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [BrigBern_Class2])
+	(%3ACREATION-TIMESTAMP "2018.01.08 22:18:35.062 MSK")
+	(%3ACREATOR "ta"))
+
+([BrigBern_Class4] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "BrigBern Map")
+	(Latitude "46.64")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "7.77")
+	(Scale "800000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([BrigBern_Class5] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
+	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
+	(%3ACREATOR "ta"))
+
+([BrigBern_Class6] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(ProServer)"))
+
+([BrigBern_Class7] of  CloProgram
+
+	(cloFunctions
+		[BrigBern_Class10]
+		[BrigBern_Class10000]
+		[BrigBern_Class11]
+		[BrigBern_Class12]
+		[BrigBern_Class10006]
+		[BrigBern_Class13]
+		[BrigBern_Class14]
+		[BrigBern_Class16]
+		[BrigBern_Class17]
+		[BrigBern_Class15]
+		[BrigBern_Class10001]
+		[BrigBern_Class18]
+		[BrigBern_Class19])
+	(cloNamespace [BrigBern_Class8])
+	(cloVars [BrigBern_Class20])
+	(title "OSM Data"))
+
+([BrigBern_Class8] of  CloNamespace
+
+	(source "(:require\n   [clojure.xml :as x]\n   [menu.item :as mi]\n   [rete.core :as rete])")
+	(title "osm.data"))
