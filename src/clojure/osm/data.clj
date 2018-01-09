@@ -1,8 +1,7 @@
 (ns osm.data
 (:require
-   [clojure.xml :as x]
-   [menu.item :as mi]
-   [rete.core :as rete]))
+   [clojure.data.json :as json]
+   [clojure.xml :as x]))
 
 (def OSM-DATA (volatile! []))
 (defn osm-api-url [bbx]
@@ -11,7 +10,7 @@
 
 (defn railway-api-url [bbx]
   (let [[w s e n] bbx]
-  (str "https://www.overpass-api.de/api/interpreter?data=[out:xml];(way[railway](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
+  (str "https://www.overpass-api.de/api/interpreter?data=[out:json];(way[railway](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
 
 (defn tag-tags-namcor [tag]
   (let [cnt (:content tag)
@@ -37,9 +36,8 @@
 (defn railway-data [bbx]
   (try
   (let [curl (railway-api-url bbx)
-         xml (x/parse curl)
-         cnt (:content xml)]
-      cnt)
+         jsn (json/read-str (slurp curl) :key-fn keyword)]
+      jsn)
   (catch Exception e
     (println e)
     nil)))

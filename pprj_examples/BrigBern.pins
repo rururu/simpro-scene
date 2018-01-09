@@ -1,4 +1,4 @@
-; Tue Jan 09 00:23:27 MSK 2018
+; Tue Jan 09 09:24:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -32,7 +32,7 @@
 
 ([BrigBern_Class10000] of  CloFunction
 
-	(source "(let [[w s e n] bbx]\n  (str \"https://www.overpass-api.de/api/interpreter?data=[out:xml];(way[railway](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(source "(let [[w s e n] bbx]\n  (str \"https://www.overpass-api.de/api/interpreter?data=[out:json];(way[railway](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
 	(title "railway-api-url [bbx]"))
 
 ([BrigBern_Class10001] of  CloFunction
@@ -58,7 +58,7 @@
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [curl (railway-api-url bbx)\n         xml (x/parse curl)\n         cnt (:content xml)]\n      cnt)\n  (catch Exception e\n    (println e)\n    nil))")
+	(source "(try\n  (let [curl (railway-api-url bbx)\n         jsn (json/read-str (slurp curl) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
 	(title "railway-data [bbx]"))
 
 ([BrigBern_Class10007] of  CloFuncall
@@ -223,5 +223,5 @@
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:require\n   [clojure.xml :as x]\n   [menu.item :as mi]\n   [rete.core :as rete])")
+	(source "(:require\n   [clojure.data.json :as json]\n   [clojure.xml :as x])")
 	(title "osm.data"))
