@@ -20,8 +20,10 @@ import ru.igis.omtab.gui.RuMapMouseAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.util.*;
 
+import com.bbn.openmap.MapBean;
 import com.bbn.openmap.omGraphics.*;
 import com.bbn.openmap.plugin.PlugInLayer;
 import com.bbn.openmap.proj.*;
@@ -40,7 +42,6 @@ public class Playground extends MMLGraphicLoader {
     private Map<Instance, MapOb> mapObsMap = new HashMap<Instance, MapOb>();
     private boolean timerRunning;
     private String scenario;
-    private OMGraphic selectedGraphic;
     private RuMapMouseAdapter ruMMAdapter;
     private PlugInLayer myPlugInLayer;
     private int pgid; // Playground index
@@ -348,44 +349,13 @@ public class Playground extends MMLGraphicLoader {
 		return this;
 	}
 
+    public static double[] mouseCoords(MouseEvent e){
+    	MapBean map = OpenMapTab.getMapBean();
+    	Point2D llp = map.getCoordinates(e);
+    	return new double[]{llp.getY(), llp.getX()};
+    }
+
 	/**
-     * Called whenever the mouse is moved on this layer and one of the
-     * requested mouse modes is active.
-     * <p>
-     * Tries to locate a graphic near the mouse, and if it is found,
-     * it selected.
-     * 
-     * @param e the move event
-     * @return true if event was consumed (handled), false otherwise
-     * @see #getMouseModeServiceList
-     */
-    public boolean mouseMoved(MouseEvent e) {
-        OMGraphic newSelectedGraphic = mapObs.selectClosest(e.getX(),
-                e.getY(),
-                2.0f);
-        if (newSelectedGraphic != selectedGraphic) {
-            selectedGraphic = newSelectedGraphic;
-            if(ruMMAdapter != null) {
-            	ruMMAdapter.mouseOn((MapOb) selectedGraphic, myPlugInLayer);
-            	return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Called whenever the mouse is moved on this layer and one of the
-     * requested mouse modes is active, and the gesture is consumed by
-     * another active layer. We need to deselect anything that may be
-     * selected.
-     * 
-     * @see #getMouseModeServiceList
-     */
-    public void mouseMoved() {
-    	mapObs.deselect();
-    }
-
-    /**
      * Called whenever the mouse is clicked by the user and one of the
      * requested mouse modes is active.
      * 
@@ -395,15 +365,14 @@ public class Playground extends MMLGraphicLoader {
      */
     public boolean mouseClicked(MouseEvent e) {
         if (ruMMAdapter != null) {
+        	double[] llp = mouseCoords(e);
+        	MapOb mo = (MapOb) mapObs.selectClosest(e.getX(), e.getY(), 2.0f);
         	if(e.getButton() == 1)
-        		ruMMAdapter.mouseButton1ClickedOn((MapOb) selectedGraphic, myPlugInLayer);
+        		return ruMMAdapter.mouseLeftButtonClickedOn(mo, llp, myPlugInLayer);
         	else if(e.getButton() == 3)
-        		ruMMAdapter.mouseButton3ClickedOn((MapOb) selectedGraphic, myPlugInLayer);
-        	else if(e.getButton() == 2)
-        		ruMMAdapter.mouseButton2ClickedOn((MapOb) selectedGraphic, myPlugInLayer);
+        		return ruMMAdapter.mouseRightButtonClickedOn(mo, llp, myPlugInLayer);
         	else
         		return false;
-            return true;
         } else {
             return false;
         }

@@ -116,7 +116,6 @@ public interface Ontology {
     public static final String S_TIMESCALE =    "timescale";
     public static final String S_TEXT =   		"text";
     public static final String S_TEXT_COLOR =   "textColor";
-    public static final String S_TOOLTIP =      "tooltip";
     public static final String S_TOW =          "tow";
     public static final String S_TYPE =         "type";
     public static final String S_URL =          "url";

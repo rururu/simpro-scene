@@ -350,29 +350,12 @@ public class MapOb extends BasicLocation implements Protegian{
     
     public String getDescription(){
 		if(instance != null) {
-			Instance desc = (Instance) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DESCRIPTION));
-			if(desc!=null)
-				return (String) desc.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SOURCE));
+			return (String) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DESCRIPTION));
 		}
 		return null;
     }
     
     public void setDescription(String d){
-		if(instance != null) {
-			Instance desc = (Instance) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DESCRIPTION));
-			if(desc!=null)
-				desc.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SOURCE), d);
-		}
-    }
-
-    public Instance getDescriptionInstance(){
-		if(instance != null) {
-			return (Instance) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DESCRIPTION));
-		}
-		return null;
-    }
-    
-    public void setDescriptionInstance(Instance d){
 		if(instance != null) {
 			instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DESCRIPTION), d);
 		}
@@ -412,15 +395,4 @@ public class MapOb extends BasicLocation implements Protegian{
 		return linksToMe;
 	}
 	
-    public String getToolTip(){
-		if(instance != null)
-			return (String) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TOOLTIP));
-		return null;
-    }
-    
-    public void setToolTip(String d){
-		if(instance != null)
-			instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TOOLTIP), d);
-    }
-
 }

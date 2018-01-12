@@ -58,7 +58,7 @@ public class NavObFrame extends javax.swing.JFrame {
         jLabelTangage = new javax.swing.JLabel();
         jTextFieldTangage = new javax.swing.JTextField();
         jButtonAttr = new javax.swing.JButton();
-        jButtonTask = new javax.swing.JButton();
+        jButtonMission = new javax.swing.JButton();
 
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
@@ -144,23 +144,23 @@ public class NavObFrame extends javax.swing.JFrame {
 
         jPanelCoordinates.add(jButtonAttr);
 
-        jButtonTask.setText("Task");
-        jButtonTask.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMission.setText("Mission");
+        jButtonMission.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTaskActionPerformed(evt);
+                jButtonMissionActionPerformed(evt);
             }
         });
 
-        jPanelCoordinates.add(jButtonTask);
+        jPanelCoordinates.add(jButtonMission);
         
         getContentPane().add(jPanelCoordinates);
 
         pack();
     }//GEN-END:initComponents
 
-    private void jButtonTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaskActionPerformed
-    	navOb.execTask();
-    }//GEN-LAST:event_jButtonTaskActionPerformed
+    private void jButtonMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMissionActionPerformed
+    	navOb.execMission();
+    }//GEN-LAST:event_jButtonMissionActionPerformed
 
     private void jButtonAttrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTaskActionPerformed
     	Map<Object, Object> attr = navOb.getAttributes();
@@ -257,7 +257,7 @@ public class NavObFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAttr;
-    private javax.swing.JButton jButtonTask;
+    private javax.swing.JButton jButtonMission;
     private javax.swing.JLabel jLabelCourse;
     private javax.swing.JLabel jLabelAltitude;
     private javax.swing.JLabel jLabelLat;

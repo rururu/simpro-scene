@@ -567,10 +567,10 @@ public class NavOb extends OMTRaster {
 //        	instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
 //    }
     /**
-     * Call RuNA method execTask with this object as argument
+     * Call RuNA method execMission with this object as argument
      */    
-    public void execTask(){
-        OMT.execTask(this);
+    public void execMission(){
+        OMT.execMission(this);
     }
     
     /**

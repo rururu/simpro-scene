@@ -366,24 +366,36 @@ public class Util {
      * @param pack - full name of class package
      * @return created object
      */
-    public static Object createObjectForInstance(Instance inst, String pack) {
-        String clname = pack+"."+inst.getDirectType().getName();
-        Class<?> cl = null;
-        try{
-            cl = Class.forName(clname);
-        }catch(ClassNotFoundException e){
-            System.out.println("Util.createObjectForInstance: Class not found: "+clname);
-            return null;
-        }
-        try{
-        	Constructor<?> cons = cl.getConstructor(new Class[] {Instance.class});
-            return cons.newInstance(new Object[] {inst});
-        }catch(Exception e){
-            System.out.println("Util.createObjectForInstance: Exception:");
-            e.printStackTrace();
-            return null;
-        }
-    }
+	public static Object createObjectForInstance(Instance inst, String pack) {
+		Cls cls = inst.getDirectType();
+		String clname = pack + "." + cls.getName();
+		Class<?> cl = null;
+		try {
+			cl = Class.forName(clname);
+		} catch (ClassNotFoundException e) {
+			cl = null;
+			for (Object scls : cls.getDirectSuperclasses()) {
+				String sclname = pack + "." + ((Cls) scls).getName();
+				try {
+					cl = Class.forName(sclname);
+				} catch (ClassNotFoundException e1) {
+					continue;
+				}
+			}
+			if (cl == null) {
+				System.out.println("Util.createObjectForInstance: Class not found: " + clname);
+				return null;
+			}
+		}
+		try {
+			Constructor<?> cons = cl.getConstructor(new Class[] { Instance.class });
+			return cons.newInstance(new Object[] { inst });
+		} catch (Exception e) {
+			System.out.println("Util.createObjectForInstance: Exception:");
+			e.printStackTrace();
+			return null;
+		}
+	}
     
     public static void createDrawnPolygons(){
     	drawn_index = 0;

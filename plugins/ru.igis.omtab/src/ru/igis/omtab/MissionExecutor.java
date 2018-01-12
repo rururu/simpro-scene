@@ -20,12 +20,12 @@ package ru.igis.omtab;
  * on NavObFrame form
  * @author Ru
  */
-public interface TaskExecutor {
+public interface MissionExecutor {
     
     /**
      * Method incapsulating task action functionallity
      * @param no - Navigating Object whom button Task was ckicked on
      */
-    public void execTask(NavOb no);
+    public void execMission(NavOb no);
     
 }

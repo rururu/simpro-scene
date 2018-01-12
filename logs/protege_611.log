@@ -1,0 +1,7 @@
+2018.01.12 11:06:23.587 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2018.01.12 11:06:23.592 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_31-b13, memory=1908M, Mac OS X, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2018.01.12 11:06:23.841 MSK CONFIG: Loaded plugin clojuretab -- PluginUtilities.logClassLoaderInformation()
+2018.01.12 11:06:23.843 MSK CONFIG: Loaded plugin edu.stanford.smi.protegex.standard_extensions - Graph Widget, Table Widget -- PluginUtilities.logClassLoaderInformation()
+2018.01.12 11:06:23.889 MSK CONFIG: Loaded plugin ru.igis.omtab -- PluginUtilities.logClassLoaderInformation()
+2018.01.12 11:06:24.860 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2018.01.12 11:06:30.363 MSK INFO: Load time for file:/Users/ru/clojure/simpro-scene/pprj_base/igis.pprj = 0 sec (project) + 0 sec (ui) -- ProjectManager$3.run()

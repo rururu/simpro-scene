@@ -15,21 +15,14 @@ public class RuMapMouseAdapter {
 	
 	private List<JFrame> open_frames = new ArrayList<JFrame>();
 
-    public boolean mouseOn(MapOb mo, Layer runaLayer) {
-    	if(mo != null && runaLayer != null) {
-        	String tooltip = mo.getToolTip();
-        	if(tooltip == null)
-        		tooltip = mo.getName();
-    		runaLayer.fireRequestToolTip(tooltip);
-    		return true;
-    	} else if(mo == null && runaLayer != null) {
-    		runaLayer.fireHideToolTip();
-    		return true;
-    	}
-    	return false;
+    public boolean mouseLeftButtonClickedOn(MapOb mo, double[] llp, Layer runaLayer) {
+    	for(JFrame lpf: open_frames)
+    		lpf.dispose();
+    	open_frames.clear();
+    	return mouseLeftButtonAction(mo, llp, runaLayer);
     }
 
-    public boolean mouseButton1ClickedOn(MapOb mo, Layer runaLayer) {
+    public boolean mouseRightButtonClickedOn(MapOb mo, double[] llp, Layer runaLayer) {
     	if(mo != null) {
     		String desc = mo.getDescription();
     		if(desc != null){
@@ -40,20 +33,21 @@ public class RuMapMouseAdapter {
         		df.setVisible(true);
         		open_frames.add(df);
         		return true;
-    		} 
-    	}
-    	return false;
+    		} else
+    			return false;
+    	} else
+    		return false;
+    }
+    
+    public boolean navobControl(MapOb mo) {
+    	if(mo != null && mo instanceof NavOb) {
+    		((NavOb)mo).control();
+    		return true;
+    	} else
+    		return false;
     }
 
-    public boolean mouseButton3ClickedOn(MapOb mo, Layer runaLayer) {
-    	for(JFrame lpf: open_frames)
-    		lpf.dispose();
-    	open_frames.clear();
-    	((NavOb) mo).control();
-    	return true;
-    }
-
-    public boolean mouseButton2ClickedOn(MapOb mo, Layer runaLayer) {
-    	return false;
+    public boolean mouseLeftButtonAction(MapOb mo, double[] llp, Layer runaLayer) {
+    	return navobControl(mo);
     }
 }

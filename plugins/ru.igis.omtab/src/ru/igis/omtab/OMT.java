@@ -38,7 +38,7 @@ public class OMT extends MapHandlerChild {
 	
     private static Map<Instance, Playground> mopgMap = new HashMap<Instance, Playground>();
     private static Map<Instance, RepeatAction> raMap = new HashMap<Instance, RepeatAction>();
-    private static Collection<TaskExecutor> taskExecutors = new ArrayList<TaskExecutor>();
+    private static Collection<MissionExecutor> missionExecutors = new ArrayList<MissionExecutor>();
     private static RunaControlPanel runaControlPanel;
     protected static Playground[] playgrounds;
     protected static Clock clock;
@@ -148,9 +148,11 @@ public class OMT extends MapHandlerChild {
     	}
     }
 
-    public void cmdAddObsToMap(){
+    public void cmdAddObsToMap() {
     	Cls moc = OpenMapTab.kb.getCls(Ontology.C_MAPOB);
+    	Cls noc = OpenMapTab.kb.getCls(Ontology.C_NAVOB);
     	Collection<Cls> clss = CollectionUtilities.createCollection(moc);
+    	clss.add(noc);
         @SuppressWarnings("unchecked")
 		Collection<Instance> inss = DisplayUtilities.pickInstances(new JFrame(),OpenMapTab.kb,clss);
         for(Instance inst: inss) {
@@ -370,38 +372,38 @@ public class OMT extends MapHandlerChild {
 	}
 
     /**
-     * Method called on button Task on Map object form click
-     * Calling all registered Task Executors
+     * Method called on button Mission on Navigation object form click
+     * Calling all registered Mission Executors
      * @param no - Navigating Object on wich form button Task was clicked
      */     
-   protected static synchronized void execTask(NavOb no){
-       for(Iterator<TaskExecutor> i=taskExecutors.iterator();i.hasNext();){
-           TaskExecutor te = (TaskExecutor)i.next();
-           te.execTask(no);
+   protected static synchronized void execMission(NavOb no){
+       for(Iterator<MissionExecutor> i=missionExecutors.iterator();i.hasNext();){
+           MissionExecutor me = (MissionExecutor)i.next();
+           me.execMission(no);
        }
    }
     
    /**
-    * Registering new Task Executor
-    * @param ta - program called on button Task on NavOb Form click
+    * Registering new Mission Executor
+    * @param ta - program called on button Mission on NavOb Form click
     */    
-   public static synchronized void addTaskExecutor(TaskExecutor ta){
-       taskExecutors.add(ta);
+   public static synchronized void addMissionExecutor(MissionExecutor ta){
+       missionExecutors.add(ta);
    }
 
    /**
-    * Remove existing Task Executor
-    * @param ta - program called on button Task on NavOb Form click
+    * Remove existing Mission Executor
+    * @param ta - program called on button Mission on NavOb Form click
     */    
-   public static synchronized void removeTaskExecutor(TaskExecutor ta){
-       taskExecutors.remove(ta);
+   public static synchronized void removeMissionExecutor(MissionExecutor ta){
+       missionExecutors.remove(ta);
    }
 
    /**
-    * Remove all registered Task Executors atonce
+    * Remove all registered Mission Executors atonce
     */    
-   public static synchronized void clearTaskExecutors(){
-       taskExecutors.clear();
+   public static synchronized void clearMissionExecutors(){
+       missionExecutors.clear();
    }
 
 	public static Playground[] getPlaygrounds() {

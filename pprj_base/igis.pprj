@@ -1,4 +1,4 @@
-; Sat Dec 30 19:53:22 MSK 2017
+; Fri Jan 12 22:23:05 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[igis_ProjectKB_Class90006]
+		[igis_ProjectKB_Class30004]
+		[igis_ProjectKB_Class60005]
+		[igis_ProjectKB_Class60006]
 		[igis_ProjectKB_Class100007]
 		[igis_ProjectKB_Class110008]
-		[igis_ProjectKB_Class110009]
-		[igis_ProjectKB_Class110010]
-		[igis_ProjectKB_Class110011]))
+		[igis_ProjectKB_Class110009]))
 
 ([CLSES_TAB] of  Widget
 
@@ -199,7 +199,6 @@
 		[DroolsScenario_ProjectKB_Instance_60025]
 		[igis_ProjectKB_Instance_20071]
 		[igis_ProjectKB_Class10027]
-		[igis_ProjectKB_Class40009]
 		[igis_ProjectKB_Class40011]
 		[igis_ProjectKB_Class90057]
 		[igis_ProjectKB_Class40004]
@@ -646,8 +645,8 @@
 
 ([igis_ProjectKB_Class100007] of  String
 
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
+	(name "ShapeLayer")
+	(string_value "label"))
 
 ([igis_ProjectKB_Class100008] of  Widget
 
@@ -1247,39 +1246,29 @@
 
 ([igis_ProjectKB_Class110008] of  String
 
-	(name "Param")
-	(string_value "label"))
-
-([igis_ProjectKB_Class110009] of  String
-
-	(name "ShapeLayer")
-	(string_value "label"))
-
-([igis_ProjectKB_Class110010] of  String
-
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([igis_ProjectKB_Class110011] of  String
+([igis_ProjectKB_Class110009] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([igis_ProjectKB_Class110012] of  Map_Entry
+([igis_ProjectKB_Class110010] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([igis_ProjectKB_Class110013] of  Map_Entry
+([igis_ProjectKB_Class110011] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([igis_ProjectKB_Class110014] of  Map_Entry
+([igis_ProjectKB_Class110012] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -3493,6 +3482,11 @@
 ([igis_ProjectKB_Class30] of  Property_List
 )
 
+([igis_ProjectKB_Class30004] of  String
+
+	(name "IGIS")
+	(string_value "label"))
+
 ([igis_ProjectKB_Class30005] of  Widget
 
 	(is_hidden FALSE)
@@ -4546,6 +4540,16 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
 
+([igis_ProjectKB_Class60005] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([igis_ProjectKB_Class60006] of  String
+
+	(name "Param")
+	(string_value "label"))
+
 ([igis_ProjectKB_Class60007] of  Property_List
 
 	(name "layout properties"))
@@ -4896,11 +4900,6 @@
 
 ([igis_ProjectKB_Class90005] of  Property_List
 )
-
-([igis_ProjectKB_Class90006] of  String
-
-	(name "IGIS")
-	(string_value "label"))
 
 ([igis_ProjectKB_Class90007] of  Widget
 
@@ -6822,15 +6821,15 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_169334_Class3] of  Map
+([KB_200598_Class3] of  Map
 )
 
 ([KB_266843_Class0] of  Map
 
 	(entries
-		[igis_ProjectKB_Class110012]
-		[igis_ProjectKB_Class110013]
-		[igis_ProjectKB_Class110014]))
+		[igis_ProjectKB_Class110010]
+		[igis_ProjectKB_Class110011]
+		[igis_ProjectKB_Class110012]))
 
 ([KB_337263_Instance_0] of  String
 

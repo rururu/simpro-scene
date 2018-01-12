@@ -1,4 +1,4 @@
-; Sat Dec 30 19:53:22 MSK 2017
+; Fri Jan 12 22:23:05 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -124,10 +124,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot fileExt
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot tooltip
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1216,10 +1212,6 @@
 		(type SYMBOL)
 		(allowed-values 0 1 2 3 4)
 		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot tooltip
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot longitude
