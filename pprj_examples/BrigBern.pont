@@ -1,4 +1,4 @@
-; Thu Jan 11 20:46:49 MSK 2018
+; Sun Jan 14 23:42:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,95 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
+	(role abstract)
+	(multislot railways
+		(type INSTANCE)
+;+		(allowed-classes Railway)
+		(create-accessor read-write))
+	(single-slot but-rem
+		(type STRING)
+		(default "Mode Remove/osm.data/mode-remove")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-add
+		(type STRING)
+		(default "Mode Add/osm.data/mode-add")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-cre
+		(type STRING)
+		(default "Create Railroad/osm.data/create-railroad")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Railway+Onto
+	(is-a USER)
 	(role abstract))
+
+(defclass Railway
+	(is-a Railway+Onto)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Railroad
+	(is-a Railway+Onto)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot railways
+		(type INSTANCE)
+;+		(allowed-classes Railway)
+		(create-accessor read-write)))
+
+(defclass ControlPanel
+	(is-a Railway+Onto)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot radius
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-cre
+		(type STRING)
+		(default "Create Railroad/osm.data/create-railroad")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-rem
+		(type STRING)
+		(default "Mode Remove/osm.data/mode-remove")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-add
+		(type STRING)
+		(default "Mode Add/osm.data/mode-add")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

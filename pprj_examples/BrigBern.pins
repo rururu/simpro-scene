@@ -1,4 +1,4 @@
-; Thu Jan 11 20:46:49 MSK 2018
+; Sun Jan 14 23:42:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -41,7 +41,7 @@
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [url (railway-api-url bbx)\n         _ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
+	(source "(try\n  (let [url (railway-api-url bbx)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
 	(title "railway-data [bbx]"))
 
 ([BrigBern_Class13] of  CloFunction
@@ -107,8 +107,8 @@
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(letfn [(omp [id r]\n              (let [[[la1 lo1] [la2 lo2]] [(first r) (last r)]\n	[lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n	[lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]]\n                (OMTPoly/createOMTPoly \n	(str id)\n	lat1\n	lon1\n	color\n	nil\n	\"false\"\n	\"false\"\n	[(str lat1 \" \" lon1) (str lat2 \" \" lon2)])))]\n  (reduce-kv #(assoc %1 %2 [(omp %2 %3) %3]) {} rails))")
-	(title "add-rail-lines [rails color]"))
+	(source "(if (fifos \"Railway\" \"id\" (str id))\n  []\n  (let [[[la1 lo1] [la2 lo2]] [(first rail) (last rail)]\n         [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n         [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n         rwi (crin \"Railway\")\n         poi (crin \"OMTPoly\")]\n    (ssv poi \"label\" (str id))\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" RW-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (ssv rwi \"id\" (str id))\n    (ssv rwi \"poly\" poi)\n    (ssv rwi \"source\" (str (vec rail)))\n    [poi]))")
+	(title "create-railway [[id rail]]"))
 
 ([BrigBern_Class20004] of  CloFunction
 
@@ -147,461 +147,6 @@
 
 	(source "(type (ffirst (seq rails)))"))
 
-([BrigBern_Class20013] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341580")
-	(latitude "46 17.89")
-	(lineColor "FF0000FF")
-	(longitude "7 53.28")
-	(playground-index 0)
-	(points
-		"46 17.89 7 53.28"
-		"46 17.92 7 53.22")
-	(relative FALSE))
-
-([BrigBern_Class20014] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280984078")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.51"
-		"46 17.8 7 53.46")
-	(relative FALSE))
-
-([BrigBern_Class20015] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987310")
-	(latitude "46 17.79")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.79 7 53.41"
-		"46 17.8 7 53.38")
-	(relative FALSE))
-
-([BrigBern_Class20016] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844143")
-	(latitude "46 17.79")
-	(lineColor "FF0000FF")
-	(longitude "7 53.46")
-	(playground-index 0)
-	(points
-		"46 17.79 7 53.46"
-		"46 17.83 7 53.34")
-	(relative FALSE))
-
-([BrigBern_Class20017] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341573")
-	(latitude "46 17.94")
-	(lineColor "FF0000FF")
-	(longitude "7 53.14")
-	(playground-index 0)
-	(points
-		"46 17.94 7 53.14"
-		"46 17.91 7 53.22")
-	(relative FALSE))
-
-([BrigBern_Class20018] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328836")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.36"
-		"46 17.82 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20019] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337637")
-	(latitude "46 17.83")
-	(lineColor "FF0000FF")
-	(longitude "7 53.34")
-	(playground-index 0)
-	(points
-		"46 17.83 7 53.34"
-		"46 17.9 7 53.11")
-	(relative FALSE))
-
-([BrigBern_Class20020] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987051")
-	(latitude "46 17.75")
-	(lineColor "FF0000FF")
-	(longitude "7 53.81")
-	(playground-index 0)
-	(points
-		"46 17.75 7 53.81"
-		"46 18 7 53.11")
-	(relative FALSE))
-
-([BrigBern_Class20021] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844136")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.53"
-		"46 17.9 7 52.96")
-	(relative FALSE))
-
-([BrigBern_Class20022] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337181")
-	(latitude "46 17.85")
-	(lineColor "FF0000FF")
-	(longitude "7 53.13")
-	(playground-index 0)
-	(points
-		"46 17.85 7 53.13"
-		"46 17.84 7 53.16")
-	(relative FALSE))
-
-([BrigBern_Class20023] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843494")
-	(latitude "46 17.82")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.82 7 53.51"
-		"46 17.87 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20024] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843488")
-	(latitude "46 17.86")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.86 7 53.53"
-		"46 17.88 7 53.47")
-	(relative FALSE))
-
-([BrigBern_Class20025] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987050")
-	(latitude "46 17.85")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.85 7 53.41"
-		"46 17.84 7 53.45")
-	(relative FALSE))
-
-([BrigBern_Class20026] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328834")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.36"
-		"46 17.81 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20027] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328840")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.36"
-		"46 17.78 7 53.42")
-	(relative FALSE))
-
-([BrigBern_Class20028] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843483")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.77")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.77"
-		"46 17.83 7 53.49")
-	(relative FALSE))
-
-([BrigBern_Class20029] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328835")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.38")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.38"
-		"46 17.81 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20030] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337184")
-	(latitude "46 17.82")
-	(lineColor "FF0000FF")
-	(longitude "7 53.17")
-	(playground-index 0)
-	(points
-		"46 17.82 7 53.17"
-		"46 17.84 7 53.07")
-	(relative FALSE))
-
-([BrigBern_Class20031] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337183")
-	(latitude "46 18.01")
-	(lineColor "FF0000FF")
-	(longitude "7 53.11")
-	(playground-index 0)
-	(points
-		"46 18.01 7 53.11"
-		"46 17.99 7 53.16")
-	(relative FALSE))
-
-([BrigBern_Class20032] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844144")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.51"
-		"46 17.85 7 53.08")
-	(relative FALSE))
-
-([BrigBern_Class20033] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337187")
-	(latitude "46 17.97")
-	(lineColor "FF0000FF")
-	(longitude "7 53.2")
-	(playground-index 0)
-	(points
-		"46 17.97 7 53.2"
-		"46 18.01 7 53.12")
-	(relative FALSE))
-
-([BrigBern_Class20034] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844145")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.53"
-		"46 17.84 7 53.32")
-	(relative FALSE))
-
-([BrigBern_Class20035] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337180")
-	(latitude "46 17.95")
-	(lineColor "FF0000FF")
-	(longitude "7 53.26")
-	(playground-index 0)
-	(points
-		"46 17.95 7 53.26"
-		"46 17.92 7 53.34")
-	(relative FALSE))
-
-([BrigBern_Class20036] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328839")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.42")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.42"
-		"46 17.82 7 53.31")
-	(relative FALSE))
-
-([BrigBern_Class20037] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337188")
-	(latitude "46 18.03")
-	(lineColor "FF0000FF")
-	(longitude "7 52.99")
-	(playground-index 0)
-	(points
-		"46 18.03 7 52.99"
-		"46 17.94 7 53.3")
-	(relative FALSE))
-
-([BrigBern_Class20038] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987309")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.45")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.45"
-		"46 17.82 7 53.31")
-	(relative FALSE))
-
-([BrigBern_Class20039] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337636")
-	(latitude "46 17.83")
-	(lineColor "FF0000FF")
-	(longitude "7 53.34")
-	(playground-index 0)
-	(points
-		"46 17.83 7 53.34"
-		"46 17.86 7 53.24")
-	(relative FALSE))
-
-([BrigBern_Class20040] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328833")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.38")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.38"
-		"46 17.81 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20041] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341575")
-	(latitude "46 17.9")
-	(lineColor "FF0000FF")
-	(longitude "7 53.27")
-	(playground-index 0)
-	(points
-		"46 17.9 7 53.27"
-		"46 17.87 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20042] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844146")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.57")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.57"
-		"46 17.8 7 53.43")
-	(relative FALSE))
-
-([BrigBern_Class20043] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987054")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.54")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.54"
-		"46 17.99 7 52.97")
-	(relative FALSE))
-
-([BrigBern_Class20044] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844138")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.4")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.4"
-		"46 17.91 7 52.92")
-	(relative FALSE))
-
-([BrigBern_Class20045] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987311")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.45")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.45"
-		"46 17.82 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20046] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844139")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.43")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.43"
-		"46 17.8 7 53.38")
-	(relative FALSE))
-
-([BrigBern_Class20047] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "175568319")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.41"
-		"46 17.73 7 53.64")
-	(relative FALSE))
-
 ([BrigBern_Class20048] of  CloFuncall
 
 	(source "(def omps (op-rail-lines rails \"FF0000FF\"))"))
@@ -609,461 +154,6 @@
 ([BrigBern_Class20049] of  CloFuncall
 
 	(source "omps"))
-
-([BrigBern_Class20050] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341580")
-	(latitude "46 17.89")
-	(lineColor "FF0000FF")
-	(longitude "7 53.28")
-	(playground-index 0)
-	(points
-		"46 17.89 7 53.28"
-		"46 17.92 7 53.22")
-	(relative FALSE))
-
-([BrigBern_Class20051] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280984078")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.51"
-		"46 17.8 7 53.46")
-	(relative FALSE))
-
-([BrigBern_Class20052] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987310")
-	(latitude "46 17.79")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.79 7 53.41"
-		"46 17.8 7 53.38")
-	(relative FALSE))
-
-([BrigBern_Class20053] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844143")
-	(latitude "46 17.79")
-	(lineColor "FF0000FF")
-	(longitude "7 53.46")
-	(playground-index 0)
-	(points
-		"46 17.79 7 53.46"
-		"46 17.83 7 53.34")
-	(relative FALSE))
-
-([BrigBern_Class20054] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341573")
-	(latitude "46 17.94")
-	(lineColor "FF0000FF")
-	(longitude "7 53.14")
-	(playground-index 0)
-	(points
-		"46 17.94 7 53.14"
-		"46 17.91 7 53.22")
-	(relative FALSE))
-
-([BrigBern_Class20055] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328836")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.36"
-		"46 17.82 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20056] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337637")
-	(latitude "46 17.83")
-	(lineColor "FF0000FF")
-	(longitude "7 53.34")
-	(playground-index 0)
-	(points
-		"46 17.83 7 53.34"
-		"46 17.9 7 53.11")
-	(relative FALSE))
-
-([BrigBern_Class20057] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987051")
-	(latitude "46 17.75")
-	(lineColor "FF0000FF")
-	(longitude "7 53.81")
-	(playground-index 0)
-	(points
-		"46 17.75 7 53.81"
-		"46 18 7 53.11")
-	(relative FALSE))
-
-([BrigBern_Class20058] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844136")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.53"
-		"46 17.9 7 52.96")
-	(relative FALSE))
-
-([BrigBern_Class20059] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337181")
-	(latitude "46 17.85")
-	(lineColor "FF0000FF")
-	(longitude "7 53.13")
-	(playground-index 0)
-	(points
-		"46 17.85 7 53.13"
-		"46 17.84 7 53.16")
-	(relative FALSE))
-
-([BrigBern_Class20060] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843494")
-	(latitude "46 17.82")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.82 7 53.51"
-		"46 17.87 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20061] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843488")
-	(latitude "46 17.86")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.86 7 53.53"
-		"46 17.88 7 53.47")
-	(relative FALSE))
-
-([BrigBern_Class20062] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987050")
-	(latitude "46 17.85")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.85 7 53.41"
-		"46 17.84 7 53.45")
-	(relative FALSE))
-
-([BrigBern_Class20063] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328834")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.36"
-		"46 17.81 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20064] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328840")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.36")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.36"
-		"46 17.78 7 53.42")
-	(relative FALSE))
-
-([BrigBern_Class20065] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263843483")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.77")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.77"
-		"46 17.83 7 53.49")
-	(relative FALSE))
-
-([BrigBern_Class20066] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328835")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.38")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.38"
-		"46 17.81 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20067] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337184")
-	(latitude "46 17.82")
-	(lineColor "FF0000FF")
-	(longitude "7 53.17")
-	(playground-index 0)
-	(points
-		"46 17.82 7 53.17"
-		"46 17.84 7 53.07")
-	(relative FALSE))
-
-([BrigBern_Class20068] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337183")
-	(latitude "46 18.01")
-	(lineColor "FF0000FF")
-	(longitude "7 53.11")
-	(playground-index 0)
-	(points
-		"46 18.01 7 53.11"
-		"46 17.99 7 53.16")
-	(relative FALSE))
-
-([BrigBern_Class20069] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844144")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.51")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.51"
-		"46 17.85 7 53.08")
-	(relative FALSE))
-
-([BrigBern_Class20070] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337187")
-	(latitude "46 17.97")
-	(lineColor "FF0000FF")
-	(longitude "7 53.2")
-	(playground-index 0)
-	(points
-		"46 17.97 7 53.2"
-		"46 18.01 7 53.12")
-	(relative FALSE))
-
-([BrigBern_Class20071] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844145")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.53")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.53"
-		"46 17.84 7 53.32")
-	(relative FALSE))
-
-([BrigBern_Class20072] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337180")
-	(latitude "46 17.95")
-	(lineColor "FF0000FF")
-	(longitude "7 53.26")
-	(playground-index 0)
-	(points
-		"46 17.95 7 53.26"
-		"46 17.92 7 53.34")
-	(relative FALSE))
-
-([BrigBern_Class20073] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328839")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.42")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.42"
-		"46 17.82 7 53.31")
-	(relative FALSE))
-
-([BrigBern_Class20074] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337188")
-	(latitude "46 18.03")
-	(lineColor "FF0000FF")
-	(longitude "7 52.99")
-	(playground-index 0)
-	(points
-		"46 18.03 7 52.99"
-		"46 17.94 7 53.3")
-	(relative FALSE))
-
-([BrigBern_Class20075] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987309")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.45")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.45"
-		"46 17.82 7 53.31")
-	(relative FALSE))
-
-([BrigBern_Class20076] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281337636")
-	(latitude "46 17.83")
-	(lineColor "FF0000FF")
-	(longitude "7 53.34")
-	(playground-index 0)
-	(points
-		"46 17.83 7 53.34"
-		"46 17.86 7 53.24")
-	(relative FALSE))
-
-([BrigBern_Class20077] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281328833")
-	(latitude "46 17.8")
-	(lineColor "FF0000FF")
-	(longitude "7 53.38")
-	(playground-index 0)
-	(points
-		"46 17.8 7 53.38"
-		"46 17.81 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20078] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "281341575")
-	(latitude "46 17.9")
-	(lineColor "FF0000FF")
-	(longitude "7 53.27")
-	(playground-index 0)
-	(points
-		"46 17.9 7 53.27"
-		"46 17.87 7 53.36")
-	(relative FALSE))
-
-([BrigBern_Class20079] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844146")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.57")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.57"
-		"46 17.8 7 53.43")
-	(relative FALSE))
-
-([BrigBern_Class20080] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987054")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.54")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.54"
-		"46 17.99 7 52.97")
-	(relative FALSE))
-
-([BrigBern_Class20081] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844138")
-	(latitude "46 17.76")
-	(lineColor "FF0000FF")
-	(longitude "7 53.4")
-	(playground-index 0)
-	(points
-		"46 17.76 7 53.4"
-		"46 17.91 7 52.92")
-	(relative FALSE))
-
-([BrigBern_Class20082] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "280987311")
-	(latitude "46 17.77")
-	(lineColor "FF0000FF")
-	(longitude "7 53.45")
-	(playground-index 0)
-	(points
-		"46 17.77 7 53.45"
-		"46 17.82 7 53.35")
-	(relative FALSE))
-
-([BrigBern_Class20083] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "263844139")
-	(latitude "46 17.78")
-	(lineColor "FF0000FF")
-	(longitude "7 53.43")
-	(playground-index 0)
-	(points
-		"46 17.78 7 53.43"
-		"46 17.8 7 53.38")
-	(relative FALSE))
-
-([BrigBern_Class20084] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "175568319")
-	(latitude "46 17.81")
-	(lineColor "FF0000FF")
-	(longitude "7 53.41")
-	(playground-index 0)
-	(points
-		"46 17.81 7 53.41"
-		"46 17.73 7 53.64")
-	(relative FALSE))
 
 ([BrigBern_Class20085] of  CloFuncall
 
@@ -1093,251 +183,17 @@
 
 	(source "(def omps (op-rail-lines rails \"FF00FFFF\"))"))
 
-([BrigBern_Class20092] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784738")
-	(latitude "46 18.73")
-	(lineColor "FF00FFFF")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
-([BrigBern_Class20093] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205176")
-	(latitude "46 18.73")
-	(lineColor "FF00FFFF")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
 ([BrigBern_Class20094] of  CloFuncall
 
 	(source "(def omps (op-rail-lines rails \"FFFFFF00\"))"))
-
-([BrigBern_Class20095] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784738")
-	(latitude "46 18.73")
-	(lineColor "FFFFFF00")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
-([BrigBern_Class20096] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205176")
-	(latitude "46 18.73")
-	(lineColor "FFFFFF00")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
 
 ([BrigBern_Class20097] of  CloFuncall
 
 	(source "(def omps (op-rail-lines rails \"FFFF0000\"))"))
 
-([BrigBern_Class20098] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784738")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
-([BrigBern_Class20099] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205176")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
 ([BrigBern_Class20100] of  CloFuncall
 
 	(source "(osm.data/get-railway-data [46.312 7.841] 0.2)"))
-
-([BrigBern_Class20101] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "170858310")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.49")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.49"
-		"46 18.74 7 50.59")
-	(relative FALSE))
-
-([BrigBern_Class20102] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205176")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
-([BrigBern_Class20103] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "171061498")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.73 7 50.46")
-	(relative FALSE))
-
-([BrigBern_Class20104] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784738")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.46")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.46"
-		"46 18.79 7 51.74")
-	(relative FALSE))
-
-([BrigBern_Class20105] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205168")
-	(latitude "46 18.8")
-	(lineColor "FFFF0000")
-	(longitude "7 50.03")
-	(playground-index 0)
-	(points
-		"46 18.8 7 50.03"
-		"46 18.73 7 50.33")
-	(relative FALSE))
-
-([BrigBern_Class20106] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "170858307")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.48")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.48"
-		"46 18.73 7 50.46")
-	(relative FALSE))
-
-([BrigBern_Class20107] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "148205174")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.33")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.33"
-		"46 18.73 7 50.46")
-	(relative FALSE))
-
-([BrigBern_Class20108] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784736")
-	(latitude "46 18.81")
-	(lineColor "FFFF0000")
-	(longitude "7 50.03")
-	(playground-index 0)
-	(points
-		"46 18.81 7 50.03"
-		"46 18.73 7 50.33")
-	(relative FALSE))
-
-([BrigBern_Class20109] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "170858306")
-	(latitude "46 18.71")
-	(lineColor "FFFF0000")
-	(longitude "7 50.81")
-	(playground-index 0)
-	(points
-		"46 18.71 7 50.81"
-		"46 18.73 7 50.49")
-	(relative FALSE))
-
-([BrigBern_Class20110] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "28784737")
-	(latitude "46 18.73")
-	(lineColor "FFFF0000")
-	(longitude "7 50.33")
-	(playground-index 0)
-	(points
-		"46 18.73 7 50.33"
-		"46 18.73 7 50.46")
-	(relative FALSE))
-
-([BrigBern_Class20111] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "170858308")
-	(latitude "46 18.76")
-	(lineColor "FFFF0000")
-	(longitude "7 50.22")
-	(playground-index 0)
-	(points
-		"46 18.76 7 50.22"
-		"46 18.75 7 50.26")
-	(relative FALSE))
-
-([BrigBern_Class20112] of  OMTPoly
-
-	(isPolygon FALSE)
-	(label "170858311")
-	(latitude "46 18.74")
-	(lineColor "FFFF0000")
-	(longitude "7 50.49")
-	(playground-index 0)
-	(points
-		"46 18.74 7 50.49"
-		"46 18.73 7 50.62")
-	(relative FALSE))
 
 ([BrigBern_Class20113] of  CloFuncall
 
@@ -1348,6 +204,15 @@
 	(%3AANNOTATED-INSTANCE [BrigBern_Class2])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:18:35.062 MSK")
 	(%3ACREATOR "ta"))
+
+([BrigBern_Class30000] of  CloFunction
+
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;; (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-railway llp)\n	    'REMOVE (remove-railway mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(title "set-mouse-adapter []"))
+
+([BrigBern_Class30001] of  CloFuncall
+
+	(source "(set-mouse-adapter)"))
 
 ([BrigBern_Class4] of  Openmap
 
@@ -1389,11 +254,848 @@
 		[igis_Class1]
 		[igis_Class40011]))
 
+([BrigBern_Class40004] of  ControlPanel
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-cre "Create Railroad/osm.data/create-railroad")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(from1 "A")
+	(radius 0.1)
+	(status "MODE ADD")
+	(to1 "B"))
+
+([BrigBern_Class40005] of  CloFunction
+
+	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(def MODE 'ADD)\n(def RADIUS (sv inst \"radius\"))\n(ssv inst \"status\" \"MODE ADD\")")
+	(title "mode-add [hm inst]"))
+
+([BrigBern_Class40006] of  CloFunction
+
+	(source "(if (= MODE 'ADD)\n  (do (def MODE 'REMOVE)\n    (ssv inst \"status\" \"MODE REMOVE\"))\n  (ssv inst \"status\" \"Add railways before\"))")
+	(title "mode-remove [hm inst]"))
+
+([BrigBern_Class40007] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (do (def MODE 'CREATE)\n    (ssv inst \"status\" \"MODE CREATE RAILROAD\")\n    (println :FROM frm :TO to))\n  (ssv inst \"status\" \"Add railways before\")))")
+	(title "create-railroad [hm inst]"))
+
+([BrigBern_Class40008] of  CloVar
+
+	(source "false")
+	(title "RMMA"))
+
+([BrigBern_Class40009] of  Railway
+
+	(id "BrigBern")
+	(poly [BrigBern_Class40010]))
+
+([BrigBern_Class40010] of  OMTPoly
+
+	(label "bb")
+	(latitude "46 19")
+	(lineColor "FF0000FF")
+	(longitude "8 1")
+	(playground-index 0)
+	(points
+		"46 19 8 1"
+		"46 58 7 28")
+	(relative FALSE))
+
+([BrigBern_Class40011] of  CloVar
+
+	(source "nil")
+	(title "MODE"))
+
+([BrigBern_Class40012] of  CloFunction
+
+	(source "(println :MODE MODE)\n(get-railway-data (seq llp) RADIUS)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [opr (op-rails @OSM-DATA)\n         rws (mapcat create-railway opr)]\n    (println \"Created\" (count rws) \"railways\")\n    (doseq [rw rws]\n      (OMT/addMapOb rw))))")
+	(title "add-railway [llp]"))
+
+([BrigBern_Class40013] of  CloFunction
+
+	(source "(println :MODE MODE)")
+	(title "remove-railway [mo]"))
+
+([BrigBern_Class40014] of  CloFuncall
+
+	(source "RMMA"))
+
+([BrigBern_Class40015] of  CloVar
+
+	(source "0")
+	(title "RADIUS"))
+
+([BrigBern_Class40017] of  CloVar
+
+	(source "\"FF0000FF\"")
+	(title "RR-COLOR"))
+
+([BrigBern_Class40018] of  CloVar
+
+	(source "\"FFFF0000\"")
+	(title "RW-COLOR"))
+
 ([BrigBern_Class5] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
+
+([BrigBern_Class50016] of  Railway
+
+	(id "148190418")
+	(poly [BrigBern_Class50017])
+	(source "[[46.3011896 7.9119197] [46.3012989 7.9124721] [46.3018786 7.9147917] [46.3019451 7.9150811] [46.3020088 7.9153922] [46.3020515 7.9156386] [46.3020759 7.9158825] [46.3020876 7.9164135] [46.3020779 7.9166691] [46.3020634 7.9174645] [46.3020701 7.9178074] [46.3020886 7.91815] [46.3021328 7.9185106] [46.3022637 7.9191734] [46.3024743 7.9200231] [46.302557 7.9203824] [46.3026082 7.9206879] [46.3026675 7.9211999] [46.3026954 7.9225659] [46.3027244 7.9229987] [46.3027937 7.9234157] [46.3028696 7.9237608] [46.3029541 7.9240947] [46.3032756 7.9252469] [46.3034032 7.9257278] [46.3035006 7.9261561] [46.3035513 7.9265129] [46.3035879 7.926846] [46.3035936 7.9273857]]"))
+
+([BrigBern_Class50017] of  OMTPoly
+
+	(label "148190418")
+	(latitude "46 18.07")
+	(lineColor "FFFF0000")
+	(longitude "7 54.72")
+	(playground-index 0)
+	(points
+		"46 18.07 7 54.72"
+		"46 18.22 7 55.64")
+	(relative FALSE))
+
+([BrigBern_Class50018] of  Railway
+
+	(id "175558875")
+	(poly [BrigBern_Class50019])
+	(source "[[46.3017498 7.9077906] [46.3016146 7.9080915] [46.3014803 7.908383] [46.3013686 7.9086899] [46.3012577 7.9091204] [46.3011725 7.909488] [46.3010854 7.910118] [46.3010626 7.9108208] [46.301093 7.9113829] [46.3011896 7.9119197]]"))
+
+([BrigBern_Class50019] of  OMTPoly
+
+	(label "175558875")
+	(latitude "46 18.1")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.1 7 54.47"
+		"46 18.07 7 54.72")
+	(relative FALSE))
+
+([BrigBern_Class50020] of  Railway
+
+	(id "451772451")
+	(poly [BrigBern_Class50021])
+	(source "[[46.3017878 7.9078259] [46.3016158 7.9081726] [46.3014227 7.9086912] [46.3013086 7.9090762] [46.3012165 7.9094922] [46.3011235 7.9101395] [46.3010987 7.9108182] [46.3011277 7.9114496] [46.3011896 7.9119197]]"))
+
+([BrigBern_Class50021] of  OMTPoly
+
+	(label "451772451")
+	(latitude "46 18.11")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.11 7 54.47"
+		"46 18.07 7 54.72")
+	(relative FALSE))
+
+([BrigBern_Class50022] of  Railway
+
+	(id "451772453")
+	(poly [BrigBern_Class50023])
+	(source "[[46.3018208 7.9078565] [46.3016502 7.9081966] [46.3014593 7.9086865] [46.3013478 7.9090899] [46.3012569 7.9095091] [46.3011626 7.9101785] [46.3011423 7.9108048] [46.301169 7.9114449] [46.3012431 7.9119748] [46.3013319 7.9124496] [46.3019211 7.9148194] [46.3019852 7.9150949] [46.3020455 7.9153715] [46.3020816 7.915631] [46.3021051 7.9158589] [46.3021184 7.9161792] [46.3021186 7.9164733] [46.3021017 7.9171534]]"))
+
+([BrigBern_Class50023] of  OMTPoly
+
+	(label "451772453")
+	(latitude "46 18.11")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.11 7 54.47"
+		"46 18.13 7 55.03")
+	(relative FALSE))
+
+([BrigBern_Class50024] of  Railway
+
+	(id "451740042")
+	(poly [BrigBern_Class50025])
+	(source "[[46.3026458 7.9060199] [46.3022021 7.906991] [46.3017878 7.9078259]]"))
+
+([BrigBern_Class50025] of  OMTPoly
+
+	(label "451740042")
+	(latitude "46 18.16")
+	(lineColor "FFFF0000")
+	(longitude "7 54.36")
+	(playground-index 0)
+	(points
+		"46 18.16 7 54.36"
+		"46 18.11 7 54.47")
+	(relative FALSE))
+
+([BrigBern_Class50026] of  Railway
+
+	(id "451740039")
+	(poly [BrigBern_Class50027])
+	(source "[[46.3026746 7.9060504] [46.302237 7.9070266] [46.3018208 7.9078565]]"))
+
+([BrigBern_Class50027] of  OMTPoly
+
+	(label "451740039")
+	(latitude "46 18.16")
+	(lineColor "FFFF0000")
+	(longitude "7 54.36")
+	(playground-index 0)
+	(points
+		"46 18.16 7 54.36"
+		"46 18.11 7 54.47")
+	(relative FALSE))
+
+([BrigBern_Class50028] of  Railway
+
+	(id "175558879")
+	(poly [BrigBern_Class50029])
+	(source "[[46.3011367 7.9091002] [46.3012295 7.9087682] [46.3013156 7.9085086] [46.3013926 7.9083354] [46.3015827 7.9080347] [46.3017498 7.9077906]]"))
+
+([BrigBern_Class50029] of  OMTPoly
+
+	(label "175558879")
+	(latitude "46 18.07")
+	(lineColor "FFFF0000")
+	(longitude "7 54.55")
+	(playground-index 0)
+	(points
+		"46 18.07 7 54.55"
+		"46 18.1 7 54.47")
+	(relative FALSE))
+
+([BrigBern_Class50030] of  Railway
+
+	(id "451740036")
+	(poly [BrigBern_Class50031])
+	(source "[[46.3042696 7.8980048] [46.304168 7.8982732] [46.3039817 7.8987437] [46.3035394 7.8998405] [46.3033973 7.9002313] [46.3032932 7.9005841] [46.3032171 7.9009261] [46.3031587 7.9012548] [46.3031166 7.9016057] [46.3030994 7.9019579] [46.3031015 7.9025793] [46.3031334 7.9033118] [46.3031362 7.9037526] [46.3030983 7.9042871] [46.3030206 7.9047752] [46.3029171 7.905236] [46.3027898 7.9056339] [46.3026458 7.9060199]]"))
+
+([BrigBern_Class50031] of  OMTPoly
+
+	(label "451740036")
+	(latitude "46 18.26")
+	(lineColor "FFFF0000")
+	(longitude "7 53.88")
+	(playground-index 0)
+	(points
+		"46 18.26 7 53.88"
+		"46 18.16 7 54.36")
+	(relative FALSE))
+
+([BrigBern_Class50032] of  Railway
+
+	(id "451772456")
+	(poly [BrigBern_Class50033])
+	(source "[[46.3031402 7.9025629] [46.3031617 7.9032931] [46.3031713 7.9037593] [46.3031359 7.9042979] [46.303056 7.9047833] [46.3029491 7.9052556] [46.3028287 7.9056683] [46.3026746 7.9060504]]"))
+
+([BrigBern_Class50033] of  OMTPoly
+
+	(label "451772456")
+	(latitude "46 18.19")
+	(lineColor "FFFF0000")
+	(longitude "7 54.15")
+	(playground-index 0)
+	(points
+		"46 18.19 7 54.15"
+		"46 18.16 7 54.36")
+	(relative FALSE))
+
+([BrigBern_Class50034] of  Railway
+
+	(id "175558880")
+	(poly [BrigBern_Class50035])
+	(source "[[46.3015827 7.9080347] [46.3013499 7.9083322] [46.3012283 7.9085174] [46.301173 7.9086247] [46.3011092 7.9087809] [46.3010317 7.9090253]]"))
+
+([BrigBern_Class50035] of  OMTPoly
+
+	(label "175558880")
+	(latitude "46 18.09")
+	(lineColor "FFFF0000")
+	(longitude "7 54.48")
+	(playground-index 0)
+	(points
+		"46 18.09 7 54.48"
+		"46 18.06 7 54.54")
+	(relative FALSE))
+
+([BrigBern_Class50036] of  Railway
+
+	(id "451740045")
+	(poly [BrigBern_Class50037])
+	(source "[[46.3026458 7.9060199] [46.3022427 7.906812] [46.3017498 7.9077906]]"))
+
+([BrigBern_Class50037] of  OMTPoly
+
+	(label "451740045")
+	(latitude "46 18.16")
+	(lineColor "FFFF0000")
+	(longitude "7 54.36")
+	(playground-index 0)
+	(points
+		"46 18.16 7 54.36"
+		"46 18.1 7 54.47")
+	(relative FALSE))
+
+([BrigBern_Class50038] of  Railway
+
+	(id "28784942")
+	(poly [BrigBern_Class50039])
+	(source "[[46.3046134 7.8947983] [46.3046436 7.8951502] [46.3046859 7.8957289] [46.3046833 7.8962572] [46.3046619 7.8965301]]"))
+
+([BrigBern_Class50039] of  OMTPoly
+
+	(label "28784942")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.69")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.69"
+		"46 18.28 7 53.79")
+	(relative FALSE))
+
+([BrigBern_Class50040] of  Railway
+
+	(id "148190416")
+	(poly [BrigBern_Class50041])
+	(source "[[46.30458 7.8948055] [46.3046005 7.895153] [46.3046419 7.8957178] [46.3046451 7.8962709] [46.3046253 7.8965239]]"))
+
+([BrigBern_Class50041] of  OMTPoly
+
+	(label "148190416")
+	(latitude "46 18.27")
+	(lineColor "FFFF0000")
+	(longitude "7 53.69")
+	(playground-index 0)
+	(points
+		"46 18.27 7 53.69"
+		"46 18.28 7 53.79")
+	(relative FALSE))
+
+([BrigBern_Class50042] of  Railway
+
+	(id "449254214")
+	(poly [BrigBern_Class50043])
+	(source "[[46.3046619 7.8965301] [46.3046056 7.8969215]]"))
+
+([BrigBern_Class50043] of  OMTPoly
+
+	(label "449254214")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.79")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.79"
+		"46 18.28 7 53.82")
+	(relative FALSE))
+
+([BrigBern_Class50044] of  Railway
+
+	(id "449254215")
+	(poly [BrigBern_Class50045])
+	(source "[[46.3046253 7.8965239] [46.3045726 7.8969111]]"))
+
+([BrigBern_Class50045] of  OMTPoly
+
+	(label "449254215")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.79")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.79"
+		"46 18.27 7 53.81")
+	(relative FALSE))
+
+([BrigBern_Class50046] of  Railway
+
+	(id "449254216")
+	(poly [BrigBern_Class50047])
+	(source "[[46.3046056 7.8969215] [46.3045515 7.8972122] [46.3044706 7.8975206] [46.3043929 7.897767] [46.3042991 7.8980288]]"))
+
+([BrigBern_Class50047] of  OMTPoly
+
+	(label "449254216")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.82")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.82"
+		"46 18.26 7 53.88")
+	(relative FALSE))
+
+([BrigBern_Class50048] of  Railway
+
+	(id "449254217")
+	(poly [BrigBern_Class50049])
+	(source "[[46.3045726 7.8969111] [46.3045228 7.8971867] [46.3044391 7.8975072] [46.3043556 7.8977692] [46.3042696 7.8980048]]"))
+
+([BrigBern_Class50049] of  OMTPoly
+
+	(label "449254217")
+	(latitude "46 18.27")
+	(lineColor "FFFF0000")
+	(longitude "7 53.81")
+	(playground-index 0)
+	(points
+		"46 18.27 7 53.81"
+		"46 18.26 7 53.88")
+	(relative FALSE))
+
+([BrigBern_Class50050] of  Railway
+
+	(id "451740034")
+	(poly [BrigBern_Class50051])
+	(source "[[46.3042991 7.8980288] [46.3041931 7.8983136] [46.3037738 7.8993488] [46.3035706 7.8998671] [46.3034294 7.9002657] [46.3033281 7.9005995] [46.3032555 7.9009323] [46.3031955 7.9012586] [46.3031612 7.9015995] [46.3031379 7.9019671] [46.3031402 7.9025629]]"))
+
+([BrigBern_Class50051] of  OMTPoly
+
+	(label "451740034")
+	(latitude "46 18.26")
+	(lineColor "FFFF0000")
+	(longitude "7 53.88")
+	(playground-index 0)
+	(points
+		"46 18.26 7 53.88"
+		"46 18.19 7 54.15")
+	(relative FALSE))
+
+([BrigBern_Class50052] of  Railway
+
+	(id "28784941")
+	(poly [BrigBern_Class50053])
+	(source "[[46.3071087 7.8807917] [46.3069069 7.8808899] [46.3066966 7.8810479] [46.3065073 7.8812229] [46.3062906 7.881451] [46.3060746 7.881749] [46.3058591 7.8821102] [46.3056547 7.8825723] [46.3055115 7.8830403] [46.3054158 7.8834614] [46.3053491 7.8840388] [46.3052648 7.8852714] [46.3052253 7.885618] [46.3051708 7.8859525] [46.3045505 7.8890826] [46.3043908 7.8900586] [46.3043326 7.8907675] [46.3043203 7.8916821] [46.3043761 7.8925111] [46.3046134 7.8947983]]"))
+
+([BrigBern_Class50053] of  OMTPoly
+
+	(label "28784941")
+	(latitude "46 18.43")
+	(lineColor "FFFF0000")
+	(longitude "7 52.85")
+	(playground-index 0)
+	(points
+		"46 18.43 7 52.85"
+		"46 18.28 7 53.69")
+	(relative FALSE))
+
+([BrigBern_Class50054] of  Railway
+
+	(id "148190420")
+	(poly [BrigBern_Class50055])
+	(source "[[46.3070924 7.8807314] [46.3068983 7.8808388] [46.3066856 7.8809888] [46.3064766 7.8811842] [46.3062678 7.8814135] [46.306053 7.8817] [46.3058374 7.8820614] [46.3056197 7.8825462] [46.3054722 7.883023] [46.3053889 7.8834298] [46.3053141 7.8840351] [46.3052386 7.88528] [46.3051998 7.8856132] [46.3051438 7.8859427] [46.3045126 7.8890669] [46.3043578 7.8900522] [46.3042968 7.8907554] [46.3042898 7.8916831] [46.3043451 7.8925185] [46.30458 7.8948055]]"))
+
+([BrigBern_Class50055] of  OMTPoly
+
+	(label "148190420")
+	(latitude "46 18.43")
+	(lineColor "FFFF0000")
+	(longitude "7 52.84")
+	(playground-index 0)
+	(points
+		"46 18.43 7 52.84"
+		"46 18.27 7 53.69")
+	(relative FALSE))
+
+([BrigBern_Class50056] of  Railway
+
+	(id "28784940")
+	(poly [BrigBern_Class50057])
+	(source "[[46.3136052 7.8797342] [46.313301 7.8803256] [46.3129799 7.880774] [46.3126524 7.8811243] [46.3122817 7.8814013] [46.3118777 7.8815989] [46.3114727 7.8817149] [46.3110253 7.8817418] [46.3105827 7.8816654] [46.3101724 7.8814943] [46.3097983 7.8812978] [46.3091466 7.8809017] [46.3088281 7.8807518] [46.3085097 7.8806429] [46.308158 7.8806061] [46.3078053 7.8806216] [46.3074494 7.8806756] [46.3071087 7.8807917]]"))
+
+([BrigBern_Class50057] of  OMTPoly
+
+	(label "28784940")
+	(latitude "46 18.82")
+	(lineColor "FFFF0000")
+	(longitude "7 52.78")
+	(playground-index 0)
+	(points
+		"46 18.82 7 52.78"
+		"46 18.43 7 52.85")
+	(relative FALSE))
+
+([BrigBern_Class50058] of  Railway
+
+	(id "148190419")
+	(poly [BrigBern_Class50059])
+	(source "[[46.3135726 7.8797143] [46.3132811 7.8802869] [46.3129547 7.8807462] [46.3126282 7.8810833] [46.3122678 7.8813552] [46.3118625 7.8815564] [46.3114737 7.8816668] [46.3110272 7.881688] [46.3105886 7.8816201] [46.3101812 7.8814504] [46.3098061 7.8812398] [46.3091564 7.8808578] [46.3088448 7.880698] [46.3085194 7.880599] [46.3081628 7.8805495] [46.3078043 7.8805651] [46.3074394 7.8806176] [46.3070924 7.8807314]]"))
+
+([BrigBern_Class50059] of  OMTPoly
+
+	(label "148190419")
+	(latitude "46 18.81")
+	(lineColor "FFFF0000")
+	(longitude "7 52.78")
+	(playground-index 0)
+	(points
+		"46 18.81 7 52.78"
+		"46 18.43 7 52.84")
+	(relative FALSE))
+
+([BrigBern_Class50060] of  Railway
+
+	(id "166597804")
+	(poly [BrigBern_Class50061])
+	(source "[[46.3139914 7.8779538] [46.3139357 7.8783969] [46.3138695 7.8787259] [46.3137949 7.8790191] [46.3136997 7.8793457]]"))
+
+([BrigBern_Class50061] of  OMTPoly
+
+	(label "166597804")
+	(latitude "46 18.84")
+	(lineColor "FFFF0000")
+	(longitude "7 52.68")
+	(playground-index 0)
+	(points
+		"46 18.84 7 52.68"
+		"46 18.82 7 52.76")
+	(relative FALSE))
+
+([BrigBern_Class50062] of  Railway
+
+	(id "166597805")
+	(poly [BrigBern_Class50063])
+	(source "[[46.3140305 7.8779657] [46.3139718 7.8784131] [46.3139061 7.8787428] [46.3138294 7.8790306] [46.3137286 7.8793683]]"))
+
+([BrigBern_Class50063] of  OMTPoly
+
+	(label "166597805")
+	(latitude "46 18.84")
+	(lineColor "FFFF0000")
+	(longitude "7 52.68")
+	(playground-index 0)
+	(points
+		"46 18.84 7 52.68"
+		"46 18.82 7 52.76")
+	(relative FALSE))
+
+([BrigBern_Class50064] of  Railway
+
+	(id "224857230")
+	(poly [BrigBern_Class50065])
+	(source "[[46.3134375 7.8734278] [46.3135476 7.8743799] [46.3136384 7.8749904] [46.3138055 7.8757551] [46.3139012 7.876173] [46.3139821 7.8765956] [46.3140293 7.8770052] [46.3140413 7.8772644] [46.3140439 7.8776364] [46.3140305 7.8779657]]"))
+
+([BrigBern_Class50065] of  OMTPoly
+
+	(label "224857230")
+	(latitude "46 18.81")
+	(lineColor "FFFF0000")
+	(longitude "7 52.41")
+	(playground-index 0)
+	(points
+		"46 18.81 7 52.41"
+		"46 18.84 7 52.68")
+	(relative FALSE))
+
+([BrigBern_Class50066] of  Railway
+
+	(id "224857232")
+	(poly [BrigBern_Class50067])
+	(source "[[46.313408 7.8734327] [46.3134148 7.8735035] [46.3135207 7.8743854] [46.3136145 7.8749994] [46.3136796 7.875357] [46.3137802 7.875772] [46.3138745 7.8761785] [46.313954 7.8765955] [46.3139973 7.8770006] [46.3140121 7.8772645] [46.3140107 7.8776211] [46.3139914 7.8779538]]"))
+
+([BrigBern_Class50067] of  OMTPoly
+
+	(label "224857232")
+	(latitude "46 18.8")
+	(lineColor "FFFF0000")
+	(longitude "7 52.41")
+	(playground-index 0)
+	(points
+		"46 18.8 7 52.41"
+		"46 18.84 7 52.68")
+	(relative FALSE))
+
+([BrigBern_Class50068] of  Railway
+
+	(id "451750290")
+	(poly [BrigBern_Class50069])
+	(source "[[46.3136997 7.8793457] [46.3136313 7.8795663] [46.3135726 7.8797143]]"))
+
+([BrigBern_Class50069] of  OMTPoly
+
+	(label "451750290")
+	(latitude "46 18.82")
+	(lineColor "FFFF0000")
+	(longitude "7 52.76")
+	(playground-index 0)
+	(points
+		"46 18.82 7 52.76"
+		"46 18.81 7 52.78")
+	(relative FALSE))
+
+([BrigBern_Class50070] of  Railway
+
+	(id "451750291")
+	(poly [BrigBern_Class50071])
+	(source "[[46.3137286 7.8793683] [46.3136577 7.8795836] [46.3136052 7.8797342]]"))
+
+([BrigBern_Class50071] of  OMTPoly
+
+	(label "451750291")
+	(latitude "46 18.82")
+	(lineColor "FFFF0000")
+	(longitude "7 52.76")
+	(playground-index 0)
+	(points
+		"46 18.82 7 52.76"
+		"46 18.82 7 52.78")
+	(relative FALSE))
+
+([BrigBern_Class50072] of  Railway
+
+	(id "28784740")
+	(poly [BrigBern_Class50073])
+	(source "[[46.3127889 7.8642866] [46.3127828 7.8650084] [46.3127918 7.8659747] [46.312818 7.8671897] [46.3128626 7.8677136] [46.3130413 7.8689895] [46.3131324 7.8698889] [46.313246 7.8716056] [46.3134016 7.8730528]]"))
+
+([BrigBern_Class50073] of  OMTPoly
+
+	(label "28784740")
+	(latitude "46 18.77")
+	(lineColor "FFFF0000")
+	(longitude "7 51.86")
+	(playground-index 0)
+	(points
+		"46 18.77 7 51.86"
+		"46 18.8 7 52.38")
+	(relative FALSE))
+
+([BrigBern_Class50074] of  Railway
+
+	(id "148190421")
+	(poly [BrigBern_Class50075])
+	(source "[[46.3127519 7.8642843] [46.3127458 7.8650109] [46.3127584 7.8659686] [46.3127825 7.8672044] [46.3128273 7.8677123] [46.313008 7.8689949] [46.3130979 7.8699044] [46.3132108 7.8716168] [46.3133718 7.8730555]]"))
+
+([BrigBern_Class50075] of  OMTPoly
+
+	(label "148190421")
+	(latitude "46 18.77")
+	(lineColor "FFFF0000")
+	(longitude "7 51.86")
+	(playground-index 0)
+	(points
+		"46 18.77 7 51.86"
+		"46 18.8 7 52.38")
+	(relative FALSE))
+
+([BrigBern_Class50076] of  Railway
+
+	(id "28784738")
+	(poly [BrigBern_Class50077])
+	(source "[[46.3121973 7.8410594] [46.3122112 7.841558] [46.3122375 7.842078] [46.3122518 7.8425209] [46.3122413 7.8430245] [46.3121067 7.8441881] [46.3117901 7.8467762] [46.3117277 7.8472693] [46.3116873 7.8477447] [46.3116807 7.8481734] [46.3117115 7.8486366] [46.3117922 7.8491489] [46.3119079 7.8495975] [46.3121085 7.850149] [46.3124506 7.8510089] [46.3126596 7.8515382] [46.3128406 7.8520804] [46.3129894 7.8526936] [46.3132249 7.8539364] [46.3133477 7.8546226] [46.3133918 7.8550137] [46.313403 7.8553498] [46.3134086 7.8560362] [46.3134069 7.8565519] [46.3134322 7.8570125] [46.3135202 7.8579338] [46.3135813 7.8585994] [46.3135866 7.8591558] [46.3135615 7.8596034] [46.3134551 7.8607718] [46.3133751 7.8615094] [46.3132886 7.8619381] [46.313164 7.8624159]]"))
+
+([BrigBern_Class50077] of  OMTPoly
+
+	(label "28784738")
+	(latitude "46 18.73")
+	(lineColor "FFFF0000")
+	(longitude "7 50.46")
+	(playground-index 0)
+	(points
+		"46 18.73 7 50.46"
+		"46 18.79 7 51.74")
+	(relative FALSE))
+
+([BrigBern_Class50078] of  Railway
+
+	(id "28784739")
+	(poly [BrigBern_Class50079])
+	(source "[[46.313164 7.8624159] [46.3130171 7.8628867] [46.3128779 7.8634601] [46.3128145 7.863871] [46.3127889 7.8642866]]"))
+
+([BrigBern_Class50079] of  OMTPoly
+
+	(label "28784739")
+	(latitude "46 18.79")
+	(lineColor "FFFF0000")
+	(longitude "7 51.74")
+	(playground-index 0)
+	(points
+		"46 18.79 7 51.74"
+		"46 18.77 7 51.86")
+	(relative FALSE))
+
+([BrigBern_Class50080] of  Railway
+
+	(id "148190417")
+	(poly [BrigBern_Class50081])
+	(source "[[46.3131299 7.8623956] [46.3129787 7.8628731] [46.312845 7.8634405] [46.3127812 7.8638628] [46.3127519 7.8642843]]"))
+
+([BrigBern_Class50081] of  OMTPoly
+
+	(label "148190417")
+	(latitude "46 18.79")
+	(lineColor "FFFF0000")
+	(longitude "7 51.74")
+	(playground-index 0)
+	(points
+		"46 18.79 7 51.74"
+		"46 18.77 7 51.86")
+	(relative FALSE))
+
+([BrigBern_Class50082] of  Railway
+
+	(id "148205176")
+	(poly [BrigBern_Class50083])
+	(source "[[46.3121627 7.8410641] [46.3121766 7.8414069] [46.3122011 7.8420761] [46.3122183 7.8425393] [46.3121916 7.8431325] [46.3120662 7.8441766] [46.3119057 7.8454753] [46.3117471 7.8467616] [46.3116873 7.8472689] [46.3116482 7.8477369] [46.3116447 7.8481834] [46.3116746 7.8486442] [46.3117587 7.8491557] [46.3118768 7.8496195] [46.3120719 7.850164] [46.3124123 7.8510188] [46.3126222 7.8515547] [46.312807 7.8520932] [46.3129546 7.8527134] [46.3131908 7.853944] [46.3133107 7.8546071] [46.3133539 7.8550154] [46.3133663 7.8553427] [46.3133679 7.8560416] [46.3133703 7.8565575] [46.3133962 7.8570288] [46.3134806 7.8579377] [46.3135425 7.8586004] [46.3135526 7.8591444] [46.3135296 7.8596008] [46.3134234 7.8607524] [46.3133418 7.861492] [46.3132534 7.8619221] [46.3131299 7.8623956]]"))
+
+([BrigBern_Class50083] of  OMTPoly
+
+	(label "148205176")
+	(latitude "46 18.73")
+	(lineColor "FFFF0000")
+	(longitude "7 50.46")
+	(playground-index 0)
+	(points
+		"46 18.73 7 50.46"
+		"46 18.79 7 51.74")
+	(relative FALSE))
+
+([BrigBern_Class50084] of  Railway
+
+	(id "175572918")
+	(poly [BrigBern_Class50085])
+	(source "[[46.3135476 7.8743799] [46.3134148 7.8735035]]"))
+
+([BrigBern_Class50085] of  OMTPoly
+
+	(label "175572918")
+	(latitude "46 18.81")
+	(lineColor "FFFF0000")
+	(longitude "7 52.46")
+	(playground-index 0)
+	(points
+		"46 18.81 7 52.46"
+		"46 18.8 7 52.41")
+	(relative FALSE))
+
+([BrigBern_Class50086] of  Railway
+
+	(id "224857240")
+	(poly [BrigBern_Class50087])
+	(source "[[46.3133718 7.8730555] [46.313408 7.8734327]]"))
+
+([BrigBern_Class50087] of  OMTPoly
+
+	(label "224857240")
+	(latitude "46 18.8")
+	(lineColor "FFFF0000")
+	(longitude "7 52.38")
+	(playground-index 0)
+	(points
+		"46 18.8 7 52.38"
+		"46 18.8 7 52.41")
+	(relative FALSE))
+
+([BrigBern_Class50088] of  Railway
+
+	(id "224857241")
+	(poly [BrigBern_Class50089])
+	(source "[[46.3134016 7.8730528] [46.3134375 7.8734278]]"))
+
+([BrigBern_Class50089] of  OMTPoly
+
+	(label "224857241")
+	(latitude "46 18.8")
+	(lineColor "FFFF0000")
+	(longitude "7 52.38")
+	(playground-index 0)
+	(points
+		"46 18.8 7 52.38"
+		"46 18.81 7 52.41")
+	(relative FALSE))
+
+([BrigBern_Class50090] of  Railway
+
+	(id "224857242")
+	(poly [BrigBern_Class50091])
+	(source "[[46.3036135 7.9284332] [46.3036409 7.9290828] [46.3037068 7.9295494] [46.303796 7.929951] [46.3040047 7.9306864] [46.3046502 7.9330115] [46.3050875 7.93457] [46.3051899 7.9349979] [46.3052584 7.935427] [46.3053067 7.9358886] [46.3053657 7.9364545] [46.3054268 7.9369769] [46.305556 7.9375563] [46.3058818 7.9386609] [46.3059872 7.9390926] [46.3060774 7.9396145] [46.3062016 7.940366] [46.3062989 7.9408541] [46.3064296 7.9413316] [46.3083557 7.946954]]"))
+
+([BrigBern_Class50091] of  OMTPoly
+
+	(label "224857242")
+	(latitude "46 18.22")
+	(lineColor "FFFF0000")
+	(longitude "7 55.71")
+	(playground-index 0)
+	(points
+		"46 18.22 7 55.71"
+		"46 18.5 7 56.82")
+	(relative FALSE))
+
+([BrigBern_Class50092] of  Railway
+
+	(id "224857243")
+	(poly [BrigBern_Class50093])
+	(source "[[46.3035755 7.9284332] [46.303603 7.9290926] [46.3036743 7.9295641] [46.3037647 7.9299621] [46.3039732 7.9307008] [46.3046092 7.9330276] [46.3050521 7.934589] [46.3051526 7.93501] [46.3052231 7.935427] [46.3052718 7.9358849] [46.3053248 7.9364647] [46.3053917 7.9369846] [46.3055241 7.9375612] [46.3058477 7.9386703] [46.3059518 7.9391075] [46.3060437 7.9396168] [46.3061813 7.9404585] [46.30626 7.9408515] [46.3063573 7.9412337] [46.3080608 7.9462122]]"))
+
+([BrigBern_Class50093] of  OMTPoly
+
+	(label "224857243")
+	(latitude "46 18.21")
+	(lineColor "FFFF0000")
+	(longitude "7 55.71")
+	(playground-index 0)
+	(points
+		"46 18.21 7 55.71"
+		"46 18.48 7 56.77")
+	(relative FALSE))
+
+([BrigBern_Class50094] of  Railway
+
+	(id "28784943")
+	(poly [BrigBern_Class50095])
+	(source "[[46.3021017 7.9171534] [46.3020946 7.9174417] [46.3021031 7.9177918] [46.302122 7.9181401] [46.3021608 7.9184872] [46.3022784 7.9191285] [46.3025018 7.9200185] [46.3025829 7.9203636] [46.3026474 7.9207018] [46.3026962 7.921185] [46.3027256 7.9225662] [46.3027578 7.9229959] [46.3028225 7.9233968] [46.3029023 7.9237558] [46.3029842 7.9240658] [46.3033067 7.9252311] [46.3034458 7.9257492] [46.3035336 7.9261494] [46.3035969 7.9265268] [46.3036254 7.926872] [46.303629 7.9273857]]"))
+
+([BrigBern_Class50095] of  OMTPoly
+
+	(label "28784943")
+	(latitude "46 18.13")
+	(lineColor "FFFF0000")
+	(longitude "7 55.03")
+	(playground-index 0)
+	(points
+		"46 18.13 7 55.03"
+		"46 18.22 7 55.64")
+	(relative FALSE))
+
+([BrigBern_Class50096] of  Railway
+
+	(id "224857236")
+	(poly [BrigBern_Class50097])
+	(source "[[46.3035936 7.9273857] [46.3035755 7.9284332]]"))
+
+([BrigBern_Class50097] of  OMTPoly
+
+	(label "224857236")
+	(latitude "46 18.22")
+	(lineColor "FFFF0000")
+	(longitude "7 55.64")
+	(playground-index 0)
+	(points
+		"46 18.22 7 55.64"
+		"46 18.21 7 55.71")
+	(relative FALSE))
+
+([BrigBern_Class50098] of  Railway
+
+	(id "224857239")
+	(poly [BrigBern_Class50099])
+	(source "[[46.303629 7.9273857] [46.3036135 7.9284332]]"))
+
+([BrigBern_Class50099] of  OMTPoly
+
+	(label "224857239")
+	(latitude "46 18.22")
+	(lineColor "FFFF0000")
+	(longitude "7 55.64")
+	(playground-index 0)
+	(points
+		"46 18.22 7 55.64"
+		"46 18.22 7 55.71")
+	(relative FALSE))
 
 ([BrigBern_Class6] of  ShareOnto
 
@@ -1420,12 +1122,24 @@
 		[BrigBern_Class20000]
 		[BrigBern_Class20001]
 		[BrigBern_Class20004]
-		[BrigBern_Class20003])
+		[BrigBern_Class20003]
+		[BrigBern_Class40012]
+		[BrigBern_Class40013]
+		[BrigBern_Class30000]
+		[BrigBern_Class40005]
+		[BrigBern_Class40006]
+		[BrigBern_Class40007])
 	(cloNamespace [BrigBern_Class8])
-	(cloVars [BrigBern_Class20])
+	(cloVars
+		[BrigBern_Class20]
+		[BrigBern_Class40008]
+		[BrigBern_Class40011]
+		[BrigBern_Class40015]
+		[BrigBern_Class40017]
+		[BrigBern_Class40018])
 	(title "OSM Data"))
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:require\n   [clojure.data.json :as json]\n   [clojure.xml :as x])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly)")
+	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
 	(title "osm.data"))
