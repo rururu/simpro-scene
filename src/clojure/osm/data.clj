@@ -82,13 +82,15 @@
          [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
          [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
          rwi (crin "Railway")
-         poi (crin "OMTPoly")]
-    (ssv poi "label" (str id))
+         poi (crin "OMTPoly")
+         id (str id)]
+    (ssv poi "label" id)
+    (ssv poi "description" id)
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
     (ssv poi "lineColor" RW-COLOR)
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
-    (ssv rwi "id" (str id))
+    (ssv rwi "id" id)
     (ssv rwi "poly" poi)
     (ssv rwi "source" (str (vec rail)))
     [poi])))
@@ -105,12 +107,21 @@
       (OMT/addMapOb rw)))))
 
 (defn remove-railway [mo]
-  (println :MODE MODE))
+  (println :MODE MODE)
+(if mo
+  (let [moi (.getInstance mo)
+         rwi (->> moi .getReferences first .getFrame)
+         id (sv rwi "id")
+         rfs (.getReferences rwi)]
+    (when (< (count rfs) 2)
+      (delin rwi)
+      (OMT/removeMapOb mo true)
+      (println "Remowed railway" id)))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                          ;; (println MODE mo llp runa)
+                          ;;(println MODE mo llp runa)
 	  (condp = MODE
 	    'ADD (add-railway llp)
 	    'REMOVE (remove-railway mo)
