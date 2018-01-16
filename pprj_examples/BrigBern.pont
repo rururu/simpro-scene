@@ -1,4 +1,4 @@
-; Mon Jan 15 14:39:38 MSK 2018
+; Tue Jan 16 20:59:29 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -23,7 +23,7 @@
 		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Railroad/osm.data/create-railroad")
+		(default "Create Railroad/osm.data/mode-create")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -85,7 +85,7 @@
 		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Railroad/osm.data/create-railroad")
+		(default "Create Railroad/osm.data/mode-create")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-rem

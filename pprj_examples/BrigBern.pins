@@ -1,4 +1,4 @@
-; Mon Jan 15 14:39:38 MSK 2018
+; Tue Jan 16 20:59:29 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -207,7 +207,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-railway llp)\n	    'REMOVE (remove-railway mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-railway llp)\n	    'REMOVE (remove-railway mo)\n                            'CREATE (create-railroad mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class30001] of  CloFuncall
@@ -270,16 +270,6 @@
 
 	(source "(count (.getReferences (fifos \"Railway\" \"id\" \"148190416\")))"))
 
-([BrigBern_Class40004] of  ControlPanel
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-cre "Create Railroad/osm.data/create-railroad")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(from1 "A")
-	(radius 0.1)
-	(status "MODE ADD")
-	(to1 "B"))
-
 ([BrigBern_Class40005] of  CloFunction
 
 	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(def MODE 'ADD)\n(def RADIUS (sv inst \"radius\"))\n(ssv inst \"status\" \"MODE ADD\")")
@@ -292,8 +282,8 @@
 
 ([BrigBern_Class40007] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (do (def MODE 'CREATE)\n    (ssv inst \"status\" \"MODE CREATE RAILROAD\")\n    (println :FROM frm :TO to))\n  (ssv inst \"status\" \"Add railways before\")))")
-	(title "create-railroad [hm inst]"))
+	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (if (and (some? frm) (some? to))\n    (do (def MODE 'CREATE)\n      (def RROAD [frm to])\n      (def BEGIN nil)\n      (def END nil)\n      (ssv inst \"status\" \"MODE CREATE RAILROAD\"))\n    (ssv inst \"status\" \"Set From1 and To1\"))\n  (ssv inst \"status\" \"Add railways before\")))")
+	(title "mode-create [hm inst]"))
 
 ([BrigBern_Class40008] of  CloVar
 
@@ -329,7 +319,7 @@
 
 ([BrigBern_Class40013] of  CloFunction
 
-	(source "(println :MODE MODE)\n(if mo\n  (let [moi (.getInstance mo)\n         rwi (->> moi .getReferences first .getFrame)\n         id (sv rwi \"id\")\n         rfs (.getReferences rwi)]\n    (when (< (count rfs) 2)\n      (delin rwi)\n      (OMT/removeMapOb mo true)\n      (println \"Remowed railway\" id))))")
+	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (let [id (.getName mo)\n         rwi (fifos \"Railway\" \"id\" id)\n         rfs (.getReferences rwi)]\n    (if (< (count rfs) 2)\n      (do (delin rwi)\n        (OMT/removeMapOb mo true)\n        (println \"Remowed railway\" id))\n      (println  (count rfs) \"references on\" id))))")
 	(title "remove-railway [mo]"))
 
 ([BrigBern_Class40014] of  CloFuncall
@@ -357,6 +347,20 @@
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
 
+([BrigBern_Class50000] of  ControlPanel
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-cre "Create Railroad/osm.data/mode-create")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(from1 "Brig")
+	(radius 0.1)
+	(status "MODE CREATE RAILROAD")
+	(to1 "Lalden"))
+
+([BrigBern_Class50001] of  CloFuncall
+
+	(source "(mk-railroad [\"Brig\" \"Lalden\"] \"310411578\" \"175558875\")"))
+
 ([BrigBern_Class50004] of  CloFuncall
 
 	(source "(first (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\")))"))
@@ -364,22 +368,6 @@
 ([BrigBern_Class50005] of  CloFuncall
 
 	(source "(type (first (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\"))))"))
-
-([BrigBern_Class50006] of  CloFuncall
-
-	(source "(.getFrame (first (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\")))))"))
-
-([BrigBern_Class50007] of  CloFuncall
-
-	(source "(def rw (fifos \"Railway\" \"id\" \"148190416\"))"))
-
-([BrigBern_Class50008] of  CloFuncall
-
-	(source "rw"))
-
-([BrigBern_Class50009] of  CloFuncall
-
-	(source "(remove-railway rw)"))
 
 ([BrigBern_Class50010] of  Railroad
 
@@ -396,6 +384,309 @@
 	(but-load-prj "Load Source Project/share.onto/load-src-prj")
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(BrigBern)"))
+
+([BrigBern_Class60000] of  CloFuncall
+
+	(source "(cls-instances \"Railway\")"))
+
+([BrigBern_Class60001] of  CloFuncall
+
+	(source "(filter #(< (.getReferences %) 2) (cls-instances \"Railway\"))"))
+
+([BrigBern_Class60002] of  CloFuncall
+
+	(source "(filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))"))
+
+([BrigBern_Class60004] of  Railway
+
+	(id "177139307")
+	(poly [BrigBern_Class60005])
+	(source "[[46.3106013 7.9535148] [46.3106748 7.9538643] [46.3107593 7.9541848] [46.3109111 7.9546465] [46.3110756 7.9550399] [46.3119262 7.9569672] [46.3120317 7.9572381] [46.3121125 7.9574639] [46.3121838 7.9576838] [46.3122838 7.9581007] [46.3123533 7.9585015] [46.3125093 7.9597116] [46.3126237 7.9602902] [46.3127724 7.9608765] [46.3129727 7.9614268] [46.3133458 7.9622207] [46.313619 7.9627642] [46.3137839 7.9631197] [46.3139215 7.9634788] [46.3140896 7.9640664] [46.314251 7.9647594] [46.3143509 7.9651083] [46.3144726 7.9654287] [46.3146016 7.9657541] [46.3147131 7.9660258] [46.3150184 7.9667245] [46.3151449 7.9670843] [46.3152691 7.9674925] [46.3155186 7.9685188] [46.3156605 7.9689779] [46.3158035 7.9693866] [46.3160317 7.9699196] [46.3162443 7.9703255] [46.3164627 7.9706857] [46.316981 7.9714883] [46.3171928 7.9718815] [46.3173488 7.9722644] [46.3174944 7.9727298] [46.317864 7.9742629] [46.3180551 7.9749525] [46.3183015 7.9756239] [46.3188609 7.9768125] [46.3190984 7.9773763] [46.3193002 7.9779891] [46.3194504 7.9786176] [46.3195404 7.9791923] [46.3195884 7.9796967] [46.319602 7.9802184] [46.3195971 7.9815578]]"))
+
+([BrigBern_Class60005] of  OMTPoly
+
+	(description "177139307")
+	(label "177139307")
+	(latitude "46 18.64")
+	(lineColor "FFFF0000")
+	(longitude "7 57.21")
+	(playground-index 0)
+	(points
+		"46 18.64 7 57.21"
+		"46 19.18 7 58.89")
+	(relative FALSE))
+
+([BrigBern_Class60008] of  Railway
+
+	(id "310411580")
+	(poly [BrigBern_Class60009])
+	(source "[[46.3196042 7.9841912] [46.3196356 7.9845358]]"))
+
+([BrigBern_Class60009] of  OMTPoly
+
+	(description "310411580")
+	(label "310411580")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 59.05")
+	(playground-index 0)
+	(points
+		"46 19.18 7 59.05"
+		"46 19.18 7 59.07")
+	(relative FALSE))
+
+([BrigBern_Class60028] of  Railway
+
+	(id "148135906")
+	(poly [BrigBern_Class60029])
+	(source "[[46.3195939 7.9828868] [46.3195898 7.9838675] [46.3196042 7.9841912]]"))
+
+([BrigBern_Class60029] of  OMTPoly
+
+	(description "148135906")
+	(label "148135906")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 58.97")
+	(playground-index 0)
+	(points
+		"46 19.18 7 58.97"
+		"46 19.18 7 59.05")
+	(relative FALSE))
+
+([BrigBern_Class60048] of  Railway
+
+	(id "310411578")
+	(poly [BrigBern_Class60049])
+	(source "[[46.3196356 7.9845358] [46.3196748 7.98499]]"))
+
+([BrigBern_Class60049] of  OMTPoly
+
+	(description "310411578")
+	(label "310411578")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 59.07")
+	(playground-index 0)
+	(points
+		"46 19.18 7 59.07"
+		"46 19.18 7 59.1")
+	(relative FALSE))
+
+([BrigBern_Class60072] of  Railway
+
+	(id "148135922")
+	(poly [BrigBern_Class60073])
+	(source "[[46.3195971 7.9815578] [46.3195939 7.9828868]]"))
+
+([BrigBern_Class60073] of  OMTPoly
+
+	(description "148135922")
+	(label "148135922")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 58.89")
+	(playground-index 0)
+	(points
+		"46 19.18 7 58.89"
+		"46 19.18 7 58.97")
+	(relative FALSE))
+
+([BrigBern_Class60074] of  Railway
+
+	(id "224857235")
+	(poly [BrigBern_Class60075])
+	(source "[[46.3080608 7.9462122] [46.308163 7.9464773] [46.3083557 7.946954]]"))
+
+([BrigBern_Class60075] of  OMTPoly
+
+	(description "224857235")
+	(label "224857235")
+	(latitude "46 18.48")
+	(lineColor "FFFF0000")
+	(longitude "7 56.77")
+	(playground-index 0)
+	(points
+		"46 18.48 7 56.77"
+		"46 18.5 7 56.82")
+	(relative FALSE))
+
+([BrigBern_Class60080] of  Railway
+
+	(id "310416439")
+	(poly [BrigBern_Class60081])
+	(source "[[46.3083557 7.946954] [46.3086417 7.947777] [46.3090281 7.9489056] [46.3092384 7.9494863] [46.3093931 7.9498591] [46.3095552 7.9502011] [46.3098257 7.9507134] [46.3100369 7.9511191] [46.310145 7.9513695]]"))
+
+([BrigBern_Class60081] of  OMTPoly
+
+	(description "310416439")
+	(label "310416439")
+	(latitude "46 18.5")
+	(lineColor "FFFF0000")
+	(longitude "7 56.82")
+	(playground-index 0)
+	(points
+		"46 18.5 7 56.82"
+		"46 18.61 7 57.08")
+	(relative FALSE))
+
+([BrigBern_Class60086] of  Railway
+
+	(id "177139304")
+	(poly [BrigBern_Class60087])
+	(source "[[46.3100861 7.9513393] [46.3103125 7.9519982] [46.3103789 7.9522597]]"))
+
+([BrigBern_Class60087] of  OMTPoly
+
+	(description "177139304")
+	(label "177139304")
+	(latitude "46 18.61")
+	(lineColor "FFFF0000")
+	(longitude "7 57.08")
+	(playground-index 0)
+	(points
+		"46 18.61 7 57.08"
+		"46 18.62 7 57.14")
+	(relative FALSE))
+
+([BrigBern_Class60092] of  Railway
+
+	(id "310416429")
+	(poly [BrigBern_Class60093])
+	(source "[[46.3103789 7.9522597] [46.3104121 7.952416]]"))
+
+([BrigBern_Class60093] of  OMTPoly
+
+	(description "310416429")
+	(label "310416429")
+	(latitude "46 18.62")
+	(lineColor "FFFF0000")
+	(longitude "7 57.14")
+	(playground-index 0)
+	(points
+		"46 18.62 7 57.14"
+		"46 18.62 7 57.14")
+	(relative FALSE))
+
+([BrigBern_Class60094] of  Railway
+
+	(id "177139302")
+	(poly [BrigBern_Class60095])
+	(source "[[46.3104121 7.952416] [46.3106013 7.9535148]]"))
+
+([BrigBern_Class60095] of  OMTPoly
+
+	(description "177139302")
+	(label "177139302")
+	(latitude "46 18.62")
+	(lineColor "FFFF0000")
+	(longitude "7 57.14")
+	(playground-index 0)
+	(points
+		"46 18.62 7 57.14"
+		"46 18.64 7 57.21")
+	(relative FALSE))
+
+([BrigBern_Class60098] of  Railway
+
+	(id "148190418")
+	(poly [BrigBern_Class60099])
+	(source "[[46.3011896 7.9119197] [46.3012989 7.9124721] [46.3018786 7.9147917] [46.3019451 7.9150811] [46.3020088 7.9153922] [46.3020515 7.9156386] [46.3020759 7.9158825] [46.3020876 7.9164135] [46.3020779 7.9166691] [46.3020634 7.9174645] [46.3020701 7.9178074] [46.3020886 7.91815] [46.3021328 7.9185106] [46.3022637 7.9191734] [46.3024743 7.9200231] [46.302557 7.9203824] [46.3026082 7.9206879] [46.3026675 7.9211999] [46.3026954 7.9225659] [46.3027244 7.9229987] [46.3027937 7.9234157] [46.3028696 7.9237608] [46.3029541 7.9240947] [46.3032756 7.9252469] [46.3034032 7.9257278] [46.3035006 7.9261561] [46.3035513 7.9265129] [46.3035879 7.926846] [46.3035936 7.9273857]]"))
+
+([BrigBern_Class60099] of  OMTPoly
+
+	(description "148190418")
+	(label "148190418")
+	(latitude "46 18.07")
+	(lineColor "FFFF0000")
+	(longitude "7 54.72")
+	(playground-index 0)
+	(points
+		"46 18.07 7 54.72"
+		"46 18.22 7 55.64")
+	(relative FALSE))
+
+([BrigBern_Class60104] of  Railway
+
+	(id "224857243")
+	(poly [BrigBern_Class60105])
+	(source "[[46.3035755 7.9284332] [46.303603 7.9290926] [46.3036743 7.9295641] [46.3037647 7.9299621] [46.3039732 7.9307008] [46.3046092 7.9330276] [46.3050521 7.934589] [46.3051526 7.93501] [46.3052231 7.935427] [46.3052718 7.9358849] [46.3053248 7.9364647] [46.3053917 7.9369846] [46.3055241 7.9375612] [46.3058477 7.9386703] [46.3059518 7.9391075] [46.3060437 7.9396168] [46.3061813 7.9404585] [46.30626 7.9408515] [46.3063573 7.9412337] [46.3080608 7.9462122]]"))
+
+([BrigBern_Class60105] of  OMTPoly
+
+	(description "224857243")
+	(label "224857243")
+	(latitude "46 18.21")
+	(lineColor "FFFF0000")
+	(longitude "7 55.71")
+	(playground-index 0)
+	(points
+		"46 18.21 7 55.71"
+		"46 18.48 7 56.77")
+	(relative FALSE))
+
+([BrigBern_Class60106] of  Railway
+
+	(id "175558875")
+	(poly [BrigBern_Class60107])
+	(source "[[46.3017498 7.9077906] [46.3016146 7.9080915] [46.3014803 7.908383] [46.3013686 7.9086899] [46.3012577 7.9091204] [46.3011725 7.909488] [46.3010854 7.910118] [46.3010626 7.9108208] [46.301093 7.9113829] [46.3011896 7.9119197]]"))
+
+([BrigBern_Class60107] of  OMTPoly
+
+	(description "175558875")
+	(label "175558875")
+	(latitude "46 18.1")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.1 7 54.47"
+		"46 18.07 7 54.72")
+	(relative FALSE))
+
+([BrigBern_Class60116] of  Railway
+
+	(id "224857236")
+	(poly [BrigBern_Class60117])
+	(source "[[46.3035936 7.9273857] [46.3035755 7.9284332]]"))
+
+([BrigBern_Class60117] of  OMTPoly
+
+	(description "224857236")
+	(label "224857236")
+	(latitude "46 18.22")
+	(lineColor "FFFF0000")
+	(longitude "7 55.64")
+	(playground-index 0)
+	(points
+		"46 18.22 7 55.64"
+		"46 18.21 7 55.71")
+	(relative FALSE))
+
+([BrigBern_Class60118] of  CloFunction
+
+	(source "(println :MODE MODE RROAD)\n(cond \n  (nil? mo) (println \"Try again in other place of line..\")\n  (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN))\n  (nil? END) (do (def END (.getName mo)) (println :END END)\n	(mk-railroad RROAD BEGIN END)))")
+	(title "create-railroad [mo]"))
+
+([BrigBern_Class60119] of  CloVar
+
+	(source "nil")
+	(title "RROAD"))
+
+([BrigBern_Class60120] of  CloVar
+
+	(source "nil")
+	(title "BEGIN"))
+
+([BrigBern_Class60121] of  CloVar
+
+	(source "nil")
+	(title "END"))
+
+([BrigBern_Class60122] of  CloFunction
+
+	(source "(println :MK-RAILROAD [from to] begin end)\n(let [urs (filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))]\n  urs)")
+	(title "mk-railroad [[from to] begin end]"))
 
 ([BrigBern_Class7] of  CloProgram
 
@@ -415,6 +706,8 @@
 		[BrigBern_Class20003]
 		[BrigBern_Class40012]
 		[BrigBern_Class40013]
+		[BrigBern_Class60122]
+		[BrigBern_Class60118]
 		[BrigBern_Class30000]
 		[BrigBern_Class40005]
 		[BrigBern_Class40006]
@@ -426,7 +719,10 @@
 		[BrigBern_Class40011]
 		[BrigBern_Class40015]
 		[BrigBern_Class40017]
-		[BrigBern_Class40018])
+		[BrigBern_Class40018]
+		[BrigBern_Class60119]
+		[BrigBern_Class60120]
+		[BrigBern_Class60121])
 	(title "OSM Data"))
 
 ([BrigBern_Class8] of  CloNamespace

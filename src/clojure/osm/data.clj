@@ -14,6 +14,9 @@
 (def RADIUS 0)
 (def RR-COLOR "FF0000FF")
 (def RW-COLOR "FFFF0000")
+(def RROAD nil)
+(def BEGIN nil)
+(def END nil)
 (defn railway-api-url [bbx]
   (let [[w s e n] bbx]
   (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[railway](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
@@ -108,15 +111,29 @@
 
 (defn remove-railway [mo]
   (println :MODE MODE)
-(if mo
-  (let [moi (.getInstance mo)
-         rwi (->> moi .getReferences first .getFrame)
-         id (sv rwi "id")
+(if (nil? mo)
+  (println "Try again in other place of line..")
+  (let [id (.getName mo)
+         rwi (fifos "Railway" "id" id)
          rfs (.getReferences rwi)]
-    (when (< (count rfs) 2)
-      (delin rwi)
-      (OMT/removeMapOb mo true)
-      (println "Remowed railway" id)))))
+    (if (< (count rfs) 2)
+      (do (delin rwi)
+        (OMT/removeMapOb mo true)
+        (println "Remowed railway" id))
+      (println  (count rfs) "references on" id)))))
+
+(defn mk-railroad [[from to] begin end]
+  (println :MK-RAILROAD [from to] begin end)
+(let [urs (filter #(< (count (.getReferences %)) 2) (cls-instances "Railway"))]
+  urs))
+
+(defn create-railroad [mo]
+  (println :MODE MODE RROAD)
+(cond 
+  (nil? mo) (println "Try again in other place of line..")
+  (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN))
+  (nil? END) (do (def END (.getName mo)) (println :END END)
+	(mk-railroad RROAD BEGIN END))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
@@ -125,6 +142,7 @@
 	  (condp = MODE
 	    'ADD (add-railway llp)
 	    'REMOVE (remove-railway mo)
+                            'CREATE (create-railroad mo)
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
@@ -144,13 +162,17 @@
     (ssv inst "status" "MODE REMOVE"))
   (ssv inst "status" "Add railways before")))
 
-(defn create-railroad [hm inst]
+(defn mode-create [hm inst]
   (let [mp (into {} hm)
        frm (mp "from1")
        to (mp "to1")]
 (if (or (= MODE 'ADD) (= MODE 'REMOVE))
-  (do (def MODE 'CREATE)
-    (ssv inst "status" "MODE CREATE RAILROAD")
-    (println :FROM frm :TO to))
+  (if (and (some? frm) (some? to))
+    (do (def MODE 'CREATE)
+      (def RROAD [frm to])
+      (def BEGIN nil)
+      (def END nil)
+      (ssv inst "status" "MODE CREATE RAILROAD"))
+    (ssv inst "status" "Set From1 and To1"))
   (ssv inst "status" "Add railways before"))))
 
