@@ -122,18 +122,48 @@
         (println "Remowed railway" id))
       (println  (count rfs) "references on" id)))))
 
-(defn mk-railroad [[from to] begin end]
-  (println :MK-RAILROAD [from to] begin end)
-(let [urs (filter #(< (count (.getReferences %)) 2) (cls-instances "Railway"))]
-  urs))
+(defn shortest-dist [rw1 rw2]
+  (let [llp1 (read-string (sv rw1 "source"))
+       llp2 (read-string (sv rw2 "source"))
+       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
+       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
+       dis1 (MapOb/distanceNM la11 lo11 la21 lo21)
+       dis2 (MapOb/distanceNM la11 lo11 la22 lo22)
+       dis3 (MapOb/distanceNM la12 lo12 la21 lo21)
+       dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]
+  (min dis1 dis2 dis3 dis4)))
+
+(defn nearest-to [rw from]
+  (loop [pool (rest from) dist (shortest-dist rw (first from)) nest (first from)]
+  (if (empty? pool) 
+    nest
+    (let [nsd (shortest-dist rw (first pool))]
+      (if (< nsd dist)
+        (recur (rest pool) nsd (first pool))
+        (recur (rest pool) dist nest))))))
+
+(defn order-railways [[from to] begin end]
+  (let [nrw (filter #(< (count (.getReferences %)) 2) (cls-instances "Railway"))
+       beg (fifos "Railway" "id" begin)
+       end (fifos "Railway" "id" end)]
+  (loop [pick beg from (remove #{beg} nrw) to [beg]]
+    (if (= pick end)
+      to
+      (let [p (nearest-to pick from)]
+        (recur p (remove #{p} from) (conj to p)))))))
 
 (defn create-railroad [mo]
   (println :MODE MODE RROAD)
-(cond 
-  (nil? mo) (println "Try again in other place of line..")
-  (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN))
-  (nil? END) (do (def END (.getName mo)) (println :END END)
-	(mk-railroad RROAD BEGIN END))))
+(if-let [rws (cond (nil? mo) (do (println "Try again in other place of line..") nil)
+	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
+	(nil? END) (do (def END (.getName mo)) (println :END END)
+		(order-railways RROAD BEGIN END)))]
+  (let [rri (crin "Railroad")
+         [frm to] RROAD]
+    (ssv rri "from1" frm)
+    (ssv rri "to1" to)
+    (ssvs rri "railways" rws)
+    (.show *prj* rri))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []

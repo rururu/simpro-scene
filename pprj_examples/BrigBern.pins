@@ -1,4 +1,4 @@
-; Tue Jan 16 20:59:29 MSK 2018
+; Wed Jan 17 21:42:50 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -665,7 +665,7 @@
 
 ([BrigBern_Class60118] of  CloFunction
 
-	(source "(println :MODE MODE RROAD)\n(cond \n  (nil? mo) (println \"Try again in other place of line..\")\n  (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN))\n  (nil? END) (do (def END (.getName mo)) (println :END END)\n	(mk-railroad RROAD BEGIN END)))")
+	(source "(println :MODE MODE RROAD)\n(if-let [rws (cond (nil? mo) (do (println \"Try again in other place of line..\") nil)\n	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)\n	(nil? END) (do (def END (.getName mo)) (println :END END)\n		(order-railways RROAD BEGIN END)))]\n  (let [rri (crin \"Railroad\")\n         [frm to] RROAD]\n    (ssv rri \"from1\" frm)\n    (ssv rri \"to1\" to)\n    (ssvs rri \"railways\" rws)\n    (.show *prj* rri)))")
 	(title "create-railroad [mo]"))
 
 ([BrigBern_Class60119] of  CloVar
@@ -685,8 +685,8 @@
 
 ([BrigBern_Class60122] of  CloFunction
 
-	(source "(println :MK-RAILROAD [from to] begin end)\n(let [urs (filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))]\n  urs)")
-	(title "mk-railroad [[from to] begin end]"))
+	(source "(let [nrw (filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))\n       beg (fifos \"Railway\" \"id\" begin)\n       end (fifos \"Railway\" \"id\" end)]\n  (loop [pick beg from (remove #{beg} nrw) to [beg]]\n    (if (= pick end)\n      to\n      (let [p (nearest-to pick from)]\n        (recur p (remove #{p} from) (conj to p))))))")
+	(title "order-railways [[from to] begin end]"))
 
 ([BrigBern_Class7] of  CloProgram
 
@@ -706,6 +706,8 @@
 		[BrigBern_Class20003]
 		[BrigBern_Class40012]
 		[BrigBern_Class40013]
+		[BrigBern_Class70001]
+		[BrigBern_Class70000]
 		[BrigBern_Class60122]
 		[BrigBern_Class60118]
 		[BrigBern_Class30000]
@@ -724,6 +726,36 @@
 		[BrigBern_Class60120]
 		[BrigBern_Class60121])
 	(title "OSM Data"))
+
+([BrigBern_Class70000] of  CloFunction
+
+	(source "(loop [pool (rest from) dist (shortest-dist rw (first from)) nest (first from)]\n  (if (empty? pool) \n    nest\n    (let [nsd (shortest-dist rw (first pool))]\n      (if (< nsd dist)\n        (recur (rest pool) nsd (first pool))\n        (recur (rest pool) dist nest)))))")
+	(title "nearest-to [rw from]"))
+
+([BrigBern_Class70001] of  CloFunction
+
+	(source "(let [llp1 (read-string (sv rw1 \"source\"))\n       llp2 (read-string (sv rw2 \"source\"))\n       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n       dis1 (MapOb/distanceNM la11 lo11 la21 lo21)\n       dis2 (MapOb/distanceNM la11 lo11 la22 lo22)\n       dis3 (MapOb/distanceNM la12 lo12 la21 lo21)\n       dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]\n  (min dis1 dis2 dis3 dis4))")
+	(title "shortest-dist [rw1 rw2]"))
+
+([BrigBern_Class70004] of  Railroad
+
+	(from1 "Brig")
+	(railways
+		[BrigBern_Class60048]
+		[BrigBern_Class60008]
+		[BrigBern_Class60028]
+		[BrigBern_Class60072]
+		[BrigBern_Class60004]
+		[BrigBern_Class60094]
+		[BrigBern_Class60092]
+		[BrigBern_Class60086]
+		[BrigBern_Class60080]
+		[BrigBern_Class60074]
+		[BrigBern_Class60104]
+		[BrigBern_Class60116]
+		[BrigBern_Class60098]
+		[BrigBern_Class60106])
+	(to1 "Lalden"))
 
 ([BrigBern_Class8] of  CloNamespace
 
