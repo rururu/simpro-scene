@@ -1,10 +1,14 @@
-; Fri Jan 05 14:34:28 MSK 2018
+; Fri Jan 19 23:13:19 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([ActivityFlightView] of  ActionClass
 )
+
+([ActivityStatus] of  EventClass
+
+	(functions [Scenario_Class520001]))
 
 ([AddResource] of  ActionClass
 
@@ -152,6 +156,12 @@
 	(rules
 		[Scenario_Class430000]
 		[Scenario_Class440003]))
+
+([GoRoad] of  ActionClass
+
+	(rules
+		[Scenario_Class520000]
+		[Scenario_Class550001]))
 
 ([GoRoute] of  ActionClass
 
@@ -376,6 +386,7 @@
 		[Scenario_Class350001]
 		[Scenario_Class260006]
 		[Scenario_Class260005]
+		[Scenario_Class550002]
 		[Scenario_Class210000]
 		[Scenario_Class200000]
 		[Scenario_Class140000]
@@ -421,7 +432,9 @@
 		[Scenario_Class90000]
 		[Scenario_Class440003]
 		[Scenario_Class430000]
-		[Scenario_Class520002])
+		[Scenario_Class520002]
+		[Scenario_Class550001]
+		[Scenario_Class520000])
 	(templates
 		[Action]
 		[Arrive]
@@ -472,7 +485,8 @@
 		[Task]
 		[DeleteResource]
 		[GoLayer]
-		[AddResource])
+		[AddResource]
+		[GoRoad])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -777,13 +791,14 @@
 		[Scenario_Class260008]
 		[Scenario_Class220002]
 		[Scenario_Class250003]
-		[Scenario_Class230002])
+		[Scenario_Class230002]
+		[Scenario_Class520001])
 	(cloNamespace [Scenario_Class220004])
 	(title "Event Functions"))
 
 ([Scenario_Class220004] of  CloNamespace
 
-	(source "(:use \n  protege.core\n  a)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
+	(source "(:use \n  protege.core\n  a)\n(:require \n  [rete.core :as re])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
 	(title "e"))
 
 ([Scenario_Class230000] of  Rule
@@ -1119,6 +1134,7 @@
 	(templates
 		[ObAttribute]
 		[ObProperty]
+		[ActivityStatus]
 		[TwoObRelation])
 	(title "EventExecutor"))
 
@@ -1392,6 +1408,18 @@
 	(source "(let [varnam (if (instance? Instance var) (sv var \"title\") var)]\n  (.put run varnam val))")
 	(title "vvr [var val run]"))
 
+([Scenario_Class520000] of  Rule
+
+	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [obj (a/vv ?obj ?run)\n       road (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)]\n  (if (not (or (a/null? obj) (a/null? road) (a/null? dir)))\n    (let [ways (seq (protege.core/svs road \"ways\"))\n           way (first ways)\n           rou (read-string (protege.core/sv way \"source\"))\n           bwd (= dir \"BACKWARD\")\n           tit (name (gensym \"Gor\"))]\n      (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title tit\n	 'object obj\n	 'route rou\n	 'spd ?spd\n	 'backward false\n	 'radius 0.1\n	 'run ?run\n	 'parent ?par])\n      (modify ?gor status \"REPEAT\"\n	road (rest ways)\n	object obj\n	direction tit))\n    (modify ?gor status \"FAILED\")))")
+	(salience 0)
+	(title "a:GoRoadStart"))
+
+([Scenario_Class520001] of  CloFunction
+
+	(source "(let [act (vv ?act r)\n       sts (vv ?sts r)\n       atp (typ act)\n       flt (filter #(= (re/slot-value 'run %) r) (re/facts-with-slot-value (symbol atp) 'instance = act))]\n    (if (seq flt)\n      (if (= (re/slot-value 'status (first flt)) sts)\n        true\n        false)))")
+	(title "act-status [?act ?sts r]"))
+
 ([Scenario_Class520002] of  Rule
 
 	(lhs "?ar (AddResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	collection ?col\n	thing ?thi\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
@@ -1441,6 +1469,20 @@
 
 	(source "(if (some? ES-TIMER)\n  (stop-sim))\n(def ES-TIMER (java.util.Timer.))\n(.schedule \n  ES-TIMER \n  (proxy [java.util.TimerTask] [] (run [] (work-sim)))\n  (long 0) \n  (long 1000))\n(println \"Simulation Started...\")")
 	(title "start-sim []"))
+
+([Scenario_Class550001] of  Rule
+
+	(lhs "?gor (GoRoad status \"REPEAT\"\n	object ?obj\n	road ?ways\n	direction ?tit\n	spd ?spd\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?tit)")
+	(rhs "(if (empty? ?ways)\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [way (first ?ways)\n         rou (read-string (protege.core/sv way \"source\"))]\n    (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title ?tit\n	 'object ?obj\n	 'route rou\n	 'spd ?spd\n	 'backward false\n	 'radius 0.1\n	 'run ?run\n	 'parent ?pid])\n    (modify ?gor status \"REPEAT\"\n	road (rest ?ways))))")
+	(salience 0)
+	(title "a:GoRoadRepeat"))
+
+([Scenario_Class550002] of  Rule
+
+	(lhs "?we (WaitEvent status \"REPEAT\" \n	id ?id\n	parent ?pid \n	instance ?ain \n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?as (ActivityStatus parent ?id\n	activity ?act\n	status ?sts\n	(e/act-status ?act ?sts ?run))")
+	(rhs "(retract ?we ?as)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitEventAS"))
 
 ([Scenario_Class560000] of  Rule
 
@@ -2708,7 +2750,8 @@
 		[Scenario_Class200000]
 		[Scenario_Class210000]
 		[Scenario_Class260005]
-		[Scenario_Class260006]))
+		[Scenario_Class260006]
+		[Scenario_Class550002]))
 
 ([WaitModelClock] of  ActionClass
 

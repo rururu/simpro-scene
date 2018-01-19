@@ -1,4 +1,4 @@
-; Wed Jan 17 21:42:50 MSK 2018
+; Fri Jan 19 19:45:16 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,6 +10,7 @@
 	(multislot railways
 		(type INSTANCE)
 ;+		(allowed-classes Railway)
+;+		(subslot-of ways)
 		(create-accessor read-write))
 	(single-slot but-rem
 		(type STRING)
@@ -32,7 +33,7 @@
 	(role abstract))
 
 (defclass Railway
-	(is-a Railway+Onto)
+	(is-a Railway+Onto Way)
 	(role concrete)
 	(single-slot poly
 		(type INSTANCE)
@@ -49,7 +50,7 @@
 		(create-accessor read-write)))
 
 (defclass Railroad
-	(is-a Railway+Onto)
+	(is-a Railway+Onto Road)
 	(role concrete)
 	(single-slot to1
 		(type STRING)

@@ -1,4 +1,4 @@
-; Fri Jan 05 14:34:27 MSK 2018
+; Fri Jan 19 23:13:19 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -705,7 +705,7 @@
 		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
-;+		(allowed-classes %3ATHING)
+;+		(allowed-classes Road Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot after
@@ -743,6 +743,10 @@
 		(allowed-values FALSE TRUE)
 		(default TRUE)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ways
+		(type INSTANCE)
+;+		(allowed-classes Way)
 		(create-accessor read-write))
 	(single-slot ceiling
 		(type FLOAT)
@@ -1631,6 +1635,28 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
+(defclass GoRoad
+	(is-a Go)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes Road Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass Show
 	(is-a Action)
 	(role concrete)
@@ -2278,6 +2304,23 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Way
+	(is-a Artefact)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass Observer
 	(is-a Artefact)
 	(role concrete)
@@ -2292,6 +2335,22 @@
 	(single-slot delay
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Road
+	(is-a Artefact)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ways
+		(type INSTANCE)
+;+		(allowed-classes Way)
 		(create-accessor read-write)))
 
 (defclass Signal
@@ -2337,10 +2396,6 @@
 	(multislot y
 		(type FLOAT)
 		(create-accessor read-write)))
-
-(defclass Aux
-	(is-a Artefact)
-	(role concrete))
 
 (defclass NetCom
 	(is-a ScenarioOntology)
@@ -2578,6 +2633,19 @@
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ActivityStatus
+	(is-a Property1)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot activity
+		(type INSTANCE)
+;+		(allowed-classes Activity Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

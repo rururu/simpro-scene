@@ -1,4 +1,4 @@
-; Sat Jan 06 12:59:33 MSK 2018
+; Fri Jan 19 18:48:17 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3783,6 +3783,14 @@
 	(type [Sea_Class140008])
 	(url "file:data/images/t2.gif"))
 
+([Sea_Class350000] of  Scenario
+
+	(final_tasks [Sea_Class380001])
+	(finish_type AND)
+	(initial_tasks [Sea_Class380001])
+	(scenario_scheme [Sea_Class380001])
+	(title "ActivityStatus Test"))
+
 ([Sea_Class350001] of  Attribute
 )
 
@@ -3909,6 +3917,63 @@
 	(run "s1.Colli3483")
 	(status "START")
 	(title "s1.Wait Radio Emergency"))
+
+([Sea_Class380001] of  Task
+
+	(final_actions
+		[Sea_Class380005]
+		[Sea_Class380006])
+	(finish_type OR)
+	(initial_actions [Sea_Class380002])
+	(task_scheme
+		[Sea_Class380002]
+		[Sea_Class380003]
+		[Sea_Class380005]
+		[Sea_Class380006])
+	(title "t1"))
+
+([Sea_Class380002] of  PutOnMap
+
+	(latitude "60 0")
+	(longitude "30 0")
+	(next_actions
+		[Sea_Class380003]
+		[Sea_Class380005])
+	(object [Sea_Class332])
+	(title "pom1"))
+
+([Sea_Class380003] of  WaitEvent
+
+	(event [Sea_Class380004])
+	(next_actions [Sea_Class380006])
+	(title "we1"))
+
+([Sea_Class380004] of  ActivityStatus
+
+	(activity [Sea_Class380005])
+	(status "FAILED")
+	(title "as1"))
+
+([Sea_Class380005] of  Arrive
+
+	(latitude "60 30")
+	(longitude "31 30")
+	(object [Sea_Class332])
+	(radius 0.1)
+	(speed 450.0)
+	(title "a1"))
+
+([Sea_Class380006] of  TimeMessage
+
+	(category "3")
+	(text "The plane disappeared from the radar screens")
+	(title "tm1"))
+
+([Sea_Class380007] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Sea_Class350000])
+	(%3ACREATION-TIMESTAMP "2018.01.19 17:48:05.065 MSK")
+	(%3ACREATOR "ru"))
 
 ([Sea_Class380033] of  Table2
 
@@ -4764,10 +4829,6 @@
 		[Sea_Class343]
 		[Sea_Class345])
 	(title "Ctx6"))
-
-([Sea_Class70000] of  CloFuncall
-
-	(source "(ru.rules/f 21)"))
 
 ([Sea_Class70001] of  PutOnMap
 

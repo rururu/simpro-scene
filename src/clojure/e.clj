@@ -2,6 +2,8 @@
 (:use 
   protege.core
   a)
+(:require 
+  [rete.core :as re])
 (:import
   ru.igis.omtab.OMT
   ru.igis.omtab.MapOb))
@@ -97,4 +99,14 @@
         'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] 
 		     (.contains p (OMT/getMapOb vvl))) (rest avl))
         false)))))
+
+(defn act-status [?act ?sts r]
+  (let [act (vv ?act r)
+       sts (vv ?sts r)
+       atp (typ act)
+       flt (filter #(= (re/slot-value 'run %) r) (re/facts-with-slot-value (symbol atp) 'instance = act))]
+    (if (seq flt)
+      (if (= (re/slot-value 'status (first flt)) sts)
+        true
+        false))))
 
