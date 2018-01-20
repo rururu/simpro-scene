@@ -1,4 +1,4 @@
-; Fri Jan 19 19:45:16 MSK 2018
+; Sat Jan 20 22:02:11 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -27,13 +27,13 @@
 
 ([BrigBern_Class10000] of  CloFunction
 
-	(source "(let [[w s e n] bbx]\n  (str \"http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[railway](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
-	(title "railway-api-url [bbx]"))
+	(source "(let [[w s e n] bbx]\n  (str \"http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(title "way-api-url [bbx way-type]"))
 
 ([BrigBern_Class10001] of  CloFunction
 
-	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (vreset! OSM-DATA (railway-data bbx)))")
-	(title "get-railway-data [[lat lon] rad]"))
+	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (vreset! OSM-DATA (way-data bbx way-type)))")
+	(title "get-way-data [[lat lon] rad way-type]"))
 
 ([BrigBern_Class10002] of  CloFuncall
 
@@ -41,8 +41,8 @@
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [url (railway-api-url bbx)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
-	(title "railway-data [bbx]"))
+	(source "(try\n  (let [url (way-api-url bbx way-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
+	(title "way-data [bbx way-type]"))
 
 ([BrigBern_Class13] of  CloFunction
 
@@ -103,17 +103,17 @@
 ([BrigBern_Class20002] of  CloFunction
 
 	(source "(if-let [els (seq (:elements data))]\n  (filter-kkv [:type] \"node\" els))")
-	(title "op-nodes [data]"))
+	(title "nodes [data]"))
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(if (fifos \"Railway\" \"id\" (str id))\n  []\n  (let [[[la1 lo1] [la2 lo2]] [(first rail) (last rail)]\n         [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n         [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n         rwi (crin \"Railway\")\n         poi (crin \"OMTPoly\")\n         id (str id)]\n    (ssv poi \"label\" id)\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" RW-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (ssv rwi \"id\" id)\n    (ssv rwi \"poly\" poi)\n    (ssv rwi \"source\" (str (vec rail)))\n    [poi]))")
-	(title "create-railway [[id rail]]"))
+	(source "(if (fifos \"Way\" \"id\" (str id))\n  []\n  (let [[[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n         [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n         [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n         rwi (crin \"Way\")\n         poi (crin \"OMTPoly\")\n         id (str id)]\n    (ssv poi \"label\" id)\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (ssv rwi \"id\" id)\n    (ssv rwi \"poly\" poi)\n    (ssv rwi \"source\" (str (vec pts)))\n    [poi]))")
+	(title "create-way [[id pts]]"))
 
 ([BrigBern_Class20004] of  CloFunction
 
-	(source "(if-let [els (seq (:elements data))]\n  (let [idp (id-points (op-nodes data))]\n    (->> (filter-kkv [:type] \"way\" els)\n      (filter-kkv [:tags :railway] \"rail\")\n      (id-way-points idp))))")
-	(title "op-rails [data]"))
+	(source "(if-let [els (seq (:elements data))]\n  (let [idp (id-points (nodes data))]\n    (->> (filter-kkv [:type] \"way\" els)\n      (filter-kkv [:tags (keyword way-type)] way-subtype)\n      (id-way-points idp))))")
+	(title "filter-data [data way-type way-subtype]"))
 
 ([BrigBern_Class20005] of  CloFuncall
 
@@ -207,7 +207,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-railway llp)\n	    'REMOVE (remove-railway mo)\n                            'CREATE (create-railroad mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                            'CREATE (create-road mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class30001] of  CloFuncall
@@ -258,18 +258,6 @@
 
 	(source "(fifos \"OMTPoly\" \"label\" \"bb\")"))
 
-([BrigBern_Class40001] of  CloFuncall
-
-	(source "(.getReferences (fifos \"OMTPoly\" \"label\" \"bb\"))"))
-
-([BrigBern_Class40002] of  CloFuncall
-
-	(source "(count (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\")))"))
-
-([BrigBern_Class40003] of  CloFuncall
-
-	(source "(count (.getReferences (fifos \"Railway\" \"id\" \"148190416\")))"))
-
 ([BrigBern_Class40005] of  CloFunction
 
 	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(def MODE 'ADD)\n(def RADIUS (sv inst \"radius\"))\n(ssv inst \"status\" \"MODE ADD\")")
@@ -277,12 +265,12 @@
 
 ([BrigBern_Class40006] of  CloFunction
 
-	(source "(if (= MODE 'ADD)\n  (do (def MODE 'REMOVE)\n    (ssv inst \"status\" \"MODE REMOVE\"))\n  (ssv inst \"status\" \"Add railways before\"))")
+	(source "(if (= MODE 'ADD)\n  (do (def MODE 'REMOVE)\n    (ssv inst \"status\" \"MODE REMOVE\"))\n  (ssv inst \"status\" \"Add ways before\"))")
 	(title "mode-remove [hm inst]"))
 
 ([BrigBern_Class40007] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (if (and (some? frm) (some? to))\n    (do (def MODE 'CREATE)\n      (def RROAD [frm to])\n      (def BEGIN nil)\n      (def END nil)\n      (ssv inst \"status\" \"MODE CREATE RAILROAD\"))\n    (ssv inst \"status\" \"Set From1 and To1\"))\n  (ssv inst \"status\" \"Add railways before\")))")
+	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (if (and (some? frm) (some? to))\n    (do (def MODE 'CREATE)\n      (def ROAD [frm to])\n      (def BEGIN nil)\n      (def END nil)\n      (ssv inst \"status\" \"MODE CREATE ROAD\"))\n    (ssv inst \"status\" \"Set From1 and To1\"))\n  (ssv inst \"status\" \"Add ways before\")))")
 	(title "mode-create [hm inst]"))
 
 ([BrigBern_Class40008] of  CloVar
@@ -314,17 +302,13 @@
 
 ([BrigBern_Class40012] of  CloFunction
 
-	(source "(println :MODE MODE)\n(get-railway-data (seq llp) RADIUS)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [opr (op-rails @OSM-DATA)\n         rws (mapcat create-railway opr)]\n    (println \"Created\" (count rws) \"railways\")\n    (doseq [rw rws]\n      (OMT/addMapOb rw))))")
-	(title "add-railway [llp]"))
+	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)\n         ws (mapcat create-railway fdt)]\n    (println \"Created\" (count ws) \"ways\")\n    (doseq [w ws]\n      (OMT/addMapOb w))))")
+	(title "add-way [llp]"))
 
 ([BrigBern_Class40013] of  CloFunction
 
-	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (let [id (.getName mo)\n         rwi (fifos \"Railway\" \"id\" id)\n         rfs (.getReferences rwi)]\n    (if (< (count rfs) 2)\n      (do (delin rwi)\n        (OMT/removeMapOb mo true)\n        (println \"Remowed railway\" id))\n      (println  (count rfs) \"references on\" id))))")
-	(title "remove-railway [mo]"))
-
-([BrigBern_Class40014] of  CloFuncall
-
-	(source "RMMA"))
+	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (let [id (.getName mo)\n         wi (fifos \"Way\" \"id\" id)\n         rfs (.getReferences wi)]\n    (if (< (count rfs) 2)\n      (do (delin wi)\n        (OMT/removeMapOb mo true)\n        (println \"Remowed way\" id))\n      (println  (count rfs) \"references on\" id))))")
+	(title "remove-way [mo]"))
 
 ([BrigBern_Class40015] of  CloVar
 
@@ -334,40 +318,18 @@
 ([BrigBern_Class40017] of  CloVar
 
 	(source "\"FF0000FF\"")
-	(title "RR-COLOR"))
+	(title "R-COLOR"))
 
 ([BrigBern_Class40018] of  CloVar
 
 	(source "\"FFFF0000\"")
-	(title "RW-COLOR"))
+	(title "W-COLOR"))
 
 ([BrigBern_Class5] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
-
-([BrigBern_Class50000] of  ControlPanel
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-cre "Create Railroad/osm.data/mode-create")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(from1 "Brig")
-	(radius 0.1)
-	(status "MODE CREATE RAILROAD")
-	(to1 "Lalden"))
-
-([BrigBern_Class50001] of  CloFuncall
-
-	(source "(mk-railroad [\"Brig\" \"Lalden\"] \"310411578\" \"175558875\")"))
-
-([BrigBern_Class50004] of  CloFuncall
-
-	(source "(first (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\")))"))
-
-([BrigBern_Class50005] of  CloFuncall
-
-	(source "(type (first (.getReferences (fifos \"OMTPoly\" \"label\" \"bb\"))))"))
 
 ([BrigBern_Class50010] of  Railroad
 
@@ -384,18 +346,6 @@
 	(but-load-prj "Load Source Project/share.onto/load-src-prj")
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(BrigBern)"))
-
-([BrigBern_Class60000] of  CloFuncall
-
-	(source "(cls-instances \"Railway\")"))
-
-([BrigBern_Class60001] of  CloFuncall
-
-	(source "(filter #(< (.getReferences %) 2) (cls-instances \"Railway\"))"))
-
-([BrigBern_Class60002] of  CloFuncall
-
-	(source "(filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))"))
 
 ([BrigBern_Class60004] of  Railway
 
@@ -665,13 +615,13 @@
 
 ([BrigBern_Class60118] of  CloFunction
 
-	(source "(println :MODE MODE RROAD)\n(if-let [rws (cond (nil? mo) (do (println \"Try again in other place of line..\") nil)\n	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)\n	(nil? END) (do (def END (.getName mo)) (println :END END)\n		(order-railways RROAD BEGIN END)))]\n  (let [rri (crin \"Railroad\")\n         [frm to] RROAD]\n    (ssv rri \"from1\" frm)\n    (ssv rri \"to1\" to)\n    (ssvs rri \"railways\" rws)\n    (.show *prj* rri)))")
-	(title "create-railroad [mo]"))
+	(source "(println :MODE MODE ROAD)\n(if-let [ws (cond (nil? mo) (do (println \"Try again in other place of line..\") nil)\n	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)\n	(nil? END) (do (def END (.getName mo)) (println :END END)\n		(order-ways ROAD BEGIN END)))]\n  (let [ri (crin \"Road\")\n         [frm to] ROAD]\n    (ssv ri \"from1\" frm)\n    (ssv ri \"to1\" to)\n    (ssvs ri \"ways\" ws)\n    (.show *prj* ri)))")
+	(title "create-road [mo]"))
 
 ([BrigBern_Class60119] of  CloVar
 
 	(source "nil")
-	(title "RROAD"))
+	(title "ROAD"))
 
 ([BrigBern_Class60120] of  CloVar
 
@@ -685,8 +635,8 @@
 
 ([BrigBern_Class60122] of  CloFunction
 
-	(source "(let [nrw (filter #(< (count (.getReferences %)) 2) (cls-instances \"Railway\"))\n       beg (fifos \"Railway\" \"id\" begin)\n       end (fifos \"Railway\" \"id\" end)]\n  (loop [pick beg from (remove #{beg} nrw) to [beg]]\n    (if (= pick end)\n      to\n      (let [p (nearest-to pick from)]\n        (recur p (remove #{p} from) (conj to p))))))")
-	(title "order-railways [[from to] begin end]"))
+	(source "(let [nws (filter #(< (count (.getReferences %)) 2) (cls-instances \"Way\"))\n       beg (fifos \"Way\" \"id\" begin)\n       end (fifos \"Way\" \"id\" end)]\n  (loop [pick beg from (remove #{beg} nws) to [beg]]\n    (if (= pick end)\n      to\n      (let [p (nearest-to pick from)]\n        (recur p (remove #{p} from) (conj to p))))))")
+	(title "order-ways [[from to] begin end]"))
 
 ([BrigBern_Class7] of  CloProgram
 
@@ -717,6 +667,8 @@
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
+		[BrigBern_Class80011]
+		[BrigBern_Class80012]
 		[BrigBern_Class40008]
 		[BrigBern_Class40011]
 		[BrigBern_Class40015]
@@ -729,13 +681,13 @@
 
 ([BrigBern_Class70000] of  CloFunction
 
-	(source "(loop [pool (rest from) dist (shortest-dist rw (first from)) nest (first from)]\n  (if (empty? pool) \n    nest\n    (let [nsd (shortest-dist rw (first pool))]\n      (if (< nsd dist)\n        (recur (rest pool) nsd (first pool))\n        (recur (rest pool) dist nest)))))")
-	(title "nearest-to [rw from]"))
+	(source "(loop [pool (rest from) dist (shortest-dist way (first from)) nest (first from)]\n  (if (empty? pool) \n    nest\n    (let [nsd (shortest-dist way (first pool))]\n      (if (< nsd dist)\n        (recur (rest pool) nsd (first pool))\n        (recur (rest pool) dist nest)))))")
+	(title "nearest-to [way from]"))
 
 ([BrigBern_Class70001] of  CloFunction
 
-	(source "(let [llp1 (read-string (sv rw1 \"source\"))\n       llp2 (read-string (sv rw2 \"source\"))\n       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n       dis1 (MapOb/distanceNM la11 lo11 la21 lo21)\n       dis2 (MapOb/distanceNM la11 lo11 la22 lo22)\n       dis3 (MapOb/distanceNM la12 lo12 la21 lo21)\n       dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]\n  (min dis1 dis2 dis3 dis4))")
-	(title "shortest-dist [rw1 rw2]"))
+	(source "(let [llp1 (read-string (sv w1 \"source\"))\n       llp2 (read-string (sv w2 \"source\"))\n       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n       dis1 (MapOb/distanceNM la11 lo11 la21 lo21)\n       dis2 (MapOb/distanceNM la11 lo11 la22 lo22)\n       dis3 (MapOb/distanceNM la12 lo12 la21 lo21)\n       dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]\n  (min dis1 dis2 dis3 dis4))")
+	(title "shortest-dist [w1 w2]"))
 
 ([BrigBern_Class70004] of  Railroad
 
@@ -761,3 +713,75 @@
 
 	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
 	(title "osm.data"))
+
+([BrigBern_Class80000] of  CloFuncall
+
+	(source "(get-railway-data [46.649 8.298] 0.1)"))
+
+([BrigBern_Class80001] of  CloFuncall
+
+	(source "(get-railway-data [46.649 8.298] 0.2)"))
+
+([BrigBern_Class80002] of  CloFuncall
+
+	(source "(get-railway-data [46.649 8.298] 1.2)"))
+
+([BrigBern_Class80003] of  CloFuncall
+
+	(source "(get-railway-data [46.649 8.298] 10.2)"))
+
+([BrigBern_Class80004] of  CloFuncall
+
+	(source "OSM-DATA"))
+
+([BrigBern_Class80005] of  CloFuncall
+
+	(source "(get-railway-data [46.648 8.298] 0.1)"))
+
+([BrigBern_Class80006] of  CloFuncall
+
+	(source "(get-way-data [46.648 8.298] 0.1 \"highway\")"))
+
+([BrigBern_Class80007] of  CloFuncall
+
+	(source "(get-way-data [46.648 8.298] 0.1 \"railway\")"))
+
+([BrigBern_Class80008] of  CloFuncall
+
+	(source "(get-way-data [46.3 7.235] 0.1 \"railway\")"))
+
+([BrigBern_Class80009] of  CloFuncall
+
+	(source "(get-way-data [46.3 7.935] 0.1 \"railway\")"))
+
+([BrigBern_Class80010] of  CloFuncall
+
+	(source "(get-way-data [46.3 7.935] 0.1 \"highway\")"))
+
+([BrigBern_Class80011] of  CloVar
+
+	(source "\"railway\"")
+	(title "WAY-TYPE"))
+
+([BrigBern_Class80012] of  CloVar
+
+	(source "\"rail\"")
+	(title "WAY-SUBTYPE"))
+
+([BrigBern_Class80016] of  Tagvalue
+
+	(value "[\"railway\" \"rail\"]"))
+
+([BrigBern_Class80017] of  Tagvalue
+
+	(value "[\"highway\" \"motorway\"]"))
+
+([BrigBern_Class80018] of  ControlPanel
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-cre "Create Road/osm.data/mode-create")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(radius 0.1)
+	(tagvalue
+		[BrigBern_Class80017]
+		[BrigBern_Class80016]))

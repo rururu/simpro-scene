@@ -9,21 +9,23 @@
   ru.igis.omtab.gui.RuMapMouseAdapter))
 
 (def OSM-DATA (volatile! []))
+(def WAY-TYPE "railway")
+(def WAY-SUBTYPE "rail")
 (def RMMA false)
 (def MODE nil)
 (def RADIUS 0)
-(def RR-COLOR "FF0000FF")
-(def RW-COLOR "FFFF0000")
-(def RROAD nil)
+(def R-COLOR "FF0000FF")
+(def W-COLOR "FFFF0000")
+(def ROAD nil)
 (def BEGIN nil)
 (def END nil)
-(defn railway-api-url [bbx]
+(defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
-  (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[railway](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
+  (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
 
-(defn railway-data [bbx]
+(defn way-data [bbx way-type]
   (try
-  (let [url (railway-api-url bbx)
+  (let [url (way-api-url bbx way-type)
          ;;_ (println :URL url)
          jsn (json/read-str (slurp url) :key-fn keyword)]
       jsn)
@@ -31,10 +33,10 @@
     (println e)
     nil)))
 
-(defn get-railway-data [[lat lon] rad]
+(defn get-way-data [[lat lon] rad way-type]
   (let [d (/ rad 60)
        bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]
-  (vreset! OSM-DATA (railway-data bbx))))
+  (vreset! OSM-DATA (way-data bbx way-type))))
 
 (defn tags [data]
   (sort (set (mapcat keys data))))
@@ -55,7 +57,7 @@
         sta  (filter #(> (second %) 0) sta)]
   (sort second sta)))
 
-(defn op-nodes [data]
+(defn nodes [data]
   (if-let [els (seq (:elements data))]
   (filter-kkv [:type] "node" els)))
 
@@ -71,60 +73,60 @@
 	     (map (fn[x] (idp x)) (:nodes %2))) 
 	{} ways))
 
-(defn op-rails [data]
+(defn filter-data [data way-type way-subtype]
   (if-let [els (seq (:elements data))]
-  (let [idp (id-points (op-nodes data))]
+  (let [idp (id-points (nodes data))]
     (->> (filter-kkv [:type] "way" els)
-      (filter-kkv [:tags :railway] "rail")
+      (filter-kkv [:tags (keyword way-type)] way-subtype)
       (id-way-points idp)))))
 
-(defn create-railway [[id rail]]
-  (if (fifos "Railway" "id" (str id))
+(defn create-way [[id pts]]
+  (if (fifos "Way" "id" (str id))
   []
-  (let [[[la1 lo1] [la2 lo2]] [(first rail) (last rail)]
+  (let [[[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
          [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
          [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
-         rwi (crin "Railway")
+         rwi (crin "Way")
          poi (crin "OMTPoly")
          id (str id)]
     (ssv poi "label" id)
     (ssv poi "description" id)
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
-    (ssv poi "lineColor" RW-COLOR)
+    (ssv poi "lineColor" W-COLOR)
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
     (ssv rwi "id" id)
     (ssv rwi "poly" poi)
-    (ssv rwi "source" (str (vec rail)))
+    (ssv rwi "source" (str (vec pts)))
     [poi])))
 
-(defn add-railway [llp]
+(defn add-way [llp]
   (println :MODE MODE)
-(get-railway-data (seq llp) RADIUS)
+(get-way-data (seq llp) RADIUS WAY-TYPE)
 (if (nil? @OSM-DATA)
   (println :NO-DATA)
-  (let [opr (op-rails @OSM-DATA)
-         rws (mapcat create-railway opr)]
-    (println "Created" (count rws) "railways")
-    (doseq [rw rws]
-      (OMT/addMapOb rw)))))
+  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)
+         ws (mapcat create-railway fdt)]
+    (println "Created" (count ws) "ways")
+    (doseq [w ws]
+      (OMT/addMapOb w)))))
 
-(defn remove-railway [mo]
+(defn remove-way [mo]
   (println :MODE MODE)
 (if (nil? mo)
   (println "Try again in other place of line..")
   (let [id (.getName mo)
-         rwi (fifos "Railway" "id" id)
-         rfs (.getReferences rwi)]
+         wi (fifos "Way" "id" id)
+         rfs (.getReferences wi)]
     (if (< (count rfs) 2)
-      (do (delin rwi)
+      (do (delin wi)
         (OMT/removeMapOb mo true)
-        (println "Remowed railway" id))
+        (println "Remowed way" id))
       (println  (count rfs) "references on" id)))))
 
-(defn shortest-dist [rw1 rw2]
-  (let [llp1 (read-string (sv rw1 "source"))
-       llp2 (read-string (sv rw2 "source"))
+(defn shortest-dist [w1 w2]
+  (let [llp1 (read-string (sv w1 "source"))
+       llp2 (read-string (sv w2 "source"))
        [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
        [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
        dis1 (MapOb/distanceNM la11 lo11 la21 lo21)
@@ -133,46 +135,46 @@
        dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]
   (min dis1 dis2 dis3 dis4)))
 
-(defn nearest-to [rw from]
-  (loop [pool (rest from) dist (shortest-dist rw (first from)) nest (first from)]
+(defn nearest-to [way from]
+  (loop [pool (rest from) dist (shortest-dist way (first from)) nest (first from)]
   (if (empty? pool) 
     nest
-    (let [nsd (shortest-dist rw (first pool))]
+    (let [nsd (shortest-dist way (first pool))]
       (if (< nsd dist)
         (recur (rest pool) nsd (first pool))
         (recur (rest pool) dist nest))))))
 
-(defn order-railways [[from to] begin end]
-  (let [nrw (filter #(< (count (.getReferences %)) 2) (cls-instances "Railway"))
-       beg (fifos "Railway" "id" begin)
-       end (fifos "Railway" "id" end)]
-  (loop [pick beg from (remove #{beg} nrw) to [beg]]
+(defn order-ways [[from to] begin end]
+  (let [nws (filter #(< (count (.getReferences %)) 2) (cls-instances "Way"))
+       beg (fifos "Way" "id" begin)
+       end (fifos "Way" "id" end)]
+  (loop [pick beg from (remove #{beg} nws) to [beg]]
     (if (= pick end)
       to
       (let [p (nearest-to pick from)]
         (recur p (remove #{p} from) (conj to p)))))))
 
-(defn create-railroad [mo]
-  (println :MODE MODE RROAD)
-(if-let [rws (cond (nil? mo) (do (println "Try again in other place of line..") nil)
+(defn create-road [mo]
+  (println :MODE MODE ROAD)
+(if-let [ws (cond (nil? mo) (do (println "Try again in other place of line..") nil)
 	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
 	(nil? END) (do (def END (.getName mo)) (println :END END)
-		(order-railways RROAD BEGIN END)))]
-  (let [rri (crin "Railroad")
-         [frm to] RROAD]
-    (ssv rri "from1" frm)
-    (ssv rri "to1" to)
-    (ssvs rri "railways" rws)
-    (.show *prj* rri))))
+		(order-ways ROAD BEGIN END)))]
+  (let [ri (crin "Road")
+         [frm to] ROAD]
+    (ssv ri "from1" frm)
+    (ssv ri "to1" to)
+    (ssvs ri "ways" ws)
+    (.show *prj* ri))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
                           ;;(println MODE mo llp runa)
 	  (condp = MODE
-	    'ADD (add-railway llp)
-	    'REMOVE (remove-railway mo)
-                            'CREATE (create-railroad mo)
+	    'ADD (add-way llp)
+	    'REMOVE (remove-way mo)
+                            'CREATE (create-road mo)
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
@@ -190,7 +192,7 @@
   (if (= MODE 'ADD)
   (do (def MODE 'REMOVE)
     (ssv inst "status" "MODE REMOVE"))
-  (ssv inst "status" "Add railways before")))
+  (ssv inst "status" "Add ways before")))
 
 (defn mode-create [hm inst]
   (let [mp (into {} hm)
@@ -199,10 +201,10 @@
 (if (or (= MODE 'ADD) (= MODE 'REMOVE))
   (if (and (some? frm) (some? to))
     (do (def MODE 'CREATE)
-      (def RROAD [frm to])
+      (def ROAD [frm to])
       (def BEGIN nil)
       (def END nil)
-      (ssv inst "status" "MODE CREATE RAILROAD"))
+      (ssv inst "status" "MODE CREATE ROAD"))
     (ssv inst "status" "Set From1 and To1"))
-  (ssv inst "status" "Add railways before"))))
+  (ssv inst "status" "Add ways before"))))
 

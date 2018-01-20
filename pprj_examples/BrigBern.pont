@@ -1,4 +1,4 @@
-; Fri Jan 19 19:45:16 MSK 2018
+; Sat Jan 20 22:02:11 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,9 +22,13 @@
 		(default "Mode Add/osm.data/mode-add")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot tagvalue
+		(type INSTANCE)
+;+		(allowed-classes Tagvalue)
+		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Railroad/osm.data/mode-create")
+		(default "Create Road/osm.data/mode-create")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -34,32 +38,11 @@
 
 (defclass Railway
 	(is-a Railway+Onto Way)
-	(role concrete)
-	(single-slot poly
-		(type INSTANCE)
-;+		(allowed-classes OMTPoly)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot source
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role concrete))
 
 (defclass Railroad
 	(is-a Railway+Onto Road)
 	(role concrete)
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot railways
 		(type INSTANCE)
 ;+		(allowed-classes Railway)
@@ -84,9 +67,13 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot tagvalue
+		(type INSTANCE)
+;+		(allowed-classes Tagvalue)
+		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Railroad/osm.data/mode-create")
+		(default "Create Road/osm.data/mode-create")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-rem
@@ -97,5 +84,13 @@
 	(single-slot but-add
 		(type STRING)
 		(default "Mode Add/osm.data/mode-add")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Tagvalue
+	(is-a Railway+Onto)
+	(role concrete)
+	(single-slot value
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
