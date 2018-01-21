@@ -1,4 +1,4 @@
-; Sat Jan 20 22:02:11 MSK 2018
+; Sun Jan 21 20:02:35 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -48,7 +48,7 @@
 ;+		(allowed-classes Railway)
 		(create-accessor read-write)))
 
-(defclass ControlPanel
+(defclass RoadControl
 	(is-a Railway+Onto)
 	(role concrete)
 	(single-slot status
@@ -74,6 +74,10 @@
 	(single-slot but-cre
 		(type STRING)
 		(default "Create Road/osm.data/mode-create")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-rem

@@ -1,4 +1,4 @@
-; Sat Jan 20 22:02:11 MSK 2018
+; Sun Jan 21 20:02:35 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -302,7 +302,7 @@
 
 ([BrigBern_Class40012] of  CloFunction
 
-	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)\n         ws (mapcat create-railway fdt)]\n    (println \"Created\" (count ws) \"ways\")\n    (doseq [w ws]\n      (OMT/addMapOb w))))")
+	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)\n         ws (mapcat create-way fdt)]\n    (println \"Created\" (count ws) \"ways\")\n    (doseq [w ws]\n      (OMT/addMapOb w))))")
 	(title "add-way [llp]"))
 
 ([BrigBern_Class40013] of  CloFunction
@@ -317,8 +317,8 @@
 
 ([BrigBern_Class40017] of  CloVar
 
-	(source "\"FF0000FF\"")
-	(title "R-COLOR"))
+	(source "(.createRuntimeClsWidget *prj* (foc \"RoadControl\" \"title\" \"Railway Control\"))")
+	(title "CONTROL-RTW"))
 
 ([BrigBern_Class40018] of  CloVar
 
@@ -330,6 +330,44 @@
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
+
+([BrigBern_Class50000] of  CloFuncall
+
+	(source "TV-LISTENER"))
+
+([BrigBern_Class50001] of  CloFunction
+
+	(source "(.addSelectionListener sw\n  (proxy [edu.stanford.smi.protege.util.SelectionListener] []\n    (selectionChanged [evt] (fn0)) ))")
+	(title "add-selector [sw fn0]"))
+
+([BrigBern_Class50002] of  CloFunction
+
+	(source "(println (.getSelection (csw \"tagvalue\")))")
+	(title "tv-selector []"))
+
+([BrigBern_Class50004] of  CloFuncall
+
+	(source "TV-SELECTOR"))
+
+([BrigBern_Class50007] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-cre "Create Road/osm.data/mode-create")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(tagvalue
+		[BrigBern_Class80016]
+		[BrigBern_Class80017])
+	(title "Railway Control"))
+
+([BrigBern_Class50008] of  CloFunction
+
+	(source "(let [tsw (csw \"tagvalue\")\n       rsw (csw \"radius\")]\n  (println :RSW rsw)\n  (add-selector tsw tv-selector)\n  (.setValues tsw (cls-instances \"Tagvalue\"))\n  (.setValues rsw [0.1])\n  (show-rtw CONTROL-RTW))")
+	(title "road-control []"))
+
+([BrigBern_Class50009] of  CloFunction
+
+	(source "(let [f (javax.swing.JFrame. (.getName w))]\n  (.. f (getContentPane) (add  w))\n  (.setLocationRelativeTo f nil)\n  (.pack f)\n  (.setVisible f true))")
+	(title "show-rtw [w]"))
 
 ([BrigBern_Class50010] of  Railroad
 
@@ -384,6 +422,15 @@
 		"46 19.18 7 59.05"
 		"46 19.18 7 59.07")
 	(relative FALSE))
+
+([BrigBern_Class60010] of  CloFuncall
+
+	(source "(road-control)"))
+
+([BrigBern_Class60011] of  CloFunction
+
+	(source "(.getSlotWidget CONTROL-RTW (slt sn))")
+	(title "csw [sn]"))
 
 ([BrigBern_Class60028] of  Railway
 
@@ -661,9 +708,14 @@
 		[BrigBern_Class60122]
 		[BrigBern_Class60118]
 		[BrigBern_Class30000]
+		[BrigBern_Class60011]
+		[BrigBern_Class50002]
+		[BrigBern_Class50001]
 		[BrigBern_Class40005]
 		[BrigBern_Class40006]
-		[BrigBern_Class40007])
+		[BrigBern_Class40007]
+		[BrigBern_Class50009]
+		[BrigBern_Class50008])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
@@ -742,22 +794,6 @@
 
 	(source "(get-way-data [46.648 8.298] 0.1 \"highway\")"))
 
-([BrigBern_Class80007] of  CloFuncall
-
-	(source "(get-way-data [46.648 8.298] 0.1 \"railway\")"))
-
-([BrigBern_Class80008] of  CloFuncall
-
-	(source "(get-way-data [46.3 7.235] 0.1 \"railway\")"))
-
-([BrigBern_Class80009] of  CloFuncall
-
-	(source "(get-way-data [46.3 7.935] 0.1 \"railway\")"))
-
-([BrigBern_Class80010] of  CloFuncall
-
-	(source "(get-way-data [46.3 7.935] 0.1 \"highway\")"))
-
 ([BrigBern_Class80011] of  CloVar
 
 	(source "\"railway\"")
@@ -775,13 +811,3 @@
 ([BrigBern_Class80017] of  Tagvalue
 
 	(value "[\"highway\" \"motorway\"]"))
-
-([BrigBern_Class80018] of  ControlPanel
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-cre "Create Road/osm.data/mode-create")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(radius 0.1)
-	(tagvalue
-		[BrigBern_Class80017]
-		[BrigBern_Class80016]))

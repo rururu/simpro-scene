@@ -14,7 +14,7 @@
 (def RMMA false)
 (def MODE nil)
 (def RADIUS 0)
-(def R-COLOR "FF0000FF")
+(def CONTROL-RTW (.createRuntimeClsWidget *prj* (foc "RoadControl" "title" "Railway Control")))
 (def W-COLOR "FFFF0000")
 (def ROAD nil)
 (def BEGIN nil)
@@ -106,7 +106,7 @@
 (if (nil? @OSM-DATA)
   (println :NO-DATA)
   (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)
-         ws (mapcat create-railway fdt)]
+         ws (mapcat create-way fdt)]
     (println "Created" (count ws) "ways")
     (doseq [w ws]
       (OMT/addMapOb w)))))
@@ -181,6 +181,17 @@
   (.setRuMapMouseAdapter (first pgs) rmma)
   (def RMMA true)))
 
+(defn csw [sn]
+  (.getSlotWidget CONTROL-RTW (slt sn)))
+
+(defn tv-selector []
+  (println (.getSelection (csw "tagvalue"))))
+
+(defn add-selector [sw fn0]
+  (.addSelectionListener sw
+  (proxy [edu.stanford.smi.protege.util.SelectionListener] []
+    (selectionChanged [evt] (fn0)) )))
+
 (defn mode-add [hm inst]
   (if (not RMMA)
   (set-mouse-adapter))
@@ -207,4 +218,20 @@
       (ssv inst "status" "MODE CREATE ROAD"))
     (ssv inst "status" "Set From1 and To1"))
   (ssv inst "status" "Add ways before"))))
+
+(defn show-rtw [w]
+  (let [f (javax.swing.JFrame. (.getName w))]
+  (.. f (getContentPane) (add  w))
+  (.setLocationRelativeTo f nil)
+  (.pack f)
+  (.setVisible f true)))
+
+(defn road-control []
+  (let [tsw (csw "tagvalue")
+       rsw (csw "radius")]
+  (println :RSW rsw)
+  (add-selector tsw tv-selector)
+  (.setValues tsw (cls-instances "Tagvalue"))
+  (.setValues rsw [0.1])
+  (show-rtw CONTROL-RTW)))
 
