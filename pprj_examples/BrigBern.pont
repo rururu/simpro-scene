@@ -1,4 +1,4 @@
-; Sun Jan 21 20:02:35 MSK 2018
+; Mon Jan 22 22:58:15 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,10 +7,10 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(multislot railways
-		(type INSTANCE)
-;+		(allowed-classes Railway)
-;+		(subslot-of ways)
+	(single-slot road-subclass
+		(type SYMBOL)
+		(allowed-values Railroad Motoroad Cycleroad)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-rem
 		(type STRING)
@@ -30,27 +30,27 @@
 		(type STRING)
 		(default "Create Road/osm.data/mode-create")
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ways
+;+		(type ANY)
 		(create-accessor read-write)))
 
-(defclass Railway+Onto
+(defclass OSM+Onto
 	(is-a USER)
 	(role abstract))
 
-(defclass Railway
-	(is-a Railway+Onto Way)
+(defclass Railroad
+	(is-a OSM+Onto Road)
 	(role concrete))
 
-(defclass Railroad
-	(is-a Railway+Onto Road)
-	(role concrete)
-	(multislot railways
-		(type INSTANCE)
-;+		(allowed-classes Railway)
-		(create-accessor read-write)))
-
 (defclass RoadControl
-	(is-a Railway+Onto)
+	(is-a OSM+Onto)
 	(role concrete)
+	(single-slot road-subclass
+		(type SYMBOL)
+		(allowed-values Railroad Motoroad Cycleroad)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot status
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -92,9 +92,17 @@
 		(create-accessor read-write)))
 
 (defclass Tagvalue
-	(is-a Railway+Onto)
+	(is-a OSM+Onto)
 	(role concrete)
 	(single-slot value
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass Cycleroad
+	(is-a Road OSM+Onto)
+	(role concrete))
+
+(defclass Motoroad
+	(is-a Road OSM+Onto)
+	(role concrete))

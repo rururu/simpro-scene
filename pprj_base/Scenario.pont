@@ -1,4 +1,4 @@
-; Fri Jan 19 23:13:19 MSK 2018
+; Mon Jan 22 19:33:16 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -388,6 +388,10 @@
 ;+		(allowed-classes Attribute)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
 	(multislot activities
 		(type INSTANCE)
 ;+		(allowed-classes Activity)
@@ -636,6 +640,11 @@
 ;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot rename
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
@@ -743,10 +752,6 @@
 		(allowed-values FALSE TRUE)
 		(default TRUE)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ways
-		(type INSTANCE)
-;+		(allowed-classes Way)
 		(create-accessor read-write))
 	(single-slot ceiling
 		(type FLOAT)
@@ -2243,40 +2248,6 @@
 	(is-a ScenarioOntology)
 	(role abstract))
 
-(defclass Route
-	(is-a Artefact)
-	(role concrete)
-	(multislot points
-		(type STRING)
-		(create-accessor read-write)))
-
-(defclass Fairway
-	(is-a Artefact)
-	(role concrete)
-	(single-slot entry_lane
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot axis
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot exit
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot entrance
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot exit_lane
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Target
 	(is-a Artefact)
 	(role concrete)
@@ -2304,23 +2275,6 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Way
-	(is-a Artefact)
-	(role concrete)
-	(single-slot poly
-		(type INSTANCE)
-;+		(allowed-classes OMTPoly)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot source
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Observer
 	(is-a Artefact)
 	(role concrete)
@@ -2335,22 +2289,6 @@
 	(single-slot delay
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Road
-	(is-a Artefact)
-	(role concrete)
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ways
-		(type INSTANCE)
-;+		(allowed-classes Way)
 		(create-accessor read-write)))
 
 (defclass Signal
@@ -2771,5 +2709,101 @@
 	(single-slot but-csv-create
 		(type STRING)
 		(default "Create Instances/csv.imp/crea-inst")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Way+Onto
+	(is-a USER)
+	(role abstract))
+
+(defclass Fairway
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot entry_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot axis
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Road
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Route
+	(is-a Way+Onto)
+	(role concrete)
+	(multislot points
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Way
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Dirway
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

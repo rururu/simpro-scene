@@ -14,11 +14,14 @@
 (def RMMA false)
 (def MODE nil)
 (def RADIUS 0)
-(def CONTROL-RTW (.createRuntimeClsWidget *prj* (foc "RoadControl" "title" "Railway Control")))
 (def W-COLOR "FFFF0000")
 (def ROAD nil)
 (def BEGIN nil)
 (def END nil)
+(def ROAD-SUBCLASS nil)
+(def F "FORWARD")
+(def B "BACKWARD")
+(def U "UNDEFINED")
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
   (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
@@ -129,43 +132,55 @@
        llp2 (read-string (sv w2 "source"))
        [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
        [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
-       dis1 (MapOb/distanceNM la11 lo11 la21 lo21)
-       dis2 (MapOb/distanceNM la11 lo11 la22 lo22)
-       dis3 (MapOb/distanceNM la12 lo12 la21 lo21)
-       dis4 (MapOb/distanceNM la12 lo12 la22 lo22)]
-  (min dis1 dis2 dis3 dis4)))
+       dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) F
+                     (MapOb/distanceNM la11 lo11 la22 lo22) B
+                     (MapOb/distanceNM la12 lo12 la21 lo21) F
+                     (MapOb/distanceNM la12 lo12 la22 lo22) B}
+      mid (apply min (keys dis-var))
+      dir (dis-var mid)]
+  [mid dir w2]))
 
 (defn nearest-to [way from]
-  (loop [pool (rest from) dist (shortest-dist way (first from)) nest (first from)]
+  (loop [pool (rest from) mid-dir-way (shortest-dist way (first from))]
   (if (empty? pool) 
-    nest
-    (let [nsd (shortest-dist way (first pool))]
-      (if (< nsd dist)
-        (recur (rest pool) nsd (first pool))
-        (recur (rest pool) dist nest))))))
+    mid-dir-way
+    (let [[nmid ndir nway :as nmdw] (shortest-dist way (first pool))]
+      (if (< nmid (first mid-dir-way))
+        (recur (rest pool) nmdw)
+        (recur (rest pool) mid-dir-way))))))
 
-(defn order-ways [[from to] begin end]
+(defn mk-dirway [dir way]
+  (let [dw (crin "Dirway")]
+  (ssv dw "direction" dir)
+  (ssv dw "way" way)))
+
+(defn create-dirways [[from to] begin end]
   (let [nws (filter #(< (count (.getReferences %)) 2) (cls-instances "Way"))
        beg (fifos "Way" "id" begin)
        end (fifos "Way" "id" end)]
-  (loop [pick beg from (remove #{beg} nws) to [beg]]
+  (loop [pick beg from (remove #{beg} nws) dws [(mk-dirway U beg)]]
     (if (= pick end)
-      to
-      (let [p (nearest-to pick from)]
-        (recur p (remove #{p} from) (conj to p)))))))
+      dws
+      (let [[mid dir way :as p] (nearest-to pick from)
+             dw (mk-dirway dir way)]
+        (recur way (remove #{p} from) (conj dws dw)))))))
 
-(defn create-road [mo]
+(defn create-road
+  ([mo]
   (println :MODE MODE ROAD)
-(if-let [ws (cond (nil? mo) (do (println "Try again in other place of line..") nil)
-	(nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
-	(nil? END) (do (def END (.getName mo)) (println :END END)
-		(order-ways ROAD BEGIN END)))]
-  (let [ri (crin "Road")
-         [frm to] ROAD]
-    (ssv ri "from1" frm)
-    (ssv ri "to1" to)
-    (ssvs ri "ways" ws)
-    (.show *prj* ri))))
+  (cond 
+    (nil? mo) (do (println "Try again in other place of line..") nil)
+    (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
+    (nil? END) (do (def END (.getName mo)) (println :END END)
+		(create-road))))
+([]
+  (if-let [ws (create-dirways ROAD BEGIN END)]
+    (let [ri (crin ROAD-SUBCLASS)
+           [frm to] ROAD]
+      (ssv ri "from1" frm)
+      (ssv ri "to1" to)
+      (ssvs ri "ways" ws)
+      (.show *prj* ri)))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
@@ -181,23 +196,20 @@
   (.setRuMapMouseAdapter (first pgs) rmma)
   (def RMMA true)))
 
-(defn csw [sn]
-  (.getSlotWidget CONTROL-RTW (slt sn)))
-
-(defn tv-selector []
-  (println (.getSelection (csw "tagvalue"))))
-
-(defn add-selector [sw fn0]
-  (.addSelectionListener sw
-  (proxy [edu.stanford.smi.protege.util.SelectionListener] []
-    (selectionChanged [evt] (fn0)) )))
-
 (defn mode-add [hm inst]
   (if (not RMMA)
   (set-mouse-adapter))
-(def MODE 'ADD)
-(def RADIUS (sv inst "radius"))
-(ssv inst "status" "MODE ADD"))
+(let [mp (into {} hm)
+       sel (seq (selection mp "tagvalue"))]
+  (if (empty? sel)
+    (ssv inst "status" "Select tagvalue for ways!")
+    (let [[wt wst] (read-string (sv (first sel) "value"))]
+      (println :WAY-TYPE wt :WAY-SUBTYPE wst)
+      (def WAY-TYPE wt)
+      (def WAY-SUBTYPE wst)
+      (def MODE 'ADD)
+      (def RADIUS (sv inst "radius"))
+      (ssv inst "status" "MODE ADD")))))
 
 (defn mode-remove [hm inst]
   (if (= MODE 'ADD)
@@ -208,30 +220,16 @@
 (defn mode-create [hm inst]
   (let [mp (into {} hm)
        frm (mp "from1")
-       to (mp "to1")]
+       to (mp "to1")
+       rsc (mp "road-subclass")]
 (if (or (= MODE 'ADD) (= MODE 'REMOVE))
-  (if (and (some? frm) (some? to))
+  (if (and (some? frm) (some? to) (some? rsc))
     (do (def MODE 'CREATE)
+      (def ROAD-SUBCLASS rsc)
       (def ROAD [frm to])
       (def BEGIN nil)
       (def END nil)
       (ssv inst "status" "MODE CREATE ROAD"))
-    (ssv inst "status" "Set From1 and To1"))
-  (ssv inst "status" "Add ways before"))))
-
-(defn show-rtw [w]
-  (let [f (javax.swing.JFrame. (.getName w))]
-  (.. f (getContentPane) (add  w))
-  (.setLocationRelativeTo f nil)
-  (.pack f)
-  (.setVisible f true)))
-
-(defn road-control []
-  (let [tsw (csw "tagvalue")
-       rsw (csw "radius")]
-  (println :RSW rsw)
-  (add-selector tsw tv-selector)
-  (.setValues tsw (cls-instances "Tagvalue"))
-  (.setValues rsw [0.1])
-  (show-rtw CONTROL-RTW)))
+    (ssv inst "status" "Set From1, To1 and Road-subclass!"))
+  (ssv inst "status" "Add ways before!"))))
 
