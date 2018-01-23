@@ -22,6 +22,7 @@
 (def F "FORWARD")
 (def B "BACKWARD")
 (def U "UNDEFINED")
+(def POOL (volatile! []))
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
   (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
@@ -84,86 +85,88 @@
       (id-way-points idp)))))
 
 (defn create-way [[id pts]]
-  (if (fifos "Way" "id" (str id))
-  []
-  (let [[[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
-         [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
-         [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
-         rwi (crin "Way")
-         poi (crin "OMTPoly")
-         id (str id)]
-    (ssv poi "label" id)
+  (let [id (str id)
+       wai (foc "Way" "id" id)
+       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
+       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
+       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
+       poi (foc "OMTPoly" "label" id)]
     (ssv poi "description" id)
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
     (ssv poi "lineColor" W-COLOR)
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
-    (ssv rwi "id" id)
-    (ssv rwi "poly" poi)
-    (ssv rwi "source" (str (vec pts)))
-    [poi])))
+    (ssv wai "poly" poi)
+    (ssv wai "source" (str (vec pts)))
+    (OMT/addMapOb poi)
+    wai))
 
 (defn add-way [llp]
   (println :MODE MODE)
 (get-way-data (seq llp) RADIUS WAY-TYPE)
 (if (nil? @OSM-DATA)
   (println :NO-DATA)
-  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)
-         ws (mapcat create-way fdt)]
-    (println "Created" (count ws) "ways")
-    (doseq [w ws]
-      (OMT/addMapOb w)))))
+  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]
+    (swap! POOL concat (map create-way fdt))
+    (println "Created or updated " (count @POOL) "ways"))))
 
 (defn remove-way [mo]
   (println :MODE MODE)
 (if (nil? mo)
   (println "Try again in other place of line..")
-  (let [id (.getName mo)
-         wi (fifos "Way" "id" id)
-         rfs (.getReferences wi)]
-    (if (< (count rfs) 2)
-      (do (delin wi)
-        (OMT/removeMapOb mo true)
-        (println "Remowed way" id))
-      (println  (count rfs) "references on" id)))))
+  (if-let [wai (fifos "Way" "id" (.getName mo))]
+    (do (remove #{wai} @POOL)
+      (OMT/removeMapOb mo true)
+      (println "Removed from pool way " (sv wai "id") ", remains " (count @POOL)))
+    (println "Way " (.getName mo) " not found!"))))
 
 (defn shortest-dist [w1 w2]
   (let [llp1 (read-string (sv w1 "source"))
        llp2 (read-string (sv w2 "source"))
        [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
        [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
-       dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) F
+       dis-var (try
+                    {(MapOb/distanceNM la11 lo11 la21 lo21) F
                      (MapOb/distanceNM la11 lo11 la22 lo22) B
                      (MapOb/distanceNM la12 lo12 la21 lo21) F
                      (MapOb/distanceNM la12 lo12 la22 lo22) B}
+                    (catch Exception e
+                      (println "shortest-dist ERROR:")
+                      (println :W1 [la11 lo11] [la12 lo12])
+                      (println :W2 [la21 lo21] [la22 lo22]) {}))
       mid (apply min (keys dis-var))
       dir (dis-var mid)]
   [mid dir w2]))
 
 (defn nearest-to [way from]
   (loop [pool (rest from) mid-dir-way (shortest-dist way (first from))]
-  (if (empty? pool) 
-    mid-dir-way
-    (let [[nmid ndir nway :as nmdw] (shortest-dist way (first pool))]
-      (if (< nmid (first mid-dir-way))
-        (recur (rest pool) nmdw)
-        (recur (rest pool) mid-dir-way))))))
+  (cond
+    (empty? pool) mid-dir-way
+    (= way (first pool)) (recur (rest pool) mid-dir-way)
+    true
+      (let [[nmid ndir nway :as nmdw] (shortest-dist way (first pool))]
+        (if (< nmid (first mid-dir-way))
+          (recur (rest pool) nmdw)
+          (recur (rest pool) mid-dir-way))))))
 
 (defn mk-dirway [dir way]
   (let [dw (crin "Dirway")]
   (ssv dw "direction" dir)
-  (ssv dw "way" way)))
+  (ssv dw "way" way)
+  dw))
 
 (defn create-dirways [[from to] begin end]
-  (let [nws (filter #(< (count (.getReferences %)) 2) (cls-instances "Way"))
+  (let [nws @POOL
        beg (fifos "Way" "id" begin)
        end (fifos "Way" "id" end)]
+  (println :POOL (count nws))
   (loop [pick beg from (remove #{beg} nws) dws [(mk-dirway U beg)]]
+    (println :PICK (sv pick "id") :FROM (count from))
     (if (= pick end)
       dws
       (let [[mid dir way :as p] (nearest-to pick from)
              dw (mk-dirway dir way)]
-        (recur way (remove #{p} from) (conj dws dw)))))))
+        (recur way (remove #{way} from) (conj dws dw)))))))
 
 (defn create-road
   ([mo]
@@ -173,13 +176,17 @@
     (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
     (nil? END) (do (def END (.getName mo)) (println :END END)
 		(create-road))))
+
 ([]
-  (if-let [ws (create-dirways ROAD BEGIN END)]
-    (let [ri (crin ROAD-SUBCLASS)
-           [frm to] ROAD]
+  (create-road ROAD BEGIN END ROAD-SUBCLASS))
+
+([road begin end rd-subclass]
+  (if-let [dws (create-dirways road begin end)]
+    (let [ri (crin rd-subclass)
+           [frm to] road]
       (ssv ri "from1" frm)
       (ssv ri "to1" to)
-      (ssvs ri "ways" ws)
+      (ssvs ri "dirways" dws)
       (.show *prj* ri)))))
 
 (defn set-mouse-adapter []
