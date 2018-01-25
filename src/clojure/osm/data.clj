@@ -21,7 +21,6 @@
 (def ROAD-SUBCLASS nil)
 (def F "FORWARD")
 (def B "BACKWARD")
-(def U "UNDEFINED")
 (def POOL (volatile! []))
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
@@ -107,7 +106,7 @@
 (if (nil? @OSM-DATA)
   (println :NO-DATA)
   (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]
-    (swap! POOL concat (map create-way fdt))
+    (vswap! POOL concat (map create-way fdt))
     (println "Created or updated " (count @POOL) "ways"))))
 
 (defn remove-way [mo]
@@ -125,15 +124,10 @@
        llp2 (read-string (sv w2 "source"))
        [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
        [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
-       dis-var (try
-                    {(MapOb/distanceNM la11 lo11 la21 lo21) F
-                     (MapOb/distanceNM la11 lo11 la22 lo22) B
-                     (MapOb/distanceNM la12 lo12 la21 lo21) F
-                     (MapOb/distanceNM la12 lo12 la22 lo22) B}
-                    (catch Exception e
-                      (println "shortest-dist ERROR:")
-                      (println :W1 [la11 lo11] [la12 lo12])
-                      (println :W2 [la21 lo21] [la22 lo22]) {}))
+       dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
+                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2
+                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2
+                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2
       mid (apply min (keys dis-var))
       dir (dis-var mid)]
   [mid dir w2]))
@@ -155,18 +149,23 @@
   (ssv dw "way" way)
   dw))
 
+(defn conj-dirway [dws dw owd]
+  (if (> (count dws) 1)
+  (conj dws dw)
+  [dw (mk-dirway owd (first dws))]))
+
 (defn create-dirways [[from to] begin end]
   (let [nws @POOL
        beg (fifos "Way" "id" begin)
        end (fifos "Way" "id" end)]
   (println :POOL (count nws))
-  (loop [pick beg from (remove #{beg} nws) dws [(mk-dirway U beg)]]
+  (loop [pick beg from (remove #{beg} nws) dws [beg]]
     (println :PICK (sv pick "id") :FROM (count from))
     (if (= pick end)
       dws
-      (let [[mid dir way :as p] (nearest-to pick from)
-             dw (mk-dirway dir way)]
-        (recur way (remove #{way} from) (conj dws dw)))))))
+      (let [[mid [owd nwd] way :as p] (nearest-to pick from)
+             dw (mk-dirway nwd way)]
+        (recur way (remove #{way} from) (conj-dirway dws dw owd)))))))
 
 (defn create-road
   ([mo]

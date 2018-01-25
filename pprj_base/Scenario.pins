@@ -1,4 +1,4 @@
-; Mon Jan 22 19:33:16 MSK 2018
+; Fri Jan 26 00:19:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1411,7 +1411,7 @@
 ([Scenario_Class520000] of  Rule
 
 	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [obj (a/vv ?obj ?run)\n       road (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)]\n  (if (not (or (a/null? obj) (a/null? road) (a/null? dir)))\n    (let [ways (seq (protege.core/svs road \"ways\"))\n           way (first ways)\n           rou (read-string (protege.core/sv way \"source\"))\n           bwd (= dir \"BACKWARD\")\n           tit (name (gensym \"Gor\"))]\n      (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title tit\n	 'object obj\n	 'route rou\n	 'spd ?spd\n	 'backward false\n	 'radius 0.1\n	 'run ?run\n	 'parent ?par])\n      (modify ?gor status \"REPEAT\"\n	road (rest ways)\n	object obj\n	direction tit))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [obj (a/vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)]\n  (if (not (or (a/null? obj) (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           bwd (not= dir dn)\n           tit (str \"Gor\" (protege.core/sv way \"id\"))]\n      (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title tit\n	 'object obj\n	 'route rou\n	 'spd ?spd\n	 'backward bwd\n	 'radius 0.1\n	 'run ?run\n	 'parent ?par])\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	direction dir\n	object obj\n	title tit))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRoadStart"))
 
@@ -1472,8 +1472,8 @@
 
 ([Scenario_Class550001] of  Rule
 
-	(lhs "?gor (GoRoad status \"REPEAT\"\n	object ?obj\n	road ?ways\n	direction ?tit\n	spd ?spd\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?tit)")
-	(rhs "(if (empty? ?ways)\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [way (first ?ways)\n         rou (read-string (protege.core/sv way \"source\"))]\n    (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title ?tit\n	 'object ?obj\n	 'route rou\n	 'spd ?spd\n	 'backward false\n	 'radius 0.1\n	 'run ?run\n	 'parent ?pid])\n    (modify ?gor status \"REPEAT\"\n	road (rest ?ways))))")
+	(lhs "?gor (GoRoad status \"REPEAT\"\n	title ?tit\n	object ?obj\n	road ?dws\n	spd ?spd\n	direction ?dir\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?tit)")
+	(rhs "(if (empty? ?dws)\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n         dn (protege.core/sv dw \"direction\")\n         way (protege.core/sv dw \"way\")\n         rou (read-string (protege.core/sv way \"source\"))\n         bwd (not= ?dir dn)]\n    (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title ?tit\n	 'object ?obj\n	 'route rou\n	 'spd ?spd\n	 'backward bwd\n	 'radius 0.1\n	 'run ?run\n	 'parent ?pid])\n    (modify ?gor status \"REPEAT\"\n	road (rest ?dws))))")
 	(salience 0)
 	(title "a:GoRoadRepeat"))
 
@@ -1504,6 +1504,441 @@
 	(rhs "(println \"Join DONE:\" ?tit)\n(retract ?j)\n(s/start-tasks-actions ?ntasks ?pid ?run)")
 	(salience 0)
 	(title "s:JoinDone"))
+
+([Scenario_Class570000] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "Duplicate definition of class Railroad was ignored"))
+
+([Scenario_Class570002] of  Road
+
+	(dirways
+		[Scenario_Class570003]
+		[Scenario_Class570006]
+		[Scenario_Class570009]
+		[Scenario_Class570012]
+		[Scenario_Class570015]
+		[Scenario_Class570018]
+		[Scenario_Class570021]
+		[Scenario_Class570024]
+		[Scenario_Class570027]
+		[Scenario_Class570030]
+		[Scenario_Class570033]
+		[Scenario_Class570036]
+		[Scenario_Class570039]
+		[Scenario_Class570042])
+	(from1 "Brig")
+	(to1 "Lalden"))
+
+([Scenario_Class570003] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570004]))
+
+([Scenario_Class570004] of  Way
+
+	(id "310411578")
+	(poly [Scenario_Class570005])
+	(source "[[46.3196356 7.9845358] [46.3196748 7.98499]]"))
+
+([Scenario_Class570005] of  OMTPoly
+
+	(description "310411578")
+	(label "310411578")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 59.07")
+	(playground-index 0)
+	(points
+		"46 19.18 7 59.07"
+		"46 19.18 7 59.1")
+	(relative FALSE))
+
+([Scenario_Class570006] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570007]))
+
+([Scenario_Class570007] of  Way
+
+	(id "310411580")
+	(poly [Scenario_Class570008])
+	(source "[[46.3196042 7.9841912] [46.3196356 7.9845358]]"))
+
+([Scenario_Class570008] of  OMTPoly
+
+	(description "310411580")
+	(label "310411580")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 59.05")
+	(playground-index 0)
+	(points
+		"46 19.18 7 59.05"
+		"46 19.18 7 59.07")
+	(relative FALSE))
+
+([Scenario_Class570009] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570010]))
+
+([Scenario_Class570010] of  Way
+
+	(id "148135906")
+	(poly [Scenario_Class570011])
+	(source "[[46.3195939 7.9828868] [46.3195898 7.9838675] [46.3196042 7.9841912]]"))
+
+([Scenario_Class570011] of  OMTPoly
+
+	(description "148135906")
+	(label "148135906")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 58.97")
+	(playground-index 0)
+	(points
+		"46 19.18 7 58.97"
+		"46 19.18 7 59.05")
+	(relative FALSE))
+
+([Scenario_Class570012] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570013]))
+
+([Scenario_Class570013] of  Way
+
+	(id "148135922")
+	(poly [Scenario_Class570014])
+	(source "[[46.3195971 7.9815578] [46.3195939 7.9828868]]"))
+
+([Scenario_Class570014] of  OMTPoly
+
+	(description "148135922")
+	(label "148135922")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 58.89")
+	(playground-index 0)
+	(points
+		"46 19.18 7 58.89"
+		"46 19.18 7 58.97")
+	(relative FALSE))
+
+([Scenario_Class570015] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570016]))
+
+([Scenario_Class570016] of  Way
+
+	(id "177139307")
+	(poly [Scenario_Class570017])
+	(source "[[46.3106013 7.9535148] [46.3106748 7.9538643] [46.3107593 7.9541848] [46.3109111 7.9546465] [46.3110756 7.9550399] [46.3119262 7.9569672] [46.3120317 7.9572381] [46.3121125 7.9574639] [46.3121838 7.9576838] [46.3122838 7.9581007] [46.3123533 7.9585015] [46.3125093 7.9597116] [46.3126237 7.9602902] [46.3127724 7.9608765] [46.3129727 7.9614268] [46.3133458 7.9622207] [46.313619 7.9627642] [46.3137839 7.9631197] [46.3139215 7.9634788] [46.3140896 7.9640664] [46.314251 7.9647594] [46.3143509 7.9651083] [46.3144726 7.9654287] [46.3146016 7.9657541] [46.3147131 7.9660258] [46.3150184 7.9667245] [46.3151449 7.9670843] [46.3152691 7.9674925] [46.3155186 7.9685188] [46.3156605 7.9689779] [46.3158035 7.9693866] [46.3160317 7.9699196] [46.3162443 7.9703255] [46.3164627 7.9706857] [46.316981 7.9714883] [46.3171928 7.9718815] [46.3173488 7.9722644] [46.3174944 7.9727298] [46.317864 7.9742629] [46.3180551 7.9749525] [46.3183015 7.9756239] [46.3188609 7.9768125] [46.3190984 7.9773763] [46.3193002 7.9779891] [46.3194504 7.9786176] [46.3195404 7.9791923] [46.3195884 7.9796967] [46.319602 7.9802184] [46.3195971 7.9815578]]"))
+
+([Scenario_Class570017] of  OMTPoly
+
+	(description "177139307")
+	(label "177139307")
+	(latitude "46 18.64")
+	(lineColor "FFFF0000")
+	(longitude "7 57.21")
+	(playground-index 0)
+	(points
+		"46 18.64 7 57.21"
+		"46 19.18 7 58.89")
+	(relative FALSE))
+
+([Scenario_Class570018] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570019]))
+
+([Scenario_Class570019] of  Way
+
+	(id "177139302")
+	(poly [Scenario_Class570020])
+	(source "[[46.3104121 7.952416] [46.3106013 7.9535148]]"))
+
+([Scenario_Class570020] of  OMTPoly
+
+	(description "177139302")
+	(label "177139302")
+	(latitude "46 18.62")
+	(lineColor "FFFF0000")
+	(longitude "7 57.14")
+	(playground-index 0)
+	(points
+		"46 18.62 7 57.14"
+		"46 18.64 7 57.21")
+	(relative FALSE))
+
+([Scenario_Class570021] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570022]))
+
+([Scenario_Class570022] of  Way
+
+	(id "310416429")
+	(poly [Scenario_Class570023])
+	(source "[[46.3103789 7.9522597] [46.3104121 7.952416]]"))
+
+([Scenario_Class570023] of  OMTPoly
+
+	(description "310416429")
+	(label "310416429")
+	(latitude "46 18.62")
+	(lineColor "FFFF0000")
+	(longitude "7 57.14")
+	(playground-index 0)
+	(points
+		"46 18.62 7 57.14"
+		"46 18.62 7 57.14")
+	(relative FALSE))
+
+([Scenario_Class570024] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570025]))
+
+([Scenario_Class570025] of  Way
+
+	(id "177139304")
+	(poly [Scenario_Class570026])
+	(source "[[46.3100861 7.9513393] [46.3103125 7.9519982] [46.3103789 7.9522597]]"))
+
+([Scenario_Class570026] of  OMTPoly
+
+	(description "177139304")
+	(label "177139304")
+	(latitude "46 18.61")
+	(lineColor "FFFF0000")
+	(longitude "7 57.08")
+	(playground-index 0)
+	(points
+		"46 18.61 7 57.08"
+		"46 18.62 7 57.14")
+	(relative FALSE))
+
+([Scenario_Class570027] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570028]))
+
+([Scenario_Class570028] of  Way
+
+	(id "310416439")
+	(poly [Scenario_Class570029])
+	(source "[[46.3083557 7.946954] [46.3086417 7.947777] [46.3090281 7.9489056] [46.3092384 7.9494863] [46.3093931 7.9498591] [46.3095552 7.9502011] [46.3098257 7.9507134] [46.3100369 7.9511191] [46.310145 7.9513695]]"))
+
+([Scenario_Class570029] of  OMTPoly
+
+	(description "310416439")
+	(label "310416439")
+	(latitude "46 18.5")
+	(lineColor "FFFF0000")
+	(longitude "7 56.82")
+	(playground-index 0)
+	(points
+		"46 18.5 7 56.82"
+		"46 18.61 7 57.08")
+	(relative FALSE))
+
+([Scenario_Class570030] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570031]))
+
+([Scenario_Class570031] of  Way
+
+	(id "224857235")
+	(poly [Scenario_Class570032])
+	(source "[[46.3080608 7.9462122] [46.308163 7.9464773] [46.3083557 7.946954]]"))
+
+([Scenario_Class570032] of  OMTPoly
+
+	(description "224857235")
+	(label "224857235")
+	(latitude "46 18.48")
+	(lineColor "FFFF0000")
+	(longitude "7 56.77")
+	(playground-index 0)
+	(points
+		"46 18.48 7 56.77"
+		"46 18.5 7 56.82")
+	(relative FALSE))
+
+([Scenario_Class570033] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570034]))
+
+([Scenario_Class570034] of  Way
+
+	(id "224857243")
+	(poly [Scenario_Class570035])
+	(source "[[46.3035755 7.9284332] [46.303603 7.9290926] [46.3036743 7.9295641] [46.3037647 7.9299621] [46.3039732 7.9307008] [46.3046092 7.9330276] [46.3050521 7.934589] [46.3051526 7.93501] [46.3052231 7.935427] [46.3052718 7.9358849] [46.3053248 7.9364647] [46.3053917 7.9369846] [46.3055241 7.9375612] [46.3058477 7.9386703] [46.3059518 7.9391075] [46.3060437 7.9396168] [46.3061813 7.9404585] [46.30626 7.9408515] [46.3063573 7.9412337] [46.3080608 7.9462122]]"))
+
+([Scenario_Class570035] of  OMTPoly
+
+	(description "224857243")
+	(label "224857243")
+	(latitude "46 18.21")
+	(lineColor "FFFF0000")
+	(longitude "7 55.71")
+	(playground-index 0)
+	(points
+		"46 18.21 7 55.71"
+		"46 18.48 7 56.77")
+	(relative FALSE))
+
+([Scenario_Class570036] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570037]))
+
+([Scenario_Class570037] of  Way
+
+	(id "224857236")
+	(poly [Scenario_Class570038])
+	(source "[[46.3035936 7.9273857] [46.3035755 7.9284332]]"))
+
+([Scenario_Class570038] of  OMTPoly
+
+	(description "224857236")
+	(label "224857236")
+	(latitude "46 18.22")
+	(lineColor "FFFF0000")
+	(longitude "7 55.64")
+	(playground-index 0)
+	(points
+		"46 18.22 7 55.64"
+		"46 18.21 7 55.71")
+	(relative FALSE))
+
+([Scenario_Class570039] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570040]))
+
+([Scenario_Class570040] of  Way
+
+	(id "148190418")
+	(poly [Scenario_Class570041])
+	(source "[[46.3011896 7.9119197] [46.3012989 7.9124721] [46.3018786 7.9147917] [46.3019451 7.9150811] [46.3020088 7.9153922] [46.3020515 7.9156386] [46.3020759 7.9158825] [46.3020876 7.9164135] [46.3020779 7.9166691] [46.3020634 7.9174645] [46.3020701 7.9178074] [46.3020886 7.91815] [46.3021328 7.9185106] [46.3022637 7.9191734] [46.3024743 7.9200231] [46.302557 7.9203824] [46.3026082 7.9206879] [46.3026675 7.9211999] [46.3026954 7.9225659] [46.3027244 7.9229987] [46.3027937 7.9234157] [46.3028696 7.9237608] [46.3029541 7.9240947] [46.3032756 7.9252469] [46.3034032 7.9257278] [46.3035006 7.9261561] [46.3035513 7.9265129] [46.3035879 7.926846] [46.3035936 7.9273857]]"))
+
+([Scenario_Class570041] of  OMTPoly
+
+	(description "148190418")
+	(label "148190418")
+	(latitude "46 18.07")
+	(lineColor "FFFF0000")
+	(longitude "7 54.72")
+	(playground-index 0)
+	(points
+		"46 18.07 7 54.72"
+		"46 18.22 7 55.64")
+	(relative FALSE))
+
+([Scenario_Class570042] of  Dirway
+
+	(direction "BACKWARD")
+	(way [Scenario_Class570043]))
+
+([Scenario_Class570043] of  Way
+
+	(id "175558875")
+	(poly [Scenario_Class570044])
+	(source "[[46.3017498 7.9077906] [46.3016146 7.9080915] [46.3014803 7.908383] [46.3013686 7.9086899] [46.3012577 7.9091204] [46.3011725 7.909488] [46.3010854 7.910118] [46.3010626 7.9108208] [46.301093 7.9113829] [46.3011896 7.9119197]]"))
+
+([Scenario_Class570044] of  OMTPoly
+
+	(description "175558875")
+	(label "175558875")
+	(latitude "46 18.1")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.1 7 54.47"
+		"46 18.07 7 54.72")
+	(relative FALSE))
+
+([Scenario_Class570045] of  GoRoad
+
+	(direction "FORWARD")
+	(object [igis_Class10000])
+	(road [Scenario_Class570002])
+	(spd "5")
+	(status "START")
+	(title "test"))
+
+([Scenario_Class570046] of  CloFuncall
+
+	(source "(ru.rules/f2 2)"))
+
+([Scenario_Class570047] of  Table2
+
+	(column1
+		"object"
+		"direction"
+		"road"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"title"
+		"status"
+		"id"
+		"spd")
+	(column2
+		"SimpleInstance(igis_Class10000 of [Cls(NavOb)])"
+		":?"
+		"SimpleInstance(Scenario_Class570002 of [Cls(Railroad)])"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class570045 of [Cls(GoRoad)])"
+		"[]"
+		"test"
+		"FAILED"
+		":?"
+		"20")
+	(title "GoRoad 2"))
+
+([Scenario_Class580000] of  CloFuncall
+
+	(source "(ru.rules/f2 35)"))
+
+([Scenario_Class580001] of  CloFuncall
+
+	(source "(ru.rules/f 35)"))
+
+([Scenario_Class580002] of  CloFuncall
+
+	(source "(ru.rules/f 37)"))
+
+([Scenario_Class580003] of  CloFuncall
+
+	(source "rete.core/TEMPL"))
+
+([Scenario_Class580004] of  CloFuncall
+
+	(source "(rete.core/TEMPL 'GoRoad)"))
+
+([Scenario_Class590000] of  CloFuncall
+
+	(source "(ru.rules/f 289)"))
+
+([Scenario_Class590001] of  CloFuncall
+
+	(source "(ru.rules/f 51)"))
 
 ([Scenario_Class60000] of  Openmap
 

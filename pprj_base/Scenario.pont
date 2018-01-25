@@ -1,4 +1,4 @@
-; Mon Jan 22 19:33:16 MSK 2018
+; Fri Jan 26 00:19:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1647,13 +1647,13 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot direction
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road
@@ -2766,6 +2766,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass Motoroad
+	(is-a Road)
+	(role concrete))
 
 (defclass Route
 	(is-a Way+Onto)
