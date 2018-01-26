@@ -1,4 +1,4 @@
-; Fri Jan 26 00:19:40 MSK 2018
+; Fri Jan 26 22:25:53 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -614,7 +614,9 @@
 		[Scenario_Class30000]
 		[Scenario_Class380000]
 		[Scenario_Class440001]
-		[Scenario_Class440000])
+		[Scenario_Class440000]
+		[Scenario_Class600001]
+		[Scenario_Class600000])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -1979,6 +1981,16 @@
 		[igis_Class40012]
 		[igis_Class1]
 		[igis_Class40011]))
+
+([Scenario_Class600000] of  CloFunction
+
+	(source "(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         T (/ D V)]\n    (if (< t D)\n      (let [[px tx] (inner-point p1 p2 T t)]\n        (recur (cons px (cons p2 rway)) (- t tx)))\n      (let [rt (- t D)\n             rt (if (< rt (/ 1 3600)) 0 rt)\n             rway (cons p2 rway)]\n        (if (empty? rway)\n          [rt []]\n          (if (> rt 0)\n            (recur rway rt)\n            [0 rway]))))))")
+	(title "next-way-point [way sec V]"))
+
+([Scenario_Class600001] of  CloFunction
+
+	(source "(let [yt (+ y1 (/ (* t (- y2 y1)) T))\n       xt (+ x1 (/ (* t (- x2 x1)) T))]\n  [yt xt])")
+	(title "inner-point [[y1 x1] [y2 x2] T t]"))
 
 ([Scenario_Class60001] of  Playground
 

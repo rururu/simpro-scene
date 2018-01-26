@@ -627,3 +627,26 @@
 (defn subst-hm-vars [hm s]
   (reduce #(.replaceAll %1 (str "\\" %2) (str (.get hm %2))) s (.keySet hm)))
 
+(defn inner-point [[y1 x1] [y2 x2] T t]
+  (let [yt (+ y1 (/ (* t (- y2 y1)) T))
+       xt (+ x1 (/ (* t (- x2 x1)) T))]
+  [yt xt]))
+
+(defn next-way-point [way sec V]
+  (loop [[p1 p2 & rway] way t (/ sec 3600)]
+  (let [[la1 lo1] p1
+         [la2 lo2] p2
+         D (MapOb/distanceNM la1 lo1 la2 lo2)
+         T (/ D V)]
+    (if (< t D)
+      (let [[px tx] (inner-point p1 p2 T t)]
+        (recur (cons px (cons p2 rway)) (- t tx)))
+      (let [rt (- t D)
+             rt (if (< rt (/ 1 3600)) 0 rt)
+             rway (cons p2 rway)]
+        (if (empty? rway)
+          [rt []]
+          (if (> rt 0)
+            (recur rway rt)
+            [0 rway])))))))
+
