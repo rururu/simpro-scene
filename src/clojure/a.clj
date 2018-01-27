@@ -633,23 +633,23 @@
   [yt xt]))
 
 (defn next-way-point [way sec V]
-  (loop [[p1 p2 & rway] way t (/ sec 3600)]
-  (println :P1 p1 :P2 p2)
+  ;; returns [course rway] or [course rtime(hrs)]
+(loop [[p1 p2 & rway] way t (/ sec 3600)]
   (let [[la1 lo1] p1
          [la2 lo2] p2
          D (MapOb/distanceNM la1 lo1 la2 lo2)
+         C (int (MapOb/bearingsDeg la1 lo1 la2 lo2))
          T (/ D V)]
-    (println :t t :T T)
-    (if (< t D)
-      (cons (inner-point p1 p2 T t) (cons p2 rway))
-      (let [rt (- t D)
+    (if (< t T)
+      [C (cons (inner-point p1 p2 T t) (cons p2 rway))]
+      (let [rt (- t T)
              rt (if (< rt (/ 1 3600)) 0 rt)]
         (if (empty? rway)
-          [rt []]
+          [C (int (* rt 3600))]
           (let [rway (cons p2 rway)]
             (if (> rt 0)
               (recur rway rt)
-              [0 rway]))))))))
+              [C rway]))))))))
 
 (defn test [sec]
   (let [p1(first way)
@@ -660,6 +660,6 @@
        V 30
        T (/ D V)]
   ;;(ctpl [:D D :V V :T T :SEC sec])
-  (println (inner-point p1 p2 T (/ sec 3600)))
+  ;;(println (inner-point p1 p2 T (/ sec 3600)))
   (next-way-point way sec V)))
 

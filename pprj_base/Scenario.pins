@@ -1,4 +1,4 @@
-; Sat Jan 27 17:19:39 MSK 2018
+; Sat Jan 27 23:19:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1268,10 +1268,6 @@
 	(source "(or \n  (nil? x)\n  (= x :?))")
 	(title "qm [x]"))
 
-([Scenario_Class420000] of  CloFuncall
-
-	(source "(ru.rules/dr)"))
-
 ([Scenario_Class420002] of  CloFunction
 
 	(source "(->> (.getLatLonArrayCopy omp)\n  (ProjMath/arrayRadToDeg)\n  (partition 2))")
@@ -1907,6 +1903,74 @@
 		"20")
 	(title "GoRoad 2"))
 
+([Scenario_Class580038] of  CloFuncall
+
+	(source "(test 3)"))
+
+([Scenario_Class580039] of  CloFuncall
+
+	(source "(test 4)"))
+
+([Scenario_Class580040] of  CloFuncall
+
+	(source "(test 5)"))
+
+([Scenario_Class580041] of  CloFuncall
+
+	(source "(test 6)"))
+
+([Scenario_Class580042] of  CloFuncall
+
+	(source "(test 8)"))
+
+([Scenario_Class580043] of  CloFuncall
+
+	(source "(test 12)"))
+
+([Scenario_Class580044] of  CloFuncall
+
+	(source "(test 1)"))
+
+([Scenario_Class580045] of  CloFuncall
+
+	(source "(test 7)"))
+
+([Scenario_Class580046] of  CloFuncall
+
+	(source "(test 11)"))
+
+([Scenario_Class580047] of  CloFuncall
+
+	(source "(test 10)"))
+
+([Scenario_Class580048] of  CloFuncall
+
+	(source "(test 9)"))
+
+([Scenario_Class580049] of  CloFuncall
+
+	(source "(test 93)"))
+
+([Scenario_Class580050] of  CloFuncall
+
+	(source "(test 80)"))
+
+([Scenario_Class580051] of  CloFuncall
+
+	(source "(test 70)"))
+
+([Scenario_Class580052] of  CloFuncall
+
+	(source "(test 60)"))
+
+([Scenario_Class580053] of  CloFuncall
+
+	(source "(test 50)"))
+
+([Scenario_Class580054] of  CloFuncall
+
+	(source "(dotimes [t 100] (println (first (test t))))"))
+
 ([Scenario_Class60000] of  Openmap
 
 	(components
@@ -1949,7 +2013,7 @@
 
 ([Scenario_Class600000] of  CloFunction
 
-	(source "(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (println :P1 p1 :P2 p2)\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         T (/ D V)]\n    (println :t t :T T)\n    (if (< t D)\n      (cons (inner-point p1 p2 T t) (cons p2 rway))\n      (let [rt (- t D)\n             rt (if (< rt (/ 1 3600)) 0 rt)]\n        (if (empty? rway)\n          [rt []]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [0 rway])))))))")
+	(source ";; returns [course rway] or [course rtime(hrs)]\n(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         C (int (MapOb/bearingsDeg la1 lo1 la2 lo2))\n         T (/ D V)]\n    (if (< t T)\n      [C (cons (inner-point p1 p2 T t) (cons p2 rway))]\n      (let [rt (- t T)\n             rt (if (< rt (/ 1 3600)) 0 rt)]\n        (if (empty? rway)\n          [C (int (* rt 3600))]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [C rway])))))))")
 	(title "next-way-point [way sec V]"))
 
 ([Scenario_Class600001] of  CloFunction
@@ -1980,74 +2044,10 @@
 ([Scenario_Class610000] of  CloFuncall
 )
 
-([Scenario_Class610001] of  CloFuncall
-
-	(source "(fifos \"Way\" \"id\" \"\")"))
-
-([Scenario_Class610002] of  CloFuncall
-
-	(source "(fifos \"Way\" \"id\" \"224857243\")"))
-
-([Scenario_Class610003] of  CloFuncall
-
-	(source "(in-ns 'osm.data)"))
-
-([Scenario_Class610004] of  CloFuncall
-
-	(source "(in-ns 'a)"))
-
-([Scenario_Class610005] of  CloFuncall
-
-	(source "(def way (read-string (sv (fifos \"Way\" \"id\" \"224857243\") \"source\")))"))
-
-([Scenario_Class610006] of  CloFuncall
-
-	(source "a"))
-
-([Scenario_Class610007] of  CloFuncall
-
-	(source "way"))
-
 ([Scenario_Class610008] of  CloFunction
 
-	(source "(let [p1(first way)\n       p2 (second way)\n       [y1 x1] p1\n       [y2 x2] p2 \n       D (MapOb/distanceNM y1 x1 y2 x2)\n       V 30\n       T (/ D V)]\n  ;;(ctpl [:D D :V V :T T :SEC sec])\n  (println (inner-point p1 p2 T (/ sec 3600)))\n  (next-way-point way sec V))")
+	(source "(let [p1(first way)\n       p2 (second way)\n       [y1 x1] p1\n       [y2 x2] p2 \n       D (MapOb/distanceNM y1 x1 y2 x2)\n       V 30\n       T (/ D V)]\n  ;;(ctpl [:D D :V V :T T :SEC sec])\n  ;;(println (inner-point p1 p2 T (/ sec 3600)))\n  (next-way-point way sec V))")
 	(title "test [sec]"))
-
-([Scenario_Class610009] of  CloFuncall
-
-	(source "(test)"))
-
-([Scenario_Class610010] of  CloFuncall
-
-	(source "(test 1)"))
-
-([Scenario_Class610011] of  CloFuncall
-
-	(source "(test 2)"))
-
-([Scenario_Class610012] of  CloFuncall
-
-	(source "(test 3)"))
-
-([Scenario_Class610013] of  CloFuncall
-
-	(source "(test 4)"))
-
-([Scenario_Class610014] of  CloFuncall
-
-	(source "(test 40)"))
-
-([Scenario_Class610015] of  CloFuncall
-
-	(source "(test 10)"))
-
-([Scenario_Class610016] of  CloFuncall
-
-	(source "(test 8)"))
-
-([Scenario_Class610017] of  CloFuncall
-
-	(source "(test 5)"))
 
 ([Scenario_Class70000] of  Rule
 
