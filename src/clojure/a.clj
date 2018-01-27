@@ -634,19 +634,32 @@
 
 (defn next-way-point [way sec V]
   (loop [[p1 p2 & rway] way t (/ sec 3600)]
+  (println :P1 p1 :P2 p2)
   (let [[la1 lo1] p1
          [la2 lo2] p2
          D (MapOb/distanceNM la1 lo1 la2 lo2)
          T (/ D V)]
+    (println :t t :T T)
     (if (< t D)
-      (let [[px tx] (inner-point p1 p2 T t)]
-        (recur (cons px (cons p2 rway)) (- t tx)))
+      (cons (inner-point p1 p2 T t) (cons p2 rway))
       (let [rt (- t D)
-             rt (if (< rt (/ 1 3600)) 0 rt)
-             rway (cons p2 rway)]
+             rt (if (< rt (/ 1 3600)) 0 rt)]
         (if (empty? rway)
           [rt []]
-          (if (> rt 0)
-            (recur rway rt)
-            [0 rway])))))))
+          (let [rway (cons p2 rway)]
+            (if (> rt 0)
+              (recur rway rt)
+              [0 rway]))))))))
+
+(defn test [sec]
+  (let [p1(first way)
+       p2 (second way)
+       [y1 x1] p1
+       [y2 x2] p2 
+       D (MapOb/distanceNM y1 x1 y2 x2)
+       V 30
+       T (/ D V)]
+  ;;(ctpl [:D D :V V :T T :SEC sec])
+  (println (inner-point p1 p2 T (/ sec 3600)))
+  (next-way-point way sec V)))
 

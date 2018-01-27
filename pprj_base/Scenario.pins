@@ -1,4 +1,4 @@
-; Fri Jan 26 22:25:53 MSK 2018
+; Sat Jan 27 17:19:39 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -616,7 +616,8 @@
 		[Scenario_Class440001]
 		[Scenario_Class440000]
 		[Scenario_Class600001]
-		[Scenario_Class600000])
+		[Scenario_Class600000]
+		[Scenario_Class610008])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -1339,10 +1340,6 @@
 	(source "(mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run))")
 	(title "embed-ctx-vars [run]"))
 
-([Scenario_Class470003] of  CloFuncall
-
-	(source "(sim/start-sim)"))
-
 ([Scenario_Class480000] of  CloVar
 
 	(source "{\n1 \"#4444FF\"\n2 \"#FFFF00\"\n3 \"#FF4444\"\n\"1\" \"#4444FF\"\n\"2\" \"#FFFF00\"\n\"3\" \"#FF4444\"\n}")
@@ -1882,10 +1879,6 @@
 	(status "START")
 	(title "test"))
 
-([Scenario_Class570046] of  CloFuncall
-
-	(source "(ru.rules/f2 2)"))
-
 ([Scenario_Class570047] of  Table2
 
 	(column1
@@ -1913,34 +1906,6 @@
 		":?"
 		"20")
 	(title "GoRoad 2"))
-
-([Scenario_Class580000] of  CloFuncall
-
-	(source "(ru.rules/f2 35)"))
-
-([Scenario_Class580001] of  CloFuncall
-
-	(source "(ru.rules/f 35)"))
-
-([Scenario_Class580002] of  CloFuncall
-
-	(source "(ru.rules/f 37)"))
-
-([Scenario_Class580003] of  CloFuncall
-
-	(source "rete.core/TEMPL"))
-
-([Scenario_Class580004] of  CloFuncall
-
-	(source "(rete.core/TEMPL 'GoRoad)"))
-
-([Scenario_Class590000] of  CloFuncall
-
-	(source "(ru.rules/f 289)"))
-
-([Scenario_Class590001] of  CloFuncall
-
-	(source "(ru.rules/f 51)"))
 
 ([Scenario_Class60000] of  Openmap
 
@@ -1984,7 +1949,7 @@
 
 ([Scenario_Class600000] of  CloFunction
 
-	(source "(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         T (/ D V)]\n    (if (< t D)\n      (let [[px tx] (inner-point p1 p2 T t)]\n        (recur (cons px (cons p2 rway)) (- t tx)))\n      (let [rt (- t D)\n             rt (if (< rt (/ 1 3600)) 0 rt)\n             rway (cons p2 rway)]\n        (if (empty? rway)\n          [rt []]\n          (if (> rt 0)\n            (recur rway rt)\n            [0 rway]))))))")
+	(source "(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (println :P1 p1 :P2 p2)\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         T (/ D V)]\n    (println :t t :T T)\n    (if (< t D)\n      (cons (inner-point p1 p2 T t) (cons p2 rway))\n      (let [rt (- t D)\n             rt (if (< rt (/ 1 3600)) 0 rt)]\n        (if (empty? rway)\n          [rt []]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [0 rway])))))))")
 	(title "next-way-point [way sec V]"))
 
 ([Scenario_Class600001] of  CloFunction
@@ -2012,16 +1977,84 @@
 	(%3ACREATION-TIMESTAMP "2017.10.23 21:20:21.761 MSK")
 	(%3ACREATOR "ru"))
 
+([Scenario_Class610000] of  CloFuncall
+)
+
+([Scenario_Class610001] of  CloFuncall
+
+	(source "(fifos \"Way\" \"id\" \"\")"))
+
+([Scenario_Class610002] of  CloFuncall
+
+	(source "(fifos \"Way\" \"id\" \"224857243\")"))
+
+([Scenario_Class610003] of  CloFuncall
+
+	(source "(in-ns 'osm.data)"))
+
+([Scenario_Class610004] of  CloFuncall
+
+	(source "(in-ns 'a)"))
+
+([Scenario_Class610005] of  CloFuncall
+
+	(source "(def way (read-string (sv (fifos \"Way\" \"id\" \"224857243\") \"source\")))"))
+
+([Scenario_Class610006] of  CloFuncall
+
+	(source "a"))
+
+([Scenario_Class610007] of  CloFuncall
+
+	(source "way"))
+
+([Scenario_Class610008] of  CloFunction
+
+	(source "(let [p1(first way)\n       p2 (second way)\n       [y1 x1] p1\n       [y2 x2] p2 \n       D (MapOb/distanceNM y1 x1 y2 x2)\n       V 30\n       T (/ D V)]\n  ;;(ctpl [:D D :V V :T T :SEC sec])\n  (println (inner-point p1 p2 T (/ sec 3600)))\n  (next-way-point way sec V))")
+	(title "test [sec]"))
+
+([Scenario_Class610009] of  CloFuncall
+
+	(source "(test)"))
+
+([Scenario_Class610010] of  CloFuncall
+
+	(source "(test 1)"))
+
+([Scenario_Class610011] of  CloFuncall
+
+	(source "(test 2)"))
+
+([Scenario_Class610012] of  CloFuncall
+
+	(source "(test 3)"))
+
+([Scenario_Class610013] of  CloFuncall
+
+	(source "(test 4)"))
+
+([Scenario_Class610014] of  CloFuncall
+
+	(source "(test 40)"))
+
+([Scenario_Class610015] of  CloFuncall
+
+	(source "(test 10)"))
+
+([Scenario_Class610016] of  CloFuncall
+
+	(source "(test 8)"))
+
+([Scenario_Class610017] of  CloFuncall
+
+	(source "(test 5)"))
+
 ([Scenario_Class70000] of  Rule
 
 	(lhs "(Clock time ?t)\n?del (Delay status \"REPEAT\" \n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?n))")
 	(rhs "(retract ?del)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:DelayRepeat"))
-
-([Scenario_Class70005] of  CloFuncall
-
-	(source "(ru.rules/sp :all)"))
 
 ([Scenario_Class80000] of  Rule
 
