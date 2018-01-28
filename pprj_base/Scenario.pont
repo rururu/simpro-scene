@@ -1,4 +1,4 @@
-; Sat Jan 27 23:19:42 MSK 2018
+; Sun Jan 28 22:09:37 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1647,6 +1647,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
@@ -1654,6 +1658,11 @@
 		(create-accessor read-write))
 	(single-slot direction
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road

@@ -1,4 +1,4 @@
-; Sat Jan 27 23:19:42 MSK 2018
+; Sun Jan 28 22:09:37 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1268,6 +1268,14 @@
 	(source "(or \n  (nil? x)\n  (= x :?))")
 	(title "qm [x]"))
 
+([Scenario_Class420000] of  CloFuncall
+
+	(source "(in-ns 'a)"))
+
+([Scenario_Class420001] of  CloFuncall
+
+	(source "(fifos \"Way\" \"id\" \"224857243\")"))
+
 ([Scenario_Class420002] of  CloFunction
 
 	(source "(->> (.getLatLonArrayCopy omp)\n  (ProjMath/arrayRadToDeg)\n  (partition 2))")
@@ -1307,6 +1315,10 @@
 	(source "(if-let [flt (seq (->> (ru.igis.omtab.OpenMapTab/getMapBean)\n	.getComponents\n	(filter #(= (.getName %) name))))]\n  (-> (first flt)\n    .getList\n    .getTargets))")
 	(title "layer-targets [name]"))
 
+([Scenario_Class440002] of  CloFuncall
+
+	(source "(sv (fifos \"Way\" \"id\" \"224857243\") \"source\")"))
+
 ([Scenario_Class440003] of  Rule
 
 	(lhs "?gl (GoLayer status \"REPEAT\"\n	object ?obj\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?obj)")
@@ -1318,6 +1330,66 @@
 
 	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (or (instance? Instance v) (instance? MapOb v))\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
 	(title "to-clj-type [v]"))
+
+([Scenario_Class450003] of  CloFuncall
+
+	(source "(def way (read-string (sv (fifos \"Way\" \"id\" \"224857243\") \"source\")))"))
+
+([Scenario_Class450004] of  CloFuncall
+
+	(source "way"))
+
+([Scenario_Class450005] of  CloFuncall
+
+	(source "(test 40)"))
+
+([Scenario_Class450006] of  CloFuncall
+
+	(source "(test 90)"))
+
+([Scenario_Class450007] of  CloFuncall
+
+	(source "(test 95)"))
+
+([Scenario_Class450008] of  CloFuncall
+
+	(source "(test 94)"))
+
+([Scenario_Class450009] of  CloFuncall
+
+	(source "(test 96)"))
+
+([Scenario_Class450010] of  CloFuncall
+
+	(source "(test 97)"))
+
+([Scenario_Class450011] of  CloFuncall
+
+	(source "(def x (second (test 1)))"))
+
+([Scenario_Class450012] of  CloFuncall
+
+	(source "x"))
+
+([Scenario_Class450013] of  CloFuncall
+
+	(source "(seq x)"))
+
+([Scenario_Class450014] of  CloFuncall
+
+	(source "(seq 0)"))
+
+([Scenario_Class450015] of  CloFuncall
+
+	(source "(seq? 0)"))
+
+([Scenario_Class450016] of  CloFuncall
+
+	(source "(seq? x)"))
+
+([Scenario_Class450017] of  CloFuncall
+
+	(source "(seq? '())"))
 
 ([Scenario_Class460000] of  Rule
 
@@ -1405,8 +1477,8 @@
 
 ([Scenario_Class520000] of  Rule
 
-	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [obj (a/vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)]\n  (if (not (or (a/null? obj) (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           bwd (not= dir dn)\n           tit (str \"Gor\" (protege.core/sv way \"id\"))]\n      (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title tit\n	 'object obj\n	 'route rou\n	 'spd ?spd\n	 'backward bwd\n	 'radius 0.1\n	 'run ?run\n	 'parent ?par])\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	direction dir\n	object obj\n	title tit))\n    (modify ?gor status \"FAILED\")))")
+	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       speed (a/vv ?spd ?run)]\n  (if (not (or (a/null? obj) (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           rou (if (not= dir dn) (reverse rou) rou)\n           [la1 lo1] (first rou)]\n      (.setLocation mo la1 lo1)\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	route rou\n	spd speed\n	object mo\n	N ?t))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRoadStart"))
 
@@ -1467,8 +1539,8 @@
 
 ([Scenario_Class550001] of  Rule
 
-	(lhs "?gor (GoRoad status \"REPEAT\"\n	title ?tit\n	object ?obj\n	road ?dws\n	spd ?spd\n	direction ?dir\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)\n(not GoRoute title ?tit)")
-	(rhs "(if (empty? ?dws)\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n         dn (protege.core/sv dw \"direction\")\n         way (protege.core/sv dw \"way\")\n         rou (read-string (protege.core/sv way \"source\"))\n         bwd (not= ?dir dn)]\n    (rete.core/assert-frame\n	['GoRoute 'status \"START\"\n	 'title ?tit\n	 'object ?obj\n	 'route rou\n	 'spd ?spd\n	 'backward bwd\n	 'radius 0.1\n	 'run ?run\n	 'parent ?pid])\n    (modify ?gor status \"REPEAT\"\n	road (rest ?dws))))")
+	(lhs "?gor (GoRoad status \"REPEAT\"\n	title ?tit\n	object ?obj\n	road ?dws\n	spd ?spd\n	direction ?dir\n	route ?rou\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(let [[crs rwot] (a/next-way-point ?rou (- ?t ?n) ?spd)]\n  (.setCourse ?obj crs)\n  (if (seq? rwot)\n    (.setLoacation ?obj (ffirst rwot) (first (second rwot)))\n    (if (seq ?dws)\n      (modify ?gor N ?t\n	route rwot)\n      (if (empty? ?dws)\n        (do (retract ?gor)\n          (s/start-next ?nacts ?pid ?ain ?run))\n        (let [dw (first ?dws)\n               dn (protege.core/sv dw \"direction\")\n               way (protege.core/sv dw \"way\")\n               rou (read-string (protege.core/sv way \"source\"))\n               rou (if (not= ?dir dn) (reverse rou) rou)\n               [la1 lo1] (first rou)]\n          (.setLocation mo la1 lo1)\n          (modify ?gor road (rest dws)\n	route rou\n	N ?t))))))")
 	(salience 0)
 	(title "a:GoRoadRepeat"))
 
@@ -2013,7 +2085,7 @@
 
 ([Scenario_Class600000] of  CloFunction
 
-	(source ";; returns [course rway] or [course rtime(hrs)]\n(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         C (int (MapOb/bearingsDeg la1 lo1 la2 lo2))\n         T (/ D V)]\n    (if (< t T)\n      [C (cons (inner-point p1 p2 T t) (cons p2 rway))]\n      (let [rt (- t T)\n             rt (if (< rt (/ 1 3600)) 0 rt)]\n        (if (empty? rway)\n          [C (int (* rt 3600))]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [C rway])))))))")
+	(source ";; returns [course rway] or [course rtime(sec)]\n(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         C (int (MapOb/bearingsDeg la1 lo1 la2 lo2))\n         T (/ D V)]\n    (if (< t T)\n      [C (cons (inner-point p1 p2 T t) (cons p2 rway))]\n      (let [rt (- t T)]\n        (if (empty? rway)\n          [C (int (* rt 3600))]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [C rway])))))))")
 	(title "next-way-point [way sec V]"))
 
 ([Scenario_Class600001] of  CloFunction
@@ -2040,9 +2112,6 @@
 	(%3AANNOTATED-INSTANCE [Scenario_Class60002])
 	(%3ACREATION-TIMESTAMP "2017.10.23 21:20:21.761 MSK")
 	(%3ACREATOR "ru"))
-
-([Scenario_Class610000] of  CloFuncall
-)
 
 ([Scenario_Class610008] of  CloFunction
 

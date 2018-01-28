@@ -633,7 +633,7 @@
   [yt xt]))
 
 (defn next-way-point [way sec V]
-  ;; returns [course rway] or [course rtime(hrs)]
+  ;; returns [course rway] or [course rtime(sec)]
 (loop [[p1 p2 & rway] way t (/ sec 3600)]
   (let [[la1 lo1] p1
          [la2 lo2] p2
@@ -642,8 +642,7 @@
          T (/ D V)]
     (if (< t T)
       [C (cons (inner-point p1 p2 T t) (cons p2 rway))]
-      (let [rt (- t T)
-             rt (if (< rt (/ 1 3600)) 0 rt)]
+      (let [rt (- t T)]
         (if (empty? rway)
           [C (int (* rt 3600))]
           (let [rway (cons p2 rway)]
