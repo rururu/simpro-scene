@@ -1,4 +1,4 @@
-; Thu Jan 25 15:40:48 MSK 2018
+; Tue Jan 30 16:09:09 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,6 +29,30 @@
 
 	(source "(let [[w s e n] bbx]\n  (str \"http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
 	(title "way-api-url [bbx way-type]"))
+
+([BrigBern_Class100000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "train")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/trnB.gif"))
+
+([BrigBern_Class100001] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "car")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/autor.png"))
 
 ([BrigBern_Class100004] of  OMTPoly
 
@@ -1341,6 +1365,7 @@
 		[BrigBern_Class100192]
 		[BrigBern_Class100193])
 	(from1 "Oberwald")
+	(title "Furkastrasse")
 	(to1 "Innertkirchen"))
 
 ([BrigBern_Class100195] of  CloFuncall
@@ -1452,6 +1477,15 @@
 		[BrigBern_Class100213])
 	(from1 "Brig")
 	(to1 "Lalden"))
+
+([BrigBern_Class110000] of  GoRoad
+
+	(direction "FORWARD")
+	(object [BrigBern_Class100000])
+	(road [BrigBern_Class110210])
+	(spd "40")
+	(status "START")
+	(title "test"))
 
 ([BrigBern_Class110129] of  Way
 

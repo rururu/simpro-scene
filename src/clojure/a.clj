@@ -650,15 +650,3 @@
               (recur rway rt)
               [C rway]))))))))
 
-(defn test [sec]
-  (let [p1(first way)
-       p2 (second way)
-       [y1 x1] p1
-       [y2 x2] p2 
-       D (MapOb/distanceNM y1 x1 y2 x2)
-       V 30
-       T (/ D V)]
-  ;;(ctpl [:D D :V V :T T :SEC sec])
-  ;;(println (inner-point p1 p2 T (/ sec 3600)))
-  (next-way-point way sec V)))
-

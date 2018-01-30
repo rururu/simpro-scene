@@ -1,4 +1,4 @@
-; Mon Jan 29 22:15:45 MSK 2018
+; Tue Jan 30 14:19:26 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -616,8 +616,7 @@
 		[Scenario_Class440001]
 		[Scenario_Class440000]
 		[Scenario_Class600001]
-		[Scenario_Class600000]
-		[Scenario_Class610008])
+		[Scenario_Class600000])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -1692,14 +1691,6 @@
 		"46 18.07 7 54.72")
 	(relative FALSE))
 
-([Scenario_Class570045] of  GoRoad
-
-	(direction "FORWARD")
-	(object [igis_Class10000])
-	(spd "5")
-	(status "START")
-	(title "test"))
-
 ([Scenario_Class570047] of  Table2
 
 	(column1
@@ -1805,11 +1796,6 @@
 	(%3AANNOTATED-INSTANCE [Scenario_Class60002])
 	(%3ACREATION-TIMESTAMP "2017.10.23 21:20:21.761 MSK")
 	(%3ACREATOR "ru"))
-
-([Scenario_Class610008] of  CloFunction
-
-	(source "(let [p1(first way)\n       p2 (second way)\n       [y1 x1] p1\n       [y2 x2] p2 \n       D (MapOb/distanceNM y1 x1 y2 x2)\n       V 30\n       T (/ D V)]\n  ;;(ctpl [:D D :V V :T T :SEC sec])\n  ;;(println (inner-point p1 p2 T (/ sec 3600)))\n  (next-way-point way sec V))")
-	(title "test [sec]"))
 
 ([Scenario_Class70000] of  Rule
 

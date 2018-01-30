@@ -1,0 +1,110 @@
+; Tue Jan 30 16:35:19 MSK 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Cezium_Class0] of  ClsRequired
+
+	(cloFunctions
+		[Cezium_Class6]
+		[Cezium_Class7]
+		[Cezium_Class8]
+		[Cezium_Class9]
+		[Cezium_Class10]
+		[Cezium_Class11]
+		[Cezium_Class12]
+		[Cezium_Class13])
+	(cloNamespace [Cezium_Class1])
+	(cloVars
+		[Cezium_Class2]
+		[Cezium_Class3]
+		[Cezium_Class4]
+		[Cezium_Class5])
+	(documentation [Cezium_Class14])
+	(title "Cezium Client"))
+
+([Cezium_Class1] of  CloNamespace
+
+	(title "czm.core"))
+
+([Cezium_Class10] of  CloFunction
+
+	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon alt head pitch roll per))")
+	(title "fly-to [lat lon alt crs per]"))
+
+([Cezium_Class11] of  CloFunction
+
+	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (move-control lat lon alt head pitch roll))")
+	(title "move-to [lat lon alt crs]"))
+
+([Cezium_Class12] of  CloFunction
+
+	(source "(vswap! CAMERA assoc key val)")
+	(title "camera [key val]"))
+
+([Cezium_Class13] of  CloFunction
+
+	(source "(if (= terra \"yes\")\n  (set! (.-terrainProvider VIEWER) TERR-PROV))\n(.add (.-dataSources VIEWER) CZM-SRC)\n(.addEventListener (js/EventSource. (str base-url \"czml/\")) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW :BASE base-url :TERRA terra])")
+	(title "init-3D-view [base-url terra]"))
+
+([Cezium_Class14] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Cesium Client<br></b><br>API<br><br>1. fly-to [lat lon alt crs per]<br>2. camera [key val], keys: :view, :altitude, :pitch, :roll<br><br>CZML rendering support<br><br>Initialization: (init-3D-view)</body>\n</html>"))
+
+([Cezium_Class15] of  ClsMain
+
+	(butt-build "Build/cljs.compile/build")
+	(cloNamespace [Cezium_Class16])
+	(cloVars [Cezium_Class17])
+	(required [Cezium_Class0])
+	(title "View 3D Client"))
+
+([Cezium_Class16] of  CloNamespace
+
+	(source "(:require\n  [czm.core :as czm])")
+	(title "view3d.client"))
+
+([Cezium_Class17] of  CloVar
+
+	(source "(volatile! {:coord [60 30]\n               :altitude 4000\n               :speed 160\n               :course 270})")
+	(title "VEHICLE"))
+
+([Cezium_Class2] of  CloVar
+
+	(source "(js/Cesium.CesiumTerrainProvider.\n  #js{:url \"//assets.agi.com/stk-terrain/world\"\n        :requestWaterMask false\n        :requestVertexNormals false})")
+	(title "TERR-PROV"))
+
+([Cezium_Class3] of  CloVar
+
+	(source "(js/Cesium.Viewer. \n  \"cesiumContainer\" \n  #js{:animation false})")
+	(title "VIEWER"))
+
+([Cezium_Class4] of  CloVar
+
+	(source "(js/Cesium.CzmlDataSource.)")
+	(title "CZM-SRC"))
+
+([Cezium_Class5] of  CloVar
+
+	(source "(volatile! {:view \"FORWARD\"\n               :pitch -10\n               :roll 0})")
+	(title "CAMERA"))
+
+([Cezium_Class6] of  CloFunction
+
+	(source "(cond\n   (> x 360) (- x 360)\n   (< x 0) (+ x 360)\n   true x)")
+	(title "norm-crs [x]"))
+
+([Cezium_Class7] of  CloFunction
+
+	(source "(let [data (.-data e)\n       data (js/JSON.parse data)]\n  ;;(println [:CZML data])\n  (.process CZM-SRC data))")
+	(title "cz-processor [e]"))
+
+([Cezium_Class8] of  CloFunction
+
+	(source "(let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]\n  (.flyTo (.-camera VIEWER)\n            #js{:destination dest\n                  :orientation #js{:heading (js/Cesium.Math.toRadians hea)\n                                           :pitch   (js/Cesium.Math.toRadians pit)\n                                           :roll    (js/Cesium.Math.toRadians rol)}\n                  :maximumHeight alt\n                  :duration per\n                  :easingFunction (fn [time] time)}))")
+	(title "fly-control [lat lon alt hea pit rol per]"))
+
+([Cezium_Class9] of  CloFunction
+
+	(source ";;(println :MC lat lon alt hea pit rol)\n(let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]\n  (.setView (.-camera VIEWER)\n            #js{:destination dest\n                  :orientation #js{:heading (js/Cesium.Math.toRadians hea)\n                                           :pitch   (js/Cesium.Math.toRadians pit)\n                                           :roll    (js/Cesium.Math.toRadians rol)}}))")
+	(title "move-control [lat lon alt hea pit rol]"))
