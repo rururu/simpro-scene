@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cockpit View</title>
+    <link rel="stylesheet" href="css/cesium.css" />
+    <script src="Cesium/Cesium.js"></script>
+    <style>
+      @import url(Cesium/Widgets/widgets.css);
+      #cesiumContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <div id="camera"></div>
+    <div id="onboard"></div><div id="onboard-fld"></div>
+    <div id="view"></div><div id="view-fld"></div>
+    <div id="pitch"></div><div id="pitch-fld"></div>
+    <div id="roll"></div><div id="roll-fld"></div>
+    <script>
+      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

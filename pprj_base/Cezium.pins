@@ -1,4 +1,4 @@
-; Tue Jan 30 16:35:19 MSK 2018
+; Wed Jan 31 19:55:46 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -32,6 +32,61 @@
 	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon alt head pitch roll per))")
 	(title "fly-to [lat lon alt crs per]"))
 
+([Cezium_Class10000] of  CloFunction
+
+	(source "([func time-out]\n  (go (while true\n           (func)\n           (<! (timeout time-out)))))\n([func param time-out]\n  (go (while true\n           (func param)\n           (<! (timeout time-out)))))")
+	(title "repeater"))
+
+([Cezium_Class10001] of  CloFunction
+
+	(source "(enable-console-print!)\n(repeater receive-directives (:directives TIO))")
+	(title "on-load []"))
+
+([Cezium_Class10002] of  CloFunction
+
+	(source "(GET (:directives URL) {:handler directives-handler\n                       :error-handler error-handler})")
+	(title "receive-directives []"))
+
+([Cezium_Class10003] of  CloVar
+
+	(source "4444")
+	(title "PORT"))
+
+([Cezium_Class10004] of  CloVar
+
+	(source "\"http://localhost:\"")
+	(title "HOST"))
+
+([Cezium_Class10005] of  CloVar
+
+	(source "{:directives (str HOST PORT \"/directives/\")}")
+	(title "URL"))
+
+([Cezium_Class10006] of  CloVar
+
+	(source "{:directives 1000}")
+	(title "TIO"))
+
+([Cezium_Class10007] of  CloVar
+
+	(source "(fn [response]\n  (let [{:keys [status status-text]} response]\n    (println (str \"AJAX ERROR: \" status \" \" status-text))))")
+	(title "error-handler"))
+
+([Cezium_Class10008] of  CloFunction
+
+	(source "(doseq [{:keys [directive] :as dir} (read-transit response)]\n  ;;(println [:DIRECTIVE dir])\n  (condp = directive\n    :vehicle (let [{:keys [vehicle period]} dir]\n	(camera-vehicle vehicle period))))")
+	(title "directives-handler [response]"))
+
+([Cezium_Class10009] of  CloFunction
+
+	(source "(t/read (t/reader :json) x)")
+	(title "read-transit [x]"))
+
+([Cezium_Class10010] of  CloFunction
+
+	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(int (/ (:altitude vehicle) 3.28084)) \n	(:course vehicle))\n    (czm/fly-to lat lon \n	(int (/ (:altitude vehicle) 3.28084)) \n	(:course vehicle) \n	per)))")
+	(title "camera-vehicle [vehicle per]"))
+
 ([Cezium_Class11] of  CloFunction
 
 	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (move-control lat lon alt head pitch roll))")
@@ -53,15 +108,36 @@
 
 ([Cezium_Class15] of  ClsMain
 
+	(asset-path "js/out")
 	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[Cezium_Class10000]
+		[Cezium_Class10009]
+		[Cezium_Class10010]
+		[Cezium_Class10008]
+		[Cezium_Class10002]
+		[Cezium_Class10001])
 	(cloNamespace [Cezium_Class16])
-	(cloVars [Cezium_Class17])
+	(cloVars
+		[Cezium_Class17]
+		[Cezium_Class10003]
+		[Cezium_Class10004]
+		[Cezium_Class10005]
+		[Cezium_Class10006]
+		[Cezium_Class10007])
+	(compiler-options "{:verbose false}")
+	(css [Cezium_Class20002])
+	(epilogue "(set! (.-onload js/window) (on-load))")
+	(html [Cezium_Class20000])
+	(output-dir "resources/public/js/out")
+	(output-to "resources/public/js/main.js")
 	(required [Cezium_Class0])
+	(store-in "src/cljs")
 	(title "View 3D Client"))
 
 ([Cezium_Class16] of  CloNamespace
 
-	(source "(:require\n  [czm.core :as czm])")
+	(source "(:require\n  [goog.string :as gstring]\n  [goog.string.format]\n  [cljs.core.async :refer [<! timeout close!]]\n  [cognitect.transit :as t]\n  [ajax.core :refer (GET)]\n  [czm.core :as czm])\n(:require-macros \n  [cljs.core.async.macros :refer [go]])")
 	(title "view3d.client"))
 
 ([Cezium_Class17] of  CloVar
@@ -73,6 +149,18 @@
 
 	(source "(js/Cesium.CesiumTerrainProvider.\n  #js{:url \"//assets.agi.com/stk-terrain/world\"\n        :requestWaterMask false\n        :requestVertexNormals false})")
 	(title "TERR-PROV"))
+
+([Cezium_Class20000] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
+	(store-in "resources/public")
+	(title "cezium"))
+
+([Cezium_Class20002] of  CSS
+
+	(source "#camera {\n  position:fixed;\n  bottom:140px;\n  left:60px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard {\n  position:fixed;\n  bottom:130px;\n  left:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard-fld {\n  position:fixed;\n  bottom:130px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#view {\n  position:fixed;\n  bottom:110px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#view-fld {\n  position:fixed;\n  bottom:110px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#pitch {\n  position:fixed;\n  bottom:90px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#pitch-fld {\n  position:fixed;\n  bottom:90px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#roll {\n  position:fixed;\n  bottom:70px;\n  left:48px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#roll-fld {\n  position:fixed;\n  bottom:70px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}")
+	(store-in "resources/public/css")
+	(title "cesium"))
 
 ([Cezium_Class3] of  CloVar
 
