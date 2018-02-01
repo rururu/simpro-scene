@@ -46,8 +46,7 @@
   ([x k level update]
     (if-not (neg? level)
       (let [x (loop [x x]
-                (if-let [x' (when (< level (alength (.-forward x)))
-                              (aget (.-forward x) level))]
+                (if-let [x' (aget (.-forward x) level)]
                   (if (< (.-key x') k)
                     (recur x')
                     x)
@@ -82,19 +81,17 @@
   (remove [coll k]
     (let [update (make-array MAX_LEVEL)
           x (least-greater-node header k level update)
-          x (when-not (zero? (alength (.-forward x)))
-              (aget (.-forward x) 0))]
+          x (aget (.-forward x) 0)]
       (when (and (not (nil? x)) (== (.-key x) k))
         (loop [i 0]
           (when (<= i level)
             (let [links (.-forward (aget update i))]
-              (if (identical? x (when (< i (alength links))
-                                  (aget links i)))
+              (if (identical? (aget links i) x)
                 (do
                   (aset links i (aget (.-forward x) i))
                   (recur (inc i)))
                 (recur (inc i))))))
-        (while (and (< 0 level (alength (.-forward header)))
+        (while (and (> level 0)
                     (nil? (aget (.-forward header) level)))
           (set! level (dec level))))))
 
@@ -102,8 +99,7 @@
     (loop [x header level level]
       (if-not (neg? level)
         (let [nx (loop [x x]
-                   (let [x' (when (< level (alength (.-forward x)))
-                              (aget (.-forward x) level))]
+                   (let [x' (aget (.-forward x) level)]
                      (when-not (nil? x')
                        (if (>= (.-key x') k)
                          x'
@@ -118,8 +114,7 @@
     (loop [x header level level]
       (if-not (neg? level)
         (let [nx (loop [x x]
-                   (let [x' (when (< level (alength (.-forward x)))
-                              (aget (.-forward x) level))]
+                   (let [x' (aget (.-forward x) level)]
                      (if-not (nil? x')
                        (if (> (.-key x') k)
                          x

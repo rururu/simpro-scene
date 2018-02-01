@@ -1,4 +1,4 @@
-; Tue Jan 30 14:19:26 MSK 2018
+; Thu Feb 01 20:04:17 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1405,7 +1405,7 @@
 ([Scenario_Class520000] of  Rule
 
 	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       speed (a/vv ?spd ?run)]\n  (if (and (some? mo) (not (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           rou (if (not= dir dn) (reverse rou) rou)\n           [la1 lo1] (first rou)]\n      (.setLatitude mo la1)\n      (.setLongitude mo lo1)\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	route rou\n	spd (read-string speed)\n	object mo\n	N ?t))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       speed (a/vv ?spd ?run)]\n  (if (and (some? mo) (not (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           rou (if (not= dir dn) (reverse rou) rou)\n           [la1 lo1] (first rou)\n           rsp (read-string speed)]\n      (.setLatitude mo la1)\n      (.setLongitude mo lo1)\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	route rou\n	spd rsp\n	object mo\n	N ?t))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRoadStart"))
 
@@ -1467,7 +1467,7 @@
 ([Scenario_Class550001] of  Rule
 
 	(lhs "?gor (GoRoad status \"REPEAT\"\n	title ?tit\n	object ?obj\n	road ?dws\n	spd ?spd\n	direction ?dir\n	route ?rou\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
-	(rhs "(let [[crs rwot] (a/next-way-point ?rou (- ?t ?n) ?spd)]\n  (.setCourse ?obj crs)\n  (if (seq? rwot)\n    (do (.setLatitude ?obj (ffirst rwot))\n      (.setLongitude ?obj (second (first rwot)))\n      (modify ?gor N ?t\n	route rwot))\n    (if (empty? ?dws)\n      (do (retract ?gor)\n        (s/start-next ?nacts ?pid ?ain ?run))\n      (let [dw (first ?dws)\n             dn (protege.core/sv dw \"direction\")\n             way (protege.core/sv dw \"way\")\n             rou (read-string (protege.core/sv way \"source\"))\n             rou (if (not= ?dir dn) (reverse rou) rou)\n             [la1 lo1] (first rou)]\n        (.setLatitude ?obj la1)\n        (.setLongitude ?obj lo1)\n        (modify ?gor road (rest ?dws)\n	route rou\n	N (+ ?t rwot))))))")
+	(rhs "(let [[crs rwot] (a/next-way-point ?rou (- ?t ?n) ?spd)]\n  (.setCourse ?obj crs)\n  (if (seq? rwot)\n    (do (.setLatitude ?obj (ffirst rwot))\n      (.setLongitude ?obj (second (first rwot)))\n      (modify ?gor N ?t\n	route rwot))\n    (if (empty? ?dws)\n      (do (.removeAttribute ?obj \"ROAD-SPEED\")\n        (retract ?gor)\n        (s/start-next ?nacts ?pid ?ain ?run))\n      (let [dw (first ?dws)\n             dn (protege.core/sv dw \"direction\")\n             way (protege.core/sv dw \"way\")\n             rou (read-string (protege.core/sv way \"source\"))\n             rou (if (not= ?dir dn) (reverse rou) rou)\n             [la1 lo1] (first rou)]\n        (.setLatitude ?obj la1)\n        (.setLongitude ?obj lo1)\n        (modify ?gor road (rest ?dws)\n	route rou\n	N (+ ?t rwot))))))")
 	(salience 0)
 	(title "a:GoRoadRepeat"))
 

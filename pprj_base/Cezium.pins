@@ -1,4 +1,4 @@
-; Wed Jan 31 19:55:46 MSK 2018
+; Thu Feb 01 22:26:35 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -39,32 +39,22 @@
 
 ([Cezium_Class10001] of  CloFunction
 
-	(source "(enable-console-print!)\n(repeater receive-directives (:directives TIO))")
+	(source "(enable-console-print!)\n(czm/init-3D-view BASE-URL \"yes\")\n(repeater receive-vehicle (:vehicle TIO))\n(show-controls)")
 	(title "on-load []"))
 
 ([Cezium_Class10002] of  CloFunction
 
-	(source "(GET (:directives URL) {:handler directives-handler\n                       :error-handler error-handler})")
-	(title "receive-directives []"))
-
-([Cezium_Class10003] of  CloVar
-
-	(source "4444")
-	(title "PORT"))
-
-([Cezium_Class10004] of  CloVar
-
-	(source "\"http://localhost:\"")
-	(title "HOST"))
+	(source "(GET (str BASE-URL \"vehicle/\") \n	{:handler vehicle-hr\n                         :error-handler error-handler})")
+	(title "receive-vehicle []"))
 
 ([Cezium_Class10005] of  CloVar
 
-	(source "{:directives (str HOST PORT \"/directives/\")}")
-	(title "URL"))
+	(source "\"http://localhost:4444/\"")
+	(title "BASE-URL"))
 
 ([Cezium_Class10006] of  CloVar
 
-	(source "{:directives 1000}")
+	(source "{:vehicle 1000}")
 	(title "TIO"))
 
 ([Cezium_Class10007] of  CloVar
@@ -74,8 +64,8 @@
 
 ([Cezium_Class10008] of  CloFunction
 
-	(source "(doseq [{:keys [directive] :as dir} (read-transit response)]\n  ;;(println [:DIRECTIVE dir])\n  (condp = directive\n    :vehicle (let [{:keys [vehicle period]} dir]\n	(camera-vehicle vehicle period))))")
-	(title "directives-handler [response]"))
+	(source "(let [resp (read-transit response)]\n  ;;(println :RESP resp)\n  (if-let [{:keys [vehicle period]} resp]\n    (camera-vehicle vehicle period)))")
+	(title "vehicle-hr [response]"))
 
 ([Cezium_Class10009] of  CloFunction
 
@@ -84,7 +74,7 @@
 
 ([Cezium_Class10010] of  CloFunction
 
-	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(int (/ (:altitude vehicle) 3.28084)) \n	(:course vehicle))\n    (czm/fly-to lat lon \n	(int (/ (:altitude vehicle) 3.28084)) \n	(:course vehicle) \n	per)))")
+	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" (:altitude vehicle))\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
 	(title "camera-vehicle [vehicle per]"))
 
 ([Cezium_Class11] of  CloFunction
@@ -113,15 +103,21 @@
 	(cloFunctions
 		[Cezium_Class10000]
 		[Cezium_Class10009]
+		[Cezium_Class60002]
+		[Cezium_Class60006]
 		[Cezium_Class10010]
 		[Cezium_Class10008]
 		[Cezium_Class10002]
+		[Cezium_Class60003]
+		[Cezium_Class60004]
+		[Cezium_Class60005]
+		[Cezium_Class60001]
+		[Cezium_Class60007]
+		[Cezium_Class60008]
 		[Cezium_Class10001])
 	(cloNamespace [Cezium_Class16])
 	(cloVars
 		[Cezium_Class17]
-		[Cezium_Class10003]
-		[Cezium_Class10004]
 		[Cezium_Class10005]
 		[Cezium_Class10006]
 		[Cezium_Class10007])
@@ -137,12 +133,12 @@
 
 ([Cezium_Class16] of  CloNamespace
 
-	(source "(:require\n  [goog.string :as gstring]\n  [goog.string.format]\n  [cljs.core.async :refer [<! timeout close!]]\n  [cognitect.transit :as t]\n  [ajax.core :refer (GET)]\n  [czm.core :as czm])\n(:require-macros \n  [cljs.core.async.macros :refer [go]])")
+	(source "(:require\n  [goog.string :as gstring]\n  [goog.string.format]\n  [cljs.core.async :refer [<! timeout close!]]\n  [cognitect.transit :as t]\n  [ajax.core :refer (GET)]\n  [cljs.reader :as rdr]\n  [czm.core :as czm])\n(:require-macros \n  [cljs.core.async.macros :refer [go]])")
 	(title "view3d.client"))
 
 ([Cezium_Class17] of  CloVar
 
-	(source "(volatile! {:coord [60 30]\n               :altitude 4000\n               :speed 160\n               :course 270})")
+	(source "(volatile! {:name \"Аврора\"\n               :coord [60 30]\n               :altitude 4000\n               :speed 160\n               :course 270})")
 	(title "VEHICLE"))
 
 ([Cezium_Class2] of  CloVar
@@ -152,13 +148,13 @@
 
 ([Cezium_Class20000] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"vehicle\"></div>\n    <div id=\"name\"></div><div id=\"name-fld\"></div>\n    <div id=\"course\"></div><div id=\"course-fld\"></div>\n    <div id=\"speed\"></div><div id=\"speed-fld\"></div>\n    <div id=\"altitude\"></div><div id=\"altitude-fld\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
 	(store-in "resources/public")
 	(title "cezium"))
 
 ([Cezium_Class20002] of  CSS
 
-	(source "#camera {\n  position:fixed;\n  bottom:140px;\n  left:60px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard {\n  position:fixed;\n  bottom:130px;\n  left:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard-fld {\n  position:fixed;\n  bottom:130px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#view {\n  position:fixed;\n  bottom:110px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#view-fld {\n  position:fixed;\n  bottom:110px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#pitch {\n  position:fixed;\n  bottom:90px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#pitch-fld {\n  position:fixed;\n  bottom:90px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#roll {\n  position:fixed;\n  bottom:70px;\n  left:48px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#roll-fld {\n  position:fixed;\n  bottom:70px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}")
+	(source "#vehicle {\n  position:fixed;\n  bottom:140px;\n  right:40px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#name {\n  position:fixed;\n  bottom:130px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#course {\n  position:fixed;\n  bottom:110px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#speed {\n  position:fixed;\n  bottom:90px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#altitude {\n  position:fixed;\n  bottom:70px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#name-fld {\n  position:fixed;\n  bottom:130px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:cyan\n}\n#course-fld {\n  position:fixed;\n  bottom:110px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#speed-fld {\n  position:fixed;\n  bottom:90px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#altitude-fld {\n  position:fixed;\n  bottom:70px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#camera {\n  position:fixed;\n  bottom:140px;\n  left:60px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard {\n  position:fixed;\n  bottom:130px;\n  left:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard-fld {\n  position:fixed;\n  bottom:130px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n  color:cyan\n}\n#view {\n  position:fixed;\n  bottom:110px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#view-fld {\n  position:fixed;\n  bottom:110px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#pitch {\n  position:fixed;\n  bottom:90px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#pitch-fld {\n  position:fixed;\n  bottom:90px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#roll {\n  position:fixed;\n  bottom:70px;\n  left:48px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#roll-fld {\n  position:fixed;\n  bottom:70px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}")
 	(store-in "resources/public/css")
 	(title "cesium"))
 
@@ -167,20 +163,311 @@
 	(source "(js/Cesium.Viewer. \n  \"cesiumContainer\" \n  #js{:animation false})")
 	(title "VIEWER"))
 
+([Cezium_Class30000] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(FlightPro)"))
+
+([Cezium_Class30026] of  CloProgram
+
+	(cloFunctions
+		[Cezium_Class30033]
+		[Cezium_Class30034]
+		[Cezium_Class30036]
+		[Cezium_Class30041]
+		[Cezium_Class30037]
+		[Cezium_Class30038]
+		[Cezium_Class30039])
+	(cloNamespace [Cezium_Class30027])
+	(cloVars
+		[Cezium_Class30029]
+		[Cezium_Class30030]
+		[Cezium_Class30031]
+		[Cezium_Class30032]
+		[Cezium_Class30042])
+	(title "Pro Server"))
+
+([Cezium_Class30027] of  CloNamespace
+
+	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [cognitect.transit :as t]\n              [cesium.core :as czs])\n\n(:import java.io.ByteArrayOutputStream\n             ru.igis.omtab.OMT)")
+	(title "pro.server"))
+
+([Cezium_Class30029] of  CloVar
+
+	(source "4444")
+	(title "PORT"))
+
+([Cezium_Class30030] of  CloVar
+
+	(source "(str (System/getProperty \"user.dir\") \"/resources/public/\")")
+	(title "ROOT"))
+
+([Cezium_Class30031] of  CloVar
+
+	(source "nil")
+	(title "APP"))
+
+([Cezium_Class30032] of  CloVar
+
+	(source "nil")
+	(title "SERV"))
+
+([Cezium_Class30033] of  CloFunction
+
+	(source "(let [baos (ByteArrayOutputStream.)\n        w    (t/writer baos :json)\n        _    (t/write w x)\n        ret  (.toString baos)]\n    (.reset baos)\n    ret)")
+	(title "write-transit [x]"))
+
+([Cezium_Class30034] of  CloFunction
+
+	(source "(-> (r/response (write-transit (deref (future-call funoarg))))\n       (r/header \"Access-Control-Allow-Origin\" \"*\")\n       (r/charset \"UTF-8\"))")
+	(title "response1 [funoarg]"))
+
+([Cezium_Class30036] of  CloFunction
+
+	(source "(let [address (str \"http://localhost:\" PORT)]\n  (println \"Location:\" address)\n  (when (java.awt.Desktop/isDesktopSupported)\n    (.browse (java.awt.Desktop/getDesktop) (java.net.URI. address))))")
+	(title "view3D-in-browser []"))
+
+([Cezium_Class30037] of  CloFunction
+
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response1 vehicle-data))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
+	(title "init-server []"))
+
+([Cezium_Class30038] of  CloFunction
+
+	(source "([]\n    (start-server PORT))\n([port]\n  (if (nil? APP)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))")
+	(title "start-server"))
+
+([Cezium_Class30039] of  CloFunction
+
+	(source "(when-let [serv SERV]\n  (.stop serv)\n  (def SERV nil)\n  (println \"Server stopped!\"))")
+	(title "stop-server []"))
+
+([Cezium_Class30041] of  CloFunction
+
+	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    {:vehicle\n      {:name onb\n       :coord [(.getLatitude mo) (.getLongitude mo)]\n       :altitude (.getAltitude mo)\n       :speed (or (.getAttribute mo \"ROAD-SPEED\") (.getSpeed mo))\n       :course (.getCourse mo)}\n     :period 1}))")
+	(title "vehicle-data []"))
+
+([Cezium_Class30042] of  CloVar
+
+	(source "(volatile! nil)")
+	(title "ONBOARD"))
+
+([Cezium_Class30043] of  CloProgram
+
+	(cloFunctions
+		[Cezium_Class30047]
+		[Cezium_Class30048]
+		[Cezium_Class30049]
+		[Cezium_Class30050]
+		[Cezium_Class30051]
+		[Cezium_Class30052]
+		[Cezium_Class30053]
+		[Cezium_Class30054]
+		[Cezium_Class30055])
+	(cloNamespace [Cezium_Class30044])
+	(cloVars
+		[Cezium_Class30045]
+		[Cezium_Class30046])
+	(title "Cesium Server"))
+
+([Cezium_Class30044] of  CloNamespace
+
+	(source "(:require\n    [ring.util.response :as r]\n    [async.proc :as asp])\n(:import java.util.Calendar)")
+	(title "cesium.core"))
+
+([Cezium_Class30045] of  CloVar
+
+	(source "(asp/mk-chan)")
+	(title "CZ-CHAN"))
+
+([Cezium_Class30046] of  CloVar
+
+	(source "true")
+	(title "DOC-SND"))
+
+([Cezium_Class30047] of  CloFunction
+
+	(source ";;(println [:CZ-EVT typ dat])\n(asp/pump-in CZ-CHAN [typ (.trim dat)])")
+	(title "send-event [typ dat]"))
+
+([Cezium_Class30048] of  CloFunction
+
+	(source "(let [evt-hr (fn [[typ dat]]\n                   (str \"event: \" typ \"\\ndata: \" dat \"\\n\\n\"))\n       ee (deref (future (asp/pump-out CZ-CHAN)))\n       resp (if (seq ee)\n                 (apply str (map evt-hr ee))\n                 \"\")]\n  (-> (r/response resp)\n         (r/header \"Access-Control-Allow-Origin\" \"*\")\n         (r/header \"Content-Type\" \"text/event-stream;charset=utf-8\")))")
+	(title "events []"))
+
+([Cezium_Class30049] of  CloFunction
+
+	(source "(let [cld (Calendar/getInstance)\n       yar (.get cld Calendar/YEAR )\n       mon (inc (.get cld Calendar/MONTH))\n       dat (.get cld Calendar/DATE)\n       hor (.get cld Calendar/HOUR_OF_DAY)\n       min (.get cld Calendar/MINUTE)\n       sec (.get cld Calendar/SECOND)]\n    (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601curt []"))
+
+([Cezium_Class30050] of  CloFunction
+
+	(source "(let [cld (Calendar/getInstance)\n       mil (.getTimeInMillis cld)\n       _ (.setTimeInMillis cld (+ mil (* sec 1000)))\n        yar (.get cld Calendar/YEAR )\n        mon (inc (.get cld Calendar/MONTH))\n        dat (.get cld Calendar/DATE)\n        hor (.get cld Calendar/HOUR_OF_DAY)\n        min (.get cld Calendar/MINUTE)\n        sec (.get cld Calendar/SECOND)]\n    (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601futt [sec]"))
+
+([Cezium_Class30051] of  CloFunction
+
+	(source "(str \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\\\"clock\\\":{\\\"currentTime\\\":\\\"\" (iso8601futt -16) \"\\\"}}\")")
+	(title "doc []"))
+
+([Cezium_Class30052] of  CloFunction
+
+	(source "(when DOC-SND\n    (send-event \"czml\" (doc))\n    (def DOC-SND false))\n  (let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"availability\\\":\\\"\"\n               (iso8601curt) \"/\" (iso8601futt span-sec)\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\" \n               scale\n               \" ,\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -24]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\"\n               lon\n               \", \"\n               lat\n               \", \"\n               alt\n               \"]}}\")]\n    (send-event \"czml\" p))")
+	(title "location [label scale img-url lat lon alt span-sec]"))
+
+([Cezium_Class30053] of  CloFunction
+
+	(source "(when DOC-SND\n    (send-event \"czml\" (doc))\n    (def DOC-SND false))\n  (let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\"\n               (/ scale 2)\n               \",\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -8]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n               tim1\n               \"\\\", \"\n               lon1\n               \", \"\n               lat1\n               \", \"\n               alt1\n               \",\\\"\"\n               tim2\n               \"\\\", \"\n               lon2\n               \", \"\n               lat2\n               \", \"\n               alt2\n               \"]}}\")]\n    (send-event \"czml\" p))")
+	(title "leg [label img-url scale [lat1 lon1 alt1 tim1] [lat2 lon2 alt2 tim2]]"))
+
+([Cezium_Class30054] of  CloFunction
+
+	(source "(let [min-scl 0.25\n       scl (+ min-scl (* (- 1 min-scl) (- 1 (/ dist max-dist))))]\n  (location txt scl \"img/arrdn.png\" lat lon 100 40))")
+	(title "point-out [txt [lat lon] dist max-dist]"))
+
+([Cezium_Class30055] of  CloFunction
+
+	(source "(def DOC-SND true)")
+	(title "new-doc []"))
+
 ([Cezium_Class4] of  CloVar
 
 	(source "(js/Cesium.CzmlDataSource.)")
 	(title "CZM-SRC"))
+
+([Cezium_Class40000] of  CloProgram
+
+	(cloFunctions
+		[Cezium_Class40002]
+		[Cezium_Class40003]
+		[Cezium_Class40004]
+		[Cezium_Class40005]
+		[Cezium_Class40006]
+		[Cezium_Class40007]
+		[Cezium_Class40008]
+		[Cezium_Class40009]
+		[Cezium_Class40010]
+		[Cezium_Class40011])
+	(cloNamespace [Cezium_Class40001])
+	(title "Async Processing"))
+
+([Cezium_Class40001] of  CloNamespace
+
+	(source "(:require \n  [clojure.core.async :refer [chan alts!! put! <! <!! go timeout close!]])")
+	(title "async.proc"))
+
+([Cezium_Class40002] of  CloFunction
+
+	(source "([func time-out]\n  (go (while true\n           (func)\n           (<! (timeout time-out)))))\n([func param time-out]\n  (go (while true\n           (func param)\n           (<! (timeout time-out)))))")
+	(title "repeater"))
+
+([Cezium_Class40003] of  CloFunction
+
+	(source "(when (not= @status \"RUN\") \n  (vreset! status \"RUN\")\n  (go (do \n          (while (and (= @status \"RUN\")\n                            (proc-fn))\n                (<! (timeout time-out)))\n          (if (instance? clojure.lang.IFn final-fun) (final-fun))\n          (vreset! status \"STOP\")))\n  @status)")
+	(title "start-process [status proc-fn time-out final-fun]"))
+
+([Cezium_Class40004] of  CloFunction
+
+	(source "(vreset! status \"FINISH\")")
+	(title "stop-process [status]"))
+
+([Cezium_Class40005] of  CloFunction
+
+	(source "(= @status \"RUN\")")
+	(title "running? [status]"))
+
+([Cezium_Class40006] of  CloFunction
+
+	(source "(put! chn val)")
+	(title "pump-in [chn val]"))
+
+([Cezium_Class40007] of  CloFunction
+
+	(source "(loop [[bit ch] (alts!! [chn] :default :none) bits []]\n  (if (= bit :none)\n    bits\n    (recur (alts!! [chn] :default :none) (conj bits bit))))")
+	(title "pump-out [chn]"))
+
+([Cezium_Class40008] of  CloFunction
+
+	(source "(loop [out []]\n  (if (empty? out)\n    (recur (<!! chn))\n    out))")
+	(title "one-out [chn]"))
+
+([Cezium_Class40009] of  CloFunction
+
+	(source "(chan)")
+	(title "mk-chan []"))
+
+([Cezium_Class40010] of  CloFunction
+
+	(source "(close! chn)")
+	(title "close-chan [chn]"))
+
+([Cezium_Class40011] of  CloFunction
+
+	(source "(go (<! (timeout time))\n  (func))")
+	(title "delayer [func time]"))
 
 ([Cezium_Class5] of  CloVar
 
 	(source "(volatile! {:view \"FORWARD\"\n               :pitch -10\n               :roll 0})")
 	(title "CAMERA"))
 
+([Cezium_Class50000] of  CloFuncall
+
+	(source "(pro.server/start-server)"))
+
 ([Cezium_Class6] of  CloFunction
 
 	(source "(cond\n   (> x 360) (- x 360)\n   (< x 0) (+ x 360)\n   true x)")
 	(title "norm-crs [x]"))
+
+([Cezium_Class60000] of  CloFuncall
+
+	(source "(pro.server/stop-server)"))
+
+([Cezium_Class60001] of  CloFunction
+
+	(source "(set-html! \"camera\" \"<h4>Camera</h4>\")\n(set-html! \"onboard\" \"Onboard:\")\n(set-html! \"onboard-fld\" \"\")\n(set-html! \"view\" \"View:\")\n(set-html! \"view-fld\" \n  \"<select onchange='javascript:view3d.client.view(this.value)' style='width:96px'>\n   <option value='FORWARD'>FORWARD</option>\n   <option value='BACKWARD'>BACKWARD</option>\n   <option value='RIGHT'>RIGHT</option>\n   <option value='LEFT'>LEFT</option>\n   <option value='UP'>UP</option>\n   <option value='DOWN'>DOWN</option>\n   <option value='FORWARD-RIGHT'>FORWARD-RIGHT</option>\n   <option value='FORWARD-LEFT'>FORWARD-LEFT</option>\n   <option value='BACKWARD-RIGHT'>BACKWARD-RIGHT</option>\n   <option value='BACKWARD-LEFT'>BACKWARD-LEFT</option>\n   </select>\")\n(set-html! \"pitch\" \"Pitch:\")\n(set-html! \"pitch-fld\" \n  \"<input value='-10' style='width:90px' id='pitch-val'\n               onchange='javascript:view3d.client.pitch(this.value)'>\")\n(set-html! \"roll\" \"Roll:\")\n(set-html! \"roll-fld\" \n  \"<input value='0' style='width:90px'\n               onchange='javascript:view3d.client.roll(this.value)'>\")")
+	(title "left-controls []"))
+
+([Cezium_Class60002] of  CloFunction
+
+	(source "(set! (.-innerHTML (.getElementById js/document id)) msg)")
+	(title "set-html! [id msg]"))
+
+([Cezium_Class60003] of  CloFunction
+
+	(source "(czm/camera :view dir)")
+	(title "view [dir]"))
+
+([Cezium_Class60004] of  CloFunction
+
+	(source "(let [deg (num-val deg)]\n  (if (<= -180 deg 180)\n    (czm/camera :pitch deg)))")
+	(title "pitch [deg]"))
+
+([Cezium_Class60005] of  CloFunction
+
+	(source "(let [deg (num-val deg)]\n  (if (<= -180 deg 180)\n    (czm/camera :roll deg)))")
+	(title "roll [deg]"))
+
+([Cezium_Class60006] of  CloFunction
+
+	(source "(if (number? x) x (rdr/read-string x))")
+	(title "num-val [x]"))
+
+([Cezium_Class60007] of  CloFunction
+
+	(source "(set-html! \"vehicle\" \"<h4>Vehicle</h4>\")\n(set-html! \"name\" \"Name:\")\n(set-html! \"name-fld\" \"\")\n(set-html! \"course\" \"Course:\")\n(set-html! \"course-fld\" \"\")\n(set-html! \"speed\" \"Speed:\")\n(set-html! \"speed-fld\" \"\")\n(set-html! \"altitude\" \"Altitude:\")\n(set-html! \"altitude-fld\" \"\")")
+	(title "right-conterols []"))
+
+([Cezium_Class60008] of  CloFunction
+
+	(source "(right-conterols)\n(left-controls)")
+	(title "show-controls []"))
 
 ([Cezium_Class7] of  CloFunction
 

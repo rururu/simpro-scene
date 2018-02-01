@@ -24,4 +24,5 @@ goog.addDependency("../cljs/core/async/impl/channels.js", ['cljs.core.async.impl
 goog.addDependency("../cljs/core/async/impl/ioc_helpers.js", ['cljs.core.async.impl.ioc_helpers'], ['cljs.core', 'cljs.core.async.impl.protocols']);
 goog.addDependency("../cljs/core/async/impl/timers.js", ['cljs.core.async.impl.timers'], ['cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core', 'cljs.core.async.impl.protocols']);
 goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core', 'cljs.core.async.impl.buffers', 'cljs.core.async.impl.protocols', 'cljs.core.async.impl.ioc_helpers', 'cljs.core.async.impl.timers']);
-goog.addDependency("../view3d/client.js", ['view3d.client'], ['ajax.core', 'czm.core', 'goog.string', 'cljs.core', 'cljs.core.async', 'cognitect.transit', 'goog.string.format']);
+goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
+goog.addDependency("../view3d/client.js", ['view3d.client'], ['ajax.core', 'czm.core', 'goog.string', 'cljs.core', 'cljs.core.async', 'cognitect.transit', 'goog.string.format', 'cljs.reader']);

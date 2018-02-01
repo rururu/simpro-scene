@@ -1,3 +1,75 @@
+#vehicle {
+  position:fixed;
+  bottom:140px;
+  right:40px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#name {
+  position:fixed;
+  bottom:130px;
+  right:70px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#course {
+  position:fixed;
+  bottom:110px;
+  right:70px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#speed {
+  position:fixed;
+  bottom:90px;
+  right:70px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#altitude {
+  position:fixed;
+  bottom:70px;
+  right:70px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#name-fld {
+  position:fixed;
+  bottom:130px;
+  right:20px;
+  padding:5px;
+  z-index:100;
+  color:cyan
+}
+#course-fld {
+  position:fixed;
+  bottom:110px;
+  right:20px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#speed-fld {
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#altitude-fld {
+  position:fixed;
+  bottom:70px;
+  right:20px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
 #camera {
   position:fixed;
   bottom:140px;
@@ -20,6 +92,7 @@
   left:84px;
   padding:5px;
   z-index:100;
+  color:cyan
 }
 #view {
   position:fixed;
