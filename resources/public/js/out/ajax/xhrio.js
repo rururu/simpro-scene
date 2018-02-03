@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.521 {}
+// Compiled by ClojureScript 1.9.946 {}
 goog.provide('ajax.xhrio');
 goog.require('cljs.core');
 goog.require('goog.net.EventType');
@@ -11,38 +11,48 @@ goog.require('goog.events');
 goog.require('ajax.protocols');
 goog.net.XhrIo.prototype.ajax$protocols$AjaxImpl$ = cljs.core.PROTOCOL_SENTINEL;
 
-goog.net.XhrIo.prototype.ajax$protocols$AjaxImpl$_js_ajax_request$arity$3 = (function (this$,p__21866,handler){
-var map__21867 = p__21866;
-var map__21867__$1 = ((((!((map__21867 == null)))?((((map__21867.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__21867.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__21867):map__21867);
-var uri = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"uri","uri",-774711847));
-var method = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"method","method",55703592));
-var body = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
-var headers = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
-var timeout = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"timeout","timeout",-318625318),(0));
-var with_credentials = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"with-credentials","with-credentials",-1163127235),false);
-var response_format = cljs.core.get.call(null,map__21867__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
+goog.net.XhrIo.prototype.ajax$protocols$AjaxImpl$_js_ajax_request$arity$3 = (function (this$,p__26212,handler){
+var map__26213 = p__26212;
+var map__26213__$1 = ((((!((map__26213 == null)))?((((map__26213.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26213.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__26213):map__26213);
+var uri = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"uri","uri",-774711847));
+var method = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"method","method",55703592));
+var body = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+var headers = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
+var timeout = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"timeout","timeout",-318625318),(0));
+var with_credentials = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"with-credentials","with-credentials",-1163127235),false);
+var response_format = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
+var progress_handler = cljs.core.get.call(null,map__26213__$1,new cljs.core.Keyword(null,"progress-handler","progress-handler",333585589));
 var this$__$1 = this;
-var temp__4657__auto___21870 = new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(response_format);
-if(cljs.core.truth_(temp__4657__auto___21870)){
-var response_type_21871 = temp__4657__auto___21870;
-this$__$1.setResponseType(cljs.core.name.call(null,response_type_21871));
+var temp__5457__auto___26217 = new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(response_format);
+if(cljs.core.truth_(temp__5457__auto___26217)){
+var response_type_26218 = temp__5457__auto___26217;
+this$__$1.setResponseType(cljs.core.name.call(null,response_type_26218));
 } else {
 }
 
-var G__21869 = this$__$1;
-goog.events.listen(G__21869,goog.net.EventType.COMPLETE,((function (G__21869,this$__$1,map__21867,map__21867__$1,uri,method,body,headers,timeout,with_credentials,response_format){
-return (function (p1__21865_SHARP_){
-return handler.call(null,p1__21865_SHARP_.target);
-});})(G__21869,this$__$1,map__21867,map__21867__$1,uri,method,body,headers,timeout,with_credentials,response_format))
+if(cljs.core.fn_QMARK_.call(null,progress_handler)){
+var G__26215_26219 = this$__$1;
+G__26215_26219.setProgressEventsEnabled(true);
+
+goog.events.listen(G__26215_26219,goog.net.EventType.UPLOAD_PROGRESS,progress_handler);
+
+} else {
+}
+
+var G__26216 = this$__$1;
+goog.events.listen(G__26216,goog.net.EventType.COMPLETE,((function (G__26216,this$__$1,map__26213,map__26213__$1,uri,method,body,headers,timeout,with_credentials,response_format,progress_handler){
+return (function (p1__26211_SHARP_){
+return handler.call(null,p1__26211_SHARP_.target);
+});})(G__26216,this$__$1,map__26213,map__26213__$1,uri,method,body,headers,timeout,with_credentials,response_format,progress_handler))
 );
 
-G__21869.setTimeoutInterval(timeout);
+G__26216.setTimeoutInterval(timeout);
 
-G__21869.setWithCredentials(with_credentials);
+G__26216.setWithCredentials(with_credentials);
 
-G__21869.send(uri,method,body,cljs.core.clj__GT_js.call(null,headers));
+G__26216.send(uri,method,body,cljs.core.clj__GT_js.call(null,headers));
 
-return G__21869;
+return G__26216;
 });
 
 goog.net.XhrIo.prototype.ajax$protocols$AjaxRequest$ = cljs.core.PROTOCOL_SENTINEL;
@@ -69,6 +79,11 @@ var this$__$1 = this;
 return this$__$1.getStatusText();
 });
 
+goog.net.XhrIo.prototype.ajax$protocols$AjaxResponse$_get_all_headers$arity$1 = (function (this$){
+var this$__$1 = this;
+return cljs.core.js__GT_clj.call(null,this$__$1.getResponseHeaders());
+});
+
 goog.net.XhrIo.prototype.ajax$protocols$AjaxResponse$_get_response_header$arity$2 = (function (this$,header){
 var this$__$1 = this;
 return this$__$1.getResponseHeader(header);
@@ -80,17 +95,17 @@ return cljs.core._EQ_.call(null,this$__$1.getLastErrorCode(),goog.net.ErrorCode.
 });
 goog.net.XhrManager.prototype.ajax$protocols$AjaxImpl$ = cljs.core.PROTOCOL_SENTINEL;
 
-goog.net.XhrManager.prototype.ajax$protocols$AjaxImpl$_js_ajax_request$arity$3 = (function (this$,p__21872,handler){
-var map__21873 = p__21872;
-var map__21873__$1 = ((((!((map__21873 == null)))?((((map__21873.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__21873.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__21873):map__21873);
-var uri = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"uri","uri",-774711847));
-var method = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"method","method",55703592));
-var body = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
-var headers = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
-var id = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
-var timeout = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"timeout","timeout",-318625318),(0));
-var priority = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"priority","priority",1431093715));
-var max_retries = cljs.core.get.call(null,map__21873__$1,new cljs.core.Keyword(null,"max-retries","max-retries",-1933762121));
+goog.net.XhrManager.prototype.ajax$protocols$AjaxImpl$_js_ajax_request$arity$3 = (function (this$,p__26220,handler){
+var map__26221 = p__26220;
+var map__26221__$1 = ((((!((map__26221 == null)))?((((map__26221.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26221.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__26221):map__26221);
+var uri = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"uri","uri",-774711847));
+var method = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"method","method",55703592));
+var body = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+var headers = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
+var id = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+var timeout = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"timeout","timeout",-318625318),(0));
+var priority = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"priority","priority",1431093715));
+var max_retries = cljs.core.get.call(null,map__26221__$1,new cljs.core.Keyword(null,"max-retries","max-retries",-1933762121));
 var this$__$1 = this;
 return this$__$1.send(id,uri,method,body,cljs.core.clj__GT_js.call(null,headers),priority,handler,max_retries);
 });

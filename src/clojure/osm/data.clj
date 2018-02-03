@@ -6,7 +6,8 @@
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT
   ru.igis.omtab.OMTPoly
-  ru.igis.omtab.gui.RuMapMouseAdapter))
+  ru.igis.omtab.gui.RuMapMouseAdapter
+  edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
@@ -15,13 +16,12 @@
 (def MODE nil)
 (def RADIUS 0)
 (def W-COLOR "FFFF0000")
-(def ROAD nil)
-(def BEGIN nil)
-(def END nil)
-(def ROAD-SUBCLASS nil)
 (def F "FORWARD")
 (def B "BACKWARD")
-(def POOL (volatile! []))
+(def PATH [])
+(defn unref [inst]
+  (< (count (.getReferences inst)) 2))
+
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
   (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
@@ -83,9 +83,8 @@
       (filter-kkv [:tags (keyword way-type)] way-subtype)
       (id-way-points idp)))))
 
-(defn create-way [[id pts]]
+(defn create-line [[id pts]]
   (let [id (str id)
-       wai (foc "Way" "id" id)
        [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
        [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
        [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
@@ -95,98 +94,75 @@
     (ssv poi "longitude" lon1)
     (ssv poi "lineColor" W-COLOR)
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
-    (ssv wai "poly" poi)
-    (ssv wai "source" (str (vec pts)))
     (OMT/addMapOb poi)
-    wai))
+    poi))
 
 (defn add-way [llp]
   (println :MODE MODE)
 (get-way-data (seq llp) RADIUS WAY-TYPE)
 (if (nil? @OSM-DATA)
   (println :NO-DATA)
-  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]
-    (vswap! POOL concat (map create-way fdt))
-    (println "Created or updated " (count @POOL) "ways"))))
+  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]
+    (if (empty? ipss)
+      (println "Try in other location..")
+      (if (empty? PATH)
+        (do (def PATH (map #(vector nil % (create-line %)) ipss))
+          (println "Initial" (count PATH) "ways.."))
+        (let [[ldir lips llin] (last PATH)
+               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]
+          (if (nil? short)
+            (println "No continuation!")
+            (let [lin (create-line ips)]
+              (def PATH         
+                (if (= (count PATH) 1)
+                  [[ld lips llin] [nd ips lin]]
+                  (conj PATH [nd ips lin]))) )))) ))))
 
 (defn remove-way [mo]
   (println :MODE MODE)
 (if (nil? mo)
   (println "Try again in other place of line..")
-  (if-let [wai (fifos "Way" "id" (.getName mo))]
-    (do (remove #{wai} @POOL)
-      (OMT/removeMapOb mo true)
-      (println "Removed from pool way " (sv wai "id") ", remains " (count @POOL)))
-    (println "Way " (.getName mo) " not found!"))))
+  (let [id (.getName mo)]
+    (OMT/removeMapOb mo true)
+    (def PATH (filter #(not= (str (first (second %))) id) PATH))
+    (println "Removed from PATH way" id "," "remains" (count PATH)))))
 
-(defn shortest-dist [w1 w2]
-  (let [llp1 (read-string (sv w1 "source"))
-       llp2 (read-string (sv w2 "source"))
-       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
-       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
-       dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
+(defn shortest-dist [ips1 ips2]
+  (if (not= ips1 ips2)
+  (let [llp1 (second ips1)
+         llp2 (second ips2)
+         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
+         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
+         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
                      (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2
                      (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2
                      (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2
-      mid (apply min (keys dis-var))
-      dir (dis-var mid)]
-  [mid dir w2]))
+        sdi (apply min (keys dis-var))
+        dir (dis-var sdi)]
+    [sdi dir ips2])))
 
-(defn nearest-to [way from]
-  (loop [pool (rest from) mid-dir-way (shortest-dist way (first from))]
+(defn nearest-to [ips from]
+  (loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]
   (cond
-    (empty? pool) mid-dir-way
-    (= way (first pool)) (recur (rest pool) mid-dir-way)
+    (nil? sdi-dir-ips)
+      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))
+    (empty? pool) sdi-dir-ips
+    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)
     true
-      (let [[nmid ndir nway :as nmdw] (shortest-dist way (first pool))]
-        (if (< nmid (first mid-dir-way))
-          (recur (rest pool) nmdw)
-          (recur (rest pool) mid-dir-way))))))
+      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]
+        (if (< nsdi (first sdi-dir-ips))
+          (recur (rest pool) short)
+          (recur (rest pool) sdi-dir-ips))))))
 
-(defn mk-dirway [dir way]
-  (let [dw (crin "Dirway")]
+(defn create-dirway [[dir [id pts] lin]]
+  (let [dw (crin "Dirway")
+       way (crin "Way")]
+  (ssv way "id" (str id))
+  (ssv way "poly" lin)
+  (ssv way "source" (str (vec pts)))
   (ssv dw "direction" dir)
   (ssv dw "way" way)
   dw))
-
-(defn conj-dirway [dws dw owd]
-  (if (> (count dws) 1)
-  (conj dws dw)
-  [dw (mk-dirway owd (first dws))]))
-
-(defn create-dirways [[from to] begin end]
-  (let [nws @POOL
-       beg (fifos "Way" "id" begin)
-       end (fifos "Way" "id" end)]
-  (println :POOL (count nws))
-  (loop [pick beg from (remove #{beg} nws) dws [beg]]
-    (println :PICK (sv pick "id") :FROM (count from))
-    (if (= pick end)
-      dws
-      (let [[mid [owd nwd] way :as p] (nearest-to pick from)
-             dw (mk-dirway nwd way)]
-        (recur way (remove #{way} from) (conj-dirway dws dw owd)))))))
-
-(defn create-road
-  ([mo]
-  (println :MODE MODE ROAD)
-  (cond 
-    (nil? mo) (do (println "Try again in other place of line..") nil)
-    (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)
-    (nil? END) (do (def END (.getName mo)) (println :END END)
-		(create-road))))
-
-([]
-  (create-road ROAD BEGIN END ROAD-SUBCLASS))
-
-([road begin end rd-subclass]
-  (if-let [dws (create-dirways road begin end)]
-    (let [ri (crin rd-subclass)
-           [frm to] road]
-      (ssv ri "from1" frm)
-      (ssv ri "to1" to)
-      (ssvs ri "dirways" dws)
-      (.show *prj* ri)))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
@@ -195,7 +171,6 @@
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
-                            'CREATE (create-road mo)
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
@@ -223,19 +198,43 @@
     (ssv inst "status" "MODE REMOVE"))
   (ssv inst "status" "Add ways before")))
 
-(defn mode-create [hm inst]
+(defn create-road [hm inst]
+  (if (not (empty? PATH))
   (let [mp (into {} hm)
-       frm (mp "from1")
-       to (mp "to1")
-       rsc (mp "road-subclass")]
-(if (or (= MODE 'ADD) (= MODE 'REMOVE))
-  (if (and (some? frm) (some? to) (some? rsc))
-    (do (def MODE 'CREATE)
-      (def ROAD-SUBCLASS rsc)
-      (def ROAD [frm to])
-      (def BEGIN nil)
-      (def END nil)
-      (ssv inst "status" "MODE CREATE ROAD"))
-    (ssv inst "status" "Set From1, To1 and Road-subclass!"))
-  (ssv inst "status" "Add ways before!"))))
+         ri (crin (mp "road-subclass"))]
+    (ssv ri "from1" (mp "from1"))
+    (ssv ri "to1" (mp "to1"))
+    (ssvs ri "dirways" (map create-dirway PATH))
+    (.show *prj* ri)
+    (def MODE 'CREATE)
+    (ssv inst "status" (str "MODE CREATE, in PATH " (count PATH) " ways.")))
+  (ssv inst "status" "Add ways before!")))
+
+(defn delete-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (when (unref ins)
+    (delin ins)
+    (print ".")))
+(println))
+
+(defn find-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (if (unref ins)
+    (.show *prj* ins))))
+
+(defn clear-path [hm inst]
+  (def PATH [])
+(ssv inst "status" "CLEAR"))
+
+(defn start-cesium-server [hm inst]
+  (pro.server/start-server))
+
+(defn stop-cesium-server [hm inst]
+  (pro.server/stop-server))
+
+(defn go-onboard [hm inst]
+  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 "Select NavOb")]
+  (let [lab (sv sel "label")]
+    (ssv inst "onboard" lab)
+    (vreset! pro.server/ONBOARD lab))))
 

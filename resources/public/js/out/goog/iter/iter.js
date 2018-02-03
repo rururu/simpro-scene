@@ -146,7 +146,7 @@ goog.iter.toIterator = function(iterable) {
  */
 goog.iter.forEach = function(iterable, f, opt_obj) {
   if (goog.isArrayLike(iterable)) {
-    /** @preserveTry */
+
     try {
       // NOTES: this passes the index number to the second parameter
       // of the callback contrary to the documentation above.
@@ -159,7 +159,7 @@ goog.iter.forEach = function(iterable, f, opt_obj) {
     }
   } else {
     iterable = goog.iter.toIterator(iterable);
-    /** @preserveTry */
+
     try {
       while (true) {
         f.call(opt_obj, iterable.next(), undefined, iterable);
@@ -357,7 +357,7 @@ goog.iter.reduce = function(iterable, f, val, opt_obj) {
  */
 goog.iter.some = function(iterable, f, opt_obj) {
   iterable = goog.iter.toIterator(iterable);
-  /** @preserveTry */
+
   try {
     while (true) {
       if (f.call(opt_obj, iterable.next(), undefined, iterable)) {
@@ -391,7 +391,7 @@ goog.iter.some = function(iterable, f, opt_obj) {
  */
 goog.iter.every = function(iterable, f, opt_obj) {
   iterable = goog.iter.toIterator(iterable);
-  /** @preserveTry */
+
   try {
     while (true) {
       if (!f.call(opt_obj, iterable.next(), undefined, iterable)) {
@@ -752,7 +752,7 @@ goog.iter.repeat = function(value) {
  * {@code iterable}. For example, the array {@code [1, 2, 3, 4, 5]} yields
  * {@code 1 -> 3 -> 6 -> 10 -> 15}.
  * @see http://docs.python.org/3.2/library/itertools.html#itertools.accumulate
- * @param {!goog.iter.Iterable<number>} iterable The iterable of numbers to
+ * @param {!goog.iter.Iterable} iterable The iterable of numbers to
  *     accumulate.
  * @return {!goog.iter.Iterator<number>} A new iterator that returns the
  *     numbers in the series.
@@ -992,7 +992,7 @@ goog.iter.groupBy = function(iterable, opt_keyFunc) {
  * Similar to {@see goog.iter#map} but allows the function to accept multiple
  * arguments from the iterable.
  *
- * @param {!goog.iter.Iterable<!goog.iter.Iterable>} iterable The iterable of
+ * @param {!goog.iter.Iterable} iterable The iterable of
  *     iterables to iterate over.
  * @param {function(this:THIS,...*):RESULT} f The function to call for every
  *     element.  This function takes N+2 arguments, where N represents the

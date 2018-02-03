@@ -1,4 +1,4 @@
-; Thu Feb 01 22:26:12 MSK 2018
+; Sat Feb 03 22:12:49 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -151,11 +151,6 @@
 		"46 40.2 7 50.4")
 	(relative FALSE))
 
-([BrigBern_Class100013] of  Way
-
-	(id "364545722")
-	(source "[[46.6705194 7.8408876] [46.6704768 7.8407941] [46.6704157 7.8406773] [46.6703855 7.8406034] [46.6703687 7.8405473] [46.670359 7.8405122]]"))
-
 ([BrigBern_Class100015] of  Way
 
 	(id "364545807")
@@ -174,16 +169,6 @@
 		"46 40.2 7 50.4"
 		"46 40.21 7 50.43")
 	(relative FALSE))
-
-([BrigBern_Class100017] of  Way
-
-	(id "478885331")
-	(source "[[46.6703058 7.8403551] [46.6702837 7.8403453] [46.6702606 7.8403436]]"))
-
-([BrigBern_Class100019] of  Way
-
-	(id "478885332")
-	(source "[[46.67036 7.8405026] [46.6703606 7.8404602] [46.6703509 7.8404167] [46.6703319 7.8403804] [46.6703058 7.8403551]]"))
 
 ([BrigBern_Class100021] of  Way
 
@@ -204,11 +189,6 @@
 		"46 40.23 7 50.45")
 	(relative FALSE))
 
-([BrigBern_Class100023] of  Way
-
-	(id "478885330")
-	(source "[[46.6702606 7.8403436] [46.6702258 7.8403575] [46.6701972 7.8403893] [46.6701788 7.8404345] [46.6701735 7.8404864]]"))
-
 ([BrigBern_Class100025] of  Way
 
 	(id "186380559")
@@ -228,21 +208,6 @@
 		"46 40.22 7 50.44")
 	(relative FALSE))
 
-([BrigBern_Class100027] of  Way
-
-	(id "478885329")
-	(source "[[46.6702764 7.8406169] [46.6703056 7.8406058] [46.6703309 7.8405817] [46.6703497 7.8405472] [46.670359 7.8405122] [46.67036 7.8405026]]"))
-
-([BrigBern_Class100029] of  Way
-
-	(id "364545750")
-	(source "[[46.6702606 7.8403436] [46.6701898 7.8402899] [46.670153 7.8402496] [46.6700816 7.8401373] [46.6699756 7.839973]]"))
-
-([BrigBern_Class100031] of  Way
-
-	(id "1344275")
-	(source "[[46.6672748 7.8339943] [46.6674109 7.8344252] [46.6679688 7.83619] [46.6680624 7.8364261] [46.6681751 7.8366635]]"))
-
 ([BrigBern_Class100033] of  Way
 
 	(id "1344276")
@@ -261,16 +226,6 @@
 		"46 40.16 7 50.32"
 		"46 40.04 7 50.04")
 	(relative FALSE))
-
-([BrigBern_Class100035] of  Way
-
-	(id "364519871")
-	(source "[[46.6681751 7.8366635] [46.6683004 7.8368906] [46.6684275 7.8370997] [46.6685485 7.8372521] [46.6687587 7.837497] [46.6688706 7.8376201] [46.6689937 7.8377758]]"))
-
-([BrigBern_Class100037] of  Way
-
-	(id "364519873")
-	(source "[[46.6689937 7.8377758] [46.6690979 7.8379442] [46.6691751 7.8380805] [46.6694094 7.8386031]]"))
 
 ([BrigBern_Class100039] of  Way
 
@@ -405,21 +360,6 @@
 		"46 39.54 7 48.59")
 	(relative FALSE))
 
-([BrigBern_Class100053] of  Way
-
-	(id "35875395")
-	(source "[[46.6588777 7.8097337] [46.6587627 7.8102663]]"))
-
-([BrigBern_Class100055] of  Way
-
-	(id "35875398")
-	(source "[[46.6600787 7.8055147] [46.6599759 7.8056206] [46.6598592 7.8057728] [46.659719 7.8060001] [46.6595903 7.8062559] [46.6594602 7.8065967] [46.6593494 7.8069782] [46.6592956 7.8072369] [46.6592347 7.807553] [46.6591863 7.8078725] [46.6590603 7.8087604] [46.6589845 7.8091975] [46.6588777 7.8097337]]"))
-
-([BrigBern_Class100057] of  Way
-
-	(id "35875397")
-	(source "[[46.6606911 7.8050945] [46.6605766 7.8051443] [46.6604714 7.8051998] [46.660357 7.8052681] [46.660271 7.8053398] [46.6601969 7.8054031] [46.6600787 7.8055147]]"))
-
 ([BrigBern_Class100059] of  Way
 
 	(id "35875399")
@@ -443,11 +383,6 @@
 		"46 39.61 7 48.33"
 		"46 39.64 7 48.31")
 	(relative FALSE))
-
-([BrigBern_Class100061] of  Way
-
-	(id "35875400")
-	(source "[[46.6607006 7.8051538] [46.6607633 7.8051334] [46.6608603 7.8051023] [46.6609637 7.8050859] [46.6611254 7.8050721] [46.6613005 7.8050815] [46.6614409 7.8051269] [46.6619676 7.8052969] [46.6623392 7.8053575] [46.6626816 7.8053093] [46.6630351 7.8051215] [46.6633887 7.8047583] [46.663536 7.8045263] [46.6636851 7.8042567] [46.6638158 7.803845] [46.6639198 7.8033904]]"))
 
 ([BrigBern_Class100063] of  Way
 
@@ -486,16 +421,6 @@
 		"46 39.76 7 48.01"
 		"46 39.82 7 48.12")
 	(relative FALSE))
-
-([BrigBern_Class100067] of  Way
-
-	(id "340321665")
-	(source "[[46.6639198 7.8033904] [46.6639437 7.802858] [46.663892 7.802396] [46.6638066 7.8020023]]"))
-
-([BrigBern_Class100069] of  Way
-
-	(id "340321666")
-	(source "[[46.6638066 7.8020023] [46.6636159 7.801543] [46.6633987 7.8011729] [46.6626703 7.800195]]"))
 
 ([BrigBern_Class100071] of  Way
 
@@ -630,11 +555,6 @@
 		"46 39.7 7 47.83")
 	(relative FALSE))
 
-([BrigBern_Class100085] of  Way
-
-	(id "8066253")
-	(source "[[46.6578426 7.7879291] [46.6574451 7.7866613] [46.6573961 7.7861744] [46.6573689 7.7858615] [46.6573442 7.7857186]]"))
-
 ([BrigBern_Class100087] of  Way
 
 	(id "35077556")
@@ -672,11 +592,6 @@
 		"46 39.27 7 46.38"
 		"46 39.43 7 47.1")
 	(relative FALSE))
-
-([BrigBern_Class100091] of  Way
-
-	(id "364001349")
-	(source "[[46.6573442 7.7857186] [46.6573137 7.7855879] [46.6571903 7.7849848]]"))
 
 ([BrigBern_Class100093] of  Way
 
@@ -868,11 +783,6 @@
 		"46 39.84 7 43.93")
 	(relative FALSE))
 
-([BrigBern_Class100113] of  Way
-
-	(id "34288578")
-	(source "[[46.6673042 7.7213851] [46.667323 7.721481] [46.6673565 7.7215825] [46.6673989 7.7216872] [46.6674526 7.721792] [46.6675175 7.7219263] [46.6675802 7.722054] [46.6676472 7.7222243] [46.6676852 7.7223453] [46.6677119 7.72245] [46.6677385 7.7225939] [46.6677628 7.7227606] [46.6677758 7.7229861] [46.6677617 7.7232245] [46.6677205 7.7234922] [46.6676411 7.7237662] [46.6675325 7.7240498] [46.6674575 7.7242312] [46.6673609 7.7244519]]"))
-
 ([BrigBern_Class100115] of  Way
 
 	(id "35414491")
@@ -910,35 +820,6 @@
 		"46 40.06 7 43.44"
 		"46 40.06 7 43.42")
 	(relative FALSE))
-
-([BrigBern_Class100119] of  Way
-
-	(id "51538123")
-	(poly [BrigBern_Class100120])
-	(source "[[46.6676998 7.7237051] [46.6676106 7.7239906]]"))
-
-([BrigBern_Class100120] of  OMTPoly
-
-	(description "51538123")
-	(label "51538123")
-	(latitude "46 40.06")
-	(lineColor "FFFF0000")
-	(longitude "7 43.42")
-	(playground-index 0)
-	(points
-		"46 40.06 7 43.42"
-		"46 40.06 7 43.44")
-	(relative FALSE))
-
-([BrigBern_Class100121] of  Way
-
-	(id "34288577")
-	(source "[[46.6676571 7.7198963] [46.6675266 7.7200904] [46.6674294 7.7202859] [46.6673887 7.7203772] [46.6673524 7.7204815] [46.6673139 7.7206185] [46.6672888 7.7207654] [46.6672876 7.7207765] [46.6672819 7.7208312]]"))
-
-([BrigBern_Class100123] of  Way
-
-	(id "34288579")
-	(source "[[46.6672819 7.7208312] [46.6672796 7.7208536] [46.6672725 7.7209711] [46.6672789 7.7211312] [46.6672825 7.7211797] [46.6672941 7.7213339] [46.6673042 7.7213851]]"))
 
 ([BrigBern_Class100125] of  Way
 
@@ -1455,9 +1336,9 @@
 
 ([BrigBern_Class110000] of  GoRoad
 
-	(direction "BACKWARD")
-	(object [BrigBern_Class100000])
-	(road [BrigBern_Class100214])
+	(direction "FORWARD")
+	(object [BrigBern_Class100001])
+	(road [BrigBern_Class110210])
 	(spd "40")
 	(status "START")
 	(title "test"))
@@ -1620,11 +1501,6 @@
 	(direction "BACKWARD")
 	(way [BrigBern_Class100009]))
 
-([BrigBern_Class110148] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class100013]))
-
 ([BrigBern_Class110149] of  Dirway
 
 	(direction "BACKWARD")
@@ -1645,50 +1521,10 @@
 	(direction "BACKWARD")
 	(way [BrigBern_Class100011]))
 
-([BrigBern_Class110153] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100029]))
-
-([BrigBern_Class110154] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100017]))
-
-([BrigBern_Class110155] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100019]))
-
-([BrigBern_Class110156] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100027]))
-
-([BrigBern_Class110157] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100023]))
-
 ([BrigBern_Class110158] of  Dirway
 
 	(direction "FORWARD")
 	(way [BrigBern_Class100033]))
-
-([BrigBern_Class110159] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class100031]))
-
-([BrigBern_Class110160] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class100035]))
-
-([BrigBern_Class110161] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class100037]))
 
 ([BrigBern_Class110162] of  Dirway
 
@@ -1715,21 +1551,6 @@
 	(direction "BACKWARD")
 	(way [BrigBern_Class100045]))
 
-([BrigBern_Class110167] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100053]))
-
-([BrigBern_Class110168] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100055]))
-
-([BrigBern_Class110169] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100057]))
-
 ([BrigBern_Class110170] of  Dirway
 
 	(direction "BACKWARD")
@@ -1744,21 +1565,6 @@
 
 	(direction "BACKWARD")
 	(way [BrigBern_Class100065]))
-
-([BrigBern_Class110173] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100069]))
-
-([BrigBern_Class110174] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100067]))
-
-([BrigBern_Class110175] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100061]))
 
 ([BrigBern_Class110176] of  Dirway
 
@@ -1805,11 +1611,6 @@
 	(direction "FORWARD")
 	(way [BrigBern_Class100077]))
 
-([BrigBern_Class110185] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class100085]))
-
 ([BrigBern_Class110186] of  Dirway
 
 	(direction "BACKWARD")
@@ -1819,11 +1620,6 @@
 
 	(direction "BACKWARD")
 	(way [BrigBern_Class100089]))
-
-([BrigBern_Class110188] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class100091]))
 
 ([BrigBern_Class110189] of  Dirway
 
@@ -1938,34 +1734,19 @@
 		[BrigBern_Class110145]
 		[BrigBern_Class110146]
 		[BrigBern_Class110147]
-		[BrigBern_Class110148]
 		[BrigBern_Class110149]
 		[BrigBern_Class110150]
 		[BrigBern_Class110151]
 		[BrigBern_Class110152]
-		[BrigBern_Class110153]
-		[BrigBern_Class110154]
-		[BrigBern_Class110155]
-		[BrigBern_Class110156]
-		[BrigBern_Class110157]
 		[BrigBern_Class110158]
-		[BrigBern_Class110159]
-		[BrigBern_Class110160]
-		[BrigBern_Class110161]
 		[BrigBern_Class110162]
 		[BrigBern_Class110163]
 		[BrigBern_Class110164]
 		[BrigBern_Class110165]
 		[BrigBern_Class110166]
-		[BrigBern_Class110167]
-		[BrigBern_Class110168]
-		[BrigBern_Class110169]
 		[BrigBern_Class110170]
 		[BrigBern_Class110171]
 		[BrigBern_Class110172]
-		[BrigBern_Class110173]
-		[BrigBern_Class110174]
-		[BrigBern_Class110175]
 		[BrigBern_Class110176]
 		[BrigBern_Class110177]
 		[BrigBern_Class110178]
@@ -1975,10 +1756,8 @@
 		[BrigBern_Class110182]
 		[BrigBern_Class110183]
 		[BrigBern_Class110184]
-		[BrigBern_Class110185]
 		[BrigBern_Class110186]
 		[BrigBern_Class110187]
-		[BrigBern_Class110188]
 		[BrigBern_Class110189]
 		[BrigBern_Class110190]
 		[BrigBern_Class110191]
@@ -2003,10 +1782,1512 @@
 	(from1 "Interlaken")
 	(to1 "Spiez"))
 
+([BrigBern_Class120000] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70035]))
+
 ([BrigBern_Class13] of  CloFunction
 
 	(source "(filter #(some? (get-in % kk)) data)")
 	(title "filter-kk [kk data]"))
+
+([BrigBern_Class130000] of  CloVar
+
+	(source "[]")
+	(title "PATH"))
+
+([BrigBern_Class130008] of  CloFunction
+
+	(source "(< (count (.getReferences inst)) 2)")
+	(title "unref [inst]"))
+
+([BrigBern_Class130009] of  OMTPoly
+
+	(description "28784940")
+	(label "28784940")
+	(latitude "46 18.82")
+	(lineColor "FFFF0000")
+	(longitude "7 52.78")
+	(playground-index 0)
+	(points
+		"46 18.82 7 52.78"
+		"46 18.43 7 52.85")
+	(relative FALSE))
+
+([BrigBern_Class130014] of  OMTPoly
+
+	(description "451750291")
+	(label "451750291")
+	(latitude "46 18.82")
+	(lineColor "FFFF0000")
+	(longitude "7 52.76")
+	(playground-index 0)
+	(points
+		"46 18.82 7 52.76"
+		"46 18.82 7 52.78")
+	(relative FALSE))
+
+([BrigBern_Class130015] of  OMTPoly
+
+	(description "166597805")
+	(label "166597805")
+	(latitude "46 18.84")
+	(lineColor "FFFF0000")
+	(longitude "7 52.68")
+	(playground-index 0)
+	(points
+		"46 18.84 7 52.68"
+		"46 18.82 7 52.76")
+	(relative FALSE))
+
+([BrigBern_Class130016] of  OMTPoly
+
+	(description "224857230")
+	(label "224857230")
+	(latitude "46 18.81")
+	(lineColor "FFFF0000")
+	(longitude "7 52.41")
+	(playground-index 0)
+	(points
+		"46 18.81 7 52.41"
+		"46 18.84 7 52.68")
+	(relative FALSE))
+
+([BrigBern_Class130017] of  OMTPoly
+
+	(description "224857241")
+	(label "224857241")
+	(latitude "46 18.8")
+	(lineColor "FFFF0000")
+	(longitude "7 52.38")
+	(playground-index 0)
+	(points
+		"46 18.8 7 52.38"
+		"46 18.81 7 52.41")
+	(relative FALSE))
+
+([BrigBern_Class130018] of  OMTPoly
+
+	(description "28784740")
+	(label "28784740")
+	(latitude "46 18.77")
+	(lineColor "FFFF0000")
+	(longitude "7 51.86")
+	(playground-index 0)
+	(points
+		"46 18.77 7 51.86"
+		"46 18.8 7 52.38")
+	(relative FALSE))
+
+([BrigBern_Class130019] of  OMTPoly
+
+	(description "28784739")
+	(label "28784739")
+	(latitude "46 18.79")
+	(lineColor "FFFF0000")
+	(longitude "7 51.74")
+	(playground-index 0)
+	(points
+		"46 18.79 7 51.74"
+		"46 18.77 7 51.86")
+	(relative FALSE))
+
+([BrigBern_Class130020] of  OMTPoly
+
+	(description "28784738")
+	(label "28784738")
+	(latitude "46 18.73")
+	(lineColor "FFFF0000")
+	(longitude "7 50.46")
+	(playground-index 0)
+	(points
+		"46 18.73 7 50.46"
+		"46 18.79 7 51.74")
+	(relative FALSE))
+
+([BrigBern_Class130021] of  OMTPoly
+
+	(description "28784737")
+	(label "28784737")
+	(latitude "46 18.73")
+	(lineColor "FFFF0000")
+	(longitude "7 50.33")
+	(playground-index 0)
+	(points
+		"46 18.73 7 50.33"
+		"46 18.73 7 50.46")
+	(relative FALSE))
+
+([BrigBern_Class130022] of  OMTPoly
+
+	(description "28784736")
+	(label "28784736")
+	(latitude "46 18.81")
+	(lineColor "FFFF0000")
+	(longitude "7 50.03")
+	(playground-index 0)
+	(points
+		"46 18.81 7 50.03"
+		"46 18.73 7 50.33")
+	(relative FALSE))
+
+([BrigBern_Class130023] of  OMTPoly
+
+	(description "28784735")
+	(label "28784735")
+	(latitude "46 18.99")
+	(lineColor "FFFF0000")
+	(longitude "7 49.8")
+	(playground-index 0)
+	(points
+		"46 18.99 7 49.8"
+		"46 18.81 7 50.03")
+	(relative FALSE))
+
+([BrigBern_Class130024] of  OMTPoly
+
+	(description "28784734")
+	(label "28784734")
+	(latitude "46 19")
+	(lineColor "FFFF0000")
+	(longitude "7 49.76")
+	(playground-index 0)
+	(points
+		"46 19 7 49.76"
+		"46 18.99 7 49.8")
+	(relative FALSE))
+
+([BrigBern_Class130025] of  OMTPoly
+
+	(description "28784732")
+	(label "28784732")
+	(latitude "46 19")
+	(lineColor "FFFF0000")
+	(longitude "7 49.45")
+	(playground-index 0)
+	(points
+		"46 19 7 49.45"
+		"46 19 7 49.76")
+	(relative FALSE))
+
+([BrigBern_Class130026] of  OMTPoly
+
+	(description "28784731")
+	(label "28784731")
+	(latitude "46 19.01")
+	(lineColor "FFFF0000")
+	(longitude "7 49.31")
+	(playground-index 0)
+	(points
+		"46 19.01 7 49.31"
+		"46 19 7 49.45")
+	(relative FALSE))
+
+([BrigBern_Class130027] of  OMTPoly
+
+	(description "224858887")
+	(label "224858887")
+	(latitude "46 19.39")
+	(lineColor "FFFF0000")
+	(longitude "7 48.89")
+	(playground-index 0)
+	(points
+		"46 19.39 7 48.89"
+		"46 19.01 7 49.31")
+	(relative FALSE))
+
+([BrigBern_Class130028] of  OMTPoly
+
+	(description "163513075")
+	(label "163513075")
+	(latitude "46 19.39")
+	(lineColor "FFFF0000")
+	(longitude "7 48.87")
+	(playground-index 0)
+	(points
+		"46 19.39 7 48.87"
+		"46 19.39 7 48.89")
+	(relative FALSE))
+
+([BrigBern_Class130029] of  OMTPoly
+
+	(description "163513071")
+	(label "163513071")
+	(latitude "46 19.37")
+	(lineColor "FFFF0000")
+	(longitude "7 48.77")
+	(playground-index 0)
+	(points
+		"46 19.37 7 48.77"
+		"46 19.39 7 48.87")
+	(relative FALSE))
+
+([BrigBern_Class130030] of  OMTPoly
+
+	(description "28784729")
+	(label "28784729")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 48.42")
+	(playground-index 0)
+	(points
+		"46 19.18 7 48.42"
+		"46 19.37 7 48.77")
+	(relative FALSE))
+
+([BrigBern_Class130031] of  OMTPoly
+
+	(description "148205169")
+	(label "148205169")
+	(latitude "46 19.18")
+	(lineColor "FFFF0000")
+	(longitude "7 48.42")
+	(playground-index 0)
+	(points
+		"46 19.18 7 48.42"
+		"46 19.37 7 48.77")
+	(relative FALSE))
+
+([BrigBern_Class130032] of  OMTPoly
+
+	(description "224857233")
+	(label "224857233")
+	(latitude "46 19.22")
+	(lineColor "FFFF0000")
+	(longitude "7 48.13")
+	(playground-index 0)
+	(points
+		"46 19.22 7 48.13"
+		"46 19.18 7 48.42")
+	(relative FALSE))
+
+([BrigBern_Class130033] of  OMTPoly
+
+	(description "224857237")
+	(label "224857237")
+	(latitude "46 19.22")
+	(lineColor "FFFF0000")
+	(longitude "7 48.1")
+	(playground-index 0)
+	(points
+		"46 19.22 7 48.1"
+		"46 19.22 7 48.13")
+	(relative FALSE))
+
+([BrigBern_Class130034] of  OMTPoly
+
+	(description "148205173")
+	(label "148205173")
+	(latitude "46 19.21")
+	(lineColor "FFFF0000")
+	(longitude "7 47.92")
+	(playground-index 0)
+	(points
+		"46 19.21 7 47.92"
+		"46 19.22 7 48.1")
+	(relative FALSE))
+
+([BrigBern_Class130035] of  OMTPoly
+
+	(description "148205170")
+	(label "148205170")
+	(latitude "46 19.26")
+	(lineColor "FFFF0000")
+	(longitude "7 47.64")
+	(playground-index 0)
+	(points
+		"46 19.26 7 47.64"
+		"46 19.21 7 47.92")
+	(relative FALSE))
+
+([BrigBern_Class130036] of  OMTPoly
+
+	(description "229192558")
+	(label "229192558")
+	(latitude "46 19.26")
+	(lineColor "FFFF0000")
+	(longitude "7 47.63")
+	(playground-index 0)
+	(points
+		"46 19.26 7 47.63"
+		"46 19.26 7 47.64")
+	(relative FALSE))
+
+([BrigBern_Class130037] of  OMTPoly
+
+	(description "229192560")
+	(label "229192560")
+	(latitude "46 19.25")
+	(lineColor "FFFF0000")
+	(longitude "7 47.55")
+	(playground-index 0)
+	(points
+		"46 19.25 7 47.55"
+		"46 19.26 7 47.63")
+	(relative FALSE))
+
+([BrigBern_Class130038] of  OMTPoly
+
+	(description "148205179")
+	(label "148205179")
+	(latitude "46 19.2")
+	(lineColor "FFFF0000")
+	(longitude "7 47.34")
+	(playground-index 0)
+	(points
+		"46 19.2 7 47.34"
+		"46 19.25 7 47.55")
+	(relative FALSE))
+
+([BrigBern_Class130039] of  OMTPoly
+
+	(description "148205180")
+	(label "148205180")
+	(latitude "46 19.17")
+	(lineColor "FFFF0000")
+	(longitude "7 47.15")
+	(playground-index 0)
+	(points
+		"46 19.17 7 47.15"
+		"46 19.2 7 47.34")
+	(relative FALSE))
+
+([BrigBern_Class130040] of  OMTPoly
+
+	(description "148205167")
+	(label "148205167")
+	(latitude "46 19.26")
+	(lineColor "FFFF0000")
+	(longitude "7 46.6")
+	(playground-index 0)
+	(points
+		"46 19.26 7 46.6"
+		"46 19.17 7 47.15")
+	(relative FALSE))
+
+([BrigBern_Class130041] of  OMTPoly
+
+	(description "148205175")
+	(label "148205175")
+	(latitude "46 19.29")
+	(lineColor "FFFF0000")
+	(longitude "7 46.53")
+	(playground-index 0)
+	(points
+		"46 19.29 7 46.53"
+		"46 19.26 7 46.6")
+	(relative FALSE))
+
+([BrigBern_Class130042] of  OMTPoly
+
+	(description "166603006")
+	(label "166603006")
+	(latitude "46 19.31")
+	(lineColor "FFFF0000")
+	(longitude "7 46.5")
+	(playground-index 0)
+	(points
+		"46 19.31 7 46.5"
+		"46 19.29 7 46.53")
+	(relative FALSE))
+
+([BrigBern_Class130043] of  OMTPoly
+
+	(description "166603009")
+	(label "166603009")
+	(latitude "46 19.34")
+	(lineColor "FFFF0000")
+	(longitude "7 46.4")
+	(playground-index 0)
+	(points
+		"46 19.34 7 46.4"
+		"46 19.31 7 46.5")
+	(relative FALSE))
+
+([BrigBern_Class130044] of  OMTPoly
+
+	(description "148208830")
+	(label "148208830")
+	(latitude "46 19.39")
+	(lineColor "FFFF0000")
+	(longitude "7 45.41")
+	(playground-index 0)
+	(points
+		"46 19.39 7 45.41"
+		"46 19.34 7 46.4")
+	(relative FALSE))
+
+([BrigBern_Class130052] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130053]))
+
+([BrigBern_Class130054] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130055]))
+
+([BrigBern_Class130058] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130059]))
+
+([BrigBern_Class130060] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130061]))
+
+([BrigBern_Class130062] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130063]))
+
+([BrigBern_Class130064] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130065]))
+
+([BrigBern_Class130066] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130067]))
+
+([BrigBern_Class130068] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130069]))
+
+([BrigBern_Class130070] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130071]))
+
+([BrigBern_Class130072] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130073]))
+
+([BrigBern_Class130074] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130075]))
+
+([BrigBern_Class130076] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130077]))
+
+([BrigBern_Class130080] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130081]))
+
+([BrigBern_Class130082] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130083]))
+
+([BrigBern_Class130084] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130085]))
+
+([BrigBern_Class130086] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130087]))
+
+([BrigBern_Class130088] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130089]))
+
+([BrigBern_Class130090] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130091]))
+
+([BrigBern_Class130092] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130093]))
+
+([BrigBern_Class130094] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130095]))
+
+([BrigBern_Class130096] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130097]))
+
+([BrigBern_Class130098] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130099]))
+
+([BrigBern_Class130100] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130101]))
+
+([BrigBern_Class130102] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130103]))
+
+([BrigBern_Class130104] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130105]))
+
+([BrigBern_Class130106] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130107]))
+
+([BrigBern_Class130108] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130109]))
+
+([BrigBern_Class130110] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130111]))
+
+([BrigBern_Class130112] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130113]))
+
+([BrigBern_Class130114] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130115]))
+
+([BrigBern_Class130116] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130117]))
+
+([BrigBern_Class130118] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130119]))
+
+([BrigBern_Class130120] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130121]))
+
+([BrigBern_Class130122] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130123]))
+
+([BrigBern_Class130127] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130128]))
+
+([BrigBern_Class130128] of  Way
+
+	(id "28784940")
+	(poly [BrigBern_Class130009])
+	(source "clojure.lang.LazySeq@4a90a5f3"))
+
+([BrigBern_Class130129] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130130]))
+
+([BrigBern_Class130130] of  Way
+
+	(id "451750291")
+	(poly [BrigBern_Class130014])
+	(source "clojure.lang.LazySeq@f1fc74ef"))
+
+([BrigBern_Class130131] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class130132]))
+
+([BrigBern_Class130132] of  Way
+
+	(id "28784940")
+	(poly [BrigBern_Class130009])
+	(source "clojure.lang.LazySeq@4a90a5f3"))
+
+([BrigBern_Class130133] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130134]))
+
+([BrigBern_Class130134] of  Way
+
+	(id "451750291")
+	(poly [BrigBern_Class130014])
+	(source "clojure.lang.LazySeq@f1fc74ef"))
+
+([BrigBern_Class130135] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130136]))
+
+([BrigBern_Class130136] of  Way
+
+	(id "166597805")
+	(poly [BrigBern_Class130015])
+	(source "clojure.lang.LazySeq@58655e28"))
+
+([BrigBern_Class130137] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130138]))
+
+([BrigBern_Class130138] of  Way
+
+	(id "224857230")
+	(poly [BrigBern_Class130016])
+	(source "clojure.lang.LazySeq@5a75f0ca"))
+
+([BrigBern_Class130139] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130140]))
+
+([BrigBern_Class130140] of  Way
+
+	(id "224857241")
+	(poly [BrigBern_Class130017])
+	(source "clojure.lang.LazySeq@2ae161de"))
+
+([BrigBern_Class130141] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130142]))
+
+([BrigBern_Class130142] of  Way
+
+	(id "28784740")
+	(poly [BrigBern_Class130018])
+	(source "clojure.lang.LazySeq@ef132f9"))
+
+([BrigBern_Class130143] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130144]))
+
+([BrigBern_Class130144] of  Way
+
+	(id "28784739")
+	(poly [BrigBern_Class130019])
+	(source "clojure.lang.LazySeq@46d335bc"))
+
+([BrigBern_Class130145] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130146]))
+
+([BrigBern_Class130146] of  Way
+
+	(id "28784738")
+	(poly [BrigBern_Class130020])
+	(source "clojure.lang.LazySeq@a01fdee0"))
+
+([BrigBern_Class130147] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130148]))
+
+([BrigBern_Class130148] of  Way
+
+	(id "28784737")
+	(poly [BrigBern_Class130021])
+	(source "clojure.lang.LazySeq@f6c24b0a"))
+
+([BrigBern_Class130149] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130150]))
+
+([BrigBern_Class130150] of  Way
+
+	(id "28784736")
+	(poly [BrigBern_Class130022])
+	(source "clojure.lang.LazySeq@648e89a6"))
+
+([BrigBern_Class130151] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130152]))
+
+([BrigBern_Class130152] of  Way
+
+	(id "28784735")
+	(poly [BrigBern_Class130023])
+	(source "clojure.lang.LazySeq@6241c04d"))
+
+([BrigBern_Class130153] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class130154]))
+
+([BrigBern_Class130154] of  Way
+
+	(id "28784736")
+	(poly [BrigBern_Class130022])
+	(source "clojure.lang.LazySeq@648e89a6"))
+
+([BrigBern_Class130155] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130156]))
+
+([BrigBern_Class130156] of  Way
+
+	(id "28784735")
+	(poly [BrigBern_Class130023])
+	(source "clojure.lang.LazySeq@6241c04d"))
+
+([BrigBern_Class130157] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130158]))
+
+([BrigBern_Class130158] of  Way
+
+	(id "28784734")
+	(poly [BrigBern_Class130024])
+	(source "clojure.lang.LazySeq@3744eb7f"))
+
+([BrigBern_Class130159] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130160]))
+
+([BrigBern_Class130160] of  Way
+
+	(id "28784732")
+	(poly [BrigBern_Class130025])
+	(source "clojure.lang.LazySeq@6d87127d"))
+
+([BrigBern_Class130161] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130162]))
+
+([BrigBern_Class130162] of  Way
+
+	(id "28784731")
+	(poly [BrigBern_Class130026])
+	(source "clojure.lang.LazySeq@6bc8e9d0"))
+
+([BrigBern_Class130163] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130164]))
+
+([BrigBern_Class130164] of  Way
+
+	(id "224858887")
+	(poly [BrigBern_Class130027])
+	(source "clojure.lang.LazySeq@7d3f9705"))
+
+([BrigBern_Class130165] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130166]))
+
+([BrigBern_Class130166] of  Way
+
+	(id "163513075")
+	(poly [BrigBern_Class130028])
+	(source "clojure.lang.LazySeq@6403178b"))
+
+([BrigBern_Class130167] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130168]))
+
+([BrigBern_Class130168] of  Way
+
+	(id "163513071")
+	(poly [BrigBern_Class130029])
+	(source "clojure.lang.LazySeq@6b151066"))
+
+([BrigBern_Class130169] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130170]))
+
+([BrigBern_Class130170] of  Way
+
+	(id "28784729")
+	(poly [BrigBern_Class130030])
+	(source "clojure.lang.LazySeq@b82a4516"))
+
+([BrigBern_Class130171] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130172]))
+
+([BrigBern_Class130172] of  Way
+
+	(id "148205169")
+	(poly [BrigBern_Class130031])
+	(source "clojure.lang.LazySeq@cd180d56"))
+
+([BrigBern_Class130173] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130174]))
+
+([BrigBern_Class130174] of  Way
+
+	(id "224857233")
+	(poly [BrigBern_Class130032])
+	(source "clojure.lang.LazySeq@3c37adba"))
+
+([BrigBern_Class130175] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130176]))
+
+([BrigBern_Class130176] of  Way
+
+	(id "224857237")
+	(poly [BrigBern_Class130033])
+	(source "clojure.lang.LazySeq@949de542"))
+
+([BrigBern_Class130177] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130178]))
+
+([BrigBern_Class130178] of  Way
+
+	(id "148205173")
+	(poly [BrigBern_Class130034])
+	(source "clojure.lang.LazySeq@3f46c605"))
+
+([BrigBern_Class130179] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130180]))
+
+([BrigBern_Class130180] of  Way
+
+	(id "148205170")
+	(poly [BrigBern_Class130035])
+	(source "clojure.lang.LazySeq@c82b6406"))
+
+([BrigBern_Class130181] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130182]))
+
+([BrigBern_Class130182] of  Way
+
+	(id "229192558")
+	(poly [BrigBern_Class130036])
+	(source "clojure.lang.LazySeq@f22205d7"))
+
+([BrigBern_Class130183] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130184]))
+
+([BrigBern_Class130184] of  Way
+
+	(id "229192560")
+	(poly [BrigBern_Class130037])
+	(source "clojure.lang.LazySeq@3186f6b9"))
+
+([BrigBern_Class130185] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130186]))
+
+([BrigBern_Class130186] of  Way
+
+	(id "148205179")
+	(poly [BrigBern_Class130038])
+	(source "clojure.lang.LazySeq@7216f1e3"))
+
+([BrigBern_Class130187] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130188]))
+
+([BrigBern_Class130188] of  Way
+
+	(id "148205180")
+	(poly [BrigBern_Class130039])
+	(source "clojure.lang.LazySeq@58fe6c39"))
+
+([BrigBern_Class130189] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130190]))
+
+([BrigBern_Class130190] of  Way
+
+	(id "148205167")
+	(poly [BrigBern_Class130040])
+	(source "clojure.lang.LazySeq@59c36b06"))
+
+([BrigBern_Class130191] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130192]))
+
+([BrigBern_Class130192] of  Way
+
+	(id "148205175")
+	(poly [BrigBern_Class130041])
+	(source "clojure.lang.LazySeq@ddb5c5cb"))
+
+([BrigBern_Class130193] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130194]))
+
+([BrigBern_Class130194] of  Way
+
+	(id "166603006")
+	(poly [BrigBern_Class130042])
+	(source "clojure.lang.LazySeq@52dc981e"))
+
+([BrigBern_Class130195] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130196]))
+
+([BrigBern_Class130196] of  Way
+
+	(id "166603009")
+	(poly [BrigBern_Class130043])
+	(source "clojure.lang.LazySeq@5d525e45"))
+
+([BrigBern_Class130197] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130198]))
+
+([BrigBern_Class130198] of  Way
+
+	(id "148208830")
+	(poly [BrigBern_Class130044])
+	(source "clojure.lang.LazySeq@cd25a74a"))
+
+([BrigBern_Class130199] of  Railroad
+
+	(dirways
+		[BrigBern_Class130200]
+		[BrigBern_Class130202]
+		[BrigBern_Class130204]
+		[BrigBern_Class130206]
+		[BrigBern_Class130208]
+		[BrigBern_Class130210]
+		[BrigBern_Class130212]
+		[BrigBern_Class130214]
+		[BrigBern_Class130216]
+		[BrigBern_Class130218]
+		[BrigBern_Class130220]
+		[BrigBern_Class130222]
+		[BrigBern_Class130224]
+		[BrigBern_Class130226]
+		[BrigBern_Class130228]
+		[BrigBern_Class130230]
+		[BrigBern_Class130232]
+		[BrigBern_Class130234]
+		[BrigBern_Class130236]
+		[BrigBern_Class130238]
+		[BrigBern_Class130240]
+		[BrigBern_Class130242]
+		[BrigBern_Class130244]
+		[BrigBern_Class130246]
+		[BrigBern_Class130248]
+		[BrigBern_Class130250]
+		[BrigBern_Class130252]
+		[BrigBern_Class130254]
+		[BrigBern_Class130256]
+		[BrigBern_Class130258]
+		[BrigBern_Class130260]
+		[BrigBern_Class130262]
+		[BrigBern_Class130264]
+		[BrigBern_Class130266]
+		[BrigBern_Class130268]
+		[BrigBern_Class130270])
+	(from1 "Eggerberg")
+	(to1 "Hohtenn"))
+
+([BrigBern_Class130200] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130201]))
+
+([BrigBern_Class130201] of  Way
+
+	(id "28784940")
+	(poly [BrigBern_Class130009])
+	(source "[[46.3136052 7.8797342] [46.313301 7.8803256] [46.3129799 7.880774] [46.3126524 7.8811243] [46.3122817 7.8814013] [46.3118777 7.8815989] [46.3114727 7.8817149] [46.3110253 7.8817418] [46.3105827 7.8816654] [46.3101724 7.8814943] [46.3097983 7.8812978] [46.3091466 7.8809017] [46.3088281 7.8807518] [46.3085097 7.8806429] [46.308158 7.8806061] [46.3078053 7.8806216] [46.3074494 7.8806756] [46.3071087 7.8807917]]"))
+
+([BrigBern_Class130202] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130203]))
+
+([BrigBern_Class130203] of  Way
+
+	(id "451750291")
+	(poly [BrigBern_Class130014])
+	(source "[[46.3137286 7.8793683] [46.3136577 7.8795836] [46.3136052 7.8797342]]"))
+
+([BrigBern_Class130204] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class130205]))
+
+([BrigBern_Class130205] of  Way
+
+	(id "28784940")
+	(poly [BrigBern_Class130009])
+	(source "[[46.3136052 7.8797342] [46.313301 7.8803256] [46.3129799 7.880774] [46.3126524 7.8811243] [46.3122817 7.8814013] [46.3118777 7.8815989] [46.3114727 7.8817149] [46.3110253 7.8817418] [46.3105827 7.8816654] [46.3101724 7.8814943] [46.3097983 7.8812978] [46.3091466 7.8809017] [46.3088281 7.8807518] [46.3085097 7.8806429] [46.308158 7.8806061] [46.3078053 7.8806216] [46.3074494 7.8806756] [46.3071087 7.8807917]]"))
+
+([BrigBern_Class130206] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130207]))
+
+([BrigBern_Class130207] of  Way
+
+	(id "451750291")
+	(poly [BrigBern_Class130014])
+	(source "[[46.3137286 7.8793683] [46.3136577 7.8795836] [46.3136052 7.8797342]]"))
+
+([BrigBern_Class130208] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130209]))
+
+([BrigBern_Class130209] of  Way
+
+	(id "166597805")
+	(poly [BrigBern_Class130015])
+	(source "[[46.3140305 7.8779657] [46.3139718 7.8784131] [46.3139061 7.8787428] [46.3138294 7.8790306] [46.3137286 7.8793683]]"))
+
+([BrigBern_Class130210] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130211]))
+
+([BrigBern_Class130211] of  Way
+
+	(id "224857230")
+	(poly [BrigBern_Class130016])
+	(source "[[46.3134375 7.8734278] [46.3135476 7.8743799] [46.3136384 7.8749904] [46.3138055 7.8757551] [46.3139012 7.876173] [46.3139821 7.8765956] [46.3140293 7.8770052] [46.3140413 7.8772644] [46.3140439 7.8776364] [46.3140305 7.8779657]]"))
+
+([BrigBern_Class130212] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130213]))
+
+([BrigBern_Class130213] of  Way
+
+	(id "224857241")
+	(poly [BrigBern_Class130017])
+	(source "[[46.3134016 7.8730528] [46.3134375 7.8734278]]"))
+
+([BrigBern_Class130214] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130215]))
+
+([BrigBern_Class130215] of  Way
+
+	(id "28784740")
+	(poly [BrigBern_Class130018])
+	(source "[[46.3127889 7.8642866] [46.3127828 7.8650084] [46.3127918 7.8659747] [46.312818 7.8671897] [46.3128626 7.8677136] [46.3130413 7.8689895] [46.3131324 7.8698889] [46.313246 7.8716056] [46.3134016 7.8730528]]"))
+
+([BrigBern_Class130216] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130217]))
+
+([BrigBern_Class130217] of  Way
+
+	(id "28784739")
+	(poly [BrigBern_Class130019])
+	(source "[[46.313164 7.8624159] [46.3130171 7.8628867] [46.3128779 7.8634601] [46.3128145 7.863871] [46.3127889 7.8642866]]"))
+
+([BrigBern_Class130218] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130219]))
+
+([BrigBern_Class130219] of  Way
+
+	(id "28784738")
+	(poly [BrigBern_Class130020])
+	(source "[[46.3121973 7.8410594] [46.3122112 7.841558] [46.3122375 7.842078] [46.3122518 7.8425209] [46.3122413 7.8430245] [46.3121067 7.8441881] [46.3117901 7.8467762] [46.3117277 7.8472693] [46.3116873 7.8477447] [46.3116807 7.8481734] [46.3117115 7.8486366] [46.3117922 7.8491489] [46.3119079 7.8495975] [46.3121085 7.850149] [46.3124506 7.8510089] [46.3126596 7.8515382] [46.3128406 7.8520804] [46.3129894 7.8526936] [46.3132249 7.8539364] [46.3133477 7.8546226] [46.3133918 7.8550137] [46.313403 7.8553498] [46.3134086 7.8560362] [46.3134069 7.8565519] [46.3134322 7.8570125] [46.3135202 7.8579338] [46.3135813 7.8585994] [46.3135866 7.8591558] [46.3135615 7.8596034] [46.3134551 7.8607718] [46.3133751 7.8615094] [46.3132886 7.8619381] [46.313164 7.8624159]]"))
+
+([BrigBern_Class130220] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130221]))
+
+([BrigBern_Class130221] of  Way
+
+	(id "28784737")
+	(poly [BrigBern_Class130021])
+	(source "[[46.3122165 7.8388111] [46.3121697 7.839135] [46.3121381 7.8394486] [46.3121293 7.8397515] [46.312141 7.8400418] [46.3121924 7.8409718] [46.3121973 7.8410594]]"))
+
+([BrigBern_Class130222] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130223]))
+
+([BrigBern_Class130223] of  Way
+
+	(id "28784736")
+	(poly [BrigBern_Class130022])
+	(source "[[46.3134446 7.8338917] [46.3132907 7.8343343] [46.3131685 7.8348287] [46.312997 7.835814] [46.3129104 7.8362696] [46.3128091 7.8367061] [46.3126932 7.8370862] [46.3124876 7.8376989] [46.3123693 7.8380827] [46.312311 7.8383149] [46.3122579 7.8385534] [46.3122165 7.8388111]]"))
+
+([BrigBern_Class130224] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130225]))
+
+([BrigBern_Class130225] of  Way
+
+	(id "28784735")
+	(poly [BrigBern_Class130023])
+	(source "[[46.3164324 7.8300455] [46.3161586 7.8306163] [46.3155535 7.8312945] [46.3150551 7.8317395] [46.3145193 7.8321792] [46.3140814 7.8326624] [46.3138029 7.8330367] [46.313558 7.8335805] [46.3134446 7.8338917]]"))
+
+([BrigBern_Class130226] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class130227]))
+
+([BrigBern_Class130227] of  Way
+
+	(id "28784736")
+	(poly [BrigBern_Class130022])
+	(source "[[46.3134446 7.8338917] [46.3132907 7.8343343] [46.3131685 7.8348287] [46.312997 7.835814] [46.3129104 7.8362696] [46.3128091 7.8367061] [46.3126932 7.8370862] [46.3124876 7.8376989] [46.3123693 7.8380827] [46.312311 7.8383149] [46.3122579 7.8385534] [46.3122165 7.8388111]]"))
+
+([BrigBern_Class130228] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130229]))
+
+([BrigBern_Class130229] of  Way
+
+	(id "28784735")
+	(poly [BrigBern_Class130023])
+	(source "[[46.3164324 7.8300455] [46.3161586 7.8306163] [46.3155535 7.8312945] [46.3150551 7.8317395] [46.3145193 7.8321792] [46.3140814 7.8326624] [46.3138029 7.8330367] [46.313558 7.8335805] [46.3134446 7.8338917]]"))
+
+([BrigBern_Class130230] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130231]))
+
+([BrigBern_Class130231] of  Way
+
+	(id "28784734")
+	(poly [BrigBern_Class130024])
+	(source "[[46.3167118 7.8293299] [46.3166391 7.8295218] [46.316513 7.8298337] [46.3164324 7.8300455]]"))
+
+([BrigBern_Class130232] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130233]))
+
+([BrigBern_Class130233] of  Way
+
+	(id "28784732")
+	(poly [BrigBern_Class130025])
+	(source "[[46.3167472 7.8242041] [46.3170041 7.8252663] [46.3170791 7.8257653] [46.317123 7.8262934] [46.3171403 7.8268704] [46.3171048 7.8274352] [46.3170367 7.8279528] [46.3169522 7.8284926] [46.3168603 7.8288713] [46.316777 7.8291578] [46.3167118 7.8293299]]"))
+
+([BrigBern_Class130234] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130235]))
+
+([BrigBern_Class130235] of  Way
+
+	(id "28784731")
+	(poly [BrigBern_Class130026])
+	(source "[[46.316792 7.8218297] [46.3167104 7.8221745] [46.3166533 7.8226886] [46.3166393 7.8233088] [46.316673 7.823792] [46.3167472 7.8242041]]"))
+
+([BrigBern_Class130236] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130237]))
+
+([BrigBern_Class130237] of  Way
+
+	(id "224858887")
+	(poly [BrigBern_Class130027])
+	(source "[[46.3231271 7.8147916] [46.3231064 7.8150919] [46.3230656 7.8154314] [46.3230027 7.8157611] [46.3228565 7.8162822] [46.3226644 7.8167815] [46.3224925 7.8171069] [46.3223142 7.8173988] [46.3219661 7.8177186] [46.3216008 7.8179621] [46.3189037 7.8190201] [46.3186195 7.8191323] [46.3183184 7.8192906] [46.3178233 7.8196975] [46.3176344 7.8199088] [46.3174707 7.8201353] [46.317248 7.8204967] [46.317069 7.8208967] [46.3168783 7.8214812] [46.316792 7.8218297]]"))
+
+([BrigBern_Class130238] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130239]))
+
+([BrigBern_Class130239] of  Way
+
+	(id "163513075")
+	(poly [BrigBern_Class130028])
+	(source "[[46.3231395 7.814561] [46.3231271 7.8147916]]"))
+
+([BrigBern_Class130240] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130241]))
+
+([BrigBern_Class130241] of  Way
+
+	(id "163513071")
+	(poly [BrigBern_Class130029])
+	(source "[[46.3228824 7.8128331] [46.3229362 7.8130074] [46.323008 7.8132697] [46.3230634 7.8135239] [46.3231063 7.8138365] [46.3231382 7.8141445] [46.3231395 7.814561]]"))
+
+([BrigBern_Class130242] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130243]))
+
+([BrigBern_Class130243] of  Way
+
+	(id "28784729")
+	(poly [BrigBern_Class130030])
+	(source "[[46.319638 7.806988] [46.3196723 7.8073648] [46.3197646 7.8078704] [46.3198674 7.8082598] [46.3199762 7.8086538] [46.3201822 7.8091645] [46.3204612 7.809697] [46.3206761 7.8099962] [46.320914 7.8102711] [46.3214341 7.8107558] [46.3219419 7.8112141] [46.3221612 7.8114533] [46.3223492 7.8117007] [46.3224706 7.8118909] [46.3225805 7.812091] [46.3226857 7.8123058] [46.322783 7.8125364] [46.3228824 7.8128331]]"))
+
+([BrigBern_Class130244] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130245]))
+
+([BrigBern_Class130245] of  Way
+
+	(id "148205169")
+	(poly [BrigBern_Class130031])
+	(source "[[46.3195961 7.8069905] [46.3196318 7.8073851] [46.3197344 7.8078956] [46.3198374 7.8082772] [46.3199442 7.8086617] [46.3201582 7.809208] [46.3204371 7.8097315] [46.3206569 7.810031] [46.3209032 7.8103163] [46.3214611 7.8108282] [46.3219221 7.8112532] [46.3221324 7.8114803] [46.3223232 7.8117379] [46.3224424 7.8119248] [46.3225547 7.8121205] [46.3226586 7.8123389] [46.3227554 7.8125658] [46.3228531 7.8128547]]"))
+
+([BrigBern_Class130246] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130247]))
+
+([BrigBern_Class130247] of  Way
+
+	(id "224857233")
+	(poly [BrigBern_Class130032])
+	(source "[[46.3203792 7.8020976] [46.320374 7.802383] [46.3203453 7.8027429] [46.3203095 7.8030527] [46.320254 7.8033633] [46.320162 7.8038044] [46.3200699 7.8041985] [46.3198796 7.8049897] [46.3197328 7.8055892] [46.3196692 7.8059157] [46.3196234 7.8062847] [46.3196024 7.8066401] [46.3195961 7.8069905]]"))
+
+([BrigBern_Class130248] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130249]))
+
+([BrigBern_Class130249] of  Way
+
+	(id "224857237")
+	(poly [BrigBern_Class130033])
+	(source "[[46.3203557 7.8016674] [46.3203792 7.8020976]]"))
+
+([BrigBern_Class130250] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130251]))
+
+([BrigBern_Class130251] of  Way
+
+	(id "148205173")
+	(poly [BrigBern_Class130034])
+	(source "[[46.3201114 7.7986081] [46.3201132 7.7989992] [46.3201458 7.7995874] [46.3201998 7.8001257] [46.3202798 7.8008381] [46.3203309 7.8013443] [46.3203557 7.8016674]]"))
+
+([BrigBern_Class130252] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130253]))
+
+([BrigBern_Class130253] of  Way
+
+	(id "148205170")
+	(poly [BrigBern_Class130035])
+	(source "[[46.3210064 7.7939586] [46.3209332 7.7946679] [46.320757 7.7953521] [46.3205529 7.7959236] [46.3204413 7.7963205] [46.3202663 7.7970158] [46.3202009 7.7973874] [46.3201543 7.7977321] [46.3201329 7.7980095] [46.3201174 7.7983418] [46.3201114 7.7986081]]"))
+
+([BrigBern_Class130254] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130255]))
+
+([BrigBern_Class130255] of  Way
+
+	(id "229192558")
+	(poly [BrigBern_Class130036])
+	(source "[[46.3210064 7.7937584] [46.3210064 7.7939586]]"))
+
+([BrigBern_Class130256] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130257]))
+
+([BrigBern_Class130257] of  Way
+
+	(id "229192560")
+	(poly [BrigBern_Class130037])
+	(source "[[46.3208918 7.7925274] [46.3209586 7.7929509] [46.3209959 7.7933607] [46.3210064 7.7937584]]"))
+
+([BrigBern_Class130258] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130259]))
+
+([BrigBern_Class130259] of  Way
+
+	(id "148205179")
+	(poly [BrigBern_Class130038])
+	(source "[[46.3199565 7.78907] [46.3204185 7.790538] [46.3207961 7.7920822] [46.3208918 7.7925274]]"))
+
+([BrigBern_Class130260] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130261]))
+
+([BrigBern_Class130261] of  Way
+
+	(id "148205180")
+	(poly [BrigBern_Class130039])
+	(source "[[46.3194351 7.7858658] [46.3193998 7.7868211] [46.3195154 7.7876117] [46.3199565 7.78907]]"))
+
+([BrigBern_Class130262] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130263]))
+
+([BrigBern_Class130263] of  Way
+
+	(id "148205167")
+	(poly [BrigBern_Class130040])
+	(source "[[46.3209307 7.7767079] [46.3207649 7.7771239] [46.3206181 7.7776697] [46.3205295 7.7781021] [46.3204804 7.7785119] [46.3204511 7.7790292] [46.3204353 7.7797489] [46.3203995 7.7805133] [46.3203661 7.7808959] [46.3202997 7.7813389] [46.3201618 7.7819055] [46.3199542 7.7826415] [46.3197682 7.7833724] [46.3196054 7.7844019] [46.3194869 7.7853395] [46.3194351 7.7858658]]"))
+
+([BrigBern_Class130264] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130265]))
+
+([BrigBern_Class130265] of  Way
+
+	(id "148205175")
+	(poly [BrigBern_Class130041])
+	(source "[[46.3215324 7.775577] [46.3212325 7.7761024] [46.3210667 7.7764135] [46.3209307 7.7767079]]"))
+
+([BrigBern_Class130266] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130267]))
+
+([BrigBern_Class130267] of  Way
+
+	(id "166603006")
+	(poly [BrigBern_Class130042])
+	(source "[[46.3218911 7.7750078] [46.3215324 7.775577]]"))
+
+([BrigBern_Class130268] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130269]))
+
+([BrigBern_Class130269] of  Way
+
+	(id "166603009")
+	(poly [BrigBern_Class130043])
+	(source "[[46.3224014 7.773268] [46.3223523 7.7737084] [46.3222776 7.774132] [46.3221664 7.7744714] [46.3220227 7.7747843] [46.3218911 7.7750078]]"))
+
+([BrigBern_Class130270] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class130271]))
+
+([BrigBern_Class130271] of  Way
+
+	(id "148208830")
+	(poly [BrigBern_Class130044])
+	(source "[[46.3231912 7.7567602] [46.3230296 7.7572045] [46.3228311 7.7579064] [46.3224766 7.7593383] [46.3223816 7.7598896] [46.3223319 7.7603747] [46.3223313 7.7608885] [46.3223756 7.7613536] [46.3225052 7.7629261] [46.3225374 7.763875] [46.32256 7.7644545] [46.3226643 7.7656904] [46.3227141 7.7665587] [46.3227373 7.7674038] [46.3227536 7.7683399] [46.3227557 7.7687946] [46.3227352 7.7692099] [46.32257 7.7708638] [46.3224992 7.7717183] [46.3224512 7.7724736] [46.3224014 7.773268]]"))
+
+([BrigBern_Class130279] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-onboard "Go on Board/osm.data/go-onboard")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-start-serv "Start Cesium Server/osm.data/start-cesium-server")
+	(but-stop-serv "Stop Cesium Server/osm.data/stop-cesium-server")
+	(onboard "car")
+	(radius 0.02)
+	(road-subclass Railroad)
+	(status "CLEAR")
+	(tagvalue
+		[BrigBern_Class80017]
+		[BrigBern_Class90003]
+		[BrigBern_Class80016])
+	(title "Railway Control"))
+
+([BrigBern_Class130280] of  CloFunction
+
+	(source "(def PATH [])\n(ssv inst \"status\" \"CLEAR\")")
+	(title "clear-path [hm inst]"))
+
+([BrigBern_Class130281] of  CloFunction
+
+	(source "(pro.server/start-server)")
+	(title "start-cesium-server [hm inst]"))
+
+([BrigBern_Class130282] of  CloFunction
+
+	(source "(pro.server/stop-server)")
+	(title "stop-cesium-server [hm inst]"))
+
+([BrigBern_Class130283] of  CloFunction
+
+	(source "(if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n  (let [lab (sv sel \"label\")]\n    (ssv inst \"onboard\" lab)\n    (vreset! pro.server/ONBOARD lab)))")
+	(title "go-onboard [hm inst]"))
+
+([BrigBern_Class130318] of  Railroad
+
+	(from1 "Kandersteg")
+	(to1 "Frutigen"))
+
+([BrigBern_Class130319] of  CloFunction
+
+	(source "(doseq [ins (cls-instances cls)]\n  (when (unref ins)\n    (delin ins)\n    (print \".\")))\n(println)")
+	(title "delete-unref [cls]"))
+
+([BrigBern_Class130329] of  OMTPoly
+
+	(description "175558875")
+	(label "175558875")
+	(latitude "46 18.1")
+	(lineColor "FFFF0000")
+	(longitude "7 54.47")
+	(playground-index 0)
+	(points
+		"46 18.1 7 54.47"
+		"46 18.07 7 54.72")
+	(relative FALSE))
+
+([BrigBern_Class130330] of  CloFunction
+
+	(source "(doseq [ins (cls-instances cls)]\n  (if (unref ins)\n    (.show *prj* ins)))")
+	(title "find-unref [cls]"))
 
 ([BrigBern_Class14] of  CloFunction
 
@@ -2066,8 +3347,8 @@
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(let [id (str id)\n       wai (foc \"Way\" \"id\" id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (ssv wai \"poly\" poi)\n    (ssv wai \"source\" (str (vec pts)))\n    (OMT/addMapOb poi)\n    wai)")
-	(title "create-way [[id pts]]"))
+	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/addMapOb poi)\n    poi)")
+	(title "create-line [[id pts]]"))
 
 ([BrigBern_Class20004] of  CloFunction
 
@@ -2082,7 +3363,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                            'CREATE (create-road mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class4] of  Openmap
@@ -2127,8 +3408,8 @@
 
 ([BrigBern_Class40000] of  CloFunction
 
-	(source "(let [dw (crin \"Dirway\")]\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
-	(title "mk-dirway [dir way]"))
+	(source "(let [dw (crin \"Dirway\")\n       way (crin \"Way\")]\n  (ssv way \"id\" (str id))\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
+	(title "create-dirway [[dir [id pts] lin]]"))
 
 ([BrigBern_Class40001] of  CloVar
 
@@ -2150,27 +3431,10 @@
 	(source "(if (= MODE 'ADD)\n  (do (def MODE 'REMOVE)\n    (ssv inst \"status\" \"MODE REMOVE\"))\n  (ssv inst \"status\" \"Add ways before\"))")
 	(title "mode-remove [hm inst]"))
 
-([BrigBern_Class40007] of  CloFunction
-
-	(source "(let [mp (into {} hm)\n       frm (mp \"from1\")\n       to (mp \"to1\")\n       rsc (mp \"road-subclass\")]\n(if (or (= MODE 'ADD) (= MODE 'REMOVE))\n  (if (and (some? frm) (some? to) (some? rsc))\n    (do (def MODE 'CREATE)\n      (def ROAD-SUBCLASS rsc)\n      (def ROAD [frm to])\n      (def BEGIN nil)\n      (def END nil)\n      (ssv inst \"status\" \"MODE CREATE ROAD\"))\n    (ssv inst \"status\" \"Set From1, To1 and Road-subclass!\"))\n  (ssv inst \"status\" \"Add ways before!\")))")
-	(title "mode-create [hm inst]"))
-
 ([BrigBern_Class40008] of  CloVar
 
 	(source "false")
 	(title "RMMA"))
-
-([BrigBern_Class40010] of  OMTPoly
-
-	(label "bb")
-	(latitude "46 19")
-	(lineColor "FF0000FF")
-	(longitude "8 1")
-	(playground-index 0)
-	(points
-		"46 19 8 1"
-		"46 58 7 28")
-	(relative FALSE))
 
 ([BrigBern_Class40011] of  CloVar
 
@@ -2179,12 +3443,12 @@
 
 ([BrigBern_Class40012] of  CloFunction
 
-	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [fdt (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]\n    (vswap! POOL concat (map create-way fdt))\n    (println \"Created or updated \" (count @POOL) \"ways\")))")
+	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]\n    (if (empty? ipss)\n      (println \"Try in other location..\")\n      (if (empty? PATH)\n        (do (def PATH (map #(vector nil % (create-line %)) ipss))\n          (println \"Initial\" (count PATH) \"ways..\"))\n        (let [[ldir lips llin] (last PATH)\n               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]\n          (if (nil? short)\n            (println \"No continuation!\")\n            (let [lin (create-line ips)]\n              (def PATH         \n                (if (= (count PATH) 1)\n                  [[ld lips llin] [nd ips lin]]\n                  (conj PATH [nd ips lin]))) )))) )))")
 	(title "add-way [llp]"))
 
 ([BrigBern_Class40013] of  CloFunction
 
-	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (if-let [wai (fifos \"Way\" \"id\" (.getName mo))]\n    (do (remove #{wai} @POOL)\n      (OMT/removeMapOb mo true)\n      (println \"Removed from pool way \" (sv wai \"id\") \", remains \" (count @POOL)))\n    (println \"Way \" (.getName mo) \" not found!\")))")
+	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (let [id (.getName mo)]\n    (OMT/removeMapOb mo true)\n    (def PATH (filter #(not= (str (first (second %))) id) PATH))\n    (println \"Removed from PATH way\" id \",\" \"remains\" (count PATH))))")
 	(title "remove-way [mo]"))
 
 ([BrigBern_Class40015] of  CloVar
@@ -2202,27 +3466,6 @@
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
-
-([BrigBern_Class50000] of  CloVar
-
-	(source "(volatile! [])")
-	(title "POOL"))
-
-([BrigBern_Class50007] of  RoadControl
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-cre "Create Road/osm.data/mode-create")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(from1 "Interlaken")
-	(radius 0.1)
-	(road-subclass Motoroad)
-	(status "MODE CREATE ROAD")
-	(tagvalue
-		[BrigBern_Class80016]
-		[BrigBern_Class80017]
-		[BrigBern_Class90003])
-	(title "Railway Control")
-	(to1 "Spiez"))
 
 ([BrigBern_Class50010] of  Railroad
 
@@ -2474,21 +3717,8 @@
 ([BrigBern_Class60106] of  Way
 
 	(id "175558875")
-	(poly [BrigBern_Class60107])
+	(poly [BrigBern_Class130329])
 	(source "[[46.3017498 7.9077906] [46.3016146 7.9080915] [46.3014803 7.908383] [46.3013686 7.9086899] [46.3012577 7.9091204] [46.3011725 7.909488] [46.3010854 7.910118] [46.3010626 7.9108208] [46.301093 7.9113829] [46.3011896 7.9119197]]"))
-
-([BrigBern_Class60107] of  OMTPoly
-
-	(description "175558875")
-	(label "175558875")
-	(latitude "46 18.1")
-	(lineColor "FFFF0000")
-	(longitude "7 54.47")
-	(playground-index 0)
-	(points
-		"46 18.1 7 54.47"
-		"46 18.07 7 54.72")
-	(relative FALSE))
 
 ([BrigBern_Class60116] of  Way
 
@@ -2511,32 +3741,13 @@
 
 ([BrigBern_Class60118] of  CloFunction
 
-	(source "([mo]\n  (println :MODE MODE ROAD)\n  (cond \n    (nil? mo) (do (println \"Try again in other place of line..\") nil)\n    (nil? BEGIN) (do (def BEGIN (.getName mo)) (println :BEGIN BEGIN) nil)\n    (nil? END) (do (def END (.getName mo)) (println :END END)\n		(create-road))))\n\n([]\n  (create-road ROAD BEGIN END ROAD-SUBCLASS))\n\n([road begin end rd-subclass]\n  (if-let [dws (create-dirways road begin end)]\n    (let [ri (crin rd-subclass)\n           [frm to] road]\n      (ssv ri \"from1\" frm)\n      (ssv ri \"to1\" to)\n      (ssvs ri \"dirways\" dws)\n      (.show *prj* ri))))")
-	(title "create-road"))
-
-([BrigBern_Class60119] of  CloVar
-
-	(source "nil")
-	(title "ROAD"))
-
-([BrigBern_Class60120] of  CloVar
-
-	(source "nil")
-	(title "BEGIN"))
-
-([BrigBern_Class60121] of  CloVar
-
-	(source "nil")
-	(title "END"))
-
-([BrigBern_Class60122] of  CloFunction
-
-	(source "(let [nws @POOL\n       beg (fifos \"Way\" \"id\" begin)\n       end (fifos \"Way\" \"id\" end)]\n  (println :POOL (count nws))\n  (loop [pick beg from (remove #{beg} nws) dws [beg]]\n    (println :PICK (sv pick \"id\") :FROM (count from))\n    (if (= pick end)\n      dws\n      (let [[mid [owd nwd] way :as p] (nearest-to pick from)\n             dw (mk-dirway nwd way)]\n        (recur way (remove #{way} from) (conj-dirway dws dw owd))))))")
-	(title "create-dirways [[from to] begin end]"))
+	(source "(if (not (empty? PATH))\n  (let [mp (into {} hm)\n         ri (crin (mp \"road-subclass\"))]\n    (ssv ri \"from1\" (mp \"from1\"))\n    (ssv ri \"to1\" (mp \"to1\"))\n    (ssvs ri \"dirways\" (map create-dirway PATH))\n    (.show *prj* ri)\n    (def MODE 'CREATE)\n    (ssv inst \"status\" (str \"MODE CREATE, in PATH \" (count PATH) \" ways.\")))\n  (ssv inst \"status\" \"Add ways before!\"))")
+	(title "create-road [hm inst]"))
 
 ([BrigBern_Class7] of  CloProgram
 
 	(cloFunctions
+		[BrigBern_Class130008]
 		[BrigBern_Class10000]
 		[BrigBern_Class10006]
 		[BrigBern_Class10001]
@@ -2555,13 +3766,16 @@
 		[BrigBern_Class70001]
 		[BrigBern_Class70000]
 		[BrigBern_Class40000]
-		[BrigBern_Class80000]
-		[BrigBern_Class60122]
-		[BrigBern_Class60118]
 		[BrigBern_Class30000]
 		[BrigBern_Class40005]
 		[BrigBern_Class40006]
-		[BrigBern_Class40007])
+		[BrigBern_Class60118]
+		[BrigBern_Class130319]
+		[BrigBern_Class130330]
+		[BrigBern_Class130280]
+		[BrigBern_Class130281]
+		[BrigBern_Class130282]
+		[BrigBern_Class130283])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
@@ -2571,34 +3785,162 @@
 		[BrigBern_Class40011]
 		[BrigBern_Class40015]
 		[BrigBern_Class40018]
-		[BrigBern_Class60119]
-		[BrigBern_Class60120]
-		[BrigBern_Class60121]
-		[BrigBern_Class90000]
 		[BrigBern_Class40001]
 		[BrigBern_Class40002]
-		[BrigBern_Class50000])
+		[BrigBern_Class130000])
 	(title "OSM Data"))
 
 ([BrigBern_Class70000] of  CloFunction
 
-	(source "(loop [pool (rest from) mid-dir-way (shortest-dist way (first from))]\n  (cond\n    (empty? pool) mid-dir-way\n    (= way (first pool)) (recur (rest pool) mid-dir-way)\n    true\n      (let [[nmid ndir nway :as nmdw] (shortest-dist way (first pool))]\n        (if (< nmid (first mid-dir-way))\n          (recur (rest pool) nmdw)\n          (recur (rest pool) mid-dir-way)))))")
-	(title "nearest-to [way from]"))
+	(source "(loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]\n  (cond\n    (nil? sdi-dir-ips)\n      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))\n    (empty? pool) sdi-dir-ips\n    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)\n    true\n      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]\n        (if (< nsdi (first sdi-dir-ips))\n          (recur (rest pool) short)\n          (recur (rest pool) sdi-dir-ips)))))")
+	(title "nearest-to [ips from]"))
 
 ([BrigBern_Class70001] of  CloFunction
 
-	(source "(let [llp1 (read-string (sv w1 \"source\"))\n       llp2 (read-string (sv w2 \"source\"))\n       [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n       [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n       dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2\n                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2\n                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2\n                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2\n      mid (apply min (keys dis-var))\n      dir (dis-var mid)]\n  [mid dir w2])")
-	(title "shortest-dist [w1 w2]"))
+	(source "(if (not= ips1 ips2)\n  (let [llp1 (second ips1)\n         llp2 (second ips2)\n         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2\n                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2\n                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2\n                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2\n        sdi (apply min (keys dis-var))\n        dir (dis-var sdi)]\n    [sdi dir ips2]))")
+	(title "shortest-dist [ips1 ips2]"))
+
+([BrigBern_Class70017] of  Way
+
+	(id "451740045")
+	(poly [BrigBern_Class70018])
+	(source "[[46.3026458 7.9060199] [46.3022427 7.906812] [46.3017498 7.9077906]]"))
+
+([BrigBern_Class70018] of  OMTPoly
+
+	(description "451740045")
+	(label "451740045")
+	(latitude "46 18.16")
+	(lineColor "FFFF0000")
+	(longitude "7 54.36")
+	(playground-index 0)
+	(points
+		"46 18.16 7 54.36"
+		"46 18.1 7 54.47")
+	(relative FALSE))
+
+([BrigBern_Class70023] of  Way
+
+	(id "451740036")
+	(poly [BrigBern_Class70024])
+	(source "[[46.3042696 7.8980048] [46.304168 7.8982732] [46.3039817 7.8987437] [46.3035394 7.8998405] [46.3033973 7.9002313] [46.3032932 7.9005841] [46.3032171 7.9009261] [46.3031587 7.9012548] [46.3031166 7.9016057] [46.3030994 7.9019579] [46.3031015 7.9025793] [46.3031334 7.9033118] [46.3031362 7.9037526] [46.3030983 7.9042871] [46.3030206 7.9047752] [46.3029171 7.905236] [46.3027898 7.9056339] [46.3026458 7.9060199]]"))
+
+([BrigBern_Class70024] of  OMTPoly
+
+	(description "451740036")
+	(label "451740036")
+	(latitude "46 18.26")
+	(lineColor "FFFF0000")
+	(longitude "7 53.88")
+	(playground-index 0)
+	(points
+		"46 18.26 7 53.88"
+		"46 18.16 7 54.36")
+	(relative FALSE))
+
+([BrigBern_Class70029] of  Way
+
+	(id "28784942")
+	(poly [BrigBern_Class70045])
+	(source "[[46.3046134 7.8947983] [46.3046436 7.8951502] [46.3046859 7.8957289] [46.3046833 7.8962572] [46.3046619 7.8965301]]"))
+
+([BrigBern_Class70035] of  Way
+
+	(id "449254214")
+	(poly [BrigBern_Class70047])
+	(source "[[46.3046619 7.8965301] [46.3046056 7.8969215]]"))
+
+([BrigBern_Class70039] of  Way
+
+	(id "449254216")
+	(poly [BrigBern_Class70040])
+	(source "[[46.3046056 7.8969215] [46.3045515 7.8972122] [46.3044706 7.8975206] [46.3043929 7.897767] [46.3042991 7.8980288]]"))
+
+([BrigBern_Class70040] of  OMTPoly
+
+	(description "449254216")
+	(label "449254216")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.82")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.82"
+		"46 18.26 7 53.88")
+	(relative FALSE))
+
+([BrigBern_Class70045] of  OMTPoly
+
+	(description "28784942")
+	(label "28784942")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.69")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.69"
+		"46 18.28 7 53.79")
+	(relative FALSE))
+
+([BrigBern_Class70047] of  OMTPoly
+
+	(description "449254214")
+	(label "449254214")
+	(latitude "46 18.28")
+	(lineColor "FFFF0000")
+	(longitude "7 53.79")
+	(playground-index 0)
+	(points
+		"46 18.28 7 53.79"
+		"46 18.28 7 53.82")
+	(relative FALSE))
+
+([BrigBern_Class70051] of  Way
+
+	(id "28784941")
+	(source "[[46.3071087 7.8807917] [46.3069069 7.8808899] [46.3066966 7.8810479] [46.3065073 7.8812229] [46.3062906 7.881451] [46.3060746 7.881749] [46.3058591 7.8821102] [46.3056547 7.8825723] [46.3055115 7.8830403] [46.3054158 7.8834614] [46.3053491 7.8840388] [46.3052648 7.8852714] [46.3052253 7.885618] [46.3051708 7.8859525] [46.3045505 7.8890826] [46.3043908 7.8900586] [46.3043326 7.8907675] [46.3043203 7.8916821] [46.3043761 7.8925111] [46.3046134 7.8947983]]"))
+
+([BrigBern_Class70057] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70017]))
+
+([BrigBern_Class70064] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70023]))
+
+([BrigBern_Class70069] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70029]))
+
+([BrigBern_Class70071] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70039]))
+
+([BrigBern_Class70075] of  Dirway
+
+	(direction "BACKWARD")
+	(way [BrigBern_Class70051]))
+
+([BrigBern_Class70076] of  Railroad
+
+	(dirways
+		[BrigBern_Class70057]
+		[BrigBern_Class70064]
+		[BrigBern_Class70071]
+		[BrigBern_Class120000]
+		[BrigBern_Class70069]
+		[BrigBern_Class70075])
+	(from1 "Lalden")
+	(to1 "Eggerberg"))
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
+	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "osm.data"))
-
-([BrigBern_Class80000] of  CloFunction
-
-	(source "(if (> (count dws) 1)\n  (conj dws dw)\n  [dw (mk-dirway owd (first dws))])")
-	(title "conj-dirway [dws dw owd]"))
 
 ([BrigBern_Class80001] of  Way
 
@@ -2642,11 +3984,6 @@
 ([BrigBern_Class80017] of  Tagvalue
 
 	(value "[\"highway\" \"motorway\"]"))
-
-([BrigBern_Class90000] of  CloVar
-
-	(source "nil")
-	(title "ROAD-SUBCLASS"))
 
 ([BrigBern_Class90003] of  Tagvalue
 
@@ -3393,19 +4730,6 @@
 		"46 33.7 8 20.83")
 	(relative FALSE))
 
-([BrigBern_Class90085] of  OMTPoly
-
-	(description "10060554")
-	(label "10060554")
-	(latitude "46 33.74")
-	(lineColor "FFFF0000")
-	(longitude "8 21.75")
-	(playground-index 0)
-	(points
-		"46 33.74 8 21.75"
-		"46 33.73 8 21.69")
-	(relative FALSE))
-
 ([BrigBern_Class90086] of  Way
 
 	(id "41216720")
@@ -3670,19 +4994,6 @@
 	(points
 		"46 33.73 8 21.69"
 		"46 33.71 8 21.61")
-	(relative FALSE))
-
-([BrigBern_Class90119] of  OMTPoly
-
-	(description "27580980")
-	(label "27580980")
-	(latitude "46 33.74")
-	(lineColor "FFFF0000")
-	(longitude "8 21.76")
-	(playground-index 0)
-	(points
-		"46 33.74 8 21.76"
-		"46 33.74 8 21.75")
 	(relative FALSE))
 
 ([BrigBern_Class90122] of  Way
