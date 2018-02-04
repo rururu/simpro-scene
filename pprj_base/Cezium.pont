@@ -1,4 +1,4 @@
-; Thu Feb 01 22:26:35 MSK 2018
+; Sun Feb 04 14:05:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,46 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot but-onboard
+		(type STRING)
+		(default "Go on Board/pro.server/go-onboard")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-stop-serv
+		(type STRING)
+		(default "Stop Cesium Server/pro.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot onboard
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-start-serv
+		(type STRING)
+		(default "Start Cesium Server/pro.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CeziumControl
+	(is-a USER)
+	(role concrete)
+	(single-slot onboard
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-start-serv
+		(type STRING)
+		(default "Start Cesium Server/pro.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-onboard
+		(type STRING)
+		(default "Go on Board/pro.server/go-onboard")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-stop-serv
+		(type STRING)
+		(default "Stop Cesium Server/pro.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

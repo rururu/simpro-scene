@@ -6,8 +6,7 @@
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT
   ru.igis.omtab.OMTPoly
-  ru.igis.omtab.gui.RuMapMouseAdapter
-  edu.stanford.smi.protege.ui.DisplayUtilities))
+  ru.igis.omtab.gui.RuMapMouseAdapter))
 
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
@@ -93,9 +92,47 @@
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
     (ssv poi "lineColor" W-COLOR)
+    (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
     (OMT/addMapOb poi)
     poi))
+
+(defn shortest-dist [ips1 ips2]
+  (if (not= ips1 ips2)
+  (let [llp1 (second ips1)
+         llp2 (second ips2)
+         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
+         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
+         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
+                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2
+                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2
+                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2
+        sdi (apply min (keys dis-var))
+        dir (dis-var sdi)]
+    [sdi dir ips2])))
+
+(defn nearest-to [ips from]
+  (loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]
+  (cond
+    (empty? pool) sdi-dir-ips
+    (nil? sdi-dir-ips)
+      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))
+    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)
+    true
+      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]
+        (if (< nsdi (first sdi-dir-ips))
+          (recur (rest pool) short)
+          (recur (rest pool) sdi-dir-ips))))))
+
+(defn create-dirway [[dir [id pts] lin]]
+  (let [dw (crin "Dirway")
+       way (crin "Way")]
+  (ssv way "id" (str id))
+  (ssv way "poly" lin)
+  (ssv way "source" (str (vec pts)))
+  (ssv dw "direction" dir)
+  (ssv dw "way" way)
+  dw))
 
 (defn add-way [llp]
   (println :MODE MODE)
@@ -116,53 +153,21 @@
               (def PATH         
                 (if (= (count PATH) 1)
                   [[ld lips llin] [nd ips lin]]
-                  (conj PATH [nd ips lin]))) )))) ))))
+                  (conj PATH [nd ips lin])))
+              (println "In PATH" (count PATH) "ways..")))) )))))
 
 (defn remove-way [mo]
   (println :MODE MODE)
-(if (nil? mo)
-  (println "Try again in other place of line..")
-  (let [id (.getName mo)]
-    (OMT/removeMapOb mo true)
-    (def PATH (filter #(not= (str (first (second %))) id) PATH))
-    (println "Removed from PATH way" id "," "remains" (count PATH)))))
-
-(defn shortest-dist [ips1 ips2]
-  (if (not= ips1 ips2)
-  (let [llp1 (second ips1)
-         llp2 (second ips2)
-         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
-         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
-         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
-                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2
-                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2
-                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2
-        sdi (apply min (keys dis-var))
-        dir (dis-var sdi)]
-    [sdi dir ips2])))
-
-(defn nearest-to [ips from]
-  (loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]
-  (cond
-    (nil? sdi-dir-ips)
-      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))
-    (empty? pool) sdi-dir-ips
-    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)
-    true
-      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]
-        (if (< nsdi (first sdi-dir-ips))
-          (recur (rest pool) short)
-          (recur (rest pool) sdi-dir-ips))))))
-
-(defn create-dirway [[dir [id pts] lin]]
-  (let [dw (crin "Dirway")
-       way (crin "Way")]
-  (ssv way "id" (str id))
-  (ssv way "poly" lin)
-  (ssv way "source" (str (vec pts)))
-  (ssv dw "direction" dir)
-  (ssv dw "way" way)
-  dw))
+(if-let [lp (last PATH)]
+  (if (some? (first lp))
+    (do (OMT/removeMapOb (nth lp 2) true)
+      (def PATH (butlast PATH))) 
+    (if (nil? mo)
+      (println "Try again in other place of line..")
+      (let [id (.getName mo)]
+        (OMT/removeMapOb mo true)
+        (def PATH (filter #(not= (str (first (second %))) id) PATH))
+        (println "Removed from PATH way" id "," "remains" (count PATH)))))))
 
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
@@ -198,6 +203,10 @@
     (ssv inst "status" "MODE REMOVE"))
   (ssv inst "status" "Add ways before")))
 
+(defn clear-path [hm inst]
+  (def PATH [])
+(ssv inst "status" "CLEAR"))
+
 (defn create-road [hm inst]
   (if (not (empty? PATH))
   (let [mp (into {} hm)
@@ -221,20 +230,4 @@
   (doseq [ins (cls-instances cls)]
   (if (unref ins)
     (.show *prj* ins))))
-
-(defn clear-path [hm inst]
-  (def PATH [])
-(ssv inst "status" "CLEAR"))
-
-(defn start-cesium-server [hm inst]
-  (pro.server/start-server))
-
-(defn stop-cesium-server [hm inst]
-  (pro.server/stop-server))
-
-(defn go-onboard [hm inst]
-  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 "Select NavOb")]
-  (let [lab (sv sel "label")]
-    (ssv inst "onboard" lab)
-    (vreset! pro.server/ONBOARD lab))))
 

@@ -1,4 +1,4 @@
-; Sat Feb 03 22:12:49 MSK 2018
+; Sun Feb 04 22:25:38 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,23 +22,9 @@
 		(default "Mode Add/osm.data/mode-add")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot but-start-serv
-		(type STRING)
-		(default "Start Cesium Server/osm.data/start-cesium-server")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot onboard
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot tagvalue
 		(type INSTANCE)
 ;+		(allowed-classes Tagvalue)
-		(create-accessor read-write))
-	(single-slot but-onboard
-		(type STRING)
-		(default "Go on Board/osm.data/go-onboard")
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
@@ -48,11 +34,6 @@
 	(single-slot but-cre
 		(type STRING)
 		(default "Create Road/osm.data/create-road")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-stop-serv
-		(type STRING)
-		(default "Stop Cesium Server/osm.data/stop-cesium-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot ways
@@ -70,25 +51,12 @@
 (defclass RoadControl
 	(is-a OSM+Onto)
 	(role concrete)
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-start-serv
-		(type STRING)
-		(default "Start Cesium Server/osm.data/start-cesium-server")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot road-subclass
 		(type SYMBOL)
 		(allowed-values Railroad Motoroad Cycleroad)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot onboard
+	(single-slot to1
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -100,14 +68,8 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot but-onboard
+	(single-slot from1
 		(type STRING)
-		(default "Go on Board/osm.data/go-onboard")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-stop-serv
-		(type STRING)
-		(default "Stop Cesium Server/osm.data/stop-cesium-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot tagvalue

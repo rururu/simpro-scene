@@ -1,4 +1,5 @@
 (ns pro.server
+(:use protege.core)
 (:require [ring.adapter.jetty :as jetty]
               [ring.util.response :as r]
               [compojure.core :refer [defroutes GET]]
@@ -8,7 +9,8 @@
               [cesium.core :as czs])
 
 (:import java.io.ByteArrayOutputStream
-             ru.igis.omtab.OMT))
+             ru.igis.omtab.OMT
+             edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def PORT 4444)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
@@ -63,11 +65,22 @@
 ([port]
   (if (nil? APP)
     (init-server))
-  (def SERV (jetty/run-jetty APP {:port port :join? false}))))
+  (def SERV (jetty/run-jetty APP {:port port :join? false})))
+([hm inst]
+  (start-server)))
 
-(defn stop-server []
+(defn stop-server
+  ([]
   (when-let [serv SERV]
-  (.stop serv)
-  (def SERV nil)
-  (println "Server stopped!")))
+    (.stop serv)
+    (def SERV nil)
+    (println "Server stopped!")))
+([hm inst]
+  (stop-server)))
+
+(defn go-onboard [hm inst]
+  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 "Select NavOb")]
+  (let [lab (sv sel "label")]
+    (ssv inst "onboard" lab)
+    (vreset! ONBOARD lab))))
 

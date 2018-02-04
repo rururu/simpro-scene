@@ -1,4 +1,4 @@
-; Sat Feb 03 22:12:49 MSK 2018
+; Sun Feb 04 22:25:38 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1336,12 +1336,36 @@
 
 ([BrigBern_Class110000] of  GoRoad
 
-	(direction "FORWARD")
-	(object [BrigBern_Class100001])
-	(road [BrigBern_Class110210])
+	(direction "BACKWARD")
+	(object [BrigBern_Class100000])
+	(road [BrigBern_Class50009])
 	(spd "40")
 	(status "START")
 	(title "test"))
+
+([BrigBern_Class110023] of  CloFuncall
+
+	(source "(dotimes [i (cont PATH)] (println i (nth PATH i))"))
+
+([BrigBern_Class110024] of  CloFuncall
+
+	(source "(dotimes [i (cont PATH)] (println i (nth PATH i)))"))
+
+([BrigBern_Class110025] of  CloFuncall
+
+	(source "(dotimes [i (count PATH)] (println i (nth PATH i)))"))
+
+([BrigBern_Class110026] of  Line
+
+	(capDecoration BUTT)
+	(jointDecoration BEVEL)
+	(label "L3")
+	(lineType STRAIGHT)
+	(lineWidth "3"))
+
+([BrigBern_Class110027] of  CloFuncall
+
+	(source "(last [])"))
 
 ([BrigBern_Class110129] of  Way
 
@@ -2220,173 +2244,139 @@
 
 ([BrigBern_Class130052] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130053]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130054] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130055]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130058] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130059]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130060] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130061]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130062] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130063]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130064] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130065]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130066] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130067]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130068] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130069]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130070] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130071]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130072] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130073]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130074] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130075]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130076] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130077]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130080] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130081]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130082] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130083]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130084] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130085]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130086] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130087]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130088] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130089]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130090] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130091]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130092] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130093]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130094] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130095]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130096] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130097]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130098] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130099]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130100] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130101]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130102] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130103]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130104] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130105]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130106] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130107]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130108] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130109]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130110] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130111]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130112] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130113]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130114] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130115]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130116] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130117]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130118] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130119]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130120] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130121]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130122] of  Dirway
 
-	(direction "BACKWARD")
-	(way [BrigBern_Class130123]))
+	(direction "BACKWARD"))
 
 ([BrigBern_Class130127] of  Dirway
 
@@ -3227,12 +3217,9 @@
 	(but-add "Mode Add/osm.data/mode-add")
 	(but-clear "Clear/osm.data/clear-path")
 	(but-cre "Create Road/osm.data/create-road")
-	(but-onboard "Go on Board/osm.data/go-onboard")
 	(but-rem "Mode Remove/osm.data/mode-remove")
-	(but-start-serv "Start Cesium Server/osm.data/start-cesium-server")
-	(but-stop-serv "Stop Cesium Server/osm.data/stop-cesium-server")
-	(onboard "car")
-	(radius 0.02)
+	(from1 "Carnoles")
+	(radius 0.01)
 	(road-subclass Railroad)
 	(status "CLEAR")
 	(tagvalue
@@ -3245,21 +3232,6 @@
 
 	(source "(def PATH [])\n(ssv inst \"status\" \"CLEAR\")")
 	(title "clear-path [hm inst]"))
-
-([BrigBern_Class130281] of  CloFunction
-
-	(source "(pro.server/start-server)")
-	(title "start-cesium-server [hm inst]"))
-
-([BrigBern_Class130282] of  CloFunction
-
-	(source "(pro.server/stop-server)")
-	(title "stop-cesium-server [hm inst]"))
-
-([BrigBern_Class130283] of  CloFunction
-
-	(source "(if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n  (let [lab (sv sel \"label\")]\n    (ssv inst \"onboard\" lab)\n    (vreset! pro.server/ONBOARD lab)))")
-	(title "go-onboard [hm inst]"))
 
 ([BrigBern_Class130318] of  Railroad
 
@@ -3347,7 +3319,7 @@
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/addMapOb poi)\n    poi)")
+	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/addMapOb poi)\n    poi)")
 	(title "create-line [[id pts]]"))
 
 ([BrigBern_Class20004] of  CloFunction
@@ -3443,12 +3415,12 @@
 
 ([BrigBern_Class40012] of  CloFunction
 
-	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]\n    (if (empty? ipss)\n      (println \"Try in other location..\")\n      (if (empty? PATH)\n        (do (def PATH (map #(vector nil % (create-line %)) ipss))\n          (println \"Initial\" (count PATH) \"ways..\"))\n        (let [[ldir lips llin] (last PATH)\n               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]\n          (if (nil? short)\n            (println \"No continuation!\")\n            (let [lin (create-line ips)]\n              (def PATH         \n                (if (= (count PATH) 1)\n                  [[ld lips llin] [nd ips lin]]\n                  (conj PATH [nd ips lin]))) )))) )))")
+	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]\n    (if (empty? ipss)\n      (println \"Try in other location..\")\n      (if (empty? PATH)\n        (do (def PATH (map #(vector nil % (create-line %)) ipss))\n          (println \"Initial\" (count PATH) \"ways..\"))\n        (let [[ldir lips llin] (last PATH)\n               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]\n          (if (nil? short)\n            (println \"No continuation!\")\n            (let [lin (create-line ips)]\n              (def PATH         \n                (if (= (count PATH) 1)\n                  [[ld lips llin] [nd ips lin]]\n                  (conj PATH [nd ips lin])))\n              (println \"In PATH\" (count PATH) \"ways..\")))) ))))")
 	(title "add-way [llp]"))
 
 ([BrigBern_Class40013] of  CloFunction
 
-	(source "(println :MODE MODE)\n(if (nil? mo)\n  (println \"Try again in other place of line..\")\n  (let [id (.getName mo)]\n    (OMT/removeMapOb mo true)\n    (def PATH (filter #(not= (str (first (second %))) id) PATH))\n    (println \"Removed from PATH way\" id \",\" \"remains\" (count PATH))))")
+	(source "(println :MODE MODE)\n(if-let [lp (last PATH)]\n  (if (some? (first lp))\n    (do (OMT/removeMapOb (nth lp 2) true)\n      (def PATH (butlast PATH))) \n    (if (nil? mo)\n      (println \"Try again in other place of line..\")\n      (let [id (.getName mo)]\n        (OMT/removeMapOb mo true)\n        (def PATH (filter #(not= (str (first (second %))) id) PATH))\n        (println \"Removed from PATH way\" id \",\" \"remains\" (count PATH))))))")
 	(title "remove-way [mo]"))
 
 ([BrigBern_Class40015] of  CloVar
@@ -3466,6 +3438,84 @@
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
+
+([BrigBern_Class50000] of  CeziumControl
+
+	(but-onboard "Go on Board/pro.server/go-onboard")
+	(but-start-serv "Start Cesium Server/pro.server/start-server")
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
+	(onboard "train"))
+
+([BrigBern_Class50003] of  OMTPoly
+
+	(description "235979156")
+	(label "235979156")
+	(latitude "43 45.59")
+	(lineColor "FFFF0000")
+	(longitude "7 28.77")
+	(playground-index 0)
+	(points
+		"43 45.59 7 28.77"
+		"43 45.59 7 28.77")
+	(relative FALSE))
+
+([BrigBern_Class50004] of  CloFuncall
+
+	(source "(in-ns 'osm.data)"))
+
+([BrigBern_Class50005] of  CloFuncall
+
+	(source "PATH"))
+
+([BrigBern_Class50006] of  OMTPoly
+
+	(description "235978301")
+	(label "235978301")
+	(latitude "43 45.59")
+	(lineColor "FFFF0000")
+	(longitude "7 28.77")
+	(playground-index 0)
+	(points
+		"43 45.59 7 28.77"
+		"43 45.45 7 28.63")
+	(relative FALSE))
+
+([BrigBern_Class50007] of  OMTPoly
+
+	(description "235978302")
+	(label "235978302")
+	(latitude "43 45.45")
+	(lineColor "FFFF0000")
+	(longitude "7 28.63")
+	(playground-index 0)
+	(points
+		"43 45.45 7 28.63"
+		"43 45.4 7 28.2")
+	(relative FALSE))
+
+([BrigBern_Class50008] of  OMTPoly
+
+	(description "235977377")
+	(label "235977377")
+	(latitude "43 45.4")
+	(lineColor "FFFF0000")
+	(longitude "7 28.2")
+	(playground-index 0)
+	(points
+		"43 45.4 7 28.2"
+		"43 45.29 7 26.93")
+	(relative FALSE))
+
+([BrigBern_Class50009] of  Railroad
+
+	(dirways
+		[BrigBern_Class60010]
+		[BrigBern_Class60012]
+		[BrigBern_Class60014]
+		[BrigBern_Class60016]
+		[BrigBern_Class60018])
+	(from1 "Carnoles")
+	(to1 "Monte-Carlo Country Club"))
 
 ([BrigBern_Class50010] of  Railroad
 
@@ -3523,6 +3573,60 @@
 		"46 19.18 7 59.05"
 		"46 19.18 7 59.07")
 	(relative FALSE))
+
+([BrigBern_Class60010] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class60011]))
+
+([BrigBern_Class60011] of  Way
+
+	(id "235979145")
+	(source "[[43.7616722 7.4812925] [43.7599017 7.4795759]]"))
+
+([BrigBern_Class60012] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class60013]))
+
+([BrigBern_Class60013] of  Way
+
+	(id "235979156")
+	(poly [BrigBern_Class50003])
+	(source "[[43.7599017 7.4795759] [43.7597777 7.4794525]]"))
+
+([BrigBern_Class60014] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class60015]))
+
+([BrigBern_Class60015] of  Way
+
+	(id "235978301")
+	(poly [BrigBern_Class50006])
+	(source "[[43.7597777 7.4794525] [43.7591539 7.4788409] [43.7576041 7.4773657] [43.7574684 7.477151]]"))
+
+([BrigBern_Class60016] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class60017]))
+
+([BrigBern_Class60017] of  Way
+
+	(id "235978302")
+	(poly [BrigBern_Class50007])
+	(source "[[43.7574684 7.477151] [43.7570616 7.4765341] [43.7567342 7.4757938] [43.7564726 7.4750535] [43.7562808 7.4741925] [43.756173 7.473384] [43.7561434 7.4726127] [43.7561763 7.4719395] [43.7562905 7.4711429] [43.7565985 7.4699681]]"))
+
+([BrigBern_Class60018] of  Dirway
+
+	(direction "FORWARD")
+	(way [BrigBern_Class60019]))
+
+([BrigBern_Class60019] of  Way
+
+	(id "235977377")
+	(poly [BrigBern_Class50008])
+	(source "[[43.7565985 7.4699681] [43.757451 7.4676937] [43.7578501 7.4666584] [43.7580592 7.4661298] [43.7582995 7.4657007] [43.7587006 7.4650785] [43.7598413 7.4637507] [43.7602031 7.4633216] [43.7604499 7.4629059] [43.7606262 7.4625492] [43.7607753 7.4621576] [43.7608992 7.4617605] [43.7609807 7.4613717] [43.7610717 7.4607709] [43.761093 7.4604034] [43.761095 7.4600574] [43.7610619 7.459604] [43.7609342 7.4588746] [43.7606184 7.4574772] [43.7601844 7.4555834] [43.7598784 7.4542692] [43.7597098 7.4537487] [43.7594773 7.4531935] [43.7590589 7.4525498] [43.7585204 7.451992] [43.7579914 7.4515037] [43.7575963 7.451241] [43.756279 7.4505597] [43.7558269 7.450171] [43.7554033 7.4497148] [43.754977 7.4491327] [43.7547543 7.4487948]]"))
 
 ([BrigBern_Class60028] of  Way
 
@@ -3761,21 +3865,18 @@
 		[BrigBern_Class20001]
 		[BrigBern_Class20004]
 		[BrigBern_Class20003]
-		[BrigBern_Class40012]
-		[BrigBern_Class40013]
 		[BrigBern_Class70001]
 		[BrigBern_Class70000]
 		[BrigBern_Class40000]
+		[BrigBern_Class40012]
+		[BrigBern_Class40013]
 		[BrigBern_Class30000]
 		[BrigBern_Class40005]
 		[BrigBern_Class40006]
+		[BrigBern_Class130280]
 		[BrigBern_Class60118]
 		[BrigBern_Class130319]
-		[BrigBern_Class130330]
-		[BrigBern_Class130280]
-		[BrigBern_Class130281]
-		[BrigBern_Class130282]
-		[BrigBern_Class130283])
+		[BrigBern_Class130330])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
@@ -3792,13 +3893,17 @@
 
 ([BrigBern_Class70000] of  CloFunction
 
-	(source "(loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]\n  (cond\n    (nil? sdi-dir-ips)\n      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))\n    (empty? pool) sdi-dir-ips\n    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)\n    true\n      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]\n        (if (< nsdi (first sdi-dir-ips))\n          (recur (rest pool) short)\n          (recur (rest pool) sdi-dir-ips)))))")
+	(source "(loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]\n  (cond\n    (empty? pool) sdi-dir-ips\n    (nil? sdi-dir-ips)\n      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))\n    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)\n    true\n      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]\n        (if (< nsdi (first sdi-dir-ips))\n          (recur (rest pool) short)\n          (recur (rest pool) sdi-dir-ips)))))")
 	(title "nearest-to [ips from]"))
 
 ([BrigBern_Class70001] of  CloFunction
 
 	(source "(if (not= ips1 ips2)\n  (let [llp1 (second ips1)\n         llp2 (second ips2)\n         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2\n                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2\n                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2\n                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2\n        sdi (apply min (keys dis-var))\n        dir (dis-var sdi)]\n    [sdi dir ips2]))")
 	(title "shortest-dist [ips1 ips2]"))
+
+([BrigBern_Class70014] of  CloFuncall
+
+	(source "(map ctpl PATH)"))
 
 ([BrigBern_Class70017] of  Way
 
@@ -3939,7 +4044,7 @@
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
 	(title "osm.data"))
 
 ([BrigBern_Class80001] of  Way
@@ -3984,6 +4089,30 @@
 ([BrigBern_Class80017] of  Tagvalue
 
 	(value "[\"highway\" \"motorway\"]"))
+
+([BrigBern_Class80078] of  CloFuncall
+
+	(source "(.getInstance \"BrigBern_Class80037\")"))
+
+([BrigBern_Class80079] of  CloFuncall
+
+	(source "(.getInstance *kb* \"BrigBern_Class80037\")"))
+
+([BrigBern_Class80080] of  CloFuncall
+
+	(source "(svs (.getInstance *kb* \"BrigBern_Class80037\") \"dirways\")"))
+
+([BrigBern_Class80081] of  CloFuncall
+
+	(source "(map delin (svs (.getInstance *kb* \"BrigBern_Class80037\") \"dirways\"))"))
+
+([BrigBern_Class80082] of  CloFuncall
+
+	(source "(delete-unref \"Way\")"))
+
+([BrigBern_Class80083] of  CloFuncall
+
+	(source "(delete-unref \"OMTPoly\")"))
 
 ([BrigBern_Class90003] of  Tagvalue
 

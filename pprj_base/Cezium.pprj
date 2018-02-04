@@ -1,4 +1,4 @@
-; Thu Feb 01 22:26:35 MSK 2018
+; Sun Feb 04 14:05:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -69,6 +69,82 @@
 
 	(name "SearchTab_Query"))
 
+([Cezium_ProjectKB_Class448] of  Widget
+
+	(is_hidden FALSE)
+	(name "CeziumControl")
+	(property_list [Cezium_ProjectKB_Class449])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([Cezium_ProjectKB_Class449] of  Property_List
+
+	(properties
+		[Cezium_ProjectKB_Class450]
+		[Cezium_ProjectKB_Class451]
+		[Cezium_ProjectKB_Class453]
+		[Cezium_ProjectKB_Class455]
+		[Cezium_ProjectKB_Class457]))
+
+([Cezium_ProjectKB_Class450] of  Property_List
+
+	(name "layout properties"))
+
+([Cezium_ProjectKB_Class451] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "onboard")
+	(property_list [Cezium_ProjectKB_Class452])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([Cezium_ProjectKB_Class452] of  Property_List
+)
+
+([Cezium_ProjectKB_Class453] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-start-serv")
+	(property_list [Cezium_ProjectKB_Class454])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([Cezium_ProjectKB_Class454] of  Property_List
+)
+
+([Cezium_ProjectKB_Class455] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-onboard")
+	(property_list [Cezium_ProjectKB_Class456])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([Cezium_ProjectKB_Class456] of  Property_List
+)
+
+([Cezium_ProjectKB_Class457] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-stop-serv")
+	(property_list [Cezium_ProjectKB_Class458])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([Cezium_ProjectKB_Class458] of  Property_List
+)
+
 ([CLSES_TAB] of  Widget
 
 	(is_hidden FALSE)
@@ -110,34 +186,6 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_249401_Class444] of  Map
-
-	(entries
-		[KB_249401_Class445]
-		[KB_249401_Class446]
-		[KB_249401_Class447]))
-
-([KB_249401_Class445] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_249401_Class446] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_249401_Class447] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_377789_Class0] of  String
 
@@ -239,6 +287,34 @@
 	(name "instances_file_name")
 	(string_value "Cezium.pins"))
 
+([KB_902310_Class444] of  Map
+
+	(entries
+		[KB_902310_Class445]
+		[KB_902310_Class446]
+		[KB_902310_Class447]))
+
+([KB_902310_Class445] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_902310_Class446] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_902310_Class447] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -324,6 +400,7 @@
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[Cezium_ProjectKB_Class448]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET])
