@@ -50,6 +50,8 @@ In Protege GUI:
 11. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)
 12. [Finland Histoty](https://youtu.be/A4x9YU3V5k0)
 13. [Pyongyang StPetersburg](https://youtu.be/xDyhu5_kVXE)
+14. [OSM Roads: Cesium enters into the play](https://youtu.be/cT5h79w3wR4)
+15. [OSM Roads: Creation of roads from OSM data](https://youtu.be/WEx2-rMCJag)
 
 TO BE CONTINUED
 

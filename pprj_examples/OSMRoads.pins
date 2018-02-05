@@ -1,4 +1,4 @@
-; Sun Feb 04 22:25:38 MSK 2018
+; Mon Feb 05 21:46:36 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,7 +20,7 @@
 		[Cezium_Class40000]
 		[Cezium_Class30043]
 		[Cezium_Class30026])
-	(title "BrigBern Programs"))
+	(title "OSMRoads Programs"))
 
 ([BrigBern_Class1] of  %3AINSTANCE-ANNOTATION
 
@@ -1336,9 +1336,9 @@
 
 ([BrigBern_Class110000] of  GoRoad
 
-	(direction "BACKWARD")
+	(direction "FORWARD")
 	(object [BrigBern_Class100000])
-	(road [BrigBern_Class50009])
+	(road [OSMRoads_Class69])
 	(spd "40")
 	(status "START")
 	(title "test"))
@@ -2242,142 +2242,6 @@
 		"46 19.34 7 46.4")
 	(relative FALSE))
 
-([BrigBern_Class130052] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130054] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130058] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130060] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130062] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130064] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130066] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130068] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130070] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130072] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130074] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130076] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130080] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130082] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130084] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130086] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130088] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130090] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130092] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130094] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130096] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130098] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130100] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130102] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130104] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130106] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130108] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130110] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130112] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130114] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130116] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130118] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130120] of  Dirway
-
-	(direction "BACKWARD"))
-
-([BrigBern_Class130122] of  Dirway
-
-	(direction "BACKWARD"))
-
 ([BrigBern_Class130127] of  Dirway
 
 	(direction "BACKWARD")
@@ -3218,15 +3082,16 @@
 	(but-clear "Clear/osm.data/clear-path")
 	(but-cre "Create Road/osm.data/create-road")
 	(but-rem "Mode Remove/osm.data/mode-remove")
-	(from1 "Carnoles")
+	(from1 "Menton")
 	(radius 0.01)
 	(road-subclass Railroad)
-	(status "CLEAR")
+	(status "MODE CREATE, in PATH 11 ways.")
 	(tagvalue
 		[BrigBern_Class80017]
 		[BrigBern_Class90003]
 		[BrigBern_Class80016])
-	(title "Railway Control"))
+	(title "Railway Control")
+	(to1 "Menton Garavan"))
 
 ([BrigBern_Class130280] of  CloFunction
 
@@ -3295,7 +3160,7 @@
 		[Scenario_Class17]
 		[Scenario_Class340000])
 	(steps 1)
-	(title "BrigBernRun"))
+	(title "OSMRoadsRun"))
 
 ([BrigBern_Class20] of  CloVar
 
@@ -3365,14 +3230,14 @@
 		[igis_Class29]
 		[igis_Class30])
 	(Debug "FINE")
-	(label "BrigBern Map")
-	(Latitude "46.64")
+	(label "OSMRoads Map")
+	(Latitude "43.75")
 	(layers
 		[igis_Class40012]
 		[igis_Class1]
 		[igis_Class40011])
-	(Longitude "7.77")
-	(Scale "800000")
+	(Longitude "7.44")
+	(Scale "100000")
 	(startUpLayers
 		[igis_Class40012]
 		[igis_Class1]
@@ -3420,7 +3285,7 @@
 
 ([BrigBern_Class40013] of  CloFunction
 
-	(source "(println :MODE MODE)\n(if-let [lp (last PATH)]\n  (if (some? (first lp))\n    (do (OMT/removeMapOb (nth lp 2) true)\n      (def PATH (butlast PATH))) \n    (if (nil? mo)\n      (println \"Try again in other place of line..\")\n      (let [id (.getName mo)]\n        (OMT/removeMapOb mo true)\n        (def PATH (filter #(not= (str (first (second %))) id) PATH))\n        (println \"Removed from PATH way\" id \",\" \"remains\" (count PATH))))))")
+	(source "(println :MODE MODE)\n(if-let [lp (last PATH)]\n  (if (some? (first lp))\n    (do (OMT/removeMapOb (nth lp 2) true)\n      (def PATH (butlast PATH))\n      (println \"Remains\" (count PATH) \"ways..\")) \n    (if (nil? mo)\n      (println \"Try again in other place of line..\")\n      (let [id (.getName mo)]\n        (OMT/removeMapOb mo true)\n        (def PATH (filter #(not= (str (first (second %))) id) PATH))\n        (println \"Removed from PATH way\" id \",\" \"remains\" (count PATH))))))")
 	(title "remove-way [mo]"))
 
 ([BrigBern_Class40015] of  CloVar
@@ -5314,3 +5179,576 @@
 		"46 38.48 8 18.11"
 		"46 38.52 8 18.11")
 	(relative FALSE))
+
+([OSMRoads_Class1] of  OMTPoly
+
+	(description "235979149")
+	(label "235979149")
+	(latitude "43 45.89")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.06")
+	(playground-index 0)
+	(points
+		"43 45.89 7 29.06"
+		"43 45.71 7 28.88")
+	(relative FALSE))
+
+([OSMRoads_Class14] of  Railroad
+
+	(dirways
+		[OSMRoads_Class21]
+		[OSMRoads_Class23]
+		[OSMRoads_Class25]
+		[OSMRoads_Class27]
+		[OSMRoads_Class29]
+		[OSMRoads_Class31]
+		[OSMRoads_Class33]
+		[OSMRoads_Class35]
+		[OSMRoads_Class37])
+	(from1 "Carnoles")
+	(to1 "Menton"))
+
+([OSMRoads_Class2] of  OMTPoly
+
+	(description "235979146")
+	(label "235979146")
+	(latitude "43 45.9")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.07")
+	(playground-index 0)
+	(points
+		"43 45.9 7 29.07"
+		"43 45.89 7 29.06")
+	(relative FALSE))
+
+([OSMRoads_Class21] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class22]))
+
+([OSMRoads_Class22] of  Way
+
+	(id "235979149")
+	(poly [OSMRoads_Class1])
+	(source "[[43.7648878 7.4844146] [43.7619473 7.4815714] [43.7617807 7.4813944]]"))
+
+([OSMRoads_Class23] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class24]))
+
+([OSMRoads_Class24] of  Way
+
+	(id "235979146")
+	(poly [OSMRoads_Class2])
+	(source "[[43.7650428 7.4845648] [43.7648878 7.4844146]]"))
+
+([OSMRoads_Class25] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class26]))
+
+([OSMRoads_Class26] of  Way
+
+	(id "235979147")
+	(poly [OSMRoads_Class3])
+	(source "[[43.7653214 7.4848437] [43.7650428 7.4845648]]"))
+
+([OSMRoads_Class27] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class28]))
+
+([OSMRoads_Class28] of  Way
+
+	(id "235979148")
+	(poly [OSMRoads_Class4])
+	(source "[[43.7654612 7.4849832] [43.7653214 7.4848437]]"))
+
+([OSMRoads_Class29] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class30]))
+
+([OSMRoads_Class3] of  OMTPoly
+
+	(description "235979147")
+	(label "235979147")
+	(latitude "43 45.92")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.09")
+	(playground-index 0)
+	(points
+		"43 45.92 7 29.09"
+		"43 45.9 7 29.07")
+	(relative FALSE))
+
+([OSMRoads_Class30] of  Way
+
+	(id "235979143")
+	(poly [OSMRoads_Class5])
+	(source "[[43.766759 7.4862224] [43.7654612 7.4849832]]"))
+
+([OSMRoads_Class31] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class32]))
+
+([OSMRoads_Class32] of  Way
+
+	(id "235979142")
+	(poly [OSMRoads_Class6])
+	(source "[[43.7668752 7.486335] [43.766759 7.4862224]]"))
+
+([OSMRoads_Class33] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class34]))
+
+([OSMRoads_Class34] of  Way
+
+	(id "235979144")
+	(poly [OSMRoads_Class7])
+	(source "[[43.7675929 7.4871526] [43.7668752 7.486335]]"))
+
+([OSMRoads_Class35] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class36]))
+
+([OSMRoads_Class36] of  Way
+
+	(id "235979151")
+	(poly [OSMRoads_Class8])
+	(source "[[43.7677275 7.487306] [43.7675929 7.4871526]]"))
+
+([OSMRoads_Class37] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class38]))
+
+([OSMRoads_Class38] of  Way
+
+	(id "235979141")
+	(poly [OSMRoads_Class9])
+	(source "[[43.7721823 7.4912408] [43.7715151 7.4907651] [43.7697148 7.4894813] [43.7688054 7.4885398] [43.7677275 7.487306]]"))
+
+([OSMRoads_Class39] of  Scenario
+
+	(final_tasks [OSMRoads_Class40])
+	(finish_type AND)
+	(initial_tasks [OSMRoads_Class40])
+	(scenario_scheme [OSMRoads_Class40])
+	(title "Côte d'Azur"))
+
+([OSMRoads_Class4] of  OMTPoly
+
+	(description "235979148")
+	(label "235979148")
+	(latitude "43 45.93")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.1")
+	(playground-index 0)
+	(points
+		"43 45.93 7 29.1"
+		"43 45.92 7 29.09")
+	(relative FALSE))
+
+([OSMRoads_Class40] of  Task
+
+	(final_actions [OSMRoads_Class42])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class41])
+	(task_scheme
+		[OSMRoads_Class41]
+		[OSMRoads_Class42])
+	(title "Part 1"))
+
+([OSMRoads_Class41] of  GoRoad
+
+	(direction "BACKWARD")
+	(next_actions [OSMRoads_Class42])
+	(object [BrigBern_Class100000])
+	(road [BrigBern_Class50009])
+	(spd "30")
+	(title "Monte-Carlo Country Club - Carnoles"))
+
+([OSMRoads_Class42] of  GoRoad
+
+	(direction "FORWARD")
+	(object [BrigBern_Class100000])
+	(road [OSMRoads_Class14])
+	(spd "30")
+	(title "Carnoles - Menton"))
+
+([OSMRoads_Class43] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [OSMRoads_Class39])
+	(%3ACREATION-TIMESTAMP "2018.02.05 20:57:54.978 MSK")
+	(%3ACREATOR "ru"))
+
+([OSMRoads_Class5] of  OMTPoly
+
+	(description "235979143")
+	(label "235979143")
+	(latitude "43 46.01")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.17")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.17"
+		"43 45.93 7 29.1")
+	(relative FALSE))
+
+([OSMRoads_Class56] of  OMTPoly
+
+	(description "235981956")
+	(label "235981956")
+	(latitude "43 46.54")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.69")
+	(playground-index 0)
+	(points
+		"43 46.54 7 29.69"
+		"43 46.36 7 29.49")
+	(relative FALSE))
+
+([OSMRoads_Class59] of  OMTPoly
+
+	(description "156571057")
+	(label "156571057")
+	(latitude "43 46.54")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.69")
+	(playground-index 0)
+	(points
+		"43 46.54 7 29.69"
+		"43 46.55 7 29.72")
+	(relative FALSE))
+
+([OSMRoads_Class6] of  OMTPoly
+
+	(description "235979142")
+	(label "235979142")
+	(latitude "43 46.01")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.18")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.18"
+		"43 46.01 7 29.17")
+	(relative FALSE))
+
+([OSMRoads_Class60] of  OMTPoly
+
+	(description "157364741")
+	(label "157364741")
+	(latitude "43 46.55")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.72")
+	(playground-index 0)
+	(points
+		"43 46.55 7 29.72"
+		"43 46.69 7 30.24")
+	(relative FALSE))
+
+([OSMRoads_Class61] of  OMTPoly
+
+	(description "29006781")
+	(label "29006781")
+	(latitude "43 46.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.24")
+	(playground-index 0)
+	(points
+		"43 46.69 7 30.24"
+		"43 46.72 7 30.27")
+	(relative FALSE))
+
+([OSMRoads_Class62] of  OMTPoly
+
+	(description "157364734")
+	(label "157364734")
+	(latitude "43 46.72")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.27")
+	(playground-index 0)
+	(points
+		"43 46.72 7 30.27"
+		"43 46.73 7 30.28")
+	(relative FALSE))
+
+([OSMRoads_Class63] of  OMTPoly
+
+	(description "157364738")
+	(label "157364738")
+	(latitude "43 46.73")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.28")
+	(playground-index 0)
+	(points
+		"43 46.73 7 30.28"
+		"43 46.91 7 30.53")
+	(relative FALSE))
+
+([OSMRoads_Class64] of  OMTPoly
+
+	(description "157364732")
+	(label "157364732")
+	(latitude "43 46.91")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.53")
+	(playground-index 0)
+	(points
+		"43 46.91 7 30.53"
+		"43 47.1 7 30.96")
+	(relative FALSE))
+
+([OSMRoads_Class65] of  OMTPoly
+
+	(description "157364737")
+	(label "157364737")
+	(latitude "43 47.1")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.96")
+	(playground-index 0)
+	(points
+		"43 47.1 7 30.96"
+		"43 47.1 7 30.97")
+	(relative FALSE))
+
+([OSMRoads_Class66] of  OMTPoly
+
+	(description "157364735")
+	(label "157364735")
+	(latitude "43 47.1")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.97")
+	(playground-index 0)
+	(points
+		"43 47.1 7 30.97"
+		"43 47.11 7 30.99")
+	(relative FALSE))
+
+([OSMRoads_Class67] of  OMTPoly
+
+	(description "157364733")
+	(label "157364733")
+	(latitude "43 47.11")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 30.99")
+	(playground-index 0)
+	(points
+		"43 47.11 7 30.99"
+		"43 47.11 7 31.01")
+	(relative FALSE))
+
+([OSMRoads_Class68] of  OMTPoly
+
+	(description "157364739")
+	(label "157364739")
+	(latitude "43 47.11")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 31.01")
+	(playground-index 0)
+	(points
+		"43 47.11 7 31.01"
+		"43 47.14 7 31.1")
+	(relative FALSE))
+
+([OSMRoads_Class69] of  Railroad
+
+	(dirways
+		[OSMRoads_Class70]
+		[OSMRoads_Class72]
+		[OSMRoads_Class74]
+		[OSMRoads_Class76]
+		[OSMRoads_Class78]
+		[OSMRoads_Class80]
+		[OSMRoads_Class82]
+		[OSMRoads_Class84]
+		[OSMRoads_Class86]
+		[OSMRoads_Class88]
+		[OSMRoads_Class90])
+	(from1 "Menton")
+	(to1 "Menton Garavan"))
+
+([OSMRoads_Class7] of  OMTPoly
+
+	(description "235979144")
+	(label "235979144")
+	(latitude "43 46.06")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.23")
+	(playground-index 0)
+	(points
+		"43 46.06 7 29.23"
+		"43 46.01 7 29.18")
+	(relative FALSE))
+
+([OSMRoads_Class70] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class71]))
+
+([OSMRoads_Class71] of  Way
+
+	(id "235981956")
+	(poly [OSMRoads_Class56])
+	(source "[[43.7756661 7.4947955] [43.7754341 7.4941859] [43.7750875 7.4935395] [43.7747602 7.4930567] [43.7743883 7.4926543] [43.7739506 7.4922734] [43.77299 7.4916807] [43.7726574 7.4914992]]"))
+
+([OSMRoads_Class72] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class73]))
+
+([OSMRoads_Class73] of  Way
+
+	(id "156571057")
+	(poly [OSMRoads_Class59])
+	(source "[[43.7756661 7.4947955] [43.7759005 7.4953227]]"))
+
+([OSMRoads_Class74] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class75]))
+
+([OSMRoads_Class75] of  Way
+
+	(id "157364741")
+	(poly [OSMRoads_Class60])
+	(source "[[43.7759005 7.4953227] [43.7761317 7.4959413] [43.7762278 7.4961985] [43.7763905 7.4970356] [43.7764605 7.4976338] [43.7764997 7.4988248] [43.776537 7.5002758] [43.776635 7.5009987] [43.776799 7.5016059] [43.7769098 7.5019301] [43.7771492 7.5024727] [43.7773335 7.5027638] [43.7779962 7.5036594] [43.7782441 7.503992]]"))
+
+([OSMRoads_Class76] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class77]))
+
+([OSMRoads_Class77] of  Way
+
+	(id "29006781")
+	(poly [OSMRoads_Class61])
+	(source "[[43.7782441 7.503992] [43.7786436 7.5044968]]"))
+
+([OSMRoads_Class78] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class79]))
+
+([OSMRoads_Class79] of  Way
+
+	(id "157364734")
+	(poly [OSMRoads_Class62])
+	(source "[[43.7786436 7.5044968] [43.7788096 7.5047004]]"))
+
+([OSMRoads_Class8] of  OMTPoly
+
+	(description "235979151")
+	(label "235979151")
+	(latitude "43 46.06")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.24")
+	(playground-index 0)
+	(points
+		"43 46.06 7 29.24"
+		"43 46.06 7 29.23")
+	(relative FALSE))
+
+([OSMRoads_Class80] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class81]))
+
+([OSMRoads_Class81] of  Way
+
+	(id "157364738")
+	(poly [OSMRoads_Class63])
+	(source "[[43.7788096 7.5047004] [43.7818532 7.5088047]]"))
+
+([OSMRoads_Class82] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class83]))
+
+([OSMRoads_Class83] of  Way
+
+	(id "157364732")
+	(poly [OSMRoads_Class64])
+	(source "[[43.7818532 7.5088047] [43.7828243 7.5098867] [43.7832125 7.5103648] [43.7834883 7.5108157] [43.7836893 7.5112348] [43.783864 7.5117008] [43.7839797 7.5120762] [43.7840775 7.512518] [43.7841493 7.5128839] [43.7843333 7.5138247] [43.7845752 7.5148063] [43.7847905 7.5154983] [43.7849345 7.5159917]]"))
+
+([OSMRoads_Class84] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class85]))
+
+([OSMRoads_Class85] of  Way
+
+	(id "157364737")
+	(poly [OSMRoads_Class65])
+	(source "[[43.7849345 7.5159917] [43.7850064 7.5162271]]"))
+
+([OSMRoads_Class86] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class87]))
+
+([OSMRoads_Class87] of  Way
+
+	(id "157364735")
+	(poly [OSMRoads_Class66])
+	(source "[[43.7850064 7.5162271] [43.7850886 7.5165147]]"))
+
+([OSMRoads_Class88] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class89]))
+
+([OSMRoads_Class89] of  Way
+
+	(id "157364733")
+	(poly [OSMRoads_Class67])
+	(source "[[43.7850886 7.5165147] [43.7851561 7.516751]]"))
+
+([OSMRoads_Class9] of  OMTPoly
+
+	(description "235979141")
+	(label "235979141")
+	(latitude "43 46.33")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 29.47")
+	(playground-index 0)
+	(points
+		"43 46.33 7 29.47"
+		"43 46.06 7 29.24")
+	(relative FALSE))
+
+([OSMRoads_Class90] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class91]))
+
+([OSMRoads_Class91] of  Way
+
+	(id "157364739")
+	(poly [OSMRoads_Class68])
+	(source "[[43.7851561 7.516751] [43.7852912 7.5172326] [43.7854322 7.5177235] [43.785616 7.5184148]]"))

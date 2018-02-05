@@ -161,7 +161,8 @@
 (if-let [lp (last PATH)]
   (if (some? (first lp))
     (do (OMT/removeMapOb (nth lp 2) true)
-      (def PATH (butlast PATH))) 
+      (def PATH (butlast PATH))
+      (println "Remains" (count PATH) "ways..")) 
     (if (nil? mo)
       (println "Try again in other place of line..")
       (let [id (.getName mo)]
