@@ -1,4 +1,4 @@
-; Mon Feb 05 21:46:36 MSK 2018
+; Tue Feb 06 09:46:24 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5180,6 +5180,14 @@
 		"46 38.52 8 18.11")
 	(relative FALSE))
 
+([OSMRoads_Class0] of  PutOnMap
+
+	(latitude "0 0")
+	(longitude "0 0")
+	(next_actions [OSMRoads_Class41])
+	(object [BrigBern_Class100000])
+	(title "Train on map"))
+
 ([OSMRoads_Class1] of  OMTPoly
 
 	(description "235979149")
@@ -5362,10 +5370,11 @@
 
 	(final_actions [OSMRoads_Class42])
 	(finish_type AND)
-	(initial_actions [OSMRoads_Class41])
+	(initial_actions [OSMRoads_Class0])
 	(task_scheme
 		[OSMRoads_Class41]
-		[OSMRoads_Class42])
+		[OSMRoads_Class42]
+		[OSMRoads_Class0])
 	(title "Part 1"))
 
 ([OSMRoads_Class41] of  GoRoad
