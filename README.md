@@ -52,6 +52,7 @@ In Protege GUI:
 13. [Pyongyang StPetersburg](https://youtu.be/xDyhu5_kVXE)
 14. [OSM Roads: Cesium enters into the play](https://youtu.be/cT5h79w3wR4)
 15. [OSM Roads: Creation of roads from OSM data](https://youtu.be/WEx2-rMCJag)
+16. [OSM Roads: Car voyage from Guttannen to Innertkirchen](https://youtu.be/KSKRXSD8a2E)
 
 TO BE CONTINUED
 
