@@ -1,4 +1,4 @@
-; Fri Feb 09 21:12:49 MSK 2018
+; Fri Feb 09 22:08:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -76,7 +76,7 @@
 
 ([Cezium_Class10010] of  CloFunction
 
-	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" (:altitude vehicle))\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
+	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" (int (+ (:altitude vehicle) @czm/HEIGHT)))\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
 	(title "camera-vehicle [vehicle per]"))
 
 ([Cezium_Class11] of  CloFunction

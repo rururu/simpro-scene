@@ -46,7 +46,7 @@
   (set-html! "name-fld" (:name vehicle))
   (set-html! "course-fld" (:course vehicle))
   (set-html! "speed-fld" (:speed vehicle))
-  (set-html! "altitude-fld" (:altitude vehicle))
+  (set-html! "altitude-fld" (int (+ (:altitude vehicle) @czm/HEIGHT)))
   (if (<= per 0)
     (czm/move-to lat lon 
 	(:altitude vehicle)
