@@ -42,6 +42,11 @@
     <div id="roll"></div><div id="roll-fld"></div>
     <script>
       Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';
+      function terraHeightRequest(terrProv, lat, lon, func){
+        var pos = [Cesium.Cartographic.fromDegrees(lon, lat)];
+        var pms = Cesium.sampleTerrain(terrProv, 11, pos);
+        Cesium.when(pms, func);
+      }
     </script>
     <script type="text/javascript" src="js/main.js"></script>
   </body>

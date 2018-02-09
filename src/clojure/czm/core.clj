@@ -12,7 +12,9 @@
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
                :roll 0}))
-(def HEIGHT (volatile! 0))
+(def HEIGHT-PROV (js/Cesium.CesiumTerrainProvider.
+  #js{:url "//cesiumjs.org/smallterrain"
+        :credit "Terrain data courtesy Analytical Graphics, Inc."}))
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -24,6 +26,12 @@
        data (js/JSON.parse data)]
   ;;(println [:CZML data])
   (.process CZM-SRC data)))
+
+(defn terraHeight [lat1 lon1 lat2 lon2 f]
+  (let [pos [(js/Cesium.Cartographic.fromDegrees lat1 lon1)
+               (js/Cesium.Cartographic.fromDegrees lat2 lon2)]
+       pms (js/Cesium.sampleTerrain TERR-PROV 11 pos)]
+  (js/Cesium.when pms f)))
 
 (defn fly-control [lat lon alt hea pit rol per]
   (let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]
@@ -60,8 +68,12 @@
                          "BACKWARD-RIGHT" (+ crs 135)
                          "BACKWARD-LEFT" (- crs 135)
                          crs))]
-    (fly-control lat lon (+ alt @HEIGHT) head pitch roll per))
-(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse))
+    (fly-control lat lon alt head pitch roll per))
+(terraHeight 86.925145 27.988257 87.0 28.0
+  (fn[x] (let [p1 (first x)
+                  p2 (second x)]
+    (println (str (.-latitude p1) " " (.-longitude p1) " " (.-height p1) " " 
+                        (.-latitude p2) " " (.-longitude p2) " " (.-height p2)))))))
 
 (defn move-to [lat lon alt crs]
   (let [pitch (condp = (:view @CAMERA)
@@ -89,7 +101,4 @@
 (.add (.-dataSources VIEWER) CZM-SRC)
 (.addEventListener (js/EventSource. (str base-url "czml/")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))
-
-(defn terraHeightResponse [pos]
-  (vreset! HEIGHT (.-height (first pos))))
 

@@ -1,4 +1,4 @@
-; Tue Feb 06 09:46:24 MSK 2018
+; Fri Feb 09 21:40:52 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1337,8 +1337,8 @@
 ([BrigBern_Class110000] of  GoRoad
 
 	(direction "FORWARD")
-	(object [BrigBern_Class100000])
-	(road [OSMRoads_Class69])
+	(object [BrigBern_Class100001])
+	(road [BrigBern_Class100194])
 	(spd "40")
 	(status "START")
 	(title "test"))
@@ -3309,7 +3309,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "train"))
+	(onboard "car"))
 
 ([BrigBern_Class50003] of  OMTPoly
 

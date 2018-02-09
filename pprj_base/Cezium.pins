@@ -1,4 +1,4 @@
-; Sun Feb 04 14:05:40 MSK 2018
+; Fri Feb 09 21:12:49 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,13 +13,15 @@
 		[Cezium_Class10]
 		[Cezium_Class11]
 		[Cezium_Class12]
-		[Cezium_Class13])
+		[Cezium_Class13]
+		[Cezium_Class70000])
 	(cloNamespace [Cezium_Class1])
 	(cloVars
 		[Cezium_Class2]
 		[Cezium_Class3]
 		[Cezium_Class4]
-		[Cezium_Class5])
+		[Cezium_Class5]
+		[Cezium_Class80000])
 	(documentation [Cezium_Class14])
 	(title "Cezium Client"))
 
@@ -29,7 +31,7 @@
 
 ([Cezium_Class10] of  CloFunction
 
-	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon alt head pitch roll per))")
+	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon (+ alt @HEIGHT) head pitch roll per))\n(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse)")
 	(title "fly-to [lat lon alt crs per]"))
 
 ([Cezium_Class10000] of  CloFunction
@@ -148,7 +150,7 @@
 
 ([Cezium_Class20000] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"vehicle\"></div>\n    <div id=\"name\"></div><div id=\"name-fld\"></div>\n    <div id=\"course\"></div><div id=\"course-fld\"></div>\n    <div id=\"speed\"></div><div id=\"speed-fld\"></div>\n    <div id=\"altitude\"></div><div id=\"altitude-fld\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"vehicle\"></div>\n    <div id=\"name\"></div><div id=\"name-fld\"></div>\n    <div id=\"course\"></div><div id=\"course-fld\"></div>\n    <div id=\"speed\"></div><div id=\"speed-fld\"></div>\n    <div id=\"altitude\"></div><div id=\"altitude-fld\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n      function terraHeightRequest(terrProv, lat, lon, func){\n        var pos = [Cesium.Cartographic.fromDegrees(lon, lat)];\n        var pms = Cesium.sampleTerrain(terrProv, 11, pos);\n        Cesium.when(pms, func);\n      }\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
 	(store-in "resources/public")
 	(title "cezium"))
 
@@ -475,6 +477,11 @@
 	(source "(let [data (.-data e)\n       data (js/JSON.parse data)]\n  ;;(println [:CZML data])\n  (.process CZM-SRC data))")
 	(title "cz-processor [e]"))
 
+([Cezium_Class70000] of  CloFunction
+
+	(source "(vreset! HEIGHT (.-height (first pos)))")
+	(title "terraHeightResponse [pos]"))
+
 ([Cezium_Class70005] of  CloFunction
 
 	(source "(if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n  (let [lab (sv sel \"label\")]\n    (ssv inst \"onboard\" lab)\n    (vreset! ONBOARD lab)))")
@@ -484,6 +491,11 @@
 
 	(source "(let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]\n  (.flyTo (.-camera VIEWER)\n            #js{:destination dest\n                  :orientation #js{:heading (js/Cesium.Math.toRadians hea)\n                                           :pitch   (js/Cesium.Math.toRadians pit)\n                                           :roll    (js/Cesium.Math.toRadians rol)}\n                  :maximumHeight alt\n                  :duration per\n                  :easingFunction (fn [time] time)}))")
 	(title "fly-control [lat lon alt hea pit rol per]"))
+
+([Cezium_Class80000] of  CloVar
+
+	(source "(volatile! 0)")
+	(title "HEIGHT"))
 
 ([Cezium_Class9] of  CloFunction
 

@@ -12,6 +12,7 @@
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
                :roll 0}))
+(def HEIGHT (volatile! 0))
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -59,7 +60,8 @@
                          "BACKWARD-RIGHT" (+ crs 135)
                          "BACKWARD-LEFT" (- crs 135)
                          crs))]
-    (fly-control lat lon alt head pitch roll per)))
+    (fly-control lat lon (+ alt @HEIGHT) head pitch roll per))
+(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse))
 
 (defn move-to [lat lon alt crs]
   (let [pitch (condp = (:view @CAMERA)
@@ -87,4 +89,7 @@
 (.add (.-dataSources VIEWER) CZM-SRC)
 (.addEventListener (js/EventSource. (str base-url "czml/")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))
+
+(defn terraHeightResponse [pos]
+  (vreset! HEIGHT (.-height (first pos))))
 
