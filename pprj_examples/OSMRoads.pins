@@ -1,4 +1,4 @@
-; Fri Feb 09 21:40:52 MSK 2018
+; Sat Feb 10 23:11:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1220,29 +1220,10 @@
 		[BrigBern_Class100171]
 		[BrigBern_Class100172]
 		[BrigBern_Class100173]
-		[BrigBern_Class100174]
-		[BrigBern_Class100175]
-		[BrigBern_Class100176]
-		[BrigBern_Class100177]
-		[BrigBern_Class100178]
-		[BrigBern_Class100179]
-		[BrigBern_Class100180]
-		[BrigBern_Class100181]
-		[BrigBern_Class100182]
-		[BrigBern_Class100183]
-		[BrigBern_Class100184]
-		[BrigBern_Class100185]
-		[BrigBern_Class100186]
-		[BrigBern_Class100187]
-		[BrigBern_Class100188]
-		[BrigBern_Class100189]
-		[BrigBern_Class100190]
-		[BrigBern_Class100191]
-		[BrigBern_Class100192]
-		[BrigBern_Class100193])
+		[BrigBern_Class100174])
 	(from1 "Oberwald")
 	(title "Furkastrasse")
-	(to1 "Innertkirchen"))
+	(to1 "Guttannen"))
 
 ([BrigBern_Class100200] of  Dirway
 
@@ -1338,22 +1319,10 @@
 
 	(direction "FORWARD")
 	(object [BrigBern_Class100001])
-	(road [BrigBern_Class100194])
+	(road [OSMRoads_Class10006])
 	(spd "40")
 	(status "START")
 	(title "test"))
-
-([BrigBern_Class110023] of  CloFuncall
-
-	(source "(dotimes [i (cont PATH)] (println i (nth PATH i))"))
-
-([BrigBern_Class110024] of  CloFuncall
-
-	(source "(dotimes [i (cont PATH)] (println i (nth PATH i)))"))
-
-([BrigBern_Class110025] of  CloFuncall
-
-	(source "(dotimes [i (count PATH)] (println i (nth PATH i)))"))
 
 ([BrigBern_Class110026] of  Line
 
@@ -1362,10 +1331,6 @@
 	(label "L3")
 	(lineType STRAIGHT)
 	(lineWidth "3"))
-
-([BrigBern_Class110027] of  CloFuncall
-
-	(source "(last [])"))
 
 ([BrigBern_Class110129] of  Way
 
@@ -3076,23 +3041,6 @@
 	(poly [BrigBern_Class130044])
 	(source "[[46.3231912 7.7567602] [46.3230296 7.7572045] [46.3228311 7.7579064] [46.3224766 7.7593383] [46.3223816 7.7598896] [46.3223319 7.7603747] [46.3223313 7.7608885] [46.3223756 7.7613536] [46.3225052 7.7629261] [46.3225374 7.763875] [46.32256 7.7644545] [46.3226643 7.7656904] [46.3227141 7.7665587] [46.3227373 7.7674038] [46.3227536 7.7683399] [46.3227557 7.7687946] [46.3227352 7.7692099] [46.32257 7.7708638] [46.3224992 7.7717183] [46.3224512 7.7724736] [46.3224014 7.773268]]"))
 
-([BrigBern_Class130279] of  RoadControl
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-clear "Clear/osm.data/clear-path")
-	(but-cre "Create Road/osm.data/create-road")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(from1 "Menton")
-	(radius 0.01)
-	(road-subclass Railroad)
-	(status "MODE CREATE, in PATH 11 ways.")
-	(tagvalue
-		[BrigBern_Class80017]
-		[BrigBern_Class90003]
-		[BrigBern_Class80016])
-	(title "Railway Control")
-	(to1 "Menton Garavan"))
-
 ([BrigBern_Class130280] of  CloFunction
 
 	(source "(def PATH [])\n(ssv inst \"status\" \"CLEAR\")")
@@ -3323,14 +3271,6 @@
 		"43 45.59 7 28.77"
 		"43 45.59 7 28.77")
 	(relative FALSE))
-
-([BrigBern_Class50004] of  CloFuncall
-
-	(source "(in-ns 'osm.data)"))
-
-([BrigBern_Class50005] of  CloFuncall
-
-	(source "PATH"))
 
 ([BrigBern_Class50006] of  OMTPoly
 
@@ -3741,7 +3681,9 @@
 		[BrigBern_Class130280]
 		[BrigBern_Class60118]
 		[BrigBern_Class130319]
-		[BrigBern_Class130330])
+		[BrigBern_Class130330]
+		[OSMRoads_Class10002]
+		[OSMRoads_Class10005])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
@@ -3765,10 +3707,6 @@
 
 	(source "(if (not= ips1 ips2)\n  (let [llp1 (second ips1)\n         llp2 (second ips2)\n         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2\n                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2\n                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2\n                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2\n        sdi (apply min (keys dis-var))\n        dir (dis-var sdi)]\n    [sdi dir ips2]))")
 	(title "shortest-dist [ips1 ips2]"))
-
-([BrigBern_Class70014] of  CloFuncall
-
-	(source "(map ctpl PATH)"))
 
 ([BrigBern_Class70017] of  Way
 
@@ -3909,7 +3847,7 @@
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
+	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "osm.data"))
 
 ([BrigBern_Class80001] of  Way
@@ -3954,30 +3892,6 @@
 ([BrigBern_Class80017] of  Tagvalue
 
 	(value "[\"highway\" \"motorway\"]"))
-
-([BrigBern_Class80078] of  CloFuncall
-
-	(source "(.getInstance \"BrigBern_Class80037\")"))
-
-([BrigBern_Class80079] of  CloFuncall
-
-	(source "(.getInstance *kb* \"BrigBern_Class80037\")"))
-
-([BrigBern_Class80080] of  CloFuncall
-
-	(source "(svs (.getInstance *kb* \"BrigBern_Class80037\") \"dirways\")"))
-
-([BrigBern_Class80081] of  CloFuncall
-
-	(source "(map delin (svs (.getInstance *kb* \"BrigBern_Class80037\") \"dirways\"))"))
-
-([BrigBern_Class80082] of  CloFuncall
-
-	(source "(delete-unref \"Way\")"))
-
-([BrigBern_Class80083] of  CloFuncall
-
-	(source "(delete-unref \"OMTPoly\")"))
 
 ([BrigBern_Class90003] of  Tagvalue
 
@@ -5201,6 +5115,57 @@
 		"43 45.89 7 29.06"
 		"43 45.71 7 28.88")
 	(relative FALSE))
+
+([OSMRoads_Class10002] of  CloFunction
+
+	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (-> (sv dw \"way\")\n         (sv \"poly\")\n         OMT/addMapOb))))")
+	(title "show-roads [hm inst]"))
+
+([OSMRoads_Class10004] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-hide-roads "Hide Roads/osm.data/hide-roads")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(radius 0.01)
+	(tagvalue
+		[BrigBern_Class80017]
+		[BrigBern_Class90003]
+		[BrigBern_Class80016])
+	(title "Roads Control"))
+
+([OSMRoads_Class10005] of  CloFunction
+
+	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (OMT/removeMapOb \n         (-> (sv dw \"way\")\n           (sv \"poly\"))\n         false))))")
+	(title "hide-roads [hm inst]"))
+
+([OSMRoads_Class10006] of  Motoroad
+
+	(dirways
+		[BrigBern_Class100175]
+		[BrigBern_Class100176]
+		[BrigBern_Class100177]
+		[BrigBern_Class100178]
+		[BrigBern_Class100179]
+		[BrigBern_Class100180]
+		[BrigBern_Class100181]
+		[BrigBern_Class100182]
+		[BrigBern_Class100183]
+		[BrigBern_Class100184]
+		[BrigBern_Class100185]
+		[BrigBern_Class100186]
+		[BrigBern_Class100187]
+		[BrigBern_Class100188]
+		[BrigBern_Class100189]
+		[BrigBern_Class100190]
+		[BrigBern_Class100191]
+		[BrigBern_Class100192]
+		[BrigBern_Class100193])
+	(from1 "Guttannen")
+	(title "Grimselstrasse")
+	(to1 "Innertkirchen"))
 
 ([OSMRoads_Class14] of  Railroad
 

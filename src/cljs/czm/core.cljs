@@ -1,5 +1,6 @@
 (ns czm.core
-)
+(:require
+  [geo.calc :refer [future-pos-js]]))
 
 (def TERR-PROV (js/Cesium.CesiumTerrainProvider.
   #js{:url "//assets.agi.com/stk-terrain/world"
@@ -12,7 +13,10 @@
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
                :roll 0}))
-(def HEIGHT (volatile! 0))
+(def H 0)
+(def FH 0)
+(def OH 0)
+(def MAX-UPGROUND 100)
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -24,6 +28,11 @@
        data (js/JSON.parse data)]
   ;;(println [:CZML data])
   (.process CZM-SRC data)))
+
+(defn terraHeightResponse [pos]
+  (def OH H)
+(def H (.-height (first pos)))
+(def FH (- (* 2 H) OH)))
 
 (defn fly-control [lat lon alt hea pit rol per]
   (let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]
@@ -60,7 +69,7 @@
                          "BACKWARD-RIGHT" (+ crs 135)
                          "BACKWARD-LEFT" (- crs 135)
                          crs))]
-    (fly-control lat lon (+ alt @HEIGHT) head pitch roll per))
+    (fly-control lat lon (if (< alt MAX-UPGROUND) (+ alt FH) alt) head pitch roll per))
 (js/terraHeightRequest TERR-PROV lat lon terraHeightResponse))
 
 (defn move-to [lat lon alt crs]
@@ -89,7 +98,4 @@
 (.add (.-dataSources VIEWER) CZM-SRC)
 (.addEventListener (js/EventSource. (str base-url "czml/")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))
-
-(defn terraHeightResponse [pos]
-  (vreset! HEIGHT (.-height (first pos))))
 

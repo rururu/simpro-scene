@@ -26,7 +26,8 @@ goog.addDependency("../ajax/simple.js", ['ajax.simple'], ['ajax.formats', 'goog.
 goog.addDependency("../ajax/easy.js", ['ajax.easy'], ['ajax.formats', 'ajax.transit', 'ajax.json', 'ajax.url', 'cljs.core', 'ajax.ring', 'ajax.simple']);
 goog.addDependency("../ajax/xhrio.js", ['ajax.xhrio'], ['goog.net.XhrManager', 'goog.net.XhrIo', 'goog.json', 'goog.Uri', 'cljs.core', 'goog.net.EventType', 'ajax.protocols', 'goog.events', 'goog.net.ErrorCode']);
 goog.addDependency("../ajax/core.js", ['ajax.core'], ['ajax.formats', 'ajax.xml_http_request', 'ajax.transit', 'ajax.json', 'ajax.url', 'ajax.interceptors', 'cljs.core', 'ajax.ring', 'ajax.easy', 'ajax.simple', 'ajax.protocols', 'ajax.util', 'clojure.string', 'ajax.xhrio']);
-goog.addDependency("../czm/core.js", ['czm.core'], ['cljs.core']);
+goog.addDependency("../geo/calc.js", ['geo.calc'], ['cljs.core']);
+goog.addDependency("../czm/core.js", ['czm.core'], ['cljs.core', 'geo.calc']);
 goog.addDependency("../cljs/core/async/impl/protocols.js", ['cljs.core.async.impl.protocols'], ['cljs.core']);
 goog.addDependency("../cljs/core/async/impl/buffers.js", ['cljs.core.async.impl.buffers'], ['cljs.core', 'cljs.core.async.impl.protocols']);
 goog.addDependency("../cljs/core/async/impl/dispatch.js", ['cljs.core.async.impl.dispatch'], ['cljs.core', 'cljs.core.async.impl.buffers', 'goog.async.nextTick']);
@@ -42,4 +43,5 @@ goog.addDependency("../cljs/tools/reader/impl/commons.js", ['cljs.tools.reader.i
 goog.addDependency("../cljs/tools/reader.js", ['cljs.tools.reader'], ['cljs.tools.reader.impl.commons', 'goog.string', 'cljs.tools.reader.impl.errors', 'cljs.core', 'cljs.tools.reader.reader_types', 'goog.string.StringBuffer', 'cljs.tools.reader.impl.utils', 'goog.array']);
 goog.addDependency("../cljs/tools/reader/edn.js", ['cljs.tools.reader.edn'], ['cljs.tools.reader.impl.commons', 'cljs.tools.reader', 'goog.string', 'cljs.tools.reader.impl.errors', 'cljs.core', 'cljs.tools.reader.reader_types', 'goog.string.StringBuffer', 'cljs.tools.reader.impl.utils']);
 goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['cljs.tools.reader.edn', 'cljs.tools.reader', 'cljs.core', 'goog.object', 'goog.string.StringBuffer']);
-goog.addDependency("../view3d/client.js", ['view3d.client'], ['ajax.core', 'czm.core', 'goog.string', 'cljs.core', 'cljs.core.async', 'cognitect.transit', 'goog.string.format', 'cljs.reader']);
+goog.addDependency("../view3d/client.js", ['view3d.client'], ['ajax.core', 'czm.core', 'goog.string', 'cljs.core', 'cljs.core.async', 'geo.calc', 'cognitect.transit', 'goog.string.format', 'cljs.reader']);
+goog.addDependency("../calc/geo.js", ['calc.geo'], ['cljs.core']);

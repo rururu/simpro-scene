@@ -1,4 +1,4 @@
-; Fri Feb 09 22:08:07 MSK 2018
+; Sat Feb 10 23:11:33 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,36 +8,50 @@
 	(cloFunctions
 		[Cezium_Class6]
 		[Cezium_Class7]
+		[Cezium_Class70000]
 		[Cezium_Class8]
 		[Cezium_Class9]
 		[Cezium_Class10]
 		[Cezium_Class11]
 		[Cezium_Class12]
-		[Cezium_Class13]
-		[Cezium_Class70000])
+		[Cezium_Class13])
 	(cloNamespace [Cezium_Class1])
 	(cloVars
 		[Cezium_Class2]
 		[Cezium_Class3]
 		[Cezium_Class4]
 		[Cezium_Class5]
-		[Cezium_Class80000])
+		[Cezium_Class80000]
+		[Cezium_Class100001]
+		[Cezium_Class100000]
+		[Cezium_Class90017])
 	(documentation [Cezium_Class14])
 	(title "Cezium Client"))
 
 ([Cezium_Class1] of  CloNamespace
 
+	(source "(:require\n  [geo.calc :refer [future-pos-js]])")
 	(title "czm.core"))
 
 ([Cezium_Class10] of  CloFunction
 
-	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon (+ alt @HEIGHT) head pitch roll per))\n(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse)")
+	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (fly-control lat lon (if (< alt MAX-UPGROUND) (+ alt FH) alt) head pitch roll per))\n(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse)")
 	(title "fly-to [lat lon alt crs per]"))
 
 ([Cezium_Class10000] of  CloFunction
 
 	(source "([func time-out]\n  (go (while true\n           (func)\n           (<! (timeout time-out)))))\n([func param time-out]\n  (go (while true\n           (func param)\n           (<! (timeout time-out)))))")
 	(title "repeater"))
+
+([Cezium_Class100000] of  CloVar
+
+	(source "0")
+	(title "OH"))
+
+([Cezium_Class100001] of  CloVar
+
+	(source "0")
+	(title "FH"))
 
 ([Cezium_Class10001] of  CloFunction
 
@@ -76,7 +90,7 @@
 
 ([Cezium_Class10010] of  CloFunction
 
-	(source "(let [[lat lon] (:coord vehicle)]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" (int (+ (:altitude vehicle) @czm/HEIGHT)))\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
+	(source "(let [[lat lon] (:coord vehicle)\n       alt (:altitude vehicle)\n       alt (int (if (< alt czm/MAX-UPGROUND) \n	(+ alt czm/FH) \n	alt))]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" alt)\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
 	(title "camera-vehicle [vehicle per]"))
 
 ([Cezium_Class11] of  CloFunction
@@ -129,13 +143,15 @@
 	(html [Cezium_Class20000])
 	(output-dir "resources/public/js/out")
 	(output-to "resources/public/js/main.js")
-	(required [Cezium_Class0])
+	(required
+		[Cezium_Class0]
+		[Cezium_Class90000])
 	(store-in "src/cljs")
 	(title "View 3D Client"))
 
 ([Cezium_Class16] of  CloNamespace
 
-	(source "(:require\n  [goog.string :as gstring]\n  [goog.string.format]\n  [cljs.core.async :refer [<! timeout close!]]\n  [cognitect.transit :as t]\n  [ajax.core :refer (GET)]\n  [cljs.reader :as rdr]\n  [czm.core :as czm])\n(:require-macros \n  [cljs.core.async.macros :refer [go]])")
+	(source "(:require\n  [goog.string :as gstring]\n  [goog.string.format]\n  [cljs.core.async :refer [<! timeout close!]]\n  [cognitect.transit :as t]\n  [ajax.core :refer (GET)]\n  [cljs.reader :as rdr]\n  [geo.calc :refer [norm-crs]]\n  [czm.core :as czm])\n(:require-macros \n  [cljs.core.async.macros :refer [go]])")
 	(title "view3d.client"))
 
 ([Cezium_Class17] of  CloVar
@@ -419,18 +435,10 @@
 	(source "(volatile! {:view \"FORWARD\"\n               :pitch -10\n               :roll 0})")
 	(title "CAMERA"))
 
-([Cezium_Class50000] of  CloFuncall
-
-	(source "(pro.server/start-server)"))
-
 ([Cezium_Class6] of  CloFunction
 
 	(source "(cond\n   (> x 360) (- x 360)\n   (< x 0) (+ x 360)\n   true x)")
 	(title "norm-crs [x]"))
-
-([Cezium_Class60000] of  CloFuncall
-
-	(source "(pro.server/stop-server)"))
 
 ([Cezium_Class60001] of  CloFunction
 
@@ -479,7 +487,7 @@
 
 ([Cezium_Class70000] of  CloFunction
 
-	(source "(vreset! HEIGHT (.-height (first pos)))")
+	(source "(def OH H)\n(def H (.-height (first pos)))\n(def FH (- (* 2 H) OH))")
 	(title "terraHeightResponse [pos]"))
 
 ([Cezium_Class70005] of  CloFunction
@@ -494,10 +502,50 @@
 
 ([Cezium_Class80000] of  CloVar
 
-	(source "(volatile! 0)")
-	(title "HEIGHT"))
+	(source "0")
+	(title "H"))
 
 ([Cezium_Class9] of  CloFunction
 
 	(source ";;(println :MC lat lon alt hea pit rol)\n(let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]\n  (.setView (.-camera VIEWER)\n            #js{:destination dest\n                  :orientation #js{:heading (js/Cesium.Math.toRadians hea)\n                                           :pitch   (js/Cesium.Math.toRadians pit)\n                                           :roll    (js/Cesium.Math.toRadians rol)}}))")
 	(title "move-control [lat lon alt hea pit rol]"))
+
+([Cezium_Class90000] of  ClsRequired
+
+	(cloFunctions
+		[Cezium_Class90018]
+		[Cezium_Class90019]
+		[Cezium_Class90002]
+		[Cezium_Class90005]
+		[Cezium_Class6])
+	(cloNamespace [Cezium_Class90001])
+	(title "Geo"))
+
+([Cezium_Class90001] of  CloNamespace
+
+	(title "geo.calc"))
+
+([Cezium_Class90002] of  CloFunction
+
+	(source "(let [cosphi1 (js/Math.cos phi1)\n       sinphi1 (js/Math.sin phi1)\n       cosaz (js/Math.cos az)\n       sinaz (js/Math.sin az)\n       sinc (js/Math.sin c)\n       cosc (js/Math.cos c)\n       phi2 (js/Math.asin (+ (* sinphi1 cosc) (* cosphi1 sinc cosaz)))\n       lam2 (+ (js/Math.atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]\n  [phi2 lam2])")
+	(title "spherical-between-js [^double phi1 ^double lambda0 ^double c ^double az]"))
+
+([Cezium_Class90005] of  CloFunction
+
+	(source "(let [phi (radians lat)\n       lam (radians lon)\n       dir (radians crs)\n       way (* spd tim)\n       way (radians (/ way 60))\n       [phi2 lam2] (spherical-between-js phi lam way dir)]\n   [(degrees phi2) (degrees lam2)])")
+	(title "future-pos-js [[lat lon] crs spd tim]"))
+
+([Cezium_Class90017] of  CloVar
+
+	(source "100")
+	(title "MAX-UPGROUND"))
+
+([Cezium_Class90018] of  CloFunction
+
+	(source "(/ (* deg js/Math.PI) 180)")
+	(title "radians [deg]"))
+
+([Cezium_Class90019] of  CloFunction
+
+	(source "(/ (* rad 180) js/Math.PI)")
+	(title "degrees [rad]"))

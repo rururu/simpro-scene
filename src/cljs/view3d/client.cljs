@@ -6,6 +6,7 @@
   [cognitect.transit :as t]
   [ajax.core :refer (GET)]
   [cljs.reader :as rdr]
+  [geo.calc :refer [norm-crs]]
   [czm.core :as czm])
 (:require-macros 
   [cljs.core.async.macros :refer [go]]))
@@ -40,13 +41,17 @@
   (if (number? x) x (rdr/read-string x)))
 
 (defn camera-vehicle [vehicle per]
-  (let [[lat lon] (:coord vehicle)]
+  (let [[lat lon] (:coord vehicle)
+       alt (:altitude vehicle)
+       alt (int (if (< alt czm/MAX-UPGROUND) 
+	(+ alt czm/FH) 
+	alt))]
   (vswap! VEHICLE merge vehicle)
   (set-html! "onboard-fld" (:name vehicle))
   (set-html! "name-fld" (:name vehicle))
   (set-html! "course-fld" (:course vehicle))
   (set-html! "speed-fld" (:speed vehicle))
-  (set-html! "altitude-fld" (int (+ (:altitude vehicle) @czm/HEIGHT)))
+  (set-html! "altitude-fld" alt)
   (if (<= per 0)
     (czm/move-to lat lon 
 	(:altitude vehicle)

@@ -1,4 +1,4 @@
-; Fri Feb 09 21:40:52 MSK 2018
+; Sat Feb 10 23:11:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -26,6 +26,16 @@
 		(type INSTANCE)
 ;+		(allowed-classes Tagvalue)
 		(create-accessor read-write))
+	(single-slot but-show-roads
+		(type STRING)
+		(default "Show Existing Roads/osm.data/show-roads")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-hide-roads
+		(type STRING)
+		(default "Hide Roads/osm.data/hide-roads")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
 		(default "Clear/osm.data/clear-path")
@@ -51,13 +61,27 @@
 (defclass RoadControl
 	(is-a OSM+Onto)
 	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-show-roads
+		(type STRING)
+		(default "Show Existing Roads/osm.data/show-roads")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-hide-roads
+		(type STRING)
+		(default "Hide Roads/osm.data/hide-roads")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot road-subclass
 		(type SYMBOL)
 		(allowed-values Railroad Motoroad Cycleroad)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot to1
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot status
@@ -66,10 +90,6 @@
 		(create-accessor read-write))
 	(single-slot radius
 		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot tagvalue

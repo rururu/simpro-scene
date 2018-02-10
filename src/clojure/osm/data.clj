@@ -6,7 +6,8 @@
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT
   ru.igis.omtab.OMTPoly
-  ru.igis.omtab.gui.RuMapMouseAdapter))
+  ru.igis.omtab.gui.RuMapMouseAdapter
+  edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
@@ -231,4 +232,21 @@
   (doseq [ins (cls-instances cls)]
   (if (unref ins)
     (.show *prj* ins))))
+
+(defn show-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (-> (sv dw "way")
+         (sv "poly")
+         OMT/addMapOb)))))
+
+(defn hide-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (OMT/removeMapOb 
+         (-> (sv dw "way")
+           (sv "poly"))
+         false)))))
 
