@@ -32,6 +32,9 @@
   (= x :?)
   (and (string? x) (empty? x))))
 
+(defn worth? [x]
+  (not (null? x)))
+
 (defn to-be
   ([del]
  (let [[n u] (seq (.split del " "))

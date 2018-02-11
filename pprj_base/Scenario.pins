@@ -1,4 +1,4 @@
-; Fri Feb 02 14:36:42 MSK 2018
+; Sun Feb 11 22:19:32 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -434,7 +434,8 @@
 		[Scenario_Class430000]
 		[Scenario_Class520002]
 		[Scenario_Class550001]
-		[Scenario_Class520000])
+		[Scenario_Class520000]
+		[Scenario_Class420000])
 	(templates
 		[Action]
 		[Arrive]
@@ -486,7 +487,8 @@
 		[DeleteResource]
 		[GoLayer]
 		[AddResource]
-		[GoRoad])
+		[GoRoad]
+		[SetCenter])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -565,6 +567,7 @@
 
 	(cloFunctions
 		[Scenario_Class120012]
+		[Scenario_Class420001]
 		[Scenario_Class80001]
 		[Scenario_Class140002]
 		[Scenario_Class510000]
@@ -1267,6 +1270,18 @@
 	(source "(or \n  (nil? x)\n  (= x :?))")
 	(title "qm [x]"))
 
+([Scenario_Class420000] of  Rule
+
+	(lhs "?sc (SetCenter status \"START\"\n	title ?tit\n	latitude ?lat\n	longitude ?lon\n	units ?uni\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetCenter\")\n(let [lat (a/vv ?lat ?run)\n       lon (a/vv ?lon ?run)]\n  (if (and (a/worth? lat) (a/worth? lon))\n    (let [dm (= ?uni 'DEG_MIN)\n           lat (if dm (ru.igis.omtab.MapOb/getDeg lat) (read-string lat))\n           lon (if dm (ru.igis.omtab.MapOb/getDeg lon) (read-string lon))]\n       (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n          (.setCenter lat lon))\n       (retract ?sc)\n       (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?sc status\"FAILED\")))")
+	(salience 0)
+	(title "a:SetCenter"))
+
+([Scenario_Class420001] of  CloFunction
+
+	(source "(not (null? x))")
+	(title "worth? [x]"))
+
 ([Scenario_Class420002] of  CloFunction
 
 	(source "(->> (.getLatLonArrayCopy omp)\n  (ProjMath/arrayRadToDeg)\n  (partition 2))")
@@ -1317,6 +1332,58 @@
 
 	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (or (instance? Instance v) (instance? MapOb v))\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
 	(title "to-clj-type [v]"))
+
+([Scenario_Class450007] of  Table2
+
+	(column1
+		"units"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"title"
+		"status"
+		"id"
+		"latitude")
+	(column2
+		"DEG_MIN"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class450005 of [Cls(SetCenter)])"
+		"[]"
+		"-72 55"
+		"test"
+		"START"
+		":?"
+		"-13  10")
+	(title "SetCenter 0"))
+
+([Scenario_Class450008] of  Table2
+
+	(column1
+		"units"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"title"
+		"status"
+		"id"
+		"latitude")
+	(column2
+		"DEG_MIN"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class450005 of [Cls(SetCenter)])"
+		"[]"
+		"-72 55"
+		"test"
+		"START"
+		":?"
+		"-13  10")
+	(title "SetCenter 0"))
 
 ([Scenario_Class460000] of  Rule
 
@@ -2701,7 +2768,8 @@
 )
 
 ([SetCenter] of  ActionClass
-)
+
+	(rules [Scenario_Class420000]))
 
 ([SetModelClock] of  ActionClass
 

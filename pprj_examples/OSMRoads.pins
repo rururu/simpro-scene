@@ -1,4 +1,4 @@
-; Sat Feb 10 23:11:47 MSK 2018
+; Sun Feb 11 18:18:58 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1315,12 +1315,13 @@
 	(from1 "Brig")
 	(to1 "Lalden"))
 
-([BrigBern_Class110000] of  GoRoad
+([BrigBern_Class110000] of  Arrive
 
-	(direction "FORWARD")
+	(latitude "-13 10.51")
+	(longitude "-72 32.58")
 	(object [BrigBern_Class100001])
-	(road [OSMRoads_Class10006])
-	(spd "40")
+	(radius 0.1)
+	(speed 10.0)
 	(status "START")
 	(title "test"))
 
@@ -2207,21 +2208,11 @@
 		"46 19.34 7 46.4")
 	(relative FALSE))
 
-([BrigBern_Class130127] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130128]))
-
 ([BrigBern_Class130128] of  Way
 
 	(id "28784940")
 	(poly [BrigBern_Class130009])
 	(source "clojure.lang.LazySeq@4a90a5f3"))
-
-([BrigBern_Class130129] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130130]))
 
 ([BrigBern_Class130130] of  Way
 
@@ -2229,21 +2220,11 @@
 	(poly [BrigBern_Class130014])
 	(source "clojure.lang.LazySeq@f1fc74ef"))
 
-([BrigBern_Class130131] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class130132]))
-
 ([BrigBern_Class130132] of  Way
 
 	(id "28784940")
 	(poly [BrigBern_Class130009])
 	(source "clojure.lang.LazySeq@4a90a5f3"))
-
-([BrigBern_Class130133] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130134]))
 
 ([BrigBern_Class130134] of  Way
 
@@ -2251,21 +2232,11 @@
 	(poly [BrigBern_Class130014])
 	(source "clojure.lang.LazySeq@f1fc74ef"))
 
-([BrigBern_Class130135] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130136]))
-
 ([BrigBern_Class130136] of  Way
 
 	(id "166597805")
 	(poly [BrigBern_Class130015])
 	(source "clojure.lang.LazySeq@58655e28"))
-
-([BrigBern_Class130137] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130138]))
 
 ([BrigBern_Class130138] of  Way
 
@@ -2273,21 +2244,11 @@
 	(poly [BrigBern_Class130016])
 	(source "clojure.lang.LazySeq@5a75f0ca"))
 
-([BrigBern_Class130139] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130140]))
-
 ([BrigBern_Class130140] of  Way
 
 	(id "224857241")
 	(poly [BrigBern_Class130017])
 	(source "clojure.lang.LazySeq@2ae161de"))
-
-([BrigBern_Class130141] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130142]))
 
 ([BrigBern_Class130142] of  Way
 
@@ -2295,21 +2256,11 @@
 	(poly [BrigBern_Class130018])
 	(source "clojure.lang.LazySeq@ef132f9"))
 
-([BrigBern_Class130143] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130144]))
-
 ([BrigBern_Class130144] of  Way
 
 	(id "28784739")
 	(poly [BrigBern_Class130019])
 	(source "clojure.lang.LazySeq@46d335bc"))
-
-([BrigBern_Class130145] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130146]))
 
 ([BrigBern_Class130146] of  Way
 
@@ -2317,21 +2268,11 @@
 	(poly [BrigBern_Class130020])
 	(source "clojure.lang.LazySeq@a01fdee0"))
 
-([BrigBern_Class130147] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130148]))
-
 ([BrigBern_Class130148] of  Way
 
 	(id "28784737")
 	(poly [BrigBern_Class130021])
 	(source "clojure.lang.LazySeq@f6c24b0a"))
-
-([BrigBern_Class130149] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130150]))
 
 ([BrigBern_Class130150] of  Way
 
@@ -2339,21 +2280,11 @@
 	(poly [BrigBern_Class130022])
 	(source "clojure.lang.LazySeq@648e89a6"))
 
-([BrigBern_Class130151] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130152]))
-
 ([BrigBern_Class130152] of  Way
 
 	(id "28784735")
 	(poly [BrigBern_Class130023])
 	(source "clojure.lang.LazySeq@6241c04d"))
-
-([BrigBern_Class130153] of  Dirway
-
-	(direction "FORWARD")
-	(way [BrigBern_Class130154]))
 
 ([BrigBern_Class130154] of  Way
 
@@ -2361,21 +2292,11 @@
 	(poly [BrigBern_Class130022])
 	(source "clojure.lang.LazySeq@648e89a6"))
 
-([BrigBern_Class130155] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130156]))
-
 ([BrigBern_Class130156] of  Way
 
 	(id "28784735")
 	(poly [BrigBern_Class130023])
 	(source "clojure.lang.LazySeq@6241c04d"))
-
-([BrigBern_Class130157] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130158]))
 
 ([BrigBern_Class130158] of  Way
 
@@ -2383,21 +2304,11 @@
 	(poly [BrigBern_Class130024])
 	(source "clojure.lang.LazySeq@3744eb7f"))
 
-([BrigBern_Class130159] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130160]))
-
 ([BrigBern_Class130160] of  Way
 
 	(id "28784732")
 	(poly [BrigBern_Class130025])
 	(source "clojure.lang.LazySeq@6d87127d"))
-
-([BrigBern_Class130161] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130162]))
 
 ([BrigBern_Class130162] of  Way
 
@@ -2405,21 +2316,11 @@
 	(poly [BrigBern_Class130026])
 	(source "clojure.lang.LazySeq@6bc8e9d0"))
 
-([BrigBern_Class130163] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130164]))
-
 ([BrigBern_Class130164] of  Way
 
 	(id "224858887")
 	(poly [BrigBern_Class130027])
 	(source "clojure.lang.LazySeq@7d3f9705"))
-
-([BrigBern_Class130165] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130166]))
 
 ([BrigBern_Class130166] of  Way
 
@@ -2427,21 +2328,11 @@
 	(poly [BrigBern_Class130028])
 	(source "clojure.lang.LazySeq@6403178b"))
 
-([BrigBern_Class130167] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130168]))
-
 ([BrigBern_Class130168] of  Way
 
 	(id "163513071")
 	(poly [BrigBern_Class130029])
 	(source "clojure.lang.LazySeq@6b151066"))
-
-([BrigBern_Class130169] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130170]))
 
 ([BrigBern_Class130170] of  Way
 
@@ -2449,21 +2340,11 @@
 	(poly [BrigBern_Class130030])
 	(source "clojure.lang.LazySeq@b82a4516"))
 
-([BrigBern_Class130171] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130172]))
-
 ([BrigBern_Class130172] of  Way
 
 	(id "148205169")
 	(poly [BrigBern_Class130031])
 	(source "clojure.lang.LazySeq@cd180d56"))
-
-([BrigBern_Class130173] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130174]))
 
 ([BrigBern_Class130174] of  Way
 
@@ -2471,21 +2352,11 @@
 	(poly [BrigBern_Class130032])
 	(source "clojure.lang.LazySeq@3c37adba"))
 
-([BrigBern_Class130175] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130176]))
-
 ([BrigBern_Class130176] of  Way
 
 	(id "224857237")
 	(poly [BrigBern_Class130033])
 	(source "clojure.lang.LazySeq@949de542"))
-
-([BrigBern_Class130177] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130178]))
 
 ([BrigBern_Class130178] of  Way
 
@@ -2493,21 +2364,11 @@
 	(poly [BrigBern_Class130034])
 	(source "clojure.lang.LazySeq@3f46c605"))
 
-([BrigBern_Class130179] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130180]))
-
 ([BrigBern_Class130180] of  Way
 
 	(id "148205170")
 	(poly [BrigBern_Class130035])
 	(source "clojure.lang.LazySeq@c82b6406"))
-
-([BrigBern_Class130181] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130182]))
 
 ([BrigBern_Class130182] of  Way
 
@@ -2515,21 +2376,11 @@
 	(poly [BrigBern_Class130036])
 	(source "clojure.lang.LazySeq@f22205d7"))
 
-([BrigBern_Class130183] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130184]))
-
 ([BrigBern_Class130184] of  Way
 
 	(id "229192560")
 	(poly [BrigBern_Class130037])
 	(source "clojure.lang.LazySeq@3186f6b9"))
-
-([BrigBern_Class130185] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130186]))
 
 ([BrigBern_Class130186] of  Way
 
@@ -2537,21 +2388,11 @@
 	(poly [BrigBern_Class130038])
 	(source "clojure.lang.LazySeq@7216f1e3"))
 
-([BrigBern_Class130187] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130188]))
-
 ([BrigBern_Class130188] of  Way
 
 	(id "148205180")
 	(poly [BrigBern_Class130039])
 	(source "clojure.lang.LazySeq@58fe6c39"))
-
-([BrigBern_Class130189] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130190]))
 
 ([BrigBern_Class130190] of  Way
 
@@ -2559,21 +2400,11 @@
 	(poly [BrigBern_Class130040])
 	(source "clojure.lang.LazySeq@59c36b06"))
 
-([BrigBern_Class130191] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130192]))
-
 ([BrigBern_Class130192] of  Way
 
 	(id "148205175")
 	(poly [BrigBern_Class130041])
 	(source "clojure.lang.LazySeq@ddb5c5cb"))
-
-([BrigBern_Class130193] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130194]))
 
 ([BrigBern_Class130194] of  Way
 
@@ -2581,21 +2412,11 @@
 	(poly [BrigBern_Class130042])
 	(source "clojure.lang.LazySeq@52dc981e"))
 
-([BrigBern_Class130195] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130196]))
-
 ([BrigBern_Class130196] of  Way
 
 	(id "166603009")
 	(poly [BrigBern_Class130043])
 	(source "clojure.lang.LazySeq@5d525e45"))
-
-([BrigBern_Class130197] of  Dirway
-
-	(direction "BACKWARD")
-	(way [BrigBern_Class130198]))
 
 ([BrigBern_Class130198] of  Way
 
@@ -5116,6 +4937,14 @@
 		"43 45.71 7 28.88")
 	(relative FALSE))
 
+([OSMRoads_Class10000] of  CloFuncall
+
+	(source "osm.data/OSM-DATA"))
+
+([OSMRoads_Class10001] of  Tagvalue
+
+	(value "[\"highway\" \"unclassified\"]"))
+
 ([OSMRoads_Class10002] of  CloFunction
 
 	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (-> (sv dw \"way\")\n         (sv \"poly\")\n         OMT/addMapOb))))")
@@ -5129,11 +4958,17 @@
 	(but-hide-roads "Hide Roads/osm.data/hide-roads")
 	(but-rem "Mode Remove/osm.data/mode-remove")
 	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(from1 "Hidroelectrica")
 	(radius 0.01)
+	(road-subclass Motoroad)
+	(status "MODE CREATE, in PATH 4 ways.")
 	(tagvalue
 		[BrigBern_Class80017]
 		[BrigBern_Class90003]
-		[BrigBern_Class80016])
+		[BrigBern_Class80016]
+		[OSMRoads_Class10001]
+		[OSMRoads_Class20021]
+		[OSMRoads_Class20142])
 	(title "Roads Control"))
 
 ([OSMRoads_Class10005] of  CloFunction
@@ -5195,6 +5030,1209 @@
 		"43 45.9 7 29.07"
 		"43 45.89 7 29.06")
 	(relative FALSE))
+
+([OSMRoads_Class20002] of  OMTPoly
+
+	(description "69915267")
+	(label "69915267")
+	(latitude "62 2.7")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.09")
+	(playground-index 0)
+	(points
+		"62 2.7 7 16.09"
+		"62 2.92 7 16.22")
+	(relative FALSE))
+
+([OSMRoads_Class20003] of  OMTPoly
+
+	(description "178695200")
+	(label "178695200")
+	(latitude "62 2.17")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 17.5")
+	(playground-index 0)
+	(points
+		"62 2.17 7 17.5"
+		"62 2.7 7 16.09")
+	(relative FALSE))
+
+([OSMRoads_Class20004] of  OMTPoly
+
+	(description "69915264")
+	(label "69915264")
+	(latitude "62 1.92")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.58")
+	(playground-index 0)
+	(points
+		"62 1.92 7 16.58"
+		"62 2.17 7 17.5")
+	(relative FALSE))
+
+([OSMRoads_Class20005] of  OMTPoly
+
+	(description "231466274")
+	(label "231466274")
+	(latitude "62 1.87")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.49")
+	(playground-index 0)
+	(points
+		"62 1.87 7 16.49"
+		"62 1.92 7 16.58")
+	(relative FALSE))
+
+([OSMRoads_Class20006] of  OMTPoly
+
+	(description "25352070")
+	(label "25352070")
+	(latitude "62 1.85")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.56")
+	(playground-index 0)
+	(points
+		"62 1.85 7 16.56"
+		"62 1.87 7 16.49")
+	(relative FALSE))
+
+([OSMRoads_Class20007] of  OMTPoly
+
+	(description "25352069")
+	(label "25352069")
+	(latitude "62 1.85")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.56")
+	(playground-index 0)
+	(points
+		"62 1.85 7 16.56"
+		"62 1.82 7 16.53")
+	(relative FALSE))
+
+([OSMRoads_Class20008] of  Motoroad
+
+	(dirways
+		[OSMRoads_Class20009]
+		[OSMRoads_Class20011]
+		[OSMRoads_Class20013]
+		[OSMRoads_Class20015]
+		[OSMRoads_Class20017]
+		[OSMRoads_Class20019])
+	(from1 "Dalsnibba")
+	(title "Nibbevegen")
+	(to1 "Djupvatnet Lake"))
+
+([OSMRoads_Class20009] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20010]))
+
+([OSMRoads_Class20010] of  Way
+
+	(id "69915267")
+	(poly [OSMRoads_Class20002])
+	(source "[[62.0449332 7.2682265] [62.0451407 7.2682399] [62.0452488 7.2682828] [62.0457668 7.2688809] [62.0460535 7.2690902] [62.046393 7.2692404] [62.0470493 7.2695327] [62.0474428 7.2697312] [62.0476817 7.2698841] [62.0477898 7.2699994] [62.0479885 7.270265] [62.0480714 7.2704608] [62.0481372 7.2707014] [62.048211 7.2710348] [62.0482663 7.2711286] [62.0483417 7.2711823] [62.0483895 7.2711581] [62.048475 7.2710213] [62.0485536 7.2707653] [62.0486095 7.2705627] [62.0487021 7.2702009] [62.0488351 7.2697662] [62.0488569 7.2696146] [62.0488308 7.2694695] [62.0487671 7.2694134] [62.0487158 7.2694309] [62.0486828 7.2694642] [62.0486037 7.2697214] [62.0486012 7.2698774] [62.0486679 7.2703331]]"))
+
+([OSMRoads_Class20011] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20012]))
+
+([OSMRoads_Class20012] of  Way
+
+	(id "178695200")
+	(poly [OSMRoads_Class20003])
+	(source "[[62.0361411 7.2917347] [62.0360782 7.2913351] [62.0360053 7.2910668] [62.0359122 7.2907396] [62.0358619 7.2903373] [62.0358455 7.2899457] [62.0357882 7.2891062] [62.0357147 7.2885187] [62.035655 7.2881593] [62.035638 7.2880185] [62.0356437 7.2879461] [62.0356594 7.2879032] [62.0356933 7.2878589] [62.0357298 7.2878388] [62.0357808 7.2878589] [62.0358298 7.2878938] [62.0359293 7.2880529] [62.0360738 7.2882666] [62.0361141 7.2883015] [62.036153 7.2883028] [62.036182 7.2882787] [62.0362096 7.2882371] [62.0362197 7.2881808] [62.0362216 7.2880306] [62.0362203 7.2878696] [62.0362027 7.2877315] [62.0361185 7.2873828] [62.0360103 7.2869859] [62.0359215 7.2867276] [62.0355613 7.2860095] [62.0355122 7.2858566] [62.0353273 7.2849447] [62.0352393 7.2843694] [62.0351607 7.2840166] [62.0351267 7.2839107] [62.0350594 7.2837873] [62.0349355 7.2836022] [62.034906 7.2835338] [62.0349035 7.283452] [62.0349098 7.2833676] [62.0349293 7.2833112] [62.0349601 7.2832871] [62.0349959 7.2832817] [62.0350947 7.2834359] [62.0351821 7.2835687] [62.0353223 7.2836948] [62.0355047 7.2838101] [62.0355518 7.2838021] [62.0355902 7.2837699] [62.0356116 7.2837229] [62.0356154 7.2836452] [62.0355984 7.2835754] [62.0355147 7.2834333] [62.0354041 7.2832509] [62.0353449 7.2831248] [62.0353097 7.2829907] [62.0352833 7.2827413] [62.0352487 7.2819775] [62.035233 7.2814002] [62.0352368 7.2804319] [62.035277 7.2797613] [62.0353047 7.2791283] [62.0353022 7.2782861] [62.0353122 7.2781547] [62.0353399 7.2780662] [62.0353751 7.2780259] [62.0354292 7.2780393] [62.0355085 7.2781735] [62.0355927 7.2783693] [62.0357168 7.2787907] [62.0357931 7.2793424] [62.0358179 7.2795387] [62.0358607 7.2797305] [62.0359111 7.2797914] [62.0359641 7.2797608] [62.0359864 7.2797023] [62.0359927 7.2795709] [62.0359487 7.2792866] [62.0359122 7.2789352] [62.0359122 7.2786697] [62.0359336 7.2784309] [62.0359531 7.2782365] [62.0359575 7.2780648] [62.0359235 7.2777658] [62.0359053 7.2775297] [62.0359128 7.2774278] [62.0359411 7.2773742] [62.0359952 7.2773634] [62.0360436 7.2773675] [62.0360726 7.277401] [62.036131 7.2775807] [62.0362505 7.2777819] [62.0363184 7.2778368] [62.036382 7.2778449] [62.0364103 7.2778114] [62.0364272 7.2777644] [62.0364323 7.2776182] [62.036426 7.277523] [62.0363769 7.2773138] [62.0362084 7.2768122] [62.0361505 7.2765226] [62.0361291 7.2763026] [62.0361291 7.2758386] [62.0361329 7.2756321] [62.0361681 7.2755891] [62.0362398 7.2755918] [62.0362662 7.2756482] [62.0362625 7.2760532] [62.0362763 7.2761953] [62.036314 7.2762463] [62.0363631 7.2762624] [62.0364071 7.2762436] [62.0364348 7.2761444] [62.0364436 7.2759056] [62.0364297 7.275742] [62.0363744 7.2752512] [62.0363681 7.2750447] [62.0363807 7.2748489] [62.0366675 7.2732905] [62.0367052 7.2729606] [62.036758 7.2727433] [62.0368146 7.2725931] [62.03709 7.2722069] [62.0374485 7.2716973] [62.0376585 7.2713352] [62.0377591 7.2712171] [62.0381264 7.2709328] [62.038403 7.270729] [62.0385338 7.2706002] [62.0390419 7.2699994] [62.0393513 7.2697044] [62.0399348 7.269243] [62.0404013 7.268712] [62.0404655 7.2686664] [62.0405447 7.2686744] [62.0406151 7.2686959] [62.0406604 7.2687656] [62.0407258 7.2688863] [62.0407748 7.2689453] [62.0409496 7.2690392] [62.041044 7.2690446] [62.0411106 7.2690124] [62.0411986 7.2689453] [62.0415859 7.2687817] [62.041928 7.2686583] [62.0423052 7.268433] [62.0426221 7.2682721] [62.0427837 7.2682262] [62.0449332 7.2682265]]"))
+
+([OSMRoads_Class20013] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20014]))
+
+([OSMRoads_Class20014] of  Way
+
+	(id "69915264")
+	(poly [OSMRoads_Class20004])
+	(source "[[62.0319192 7.2762742] [62.0319192 7.2765246] [62.0319267 7.2773132] [62.0319418 7.2778657] [62.0319811 7.279231] [62.0319569 7.2808913] [62.0319594 7.2811648] [62.0319821 7.2814813] [62.0320198 7.2817818] [62.0320777 7.2821251] [62.0321356 7.2824113] [62.0322462 7.2827795] [62.0323809 7.283149] [62.0324702 7.2833448] [62.0327268 7.2837605] [62.0328173 7.2840402] [62.0328802 7.2843138] [62.0329847 7.2849058] [62.0330828 7.285461] [62.0331406 7.2857158] [62.033196 7.2858982] [62.0332928 7.2860913] [62.0337771 7.2869389] [62.0341004 7.2876309] [62.0347859 7.2891544] [62.0348626 7.2893502] [62.0349242 7.289538] [62.0350664 7.2901307] [62.0351934 7.2905867] [62.0355217 7.2914933] [62.0356965 7.2918715] [62.0358204 7.2922899] [62.0358864 7.2926118] [62.0359021 7.2927808] [62.0359223 7.2933145] [62.0359399 7.2934594] [62.0359889 7.2935264] [62.0360342 7.2935318] [62.0360656 7.2934915] [62.0361059 7.2933226] [62.0361386 7.2930543] [62.0361675 7.2927164] [62.0361801 7.2923758] [62.0361675 7.2920566] [62.0361411 7.2917347]]"))
+
+([OSMRoads_Class20015] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20016]))
+
+([OSMRoads_Class20016] of  Way
+
+	(id "231466274")
+	(poly [OSMRoads_Class20005])
+	(source "[[62.0312449 7.2748011] [62.0315016 7.2744754] [62.0315818 7.2743986] [62.0316676 7.2743789] [62.0317506 7.2744218] [62.0318236 7.2745344] [62.0318764 7.27469] [62.0319091 7.2748885] [62.0319192 7.275146] [62.0319192 7.2762742]]"))
+
+([OSMRoads_Class20017] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20018]))
+
+([OSMRoads_Class20018] of  Way
+
+	(id "25352070")
+	(poly [OSMRoads_Class20006])
+	(source "[[62.0309128 7.2760043] [62.0309053 7.2758433] [62.0308801 7.2756395] [62.0308776 7.275441] [62.0309053 7.2752479] [62.0309707 7.2750762] [62.0310588 7.2749689] [62.0312449 7.2748011]]"))
+
+([OSMRoads_Class20019] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20020]))
+
+([OSMRoads_Class20020] of  Way
+
+	(id "25352069")
+	(poly [OSMRoads_Class20007])
+	(source "[[62.0309128 7.2760043] [62.0308927 7.2761116] [62.0308452 7.2761668] [62.030777 7.2761706] [62.030704 7.2761169] [62.030621 7.2759989] [62.0304399 7.275661] [62.0303493 7.2755376] [62.0302741 7.2754946]]"))
+
+([OSMRoads_Class20021] of  Tagvalue
+
+	(value "[\"highway\" \"primary\"]"))
+
+([OSMRoads_Class20022] of  OMTPoly
+
+	(description "37829781")
+	(label "37829781")
+	(latitude "62 6.14")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.36")
+	(playground-index 0)
+	(points
+		"62 6.14 7 12.36"
+		"62 6.21 7 12.24")
+	(relative FALSE))
+
+([OSMRoads_Class20029] of  OMTPoly
+
+	(description "230236961")
+	(label "230236961")
+	(latitude "62 5.84")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.56")
+	(playground-index 0)
+	(points
+		"62 5.84 7 12.56"
+		"62 5.83 7 12.56")
+	(relative FALSE))
+
+([OSMRoads_Class20030] of  OMTPoly
+
+	(description "507088303")
+	(label "507088303")
+	(latitude "62 5.83")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.56")
+	(playground-index 0)
+	(points
+		"62 5.83 7 12.56"
+		"62 5.78 7 12.66")
+	(relative FALSE))
+
+([OSMRoads_Class20031] of  OMTPoly
+
+	(description "230236963")
+	(label "230236963")
+	(latitude "62 5.78")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.66")
+	(playground-index 0)
+	(points
+		"62 5.78 7 12.66"
+		"62 5.76 7 12.96")
+	(relative FALSE))
+
+([OSMRoads_Class20039] of  OMTPoly
+
+	(description "331041942")
+	(label "331041942")
+	(latitude "62 5.67")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.33")
+	(playground-index 0)
+	(points
+		"62 5.67 7 13.33"
+		"62 5.76 7 13.35")
+	(relative FALSE))
+
+([OSMRoads_Class20040] of  OMTPoly
+
+	(description "331041950")
+	(label "331041950")
+	(latitude "62 5.66")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.1")
+	(playground-index 0)
+	(points
+		"62 5.66 7 13.1"
+		"62 5.63 7 13.14")
+	(relative FALSE))
+
+([OSMRoads_Class20041] of  CloFuncall
+
+	(source "osm.data/PATH"))
+
+([OSMRoads_Class20042] of  OMTPoly
+
+	(description "69915279")
+	(label "69915279")
+	(latitude "62 5.76")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.96")
+	(playground-index 0)
+	(points
+		"62 5.76 7 12.96"
+		"62 5.75 7 12.96")
+	(relative FALSE))
+
+([OSMRoads_Class20043] of  OMTPoly
+
+	(description "37829787")
+	(label "37829787")
+	(latitude "62 6.14")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.36")
+	(playground-index 0)
+	(points
+		"62 6.14 7 12.36"
+		"62 5.84 7 12.56")
+	(relative FALSE))
+
+([OSMRoads_Class20044] of  OMTPoly
+
+	(description "230236960")
+	(label "230236960")
+	(latitude "62 5.75")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.96")
+	(playground-index 0)
+	(points
+		"62 5.75 7 12.96"
+		"62 5.75 7 12.97")
+	(relative FALSE))
+
+([OSMRoads_Class20045] of  OMTPoly
+
+	(description "230236962")
+	(label "230236962")
+	(latitude "62 5.75")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.97")
+	(playground-index 0)
+	(points
+		"62 5.75 7 12.97"
+		"62 5.67 7 13.1")
+	(relative FALSE))
+
+([OSMRoads_Class20046] of  OMTPoly
+
+	(description "331041944")
+	(label "331041944")
+	(latitude "62 5.67")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.1")
+	(playground-index 0)
+	(points
+		"62 5.67 7 13.1"
+		"62 5.66 7 13.1")
+	(relative FALSE))
+
+([OSMRoads_Class20047] of  OMTPoly
+
+	(description "25352065")
+	(label "25352065")
+	(latitude "62 5.63")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.14")
+	(playground-index 0)
+	(points
+		"62 5.63 7 13.14"
+		"62 5.67 7 13.32")
+	(relative FALSE))
+
+([OSMRoads_Class20048] of  OMTPoly
+
+	(description "331041949")
+	(label "331041949")
+	(latitude "62 5.76")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.35")
+	(playground-index 0)
+	(points
+		"62 5.76 7 13.35"
+		"62 5.69 7 13.6")
+	(relative FALSE))
+
+([OSMRoads_Class20049] of  OMTPoly
+
+	(description "331041943")
+	(label "331041943")
+	(latitude "62 5.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.6")
+	(playground-index 0)
+	(points
+		"62 5.69 7 13.6"
+		"62 5.68 7 13.6")
+	(relative FALSE))
+
+([OSMRoads_Class20050] of  OMTPoly
+
+	(description "331041946")
+	(label "331041946")
+	(latitude "62 5.68")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 13.6")
+	(playground-index 0)
+	(points
+		"62 5.68 7 13.6"
+		"62 4.4 7 15.16")
+	(relative FALSE))
+
+([OSMRoads_Class20051] of  OMTPoly
+
+	(description "266852674")
+	(label "266852674")
+	(latitude "62 4.4")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 15.16")
+	(playground-index 0)
+	(points
+		"62 4.4 7 15.16"
+		"62 2.1 7 15.6")
+	(relative FALSE))
+
+([OSMRoads_Class20052] of  OMTPoly
+
+	(description "171430984")
+	(label "171430984")
+	(latitude "62 1.87")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 16.64")
+	(playground-index 0)
+	(points
+		"62 1.87 7 16.64"
+		"62 2.1 7 15.6")
+	(relative FALSE))
+
+([OSMRoads_Class20053] of  Motoroad
+
+	(dirways
+		[OSMRoads_Class20054]
+		[OSMRoads_Class20056]
+		[OSMRoads_Class20058]
+		[OSMRoads_Class20060]
+		[OSMRoads_Class20062]
+		[OSMRoads_Class20064]
+		[OSMRoads_Class20066]
+		[OSMRoads_Class20068]
+		[OSMRoads_Class20070]
+		[OSMRoads_Class20072]
+		[OSMRoads_Class20074]
+		[OSMRoads_Class20076]
+		[OSMRoads_Class20078]
+		[OSMRoads_Class20080]
+		[OSMRoads_Class20082]
+		[OSMRoads_Class20084]
+		[OSMRoads_Class20086]
+		[OSMRoads_Class20088]
+		[OSMRoads_Class20090]
+		[OSMRoads_Class20092]
+		[OSMRoads_Class20094]
+		[OSMRoads_Class20096])
+	(from1 "Geiranger")
+	(title "Geirangervegen")
+	(to1 "Djupvatnet Lake"))
+
+([OSMRoads_Class20054] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20055]))
+
+([OSMRoads_Class20055] of  Way
+
+	(id "37829781")
+	(poly [OSMRoads_Class20022])
+	(source "[[62.1023721 7.2059524] [62.1024219 7.205822] [62.1025022 7.2056505] [62.1026536 7.2053864] [62.1028166 7.2051112] [62.1030936 7.2046133] [62.1034417 7.2040256]]"))
+
+([OSMRoads_Class20056] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20057]))
+
+([OSMRoads_Class20057] of  Way
+
+	(id "37829787")
+	(poly [OSMRoads_Class20043])
+	(source "[[62.1023721 7.2059524] [62.1021081 7.2067563] [62.1020017 7.2070343] [62.1018878 7.2072325] [62.1018035 7.2073427] [62.1017004 7.2074478] [62.1015742 7.2075123] [62.1013783 7.2075573] [62.1012173 7.2075593] [62.1010818 7.2075397] [62.1008531 7.20744] [62.1006215 7.2073207] [62.1003443 7.2071525] [62.0999352 7.2068748] [62.0997989 7.2067868] [62.0994365 7.2066401] [62.0992242 7.2065051] [62.0991729 7.2064699] [62.0991143 7.2064406] [62.0990006 7.2063816] [62.0989578 7.2063663] [62.0988828 7.2063565] [62.098816 7.20638] [62.0987492 7.2064328] [62.0986888 7.2065247] [62.0985965 7.2067034] [62.0985469 7.2068102] [62.098476 7.2069234] [62.0983346 7.207084] [62.0982577 7.2072131] [62.0981937 7.2073578] [62.0981342 7.2075143] [62.0980743 7.207669] [62.0980191 7.2077656] [62.0979563 7.20783] [62.097758 7.2080338] [62.0977128 7.2081196] [62.0977003 7.2082377] [62.0977204 7.2083235] [62.097768 7.2083503] [62.0978208 7.2083235] [62.0978986 7.2082377] [62.0979764 7.2081357] [62.0981546 7.2078729] [62.0982938 7.2076669] [62.0983685 7.2075757] [62.09844 7.2075194] [62.098484 7.2075073] [62.0985216 7.2075328] [62.0985461 7.207573] [62.0985674 7.2076508] [62.0985706 7.2077111] [62.0985586 7.2077688] [62.0985179 7.2078386] [62.0983454 7.2080445] [62.0981948 7.2081947] [62.0979639 7.2085005] [62.097632 7.2089292] [62.0973309 7.2092694]]"))
+
+([OSMRoads_Class20058] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20059]))
+
+([OSMRoads_Class20059] of  Way
+
+	(id "230236961")
+	(poly [OSMRoads_Class20029])
+	(source "[[62.0973309 7.2092694] [62.0972361 7.2093944]]"))
+
+([OSMRoads_Class20060] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20061]))
+
+([OSMRoads_Class20061] of  Way
+
+	(id "507088303")
+	(poly [OSMRoads_Class20030])
+	(source "[[62.0972361 7.2093944] [62.0970727 7.2095879] [62.0969496 7.2097171] [62.0968309 7.2097805] [62.096733 7.2097969] [62.0966341 7.2098204] [62.0965572 7.209858] [62.096511 7.2099285] [62.0964649 7.2100224] [62.0963989 7.2102549] [62.0963352 7.2106542] [62.096289 7.2110159]]"))
+
+([OSMRoads_Class20062] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20063]))
+
+([OSMRoads_Class20063] of  Way
+
+	(id "230236963")
+	(poly [OSMRoads_Class20031])
+	(source "[[62.096289 7.2110159] [62.096256 7.2113001] [62.0962263 7.2116313] [62.0962011 7.2120259] [62.0961928 7.2124004] [62.096189 7.2127545] [62.096194 7.2130924] [62.0962044 7.213234] [62.0962141 7.213366] [62.0962467 7.2136343] [62.0962944 7.2138703] [62.096431 7.214431] [62.0964852 7.2146481] [62.0965204 7.2148627] [62.0965279 7.2150666] [62.0965166 7.2152764] [62.0964894 7.2154093] [62.0964474 7.2155471] [62.0963915 7.2156567] [62.096334 7.2157331] [62.0962578 7.2157929] [62.0959547 7.215999]]"))
+
+([OSMRoads_Class20064] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20065]))
+
+([OSMRoads_Class20065] of  Way
+
+	(id "69915279")
+	(poly [OSMRoads_Class20042])
+	(source "[[62.0959547 7.215999] [62.095869 7.2160545]]"))
+
+([OSMRoads_Class20066] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20067]))
+
+([OSMRoads_Class20067] of  Way
+
+	(id "230236960")
+	(poly [OSMRoads_Class20044])
+	(source "[[62.095869 7.2160545] [62.0957703 7.2161184]]"))
+
+([OSMRoads_Class20068] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20069]))
+
+([OSMRoads_Class20069] of  Way
+
+	(id "69915279")
+	(poly [OSMRoads_Class20042])
+	(source "[[62.0959547 7.215999] [62.095869 7.2160545]]"))
+
+([OSMRoads_Class20070] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20071]))
+
+([OSMRoads_Class20071] of  Way
+
+	(id "230236960")
+	(poly [OSMRoads_Class20044])
+	(source "[[62.095869 7.2160545] [62.0957703 7.2161184]]"))
+
+([OSMRoads_Class20072] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20073]))
+
+([OSMRoads_Class20073] of  Way
+
+	(id "69915279")
+	(poly [OSMRoads_Class20042])
+	(source "[[62.0959547 7.215999] [62.095869 7.2160545]]"))
+
+([OSMRoads_Class20074] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20075]))
+
+([OSMRoads_Class20075] of  Way
+
+	(id "230236962")
+	(poly [OSMRoads_Class20045])
+	(source "[[62.0957703 7.2161184] [62.0955234 7.2162745] [62.0952925 7.2164423] [62.0952172 7.2165126] [62.0951619 7.2165951] [62.0951167 7.2166705] [62.0950743 7.2167885] [62.0950392 7.2169495] [62.0950116 7.2171479] [62.0949985 7.2173989] [62.094983 7.2176646] [62.0949511 7.2178904] [62.0949177 7.2180316] [62.094878 7.2181446] [62.0948197 7.2182475] [62.0947404 7.2183206] [62.0946689 7.2183571] [62.0945904 7.2183605] [62.0944784 7.2183299]]"))
+
+([OSMRoads_Class20076] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20077]))
+
+([OSMRoads_Class20077] of  Way
+
+	(id "331041944")
+	(poly [OSMRoads_Class20046])
+	(source "[[62.0944784 7.2183299] [62.0943782 7.2183073]]"))
+
+([OSMRoads_Class20078] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20079]))
+
+([OSMRoads_Class20079] of  Way
+
+	(id "230236962")
+	(poly [OSMRoads_Class20045])
+	(source "[[62.0957703 7.2161184] [62.0955234 7.2162745] [62.0952925 7.2164423] [62.0952172 7.2165126] [62.0951619 7.2165951] [62.0951167 7.2166705] [62.0950743 7.2167885] [62.0950392 7.2169495] [62.0950116 7.2171479] [62.0949985 7.2173989] [62.094983 7.2176646] [62.0949511 7.2178904] [62.0949177 7.2180316] [62.094878 7.2181446] [62.0948197 7.2182475] [62.0947404 7.2183206] [62.0946689 7.2183571] [62.0945904 7.2183605] [62.0944784 7.2183299]]"))
+
+([OSMRoads_Class20080] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20081]))
+
+([OSMRoads_Class20081] of  Way
+
+	(id "331041944")
+	(poly [OSMRoads_Class20046])
+	(source "[[62.0944784 7.2183299] [62.0943782 7.2183073]]"))
+
+([OSMRoads_Class20082] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20083]))
+
+([OSMRoads_Class20083] of  Way
+
+	(id "331041950")
+	(poly [OSMRoads_Class20040])
+	(source "[[62.0943782 7.2183073] [62.0943098 7.218309] [62.0942554 7.2183571] [62.094201 7.2184153] [62.0941233 7.2185481] [62.0939919 7.2187607] [62.0938878 7.2189135] [62.0937976 7.2190165]]"))
+
+([OSMRoads_Class20084] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20085]))
+
+([OSMRoads_Class20085] of  Way
+
+	(id "25352065")
+	(poly [OSMRoads_Class20047])
+	(source "[[62.0937976 7.2190165] [62.093716 7.2190497] [62.0936367 7.2190347] [62.0935617 7.2189799] [62.0934399 7.2188941] [62.0933985 7.218878] [62.0933621 7.218878] [62.0933244 7.2189021] [62.0932955 7.2189692] [62.0932855 7.219047] [62.093293 7.2191247] [62.0933106 7.2192106] [62.0935014 7.2199079] [62.0935529 7.2200474] [62.0936106 7.2201788] [62.0936922 7.2203317] [62.0938617 7.220616] [62.0939245 7.2206965] [62.0939947 7.2207689] [62.0940625 7.2208279] [62.0941395 7.2208866] [62.0941736 7.2209476] [62.0941901 7.2210005] [62.0941923 7.2210463] [62.0941868 7.2211097] [62.0941719 7.2211485] [62.0941423 7.2211672] [62.0941181 7.2211731] [62.0940642 7.2211461] [62.0940005 7.2210651] [62.0937619 7.2207914] [62.0936069 7.220566] [62.0935212 7.2204121] [62.0934129 7.220182] [62.0933601 7.2200727] [62.0933233 7.2200387] [62.0932898 7.2200387] [62.0932579 7.220068] [62.0932381 7.2201409] [62.0932365 7.2202242] [62.0932612 7.2203252] [62.0933228 7.2204297] [62.0935314 7.2207794] [62.093726 7.2210518] [62.0938947 7.2212668] [62.0941162 7.2215228] [62.0942289 7.2216543] [62.0943537 7.221834] [62.0944751 7.2220207]]"))
+
+([OSMRoads_Class20086] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20087]))
+
+([OSMRoads_Class20087] of  Way
+
+	(id "331041942")
+	(poly [OSMRoads_Class20039])
+	(source "[[62.0945488 7.2221005] [62.0945977 7.2221405] [62.0946614 7.2221651] [62.0947703 7.2221839] [62.0948885 7.2221905] [62.0950308 7.2222051] [62.0951006 7.2222203] [62.095177 7.2222638] [62.0953314 7.2224082] [62.0954518 7.2225339] [62.0955315 7.2226102] [62.0956057 7.2226255] [62.0956689 7.2226314] [62.0957255 7.2226325] [62.0958079 7.222602] [62.0958904 7.2225492] [62.0959613 7.2224763]]"))
+
+([OSMRoads_Class20088] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20089]))
+
+([OSMRoads_Class20089] of  Way
+
+	(id "331041949")
+	(poly [OSMRoads_Class20048])
+	(source "[[62.0959613 7.2224763] [62.0960393 7.2223883] [62.0961245 7.2222661] [62.0962157 7.2221604] [62.0966339 7.2216202] [62.0967175 7.2215239] [62.0967603 7.2214958] [62.096801 7.2214887] [62.0968345 7.2215157] [62.0968582 7.2215615] [62.0968675 7.2216461] [62.0968653 7.2217294] [62.0968422 7.2218128] [62.0968021 7.2218868] [62.096734 7.2219584] [62.0966361 7.22205] [62.0965669 7.2221416] [62.0965158 7.2222415] [62.0964652 7.222366] [62.0964257 7.2225022] [62.0963729 7.2227617] [62.0963273 7.2229179] [62.0962366 7.2231105] [62.0961413 7.2232688] [62.0960552 7.22339] [62.0959656 7.2235155] [62.095835 7.223655] [62.095759 7.2237364] [62.0956892 7.2238069] [62.0956595 7.2238621] [62.0956425 7.2239384] [62.0956419 7.2240277] [62.0956579 7.2240958] [62.0956821 7.2241428] [62.0957244 7.2241404] [62.0957782 7.224131] [62.0958667 7.2240617] [62.0962817 7.2236812] [62.0966131 7.2234381] [62.0968334 7.2232855] [62.0969164 7.223215] [62.0969802 7.2231093] [62.0970516 7.2229672] [62.0971078 7.2228155] [62.0971918 7.2226211] [62.0972268 7.2225729] [62.0972594 7.222543] [62.0972889 7.2225447] [62.0973187 7.2225656] [62.0973356 7.2226294] [62.0973441 7.2227157] [62.0973363 7.2228303] [62.0972944 7.2229814] [62.0972112 7.2232837] [62.0971195 7.2237139] [62.0970558 7.2239497] [62.0969898 7.2241136] [62.0969501 7.2242005] [62.096835 7.2243931] [62.0966781 7.2245957] [62.0964558 7.2247984] [62.0961006 7.2251886] [62.0955891 7.2258629] [62.0954796 7.2260207] [62.0953521 7.2262217] [62.0952269 7.2263711] [62.0950643 7.2265091] [62.0948951 7.2266236] [62.0948352 7.2266485]]"))
+
+([OSMRoads_Class20090] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20091]))
+
+([OSMRoads_Class20091] of  Way
+
+	(id "331041943")
+	(poly [OSMRoads_Class20049])
+	(source "[[62.0948352 7.2266485] [62.0947303 7.2266767]]"))
+
+([OSMRoads_Class20092] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20093]))
+
+([OSMRoads_Class20093] of  Way
+
+	(id "331041946")
+	(poly [OSMRoads_Class20050])
+	(source "[[62.0947303 7.2266767] [62.0945873 7.2267] [62.0943797 7.2267049] [62.0942734 7.2266966] [62.0941614 7.2266705] [62.0939448 7.226555] [62.0937462 7.2264492] [62.093262 7.2262482] [62.0931205 7.2261635] [62.0929713 7.2260473] [62.0927132 7.2257932] [62.0925624 7.2256271] [62.0924971 7.2255158] [62.0924365 7.2253663] [62.0924085 7.2252052] [62.0924233 7.2250491] [62.0924847 7.2248216] [62.0925511 7.2246259] [62.0925919 7.2245376] [62.0926798 7.2243632] [62.0927062 7.2242353] [62.0927078 7.2240742] [62.0926945 7.2239613] [62.0926479 7.2238401] [62.0925862 7.2237355] [62.0925144 7.2236578] [62.0924598 7.2236092] [62.0923611 7.2235777] [62.0922919 7.223591] [62.092239 7.2236325] [62.0921947 7.2237172] [62.0921761 7.2238517] [62.0921683 7.2240244] [62.0921628 7.2241706] [62.092145 7.2243051] [62.0921139 7.2243832] [62.0920641 7.2244147] [62.0920074 7.2243865] [62.0919615 7.2243001] [62.0919001 7.2241374] [62.091841 7.2239563] [62.0917625 7.2237786] [62.0916318 7.2235852] [62.0914639 7.2233653] [62.0913956 7.2232904] [62.0912938 7.223194] [62.0911865 7.2231459] [62.0910489 7.2231259] [62.0909214 7.2231425] [62.0907947 7.223204] [62.0905825 7.2233385] [62.0904589 7.2233983] [62.0903524 7.2234182] [62.0902643 7.2234184] [62.0902409 7.2234185] [62.0901223 7.2234116] [62.0898409 7.2233252] [62.0897118 7.2233186] [62.0895898 7.2233501] [62.0894926 7.2233933] [62.0894653 7.2234121] [62.0894327 7.2234348] [62.0893659 7.2235063] [62.0892197 7.2237371] [62.0890619 7.2240145] [62.0889818 7.2241274] [62.0888831 7.224242] [62.0887999 7.2242951] [62.0886864 7.22433] [62.0885527 7.2243333] [62.0883404 7.2243184] [62.0882067 7.2243151] [62.0880932 7.2243317] [62.0880015 7.2243881] [62.0879043 7.2244629] [62.0877535 7.224609] [62.0873375 7.2250309] [62.0869146 7.225456] [62.0866409 7.2257334] [62.0865002 7.2258579] [62.086347 7.2259742] [62.0862615 7.2260273] [62.0861775 7.2260589] [62.0860982 7.2260639] [62.0859933 7.2260473] [62.0859101 7.2259925] [62.0857655 7.2258613] [62.0856698 7.2257932] [62.0855625 7.2257699] [62.0854747 7.2257749] [62.0853752 7.2258164] [62.0852772 7.2258978] [62.0851575 7.2260174] [62.0848387 7.2264043] [62.0843597 7.2269889] [62.0842866 7.2271019] [62.0842299 7.2272165] [62.0841506 7.2274108] [62.0840697 7.2276798] [62.0840168 7.2278492] [62.0839554 7.2279622] [62.0838948 7.2280552] [62.0838271 7.2281133] [62.0837284 7.2281664] [62.08359 7.2282113] [62.0832968 7.2282927] [62.0831335 7.2283441] [62.0830558 7.2283441] [62.0829749 7.2283126] [62.0829018 7.2282711] [62.0825371 7.2279721] [62.082457 7.2279157] [62.0823684 7.2278874] [62.0822689 7.2278907] [62.082174 7.227914] [62.0820677 7.2279507] [62.0818326 7.2280812] [62.0816182 7.2282198] [62.0814774 7.2283477] [62.0813669 7.2284603] [62.081296 7.2285486] [62.0812487 7.2286285] [62.0811926 7.2287436] [62.0811299 7.2289573] [62.0810848 7.2292415] [62.0810253 7.2295761] [62.08096 7.229839] [62.0808946 7.2300964] [62.0808011 7.2303947] [62.0806922 7.2307047] [62.0805867 7.2309678] [62.0804745 7.2312074] [62.0803139 7.2314986] [62.0800995 7.2318509] [62.0799466 7.23206] [62.0797783 7.2322713] [62.079576 7.2324921] [62.0790987 7.2330535] [62.0785675 7.2336735] [62.0783915 7.2338544] [62.0782265 7.2340094] [62.0777668 7.2342889] [62.0776227 7.2343946] [62.0774941 7.2345203] [62.0774077 7.2346463] [62.0773406 7.234759] [62.0772603 7.2349234] [62.0771855 7.2351536] [62.0771327 7.2354026] [62.0770931 7.2356421] [62.0770653 7.2359587] [62.0770554 7.2363744] [62.0770554 7.237072] [62.0770554 7.2377713] [62.0770477 7.238096] [62.0770411 7.2383708] [62.0770279 7.238608] [62.0769938 7.2388523] [62.0769135 7.2392166] [62.0767991 7.2396861] [62.07672 7.2399773] [62.0766408 7.2401958] [62.076533 7.2404236] [62.0764087 7.2406115] [62.0762756 7.2407806] [62.0761084 7.240952] [62.0758158 7.2412315] [62.0756586 7.2414194] [62.0755068 7.2416449] [62.0752208 7.2421053] [62.0739579 7.2441013] [62.0737149 7.244515] [62.073529 7.2448627] [62.0732401 7.2454481] [62.0731109 7.24571] [62.0730212 7.2459284] [62.0729646 7.2460869] [62.0729162 7.2462678] [62.0728243 7.2468209] [62.0727402 7.247313] [62.0726703 7.2476465] [62.0725631 7.2480751] [62.0724421 7.2485331] [62.0723321 7.2490111] [62.0722831 7.2492366] [62.0722496 7.249435] [62.0722364 7.2495924] [62.0722353 7.2497274] [62.0722479 7.249866] [62.0722727 7.2500199] [62.0723035 7.2501349] [62.0723425 7.2502547] [62.0723898 7.2503557] [62.0724333 7.2504321] [62.0724811 7.2505002] [62.0725235 7.2505542] [62.0725785 7.2505988] [62.0726291 7.2506282] [62.0727193 7.2506564] [62.072799 7.2506646] [62.0728986 7.2506599] [62.073052 7.2506399] [62.0732533 7.2506035] [62.0733628 7.2505894] [62.0734656 7.2505976] [62.0735289 7.2506176] [62.0735745 7.2506411] [62.0736103 7.2506822] [62.0736416 7.2507444] [62.0736675 7.2508337] [62.0736845 7.2509429] [62.0736867 7.2510345] [62.0736801 7.2511425] [62.0736625 7.2512236] [62.0736279 7.2513375] [62.0735525 7.2515371] [62.0735036 7.251691] [62.0734469 7.2518859] [62.0734288 7.2519869] [62.0734152 7.252223] [62.0733991 7.2525577] [62.0733875 7.2527033]]"))
+
+([OSMRoads_Class20094] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20095]))
+
+([OSMRoads_Class20095] of  Way
+
+	(id "266852674")
+	(poly [OSMRoads_Class20051])
+	(source "[[62.0733875 7.2527033] [62.0733474 7.2530223] [62.0732979 7.2533351] [62.0732451 7.253597] [62.0731901 7.253833] [62.0731059 7.2540925] [62.0729849 7.2544284] [62.0727847 7.2549381] [62.0724938 7.2556674] [62.0723079 7.2561007] [62.0721605 7.2563978] [62.0720774 7.256534] [62.071825 7.2569122] [62.0714449 7.2574406] [62.0712507 7.2576908] [62.0711726 7.257807] [62.0710989 7.2579339] [62.0709047 7.2583437] [62.0708145 7.2585457] [62.070721 7.2587395] [62.0705836 7.2590037] [62.0705175 7.2591235] [62.0704587 7.2592245] [62.0703976 7.2593102] [62.0703112 7.2594171] [62.0702485 7.2594734] [62.0701655 7.259538] [62.0700912 7.2595733] [62.0700088 7.2596018] [62.0699248 7.2596101] [62.0696743 7.2596101] [62.0695452 7.2596134] [62.069465 7.259625] [62.0693849 7.2596566] [62.069311 7.2596981] [62.0692371 7.2597629] [62.069143 7.2598675] [62.068973 7.2600604] [62.068649 7.260461] [62.068439 7.2606886] [62.0683099 7.2608165] [62.0682286 7.2608845] [62.0681636 7.2609261] [62.0681006 7.2609568] [62.0680348 7.2609776] [62.0679598 7.2609908] [62.0678707 7.260995] [62.0677669 7.2609939] [62.067517 7.2609899] [62.067342 7.261009] [62.0668172 7.2610986] [62.0666935 7.2611153] [62.066424 7.2611169] [62.0661945 7.2610978] [62.0659377 7.2610762] [62.0658018 7.261077] [62.0657025 7.2610958] [62.0655736 7.2611277] [62.0653966 7.2612149] [62.0653511 7.2612523] [62.0653153 7.2612888] [62.0652881 7.2613436] [62.0652733 7.2614092] [62.0652772 7.2614698] [62.0652927 7.261508] [62.0653176 7.2615429] [62.0653523 7.2615595] [62.0654048 7.261557] [62.065595 7.2614607] [62.0656874 7.2614418] [62.0657528 7.2614311] [62.0658206 7.2614311] [62.0658907 7.2614375] [62.0659521 7.2614574] [62.0660074 7.261484] [62.0660653 7.2615321] [62.0662513 7.2616625] [62.0663423 7.2617231] [62.0664411 7.2617804] [62.0665061 7.2617995] [62.0665745 7.261812] [62.0666438 7.261812] [62.0667239 7.2618012] [62.0668367 7.2617663] [62.0668923 7.2617596] [62.0669227 7.2617663] [62.0669487 7.2618037] [62.0669658 7.2618859] [62.0669643 7.2619523] [62.0669573 7.2620196] [62.0669297 7.2620744] [62.0668919 7.2621051] [62.0668538 7.2621167] [62.0667476 7.2621142] [62.0665536 7.2621065] [62.0663737 7.2620854] [62.0662246 7.2620701] [62.0661019 7.2620643] [62.0659765 7.2620737] [62.06585 7.2621007] [62.0657592 7.2621253] [62.0656618 7.2621453] [62.0655809 7.2621477] [62.0654819 7.2621383] [62.0653994 7.2621195] [62.0652751 7.2620643] [62.0651903 7.262029] [62.0650946 7.2620185] [62.0649994 7.2620243] [62.0649296 7.2620455] [62.0648333 7.2620842] [62.0647376 7.2621547] [62.0646479 7.2622416] [62.0645725 7.2623344] [62.0644625 7.2624988] [62.0643987 7.262588] [62.0643596 7.2626233] [62.0643282 7.2626268] [62.0642952 7.2626139] [62.0642303 7.2625716] [62.0641566 7.2625023] [62.0640746 7.2624142] [62.0639921 7.2623168] [62.0639228 7.2622193] [62.0638545 7.2620925] [62.0638078 7.2619762] [62.0637709 7.2618623] [62.0637324 7.2617249] [62.0636812 7.2615194] [62.0636312 7.2613467] [62.063574 7.2611647] [62.0635354 7.2610661] [62.0635057 7.261012] [62.0634672 7.2609897] [62.0634293 7.2609991] [62.0634001 7.2610285] [62.0633709 7.2610872] [62.0633555 7.2611565] [62.0633577 7.2612234] [62.0633726 7.2613045] [62.0633979 7.2614043] [62.063481 7.2616767] [62.0635239 7.26184] [62.0635547 7.261975] [62.0635734 7.2621019] [62.0635795 7.2622075] [62.0635778 7.2623238] [62.0635657 7.2624342] [62.0635387 7.2625563] [62.0634942 7.2626914] [62.0633908 7.2629967] [62.0633242 7.263167] [62.0632697 7.2632821] [62.0632152 7.2633631] [62.0631558 7.2634136] [62.063081 7.2634488] [62.0629649 7.2634676] [62.0628763 7.263497] [62.0627784 7.263544] [62.0626656 7.2636097] [62.0625583 7.2636955] [62.0624725 7.26378] [62.0623729 7.2639033] [62.0622618 7.2640759] [62.0621022 7.2643507] [62.0620593 7.2644224] [62.0620213 7.2644576] [62.0619795 7.2644623] [62.0619498 7.2644353] [62.0619283 7.2643813] [62.0619206 7.2643085] [62.0619404 7.2642345] [62.0619918 7.2641294] [62.0620714 7.2640043] [62.0621088 7.263928] [62.0621479 7.2638293] [62.0621897 7.2636731] [62.0622353 7.2635005] [62.0622904 7.2633032] [62.0623344 7.2631001] [62.0623597 7.2629462] [62.0623729 7.2628018] [62.0623889 7.2626057] [62.0623916 7.2624271] [62.0623916 7.2622663] [62.0623795 7.2620936] [62.0623613 7.2619738] [62.0623338 7.2618423] [62.0622937 7.2617261] [62.0622623 7.2616626] [62.062221 7.2616215] [62.0621842 7.2616403] [62.0621572 7.2616767] [62.0621383 7.2617382] [62.062132 7.2618478] [62.0621461 7.2620471] [62.0621492 7.2622065] [62.0621476 7.2623792] [62.0621406 7.2625188] [62.0621118 7.2626998] [62.0620745 7.2628609] [62.062027 7.2630552] [62.0619391 7.2633027] [62.0618628 7.263482] [62.0617811 7.2636531] [62.0617235 7.2637594] [62.0615757 7.2639636] [62.0614059 7.2641906] [62.0610508 7.2646912] [62.0608699 7.2649702] [62.0607477 7.2651853] [62.0606349 7.2653896] [62.0605415 7.2655789] [62.0603011 7.2660639] [62.0600941 7.2664757] [62.059956 7.2667548] [62.0598708 7.2669175] [62.0598027 7.2670562] [62.0597377 7.2671974] [62.0596696 7.2673485] [62.0596109 7.2675029] [62.0595019 7.2678434] [62.0593856 7.2682462] [62.0592976 7.2685484] [62.0592362 7.2687461] [62.0591805 7.2689088] [62.0591214 7.2690525] [62.0589908 7.2693302] [62.0589159 7.2694884] [62.0588397 7.2696678] [62.0587875 7.2698098] [62.0587416 7.269951] [62.058691 7.2701228] [62.0586549 7.2702698] [62.0586272 7.2704143] [62.0585856 7.2706792] [62.0585342 7.271062] [62.0585117 7.2712206] [62.0584969 7.271317] [62.0584763 7.271405] [62.0584533 7.2714639] [62.0584261 7.2715104] [62.0584008 7.2715121] [62.0583759 7.2714864] [62.0583568 7.2714407] [62.0583467 7.2713801] [62.0583416 7.2713045] [62.0583812 7.2709576] [62.058412 7.2705724] [62.0584775 7.2699664] [62.0585045 7.2697539] [62.0585353 7.2695578] [62.0585721 7.2693643] [62.0586678 7.2689392] [62.05884 7.2682787] [62.0589179 7.2679676] [62.0589675 7.2677584] [62.059011 7.2675557] [62.0590702 7.2671655] [62.0591201 7.2665714] [62.0591459 7.2663706] [62.0591932 7.2660406] [62.0592609 7.2656789] [62.0593192 7.2653607] [62.0593704 7.2651187] [62.0594205 7.2649261] [62.0594634 7.2647817] [62.0595575 7.2645386] [62.059651 7.2643648] [62.0597292 7.2642438] [62.0599548 7.2639338] [62.0600439 7.2637835] [62.0601534 7.2635827] [62.0602481 7.2633842] [62.0603201 7.2632104] [62.0603801 7.2630425] [62.06045 7.2628017] [62.0604891 7.2626338] [62.0605204 7.2624295] [62.060538 7.2622603] [62.0605512 7.2620537] [62.0605529 7.2618435] [62.0605452 7.261672] [62.0605221 7.26145] [62.0604902 7.2612152] [62.0604536 7.2609992] [62.0604401 7.2609181] [62.0603884 7.260648] [62.0603719 7.2604976] [62.0603653 7.2602686] [62.0603741 7.2601019] [62.0603955 7.2597625] [62.0604043 7.25953] [62.060406 7.2593538] [62.0603944 7.2591683] [62.060368 7.2589945] [62.0603273 7.258843] [62.0602778 7.258695] [62.0602305 7.2585834] [62.060182 7.258493] [62.0601199 7.2583955] [62.0600604 7.2583216] [62.0599674 7.2582206] [62.0598838 7.2581207] [62.0598255 7.2580303] [62.0597171 7.2578166] [62.0596648 7.2577203] [62.0596164 7.2576404] [62.0595801 7.2576052] [62.0595531 7.2576028] [62.059525 7.257624] [62.0595074 7.2576627] [62.0594882 7.2577226] [62.0594838 7.2577802] [62.0594959 7.2578577] [62.0595432 7.2579575] [62.0596769 7.2582159] [62.0598029 7.2584777] [62.0599113 7.2587267] [62.060006 7.2589757] [62.0600555 7.2591366] [62.0600676 7.2592105] [62.0600665 7.2592763] [62.0600483 7.2593479] [62.0600197 7.2593973] [62.0599861 7.2594137] [62.0599564 7.2594008] [62.059924 7.2593538] [62.0598965 7.2592998] [62.0598134 7.2590802] [62.0597644 7.2589721] [62.0597198 7.2588982] [62.0596577 7.2588218] [62.059579 7.2587502] [62.0594816 7.2586821] [62.0591068 7.2584014] [62.0590095 7.2583333] [62.0589016 7.2582722] [62.0588295 7.2582499] [62.0587569 7.2582452] [62.0586958 7.2582581] [62.0586402 7.2582934] [62.0585621 7.2583674] [62.0584075 7.258547] [62.0583183 7.2586351] [62.0582473 7.258688] [62.0581725 7.2587244] [62.0581158 7.2587326] [62.0580624 7.2587173] [62.058014 7.2586786] [62.0579656 7.2586057] [62.0579271 7.2585212] [62.0578963 7.2584225] [62.0578395 7.2581883] [62.0578121 7.2580914] [62.0577697 7.2579986] [62.0577185 7.2579375] [62.0576717 7.2578941] [62.05762 7.2578812] [62.0575379 7.2578932] [62.0574808 7.2579094] [62.0574049 7.2579399] [62.0573493 7.2579786] [62.0573152 7.258035] [62.0572854 7.2581266] [62.05727 7.2582217] [62.057275 7.2583345] [62.0572964 7.2584754] [62.0573306 7.2586762] [62.0574131 7.259106] [62.057465 7.2593631] [62.0575017 7.2595217] [62.0575457 7.2596815] [62.0575991 7.2598189] [62.0576541 7.2599234] [62.0578979 7.260251] [62.0579485 7.2603414] [62.0579942 7.2604542] [62.0580481 7.2606127] [62.0580811 7.2607454] [62.0581114 7.2609016] [62.0581323 7.2610531] [62.0581505 7.2612516] [62.058156 7.2614148] [62.0581483 7.2617448] [62.058156 7.2618575] [62.0581747 7.2619985] [62.0582022 7.2621641] [62.0582374 7.2623402] [62.0582429 7.2624318] [62.0582369 7.2624976] [62.0582171 7.262568] [62.0581929 7.2626033] [62.0581615 7.262615] [62.0581213 7.2625809] [62.0580938 7.2625152] [62.0580663 7.2624165] [62.0580311 7.2622298] [62.0579562 7.2618294] [62.0578693 7.2614418] [62.0577945 7.2611776] [62.0577394 7.2609885] [62.0576787 7.2608061] [62.0576395 7.2607208] [62.057592 7.2606378] [62.057543 7.2605946] [62.0574714 7.2605564] [62.0572869 7.260495] [62.0571904 7.2604501] [62.0571001 7.2603688] [62.0570293 7.2602957] [62.0569001 7.2601279] [62.0565881 7.259746] [62.0562106 7.259261] [62.0556129 7.2584705] [62.0553047 7.2580636] [62.0552066 7.2579396] [62.055112 7.2578358] [62.054977 7.2577262] [62.0548957 7.2576838] [62.0544995 7.2575568] [62.0543038 7.2574879] [62.0541376 7.2574189] [62.0539726 7.2573293] [62.0538341 7.2572487] [62.0537399 7.2571806] [62.0536488 7.2570967] [62.0533605 7.256753] [62.0531888 7.2565395] [62.0530359 7.2563486] [62.052911 7.256214] [62.0528082 7.256121] [62.0526961 7.2560305] [62.0525876 7.2559616] [62.052486 7.2559234] [62.0523747 7.255886] [62.0522793 7.2558636] [62.0522163 7.2558287] [62.0521688 7.2557764] [62.0521373 7.2557208] [62.0521058 7.2556145] [62.0520933 7.2555348] [62.0520968 7.2554451] [62.0521081 7.2553471] [62.0521353 7.2552516] [62.0521723 7.2551694] [62.0522073 7.2551021] [62.0522718 7.2550029] [62.0524634 7.2546236] [62.0527259 7.2540869] [62.0527644 7.2539906] [62.0527809 7.2539107] [62.0527853 7.2538274] [62.0527743 7.2537393] [62.0527496 7.2536359] [62.0527099 7.253542] [62.0526604 7.2534527] [62.0526006 7.2533764] [62.0525564 7.2533259] [62.0523907 7.2531838] [62.0522718 7.2530969] [62.0522179 7.2530523] [62.0521739 7.2530006] [62.0521507 7.2529384] [62.0521265 7.2528444] [62.0521227 7.2527375] [62.0521271 7.2526366] [62.0521485 7.2525179] [62.0521799 7.2524205] [62.0522261 7.2523253] [62.0522735 7.2522502] [62.052356 7.2521386] [62.0525125 7.2519035] [62.0525866 7.2518028] [62.0526753 7.2517194] [62.0527628 7.2516607] [62.0528387 7.251636] [62.0529202 7.2516149] [62.0530225 7.2516031] [62.0533241 7.2516125] [62.0533984 7.2515937] [62.0534821 7.2515456] [62.0535377 7.2514927] [62.0535938 7.2514152] [62.0536417 7.2513166] [62.053689 7.2511874] [62.0537314 7.2510418] [62.0537584 7.2508926] [62.0537776 7.2507482] [62.0537881 7.2506061] [62.0537986 7.2503231] [62.0538057 7.2500107] [62.0537986 7.249723] [62.0537754 7.2492591] [62.0537523 7.2489502] [62.0537325 7.2487964] [62.0537193 7.2487271] [62.0536967 7.2486684] [62.0536703 7.2486426] [62.0536384 7.2486379] [62.0536109 7.248652] [62.0535878 7.2486848] [62.0535669 7.2487471] [62.0535509 7.2488281] [62.0534908 7.2492777] [62.0534566 7.2494588] [62.0534161 7.2495866] [62.0533663 7.2496863] [62.0533032 7.249766] [62.053241 7.2498092] [62.0531507 7.2498474] [62.0529903 7.2498949] [62.0528417 7.2499254] [62.0526938 7.2499686] [62.0525996 7.2500035] [62.0525039 7.2500633] [62.0521204 7.2503616] [62.0519925 7.2504619] [62.0519139 7.25051] [62.0518539 7.250515] [62.0517886 7.25051] [62.0516204 7.2504652] [62.0515138 7.2504536] [62.0514422 7.2504552] [62.0513597 7.2504718] [62.0512593 7.2505051] [62.0511472 7.2505549] [62.0510538 7.2506196] [62.0509783 7.250701] [62.0509051 7.250799] [62.0508226 7.2509319] [62.0506257 7.2512939] [62.0505603 7.2513986] [62.0505073 7.2514517] [62.0504575 7.2514783] [62.0503945 7.2515082] [62.0500854 7.2515347] [62.0499508 7.2515497] [62.0498052 7.2515862] [62.0496916 7.2516377] [62.0496145 7.2516859] [62.0495219 7.2517623] [62.04943 7.2518652] [62.0493179 7.2519931] [62.0492206 7.2521409] [62.0490953 7.2523602] [62.0490034 7.2524914] [62.0489302 7.2525561] [62.0488586 7.252596] [62.0487886 7.252606] [62.048724 7.252586] [62.048562 7.2524631] [62.0484787 7.2523817] [62.0484071 7.2523535] [62.0483581 7.2523469] [62.0482997 7.2523701] [62.0482429 7.2524316] [62.0480156 7.252787] [62.0479323 7.2528767] [62.0478607 7.2529348] [62.0477812 7.2529813] [62.0476785 7.2530228] [62.047539 7.2530682] [62.0474333 7.2531071] [62.0473232 7.253174] [62.0469535 7.2535318] [62.0468544 7.253608] [62.046745 7.2536764] [62.0466386 7.2537184] [62.0465321 7.2537417] [62.0464344 7.2537433] [62.046344 7.2537246] [62.0462536 7.2536904] [62.0461872 7.2536469] [62.0461275 7.2535784] [62.046048 7.2534664] [62.0459393 7.2532938] [62.0458183 7.2531289] [62.0457352 7.253048] [62.0456696 7.2529936] [62.0455894 7.2529625] [62.0455201 7.2529609] [62.0454603 7.2529842] [62.0453888 7.2530247] [62.0449193 7.25344] [62.0448303 7.25351] [62.044718 7.2535691] [62.0446276 7.2536002] [62.0444577 7.2536126] [62.0443556 7.2536235] [62.0442696 7.2536577] [62.0441923 7.253706] [62.0441012 7.2537962] [62.0439772 7.2539626] [62.0437825 7.2542193] [62.0436622 7.2544106] [62.0435463 7.2545894] [62.0434573 7.2547061] [62.0433866 7.2547714] [62.0433202 7.2548181] [62.0432393 7.2548523] [62.0431729 7.2548648] [62.0428849 7.254857] [62.0425932 7.2548492] [62.0424393 7.2548383] [62.0422796 7.2548103] [62.0416904 7.2546268] [62.0415723 7.254605] [62.0414855 7.254605] [62.0414031 7.2546237] [62.0413112 7.2546625] [62.0411158 7.2547901] [62.0410225 7.2548352] [62.0407818 7.2549036] [62.0406702 7.2549659] [62.0405937 7.2550436] [62.040512 7.2551307] [62.0404471 7.2552318] [62.0403377 7.2554154] [62.0402254 7.255602] [62.0400956 7.2558618] [62.0397572 7.2565291] [62.0393672 7.2572994] [62.0392445 7.2575152] [62.0391687 7.2576256] [62.0391045 7.2576863] [62.0390286 7.2577361] [62.0389594 7.2577609] [62.0388901 7.2577672] [62.0386071 7.2577563] [62.0384919 7.2577734] [62.0384321 7.2577952] [62.0383555 7.2578512] [62.0382745 7.2579569] [62.0381075 7.2582198] [62.0380375 7.2583053] [62.0379763 7.2583567] [62.0379223 7.25838] [62.0378581 7.2583847] [62.0377844 7.2583738] [62.0375795 7.2582711] [62.0374533 7.2582322] [62.0373593 7.2582182] [62.0372623 7.2582276] [62.037147 7.258252] [62.0369448 7.2583224] [62.0365859 7.258439] [62.036293 7.2585204] [62.0361743 7.2585578] [62.0360815 7.2586018] [62.0359804 7.2586634] [62.0358494 7.2587866] [62.035639 7.2590087] [62.035509 7.2591583] [62.03531 7.2594025] [62.0351996 7.2595631] [62.0350975 7.25975] [62.0349871 7.2599788]]"))
+
+([OSMRoads_Class20096] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20097]))
+
+([OSMRoads_Class20097] of  Way
+
+	(id "171430984")
+	(poly [OSMRoads_Class20052])
+	(source "[[62.0311028 7.2774016] [62.0310211 7.2772507] [62.030938 7.2771201] [62.0308 7.2768836] [62.0306972 7.2766752] [62.0306111 7.2764854] [62.0305141 7.2762288] [62.0303593 7.2757682] [62.0302741 7.2754946] [62.0302019 7.2753033] [62.030134 7.275154] [62.0300428 7.2750109] [62.0299378 7.2748865] [62.0297291 7.2746967] [62.0296401 7.2746127] [62.0295592 7.2745069] [62.0295059 7.2744027] [62.0294286 7.2742207] [62.0293709 7.274017] [62.0293301 7.2737759] [62.0293097 7.2735348] [62.0293038 7.2732735] [62.0293133 7.2730651] [62.0293425 7.2728535] [62.0293739 7.2726933] [62.0294242 7.2725331] [62.0294855 7.2724133] [62.0295672 7.2722858] [62.0297525 7.272068] [62.0298561 7.2719218] [62.0299458 7.2717694] [62.0300195 7.2715905] [62.03013 7.2712738] [62.0302996 7.2707615] [62.0309527 7.2688222] [62.0310584 7.2685325] [62.0311386 7.2683192] [62.0312043 7.268173] [62.031278 7.2680579] [62.0313422 7.2679786] [62.0314312 7.2679148] [62.0315107 7.2678666] [62.0316121 7.267823] [62.0320826 7.267683] [62.0323321 7.267599] [62.0323941 7.2675539] [62.0324553 7.2674948] [62.0325275 7.2673937] [62.0326071 7.267246] [62.0326676 7.2670904] [62.032726 7.2668882] [62.0327661 7.2667047] [62.0328616 7.2662505] [62.0329608 7.265759] [62.0330279 7.2654634] [62.0330724 7.2653048] [62.033133 7.265143] [62.0332088 7.2649859] [62.0332854 7.2648833] [62.0333832 7.2647899] [62.0334824 7.2646997] [62.033801 7.2644512] [62.0339712 7.2643038] [62.0340682 7.2641828] [62.0341652 7.2640354] [62.0342456 7.263866] [62.0343075 7.2636703] [62.0343473 7.2634738] [62.0343714 7.263309] [62.0343874 7.2630772] [62.0344064 7.2628066] [62.0344348 7.2624566] [62.0344691 7.2620646] [62.0345114 7.2617504] [62.0345625 7.261472] [62.0346383 7.2610972] [62.0346962 7.2608389] [62.0347787 7.2605661] [62.0348819 7.2602626] [62.0349871 7.2599788]]"))
+
+([OSMRoads_Class20098] of  CloFuncall
+
+	(source "(osm.data/delete-unref \"OMTPoly\")"))
+
+([OSMRoads_Class20099] of  CloFuncall
+
+	(source "(osm.data/delete-unref \"Way\")"))
+
+([OSMRoads_Class20100] of  CloFuncall
+
+	(source "(osm.data/delete-unref \"Dirway\")"))
+
+([OSMRoads_Class20102] of  OMTPoly
+
+	(description "331041948")
+	(label "331041948")
+	(latitude "62 6.21")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.24")
+	(playground-index 0)
+	(points
+		"62 6.21 7 12.24"
+		"62 6.24 7 12.16")
+	(relative FALSE))
+
+([OSMRoads_Class20103] of  OMTPoly
+
+	(description "69915286")
+	(label "69915286")
+	(latitude "62 6.24")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 12.16")
+	(playground-index 0)
+	(points
+		"62 6.24 7 12.16"
+		"62 6.97 7 11.14")
+	(relative FALSE))
+
+([OSMRoads_Class20104] of  OMTPoly
+
+	(description "25367042")
+	(label "25367042")
+	(latitude "62 6.97")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 11.14")
+	(playground-index 0)
+	(points
+		"62 6.97 7 11.14"
+		"62 6.97 7 11.13")
+	(relative FALSE))
+
+([OSMRoads_Class20105] of  OMTPoly
+
+	(description "37828382")
+	(label "37828382")
+	(latitude "62 6.97")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 11.13")
+	(playground-index 0)
+	(points
+		"62 6.97 7 11.13"
+		"62 7.77 7 10.81")
+	(relative FALSE))
+
+([OSMRoads_Class20106] of  OMTPoly
+
+	(description "45020730")
+	(label "45020730")
+	(latitude "62 7.77")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 10.81")
+	(playground-index 0)
+	(points
+		"62 7.77 7 10.81"
+		"62 8.95 7 10.99")
+	(relative FALSE))
+
+([OSMRoads_Class20107] of  OMTPoly
+
+	(description "45020738")
+	(label "45020738")
+	(latitude "62 8.95")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "7 10.99")
+	(playground-index 0)
+	(points
+		"62 8.95 7 10.99"
+		"62 9.18 7 10.97")
+	(relative FALSE))
+
+([OSMRoads_Class20108] of  Motoroad
+
+	(dirways
+		[OSMRoads_Class20109]
+		[OSMRoads_Class20111]
+		[OSMRoads_Class20113]
+		[OSMRoads_Class20115]
+		[OSMRoads_Class20117]
+		[OSMRoads_Class20119]
+		[OSMRoads_Class20121])
+	(from1 "Geiranger")
+	(title "To Summit1")
+	(to1 "Summit1"))
+
+([OSMRoads_Class20109] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20110]))
+
+([OSMRoads_Class20110] of  Way
+
+	(id "37829781")
+	(poly [OSMRoads_Class20022])
+	(source "[[62.1023721 7.2059524] [62.1024219 7.205822] [62.1025022 7.2056505] [62.1026536 7.2053864] [62.1028166 7.2051112] [62.1030936 7.2046133] [62.1034417 7.2040256]]"))
+
+([OSMRoads_Class20111] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20112]))
+
+([OSMRoads_Class20112] of  Way
+
+	(id "331041948")
+	(poly [OSMRoads_Class20102])
+	(source "[[62.1034417 7.2040256] [62.1035452 7.2038362] [62.1037283 7.2034075] [62.1038982 7.2030465] [62.1040673 7.2027423]]"))
+
+([OSMRoads_Class20113] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20114]))
+
+([OSMRoads_Class20114] of  Way
+
+	(id "69915286")
+	(poly [OSMRoads_Class20103])
+	(source "[[62.1040673 7.2027423] [62.1043199 7.2023813] [62.1047755 7.2018241] [62.105275 7.2011804] [62.105541 7.2007995] [62.1057217 7.2004937] [62.1059689 7.2000378] [62.1061759 7.1995576] [62.1066954 7.198305] [62.1068912 7.1978759] [62.1073956 7.1968808] [62.1075724 7.1965019] [62.1078635 7.1957938] [62.1079841 7.1955343] [62.1081209 7.1952795] [62.1082627 7.1950542] [62.1083755 7.194914] [62.1085738 7.1947055] [62.1088123 7.1945049] [62.109412 7.1940784] [62.1097257 7.193829] [62.1100632 7.1935044] [62.1102627 7.1932738] [62.1104923 7.1930055] [62.1108298 7.1926112] [62.1118222 7.1917959] [62.1122237 7.191482] [62.1132172 7.1908088] [62.1135785 7.1905755] [62.1137755 7.1904199] [62.113901 7.1902912] [62.1140377 7.1900927] [62.1141268 7.1899103] [62.1142811 7.1894919] [62.1144103 7.1891083] [62.1144768 7.1889366] [62.1145508 7.1887757] [62.1148506 7.1882688] [62.1149184 7.1880783] [62.1150187 7.1877189] [62.115141 7.187204] [62.1152357 7.1869143] [62.1152796 7.1867976] [62.1153236 7.1867051] [62.1153706 7.1866327] [62.1154452 7.1865361] [62.1158479 7.1860922] [62.1159414 7.1859769] [62.116016 7.1858622] [62.116063 7.1857576] [62.116105 7.1856505]]"))
+
+([OSMRoads_Class20115] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20116]))
+
+([OSMRoads_Class20116] of  Way
+
+	(id "25367042")
+	(poly [OSMRoads_Class20104])
+	(source "[[62.116105 7.1856505] [62.1161444 7.1855136]]"))
+
+([OSMRoads_Class20117] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20118]))
+
+([OSMRoads_Class20118] of  Way
+
+	(id "37828382")
+	(poly [OSMRoads_Class20105])
+	(source "[[62.1161444 7.1855136] [62.1161538 7.1854738] [62.1163233 7.1847121] [62.1163635 7.1845539] [62.1164061 7.1844278] [62.1172064 7.1828051] [62.1174046 7.1823384] [62.1177721 7.181224] [62.1179766 7.1806688] [62.1180148 7.1805279] [62.1180456 7.1803549] [62.11807 7.1801994] [62.1180845 7.1800465] [62.1181039 7.1799942] [62.1181378 7.1799486] [62.1181566 7.1799472] [62.1181898 7.1799714] [62.1182068 7.1800237] [62.1182174 7.1801028] [62.1182105 7.1801833] [62.1181547 7.180363] [62.1181133 7.1805065] [62.1180525 7.1807774] [62.1179866 7.1811489] [62.1179045 7.1816706] [62.1177928 7.1826026] [62.1177646 7.1828668] [62.1177345 7.1830948] [62.1176655 7.1834261] [62.1174579 7.1845754] [62.1174404 7.1847524] [62.1174441 7.1848208] [62.1174554 7.1848718] [62.1174824 7.184908] [62.1175294 7.184916] [62.1175539 7.1848879] [62.1175758 7.1848423] [62.1175965 7.1847551] [62.1176285 7.1845445] [62.1176737 7.1842562] [62.117732 7.1839638] [62.1178317 7.1835696] [62.1182281 7.1821534] [62.1185297 7.1809812] [62.1186683 7.1804099] [62.1187336 7.1801001] [62.1187737 7.1798601] [62.1188273 7.1794812] [62.1188505 7.1794403] [62.1188822 7.1794296] [62.1189227 7.1794551] [62.1189455 7.1795342] [62.1189496 7.1796214] [62.1189302 7.1797427] [62.1188816 7.1799177] [62.1188276 7.1801739] [62.1187574 7.1806527] [62.1187003 7.1811006] [62.1186683 7.1815458] [62.1186602 7.1825839] [62.118632 7.1833282] [62.1185994 7.183701] [62.1185856 7.1840215] [62.1185925 7.1842884] [62.1186081 7.184444] [62.1186226 7.1845191] [62.1186458 7.1845727] [62.1186847 7.1845861] [62.1187185 7.1845794] [62.1187499 7.1845191] [62.1187794 7.1844252] [62.1188051 7.1841811] [62.1188289 7.1838807] [62.1188842 7.1834903] [62.1189951 7.182785] [62.119113 7.182207] [62.1192127 7.1817926] [62.1192905 7.1813728] [62.1193657 7.1809464] [62.1194172 7.1805641] [62.1194861 7.1798909] [62.1196793 7.1789132] [62.1197878 7.1783942] [62.1198474 7.1781837] [62.1198731 7.1781354] [62.1199001 7.17813] [62.119932 7.1781488] [62.119954 7.1781971] [62.1199647 7.1782896] [62.1199521 7.1783768] [62.1199176 7.1785096] [62.1198386 7.1788878] [62.1198235 7.1790755] [62.1198185 7.1796415] [62.1198261 7.1802731] [62.1198442 7.1808069] [62.119853 7.1809745] [62.1198919 7.1815955] [62.1199847 7.1826147] [62.120028 7.1829701] [62.1200713 7.1832383] [62.1201421 7.1835012] [62.1202243 7.183709] [62.1204488 7.1841798] [62.1205046 7.184279] [62.1205316 7.1843072] [62.1205498 7.1843112] [62.1205924 7.1842884] [62.1206194 7.1842361] [62.1206281 7.1841757] [62.1206325 7.1840886] [62.1206213 7.1840363] [62.1204852 7.1837372] [62.120413 7.1835588] [62.1203591 7.1833684] [62.1203177 7.1831713] [62.1202958 7.1830318] [62.1202864 7.1829004] [62.1202851 7.1827367] [62.1202939 7.1825718] [62.1204488 7.1815056] [62.1205228 7.1805306] [62.1205861 7.1801176] [62.1207216 7.1794752] [62.1207473 7.1793156] [62.1207699 7.1791667] [62.1207874 7.178877] [62.1207893 7.1786075] [62.1207975 7.1784398] [62.1208131 7.1783044] [62.1208395 7.1782373] [62.1208646 7.1781998] [62.1208972 7.1781891] [62.1209279 7.1781958] [62.1209737 7.1782695] [62.1209956 7.1783433] [62.1210094 7.1785713] [62.121017 7.1793558] [62.121027 7.1802383] [62.1210577 7.181515] [62.121064 7.1816357] [62.1210828 7.1817698] [62.1211117 7.1818851] [62.1211781 7.1820488] [62.1212402 7.1821332] [62.1216309 7.1824337] [62.1219143 7.182616] [62.1225878 7.1829218] [62.1228336 7.1830693] [62.1231978 7.1833054] [62.1233516 7.1833483] [62.1238783 7.1834073] [62.1240238 7.1834234] [62.1241066 7.1834422] [62.1241893 7.1834797] [62.1243047 7.1835495] [62.1244301 7.1836433] [62.1245468 7.1837506] [62.1247128 7.183917] [62.1247549 7.183929] [62.1247813 7.1839102] [62.1247982 7.1838767] [62.1248076 7.1838351] [62.1248132 7.1837841] [62.1248026 7.1837426] [62.1247825 7.183701] [62.1247455 7.1836621] [62.1246929 7.1836138] [62.1245819 7.1835562] [62.1245223 7.1835226] [62.1244427 7.1834717] [62.1243875 7.1834234] [62.1241749 7.1831833] [62.1237316 7.1826549] [62.1236463 7.1825423] [62.1235679 7.1824189] [62.1235115 7.1822982] [62.1234143 7.1820394] [62.1227659 7.1802356] [62.1225841 7.1797193] [62.1224373 7.1793183] [62.1223803 7.1791319] [62.1223445 7.1789937] [62.1223257 7.1788918] [62.1223113 7.1787738] [62.1223019 7.1786249] [62.1223006 7.1784895] [62.1223125 7.1783312] [62.1223345 7.1782052] [62.122389 7.1779557] [62.1224975 7.1774742] [62.122517 7.1773656] [62.1225421 7.177143] [62.1225596 7.1769043] [62.122569 7.1766079] [62.1225991 7.1755511] [62.122643 7.1746351] [62.1226769 7.1740383] [62.1227082 7.1737004] [62.1227364 7.1734885] [62.1228029 7.1730486] [62.1228644 7.1727308] [62.1229321 7.1724317] [62.1229885 7.1722252] [62.1230989 7.1718818] [62.1231867 7.1716284] [62.1232274 7.1715345] [62.1232569 7.1714809] [62.1232945 7.1714353] [62.1233409 7.1714004] [62.1233861 7.1713709] [62.123445 7.1713615] [62.1235002 7.1713669] [62.1235698 7.1713897] [62.123615 7.1714299] [62.1236808 7.171509] [62.1237335 7.1715895] [62.1237705 7.1716619] [62.1237956 7.1717316] [62.1238144 7.1718134] [62.1238319 7.1719248] [62.1238376 7.1720709] [62.1238338 7.1721903] [62.1238169 7.1723177] [62.1237887 7.1724558] [62.1236532 7.172952] [62.1235943 7.173172] [62.1235604 7.1733504] [62.1235291 7.1735327] [62.1235052 7.1737326] [62.1234626 7.1742207] [62.1234375 7.1746177] [62.1234137 7.1751394] [62.1234137 7.1752789] [62.1234231 7.1754385] [62.1234363 7.1756128] [62.123472 7.1758622] [62.1235189 7.176101] [62.1236042 7.1764282] [62.123904 7.1774461] [62.1239542 7.1776861] [62.1240395 7.1781716] [62.1241881 7.1791734] [62.1242665 7.1797193] [62.1242934 7.1798426] [62.1243254 7.1799137] [62.1243611 7.1799553] [62.1243975 7.1799741] [62.1244282 7.1799687] [62.1244552 7.1799365] [62.1244828 7.1798896] [62.1244972 7.1798319] [62.1245098 7.1797608] [62.1245135 7.1796763] [62.1245054 7.179561] [62.1244226 7.1789843] [62.124395 7.1787657] [62.1243781 7.1785941] [62.1243712 7.178405] [62.1243731 7.178236] [62.124422 7.1775829] [62.1244289 7.1773898] [62.1244314 7.177139] [62.124422 7.1768345] [62.1243831 7.1761667] [62.1243549 7.1757094] [62.1243517 7.1755538] [62.1243574 7.1753982] [62.1243775 7.1752507] [62.1244088 7.1750616] [62.1244364 7.1749248] [62.1244847 7.1747625] [62.1245417 7.1746029] [62.1246113 7.1744286] [62.1248126 7.1740155] [62.1248678 7.173872] [62.1249004 7.1737688] [62.1249217 7.1736548] [62.1249317 7.1735368] [62.1249368 7.1733959] [62.1249336 7.1732645] [62.1249129 7.172881] [62.1249136 7.1727174] [62.1249167 7.1725417] [62.1249285 7.1724049] [62.1249537 7.1722131] [62.1249857 7.1720347] [62.1250741 7.1716163] [62.1251893 7.1711282] [62.1253048 7.1706775] [62.1253732 7.1704509] [62.1254359 7.1702524] [62.1255349 7.1699721] [62.1256447 7.1696529] [62.125723 7.1693928] [62.1258071 7.1690695] [62.1259011 7.1686753] [62.1259895 7.1682743] [62.1260629 7.1678947] [62.126103 7.1676641] [62.1261657 7.167314] [62.1261851 7.1672577] [62.1262178 7.1672255] [62.126251 7.1672148] [62.1262886 7.1672363] [62.1263149 7.1672765] [62.1263425 7.167357] [62.1263532 7.1674213] [62.1263544 7.1675286] [62.1263363 7.1676547] [62.1263131 7.1677955] [62.1262805 7.1679309] [62.1262585 7.1680288] [62.1262341 7.1681563] [62.1262134 7.1683145] [62.1261714 7.1687973] [62.1260541 7.1708358] [62.1260391 7.1713025] [62.1260353 7.1716699] [62.1260478 7.1719972] [62.1260679 7.1723646] [62.1261005 7.172606] [62.126182 7.1730969] [62.1262485 7.1733839] [62.1263162 7.1736199] [62.1266711 7.1746284] [62.1267639 7.1749154] [62.1268241 7.1751166] [62.1268642 7.1753097] [62.1268899 7.1754666] [62.1269118 7.1756436] [62.1269212 7.1758314] [62.1269263 7.1761224] [62.12693 7.1765449] [62.1269375 7.176848] [62.1269538 7.1770438] [62.1269802 7.1772476] [62.1270272 7.1774595] [62.1270535 7.1775654] [62.1270893 7.1776969] [62.1271375 7.1778283] [62.1271902 7.1779651] [62.1272554 7.1781193] [62.1273545 7.1783084] [62.1274266 7.1784479] [62.1275087 7.178574] [62.1275852 7.1786719] [62.1276561 7.1787577] [62.1277601 7.1788422] [62.1279094 7.1789535] [62.1282159 7.17916] [62.1283959 7.1792982] [62.1286152 7.1794752] [62.1290315 7.1798078] [62.1292178 7.1799607] [62.1293062 7.180017] [62.1293783 7.1800559] [62.1294767 7.1800867]]"))
+
+([OSMRoads_Class20119] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20120]))
+
+([OSMRoads_Class20120] of  Way
+
+	(id "45020730")
+	(poly [OSMRoads_Class20106])
+	(source "[[62.1294767 7.1800867] [62.1298279 7.1801502] [62.130175 7.1801726] [62.1305568 7.1802156] [62.1307085 7.1802451] [62.1308727 7.1802934] [62.1310169 7.1803631] [62.1311812 7.1804757] [62.1314729 7.1806824] [62.1322801 7.1813059] [62.1324519 7.1814427] [62.1326374 7.1816103] [62.1327634 7.1817391] [62.132875 7.1818584] [62.1330794 7.1821052] [62.1332054 7.1822594] [62.1333539 7.182415] [62.1334592 7.1825156] [62.1335912 7.1826307] [62.133992 7.18293] [62.1342986 7.1831875] [62.1344296 7.1833269] [62.134575 7.1834865] [62.1346859 7.1836421] [62.1348113 7.1838298] [62.1349716 7.1841475] [62.1351097 7.1843918] [62.1352037 7.1845178] [62.1352977 7.1846224] [62.1353993 7.1846895] [62.1354607 7.1847109] [62.135598 7.1847324] [62.1358249 7.1847297] [62.1362561 7.184719] [62.1371242 7.1846788] [62.1375028 7.1846654] [62.1377572 7.1846251] [62.1379653 7.1845661] [62.1381521 7.184491] [62.1383852 7.1843891] [62.1386109 7.1842362] [62.1388164 7.1840672] [62.1390546 7.1838661] [62.1391448 7.183798] [62.139252 7.1837376] [62.1393811 7.1836759] [62.1394776 7.1836451] [62.1395779 7.1836223] [62.1396995 7.1836196] [62.1397822 7.1836263] [62.1399264 7.1836585] [62.1400761 7.1837148] [62.1406815 7.1839817] [62.1408044 7.1840273] [62.1409335 7.1840595] [62.141129 7.1840957] [62.1415984 7.1841386] [62.1422044 7.1841815] [62.1423936 7.1841788] [62.1425265 7.1841601] [62.1428712 7.1840555] [62.1432659 7.1838918] [62.1434702 7.1837765] [62.1440693 7.1833742] [62.1448423 7.1828453] [62.1458449 7.1823818] [62.1468419 7.1821761] [62.1472429 7.1821761] [62.1476338 7.1822834] [62.1479983 7.1824591] [62.1488304 7.1830108] [62.1491067 7.1832464]]"))
+
+([OSMRoads_Class20121] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20122]))
+
+([OSMRoads_Class20122] of  Way
+
+	(id "45020738")
+	(poly [OSMRoads_Class20107])
+	(source "[[62.1491067 7.1832464] [62.149328 7.1833778] [62.1497791 7.1836353] [62.1502703 7.1838069] [62.1508116 7.1838927] [62.1512426 7.1838713] [62.1516936 7.1837855] [62.1522063 7.1834734] [62.1525208 7.1832401] [62.1528102 7.1829906] [62.1530554 7.1827663]]"))
+
+([OSMRoads_Class20123] of  OMTPoly
+
+	(description "119212445")
+	(label "119212445")
+	(latitude "-13 8.3")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 35.8")
+	(playground-index 0)
+	(points
+		"-13 8.3 -72 35.8"
+		"-13 9 -72 34.83")
+	(relative FALSE))
+
+([OSMRoads_Class20124] of  OMTPoly
+
+	(description "130849126")
+	(label "130849126")
+	(latitude "-13 9.04")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 34.81")
+	(playground-index 0)
+	(points
+		"-13 9.04 -72 34.81"
+		"-13 10.18 -72 34.89")
+	(relative FALSE))
+
+([OSMRoads_Class20125] of  OMTPoly
+
+	(description "36092548")
+	(label "36092548")
+	(latitude "-13 10.18")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 34.89")
+	(playground-index 0)
+	(points
+		"-13 10.18 -72 34.89"
+		"-13 10.54 -72 34.11")
+	(relative FALSE))
+
+([OSMRoads_Class20126] of  OMTPoly
+
+	(description "392020704")
+	(label "392020704")
+	(latitude "-13 10.54")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 34.11")
+	(playground-index 0)
+	(points
+		"-13 10.54 -72 34.11"
+		"-13 10.54 -72 34.08")
+	(relative FALSE))
+
+([OSMRoads_Class20127] of  OMTPoly
+
+	(description "392020703")
+	(label "392020703")
+	(latitude "-13 10.54")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 34.08")
+	(playground-index 0)
+	(points
+		"-13 10.54 -72 34.08"
+		"-13 10.46 -72 33.81")
+	(relative FALSE))
+
+([OSMRoads_Class20128] of  OMTPoly
+
+	(description "178004094")
+	(label "178004094")
+	(latitude "-13 10.46")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 33.81")
+	(playground-index 0)
+	(points
+		"-13 10.46 -72 33.81"
+		"-13 10.46 -72 33.64")
+	(relative FALSE))
+
+([OSMRoads_Class20129] of  Motoroad
+
+	(dirways
+		[OSMRoads_Class20130]
+		[OSMRoads_Class20132]
+		[OSMRoads_Class20134]
+		[OSMRoads_Class20136]
+		[OSMRoads_Class20138]
+		[OSMRoads_Class20140])
+	(from1 "Santa Teresa")
+	(title "Machu Picchu 1")
+	(to1 "Hydroelectrica"))
+
+([OSMRoads_Class20130] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20131]))
+
+([OSMRoads_Class20131] of  Way
+
+	(id "119212445")
+	(poly [OSMRoads_Class20123])
+	(source "[[-13.1382993 -72.5967245] [-13.138256 -72.596642] [-13.13815 -72.596525] [-13.137986 -72.596397] [-13.137785 -72.596191] [-13.137609 -72.596056] [-13.137147 -72.595589] [-13.137048 -72.595509] [-13.136845 -72.595382] [-13.136669 -72.595217] [-13.1365 -72.594981] [-13.136271 -72.594705] [-13.135851 -72.594072] [-13.135737 -72.593878] [-13.13551 -72.593659] [-13.135438 -72.593566] [-13.135357 -72.593426] [-13.135169 -72.59297] [-13.135034 -72.592598] [-13.13496 -72.592477] [-13.134775 -72.592246] [-13.13454 -72.592033] [-13.134352 -72.591926] [-13.134262 -72.591839] [-13.134191 -72.591744] [-13.13417 -72.591688] [-13.134186 -72.59161] [-13.134278 -72.591546] [-13.134505 -72.591481] [-13.134623 -72.59142] [-13.135018 -72.591151] [-13.1351 -72.591049] [-13.135172 -72.590906] [-13.135242 -72.590844] [-13.135353 -72.590821] [-13.135573 -72.590836] [-13.135733 -72.590786] [-13.135934 -72.590701] [-13.13604 -72.590693] [-13.136275 -72.590712] [-13.136411 -72.59069] [-13.136559 -72.590634] [-13.136714 -72.590554] [-13.136829 -72.590453] [-13.136927 -72.590337] [-13.137059 -72.590101] [-13.137223 -72.589853] [-13.137357 -72.589398] [-13.137412 -72.589124] [-13.13751 -72.588842] [-13.137586 -72.588709] [-13.137655 -72.588625] [-13.137923 -72.588389] [-13.137984 -72.588354] [-13.138102 -72.588322] [-13.13832 -72.588333] [-13.138668 -72.588324] [-13.138984 -72.58815] [-13.139069 -72.588058] [-13.139192 -72.587878] [-13.139518 -72.587312] [-13.139531 -72.587223] [-13.139509 -72.587033] [-13.139511 -72.586924] [-13.139533 -72.586847] [-13.139571 -72.586785] [-13.139638 -72.58673] [-13.139792 -72.58667] [-13.139849 -72.586632] [-13.139889 -72.586576] [-13.139957 -72.586204] [-13.139991 -72.585853] [-13.140018 -72.585799] [-13.140126 -72.585665] [-13.140183 -72.585556] [-13.140199 -72.58544] [-13.140199 -72.585237] [-13.140305 -72.584801] [-13.140366 -72.58465] [-13.140451 -72.58451] [-13.140513 -72.584449] [-13.14085 -72.584315] [-13.141065 -72.584154] [-13.141338 -72.584023] [-13.141621 -72.583939] [-13.141999 -72.583728] [-13.142218 -72.583659] [-13.14277 -72.583544] [-13.142895 -72.583546] [-13.143176 -72.583582] [-13.143366 -72.583569] [-13.143498 -72.583584] [-13.143702 -72.583579] [-13.143899 -72.58353] [-13.144014 -72.583521] [-13.144317 -72.583525] [-13.144594 -72.583484] [-13.144945 -72.58341] [-13.145196 -72.583331] [-13.145445 -72.583224] [-13.145718 -72.583049] [-13.145905 -72.582893] [-13.146084 -72.582694] [-13.146156 -72.58255] [-13.146328 -72.582308] [-13.14645 -72.581933] [-13.146541 -72.581518] [-13.146591 -72.581393] [-13.146632 -72.581336] [-13.146716 -72.581271] [-13.146979 -72.581125] [-13.147204 -72.581022] [-13.147546 -72.580746] [-13.147659 -72.580677] [-13.148402 -72.580353] [-13.148488 -72.580344] [-13.148622 -72.580362] [-13.148913 -72.580344] [-13.149042 -72.580368] [-13.149211 -72.58046] [-13.149354 -72.580592] [-13.149445 -72.58064] [-13.149515 -72.580647] [-13.149754 -72.580567] [-13.150028 -72.580418]]"))
+
+([OSMRoads_Class20132] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20133]))
+
+([OSMRoads_Class20133] of  Way
+
+	(id "130849126")
+	(poly [OSMRoads_Class20124])
+	(source "[[-13.1507414 -72.5801941] [-13.1509317 -72.5801489] [-13.1511367 -72.5801414] [-13.1513636 -72.5802918] [-13.151532 -72.5805173] [-13.151715 -72.5807128] [-13.1521909 -72.5808406] [-13.1528058 -72.5809834] [-13.1531719 -72.5809459] [-13.1535306 -72.5809383] [-13.1538307 -72.5810661] [-13.1541821 -72.5810812] [-13.1545335 -72.5809759] [-13.1547971 -72.5809459] [-13.1552144 -72.5806677] [-13.1561441 -72.5802316] [-13.1572495 -72.5801565] [-13.1582471 -72.5801619] [-13.1583976 -72.5801962] [-13.1584979 -72.5803078] [-13.1586149 -72.5803507] [-13.1587402 -72.5803593] [-13.1588382 -72.5805638] [-13.1592534 -72.5814303] [-13.1598562 -72.581075] [-13.1606487 -72.5805247] [-13.1614748 -72.5803413] [-13.1621744 -72.5805793] [-13.1632608 -72.5809489] [-13.16342 -72.5809538] [-13.1635781 -72.5809587] [-13.1640449 -72.580973] [-13.1651249 -72.5810062] [-13.1659394 -72.5808657] [-13.1665872 -72.580754] [-13.167536 -72.581224] [-13.1682884 -72.5812616] [-13.1689358 -72.581294] [-13.1696957 -72.5815342]]"))
+
+([OSMRoads_Class20134] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20135]))
+
+([OSMRoads_Class20135] of  Way
+
+	(id "36092548")
+	(poly [OSMRoads_Class20125])
+	(source "[[-13.1696957 -72.5815342] [-13.1712628 -72.5811753] [-13.1727376 -72.5804559] [-13.1739431 -72.5795159] [-13.1750888 -72.5779855] [-13.175256 -72.5776765] [-13.1753797 -72.577216] [-13.1754229 -72.576818] [-13.175097 -72.5753207] [-13.1745659 -72.5737722] [-13.1749825 -72.5724018] [-13.1755024 -72.5717997] [-13.1755499 -72.5712257] [-13.1753464 -72.5698961] [-13.1753346 -72.5696574] [-13.175372 -72.5691107] [-13.1755473 -72.5688362] [-13.1756498 -72.5685315]]"))
+
+([OSMRoads_Class20136] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20137]))
+
+([OSMRoads_Class20137] of  Way
+
+	(id "392020704")
+	(poly [OSMRoads_Class20126])
+	(source "[[-13.1756498 -72.5685315] [-13.1756274 -72.5680063]]"))
+
+([OSMRoads_Class20138] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20139]))
+
+([OSMRoads_Class20139] of  Way
+
+	(id "392020703")
+	(poly [OSMRoads_Class20127])
+	(source "[[-13.1756274 -72.5680063] [-13.1754383 -72.5680025] [-13.1751829 -72.568142] [-13.1749113 -72.5682383] [-13.174774 -72.568606] [-13.1745287 -72.5690573] [-13.1743039 -72.5690258] [-13.1742835 -72.5685273] [-13.1744112 -72.5678083] [-13.1746196 -72.5673222] [-13.1749832 -72.5670475] [-13.1752948 -72.5667643] [-13.1755426 -72.5663846] [-13.1756017 -72.5659791] [-13.1753295 -72.5652302] [-13.1751241 -72.5649022] [-13.1748729 -72.5646302] [-13.1748166 -72.5644884] [-13.1745697 -72.5640868] [-13.1744156 -72.5637864] [-13.1743337 -72.5635761]]"))
+
+([OSMRoads_Class20140] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20141]))
+
+([OSMRoads_Class20141] of  Way
+
+	(id "178004094")
+	(poly [OSMRoads_Class20128])
+	(source "[[-13.1743337 -72.5635761] [-13.1742968 -72.5634955] [-13.174347 -72.563238] [-13.1744222 -72.5630491] [-13.1744138 -72.5627573] [-13.1742968 -72.5626972] [-13.1741715 -72.5626801] [-13.1738288 -72.5626028] [-13.1738037 -72.5623883] [-13.1738288 -72.5621222] [-13.1740294 -72.5616072] [-13.1743302 -72.5610836] [-13.174412 -72.5606268]]"))
+
+([OSMRoads_Class20142] of  Tagvalue
+
+	(value "[\"highway\" \"path\"]"))
+
+([OSMRoads_Class20145] of  OMTPoly
+
+	(description "428940827")
+	(label "428940827")
+	(latitude "-13 10.55")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 33.32")
+	(playground-index 0)
+	(points
+		"-13 10.55 -72 33.32"
+		"-13 10.5 -72 33.52")
+	(relative FALSE))
+
+([OSMRoads_Class20146] of  OMTPoly
+
+	(description "438852776")
+	(label "438852776")
+	(latitude "-13 10.55")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 33.32")
+	(playground-index 0)
+	(points
+		"-13 10.55 -72 33.32"
+		"-13 10.12 -72 33.15")
+	(relative FALSE))
+
+([OSMRoads_Class20147] of  OMTPoly
+
+	(description "232222235")
+	(label "232222235")
+	(latitude "-13 10.12")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 33.15")
+	(playground-index 0)
+	(points
+		"-13 10.12 -72 33.15"
+		"-13 10.08 -72 33.17")
+	(relative FALSE))
+
+([OSMRoads_Class20148] of  OMTPoly
+
+	(description "232222236")
+	(label "232222236")
+	(latitude "-13 10.08")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "-72 33.17")
+	(playground-index 0)
+	(points
+		"-13 10.08 -72 33.17"
+		"-13 9.67 -72 32.17")
+	(relative FALSE))
+
+([OSMRoads_Class20149] of  Motoroad
+
+	(dirways
+		[OSMRoads_Class20150]
+		[OSMRoads_Class20152]
+		[OSMRoads_Class20154]
+		[OSMRoads_Class20156])
+	(from1 "Hidroelectrica")
+	(title "Machu Picchu 2")
+	(to1 "Estrada MP"))
+
+([OSMRoads_Class20150] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class20151]))
+
+([OSMRoads_Class20151] of  Way
+
+	(id "428940827")
+	(poly [OSMRoads_Class20145])
+	(source "[[-13.1758572 -72.5554093] [-13.1758993 -72.5558472] [-13.1758711 -72.5562765] [-13.1758212 -72.556682] [-13.175785 -72.5570539] [-13.1757825 -72.5571964] [-13.175778 -72.5574504] [-13.17569 -72.557572] [-13.1754939 -72.557988] [-13.17539 -72.5581633] [-13.1754512 -72.5585156] [-13.1754023 -72.5585824] [-13.1753043 -72.5585138] [-13.1750383 -72.5587162]]"))
+
+([OSMRoads_Class20152] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20153]))
+
+([OSMRoads_Class20153] of  Way
+
+	(id "438852776")
+	(poly [OSMRoads_Class20146])
+	(source "[[-13.1758572 -72.5554093] [-13.1758259 -72.5552995] [-13.175795 -72.555216] [-13.1757552 -72.5551259] [-13.1756403 -72.5549221] [-13.1749806 -72.5533261] [-13.1745558 -72.5522579] [-13.1744196 -72.5521104] [-13.1739756 -72.5517505] [-13.1738216 -72.551608] [-13.1735807 -72.5515018] [-13.1731979 -72.5515148] [-13.1727951 -72.5514717] [-13.1723266 -72.551519] [-13.1721324 -72.5515949] [-13.1720607 -72.5518166] [-13.1719067 -72.5520027] [-13.1710891 -72.552584] [-13.170903 -72.5527344] [-13.1705298 -72.5528166] [-13.170217 -72.5528017] [-13.1696212 -72.5524939] [-13.1693113 -72.5523448] [-13.1692214 -72.552311] [-13.169057 -72.5523057] [-13.1687683 -72.5524009] [-13.1687511 -72.5523875] [-13.1687177 -72.5523614] [-13.1686235 -72.5524203]]"))
+
+([OSMRoads_Class20154] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20155]))
+
+([OSMRoads_Class20155] of  Way
+
+	(id "232222235")
+	(poly [OSMRoads_Class20147])
+	(source "[[-13.1686235 -72.5524203] [-13.1680365 -72.552796]]"))
+
+([OSMRoads_Class20156] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class20157]))
+
+([OSMRoads_Class20157] of  Way
+
+	(id "232222236")
+	(poly [OSMRoads_Class20148])
+	(source "[[-13.1680365 -72.552796] [-13.1676736 -72.552973] [-13.1673875 -72.5530342] [-13.1671018 -72.5530265] [-13.1661889 -72.5529239] [-13.1649968 -72.5527434] [-13.1647565 -72.5526381] [-13.1638576 -72.5524999] [-13.1629925 -72.5524083] [-13.1627241 -72.552372] [-13.1623494 -72.5523733] [-13.1620363 -72.5524994] [-13.1608078 -72.5529993] [-13.1601716 -72.5531949] [-13.1592147 -72.5536274] [-13.1589208 -72.5539278] [-13.1586953 -72.5542157] [-13.1585053 -72.5545669] [-13.1582297 -72.5548205] [-13.1581808 -72.5550139] [-13.1578287 -72.5551839] [-13.1575081 -72.5554178] [-13.1571482 -72.5556366] [-13.1566796 -72.5557443] [-13.1566248 -72.5555436] [-13.1563146 -72.5556329] [-13.1558921 -72.5557507] [-13.1559388 -72.5559038] [-13.1557473 -72.5562007] [-13.1555547 -72.5563289] [-13.1552167 -72.5565724] [-13.1540389 -72.5565709] [-13.1532576 -72.5566386] [-13.1524658 -72.5566675] [-13.1524438 -72.5564745] [-13.1509353 -72.5560681] [-13.1500497 -72.5554704] [-13.1495325 -72.5549333] [-13.149221 -72.5541935] [-13.1490236 -72.5539483] [-13.1485052 -72.5536055] [-13.1477021 -72.5524445] [-13.1475613 -72.5525221] [-13.1474524 -72.5519619] [-13.1471402 -72.5513784] [-13.1468388 -72.5509073] [-13.1463756 -72.5500065] [-13.1458006 -72.5493318] [-13.1454426 -72.5488966] [-13.1453761 -72.5484592] [-13.1454351 -72.5480071] [-13.1456493 -72.5472425] [-13.1458495 -72.5466348] [-13.1459554 -72.5462099] [-13.146041 -72.5451796] [-13.1460994 -72.5447636] [-13.1461879 -72.5447729] [-13.1462605 -72.5443776] [-13.1464591 -72.5436785] [-13.1468627 -72.5428803] [-13.1470786 -72.5422974] [-13.1472143 -72.5420811] [-13.1479605 -72.5413922] [-13.1479315 -72.5412958] [-13.1486314 -72.540657] [-13.148793 -72.5404891] [-13.1489072 -72.5402329] [-13.1489505 -72.5399885] [-13.1489679 -72.5397904] [-13.1490283 -72.5391007] [-13.1490861 -72.539071] [-13.1491172 -72.5387229] [-13.14915 -72.5385644] [-13.1492038 -72.5384298] [-13.1492693 -72.5383001] [-13.1493441 -72.5381992] [-13.1495173 -72.5379853] [-13.1496319 -72.5377691] [-13.1496927 -72.5375145] [-13.1497285 -72.5371685] [-13.1498277 -72.5368701] [-13.1499468 -72.5367472] [-13.150398 -72.5364338] [-13.1507511 -72.535976] [-13.1509938 -72.5358583] [-13.1511902 -72.5357991] [-13.1525054 -72.5358516] [-13.1525171 -72.5356879] [-13.1528746 -72.5358085] [-13.1534214 -72.5361234] [-13.1537919 -72.5363228] [-13.1537186 -72.5364776] [-13.1543801 -72.5367918] [-13.1546486 -72.5369657] [-13.154768 -72.5368424] [-13.1549244 -72.5372285] [-13.1548394 -72.5378196] [-13.1546888 -72.5378238] [-13.1546743 -72.5381783] [-13.1547837 -72.5385534] [-13.1549106 -72.5388587] [-13.155045 -72.5387759] [-13.1553896 -72.5391369] [-13.1563361 -72.5396568] [-13.1568373 -72.540041] [-13.1572385 -72.5405201] [-13.1574933 -72.5406195] [-13.1578877 -72.5406638] [-13.1580826 -72.5405666] [-13.1583374 -72.5401297] [-13.1585286 -72.539651] [-13.1586646 -72.5394113] [-13.1588512 -72.5394956] [-13.1592264 -72.5385433] [-13.1593547 -72.5384001] [-13.1600373 -72.5380293] [-13.1602708 -72.5378553] [-13.1604511 -72.5376271] [-13.1606549 -72.5372352] [-13.1612395 -72.5361591]]"))
+
+([OSMRoads_Class20158] of  Scenario
+
+	(final_tasks [OSMRoads_Class20159])
+	(finish_type AND)
+	(initial_tasks [OSMRoads_Class20159])
+	(scenario_scheme [OSMRoads_Class20159])
+	(title "Machu Picchu"))
+
+([OSMRoads_Class20159] of  Task
+
+	(final_actions [OSMRoads_Class20163])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class20161])
+	(task_scheme
+		[OSMRoads_Class20160]
+		[OSMRoads_Class20161]
+		[OSMRoads_Class20162]
+		[OSMRoads_Class20163])
+	(title "MP1"))
+
+([OSMRoads_Class20160] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [OSMRoads_Class20162])
+	(object [BrigBern_Class100001])
+	(road [OSMRoads_Class20129])
+	(spd "30")
+	(title "Santa Teresa to Hydro"))
+
+([OSMRoads_Class20161] of  PutOnMap
+
+	(next_actions [OSMRoads_Class20160])
+	(title "Car on Map"))
+
+([OSMRoads_Class20162] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [OSMRoads_Class20163])
+	(object [BrigBern_Class100001])
+	(road [OSMRoads_Class20149])
+	(spd "30")
+	(title "Hydro to Esrada MP"))
+
+([OSMRoads_Class20163] of  Arrive
+
+	(latitude "-13 10.51")
+	(longitude "-72 32.6")
+	(object [BrigBern_Class100001])
+	(radius 0.1)
+	(speed 30.0)
+	(title "Estrada MP to"))
+
+([OSMRoads_Class20164] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [OSMRoads_Class20158])
+	(%3ACREATION-TIMESTAMP "2018.02.11 18:18:16.208 MSK")
+	(%3ACREATOR "ru"))
 
 ([OSMRoads_Class21] of  Dirway
 
