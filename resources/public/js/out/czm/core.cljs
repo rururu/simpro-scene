@@ -13,9 +13,8 @@
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
                :roll 0}))
-(def H 0)
-(def FH 0)
-(def OH 0)
+(def FLY-CTL [0 0 0 0 0 0 0])
+(def AAT 0)
 (def MAX-UPGROUND 100)
 (defn norm-crs [x]
   (cond
@@ -29,11 +28,6 @@
   ;;(println [:CZML data])
   (.process CZM-SRC data)))
 
-(defn terraHeightResponse [pos]
-  (def OH H)
-(def H (.-height (first pos)))
-(def FH (- (* 2 H) OH)))
-
 (defn fly-control [lat lon alt hea pit rol per]
   (let [dest (js/Cesium.Cartesian3.fromDegrees lon lat alt)]
   (.flyTo (.-camera VIEWER)
@@ -44,6 +38,11 @@
                   :maximumHeight alt
                   :duration per
                   :easingFunction (fn [time] time)})))
+
+(defn terraHeightResponse [pos]
+  (let [[lat lon alt head pitch roll per] FLY-CTL]
+  (def AAT (+ alt (.-height (first pos))))
+  (fly-control lat lon AAT head pitch roll per)))
 
 (defn move-control [lat lon alt hea pit rol]
   ;;(println :MC lat lon alt hea pit rol)
@@ -69,8 +68,10 @@
                          "BACKWARD-RIGHT" (+ crs 135)
                          "BACKWARD-LEFT" (- crs 135)
                          crs))]
-    (fly-control lat lon (if (< alt MAX-UPGROUND) (+ alt FH) alt) head pitch roll per))
-(js/terraHeightRequest TERR-PROV lat lon terraHeightResponse))
+    (if (> alt MAX-UPGROUND) 
+      (fly-control lat lon alt head pitch roll per)
+      (do (def FLY-CTL [lat lon alt head pitch roll per])
+        (js/terraHeightRequest TERR-PROV lat lon terraHeightResponse)))))
 
 (defn move-to [lat lon alt crs]
   (let [pitch (condp = (:view @CAMERA)

@@ -44,7 +44,7 @@
   (let [[lat lon] (:coord vehicle)
        alt (:altitude vehicle)
        alt (int (if (< alt czm/MAX-UPGROUND) 
-	(+ alt czm/FH) 
+	czm/AAT
 	alt))]
   (vswap! VEHICLE merge vehicle)
   (set-html! "onboard-fld" (:name vehicle))
