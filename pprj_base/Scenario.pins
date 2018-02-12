@@ -1,10 +1,7 @@
-; Sun Feb 11 22:19:32 MSK 2018
+; Mon Feb 12 22:42:38 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
-
-([ActivityFlightView] of  ActionClass
-)
 
 ([ActivityStatus] of  EventClass
 
@@ -72,6 +69,10 @@
 		[Scenario_Class470000])
 	(rules [Scenario_Class220001]))
 
+([Camera] of  ActionClass
+
+	(rules [Scenario_Class610001]))
+
 ([CatchException] of  DecisionClass
 
 	(rules
@@ -132,7 +133,12 @@
 	(rules [Scenario_Class230000]))
 
 ([FlightView] of  ActionClass
-)
+
+	(rules
+		[Scenario_Class590013]
+		[Scenario_Class590014]
+		[Scenario_Class590015]
+		[Scenario_Class590016]))
 
 ([Follow] of  ActionClass
 )
@@ -435,7 +441,13 @@
 		[Scenario_Class520002]
 		[Scenario_Class550001]
 		[Scenario_Class520000]
-		[Scenario_Class420000])
+		[Scenario_Class420000]
+		[Scenario_Class590000]
+		[Scenario_Class590014]
+		[Scenario_Class590013]
+		[Scenario_Class590016]
+		[Scenario_Class590015]
+		[Scenario_Class610001])
 	(templates
 		[Action]
 		[Arrive]
@@ -488,7 +500,10 @@
 		[GoLayer]
 		[AddResource]
 		[GoRoad]
-		[SetCenter])
+		[SetCenter]
+		[SetScale]
+		[FlightView]
+		[Camera])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -1612,6 +1627,65 @@
 
 	(source "(ru.rules/sp :all)"))
 
+([Scenario_Class590000] of  Rule
+
+	(lhs "?ss (SetScale status \"START\"\n	title ?tit\n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetScale\")\n(let [scl (a/vv ?scl ?run)]\n  (if (a/worth? scl)\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (retract ?ss)\n       (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ss status\"FAILED\")))")
+	(salience 0)
+	(title "a:SetScale"))
+
+([Scenario_Class590013] of  Rule
+
+	(lhs "?fv (FlightView status \"START\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	run ?run)\n(not FlightView)")
+	(rhs "(println \"Action started:\" ?tit \"FlightView\")\n(let [mo (a/mapob-vv ?obj ?run)\n       scl (a/vv ?scl ?run)]\n  (if (and (some? mo) (a/worth? scl))\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (modify ?fv status \"REPEAT\"))\n    (modify ?fv status\"FAILED\")))")
+	(salience 0)
+	(title "a:FlightViewStart"))
+
+([Scenario_Class590014] of  Rule
+
+	(lhs "?fv (FlightView status \"REPEAT\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n    (.setCenter (.getLatitude mo) (.getLongitude mo)))\n  (do (retract ?fv)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(salience 0)
+	(title "a:FlightViewRepeat"))
+
+([Scenario_Class590015] of  Rule
+
+	(lhs "?fv1 (FlightView status \"REPEAT\")\n?fv2 (FlightView status \"START\")")
+	(rhs "(retract ?fv1)")
+	(salience 1)
+	(title "a:FlightViewSwitch"))
+
+([Scenario_Class590016] of  Rule
+
+	(lhs "?fv (FlightView status \"REPEAT\")\n(SetCenter)")
+	(rhs "(retract ?fv)")
+	(salience 1)
+	(title "a:FlightViewStop"))
+
+([Scenario_Class590018] of  Table2
+
+	(column1
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"scale"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(igis_Class10001 of [Cls(NavOb)])"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class590012 of [Cls(FlightView)])"
+		"200000"
+		"[]"
+		"test"
+		"REPEAT"
+		":?")
+	(title "FlightView 289"))
+
 ([Scenario_Class60000] of  Openmap
 
 	(components
@@ -1681,6 +1755,13 @@
 	(%3AANNOTATED-INSTANCE [Scenario_Class60002])
 	(%3ACREATION-TIMESTAMP "2017.10.23 21:20:21.761 MSK")
 	(%3ACREATOR "ru"))
+
+([Scenario_Class610001] of  Rule
+
+	(lhs "?cam (Camera status \"START\"\n	title ?tit\n	object ?obj\n	view ?vie\n	pitch ?pit\n	roll ?rol\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Camera\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let [vie (a/vv ?vie ?run)\n         pit (a/vv ?pit ?run)\n         rol (a/vv ?rol ?run)\n         cam (if (a/worth? vie) {:view vie} {})\n         cam (if (a/worth? pit) (assoc cam :pitch pit) cam)\n         cam (if (a/worth? rol) (assoc cam :roll rol) cam)]\n    (clojuretab.ClojureTab/invoke \n	\"pro.server\" \n	\"go-onboard\"\n	(.getName mo))\n    (.putAttribute mo \"CAMERA\" cam)\n    (retract ?cam)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?cam status \"FAILED\"))")
+	(salience 0)
+	(title "a:Camera"))
 
 ([Scenario_Class70000] of  Rule
 
@@ -2777,7 +2858,8 @@
 	(rules [ScenarioN_Class170001]))
 
 ([SetScale] of  ActionClass
-)
+
+	(rules [Scenario_Class590000]))
 
 ([SetTimeScale] of  ActionClass
 

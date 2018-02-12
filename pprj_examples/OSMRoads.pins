@@ -1,4 +1,4 @@
-; Sun Feb 11 18:18:58 MSK 2018
+; Mon Feb 12 21:43:52 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3078,7 +3078,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "car"))
+	(onboard "train"))
 
 ([BrigBern_Class50003] of  OMTPoly
 
@@ -4939,7 +4939,7 @@
 
 ([OSMRoads_Class10000] of  CloFuncall
 
-	(source "osm.data/OSM-DATA"))
+	(source "(ru.igis.omtab.OMT/getMapOb \"train\")"))
 
 ([OSMRoads_Class10001] of  Tagvalue
 
@@ -5030,6 +5030,25 @@
 		"43 45.9 7 29.07"
 		"43 45.89 7 29.06")
 	(relative FALSE))
+
+([OSMRoads_Class20000] of  Task
+
+	(final_actions [OSMRoads_Class30002])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class20001])
+	(next_tasks [OSMRoads_Class20159])
+	(task_scheme
+		[OSMRoads_Class20001]
+		[OSMRoads_Class30002])
+	(title "Set Scene near MP"))
+
+([OSMRoads_Class20001] of  SetCenter
+
+	(latitude "-13 10.51")
+	(longitude "-72 32.6")
+	(next_actions [OSMRoads_Class30002])
+	(title "Center on MP")
+	(units DEG_MIN))
 
 ([OSMRoads_Class20002] of  OMTPoly
 
@@ -5281,10 +5300,6 @@
 		"62 5.66 7 13.1"
 		"62 5.63 7 13.14")
 	(relative FALSE))
-
-([OSMRoads_Class20041] of  CloFuncall
-
-	(source "osm.data/PATH"))
 
 ([OSMRoads_Class20042] of  OMTPoly
 
@@ -5710,18 +5725,6 @@
 	(id "171430984")
 	(poly [OSMRoads_Class20052])
 	(source "[[62.0311028 7.2774016] [62.0310211 7.2772507] [62.030938 7.2771201] [62.0308 7.2768836] [62.0306972 7.2766752] [62.0306111 7.2764854] [62.0305141 7.2762288] [62.0303593 7.2757682] [62.0302741 7.2754946] [62.0302019 7.2753033] [62.030134 7.275154] [62.0300428 7.2750109] [62.0299378 7.2748865] [62.0297291 7.2746967] [62.0296401 7.2746127] [62.0295592 7.2745069] [62.0295059 7.2744027] [62.0294286 7.2742207] [62.0293709 7.274017] [62.0293301 7.2737759] [62.0293097 7.2735348] [62.0293038 7.2732735] [62.0293133 7.2730651] [62.0293425 7.2728535] [62.0293739 7.2726933] [62.0294242 7.2725331] [62.0294855 7.2724133] [62.0295672 7.2722858] [62.0297525 7.272068] [62.0298561 7.2719218] [62.0299458 7.2717694] [62.0300195 7.2715905] [62.03013 7.2712738] [62.0302996 7.2707615] [62.0309527 7.2688222] [62.0310584 7.2685325] [62.0311386 7.2683192] [62.0312043 7.268173] [62.031278 7.2680579] [62.0313422 7.2679786] [62.0314312 7.2679148] [62.0315107 7.2678666] [62.0316121 7.267823] [62.0320826 7.267683] [62.0323321 7.267599] [62.0323941 7.2675539] [62.0324553 7.2674948] [62.0325275 7.2673937] [62.0326071 7.267246] [62.0326676 7.2670904] [62.032726 7.2668882] [62.0327661 7.2667047] [62.0328616 7.2662505] [62.0329608 7.265759] [62.0330279 7.2654634] [62.0330724 7.2653048] [62.033133 7.265143] [62.0332088 7.2649859] [62.0332854 7.2648833] [62.0333832 7.2647899] [62.0334824 7.2646997] [62.033801 7.2644512] [62.0339712 7.2643038] [62.0340682 7.2641828] [62.0341652 7.2640354] [62.0342456 7.263866] [62.0343075 7.2636703] [62.0343473 7.2634738] [62.0343714 7.263309] [62.0343874 7.2630772] [62.0344064 7.2628066] [62.0344348 7.2624566] [62.0344691 7.2620646] [62.0345114 7.2617504] [62.0345625 7.261472] [62.0346383 7.2610972] [62.0346962 7.2608389] [62.0347787 7.2605661] [62.0348819 7.2602626] [62.0349871 7.2599788]]"))
-
-([OSMRoads_Class20098] of  CloFuncall
-
-	(source "(osm.data/delete-unref \"OMTPoly\")"))
-
-([OSMRoads_Class20099] of  CloFuncall
-
-	(source "(osm.data/delete-unref \"Way\")"))
-
-([OSMRoads_Class20100] of  CloFuncall
-
-	(source "(osm.data/delete-unref \"Dirway\")"))
 
 ([OSMRoads_Class20102] of  OMTPoly
 
@@ -6180,21 +6183,25 @@
 
 	(final_tasks [OSMRoads_Class20159])
 	(finish_type AND)
-	(initial_tasks [OSMRoads_Class20159])
-	(scenario_scheme [OSMRoads_Class20159])
+	(initial_tasks [OSMRoads_Class20000])
+	(scenario_scheme
+		[OSMRoads_Class20159]
+		[OSMRoads_Class20000])
 	(title "Machu Picchu"))
 
 ([OSMRoads_Class20159] of  Task
 
-	(final_actions [OSMRoads_Class20163])
+	(final_actions [OSMRoads_Class30006])
 	(finish_type AND)
 	(initial_actions [OSMRoads_Class20161])
 	(task_scheme
 		[OSMRoads_Class20160]
 		[OSMRoads_Class20161]
 		[OSMRoads_Class20162]
-		[OSMRoads_Class20163])
-	(title "MP1"))
+		[OSMRoads_Class20163]
+		[OSMRoads_Class30003]
+		[OSMRoads_Class30006])
+	(title "Go to MP"))
 
 ([OSMRoads_Class20160] of  GoRoad
 
@@ -6207,7 +6214,12 @@
 
 ([OSMRoads_Class20161] of  PutOnMap
 
-	(next_actions [OSMRoads_Class20160])
+	(latitude "0 0")
+	(longitude "0 0")
+	(next_actions
+		[OSMRoads_Class30003]
+		[OSMRoads_Class20160])
+	(object [BrigBern_Class100001])
 	(title "Car on Map"))
 
 ([OSMRoads_Class20162] of  GoRoad
@@ -6223,10 +6235,11 @@
 
 	(latitude "-13 10.51")
 	(longitude "-72 32.6")
+	(next_actions [OSMRoads_Class30006])
 	(object [BrigBern_Class100001])
 	(radius 0.1)
 	(speed 30.0)
-	(title "Estrada MP to"))
+	(title "Estrada MP to Summit"))
 
 ([OSMRoads_Class20164] of  %3AINSTANCE-ANNOTATION
 
@@ -6302,6 +6315,52 @@
 	(id "235979143")
 	(poly [OSMRoads_Class5])
 	(source "[[43.766759 7.4862224] [43.7654612 7.4849832]]"))
+
+([OSMRoads_Class30001] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:ptch 0})"))
+
+([OSMRoads_Class30002] of  SetScale
+
+	(scale "500000")
+	(title "Set Map Scale"))
+
+([OSMRoads_Class30003] of  FlightView
+
+	(object [BrigBern_Class100001])
+	(scale "100000")
+	(title "Follow Car"))
+
+([OSMRoads_Class30005] of  Table2
+
+	(column1
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"scale"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(BrigBern_Class100001 of [Cls(NavOb)])"
+		"{}"
+		"Tsk24747"
+		"SimpleInstance(OSMRoads_Class30003 of [Cls(FlightView)])"
+		"100000"
+		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x5d00e1c6 \"SimpleInstance(OSMRoads_Class20160 of [Cls(GoRoad)])\"]]"
+		"Follow Car"
+		"FAILED"
+		":?")
+	(title "FlightView 12"))
+
+([OSMRoads_Class30006] of  SetCenter
+
+	(latitude "-13 10.51")
+	(longitude "-72 32.6")
+	(title "Set Center to MP Summit")
+	(units DEG_MIN))
 
 ([OSMRoads_Class31] of  Dirway
 
@@ -6379,6 +6438,90 @@
 		[OSMRoads_Class42]
 		[OSMRoads_Class0])
 	(title "Part 1"))
+
+([OSMRoads_Class40002] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"RIGHT\"})"))
+
+([OSMRoads_Class40003] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"BACKWARD\"})"))
+
+([OSMRoads_Class40004] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"LEFT\"})"))
+
+([OSMRoads_Class40005] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"FORWARD\"})"))
+
+([OSMRoads_Class40006] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:roll 30})"))
+
+([OSMRoads_Class40007] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:roll -30})"))
+
+([OSMRoads_Class40008] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch -30})"))
+
+([OSMRoads_Class40009] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch 30})"))
+
+([OSMRoads_Class40010] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch 0 :roll 0})"))
+
+([OSMRoads_Class40011] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch -10 :roll 0})"))
+
+([OSMRoads_Class40012] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch 0 :roll 10})"))
+
+([OSMRoads_Class40013] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch 31 :roll -12})"))
+
+([OSMRoads_Class40014] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:pitch 0 :roll -12})"))
+
+([OSMRoads_Class40015] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"RIGHT-BACKWARD\"})"))
+
+([OSMRoads_Class40016] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"RIGHT-FORWARD\"})"))
+
+([OSMRoads_Class40017] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"FORWARD-RIGHT\"})"))
+
+([OSMRoads_Class40018] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"BACKWARD-RIGHT\"})"))
+
+([OSMRoads_Class40019] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"BACKWARD-LEFT\"})"))
+
+([OSMRoads_Class40020] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"FORWARD-LEFT\"})"))
+
+([OSMRoads_Class40021] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"UP\"})"))
+
+([OSMRoads_Class40022] of  CloFuncall
+
+	(source "(.putAttribute (ru.igis.omtab.OMT/getMapOb \"train\") \"CAMERA\" {:view \"DOWN\"})"))
 
 ([OSMRoads_Class41] of  GoRoad
 

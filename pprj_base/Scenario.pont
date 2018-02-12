@@ -1,4 +1,4 @@
-; Sun Feb 11 22:19:32 MSK 2018
+; Mon Feb 12 22:42:38 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -99,6 +99,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot roll
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot port
 ;+		(type ANY)
 		(create-accessor read-write))
@@ -179,6 +183,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pitch
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -610,6 +618,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot view
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot start-time
 		(type INTEGER)
 		(default 0)
@@ -1037,12 +1049,12 @@
 ;+		(allowed-classes Action)
 		(create-accessor read-write)))
 
-(defclass MapControl
+(defclass ViewControl
 	(is-a Action)
 	(role abstract))
 
 (defclass SetScale
-	(is-a MapControl)
+	(is-a ViewControl)
 	(role concrete)
 	(single-slot scale
 		(type STRING)
@@ -1050,7 +1062,7 @@
 		(create-accessor read-write)))
 
 (defclass SetCenter
-	(is-a MapControl)
+	(is-a ViewControl)
 	(role concrete)
 	(single-slot longitude
 		(type STRING)
@@ -1069,7 +1081,7 @@
 		(create-accessor read-write)))
 
 (defclass FlightView
-	(is-a MapControl)
+	(is-a ViewControl)
 	(role concrete)
 	(single-slot scale
 		(type STRING)
@@ -1082,25 +1094,25 @@
 		(create-accessor read-write)))
 
 (defclass SetTimeScale
-	(is-a MapControl)
+	(is-a ViewControl)
 	(role concrete)
 	(single-slot scale
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass ActivityFlightView
-	(is-a MapControl)
+(defclass Camera
+	(is-a ViewControl)
 	(role concrete)
-	(single-slot activity
-		(type INSTANCE)
-;+		(allowed-classes Activity Variable)
+	(single-slot pitch
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot statuses
+	(single-slot roll
 		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot scale
+	(single-slot view
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

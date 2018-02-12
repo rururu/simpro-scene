@@ -1,4 +1,4 @@
-; Sun Feb 11 08:06:13 MSK 2018
+; Mon Feb 12 23:10:10 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -49,7 +49,7 @@
 
 ([Cezium_Class10001] of  CloFunction
 
-	(source "(enable-console-print!)\n(czm/init-3D-view BASE-URL \"yes\")\n(repeater receive-vehicle (:vehicle TIO))\n(show-controls)")
+	(source "(enable-console-print!)\n(czm/init-3D-view BASE-URL \"yes\")\n(repeater receive-vehicle (:vehicle TIO))\n(repeater receive-camera (:camera TIO))\n(show-controls)")
 	(title "on-load []"))
 
 ([Cezium_Class10002] of  CloFunction
@@ -64,7 +64,7 @@
 
 ([Cezium_Class10006] of  CloVar
 
-	(source "{:vehicle 1000}")
+	(source "{:vehicle 1000\n :camera 1100}")
 	(title "TIO"))
 
 ([Cezium_Class10007] of  CloVar
@@ -74,7 +74,7 @@
 
 ([Cezium_Class10008] of  CloFunction
 
-	(source "(let [resp (read-transit response)]\n  ;;(println :RESP resp)\n  (if-let [{:keys [vehicle period]} resp]\n    (camera-vehicle vehicle period)))")
+	(source "(let [resp (read-transit response)]\n  ;;(println :V-RESP resp)\n  (if-let [{:keys [vehicle period]} resp]\n    (camera-vehicle vehicle period)))")
 	(title "vehicle-hr [response]"))
 
 ([Cezium_Class10009] of  CloFunction
@@ -113,14 +113,18 @@
 	(cloFunctions
 		[Cezium_Class10000]
 		[Cezium_Class10009]
+		[Cezium_Class60000]
 		[Cezium_Class60002]
 		[Cezium_Class60006]
-		[Cezium_Class10010]
-		[Cezium_Class10008]
-		[Cezium_Class10002]
 		[Cezium_Class60003]
 		[Cezium_Class60004]
 		[Cezium_Class60005]
+		[Cezium_Class10010]
+		[Cezium_Class50003]
+		[Cezium_Class10008]
+		[Cezium_Class50002]
+		[Cezium_Class10002]
+		[Cezium_Class50001]
 		[Cezium_Class60001]
 		[Cezium_Class60007]
 		[Cezium_Class60008]
@@ -192,6 +196,7 @@
 		[Cezium_Class30034]
 		[Cezium_Class30036]
 		[Cezium_Class30041]
+		[Cezium_Class50000]
 		[Cezium_Class30037]
 		[Cezium_Class30038]
 		[Cezium_Class30039]
@@ -207,7 +212,7 @@
 
 ([Cezium_Class30027] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [cognitect.transit :as t]\n              [cesium.core :as czs])\n\n(:import java.io.ByteArrayOutputStream\n             ru.igis.omtab.OMT\n             edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(source "(:use protege.core)\n(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [cognitect.transit :as t]\n              [cesium.core :as czs])\n(:import java.io.ByteArrayOutputStream\n             ru.igis.omtab.OMT\n             edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "pro.server"))
 
 ([Cezium_Class30029] of  CloVar
@@ -247,7 +252,7 @@
 
 ([Cezium_Class30037] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response1 vehicle-data))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response1 vehicle-data))\n  (GET \"/camera/\" [] (response1 camera-control))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
 	(title "init-server []"))
 
 ([Cezium_Class30038] of  CloFunction
@@ -429,14 +434,39 @@
 	(source "(volatile! {:view \"FORWARD\"\n               :pitch -10\n               :roll 0})")
 	(title "CAMERA"))
 
+([Cezium_Class50000] of  CloFunction
+
+	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (.getAttribute mo \"CAMERA\")))")
+	(title "camera-control []"))
+
+([Cezium_Class50001] of  CloFunction
+
+	(source "(GET (str BASE-URL \"camera/\") \n	{:handler camera-hr\n                         :error-handler error-handler})")
+	(title "receive-camera []"))
+
+([Cezium_Class50002] of  CloFunction
+
+	(source "(let [resp (read-transit response)]\n  ;;(println :C-RESP resp)\n  (if-let [{:keys [view pitch roll]} resp]\n    (camera-control view pitch roll)))")
+	(title "camera-hr [response]"))
+
+([Cezium_Class50003] of  CloFunction
+
+	(source "(when vie\n  (view vie)\n  (set! (.-selectedIndex (by-id \"view-val\"))\n    (condp = vie\n      \"FORWARD\"	0\n      \"BACKWARD\"	1\n      \"RIGHT\"		2\n      \"LEFT\"		3\n      \"UP\"		4\n      \"DOWN\"		5\n      \"FORWARD-RIGHT\"	6\n      \"FORWARD-LEFT\"	7\n      \"BACKWARD-RIGHT\"	8\n      \"BACKWARD-LEFT\"	9\n      0)))\n(when pit\n  (pitch pit)\n  (.setAttribute (by-id \"pitch-val\") \"value\" pit))\n(when rol\n  (roll rol)\n  (.setAttribute (by-id \"roll-val\") \"value\" rol))")
+	(title "camera-control [vie pit rol]"))
+
 ([Cezium_Class6] of  CloFunction
 
 	(source "(cond\n   (> x 360) (- x 360)\n   (< x 0) (+ x 360)\n   true x)")
 	(title "norm-crs [x]"))
 
+([Cezium_Class60000] of  CloFunction
+
+	(source "(.getElementById js/document id)")
+	(title "by-id [id]"))
+
 ([Cezium_Class60001] of  CloFunction
 
-	(source "(set-html! \"camera\" \"<h4>Camera</h4>\")\n(set-html! \"onboard\" \"Onboard:\")\n(set-html! \"onboard-fld\" \"\")\n(set-html! \"view\" \"View:\")\n(set-html! \"view-fld\" \n  \"<select onchange='javascript:view3d.client.view(this.value)' style='width:96px'>\n   <option value='FORWARD'>FORWARD</option>\n   <option value='BACKWARD'>BACKWARD</option>\n   <option value='RIGHT'>RIGHT</option>\n   <option value='LEFT'>LEFT</option>\n   <option value='UP'>UP</option>\n   <option value='DOWN'>DOWN</option>\n   <option value='FORWARD-RIGHT'>FORWARD-RIGHT</option>\n   <option value='FORWARD-LEFT'>FORWARD-LEFT</option>\n   <option value='BACKWARD-RIGHT'>BACKWARD-RIGHT</option>\n   <option value='BACKWARD-LEFT'>BACKWARD-LEFT</option>\n   </select>\")\n(set-html! \"pitch\" \"Pitch:\")\n(set-html! \"pitch-fld\" \n  \"<input value='-10' style='width:90px' id='pitch-val'\n               onchange='javascript:view3d.client.pitch(this.value)'>\")\n(set-html! \"roll\" \"Roll:\")\n(set-html! \"roll-fld\" \n  \"<input value='0' style='width:90px'\n               onchange='javascript:view3d.client.roll(this.value)'>\")")
+	(source "(set-html! \"camera\" \"<h4>Camera</h4>\")\n(set-html! \"onboard\" \"Onboard:\")\n(set-html! \"onboard-fld\" \"\")\n(set-html! \"view\" \"View:\")\n(set-html! \"view-fld\" \n  \"<select onchange='javascript:view3d.client.view(this.value)' style='width:96px' id='view-val'>\n   <option value='FORWARD'>FORWARD</option>\n   <option value='BACKWARD'>BACKWARD</option>\n   <option value='RIGHT'>RIGHT</option>\n   <option value='LEFT'>LEFT</option>\n   <option value='UP'>UP</option>\n   <option value='DOWN'>DOWN</option>\n   <option value='FORWARD-RIGHT'>FORWARD-RIGHT</option>\n   <option value='FORWARD-LEFT'>FORWARD-LEFT</option>\n   <option value='BACKWARD-RIGHT'>BACKWARD-RIGHT</option>\n   <option value='BACKWARD-LEFT'>BACKWARD-LEFT</option>\n   </select>\")\n(set-html! \"pitch\" \"Pitch:\")\n(set-html! \"pitch-fld\" \n  \"<input value='-10' style='width:90px' id='pitch-val'\n               onchange='javascript:view3d.client.pitch(this.value)'>\")\n(set-html! \"roll\" \"Roll:\")\n(set-html! \"roll-fld\" \n  \"<input value='0' style='width:90px' id='roll-val'\n               onchange='javascript:view3d.client.roll(this.value)'>\")")
 	(title "left-controls []"))
 
 ([Cezium_Class60002] of  CloFunction
@@ -486,8 +516,8 @@
 
 ([Cezium_Class70005] of  CloFunction
 
-	(source "(if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n  (let [lab (sv sel \"label\")]\n    (ssv inst \"onboard\" lab)\n    (vreset! ONBOARD lab)))")
-	(title "go-onboard [hm inst]"))
+	(source "([hm inst]\n  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n    (let [lab (sv sel \"label\")]\n      (ssv inst \"onboard\" lab)\n      (vreset! ONBOARD lab))))\n([lab]\n  (when-let [inst (first (cls-instances \"CeziumControl\"))]\n    (ssv inst \"onboard\" lab)\n    (vreset! ONBOARD lab)))")
+	(title "go-onboard"))
 
 ([Cezium_Class8] of  CloFunction
 

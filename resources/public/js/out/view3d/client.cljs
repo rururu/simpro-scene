@@ -17,7 +17,8 @@
                :speed 160
                :course 270}))
 (def BASE-URL "http://localhost:4444/")
-(def TIO {:vehicle 1000})
+(def TIO {:vehicle 1000
+ :camera 1100})
 (def error-handler (fn [response]
   (let [{:keys [status status-text]} response]
     (println (str "AJAX ERROR: " status " " status-text)))))
@@ -34,11 +35,27 @@
 (defn read-transit [x]
   (t/read (t/reader :json) x))
 
+(defn by-id [id]
+  (.getElementById js/document id))
+
 (defn set-html! [id msg]
   (set! (.-innerHTML (.getElementById js/document id)) msg))
 
 (defn num-val [x]
   (if (number? x) x (rdr/read-string x)))
+
+(defn view [dir]
+  (czm/camera :view dir))
+
+(defn pitch [deg]
+  (let [deg (num-val deg)]
+  (if (<= -180 deg 180)
+    (czm/camera :pitch deg))))
+
+(defn roll [deg]
+  (let [deg (num-val deg)]
+  (if (<= -180 deg 180)
+    (czm/camera :roll deg))))
 
 (defn camera-vehicle [vehicle per]
   (let [[lat lon] (:coord vehicle)
@@ -61,29 +78,50 @@
 	(:course vehicle) 
 	per))))
 
+(defn camera-control [vie pit rol]
+  (when vie
+  (view vie)
+  (set! (.-selectedIndex (by-id "view-val"))
+    (condp = vie
+      "FORWARD"	0
+      "BACKWARD"	1
+      "RIGHT"		2
+      "LEFT"		3
+      "UP"		4
+      "DOWN"		5
+      "FORWARD-RIGHT"	6
+      "FORWARD-LEFT"	7
+      "BACKWARD-RIGHT"	8
+      "BACKWARD-LEFT"	9
+      0)))
+(when pit
+  (pitch pit)
+  (.setAttribute (by-id "pitch-val") "value" pit))
+(when rol
+  (roll rol)
+  (.setAttribute (by-id "roll-val") "value" rol)))
+
 (defn vehicle-hr [response]
   (let [resp (read-transit response)]
-  ;;(println :RESP resp)
+  ;;(println :V-RESP resp)
   (if-let [{:keys [vehicle period]} resp]
     (camera-vehicle vehicle period))))
+
+(defn camera-hr [response]
+  (let [resp (read-transit response)]
+  ;;(println :C-RESP resp)
+  (if-let [{:keys [view pitch roll]} resp]
+    (camera-control view pitch roll))))
 
 (defn receive-vehicle []
   (GET (str BASE-URL "vehicle/") 
 	{:handler vehicle-hr
                          :error-handler error-handler}))
 
-(defn view [dir]
-  (czm/camera :view dir))
-
-(defn pitch [deg]
-  (let [deg (num-val deg)]
-  (if (<= -180 deg 180)
-    (czm/camera :pitch deg))))
-
-(defn roll [deg]
-  (let [deg (num-val deg)]
-  (if (<= -180 deg 180)
-    (czm/camera :roll deg))))
+(defn receive-camera []
+  (GET (str BASE-URL "camera/") 
+	{:handler camera-hr
+                         :error-handler error-handler}))
 
 (defn left-controls []
   (set-html! "camera" "<h4>Camera</h4>")
@@ -91,7 +129,7 @@
 (set-html! "onboard-fld" "")
 (set-html! "view" "View:")
 (set-html! "view-fld" 
-  "<select onchange='javascript:view3d.client.view(this.value)' style='width:96px'>
+  "<select onchange='javascript:view3d.client.view(this.value)' style='width:96px' id='view-val'>
    <option value='FORWARD'>FORWARD</option>
    <option value='BACKWARD'>BACKWARD</option>
    <option value='RIGHT'>RIGHT</option>
@@ -109,7 +147,7 @@
                onchange='javascript:view3d.client.pitch(this.value)'>")
 (set-html! "roll" "Roll:")
 (set-html! "roll-fld" 
-  "<input value='0' style='width:90px'
+  "<input value='0' style='width:90px' id='roll-val'
                onchange='javascript:view3d.client.roll(this.value)'>"))
 
 (defn right-conterols []
@@ -131,6 +169,7 @@
   (enable-console-print!)
 (czm/init-3D-view BASE-URL "yes")
 (repeater receive-vehicle (:vehicle TIO))
+(repeater receive-camera (:camera TIO))
 (show-controls))
 
 

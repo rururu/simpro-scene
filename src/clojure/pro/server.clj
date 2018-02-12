@@ -7,7 +7,6 @@
               [compojure.route :as route]
               [cognitect.transit :as t]
               [cesium.core :as czs])
-
 (:import java.io.ByteArrayOutputStream
              ru.igis.omtab.OMT
              edu.stanford.smi.protege.ui.DisplayUtilities))
@@ -47,11 +46,17 @@
        :course (.getCourse mo)}
      :period 1})))
 
+(defn camera-control []
+  (if-let [onb @ONBOARD]
+  (if-let [mo (OMT/getMapOb onb)]
+    (.getAttribute mo "CAMERA"))))
+
 (defn init-server []
   (defroutes app-routes
   (GET "/" [] (slurp (str ROOT "cezium.html")))
   (GET "/czml/" [] (czs/events))
   (GET "/vehicle/" [] (response1 vehicle-data))
+  (GET "/camera/" [] (response1 camera-control))
   (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Pro Server: Not Found!"))
@@ -78,9 +83,14 @@
 ([hm inst]
   (stop-server)))
 
-(defn go-onboard [hm inst]
+(defn go-onboard
+  ([hm inst]
   (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 "Select NavOb")]
-  (let [lab (sv sel "label")]
+    (let [lab (sv sel "label")]
+      (ssv inst "onboard" lab)
+      (vreset! ONBOARD lab))))
+([lab]
+  (when-let [inst (first (cls-instances "CeziumControl"))]
     (ssv inst "onboard" lab)
     (vreset! ONBOARD lab))))
 
