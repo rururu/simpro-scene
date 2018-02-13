@@ -38,13 +38,22 @@
 (defn vehicle-data []
   (if-let [onb @ONBOARD]
   (if-let [mo (OMT/getMapOb onb)]
+    (let [spd1 (.getSpeed mo)
+           spd2 (.getAttribute mo "ROAD-SPEED")
+           spd (cond
+	(and spd2 (not= spd1 (double 0)))
+		(do (.setSpeed mo (double 0))
+		  (.putAttribute mo "ROAD-SPEED" spd1)
+		  spd1)
+	(nil? spd2) spd1
+                        true spd2)]
     {:vehicle
       {:name onb
        :coord [(.getLatitude mo) (.getLongitude mo)]
        :altitude (.getAltitude mo)
-       :speed (or (.getAttribute mo "ROAD-SPEED") (.getSpeed mo))
+       :speed spd
        :course (.getCourse mo)}
-     :period 1})))
+     :period 1}))))
 
 (defn camera-control []
   (if-let [onb @ONBOARD]

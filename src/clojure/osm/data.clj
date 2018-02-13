@@ -144,7 +144,7 @@
     (if (empty? ipss)
       (println "Try in other location..")
       (if (empty? PATH)
-        (do (def PATH (map #(vector nil % (create-line %)) ipss))
+        (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))
           (println "Initial" (count PATH) "ways.."))
         (let [[ldir lips llin] (last PATH)
                [sdi [ld nd] ips :as short] (nearest-to lips ipss)]
@@ -162,13 +162,13 @@
 (if-let [lp (last PATH)]
   (if (some? (first lp))
     (do (OMT/removeMapOb (nth lp 2) true)
-      (def PATH (butlast PATH))
+      (def PATH (vec (butlast PATH)))
       (println "Remains" (count PATH) "ways..")) 
     (if (nil? mo)
       (println "Try again in other place of line..")
       (let [id (.getName mo)]
         (OMT/removeMapOb mo true)
-        (def PATH (filter #(not= (str (first (second %))) id) PATH))
+        (def PATH (vec (filter #(not= (str (first (second %))) id) PATH)))
         (println "Removed from PATH way" id "," "remains" (count PATH)))))))
 
 (defn set-mouse-adapter []
