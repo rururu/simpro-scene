@@ -1,4 +1,4 @@
-; Tue Feb 13 12:57:50 MSK 2018
+; Thu Feb 15 12:16:10 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2742,8 +2742,8 @@
 
 ([ScenarioN_Class700001] of  Rule
 
-	(lhs "?gor (GoRoute object ?obj)\n?sor (StopRoute status \"WORK\"\n	title ?tit\n	object ?obj\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(let [mo (a/mapob-vv ?obj ?run)]\n  (modify ?gor status \"DONE\")\n  (retract ?sor)\n  (s/start-next ?nacts ?pid ?ain ?run))")
+	(lhs "?gor (GoRoute object ?obj\n	parent ?pid1\n	instance ?ain1\n	run ?run\n	next_actions ?nacts1)\n?sor (StopRoute status \"WORK\"\n	title ?tit\n	object ?obj\n	parent ?pid2\n	instance ?ain2\n	run ?run\n	next_actions ?nacts2)")
+	(rhs "(let [mo (a/mapob-vv ?obj ?run)]\n  (retract ?gor)\n  (s/start-next ?nacts1 ?pid1 ?ain1 ?run)\n  (retract ?sor)\n  (s/start-next ?nacts2 ?pid2 ?ain2 ?run))")
 	(salience 0)
 	(title "a:StopRouteWork"))
 

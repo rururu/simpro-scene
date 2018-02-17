@@ -1,4 +1,4 @@
-; Tue Feb 13 21:35:00 MSK 2018
+; Sat Feb 17 22:27:26 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4720,6 +4720,10 @@
 		"43 45.71 7 28.88")
 	(relative FALSE))
 
+([OSMRoads_Class10000] of  CloFuncall
+
+	(source "osm.data/PATH"))
+
 ([OSMRoads_Class10001] of  Tagvalue
 
 	(value "[\"highway\" \"unclassified\"]"))
@@ -4737,10 +4741,9 @@
 	(but-hide-roads "Hide Roads/osm.data/hide-roads")
 	(but-rem "Mode Remove/osm.data/mode-remove")
 	(but-show-roads "Show Existing Roads/osm.data/show-roads")
-	(from1 "Bergun")
 	(radius 0.01)
 	(road-subclass Railroad)
-	(status "MODE CREATE, in PATH 47 ways.")
+	(status "MODE CREATE, in PATH 31 ways.")
 	(tagvalue
 		[BrigBern_Class80016]
 		[OSMRoads_Class40001]
@@ -4749,7 +4752,8 @@
 		[OSMRoads_Class10001]
 		[OSMRoads_Class20021]
 		[OSMRoads_Class20142])
-	(title "Roads Control"))
+	(title "Roads Control")
+	(to1 "Tiefencastel"))
 
 ([OSMRoads_Class10005] of  CloFunction
 
@@ -6218,6 +6222,819 @@
 ([OSMRoads_Class40001] of  Tagvalue
 
 	(value "[\"railway\" \"narrow_gauge\"]"))
+
+([OSMRoads_Class40003] of  OMTPoly
+
+	(description "22986001")
+	(label "22986001")
+	(latitude "46 40.53")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 41.06")
+	(playground-index 0)
+	(points
+		"46 40.53 9 41.06"
+		"46 40.53 9 41.05")
+	(relative FALSE))
+
+([OSMRoads_Class40004] of  OMTPoly
+
+	(description "324022464")
+	(label "324022464")
+	(latitude "46 40.53")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 41.05")
+	(playground-index 0)
+	(points
+		"46 40.53 9 41.05"
+		"46 40.47 9 40.76")
+	(relative FALSE))
+
+([OSMRoads_Class40006] of  OMTPoly
+
+	(description "324022474")
+	(label "324022474")
+	(latitude "46 40.47")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.76")
+	(playground-index 0)
+	(points
+		"46 40.47 9 40.76"
+		"46 40.46 9 40.73")
+	(relative FALSE))
+
+([OSMRoads_Class40007] of  OMTPoly
+
+	(description "82117325")
+	(label "82117325")
+	(latitude "46 40.46")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.73")
+	(playground-index 0)
+	(points
+		"46 40.46 9 40.73"
+		"46 40.46 9 40.73")
+	(relative FALSE))
+
+([OSMRoads_Class40008] of  OMTPoly
+
+	(description "82117322")
+	(label "82117322")
+	(latitude "46 40.46")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.73")
+	(playground-index 0)
+	(points
+		"46 40.46 9 40.73"
+		"46 40.64 9 40.55")
+	(relative FALSE))
+
+([OSMRoads_Class40010] of  OMTPoly
+
+	(description "257114246")
+	(label "257114246")
+	(latitude "46 40.64")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.55")
+	(playground-index 0)
+	(points
+		"46 40.64 9 40.55"
+		"46 40.73 9 40.55")
+	(relative FALSE))
+
+([OSMRoads_Class40011] of  OMTPoly
+
+	(description "22985999")
+	(label "22985999")
+	(latitude "46 40.73")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.55")
+	(playground-index 0)
+	(points
+		"46 40.73 9 40.55"
+		"46 40.84 9 40.6")
+	(relative FALSE))
+
+([OSMRoads_Class40012] of  OMTPoly
+
+	(description "22986000")
+	(label "22986000")
+	(latitude "46 40.84")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.6")
+	(playground-index 0)
+	(points
+		"46 40.84 9 40.6"
+		"46 40.86 9 40.5")
+	(relative FALSE))
+
+([OSMRoads_Class40013] of  OMTPoly
+
+	(description "27255347")
+	(label "27255347")
+	(latitude "46 40.86")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.5")
+	(playground-index 0)
+	(points
+		"46 40.86 9 40.5"
+		"46 40.84 9 40.42")
+	(relative FALSE))
+
+([OSMRoads_Class40014] of  OMTPoly
+
+	(description "30344427")
+	(label "30344427")
+	(latitude "46 40.84")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.42")
+	(playground-index 0)
+	(points
+		"46 40.84 9 40.42"
+		"46 40.83 9 40.4")
+	(relative FALSE))
+
+([OSMRoads_Class40015] of  OMTPoly
+
+	(description "30344428")
+	(label "30344428")
+	(latitude "46 40.83")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.4")
+	(playground-index 0)
+	(points
+		"46 40.83 9 40.4"
+		"46 40.81 9 40.29")
+	(relative FALSE))
+
+([OSMRoads_Class40016] of  OMTPoly
+
+	(description "33236805")
+	(label "33236805")
+	(latitude "46 40.81")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.29")
+	(playground-index 0)
+	(points
+		"46 40.81 9 40.29"
+		"46 40.77 9 40.21")
+	(relative FALSE))
+
+([OSMRoads_Class40017] of  OMTPoly
+
+	(description "38188251")
+	(label "38188251")
+	(latitude "46 40.77")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 40.21")
+	(playground-index 0)
+	(points
+		"46 40.77 9 40.21"
+		"46 40.69 9 39.98")
+	(relative FALSE))
+
+([OSMRoads_Class40018] of  OMTPoly
+
+	(description "106647150")
+	(label "106647150")
+	(latitude "46 40.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.98")
+	(playground-index 0)
+	(points
+		"46 40.69 9 39.98"
+		"46 40.69 9 39.96")
+	(relative FALSE))
+
+([OSMRoads_Class40019] of  OMTPoly
+
+	(description "106647152")
+	(label "106647152")
+	(latitude "46 40.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.96")
+	(playground-index 0)
+	(points
+		"46 40.69 9 39.96"
+		"46 40.52 9 39.6")
+	(relative FALSE))
+
+([OSMRoads_Class40020] of  OMTPoly
+
+	(description "106650538")
+	(label "106650538")
+	(latitude "46 40.52")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.6")
+	(playground-index 0)
+	(points
+		"46 40.52 9 39.6"
+		"46 40.51 9 39.58")
+	(relative FALSE))
+
+([OSMRoads_Class40021] of  OMTPoly
+
+	(description "106650565")
+	(label "106650565")
+	(latitude "46 40.51")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.58")
+	(playground-index 0)
+	(points
+		"46 40.51 9 39.58"
+		"46 40.38 9 39.37")
+	(relative FALSE))
+
+([OSMRoads_Class40022] of  OMTPoly
+
+	(description "106650481")
+	(label "106650481")
+	(latitude "46 40.38")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.37")
+	(playground-index 0)
+	(points
+		"46 40.38 9 39.37"
+		"46 40.37 9 39.37")
+	(relative FALSE))
+
+([OSMRoads_Class40023] of  OMTPoly
+
+	(description "106650478")
+	(label "106650478")
+	(latitude "46 40.37")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 39.37")
+	(playground-index 0)
+	(points
+		"46 40.37 9 39.37"
+		"46 40.03 9 37.96")
+	(relative FALSE))
+
+([OSMRoads_Class40024] of  OMTPoly
+
+	(description "82711230")
+	(label "82711230")
+	(latitude "46 40.03")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 37.96")
+	(playground-index 0)
+	(points
+		"46 40.03 9 37.96"
+		"46 40.01 9 37.93")
+	(relative FALSE))
+
+([OSMRoads_Class40025] of  OMTPoly
+
+	(description "82711231")
+	(label "82711231")
+	(latitude "46 40.01")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 37.93")
+	(playground-index 0)
+	(points
+		"46 40.01 9 37.93"
+		"46 39.99 9 37.9")
+	(relative FALSE))
+
+([OSMRoads_Class40031] of  OMTPoly
+
+	(description "314386926")
+	(label "314386926")
+	(latitude "46 39.98")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 37.89")
+	(playground-index 0)
+	(points
+		"46 39.98 9 37.89"
+		"46 40 9 36.72")
+	(relative FALSE))
+
+([OSMRoads_Class40032] of  OMTPoly
+
+	(description "314376054")
+	(label "314376054")
+	(latitude "46 40")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 36.72")
+	(playground-index 0)
+	(points
+		"46 40 9 36.72"
+		"46 40 9 36.71")
+	(relative FALSE))
+
+([OSMRoads_Class40033] of  OMTPoly
+
+	(description "314376053")
+	(label "314376053")
+	(latitude "46 40")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 36.71")
+	(playground-index 0)
+	(points
+		"46 40 9 36.71"
+		"46 39.99 9 36.69")
+	(relative FALSE))
+
+([OSMRoads_Class40034] of  OMTPoly
+
+	(description "75390661")
+	(label "75390661")
+	(latitude "46 39.99")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 36.69")
+	(playground-index 0)
+	(points
+		"46 39.99 9 36.69"
+		"46 39.98 9 36.69")
+	(relative FALSE))
+
+([OSMRoads_Class40035] of  OMTPoly
+
+	(description "38188249")
+	(label "38188249")
+	(latitude "46 39.98")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 36.69")
+	(playground-index 0)
+	(points
+		"46 39.98 9 36.69"
+		"46 39.69 9 35.21")
+	(relative FALSE))
+
+([OSMRoads_Class40036] of  OMTPoly
+
+	(description "106642935")
+	(label "106642935")
+	(latitude "46 39.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 35.21")
+	(playground-index 0)
+	(points
+		"46 39.69 9 35.21"
+		"46 39.69 9 35.2")
+	(relative FALSE))
+
+([OSMRoads_Class40037] of  OMTPoly
+
+	(description "106642927")
+	(label "106642927")
+	(latitude "46 39.69")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 35.2")
+	(playground-index 0)
+	(points
+		"46 39.69 9 35.2"
+		"46 39.74 9 35.11")
+	(relative FALSE))
+
+([OSMRoads_Class40038] of  OMTPoly
+
+	(description "30344544")
+	(label "30344544")
+	(latitude "46 39.74")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 35.11")
+	(playground-index 0)
+	(points
+		"46 39.74 9 35.11"
+		"46 39.74 9 35.09")
+	(relative FALSE))
+
+([OSMRoads_Class40039] of  OMTPoly
+
+	(description "257114241")
+	(label "257114241")
+	(latitude "46 39.79")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 34.48")
+	(playground-index 0)
+	(points
+		"46 39.79 9 34.48"
+		"46 39.74 9 35.09")
+	(relative FALSE))
+
+([OSMRoads_Class40040] of  OMTPoly
+
+	(description "208764191")
+	(label "208764191")
+	(latitude "46 39.79")
+	(line [BrigBern_Class110026])
+	(lineColor "FFFF0000")
+	(longitude "9 34.48")
+	(playground-index 0)
+	(points
+		"46 39.79 9 34.48"
+		"46 39.94 9 34.24")
+	(relative FALSE))
+
+([OSMRoads_Class40041] of  Railroad
+
+	(dirways
+		[OSMRoads_Class40042]
+		[OSMRoads_Class40044]
+		[OSMRoads_Class40046]
+		[OSMRoads_Class40048]
+		[OSMRoads_Class40050]
+		[OSMRoads_Class40052]
+		[OSMRoads_Class40054]
+		[OSMRoads_Class40056]
+		[OSMRoads_Class40058]
+		[OSMRoads_Class40060]
+		[OSMRoads_Class40062]
+		[OSMRoads_Class40064]
+		[OSMRoads_Class40066]
+		[OSMRoads_Class40068]
+		[OSMRoads_Class40070]
+		[OSMRoads_Class40072]
+		[OSMRoads_Class40074]
+		[OSMRoads_Class40076]
+		[OSMRoads_Class40078]
+		[OSMRoads_Class40080]
+		[OSMRoads_Class40082]
+		[OSMRoads_Class40084]
+		[OSMRoads_Class40086]
+		[OSMRoads_Class40088]
+		[OSMRoads_Class40090]
+		[OSMRoads_Class40092]
+		[OSMRoads_Class40094]
+		[OSMRoads_Class40096]
+		[OSMRoads_Class40098]
+		[OSMRoads_Class40100]
+		[OSMRoads_Class40102])
+	(from1 "Filisur")
+	(title "Albulabahn4")
+	(to1 "Tiefencastel"))
+
+([OSMRoads_Class40042] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40043]))
+
+([OSMRoads_Class40043] of  Way
+
+	(id "22986001")
+	(poly [OSMRoads_Class40003])
+	(source "[[46.6754844 9.6843104] [46.6754725 9.6841858]]"))
+
+([OSMRoads_Class40044] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40045]))
+
+([OSMRoads_Class40045] of  Way
+
+	(id "324022464")
+	(poly [OSMRoads_Class40004])
+	(source "[[46.6754725 9.6841858] [46.6750797 9.6805651] [46.6750498 9.6803163] [46.6750011 9.6800676] [46.6749237 9.6798473] [46.6748041 9.6795952] [46.6745656 9.6792691]]"))
+
+([OSMRoads_Class40046] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40047]))
+
+([OSMRoads_Class40047] of  Way
+
+	(id "324022474")
+	(poly [OSMRoads_Class40006])
+	(source "[[46.6745656 9.6792691] [46.6743874 9.6790087] [46.674301 9.6788449]]"))
+
+([OSMRoads_Class40048] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40049]))
+
+([OSMRoads_Class40049] of  Way
+
+	(id "82117325")
+	(poly [OSMRoads_Class40007])
+	(source "[[46.674301 9.6788449] [46.6742515 9.6787535]]"))
+
+([OSMRoads_Class40050] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40051]))
+
+([OSMRoads_Class40051] of  Way
+
+	(id "82117322")
+	(poly [OSMRoads_Class40008])
+	(source "[[46.6742515 9.6787535] [46.6741385 9.6784808] [46.6740665 9.6782036] [46.6740524 9.6779634] [46.6740599 9.6776262] [46.6740916 9.6774104] [46.6741718 9.6771766] [46.6743189 9.6768687] [46.6744341 9.676728] [46.674592 9.676573] [46.6747345 9.6764657] [46.6753486 9.6760866] [46.6755246 9.6760225] [46.6757123 9.6759954] [46.6759844 9.676033] [46.6763744 9.6761742] [46.6765598 9.6761983] [46.6766835 9.6761918] [46.6768028 9.6761713] [46.6770035 9.6760852] [46.6773901 9.6758651]]"))
+
+([OSMRoads_Class40052] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40053]))
+
+([OSMRoads_Class40053] of  Way
+
+	(id "257114246")
+	(poly [OSMRoads_Class40010])
+	(source "[[46.6773901 9.6758651] [46.6775395 9.6757711] [46.6776927 9.6756832] [46.6778487 9.6756106] [46.677983 9.6755794] [46.6782808 9.6756355] [46.6785493 9.6757173] [46.6788179 9.6758121]]"))
+
+([OSMRoads_Class40054] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40055]))
+
+([OSMRoads_Class40055] of  Way
+
+	(id "22985999")
+	(poly [OSMRoads_Class40011])
+	(source "[[46.6788179 9.6758121] [46.6791093 9.6759822] [46.6794905 9.6763112] [46.6798261 9.6765687] [46.6800594 9.6766683] [46.680298 9.6766938] [46.6804465 9.6766768] [46.6805961 9.6766119]]"))
+
+([OSMRoads_Class40056] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40057]))
+
+([OSMRoads_Class40057] of  Way
+
+	(id "22986000")
+	(poly [OSMRoads_Class40012])
+	(source "[[46.6805961 9.6766119] [46.6806941 9.6765243] [46.6807849 9.6764067] [46.6808558 9.6762877] [46.6809037 9.6761853] [46.6809502 9.6760427] [46.6809826 9.6759005] [46.6810112 9.6757529] [46.6810301 9.6755899] [46.6810313 9.6754355] [46.6810197 9.6752543] [46.680977 9.6750527] [46.6809556 9.6749561]]"))
+
+([OSMRoads_Class40058] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40059]))
+
+([OSMRoads_Class40059] of  Way
+
+	(id "27255347")
+	(poly [OSMRoads_Class40013])
+	(source "[[46.6809556 9.6749561] [46.6807475 9.6742074] [46.6805848 9.6736292]]"))
+
+([OSMRoads_Class40060] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40061]))
+
+([OSMRoads_Class40061] of  Way
+
+	(id "30344427")
+	(poly [OSMRoads_Class40014])
+	(source "[[46.6805848 9.6736292] [46.6805088 9.6734059] [46.6804547 9.6732561]]"))
+
+([OSMRoads_Class40062] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40063]))
+
+([OSMRoads_Class40063] of  Way
+
+	(id "30344428")
+	(poly [OSMRoads_Class40015])
+	(source "[[46.6804547 9.6732561] [46.6803501 9.6728972] [46.6802944 9.6726214] [46.680272 9.6723569] [46.6802287 9.6714712]]"))
+
+([OSMRoads_Class40064] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40065]))
+
+([OSMRoads_Class40065] of  Way
+
+	(id "33236805")
+	(poly [OSMRoads_Class40016])
+	(source "[[46.6802287 9.6714712] [46.6801927 9.6712207] [46.6801661 9.6710733] [46.6800787 9.6708308] [46.6800069 9.6707035] [46.6799217 9.670579] [46.6798035 9.6704551] [46.6796564 9.6703208] [46.679513 9.670215]]"))
+
+([OSMRoads_Class40066] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40067]))
+
+([OSMRoads_Class40067] of  Way
+
+	(id "38188251")
+	(poly [OSMRoads_Class40017])
+	(source "[[46.679513 9.670215] [46.6794053 9.6701286] [46.6792985 9.6700387] [46.6791889 9.6699112] [46.6791087 9.6698057] [46.6790432 9.6697004] [46.6789391 9.6694754] [46.6788888 9.6693108] [46.6788558 9.6691769] [46.6788335 9.6690515] [46.6788144 9.6687893] [46.6788041 9.6685281] [46.6787937 9.6682649] [46.6787803 9.6680033] [46.6787543 9.6678104] [46.678716 9.6676239] [46.6786271 9.6673405] [46.6785433 9.6671342] [46.6784713 9.6669561] [46.6782018 9.6663378]]"))
+
+([OSMRoads_Class40068] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40069]))
+
+([OSMRoads_Class40069] of  Way
+
+	(id "106647150")
+	(poly [OSMRoads_Class40018])
+	(source "[[46.6782018 9.6663378] [46.6780942 9.6660802]]"))
+
+([OSMRoads_Class40070] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40071]))
+
+([OSMRoads_Class40071] of  Way
+
+	(id "106647152")
+	(poly [OSMRoads_Class40019])
+	(source "[[46.6780942 9.6660802] [46.677926 9.6657028] [46.6777398 9.6653251] [46.6775091 9.6648869] [46.6768021 9.6639761] [46.6762353 9.6634182] [46.6760292 9.6631715] [46.6758781 9.662922] [46.6757511 9.662522] [46.6756187 9.6616747] [46.6754434 9.6605868] [46.6753475 9.6602128] [46.6752934 9.6599923]]"))
+
+([OSMRoads_Class40072] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40073]))
+
+([OSMRoads_Class40073] of  Way
+
+	(id "106650538")
+	(poly [OSMRoads_Class40020])
+	(source "[[46.6752934 9.6599923] [46.6751706 9.6596785]]"))
+
+([OSMRoads_Class40074] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40075]))
+
+([OSMRoads_Class40075] of  Way
+
+	(id "106650565")
+	(poly [OSMRoads_Class40021])
+	(source "[[46.6751706 9.6596785] [46.6748605 9.6591834] [46.6746011 9.6586493] [46.6743803 9.6581718] [46.6741557 9.6577588] [46.6738686 9.6573457] [46.6729632 9.656246]]"))
+
+([OSMRoads_Class40076] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40077]))
+
+([OSMRoads_Class40077] of  Way
+
+	(id "106650481")
+	(poly [OSMRoads_Class40022])
+	(source "[[46.6729632 9.656246] [46.6728424 9.6560999]]"))
+
+([OSMRoads_Class40078] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40079]))
+
+([OSMRoads_Class40079] of  Way
+
+	(id "106650478")
+	(poly [OSMRoads_Class40023])
+	(source "[[46.6728424 9.6560999] [46.6725693 9.6557847] [46.6720109 9.6550301] [46.6719544 9.6549261] [46.6718891 9.654806] [46.6717709 9.6545463] [46.6714164 9.6536366] [46.671329 9.6533692] [46.6712586 9.6530944] [46.6712116 9.6528561] [46.671175 9.6526008] [46.6711604 9.6523787] [46.6711484 9.6521436] [46.6711545 9.6515329] [46.6711625 9.6508066] [46.6711666 9.6502311] [46.6711679 9.6500533] [46.6711656 9.6498574] [46.6711499 9.6496247] [46.6711198 9.6494243] [46.6710758 9.6492349] [46.6710217 9.6490806] [46.670961 9.6489423] [46.6707988 9.6486446] [46.6704696 9.6483016] [46.66993 9.6477327] [46.6696135 9.6473786] [46.669435 9.6471308] [46.6692914 9.6468599] [46.6690797 9.6463379] [46.668923 9.6457272] [46.6688331 9.6452329] [46.6688069 9.6450367] [46.6687876 9.6448147] [46.6687871 9.6446189] [46.668811 9.6443641] [46.6691939 9.6422693] [46.669238 9.6419337] [46.6692527 9.6416119] [46.6691938 9.6407107] [46.6691128 9.6401098] [46.6690024 9.6393695] [46.6688441 9.6387097] [46.668476 9.6376368] [46.6683356 9.6371777] [46.6682073 9.6366605] [46.6679606 9.6355394] [46.6674747 9.6336243] [46.6674048 9.6333185] [46.6673164 9.6330342] [46.6671781 9.6327148]]"))
+
+([OSMRoads_Class40080] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40081]))
+
+([OSMRoads_Class40081] of  Way
+
+	(id "82711230")
+	(poly [OSMRoads_Class40024])
+	(source "[[46.6671781 9.6327148] [46.6670051 9.6324198] [46.6668137 9.6321623]]"))
+
+([OSMRoads_Class40082] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40083]))
+
+([OSMRoads_Class40083] of  Way
+
+	(id "82711231")
+	(poly [OSMRoads_Class40025])
+	(source "[[46.6668137 9.6321623] [46.6666554 9.6319531] [46.6664231 9.6315993]]"))
+
+([OSMRoads_Class40084] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40085]))
+
+([OSMRoads_Class40085] of  Way
+
+	(id "314386926")
+	(poly [OSMRoads_Class40031])
+	(source "[[46.6663458 9.6314813] [46.6660559 9.6310025] [46.6658396 9.6305653] [46.6656748 9.6301925] [46.6655294 9.6297788] [46.6653849 9.6292967] [46.6652683 9.6288002] [46.6651718 9.6281336] [46.6651168 9.6277018] [46.6650956 9.6271166] [46.6651006 9.6264506] [46.6651459 9.6259485] [46.6652152 9.6255] [46.665304 9.6250737] [46.6654427 9.6245744] [46.6655468 9.6242703] [46.6656399 9.6240302] [46.6657639 9.6237581] [46.6658484 9.6235809] [46.6659721 9.6233536] [46.6661853 9.6230034] [46.6663794 9.6226981] [46.6665634 9.6223677] [46.6666463 9.6221882] [46.6667236 9.6220013] [46.6668467 9.6216154] [46.6669452 9.6212016] [46.6672562 9.619651] [46.6672672 9.619604] [46.6673692 9.6191135] [46.6674237 9.6188193] [46.6674697 9.618492] [46.6675001 9.6180857] [46.6674904 9.6177228] [46.6674587 9.6174286] [46.6674217 9.6171925] [46.6673583 9.6168935] [46.6672497 9.6164589] [46.6671614 9.6160512] [46.6670859 9.6155309] [46.6670611 9.6149649] [46.6670215 9.6134441] [46.6669966 9.6131335] [46.6669552 9.612905] [46.6668589 9.612522] [46.6666763 9.6120322]]"))
+
+([OSMRoads_Class40086] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40087]))
+
+([OSMRoads_Class40087] of  Way
+
+	(id "314376054")
+	(poly [OSMRoads_Class40032])
+	(source "[[46.6666763 9.6120322] [46.6666191 9.6119072]]"))
+
+([OSMRoads_Class40088] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40089]))
+
+([OSMRoads_Class40089] of  Way
+
+	(id "314376053")
+	(poly [OSMRoads_Class40033])
+	(source "[[46.6666191 9.6119072] [46.6665707 9.6118014] [46.6665133 9.611677] [46.6664592 9.6115646]]"))
+
+([OSMRoads_Class40090] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40091]))
+
+([OSMRoads_Class40091] of  Way
+
+	(id "75390661")
+	(poly [OSMRoads_Class40034])
+	(source "[[46.6664592 9.6115646] [46.6663874 9.6114224]]"))
+
+([OSMRoads_Class40092] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40093]))
+
+([OSMRoads_Class40093] of  Way
+
+	(id "38188249")
+	(poly [OSMRoads_Class40035])
+	(source "[[46.6663874 9.6114224] [46.6662447 9.6111087] [46.6661778 9.6109243] [46.6661232 9.6107002] [46.6660931 9.6104206] [46.6661129 9.6101117] [46.6661714 9.6095225] [46.6664431 9.6075513] [46.6665057 9.6069188] [46.6665105 9.6066117] [46.6664792 9.6062907] [46.6664019 9.606019] [46.6662938 9.6057658] [46.6660869 9.6054924] [46.6657494 9.6051322] [46.6655621 9.6049165] [46.665328 9.6045857] [46.6651432 9.6043372] [46.6649022 9.6041485] [46.6645354 9.6040591] [46.6640758 9.6039912] [46.6636163 9.6037719] [46.6631358 9.6035117] [46.6628212 9.6032621] [46.6625745 9.6029347] [46.6619583 9.6017507] [46.661684 9.6010989] [46.6611207 9.5989371] [46.6610286 9.5983845] [46.6609849 9.5978209] [46.6610446 9.5966675] [46.6610373 9.5961063] [46.6608543 9.5947739] [46.6608701 9.5935056] [46.6608826 9.5907801] [46.6610242 9.589604] [46.6610562 9.5892895] [46.6610683 9.5889413] [46.6610534 9.5884219] [46.6610758 9.587936] [46.6611704 9.5874671] [46.6613108 9.5870901] [46.661496 9.5867891]]"))
+
+([OSMRoads_Class40094] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40095]))
+
+([OSMRoads_Class40095] of  Way
+
+	(id "106642935")
+	(poly [OSMRoads_Class40036])
+	(source "[[46.661496 9.5867891] [46.6615509 9.5867]]"))
+
+([OSMRoads_Class40096] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40097]))
+
+([OSMRoads_Class40097] of  Way
+
+	(id "106642927")
+	(poly [OSMRoads_Class40037])
+	(source "[[46.6615509 9.5867] [46.6620982 9.5860484] [46.6622186 9.585812] [46.6622899 9.5856016] [46.6623367 9.5853725] [46.662361 9.5851707]]"))
+
+([OSMRoads_Class40098] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40099]))
+
+([OSMRoads_Class40099] of  Way
+
+	(id "30344544")
+	(poly [OSMRoads_Class40038])
+	(source "[[46.662361 9.5851707] [46.6624024 9.5848732]]"))
+
+([OSMRoads_Class40100] of  Dirway
+
+	(direction "BACKWARD")
+	(way [OSMRoads_Class40101]))
+
+([OSMRoads_Class40101] of  Way
+
+	(id "257114241")
+	(poly [OSMRoads_Class40039])
+	(source "[[46.6631965 9.5747313] [46.663142 9.5749359] [46.6631102 9.5752063] [46.6631058 9.5754404] [46.6631314 9.5757431] [46.6632007 9.5760624] [46.6632779 9.576394] [46.6633214 9.5766534] [46.6633378 9.576791] [46.6633433 9.5768769] [46.6633396 9.5769923] [46.6633368 9.5770781] [46.6633203 9.5772552] [46.6632835 9.5774403] [46.6632273 9.5776375] [46.6631647 9.5777944] [46.663103 9.5779125] [46.6629401 9.5781539] [46.6626639 9.5785362] [46.6624853 9.5787817] [46.662419 9.5788944] [46.6623797 9.5789767] [46.662326 9.5791023] [46.6622874 9.5791949] [46.6622579 9.5793009] [46.6622287 9.5794283] [46.6622146 9.5795785] [46.6622073 9.5797073] [46.66221 9.5798415] [46.6622248 9.5799796] [46.6622505 9.5801178] [46.6622763 9.5802211] [46.6623389 9.5803928] [46.6624466 9.5806275] [46.662674 9.5810675] [46.6628167 9.5813532] [46.6628913 9.5815357] [46.6629391 9.581694] [46.6629658 9.5817959] [46.6629944 9.5819904] [46.6630073 9.5821648] [46.6630091 9.5823311] [46.6629925 9.5825337] [46.6629467 9.5827944] [46.6628112 9.583411] [46.6627044 9.5838818] [46.6626353 9.5841287] [46.6625635 9.5843419] [46.6625046 9.5844989] [46.6624549 9.5846491] [46.6624024 9.5848732]]"))
+
+([OSMRoads_Class40102] of  Dirway
+
+	(direction "FORWARD")
+	(way [OSMRoads_Class40103]))
+
+([OSMRoads_Class40103] of  Way
+
+	(id "208764191")
+	(poly [OSMRoads_Class40040])
+	(source "[[46.6631965 9.5747313] [46.663272 9.5745435] [46.6633591 9.5743352] [46.6634298 9.5742061] [46.6635688 9.5739486] [46.6636876 9.5737125] [46.66381 9.5734187] [46.6642219 9.5724171] [46.6643462 9.5721177] [46.6644084 9.5719659] [46.6645053 9.5717421] [46.6645842 9.5715917] [46.6646604 9.5714646] [46.6648687 9.5712013] [46.6650014 9.5710805] [46.6651614 9.5709706] [46.6652747 9.5708995] [46.66541 9.5708297] [46.6656688 9.5707136]]"))
 
 ([OSMRoads_Class41] of  GoRoad
 
@@ -8301,8 +9118,6 @@
 		[OSMRoads_Class50291]
 		[OSMRoads_Class50293]
 		[OSMRoads_Class50295]
-		[OSMRoads_Class50297]
-		[OSMRoads_Class50299]
 		[OSMRoads_Class50301]
 		[OSMRoads_Class50303]
 		[OSMRoads_Class50305]
@@ -8661,28 +9476,6 @@
 	(id "22986145")
 	(poly [OSMRoads_Class50216])
 	(source "[[46.664452 9.6985181] [46.6645465 9.6983547] [46.6646304 9.6982162] [46.6647185 9.6980633] [46.6648316 9.6979026] [46.6649304 9.6977981] [46.6650677 9.6976723] [46.6652216 9.6975657] [46.6655126 9.6974546] [46.6657344 9.6973732] [46.6659833 9.6972794] [46.6661134 9.6972181] [46.6667044 9.6968963]]"))
-
-([OSMRoads_Class50297] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMRoads_Class50298]))
-
-([OSMRoads_Class50298] of  Way
-
-	(id "22986143")
-	(poly [OSMRoads_Class50217])
-	(source "[[46.6667044 9.6968963] [46.6673981 9.6965194]]"))
-
-([OSMRoads_Class50299] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMRoads_Class50300]))
-
-([OSMRoads_Class50300] of  Way
-
-	(id "212304453")
-	(poly [OSMRoads_Class50218])
-	(source "[[46.6673981 9.6965194] [46.6675122 9.6964635]]"))
 
 ([OSMRoads_Class50301] of  Dirway
 
