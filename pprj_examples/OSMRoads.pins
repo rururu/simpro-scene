@@ -1,4 +1,4 @@
-; Sun Feb 18 21:52:47 MSK 2018
+; Sun Feb 25 23:30:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1317,9 +1317,9 @@
 
 ([BrigBern_Class110000] of  GoRoad
 
-	(direction "FORWARD")
-	(object [BrigBern_Class100000])
-	(road [OSMRoads_Class50234])
+	(direction "BACKWARD")
+	(object [BrigBern_Class100001])
+	(road [OSMRoads_Class20053])
 	(spd "40")
 	(status "START")
 	(title "test"))
@@ -2861,7 +2861,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "train"))
+	(onboard "car"))
 
 ([BrigBern_Class50003] of  OMTPoly
 
@@ -4744,15 +4744,15 @@
 	(from1 "Tiefencastel")
 	(radius 0.01)
 	(road-subclass Railroad)
-	(status "MODE CREATE, in PATH 39 ways.")
+	(status "MODE ADD")
 	(tagvalue
 		[BrigBern_Class80016]
 		[OSMRoads_Class40001]
 		[BrigBern_Class80017]
 		[BrigBern_Class90003]
 		[OSMRoads_Class10001]
-		[OSMRoads_Class20021]
-		[OSMRoads_Class20142])
+		[OSMRoads_Class20142]
+		[OSMRoads_Class60003])
 	(title "Roads Control")
 	(to1 "Thusis"))
 
@@ -6101,6 +6101,30 @@
 	(poly [OSMRoads_Class5])
 	(source "[[43.766759 7.4862224] [43.7654612 7.4849832]]"))
 
+([OSMRoads_Class30000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "plane")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/plnb.gif"))
+
+([OSMRoads_Class30001] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "hel")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/helr.gif"))
+
 ([OSMRoads_Class30002] of  SetScale
 
 	(scale "500000")
@@ -7087,6 +7111,10 @@
 		"43 46.01 7 29.17"
 		"43 45.93 7 29.1")
 	(relative FALSE))
+
+([OSMRoads_Class50002] of  CloFuncall
+
+	(source "osm.data/OSM-DATA"))
 
 ([OSMRoads_Class50003] of  OMTPoly
 
@@ -9771,6 +9799,10 @@
 		"43 46.55 7 29.72"
 		"43 46.69 7 30.24")
 	(relative FALSE))
+
+([OSMRoads_Class60003] of  Tagvalue
+
+	(value "\"highway\" \"tertiary\""))
 
 ([OSMRoads_Class60008] of  OMTPoly
 

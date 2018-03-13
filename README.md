@@ -53,6 +53,8 @@ In Protege GUI:
 14. [OSM Roads: Cesium enters into the play](https://youtu.be/cT5h79w3wR4)
 15. [OSM Roads: Creation of roads from OSM data](https://youtu.be/WEx2-rMCJag)
 16. [OSM Roads: Car voyage from Guttannen to Innertkirchen](https://youtu.be/KSKRXSD8a2E)
+17. [Get started: Algorithms](https://www.youtube.com/watch?v=oRCMw_rnLvg&feature=youtu.be)
+18. [Everest](https://www.youtube.com/watch?v=YAZSrUjKRhk&t=10s)
 
 TO BE CONTINUED
 
