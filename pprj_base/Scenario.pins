@@ -1,4 +1,4 @@
-; Thu Feb 15 12:16:10 MSK 2018
+; Sun Mar 25 21:24:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -918,7 +918,7 @@
 
 ([Scenario_Class250010] of  CloFunction
 
-	(source "[(invoke-later (DisplayUtilities/pickInstanceFromCollection nil vrs 0 \"Select Variant\"))]")
+	(source "[@(future (DisplayUtilities/pickInstanceFromCollection nil vrs 0 \"Select Variant\"))]")
 	(title "user-decision [vrs]"))
 
 ([Scenario_Class250011] of  RuleSet

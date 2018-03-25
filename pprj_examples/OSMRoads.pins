@@ -1,4 +1,4 @@
-; Sat Mar 24 22:23:14 MSK 2018
+; Sun Mar 25 14:22:50 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6243,6 +6243,15 @@
 		[OSMRoads_Class0])
 	(title "Part 1"))
 
+([OSMRoads_Class40000] of  Task
+
+	(final_actions [OSMRoads_Class70124])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70124])
+	(next_tasks [OSMRoads_Class70002])
+	(task_scheme [OSMRoads_Class70124])
+	(title "From St.Moritz FORWARD"))
+
 ([OSMRoads_Class40001] of  Tagvalue
 
 	(value "[\"railway\" \"narrow_gauge\"]"))
@@ -7085,10 +7094,10 @@
 
 ([OSMRoads_Class42] of  GoRoad
 
-	(direction "FORWARD")
+	(direction "BACKWARD")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class14])
-	(spd "30")
+	(spd "50")
 	(title "Carnoles - Menton"))
 
 ([OSMRoads_Class43] of  %3AINSTANCE-ANNOTATION
@@ -7110,6 +7119,23 @@
 		"43 46.01 7 29.17"
 		"43 45.93 7 29.1")
 	(relative FALSE))
+
+([OSMRoads_Class50000] of  PutOnMap
+
+	(next_actions [OSMRoads_Class70123])
+	(object [OSMRoads_Class80005])
+	(title "St.Moritz on map"))
+
+([OSMRoads_Class50001] of  UserDecision
+
+	(title "Where from?")
+	(variants
+		[OSMRoads_Class40000]
+		[OSMRoads_Class70002]
+		[OSMRoads_Class80004]
+		[OSMRoads_Class90003]
+		[OSMRoads_Class90004]
+		[OSMRoads_Class90005]))
 
 ([OSMRoads_Class50002] of  CloFuncall
 
@@ -10888,6 +10914,15 @@
 	(direction "BACKWARD")
 	(way [OSMRoads_Class71]))
 
+([OSMRoads_Class70002] of  Task
+
+	(final_actions [OSMRoads_Class70125])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70125])
+	(next_tasks [OSMRoads_Class80004])
+	(task_scheme [OSMRoads_Class70125])
+	(title "From Bever FORWARD"))
+
 ([OSMRoads_Class70003] of  OMTPoly
 
 	(description "257258641")
@@ -11610,7 +11645,6 @@
 ([OSMRoads_Class70097] of  Railroad
 
 	(dirways
-		[OSMRoads_Class70098]
 		[OSMRoads_Class70100]
 		[OSMRoads_Class70102]
 		[OSMRoads_Class70104]
@@ -11623,17 +11657,6 @@
 	(from1 "Bever")
 	(title "Albulabahn2")
 	(to1 "Preda"))
-
-([OSMRoads_Class70098] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMRoads_Class70099]))
-
-([OSMRoads_Class70099] of  Way
-
-	(id "208050389")
-	(poly [OSMRoads_Class70120])
-	(source "[[46.5509744 9.8890286] [46.5508472 9.8890448] [46.5507578 9.8890421] [46.5506809 9.8890306] [46.5505627 9.8889993] [46.5504382 9.8889533]]"))
 
 ([OSMRoads_Class70100] of  Dirway
 
@@ -11745,102 +11768,86 @@
 	(poly [OSMRoads_Class70096])
 	(source "[[46.5604358 9.843987] [46.5876871 9.7784153]]"))
 
-([OSMRoads_Class70120] of  OMTPoly
-
-	(description "208050387")
-	(label "208050389")
-	(latitude "46 32.93")
-	(line [BrigBern_Class110026])
-	(lineColor "FFFF0000")
-	(longitude "9 53.29")
-	(playground-index 0)
-	(points
-		"46 32.93 9 53.29"
-		"46 32.87 9 53.25")
-	(relative FALSE))
-
 ([OSMRoads_Class70121] of  Scenario
 
-	(final_tasks [OSMRoads_Class70122])
-	(finish_type AND)
-	(initial_tasks [OSMRoads_Class70122])
-	(scenario_scheme [OSMRoads_Class70122])
+	(final_tasks
+		[OSMRoads_Class90005]
+		[OSMRoads_Class90018])
+	(finish_type OR)
+	(initial_tasks [OSMRoads_Class80003])
+	(scenario_scheme
+		[OSMRoads_Class40000]
+		[OSMRoads_Class50001]
+		[OSMRoads_Class80003]
+		[OSMRoads_Class80004]
+		[OSMRoads_Class90006]
+		[OSMRoads_Class90007]
+		[OSMRoads_Class90003]
+		[OSMRoads_Class70002]
+		[OSMRoads_Class90004]
+		[OSMRoads_Class90005]
+		[OSMRoads_Class90012]
+		[OSMRoads_Class90013]
+		[OSMRoads_Class90014]
+		[OSMRoads_Class90015]
+		[OSMRoads_Class90016]
+		[OSMRoads_Class90017]
+		[OSMRoads_Class90018])
 	(title "Glacier Express"))
 
-([OSMRoads_Class70122] of  Task
+([OSMRoads_Class70123] of  PutOnPlace
 
-	(final_actions [OSMRoads_Class70129])
-	(finish_type AND)
-	(initial_actions [OSMRoads_Class70123])
-	(task_scheme
-		[OSMRoads_Class70123]
-		[OSMRoads_Class70124]
-		[OSMRoads_Class70125]
-		[OSMRoads_Class70128]
-		[OSMRoads_Class70127]
-		[OSMRoads_Class70126]
-		[OSMRoads_Class70129])
-	(title "Part 1. St.Moritz - Thusis"))
-
-([OSMRoads_Class70123] of  PutOnMap
-
-	(latitude "0 0")
-	(longitude "0 0")
-	(next_actions [OSMRoads_Class70124])
+	(next_actions [OSMRoads_Class90027])
 	(object [BrigBern_Class100000])
-	(title "GE on map"))
+	(observer [OSMRoads_Class80005])
+	(title "GE on map in St.Morits"))
 
 ([OSMRoads_Class70124] of  GoRoad
 
-	(direction "FORWARD")
-	(next_actions [OSMRoads_Class70125])
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class70029])
-	(spd "30")
+	(spd "50")
 	(title "St.Moritz - Bever"))
 
 ([OSMRoads_Class70125] of  GoRoad
 
-	(direction "FORWARD")
-	(next_actions [OSMRoads_Class70128])
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class70097])
-	(spd "30")
+	(spd "50")
 	(title "Bever - Preda"))
 
 ([OSMRoads_Class70126] of  GoRoad
 
-	(direction "FORWARD")
-	(next_actions [OSMRoads_Class70129])
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class40041])
-	(spd "30")
+	(spd "50")
 	(title "Filisur - Tiefencastel"))
 
 ([OSMRoads_Class70127] of  GoRoad
 
-	(direction "FORWARD")
-	(next_actions [OSMRoads_Class70126])
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class50234])
-	(spd "30")
+	(spd "50")
 	(title "Bergun - Filisur"))
 
 ([OSMRoads_Class70128] of  GoRoad
 
-	(direction "FORWARD")
-	(next_actions [OSMRoads_Class70127])
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class50076])
-	(spd "30")
+	(spd "50")
 	(title "Preda - Bergun"))
 
 ([OSMRoads_Class70129] of  GoRoad
 
-	(direction "FORWARD")
+	(direction "?direction")
 	(object [BrigBern_Class100000])
 	(road [OSMRoads_Class60043])
-	(spd "30")
+	(spd "50")
 	(title "Tiefencastel - Thusis"))
 
 ([OSMRoads_Class70130] of  %3AINSTANCE-ANNOTATION
@@ -11918,6 +11925,46 @@
 	(direction "FORWARD")
 	(way [OSMRoads_Class81]))
 
+([OSMRoads_Class80003] of  UserDecision
+
+	(title "Where to?")
+	(variants
+		[OSMRoads_Class90006]
+		[OSMRoads_Class90007]))
+
+([OSMRoads_Class80004] of  Task
+
+	(final_actions [OSMRoads_Class70128])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70128])
+	(next_tasks [OSMRoads_Class90003])
+	(task_scheme [OSMRoads_Class70128])
+	(title "From Preda FORWARD"))
+
+([OSMRoads_Class80005] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "St.Moritz")
+	(latitude "46 29.85")
+	(longitude "9 50.28")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/home.gif"))
+
+([OSMRoads_Class80006] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "Thusis")
+	(latitude "46 41.98")
+	(longitude "9 26")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/home.gif"))
+
 ([OSMRoads_Class81] of  Way
 
 	(id "157364738")
@@ -11986,6 +12033,154 @@
 
 	(direction "FORWARD")
 	(way [OSMRoads_Class91]))
+
+([OSMRoads_Class90003] of  Task
+
+	(final_actions [OSMRoads_Class70127])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70127])
+	(next_tasks [OSMRoads_Class90004])
+	(task_scheme [OSMRoads_Class70127])
+	(title "From Bergun FORWARD"))
+
+([OSMRoads_Class90004] of  Task
+
+	(final_actions [OSMRoads_Class70126])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70126])
+	(next_tasks [OSMRoads_Class90005])
+	(task_scheme [OSMRoads_Class70126])
+	(title "From Filisur FORWARD"))
+
+([OSMRoads_Class90005] of  Task
+
+	(final_actions [OSMRoads_Class70129])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70129])
+	(task_scheme [OSMRoads_Class70129])
+	(title "From Tiefencastel FORWARD"))
+
+([OSMRoads_Class90006] of  Task
+
+	(final_actions [OSMRoads_Class90027])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class50000])
+	(next_tasks [OSMRoads_Class50001])
+	(task_scheme
+		[OSMRoads_Class50000]
+		[OSMRoads_Class70123]
+		[OSMRoads_Class90027])
+	(title "FORWARD (to Zermatt)"))
+
+([OSMRoads_Class90007] of  Task
+
+	(final_actions [OSMRoads_Class90028])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class90019])
+	(next_tasks [OSMRoads_Class90012])
+	(task_scheme
+		[OSMRoads_Class90019]
+		[OSMRoads_Class90020]
+		[OSMRoads_Class90028])
+	(title "BACKWARD (to St.Moritz)"))
+
+([OSMRoads_Class90009] of  Result
+
+	(title "r1")
+	(variable [OSMRoads_Class90010]))
+
+([OSMRoads_Class90010] of  Variable
+
+	(title "?direction"))
+
+([OSMRoads_Class90012] of  UserDecision
+
+	(title "Where from?")
+	(variants
+		[OSMRoads_Class90013]
+		[OSMRoads_Class90014]
+		[OSMRoads_Class90015]
+		[OSMRoads_Class90016]
+		[OSMRoads_Class90017]
+		[OSMRoads_Class90018]))
+
+([OSMRoads_Class90013] of  Task
+
+	(final_actions [OSMRoads_Class70129])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70129])
+	(next_tasks [OSMRoads_Class90014])
+	(task_scheme [OSMRoads_Class70129])
+	(title "From Thusis BACKWARD"))
+
+([OSMRoads_Class90014] of  Task
+
+	(final_actions [OSMRoads_Class70126])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70126])
+	(next_tasks [OSMRoads_Class90015])
+	(task_scheme [OSMRoads_Class70126])
+	(title "From Tiefencastel BACKWARD"))
+
+([OSMRoads_Class90015] of  Task
+
+	(final_actions [OSMRoads_Class70127])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70127])
+	(next_tasks [OSMRoads_Class90016])
+	(task_scheme [OSMRoads_Class70127])
+	(title "From Filisur BACKWARD"))
+
+([OSMRoads_Class90016] of  Task
+
+	(final_actions [OSMRoads_Class70128])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70128])
+	(next_tasks [OSMRoads_Class90017])
+	(task_scheme [OSMRoads_Class70128])
+	(title "From Bergun BACKWARD"))
+
+([OSMRoads_Class90017] of  Task
+
+	(final_actions [OSMRoads_Class70125])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70125])
+	(next_tasks [OSMRoads_Class90018])
+	(task_scheme [OSMRoads_Class70125])
+	(title "From Preda BACKWARD"))
+
+([OSMRoads_Class90018] of  Task
+
+	(final_actions [OSMRoads_Class70124])
+	(finish_type AND)
+	(initial_actions [OSMRoads_Class70124])
+	(task_scheme [OSMRoads_Class70124])
+	(title "From Bever BACKWARD"))
+
+([OSMRoads_Class90019] of  PutOnMap
+
+	(next_actions [OSMRoads_Class90020])
+	(object [OSMRoads_Class80006])
+	(title "Thusis on map"))
+
+([OSMRoads_Class90020] of  PutOnPlace
+
+	(next_actions [OSMRoads_Class90028])
+	(object [BrigBern_Class100000])
+	(observer [OSMRoads_Class80006])
+	(title "GE on map in Thusis"))
+
+([OSMRoads_Class90027] of  Calculus
+
+	(results [OSMRoads_Class90009])
+	(source "?direction \"FORWARD\"")
+	(title "Direction FORWARD"))
+
+([OSMRoads_Class90028] of  Calculus
+
+	(results [OSMRoads_Class90009])
+	(source "?direction \"BACKWARD\"")
+	(title "Direction BACKWARD"))
 
 ([OSMRoads_Class91] of  Way
 

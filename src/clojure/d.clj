@@ -10,7 +10,7 @@
   ru.igis.omtab.OMT))
 
 (defn user-decision [vrs]
-  [(invoke-later (DisplayUtilities/pickInstanceFromCollection nil vrs 0 "Select Variant"))])
+  [@(future (DisplayUtilities/pickInstanceFromCollection nil vrs 0 "Select Variant"))])
 
 (defn event-decision [evs vrs r]
   (letfn [(if-event-variant [evt vrn r]
