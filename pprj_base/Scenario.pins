@@ -1,4 +1,4 @@
-; Sun Mar 25 21:24:07 MSK 2018
+; Mon Mar 26 13:31:10 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1487,7 +1487,7 @@
 ([Scenario_Class520000] of  Rule
 
 	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       speed (a/vv ?spd ?run)]\n  (if (and (some? mo) (not (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           rou (if (not= dir dn) (reverse rou) rou)\n           [la1 lo1] (first rou)\n           rsp (read-string speed)]\n      (.setLatitude mo la1)\n      (.setLongitude mo lo1)\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	route rou\n	spd rsp\n	object mo\n	N ?t))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       speed (a/vv ?spd ?run)]\n  (if (and (some? mo) (not (a/null? roa)))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           dws (if (= dir \"BACKWARD\")\n	(reverse dws)\n	dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           way (protege.core/sv dw \"way\")\n           rou (read-string (protege.core/sv way \"source\"))\n           rou (if (not= dir dn) (reverse rou) rou)\n           [la1 lo1] (first rou)\n           rsp (read-string speed)]\n      (.setLatitude mo la1)\n      (.setLongitude mo lo1)\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"REPEAT\"\n	road (rest dws)\n	route rou\n	spd rsp\n	direction dir\n	object mo\n	N ?t))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "a:GoRoadStart"))
 

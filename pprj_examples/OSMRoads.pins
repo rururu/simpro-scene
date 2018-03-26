@@ -1,4 +1,4 @@
-; Sun Mar 25 14:22:50 MSK 2018
+; Mon Mar 26 13:53:35 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1315,12 +1315,9 @@
 	(from1 "Brig")
 	(to1 "Lalden"))
 
-([BrigBern_Class110000] of  GoRoad
+([BrigBern_Class110000] of  PutOnMap
 
-	(direction "BACKWARD")
 	(object [BrigBern_Class100001])
-	(road [OSMRoads_Class20053])
-	(spd "40")
 	(status "START")
 	(title "test"))
 
@@ -9824,6 +9821,18 @@
 		"43 46.55 7 29.72"
 		"43 46.69 7 30.24")
 	(relative FALSE))
+
+([OSMRoads_Class60000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "Bever")
+	(latitude "46 32.97")
+	(longitude "9 53.3")
+	(playground-index 0)
+	(speed 0.0)
+	(tangage 0.0)
+	(url "file:data/images/home.gif"))
 
 ([OSMRoads_Class60003] of  Tagvalue
 
