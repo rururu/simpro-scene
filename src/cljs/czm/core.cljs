@@ -2,10 +2,7 @@
 (:require
   [geo.calc :refer [future-pos-js]]))
 
-(def TERR-PROV (js/Cesium.CesiumTerrainProvider.
-  #js{:url "//assets.agi.com/stk-terrain/world"
-        :requestWaterMask false
-        :requestVertexNormals false}))
+(def TERR-PROV (js/Cesium.createWorldTerrain))
 (def VIEWER (js/Cesium.Viewer. 
   "cesiumContainer" 
   #js{:animation false}))

@@ -1,4 +1,4 @@
-; Tue Feb 13 11:39:33 MSK 2018
+; Sat Mar 31 22:33:17 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -159,7 +159,7 @@
 
 ([Cezium_Class2] of  CloVar
 
-	(source "(js/Cesium.CesiumTerrainProvider.\n  #js{:url \"//assets.agi.com/stk-terrain/world\"\n        :requestWaterMask false\n        :requestVertexNormals false})")
+	(source "(js/Cesium.createWorldTerrain)")
 	(title "TERR-PROV"))
 
 ([Cezium_Class20000] of  HTML
