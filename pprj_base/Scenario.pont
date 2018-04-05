@@ -1,4 +1,4 @@
-; Mon Mar 26 13:31:10 MSK 2018
+; Thu Apr 05 22:37:52 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -831,6 +831,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot new_altitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot date
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -1488,6 +1492,10 @@
 (defclass PutObProperties
 	(is-a Action)
 	(role concrete)
+	(single-slot new_altitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)

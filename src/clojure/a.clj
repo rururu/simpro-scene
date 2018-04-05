@@ -345,12 +345,13 @@
         (doseq [cli cls]
           (es-mess (str tim " " mes) nil cat (sv cli "id")))) ))))
 
-(defn put-ob-properties [?obj ?lat ?lon ?crs ?spd r]
+(defn put-ob-properties [?obj ?lat ?lon ?crs ?spd ?alt r]
   (let [obj (vv ?obj r)
        lat (vv ?lat r)
        lon (vv ?lon r)
        crs (vv ?crs r)
-       spd (vv ?spd r)]
+       spd (vv ?spd r)
+       alt (vv ?alt r)]
   (if (null? obj)
     "FAILED"
     (if-let [mo (OMT/getMapOb obj)]
@@ -359,6 +360,8 @@
           (.setCourse mo c))
         (if-let [s (if (not (null? spd)) (Double. spd))]
           (.setSpeed mo s))
+        (if-let [a (if (not (null? alt)) (Integer. alt))]
+          (.setAltitude mo a))
         (if (not (or (null? lat) (null? lon)))
           (.setLocation mo lat lon))
         "DONE"

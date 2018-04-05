@@ -1,4 +1,4 @@
-; Mon Mar 26 13:31:10 MSK 2018
+; Thu Apr 05 22:37:52 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1457,8 +1457,8 @@
 
 ([Scenario_Class500000] of  Rule
 
-	(lhs "?pop (PutObProperties status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	new_course ?crs\n	new_speed ?spd\n	run ?run)")
-	(rhs "(println \"Action started:\" ?tit \"PutObProperties\")\n(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?run))")
+	(lhs "?pop (PutObProperties status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	new_course ?crs\n	new_speed ?spd\n	new_altitude ?alt\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutObProperties\")\n(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?alt ?run))")
 	(salience 0)
 	(title "a:PutObPropertiesStart"))
 
@@ -1517,8 +1517,8 @@
 
 ([Scenario_Class530002] of  CloFunction
 
-	(source "(let [obj (vv ?obj r)\n       lat (vv ?lat r)\n       lon (vv ?lon r)\n       crs (vv ?crs r)\n       spd (vv ?spd r)]\n  (if (null? obj)\n    \"FAILED\"\n    (if-let [mo (OMT/getMapOb obj)]\n      (try \n        (if-let [c (if (not (null? crs)) (Integer. crs))]\n          (.setCourse mo c))\n        (if-let [s (if (not (null? spd)) (Double. spd))]\n          (.setSpeed mo s))\n        (if (not (or (null? lat) (null? lon)))\n          (.setLocation mo lat lon))\n        \"DONE\"\n      (catch Exception e\n        \"FAILED\")) ) ))")
-	(title "put-ob-properties [?obj ?lat ?lon ?crs ?spd r]"))
+	(source "(let [obj (vv ?obj r)\n       lat (vv ?lat r)\n       lon (vv ?lon r)\n       crs (vv ?crs r)\n       spd (vv ?spd r)\n       alt (vv ?alt r)]\n  (if (null? obj)\n    \"FAILED\"\n    (if-let [mo (OMT/getMapOb obj)]\n      (try \n        (if-let [c (if (not (null? crs)) (Integer. crs))]\n          (.setCourse mo c))\n        (if-let [s (if (not (null? spd)) (Double. spd))]\n          (.setSpeed mo s))\n        (if-let [a (if (not (null? alt)) (Integer. alt))]\n          (.setAltitude mo a))\n        (if (not (or (null? lat) (null? lon)))\n          (.setLocation mo lat lon))\n        \"DONE\"\n      (catch Exception e\n        \"FAILED\")) ) ))")
+	(title "put-ob-properties [?obj ?lat ?lon ?crs ?spd ?alt r]"))
 
 ([Scenario_Class540000] of  ScenarioRepeatAction
 
