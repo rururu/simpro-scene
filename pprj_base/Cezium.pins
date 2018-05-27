@@ -1,4 +1,4 @@
-; Mon Apr 02 22:14:43 MSK 2018
+; Sun May 27 21:57:46 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -267,7 +267,7 @@
 
 ([Cezium_Class30041] of  CloFunction
 
-	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (let [spd1 (.getSpeed mo)\n           spd2 (.getAttribute mo \"ROAD-SPEED\")\n           spd (cond\n	(and spd2 (not= spd1 (double 0)))\n		(do (.setSpeed mo (double 0))\n		  (.putAttribute mo \"ROAD-SPEED\" spd1)\n		  spd1)\n	(nil? spd2) spd1\n                        true spd2)]\n    {:vehicle\n      {:name onb\n       :coord [(.getLatitude mo) (.getLongitude mo)]\n       :altitude (.getAltitude mo)\n       :speed spd\n       :course (.getCourse mo)}\n     :period 1})))")
+	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (let [spd (.getSpeed mo)]\n      (.putAttribute mo \"ROAD-SPEED\" spd)\n      {:vehicle\n        {:name onb\n         :coord [(.getLatitude mo) (.getLongitude mo)]\n         :altitude (.getAltitude mo)\n         :speed spd\n         :course (.getCourse mo)}\n       :period 1})))")
 	(title "vehicle-data []"))
 
 ([Cezium_Class30042] of  CloVar

@@ -81,7 +81,6 @@
         (if (not (or (a/null? lat) (a/null? lon)))
           (.setLocation mo lat lon))) )))
 (doseq [mo ?mos]
-  (println :POM mo)
   (ru.igis.omtab.OMT/addMapOb mo))
 (retract ?pom)
 (s/start-next ?nacts ?pid ?ain ?run))
@@ -93,7 +92,8 @@
 	latitude ?lat 
 	longitude ?lon 
 	observer ?obs
-	speed ?spd 
+	speed ?spd1
+	spd ?spd2
 	run ?run)
 =>
 (println "Action started:" ?tit "Arrive")
@@ -102,35 +102,28 @@
 	[(.getLatitude obs)
 	 (.getLongitude obs)]
 	[(a/degmin-to-deg ?lat ?run)
-	 (a/degmin-to-deg ?lon ?run)])]
-    (if (or (nil? lt) (nil? ln))
+	 (a/degmin-to-deg ?lon ?run)])
+         spd (or (a/vv ?spd2 ?run) ?spd1)]
+    (if (or (nil? lt) (nil? ln) (a/null? spd))
       (modify ?arr status "FAILED")
-      (do (a/go mo lt ln ?spd)
-        (modify ?arr status "REPEAT" latitude lt longitude ln))))
+      (do (a/go-route mo lt ln)
+        (.setSpeed mo (double spd))
+        (modify ?arr status "WAIT"
+	object mo))))
   (modify ?arr status "FAILED")))
 
-(a:ArriveRepeat 0
-?arr (Arrive status "REPEAT" 
-	object ?obj 
-	latitude ?lat 
-	longitude ?lon 
-	radius ?rad
+(a:ArriveWait 0
+?arr (Arrive status "WAIT" 
+	object ?mo
 	parent ?pid
 	instance ?ain
 	next_actions ?nacts
  	run ?run)
-(Clock time ?t)
+?moe (MapObEvent status "STOP_ROUTE"
+	object ?mo)
 =>
-(if-let [mo (a/mapob-vv ?obj ?run)]
-  (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))
-    (do (a/stop-moving mo ?lat ?lon)
-      (if (empty? ?nacts)
-        (modify ?arr status "DONE")
-        (do (retract ?arr)
-          (s/start-next ?nacts ?pid ?ain ?run))))
-    (if (> (.distanceNM mo ?lat ?lon) 100)
-      (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)) ) ))
-  (modify ?arr status "FAILED")))
+(retract ?moe ?arr)
+(s/start-next ?nacts ?pid ?ain ?run))
 
 (s:ClearScenarioActivities 0
 (Scenario status "DONE"
@@ -222,7 +215,6 @@
 	route ?rou
 	spd ?spd
 	backward ?bwd
-	radius ?rad
 	run ?run
 	parent ?par)
 =>
@@ -230,62 +222,28 @@
 (let [rou (a/vv ?rou ?run)
        mo (a/mapob-vv ?obj ?run)
        sps (a/vv ?spd ?run)]
-  (if (and rou mo sps)
-    (let [pts (if (instance?  edu.stanford.smi.protege.model.Instance rou)
-                   (map a/pnt-latlon (protege.core/svs rou "points"))
-                   rou)
-           cnt (count pts)
-           pnt (if (protege.core/is? ?bwd) (dec cnt) 0)
-           [lat lon] (nth pts pnt)
-           spn (read-string sps)]
-      (a/go mo lat lon spn)
-      (modify ?gor route pts
-	N pnt
-	spd spn
-	latitude lat
-	longitude lon
-	status "REPEAT"))
+  (println :GRS rou mo sps )
+  (or (and rou mo sps (if-let [rte (a/to-route rou ?bwd)]
+	(let [speed (read-string sps)]
+	  (println :GRS2 speed rte)
+	  (.goRoute mo rte)
+	  (.setSpeed mo (double speed))
+	  (modify ?gor status "WAIT" object mo)
+	  true)))
     (modify ?gor status "FAILED"))))
 
-(a:GoRouteRepeat 0
-?gor (GoRoute status "REPEAT"
-	object ?obj 
-	latitude ?lat
-	longitude ?lon
-	route ?rou
-	spd ?spd 
-	radius ?rad
-	backward ?bwd
-	N ?n
-	time1 ?t1)
+(a:GoRouteWait 0
+?gor (GoRoute status "WAIT"
+	object ?mo
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
-(Clock time ?t (> ?t ?t1))
+?moe (MapObEvent status "STOP_ROUTE"
+	object ?mo)
 =>
-(let [next (if (protege.core/is? ?bwd) (dec ?n) (inc ?n))]
-  (if-let [mo (a/mapob-vv ?obj ?run)]
-    (if (or (.near mo ?lat ?lon ?rad) (.abaft mo ?lat ?lon))
-      (if (or (= next (count ?rou)) (< next 0))
-        (do (println :STOP ?lat ?lon)
-          (a/stop-moving mo ?lat ?lon)
-          (retract ?gor)
-          (s/start-next ?nacts ?pid ?ain ?run))
-        (let [[lat lon] (nth ?rou next)]
-          (println :NEXT next lat lon)
-          (.setLatitude mo ?lat)
-          (.setLongitude mo ?lon)
-          (a/go mo lat lon ?spd)
-          (modify ?gor 
-	latitude lat
-	longitude lon
-	N next
-	time1 ?t)))
-      (when (> (.distanceNM mo ?lat ?lon) 100)
-        (println :CRS (int (.bearingsDeg mo ?lat ?lon)))
-        (.setCourse mo (int (.bearingsDeg mo ?lat ?lon)))))
-    (modify ?gor status "FAILED"))))
+(retract ?moe ?gor)
+(s/start-next ?nacts ?pid ?ain ?run))
 
 (s:LastANDFinalTaskDone 0
 ?t (Task status "DONE"
@@ -364,14 +322,14 @@
 	next_actions ?nacts)
 =>
 (println "Action started:" ?tit "Calculus")
-(let [bnd (mapcat #(d/input-var-val % ?run) ?ida)
-       bnd2  (d/parse-let-body (d/uncomment  ?src))
-       bnd3 (vec (concat bnd bnd2))
+(let [bnd0 (d/embed-ctx-vars ?run)
+       bnd1 (mapcat #(d/input-var-val % ?run) ?ida)
+       bnd2 (d/parse-let-body (d/uncomment  ?src))
+       bnd3 (vec (concat bnd0 bnd1 bnd2))
        vvm (d/var-val-map bnd3)
        exp `(let ~bnd3 ~vvm)
        ;;_ (println :EXP exp)
        vvm2 (eval exp)]
-  (d/var-val-to-run bnd2 vvm2 ?run)
   (doseq [re ?res]
     (d/var-val-to-result re vvm2 ?run)))
 (retract ?clc)
@@ -513,25 +471,28 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "Position")
+(println "Action started:" ?tit " Position")
 (let [mob (a/mapob-vv ?obj ?run)
-       mos (a/mapob-vv ?obs ?run)]
-  (cond
-    (nil? mob) (modify ?pos status "FAILED")
-    (nil? mos) (let [obs (a/vv ?obs ?run)]
-	(asser Exception status "LOST" object obs title (protege.core/sv obs "label") run ?run)
-	(modify ?pos status "FAILED"))
-    true
-      (if-let [[mob lat lon spdb crss spds] (a/future-position mob mos ?posa ?posd ?poss ?rel ?rad ?run)]
-        (if (> spdb 0)
-          (do (a/go mob lat lon spdb)
-            (modify ?pos status "REPEAT"
-	course crss
-	speed spds))
-          (do (a/take-position mob mos ?posa ?posd ?poss ?rel ?run)
-            (retract ?pos)
-            (s/start-next ?nacts ?pid ?ain ?run)))
-       (modify ?pos status "FAILED")))))
+       mos (a/mapob-vv ?obs ?run)
+       posa (a/vv ?posa ?run)
+       posd (a/vv ?posd ?run)
+       poss (a/vv ?poss ?run)]
+  (if (and (some? mob) (some? mos) (a/worth? posa) (a/worth? posd) (a/worth? poss))
+    (if-let [[lat lon spdb] (a/future-position mob mos posa posd poss ?rel ?rad)]
+      (if (> spdb 0)
+        (do (a/go-route mob lat lon)
+          (.setSpeed mob (double spdb))
+          (modify ?pos status "WAIT"
+	object mob
+	observer mos
+	position-angle posa 
+	position-distance posd 
+	position-speed poss))
+        (do (a/take-position mob mos posa posd poss ?rel)
+          (retract ?pos)
+          (s/start-next ?nacts ?pid ?ain ?run)))
+      (modify ?pos status "FAILED"))
+    (modify ?pos status "FAILED"))))
 
 (a:PutOnPlace 0
 ?pop (PutOnPlace status "START" 
@@ -562,34 +523,24 @@
   (retract ?pop)
   (s/start-next ?nacts ?pid ?ain ?run)))
 
-(a:PositionRepeat 0
-(Clock)
-?pos (Position status "REPEAT" 
-	title ?tit 
-	object ?obj
-	observer ?obs
+(a:PositionWait 0
+?pos (Position status "WAIT" 
+	object ?mob
+	observer ?mos
 	position-angle ?posa 
 	position-distance ?posd 
 	position-speed ?poss 
 	relative ?rel 
-	radius ?rad
-	parent ?pid
-	instance ?ain
 	run ?run
-	next_actions ?nacts
-	(a/in-position? ?obj ?obs ?posa ?posd ?poss ?rel ?rad ?run))
+	instance ?ain
+	parent ?pid
+	next_actions ?nacts)
+?moe (MapObEvent status "STOP_ROUTE"
+	object ?mob)
 =>
-(let [mob (a/mapob-vv ?obj ?run)
-       mos (a/mapob-vv ?obs ?run)]
-  (cond
-    (nil? mob) (modify ?pos status "FAILED")
-    (nil? mos) (let [obs (a/vv ?obs ?run)]
-	(asser Exception status "LOST" object obs title (protege.core/sv obs "label") run ?run)
-	(modify ?pos status "FAILED"))
-    true
-      (do (a/take-position mob mos ?posa ?posd ?poss ?rel ?run)
-        (retract ?pos)
-        (s/start-next ?nacts ?pid ?ain ?run)))))
+(a/take-position ?mob ?mos ?posa ?posd ?poss ?rel)
+(retract ?moe ?pos)
+(s/start-next ?nacts ?pid ?ain ?run))
 
 (a:ObjectMessageStart 0
 ?om (ObjectMessage status "START"
@@ -888,6 +839,30 @@
 (modify ?s final_tasks (s/exclude ?ftasks ?tin))
 (retract ?t))
 
+(a:SetCenter 0
+?sc (SetCenter status "START"
+	title ?tit
+	latitude ?lat
+	longitude ?lon
+	units ?uni
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+=>
+(println "Action started:" ?tit "SetCenter")
+(let [lat (a/vv ?lat ?run)
+       lon (a/vv ?lon ?run)]
+  (if (and (a/worth? lat) (a/worth? lon))
+    (let [dm (= ?uni 'DEG_MIN)
+           lat (if dm (ru.igis.omtab.MapOb/getDeg lat) (read-string lat))
+           lon (if dm (ru.igis.omtab.MapOb/getDeg lon) (read-string lon))]
+       (-> (ru.igis.omtab.OpenMapTab/getMapBean)
+          (.setCenter lat lon))
+       (retract ?sc)
+       (s/start-next ?nacts ?pid ?ain ?run))
+    (modify ?sc status"FAILED"))))
+
 (a:GoLayerStart 0
 ?gl (GoLayer status "START"
 	title ?tit
@@ -1034,10 +1009,11 @@
 	longitude ?lon
 	new_course ?crs
 	new_speed ?spd
+	new_altitude ?alt
 	run ?run)
 =>
 (println "Action started:" ?tit "PutObProperties")
-(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?run)))
+(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?alt ?run)))
 
 (s:StartScenario 0
 ?s (Scenario status "START"
@@ -1049,6 +1025,71 @@
 (println "Scenario started:" ?tit)
 (modify ?s status "DOING")
 (s/start-tasks-actions ?itasks ?sid ?run))
+
+(a:GoRoadStart 0
+?gor (GoRoad status "START"
+	title ?tit
+	object ?obj
+	road ?road
+	spd ?spd
+	direction ?dir
+	run ?run
+	parent ?par)
+(Clock time ?t)
+=>
+(println "Action started:" ?tit "GoRoad")
+(let [mo (a/mapob-vv ?obj ?run)
+       roa (a/vv ?road ?run)
+       dir (a/vv ?dir ?run)
+       speed (a/vv ?spd ?run)]
+  (if (and (some? mo) (not (a/null? roa)))
+    (let [dws (seq (protege.core/svs roa "dirways"))
+           dws (if (= dir "BACKWARD")
+	(reverse dws)
+	dws)
+           dw (first dws)
+           dn (protege.core/sv dw "direction")
+           way (protege.core/sv dw "way")
+           rou (read-string (protege.core/sv way "source"))
+           rou (if (not= dir dn) (reverse rou) rou)
+           [la1 lo1] (first rou)
+           rsp (read-string speed)]
+      (.setLatitude mo la1)
+      (.setLongitude mo lo1)
+      (.putAttribute mo "ROAD-SPEED" rsp)
+      (modify ?gor status "REPEAT"
+	road (rest dws)
+	route rou
+	spd rsp
+	direction dir
+	object mo
+	N ?t))
+    (modify ?gor status "FAILED"))))
+
+(a:AddResource 0
+?ar (AddResource status "START"
+	title ?tit
+	object ?obj
+	resource ?res
+	collection ?col
+	thing ?thi
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+=>
+(println "Action started:" ?tit "AddResource")
+(let [mo (a/mapob-vv ?obj ?run)
+       thi (a/vv ?thi ?run)
+       col (concat ?col (if (not (a/null? thi)) [thi]))]
+  (if (and mo (not (a/null? ?res)) (seq col))
+    (let [atr (protege.core/sv ?res "title")
+           avv (.getAttribute mo atr)
+           nvv (vec (concat avv col))]
+      (.putAttribute mo atr nvv)
+      (retract ?ar)
+      (s/start-next ?nacts ?pid ?ain ?run))
+    (modify ?ar status "FAILED"))))
 
 (a:PutObPropertiesDone 0
 ?pop (PutObProperties status "DONE" 
@@ -1074,6 +1115,62 @@
 (a/create-by-model ?mod ?obj ?run)
 (retract ?cbm)
 (s/start-next ?nacts ?pid ?pid ?run))
+
+(a:GoRoadRepeat 0
+?gor (GoRoad status "REPEAT"
+	title ?tit
+	object ?obj
+	road ?dws
+	spd ?spd
+	direction ?dir
+	route ?rou
+	N ?n
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+(Clock time ?t (> ?t ?n))
+=>
+(let [[crs rwot] (a/next-way-point ?rou (- ?t ?n) ?spd)]
+  (.setCourse ?obj crs)
+  (if (seq? rwot)
+    (let [rsp (.getAttribute ?obj "ROAD-SPEED")]
+      (.setLatitude ?obj (ffirst rwot))
+      (.setLongitude ?obj (second (first rwot)))
+      (modify ?gor N ?t
+	spd rsp
+	route rwot))
+    (if (empty? ?dws)
+      (do (.removeAttribute ?obj "ROAD-SPEED")
+        (retract ?gor)
+        (s/start-next ?nacts ?pid ?ain ?run))
+      (let [dw (first ?dws)
+             dn (protege.core/sv dw "direction")
+             way (protege.core/sv dw "way")
+             rou (read-string (protege.core/sv way "source"))
+             rou (if (not= ?dir dn) (reverse rou) rou)
+             [la1 lo1] (first rou)]
+        (.setLatitude ?obj la1)
+        (.setLongitude ?obj lo1)
+        (modify ?gor road (rest ?dws)
+	route rou
+	N (+ ?t rwot)))))))
+
+(a:WaitEventAS 0
+?we (WaitEvent status "REPEAT" 
+	id ?id
+	parent ?pid 
+	instance ?ain 
+	run ?run
+	next_actions ?nacts)
+(Clock time ?t)
+?as (ActivityStatus parent ?id
+	activity ?act
+	status ?sts
+	(e/act-status ?act ?sts ?run))
+=>
+(retract ?we ?as)
+(s/start-next ?nacts ?pid ?ain ?run))
 
 (s:JoinTaskDone 0
 ?t (Task status "DONE"
@@ -1114,6 +1211,99 @@
 (println "Join DONE:" ?tit)
 (retract ?j)
 (s/start-tasks-actions ?ntasks ?pid ?run))
+
+(a:SetScale 0
+?ss (SetScale status "START"
+	title ?tit
+	scale ?scl
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+=>
+(println "Action started:" ?tit "SetScale")
+(let [scl (a/vv ?scl ?run)]
+  (if (a/worth? scl)
+    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)
+            (.setScale (float (read-string scl))))
+       (retract ?ss)
+       (s/start-next ?nacts ?pid ?ain ?run))
+    (modify ?ss status"FAILED"))))
+
+(a:FlightViewStart 0
+?fv (FlightView status "START"
+	title ?tit
+	object ?obj
+	scale ?scl
+	run ?run)
+(not FlightView)
+=>
+(println "Action started:" ?tit "FlightView")
+(let [mo (a/mapob-vv ?obj ?run)
+       scl (a/vv ?scl ?run)]
+  (if (and (some? mo) (a/worth? scl))
+    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)
+            (.setScale (float (read-string scl))))
+       (modify ?fv status "REPEAT"))
+    (modify ?fv status"FAILED"))))
+
+(a:FlightViewRepeat 0
+?fv (FlightView status "REPEAT"
+	title ?tit
+	object ?obj
+	scale ?scl
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+(Clock time ?t)
+=>
+(if-let [mo (a/mapob-vv ?obj ?run)]
+  (-> (ru.igis.omtab.OpenMapTab/getMapBean)
+    (.setCenter (.getLatitude mo) (.getLongitude mo)))
+  (do (retract ?fv)
+    (s/start-next ?nacts ?pid ?ain ?run))))
+
+(a:FlightViewSwitch 1
+?fv1 (FlightView status "REPEAT")
+?fv2 (FlightView status "START")
+=>
+(retract ?fv1))
+
+(a:FlightViewStop 1
+?fv (FlightView status "REPEAT")
+(SetCenter)
+=>
+(retract ?fv))
+
+(a:Camera 0
+?cam (Camera status "START"
+	title ?tit
+	object ?obj
+	view ?vie
+	pitch ?pit
+	roll ?rol
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+=>
+(println "Action started:" ?tit "Camera")
+(if-let [mo (a/mapob-vv ?obj ?run)]
+  (let [vie (a/vv ?vie ?run)
+         pit (a/vv ?pit ?run)
+         rol (a/vv ?rol ?run)
+         cam (if (a/worth? vie) {:view vie} {})
+         cam (if (a/worth? pit) (assoc cam :pitch pit) cam)
+         cam (if (a/worth? rol) (assoc cam :roll rol) cam)]
+    (clojuretab.ClojureTab/invoke 
+	"pro.server" 
+	"go-onboard"
+	(.getName mo))
+    (.putAttribute mo "CAMERA" cam)
+    (retract ?cam)
+    (s/start-next ?nacts ?pid ?ain ?run))
+  (modify ?cam status "FAILED")))
 
 (a:DelayRepeat 0
 (Clock time ?t)
@@ -1246,7 +1436,7 @@
 	resource ?res
 	mapob ?mos
 	seed ?sed
-                        number ?num
+                      number ?num
 	rename ?ren
 	parent ?pid
 	instance ?ain
@@ -1326,29 +1516,25 @@
 (println "Action started:" ?tit "MovingObjectMessage")
 (modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?run)))
 
-(a:PositionObserverManeuver -5
-(Clock time ?t)
-?pos (Position status "REPEAT" 
-	course ?crs
-	speed ?spd
-	object ?obj
-	observer ?obs
+(a:PositionObserverManeuver -1
+?pos (Position status "WAIT" 
+	object ?mob
+	observer ?mos
 	position-angle ?posa 
 	position-distance ?posd 
 	position-speed ?poss 
 	relative ?rel
 	radius ?rad
-	run ?run
-	(a/observer-maneuver? ?obs ?crs ?spd ?run))
+	run ?run)
+?moe (MapObEvent status ?stss
+	object ?mos
+	[(= ?stss "UPD_COURSE")
+	 (= ?stss "UPD_SPEED")])
 =>
-(let [mob (a/mapob-vv ?obj ?run)
-       mos (a/mapob-vv ?obs ?run)]
-  (if (nil? mob)
-    (modify ?pos status "FAILED")
-    (when-let [[mob lat lon spdb crss spds] (a/future-position mob mos ?posa ?posd ?poss ?rel ?rad ?run)]
-      (a/go mob lat lon spdb)
-      (modify ?pos course crss
-	speed spds)))))
+(if-let [[lat lon spdb] (a/future-position ?mob ?mos ?posa ?posd ?poss ?rel ?rad)]
+  (.goRoute ?mob lat lon)
+  (.stopRoute ?mob))
+(retract ?moe))
 
 (a:UseResource 0
 ?ur (UseResource status "START"
@@ -1769,9 +1955,10 @@
 (load-string ?src)
 (retract ?dr))
 
-(sim:RetractMapObEvent -1
-?moe (MapObEvent)
+(sim:RetractMapObEvent -10
+?moe (MapObEvent status ?sts)
 =>
+;;(println :MapObEvent ?sts)
 (retract ?moe))
 
 (a:MovingTraceRepeat 0
@@ -1961,19 +2148,24 @@
 (s/start-next ?nacts ?pid ?ain ?run))
 
 (a:StopRouteWork 0
-?gor (GoRoute object ?obj)
+?gor (GoRoute object ?obj
+	parent ?pid1
+	instance ?ain1
+	run ?run
+	next_actions ?nacts1)
 ?sor (StopRoute status "WORK"
 	title ?tit
 	object ?obj
-	parent ?pid
-	instance ?ain
+	parent ?pid2
+	instance ?ain2
 	run ?run
-	next_actions ?nacts)
+	next_actions ?nacts2)
 =>
 (let [mo (a/mapob-vv ?obj ?run)]
-  (modify ?gor status "DONE")
+  (retract ?gor)
+  (s/start-next ?nacts1 ?pid1 ?ain1 ?run)
   (retract ?sor)
-  (s/start-next ?nacts ?pid ?ain ?run)))
+  (s/start-next ?nacts2 ?pid2 ?ain2 ?run)))
 
 (a:MissionStart 0
 ?ot (Mission status "START"
@@ -2066,4 +2258,44 @@
             (recur (rest ats) (rest rls) (rest vls)) ) ))
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
+
+(TC.Create Targets 
+
+=>
+)
+
+(TC.Create Bearing1 
+
+=>
+)
+
+(TC.Constant Bearing 
+
+=>
+)
+
+(TC.Delete Old Target 100
+
+=>
+)
+
+(TC.Dangerous Approach 
+
+=>
+)
+
+(TC.Dangerous Overtake 
+
+=>
+)
+
+(TC.Dangerous Towards 
+
+=>
+)
+
+(TC.Delete Bearing1 -100
+
+=>
+)
 

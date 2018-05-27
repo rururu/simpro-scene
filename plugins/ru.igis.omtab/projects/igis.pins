@@ -1,4 +1,4 @@
-; Fri Jan 12 22:30:35 MSK 2018
+; Tue May 15 12:06:12 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,7 +13,6 @@
 		[igis_Class40000]
 		[igis_Class40001]
 		[igis_Class70000]
-		[igis_Class80000]
 		[igis_Class14]
 		[igis_Class15]
 		[igis_Class16]
@@ -21,6 +20,7 @@
 		[igis_Class18]
 		[igis_Class19]
 		[igis_Class20]
+		[igis_Class90000]
 		[igis_Class21]
 		[igis_Class22]
 		[igis_Class23]
@@ -69,25 +69,27 @@
 
 	(altitude 0)
 	(course 320)
+	(description "<html><h3>Иван Крузенштерн</h3>\nПостроен в 1926 году")
 	(label "ship1")
 	(latitude "60 4")
 	(longitude "28 54")
 	(playground-index 1)
 	(speed 13.0)
-	(tangage 0.0)
-	(url "file:plugins/ru.igis.omtab/data/images/tall.gif"))
+	(url "file:plugins/ru.igis.omtab/data/images/tall.gif")
+	(verticalSpeed 0.0))
 
 ([igis_Class10001] of  NavOb
 
 	(altitude 0)
 	(course 90)
+	(description "<html><h3>MSC Poesia</h3>\nBuilt in 2007 year")
 	(label "ship2")
 	(latitude "60 10")
 	(longitude "28 11")
 	(playground-index 1)
 	(speed 25.0)
-	(tangage 0.0)
-	(url "file:plugins/ru.igis.omtab/data/images/lnrR.gif"))
+	(url "file:plugins/ru.igis.omtab/data/images/lnrR.gif")
+	(verticalSpeed 0.0))
 
 ([igis_Class11] of  Menu
 
@@ -268,7 +270,7 @@
 ([igis_Class40004] of  HelpMenu
 
 	(class "com.bbn.openmap.gui.DefaultHelpMenu")
-	(items "omtHelp1 omtHelp2 omtHelp3 omtHelp4")
+	(items "omtHelp1 omtHelp2 omtHelp3")
 	(label "helpMenu"))
 
 ([igis_Class40010] of  EditorLayer
@@ -343,14 +345,12 @@
 	(source "file:plugins/ru.igis.omtab/src/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
 
-([igis_Class80000] of  HelpMenuItem
-
-	(class "ru.igis.omtab.menu.FXBrowserHelpMenuItem")
-	(label "omtHelp4")
-	(source "https://protegewiki.stanford.edu/wiki/OpenMap_Tab_Plugin")
-	(text "OpenMapTab Protege wiki page"))
-
 ([igis_Class9] of  Menu
 
 	(class "com.bbn.openmap.gui.LayersMenu")
 	(label "layersMenu"))
+
+([igis_Class90000] of  SimpleComponent
+
+	(class "ru.igis.omtab.gui.RuMapMouseAdapter")
+	(label "ruMapMouseAdapter"))

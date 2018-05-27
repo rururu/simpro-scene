@@ -1,4 +1,4 @@
-; Fri Dec 29 18:47:38 MSK 2017
+; Thu May 24 22:27:43 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,9 +12,9 @@
 	(longitude "5 24")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif"))
+	(url "file:data/images/home.gif")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class1] of  NavOb
 
@@ -25,9 +25,9 @@
 	(longitude "-4 30")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif"))
+	(url "file:data/images/home.gif")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class10000] of  PutOnMap
 
@@ -43,12 +43,27 @@
 		[FranceRoads_Class73004])
 	(title "fr4:Deploy Control Centers"))
 
+([FranceRoads_Class100014] of  PutObAttributes
+
+	(attributes [FranceRoads_Class70018])
+	(next_actions [FranceRoads_Class70020])
+	(object [ScenarioN_Class570000])
+	(title "fr3:Add Trips Counter")
+	(values "+= 1"))
+
+([FranceRoads_Class100015] of  PutObAttributes
+
+	(attributes [FranceRoads_Class70018])
+	(object [ScenarioN_Class570000])
+	(title "fr3:Subtract Trips Counter")
+	(values "-= 1"))
+
 ([FranceRoads_Class10005] of  Task
 
-	(final_actions [FranceRoads_Class10009])
+	(final_actions [FranceRoads_Class60000])
 	(finish_type AND)
-	(initial_actions [FranceRoads_Class10009])
-	(task_scheme [FranceRoads_Class10009])
+	(initial_actions [FranceRoads_Class60000])
+	(task_scheme [FranceRoads_Class60000])
 	(title "fr1:One Car One Road"))
 
 ([FranceRoads_Class10006] of  Context
@@ -61,21 +76,12 @@
 ([FranceRoads_Class10007] of  ValuePair
 
 	(title "p1")
-	(value "4125")
+	(value "4127")
 	(variable [FranceRoads_Class10008]))
 
 ([FranceRoads_Class10008] of  Variable
 
 	(title "?road"))
-
-([FranceRoads_Class10009] of  GoLayer
-
-	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] [(nth (vec (first x)) (dec ?road))])")
-	(layer [Ground_Class10012])
-	(object [ScenarioN_Class570000])
-	(spd "40")
-	(title "fr1.One Goes One Road"))
 
 ([FranceRoads_Class10010] of  %3AINSTANCE-ANNOTATION
 
@@ -91,6 +97,33 @@
 ([FranceRoads_Class10012] of  ObjectMission
 
 	(label "fr1:One Car Tour"))
+
+([FranceRoads_Class110000] of  DeleteResource
+
+	(object [ScenarioN_Class570000])
+	(resource [FranceRoads_Class60006])
+	(title "fr3:Delete Cars"))
+
+([FranceRoads_Class117020] of  ObjectPair
+
+	(title "p")
+	(variable [FranceRoads_Class80003]))
+
+([FranceRoads_Class117021] of  ValuePair
+
+	(title "p")
+	(value "0")
+	(variable [FranceRoads_Class80003]))
+
+([FranceRoads_Class20000] of  GoLayerRoute
+
+	(direction "BACKWARD")
+	(layer [Ground_Class10012])
+	(number "4127")
+	(object [FranceRoads_Class3])
+	(spd "40")
+	(status "START")
+	(title "test"))
 
 ([FranceRoads_Class20001] of  Table2
 
@@ -136,9 +169,9 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autow.png"))
+	(url "file:data/images/autow.png")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class3] of  NavOb
 
@@ -149,9 +182,9 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autos.png"))
+	(url "file:data/images/autos.png")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30000] of  NavOb
 
@@ -162,9 +195,9 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autor.png"))
+	(url "file:data/images/autor.png")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30001] of  NavOb
 
@@ -175,9 +208,9 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autog.png"))
+	(url "file:data/images/autog.png")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30002] of  NavOb
 
@@ -188,9 +221,9 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autob.png"))
+	(url "file:data/images/autob.png")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class4] of  MissionScenario
 
@@ -225,29 +258,25 @@
 
 	(final_actions [FranceRoads_Class50008])
 	(finish_type AND)
-	(initial_actions [FranceRoads_Class50002])
+	(initial_actions [FranceRoads_Class70000])
 	(task_scheme
-		[FranceRoads_Class50002]
-		[FranceRoads_Class50008])
+		[FranceRoads_Class50008]
+		[FranceRoads_Class70000]
+		[FranceRoads_Class70001]
+		[FranceRoads_Class70002]
+		[FranceRoads_Class70003]
+		[FranceRoads_Class70004]
+		[FranceRoads_Class70007]
+		[FranceRoads_Class70008]
+		[FranceRoads_Class70009])
 	(title "fr2:4 Cars"))
-
-([FranceRoads_Class50002] of  GoLayer
-
-	(direction "FORWARD")
-	(getPoliesFromTargets "(fn[x] (let [rds (vec (first x))\n                road (dec ?road)]\n  [(nth rds road)\n   (nth rds (+ road 1))\n   (nth rds (+ road 2))\n   (nth rds (+ road 3))]))")
-	(layer [Ground_Class10012])
-	(mapob
-		[FranceRoads_Class30002]
-		[FranceRoads_Class30001]
-		[FranceRoads_Class30000]
-		[FranceRoads_Class3])
-	(next_actions [FranceRoads_Class50008])
-	(spd "40")
-	(title "fr2:4 Cars 4 Roads"))
 
 ([FranceRoads_Class50003] of  Context
 
-	(pairs [FranceRoads_Class10007])
+	(pairs
+		[FranceRoads_Class10007]
+		[FranceRoads_Class40000]
+		[FranceRoads_Class70005])
 	(title "fr2:ctx"))
 
 ([FranceRoads_Class50004] of  ValuePair
@@ -275,9 +304,18 @@
 		[FranceRoads_Class3])
 	(title "fr2:4 Cars off Map"))
 
+([FranceRoads_Class60000] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(number "?road")
+	(object [ScenarioN_Class570000])
+	(spd "40")
+	(title "fr1:1 car 1 road"))
+
 ([FranceRoads_Class60001] of  LoadResource
 
-	(next_actions [FranceRoads_Class60011])
+	(next_actions [FranceRoads_Class70017])
 	(number "?number-cars")
 	(object [ScenarioN_Class570000])
 	(rename TRUE)
@@ -294,9 +332,9 @@
 	(longitude "2 20")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif"))
+	(url "file:data/images/home.gif")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class60003] of  Type
 
@@ -310,11 +348,15 @@
 ([FranceRoads_Class60005] of  MissionScenario
 
 	(context [FranceRoads_Class60008])
-	(final_tasks [FranceRoads_Class60007])
+	(final_tasks [FranceRoads_Class70015])
 	(finish_type AND)
 	(initial_tasks [FranceRoads_Class60007])
 	(protagonist [FranceRoads_Class60002])
-	(scenario_scheme [FranceRoads_Class60007])
+	(scenario_scheme
+		[FranceRoads_Class60007]
+		[FranceRoads_Class70013]
+		[FranceRoads_Class70014]
+		[FranceRoads_Class70015])
 	(title "fr3:Global Automobile Traffic"))
 
 ([FranceRoads_Class60006] of  Attribute
@@ -323,14 +365,14 @@
 
 ([FranceRoads_Class60007] of  Task
 
-	(final_actions [FranceRoads_Class60012])
+	(final_actions [FranceRoads_Class70017])
 	(finish_type AND)
 	(initial_actions [FranceRoads_Class60001])
+	(next_tasks [FranceRoads_Class70013])
 	(task_scheme
 		[FranceRoads_Class60001]
-		[FranceRoads_Class60011]
-		[FranceRoads_Class60012])
-	(title "fr3:Global Traffic"))
+		[FranceRoads_Class70017])
+	(title "fr3:Generate Cars"))
 
 ([FranceRoads_Class60008] of  Context
 
@@ -338,7 +380,8 @@
 		[FranceRoads_Class60009]
 		[FranceRoads_Class40000]
 		[FranceRoads_Class60013]
-		[FranceRoads_Class10007])
+		[FranceRoads_Class80002]
+		[FranceRoads_Class73008])
 	(title "fr3.ctx"))
 
 ([FranceRoads_Class60009] of  ValuePair
@@ -351,23 +394,6 @@
 
 	(title "?number-cars"))
 
-([FranceRoads_Class60011] of  GoLayer
-
-	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] (nthrest (vec (first x)) (dec ?road)))")
-	(layer [Ground_Class10012])
-	(next_actions [FranceRoads_Class60012])
-	(object [ScenarioN_Class570000])
-	(resource [FranceRoads_Class60006])
-	(spd "40")
-	(title "fr3:Cars Traffic"))
-
-([FranceRoads_Class60012] of  DeleteResource
-
-	(object [ScenarioN_Class570000])
-	(resource [FranceRoads_Class60006])
-	(title "f3.Clear Cars"))
-
 ([FranceRoads_Class60013] of  ObjectPair
 
 	(object [FranceRoads_Class30000])
@@ -377,6 +403,176 @@
 ([FranceRoads_Class60014] of  Variable
 
 	(title "?seed-car"))
+
+([FranceRoads_Class70000] of  PutOnMap
+
+	(mapob
+		[FranceRoads_Class30002]
+		[FranceRoads_Class30001]
+		[FranceRoads_Class30000]
+		[FranceRoads_Class3])
+	(next_actions
+		[FranceRoads_Class70001]
+		[FranceRoads_Class70007])
+	(title "fr2:4 Cars on Map"))
+
+([FranceRoads_Class70001] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(number "?road")
+	(object [FranceRoads_Class30000])
+	(spd "40")
+	(title "fr2:Car 1 Go"))
+
+([FranceRoads_Class70002] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(number "?road")
+	(object [FranceRoads_Class30001])
+	(spd "40")
+	(title "fr2:Car 2 Go"))
+
+([FranceRoads_Class70003] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(number "?road")
+	(object [FranceRoads_Class30002])
+	(spd "40")
+	(title "fr2:Car 3 Go"))
+
+([FranceRoads_Class70004] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(next_actions [FranceRoads_Class50008])
+	(number "?road")
+	(object [FranceRoads_Class3])
+	(spd "40")
+	(title "fr2:Car 4 Go"))
+
+([FranceRoads_Class70005] of  ValuePair
+
+	(title "p")
+	(value "5 sec")
+	(variable [FranceRoads_Class70006]))
+
+([FranceRoads_Class70006] of  Variable
+
+	(title "?interval"))
+
+([FranceRoads_Class70007] of  Delay
+
+	(delay "?interval")
+	(next_actions
+		[FranceRoads_Class70002]
+		[FranceRoads_Class70008])
+	(title "fr2:Interval 1"))
+
+([FranceRoads_Class70008] of  Delay
+
+	(delay "?interval")
+	(next_actions
+		[FranceRoads_Class70003]
+		[FranceRoads_Class70009])
+	(title "fr2:Interval 2"))
+
+([FranceRoads_Class70009] of  Delay
+
+	(delay "?interval")
+	(next_actions [FranceRoads_Class70004])
+	(title "fr2:Interval 3"))
+
+([FranceRoads_Class70010] of  Delay
+
+	(delay "?interval")
+	(title "fr2:Interval 4"))
+
+([FranceRoads_Class70011] of  UseResource
+
+	(next_actions
+		[FranceRoads_Class70019]
+		[FranceRoads_Class90000])
+	(object [ScenarioN_Class570000])
+	(resource [FranceRoads_Class60006])
+	(title "fr3:Take Car")
+	(variable [FranceRoads_Class70012]))
+
+([FranceRoads_Class70012] of  Variable
+
+	(title "?car"))
+
+([FranceRoads_Class70013] of  Task
+
+	(final_actions [FranceRoads_Class70019])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class70011])
+	(next_tasks [FranceRoads_Class70014])
+	(task_scheme
+		[FranceRoads_Class70011]
+		[FranceRoads_Class70019]
+		[FranceRoads_Class70020]
+		[FranceRoads_Class80004]
+		[FranceRoads_Class90000]
+		[FranceRoads_Class100014]
+		[FranceRoads_Class100015])
+	(title "fr3:Start Next Car to Go Next Road"))
+
+([FranceRoads_Class70014] of  EventDecision
+
+	(events [FranceRoads_Class80000])
+	(title "f3:All Cars Started? ")
+	(variants
+		[FranceRoads_Class70015]
+		[FranceRoads_Class70013]))
+
+([FranceRoads_Class70015] of  Task
+
+	(final_actions [FranceRoads_Class110000])
+	(finish_type AND)
+	(initial_actions [FranceRoads_Class90013])
+	(task_scheme
+		[FranceRoads_Class90013]
+		[FranceRoads_Class110000])
+	(title "fr3:Wait for End of All Trips"))
+
+([FranceRoads_Class70017] of  PutObAttributes
+
+	(attributes
+		[FranceRoads_Class70021]
+		[FranceRoads_Class70018])
+	(object [ScenarioN_Class570000])
+	(title "fr3:Prepare Start Road and Trips Counter")
+	(values
+		"?start-road"
+		"0"))
+
+([FranceRoads_Class70018] of  Attribute
+
+	(title "TRIPS_COUNTER"))
+
+([FranceRoads_Class70019] of  PutObAttributes
+
+	(attributes [FranceRoads_Class70021])
+	(object [ScenarioN_Class570000])
+	(title "fr3:Next Road")
+	(values "+= 1"))
+
+([FranceRoads_Class70020] of  GoLayerRoute
+
+	(direction "?direct")
+	(layer [Ground_Class10012])
+	(next_actions [FranceRoads_Class100015])
+	(number "?road")
+	(object [FranceRoads_Class70012])
+	(spd "40")
+	(title "fr3:Car Trip"))
+
+([FranceRoads_Class70021] of  Attribute
+
+	(title "ROAD"))
 
 ([FranceRoads_Class73000] of  Scenario
 
@@ -433,7 +629,8 @@
 		[FranceRoads_Class73006]
 		[FranceRoads_Class40000]
 		[FranceRoads_Class73007]
-		[FranceRoads_Class73008])
+		[FranceRoads_Class73008]
+		[FranceRoads_Class117021])
 	(title "fr4:CtxBT"))
 
 ([FranceRoads_Class73006] of  ValuePair
@@ -460,7 +657,8 @@
 		[FranceRoads_Class73006]
 		[FranceRoads_Class40000]
 		[FranceRoads_Class73010]
-		[FranceRoads_Class73011])
+		[FranceRoads_Class73011]
+		[FranceRoads_Class73008])
 	(title "fr4:CtxWT"))
 
 ([FranceRoads_Class73010] of  ObjectPair
@@ -473,7 +671,7 @@
 
 	(title "pw3")
 	(value "2341")
-	(variable [FranceRoads_Class10008]))
+	(variable [FranceRoads_Class80003]))
 
 ([FranceRoads_Class73012] of  Context
 
@@ -481,14 +679,15 @@
 		[FranceRoads_Class73006]
 		[FranceRoads_Class40000]
 		[FranceRoads_Class60013]
-		[FranceRoads_Class73013])
+		[FranceRoads_Class73013]
+		[FranceRoads_Class73008])
 	(title "fr4:CtxRT"))
 
 ([FranceRoads_Class73013] of  ValuePair
 
 	(title "pr")
 	(value "4682")
-	(variable [FranceRoads_Class10008]))
+	(variable [FranceRoads_Class80003]))
 
 ([FranceRoads_Class73014] of  %3AINSTANCE-ANNOTATION
 
@@ -496,13 +695,53 @@
 	(%3ACREATION-TIMESTAMP "2017.12.28 15:20:17.964 MSK")
 	(%3ACREATOR "ru"))
 
-([FranceRoads_Class86996] of  OMTRaster
+([FranceRoads_Class80000] of  ObAttribute
 
-	(label "s2317")
-	(latitude "0 0")
-	(longitude "0 0")
-	(playground-index 0)
-	(url "file:data/images/autos.png"))
+	(attribute [FranceRoads_Class60006])
+	(object [ScenarioN_Class570000])
+	(relation resource-exhausted)
+	(title "fr3:All Cars Used"))
+
+([FranceRoads_Class80002] of  ValuePair
+
+	(title "p")
+	(value "4127")
+	(variable [FranceRoads_Class80003]))
+
+([FranceRoads_Class80003] of  Variable
+
+	(title "?start-road"))
+
+([FranceRoads_Class80004] of  AttributesToVariables
+
+	(attributes [FranceRoads_Class70021])
+	(next_actions [FranceRoads_Class100014])
+	(objects [ScenarioN_Class570000])
+	(title "fr3:Take Road")
+	(variables [FranceRoads_Class10008]))
+
+([FranceRoads_Class90000] of  PutOnMap
+
+	(next_actions [FranceRoads_Class80004])
+	(object [FranceRoads_Class70012])
+	(title "fr3:Car on Map"))
+
+([FranceRoads_Class90013] of  WaitObAttributes
+
+	(attributes [FranceRoads_Class70018])
+	(connective AND)
+	(next_actions [FranceRoads_Class110000])
+	(object [ScenarioN_Class570000])
+	(relations %3D)
+	(title "fr3:Wait for Zero of Trips Counter")
+	(values "0"))
+
+([FranceRoads_Class90014] of  ObAttribute
+
+	(attribute [FranceRoads_Class60006])
+	(object [ScenarioN_Class570000])
+	(relation resource-exhausted)
+	(title "fr3:Cars Exhausted"))
 
 ([FranceRoads_Class97020] of  NavOb
 
@@ -513,9 +752,9 @@
 	(longitude "4 54")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif"))
+	(url "file:data/images/home.gif")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class97021] of  NavOb
 
@@ -526,9 +765,9 @@
 	(longitude "0 -35")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif"))
+	(url "file:data/images/home.gif")
+	(verticalSpeed 0.0))
 
 ([FranceRoads_Class97022] of  Mission
 

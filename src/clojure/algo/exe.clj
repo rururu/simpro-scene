@@ -93,7 +93,7 @@
 (defn do-algorithm [algo pmap]
   (let [id (name (gensym "algo"))]
   (set-global id pmap)
-  (do-next (sv algo "begin") id)))
+  (get-global (do-next (sv algo "begin") id))))
 
 (defn do-preproc [prep id]
   (if-let [pmap (get-global id)]

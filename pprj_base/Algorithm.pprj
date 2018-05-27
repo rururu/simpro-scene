@@ -1,4 +1,4 @@
-; Mon Aug 07 18:48:54 MSK 2017
+; Fri May 18 18:10:26 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1742,6 +1742,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_007641_Class368] of  Map
+
+	(entries
+		[KB_007641_Class369]
+		[KB_007641_Class370]
+		[KB_007641_Class371]))
+
+([KB_007641_Class369] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_007641_Class370] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_007641_Class371] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_084192_Class0] of  String
 
 	(name "factory_class_name")
@@ -1755,8 +1783,8 @@
 		[Algorithm_ProjectKB_Class50395])
 	(referenced_maps
 		[Algorithm_ProjectKB_Class10385]
-		[Algorithm_ProjectKB_Class10383]
-		[Algorithm_ProjectKB_Class10390]))
+		[Algorithm_ProjectKB_Class10390]
+		[Algorithm_ProjectKB_Class10383]))
 
 ([KB_084192_Class11] of  Property_List
 
@@ -1850,34 +1878,6 @@
 
 	(name "instances_file_name")
 	(string_value "Algorithm.pins"))
-
-([KB_815576_Class368] of  Map
-
-	(entries
-		[KB_815576_Class369]
-		[KB_815576_Class370]
-		[KB_815576_Class371]))
-
-([KB_815576_Class369] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_815576_Class370] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_815576_Class371] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

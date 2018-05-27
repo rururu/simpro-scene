@@ -35,6 +35,9 @@
 (defn worth? [x]
   (not (null? x)))
 
+(defn nors [x]
+  (if (string? x) (read-string x) x))
+
 (defn to-be
   ([del]
  (let [[n u] (seq (.split del " "))
@@ -62,34 +65,8 @@
 ([txt mp category client]
   (ClojureTab/showESMessage txt mp (CATEGORY category))))
 
-(defn go [mo lat lon spd]
-  (let [lt (double lat)
-      ln (double lon)]
-  (if (= spd 0)
-    (do (.setLatitude mo lt) (.setLongitude mo ln))
-    (let [deg (.bearingsDeg mo lt ln)]
-      (if (> spd 0)
-        (.setSpeed mo (double spd)))
-      (.setCourse mo (int (Math/round deg)) )) )))
-
 (defn degmin-to-deg [?lat r]
   (MapOb/getDeg (vv ?lat r)))
-
-(defn pnt-latlon [pnt]
-  (let [dmdm (seq (.split pnt " "))
-       lat (str (nth dmdm 0) " " (nth dmdm 1))
-       lon (str (nth dmdm 2) " " (nth dmdm 3))]
-   [(MapOb/getDeg lat) (MapOb/getDeg lon)]))
-
-(defn omp-latlon-list [omp]
-  (->> (.getLatLonArrayCopy omp)
-  (ProjMath/arrayRadToDeg)
-  (partition 2)))
-
-(defn stop-moving [mo lat lon]
-  (.setSpeed mo (double 0))
-(.setLatitude mo (double lat))
-(.setLongitude mo (double lon)))
 
 (defn op-time []
   (str "D-" (Clock/getDay) " " 
@@ -186,62 +163,34 @@
 	    (and (< dt 0) (< dt meps)) (recur (+ d (/ (- ma d) 2)) ma d)
 	    true g3)) )) )))
 
-(defn future-position [mob mos ?posa ?posd ?poss rel rad r]
-  (let [posa (vv ?posa r)
-       posd (vv ?posd r)
-       poss (vv ?poss r)]
-  (if (not (or (null? posa) (null? posd) (null? poss)))
-    (let [an1 (read-string posa)
-          dist (read-string posd)
-          spdb (read-string poss)
-          crss (.getCourse mos)
-          spds (.getSpeed mos)
-          ang (if (= rel true) (trim-angle (+ an1 crss)) an1)
-          [lat lon] (a/meeting-point mos mob spdb rad)]
-      (if (> lat 90)
-        (do (println (str "Position off " (.getName mos) " unreachable by " (.getName mob) "!"))
-          (println [:OBSERV (.getLatitude mos) (.getLongitude mos) (.getCourse mos) (.getSpeed mos)])
-          (println [:OBJECT (.getLatitude mob) (.getLongitude mob) (.getCourse mob) (.getSpeed mob)])
-          nil)
-        (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]
-          [mob lat2 lon2 spdb crss spds]))))))
+(defn future-position [mob mos posa posd poss rel rad]
+  (let [an1 (nors posa)
+       dist (nors posd)
+       spdb (nors poss)
+       crss (.getCourse mos)
+       spds (.getSpeed mos)
+       ang (if (= rel true) (trim-angle (+ an1 crss)) an1)
+       [lat lon] (a/meeting-point mos mob spdb rad)]
+  (if (> lat 90)
+    (do (println (str "Position off " (.getName mos) " unreachable by " (.getName mob) "!"))
+      (println [:OBSERV (.getLatitude mos) (.getLongitude mos) (.getCourse mos) (.getSpeed mos)])
+      (println [:OBJECT (.getLatitude mob) (.getLongitude mob) (.getCourse mob) (.getSpeed mob)])
+      nil)
+    (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]
+      [lat2 lon2 spdb]))))
 
-(defn observer-maneuver? [?obs crs spd r]
-  (if-let [mos (mapob-vv ?obs r)]
-  (let [crs2 (.getCourse mos)
-        spd2 (.getSpeed mos)]
-    (or (not= crs crs2) (not= spd spd2)))))
-
-(defn in-position? [?obj ?obs ?posa ?posd ?poss rel rad r]
-  (let [mob (OMT/getMapOb (vv ?obj r))
-       mos (OMT/getMapOb (vv ?obs r))
-       posa (vv ?posa r)
-       posd (vv ?posd r)
-       poss (vv ?poss r)]
-  (if (or (nil? mob) (nil? mos) (null? posa) (null? posd) (null? poss))
-    true ;; we need to stop if something wrong
-    (let [an1 (read-string posa)
-          dist (read-string posd)
-          spd (read-string poss)
-          ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)
-          [lat lon] (seq (.position mos ang dist))]
-      (or (.near mob lat lon rad) (.abaft mob lat lon)) ) )))
-
-(defn take-position [obj obs ?posa ?posd ?poss rel r]
-  (let [posa (vv ?posa r)
-       posd (vv ?posd r)
-       poss (vv ?poss r)
-       an1 (read-string posa)
-       dist (read-string posd)
-       spd (read-string poss)
-       ang (if (= rel true) (trim-angle (+ an1 (.getCourse obs))) an1)
-       pos (.position obs ang dist)
+(defn take-position [mob mos posa posd poss rel]
+  (let [an1 (nors posa)
+       dist (nors posd)
+       spd (nors poss)
+       ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)
+       pos (.position mos ang dist)
        lat (aget pos 0)
        lon (aget pos 1)]
-  (.setLatitude obj (double lat))
-  (.setLongitude obj (double lon))
-  (.setSpeed obj (.getSpeed obs))
-  (.setCourse obj (.getCourse obs))))
+  (.setLatitude mob (double lat))
+  (.setLongitude mob (double lon))
+  (.setSpeed mob (.getSpeed mos))
+  (.setCourse mob (.getCourse mos))))
 
 (defn object-message [atit ?obj ?txt ?url cat cls r]
   (if-let [obj (OMT/getMapOb (vv ?obj r))]
@@ -433,19 +382,19 @@
 
 (defn is-relation [avl rel val]
   (try
-  (let [dav (Double. avl)
-        dva (Double. val)]
+  (let [dav (nors avl)
+        dva (nors  val)]
     (condp = rel
-      "=" (= dav dva)
-      ">" (> dav dva)
-      ">=" (>= dav dva)
-      "<" (< dav dva)
-      "<=" (<= dav dva)
-      "!=" (not= dav dva)
+      '= (= dav dva)
+      '> (> dav dva)
+      '>= (>= dav dva)
+      '< (< dav dva)
+      '<= (<= dav dva)
+      '!= (not= dav dva)
       (do (println (str "Wrong relation " avl " " rel " " val))
         false)))
  (catch NumberFormatException nfe
-   (if (= rel "=")
+   (if (= rel '=)
      (= avl val)
      false))))
 
@@ -655,4 +604,37 @@
             (if (> rt 0)
               (recur rway rt)
               [C rway]))))))))
+
+(defn go-route [mo tlt tln]
+  (let [step 100
+       flt (.getLatitude mo)
+       fln (.getLongitude mo)
+       rte (NavOb/greatCircleRoute 
+	(double flt) (double fln) 
+	(double tlt) (double tln) 
+	(double step))]
+  (.goRoute mo rte)))
+
+(defn reverse-route [rou]
+  (letfn [(rr [y] (if (empty? y)
+	  y
+	  (cons (second y) (cons (first y) (rr (nnext y))))))]
+  (rr (reverse rou))))
+
+(defn to-route [rou bwd]
+  ;;(println :TO-ROUTE (seq rou) bwd)
+(let [b (is? bwd)
+       f (not b)
+       s (or (sequential? rou) (= (str (type rou)) "class [D"))
+       c (and s (string? (first rou)))]
+  (cond
+    (and f c) rou
+    (and f s (not c)) (into-array Double/TYPE rou)
+    f rou
+    c (reverse rou)
+    (and s (not c)) (into-array Double/TYPE (reverse-route rou))
+    (instance? Instance rou) (reverse (svs rou "points")))))
+
+(defn omp-lla [omp]
+  (ProjMath/arrayRadToDeg (.getLatLonArrayCopy omp)))
 

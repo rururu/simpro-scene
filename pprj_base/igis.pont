@@ -1,4 +1,4 @@
-; Mon Jan 15 14:41:12 MSK 2018
+; Tue May 15 12:06:12 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -381,11 +381,6 @@
 		(default ONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot tangage
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot Scale
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -396,6 +391,11 @@
 		(create-accessor read-write))
 	(single-slot BackgroundColor
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verticalSpeed
+		(type FLOAT)
+		(default 0.0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot background.lineColor
@@ -1264,14 +1264,14 @@
 ;+		(allowed-classes Type)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot tangage
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot iconScale
 		(type INSTANCE)
 ;+		(allowed-classes IconScale)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verticalSpeed
+		(type FLOAT)
+		(default 0.0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot tow

@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :plugins [[lein-expand-resource-paths "0.0.1"]]
   :resource-paths ["lib/*"
-                   "plugins/ru.igis.omtab/OpenMapTab-5.2.jar"
+                   "plugins/ru.igis.omtab/OpenMapTab-5.2.1.jar"
                    "plugins/ru.igis.omtab/openmap.jar"
                    "plugins/clojuretab/ClojureTab-1.5git.jar"
                    "plugins/clojuretab/rete-5.3.0-SNAPSHOT.jar"

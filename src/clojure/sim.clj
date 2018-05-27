@@ -8,20 +8,54 @@
   ru.igis.omtab.MapOb
   ru.igis.omtab.NavOb
   java.util.HashMap
-  edu.stanford.smi.protege.ui.DisplayUtilities))
+  edu.stanford.smi.protege.ui.DisplayUtilities
+  java.awt.event.ActionListener))
 
 (def ES-TIMER nil)
+(def EVT-LISTENERS (volatile! {}))
+(def NSR 0)
 (defn mapob-event [evt]
-  ;;(println [:MAPOB-EVENT (.getName (.getSource evt))])
-(let [obj (.getSource evt)]
-  (if (instance? MapOb obj)
-    (rete/assert-frame
-       ['MapObEvent 'status (.getActionCommand evt)
+  ;;(println :MAPOB-EVENT (.getName (.getSource evt)))
+(let [obj (.getSource evt)
+       nob (instance? NavOb obj)]
+  (rete/assert-frame
+    ['MapObEvent 'status (.getActionCommand evt)
 	'label (.getName obj)
 	'lat (.getLatitude obj)
 	'lon (.getLongitude obj)
-	'course (if (instance? NavOb obj) (.getCourse obj))
-	'speed (if (instance? NavOb obj) (.getSpeed obj))]))))
+	'course (if nob (.getCourse obj))
+	'speed (if nob (.getSpeed obj))
+	'altitude (if nob (.getAltitude obj))
+	'verticalSpeed (if nob (.getverticalSpeed obj))
+	'route (if nob (.getRoute obj)) ])))
+
+(defn ass-mo-event [evt]
+  ;;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
+(let [sts (.getActionCommand evt)
+       obj (.getSource evt)]
+  (condp = sts 
+    "STOP_ROUTE"
+    (do (rete/assert-frame ['MapObEvent 
+	'status sts 
+	'object obj 
+	'lat (.getLatitude obj) 
+	'lon (.getLongitude obj)])
+      (def NSR (inc NSR))
+      (rete/fire))
+    true)))
+
+(defn start-evt-listen []
+  (doseq[pg (OMT/getPlaygrounds)]
+  (let [al (proxy [ActionListener] []
+	(actionPerformed [evt] 
+	  ;;(println :OMT-GEN-EVT evt)
+	  (ass-mo-event evt)))]
+    (.addActionListener pg al)
+    (vswap! EVT-LISTENERS assoc pg al))))
+
+(defn stop-evt-listen []
+  (doseq[[pg al] @EVT-LISTENERS]
+  (.removeActionListener pg al)))
 
 (defn work-sim []
   (if (and (some? ES-TIMER) (OMT/isRunning))
@@ -35,6 +69,7 @@
   (when (some? ES-TIMER)
   (.cancel ES-TIMER)
   (def ES-TIMER nil)
+  (stop-evt-listen)
   (println "Simulation Stoped...")))
 
 (defn start-sim []
@@ -46,6 +81,7 @@
   (proxy [java.util.TimerTask] [] (run [] (work-sim)))
   (long 0) 
   (long 1000))
+(start-evt-listen)
 (println "Simulation Started..."))
 
 (defn restart-sim []

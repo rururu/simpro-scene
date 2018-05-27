@@ -165,7 +165,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	( 0.0)
 	(type [PyongyangStPetersburg_Class10016])
 	(url "file:data/images/trnB.gif"))
 
@@ -200,7 +200,7 @@
 	(longitude "37 37")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	( 0.0)
 	(type [PyongyangStPetersburg_Class10021])
 	(url "file:data/images/home.gif"))
 
@@ -3024,7 +3024,7 @@
 	(longitude "30 21.81")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	( 0.0)
 	(url "file:data/images/home.gif"))
 
 ([PyongyangStPetersburg_Class70001] of  PutOnPlace
@@ -3047,7 +3047,7 @@
 	(longitude "125 44.26")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	( 0.0)
 	(url "file:data/images/home.gif"))
 
 ([PyongyangStPetersburg_Class80001] of  PutOnPlace

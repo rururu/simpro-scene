@@ -1,4 +1,4 @@
-; Thu Apr 05 22:37:52 MSK 2018
+; Sun May 27 13:32:41 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -769,10 +769,6 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot getPoliesFromTargets
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot user
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -1129,8 +1125,8 @@
 (defclass Arrive
 	(is-a Action)
 	(role concrete)
-	(single-slot radius
-		(type FLOAT)
+	(single-slot spd
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot observer
@@ -1572,26 +1568,17 @@
 	(is-a Action)
 	(role abstract))
 
-(defclass GoLayer
+(defclass GoLayerRoute
 	(is-a Go)
 	(role concrete)
 	(single-slot spd
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot resource
-		(type INSTANCE)
-;+		(allowed-classes Attribute)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot layer
 		(type INSTANCE)
 ;+		(allowed-classes Layer Variable)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
 		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
@@ -1602,7 +1589,7 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot getPoliesFromTargets
+	(single-slot number
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -1612,10 +1599,6 @@
 	(role concrete)
 	(single-slot spd
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot radius
-		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot backward
@@ -1651,24 +1634,11 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass StopRoute
-	(is-a Go)
-	(role concrete)
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass GoRoad
 	(is-a Go)
 	(role concrete)
 	(single-slot spd
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot object
@@ -2704,10 +2674,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot lon
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -2724,6 +2690,21 @@
 		(create-accessor read-write))
 	(single-slot lat
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot altitude
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

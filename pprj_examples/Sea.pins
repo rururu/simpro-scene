@@ -1,4 +1,4 @@
-; Fri Jan 19 18:48:17 MSK 2018
+; Thu May 17 11:54:14 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -325,6 +325,10 @@
 	(longitude "28 49.08")
 	(mapob [Sea_Class228]))
 
+([Sea_Class110030] of  CloFuncall
+
+	(source "(ru.rules/f 360)"))
+
 ([Sea_Class114] of  RepeatActionOnOff
 
 	(flag TRUE)
@@ -414,7 +418,6 @@
 	(next_actions [Sea_Class120008])
 	(object [ScenarioN_Class570000])
 	(parent "c1.Cruis3491")
-	(radius 0.1)
 	(run "c1.Cruis3489")
 	(speed 22.0)
 	(status "START")
@@ -436,7 +439,6 @@
 	(next_actions [Sea_Class120006])
 	(object [ScenarioN_Class570000])
 	(parent "c1.Cruis3491")
-	(radius 0.1)
 	(route [Sea_Class251])
 	(run "c1.Cruis3489")
 	(spd "?spd")
@@ -502,7 +504,6 @@
 	(next_actions [Sea_Class122])
 	(object [Sea_Class226])
 	(parent "s1.Simpl3555")
-	(radius 0.5)
 	(run "s1.Simpl3554")
 	(speed 100.0)
 	(status "START")
@@ -641,7 +642,6 @@
 
 	(latitude "?lat1")
 	(longitude "?lon1")
-	(radius 0.2)
 	(speed 220.0)
 	(title "Tsk. GTP "))
 
@@ -965,7 +965,6 @@
 	(longitude "29 1")
 	(next_actions [Sea_Class570003])
 	(object [ScenarioN_Class570000])
-	(radius 0.2)
 	(speed 100.0)
 	(title "s1.Airplane to Base for Refueling"))
 
@@ -1117,8 +1116,8 @@
 	(longitude "28 38")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
-	(url "file:data/images/kpbrr.png"))
+	(url "file:data/images/kpbrr.png")
+	(verticalSpeed 0.0))
 
 ([Sea_Class162] of  PutOnMap
 
@@ -1138,7 +1137,6 @@
 	(next_actions [Sea_Class164])
 	(object [ScenarioN_Class570000])
 	(parent "c1.Cruis3498")
-	(radius 0.1)
 	(route [Sea_Class250])
 	(run "c1.Cruis3497")
 	(spd "?spd")
@@ -1159,7 +1157,6 @@
 
 	(next_actions [Sea_Class110001])
 	(object [ScenarioN_Class570000])
-	(radius 0.1)
 	(route [Sea_Class251])
 	(spd "?spd")
 	(title "c1.From Terminal"))
@@ -1702,7 +1699,6 @@
 	(latitude "60 11")
 	(longitude "28 35")
 	(object [Sea_Class229])
-	(radius 0.2)
 	(speed 48.0)
 	(title "o1.Santa-Anna goes to finish"))
 
@@ -3959,7 +3955,6 @@
 	(latitude "60 30")
 	(longitude "31 30")
 	(object [Sea_Class332])
-	(radius 0.1)
 	(speed 450.0)
 	(title "a1"))
 
@@ -3968,12 +3963,6 @@
 	(category "3")
 	(text "The plane disappeared from the radar screens")
 	(title "tm1"))
-
-([Sea_Class380007] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [Sea_Class350000])
-	(%3ACREATION-TIMESTAMP "2018.01.19 17:48:05.065 MSK")
-	(%3ACREATOR "ru"))
 
 ([Sea_Class380033] of  Table2
 
@@ -4752,7 +4741,6 @@
 		[Sea_Class570003]
 		[Sea_Class90036])
 	(object [ScenarioN_Class570000])
-	(radius 0.2)
 	(speed 100.0)
 	(title "s1.Airplane to Base"))
 
@@ -4981,7 +4969,6 @@
 	(longitude "28 47.4")
 	(next_actions [Sea_Class80038])
 	(object [Sea_Class227])
-	(radius 0.2)
 	(speed 12.0)
 	(title "s1.CP to Bjorke-Sund Entrance"))
 
@@ -4991,7 +4978,6 @@
 	(longitude "28 49.8")
 	(next_actions [Sea_Class80039])
 	(object [Sea_Class228])
-	(radius 0.2)
 	(speed 8.0)
 	(title "s1.CZ back to Sarka-Luoto"))
 
@@ -5253,7 +5239,6 @@
 	(next_actions [Sea_Class98])
 	(object [Sea_Class227])
 	(parent "s1.TF_De3576")
-	(radius 0.2)
 	(run "s1.Task_3575")
 	(speed 22.0)
 	(status "START")
@@ -5267,7 +5252,6 @@
 	(next_actions [Sea_Class99])
 	(object [Sea_Class228])
 	(parent "s1.TF_De3576")
-	(radius 0.2)
 	(run "s1.Task_3575")
 	(speed 16.0)
 	(status "START")

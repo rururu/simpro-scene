@@ -86,7 +86,7 @@
 	(longitude "31 1")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	(verticalSpeed 0.0)
 	(url "file:data/images/kugr.png"))
 
 ([Finn_Class100001] of  PolyLife
@@ -187,7 +187,7 @@
 	(longitude "35 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	(verticalSpeed 0.0)
 	(url "file:data/images/ross.png"))
 
 ([Finn_Class100013] of  PolyLife
@@ -2991,7 +2991,7 @@
 	(longitude "26 5")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	(verticalSpeed 0.0)
 	(url "file:data/images/finn5.png"))
 
 ([Finn_Class140001] of  OMTPoly
@@ -3727,7 +3727,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	(verticalSpeed 0.0)
 	(url "file:data/images/grndiamd.gif"))
 
 ([Finn_Class170009] of  PutObAttributes
@@ -5775,7 +5775,7 @@
 	(longitude "19 0")
 	(playground-index 0)
 	(speed 0.0)
-	(tangage 0.0)
+	(verticalSpeed 0.0)
 	(url "file:data/images/gerb25.png"))
 
 ([Finn_Class80002] of  IconScale

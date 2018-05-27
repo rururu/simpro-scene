@@ -1,4 +1,4 @@
-; Mon Jan 15 14:41:12 MSK 2018
+; Tue May 15 12:06:12 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3508,20 +3508,6 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([igis_ProjectKB_Class30017] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "tooltip")
-	(property_list [igis_ProjectKB_Class30018])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 480))
-
-([igis_ProjectKB_Class30018] of  Property_List
-)
-
 ([igis_ProjectKB_Class30019] of  Widget
 
 	(height 120)
@@ -4865,7 +4851,7 @@
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "tangage")
+	(name "verticalSpeed")
 	(property_list [igis_ProjectKB_Class110005])
 	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
 	(width 100)
@@ -6813,6 +6799,9 @@
 	(name "instances_file_name")
 	(string_value "igis.pins"))
 
+([KB_459226_Class3] of  Map
+)
+
 ([KB_563022_Instance_0] of  Property_List
 
 	(name "class widget properties")
@@ -7190,9 +7179,6 @@
 	(width 600)
 	(x 0)
 	(y 120))
-
-([KB_699875_Class3] of  Map
-)
 
 ([PAL_FORM_WIDGET] of  Widget
 

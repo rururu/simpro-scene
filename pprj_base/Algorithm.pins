@@ -1,4 +1,4 @@
-; Mon Aug 07 18:48:54 MSK 2017
+; Fri May 18 18:10:26 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -147,7 +147,7 @@
 
 ([Algorithm_Class70000] of  CloFunction
 
-	(source "(let [id (name (gensym \"algo\"))]\n  (set-global id pmap)\n  (do-next (sv algo \"begin\") id))")
+	(source "(let [id (name (gensym \"algo\"))]\n  (set-global id pmap)\n  (get-global (do-next (sv algo \"begin\") id)))")
 	(title "do-algorithm [algo pmap]"))
 
 ([Algorithm_Class70001] of  CloFunction
