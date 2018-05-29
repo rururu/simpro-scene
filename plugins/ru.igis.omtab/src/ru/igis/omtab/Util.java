@@ -250,7 +250,7 @@ public class Util {
      * @return - array of two numbers - latitude and longitude (degrees)
      */
     public static double[] relPos(double lat,double lon,double azdeg,double dist){
-        double c = dist*NavOb.Pi10800; // dist in rad
+        double c = Math.toRadians(dist/60); // dist in rad
         double az = Math.toRadians(azdeg);
         double[] p = GreatCircle.sphericalBetween(Math.toRadians(lat), Math.toRadians(lon), (double)c, (double)az,1);
         return new double[]{ Math.toDegrees(p[2]), Math.toDegrees(p[3]) };
@@ -437,6 +437,18 @@ public class Util {
     	ins.setOwnSlotValue(kb.getSlot(Ontology.S_LATITUDE), MapOb.getDegMin(ProjMath.radToDeg(middleCoord(lla, 0))));
     	ins.setOwnSlotValue(kb.getSlot(Ontology.S_LONGITUDE), MapOb.getDegMin(ProjMath.radToDeg(middleCoord(lla, 1))));
     	return ins;
+    }
+    
+    public static double[] flatten(Collection<double[]> points) {
+    	double[] lla = new double[points.size()*2];
+    	int k = 0;
+    	for(double[] p: points) {
+    		lla[k] = p[0];
+    		k++;
+    		lla[k] = p[1];
+    		k++;
+    	}
+    	return lla;
     }
     
 }

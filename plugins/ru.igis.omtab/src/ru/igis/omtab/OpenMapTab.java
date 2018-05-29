@@ -17,6 +17,7 @@ package ru.igis.omtab;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -116,6 +117,10 @@ public class OpenMapTab extends AbstractTabWidget {
 						pgmap.put(pgid, pg);
 						pg.setMyPlugInLayer((PlugInLayer) lay);
 						layhand.moveLayer(lay, pgid);
+						// Bug fix: Two same ActionListeners
+						ActionListener[] als = pg.getTimer().getActionListeners();
+						if(als.length == 2 && als[0] == als[1])
+							pg.getTimer().removeActionListener(als[0]);
 					}
 				}
 			}

@@ -17,6 +17,7 @@ package ru.igis.omtab;
 
 import com.bbn.openmap.proj.*;
 import com.bbn.openmap.omGraphics.*;
+
 import edu.stanford.smi.protege.model.*;
 
 import java.io.File;

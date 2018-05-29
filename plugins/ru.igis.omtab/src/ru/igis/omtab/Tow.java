@@ -122,7 +122,7 @@ public class Tow {
      * @param nm - new distance in NM
      */
     public void setDistance(double nm){
-        dist = nm*NavOb.Pi10800;
+        dist = Math.toRadians(nm/60);
     }
     
     /**

@@ -55,8 +55,8 @@ public class NavObFrame extends javax.swing.JFrame {
         jTextFieldAltitude = new javax.swing.JTextField();
         jLabelSpeed = new javax.swing.JLabel();
         jTextFieldSpeed = new javax.swing.JTextField();
-        jLabelTangage = new javax.swing.JLabel();
-        jTextFieldTangage = new javax.swing.JTextField();
+        jLabelVerticalSpeed = new javax.swing.JLabel();
+        jTextFieldVerticalSpeed = new javax.swing.JTextField();
         jButtonAttr = new javax.swing.JButton();
         jButtonMission = new javax.swing.JButton();
 
@@ -125,15 +125,15 @@ public class NavObFrame extends javax.swing.JFrame {
         });
         jPanelCoordinates.add(jTextFieldSpeed);
 
-        jLabelTangage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanelCoordinates.add(jLabelTangage);
+        jLabelVerticalSpeed.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelCoordinates.add(jLabelVerticalSpeed);
 
-        jTextFieldTangage.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldVerticalSpeed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTangageActionPerformed(evt);
+                jTextFieldVerticalSpeedActionPerformed(evt);
             }
         });
-        jPanelCoordinates.add(jTextFieldTangage);
+        jPanelCoordinates.add(jTextFieldVerticalSpeed);
 
         jButtonAttr.setText("Attributes");
         jButtonAttr.addActionListener(new java.awt.event.ActionListener() {
@@ -168,9 +168,9 @@ public class NavObFrame extends javax.swing.JFrame {
     		new Context().update(attr,navOb.name+" attributes");
     }//GEN-LAST:event_jButtonTaskActionPerformed
 
-    private void jTextFieldTangageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSpeedActionPerformed
-        navOb.setFormTangage(jTextFieldTangage.getText());
-        jTextFieldTangage.setText("");
+    private void jTextFieldVerticalSpeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSpeedActionPerformed
+        navOb.setFormVerticalSpeed(jTextFieldVerticalSpeed.getText());
+        jTextFieldVerticalSpeed.setText("");
     }//GEN-LAST:event_jTextFieldSpeedActionPerformed
 
     private void jTextFieldSpeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSpeedActionPerformed
@@ -247,10 +247,10 @@ public class NavObFrame extends javax.swing.JFrame {
          
     /**
      * Write to Speed field
-     * @param d - Speed
+     * @param vs - Speed
      */    
-    public void setTangage(double d){
-        jLabelTangage.setText("Tng "+d+"°");
+    public void setVerticalSpeed(double vs){
+        jLabelVerticalSpeed.setText("Vspd "+vs+" m/s");
     }
          
     private NavOb navOb;
@@ -263,14 +263,14 @@ public class NavObFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLat;
     private javax.swing.JLabel jLabelLon;
     private javax.swing.JLabel jLabelSpeed;
-    private javax.swing.JLabel jLabelTangage;
+    private javax.swing.JLabel jLabelVerticalSpeed;
     private javax.swing.JPanel jPanelCoordinates;
     private javax.swing.JTextField jTextFieldCourse;
     private javax.swing.JTextField jTextFieldAltitude;
     private javax.swing.JTextField jTextFieldLat;
     private javax.swing.JTextField jTextFieldLon;
     private javax.swing.JTextField jTextFieldSpeed;
-    private javax.swing.JTextField jTextFieldTangage;
+    private javax.swing.JTextField jTextFieldVerticalSpeed;
     // End of variables declaration//GEN-END:variables
     
 }

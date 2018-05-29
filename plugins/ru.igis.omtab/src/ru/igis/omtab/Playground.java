@@ -50,7 +50,12 @@ public class Playground extends MMLGraphicLoader {
 	public int MO_EVENT = 0;
 	public static final String ADDED = "ADDED";
 	public static final String REMOVED = "REMOVED";
-	public static final String UPDATED = "UPDATED";
+	public static final String UPD_COURSE = "UPD_COURSE";
+	public static final String UPD_SPEED = "UPD_SPEED";
+	public static final String UPD_VERTICAL_SPEED = "UPD_VERTICAL_SPEED";
+	public static final String UPD_ALTITUDE = "UPD_ALTITUDE";
+	public static final String UPD_ROUTE = "UPD_ROUTE";
+	public static final String STOP_ROUTE = "STOP_ROUTE";
 
 	/**
      * Default constructor
@@ -72,7 +77,9 @@ public class Playground extends MMLGraphicLoader {
      * (NavObs updated by location or setCourse and setSpeed methods,
      *  OMTPolies updated when towing, Links updated by method updateLine())
      * @param al - ActionListener for ActionEvents(MapOb, MO_EVENT, command:
-     * 				{"ADDED" / "REMOVED" / "UPDATED" })
+     * 				{"ADDED" | "REMOVED" |
+     * 				 "UPD_COURSE" | "UPD_SPEED" | "UPD_TANGAGE" | "UPD_ALTITUDE" |
+     * 				 "UPD_ROUTE" | "STOP_ROUTE" })
      */    
     public void addActionListener(ActionListener al) {
     	molisteners.add(al);
@@ -99,12 +106,12 @@ public class Playground extends MMLGraphicLoader {
         // 	Debug.message("animationtester", "AnimationActioner.manageGraphics");
     	double currentTime = Clock.getCurrentTime();
         Projection p = getProjection();
-
         Iterator<?> it = mapObs.iterator();
         while (it.hasNext()) {
             OMGraphic omg = (OMGraphic) it.next();
-            if(omg instanceof NavOb)
+            if(omg instanceof NavOb) {
             	((NavOb)omg).move(currentTime);
+            }
             if(omg instanceof Link)
             	((Link)omg).updateLink();;
             omg.generate(p);
@@ -134,7 +141,7 @@ public class Playground extends MMLGraphicLoader {
         MapOb mapOb = getMapOb(inst);
         if(mapOb != null){
         	mapOb.mapFromProtege(inst);
-        }else {
+        } else {
         	mapOb =  (MapOb) Util.createObjectForInstance(inst, "ru.igis.omtab");
         	mapOb.playground = this; // Just created mapob belongs to this playground
             if(mapOb != null){

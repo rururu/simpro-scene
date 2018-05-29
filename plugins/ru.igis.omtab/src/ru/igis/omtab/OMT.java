@@ -320,7 +320,7 @@ public class OMT extends MapHandlerChild {
 	            runaControlPanel.setRunTimerSelected(true);
 	        runaControlPanel.setSliderEnabled(false);  // to prevent moving objects during slider adjustment
         	for(int i=0;i<pgs.length;i++)
-        		pgs[i].getTimer().restart();
+        		pgs[i].getTimer().start();
         	running = true;
         } else {
         	for(int i=0;i<pgs.length;i++)

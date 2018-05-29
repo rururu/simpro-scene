@@ -107,7 +107,7 @@ public interface Ontology {
     public static final String S_RUNNING =     	"running";
     public static final String S_SCENARIO =     "scenario";
     public static final String S_SPEED =        "speed";
-    public static final String S_TANGAGE =      "tangage";
+    public static final String S_VERTICAL_SPEED = "verticalSpeed";
     public static final String S_SPEED2 =       "speed2";
     public static final String S_SPILL =        "spill";
     public static final String S_SOURCE =		"source";

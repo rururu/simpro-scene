@@ -153,11 +153,34 @@ public class OMTPoly extends MapOb  implements Container{
 	    }
     
     /**
+     * Set part of LatLonArray as points of OMPoly object
+     * @param llpoints - array of coordinates {deg}
+     */
+    public void setLLPoints(double[] llpoints) {
+    	((OMPoly)location).setLocation(llpoints, OMGraphic.DECIMAL_DEGREES);
+    	setLocationMarker(location);
+    }
+    
+    /**
      * Return LatLonArray of corresponding OMPoly object
      * @return array of coordinates
      */
     public double[] getLLPoints(){
-        return ((OMPoly)location).getLatLonArray();
+        return ((OMPoly)location).getLatLonArrayCopy();
+    }
+    
+    /**
+     * Create Collection of Strings in form "DD MM.M DD MM.M" (latitude longitude)
+     * from array of doubles (latitude longitude)
+     * @param llpoints - array of doubles {latitude, longitude,..}
+     * @return Collection of Strings in form "DD MM.M DD MM.M"
+     */
+    public static Collection<String> getDMPoints(double[] llpoints){
+    	ArrayList<String> dmpoints = new ArrayList<String>();
+    	for(int i=0;i<llpoints.length;i+=2){
+    		dmpoints.add(MapOb.getDegMin(llpoints[i])+" "+MapOb.getDegMin(llpoints[i+1]));
+    	}
+    	return dmpoints;
     }
     
     /**

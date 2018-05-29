@@ -200,7 +200,6 @@ public class MapOb extends BasicLocation implements Protegian{
         lat2 = Math.toRadians(lat2);
         lon2 = Math.toRadians(lon2);
         double gcsd = GreatCircle.sphericalDistance(lat1, lon1, lat2, lon2);
-        //System.out.println("GreatCircle.spherical_distance(rad) = "+gcsd);
     	double dnm = gcsd * Planet.wgs84_earthEquatorialCircumferenceNMiles
 			 / 2f 
              / (double)Math.PI;
