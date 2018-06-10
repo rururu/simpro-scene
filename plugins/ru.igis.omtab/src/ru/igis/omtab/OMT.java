@@ -58,7 +58,7 @@ public class OMT extends MapHandlerChild {
     }
     
     public static MapOb addMapOb(Instance inst) {
-    	if(inst != null) {
+    	if(inst != null && getMapOb(inst) == null) {
 	    	int pgi = -1;
 	    	String pgids = (String) inst.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_PLAYGROUND_INDEX));
 	    	if(pgids != null)

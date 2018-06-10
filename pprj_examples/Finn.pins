@@ -1,4 +1,4 @@
-; Sat Dec 30 20:19:15 MSK 2017
+; Sun Jun 10 17:50:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -86,8 +86,8 @@
 	(longitude "31 1")
 	(playground-index 0)
 	(speed 0.0)
-	(verticalSpeed 0.0)
-	(url "file:data/images/kugr.png"))
+	(url "file:data/images/kugr.png")
+	(verticalSpeed 0.0))
 
 ([Finn_Class100001] of  PolyLife
 
@@ -187,8 +187,8 @@
 	(longitude "35 0")
 	(playground-index 0)
 	(speed 0.0)
-	(verticalSpeed 0.0)
-	(url "file:data/images/ross.png"))
+	(url "file:data/images/ross.png")
+	(verticalSpeed 0.0))
 
 ([Finn_Class100013] of  PolyLife
 
@@ -2991,8 +2991,8 @@
 	(longitude "26 5")
 	(playground-index 0)
 	(speed 0.0)
-	(verticalSpeed 0.0)
-	(url "file:data/images/finn5.png"))
+	(url "file:data/images/finn5.png")
+	(verticalSpeed 0.0))
 
 ([Finn_Class140001] of  OMTPoly
 
@@ -3727,8 +3727,8 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(verticalSpeed 0.0)
-	(url "file:data/images/grndiamd.gif"))
+	(url "file:data/images/grndiamd.gif")
+	(verticalSpeed 0.0))
 
 ([Finn_Class170009] of  PutObAttributes
 
@@ -5775,8 +5775,8 @@
 	(longitude "19 0")
 	(playground-index 0)
 	(speed 0.0)
-	(verticalSpeed 0.0)
-	(url "file:data/images/gerb25.png"))
+	(url "file:data/images/gerb25.png")
+	(verticalSpeed 0.0))
 
 ([Finn_Class80002] of  IconScale
 

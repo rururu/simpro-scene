@@ -1,4 +1,4 @@
-; Fri May 18 18:10:26 MSK 2018
+; Sun Jun 10 18:26:45 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -127,7 +127,7 @@
 
 ([Algorithm_Class50000] of  CloFunction
 
-	(source "(if-let [pmap (get-global id)]\n  (if-let [pmap2 (if-let [id2 (do-algorithm (sv prep \"algorithm\") pmap)]\n	   (get-global id2))]\n    (set-global id (merge pmap pmap2))))\n(do-next (sv prep \"next\") id)")
+	(source "(if-let [pmap (get-global id)]\n  (if-let [pmap2 (do-algorithm (sv prep \"algorithm\") pmap)]\n    (set-global id (merge pmap pmap2))))\n(do-next (sv prep \"next\") id)")
 	(title "do-preproc [prep id]"))
 
 ([Algorithm_Class50001] of  CloFunction

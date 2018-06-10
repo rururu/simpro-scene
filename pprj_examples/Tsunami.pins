@@ -1,4 +1,4 @@
-; Sat Dec 23 19:24:58 MSK 2017
+; Sun Jun 10 12:16:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -271,7 +271,7 @@
 
 ([Tsunami_Class7] of  CloFunction
 
-	(source "(vreset! FL-RCRD [])\n(let [tsu (sv obj \"poly\") \n       flo (sv obj \"flood\")\n       tfn (sv obj \"tabfun\")]\n  (println [:TSUNAMI (and tsu (sv tsu \"label\"))\n                :FLOOD (and flo (sv flo \"label\"))\n                :TABFUN (and tfn (sv tfn \"title\"))])\n  (if tsu\n    (def TABFUN (c/create-tabfun tfn)))\n  (if flo\n    (def FL-OMP (.getLocationMarker (OMT/addMapOb flo)))))")
+	(source "(vreset! FL-RCRD [])\n(let [tsu (sv obj \"poly\") \n       flo (sv obj \"flood\")\n       tfn (sv obj \"tabfun\")]\n  (println [:TSUNAMI (and tsu (sv tsu \"label\"))\n                :FLOOD (and flo (sv flo \"label\"))\n                :TABFUN (and tfn (sv tfn \"title\"))])\n  (if tsu\n    (def TABFUN (c/create-tabfun tfn)))\n  (if flo\n    (def FL-OMP (.getLocationMarker (OMT/getOrAdd flo)))))")
 	(title "-pinit [this obj]"))
 
 ([Tsunami_Class70004] of  CloVar

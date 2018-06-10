@@ -69,7 +69,6 @@ public class NavOb extends OMTRaster {
      */    
     public NavOb(Instance instance) throws Exception {
         super(instance);
-        mapFromProtege(instance);
      }
     
     /**
@@ -170,14 +169,38 @@ public class NavOb extends OMTRaster {
         }catch(NumberFormatException nfe){}
     }
     /**
+     * Change coordinates of this Nav object in degrees
+     * @param latitude - Latitude in degrees
+     * @param longitude - Longitude in degrees
+     */
+	public void setLocation(double latitude, double longitude) {
+		if (route != null)
+			stopRoute();
+		super.setLocation(latitude, longitude);
+		towExtended();
+		updateNavObFrame();
+		if (playground != null) {
+			playground.fireMOEvent(this, Playground.UPD_LOCATION);
+		}
+	}
+
+    /**
+     * Change coordinates of this Nav object from the string representation in degrees and minutes:
+     * "deg min"
+     * @param dmlat - Latitude as "deg min"
+     * @param dmlon - Longitude as "deg min"
+     * @throws Exception -
+     */
+	public void setLocation(String dmlat, String dmlon) throws Exception {
+		setLocation(getDeg(dmlat),getDeg(dmlon));
+	}
+    /**
      * Set Latitude from double
      * @param deglat - latitude in degrees
      */    
 	public void setLatitude(double deglat) {
 		if (deglat > -90f && deglat < 90f) {
 			setLocation(deglat, lon);
-			towExtended();
-			updateNavObFrame();
 		}
 	}
     
@@ -188,24 +211,8 @@ public class NavOb extends OMTRaster {
 	public void setLongitude(double deglon) {
 		if (deglon > -180f && deglon < 180f) {
 			setLocation(lat, deglon);
-			towExtended();
-			updateNavObFrame();
 		}
 	}
-    
-    /**
-     * Change coordinates of this Nav object from the string representation in degrees and minutes:
-     * "deg min"
-     * @param dmlat - Latitude as "deg min"
-     * @param dmlon - Longitude as "deg min"
-     * @throws Exception -
-     */
-	public void setLocation(String dmlat, String dmlon) throws Exception {
-		super.setLocation(dmlat, dmlon);
-		towExtended();
-		updateNavObFrame();
-	}
-    
     /**
      * Set Course from int
      * @param deg - course in degrees
@@ -244,28 +251,27 @@ public class NavOb extends OMTRaster {
      */    
 	public void setSpeed(double knots) {
 		if (nextPointIndex > 0) {
-			// if we are standing
-			if (speed == 0) {
-				// if in the end point of route
-				if (nextPointIndex == route.size()) {
-					// 24 hours way
-					double[] ohw = position(lat, lon, (double) course, knots * 24);
-					route.add(new double[]{ Math.toRadians(ohw[0]), Math.toRadians(ohw[1]) });
-				}
-			} else {
-				// we are moving
+			// if we are standing in the end of route and start
+			if (speed == 0 && nextPointIndex == route.size() && knots > 0) {
+				// 24 hours way
+				double[] ohw = position(lat, lon, (double) course, knots * 24);
+				goRoute(ohw);
+			// if we are start or change speed
+			} else if (knots > 0 && knots != speed) { 
 				speed = 0; // first of all stop
-				double[] here = new double[] { Math.toRadians(lat), Math.toRadians(lon) };
+				double latrad = Math.toRadians(lat);
+				double lonrad = Math.toRadians(lon);
+				double[] here = new double[] {latrad, lonrad};
+				// insert new point here and go from it
 				route.add(nextPointIndex, here);
 				nextPointIndex++;
+				lastLat = latrad;
+				lastLon = lonrad;
+				lastPosTime = Clock.getCurrentTime();
+				lastLeg = -1;
 			}
 		}
 		setSpeed0(knots);
-		if (knots > 0) {
-			lastLat = Math.toRadians(lat);
-			lastLon = Math.toRadians(lon);
-			lastPosTime = Clock.getCurrentTime();
-		}
 	}
 
 	private void setSpeed0(double knots) {
@@ -359,14 +365,14 @@ public class NavOb extends OMTRaster {
 			if (lastLeg > 0 && way < lastLeg) {
 				double[] pos = GreatCircle.sphericalBetween(lastLat, lastLon,
 						way, lastAzi, 1);
-				setLocation(Math.toDegrees(pos[2]), Math.toDegrees(pos[3]));
+				super.setLocation(Math.toDegrees(pos[2]), Math.toDegrees(pos[3]));
 			} else {
 				double[] llci = along(lastLat, lastLon, nextPointIndex, way);
 				lastLat = llci[0];
 				lastLon = llci[1];
 				lastAzi = llci[2];
 				nextPointIndex = (int) llci[3];
-				setLocation(Math.toDegrees(lastLat), Math.toDegrees(lastLon));
+				super.setLocation(Math.toDegrees(lastLat), Math.toDegrees(lastLon));
 				int crs = (int) Math.toDegrees(lastAzi);
 				if (crs < 0)
 					crs += 360;
@@ -859,13 +865,15 @@ public class NavOb extends OMTRaster {
 			double spd = speed;
 			speed = 0;
 			route.removeAll(route.subList(nextPointIndex, route.size()));
+			double latrad = Math.toRadians(lat);
+			double lonrad = Math.toRadians(lon);
 			if (spd > 0) {
-				route.add(nextPointIndex, new double[] {lat, lon});
+				route.add(nextPointIndex, new double[] {latrad, lonrad});
 				nextPointIndex++;
 			}
 			route.addAll(rte);
-			lastLat = lat;
-			lastLon = lon;
+			lastLat = latrad;
+			lastLon = lonrad;
 			lastPosTime = Clock.getCurrentTime();
 			lastLeg = -1;
 			speed = spd;
@@ -959,7 +967,7 @@ public class NavOb extends OMTRaster {
         double az = Math.toRadians(bear); // bear in rad
         double fi = Math.toRadians(lat);
         double la = Math.toRadians(lon);
-        double[] p = GreatCircle.sphericalBetween(fi, la, c, az,1);
+        double[] p = GreatCircle.sphericalBetween(fi, la, c, az, 1);
         return new double[]{Math.toDegrees(p[2]), Math.toDegrees(p[3])};
     }
 	/**

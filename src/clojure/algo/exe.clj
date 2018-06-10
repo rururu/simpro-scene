@@ -97,8 +97,7 @@
 
 (defn do-preproc [prep id]
   (if-let [pmap (get-global id)]
-  (if-let [pmap2 (if-let [id2 (do-algorithm (sv prep "algorithm") pmap)]
-	   (get-global id2))]
+  (if-let [pmap2 (do-algorithm (sv prep "algorithm") pmap)]
     (set-global id (merge pmap pmap2))))
 (do-next (sv prep "next") id))
 

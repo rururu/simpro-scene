@@ -95,7 +95,7 @@
     (ssv poi "lineColor" W-COLOR)
     (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
-    (OMT/addMapOb poi)
+    (OMT/getOrAdd poi)
     poi))
 
 (defn shortest-dist [ips1 ips2]
@@ -239,7 +239,7 @@
     (doseq [dw (svs rd "dirways")]
        (-> (sv dw "way")
          (sv "poly")
-         OMT/addMapOb)))))
+         OMT/getOrAdd)))))
 
 (defn hide-roads [hm inst]
   (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]

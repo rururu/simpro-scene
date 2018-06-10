@@ -1,4 +1,4 @@
-; Sat Dec 23 19:34:11 MSK 2017
+; Sun Jun 10 13:13:11 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2517,7 +2517,7 @@
 
 ([Functional_Class10111] of  CloFunction
 
-	(source "(let [mm (into [] mapob)\n       len (count mm)]\n  (if (> len 1)\n      (do (OMT/addMapOb (first mm))\n            (poly-moving-start (first mm)(second mm)(div-time time len) sec))\n      -1))")
+	(source "(let [mm (into [] mapob)\n       len (count mm)]\n  (if (> len 1)\n      (do (OMT/getOrAdd (first mm))\n            (poly-moving-start (first mm)(second mm)(div-time time len) sec))\n      -1))")
 	(title "poly-moving-start-n [mapob time sec]"))
 
 ([Functional_Class10112] of  CloFunction
@@ -3174,7 +3174,7 @@
 
 ([Functional_Class10143] of  CloFunction
 
-	(source "(let  [sel (.getSelection (isw \"m-polygons\"))]\n  (if (seq sel)\n      (let [mp (first sel)\n             pol (m-polygon-poly mp)]\n        (OMT/addMapOb pol)\n        (shake-map)\n        (.show *prj* pol) )))")
+	(source "(let  [sel (.getSelection (isw \"m-polygons\"))]\n  (if (seq sel)\n      (let [mp (first sel)\n             pol (m-polygon-poly mp)]\n        (OMT/getOrAdd pol)\n        (shake-map)\n        (.show *prj* pol) )))")
 	(title "select-polygon []"))
 
 ([Functional_Class10144] of  CloVar
@@ -5445,63 +5445,6 @@
 		"75 32.48 90 0"
 		"75 32.48 90 0")
 	(relative FALSE))
-
-([Scenario_Class520000] of  %3AUNDEFINED
-)
-
-([Scenario_Class520001] of  %3AUNDEFINED
-)
-
-([Scenario_Class520002] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100002] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100010] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100011] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100012] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100013] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100014] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100015] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100016] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100017] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100018] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100019] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100020] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100021] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100022] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100023] of  %3AUNDEFINED
-)
-
-([Scenario_Instance_100025] of  %3AUNDEFINED
-)
 
 ([ShuffleEurope_Class0] of  WorkingPrograms
 

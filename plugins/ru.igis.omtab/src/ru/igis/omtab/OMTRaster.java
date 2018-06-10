@@ -50,8 +50,8 @@ public class OMTRaster extends MapOb {
      */
     public OMTRaster(Instance instance) throws Exception {
         super(instance);
-        mapFromProtege(instance);
         coordFromProtege(instance);
+        mapFromProtege(instance);
     }
 
     protected void putLocationMarker(){

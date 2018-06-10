@@ -13,7 +13,6 @@
 
 (def ES-TIMER nil)
 (def EVT-LISTENERS (volatile! {}))
-(def NSR 0)
 (defn mapob-event [evt]
   ;;(println :MAPOB-EVENT (.getName (.getSource evt)))
 (let [obj (.getSource evt)
@@ -40,7 +39,6 @@
 	'object obj 
 	'lat (.getLatitude obj) 
 	'lon (.getLongitude obj)])
-      (def NSR (inc NSR))
       (rete/fire))
     true)))
 

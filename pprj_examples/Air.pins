@@ -1,4 +1,4 @@
-; Sat Dec 23 19:19:31 MSK 2017
+; Sun Jun 10 12:12:21 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -73,7 +73,7 @@
 
 ([Air_Class20000] of  CloFunction
 
-	(source "(let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))\n       degmin (fn [x] (ru.igis.omtab.MapOb/getDegMin (read-string x)))]\n  (when (seq pths)\n    (doseq [pth pths]\n      (let [csv (read-csv pth)]\n        (println (str \"In file: \" pth \" \" (count csv) \" objects\"))\n        (vswap! DATA concat csv)))\n    (doseq [m @DATA]\n      (let [lab (:CITY_NAME m)\n             in (foc \"City\" \"label\" lab)]\n        (ssv in \"latitude\" (degmin (:LATITUDE m)))\n        (ssv in \"longitude\" (degmin (:LONGITUDE m)))\n        (ssv in \"country\" (:COUNTRY m))\n        (ssv in \"capital\" (= (:CAP m) \"Y\"))\n        (ssv in \"population\" (int (read-string (:POP m))))\n        (ssv in \"url\" \"file:data/images/star10.png\")\n        (ru.igis.omtab.OMT/addMapOb in)))))")
+	(source "(let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))\n       degmin (fn [x] (ru.igis.omtab.MapOb/getDegMin (read-string x)))]\n  (when (seq pths)\n    (doseq [pth pths]\n      (let [csv (read-csv pth)]\n        (println (str \"In file: \" pth \" \" (count csv) \" objects\"))\n        (vswap! DATA concat csv)))\n    (doseq [m @DATA]\n      (let [lab (:CITY_NAME m)\n             in (foc \"City\" \"label\" lab)]\n        (ssv in \"latitude\" (degmin (:LATITUDE m)))\n        (ssv in \"longitude\" (degmin (:LONGITUDE m)))\n        (ssv in \"country\" (:COUNTRY m))\n        (ssv in \"capital\" (= (:CAP m) \"Y\"))\n        (ssv in \"population\" (int (read-string (:POP m))))\n        (ssv in \"url\" \"file:data/images/star10.png\")\n        (ru.igis.omtab.OMT/getOrAdd in)))))")
 	(title "load-cities [hm inst]"))
 
 ([Air_Class23] of  WorkingPrograms

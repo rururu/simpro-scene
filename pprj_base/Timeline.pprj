@@ -1,4 +1,4 @@
-; Sat Dec 30 20:02:21 MSK 2017
+; Sun Jun 10 12:09:32 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,7 +20,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [Timeline_ProjectKB_Class1646]))
+	(properties [Timeline_ProjectKB_Class1638]))
 
 ([CLSES_TAB] of  Widget
 
@@ -72,8 +72,8 @@
 
 ([KB_176865_Class1] of  Map
 
-	(entries [Timeline_ProjectKB_Class1648])
-	(referenced_maps [Timeline_ProjectKB_Class1647]))
+	(entries [Timeline_ProjectKB_Class1640])
+	(referenced_maps [Timeline_ProjectKB_Class1639]))
 
 ([KB_176865_Class13] of  Property_List
 
@@ -167,28 +167,28 @@
 	(name "instances_file_name")
 	(string_value "Timeline.pins"))
 
-([KB_618675_Class1642] of  Map
+([KB_960522_Class1634] of  Map
 
 	(entries
-		[KB_618675_Class1643]
-		[KB_618675_Class1644]
-		[KB_618675_Class1645]))
+		[KB_960522_Class1635]
+		[KB_960522_Class1636]
+		[KB_960522_Class1637]))
 
-([KB_618675_Class1643] of  Map_Entry
+([KB_960522_Class1635] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_618675_Class1644] of  Map_Entry
+([KB_960522_Class1636] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_618675_Class1645] of  Map_Entry
+([KB_960522_Class1637] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -765,19 +765,19 @@
 ([Timeline_ProjectKB_Class1307] of  Property_List
 )
 
-([Timeline_ProjectKB_Class1646] of  String
+([Timeline_ProjectKB_Class1638] of  String
 
 	(name "PolyLife")
 	(string_value "polyobj{%3A+}begin{-}end"))
 
-([Timeline_ProjectKB_Class1647] of  Map
+([Timeline_ProjectKB_Class1639] of  Map
 )
 
-([Timeline_ProjectKB_Class1648] of  Map_Entry
+([Timeline_ProjectKB_Class1640] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Timeline_ProjectKB_Class1647")
+	(value "Timeline_ProjectKB_Class1639")
 	(value_class "java.util.Map"))
 
 ([Timeline_ProjectKB_Class21302] of  Widget

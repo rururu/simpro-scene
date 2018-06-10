@@ -83,7 +83,7 @@
         (es-mess (str tim " " txt) {} cat (sv cli "id"))))))
 
 (defn update-attribute-set [pla ctx p]
-  (let [mo (or (OMT/getMapOb pla) (OMT/addMapOb pla))
+  (let [mo (OMT/getOrAdd pla)
        atts (.getAttributes mo)
        asi (sv pla "attributeSet")
        hm1 (or atts (if (nil? asi) (HashMap.))) ;; (AttributeSet/instanceToMap asi)))

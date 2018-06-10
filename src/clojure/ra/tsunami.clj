@@ -27,7 +27,7 @@
   (if tsu
     (def TABFUN (c/create-tabfun tfn)))
   (if flo
-    (def FL-OMP (.getLocationMarker (OMT/addMapOb flo))))))
+    (def FL-OMP (.getLocationMarker (OMT/getOrAdd flo))))))
 
 (defn call-geonames-20elevations [coords]
   ;: Get Elevation - Aster Global Digital Elevation Model V1 2009

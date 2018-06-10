@@ -55,6 +55,7 @@ public class Playground extends MMLGraphicLoader {
 	public static final String UPD_VERTICAL_SPEED = "UPD_VERTICAL_SPEED";
 	public static final String UPD_ALTITUDE = "UPD_ALTITUDE";
 	public static final String UPD_ROUTE = "UPD_ROUTE";
+	public static final String UPD_LOCATION = "UPD_LOCATION";
 	public static final String STOP_ROUTE = "STOP_ROUTE";
 
 	/**
@@ -137,21 +138,17 @@ public class Playground extends MMLGraphicLoader {
      * @param inst - Intstance representing Map Object in Protege
      * @return Map Object
      */    
-    public synchronized MapOb addMapOb(Instance inst) {
-        MapOb mapOb = getMapOb(inst);
-        if(mapOb != null){
-        	mapOb.mapFromProtege(inst);
-        } else {
-        	mapOb =  (MapOb) Util.createObjectForInstance(inst, "ru.igis.omtab");
-        	mapOb.playground = this; // Just created mapob belongs to this playground
-            if(mapOb != null){
-                mapObs.add(mapOb);
-                mapObsMap.put(inst, mapOb); // accumulate all instances added from kb
-            	fireMOEvent(mapOb, ADDED);
-            }
-        }
-        return mapOb;
-    }
+	public synchronized MapOb addMapOb(Instance inst) {
+		MapOb mapOb = (MapOb) Util.createObjectForInstance(inst,
+				"ru.igis.omtab");
+		if (mapOb != null) {
+			mapOb.playground = this;
+			mapObs.add(mapOb);
+			mapObsMap.put(inst, mapOb); // accumulate all instances added from
+			fireMOEvent(mapOb, ADDED);
+		}
+		return mapOb;
+	}
     
     /**
      * Write back to Protege changed attributies of Map Object

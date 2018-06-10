@@ -1,4 +1,4 @@
-; Sat Dec 30 20:02:21 MSK 2017
+; Sun Jun 10 12:09:32 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -409,7 +409,7 @@
 
 ([Timeline_Class50001] of  CloFunction
 
-	(source "(ru.igis.omtab.OMT/addMapOb mo)\n(manage-graphics)")
+	(source "(ru.igis.omtab.OMT/getOrAdd mo)\n(manage-graphics)")
 	(title "add-mo [mo]"))
 
 ([Timeline_Class50002] of  CloFunction

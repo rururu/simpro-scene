@@ -75,13 +75,13 @@
 (println "Action started:" ?tit "PutOnMap")
 (let [obj (a/vv ?obj ?run)]
   (if (not (a/null? obj))
-    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]
+    (if-let [mo (ru.igis.omtab.OMT/getOrAdd obj)]
       (let [lat (a/vv ?lat ?run)
             lon (a/vv ?lon ?run)]
         (if (not (or (a/null? lat) (a/null? lon)))
           (.setLocation mo lat lon))) )))
 (doseq [mo ?mos]
-  (ru.igis.omtab.OMT/addMapOb mo))
+  (ru.igis.omtab.OMT/getOrAdd mo))
 (retract ?pom)
 (s/start-next ?nacts ?pid ?ain ?run))
 
@@ -222,10 +222,9 @@
 (let [rou (a/vv ?rou ?run)
        mo (a/mapob-vv ?obj ?run)
        sps (a/vv ?spd ?run)]
-  (println :GRS rou mo sps )
-  (or (and rou mo sps (if-let [rte (a/to-route rou ?bwd)]
-	(let [speed (read-string sps)]
-	  (println :GRS2 speed rte)
+  (or (and (a/worth? rou) mo (a/worth? sps) 
+               (if-let [rte (a/to-route rou ?bwd)]
+	(let [speed (a/nors sps)]
 	  (.goRoute mo rte)
 	  (.setSpeed mo (double speed))
 	  (modify ?gor status "WAIT" object mo)
@@ -510,14 +509,14 @@
        obs (a/vv ?obs ?run)
        sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))
                "FAILED"
-               (if-let [ms (ru.igis.omtab.OMT/getMapOb obs)]
+               (if-let [ms (ru.igis.omtab.OMT/getOrAdd obs)]
                  (let [lat (.getLatitudeDM ms)
                         lon (.getLongitudeDM ms)]
                    (doseq [mo ?mos]
-                     (-> (ru.igis.omtab.OMT/addMapOb mo) 
+                     (-> (ru.igis.omtab.OMT/getOrAdd mo) 
                        (.setLocation lat lon)))
                    (if (not (a/null? obj))
-                     (.setLocation (ru.igis.omtab.OMT/addMapOb obj) lat lon))
+                     (.setLocation (ru.igis.omtab.OMT/getOrAdd obj) lat lon))
                    "DONE")
                  "FAILED"))]
   (retract ?pop)
@@ -863,60 +862,41 @@
        (s/start-next ?nacts ?pid ?ain ?run))
     (modify ?sc status"FAILED"))))
 
-(a:GoLayerStart 0
-?gl (GoLayer status "START"
+(a:GoLayerRouteStart 0
+?glr (GoLayerRoute status "START"
 	title ?tit
 	object ?obj
-	resource ?res
-	mapob ?mob
 	layer ?lay
-	getPoliesFromTargets ?pft
+	number ?num
 	spd ?spd
 	direction ?dir
 	run ?run
 	parent ?par)
 =>
-(println "Action started:" ?tit "GoLayer")
-(let [obj (a/vv ?obj ?run)
-       res (a/vv ?res ?run)
+(println "Action started:" ?tit "GoLayerRoute")
+(let [mo (a/mapob-vv ?obj ?run)
        lay (a/vv ?lay ?run)
-       pft (a/vv ?pft ?run)
+       num (a/vv ?num ?run)
+       sps (a/vv ?spd ?run)
        dir (a/vv ?dir ?run)]
-  (if (not (or (a/null? lay) (a/null? pft)))
-    (if-let [tgs (a/layer-targets (protege.core/sv lay "prettyName"))]
-      (let [pft (a/subst-hm-vars ?run pft)
-             fun (eval (read-string pft))
-             ogs (fun tgs)
-             obs (if-let [mo (ru.igis.omtab.OMT/getMapOb obj)]
-	(if res
-	  (rest (.getAttribute mo (protege.core/sv res "title")))
-	  [obj])
-	[])
-             obs (concat obs ?mob)
-             tit (name (gensym "Gol"))]
-           (loop [oo obs gg ogs]
-             (when (and (seq oo) (seq gg))
-               (let [ob1 (first oo)
-                      rou (a/omp-latlon-list (first gg))
-                      bwd (= dir "BACKWARD")
-                      [lat lon] (nth rou (if bwd (dec (count rou)) 0))]
-                 (.setLocation (ru.igis.omtab.OMT/addMapOb ob1) lat lon)
-                 (rete.core/assert-frame
-	['GoRoute 'status "START"
-	 'title tit
-	 'object ob1
-	 'route rou
-	 'spd ?spd
-	 'backward bwd
-	 'radius 0.1
-	 'run ?run
-	 'parent ?par])
-                 (recur (rest oo) (rest gg)))))
-           (modify ?gl status "REPEAT"
-	object tit))
-      (do (println "Layer not found: " (protege.core/sv lay "prettyName"))
-        (modify ?gl status "FAILED")))
-    (modify ?gl status "FAILED"))))
+  (or (and mo (a/worth? lay) (a/worth? num) (a/worth? sps) (a/worth? dir)
+               (if-let [tgs (a/layer-targets (protege.core/sv lay "prettyName"))]
+ 	(let [gg (vec (first tgs))
+	       num (a/nors num)
+                               lla (a/omp-lla (nth gg num))
+	       bwd (= dir "BACKWARD")
+	       [lat lon] (if bwd 
+		[(last (butlast lla)) (last lla)]
+		[(first lla) (second lla)])
+	       rte (a/to-route lla bwd)
+	       speed (a/nors sps)]
+	  (.setLocation mo lat lon)
+	  (.goRoute mo rte)
+	  (.setSpeed mo (double speed))
+	  (modify ?glr status "WAIT" 
+		object mo)
+	  true)))
+    (modify ?glr status "FAILED"))))
 
 (a:AttributeMessage 0
 ?am (AttributeMessage status "START"
@@ -936,17 +916,17 @@
 (retract ?am)
 (s/start-next ?nacts ?pid ?ain ?run))
 
-(a:GoLayerRepeat 0
-?gl (GoLayer status "REPEAT"
-	object ?obj
+(a:GoLayerRouteWait 0
+?glr (GoLayerRoute status "WAIT"
+	object ?mo
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
-(Clock)
-(not GoRoute title ?obj)
+?moe (MapObEvent status "STOP_ROUTE"
+	object ?mo)
 =>
-(retract ?gl)
+(retract ?moe ?glr)
 (s/start-next ?nacts ?pid ?ain ?run))
 
 (a:ShowDone 0
@@ -1035,35 +1015,34 @@
 	direction ?dir
 	run ?run
 	parent ?par)
-(Clock time ?t)
 =>
 (println "Action started:" ?tit "GoRoad")
 (let [mo (a/mapob-vv ?obj ?run)
        roa (a/vv ?road ?run)
        dir (a/vv ?dir ?run)
-       speed (a/vv ?spd ?run)]
-  (if (and (some? mo) (not (a/null? roa)))
+       sps (a/vv ?spd ?run)]
+  (if (and (some? mo) (a/worth? roa) (a/worth? dir) (a/worth? sps))
     (let [dws (seq (protege.core/svs roa "dirways"))
-           dws (if (= dir "BACKWARD")
-	(reverse dws)
-	dws)
+           gbw (= dir "BACKWARD")
+           dws (if gbw (reverse dws) dws)
            dw (first dws)
            dn (protege.core/sv dw "direction")
+           bwd (= dn "BACKWARD")
+           bwd (if bwd (not gbw) gbw)
            way (protege.core/sv dw "way")
-           rou (read-string (protege.core/sv way "source"))
-           rou (if (not= dir dn) (reverse rou) rou)
-           [la1 lo1] (first rou)
-           rsp (read-string speed)]
-      (.setLatitude mo la1)
-      (.setLongitude mo lo1)
+           lla (read-string (protege.core/sv way "source"))
+           [lat lon] (if bwd (last lla) (first lla))
+           lla (flatten lla)
+           rte (a/to-route lla bwd)
+           rsp (a/nors sps)]
+      (.setLocation mo lat lon)
+      (.goRoute mo rte)
+      (.setSpeed mo (double rsp))
       (.putAttribute mo "ROAD-SPEED" rsp)
-      (modify ?gor status "REPEAT"
-	road (rest dws)
-	route rou
-	spd rsp
-	direction dir
+      (modify ?gor status "WAIT"
 	object mo
-	N ?t))
+	road (rest dws)
+	direction gbw))
     (modify ?gor status "FAILED"))))
 
 (a:AddResource 0
@@ -1116,45 +1095,35 @@
 (retract ?cbm)
 (s/start-next ?nacts ?pid ?pid ?run))
 
-(a:GoRoadRepeat 0
-?gor (GoRoad status "REPEAT"
-	title ?tit
-	object ?obj
+(a:GoRoadWait 0
+?gor (GoRoad status "WAIT"
+	object ?mo
 	road ?dws
-	spd ?spd
-	direction ?dir
-	route ?rou
-	N ?n
+	direction ?gbw
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
-(Clock time ?t (> ?t ?n))
+?moe (MapObEvent status "STOP_ROUTE"
+	object ?mo)
 =>
-(let [[crs rwot] (a/next-way-point ?rou (- ?t ?n) ?spd)]
-  (.setCourse ?obj crs)
-  (if (seq? rwot)
-    (let [rsp (.getAttribute ?obj "ROAD-SPEED")]
-      (.setLatitude ?obj (ffirst rwot))
-      (.setLongitude ?obj (second (first rwot)))
-      (modify ?gor N ?t
-	spd rsp
-	route rwot))
-    (if (empty? ?dws)
-      (do (.removeAttribute ?obj "ROAD-SPEED")
-        (retract ?gor)
-        (s/start-next ?nacts ?pid ?ain ?run))
-      (let [dw (first ?dws)
-             dn (protege.core/sv dw "direction")
-             way (protege.core/sv dw "way")
-             rou (read-string (protege.core/sv way "source"))
-             rou (if (not= ?dir dn) (reverse rou) rou)
-             [la1 lo1] (first rou)]
-        (.setLatitude ?obj la1)
-        (.setLongitude ?obj lo1)
-        (modify ?gor road (rest ?dws)
-	route rou
-	N (+ ?t rwot)))))))
+(retract ?moe)
+(if (empty? ?dws)
+  (do (.removeAttribute ?mo "ROAD-SPEED")
+    (retract ?gor)
+    (s/start-next ?nacts ?pid ?ain ?run))
+  (let [dw (first ?dws)
+       dn (protege.core/sv dw "direction")
+       bwd (= dn "BACKWARD")
+       bwd (if bwd (not ?gbw) ?gbw)
+       way (protege.core/sv dw "way")
+       lla (read-string (protege.core/sv way "source"))
+       lla (if bwd (butlast lla) (rest lla))
+       rte (a/to-route (flatten lla) bwd)
+       rsp (.getAttribute ?mo "ROAD-SPEED")]
+  (.goRoute ?mo rte)
+  (.setSpeed ?mo (double rsp))
+  (modify ?gor road (rest ?dws)))))
 
 (a:WaitEventAS 0
 ?we (WaitEvent status "REPEAT" 
@@ -2121,18 +2090,6 @@
 	 'run ?run])
     (modify ?cb status tit))))
 
-(a:StopRouteStart 0
-?sor (StopRoute status "START"
-	title ?tit
-	object ?obj
-	run ?run)
-=>
-(println "Action started:" ?tit "StopRoute")
-(if-let [obj (a/vv ?obj ?run)]
-  (modify ?sor object obj
-	status "WORK")
-  (modify ?sor status "FAILED"))))
-
 (a:CombDone 0
 ?cb (Comb status ?sts
 	parent ?pid
@@ -2146,26 +2103,6 @@
 =>
 (retract ?cb)
 (s/start-next ?nacts ?pid ?ain ?run))
-
-(a:StopRouteWork 0
-?gor (GoRoute object ?obj
-	parent ?pid1
-	instance ?ain1
-	run ?run
-	next_actions ?nacts1)
-?sor (StopRoute status "WORK"
-	title ?tit
-	object ?obj
-	parent ?pid2
-	instance ?ain2
-	run ?run
-	next_actions ?nacts2)
-=>
-(let [mo (a/mapob-vv ?obj ?run)]
-  (retract ?gor)
-  (s/start-next ?nacts1 ?pid1 ?ain1 ?run)
-  (retract ?sor)
-  (s/start-next ?nacts2 ?pid2 ?ain2 ?run)))
 
 (a:MissionStart 0
 ?ot (Mission status "START"
@@ -2258,44 +2195,4 @@
             (recur (rest ats) (rest rls) (rest vls)) ) ))
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
-
-(TC.Create Targets 
-
-=>
-)
-
-(TC.Create Bearing1 
-
-=>
-)
-
-(TC.Constant Bearing 
-
-=>
-)
-
-(TC.Delete Old Target 100
-
-=>
-)
-
-(TC.Dangerous Approach 
-
-=>
-)
-
-(TC.Dangerous Overtake 
-
-=>
-)
-
-(TC.Dangerous Towards 
-
-=>
-)
-
-(TC.Delete Bearing1 -100
-
-=>
-)
 

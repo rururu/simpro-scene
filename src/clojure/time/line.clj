@@ -9,7 +9,7 @@
   (.manageGraphics pg)))
 
 (defn add-mo [mo]
-  (ru.igis.omtab.OMT/addMapOb mo)
+  (ru.igis.omtab.OMT/getOrAdd mo)
 (manage-graphics))
 
 (defn remove-mo [mo]

@@ -1,4 +1,4 @@
-; Sat May 26 18:47:21 MSK 2018
+; Sun Jun 10 12:14:46 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2736,7 +2736,7 @@
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/addMapOb poi)\n    poi)")
+	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/getOrAdd poi)\n    poi)")
 	(title "create-line [[id pts]]"))
 
 ([BrigBern_Class20004] of  CloFunction
@@ -4787,7 +4787,7 @@
 
 ([OSMRoads_Class10002] of  CloFunction
 
-	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (-> (sv dw \"way\")\n         (sv \"poly\")\n         OMT/addMapOb))))")
+	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (-> (sv dw \"way\")\n         (sv \"poly\")\n         OMT/getOrAdd))))")
 	(title "show-roads [hm inst]"))
 
 ([OSMRoads_Class10004] of  RoadControl

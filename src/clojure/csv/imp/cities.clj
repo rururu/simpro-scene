@@ -19,5 +19,5 @@
         (ssv in "capital" (= (:CAP m) "Y"))
         (ssv in "population" (int (read-string (:POP m))))
         (ssv in "url" "file:data/images/star10.png")
-        (ru.igis.omtab.OMT/addMapOb in))))))
+        (ru.igis.omtab.OMT/getOrAdd in))))))
 

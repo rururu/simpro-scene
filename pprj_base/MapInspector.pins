@@ -1,4 +1,4 @@
-; Sat Dec 30 11:56:47 MSK 2017
+; Sun Jun 10 12:04:00 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -154,7 +154,7 @@
 
 ([Functional_Class10143] of  CloFunction
 
-	(source "(let  [sel (.getSelection (isw \"m-polygons\"))]\n  (if (seq sel)\n      (let [mp (first sel)\n             pol (m-polygon-poly mp)]\n        (OMT/addMapOb pol)\n        (shake-map)\n        (.show *prj* pol) )))")
+	(source "(let  [sel (.getSelection (isw \"m-polygons\"))]\n  (if (seq sel)\n      (let [mp (first sel)\n             pol (m-polygon-poly mp)]\n        (OMT/getOrAdd pol)\n        (shake-map)\n        (.show *prj* pol) )))")
 	(title "select-polygon []"))
 
 ([Functional_Class10144] of  CloVar

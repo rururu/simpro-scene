@@ -13,14 +13,14 @@
 
 (def ^:dynamic *mb* ; MapBean
 (OpenMapTab/getMapBean))
-(def ^:dynamic *mem* [])
+(def ^:dynamic *mem* (vec '()))
 (def ^:dynamic *inspector* (.createRuntimeClsWidget *prj* (foc "MInspector" "title" "Map Inspector")))
 (defn gem [i]
   (if (< i (.size *mem*))
     (nth *mem* i)))
 
 (defn pum [x]
-  (def ^:dynamic *mem* (conj *mem* x))
+  (def *mem* (conj *mem* x))
 (Integer. (- (.size *mem*) 1)))
 
 (defn show [w]
@@ -40,16 +40,13 @@
 
 (defn foc-m-polygon [omp pfx]
   (let [lla (.getLatLonArray omp)
-      tit (str (gensym pfx) " " (/ (alength lla) 2))
+      tit (str (gensym pfx) " " (alength lla))
       ins (foc "MPolygon" "title" (str tit))]
   (ssv ins "pointer" (pum omp))
   ins))
 
-(defn del-m-polygons-and-layers []
+(defn del-m-polygons []
   (let [mps (cls-instances "MPolygon")]
-  (doseq [mp mps]
-     (delin mp)))
-(let [mps (cls-instances "MLayer")]
   (doseq [mp mps]
      (delin mp))))
 
@@ -85,7 +82,7 @@
   (let  [sel (.getSelection (isw "m-layers"))]
   (if (seq sel)
       (let [mlr (first sel)
-            mps (m-layer-polygons mlr)]
+             mps (m-layer-polygons mlr)]
         (.setValues (isw "m-polygons") mps) ))))
 
 (defn points-from-lla [lla]
@@ -127,13 +124,13 @@
   (if (seq sel)
       (let [mp (first sel)
              pol (m-polygon-poly mp)]
-        (OMT/addMapOb pol)
+        (OMT/getOrAdd pol)
         (shake-map)
         (.show *prj* pol) ))))
 
 (defn new-inspector []
-  (del-m-polygons-and-layers)
-(def ^:dynamic *mem* [])
+  (if (< (.size *mem*) 1)
+    (del-m-polygons))
 (let [lsw (isw "m-layers")
        psw (isw "m-polygons")]
   (add-sel-fn0 lsw select-layer)

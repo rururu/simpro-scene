@@ -1,4 +1,4 @@
-; Sun May 27 13:32:41 MSK 2018
+; Sun Jun 10 12:07:53 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -533,13 +533,13 @@
 ([Scenario_Class120000] of  Rule
 
 	(lhs "?pom (PutOnMap status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	mapob ?mos \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/addMapOb obj)]\n      (let [lat (a/vv ?lat ?run)\n            lon (a/vv ?lon ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/addMapOb mo))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/getOrAdd obj)]\n      (let [lat (a/vv ?lat ?run)\n            lon (a/vv ?lon ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/getOrAdd mo))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:PutOnMap"))
 
 ([Scenario_Class120002] of  CloFunction
 
-	(source "(if (some? ES-TIMER)\n  (let [col  (edu.stanford.smi.protege.util.CollectionUtilities/createCollection (cls \"Scenario\"))\n         ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstances nil *kb* col)]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/addMapOb pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
+	(source "(if (some? ES-TIMER)\n  (let [col  (edu.stanford.smi.protege.util.CollectionUtilities/createCollection (cls \"Scenario\"))\n         ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstances nil *kb* col)]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
 	(title "run-some-scenario []"))
 
 ([Scenario_Class120012] of  CloFunction
@@ -635,7 +635,7 @@
 
 ([Scenario_Class130001] of  CloFunction
 
-	(source "(let [mo (or (OMT/getMapOb pla) (OMT/addMapOb pla))\n       atts (.getAttributes mo)\n       asi (sv pla \"attributeSet\")\n       hm1 (or atts (if (nil? asi) (HashMap.))) ;; (AttributeSet/instanceToMap asi)))\n       hm2 ctx] ;; (AttributeSet/instanceToMap ctx)]\n  (doseq [k (.keySet hm2)]\n    (if-let [v (.get hm2 k)]\n      (if (not (= k \"CLASS\"))\n        (.put hm1 k v)) ))\n  (doseq [k (.keySet hm1)]\n    (.put hm1 k (vv (.get hm1 k) p)))\n  (.setAttributes mo hm1))")
+	(source "(let [mo (OMT/getOrAdd pla)\n       atts (.getAttributes mo)\n       asi (sv pla \"attributeSet\")\n       hm1 (or atts (if (nil? asi) (HashMap.))) ;; (AttributeSet/instanceToMap asi)))\n       hm2 ctx] ;; (AttributeSet/instanceToMap ctx)]\n  (doseq [k (.keySet hm2)]\n    (if-let [v (.get hm2 k)]\n      (if (not (= k \"CLASS\"))\n        (.put hm1 k v)) ))\n  (doseq [k (.keySet hm1)]\n    (.put hm1 k (vv (.get hm1 k) p)))\n  (.setAttributes mo hm1))")
 	(title "update-attribute-set [pla ctx p]"))
 
 ([Scenario_Class130005] of  Rule
@@ -995,7 +995,7 @@
 ([Scenario_Class270000pop] of  Rule
 
 	(lhs "?pop (PutOnPlace status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	mapob ?mos\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"PutOnPlace\")\n(let [obj (a/vv ?obj ?run)\n       obs (a/vv ?obs ?run)\n       sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))\n               \"FAILED\"\n               (if-let [ms (ru.igis.omtab.OMT/getMapOb obs)]\n                 (let [lat (.getLatitudeDM ms)\n                        lon (.getLongitudeDM ms)]\n                   (doseq [mo ?mos]\n                     (-> (ru.igis.omtab.OMT/addMapOb mo) \n                       (.setLocation lat lon)))\n                   (if (not (a/null? obj))\n                     (.setLocation (ru.igis.omtab.OMT/addMapOb obj) lat lon))\n                   \"DONE\")\n                 \"FAILED\"))]\n  (retract ?pop)\n  (s/start-next ?nacts ?pid ?ain ?run))")
+	(rhs "(println \"Action started:\" ?tit \"PutOnPlace\")\n(let [obj (a/vv ?obj ?run)\n       obs (a/vv ?obs ?run)\n       sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))\n               \"FAILED\"\n               (if-let [ms (ru.igis.omtab.OMT/getOrAdd obs)]\n                 (let [lat (.getLatitudeDM ms)\n                        lon (.getLongitudeDM ms)]\n                   (doseq [mo ?mos]\n                     (-> (ru.igis.omtab.OMT/getOrAdd mo) \n                       (.setLocation lat lon)))\n                   (if (not (a/null? obj))\n                     (.setLocation (ru.igis.omtab.OMT/getOrAdd obj) lat lon))\n                   \"DONE\")\n                 \"FAILED\"))]\n  (retract ?pop)\n  (s/start-next ?nacts ?pid ?ain ?run))")
 	(salience 0)
 	(title "a:PutOnPlace"))
 
@@ -1601,6 +1601,10 @@
 		"20")
 	(title "GoRoad 2"))
 
+([Scenario_Class580000] of  CloFuncall
+
+	(source "(ru.rules/dr)"))
+
 ([Scenario_Class580002] of  CloFuncall
 
 	(source "(ru.rules/sp :all)"))
@@ -1746,11 +1750,6 @@
 	(salience 0)
 	(title "a:Camera"))
 
-([Scenario_Class620000] of  CloVar
-
-	(source "0")
-	(title "NSR"))
-
 ([Scenario_Class620001] of  CloFunction
 
 	(source ";;(println :TO-ROUTE (seq rou) bwd)\n(let [b (is? bwd)\n       f (not b)\n       s (or (sequential? rou) (= (str (type rou)) \"class [D\"))\n       c (and s (string? (first rou)))]\n  (cond\n    (and f c) rou\n    (and f s (not c)) (into-array Double/TYPE rou)\n    f rou\n    c (reverse rou)\n    (and s (not c)) (into-array Double/TYPE (reverse-route rou))\n    (instance? Instance rou) (reverse (svs rou \"points\"))))")
@@ -1763,7 +1762,7 @@
 
 ([Scenario_Class620003] of  CloFunction
 
-	(source ";;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [sts (.getActionCommand evt)\n       obj (.getSource evt)]\n  (condp = sts \n    \"STOP_ROUTE\"\n    (do (rete/assert-frame ['MapObEvent \n	'status sts \n	'object obj \n	'lat (.getLatitude obj) \n	'lon (.getLongitude obj)])\n      (def NSR (inc NSR))\n      (rete/fire))\n    true))")
+	(source ";;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [sts (.getActionCommand evt)\n       obj (.getSource evt)]\n  (condp = sts \n    \"STOP_ROUTE\"\n    (do (rete/assert-frame ['MapObEvent \n	'status sts \n	'object obj \n	'lat (.getLatitude obj) \n	'lon (.getLongitude obj)])\n      (rete/fire))\n    true))")
 	(title "ass-mo-event [evt]"))
 
 ([Scenario_Class620004] of  CloFunction
@@ -2021,7 +2020,7 @@
 
 ([ScenarioN_Class240000] of  CloFunction
 
-	(source "(if (some? ES-TIMER)\n  (let [all (cls-instances \"Scenario\")\n        sf (.getSystemFrames *kb*)\n        ac (.getAnnotationCls sf)\n        is (.getName (.getAnnotatedInstanceSlot sf))\n        ais (map #(sv % is) (.getInstances ac))\n        nis (filter #(not (nil? %)) ais)\n        sis (filter #(= (.getName (.getDirectType %)) \"Scenario\") nis)\n        ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstancesFromCollection nil sis \"Select Start Scenarios\")]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/addMapOb pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
+	(source "(if (some? ES-TIMER)\n  (let [all (cls-instances \"Scenario\")\n        sf (.getSystemFrames *kb*)\n        ac (.getAnnotationCls sf)\n        is (.getName (.getAnnotatedInstanceSlot sf))\n        ais (map #(sv % is) (.getInstances ac))\n        nis (filter #(not (nil? %)) ais)\n        sis (filter #(= (.getName (.getDirectType %)) \"Scenario\") nis)\n        ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstancesFromCollection nil sis \"Select Start Scenarios\")]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
 	(title "run-annotated-scenario []"))
 
 ([ScenarioN_Class240002] of  CloFunction
@@ -2556,8 +2555,7 @@
 	(cloNamespace [ScenarioN_Class550022])
 	(cloVars
 		[ScenarioN_Class410000]
-		[Scenario_Class620002]
-		[Scenario_Class620000])
+		[Scenario_Class620002])
 	(title "Simulator"))
 
 ([ScenarioN_Class550021] of  CloFunction

@@ -56,8 +56,9 @@ public class Util {
 	public static Collection<Instance> filter(Collection<Instance> coll,Cls cls){
         Collection res = new ArrayList();
         for(Instance inst: coll){
-            Collection types = inst.getDirectTypes();
-            if(types.contains(cls))
+            Cls type = inst.getDirectType();
+            Collection types = type.getSuperclasses();
+            if(type == cls || types.contains(cls))
                 res.add(inst);
         }
         return res;
@@ -383,12 +384,15 @@ public class Util {
 				}
 			}
 			if (cl == null) {
-				System.out.println("Util.createObjectForInstance: Class not found: " + clname);
+				System.out
+						.println("Util.createObjectForInstance: Class not found: "
+								+ clname);
 				return null;
 			}
 		}
 		try {
-			Constructor<?> cons = cl.getConstructor(new Class[] { Instance.class });
+			Constructor<?> cons = cl
+					.getConstructor(new Class[] { Instance.class });
 			return cons.newInstance(new Object[] { inst });
 		} catch (Exception e) {
 			System.out.println("Util.createObjectForInstance: Exception:");

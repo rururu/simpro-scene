@@ -88,7 +88,7 @@
     (if (seq ss)
       (doseq [s ss]
         (if-let [pro (sv s "protagonist")]
-          (or (OMT/getMapOb pro) (OMT/addMapOb pro)))
+          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))
         (start-scenario s nil "Adm")) ))
   (println "Simulation not started!")))
 
@@ -105,7 +105,7 @@
     (if (seq ss)
       (doseq [s ss]
         (if-let [pro (sv s "protagonist")]
-          (or (OMT/getMapOb pro) (OMT/addMapOb pro)))
+          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))
         (start-scenario s nil "Adm")) ))
   (println "Simulation not started!")))
 
