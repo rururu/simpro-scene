@@ -1,5 +1,6 @@
 /plugins/ru.igis.omtab/data/tiles/osmtiles
 /classes
+/target
 /checkouts
 pom.xml
 pom.xml.asc
