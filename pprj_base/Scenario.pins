@@ -1,4 +1,4 @@
-; Sun Jun 10 12:07:53 MSK 2018
+; Mon Jun 11 21:08:22 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2189,7 +2189,7 @@
 
 ([ScenarioN_Class310010] of  CloFunction
 
-	(source "(cond\n  (and (string? it) (.startsWith it \"#<Geo \")) \n	(let [[lat lon] (read-string (.substring it 6))]\n	  (Geo. lat lon))\n  (and (string? it) (.startsWith it \"#<NavOb \"))\n	(let [lab (.substring it 8)]\n	  (or (OMT/getMapOb lab) (OMT/addMapOb lab)))\n  (and (string? it) (.startsWith it \"#<\")) (.getInstance *kb* (.substring it 2))\n  (vector? it) (vec (map resolve-struct-with-inss it))\n  (seq? it) (seq (map resolve-struct-with-inss it))\n  (map? it) (reduce-kv\n	(fn [m k v] (assoc m k (resolve-struct-with-inss v)))\n	{}\n	it)\n  true it)")
+	(source "(cond\n  (and (string? it) (.startsWith it \"#<Geo \")) \n	(let [[lat lon] (read-string (.substring it 6))]\n	  (Geo. lat lon))\n  (and (string? it) (.startsWith it \"#<NavOb \"))\n	(let [lab (.substring it 8)]\n	  (OMT/getOrAdd lab))\n  (and (string? it) (.startsWith it \"#<\")) (.getInstance *kb* (.substring it 2))\n  (vector? it) (vec (map resolve-struct-with-inss it))\n  (seq? it) (seq (map resolve-struct-with-inss it))\n  (map? it) (reduce-kv\n	(fn [m k v] (assoc m k (resolve-struct-with-inss v)))\n	{}\n	it)\n  true it)")
 	(title "resolve-struct-with-inss [it]"))
 
 ([ScenarioN_Class310011] of  CloFunction
@@ -2204,7 +2204,7 @@
 
 ([ScenarioN_Class310014] of  CloFunction
 
-	(source "(let [typ (mp :type)\n       nam (mp :name)\n       ins (mp :instance)\n       crs (mp :course)\n       spd (mp :speed)\n       att (mp :attributes)\n       crd (mp :coordinates)\n       ncd (count crd)]\n  (println [:MAPOB nam ins crs spd (if (> ncd 2) (/ ncd 2) crd)])\n  (if-let [inst (resolve-struct-with-inss ins)]\n    (let [mo (OMT/addMapOb inst)]\n      (condp = typ\n        \"NavOb\" (do \n	(.setLatitude mo (first crd))\n	(.setLongitude mo (second crd))\n	(.setCourse mo crs)\n	(.setSpeed mo spd)\n	(.updateRPNOF mo)\n	(if-let [ats (resolve-struct-with-inss att)]\n	  (doseq [k (keys ats)]\n	    (.putAttribute mo k (ats k)) ) ))\n        \"OMTPoly\" (let [da (double-array crd)\n	        lm (.getLocationMarker mo)]\n	   (.setLocation lm da (OMGraphic/RADIANS)))\n        (println \"--unsupported--\")) ) ))")
+	(source "(let [typ (mp :type)\n       nam (mp :name)\n       ins (mp :instance)\n       crs (mp :course)\n       spd (mp :speed)\n       att (mp :attributes)\n       crd (mp :coordinates)\n       ncd (count crd)]\n  (println [:MAPOB nam ins crs spd (if (> ncd 2) (/ ncd 2) crd)])\n  (if-let [inst (resolve-struct-with-inss ins)]\n    (let [mo (OMT/getOrAdd inst)]\n      (condp = typ\n        \"NavOb\" (do \n	(.setLatitude mo (first crd))\n	(.setLongitude mo (second crd))\n	(.setCourse mo crs)\n	(.setSpeed mo spd)\n	(.updateRPNOF mo)\n	(if-let [ats (resolve-struct-with-inss att)]\n	  (doseq [k (keys ats)]\n	    (.putAttribute mo k (ats k)) ) ))\n        \"OMTPoly\" (let [da (double-array crd)\n	        lm (.getLocationMarker mo)]\n	   (.setLocation lm da (OMGraphic/RADIANS)))\n        (println \"--unsupported--\")) ) ))")
 	(title "rstor-mapob [mp]"))
 
 ([ScenarioN_Class310015] of  CloFunction

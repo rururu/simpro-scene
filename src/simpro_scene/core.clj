@@ -1,4 +1,5 @@
-(ns simpro-scene.core)
+(ns simpro-scene.core
+  (:gen-class))
 
 (defn -main [& args]
   (println "\nProtege-3.5")

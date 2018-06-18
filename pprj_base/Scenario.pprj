@@ -1,4 +1,4 @@
-; Sun Jun 10 12:07:53 MSK 2018
+; Mon Jun 11 21:08:22 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1253,129 +1253,6 @@
 	(x 0)
 	(y 120))
 
-([KB_183069_Class2213] of  Map
-
-	(entries
-		[KB_183069_Class2214]
-		[KB_183069_Class2216]
-		[KB_183069_Class2221]
-		[KB_183069_Class2222]
-		[KB_183069_Class2228]
-		[KB_183069_Class2229])
-	(referenced_maps
-		[KB_183069_Class2217]
-		[KB_183069_Class2215]
-		[KB_183069_Class2223]))
-
-([KB_183069_Class2214] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_183069_Class2215] of  Map
-)
-
-([KB_183069_Class2216] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_183069_Class2215")
-	(value_class "java.util.Map"))
-
-([KB_183069_Class2217] of  Map
-
-	(entries
-		[KB_183069_Class2218]
-		[KB_183069_Class2219]
-		[KB_183069_Class2220]))
-
-([KB_183069_Class2218] of  Map_Entry
-
-	(key "Algorithm_Class80012")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2219] of  Map_Entry
-
-	(key "Algorithm_Class80004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2220] of  Map_Entry
-
-	(key "Algorithm_Class100003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2221] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_183069_Class2217")
-	(value_class "java.util.Map"))
-
-([KB_183069_Class2222] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_183069_Class2223] of  Map
-
-	(entries
-		[KB_183069_Class2224]
-		[KB_183069_Class2225]
-		[KB_183069_Class2226]
-		[KB_183069_Class2227]))
-
-([KB_183069_Class2224] of  Map_Entry
-
-	(key "Algorithm_Class80001")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2225] of  Map_Entry
-
-	(key "Algorithm_Class90003")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2226] of  Map_Entry
-
-	(key "Algorithm_Class90004")
-	(key_class "java.lang.String")
-	(value "120 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2227] of  Map_Entry
-
-	(key "Algorithm_Class90002")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_183069_Class2228] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_183069_Class2223")
-	(value_class "java.util.Map"))
-
-([KB_183069_Class2229] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([KB_337263_Instance_0] of  String
 
 	(name "factory_class_name")
@@ -1660,6 +1537,129 @@
 
 ([KB_458845_Class1116] of  Property_List
 )
+
+([KB_707457_Class2213] of  Map
+
+	(entries
+		[KB_707457_Class2214]
+		[KB_707457_Class2216]
+		[KB_707457_Class2221]
+		[KB_707457_Class2222]
+		[KB_707457_Class2228]
+		[KB_707457_Class2229])
+	(referenced_maps
+		[KB_707457_Class2223]
+		[KB_707457_Class2217]
+		[KB_707457_Class2215]))
+
+([KB_707457_Class2214] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_707457_Class2215] of  Map
+)
+
+([KB_707457_Class2216] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_707457_Class2215")
+	(value_class "java.util.Map"))
+
+([KB_707457_Class2217] of  Map
+
+	(entries
+		[KB_707457_Class2218]
+		[KB_707457_Class2219]
+		[KB_707457_Class2220]))
+
+([KB_707457_Class2218] of  Map_Entry
+
+	(key "Algorithm_Class80012")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2219] of  Map_Entry
+
+	(key "Algorithm_Class80004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2220] of  Map_Entry
+
+	(key "Algorithm_Class100003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2221] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_707457_Class2217")
+	(value_class "java.util.Map"))
+
+([KB_707457_Class2222] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_707457_Class2223] of  Map
+
+	(entries
+		[KB_707457_Class2224]
+		[KB_707457_Class2225]
+		[KB_707457_Class2226]
+		[KB_707457_Class2227]))
+
+([KB_707457_Class2224] of  Map_Entry
+
+	(key "Algorithm_Class80001")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2225] of  Map_Entry
+
+	(key "Algorithm_Class90003")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2226] of  Map_Entry
+
+	(key "Algorithm_Class90004")
+	(key_class "java.lang.String")
+	(value "120 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2227] of  Map_Entry
+
+	(key "Algorithm_Class90002")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_707457_Class2228] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_707457_Class2223")
+	(value_class "java.util.Map"))
+
+([KB_707457_Class2229] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_809827_Class1011] of  Widget
 
@@ -24406,77 +24406,77 @@
 		[Scenario_ProjectKB_Class202506]
 		[Scenario_ProjectKB_Class202508])
 	(referenced_maps
+		[Scenario_ProjectKB_Class202409]
 		[Scenario_ProjectKB_Class202329]
 		[Scenario_ProjectKB_Class202293]
+		[Scenario_ProjectKB_Class202371]
 		[Scenario_ProjectKB_Class202291]
+		[Scenario_ProjectKB_Class202254]
+		[Scenario_ProjectKB_Class202375]
 		[Scenario_ProjectKB_Class202452]
+		[Scenario_ProjectKB_Class202493]
+		[Scenario_ProjectKB_Class202373]
 		[Scenario_ProjectKB_Class202450]
+		[Scenario_ProjectKB_Class202411]
+		[Scenario_ProjectKB_Class202379]
 		[Scenario_ProjectKB_Class202456]
 		[Scenario_ProjectKB_Class202299]
 		[Scenario_ProjectKB_Class202332]
+		[Scenario_ProjectKB_Class202256]
 		[Scenario_ProjectKB_Class202454]
 		[Scenario_ProjectKB_Class202338]
 		[Scenario_ProjectKB_Class202459]
 		[Scenario_ProjectKB_Class202336]
-		[Scenario_ProjectKB_Class202440]
-		[Scenario_ProjectKB_Class202287]
-		[Scenario_ProjectKB_Class202445]
-		[Scenario_ProjectKB_Class202289]
-		[Scenario_ProjectKB_Class202443]
-		[Scenario_ProjectKB_Class202309]
-		[Scenario_ProjectKB_Class202307]
-		[Scenario_ProjectKB_Class202428]
-		[Scenario_ProjectKB_Class202393]
-		[Scenario_ProjectKB_Class202391]
-		[Scenario_ProjectKB_Class202276]
-		[Scenario_ProjectKB_Class202274]
-		[Scenario_ProjectKB_Class202395]
-		[Scenario_ProjectKB_Class202279]
-		[Scenario_ProjectKB_Class202313]
-		[Scenario_ProjectKB_Class202260]
-		[Scenario_ProjectKB_Class202382]
-		[Scenario_ProjectKB_Class202264]
-		[Scenario_ProjectKB_Class202301]
-		[Scenario_ProjectKB_Class202387]
-		[Scenario_ProjectKB_Class202420]
-		[Scenario_ProjectKB_Class202267]
-		[Scenario_ProjectKB_Class202304]
-		[Scenario_ProjectKB_Class202409]
-		[Scenario_ProjectKB_Class202371]
-		[Scenario_ProjectKB_Class202254]
-		[Scenario_ProjectKB_Class202375]
-		[Scenario_ProjectKB_Class202493]
-		[Scenario_ProjectKB_Class202373]
-		[Scenario_ProjectKB_Class202411]
-		[Scenario_ProjectKB_Class202379]
-		[Scenario_ProjectKB_Class202256]
 		[Scenario_ProjectKB_Class202414]
 		[Scenario_ProjectKB_Class202481]
 		[Scenario_ProjectKB_Class202363]
+		[Scenario_ProjectKB_Class202440]
+		[Scenario_ProjectKB_Class202287]
 		[Scenario_ProjectKB_Class202483]
 		[Scenario_ProjectKB_Class202367]
 		[Scenario_ProjectKB_Class202247]
+		[Scenario_ProjectKB_Class202445]
 		[Scenario_ProjectKB_Class202489]
 		[Scenario_ProjectKB_Class202365]
+		[Scenario_ProjectKB_Class202289]
+		[Scenario_ProjectKB_Class202443]
 		[Scenario_ProjectKB_Class202369]
 		[Scenario_ProjectKB_Class202402]
 		[Scenario_ProjectKB_Class202249]
+		[Scenario_ProjectKB_Class202309]
 		[Scenario_ProjectKB_Class202507]
+		[Scenario_ProjectKB_Class202307]
+		[Scenario_ProjectKB_Class202428]
+		[Scenario_ProjectKB_Class202393]
 		[Scenario_ProjectKB_Class202470]
+		[Scenario_ProjectKB_Class202391]
 		[Scenario_ProjectKB_Class202352]
 		[Scenario_ProjectKB_Class202473]
+		[Scenario_ProjectKB_Class202276]
 		[Scenario_ProjectKB_Class202350]
+		[Scenario_ProjectKB_Class202274]
+		[Scenario_ProjectKB_Class202395]
+		[Scenario_ProjectKB_Class202279]
 		[Scenario_ProjectKB_Class202477]
+		[Scenario_ProjectKB_Class202313]
 		[Scenario_ProjectKB_Class202357]
 		[Scenario_ProjectKB_Class202354]
 		[Scenario_ProjectKB_Class202479]
+		[Scenario_ProjectKB_Class202260]
+		[Scenario_ProjectKB_Class202382]
+		[Scenario_ProjectKB_Class202264]
 		[Scenario_ProjectKB_Class202340]
 		[Scenario_ProjectKB_Class202461]
+		[Scenario_ProjectKB_Class202301]
 		[Scenario_ProjectKB_Class202346]
 		[Scenario_ProjectKB_Class202467]
 		[Scenario_ProjectKB_Class202500]
 		[Scenario_ProjectKB_Class202343]
+		[Scenario_ProjectKB_Class202387]
+		[Scenario_ProjectKB_Class202420]
 		[Scenario_ProjectKB_Class202464]
+		[Scenario_ProjectKB_Class202267]
+		[Scenario_ProjectKB_Class202304]
 		[Scenario_ProjectKB_Class202348]
 		[Scenario_ProjectKB_Class202502]))
 
