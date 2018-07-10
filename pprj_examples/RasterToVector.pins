@@ -1,0 +1,194 @@
+; Sun Jul 08 23:31:50 MSK 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([RasterToVector_Class0] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "RTV Map")
+	(Latitude "60.0")
+	(layers
+		[igis_Class40012]
+		[RasterToVector_Class10001]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "-4")
+	(Scale "7600000")
+	(startUpLayers
+		[igis_Class40012]
+		[RasterToVector_Class10001]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([RasterToVector_Class1] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [RasterToVector_Class0])
+	(%3ACREATION-TIMESTAMP "2018.07.08 21:57:08.207 MSK")
+	(%3ACREATOR "ru"))
+
+([RasterToVector_Class10000] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(Tsunami)"))
+
+([RasterToVector_Class10001] of  ETOPOLayer
+
+	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
+	(contrast "64")
+	(label "ETOPO5Ele")
+	(minute.spacing "5")
+	(number.colors "128")
+	(opaque "200")
+	(path "data/ETOPO")
+	(prettyName "ETOPO5 Elevations Access")
+	(view.type "0"))
+
+([RasterToVector_Class10002] of  CloProgram
+
+	(cloFunctions
+		[RasterToVector_Class10008]
+		[RasterToVector_Class10009])
+	(cloNamespace [RasterToVector_Class10003])
+	(cloVars
+		[RasterToVector_Class10004]
+		[RasterToVector_Class10005]
+		[RasterToVector_Class10006]
+		[RasterToVector_Class10007])
+	(title "ETOPOEleLayer"))
+
+([RasterToVector_Class10003] of  CloNamespace
+
+	(source "(:gen-class\n  :name com.bbn.openmap.layer.etopo.ETOPOEleLayer\n  :extends com.bbn.openmap.layer.etopo.ETOPOLayer\n  :exposes {dataBuffer {:get getDataBuffer}\n                  bufferWidth {:get getBufferWidth}\n                  bufferHeight {:get getBufferHeight}}\n  :post-init pinit)")
+	(title "subcla.etoele"))
+
+([RasterToVector_Class10004] of  CloVar
+
+	(source "nil")
+	(title "THIS"))
+
+([RasterToVector_Class10005] of  CloVar
+
+	(source "nil")
+	(title "SCX"))
+
+([RasterToVector_Class10006] of  CloVar
+
+	(source "nil")
+	(title "SCY"))
+
+([RasterToVector_Class10007] of  CloVar
+
+	(source "nil")
+	(title "BUFWID"))
+
+([RasterToVector_Class10008] of  CloFunction
+
+	(source "(def THIS this)\n(println :THIS this)")
+	(title "-pinit [this]"))
+
+([RasterToVector_Class10009] of  CloFunction
+
+	(source "(let [bwd (or BUFWID (do (def BUFWID (.getBufferWidth THIS)) BUFWID))\n       scy (or SCY (do (def SCY (float (/ (.getBufferHeight THIS) 180.0))) SCY))\n       scx (or SCX (do (def SCX (float (/ bwd 360.0))) SCX))\n       lat_idx (int (* (- 90.0 lat) scy))\n       lon_idx (int (* lon scx))\n       ofs (+ lon_idx (* lat_idx bwd))]\n  (aget (.getDataBuffer THIS) ofs))")
+	(title "elevation [[lat lon]]"))
+
+([RasterToVector_Class20000] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [60 30])"))
+
+([RasterToVector_Class20001] of  CloFuncall
+
+	(source "subcla.etoele/THIS"))
+
+([RasterToVector_Class30000] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [61.88 9.08])"))
+
+([RasterToVector_Class30001] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [61.88 9.0])"))
+
+([RasterToVector_Class30002] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [61.88 9.20])"))
+
+([RasterToVector_Class30003] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [61.88 9.10])"))
+
+([RasterToVector_Class30004] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.729 10.218])"))
+
+([RasterToVector_Class30005] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.729 10.286])"))
+
+([RasterToVector_Class30006] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.206])"))
+
+([RasterToVector_Class30007] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.286])"))
+
+([RasterToVector_Class30008] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.36])"))
+
+([RasterToVector_Class30009] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.361])"))
+
+([RasterToVector_Class30010] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.406])"))
+
+([RasterToVector_Class30011] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.8 10.430])"))
+
+([RasterToVector_Class30012] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.96 10.51])"))
+
+([RasterToVector_Class30013] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.96 10.62])"))
+
+([RasterToVector_Class30014] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.96 10.7])"))
+
+([RasterToVector_Class30015] of  CloFuncall
+
+	(source "(subcla.etoele/elevation [62.96 10.79])"))
