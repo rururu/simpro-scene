@@ -1,0 +1,6 @@
+2018.07.14 16:56:27.779 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2018.07.14 16:56:27.783 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_31-b13, memory=1908M, Mac OS X, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2018.07.14 16:56:28.102 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2018.07.14 16:56:28.105 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2018.07.14 16:56:28.161 MSK CONFIG: Loaded plugin ru.igis.omtab -- PluginUtilities.logClassLoaderInformation()
+2018.07.14 16:56:29.329 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()

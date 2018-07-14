@@ -1,4 +1,4 @@
-; Tue May 15 12:06:12 MSK 2018
+; Sat Jul 14 22:06:37 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -54,7 +54,7 @@
 	(label "OSM_Tiles")
 	(land.fillColor "DECD8B")
 	(land.lineColor "DECD8B")
-	(localCacheRootDir "plugins/ru.igis.omtab/data/tiles/osmtiles")
+	(localCacheRootDir "data/tiles/osmtiles")
 	(noCoverageZoom "13")
 	(prettyName "OSM Tiles")
 	(rootDir "http://a.tile.openstreetmap.org")
@@ -257,7 +257,7 @@
 
 	(class "ru.igis.omtab.menu.URLHelpMenuItem")
 	(label "omtHelp2")
-	(source "file:plugins/ru.igis.omtab/apidoc/index.html")
+	(source "file:doc/OpenMapTab/apidoc/index.html")
 	(text "OpenMapTab API"))
 
 ([igis_Class40001] of  HelpMenuItem
@@ -295,7 +295,8 @@
 	(label "dcwpo")
 	(lineColor "ff000000")
 	(prettyName "Browse World")
-	(shapeFile "plugins/ru.igis.omtab/data/shape/dcwpo-browse.shp"))
+	(shapeFile "data/shape/dcwpo-browse.shp")
+	(spatialIndex "data/shape/dcwpo-browse.ssx"))
 
 ([igis_Class40012] of  GraticuleLayer
 
@@ -342,7 +343,7 @@
 
 	(class "ru.igis.omtab.menu.URLHelpMenuItem")
 	(label "omtHelp3")
-	(source "file:plugins/ru.igis.omtab/src/ru/igis/omtab/Demo.java")
+	(source "file:src/OpenMapTab/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
 
 ([igis_Class9] of  Menu
