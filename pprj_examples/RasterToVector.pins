@@ -1,4 +1,4 @@
-; Sun Jul 08 23:31:50 MSK 2018
+; Sun Jul 15 20:48:10 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -192,3 +192,88 @@
 ([RasterToVector_Class30015] of  CloFuncall
 
 	(source "(subcla.etoele/elevation [62.96 10.79])"))
+
+([RasterToVector_Class40000] of  CloFuncall
+
+	(source "(compile 'subcla.etoele)"))
+
+([RasterToVector_Class50000] of  OMTPoint
+
+	(label "C")
+	(latitude "59 42")
+	(lineColor "FFFF0000")
+	(longitude "-5 8")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60000] of  OMTPoint
+
+	(label "E")
+	(latitude "59 42")
+	(lineColor "FFFF0000")
+	(longitude "-5 3")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60001] of  OMTPoint
+
+	(label "W")
+	(latitude "59 42")
+	(lineColor "FFFF0000")
+	(longitude "-5 13")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60002] of  OMTPoint
+
+	(label "S")
+	(latitude "59 37")
+	(lineColor "FFFF0000")
+	(longitude "-5 8")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60003] of  OMTPoint
+
+	(label "N")
+	(latitude "59 47")
+	(lineColor "FFFF0000")
+	(longitude "-5 8")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60004] of  OMTPoint
+
+	(label "NW")
+	(latitude "59 47")
+	(lineColor "FFFF0000")
+	(longitude "-5 13")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60005] of  OMTPoint
+
+	(label "NE")
+	(latitude "59 47")
+	(lineColor "FFFF0000")
+	(longitude "-5 3")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60006] of  OMTPoint
+
+	(label "SW")
+	(latitude "59 37")
+	(lineColor "FFFF0000")
+	(longitude "-5 13")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60007] of  OMTPoint
+
+	(label "SE")
+	(latitude "59 37")
+	(lineColor "FFFF0000")
+	(longitude "-5 3")
+	(oval TRUE)
+	(playground-index 0))
