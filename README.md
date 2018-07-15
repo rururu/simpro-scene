@@ -10,7 +10,18 @@ Includes general IDE for Clojure.
 
 [1] R. P. Sorokin Visual Simulation of Spatial Processes, In V.Popovich, M.Schrenk, K.Korolenko (Eds.) Information Fusion and  Geographic Information Systems, Springer 2007, pp. 263-271.
 
-## Start
+## Simple start
+
+Without preliminary Leiningen installation, has one drawback (*)
+
+```clj
+$ cd <..>
+$ git clone https://github.com/rururu/simpro-scene.git
+$ cd simpro-scene
+$ java -jar target/simpro-scene-0.1.0-SNAPSHOT-standalone.jar
+```
+
+## Start with Leiningen
 
 ```clj
 $ cd <..>
@@ -58,6 +69,9 @@ In Protege GUI:
 19. [Glacier Express: Above Bever - Preda tunnel](https://youtu.be/WJ3YZqWyFJ4)
 
 TO BE CONTINUED
+
+(*)
+When you start with the java command and the standalone jar, in Protege GUI there is no "Edit -> Clojure Work" menu item, that used in some projects to start an automation script. This script is useful to run several tasks automatically, for example, during initialization of the project (loading of the progams, start expert system and simulation mechanism and so on..). See corresponding examples. This script implemented as a function "clojure-work" without parameters in namespace "menu.item". Only one program with such namespace and such function must be in a project. When there is no "Edit -> Clojure Work" menu item, you can start the automation script by loading this program manually and executing in REPL a function call "(menu.item/clojure-work)".
 
 ## License
 
