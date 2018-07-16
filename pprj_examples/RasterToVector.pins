@@ -1,4 +1,4 @@
-; Sun Jul 15 20:48:10 MSK 2018
+; Tue Jul 17 00:30:17 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -189,91 +189,226 @@
 
 	(source "(subcla.etoele/elevation [62.96 10.7])"))
 
-([RasterToVector_Class30015] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.96 10.79])"))
-
-([RasterToVector_Class40000] of  CloFuncall
-
-	(source "(compile 'subcla.etoele)"))
-
 ([RasterToVector_Class50000] of  OMTPoint
 
+	(fillColor "FFFF0000")
 	(label "C")
-	(latitude "59 42")
+	(latitude "59 45")
 	(lineColor "FFFF0000")
-	(longitude "-5 8")
-	(oval TRUE)
-	(playground-index 0))
+	(longitude "-5 10")
+	(oval FALSE)
+	(playground-index 0)
+	(point-radius 5))
 
 ([RasterToVector_Class60000] of  OMTPoint
 
 	(label "E")
-	(latitude "59 42")
+	(latitude "59 45")
 	(lineColor "FFFF0000")
-	(longitude "-5 3")
+	(longitude "-5 5")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60001] of  OMTPoint
 
 	(label "W")
-	(latitude "59 42")
+	(latitude "59 45")
 	(lineColor "FFFF0000")
-	(longitude "-5 13")
+	(longitude "-5 15")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60002] of  OMTPoint
 
 	(label "S")
-	(latitude "59 37")
+	(latitude "59 40")
 	(lineColor "FFFF0000")
-	(longitude "-5 8")
+	(longitude "-5 10")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60003] of  OMTPoint
 
 	(label "N")
-	(latitude "59 47")
+	(latitude "59 50")
 	(lineColor "FFFF0000")
-	(longitude "-5 8")
+	(longitude "-5 10")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60004] of  OMTPoint
 
 	(label "NW")
-	(latitude "59 47")
+	(latitude "59 50")
 	(lineColor "FFFF0000")
-	(longitude "-5 13")
+	(longitude "-5 15")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60005] of  OMTPoint
 
 	(label "NE")
-	(latitude "59 47")
+	(latitude "59 50")
 	(lineColor "FFFF0000")
-	(longitude "-5 3")
+	(longitude "-5 5")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60006] of  OMTPoint
 
 	(label "SW")
-	(latitude "59 37")
+	(latitude "59 40")
 	(lineColor "FFFF0000")
-	(longitude "-5 13")
+	(longitude "-5 15")
 	(oval TRUE)
 	(playground-index 0))
 
 ([RasterToVector_Class60007] of  OMTPoint
 
 	(label "SE")
-	(latitude "59 37")
+	(latitude "59 40")
 	(lineColor "FFFF0000")
-	(longitude "-5 3")
+	(longitude "-5 5")
 	(oval TRUE)
 	(playground-index 0))
+
+([RasterToVector_Class70000] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[RasterToVector_Class10002]
+		[RasterToVector_Class70006])
+	(title "RtV Programs"))
+
+([RasterToVector_Class70001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [RasterToVector_Class70000])
+	(%3ACREATION-TIMESTAMP "2018.07.16 14:26:49.557 MSK")
+	(%3ACREATOR "ru"))
+
+([RasterToVector_Class70002] of  CloProgram
+
+	(cloFunctions [RuleEngine_Class220000])
+	(cloNamespace [Clojure_Class300001])
+	(title "Clojure Work"))
+
+([RasterToVector_Class70003] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(steps 1)
+	(title "RtV Run"))
+
+([RasterToVector_Class70004] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [RasterToVector_Class70003])
+	(%3ACREATION-TIMESTAMP "2018.07.16 15:32:32.291 MSK")
+	(%3ACREATOR "ru"))
+
+([RasterToVector_Class70006] of  CloProgram
+
+	(cloFunctions
+		[RasterToVector_Class80000]
+		[RasterToVector_Class80015])
+	(cloNamespace [RasterToVector_Class70007])
+	(cloVars [RasterToVector_Class80004])
+	(title "RtV Program"))
+
+([RasterToVector_Class70007] of  CloNamespace
+
+	(source "(:use protege.core\n  subcla.etoele)")
+	(title "rtv.core"))
+
+([RasterToVector_Class80000] of  CloFunction
+
+	(source "(let [ec    (elevation [lat lon])\n       en    (elevation [(+ lat D5MIN) lon])\n       ene  (elevation [(+ lat D5MIN) (+ lon D5MIN)])\n       enw (elevation [(+ lat D5MIN) (- lon D5MIN)])\n       es    (elevation [(- lat D5MIN) lon])\n       ese  (elevation [(- lat D5MIN) (+ lon D5MIN)])\n       esw (elevation [(- lat D5MIN) (- lon D5MIN)])\n       ee    (elevation [lat (+ lon D5MIN)])\n       ew   (elevation [lat (- lon D5MIN)])\n       mim (min ec en ene enw es ese esw ee ew)\n       maz (max ec en ene enw es ese esw ee ew)]\n  ;;(println ec en ene enw es ese esw ee ew)\n  (- maz mim))")
+	(title "gradient [lat lon]"))
+
+([RasterToVector_Class80001] of  CloFuncall
+
+	(source "(rtv.core/gradient [60 30])"))
+
+([RasterToVector_Class80002] of  CloFuncall
+
+	(source "(rtv.core/gradient [60 31])"))
+
+([RasterToVector_Class80003] of  CloFuncall
+
+	(source "(rtv.core/gradient [61 31])"))
+
+([RasterToVector_Class80004] of  CloVar
+
+	(source "(/ 1 60)")
+	(title "D5MIN"))
+
+([RasterToVector_Class80005] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 31])"))
+
+([RasterToVector_Class80006] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 35])"))
+
+([RasterToVector_Class80007] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8])"))
+
+([RasterToVector_Class80008] of  CloFuncall
+
+	(source "rtv.core/D5MIN"))
+
+([RasterToVector_Class80009] of  CloFuncall
+
+	(source "(float rtv.core/D5MIN)"))
+
+([RasterToVector_Class80010] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8.017])"))
+
+([RasterToVector_Class80011] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8.034])"))
+
+([RasterToVector_Class80012] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8.068])"))
+
+([RasterToVector_Class80013] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8.136])"))
+
+([RasterToVector_Class80014] of  CloFuncall
+
+	(source "(rtv.core/gradient [62 8.272])"))
+
+([RasterToVector_Class80015] of  CloFunction
+
+	(source "(doseq [y (range h)]\n  (println (for [x (range w)] (gradient (+ lat (* y 3 D5MIN)) (+ lon (* x 3 D5MIN))))))")
+	(title "field [lat lon w h]"))
+
+([RasterToVector_Class80016] of  CloFuncall
+
+	(source "(range 5)"))
+
+([RasterToVector_Class80017] of  CloFuncall
+
+	(source "(rtv.core/field 62 8 ])"))
+
+([RasterToVector_Class80018] of  CloFuncall
+
+	(source "(rtv.core/field 62 8 8)"))
+
+([RasterToVector_Class80019] of  CloFuncall
+
+	(source "(rtv.core/field 62 8 10 10)"))
+
+([RasterToVector_Class80020] of  CloFuncall
+
+	(source "(rtv.core/field 62 8 20 20)"))
+
+([RasterToVector_Class80021] of  CloFuncall
+
+	(source "(rtv.core/field 27 86 20 20)"))
