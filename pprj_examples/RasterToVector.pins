@@ -1,4 +1,4 @@
-; Tue Jul 17 00:30:17 MSK 2018
+; Tue Jul 17 22:35:14 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,7 +42,6 @@
 	(startUpLayers
 		[igis_Class40012]
 		[RasterToVector_Class10001]
-		[igis_Class1]
 		[igis_Class40011]))
 
 ([RasterToVector_Class1] of  %3AINSTANCE-ANNOTATION
@@ -189,6 +188,11 @@
 
 	(source "(subcla.etoele/elevation [62.96 10.7])"))
 
+([RasterToVector_Class40000] of  CloFunction
+
+	(source "(let [gra (gradient lat lon)\n       gpo (OMTPoly/createOMTPoly\n	\"po1\"\n	(MapOb/getDegMin lat)\n	(MapOb/getDegMin lon)\n	\"FFFF0000\"\n	\"20FF0000\"\n	\"true\"\n	\"false\"\n	[(str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin lon))\n	 (str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin lon))])]\n  (OMT/addMapOb gpo (second (OMT/getPlaygrounds))))")
+	(title "gradientPoly [lat lon]"))
+
 ([RasterToVector_Class50000] of  OMTPoint
 
 	(fillColor "FFFF0000")
@@ -312,14 +316,15 @@
 
 	(cloFunctions
 		[RasterToVector_Class80000]
-		[RasterToVector_Class80015])
+		[RasterToVector_Class80015]
+		[RasterToVector_Class40000])
 	(cloNamespace [RasterToVector_Class70007])
 	(cloVars [RasterToVector_Class80004])
 	(title "RtV Program"))
 
 ([RasterToVector_Class70007] of  CloNamespace
 
-	(source "(:use protege.core\n  subcla.etoele)")
+	(source "(:use protege.core\n  subcla.etoele)\n(:import\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT)")
 	(title "rtv.core"))
 
 ([RasterToVector_Class80000] of  CloFunction
@@ -341,7 +346,7 @@
 
 ([RasterToVector_Class80004] of  CloVar
 
-	(source "(/ 1 60)")
+	(source "(/ 1 12)")
 	(title "D5MIN"))
 
 ([RasterToVector_Class80005] of  CloFuncall
@@ -409,6 +414,54 @@
 
 	(source "(rtv.core/field 62 8 20 20)"))
 
-([RasterToVector_Class80021] of  CloFuncall
+([RasterToVector_Class90000] of  CloFuncall
 
-	(source "(rtv.core/field 27 86 20 20)"))
+	(source "(rtv.core/gradientPoly 60 -4)"))
+
+([RasterToVector_Class90001] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "po1")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 0 -4 0"
+		"60 0 -3 57"
+		"59 57 -3 57"
+		"59 57 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90002] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "po1")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 0 -4 0"
+		"60 0 -3 57"
+		"59 57 -3 57"
+		"59 57 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90003] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "po1")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 0 -4 0"
+		"60 0 -3 45"
+		"59 45 -3 45"
+		"59 45 -4 0")
+	(relative FALSE))
