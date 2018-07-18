@@ -1,4 +1,4 @@
-; Tue Jul 17 22:35:14 MSK 2018
+; Sat Jul 14 01:23:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -60,6 +60,43 @@
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(Tsunami)"))
 
+([RasterToVector_Class100001] of  CloFuncall
+
+	(source "(format \"%02x\" 10)"))
+
+([RasterToVector_Class100002] of  CloFuncall
+
+	(source "(format \"%02x\" 255)"))
+
+([RasterToVector_Class100003] of  CloFunction
+
+	(source "(let [itr (int (* (/ 255 gmax) grad))\n       itr (if (> itr 255) 255 itr)\n       xtr (format \"%02x\" itr)] \n  (str xtr (.substring color 2)))")
+	(title "grad-to-transpar [grad gmax color]"))
+
+([RasterToVector_Class100004] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 23 40 \"00FF0000\")"))
+
+([RasterToVector_Class100005] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 40 40 \"00FF0000\")"))
+
+([RasterToVector_Class100006] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 0 40 \"00FF0000\")"))
+
+([RasterToVector_Class100007] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1 40 \"00FF0000\")"))
+
+([RasterToVector_Class100008] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100009] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 10 1400 \"00FF0000\")"))
+
 ([RasterToVector_Class10001] of  ETOPOLayer
 
 	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
@@ -71,6 +108,46 @@
 	(path "data/ETOPO")
 	(prettyName "ETOPO5 Elevations Access")
 	(view.type "0"))
+
+([RasterToVector_Class100010] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 20 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100011] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1200 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100012] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1400 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100013] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1300 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100014] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1380 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100015] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 0 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100016] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 80 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100017] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 1800 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100018] of  CloFuncall
+
+	(source "(rtv.core/grad-to-transpar 800 1400 \"00FF0000\")"))
+
+([RasterToVector_Class100019] of  CloFuncall
+
+	(source "(rtv.core/gradientPoly 60 -4)"))
 
 ([RasterToVector_Class10002] of  CloProgram
 
@@ -84,6 +161,26 @@
 		[RasterToVector_Class10006]
 		[RasterToVector_Class10007])
 	(title "ETOPOEleLayer"))
+
+([RasterToVector_Class100020] of  CloFuncall
+
+	(source "(rtv.core/gradientPoly 60 -4 1400 \"FFFF0000\")"))
+
+([RasterToVector_Class100021] of  CloFuncall
+
+	(source "(rtv.core/gradientPoly 4 60 -4 1400 \"FFFF0000\")"))
+
+([RasterToVector_Class100024] of  CloFuncall
+
+	(source "(rtv.core/gradientPoly 4 60 -4 400 \"FFFF0000\")"))
+
+([RasterToVector_Class100026] of  CloFuncall
+
+	(source "(rtv.core/fild 60 -4 20 20)"))
+
+([RasterToVector_Class100027] of  CloFuncall
+
+	(source "(rtv.core/field 60 -4 20 20)"))
 
 ([RasterToVector_Class10003] of  CloNamespace
 
@@ -120,6 +217,26 @@
 	(source "(let [bwd (or BUFWID (do (def BUFWID (.getBufferWidth THIS)) BUFWID))\n       scy (or SCY (do (def SCY (float (/ (.getBufferHeight THIS) 180.0))) SCY))\n       scx (or SCX (do (def SCX (float (/ bwd 360.0))) SCX))\n       lat_idx (int (* (- 90.0 lat) scy))\n       lon_idx (int (* lon scx))\n       ofs (+ lon_idx (* lat_idx bwd))]\n  (aget (.getDataBuffer THIS) ofs))")
 	(title "elevation [[lat lon]]"))
 
+([RasterToVector_Class100428] of  CloFuncall
+
+	(source "(rtv.core/field 60 -12 40 40)"))
+
+([RasterToVector_Class105229] of  CloFuncall
+
+	(source "(rtv.core/field 60 -12 20 20)"))
+
+([RasterToVector_Class112000] of  CloFuncall
+
+	(source "(rtv.core/field 60 -12 80 80)"))
+
+([RasterToVector_Class131202] of  CloFuncall
+
+	(source "(in-ns 'protege.core)"))
+
+([RasterToVector_Class131203] of  CloFuncall
+
+	(source "(doseq [i (cls-instances \"OMTPoly\")] (delin i))"))
+
 ([RasterToVector_Class20000] of  CloFuncall
 
 	(source "(subcla.etoele/elevation [60 30])"))
@@ -140,58 +257,10 @@
 
 	(source "(subcla.etoele/elevation [61.88 9.20])"))
 
-([RasterToVector_Class30003] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [61.88 9.10])"))
-
-([RasterToVector_Class30004] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.729 10.218])"))
-
-([RasterToVector_Class30005] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.729 10.286])"))
-
-([RasterToVector_Class30006] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.206])"))
-
-([RasterToVector_Class30007] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.286])"))
-
-([RasterToVector_Class30008] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.36])"))
-
-([RasterToVector_Class30009] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.361])"))
-
-([RasterToVector_Class30010] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.406])"))
-
-([RasterToVector_Class30011] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.8 10.430])"))
-
-([RasterToVector_Class30012] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.96 10.51])"))
-
-([RasterToVector_Class30013] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.96 10.62])"))
-
-([RasterToVector_Class30014] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [62.96 10.7])"))
-
 ([RasterToVector_Class40000] of  CloFunction
 
-	(source "(let [gra (gradient lat lon)\n       gpo (OMTPoly/createOMTPoly\n	\"po1\"\n	(MapOb/getDegMin lat)\n	(MapOb/getDegMin lon)\n	\"FFFF0000\"\n	\"20FF0000\"\n	\"true\"\n	\"false\"\n	[(str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin lon))\n	 (str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin lon))])]\n  (OMT/addMapOb gpo (second (OMT/getPlaygrounds))))")
-	(title "gradientPoly [lat lon]"))
+	(source "(let [gra (gradient lat lon)\n       ;;_ (println gra)\n       gtp (grad-to-transpar gra gmax color)\n       gpo (OMTPoly/createOMTPoly\n	(str id)\n	(MapOb/getDegMin lat)\n	(MapOb/getDegMin lon)\n	gtp\n	gtp\n	\"true\"\n	\"false\"\n	[(str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin lon))\n	 (str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin lon))])\n       mo (OMT/addMapOb gpo (second (OMT/getPlaygrounds)))]\n  (.hideLabel mo))")
+	(title "gradientPoly [id lat lon gmax color]"))
 
 ([RasterToVector_Class50000] of  OMTPoint
 
@@ -316,8 +385,9 @@
 
 	(cloFunctions
 		[RasterToVector_Class80000]
-		[RasterToVector_Class80015]
-		[RasterToVector_Class40000])
+		[RasterToVector_Class100003]
+		[RasterToVector_Class40000]
+		[RasterToVector_Class80015])
 	(cloNamespace [RasterToVector_Class70007])
 	(cloVars [RasterToVector_Class80004])
 	(title "RtV Program"))
@@ -332,136 +402,12 @@
 	(source "(let [ec    (elevation [lat lon])\n       en    (elevation [(+ lat D5MIN) lon])\n       ene  (elevation [(+ lat D5MIN) (+ lon D5MIN)])\n       enw (elevation [(+ lat D5MIN) (- lon D5MIN)])\n       es    (elevation [(- lat D5MIN) lon])\n       ese  (elevation [(- lat D5MIN) (+ lon D5MIN)])\n       esw (elevation [(- lat D5MIN) (- lon D5MIN)])\n       ee    (elevation [lat (+ lon D5MIN)])\n       ew   (elevation [lat (- lon D5MIN)])\n       mim (min ec en ene enw es ese esw ee ew)\n       maz (max ec en ene enw es ese esw ee ew)]\n  ;;(println ec en ene enw es ese esw ee ew)\n  (- maz mim))")
 	(title "gradient [lat lon]"))
 
-([RasterToVector_Class80001] of  CloFuncall
-
-	(source "(rtv.core/gradient [60 30])"))
-
-([RasterToVector_Class80002] of  CloFuncall
-
-	(source "(rtv.core/gradient [60 31])"))
-
-([RasterToVector_Class80003] of  CloFuncall
-
-	(source "(rtv.core/gradient [61 31])"))
-
 ([RasterToVector_Class80004] of  CloVar
 
 	(source "(/ 1 12)")
 	(title "D5MIN"))
 
-([RasterToVector_Class80005] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 31])"))
-
-([RasterToVector_Class80006] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 35])"))
-
-([RasterToVector_Class80007] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8])"))
-
-([RasterToVector_Class80008] of  CloFuncall
-
-	(source "rtv.core/D5MIN"))
-
-([RasterToVector_Class80009] of  CloFuncall
-
-	(source "(float rtv.core/D5MIN)"))
-
-([RasterToVector_Class80010] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8.017])"))
-
-([RasterToVector_Class80011] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8.034])"))
-
-([RasterToVector_Class80012] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8.068])"))
-
-([RasterToVector_Class80013] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8.136])"))
-
-([RasterToVector_Class80014] of  CloFuncall
-
-	(source "(rtv.core/gradient [62 8.272])"))
-
 ([RasterToVector_Class80015] of  CloFunction
 
-	(source "(doseq [y (range h)]\n  (println (for [x (range w)] (gradient (+ lat (* y 3 D5MIN)) (+ lon (* x 3 D5MIN))))))")
+	(source "(doseq [y (range h)]\n  (doseq [x (range w)] \n   (gradientPoly (str x y)\n	(+ lat (* y 3 D5MIN)) \n	(+ lon (* x 3 D5MIN))\n	500\n                        \"FFFF0000\")))")
 	(title "field [lat lon w h]"))
-
-([RasterToVector_Class80016] of  CloFuncall
-
-	(source "(range 5)"))
-
-([RasterToVector_Class80017] of  CloFuncall
-
-	(source "(rtv.core/field 62 8 ])"))
-
-([RasterToVector_Class80018] of  CloFuncall
-
-	(source "(rtv.core/field 62 8 8)"))
-
-([RasterToVector_Class80019] of  CloFuncall
-
-	(source "(rtv.core/field 62 8 10 10)"))
-
-([RasterToVector_Class80020] of  CloFuncall
-
-	(source "(rtv.core/field 62 8 20 20)"))
-
-([RasterToVector_Class90000] of  CloFuncall
-
-	(source "(rtv.core/gradientPoly 60 -4)"))
-
-([RasterToVector_Class90001] of  OMTPoly
-
-	(fillColor "20FF0000")
-	(isPolygon TRUE)
-	(label "po1")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "-4 0")
-	(playground-index 0)
-	(points
-		"60 0 -4 0"
-		"60 0 -3 57"
-		"59 57 -3 57"
-		"59 57 -4 0")
-	(relative FALSE))
-
-([RasterToVector_Class90002] of  OMTPoly
-
-	(fillColor "20FF0000")
-	(isPolygon TRUE)
-	(label "po1")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "-4 0")
-	(playground-index 0)
-	(points
-		"60 0 -4 0"
-		"60 0 -3 57"
-		"59 57 -3 57"
-		"59 57 -4 0")
-	(relative FALSE))
-
-([RasterToVector_Class90003] of  OMTPoly
-
-	(fillColor "20FF0000")
-	(isPolygon TRUE)
-	(label "po1")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "-4 0")
-	(playground-index 0)
-	(points
-		"60 0 -4 0"
-		"60 0 -3 45"
-		"59 45 -3 45"
-		"59 45 -4 0")
-	(relative FALSE))
