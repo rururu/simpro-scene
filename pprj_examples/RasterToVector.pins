@@ -1,4 +1,4 @@
-; Sat Jul 14 01:23:42 MSK 2018
+; Sun Jan 28 19:47:01 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -59,6 +59,10 @@
 	(but-load-prj "Load Source Project/share.onto/load-src-prj")
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "DefaultKnowledgeBase(Tsunami)"))
+
+([RasterToVector_Class100000] of  CloFuncall
+
+	(source "(rtv.core/slope1 60 -4)"))
 
 ([RasterToVector_Class100001] of  CloFuncall
 
@@ -225,6 +229,39 @@
 
 	(source "(rtv.core/field 60 -12 20 20)"))
 
+([RasterToVector_Class110001] of  CloFuncall
+
+	(source "rtv.core/M"))
+
+([RasterToVector_Class110002] of  CloFuncall
+
+	(source "(keys rtv.core/M)"))
+
+([RasterToVector_Class110003] of  CloFuncall
+
+	(source "(min (keys rtv.core/M))"))
+
+([RasterToVector_Class110004] of  CloFuncall
+
+	(source "(min 1 23 4 )"))
+
+([RasterToVector_Class110005] of  CloFuncall
+
+	(source "(rtv.core/slope1 60 -4.1)"))
+
+([RasterToVector_Class110006] of  CloFuncall
+
+	(source "(rtv.core/slope1 60 -4.2)"))
+
+([RasterToVector_Class110007] of  CloFuncall
+
+	(source "(rtv.core/slope1 60 -4.3)"))
+
+([RasterToVector_Class110009] of  CloFunction
+
+	(source "(let [slo (slope1Line lat lon)\n       ;;_ (println slo)\n       gpo (OMTPoly/createOMTPoly\n	(str id)\n	(MapOb/getDegMin lat)\n	(MapOb/getDegMin lon)\n	color\n	color\n	\"false\"\n	\"false\"\n	[(str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin lon))\n	 (str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin lon))])\n       mo (OMT/addMapOb gpo (second (OMT/getPlaygrounds)))]\n  (.hideLabel mo))")
+	(title "slope1Line [id lat lon color]"))
+
 ([RasterToVector_Class112000] of  CloFuncall
 
 	(source "(rtv.core/field 60 -12 80 80)"))
@@ -232,30 +269,6 @@
 ([RasterToVector_Class131202] of  CloFuncall
 
 	(source "(in-ns 'protege.core)"))
-
-([RasterToVector_Class131203] of  CloFuncall
-
-	(source "(doseq [i (cls-instances \"OMTPoly\")] (delin i))"))
-
-([RasterToVector_Class20000] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [60 30])"))
-
-([RasterToVector_Class20001] of  CloFuncall
-
-	(source "subcla.etoele/THIS"))
-
-([RasterToVector_Class30000] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [61.88 9.08])"))
-
-([RasterToVector_Class30001] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [61.88 9.0])"))
-
-([RasterToVector_Class30002] of  CloFuncall
-
-	(source "(subcla.etoele/elevation [61.88 9.20])"))
 
 ([RasterToVector_Class40000] of  CloFunction
 
@@ -386,8 +399,10 @@
 	(cloFunctions
 		[RasterToVector_Class80000]
 		[RasterToVector_Class100003]
+		[RasterToVector_Class80015]
 		[RasterToVector_Class40000]
-		[RasterToVector_Class80015])
+		[RasterToVector_Class90400]
+		[RasterToVector_Class110009])
 	(cloNamespace [RasterToVector_Class70007])
 	(cloVars [RasterToVector_Class80004])
 	(title "RtV Program"))
@@ -411,3 +426,6408 @@
 
 	(source "(doseq [y (range h)]\n  (doseq [x (range w)] \n   (gradientPoly (str x y)\n	(+ lat (* y 3 D5MIN)) \n	(+ lon (* x 3 D5MIN))\n	500\n                        \"FFFF0000\")))")
 	(title "field [lat lon w h]"))
+
+([RasterToVector_Class90000] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "00")
+	(latitude "60 0")
+	(lineColor "0fFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 0 -4 0"
+		"60 0 -3 45"
+		"59 45 -3 45"
+		"59 45 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90001] of  OMTPoly
+
+	(fillColor "0aFF0000")
+	(isPolygon TRUE)
+	(label "10")
+	(latitude "60 0")
+	(lineColor "0aFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"60 0 -3 45"
+		"60 0 -3 30"
+		"59 45 -3 30"
+		"59 45 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90002] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "20")
+	(latitude "60 0")
+	(lineColor "10FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"60 0 -3 30"
+		"60 0 -3 15"
+		"59 45 -3 15"
+		"59 45 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90003] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "30")
+	(latitude "60 0")
+	(lineColor "10FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"60 0 -3 15"
+		"60 0 -3 0"
+		"59 45 -3 0"
+		"59 45 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90004] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "40")
+	(latitude "60 0")
+	(lineColor "22FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"60 0 -3 0"
+		"60 0 -2 45"
+		"59 45 -2 45"
+		"59 45 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90005] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "50")
+	(latitude "60 0")
+	(lineColor "05FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"60 0 -2 45"
+		"60 0 -2 30"
+		"59 45 -2 30"
+		"59 45 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90006] of  OMTPoly
+
+	(fillColor "06FF0000")
+	(isPolygon TRUE)
+	(label "60")
+	(latitude "60 0")
+	(lineColor "06FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"60 0 -2 30"
+		"60 0 -2 15"
+		"59 45 -2 15"
+		"59 45 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90007] of  OMTPoly
+
+	(fillColor "00FF0000")
+	(isPolygon TRUE)
+	(label "70")
+	(latitude "60 0")
+	(lineColor "00FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"60 0 -2 15"
+		"60 0 -2 0"
+		"59 45 -2 0"
+		"59 45 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90008] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "80")
+	(latitude "60 0")
+	(lineColor "14FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"60 0 -2 0"
+		"60 0 -1 45"
+		"59 45 -1 45"
+		"59 45 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90009] of  OMTPoly
+
+	(fillColor "0eFF0000")
+	(isPolygon TRUE)
+	(label "90")
+	(latitude "60 0")
+	(lineColor "0eFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"60 0 -1 45"
+		"60 0 -1 30"
+		"59 45 -1 30"
+		"59 45 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90010] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "100")
+	(latitude "60 0")
+	(lineColor "2eFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"60 0 -1 30"
+		"60 0 -1 15"
+		"59 45 -1 15"
+		"59 45 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90011] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "110")
+	(latitude "60 0")
+	(lineColor "1fFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"60 0 -1 15"
+		"60 0 -1 0"
+		"59 45 -1 0"
+		"59 45 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90012] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "120")
+	(latitude "60 0")
+	(lineColor "14FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"60 0 -1 0"
+		"60 0 0 -45"
+		"59 45 0 -45"
+		"59 45 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90013] of  OMTPoly
+
+	(fillColor "06FF0000")
+	(isPolygon TRUE)
+	(label "130")
+	(latitude "60 0")
+	(lineColor "06FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"60 0 0 -45"
+		"60 0 0 -30"
+		"59 45 0 -30"
+		"59 45 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90014] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "140")
+	(latitude "60 0")
+	(lineColor "05FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"60 0 0 -30"
+		"60 0 0 -15"
+		"59 45 0 -15"
+		"59 45 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90015] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "150")
+	(latitude "60 0")
+	(lineColor "03FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"60 0 0 -15"
+		"60 0 0 0"
+		"59 45 0 0"
+		"59 45 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90016] of  OMTPoly
+
+	(fillColor "0bFF0000")
+	(isPolygon TRUE)
+	(label "160")
+	(latitude "60 0")
+	(lineColor "0bFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"60 0 0 0"
+		"60 0 0 15"
+		"59 45 0 15"
+		"59 45 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90017] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "170")
+	(latitude "60 0")
+	(lineColor "03FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"60 0 0 15"
+		"60 0 0 30"
+		"59 45 0 30"
+		"59 45 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90018] of  OMTPoly
+
+	(fillColor "0eFF0000")
+	(isPolygon TRUE)
+	(label "180")
+	(latitude "60 0")
+	(lineColor "0eFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"60 0 0 30"
+		"60 0 0 45"
+		"59 45 0 45"
+		"59 45 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90019] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "190")
+	(latitude "60 0")
+	(lineColor "0fFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"60 0 0 45"
+		"60 0 1 0"
+		"59 45 1 0"
+		"59 45 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90020] of  OMTPoly
+
+	(fillColor "3bFF0000")
+	(isPolygon TRUE)
+	(label "01")
+	(latitude "60 15")
+	(lineColor "3bFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 15 -4 0"
+		"60 15 -3 45"
+		"60 0 -3 45"
+		"60 0 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90021] of  OMTPoly
+
+	(fillColor "3eFF0000")
+	(isPolygon TRUE)
+	(label "11")
+	(latitude "60 15")
+	(lineColor "3eFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"60 15 -3 45"
+		"60 15 -3 30"
+		"60 0 -3 30"
+		"60 0 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90022] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "21")
+	(latitude "60 15")
+	(lineColor "39FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"60 15 -3 30"
+		"60 15 -3 15"
+		"60 0 -3 15"
+		"60 0 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90023] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "31")
+	(latitude "60 15")
+	(lineColor "30FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"60 15 -3 15"
+		"60 15 -3 0"
+		"60 0 -3 0"
+		"60 0 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90024] of  OMTPoly
+
+	(fillColor "0dFF0000")
+	(isPolygon TRUE)
+	(label "41")
+	(latitude "60 15")
+	(lineColor "0dFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"60 15 -3 0"
+		"60 15 -2 45"
+		"60 0 -2 45"
+		"60 0 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90025] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "51")
+	(latitude "60 15")
+	(lineColor "16FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"60 15 -2 45"
+		"60 15 -2 30"
+		"60 0 -2 30"
+		"60 0 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90026] of  OMTPoly
+
+	(fillColor "06FF0000")
+	(isPolygon TRUE)
+	(label "61")
+	(latitude "60 15")
+	(lineColor "06FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"60 15 -2 30"
+		"60 15 -2 15"
+		"60 0 -2 15"
+		"60 0 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90027] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "71")
+	(latitude "60 15")
+	(lineColor "05FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"60 15 -2 15"
+		"60 15 -2 0"
+		"60 0 -2 0"
+		"60 0 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90028] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "81")
+	(latitude "60 15")
+	(lineColor "08FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"60 15 -2 0"
+		"60 15 -1 45"
+		"60 0 -1 45"
+		"60 0 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90029] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "91")
+	(latitude "60 15")
+	(lineColor "2eFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"60 15 -1 45"
+		"60 15 -1 30"
+		"60 0 -1 30"
+		"60 0 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90030] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "101")
+	(latitude "60 15")
+	(lineColor "08FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"60 15 -1 30"
+		"60 15 -1 15"
+		"60 0 -1 15"
+		"60 0 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90031] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "111")
+	(latitude "60 15")
+	(lineColor "02FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"60 15 -1 15"
+		"60 15 -1 0"
+		"60 0 -1 0"
+		"60 0 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90032] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "121")
+	(latitude "60 15")
+	(lineColor "2eFF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"60 15 -1 0"
+		"60 15 0 -45"
+		"60 0 0 -45"
+		"60 0 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90033] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "131")
+	(latitude "60 15")
+	(lineColor "0cFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"60 15 0 -45"
+		"60 15 0 -30"
+		"60 0 0 -30"
+		"60 0 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90034] of  OMTPoly
+
+	(fillColor "00FF0000")
+	(isPolygon TRUE)
+	(label "141")
+	(latitude "60 15")
+	(lineColor "00FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"60 15 0 -30"
+		"60 15 0 -15"
+		"60 0 0 -15"
+		"60 0 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90035] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "151")
+	(latitude "60 15")
+	(lineColor "07FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"60 15 0 -15"
+		"60 15 0 0"
+		"60 0 0 0"
+		"60 0 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90036] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "161")
+	(latitude "60 15")
+	(lineColor "04FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"60 15 0 0"
+		"60 15 0 15"
+		"60 0 0 15"
+		"60 0 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90037] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "171")
+	(latitude "60 15")
+	(lineColor "03FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"60 15 0 15"
+		"60 15 0 30"
+		"60 0 0 30"
+		"60 0 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90038] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "181")
+	(latitude "60 15")
+	(lineColor "07FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"60 15 0 30"
+		"60 15 0 45"
+		"60 0 0 45"
+		"60 0 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90039] of  OMTPoly
+
+	(fillColor "06FF0000")
+	(isPolygon TRUE)
+	(label "191")
+	(latitude "60 15")
+	(lineColor "06FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"60 15 0 45"
+		"60 15 1 0"
+		"60 0 1 0"
+		"60 0 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90040] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "02")
+	(latitude "60 30")
+	(lineColor "66FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 30 -4 0"
+		"60 30 -3 45"
+		"60 15 -3 45"
+		"60 15 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90041] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "12")
+	(latitude "60 30")
+	(lineColor "39FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"60 30 -3 45"
+		"60 30 -3 30"
+		"60 15 -3 30"
+		"60 15 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90042] of  OMTPoly
+
+	(fillColor "48FF0000")
+	(isPolygon TRUE)
+	(label "22")
+	(latitude "60 30")
+	(lineColor "48FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"60 30 -3 30"
+		"60 30 -3 15"
+		"60 15 -3 15"
+		"60 15 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90043] of  OMTPoly
+
+	(fillColor "4dFF0000")
+	(isPolygon TRUE)
+	(label "32")
+	(latitude "60 30")
+	(lineColor "4dFF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"60 30 -3 15"
+		"60 30 -3 0"
+		"60 15 -3 0"
+		"60 15 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90044] of  OMTPoly
+
+	(fillColor "5fFF0000")
+	(isPolygon TRUE)
+	(label "42")
+	(latitude "60 30")
+	(lineColor "5fFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"60 30 -3 0"
+		"60 30 -2 45"
+		"60 15 -2 45"
+		"60 15 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90045] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "52")
+	(latitude "60 30")
+	(lineColor "16FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"60 30 -2 45"
+		"60 30 -2 30"
+		"60 15 -2 30"
+		"60 15 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90046] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "62")
+	(latitude "60 30")
+	(lineColor "08FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"60 30 -2 30"
+		"60 30 -2 15"
+		"60 15 -2 15"
+		"60 15 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90047] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "72")
+	(latitude "60 30")
+	(lineColor "02FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"60 30 -2 15"
+		"60 30 -2 0"
+		"60 15 -2 0"
+		"60 15 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90048] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "82")
+	(latitude "60 30")
+	(lineColor "0cFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"60 30 -2 0"
+		"60 30 -1 45"
+		"60 15 -1 45"
+		"60 15 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90049] of  OMTPoly
+
+	(fillColor "0dFF0000")
+	(isPolygon TRUE)
+	(label "92")
+	(latitude "60 30")
+	(lineColor "0dFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"60 30 -1 45"
+		"60 30 -1 30"
+		"60 15 -1 30"
+		"60 15 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90050] of  OMTPoly
+
+	(fillColor "2fFF0000")
+	(isPolygon TRUE)
+	(label "102")
+	(latitude "60 30")
+	(lineColor "2fFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"60 30 -1 30"
+		"60 30 -1 15"
+		"60 15 -1 15"
+		"60 15 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90051] of  OMTPoly
+
+	(fillColor "23FF0000")
+	(isPolygon TRUE)
+	(label "112")
+	(latitude "60 30")
+	(lineColor "23FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"60 30 -1 15"
+		"60 30 -1 0"
+		"60 15 -1 0"
+		"60 15 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90052] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "122")
+	(latitude "60 30")
+	(lineColor "02FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"60 30 -1 0"
+		"60 30 0 -45"
+		"60 15 0 -45"
+		"60 15 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90053] of  OMTPoly
+
+	(fillColor "2fFF0000")
+	(isPolygon TRUE)
+	(label "132")
+	(latitude "60 30")
+	(lineColor "2fFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"60 30 0 -45"
+		"60 30 0 -30"
+		"60 15 0 -30"
+		"60 15 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90054] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "142")
+	(latitude "60 30")
+	(lineColor "04FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"60 30 0 -30"
+		"60 30 0 -15"
+		"60 15 0 -15"
+		"60 15 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90055] of  OMTPoly
+
+	(fillColor "00FF0000")
+	(isPolygon TRUE)
+	(label "152")
+	(latitude "60 30")
+	(lineColor "00FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"60 30 0 -15"
+		"60 30 0 0"
+		"60 15 0 0"
+		"60 15 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90056] of  OMTPoly
+
+	(fillColor "06FF0000")
+	(isPolygon TRUE)
+	(label "162")
+	(latitude "60 30")
+	(lineColor "06FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"60 30 0 0"
+		"60 30 0 15"
+		"60 15 0 15"
+		"60 15 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90057] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "172")
+	(latitude "60 30")
+	(lineColor "02FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"60 30 0 15"
+		"60 30 0 30"
+		"60 15 0 30"
+		"60 15 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90058] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "182")
+	(latitude "60 30")
+	(lineColor "03FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"60 30 0 30"
+		"60 30 0 45"
+		"60 15 0 45"
+		"60 15 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90059] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "192")
+	(latitude "60 30")
+	(lineColor "04FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"60 30 0 45"
+		"60 30 1 0"
+		"60 15 1 0"
+		"60 15 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90060] of  OMTPoly
+
+	(fillColor "34FF0000")
+	(isPolygon TRUE)
+	(label "03")
+	(latitude "60 45")
+	(lineColor "34FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"60 45 -4 0"
+		"60 45 -3 45"
+		"60 30 -3 45"
+		"60 30 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90061] of  OMTPoly
+
+	(fillColor "70FF0000")
+	(isPolygon TRUE)
+	(label "13")
+	(latitude "60 45")
+	(lineColor "70FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"60 45 -3 45"
+		"60 45 -3 30"
+		"60 30 -3 30"
+		"60 30 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90062] of  OMTPoly
+
+	(fillColor "89FF0000")
+	(isPolygon TRUE)
+	(label "23")
+	(latitude "60 45")
+	(lineColor "89FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"60 45 -3 30"
+		"60 45 -3 15"
+		"60 30 -3 15"
+		"60 30 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90063] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "33")
+	(latitude "60 45")
+	(lineColor "66FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"60 45 -3 15"
+		"60 45 -3 0"
+		"60 30 -3 0"
+		"60 30 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90064] of  OMTPoly
+
+	(fillColor "49FF0000")
+	(isPolygon TRUE)
+	(label "43")
+	(latitude "60 45")
+	(lineColor "49FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"60 45 -3 0"
+		"60 45 -2 45"
+		"60 30 -2 45"
+		"60 30 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90065] of  OMTPoly
+
+	(fillColor "73FF0000")
+	(isPolygon TRUE)
+	(label "53")
+	(latitude "60 45")
+	(lineColor "73FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"60 45 -2 45"
+		"60 45 -2 30"
+		"60 30 -2 30"
+		"60 30 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90066] of  OMTPoly
+
+	(fillColor "62FF0000")
+	(isPolygon TRUE)
+	(label "63")
+	(latitude "60 45")
+	(lineColor "62FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"60 45 -2 30"
+		"60 45 -2 15"
+		"60 30 -2 15"
+		"60 30 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90067] of  OMTPoly
+
+	(fillColor "2bFF0000")
+	(isPolygon TRUE)
+	(label "73")
+	(latitude "60 45")
+	(lineColor "2bFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"60 45 -2 15"
+		"60 45 -2 0"
+		"60 30 -2 0"
+		"60 30 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90068] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "83")
+	(latitude "60 45")
+	(lineColor "16FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"60 45 -2 0"
+		"60 45 -1 45"
+		"60 30 -1 45"
+		"60 30 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90069] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "93")
+	(latitude "60 45")
+	(lineColor "0fFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"60 45 -1 45"
+		"60 45 -1 30"
+		"60 30 -1 30"
+		"60 30 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90070] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "103")
+	(latitude "60 45")
+	(lineColor "0cFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"60 45 -1 30"
+		"60 45 -1 15"
+		"60 30 -1 15"
+		"60 30 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90071] of  OMTPoly
+
+	(fillColor "0eFF0000")
+	(isPolygon TRUE)
+	(label "113")
+	(latitude "60 45")
+	(lineColor "0eFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"60 45 -1 15"
+		"60 45 -1 0"
+		"60 30 -1 0"
+		"60 30 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90072] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "123")
+	(latitude "60 45")
+	(lineColor "2eFF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"60 45 -1 0"
+		"60 45 0 -45"
+		"60 30 0 -45"
+		"60 30 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90073] of  OMTPoly
+
+	(fillColor "0eFF0000")
+	(isPolygon TRUE)
+	(label "133")
+	(latitude "60 45")
+	(lineColor "0eFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"60 45 0 -45"
+		"60 45 0 -30"
+		"60 30 0 -30"
+		"60 30 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90074] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "143")
+	(latitude "60 45")
+	(lineColor "04FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"60 45 0 -30"
+		"60 45 0 -15"
+		"60 30 0 -15"
+		"60 30 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90075] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "153")
+	(latitude "60 45")
+	(lineColor "07FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"60 45 0 -15"
+		"60 45 0 0"
+		"60 30 0 0"
+		"60 30 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90076] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "163")
+	(latitude "60 45")
+	(lineColor "05FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"60 45 0 0"
+		"60 45 0 15"
+		"60 30 0 15"
+		"60 30 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90077] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "173")
+	(latitude "60 45")
+	(lineColor "04FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"60 45 0 15"
+		"60 45 0 30"
+		"60 30 0 30"
+		"60 30 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90078] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "183")
+	(latitude "60 45")
+	(lineColor "02FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"60 45 0 30"
+		"60 45 0 45"
+		"60 30 0 45"
+		"60 30 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90079] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "193")
+	(latitude "60 45")
+	(lineColor "04FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"60 45 0 45"
+		"60 45 1 0"
+		"60 30 1 0"
+		"60 30 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90080] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "04")
+	(latitude "61 0")
+	(lineColor "13FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"61 0 -4 0"
+		"61 0 -3 45"
+		"60 45 -3 45"
+		"60 45 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90081] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "14")
+	(latitude "61 0")
+	(lineColor "2eFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"61 0 -3 45"
+		"61 0 -3 30"
+		"60 45 -3 30"
+		"60 45 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90082] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "24")
+	(latitude "61 0")
+	(lineColor "1dFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"61 0 -3 30"
+		"61 0 -3 15"
+		"60 45 -3 15"
+		"60 45 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90083] of  OMTPoly
+
+	(fillColor "36FF0000")
+	(isPolygon TRUE)
+	(label "34")
+	(latitude "61 0")
+	(lineColor "36FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"61 0 -3 15"
+		"61 0 -3 0"
+		"60 45 -3 0"
+		"60 45 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90084] of  OMTPoly
+
+	(fillColor "85FF0000")
+	(isPolygon TRUE)
+	(label "44")
+	(latitude "61 0")
+	(lineColor "85FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"61 0 -3 0"
+		"61 0 -2 45"
+		"60 45 -2 45"
+		"60 45 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90085] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "54")
+	(latitude "61 0")
+	(lineColor "66FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"61 0 -2 45"
+		"61 0 -2 30"
+		"60 45 -2 30"
+		"60 45 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90086] of  OMTPoly
+
+	(fillColor "64FF0000")
+	(isPolygon TRUE)
+	(label "64")
+	(latitude "61 0")
+	(lineColor "64FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"61 0 -2 30"
+		"61 0 -2 15"
+		"60 45 -2 15"
+		"60 45 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90087] of  OMTPoly
+
+	(fillColor "38FF0000")
+	(isPolygon TRUE)
+	(label "74")
+	(latitude "61 0")
+	(lineColor "38FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"61 0 -2 15"
+		"61 0 -2 0"
+		"60 45 -2 0"
+		"60 45 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90088] of  OMTPoly
+
+	(fillColor "33FF0000")
+	(isPolygon TRUE)
+	(label "84")
+	(latitude "61 0")
+	(lineColor "33FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"61 0 -2 0"
+		"61 0 -1 45"
+		"60 45 -1 45"
+		"60 45 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90089] of  OMTPoly
+
+	(fillColor "61FF0000")
+	(isPolygon TRUE)
+	(label "94")
+	(latitude "61 0")
+	(lineColor "61FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"61 0 -1 45"
+		"61 0 -1 30"
+		"60 45 -1 30"
+		"60 45 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90090] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "104")
+	(latitude "61 0")
+	(lineColor "16FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"61 0 -1 30"
+		"61 0 -1 15"
+		"60 45 -1 15"
+		"60 45 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90091] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "114")
+	(latitude "61 0")
+	(lineColor "0fFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"61 0 -1 15"
+		"61 0 -1 0"
+		"60 45 -1 0"
+		"60 45 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90092] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "124")
+	(latitude "61 0")
+	(lineColor "07FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"61 0 -1 0"
+		"61 0 0 -45"
+		"60 45 0 -45"
+		"60 45 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90093] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "134")
+	(latitude "61 0")
+	(lineColor "0cFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"61 0 0 -45"
+		"61 0 0 -30"
+		"60 45 0 -30"
+		"60 45 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90094] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "144")
+	(latitude "61 0")
+	(lineColor "07FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"61 0 0 -30"
+		"61 0 0 -15"
+		"60 45 0 -15"
+		"60 45 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90095] of  OMTPoly
+
+	(fillColor "09FF0000")
+	(isPolygon TRUE)
+	(label "154")
+	(latitude "61 0")
+	(lineColor "09FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"61 0 0 -15"
+		"61 0 0 0"
+		"60 45 0 0"
+		"60 45 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90096] of  OMTPoly
+
+	(fillColor "0aFF0000")
+	(isPolygon TRUE)
+	(label "164")
+	(latitude "61 0")
+	(lineColor "0aFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 0 0 0"
+		"61 0 0 15"
+		"60 45 0 15"
+		"60 45 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90097] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "174")
+	(latitude "61 0")
+	(lineColor "04FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"61 0 0 15"
+		"61 0 0 30"
+		"60 45 0 30"
+		"60 45 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90098] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "184")
+	(latitude "61 0")
+	(lineColor "03FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"61 0 0 30"
+		"61 0 0 45"
+		"60 45 0 45"
+		"60 45 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90099] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "194")
+	(latitude "61 0")
+	(lineColor "08FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"61 0 0 45"
+		"61 0 1 0"
+		"60 45 1 0"
+		"60 45 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90100] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "05")
+	(latitude "61 15")
+	(lineColor "13FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"61 15 -4 0"
+		"61 15 -3 45"
+		"61 0 -3 45"
+		"61 0 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90101] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "15")
+	(latitude "61 15")
+	(lineColor "04FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"61 15 -3 45"
+		"61 15 -3 30"
+		"61 0 -3 30"
+		"61 0 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90102] of  OMTPoly
+
+	(fillColor "31FF0000")
+	(isPolygon TRUE)
+	(label "25")
+	(latitude "61 15")
+	(lineColor "31FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"61 15 -3 30"
+		"61 15 -3 15"
+		"61 0 -3 15"
+		"61 0 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90103] of  OMTPoly
+
+	(fillColor "23FF0000")
+	(isPolygon TRUE)
+	(label "35")
+	(latitude "61 15")
+	(lineColor "23FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"61 15 -3 15"
+		"61 15 -3 0"
+		"61 0 -3 0"
+		"61 0 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90104] of  OMTPoly
+
+	(fillColor "40FF0000")
+	(isPolygon TRUE)
+	(label "45")
+	(latitude "61 15")
+	(lineColor "40FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"61 15 -3 0"
+		"61 15 -2 45"
+		"61 0 -2 45"
+		"61 0 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90105] of  OMTPoly
+
+	(fillColor "38FF0000")
+	(isPolygon TRUE)
+	(label "55")
+	(latitude "61 15")
+	(lineColor "38FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"61 15 -2 45"
+		"61 15 -2 30"
+		"61 0 -2 30"
+		"61 0 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90106] of  OMTPoly
+
+	(fillColor "64FF0000")
+	(isPolygon TRUE)
+	(label "65")
+	(latitude "61 15")
+	(lineColor "64FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"61 15 -2 30"
+		"61 15 -2 15"
+		"61 0 -2 15"
+		"61 0 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90107] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "75")
+	(latitude "61 15")
+	(lineColor "66FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"61 15 -2 15"
+		"61 15 -2 0"
+		"61 0 -2 0"
+		"61 0 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90108] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "85")
+	(latitude "61 15")
+	(lineColor "68FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"61 15 -2 0"
+		"61 15 -1 45"
+		"61 0 -1 45"
+		"61 0 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90109] of  OMTPoly
+
+	(fillColor "49FF0000")
+	(isPolygon TRUE)
+	(label "95")
+	(latitude "61 15")
+	(lineColor "49FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"61 15 -1 45"
+		"61 15 -1 30"
+		"61 0 -1 30"
+		"61 0 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90110] of  OMTPoly
+
+	(fillColor "3eFF0000")
+	(isPolygon TRUE)
+	(label "105")
+	(latitude "61 15")
+	(lineColor "3eFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"61 15 -1 30"
+		"61 15 -1 15"
+		"61 0 -1 15"
+		"61 0 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90111] of  OMTPoly
+
+	(fillColor "5fFF0000")
+	(isPolygon TRUE)
+	(label "115")
+	(latitude "61 15")
+	(lineColor "5fFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"61 15 -1 15"
+		"61 15 -1 0"
+		"61 0 -1 0"
+		"61 0 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90112] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "125")
+	(latitude "61 15")
+	(lineColor "07FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"61 15 -1 0"
+		"61 15 0 -45"
+		"61 0 0 -45"
+		"61 0 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90113] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "135")
+	(latitude "61 15")
+	(lineColor "07FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"61 15 0 -45"
+		"61 15 0 -30"
+		"61 0 0 -30"
+		"61 0 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90114] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "145")
+	(latitude "61 15")
+	(lineColor "04FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"61 15 0 -30"
+		"61 15 0 -15"
+		"61 0 0 -15"
+		"61 0 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90115] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "155")
+	(latitude "61 15")
+	(lineColor "05FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"61 15 0 -15"
+		"61 15 0 0"
+		"61 0 0 0"
+		"61 0 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90116] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "165")
+	(latitude "61 15")
+	(lineColor "08FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 15 0 0"
+		"61 15 0 15"
+		"61 0 0 15"
+		"61 0 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90117] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "175")
+	(latitude "61 15")
+	(lineColor "02FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"61 15 0 15"
+		"61 15 0 30"
+		"61 0 0 30"
+		"61 0 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90118] of  OMTPoly
+
+	(fillColor "01FF0000")
+	(isPolygon TRUE)
+	(label "185")
+	(latitude "61 15")
+	(lineColor "01FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"61 15 0 30"
+		"61 15 0 45"
+		"61 0 0 45"
+		"61 0 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90119] of  OMTPoly
+
+	(fillColor "03FF0000")
+	(isPolygon TRUE)
+	(label "195")
+	(latitude "61 15")
+	(lineColor "03FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"61 15 0 45"
+		"61 15 1 0"
+		"61 0 1 0"
+		"61 0 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90120] of  OMTPoly
+
+	(fillColor "94FF0000")
+	(isPolygon TRUE)
+	(label "06")
+	(latitude "61 30")
+	(lineColor "94FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"61 30 -4 0"
+		"61 30 -3 45"
+		"61 15 -3 45"
+		"61 15 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90121] of  OMTPoly
+
+	(fillColor "8dFF0000")
+	(isPolygon TRUE)
+	(label "16")
+	(latitude "61 30")
+	(lineColor "8dFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"61 30 -3 45"
+		"61 30 -3 30"
+		"61 15 -3 30"
+		"61 15 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90122] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "26")
+	(latitude "61 30")
+	(lineColor "20FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"61 30 -3 30"
+		"61 30 -3 15"
+		"61 15 -3 15"
+		"61 15 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90123] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "36")
+	(latitude "61 30")
+	(lineColor "21FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"61 30 -3 15"
+		"61 30 -3 0"
+		"61 15 -3 0"
+		"61 15 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90124] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "46")
+	(latitude "61 30")
+	(lineColor "21FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"61 30 -3 0"
+		"61 30 -2 45"
+		"61 15 -2 45"
+		"61 15 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90125] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "56")
+	(latitude "61 30")
+	(lineColor "1aFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"61 30 -2 45"
+		"61 30 -2 30"
+		"61 15 -2 30"
+		"61 15 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90126] of  OMTPoly
+
+	(fillColor "27FF0000")
+	(isPolygon TRUE)
+	(label "66")
+	(latitude "61 30")
+	(lineColor "27FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"61 30 -2 30"
+		"61 30 -2 15"
+		"61 15 -2 15"
+		"61 15 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90127] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "76")
+	(latitude "61 30")
+	(lineColor "20FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"61 30 -2 15"
+		"61 30 -2 0"
+		"61 15 -2 0"
+		"61 15 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90128] of  OMTPoly
+
+	(fillColor "64FF0000")
+	(isPolygon TRUE)
+	(label "86")
+	(latitude "61 30")
+	(lineColor "64FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"61 30 -2 0"
+		"61 30 -1 45"
+		"61 15 -1 45"
+		"61 15 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90129] of  OMTPoly
+
+	(fillColor "9eFF0000")
+	(isPolygon TRUE)
+	(label "96")
+	(latitude "61 30")
+	(lineColor "9eFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"61 30 -1 45"
+		"61 30 -1 30"
+		"61 15 -1 30"
+		"61 15 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90130] of  OMTPoly
+
+	(fillColor "3fFF0000")
+	(isPolygon TRUE)
+	(label "106")
+	(latitude "61 30")
+	(lineColor "3fFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"61 30 -1 30"
+		"61 30 -1 15"
+		"61 15 -1 15"
+		"61 15 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90131] of  OMTPoly
+
+	(fillColor "17FF0000")
+	(isPolygon TRUE)
+	(label "116")
+	(latitude "61 30")
+	(lineColor "17FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"61 30 -1 15"
+		"61 30 -1 0"
+		"61 15 -1 0"
+		"61 15 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90132] of  OMTPoly
+
+	(fillColor "11FF0000")
+	(isPolygon TRUE)
+	(label "126")
+	(latitude "61 30")
+	(lineColor "11FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"61 30 -1 0"
+		"61 30 0 -45"
+		"61 15 0 -45"
+		"61 15 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90133] of  OMTPoly
+
+	(fillColor "25FF0000")
+	(isPolygon TRUE)
+	(label "136")
+	(latitude "61 30")
+	(lineColor "25FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"61 30 0 -45"
+		"61 30 0 -30"
+		"61 15 0 -30"
+		"61 15 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90134] of  OMTPoly
+
+	(fillColor "1eFF0000")
+	(isPolygon TRUE)
+	(label "146")
+	(latitude "61 30")
+	(lineColor "1eFF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"61 30 0 -30"
+		"61 30 0 -15"
+		"61 15 0 -15"
+		"61 15 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90135] of  OMTPoly
+
+	(fillColor "27FF0000")
+	(isPolygon TRUE)
+	(label "156")
+	(latitude "61 30")
+	(lineColor "27FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"61 30 0 -15"
+		"61 30 0 0"
+		"61 15 0 0"
+		"61 15 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90136] of  OMTPoly
+
+	(fillColor "37FF0000")
+	(isPolygon TRUE)
+	(label "166")
+	(latitude "61 30")
+	(lineColor "37FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 30 0 0"
+		"61 30 0 15"
+		"61 15 0 15"
+		"61 15 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90137] of  OMTPoly
+
+	(fillColor "0bFF0000")
+	(isPolygon TRUE)
+	(label "176")
+	(latitude "61 30")
+	(lineColor "0bFF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"61 30 0 15"
+		"61 30 0 30"
+		"61 15 0 30"
+		"61 15 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90138] of  OMTPoly
+
+	(fillColor "0aFF0000")
+	(isPolygon TRUE)
+	(label "186")
+	(latitude "61 30")
+	(lineColor "0aFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"61 30 0 30"
+		"61 30 0 45"
+		"61 15 0 45"
+		"61 15 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90139] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "196")
+	(latitude "61 30")
+	(lineColor "0cFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"61 30 0 45"
+		"61 30 1 0"
+		"61 15 1 0"
+		"61 15 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90140] of  OMTPoly
+
+	(fillColor "47FF0000")
+	(isPolygon TRUE)
+	(label "07")
+	(latitude "61 45")
+	(lineColor "47FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"61 45 -4 0"
+		"61 45 -3 45"
+		"61 30 -3 45"
+		"61 30 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90141] of  OMTPoly
+
+	(fillColor "c1FF0000")
+	(isPolygon TRUE)
+	(label "17")
+	(latitude "61 45")
+	(lineColor "c1FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"61 45 -3 45"
+		"61 45 -3 30"
+		"61 30 -3 30"
+		"61 30 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90142] of  OMTPoly
+
+	(fillColor "c7FF0000")
+	(isPolygon TRUE)
+	(label "27")
+	(latitude "61 45")
+	(lineColor "c7FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"61 45 -3 30"
+		"61 45 -3 15"
+		"61 30 -3 15"
+		"61 30 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90143] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "37")
+	(latitude "61 45")
+	(lineColor "39FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"61 45 -3 15"
+		"61 45 -3 0"
+		"61 30 -3 0"
+		"61 30 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90144] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "47")
+	(latitude "61 45")
+	(lineColor "30FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"61 45 -3 0"
+		"61 45 -2 45"
+		"61 30 -2 45"
+		"61 30 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90145] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "57")
+	(latitude "61 45")
+	(lineColor "0cFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"61 45 -2 45"
+		"61 45 -2 30"
+		"61 30 -2 30"
+		"61 30 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90146] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "67")
+	(latitude "61 45")
+	(lineColor "1fFF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"61 45 -2 30"
+		"61 45 -2 15"
+		"61 30 -2 15"
+		"61 30 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90147] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "77")
+	(latitude "61 45")
+	(lineColor "21FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"61 45 -2 15"
+		"61 45 -2 0"
+		"61 30 -2 0"
+		"61 30 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90148] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "87")
+	(latitude "61 45")
+	(lineColor "1cFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"61 45 -2 0"
+		"61 45 -1 45"
+		"61 30 -1 45"
+		"61 30 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90149] of  OMTPoly
+
+	(fillColor "65FF0000")
+	(isPolygon TRUE)
+	(label "97")
+	(latitude "61 45")
+	(lineColor "65FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"61 45 -1 45"
+		"61 45 -1 30"
+		"61 30 -1 30"
+		"61 30 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90150] of  OMTPoly
+
+	(fillColor "7eFF0000")
+	(isPolygon TRUE)
+	(label "107")
+	(latitude "61 45")
+	(lineColor "7eFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"61 45 -1 30"
+		"61 45 -1 15"
+		"61 30 -1 15"
+		"61 30 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90151] of  OMTPoly
+
+	(fillColor "67FF0000")
+	(isPolygon TRUE)
+	(label "117")
+	(latitude "61 45")
+	(lineColor "67FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"61 45 -1 15"
+		"61 45 -1 0"
+		"61 30 -1 0"
+		"61 30 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90152] of  OMTPoly
+
+	(fillColor "43FF0000")
+	(isPolygon TRUE)
+	(label "127")
+	(latitude "61 45")
+	(lineColor "43FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"61 45 -1 0"
+		"61 45 0 -45"
+		"61 30 0 -45"
+		"61 30 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90153] of  OMTPoly
+
+	(fillColor "64FF0000")
+	(isPolygon TRUE)
+	(label "137")
+	(latitude "61 45")
+	(lineColor "64FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"61 45 0 -45"
+		"61 45 0 -30"
+		"61 30 0 -30"
+		"61 30 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90154] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "147")
+	(latitude "61 45")
+	(lineColor "22FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"61 45 0 -30"
+		"61 45 0 -15"
+		"61 30 0 -15"
+		"61 30 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90155] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "157")
+	(latitude "61 45")
+	(lineColor "1aFF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"61 45 0 -15"
+		"61 45 0 0"
+		"61 30 0 0"
+		"61 30 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90156] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "167")
+	(latitude "61 45")
+	(lineColor "16FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 45 0 0"
+		"61 45 0 15"
+		"61 30 0 15"
+		"61 30 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90157] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "177")
+	(latitude "61 45")
+	(lineColor "13FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"61 45 0 15"
+		"61 45 0 30"
+		"61 30 0 30"
+		"61 30 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90158] of  OMTPoly
+
+	(fillColor "12FF0000")
+	(isPolygon TRUE)
+	(label "187")
+	(latitude "61 45")
+	(lineColor "12FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"61 45 0 30"
+		"61 45 0 45"
+		"61 30 0 45"
+		"61 30 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90159] of  OMTPoly
+
+	(fillColor "0aFF0000")
+	(isPolygon TRUE)
+	(label "197")
+	(latitude "61 45")
+	(lineColor "0aFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"61 45 0 45"
+		"61 45 1 0"
+		"61 30 1 0"
+		"61 30 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90160] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "08")
+	(latitude "62 0")
+	(lineColor "1dFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"62 0 -4 0"
+		"62 0 -3 45"
+		"61 45 -3 45"
+		"61 45 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90161] of  OMTPoly
+
+	(fillColor "40FF0000")
+	(isPolygon TRUE)
+	(label "18")
+	(latitude "62 0")
+	(lineColor "40FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"62 0 -3 45"
+		"62 0 -3 30"
+		"61 45 -3 30"
+		"61 45 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90162] of  OMTPoly
+
+	(fillColor "bdFF0000")
+	(isPolygon TRUE)
+	(label "28")
+	(latitude "62 0")
+	(lineColor "bdFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"62 0 -3 30"
+		"62 0 -3 15"
+		"61 45 -3 15"
+		"61 45 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90163] of  OMTPoly
+
+	(fillColor "c7FF0000")
+	(isPolygon TRUE)
+	(label "38")
+	(latitude "62 0")
+	(lineColor "c7FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"62 0 -3 15"
+		"62 0 -3 0"
+		"61 45 -3 0"
+		"61 45 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90164] of  OMTPoly
+
+	(fillColor "aaFF0000")
+	(isPolygon TRUE)
+	(label "48")
+	(latitude "62 0")
+	(lineColor "aaFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"62 0 -3 0"
+		"62 0 -2 45"
+		"61 45 -2 45"
+		"61 45 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90165] of  OMTPoly
+
+	(fillColor "24FF0000")
+	(isPolygon TRUE)
+	(label "58")
+	(latitude "62 0")
+	(lineColor "24FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"62 0 -2 45"
+		"62 0 -2 30"
+		"61 45 -2 30"
+		"61 45 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90166] of  OMTPoly
+
+	(fillColor "02FF0000")
+	(isPolygon TRUE)
+	(label "68")
+	(latitude "62 0")
+	(lineColor "02FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"62 0 -2 30"
+		"62 0 -2 15"
+		"61 45 -2 15"
+		"61 45 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90167] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "78")
+	(latitude "62 0")
+	(lineColor "1cFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"62 0 -2 15"
+		"62 0 -2 0"
+		"61 45 -2 0"
+		"61 45 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90168] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "88")
+	(latitude "62 0")
+	(lineColor "39FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"62 0 -2 0"
+		"62 0 -1 45"
+		"61 45 -1 45"
+		"61 45 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90169] of  OMTPoly
+
+	(fillColor "33FF0000")
+	(isPolygon TRUE)
+	(label "98")
+	(latitude "62 0")
+	(lineColor "33FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"62 0 -1 45"
+		"62 0 -1 30"
+		"61 45 -1 30"
+		"61 45 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90170] of  OMTPoly
+
+	(fillColor "36FF0000")
+	(isPolygon TRUE)
+	(label "108")
+	(latitude "62 0")
+	(lineColor "36FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"62 0 -1 30"
+		"62 0 -1 15"
+		"61 45 -1 15"
+		"61 45 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90171] of  OMTPoly
+
+	(fillColor "85FF0000")
+	(isPolygon TRUE)
+	(label "118")
+	(latitude "62 0")
+	(lineColor "85FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"62 0 -1 15"
+		"62 0 -1 0"
+		"61 45 -1 0"
+		"61 45 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90172] of  OMTPoly
+
+	(fillColor "7dFF0000")
+	(isPolygon TRUE)
+	(label "128")
+	(latitude "62 0")
+	(lineColor "7dFF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"62 0 -1 0"
+		"62 0 0 -45"
+		"61 45 0 -45"
+		"61 45 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90173] of  OMTPoly
+
+	(fillColor "9bFF0000")
+	(isPolygon TRUE)
+	(label "138")
+	(latitude "62 0")
+	(lineColor "9bFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"62 0 0 -45"
+		"62 0 0 -30"
+		"61 45 0 -30"
+		"61 45 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90174] of  OMTPoly
+
+	(fillColor "64FF0000")
+	(isPolygon TRUE)
+	(label "148")
+	(latitude "62 0")
+	(lineColor "64FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"62 0 0 -30"
+		"62 0 0 -15"
+		"61 45 0 -15"
+		"61 45 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90175] of  OMTPoly
+
+	(fillColor "65FF0000")
+	(isPolygon TRUE)
+	(label "158")
+	(latitude "62 0")
+	(lineColor "65FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"62 0 0 -15"
+		"62 0 0 0"
+		"61 45 0 0"
+		"61 45 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90176] of  OMTPoly
+
+	(fillColor "69FF0000")
+	(isPolygon TRUE)
+	(label "168")
+	(latitude "62 0")
+	(lineColor "69FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"62 0 0 0"
+		"62 0 0 15"
+		"61 45 0 15"
+		"61 45 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90177] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "178")
+	(latitude "62 0")
+	(lineColor "39FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"62 0 0 15"
+		"62 0 0 30"
+		"61 45 0 30"
+		"61 45 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90178] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "188")
+	(latitude "62 0")
+	(lineColor "1cFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"62 0 0 30"
+		"62 0 0 45"
+		"61 45 0 45"
+		"61 45 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90179] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "198")
+	(latitude "62 0")
+	(lineColor "1fFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"62 0 0 45"
+		"62 0 1 0"
+		"61 45 1 0"
+		"61 45 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90180] of  OMTPoly
+
+	(fillColor "60FF0000")
+	(isPolygon TRUE)
+	(label "09")
+	(latitude "62 15")
+	(lineColor "60FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"62 15 -4 0"
+		"62 15 -3 45"
+		"62 0 -3 45"
+		"62 0 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90181] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "19")
+	(latitude "62 15")
+	(lineColor "1dFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"62 15 -3 45"
+		"62 15 -3 30"
+		"62 0 -3 30"
+		"62 0 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90182] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "29")
+	(latitude "62 15")
+	(lineColor "14FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"62 15 -3 30"
+		"62 15 -3 15"
+		"62 0 -3 15"
+		"62 0 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90183] of  OMTPoly
+
+	(fillColor "53FF0000")
+	(isPolygon TRUE)
+	(label "39")
+	(latitude "62 15")
+	(lineColor "53FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"62 15 -3 15"
+		"62 15 -3 0"
+		"62 0 -3 0"
+		"62 0 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90184] of  OMTPoly
+
+	(fillColor "26FF0000")
+	(isPolygon TRUE)
+	(label "49")
+	(latitude "62 15")
+	(lineColor "26FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"62 15 -3 0"
+		"62 15 -2 45"
+		"62 0 -2 45"
+		"62 0 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90185] of  OMTPoly
+
+	(fillColor "deFF0000")
+	(isPolygon TRUE)
+	(label "59")
+	(latitude "62 15")
+	(lineColor "deFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"62 15 -2 45"
+		"62 15 -2 30"
+		"62 0 -2 30"
+		"62 0 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90186] of  OMTPoly
+
+	(fillColor "c1FF0000")
+	(isPolygon TRUE)
+	(label "69")
+	(latitude "62 15")
+	(lineColor "c1FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"62 15 -2 30"
+		"62 15 -2 15"
+		"62 0 -2 15"
+		"62 0 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90187] of  OMTPoly
+
+	(fillColor "3fFF0000")
+	(isPolygon TRUE)
+	(label "79")
+	(latitude "62 15")
+	(lineColor "3fFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"62 15 -2 15"
+		"62 15 -2 0"
+		"62 0 -2 0"
+		"62 0 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90188] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "89")
+	(latitude "62 15")
+	(lineColor "05FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"62 15 -2 0"
+		"62 15 -1 45"
+		"62 0 -1 45"
+		"62 0 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90189] of  OMTPoly
+
+	(fillColor "0bFF0000")
+	(isPolygon TRUE)
+	(label "99")
+	(latitude "62 15")
+	(lineColor "0bFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"62 15 -1 45"
+		"62 15 -1 30"
+		"62 0 -1 30"
+		"62 0 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90190] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "109")
+	(latitude "62 15")
+	(lineColor "1fFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"62 15 -1 30"
+		"62 15 -1 15"
+		"62 0 -1 15"
+		"62 0 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90191] of  OMTPoly
+
+	(fillColor "23FF0000")
+	(isPolygon TRUE)
+	(label "119")
+	(latitude "62 15")
+	(lineColor "23FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"62 15 -1 15"
+		"62 15 -1 0"
+		"62 0 -1 0"
+		"62 0 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90192] of  OMTPoly
+
+	(fillColor "3cFF0000")
+	(isPolygon TRUE)
+	(label "129")
+	(latitude "62 15")
+	(lineColor "3cFF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"62 15 -1 0"
+		"62 15 0 -45"
+		"62 0 0 -45"
+		"62 0 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90193] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "139")
+	(latitude "62 15")
+	(lineColor "63FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"62 15 0 -45"
+		"62 15 0 -30"
+		"62 0 0 -30"
+		"62 0 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90194] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "149")
+	(latitude "62 15")
+	(lineColor "22FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"62 15 0 -30"
+		"62 15 0 -15"
+		"62 0 0 -15"
+		"62 0 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90195] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "159")
+	(latitude "62 15")
+	(lineColor "63FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"62 15 0 -15"
+		"62 15 0 0"
+		"62 0 0 0"
+		"62 0 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90196] of  OMTPoly
+
+	(fillColor "8bFF0000")
+	(isPolygon TRUE)
+	(label "169")
+	(latitude "62 15")
+	(lineColor "8bFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"62 15 0 0"
+		"62 15 0 15"
+		"62 0 0 15"
+		"62 0 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90197] of  OMTPoly
+
+	(fillColor "37FF0000")
+	(isPolygon TRUE)
+	(label "179")
+	(latitude "62 15")
+	(lineColor "37FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"62 15 0 15"
+		"62 15 0 30"
+		"62 0 0 30"
+		"62 0 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90198] of  OMTPoly
+
+	(fillColor "35FF0000")
+	(isPolygon TRUE)
+	(label "189")
+	(latitude "62 15")
+	(lineColor "35FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"62 15 0 30"
+		"62 15 0 45"
+		"62 0 0 45"
+		"62 0 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90199] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "199")
+	(latitude "62 15")
+	(lineColor "30FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"62 15 0 45"
+		"62 15 1 0"
+		"62 0 1 0"
+		"62 0 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90200] of  OMTPoly
+
+	(fillColor "6aFF0000")
+	(isPolygon TRUE)
+	(label "010")
+	(latitude "62 30")
+	(lineColor "6aFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"62 30 -4 0"
+		"62 30 -3 45"
+		"62 15 -3 45"
+		"62 15 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90201] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "110")
+	(latitude "62 30")
+	(lineColor "2eFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"62 30 -3 45"
+		"62 30 -3 30"
+		"62 15 -3 30"
+		"62 15 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90202] of  OMTPoly
+
+	(fillColor "33FF0000")
+	(isPolygon TRUE)
+	(label "210")
+	(latitude "62 30")
+	(lineColor "33FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"62 30 -3 30"
+		"62 30 -3 15"
+		"62 15 -3 15"
+		"62 15 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90203] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "310")
+	(latitude "62 30")
+	(lineColor "30FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"62 30 -3 15"
+		"62 30 -3 0"
+		"62 15 -3 0"
+		"62 15 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90204] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "410")
+	(latitude "62 30")
+	(lineColor "1fFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"62 30 -3 0"
+		"62 30 -2 45"
+		"62 15 -2 45"
+		"62 15 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90205] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "510")
+	(latitude "62 30")
+	(lineColor "30FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"62 30 -2 45"
+		"62 30 -2 30"
+		"62 15 -2 30"
+		"62 15 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90206] of  OMTPoly
+
+	(fillColor "47FF0000")
+	(isPolygon TRUE)
+	(label "610")
+	(latitude "62 30")
+	(lineColor "47FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"62 30 -2 30"
+		"62 30 -2 15"
+		"62 15 -2 15"
+		"62 15 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90207] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "710")
+	(latitude "62 30")
+	(lineColor "63FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"62 30 -2 15"
+		"62 30 -2 0"
+		"62 15 -2 0"
+		"62 15 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90208] of  OMTPoly
+
+	(fillColor "5cFF0000")
+	(isPolygon TRUE)
+	(label "810")
+	(latitude "62 30")
+	(lineColor "5cFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"62 30 -2 0"
+		"62 30 -1 45"
+		"62 15 -1 45"
+		"62 15 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90209] of  OMTPoly
+
+	(fillColor "37FF0000")
+	(isPolygon TRUE)
+	(label "910")
+	(latitude "62 30")
+	(lineColor "37FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"62 30 -1 45"
+		"62 30 -1 30"
+		"62 15 -1 30"
+		"62 15 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90210] of  OMTPoly
+
+	(fillColor "05FF0000")
+	(isPolygon TRUE)
+	(label "1010")
+	(latitude "62 30")
+	(lineColor "05FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"62 30 -1 30"
+		"62 30 -1 15"
+		"62 15 -1 15"
+		"62 15 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90211] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "1110")
+	(latitude "62 30")
+	(lineColor "1fFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"62 30 -1 15"
+		"62 30 -1 0"
+		"62 15 -1 0"
+		"62 15 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90212] of  OMTPoly
+
+	(fillColor "15FF0000")
+	(isPolygon TRUE)
+	(label "1210")
+	(latitude "62 30")
+	(lineColor "15FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"62 30 -1 0"
+		"62 30 0 -45"
+		"62 15 0 -45"
+		"62 15 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90213] of  OMTPoly
+
+	(fillColor "25FF0000")
+	(isPolygon TRUE)
+	(label "1310")
+	(latitude "62 30")
+	(lineColor "25FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"62 30 0 -45"
+		"62 30 0 -30"
+		"62 15 0 -30"
+		"62 15 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90214] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "1410")
+	(latitude "62 30")
+	(lineColor "22FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"62 30 0 -30"
+		"62 30 0 -15"
+		"62 15 0 -15"
+		"62 15 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90215] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "1510")
+	(latitude "62 30")
+	(lineColor "2aFF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"62 30 0 -15"
+		"62 30 0 0"
+		"62 15 0 0"
+		"62 15 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90216] of  OMTPoly
+
+	(fillColor "4eFF0000")
+	(isPolygon TRUE)
+	(label "1610")
+	(latitude "62 30")
+	(lineColor "4eFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"62 30 0 0"
+		"62 30 0 15"
+		"62 15 0 15"
+		"62 15 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90217] of  OMTPoly
+
+	(fillColor "3cFF0000")
+	(isPolygon TRUE)
+	(label "1710")
+	(latitude "62 30")
+	(lineColor "3cFF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"62 30 0 15"
+		"62 30 0 30"
+		"62 15 0 30"
+		"62 15 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90218] of  OMTPoly
+
+	(fillColor "2cFF0000")
+	(isPolygon TRUE)
+	(label "1810")
+	(latitude "62 30")
+	(lineColor "2cFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"62 30 0 30"
+		"62 30 0 45"
+		"62 15 0 45"
+		"62 15 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90219] of  OMTPoly
+
+	(fillColor "25FF0000")
+	(isPolygon TRUE)
+	(label "1910")
+	(latitude "62 30")
+	(lineColor "25FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"62 30 0 45"
+		"62 30 1 0"
+		"62 15 1 0"
+		"62 15 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90220] of  OMTPoly
+
+	(fillColor "ffFF0000")
+	(isPolygon TRUE)
+	(label "011")
+	(latitude "62 45")
+	(lineColor "ffFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"62 45 -4 0"
+		"62 45 -3 45"
+		"62 30 -3 45"
+		"62 30 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90221] of  OMTPoly
+
+	(fillColor "c9FF0000")
+	(isPolygon TRUE)
+	(label "111")
+	(latitude "62 45")
+	(lineColor "c9FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"62 45 -3 45"
+		"62 45 -3 30"
+		"62 30 -3 30"
+		"62 30 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90222] of  OMTPoly
+
+	(fillColor "aaFF0000")
+	(isPolygon TRUE)
+	(label "211")
+	(latitude "62 45")
+	(lineColor "aaFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"62 45 -3 30"
+		"62 45 -3 15"
+		"62 30 -3 15"
+		"62 30 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90223] of  OMTPoly
+
+	(fillColor "b6FF0000")
+	(isPolygon TRUE)
+	(label "311")
+	(latitude "62 45")
+	(lineColor "b6FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"62 45 -3 15"
+		"62 45 -3 0"
+		"62 30 -3 0"
+		"62 30 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90224] of  OMTPoly
+
+	(fillColor "c3FF0000")
+	(isPolygon TRUE)
+	(label "411")
+	(latitude "62 45")
+	(lineColor "c3FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"62 45 -3 0"
+		"62 45 -2 45"
+		"62 30 -2 45"
+		"62 30 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90225] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "511")
+	(latitude "62 45")
+	(lineColor "68FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"62 45 -2 45"
+		"62 45 -2 30"
+		"62 30 -2 30"
+		"62 30 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90226] of  OMTPoly
+
+	(fillColor "c4FF0000")
+	(isPolygon TRUE)
+	(label "611")
+	(latitude "62 45")
+	(lineColor "c4FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"62 45 -2 30"
+		"62 45 -2 15"
+		"62 30 -2 15"
+		"62 30 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90227] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "711")
+	(latitude "62 45")
+	(lineColor "66FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"62 45 -2 15"
+		"62 45 -2 0"
+		"62 30 -2 0"
+		"62 30 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90228] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "811")
+	(latitude "62 45")
+	(lineColor "1fFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"62 45 -2 0"
+		"62 45 -1 45"
+		"62 30 -1 45"
+		"62 30 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90229] of  OMTPoly
+
+	(fillColor "17FF0000")
+	(isPolygon TRUE)
+	(label "911")
+	(latitude "62 45")
+	(lineColor "17FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"62 45 -1 45"
+		"62 45 -1 30"
+		"62 30 -1 30"
+		"62 30 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90230] of  OMTPoly
+
+	(fillColor "11FF0000")
+	(isPolygon TRUE)
+	(label "1011")
+	(latitude "62 45")
+	(lineColor "11FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"62 45 -1 30"
+		"62 45 -1 15"
+		"62 30 -1 15"
+		"62 30 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90231] of  OMTPoly
+
+	(fillColor "1eFF0000")
+	(isPolygon TRUE)
+	(label "1111")
+	(latitude "62 45")
+	(lineColor "1eFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"62 45 -1 15"
+		"62 45 -1 0"
+		"62 30 -1 0"
+		"62 30 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90232] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "1211")
+	(latitude "62 45")
+	(lineColor "1aFF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"62 45 -1 0"
+		"62 45 0 -45"
+		"62 30 0 -45"
+		"62 30 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90233] of  OMTPoly
+
+	(fillColor "48FF0000")
+	(isPolygon TRUE)
+	(label "1311")
+	(latitude "62 45")
+	(lineColor "48FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"62 45 0 -45"
+		"62 45 0 -30"
+		"62 30 0 -30"
+		"62 30 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90234] of  OMTPoly
+
+	(fillColor "31FF0000")
+	(isPolygon TRUE)
+	(label "1411")
+	(latitude "62 45")
+	(lineColor "31FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"62 45 0 -30"
+		"62 45 0 -15"
+		"62 30 0 -15"
+		"62 30 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90235] of  OMTPoly
+
+	(fillColor "2fFF0000")
+	(isPolygon TRUE)
+	(label "1511")
+	(latitude "62 45")
+	(lineColor "2fFF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"62 45 0 -15"
+		"62 45 0 0"
+		"62 30 0 0"
+		"62 30 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90236] of  OMTPoly
+
+	(fillColor "51FF0000")
+	(isPolygon TRUE)
+	(label "1611")
+	(latitude "62 45")
+	(lineColor "51FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"62 45 0 0"
+		"62 45 0 15"
+		"62 30 0 15"
+		"62 30 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90237] of  OMTPoly
+
+	(fillColor "34FF0000")
+	(isPolygon TRUE)
+	(label "1711")
+	(latitude "62 45")
+	(lineColor "34FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"62 45 0 15"
+		"62 45 0 30"
+		"62 30 0 30"
+		"62 30 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90238] of  OMTPoly
+
+	(fillColor "60FF0000")
+	(isPolygon TRUE)
+	(label "1811")
+	(latitude "62 45")
+	(lineColor "60FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"62 45 0 30"
+		"62 45 0 45"
+		"62 30 0 45"
+		"62 30 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90239] of  OMTPoly
+
+	(fillColor "35FF0000")
+	(isPolygon TRUE)
+	(label "1911")
+	(latitude "62 45")
+	(lineColor "35FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"62 45 0 45"
+		"62 45 1 0"
+		"62 30 1 0"
+		"62 30 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90240] of  OMTPoly
+
+	(fillColor "45FF0000")
+	(isPolygon TRUE)
+	(label "012")
+	(latitude "63 0")
+	(lineColor "45FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"63 0 -4 0"
+		"63 0 -3 45"
+		"62 45 -3 45"
+		"62 45 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90241] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "112")
+	(latitude "63 0")
+	(lineColor "66FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"63 0 -3 45"
+		"63 0 -3 30"
+		"62 45 -3 30"
+		"62 45 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90242] of  OMTPoly
+
+	(fillColor "92FF0000")
+	(isPolygon TRUE)
+	(label "212")
+	(latitude "63 0")
+	(lineColor "92FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"63 0 -3 30"
+		"63 0 -3 15"
+		"62 45 -3 15"
+		"62 45 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90243] of  OMTPoly
+
+	(fillColor "97FF0000")
+	(isPolygon TRUE)
+	(label "312")
+	(latitude "63 0")
+	(lineColor "97FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"63 0 -3 15"
+		"63 0 -3 0"
+		"62 45 -3 0"
+		"62 45 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90244] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "412")
+	(latitude "63 0")
+	(lineColor "68FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"63 0 -3 0"
+		"63 0 -2 45"
+		"62 45 -2 45"
+		"62 45 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90245] of  OMTPoly
+
+	(fillColor "85FF0000")
+	(isPolygon TRUE)
+	(label "512")
+	(latitude "63 0")
+	(lineColor "85FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"63 0 -2 45"
+		"63 0 -2 30"
+		"62 45 -2 30"
+		"62 45 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90246] of  OMTPoly
+
+	(fillColor "67FF0000")
+	(isPolygon TRUE)
+	(label "612")
+	(latitude "63 0")
+	(lineColor "67FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"63 0 -2 30"
+		"63 0 -2 15"
+		"62 45 -2 15"
+		"62 45 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90247] of  OMTPoly
+
+	(fillColor "62FF0000")
+	(isPolygon TRUE)
+	(label "712")
+	(latitude "63 0")
+	(lineColor "62FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"63 0 -2 15"
+		"63 0 -2 0"
+		"62 45 -2 0"
+		"62 45 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90248] of  OMTPoly
+
+	(fillColor "33FF0000")
+	(isPolygon TRUE)
+	(label "812")
+	(latitude "63 0")
+	(lineColor "33FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"63 0 -2 0"
+		"63 0 -1 45"
+		"62 45 -1 45"
+		"62 45 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90249] of  OMTPoly
+
+	(fillColor "29FF0000")
+	(isPolygon TRUE)
+	(label "912")
+	(latitude "63 0")
+	(lineColor "29FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"63 0 -1 45"
+		"63 0 -1 30"
+		"62 45 -1 30"
+		"62 45 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90250] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "1012")
+	(latitude "63 0")
+	(lineColor "2aFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"63 0 -1 30"
+		"63 0 -1 15"
+		"62 45 -1 15"
+		"62 45 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90251] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "1112")
+	(latitude "63 0")
+	(lineColor "22FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"63 0 -1 15"
+		"63 0 -1 0"
+		"62 45 -1 0"
+		"62 45 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90252] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "1212")
+	(latitude "63 0")
+	(lineColor "28FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"63 0 -1 0"
+		"63 0 0 -45"
+		"62 45 0 -45"
+		"62 45 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90253] of  OMTPoly
+
+	(fillColor "2cFF0000")
+	(isPolygon TRUE)
+	(label "1312")
+	(latitude "63 0")
+	(lineColor "2cFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"63 0 0 -45"
+		"63 0 0 -30"
+		"62 45 0 -30"
+		"62 45 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90254] of  OMTPoly
+
+	(fillColor "31FF0000")
+	(isPolygon TRUE)
+	(label "1412")
+	(latitude "63 0")
+	(lineColor "31FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"63 0 0 -30"
+		"63 0 0 -15"
+		"62 45 0 -15"
+		"62 45 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90255] of  OMTPoly
+
+	(fillColor "34FF0000")
+	(isPolygon TRUE)
+	(label "1512")
+	(latitude "63 0")
+	(lineColor "34FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"63 0 0 -15"
+		"63 0 0 0"
+		"62 45 0 0"
+		"62 45 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90256] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "1612")
+	(latitude "63 0")
+	(lineColor "68FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"63 0 0 0"
+		"63 0 0 15"
+		"62 45 0 15"
+		"62 45 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90257] of  OMTPoly
+
+	(fillColor "56FF0000")
+	(isPolygon TRUE)
+	(label "1712")
+	(latitude "63 0")
+	(lineColor "56FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"63 0 0 15"
+		"63 0 0 30"
+		"62 45 0 30"
+		"62 45 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90258] of  OMTPoly
+
+	(fillColor "2cFF0000")
+	(isPolygon TRUE)
+	(label "1812")
+	(latitude "63 0")
+	(lineColor "2cFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"63 0 0 30"
+		"63 0 0 45"
+		"62 45 0 45"
+		"62 45 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90259] of  OMTPoly
+
+	(fillColor "47FF0000")
+	(isPolygon TRUE)
+	(label "1912")
+	(latitude "63 0")
+	(lineColor "47FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"63 0 0 45"
+		"63 0 1 0"
+		"62 45 1 0"
+		"62 45 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90260] of  OMTPoly
+
+	(fillColor "5eFF0000")
+	(isPolygon TRUE)
+	(label "013")
+	(latitude "63 15")
+	(lineColor "5eFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"63 15 -4 0"
+		"63 15 -3 45"
+		"63 0 -3 45"
+		"63 0 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90261] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "113")
+	(latitude "63 15")
+	(lineColor "68FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"63 15 -3 45"
+		"63 15 -3 30"
+		"63 0 -3 30"
+		"63 0 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90262] of  OMTPoly
+
+	(fillColor "69FF0000")
+	(isPolygon TRUE)
+	(label "213")
+	(latitude "63 15")
+	(lineColor "69FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"63 15 -3 30"
+		"63 15 -3 15"
+		"63 0 -3 15"
+		"63 0 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90263] of  OMTPoly
+
+	(fillColor "44FF0000")
+	(isPolygon TRUE)
+	(label "313")
+	(latitude "63 15")
+	(lineColor "44FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"63 15 -3 15"
+		"63 15 -3 0"
+		"63 0 -3 0"
+		"63 0 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90264] of  OMTPoly
+
+	(fillColor "33FF0000")
+	(isPolygon TRUE)
+	(label "413")
+	(latitude "63 15")
+	(lineColor "33FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"63 15 -3 0"
+		"63 15 -2 45"
+		"63 0 -2 45"
+		"63 0 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90265] of  OMTPoly
+
+	(fillColor "53FF0000")
+	(isPolygon TRUE)
+	(label "513")
+	(latitude "63 15")
+	(lineColor "53FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"63 15 -2 45"
+		"63 15 -2 30"
+		"63 0 -2 30"
+		"63 0 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90266] of  OMTPoly
+
+	(fillColor "2dFF0000")
+	(isPolygon TRUE)
+	(label "613")
+	(latitude "63 15")
+	(lineColor "2dFF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"63 15 -2 30"
+		"63 15 -2 15"
+		"63 0 -2 15"
+		"63 0 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90267] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "713")
+	(latitude "63 15")
+	(lineColor "63FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"63 15 -2 15"
+		"63 15 -2 0"
+		"63 0 -2 0"
+		"63 0 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90268] of  OMTPoly
+
+	(fillColor "66FF0000")
+	(isPolygon TRUE)
+	(label "813")
+	(latitude "63 15")
+	(lineColor "66FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"63 15 -2 0"
+		"63 15 -1 45"
+		"63 0 -1 45"
+		"63 0 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90269] of  OMTPoly
+
+	(fillColor "4dFF0000")
+	(isPolygon TRUE)
+	(label "913")
+	(latitude "63 15")
+	(lineColor "4dFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"63 15 -1 45"
+		"63 15 -1 30"
+		"63 0 -1 30"
+		"63 0 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90270] of  OMTPoly
+
+	(fillColor "42FF0000")
+	(isPolygon TRUE)
+	(label "1013")
+	(latitude "63 15")
+	(lineColor "42FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"63 15 -1 30"
+		"63 15 -1 15"
+		"63 0 -1 15"
+		"63 0 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90271] of  OMTPoly
+
+	(fillColor "30FF0000")
+	(isPolygon TRUE)
+	(label "1113")
+	(latitude "63 15")
+	(lineColor "30FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"63 15 -1 15"
+		"63 15 -1 0"
+		"63 0 -1 0"
+		"63 0 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90272] of  OMTPoly
+
+	(fillColor "38FF0000")
+	(isPolygon TRUE)
+	(label "1213")
+	(latitude "63 15")
+	(lineColor "38FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"63 15 -1 0"
+		"63 15 0 -45"
+		"63 0 0 -45"
+		"63 0 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90273] of  OMTPoly
+
+	(fillColor "36FF0000")
+	(isPolygon TRUE)
+	(label "1313")
+	(latitude "63 15")
+	(lineColor "36FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"63 15 0 -45"
+		"63 15 0 -30"
+		"63 0 0 -30"
+		"63 0 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90274] of  OMTPoly
+
+	(fillColor "36FF0000")
+	(isPolygon TRUE)
+	(label "1413")
+	(latitude "63 15")
+	(lineColor "36FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"63 15 0 -30"
+		"63 15 0 -15"
+		"63 0 0 -15"
+		"63 0 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90275] of  OMTPoly
+
+	(fillColor "60FF0000")
+	(isPolygon TRUE)
+	(label "1513")
+	(latitude "63 15")
+	(lineColor "60FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"63 15 0 -15"
+		"63 15 0 0"
+		"63 0 0 0"
+		"63 0 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90276] of  OMTPoly
+
+	(fillColor "98FF0000")
+	(isPolygon TRUE)
+	(label "1613")
+	(latitude "63 15")
+	(lineColor "98FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"63 15 0 0"
+		"63 15 0 15"
+		"63 0 0 15"
+		"63 0 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90277] of  OMTPoly
+
+	(fillColor "68FF0000")
+	(isPolygon TRUE)
+	(label "1713")
+	(latitude "63 15")
+	(lineColor "68FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"63 15 0 15"
+		"63 15 0 30"
+		"63 0 0 30"
+		"63 0 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90278] of  OMTPoly
+
+	(fillColor "62FF0000")
+	(isPolygon TRUE)
+	(label "1813")
+	(latitude "63 15")
+	(lineColor "62FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"63 15 0 30"
+		"63 15 0 45"
+		"63 0 0 45"
+		"63 0 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90279] of  OMTPoly
+
+	(fillColor "81FF0000")
+	(isPolygon TRUE)
+	(label "1913")
+	(latitude "63 15")
+	(lineColor "81FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"63 15 0 45"
+		"63 15 1 0"
+		"63 0 1 0"
+		"63 0 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90280] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "014")
+	(latitude "63 30")
+	(lineColor "2aFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"63 30 -4 0"
+		"63 30 -3 45"
+		"63 15 -3 45"
+		"63 15 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90281] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "114")
+	(latitude "63 30")
+	(lineColor "28FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"63 30 -3 45"
+		"63 30 -3 30"
+		"63 15 -3 30"
+		"63 15 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90282] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "214")
+	(latitude "63 30")
+	(lineColor "2eFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"63 30 -3 30"
+		"63 30 -3 15"
+		"63 15 -3 15"
+		"63 15 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90283] of  OMTPoly
+
+	(fillColor "2fFF0000")
+	(isPolygon TRUE)
+	(label "314")
+	(latitude "63 30")
+	(lineColor "2fFF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"63 30 -3 15"
+		"63 30 -3 0"
+		"63 15 -3 0"
+		"63 15 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90284] of  OMTPoly
+
+	(fillColor "36FF0000")
+	(isPolygon TRUE)
+	(label "414")
+	(latitude "63 30")
+	(lineColor "36FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"63 30 -3 0"
+		"63 30 -2 45"
+		"63 15 -2 45"
+		"63 15 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90285] of  OMTPoly
+
+	(fillColor "39FF0000")
+	(isPolygon TRUE)
+	(label "514")
+	(latitude "63 30")
+	(lineColor "39FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"63 30 -2 45"
+		"63 30 -2 30"
+		"63 15 -2 30"
+		"63 15 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90286] of  OMTPoly
+
+	(fillColor "08FF0000")
+	(isPolygon TRUE)
+	(label "614")
+	(latitude "63 30")
+	(lineColor "08FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"63 30 -2 30"
+		"63 30 -2 15"
+		"63 15 -2 15"
+		"63 15 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90287] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "714")
+	(latitude "63 30")
+	(lineColor "20FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"63 30 -2 15"
+		"63 30 -2 0"
+		"63 15 -2 0"
+		"63 15 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90288] of  OMTPoly
+
+	(fillColor "2cFF0000")
+	(isPolygon TRUE)
+	(label "814")
+	(latitude "63 30")
+	(lineColor "2cFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"63 30 -2 0"
+		"63 30 -1 45"
+		"63 15 -1 45"
+		"63 15 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90289] of  OMTPoly
+
+	(fillColor "5dFF0000")
+	(isPolygon TRUE)
+	(label "914")
+	(latitude "63 30")
+	(lineColor "5dFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"63 30 -1 45"
+		"63 30 -1 30"
+		"63 15 -1 30"
+		"63 15 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90290] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "1014")
+	(latitude "63 30")
+	(lineColor "2aFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"63 30 -1 30"
+		"63 30 -1 15"
+		"63 15 -1 15"
+		"63 15 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90291] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "1114")
+	(latitude "63 30")
+	(lineColor "63FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"63 30 -1 15"
+		"63 30 -1 0"
+		"63 15 -1 0"
+		"63 15 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90292] of  OMTPoly
+
+	(fillColor "37FF0000")
+	(isPolygon TRUE)
+	(label "1214")
+	(latitude "63 30")
+	(lineColor "37FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"63 30 -1 0"
+		"63 30 0 -45"
+		"63 15 0 -45"
+		"63 15 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90293] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "1314")
+	(latitude "63 30")
+	(lineColor "2aFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"63 30 0 -45"
+		"63 30 0 -30"
+		"63 15 0 -30"
+		"63 15 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90294] of  OMTPoly
+
+	(fillColor "24FF0000")
+	(isPolygon TRUE)
+	(label "1414")
+	(latitude "63 30")
+	(lineColor "24FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"63 30 0 -30"
+		"63 30 0 -15"
+		"63 15 0 -15"
+		"63 15 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90295] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "1514")
+	(latitude "63 30")
+	(lineColor "28FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"63 30 0 -15"
+		"63 30 0 0"
+		"63 15 0 0"
+		"63 15 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90296] of  OMTPoly
+
+	(fillColor "63FF0000")
+	(isPolygon TRUE)
+	(label "1614")
+	(latitude "63 30")
+	(lineColor "63FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"63 30 0 0"
+		"63 30 0 15"
+		"63 15 0 15"
+		"63 15 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90297] of  OMTPoly
+
+	(fillColor "3cFF0000")
+	(isPolygon TRUE)
+	(label "1714")
+	(latitude "63 30")
+	(lineColor "3cFF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"63 30 0 15"
+		"63 30 0 30"
+		"63 15 0 30"
+		"63 15 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90298] of  OMTPoly
+
+	(fillColor "2aFF0000")
+	(isPolygon TRUE)
+	(label "1814")
+	(latitude "63 30")
+	(lineColor "2aFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"63 30 0 30"
+		"63 30 0 45"
+		"63 15 0 45"
+		"63 15 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90299] of  OMTPoly
+
+	(fillColor "5fFF0000")
+	(isPolygon TRUE)
+	(label "1914")
+	(latitude "63 30")
+	(lineColor "5fFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"63 30 0 45"
+		"63 30 1 0"
+		"63 15 1 0"
+		"63 15 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90300] of  OMTPoly
+
+	(fillColor "35FF0000")
+	(isPolygon TRUE)
+	(label "015")
+	(latitude "63 45")
+	(lineColor "35FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"63 45 -4 0"
+		"63 45 -3 45"
+		"63 30 -3 45"
+		"63 30 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90301] of  OMTPoly
+
+	(fillColor "3eFF0000")
+	(isPolygon TRUE)
+	(label "115")
+	(latitude "63 45")
+	(lineColor "3eFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"63 45 -3 45"
+		"63 45 -3 30"
+		"63 30 -3 30"
+		"63 30 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90302] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "215")
+	(latitude "63 45")
+	(lineColor "14FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"63 45 -3 30"
+		"63 45 -3 15"
+		"63 30 -3 15"
+		"63 30 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90303] of  OMTPoly
+
+	(fillColor "07FF0000")
+	(isPolygon TRUE)
+	(label "315")
+	(latitude "63 45")
+	(lineColor "07FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"63 45 -3 15"
+		"63 45 -3 0"
+		"63 30 -3 0"
+		"63 30 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90304] of  OMTPoly
+
+	(fillColor "0eFF0000")
+	(isPolygon TRUE)
+	(label "415")
+	(latitude "63 45")
+	(lineColor "0eFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"63 45 -3 0"
+		"63 45 -2 45"
+		"63 30 -2 45"
+		"63 30 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90305] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "515")
+	(latitude "63 45")
+	(lineColor "1dFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"63 45 -2 45"
+		"63 45 -2 30"
+		"63 30 -2 30"
+		"63 30 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90306] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "615")
+	(latitude "63 45")
+	(lineColor "14FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"63 45 -2 30"
+		"63 45 -2 15"
+		"63 30 -2 15"
+		"63 30 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90307] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "715")
+	(latitude "63 45")
+	(lineColor "0fFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"63 45 -2 15"
+		"63 45 -2 0"
+		"63 30 -2 0"
+		"63 30 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90308] of  OMTPoly
+
+	(fillColor "19FF0000")
+	(isPolygon TRUE)
+	(label "815")
+	(latitude "63 45")
+	(lineColor "19FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"63 45 -2 0"
+		"63 45 -1 45"
+		"63 30 -1 45"
+		"63 30 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90309] of  OMTPoly
+
+	(fillColor "1bFF0000")
+	(isPolygon TRUE)
+	(label "915")
+	(latitude "63 45")
+	(lineColor "1bFF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"63 45 -1 45"
+		"63 45 -1 30"
+		"63 30 -1 30"
+		"63 30 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90310] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "1015")
+	(latitude "63 45")
+	(lineColor "21FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"63 45 -1 30"
+		"63 45 -1 15"
+		"63 30 -1 15"
+		"63 30 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90311] of  OMTPoly
+
+	(fillColor "2bFF0000")
+	(isPolygon TRUE)
+	(label "1115")
+	(latitude "63 45")
+	(lineColor "2bFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"63 45 -1 15"
+		"63 45 -1 0"
+		"63 30 -1 0"
+		"63 30 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90312] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "1215")
+	(latitude "63 45")
+	(lineColor "21FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"63 45 -1 0"
+		"63 45 0 -45"
+		"63 30 0 -45"
+		"63 30 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90313] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "1315")
+	(latitude "63 45")
+	(lineColor "28FF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"63 45 0 -45"
+		"63 45 0 -30"
+		"63 30 0 -30"
+		"63 30 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90314] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "1415")
+	(latitude "63 45")
+	(lineColor "22FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"63 45 0 -30"
+		"63 45 0 -15"
+		"63 30 0 -15"
+		"63 30 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90315] of  OMTPoly
+
+	(fillColor "24FF0000")
+	(isPolygon TRUE)
+	(label "1515")
+	(latitude "63 45")
+	(lineColor "24FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"63 45 0 -15"
+		"63 45 0 0"
+		"63 30 0 0"
+		"63 30 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90316] of  OMTPoly
+
+	(fillColor "3fFF0000")
+	(isPolygon TRUE)
+	(label "1615")
+	(latitude "63 45")
+	(lineColor "3fFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"63 45 0 0"
+		"63 45 0 15"
+		"63 30 0 15"
+		"63 30 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90317] of  OMTPoly
+
+	(fillColor "31FF0000")
+	(isPolygon TRUE)
+	(label "1715")
+	(latitude "63 45")
+	(lineColor "31FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"63 45 0 15"
+		"63 45 0 30"
+		"63 30 0 30"
+		"63 30 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90318] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "1815")
+	(latitude "63 45")
+	(lineColor "20FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"63 45 0 30"
+		"63 45 0 45"
+		"63 30 0 45"
+		"63 30 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90319] of  OMTPoly
+
+	(fillColor "2cFF0000")
+	(isPolygon TRUE)
+	(label "1915")
+	(latitude "63 45")
+	(lineColor "2cFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"63 45 0 45"
+		"63 45 1 0"
+		"63 30 1 0"
+		"63 30 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90320] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "016")
+	(latitude "64 0")
+	(lineColor "28FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"64 0 -4 0"
+		"64 0 -3 45"
+		"63 45 -3 45"
+		"63 45 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90321] of  OMTPoly
+
+	(fillColor "41FF0000")
+	(isPolygon TRUE)
+	(label "116")
+	(latitude "64 0")
+	(lineColor "41FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"64 0 -3 45"
+		"64 0 -3 30"
+		"63 45 -3 30"
+		"63 45 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90322] of  OMTPoly
+
+	(fillColor "29FF0000")
+	(isPolygon TRUE)
+	(label "216")
+	(latitude "64 0")
+	(lineColor "29FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"64 0 -3 30"
+		"64 0 -3 15"
+		"63 45 -3 15"
+		"63 45 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90323] of  OMTPoly
+
+	(fillColor "18FF0000")
+	(isPolygon TRUE)
+	(label "316")
+	(latitude "64 0")
+	(lineColor "18FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"64 0 -3 15"
+		"64 0 -3 0"
+		"63 45 -3 0"
+		"63 45 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90324] of  OMTPoly
+
+	(fillColor "18FF0000")
+	(isPolygon TRUE)
+	(label "416")
+	(latitude "64 0")
+	(lineColor "18FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"64 0 -3 0"
+		"64 0 -2 45"
+		"63 45 -2 45"
+		"63 45 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90325] of  OMTPoly
+
+	(fillColor "1bFF0000")
+	(isPolygon TRUE)
+	(label "516")
+	(latitude "64 0")
+	(lineColor "1bFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"64 0 -2 45"
+		"64 0 -2 30"
+		"63 45 -2 30"
+		"63 45 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90326] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "616")
+	(latitude "64 0")
+	(lineColor "22FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"64 0 -2 30"
+		"64 0 -2 15"
+		"63 45 -2 15"
+		"63 45 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90327] of  OMTPoly
+
+	(fillColor "19FF0000")
+	(isPolygon TRUE)
+	(label "716")
+	(latitude "64 0")
+	(lineColor "19FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"64 0 -2 15"
+		"64 0 -2 0"
+		"63 45 -2 0"
+		"63 45 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90328] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "816")
+	(latitude "64 0")
+	(lineColor "1fFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"64 0 -2 0"
+		"64 0 -1 45"
+		"63 45 -1 45"
+		"63 45 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90329] of  OMTPoly
+
+	(fillColor "25FF0000")
+	(isPolygon TRUE)
+	(label "916")
+	(latitude "64 0")
+	(lineColor "25FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"64 0 -1 45"
+		"64 0 -1 30"
+		"63 45 -1 30"
+		"63 45 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90330] of  OMTPoly
+
+	(fillColor "1fFF0000")
+	(isPolygon TRUE)
+	(label "1016")
+	(latitude "64 0")
+	(lineColor "1fFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"64 0 -1 30"
+		"64 0 -1 15"
+		"63 45 -1 15"
+		"63 45 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90331] of  OMTPoly
+
+	(fillColor "2fFF0000")
+	(isPolygon TRUE)
+	(label "1116")
+	(latitude "64 0")
+	(lineColor "2fFF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"64 0 -1 15"
+		"64 0 -1 0"
+		"63 45 -1 0"
+		"63 45 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90332] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "1216")
+	(latitude "64 0")
+	(lineColor "13FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"64 0 -1 0"
+		"64 0 0 -45"
+		"63 45 0 -45"
+		"63 45 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90333] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "1316")
+	(latitude "64 0")
+	(lineColor "1dFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"64 0 0 -45"
+		"64 0 0 -30"
+		"63 45 0 -30"
+		"63 45 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90334] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "1416")
+	(latitude "64 0")
+	(lineColor "16FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"64 0 0 -30"
+		"64 0 0 -15"
+		"63 45 0 -15"
+		"63 45 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90335] of  OMTPoly
+
+	(fillColor "27FF0000")
+	(isPolygon TRUE)
+	(label "1516")
+	(latitude "64 0")
+	(lineColor "27FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"64 0 0 -15"
+		"64 0 0 0"
+		"63 45 0 0"
+		"63 45 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90336] of  OMTPoly
+
+	(fillColor "3aFF0000")
+	(isPolygon TRUE)
+	(label "1616")
+	(latitude "64 0")
+	(lineColor "3aFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"64 0 0 0"
+		"64 0 0 15"
+		"63 45 0 15"
+		"63 45 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90337] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "1716")
+	(latitude "64 0")
+	(lineColor "1cFF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"64 0 0 15"
+		"64 0 0 30"
+		"63 45 0 30"
+		"63 45 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90338] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "1816")
+	(latitude "64 0")
+	(lineColor "1cFF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"64 0 0 30"
+		"64 0 0 45"
+		"63 45 0 45"
+		"63 45 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90339] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "1916")
+	(latitude "64 0")
+	(lineColor "1dFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"64 0 0 45"
+		"64 0 1 0"
+		"63 45 1 0"
+		"63 45 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90340] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "017")
+	(latitude "64 15")
+	(lineColor "10FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"64 15 -4 0"
+		"64 15 -3 45"
+		"64 0 -3 45"
+		"64 0 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90341] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "117")
+	(latitude "64 15")
+	(lineColor "14FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"64 15 -3 45"
+		"64 15 -3 30"
+		"64 0 -3 30"
+		"64 0 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90342] of  OMTPoly
+
+	(fillColor "0cFF0000")
+	(isPolygon TRUE)
+	(label "217")
+	(latitude "64 15")
+	(lineColor "0cFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"64 15 -3 30"
+		"64 15 -3 15"
+		"64 0 -3 15"
+		"64 0 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90343] of  OMTPoly
+
+	(fillColor "2eFF0000")
+	(isPolygon TRUE)
+	(label "317")
+	(latitude "64 15")
+	(lineColor "2eFF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"64 15 -3 15"
+		"64 15 -3 0"
+		"64 0 -3 0"
+		"64 0 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90344] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "417")
+	(latitude "64 15")
+	(lineColor "0fFF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"64 15 -3 0"
+		"64 15 -2 45"
+		"64 0 -2 45"
+		"64 0 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90345] of  OMTPoly
+
+	(fillColor "1bFF0000")
+	(isPolygon TRUE)
+	(label "517")
+	(latitude "64 15")
+	(lineColor "1bFF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"64 15 -2 45"
+		"64 15 -2 30"
+		"64 0 -2 30"
+		"64 0 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90346] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "617")
+	(latitude "64 15")
+	(lineColor "14FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"64 15 -2 30"
+		"64 15 -2 15"
+		"64 0 -2 15"
+		"64 0 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90347] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "717")
+	(latitude "64 15")
+	(lineColor "14FF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"64 15 -2 15"
+		"64 15 -2 0"
+		"64 0 -2 0"
+		"64 0 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90348] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "817")
+	(latitude "64 15")
+	(lineColor "16FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"64 15 -2 0"
+		"64 15 -1 45"
+		"64 0 -1 45"
+		"64 0 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90349] of  OMTPoly
+
+	(fillColor "15FF0000")
+	(isPolygon TRUE)
+	(label "917")
+	(latitude "64 15")
+	(lineColor "15FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"64 15 -1 45"
+		"64 15 -1 30"
+		"64 0 -1 30"
+		"64 0 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90350] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "1017")
+	(latitude "64 15")
+	(lineColor "1dFF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"64 15 -1 30"
+		"64 15 -1 15"
+		"64 0 -1 15"
+		"64 0 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90351] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "1117")
+	(latitude "64 15")
+	(lineColor "10FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"64 15 -1 15"
+		"64 15 -1 0"
+		"64 0 -1 0"
+		"64 0 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90352] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "1217")
+	(latitude "64 15")
+	(lineColor "22FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"64 15 -1 0"
+		"64 15 0 -45"
+		"64 0 0 -45"
+		"64 0 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90353] of  OMTPoly
+
+	(fillColor "2bFF0000")
+	(isPolygon TRUE)
+	(label "1317")
+	(latitude "64 15")
+	(lineColor "2bFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"64 15 0 -45"
+		"64 15 0 -30"
+		"64 0 0 -30"
+		"64 0 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90354] of  OMTPoly
+
+	(fillColor "12FF0000")
+	(isPolygon TRUE)
+	(label "1417")
+	(latitude "64 15")
+	(lineColor "12FF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"64 15 0 -30"
+		"64 15 0 -15"
+		"64 0 0 -15"
+		"64 0 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90355] of  OMTPoly
+
+	(fillColor "21FF0000")
+	(isPolygon TRUE)
+	(label "1517")
+	(latitude "64 15")
+	(lineColor "21FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"64 15 0 -15"
+		"64 15 0 0"
+		"64 0 0 0"
+		"64 0 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90356] of  OMTPoly
+
+	(fillColor "2bFF0000")
+	(isPolygon TRUE)
+	(label "1617")
+	(latitude "64 15")
+	(lineColor "2bFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"64 15 0 0"
+		"64 15 0 15"
+		"64 0 0 15"
+		"64 0 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90357] of  OMTPoly
+
+	(fillColor "22FF0000")
+	(isPolygon TRUE)
+	(label "1717")
+	(latitude "64 15")
+	(lineColor "22FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"64 15 0 15"
+		"64 15 0 30"
+		"64 0 0 30"
+		"64 0 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90358] of  OMTPoly
+
+	(fillColor "25FF0000")
+	(isPolygon TRUE)
+	(label "1817")
+	(latitude "64 15")
+	(lineColor "25FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"64 15 0 30"
+		"64 15 0 45"
+		"64 0 0 45"
+		"64 0 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90359] of  OMTPoly
+
+	(fillColor "29FF0000")
+	(isPolygon TRUE)
+	(label "1917")
+	(latitude "64 15")
+	(lineColor "29FF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"64 15 0 45"
+		"64 15 1 0"
+		"64 0 1 0"
+		"64 0 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90360] of  OMTPoly
+
+	(fillColor "11FF0000")
+	(isPolygon TRUE)
+	(label "018")
+	(latitude "64 30")
+	(lineColor "11FF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"64 30 -4 0"
+		"64 30 -3 45"
+		"64 15 -3 45"
+		"64 15 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90361] of  OMTPoly
+
+	(fillColor "20FF0000")
+	(isPolygon TRUE)
+	(label "118")
+	(latitude "64 30")
+	(lineColor "20FF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"64 30 -3 45"
+		"64 30 -3 30"
+		"64 15 -3 30"
+		"64 15 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90362] of  OMTPoly
+
+	(fillColor "1eFF0000")
+	(isPolygon TRUE)
+	(label "218")
+	(latitude "64 30")
+	(lineColor "1eFF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"64 30 -3 30"
+		"64 30 -3 15"
+		"64 15 -3 15"
+		"64 15 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90363] of  OMTPoly
+
+	(fillColor "18FF0000")
+	(isPolygon TRUE)
+	(label "318")
+	(latitude "64 30")
+	(lineColor "18FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"64 30 -3 15"
+		"64 30 -3 0"
+		"64 15 -3 0"
+		"64 15 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90364] of  OMTPoly
+
+	(fillColor "11FF0000")
+	(isPolygon TRUE)
+	(label "418")
+	(latitude "64 30")
+	(lineColor "11FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"64 30 -3 0"
+		"64 30 -2 45"
+		"64 15 -2 45"
+		"64 15 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90365] of  OMTPoly
+
+	(fillColor "19FF0000")
+	(isPolygon TRUE)
+	(label "518")
+	(latitude "64 30")
+	(lineColor "19FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"64 30 -2 45"
+		"64 30 -2 30"
+		"64 15 -2 30"
+		"64 15 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90366] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "618")
+	(latitude "64 30")
+	(lineColor "10FF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"64 30 -2 30"
+		"64 30 -2 15"
+		"64 15 -2 15"
+		"64 15 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90367] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "718")
+	(latitude "64 30")
+	(lineColor "1cFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"64 30 -2 15"
+		"64 30 -2 0"
+		"64 15 -2 0"
+		"64 15 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90368] of  OMTPoly
+
+	(fillColor "09FF0000")
+	(isPolygon TRUE)
+	(label "818")
+	(latitude "64 30")
+	(lineColor "09FF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"64 30 -2 0"
+		"64 30 -1 45"
+		"64 15 -1 45"
+		"64 15 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90369] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "918")
+	(latitude "64 30")
+	(lineColor "13FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"64 30 -1 45"
+		"64 30 -1 30"
+		"64 15 -1 30"
+		"64 15 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90370] of  OMTPoly
+
+	(fillColor "17FF0000")
+	(isPolygon TRUE)
+	(label "1018")
+	(latitude "64 30")
+	(lineColor "17FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"64 30 -1 30"
+		"64 30 -1 15"
+		"64 15 -1 15"
+		"64 15 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90371] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "1118")
+	(latitude "64 30")
+	(lineColor "10FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"64 30 -1 15"
+		"64 30 -1 0"
+		"64 15 -1 0"
+		"64 15 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90372] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "1218")
+	(latitude "64 30")
+	(lineColor "14FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"64 30 -1 0"
+		"64 30 0 -45"
+		"64 15 0 -45"
+		"64 15 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90373] of  OMTPoly
+
+	(fillColor "1eFF0000")
+	(isPolygon TRUE)
+	(label "1318")
+	(latitude "64 30")
+	(lineColor "1eFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"64 30 0 -45"
+		"64 30 0 -30"
+		"64 15 0 -30"
+		"64 15 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90374] of  OMTPoly
+
+	(fillColor "1bFF0000")
+	(isPolygon TRUE)
+	(label "1418")
+	(latitude "64 30")
+	(lineColor "1bFF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"64 30 0 -30"
+		"64 30 0 -15"
+		"64 15 0 -15"
+		"64 15 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90375] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "1518")
+	(latitude "64 30")
+	(lineColor "1aFF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"64 30 0 -15"
+		"64 30 0 0"
+		"64 15 0 0"
+		"64 15 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90376] of  OMTPoly
+
+	(fillColor "28FF0000")
+	(isPolygon TRUE)
+	(label "1618")
+	(latitude "64 30")
+	(lineColor "28FF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"64 30 0 0"
+		"64 30 0 15"
+		"64 15 0 15"
+		"64 15 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90377] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "1718")
+	(latitude "64 30")
+	(lineColor "1aFF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"64 30 0 15"
+		"64 30 0 30"
+		"64 15 0 30"
+		"64 15 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90378] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "1818")
+	(latitude "64 30")
+	(lineColor "13FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"64 30 0 30"
+		"64 30 0 45"
+		"64 15 0 45"
+		"64 15 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90379] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "1918")
+	(latitude "64 30")
+	(lineColor "1aFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"64 30 0 45"
+		"64 30 1 0"
+		"64 15 1 0"
+		"64 15 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90380] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "019")
+	(latitude "64 45")
+	(lineColor "0fFF0000")
+	(longitude "-4 0")
+	(playground-index 0)
+	(points
+		"64 45 -4 0"
+		"64 45 -3 45"
+		"64 30 -3 45"
+		"64 30 -4 0")
+	(relative FALSE))
+
+([RasterToVector_Class90381] of  OMTPoly
+
+	(fillColor "0dFF0000")
+	(isPolygon TRUE)
+	(label "119")
+	(latitude "64 45")
+	(lineColor "0dFF0000")
+	(longitude "-3 45")
+	(playground-index 0)
+	(points
+		"64 45 -3 45"
+		"64 45 -3 30"
+		"64 30 -3 30"
+		"64 30 -3 45")
+	(relative FALSE))
+
+([RasterToVector_Class90382] of  OMTPoly
+
+	(fillColor "04FF0000")
+	(isPolygon TRUE)
+	(label "219")
+	(latitude "64 45")
+	(lineColor "04FF0000")
+	(longitude "-3 30")
+	(playground-index 0)
+	(points
+		"64 45 -3 30"
+		"64 45 -3 15"
+		"64 30 -3 15"
+		"64 30 -3 30")
+	(relative FALSE))
+
+([RasterToVector_Class90383] of  OMTPoly
+
+	(fillColor "15FF0000")
+	(isPolygon TRUE)
+	(label "319")
+	(latitude "64 45")
+	(lineColor "15FF0000")
+	(longitude "-3 15")
+	(playground-index 0)
+	(points
+		"64 45 -3 15"
+		"64 45 -3 0"
+		"64 30 -3 0"
+		"64 30 -3 15")
+	(relative FALSE))
+
+([RasterToVector_Class90384] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "419")
+	(latitude "64 45")
+	(lineColor "10FF0000")
+	(longitude "-3 0")
+	(playground-index 0)
+	(points
+		"64 45 -3 0"
+		"64 45 -2 45"
+		"64 30 -2 45"
+		"64 30 -3 0")
+	(relative FALSE))
+
+([RasterToVector_Class90385] of  OMTPoly
+
+	(fillColor "19FF0000")
+	(isPolygon TRUE)
+	(label "519")
+	(latitude "64 45")
+	(lineColor "19FF0000")
+	(longitude "-2 45")
+	(playground-index 0)
+	(points
+		"64 45 -2 45"
+		"64 45 -2 30"
+		"64 30 -2 30"
+		"64 30 -2 45")
+	(relative FALSE))
+
+([RasterToVector_Class90386] of  OMTPoly
+
+	(fillColor "1aFF0000")
+	(isPolygon TRUE)
+	(label "619")
+	(latitude "64 45")
+	(lineColor "1aFF0000")
+	(longitude "-2 30")
+	(playground-index 0)
+	(points
+		"64 45 -2 30"
+		"64 45 -2 15"
+		"64 30 -2 15"
+		"64 30 -2 30")
+	(relative FALSE))
+
+([RasterToVector_Class90387] of  OMTPoly
+
+	(fillColor "1dFF0000")
+	(isPolygon TRUE)
+	(label "719")
+	(latitude "64 45")
+	(lineColor "1dFF0000")
+	(longitude "-2 15")
+	(playground-index 0)
+	(points
+		"64 45 -2 15"
+		"64 45 -2 0"
+		"64 30 -2 0"
+		"64 30 -2 15")
+	(relative FALSE))
+
+([RasterToVector_Class90388] of  OMTPoly
+
+	(fillColor "0fFF0000")
+	(isPolygon TRUE)
+	(label "819")
+	(latitude "64 45")
+	(lineColor "0fFF0000")
+	(longitude "-2 0")
+	(playground-index 0)
+	(points
+		"64 45 -2 0"
+		"64 45 -1 45"
+		"64 30 -1 45"
+		"64 30 -2 0")
+	(relative FALSE))
+
+([RasterToVector_Class90389] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "919")
+	(latitude "64 45")
+	(lineColor "16FF0000")
+	(longitude "-1 45")
+	(playground-index 0)
+	(points
+		"64 45 -1 45"
+		"64 45 -1 30"
+		"64 30 -1 30"
+		"64 30 -1 45")
+	(relative FALSE))
+
+([RasterToVector_Class90390] of  OMTPoly
+
+	(fillColor "15FF0000")
+	(isPolygon TRUE)
+	(label "1019")
+	(latitude "64 45")
+	(lineColor "15FF0000")
+	(longitude "-1 30")
+	(playground-index 0)
+	(points
+		"64 45 -1 30"
+		"64 45 -1 15"
+		"64 30 -1 15"
+		"64 30 -1 30")
+	(relative FALSE))
+
+([RasterToVector_Class90391] of  OMTPoly
+
+	(fillColor "13FF0000")
+	(isPolygon TRUE)
+	(label "1119")
+	(latitude "64 45")
+	(lineColor "13FF0000")
+	(longitude "-1 15")
+	(playground-index 0)
+	(points
+		"64 45 -1 15"
+		"64 45 -1 0"
+		"64 30 -1 0"
+		"64 30 -1 15")
+	(relative FALSE))
+
+([RasterToVector_Class90392] of  OMTPoly
+
+	(fillColor "16FF0000")
+	(isPolygon TRUE)
+	(label "1219")
+	(latitude "64 45")
+	(lineColor "16FF0000")
+	(longitude "-1 0")
+	(playground-index 0)
+	(points
+		"64 45 -1 0"
+		"64 45 0 -45"
+		"64 30 0 -45"
+		"64 30 -1 0")
+	(relative FALSE))
+
+([RasterToVector_Class90393] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "1319")
+	(latitude "64 45")
+	(lineColor "1cFF0000")
+	(longitude "0 -45")
+	(playground-index 0)
+	(points
+		"64 45 0 -45"
+		"64 45 0 -30"
+		"64 30 0 -30"
+		"64 30 0 -45")
+	(relative FALSE))
+
+([RasterToVector_Class90394] of  OMTPoly
+
+	(fillColor "1cFF0000")
+	(isPolygon TRUE)
+	(label "1419")
+	(latitude "64 45")
+	(lineColor "1cFF0000")
+	(longitude "0 -30")
+	(playground-index 0)
+	(points
+		"64 45 0 -30"
+		"64 45 0 -15"
+		"64 30 0 -15"
+		"64 30 0 -30")
+	(relative FALSE))
+
+([RasterToVector_Class90395] of  OMTPoly
+
+	(fillColor "23FF0000")
+	(isPolygon TRUE)
+	(label "1519")
+	(latitude "64 45")
+	(lineColor "23FF0000")
+	(longitude "0 -15")
+	(playground-index 0)
+	(points
+		"64 45 0 -15"
+		"64 45 0 0"
+		"64 30 0 0"
+		"64 30 0 -15")
+	(relative FALSE))
+
+([RasterToVector_Class90396] of  OMTPoly
+
+	(fillColor "2bFF0000")
+	(isPolygon TRUE)
+	(label "1619")
+	(latitude "64 45")
+	(lineColor "2bFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"64 45 0 0"
+		"64 45 0 15"
+		"64 30 0 15"
+		"64 30 0 0")
+	(relative FALSE))
+
+([RasterToVector_Class90397] of  OMTPoly
+
+	(fillColor "14FF0000")
+	(isPolygon TRUE)
+	(label "1719")
+	(latitude "64 45")
+	(lineColor "14FF0000")
+	(longitude "0 15")
+	(playground-index 0)
+	(points
+		"64 45 0 15"
+		"64 45 0 30"
+		"64 30 0 30"
+		"64 30 0 15")
+	(relative FALSE))
+
+([RasterToVector_Class90398] of  OMTPoly
+
+	(fillColor "10FF0000")
+	(isPolygon TRUE)
+	(label "1819")
+	(latitude "64 45")
+	(lineColor "10FF0000")
+	(longitude "0 30")
+	(playground-index 0)
+	(points
+		"64 45 0 30"
+		"64 45 0 45"
+		"64 30 0 45"
+		"64 30 0 30")
+	(relative FALSE))
+
+([RasterToVector_Class90399] of  OMTPoly
+
+	(fillColor "1eFF0000")
+	(isPolygon TRUE)
+	(label "1919")
+	(latitude "64 45")
+	(lineColor "1eFF0000")
+	(longitude "0 45")
+	(playground-index 0)
+	(points
+		"64 45 0 45"
+		"64 45 1 0"
+		"64 30 1 0"
+		"64 30 0 45")
+	(relative FALSE))
+
+([RasterToVector_Class90400] of  CloFunction
+
+	(source "(let [cde (fn [p] [p (elevation p)])\n       c    (cde [lat lon])\n       n    (cde [(+ lat D5MIN) lon])\n       ne  (cde [(+ lat D5MIN) (+ lon D5MIN)])\n       nw (cde [(+ lat D5MIN) (- lon D5MIN)])\n       s    (cde [(- lat D5MIN) lon])\n       se  (cde [(- lat D5MIN) (+ lon D5MIN)])\n       sw (cde [(- lat D5MIN) (- lon D5MIN)])\n       e    (cde [lat (+ lon D5MIN)])\n       w   (cde [lat (- lon D5MIN)])\n       dif (fn [x] (let x (apply first x)\n	(- (apply max x) (apply min x))))\n       m {(dif [w c e])    [(second w) (second e)]\n             (dif [s c n])     [(second s) (second n)]\n             (dif [sw c ne]) [(second sw) (second ne)]\n             (dif [nw c se]) [(second nw) (second se)]}]\n  (m (apply min (keys m))))")
+	(title "slope1 [lat lon]"))

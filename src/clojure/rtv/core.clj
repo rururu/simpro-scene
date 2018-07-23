@@ -41,9 +41,9 @@
 	"true"
 	"false"
 	[(str (MapOb/getDegMin lat) " " (MapOb/getDegMin lon))
-	 (str (MapOb/getDegMin lat) " " (MapOb/getDegMin (+ lon (* 1 D5MIN))))
-	 (str (MapOb/getDegMin (- lat (* 1 D5MIN))) " " (MapOb/getDegMin (+ lon (* 1 D5MIN))))
-	 (str (MapOb/getDegMin (- lat (* 1 D5MIN))) " " (MapOb/getDegMin lon))])
+	 (str (MapOb/getDegMin lat) " " (MapOb/getDegMin (+ lon (* 3 D5MIN))))
+	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) " " (MapOb/getDegMin (+ lon (* 3 D5MIN))))
+	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) " " (MapOb/getDegMin lon))])
        mo (OMT/addMapOb gpo (second (OMT/getPlaygrounds)))]
   (.hideLabel mo)))
 
@@ -51,8 +51,28 @@
   (doseq [y (range h)]
   (doseq [x (range w)] 
    (gradientPoly (str x y)
-	(+ lat (* y 1 D5MIN)) 
-	(+ lon (* x 1 D5MIN))
+	(+ lat (* y 3 D5MIN)) 
+	(+ lon (* x 3 D5MIN))
 	500
                         "FFFF0000"))))
+
+(defn slope1 [lat lon]
+  (let [c    (elevation [lat lon])
+       n    (elevation [(+ lat D5MIN) lon])
+       ne  (elevation [(+ lat D5MIN) (+ lon D5MIN)])
+       nw (elevation [(+ lat D5MIN) (- lon D5MIN)])
+       s    (elevation [(- lat D5MIN) lon])
+       se  (elevation [(- lat D5MIN) (+ lon D5MIN)])
+       sw (elevation [(- lat D5MIN) (- lon D5MIN)])
+       e    (elevation [lat (+ lon D5MIN)])
+       w   (elevation [lat (- lon D5MIN)])
+       dif (fn [x] (- (apply max x) (apply min x)))
+       m {(dif [w c e])    :hor
+             (dif [s c n])     :ver
+             (dif [sw c ne]) :rig
+             (dif [se c nw]) :lef}]
+  (m (apply min (keys m)))))
+
+(defn dif [lst]
+  (- (apply max lst) (apply min lst)))
 
