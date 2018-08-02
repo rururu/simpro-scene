@@ -1,6 +1,7 @@
 (ns rtv.core
 (:use protege.core
-  subcla.etoele)
+  subcla.etoele
+  ru.rules)
 (:import
   ru.igis.omtab.OMTPoly
   ru.igis.omtab.MapOb
@@ -20,7 +21,7 @@
 8	"450000FF"
 9	"2E0000FF"
 10	"170000FF"
-11	"1CFF0000"
+11	"FF00AA00"
 12	"38FF0000"
 13	"54FF0000"
 14	"70FF0000"
@@ -29,6 +30,9 @@
 17	"C4FF0000"
 18	"E0FF0000"
 19	"FCFF0000"})
+(def RMMA0 (let [pg0 (first (ru.igis.omtab.OMT/getPlaygrounds))]
+  (if (not (.getRuMapMouseAdapter pg0))
+    (.setRuMapMouseAdapter pg0 (ru.igis.omtab.gui.RuMapMouseAdapter.)))))
 (defn gradient [lat lon]
   (let [ec    (elevation [lat lon])
        en    (elevation [(+ lat D5MIN) lon])
@@ -171,6 +175,17 @@
 ([lab lat lon]
   (point lab lat lon "FFFF0000")))
 
+(defn assert-point [lat lon mo]
+  (rete.core/assert-frame
+	['Point
+	 'lat lat
+	 'lon lon
+	 'mapob mo
+	 'north nil
+	 'south nil
+	 'west nil
+	 'east nil]))
+
 (defn levelPoint
   ([id lat lon level disc color]
   (let [ele (elevation [lat lon])
@@ -182,7 +197,8 @@
 	"<br>lon: " lon
 	"<br>ele: " ele
 	"<br>lev: " lev))
-        (.hideLabel mo)))))
+        (.hideLabel mo)
+        (assert-point lat lon mo)))))
 ([id lat lon]
   (let [disc 20
          ele (elevation [lat lon])

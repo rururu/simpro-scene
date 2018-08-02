@@ -1,4 +1,4 @@
-; Wed Aug 01 23:34:16 MSK 2018
+; Thu Aug 02 18:52:12 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,13 +22,13 @@
 		[igis_Class20]
 		[igis_Class21]
 		[igis_Class22]
-		[Scenario_Class60001]
 		[igis_Class25]
 		[igis_Class26]
 		[igis_Class27]
 		[igis_Class28]
 		[igis_Class29]
-		[igis_Class30])
+		[igis_Class30]
+		[igis_Class23])
 	(Debug "FINE")
 	(label "RTV Map")
 	(Latitude "60.0")
@@ -50,15 +50,9 @@
 	(%3ACREATION-TIMESTAMP "2018.07.08 21:57:08.207 MSK")
 	(%3ACREATOR "ru"))
 
-([RasterToVector_Class10000] of  ShareOnto
+([RasterToVector_Class10000] of  CloFuncall
 
-	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
-	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
-	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
-	(but-find-unref "Find Unreferenced/share.onto/find-unref")
-	(but-load-prj "Load Source Project/share.onto/load-src-prj")
-	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
-	(source-project "DefaultKnowledgeBase(Tsunami)"))
+	(source "(menu.item/clojure-work)"))
 
 ([RasterToVector_Class100000] of  CloFuncall
 
@@ -263,27 +257,42 @@
 
 	(source "(rtv.core/fieldIso 57.7 5 40 40 11 20 \"50ffff00\")"))
 
-([RasterToVector_Class123195] of  CloFuncall
-
-	(source "(rtv.core/fieldIso 57.7 -5 120 40 5 20 \"50ff00ff\")"))
-
-([RasterToVector_Class123196] of  CloFuncall
-
-	(source "(rtv.core/fieldIso 57.7 -5 120 40 8 20 \"50ff00ff\")"))
-
-([RasterToVector_Class123402] of  CloFuncall
-
-	(source "(rtv.core/fieldIso 57.7 -5 120 40 10 20 \"500000ff\")"))
-
 ([RasterToVector_Class126070] of  CloVar
 
-	(source "{0	\"FD0000FF\"\n1	\"E60000FF\"\n2	\"CF0000FF\"\n3	\"B80000FF\"\n4	\"A10000FF\"\n5	\"8A0000FF\"\n6	\"730000FF\"\n7	\"5C0000FF\"\n8	\"450000FF\"\n9	\"2E0000FF\"\n10	\"170000FF\"\n11	\"1CFF0000\"\n12	\"38FF0000\"\n13	\"54FF0000\"\n14	\"70FF0000\"\n15	\"8CFF0000\"\n16	\"A8FF0000\"\n17	\"C4FF0000\"\n18	\"E0FF0000\"\n19	\"FCFF0000\"}")
+	(source "{0	\"FD0000FF\"\n1	\"E60000FF\"\n2	\"CF0000FF\"\n3	\"B80000FF\"\n4	\"A10000FF\"\n5	\"8A0000FF\"\n6	\"730000FF\"\n7	\"5C0000FF\"\n8	\"450000FF\"\n9	\"2E0000FF\"\n10	\"170000FF\"\n11	\"FF00AA00\"\n12	\"38FF0000\"\n13	\"54FF0000\"\n14	\"70FF0000\"\n15	\"8CFF0000\"\n16	\"A8FF0000\"\n17	\"C4FF0000\"\n18	\"E0FF0000\"\n19	\"FCFF0000\"}")
 	(title "LEVCOL20"))
 
 ([RasterToVector_Class20000] of  CloFunction
 
 	(source "(doseq [y (range h)]\n  (doseq [x (range w)] \n   (slope1Line (str x y)\n	(+ lat (* y 3 D5MIN)) \n	(+ lon (* x 3 D5MIN))\n                        \"FFFF0000\")))")
 	(title "fieldSlope [lat lon w h]"))
+
+([RasterToVector_Class20001] of  CloFunction
+
+	(source "(rete.core/assert-frame\n	['Point\n	 'lat lat\n	 'lon lon\n	 'mapob mo\n	 'north nil\n	 'south nil\n	 'west nil\n	 'east nil])")
+	(title "assert-point [lat lon mo]"))
+
+([RasterToVector_Class20002] of  CloVar
+
+	(source "(let [pg0 (first (ru.igis.omtab.OMT/getPlaygrounds))]\n  (if (not (.getRuMapMouseAdapter pg0))\n    (.setRuMapMouseAdapter pg0 (ru.igis.omtab.gui.RuMapMouseAdapter.))))")
+	(title "RMMA0"))
+
+([RasterToVector_Class20005] of  OMTPoint
+
+	(description "<html>id: 36:0<br>lat: 58.0<br>lon: 12.0<br>ele: 46<br>lev: 11")
+	(label "36:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class20006] of  Rule
+
+	(lhs "p (Point lat ?lat1 lon ?lon north nil)\n   (Point lat ?lat2 lon ?lon mapob ?mo\n	(= ?lat2 (+ ?lat1 0.25)))")
+	(rhs "(println :NN ?lat1 ?lat2)\n(modify p north ?mo)")
+	(salience 0)
+	(title "ib:NeighborNorth"))
 
 ([RasterToVector_Class30000] of  CloFunction
 
@@ -292,7 +301,7 @@
 
 ([RasterToVector_Class30011] of  CloFunction
 
-	(source "([id lat lon level disc color]\n  (let [ele (elevation [lat lon])\n         lev (level1 ele disc)]\n    (if (= lev level)\n      (let [mo (point (str id) lat lon color)]\n        (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n        (.hideLabel mo)))))\n([id lat lon]\n  (let [disc 20\n         ele (elevation [lat lon])\n         lev (level1 ele disc)\n         mo  (point (str id) lat lon (LEVCOL20 lev))]\n    (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n    (.hideLabel mo)))")
+	(source "([id lat lon level disc color]\n  (let [ele (elevation [lat lon])\n         lev (level1 ele disc)]\n    (if (= lev level)\n      (let [mo (point (str id) lat lon color)]\n        (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n        (.hideLabel mo)\n        (assert-point lat lon mo)))))\n([id lat lon]\n  (let [disc 20\n         ele (elevation [lat lon])\n         lev (level1 ele disc)\n         mo  (point (str id) lat lon (LEVCOL20 lev))]\n    (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n    (.hideLabel mo)))")
 	(title "levelPoint"))
 
 ([RasterToVector_Class30012] of  CloFunction
@@ -305,36 +314,6210 @@
 	(source "(let [gra (gradient lat lon)\n       ;;_ (println gra)\n       gtp (grad-to-transpar gra gmax color)\n       gpo (OMTPoly/createOMTPoly\n	(str id)\n	(MapOb/getDegMin lat)\n	(MapOb/getDegMin lon)\n	gtp\n	gtp\n	\"true\"\n	\"false\"\n	[(str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin lon))\n	 (str (MapOb/getDegMin lat) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin (+ lon (* 3 D5MIN))))\n	 (str (MapOb/getDegMin (- lat (* 3 D5MIN))) \" \" (MapOb/getDegMin lon))])\n       mo (OMT/addMapOb gpo (second (OMT/getPlaygrounds)))]\n  (.hideLabel mo))")
 	(title "gradientPoly [id lat lon gmax color]"))
 
-([RasterToVector_Class50000] of  CloFuncall
+([RasterToVector_Class50119] of  Rule
 
-	(source "(rtv.core/pointsField 62 4 20 20)"))
+	(lhs "p (Point lat ?lat1 lon ?lon south nil)\n   (Point lat ?lat2 lon ?lon mapob ?mo\n	(= ?lat2 (- ?lat1 0.25)))")
+	(rhs "(println :NS ?lat1 ?lat2)\n(modify p south ?mo)")
+	(salience 0)
+	(title "ib:NeighborSouth"))
 
-([RasterToVector_Class50401] of  CloFuncall
+([RasterToVector_Class50120] of  Rule
 
-	(source "(rtv.core/pointsField 30 80 40 40)"))
+	(lhs "p (Point lat ?lat lon ?lon1 west nil)\n   (Point lat ?lat lon ?lon2 mapob ?mo\n	(= ?lon2 (- ?lon1 0.25)))")
+	(rhs "(println :NW ?lon1 ?lon2)\n(modify p west ?mo)")
+	(salience 0)
+	(title "ib:NeighborWest"))
 
-([RasterToVector_Class52002] of  CloFuncall
+([RasterToVector_Class50121] of  Rule
 
-	(source "(rtv.core/pointsField 25 80 80 80)"))
+	(lhs "p (Point lat ?lat lon ?lon1 east nil)\n   (Point lat ?lat lon ?lon2 mapob ?mo\n	(= ?lon2 (+ ?lon1 0.25)))")
+	(rhs "(println :NE ?lon1 ?lon2)\n(modify p east ?mo)")
+	(salience 0)
+	(title "ib:NeighborEast"))
 
-([RasterToVector_Class58403] of  CloFuncall
+([RasterToVector_Class50122] of  CloFuncall
 
-	(source "(rtv.core/pointsField 20 130 80 80)"))
+	(source "(rtv.core/pointsField 58 3 20 20 11 20 \"FF00AA00\")"))
+
+([RasterToVector_Class50241] of  OMTPoint
+
+	(description "<html>id: 15:1<br>lat: 58.25<br>lon: 6.75<br>ele: 265<br>lev: 11")
+	(label "15:1")
+	(latitude "58 15")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50242] of  OMTPoint
+
+	(description "<html>id: 16:1<br>lat: 58.25<br>lon: 7.0<br>ele: 226<br>lev: 11")
+	(label "16:1")
+	(latitude "58 15")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50243] of  OMTPoint
+
+	(description "<html>id: 17:1<br>lat: 58.25<br>lon: 7.25<br>ele: 196<br>lev: 11")
+	(label "17:1")
+	(latitude "58 15")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50244] of  OMTPoint
+
+	(description "<html>id: 18:1<br>lat: 58.25<br>lon: 7.5<br>ele: 212<br>lev: 11")
+	(label "18:1")
+	(latitude "58 15")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50245] of  OMTPoint
+
+	(description "<html>id: 19:1<br>lat: 58.25<br>lon: 7.75<br>ele: 172<br>lev: 11")
+	(label "19:1")
+	(latitude "58 15")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50246] of  OMTPoint
+
+	(description "<html>id: 11:2<br>lat: 58.5<br>lon: 5.75<br>ele: 0<br>lev: 11")
+	(label "11:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50247] of  OMTPoint
+
+	(description "<html>id: 12:2<br>lat: 58.5<br>lon: 6.0<br>ele: 191<br>lev: 11")
+	(label "12:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50248] of  OMTPoint
+
+	(description "<html>id: 13:2<br>lat: 58.5<br>lon: 6.25<br>ele: 299<br>lev: 11")
+	(label "13:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50249] of  OMTPoint
+
+	(description "<html>id: 14:2<br>lat: 58.5<br>lon: 6.5<br>ele: 272<br>lev: 11")
+	(label "14:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50250] of  OMTPoint
+
+	(description "<html>id: 15:2<br>lat: 58.5<br>lon: 6.75<br>ele: 366<br>lev: 11")
+	(label "15:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50251] of  OMTPoint
+
+	(description "<html>id: 16:2<br>lat: 58.5<br>lon: 7.0<br>ele: 527<br>lev: 11")
+	(label "16:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50252] of  OMTPoint
+
+	(description "<html>id: 17:2<br>lat: 58.5<br>lon: 7.25<br>ele: 384<br>lev: 11")
+	(label "17:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50253] of  OMTPoint
+
+	(description "<html>id: 18:2<br>lat: 58.5<br>lon: 7.5<br>ele: 403<br>lev: 11")
+	(label "18:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50254] of  OMTPoint
+
+	(description "<html>id: 19:2<br>lat: 58.5<br>lon: 7.75<br>ele: 309<br>lev: 11")
+	(label "19:2")
+	(latitude "58 30")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50255] of  OMTPoint
+
+	(description "<html>id: 10:3<br>lat: 58.75<br>lon: 5.5<br>ele: 1<br>lev: 11")
+	(label "10:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50256] of  OMTPoint
+
+	(description "<html>id: 11:3<br>lat: 58.75<br>lon: 5.75<br>ele: 6<br>lev: 11")
+	(label "11:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50257] of  OMTPoint
+
+	(description "<html>id: 12:3<br>lat: 58.75<br>lon: 6.0<br>ele: 398<br>lev: 11")
+	(label "12:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50258] of  OMTPoint
+
+	(description "<html>id: 13:3<br>lat: 58.75<br>lon: 6.25<br>ele: 587<br>lev: 11")
+	(label "13:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50259] of  OMTPoint
+
+	(description "<html>id: 14:3<br>lat: 58.75<br>lon: 6.5<br>ele: 620<br>lev: 11")
+	(label "14:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50260] of  OMTPoint
+
+	(description "<html>id: 15:3<br>lat: 58.75<br>lon: 6.75<br>ele: 640<br>lev: 11")
+	(label "15:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50261] of  OMTPoint
+
+	(description "<html>id: 16:3<br>lat: 58.75<br>lon: 7.0<br>ele: 803<br>lev: 11")
+	(label "16:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50262] of  OMTPoint
+
+	(description "<html>id: 17:3<br>lat: 58.75<br>lon: 7.25<br>ele: 702<br>lev: 11")
+	(label "17:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50263] of  OMTPoint
+
+	(description "<html>id: 18:3<br>lat: 58.75<br>lon: 7.5<br>ele: 647<br>lev: 11")
+	(label "18:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50264] of  OMTPoint
+
+	(description "<html>id: 19:3<br>lat: 58.75<br>lon: 7.75<br>ele: 548<br>lev: 11")
+	(label "19:3")
+	(latitude "58 45")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50265] of  OMTPoint
+
+	(description "<html>id: 14:4<br>lat: 59.0<br>lon: 6.5<br>ele: 998<br>lev: 11")
+	(label "14:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50266] of  OMTPoint
+
+	(description "<html>id: 15:4<br>lat: 59.0<br>lon: 6.75<br>ele: 842<br>lev: 11")
+	(label "15:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50267] of  OMTPoint
+
+	(description "<html>id: 16:4<br>lat: 59.0<br>lon: 7.0<br>ele: 901<br>lev: 11")
+	(label "16:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50268] of  OMTPoint
+
+	(description "<html>id: 17:4<br>lat: 59.0<br>lon: 7.25<br>ele: 950<br>lev: 11")
+	(label "17:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50269] of  OMTPoint
+
+	(description "<html>id: 18:4<br>lat: 59.0<br>lon: 7.5<br>ele: 586<br>lev: 11")
+	(label "18:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50270] of  OMTPoint
+
+	(description "<html>id: 19:4<br>lat: 59.0<br>lon: 7.75<br>ele: 745<br>lev: 11")
+	(label "19:4")
+	(latitude "59 0")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50271] of  OMTPoint
+
+	(description "<html>id: 13:5<br>lat: 59.25<br>lon: 6.25<br>ele: 440<br>lev: 11")
+	(label "13:5")
+	(latitude "59 15")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50272] of  OMTPoint
+
+	(description "<html>id: 14:5<br>lat: 59.25<br>lon: 6.5<br>ele: 906<br>lev: 11")
+	(label "14:5")
+	(latitude "59 15")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50273] of  OMTPoint
+
+	(description "<html>id: 19:5<br>lat: 59.25<br>lon: 7.75<br>ele: 671<br>lev: 11")
+	(label "19:5")
+	(latitude "59 15")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50274] of  OMTPoint
+
+	(description "<html>id: 9:6<br>lat: 59.5<br>lon: 5.25<br>ele: 91<br>lev: 11")
+	(label "9:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50275] of  OMTPoint
+
+	(description "<html>id: 10:6<br>lat: 59.5<br>lon: 5.5<br>ele: 93<br>lev: 11")
+	(label "10:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50276] of  OMTPoint
+
+	(description "<html>id: 12:6<br>lat: 59.5<br>lon: 6.0<br>ele: 162<br>lev: 11")
+	(label "12:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50277] of  OMTPoint
+
+	(description "<html>id: 13:6<br>lat: 59.5<br>lon: 6.25<br>ele: 415<br>lev: 11")
+	(label "13:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50278] of  OMTPoint
+
+	(description "<html>id: 14:6<br>lat: 59.5<br>lon: 6.5<br>ele: 732<br>lev: 11")
+	(label "14:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50279] of  OMTPoint
+
+	(description "<html>id: 17:6<br>lat: 59.5<br>lon: 7.25<br>ele: 892<br>lev: 11")
+	(label "17:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50280] of  OMTPoint
+
+	(description "<html>id: 19:6<br>lat: 59.5<br>lon: 7.75<br>ele: 633<br>lev: 11")
+	(label "19:6")
+	(latitude "59 30")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50281] of  OMTPoint
+
+	(description "<html>id: 13:7<br>lat: 59.75<br>lon: 6.25<br>ele: 631<br>lev: 11")
+	(label "13:7")
+	(latitude "59 45")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50282] of  OMTPoint
+
+	(description "<html>id: 14:7<br>lat: 59.75<br>lon: 6.5<br>ele: 904<br>lev: 11")
+	(label "14:7")
+	(latitude "59 45")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50283] of  OMTPoint
+
+	(description "<html>id: 18:7<br>lat: 59.75<br>lon: 7.5<br>ele: 892<br>lev: 11")
+	(label "18:7")
+	(latitude "59 45")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50284] of  OMTPoint
+
+	(description "<html>id: 19:7<br>lat: 59.75<br>lon: 7.75<br>ele: 902<br>lev: 11")
+	(label "19:7")
+	(latitude "59 45")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50285] of  OMTPoint
+
+	(description "<html>id: 10:8<br>lat: 60.0<br>lon: 5.5<br>ele: 188<br>lev: 11")
+	(label "10:8")
+	(latitude "60 0")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50286] of  OMTPoint
+
+	(description "<html>id: 12:8<br>lat: 60.0<br>lon: 6.0<br>ele: 862<br>lev: 11")
+	(label "12:8")
+	(latitude "60 0")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50287] of  OMTPoint
+
+	(description "<html>id: 14:8<br>lat: 60.0<br>lon: 6.5<br>ele: 716<br>lev: 11")
+	(label "14:8")
+	(latitude "60 0")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50288] of  OMTPoint
+
+	(description "<html>id: 8:9<br>lat: 60.25<br>lon: 5.0<br>ele: 38<br>lev: 11")
+	(label "8:9")
+	(latitude "60 15")
+	(lineColor "FF00AA00")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50289] of  OMTPoint
+
+	(description "<html>id: 10:9<br>lat: 60.25<br>lon: 5.5<br>ele: 86<br>lev: 11")
+	(label "10:9")
+	(latitude "60 15")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50290] of  OMTPoint
+
+	(description "<html>id: 11:9<br>lat: 60.25<br>lon: 5.75<br>ele: 197<br>lev: 11")
+	(label "11:9")
+	(latitude "60 15")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50291] of  OMTPoint
+
+	(description "<html>id: 13:9<br>lat: 60.25<br>lon: 6.25<br>ele: 990<br>lev: 11")
+	(label "13:9")
+	(latitude "60 15")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50292] of  OMTPoint
+
+	(description "<html>id: 14:9<br>lat: 60.25<br>lon: 6.5<br>ele: 650<br>lev: 11")
+	(label "14:9")
+	(latitude "60 15")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50293] of  OMTPoint
+
+	(description "<html>id: 8:10<br>lat: 60.5<br>lon: 5.0<br>ele: 3<br>lev: 11")
+	(label "8:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50294] of  OMTPoint
+
+	(description "<html>id: 9:10<br>lat: 60.5<br>lon: 5.25<br>ele: 187<br>lev: 11")
+	(label "9:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50295] of  OMTPoint
+
+	(description "<html>id: 10:10<br>lat: 60.5<br>lon: 5.5<br>ele: 318<br>lev: 11")
+	(label "10:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50296] of  OMTPoint
+
+	(description "<html>id: 11:10<br>lat: 60.5<br>lon: 5.75<br>ele: 599<br>lev: 11")
+	(label "11:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50297] of  OMTPoint
+
+	(description "<html>id: 12:10<br>lat: 60.5<br>lon: 6.0<br>ele: 876<br>lev: 11")
+	(label "12:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50298] of  OMTPoint
+
+	(description "<html>id: 13:10<br>lat: 60.5<br>lon: 6.25<br>ele: 858<br>lev: 11")
+	(label "13:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50299] of  OMTPoint
+
+	(description "<html>id: 14:10<br>lat: 60.5<br>lon: 6.5<br>ele: 90<br>lev: 11")
+	(label "14:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50300] of  OMTPoint
+
+	(description "<html>id: 15:10<br>lat: 60.5<br>lon: 6.75<br>ele: 429<br>lev: 11")
+	(label "15:10")
+	(latitude "60 30")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50301] of  OMTPoint
+
+	(description "<html>id: 10:11<br>lat: 60.75<br>lon: 5.5<br>ele: 108<br>lev: 11")
+	(label "10:11")
+	(latitude "60 45")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50302] of  OMTPoint
+
+	(description "<html>id: 11:11<br>lat: 60.75<br>lon: 5.75<br>ele: 790<br>lev: 11")
+	(label "11:11")
+	(latitude "60 45")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50303] of  OMTPoint
+
+	(description "<html>id: 12:11<br>lat: 60.75<br>lon: 6.0<br>ele: 572<br>lev: 11")
+	(label "12:11")
+	(latitude "60 45")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50304] of  OMTPoint
+
+	(description "<html>id: 14:11<br>lat: 60.75<br>lon: 6.5<br>ele: 719<br>lev: 11")
+	(label "14:11")
+	(latitude "60 45")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50305] of  OMTPoint
+
+	(description "<html>id: 15:11<br>lat: 60.75<br>lon: 6.75<br>ele: 866<br>lev: 11")
+	(label "15:11")
+	(latitude "60 45")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50306] of  OMTPoint
+
+	(description "<html>id: 9:12<br>lat: 61.0<br>lon: 5.25<br>ele: 393<br>lev: 11")
+	(label "9:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50307] of  OMTPoint
+
+	(description "<html>id: 10:12<br>lat: 61.0<br>lon: 5.5<br>ele: 655<br>lev: 11")
+	(label "10:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50308] of  OMTPoint
+
+	(description "<html>id: 11:12<br>lat: 61.0<br>lon: 5.75<br>ele: 912<br>lev: 11")
+	(label "11:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50309] of  OMTPoint
+
+	(description "<html>id: 12:12<br>lat: 61.0<br>lon: 6.0<br>ele: 859<br>lev: 11")
+	(label "12:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50310] of  OMTPoint
+
+	(description "<html>id: 13:12<br>lat: 61.0<br>lon: 6.25<br>ele: 979<br>lev: 11")
+	(label "13:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50311] of  OMTPoint
+
+	(description "<html>id: 15:12<br>lat: 61.0<br>lon: 6.75<br>ele: 946<br>lev: 11")
+	(label "15:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50312] of  OMTPoint
+
+	(description "<html>id: 16:12<br>lat: 61.0<br>lon: 7.0<br>ele: 532<br>lev: 11")
+	(label "16:12")
+	(latitude "61 0")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50313] of  OMTPoint
+
+	(description "<html>id: 8:13<br>lat: 61.25<br>lon: 5.0<br>ele: 138<br>lev: 11")
+	(label "8:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50314] of  OMTPoint
+
+	(description "<html>id: 9:13<br>lat: 61.25<br>lon: 5.25<br>ele: 278<br>lev: 11")
+	(label "9:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50315] of  OMTPoint
+
+	(description "<html>id: 10:13<br>lat: 61.25<br>lon: 5.5<br>ele: 452<br>lev: 11")
+	(label "10:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50316] of  OMTPoint
+
+	(description "<html>id: 11:13<br>lat: 61.25<br>lon: 5.75<br>ele: 528<br>lev: 11")
+	(label "11:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50317] of  OMTPoint
+
+	(description "<html>id: 12:13<br>lat: 61.25<br>lon: 6.0<br>ele: 667<br>lev: 11")
+	(label "12:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50318] of  OMTPoint
+
+	(description "<html>id: 15:13<br>lat: 61.25<br>lon: 6.75<br>ele: 487<br>lev: 11")
+	(label "15:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50319] of  OMTPoint
+
+	(description "<html>id: 16:13<br>lat: 61.25<br>lon: 7.0<br>ele: 378<br>lev: 11")
+	(label "16:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50320] of  OMTPoint
+
+	(description "<html>id: 17:13<br>lat: 61.25<br>lon: 7.25<br>ele: 0<br>lev: 11")
+	(label "17:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50321] of  OMTPoint
+
+	(description "<html>id: 18:13<br>lat: 61.25<br>lon: 7.5<br>ele: 427<br>lev: 11")
+	(label "18:13")
+	(latitude "61 15")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50322] of  OMTPoint
+
+	(description "<html>id: 9:14<br>lat: 61.5<br>lon: 5.25<br>ele: 248<br>lev: 11")
+	(label "9:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50323] of  OMTPoint
+
+	(description "<html>id: 10:14<br>lat: 61.5<br>lon: 5.5<br>ele: 234<br>lev: 11")
+	(label "10:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50324] of  OMTPoint
+
+	(description "<html>id: 11:14<br>lat: 61.5<br>lon: 5.75<br>ele: 330<br>lev: 11")
+	(label "11:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50325] of  OMTPoint
+
+	(description "<html>id: 12:14<br>lat: 61.5<br>lon: 6.0<br>ele: 514<br>lev: 11")
+	(label "12:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50326] of  OMTPoint
+
+	(description "<html>id: 13:14<br>lat: 61.5<br>lon: 6.25<br>ele: 933<br>lev: 11")
+	(label "13:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50327] of  OMTPoint
+
+	(description "<html>id: 15:14<br>lat: 61.5<br>lon: 6.75<br>ele: 843<br>lev: 11")
+	(label "15:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50328] of  OMTPoint
+
+	(description "<html>id: 16:14<br>lat: 61.5<br>lon: 7.0<br>ele: 951<br>lev: 11")
+	(label "16:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50329] of  OMTPoint
+
+	(description "<html>id: 17:14<br>lat: 61.5<br>lon: 7.25<br>ele: 898<br>lev: 11")
+	(label "17:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50330] of  OMTPoint
+
+	(description "<html>id: 18:14<br>lat: 61.5<br>lon: 7.5<br>ele: 862<br>lev: 11")
+	(label "18:14")
+	(latitude "61 30")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50331] of  OMTPoint
+
+	(description "<html>id: 9:15<br>lat: 61.75<br>lon: 5.25<br>ele: 799<br>lev: 11")
+	(label "9:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50332] of  OMTPoint
+
+	(description "<html>id: 10:15<br>lat: 61.75<br>lon: 5.5<br>ele: 962<br>lev: 11")
+	(label "10:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50333] of  OMTPoint
+
+	(description "<html>id: 11:15<br>lat: 61.75<br>lon: 5.75<br>ele: 461<br>lev: 11")
+	(label "11:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50334] of  OMTPoint
+
+	(description "<html>id: 12:15<br>lat: 61.75<br>lon: 6.0<br>ele: 708<br>lev: 11")
+	(label "12:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50335] of  OMTPoint
+
+	(description "<html>id: 13:15<br>lat: 61.75<br>lon: 6.25<br>ele: 244<br>lev: 11")
+	(label "13:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50336] of  OMTPoint
+
+	(description "<html>id: 17:15<br>lat: 61.75<br>lon: 7.25<br>ele: 909<br>lev: 11")
+	(label "17:15")
+	(latitude "61 45")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50337] of  OMTPoint
+
+	(description "<html>id: 10:16<br>lat: 62.0<br>lon: 5.5<br>ele: 512<br>lev: 11")
+	(label "10:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50338] of  OMTPoint
+
+	(description "<html>id: 11:16<br>lat: 62.0<br>lon: 5.75<br>ele: 461<br>lev: 11")
+	(label "11:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50339] of  OMTPoint
+
+	(description "<html>id: 12:16<br>lat: 62.0<br>lon: 6.0<br>ele: 502<br>lev: 11")
+	(label "12:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50340] of  OMTPoint
+
+	(description "<html>id: 13:16<br>lat: 62.0<br>lon: 6.25<br>ele: 350<br>lev: 11")
+	(label "13:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50341] of  OMTPoint
+
+	(description "<html>id: 14:16<br>lat: 62.0<br>lon: 6.5<br>ele: 606<br>lev: 11")
+	(label "14:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50342] of  OMTPoint
+
+	(description "<html>id: 15:16<br>lat: 62.0<br>lon: 6.75<br>ele: 681<br>lev: 11")
+	(label "15:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50343] of  OMTPoint
+
+	(description "<html>id: 16:16<br>lat: 62.0<br>lon: 7.0<br>ele: 868<br>lev: 11")
+	(label "16:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50344] of  OMTPoint
+
+	(description "<html>id: 19:16<br>lat: 62.0<br>lon: 7.75<br>ele: 796<br>lev: 11")
+	(label "19:16")
+	(latitude "62 0")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50345] of  OMTPoint
+
+	(description "<html>id: 11:17<br>lat: 62.25<br>lon: 5.75<br>ele: 3<br>lev: 11")
+	(label "11:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50346] of  OMTPoint
+
+	(description "<html>id: 12:17<br>lat: 62.25<br>lon: 6.0<br>ele: 422<br>lev: 11")
+	(label "12:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50347] of  OMTPoint
+
+	(description "<html>id: 13:17<br>lat: 62.25<br>lon: 6.25<br>ele: 566<br>lev: 11")
+	(label "13:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50348] of  OMTPoint
+
+	(description "<html>id: 14:17<br>lat: 62.25<br>lon: 6.5<br>ele: 559<br>lev: 11")
+	(label "14:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50349] of  OMTPoint
+
+	(description "<html>id: 15:17<br>lat: 62.25<br>lon: 6.75<br>ele: 728<br>lev: 11")
+	(label "15:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50350] of  OMTPoint
+
+	(description "<html>id: 16:17<br>lat: 62.25<br>lon: 7.0<br>ele: 723<br>lev: 11")
+	(label "16:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50351] of  OMTPoint
+
+	(description "<html>id: 17:17<br>lat: 62.25<br>lon: 7.25<br>ele: 969<br>lev: 11")
+	(label "17:17")
+	(latitude "62 15")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50352] of  OMTPoint
+
+	(description "<html>id: 15:18<br>lat: 62.5<br>lon: 6.75<br>ele: 79<br>lev: 11")
+	(label "15:18")
+	(latitude "62 30")
+	(lineColor "FF00AA00")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50353] of  OMTPoint
+
+	(description "<html>id: 16:18<br>lat: 62.5<br>lon: 7.0<br>ele: 681<br>lev: 11")
+	(label "16:18")
+	(latitude "62 30")
+	(lineColor "FF00AA00")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50354] of  OMTPoint
+
+	(description "<html>id: 17:18<br>lat: 62.5<br>lon: 7.25<br>ele: 753<br>lev: 11")
+	(label "17:18")
+	(latitude "62 30")
+	(lineColor "FF00AA00")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50355] of  OMTPoint
+
+	(description "<html>id: 18:18<br>lat: 62.5<br>lon: 7.5<br>ele: 919<br>lev: 11")
+	(label "18:18")
+	(latitude "62 30")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50356] of  OMTPoint
+
+	(description "<html>id: 19:18<br>lat: 62.5<br>lon: 7.75<br>ele: 947<br>lev: 11")
+	(label "19:18")
+	(latitude "62 30")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50357] of  OMTPoint
+
+	(description "<html>id: 18:19<br>lat: 62.75<br>lon: 7.5<br>ele: 324<br>lev: 11")
+	(label "18:19")
+	(latitude "62 45")
+	(lineColor "FF00AA00")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class50358] of  OMTPoint
+
+	(description "<html>id: 19:19<br>lat: 62.75<br>lon: 7.75<br>ele: 455<br>lev: 11")
+	(label "19:19")
+	(latitude "62 45")
+	(lineColor "FF00AA00")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class60496] of  CloFuncall
+
+	(source "(ru.rules/sp :all)"))
+
+([RasterToVector_Class60497] of  CloFuncall
+
+	(source "(ru.rules/f 440)"))
+
+([RasterToVector_Class60498] of  CloFuncall
+
+	(source "(rtv.core/pointsField 58 3 40 40 11 20 \"FF88FF88\")"))
+
+([RasterToVector_Class60995] of  CloFuncall
+
+	(source "(rtv.core/pointsField 58 3 40 40 11 20 \"FF008800\")"))
+
+([RasterToVector_Class61492] of  OMTPoint
+
+	(description "<html>id: 36:0<br>lat: 58.0<br>lon: 12.0<br>ele: 46<br>lev: 11")
+	(label "36:0")
+	(latitude "58 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61493] of  OMTPoint
+
+	(description "<html>id: 37:0<br>lat: 58.0<br>lon: 12.25<br>ele: 102<br>lev: 11")
+	(label "37:0")
+	(latitude "58 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61494] of  OMTPoint
+
+	(description "<html>id: 38:0<br>lat: 58.0<br>lon: 12.5<br>ele: 98<br>lev: 11")
+	(label "38:0")
+	(latitude "58 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61495] of  OMTPoint
+
+	(description "<html>id: 39:0<br>lat: 58.0<br>lon: 12.75<br>ele: 167<br>lev: 11")
+	(label "39:0")
+	(latitude "58 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61501] of  OMTPoint
+
+	(description "<html>id: 20:1<br>lat: 58.25<br>lon: 8.0<br>ele: 67<br>lev: 11")
+	(label "20:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61502] of  OMTPoint
+
+	(description "<html>id: 21:1<br>lat: 58.25<br>lon: 8.25<br>ele: 1<br>lev: 11")
+	(label "21:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61503] of  OMTPoint
+
+	(description "<html>id: 34:1<br>lat: 58.25<br>lon: 11.5<br>ele: 0<br>lev: 11")
+	(label "34:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61504] of  OMTPoint
+
+	(description "<html>id: 36:1<br>lat: 58.25<br>lon: 12.0<br>ele: 78<br>lev: 11")
+	(label "36:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61505] of  OMTPoint
+
+	(description "<html>id: 37:1<br>lat: 58.25<br>lon: 12.25<br>ele: 61<br>lev: 11")
+	(label "37:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61506] of  OMTPoint
+
+	(description "<html>id: 38:1<br>lat: 58.25<br>lon: 12.5<br>ele: 87<br>lev: 11")
+	(label "38:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61507] of  OMTPoint
+
+	(description "<html>id: 39:1<br>lat: 58.25<br>lon: 12.75<br>ele: 88<br>lev: 11")
+	(label "39:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61517] of  OMTPoint
+
+	(description "<html>id: 20:2<br>lat: 58.5<br>lon: 8.0<br>ele: 258<br>lev: 11")
+	(label "20:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61518] of  OMTPoint
+
+	(description "<html>id: 21:2<br>lat: 58.5<br>lon: 8.25<br>ele: 212<br>lev: 11")
+	(label "21:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61519] of  OMTPoint
+
+	(description "<html>id: 22:2<br>lat: 58.5<br>lon: 8.5<br>ele: 98<br>lev: 11")
+	(label "22:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61520] of  OMTPoint
+
+	(description "<html>id: 23:2<br>lat: 58.5<br>lon: 8.75<br>ele: 18<br>lev: 11")
+	(label "23:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61521] of  OMTPoint
+
+	(description "<html>id: 33:2<br>lat: 58.5<br>lon: 11.25<br>ele: 54<br>lev: 11")
+	(label "33:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61522] of  OMTPoint
+
+	(description "<html>id: 34:2<br>lat: 58.5<br>lon: 11.5<br>ele: 39<br>lev: 11")
+	(label "34:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61523] of  OMTPoint
+
+	(description "<html>id: 35:2<br>lat: 58.5<br>lon: 11.75<br>ele: 127<br>lev: 11")
+	(label "35:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61524] of  OMTPoint
+
+	(description "<html>id: 36:2<br>lat: 58.5<br>lon: 12.0<br>ele: 72<br>lev: 11")
+	(label "36:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61525] of  OMTPoint
+
+	(description "<html>id: 37:2<br>lat: 58.5<br>lon: 12.25<br>ele: 51<br>lev: 11")
+	(label "37:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61526] of  OMTPoint
+
+	(description "<html>id: 38:2<br>lat: 58.5<br>lon: 12.5<br>ele: 47<br>lev: 11")
+	(label "38:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61527] of  OMTPoint
+
+	(description "<html>id: 39:2<br>lat: 58.5<br>lon: 12.75<br>ele: 58<br>lev: 11")
+	(label "39:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61538] of  OMTPoint
+
+	(description "<html>id: 20:3<br>lat: 58.75<br>lon: 8.0<br>ele: 431<br>lev: 11")
+	(label "20:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61539] of  OMTPoint
+
+	(description "<html>id: 21:3<br>lat: 58.75<br>lon: 8.25<br>ele: 300<br>lev: 11")
+	(label "21:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61540] of  OMTPoint
+
+	(description "<html>id: 22:3<br>lat: 58.75<br>lon: 8.5<br>ele: 210<br>lev: 11")
+	(label "22:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61541] of  OMTPoint
+
+	(description "<html>id: 23:3<br>lat: 58.75<br>lon: 8.75<br>ele: 238<br>lev: 11")
+	(label "23:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61542] of  OMTPoint
+
+	(description "<html>id: 24:3<br>lat: 58.75<br>lon: 9.0<br>ele: 3<br>lev: 11")
+	(label "24:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61543] of  OMTPoint
+
+	(description "<html>id: 33:3<br>lat: 58.75<br>lon: 11.25<br>ele: 54<br>lev: 11")
+	(label "33:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61544] of  OMTPoint
+
+	(description "<html>id: 34:3<br>lat: 58.75<br>lon: 11.5<br>ele: 130<br>lev: 11")
+	(label "34:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61545] of  OMTPoint
+
+	(description "<html>id: 35:3<br>lat: 58.75<br>lon: 11.75<br>ele: 128<br>lev: 11")
+	(label "35:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61546] of  OMTPoint
+
+	(description "<html>id: 36:3<br>lat: 58.75<br>lon: 12.0<br>ele: 145<br>lev: 11")
+	(label "36:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61547] of  OMTPoint
+
+	(description "<html>id: 37:3<br>lat: 58.75<br>lon: 12.25<br>ele: 84<br>lev: 11")
+	(label "37:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61548] of  OMTPoint
+
+	(description "<html>id: 38:3<br>lat: 58.75<br>lon: 12.5<br>ele: 44<br>lev: 11")
+	(label "38:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61549] of  OMTPoint
+
+	(description "<html>id: 39:3<br>lat: 58.75<br>lon: 12.75<br>ele: 44<br>lev: 11")
+	(label "39:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61556] of  OMTPoint
+
+	(description "<html>id: 20:4<br>lat: 59.0<br>lon: 8.0<br>ele: 643<br>lev: 11")
+	(label "20:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61557] of  OMTPoint
+
+	(description "<html>id: 21:4<br>lat: 59.0<br>lon: 8.25<br>ele: 425<br>lev: 11")
+	(label "21:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61558] of  OMTPoint
+
+	(description "<html>id: 22:4<br>lat: 59.0<br>lon: 8.5<br>ele: 397<br>lev: 11")
+	(label "22:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61559] of  OMTPoint
+
+	(description "<html>id: 23:4<br>lat: 59.0<br>lon: 8.75<br>ele: 345<br>lev: 11")
+	(label "23:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61560] of  OMTPoint
+
+	(description "<html>id: 24:4<br>lat: 59.0<br>lon: 9.0<br>ele: 7<br>lev: 11")
+	(label "24:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61561] of  OMTPoint
+
+	(description "<html>id: 25:4<br>lat: 59.0<br>lon: 9.25<br>ele: 4<br>lev: 11")
+	(label "25:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61562] of  OMTPoint
+
+	(description "<html>id: 26:4<br>lat: 59.0<br>lon: 9.5<br>ele: 1<br>lev: 11")
+	(label "26:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61563] of  OMTPoint
+
+	(description "<html>id: 33:4<br>lat: 59.0<br>lon: 11.25<br>ele: 64<br>lev: 11")
+	(label "33:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61564] of  OMTPoint
+
+	(description "<html>id: 34:4<br>lat: 59.0<br>lon: 11.5<br>ele: 159<br>lev: 11")
+	(label "34:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61565] of  OMTPoint
+
+	(description "<html>id: 35:4<br>lat: 59.0<br>lon: 11.75<br>ele: 170<br>lev: 11")
+	(label "35:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61566] of  OMTPoint
+
+	(description "<html>id: 36:4<br>lat: 59.0<br>lon: 12.0<br>ele: 137<br>lev: 11")
+	(label "36:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61567] of  OMTPoint
+
+	(description "<html>id: 37:4<br>lat: 59.0<br>lon: 12.25<br>ele: 159<br>lev: 11")
+	(label "37:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61568] of  OMTPoint
+
+	(description "<html>id: 38:4<br>lat: 59.0<br>lon: 12.5<br>ele: 70<br>lev: 11")
+	(label "38:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61569] of  OMTPoint
+
+	(description "<html>id: 39:4<br>lat: 59.0<br>lon: 12.75<br>ele: 44<br>lev: 11")
+	(label "39:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61573] of  OMTPoint
+
+	(description "<html>id: 20:5<br>lat: 59.25<br>lon: 8.0<br>ele: 584<br>lev: 11")
+	(label "20:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61574] of  OMTPoint
+
+	(description "<html>id: 21:5<br>lat: 59.25<br>lon: 8.25<br>ele: 721<br>lev: 11")
+	(label "21:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61575] of  OMTPoint
+
+	(description "<html>id: 22:5<br>lat: 59.25<br>lon: 8.5<br>ele: 639<br>lev: 11")
+	(label "22:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61576] of  OMTPoint
+
+	(description "<html>id: 23:5<br>lat: 59.25<br>lon: 8.75<br>ele: 576<br>lev: 11")
+	(label "23:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61577] of  OMTPoint
+
+	(description "<html>id: 24:5<br>lat: 59.25<br>lon: 9.0<br>ele: 231<br>lev: 11")
+	(label "24:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61578] of  OMTPoint
+
+	(description "<html>id: 25:5<br>lat: 59.25<br>lon: 9.25<br>ele: 125<br>lev: 11")
+	(label "25:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61579] of  OMTPoint
+
+	(description "<html>id: 26:5<br>lat: 59.25<br>lon: 9.5<br>ele: 61<br>lev: 11")
+	(label "26:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61580] of  OMTPoint
+
+	(description "<html>id: 27:5<br>lat: 59.25<br>lon: 9.75<br>ele: 140<br>lev: 11")
+	(label "27:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61581] of  OMTPoint
+
+	(description "<html>id: 28:5<br>lat: 59.25<br>lon: 10.0<br>ele: 70<br>lev: 11")
+	(label "28:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61582] of  OMTPoint
+
+	(description "<html>id: 29:5<br>lat: 59.25<br>lon: 10.25<br>ele: 19<br>lev: 11")
+	(label "29:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61583] of  OMTPoint
+
+	(description "<html>id: 31:5<br>lat: 59.25<br>lon: 10.75<br>ele: 39<br>lev: 11")
+	(label "31:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61584] of  OMTPoint
+
+	(description "<html>id: 32:5<br>lat: 59.25<br>lon: 11.0<br>ele: 41<br>lev: 11")
+	(label "32:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61585] of  OMTPoint
+
+	(description "<html>id: 33:5<br>lat: 59.25<br>lon: 11.25<br>ele: 163<br>lev: 11")
+	(label "33:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61586] of  OMTPoint
+
+	(description "<html>id: 34:5<br>lat: 59.25<br>lon: 11.5<br>ele: 186<br>lev: 11")
+	(label "34:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61587] of  OMTPoint
+
+	(description "<html>id: 35:5<br>lat: 59.25<br>lon: 11.75<br>ele: 143<br>lev: 11")
+	(label "35:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61588] of  OMTPoint
+
+	(description "<html>id: 36:5<br>lat: 59.25<br>lon: 12.0<br>ele: 119<br>lev: 11")
+	(label "36:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61589] of  OMTPoint
+
+	(description "<html>id: 37:5<br>lat: 59.25<br>lon: 12.25<br>ele: 120<br>lev: 11")
+	(label "37:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61590] of  OMTPoint
+
+	(description "<html>id: 38:5<br>lat: 59.25<br>lon: 12.5<br>ele: 108<br>lev: 11")
+	(label "38:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61591] of  OMTPoint
+
+	(description "<html>id: 39:5<br>lat: 59.25<br>lon: 12.75<br>ele: 79<br>lev: 11")
+	(label "39:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61599] of  OMTPoint
+
+	(description "<html>id: 20:6<br>lat: 59.5<br>lon: 8.0<br>ele: 564<br>lev: 11")
+	(label "20:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61600] of  OMTPoint
+
+	(description "<html>id: 21:6<br>lat: 59.5<br>lon: 8.25<br>ele: 562<br>lev: 11")
+	(label "21:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61601] of  OMTPoint
+
+	(description "<html>id: 22:6<br>lat: 59.5<br>lon: 8.5<br>ele: 391<br>lev: 11")
+	(label "22:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61602] of  OMTPoint
+
+	(description "<html>id: 23:6<br>lat: 59.5<br>lon: 8.75<br>ele: 642<br>lev: 11")
+	(label "23:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61603] of  OMTPoint
+
+	(description "<html>id: 24:6<br>lat: 59.5<br>lon: 9.0<br>ele: 258<br>lev: 11")
+	(label "24:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61604] of  OMTPoint
+
+	(description "<html>id: 25:6<br>lat: 59.5<br>lon: 9.25<br>ele: 447<br>lev: 11")
+	(label "25:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61605] of  OMTPoint
+
+	(description "<html>id: 26:6<br>lat: 59.5<br>lon: 9.5<br>ele: 547<br>lev: 11")
+	(label "26:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61606] of  OMTPoint
+
+	(description "<html>id: 27:6<br>lat: 59.5<br>lon: 9.75<br>ele: 359<br>lev: 11")
+	(label "27:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61607] of  OMTPoint
+
+	(description "<html>id: 28:6<br>lat: 59.5<br>lon: 10.0<br>ele: 138<br>lev: 11")
+	(label "28:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61608] of  OMTPoint
+
+	(description "<html>id: 31:6<br>lat: 59.5<br>lon: 10.75<br>ele: 41<br>lev: 11")
+	(label "31:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61609] of  OMTPoint
+
+	(description "<html>id: 32:6<br>lat: 59.5<br>lon: 11.0<br>ele: 120<br>lev: 11")
+	(label "32:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61610] of  OMTPoint
+
+	(description "<html>id: 33:6<br>lat: 59.5<br>lon: 11.25<br>ele: 134<br>lev: 11")
+	(label "33:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61611] of  OMTPoint
+
+	(description "<html>id: 34:6<br>lat: 59.5<br>lon: 11.5<br>ele: 158<br>lev: 11")
+	(label "34:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61612] of  OMTPoint
+
+	(description "<html>id: 35:6<br>lat: 59.5<br>lon: 11.75<br>ele: 138<br>lev: 11")
+	(label "35:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61613] of  OMTPoint
+
+	(description "<html>id: 36:6<br>lat: 59.5<br>lon: 12.0<br>ele: 152<br>lev: 11")
+	(label "36:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61614] of  OMTPoint
+
+	(description "<html>id: 37:6<br>lat: 59.5<br>lon: 12.25<br>ele: 226<br>lev: 11")
+	(label "37:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61615] of  OMTPoint
+
+	(description "<html>id: 38:6<br>lat: 59.5<br>lon: 12.5<br>ele: 161<br>lev: 11")
+	(label "38:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61616] of  OMTPoint
+
+	(description "<html>id: 39:6<br>lat: 59.5<br>lon: 12.75<br>ele: 97<br>lev: 11")
+	(label "39:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61621] of  OMTPoint
+
+	(description "<html>id: 20:7<br>lat: 59.75<br>lon: 8.0<br>ele: 831<br>lev: 11")
+	(label "20:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61622] of  OMTPoint
+
+	(description "<html>id: 22:7<br>lat: 59.75<br>lon: 8.5<br>ele: 946<br>lev: 11")
+	(label "22:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61623] of  OMTPoint
+
+	(description "<html>id: 23:7<br>lat: 59.75<br>lon: 8.75<br>ele: 621<br>lev: 11")
+	(label "23:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61624] of  OMTPoint
+
+	(description "<html>id: 24:7<br>lat: 59.75<br>lon: 9.0<br>ele: 337<br>lev: 11")
+	(label "24:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61625] of  OMTPoint
+
+	(description "<html>id: 25:7<br>lat: 59.75<br>lon: 9.25<br>ele: 579<br>lev: 11")
+	(label "25:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61626] of  OMTPoint
+
+	(description "<html>id: 26:7<br>lat: 59.75<br>lon: 9.5<br>ele: 325<br>lev: 11")
+	(label "26:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61627] of  OMTPoint
+
+	(description "<html>id: 27:7<br>lat: 59.75<br>lon: 9.75<br>ele: 103<br>lev: 11")
+	(label "27:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61628] of  OMTPoint
+
+	(description "<html>id: 28:7<br>lat: 59.75<br>lon: 10.0<br>ele: 222<br>lev: 11")
+	(label "28:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61629] of  OMTPoint
+
+	(description "<html>id: 29:7<br>lat: 59.75<br>lon: 10.25<br>ele: 80<br>lev: 11")
+	(label "29:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61630] of  OMTPoint
+
+	(description "<html>id: 31:7<br>lat: 59.75<br>lon: 10.75<br>ele: 118<br>lev: 11")
+	(label "31:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61631] of  OMTPoint
+
+	(description "<html>id: 32:7<br>lat: 59.75<br>lon: 11.0<br>ele: 187<br>lev: 11")
+	(label "32:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61632] of  OMTPoint
+
+	(description "<html>id: 33:7<br>lat: 59.75<br>lon: 11.25<br>ele: 204<br>lev: 11")
+	(label "33:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61633] of  OMTPoint
+
+	(description "<html>id: 34:7<br>lat: 59.75<br>lon: 11.5<br>ele: 205<br>lev: 11")
+	(label "34:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61634] of  OMTPoint
+
+	(description "<html>id: 35:7<br>lat: 59.75<br>lon: 11.75<br>ele: 223<br>lev: 11")
+	(label "35:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61635] of  OMTPoint
+
+	(description "<html>id: 36:7<br>lat: 59.75<br>lon: 12.0<br>ele: 172<br>lev: 11")
+	(label "36:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61636] of  OMTPoint
+
+	(description "<html>id: 37:7<br>lat: 59.75<br>lon: 12.25<br>ele: 153<br>lev: 11")
+	(label "37:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61637] of  OMTPoint
+
+	(description "<html>id: 38:7<br>lat: 59.75<br>lon: 12.5<br>ele: 122<br>lev: 11")
+	(label "38:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61638] of  OMTPoint
+
+	(description "<html>id: 39:7<br>lat: 59.75<br>lon: 12.75<br>ele: 160<br>lev: 11")
+	(label "39:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61642] of  OMTPoint
+
+	(description "<html>id: 23:8<br>lat: 60.0<br>lon: 8.75<br>ele: 488<br>lev: 11")
+	(label "23:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61643] of  OMTPoint
+
+	(description "<html>id: 24:8<br>lat: 60.0<br>lon: 9.0<br>ele: 804<br>lev: 11")
+	(label "24:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61644] of  OMTPoint
+
+	(description "<html>id: 25:8<br>lat: 60.0<br>lon: 9.25<br>ele: 512<br>lev: 11")
+	(label "25:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61645] of  OMTPoint
+
+	(description "<html>id: 26:8<br>lat: 60.0<br>lon: 9.5<br>ele: 510<br>lev: 11")
+	(label "26:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61646] of  OMTPoint
+
+	(description "<html>id: 27:8<br>lat: 60.0<br>lon: 9.75<br>ele: 206<br>lev: 11")
+	(label "27:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61647] of  OMTPoint
+
+	(description "<html>id: 28:8<br>lat: 60.0<br>lon: 10.0<br>ele: 571<br>lev: 11")
+	(label "28:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61648] of  OMTPoint
+
+	(description "<html>id: 29:8<br>lat: 60.0<br>lon: 10.25<br>ele: 291<br>lev: 11")
+	(label "29:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61649] of  OMTPoint
+
+	(description "<html>id: 30:8<br>lat: 60.0<br>lon: 10.5<br>ele: 167<br>lev: 11")
+	(label "30:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61650] of  OMTPoint
+
+	(description "<html>id: 31:8<br>lat: 60.0<br>lon: 10.75<br>ele: 217<br>lev: 11")
+	(label "31:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61651] of  OMTPoint
+
+	(description "<html>id: 32:8<br>lat: 60.0<br>lon: 11.0<br>ele: 161<br>lev: 11")
+	(label "32:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61652] of  OMTPoint
+
+	(description "<html>id: 33:8<br>lat: 60.0<br>lon: 11.25<br>ele: 172<br>lev: 11")
+	(label "33:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61653] of  OMTPoint
+
+	(description "<html>id: 34:8<br>lat: 60.0<br>lon: 11.5<br>ele: 290<br>lev: 11")
+	(label "34:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61654] of  OMTPoint
+
+	(description "<html>id: 35:8<br>lat: 60.0<br>lon: 11.75<br>ele: 252<br>lev: 11")
+	(label "35:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61655] of  OMTPoint
+
+	(description "<html>id: 36:8<br>lat: 60.0<br>lon: 12.0<br>ele: 167<br>lev: 11")
+	(label "36:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61656] of  OMTPoint
+
+	(description "<html>id: 37:8<br>lat: 60.0<br>lon: 12.25<br>ele: 167<br>lev: 11")
+	(label "37:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61657] of  OMTPoint
+
+	(description "<html>id: 38:8<br>lat: 60.0<br>lon: 12.5<br>ele: 270<br>lev: 11")
+	(label "38:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61658] of  OMTPoint
+
+	(description "<html>id: 39:8<br>lat: 60.0<br>lon: 12.75<br>ele: 202<br>lev: 11")
+	(label "39:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61664] of  OMTPoint
+
+	(description "<html>id: 23:9<br>lat: 60.25<br>lon: 8.75<br>ele: 941<br>lev: 11")
+	(label "23:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61665] of  OMTPoint
+
+	(description "<html>id: 24:9<br>lat: 60.25<br>lon: 9.0<br>ele: 769<br>lev: 11")
+	(label "24:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61666] of  OMTPoint
+
+	(description "<html>id: 25:9<br>lat: 60.25<br>lon: 9.25<br>ele: 410<br>lev: 11")
+	(label "25:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61667] of  OMTPoint
+
+	(description "<html>id: 26:9<br>lat: 60.25<br>lon: 9.5<br>ele: 257<br>lev: 11")
+	(label "26:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61668] of  OMTPoint
+
+	(description "<html>id: 27:9<br>lat: 60.25<br>lon: 9.75<br>ele: 349<br>lev: 11")
+	(label "27:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61669] of  OMTPoint
+
+	(description "<html>id: 28:9<br>lat: 60.25<br>lon: 10.0<br>ele: 247<br>lev: 11")
+	(label "28:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61670] of  OMTPoint
+
+	(description "<html>id: 29:9<br>lat: 60.25<br>lon: 10.25<br>ele: 300<br>lev: 11")
+	(label "29:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61671] of  OMTPoint
+
+	(description "<html>id: 30:9<br>lat: 60.25<br>lon: 10.5<br>ele: 464<br>lev: 11")
+	(label "30:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61672] of  OMTPoint
+
+	(description "<html>id: 31:9<br>lat: 60.25<br>lon: 10.75<br>ele: 429<br>lev: 11")
+	(label "31:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61673] of  OMTPoint
+
+	(description "<html>id: 32:9<br>lat: 60.25<br>lon: 11.0<br>ele: 228<br>lev: 11")
+	(label "32:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61674] of  OMTPoint
+
+	(description "<html>id: 33:9<br>lat: 60.25<br>lon: 11.25<br>ele: 146<br>lev: 11")
+	(label "33:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61675] of  OMTPoint
+
+	(description "<html>id: 34:9<br>lat: 60.25<br>lon: 11.5<br>ele: 165<br>lev: 11")
+	(label "34:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61676] of  OMTPoint
+
+	(description "<html>id: 35:9<br>lat: 60.25<br>lon: 11.75<br>ele: 212<br>lev: 11")
+	(label "35:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61677] of  OMTPoint
+
+	(description "<html>id: 36:9<br>lat: 60.25<br>lon: 12.0<br>ele: 244<br>lev: 11")
+	(label "36:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61678] of  OMTPoint
+
+	(description "<html>id: 37:9<br>lat: 60.25<br>lon: 12.25<br>ele: 213<br>lev: 11")
+	(label "37:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61679] of  OMTPoint
+
+	(description "<html>id: 38:9<br>lat: 60.25<br>lon: 12.5<br>ele: 344<br>lev: 11")
+	(label "38:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61680] of  OMTPoint
+
+	(description "<html>id: 39:9<br>lat: 60.25<br>lon: 12.75<br>ele: 134<br>lev: 11")
+	(label "39:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61689] of  OMTPoint
+
+	(description "<html>id: 21:10<br>lat: 60.5<br>lon: 8.25<br>ele: 990<br>lev: 11")
+	(label "21:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61690] of  OMTPoint
+
+	(description "<html>id: 22:10<br>lat: 60.5<br>lon: 8.5<br>ele: 869<br>lev: 11")
+	(label "22:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61691] of  OMTPoint
+
+	(description "<html>id: 23:10<br>lat: 60.5<br>lon: 8.75<br>ele: 905<br>lev: 11")
+	(label "23:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61692] of  OMTPoint
+
+	(description "<html>id: 24:10<br>lat: 60.5<br>lon: 9.0<br>ele: 958<br>lev: 11")
+	(label "24:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61693] of  OMTPoint
+
+	(description "<html>id: 25:10<br>lat: 60.5<br>lon: 9.25<br>ele: 623<br>lev: 11")
+	(label "25:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61694] of  OMTPoint
+
+	(description "<html>id: 26:10<br>lat: 60.5<br>lon: 9.5<br>ele: 962<br>lev: 11")
+	(label "26:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61695] of  OMTPoint
+
+	(description "<html>id: 27:10<br>lat: 60.5<br>lon: 9.75<br>ele: 774<br>lev: 11")
+	(label "27:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61696] of  OMTPoint
+
+	(description "<html>id: 28:10<br>lat: 60.5<br>lon: 10.0<br>ele: 343<br>lev: 11")
+	(label "28:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61697] of  OMTPoint
+
+	(description "<html>id: 29:10<br>lat: 60.5<br>lon: 10.25<br>ele: 285<br>lev: 11")
+	(label "29:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61698] of  OMTPoint
+
+	(description "<html>id: 30:10<br>lat: 60.5<br>lon: 10.5<br>ele: 592<br>lev: 11")
+	(label "30:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61699] of  OMTPoint
+
+	(description "<html>id: 31:10<br>lat: 60.5<br>lon: 10.75<br>ele: 522<br>lev: 11")
+	(label "31:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61700] of  OMTPoint
+
+	(description "<html>id: 32:10<br>lat: 60.5<br>lon: 11.0<br>ele: 428<br>lev: 11")
+	(label "32:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61701] of  OMTPoint
+
+	(description "<html>id: 33:10<br>lat: 60.5<br>lon: 11.25<br>ele: 372<br>lev: 11")
+	(label "33:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61702] of  OMTPoint
+
+	(description "<html>id: 34:10<br>lat: 60.5<br>lon: 11.5<br>ele: 215<br>lev: 11")
+	(label "34:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61703] of  OMTPoint
+
+	(description "<html>id: 35:10<br>lat: 60.5<br>lon: 11.75<br>ele: 443<br>lev: 11")
+	(label "35:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61704] of  OMTPoint
+
+	(description "<html>id: 36:10<br>lat: 60.5<br>lon: 12.0<br>ele: 236<br>lev: 11")
+	(label "36:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61705] of  OMTPoint
+
+	(description "<html>id: 37:10<br>lat: 60.5<br>lon: 12.25<br>ele: 336<br>lev: 11")
+	(label "37:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61706] of  OMTPoint
+
+	(description "<html>id: 38:10<br>lat: 60.5<br>lon: 12.5<br>ele: 441<br>lev: 11")
+	(label "38:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61707] of  OMTPoint
+
+	(description "<html>id: 39:10<br>lat: 60.5<br>lon: 12.75<br>ele: 300<br>lev: 11")
+	(label "39:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61713] of  OMTPoint
+
+	(description "<html>id: 22:11<br>lat: 60.75<br>lon: 8.5<br>ele: 856<br>lev: 11")
+	(label "22:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61714] of  OMTPoint
+
+	(description "<html>id: 23:11<br>lat: 60.75<br>lon: 8.75<br>ele: 604<br>lev: 11")
+	(label "23:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61715] of  OMTPoint
+
+	(description "<html>id: 24:11<br>lat: 60.75<br>lon: 9.0<br>ele: 894<br>lev: 11")
+	(label "24:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61716] of  OMTPoint
+
+	(description "<html>id: 25:11<br>lat: 60.75<br>lon: 9.25<br>ele: 879<br>lev: 11")
+	(label "25:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61717] of  OMTPoint
+
+	(description "<html>id: 26:11<br>lat: 60.75<br>lon: 9.5<br>ele: 737<br>lev: 11")
+	(label "26:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61718] of  OMTPoint
+
+	(description "<html>id: 27:11<br>lat: 60.75<br>lon: 9.75<br>ele: 578<br>lev: 11")
+	(label "27:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61719] of  OMTPoint
+
+	(description "<html>id: 28:11<br>lat: 60.75<br>lon: 10.0<br>ele: 582<br>lev: 11")
+	(label "28:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61720] of  OMTPoint
+
+	(description "<html>id: 29:11<br>lat: 60.75<br>lon: 10.25<br>ele: 370<br>lev: 11")
+	(label "29:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61721] of  OMTPoint
+
+	(description "<html>id: 30:11<br>lat: 60.75<br>lon: 10.5<br>ele: 395<br>lev: 11")
+	(label "30:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61722] of  OMTPoint
+
+	(description "<html>id: 31:11<br>lat: 60.75<br>lon: 10.75<br>ele: 189<br>lev: 11")
+	(label "31:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61723] of  OMTPoint
+
+	(description "<html>id: 32:11<br>lat: 60.75<br>lon: 11.0<br>ele: 159<br>lev: 11")
+	(label "32:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61724] of  OMTPoint
+
+	(description "<html>id: 33:11<br>lat: 60.75<br>lon: 11.25<br>ele: 304<br>lev: 11")
+	(label "33:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61725] of  OMTPoint
+
+	(description "<html>id: 34:11<br>lat: 60.75<br>lon: 11.5<br>ele: 420<br>lev: 11")
+	(label "34:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61726] of  OMTPoint
+
+	(description "<html>id: 35:11<br>lat: 60.75<br>lon: 11.75<br>ele: 150<br>lev: 11")
+	(label "35:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61727] of  OMTPoint
+
+	(description "<html>id: 36:11<br>lat: 60.75<br>lon: 12.0<br>ele: 293<br>lev: 11")
+	(label "36:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61728] of  OMTPoint
+
+	(description "<html>id: 37:11<br>lat: 60.75<br>lon: 12.25<br>ele: 275<br>lev: 11")
+	(label "37:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61729] of  OMTPoint
+
+	(description "<html>id: 38:11<br>lat: 60.75<br>lon: 12.5<br>ele: 390<br>lev: 11")
+	(label "38:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61730] of  OMTPoint
+
+	(description "<html>id: 39:11<br>lat: 60.75<br>lon: 12.75<br>ele: 344<br>lev: 11")
+	(label "39:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61738] of  OMTPoint
+
+	(description "<html>id: 23:12<br>lat: 61.0<br>lon: 8.75<br>ele: 999<br>lev: 11")
+	(label "23:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61739] of  OMTPoint
+
+	(description "<html>id: 24:12<br>lat: 61.0<br>lon: 9.0<br>ele: 789<br>lev: 11")
+	(label "24:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61740] of  OMTPoint
+
+	(description "<html>id: 25:12<br>lat: 61.0<br>lon: 9.25<br>ele: 733<br>lev: 11")
+	(label "25:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61741] of  OMTPoint
+
+	(description "<html>id: 26:12<br>lat: 61.0<br>lon: 9.5<br>ele: 645<br>lev: 11")
+	(label "26:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61742] of  OMTPoint
+
+	(description "<html>id: 27:12<br>lat: 61.0<br>lon: 9.75<br>ele: 745<br>lev: 11")
+	(label "27:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61743] of  OMTPoint
+
+	(description "<html>id: 28:12<br>lat: 61.0<br>lon: 10.0<br>ele: 518<br>lev: 11")
+	(label "28:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61744] of  OMTPoint
+
+	(description "<html>id: 29:12<br>lat: 61.0<br>lon: 10.25<br>ele: 635<br>lev: 11")
+	(label "29:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61745] of  OMTPoint
+
+	(description "<html>id: 30:12<br>lat: 61.0<br>lon: 10.5<br>ele: 214<br>lev: 11")
+	(label "30:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61746] of  OMTPoint
+
+	(description "<html>id: 31:12<br>lat: 61.0<br>lon: 10.75<br>ele: 514<br>lev: 11")
+	(label "31:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61747] of  OMTPoint
+
+	(description "<html>id: 32:12<br>lat: 61.0<br>lon: 11.0<br>ele: 586<br>lev: 11")
+	(label "32:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61748] of  OMTPoint
+
+	(description "<html>id: 33:12<br>lat: 61.0<br>lon: 11.25<br>ele: 512<br>lev: 11")
+	(label "33:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61749] of  OMTPoint
+
+	(description "<html>id: 34:12<br>lat: 61.0<br>lon: 11.5<br>ele: 442<br>lev: 11")
+	(label "34:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61750] of  OMTPoint
+
+	(description "<html>id: 35:12<br>lat: 61.0<br>lon: 11.75<br>ele: 491<br>lev: 11")
+	(label "35:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61751] of  OMTPoint
+
+	(description "<html>id: 36:12<br>lat: 61.0<br>lon: 12.0<br>ele: 455<br>lev: 11")
+	(label "36:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61752] of  OMTPoint
+
+	(description "<html>id: 37:12<br>lat: 61.0<br>lon: 12.25<br>ele: 415<br>lev: 11")
+	(label "37:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61753] of  OMTPoint
+
+	(description "<html>id: 38:12<br>lat: 61.0<br>lon: 12.5<br>ele: 489<br>lev: 11")
+	(label "38:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61754] of  OMTPoint
+
+	(description "<html>id: 39:12<br>lat: 61.0<br>lon: 12.75<br>ele: 477<br>lev: 11")
+	(label "39:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61764] of  OMTPoint
+
+	(description "<html>id: 23:13<br>lat: 61.25<br>lon: 8.75<br>ele: 783<br>lev: 11")
+	(label "23:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61765] of  OMTPoint
+
+	(description "<html>id: 24:13<br>lat: 61.25<br>lon: 9.0<br>ele: 945<br>lev: 11")
+	(label "24:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61766] of  OMTPoint
+
+	(description "<html>id: 25:13<br>lat: 61.25<br>lon: 9.25<br>ele: 977<br>lev: 11")
+	(label "25:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61767] of  OMTPoint
+
+	(description "<html>id: 26:13<br>lat: 61.25<br>lon: 9.5<br>ele: 954<br>lev: 11")
+	(label "26:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61768] of  OMTPoint
+
+	(description "<html>id: 27:13<br>lat: 61.25<br>lon: 9.75<br>ele: 856<br>lev: 11")
+	(label "27:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61769] of  OMTPoint
+
+	(description "<html>id: 28:13<br>lat: 61.25<br>lon: 10.0<br>ele: 528<br>lev: 11")
+	(label "28:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61770] of  OMTPoint
+
+	(description "<html>id: 29:13<br>lat: 61.25<br>lon: 10.25<br>ele: 535<br>lev: 11")
+	(label "29:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61771] of  OMTPoint
+
+	(description "<html>id: 30:13<br>lat: 61.25<br>lon: 10.5<br>ele: 920<br>lev: 11")
+	(label "30:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61772] of  OMTPoint
+
+	(description "<html>id: 31:13<br>lat: 61.25<br>lon: 10.75<br>ele: 755<br>lev: 11")
+	(label "31:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61773] of  OMTPoint
+
+	(description "<html>id: 32:13<br>lat: 61.25<br>lon: 11.0<br>ele: 740<br>lev: 11")
+	(label "32:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61774] of  OMTPoint
+
+	(description "<html>id: 33:13<br>lat: 61.25<br>lon: 11.25<br>ele: 327<br>lev: 11")
+	(label "33:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61775] of  OMTPoint
+
+	(description "<html>id: 34:13<br>lat: 61.25<br>lon: 11.5<br>ele: 475<br>lev: 11")
+	(label "34:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61776] of  OMTPoint
+
+	(description "<html>id: 35:13<br>lat: 61.25<br>lon: 11.75<br>ele: 490<br>lev: 11")
+	(label "35:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61777] of  OMTPoint
+
+	(description "<html>id: 36:13<br>lat: 61.25<br>lon: 12.0<br>ele: 631<br>lev: 11")
+	(label "36:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61778] of  OMTPoint
+
+	(description "<html>id: 37:13<br>lat: 61.25<br>lon: 12.25<br>ele: 470<br>lev: 11")
+	(label "37:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61779] of  OMTPoint
+
+	(description "<html>id: 38:13<br>lat: 61.25<br>lon: 12.5<br>ele: 461<br>lev: 11")
+	(label "38:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61780] of  OMTPoint
+
+	(description "<html>id: 39:13<br>lat: 61.25<br>lon: 12.75<br>ele: 571<br>lev: 11")
+	(label "39:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61790] of  OMTPoint
+
+	(description "<html>id: 25:14<br>lat: 61.5<br>lon: 9.25<br>ele: 878<br>lev: 11")
+	(label "25:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61791] of  OMTPoint
+
+	(description "<html>id: 27:14<br>lat: 61.5<br>lon: 9.75<br>ele: 950<br>lev: 11")
+	(label "27:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61792] of  OMTPoint
+
+	(description "<html>id: 28:14<br>lat: 61.5<br>lon: 10.0<br>ele: 671<br>lev: 11")
+	(label "28:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61793] of  OMTPoint
+
+	(description "<html>id: 29:14<br>lat: 61.5<br>lon: 10.25<br>ele: 832<br>lev: 11")
+	(label "29:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61794] of  OMTPoint
+
+	(description "<html>id: 31:14<br>lat: 61.5<br>lon: 10.75<br>ele: 738<br>lev: 11")
+	(label "31:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61795] of  OMTPoint
+
+	(description "<html>id: 32:14<br>lat: 61.5<br>lon: 11.0<br>ele: 584<br>lev: 11")
+	(label "32:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61796] of  OMTPoint
+
+	(description "<html>id: 33:14<br>lat: 61.5<br>lon: 11.25<br>ele: 632<br>lev: 11")
+	(label "33:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61797] of  OMTPoint
+
+	(description "<html>id: 34:14<br>lat: 61.5<br>lon: 11.5<br>ele: 601<br>lev: 11")
+	(label "34:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61798] of  OMTPoint
+
+	(description "<html>id: 35:14<br>lat: 61.5<br>lon: 11.75<br>ele: 752<br>lev: 11")
+	(label "35:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61799] of  OMTPoint
+
+	(description "<html>id: 36:14<br>lat: 61.5<br>lon: 12.0<br>ele: 562<br>lev: 11")
+	(label "36:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61800] of  OMTPoint
+
+	(description "<html>id: 37:14<br>lat: 61.5<br>lon: 12.25<br>ele: 718<br>lev: 11")
+	(label "37:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61801] of  OMTPoint
+
+	(description "<html>id: 38:14<br>lat: 61.5<br>lon: 12.5<br>ele: 677<br>lev: 11")
+	(label "38:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61802] of  OMTPoint
+
+	(description "<html>id: 39:14<br>lat: 61.5<br>lon: 12.75<br>ele: 762<br>lev: 11")
+	(label "39:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61809] of  OMTPoint
+
+	(description "<html>id: 24:15<br>lat: 61.75<br>lon: 9.0<br>ele: 804<br>lev: 11")
+	(label "24:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61810] of  OMTPoint
+
+	(description "<html>id: 25:15<br>lat: 61.75<br>lon: 9.25<br>ele: 859<br>lev: 11")
+	(label "25:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61811] of  OMTPoint
+
+	(description "<html>id: 26:15<br>lat: 61.75<br>lon: 9.5<br>ele: 916<br>lev: 11")
+	(label "26:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61812] of  OMTPoint
+
+	(description "<html>id: 30:15<br>lat: 61.75<br>lon: 10.5<br>ele: 786<br>lev: 11")
+	(label "30:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61813] of  OMTPoint
+
+	(description "<html>id: 31:15<br>lat: 61.75<br>lon: 10.75<br>ele: 496<br>lev: 11")
+	(label "31:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61814] of  OMTPoint
+
+	(description "<html>id: 32:15<br>lat: 61.75<br>lon: 11.0<br>ele: 670<br>lev: 11")
+	(label "32:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61815] of  OMTPoint
+
+	(description "<html>id: 33:15<br>lat: 61.75<br>lon: 11.25<br>ele: 717<br>lev: 11")
+	(label "33:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61816] of  OMTPoint
+
+	(description "<html>id: 34:15<br>lat: 61.75<br>lon: 11.5<br>ele: 737<br>lev: 11")
+	(label "34:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61817] of  OMTPoint
+
+	(description "<html>id: 36:15<br>lat: 61.75<br>lon: 12.0<br>ele: 947<br>lev: 11")
+	(label "36:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61818] of  OMTPoint
+
+	(description "<html>id: 37:15<br>lat: 61.75<br>lon: 12.25<br>ele: 800<br>lev: 11")
+	(label "37:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61819] of  OMTPoint
+
+	(description "<html>id: 38:15<br>lat: 61.75<br>lon: 12.5<br>ele: 693<br>lev: 11")
+	(label "38:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61820] of  OMTPoint
+
+	(description "<html>id: 39:15<br>lat: 61.75<br>lon: 12.75<br>ele: 620<br>lev: 11")
+	(label "39:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61829] of  OMTPoint
+
+	(description "<html>id: 31:16<br>lat: 62.0<br>lon: 10.75<br>ele: 585<br>lev: 11")
+	(label "31:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61830] of  OMTPoint
+
+	(description "<html>id: 32:16<br>lat: 62.0<br>lon: 11.0<br>ele: 621<br>lev: 11")
+	(label "32:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61831] of  OMTPoint
+
+	(description "<html>id: 33:16<br>lat: 62.0<br>lon: 11.25<br>ele: 901<br>lev: 11")
+	(label "33:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61832] of  OMTPoint
+
+	(description "<html>id: 34:16<br>lat: 62.0<br>lon: 11.5<br>ele: 739<br>lev: 11")
+	(label "34:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61833] of  OMTPoint
+
+	(description "<html>id: 35:16<br>lat: 62.0<br>lon: 11.75<br>ele: 704<br>lev: 11")
+	(label "35:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61834] of  OMTPoint
+
+	(description "<html>id: 36:16<br>lat: 62.0<br>lon: 12.0<br>ele: 706<br>lev: 11")
+	(label "36:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61835] of  OMTPoint
+
+	(description "<html>id: 37:16<br>lat: 62.0<br>lon: 12.25<br>ele: 661<br>lev: 11")
+	(label "37:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61836] of  OMTPoint
+
+	(description "<html>id: 38:16<br>lat: 62.0<br>lon: 12.5<br>ele: 590<br>lev: 11")
+	(label "38:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61837] of  OMTPoint
+
+	(description "<html>id: 39:16<br>lat: 62.0<br>lon: 12.75<br>ele: 891<br>lev: 11")
+	(label "39:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61845] of  OMTPoint
+
+	(description "<html>id: 21:17<br>lat: 62.25<br>lon: 8.25<br>ele: 948<br>lev: 11")
+	(label "21:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61846] of  OMTPoint
+
+	(description "<html>id: 29:17<br>lat: 62.25<br>lon: 10.25<br>ele: 742<br>lev: 11")
+	(label "29:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61847] of  OMTPoint
+
+	(description "<html>id: 30:17<br>lat: 62.25<br>lon: 10.5<br>ele: 622<br>lev: 11")
+	(label "30:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61848] of  OMTPoint
+
+	(description "<html>id: 31:17<br>lat: 62.25<br>lon: 10.75<br>ele: 884<br>lev: 11")
+	(label "31:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61849] of  OMTPoint
+
+	(description "<html>id: 32:17<br>lat: 62.25<br>lon: 11.0<br>ele: 950<br>lev: 11")
+	(label "32:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61850] of  OMTPoint
+
+	(description "<html>id: 33:17<br>lat: 62.25<br>lon: 11.25<br>ele: 972<br>lev: 11")
+	(label "33:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61851] of  OMTPoint
+
+	(description "<html>id: 34:17<br>lat: 62.25<br>lon: 11.5<br>ele: 978<br>lev: 11")
+	(label "34:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61852] of  OMTPoint
+
+	(description "<html>id: 35:17<br>lat: 62.25<br>lon: 11.75<br>ele: 675<br>lev: 11")
+	(label "35:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61853] of  OMTPoint
+
+	(description "<html>id: 36:17<br>lat: 62.25<br>lon: 12.0<br>ele: 998<br>lev: 11")
+	(label "36:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61854] of  OMTPoint
+
+	(description "<html>id: 37:17<br>lat: 62.25<br>lon: 12.25<br>ele: 861<br>lev: 11")
+	(label "37:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61855] of  OMTPoint
+
+	(description "<html>id: 38:17<br>lat: 62.25<br>lon: 12.5<br>ele: 840<br>lev: 11")
+	(label "38:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61856] of  OMTPoint
+
+	(description "<html>id: 39:17<br>lat: 62.25<br>lon: 12.75<br>ele: 799<br>lev: 11")
+	(label "39:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61862] of  OMTPoint
+
+	(description "<html>id: 20:18<br>lat: 62.5<br>lon: 8.0<br>ele: 938<br>lev: 11")
+	(label "20:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61863] of  OMTPoint
+
+	(description "<html>id: 28:18<br>lat: 62.5<br>lon: 10.0<br>ele: 977<br>lev: 11")
+	(label "28:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61864] of  OMTPoint
+
+	(description "<html>id: 29:18<br>lat: 62.5<br>lon: 10.25<br>ele: 756<br>lev: 11")
+	(label "29:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61865] of  OMTPoint
+
+	(description "<html>id: 30:18<br>lat: 62.5<br>lon: 10.5<br>ele: 965<br>lev: 11")
+	(label "30:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61866] of  OMTPoint
+
+	(description "<html>id: 31:18<br>lat: 62.5<br>lon: 10.75<br>ele: 914<br>lev: 11")
+	(label "31:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61867] of  OMTPoint
+
+	(description "<html>id: 32:18<br>lat: 62.5<br>lon: 11.0<br>ele: 702<br>lev: 11")
+	(label "32:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61868] of  OMTPoint
+
+	(description "<html>id: 33:18<br>lat: 62.5<br>lon: 11.25<br>ele: 846<br>lev: 11")
+	(label "33:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61869] of  OMTPoint
+
+	(description "<html>id: 34:18<br>lat: 62.5<br>lon: 11.5<br>ele: 775<br>lev: 11")
+	(label "34:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61870] of  OMTPoint
+
+	(description "<html>id: 35:18<br>lat: 62.5<br>lon: 11.75<br>ele: 696<br>lev: 11")
+	(label "35:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61871] of  OMTPoint
+
+	(description "<html>id: 36:18<br>lat: 62.5<br>lon: 12.0<br>ele: 918<br>lev: 11")
+	(label "36:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61872] of  OMTPoint
+
+	(description "<html>id: 37:18<br>lat: 62.5<br>lon: 12.25<br>ele: 973<br>lev: 11")
+	(label "37:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61873] of  OMTPoint
+
+	(description "<html>id: 38:18<br>lat: 62.5<br>lon: 12.5<br>ele: 683<br>lev: 11")
+	(label "38:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61874] of  OMTPoint
+
+	(description "<html>id: 39:18<br>lat: 62.5<br>lon: 12.75<br>ele: 788<br>lev: 11")
+	(label "39:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61877] of  OMTPoint
+
+	(description "<html>id: 21:19<br>lat: 62.75<br>lon: 8.25<br>ele: 609<br>lev: 11")
+	(label "21:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61878] of  OMTPoint
+
+	(description "<html>id: 22:19<br>lat: 62.75<br>lon: 8.5<br>ele: 963<br>lev: 11")
+	(label "22:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61879] of  OMTPoint
+
+	(description "<html>id: 24:19<br>lat: 62.75<br>lon: 9.0<br>ele: 917<br>lev: 11")
+	(label "24:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61880] of  OMTPoint
+
+	(description "<html>id: 25:19<br>lat: 62.75<br>lon: 9.25<br>ele: 936<br>lev: 11")
+	(label "25:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61881] of  OMTPoint
+
+	(description "<html>id: 27:19<br>lat: 62.75<br>lon: 9.75<br>ele: 735<br>lev: 11")
+	(label "27:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61882] of  OMTPoint
+
+	(description "<html>id: 28:19<br>lat: 62.75<br>lon: 10.0<br>ele: 680<br>lev: 11")
+	(label "28:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61883] of  OMTPoint
+
+	(description "<html>id: 29:19<br>lat: 62.75<br>lon: 10.25<br>ele: 992<br>lev: 11")
+	(label "29:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61884] of  OMTPoint
+
+	(description "<html>id: 30:19<br>lat: 62.75<br>lon: 10.5<br>ele: 978<br>lev: 11")
+	(label "30:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61885] of  OMTPoint
+
+	(description "<html>id: 32:19<br>lat: 62.75<br>lon: 11.0<br>ele: 907<br>lev: 11")
+	(label "32:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61886] of  OMTPoint
+
+	(description "<html>id: 33:19<br>lat: 62.75<br>lon: 11.25<br>ele: 781<br>lev: 11")
+	(label "33:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61887] of  OMTPoint
+
+	(description "<html>id: 34:19<br>lat: 62.75<br>lon: 11.5<br>ele: 842<br>lev: 11")
+	(label "34:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61888] of  OMTPoint
+
+	(description "<html>id: 35:19<br>lat: 62.75<br>lon: 11.75<br>ele: 772<br>lev: 11")
+	(label "35:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61889] of  OMTPoint
+
+	(description "<html>id: 36:19<br>lat: 62.75<br>lon: 12.0<br>ele: 875<br>lev: 11")
+	(label "36:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61890] of  OMTPoint
+
+	(description "<html>id: 37:19<br>lat: 62.75<br>lon: 12.25<br>ele: 886<br>lev: 11")
+	(label "37:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61891] of  OMTPoint
+
+	(description "<html>id: 38:19<br>lat: 62.75<br>lon: 12.5<br>ele: 869<br>lev: 11")
+	(label "38:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61892] of  OMTPoint
+
+	(description "<html>id: 39:19<br>lat: 62.75<br>lon: 12.75<br>ele: 896<br>lev: 11")
+	(label "39:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61893] of  OMTPoint
+
+	(description "<html>id: 18:20<br>lat: 63.0<br>lon: 7.5<br>ele: 181<br>lev: 11")
+	(label "18:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61894] of  OMTPoint
+
+	(description "<html>id: 22:20<br>lat: 63.0<br>lon: 8.5<br>ele: 230<br>lev: 11")
+	(label "22:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61895] of  OMTPoint
+
+	(description "<html>id: 23:20<br>lat: 63.0<br>lon: 8.75<br>ele: 456<br>lev: 11")
+	(label "23:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61896] of  OMTPoint
+
+	(description "<html>id: 24:20<br>lat: 63.0<br>lon: 9.0<br>ele: 641<br>lev: 11")
+	(label "24:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61897] of  OMTPoint
+
+	(description "<html>id: 25:20<br>lat: 63.0<br>lon: 9.25<br>ele: 658<br>lev: 11")
+	(label "25:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61898] of  OMTPoint
+
+	(description "<html>id: 26:20<br>lat: 63.0<br>lon: 9.5<br>ele: 603<br>lev: 11")
+	(label "26:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61899] of  OMTPoint
+
+	(description "<html>id: 27:20<br>lat: 63.0<br>lon: 9.75<br>ele: 693<br>lev: 11")
+	(label "27:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61900] of  OMTPoint
+
+	(description "<html>id: 28:20<br>lat: 63.0<br>lon: 10.0<br>ele: 594<br>lev: 11")
+	(label "28:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61901] of  OMTPoint
+
+	(description "<html>id: 29:20<br>lat: 63.0<br>lon: 10.25<br>ele: 561<br>lev: 11")
+	(label "29:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61902] of  OMTPoint
+
+	(description "<html>id: 30:20<br>lat: 63.0<br>lon: 10.5<br>ele: 430<br>lev: 11")
+	(label "30:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61903] of  OMTPoint
+
+	(description "<html>id: 31:20<br>lat: 63.0<br>lon: 10.75<br>ele: 465<br>lev: 11")
+	(label "31:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61904] of  OMTPoint
+
+	(description "<html>id: 32:20<br>lat: 63.0<br>lon: 11.0<br>ele: 527<br>lev: 11")
+	(label "32:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61905] of  OMTPoint
+
+	(description "<html>id: 33:20<br>lat: 63.0<br>lon: 11.25<br>ele: 829<br>lev: 11")
+	(label "33:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61906] of  OMTPoint
+
+	(description "<html>id: 34:20<br>lat: 63.0<br>lon: 11.5<br>ele: 881<br>lev: 11")
+	(label "34:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61907] of  OMTPoint
+
+	(description "<html>id: 35:20<br>lat: 63.0<br>lon: 11.75<br>ele: 718<br>lev: 11")
+	(label "35:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61908] of  OMTPoint
+
+	(description "<html>id: 36:20<br>lat: 63.0<br>lon: 12.0<br>ele: 886<br>lev: 11")
+	(label "36:20")
+	(latitude "63 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61909] of  OMTPoint
+
+	(description "<html>id: 23:21<br>lat: 63.25<br>lon: 8.75<br>ele: 356<br>lev: 11")
+	(label "23:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61910] of  OMTPoint
+
+	(description "<html>id: 24:21<br>lat: 63.25<br>lon: 9.0<br>ele: 453<br>lev: 11")
+	(label "24:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61911] of  OMTPoint
+
+	(description "<html>id: 25:21<br>lat: 63.25<br>lon: 9.25<br>ele: 441<br>lev: 11")
+	(label "25:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61912] of  OMTPoint
+
+	(description "<html>id: 26:21<br>lat: 63.25<br>lon: 9.5<br>ele: 232<br>lev: 11")
+	(label "26:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61913] of  OMTPoint
+
+	(description "<html>id: 27:21<br>lat: 63.25<br>lon: 9.75<br>ele: 283<br>lev: 11")
+	(label "27:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61914] of  OMTPoint
+
+	(description "<html>id: 28:21<br>lat: 63.25<br>lon: 10.0<br>ele: 208<br>lev: 11")
+	(label "28:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61915] of  OMTPoint
+
+	(description "<html>id: 29:21<br>lat: 63.25<br>lon: 10.25<br>ele: 270<br>lev: 11")
+	(label "29:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61916] of  OMTPoint
+
+	(description "<html>id: 30:21<br>lat: 63.25<br>lon: 10.5<br>ele: 511<br>lev: 11")
+	(label "30:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61917] of  OMTPoint
+
+	(description "<html>id: 31:21<br>lat: 63.25<br>lon: 10.75<br>ele: 386<br>lev: 11")
+	(label "31:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61918] of  OMTPoint
+
+	(description "<html>id: 32:21<br>lat: 63.25<br>lon: 11.0<br>ele: 318<br>lev: 11")
+	(label "32:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61919] of  OMTPoint
+
+	(description "<html>id: 33:21<br>lat: 63.25<br>lon: 11.25<br>ele: 623<br>lev: 11")
+	(label "33:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61920] of  OMTPoint
+
+	(description "<html>id: 34:21<br>lat: 63.25<br>lon: 11.5<br>ele: 884<br>lev: 11")
+	(label "34:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61921] of  OMTPoint
+
+	(description "<html>id: 35:21<br>lat: 63.25<br>lon: 11.75<br>ele: 848<br>lev: 11")
+	(label "35:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61922] of  OMTPoint
+
+	(description "<html>id: 36:21<br>lat: 63.25<br>lon: 12.0<br>ele: 733<br>lev: 11")
+	(label "36:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61923] of  OMTPoint
+
+	(description "<html>id: 37:21<br>lat: 63.25<br>lon: 12.25<br>ele: 881<br>lev: 11")
+	(label "37:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61924] of  OMTPoint
+
+	(description "<html>id: 38:21<br>lat: 63.25<br>lon: 12.5<br>ele: 852<br>lev: 11")
+	(label "38:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61925] of  OMTPoint
+
+	(description "<html>id: 39:21<br>lat: 63.25<br>lon: 12.75<br>ele: 776<br>lev: 11")
+	(label "39:21")
+	(latitude "63 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61926] of  OMTPoint
+
+	(description "<html>id: 25:22<br>lat: 63.5<br>lon: 9.25<br>ele: 187<br>lev: 11")
+	(label "25:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61927] of  OMTPoint
+
+	(description "<html>id: 26:22<br>lat: 63.5<br>lon: 9.5<br>ele: 233<br>lev: 11")
+	(label "26:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61928] of  OMTPoint
+
+	(description "<html>id: 27:22<br>lat: 63.5<br>lon: 9.75<br>ele: 141<br>lev: 11")
+	(label "27:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61929] of  OMTPoint
+
+	(description "<html>id: 32:22<br>lat: 63.5<br>lon: 11.0<br>ele: 205<br>lev: 11")
+	(label "32:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61930] of  OMTPoint
+
+	(description "<html>id: 33:22<br>lat: 63.5<br>lon: 11.25<br>ele: 270<br>lev: 11")
+	(label "33:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61931] of  OMTPoint
+
+	(description "<html>id: 34:22<br>lat: 63.5<br>lon: 11.5<br>ele: 484<br>lev: 11")
+	(label "34:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61932] of  OMTPoint
+
+	(description "<html>id: 35:22<br>lat: 63.5<br>lon: 11.75<br>ele: 573<br>lev: 11")
+	(label "35:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61933] of  OMTPoint
+
+	(description "<html>id: 36:22<br>lat: 63.5<br>lon: 12.0<br>ele: 753<br>lev: 11")
+	(label "36:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61934] of  OMTPoint
+
+	(description "<html>id: 37:22<br>lat: 63.5<br>lon: 12.25<br>ele: 758<br>lev: 11")
+	(label "37:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61935] of  OMTPoint
+
+	(description "<html>id: 38:22<br>lat: 63.5<br>lon: 12.5<br>ele: 502<br>lev: 11")
+	(label "38:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61936] of  OMTPoint
+
+	(description "<html>id: 39:22<br>lat: 63.5<br>lon: 12.75<br>ele: 647<br>lev: 11")
+	(label "39:22")
+	(latitude "63 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61937] of  OMTPoint
+
+	(description "<html>id: 27:23<br>lat: 63.75<br>lon: 9.75<br>ele: 14<br>lev: 11")
+	(label "27:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61938] of  OMTPoint
+
+	(description "<html>id: 29:23<br>lat: 63.75<br>lon: 10.25<br>ele: 290<br>lev: 11")
+	(label "29:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61939] of  OMTPoint
+
+	(description "<html>id: 30:23<br>lat: 63.75<br>lon: 10.5<br>ele: 220<br>lev: 11")
+	(label "30:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61940] of  OMTPoint
+
+	(description "<html>id: 33:23<br>lat: 63.75<br>lon: 11.25<br>ele: 222<br>lev: 11")
+	(label "33:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61941] of  OMTPoint
+
+	(description "<html>id: 34:23<br>lat: 63.75<br>lon: 11.5<br>ele: 386<br>lev: 11")
+	(label "34:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61942] of  OMTPoint
+
+	(description "<html>id: 35:23<br>lat: 63.75<br>lon: 11.75<br>ele: 434<br>lev: 11")
+	(label "35:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61943] of  OMTPoint
+
+	(description "<html>id: 36:23<br>lat: 63.75<br>lon: 12.0<br>ele: 567<br>lev: 11")
+	(label "36:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61944] of  OMTPoint
+
+	(description "<html>id: 37:23<br>lat: 63.75<br>lon: 12.25<br>ele: 512<br>lev: 11")
+	(label "37:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61945] of  OMTPoint
+
+	(description "<html>id: 38:23<br>lat: 63.75<br>lon: 12.5<br>ele: 516<br>lev: 11")
+	(label "38:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61946] of  OMTPoint
+
+	(description "<html>id: 39:23<br>lat: 63.75<br>lon: 12.75<br>ele: 519<br>lev: 11")
+	(label "39:23")
+	(latitude "63 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61947] of  OMTPoint
+
+	(description "<html>id: 28:24<br>lat: 64.0<br>lon: 10.0<br>ele: 55<br>lev: 11")
+	(label "28:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61948] of  OMTPoint
+
+	(description "<html>id: 29:24<br>lat: 64.0<br>lon: 10.25<br>ele: 152<br>lev: 11")
+	(label "29:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61949] of  OMTPoint
+
+	(description "<html>id: 30:24<br>lat: 64.0<br>lon: 10.5<br>ele: 401<br>lev: 11")
+	(label "30:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61950] of  OMTPoint
+
+	(description "<html>id: 31:24<br>lat: 64.0<br>lon: 10.75<br>ele: 366<br>lev: 11")
+	(label "31:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61951] of  OMTPoint
+
+	(description "<html>id: 34:24<br>lat: 64.0<br>lon: 11.5<br>ele: 160<br>lev: 11")
+	(label "34:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61952] of  OMTPoint
+
+	(description "<html>id: 35:24<br>lat: 64.0<br>lon: 11.75<br>ele: 263<br>lev: 11")
+	(label "35:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61953] of  OMTPoint
+
+	(description "<html>id: 36:24<br>lat: 64.0<br>lon: 12.0<br>ele: 481<br>lev: 11")
+	(label "36:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61954] of  OMTPoint
+
+	(description "<html>id: 37:24<br>lat: 64.0<br>lon: 12.25<br>ele: 641<br>lev: 11")
+	(label "37:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61955] of  OMTPoint
+
+	(description "<html>id: 38:24<br>lat: 64.0<br>lon: 12.5<br>ele: 576<br>lev: 11")
+	(label "38:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61956] of  OMTPoint
+
+	(description "<html>id: 39:24<br>lat: 64.0<br>lon: 12.75<br>ele: 445<br>lev: 11")
+	(label "39:24")
+	(latitude "64 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61957] of  OMTPoint
+
+	(description "<html>id: 30:25<br>lat: 64.25<br>lon: 10.5<br>ele: 250<br>lev: 11")
+	(label "30:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61958] of  OMTPoint
+
+	(description "<html>id: 31:25<br>lat: 64.25<br>lon: 10.75<br>ele: 304<br>lev: 11")
+	(label "31:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61959] of  OMTPoint
+
+	(description "<html>id: 32:25<br>lat: 64.25<br>lon: 11.0<br>ele: 298<br>lev: 11")
+	(label "32:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61960] of  OMTPoint
+
+	(description "<html>id: 33:25<br>lat: 64.25<br>lon: 11.25<br>ele: 208<br>lev: 11")
+	(label "33:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61961] of  OMTPoint
+
+	(description "<html>id: 34:25<br>lat: 64.25<br>lon: 11.5<br>ele: 337<br>lev: 11")
+	(label "34:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61962] of  OMTPoint
+
+	(description "<html>id: 35:25<br>lat: 64.25<br>lon: 11.75<br>ele: 226<br>lev: 11")
+	(label "35:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61963] of  OMTPoint
+
+	(description "<html>id: 36:25<br>lat: 64.25<br>lon: 12.0<br>ele: 69<br>lev: 11")
+	(label "36:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61964] of  OMTPoint
+
+	(description "<html>id: 37:25<br>lat: 64.25<br>lon: 12.25<br>ele: 184<br>lev: 11")
+	(label "37:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61965] of  OMTPoint
+
+	(description "<html>id: 38:25<br>lat: 64.25<br>lon: 12.5<br>ele: 403<br>lev: 11")
+	(label "38:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61966] of  OMTPoint
+
+	(description "<html>id: 39:25<br>lat: 64.25<br>lon: 12.75<br>ele: 477<br>lev: 11")
+	(label "39:25")
+	(latitude "64 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61967] of  OMTPoint
+
+	(description "<html>id: 32:26<br>lat: 64.5<br>lon: 11.0<br>ele: 186<br>lev: 11")
+	(label "32:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61968] of  OMTPoint
+
+	(description "<html>id: 34:26<br>lat: 64.5<br>lon: 11.5<br>ele: 224<br>lev: 11")
+	(label "34:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61969] of  OMTPoint
+
+	(description "<html>id: 35:26<br>lat: 64.5<br>lon: 11.75<br>ele: 96<br>lev: 11")
+	(label "35:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61970] of  OMTPoint
+
+	(description "<html>id: 36:26<br>lat: 64.5<br>lon: 12.0<br>ele: 180<br>lev: 11")
+	(label "36:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61971] of  OMTPoint
+
+	(description "<html>id: 37:26<br>lat: 64.5<br>lon: 12.25<br>ele: 329<br>lev: 11")
+	(label "37:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61972] of  OMTPoint
+
+	(description "<html>id: 38:26<br>lat: 64.5<br>lon: 12.5<br>ele: 340<br>lev: 11")
+	(label "38:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61973] of  OMTPoint
+
+	(description "<html>id: 39:26<br>lat: 64.5<br>lon: 12.75<br>ele: 468<br>lev: 11")
+	(label "39:26")
+	(latitude "64 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61974] of  OMTPoint
+
+	(description "<html>id: 35:27<br>lat: 64.75<br>lon: 11.75<br>ele: 190<br>lev: 11")
+	(label "35:27")
+	(latitude "64 45")
+	(lineColor "FF008800")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61975] of  OMTPoint
+
+	(description "<html>id: 36:27<br>lat: 64.75<br>lon: 12.0<br>ele: 509<br>lev: 11")
+	(label "36:27")
+	(latitude "64 45")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61976] of  OMTPoint
+
+	(description "<html>id: 37:27<br>lat: 64.75<br>lon: 12.25<br>ele: 178<br>lev: 11")
+	(label "37:27")
+	(latitude "64 45")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61977] of  OMTPoint
+
+	(description "<html>id: 38:27<br>lat: 64.75<br>lon: 12.5<br>ele: 348<br>lev: 11")
+	(label "38:27")
+	(latitude "64 45")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61978] of  OMTPoint
+
+	(description "<html>id: 39:27<br>lat: 64.75<br>lon: 12.75<br>ele: 328<br>lev: 11")
+	(label "39:27")
+	(latitude "64 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61979] of  OMTPoint
+
+	(description "<html>id: 36:28<br>lat: 65.0<br>lon: 12.0<br>ele: 204<br>lev: 11")
+	(label "36:28")
+	(latitude "65 0")
+	(lineColor "FF008800")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61980] of  OMTPoint
+
+	(description "<html>id: 37:28<br>lat: 65.0<br>lon: 12.25<br>ele: 360<br>lev: 11")
+	(label "37:28")
+	(latitude "65 0")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61981] of  OMTPoint
+
+	(description "<html>id: 38:28<br>lat: 65.0<br>lon: 12.5<br>ele: 714<br>lev: 11")
+	(label "38:28")
+	(latitude "65 0")
+	(lineColor "FF008800")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61982] of  OMTPoint
+
+	(description "<html>id: 39:28<br>lat: 65.0<br>lon: 12.75<br>ele: 718<br>lev: 11")
+	(label "39:28")
+	(latitude "65 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61983] of  OMTPoint
+
+	(description "<html>id: 39:29<br>lat: 65.25<br>lon: 12.75<br>ele: 634<br>lev: 11")
+	(label "39:29")
+	(latitude "65 15")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61984] of  OMTPoint
+
+	(description "<html>id: 37:30<br>lat: 65.5<br>lon: 12.25<br>ele: 211<br>lev: 11")
+	(label "37:30")
+	(latitude "65 30")
+	(lineColor "FF008800")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61985] of  OMTPoint
+
+	(description "<html>id: 39:30<br>lat: 65.5<br>lon: 12.75<br>ele: 399<br>lev: 11")
+	(label "39:30")
+	(latitude "65 30")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61986] of  OMTPoint
+
+	(description "<html>id: 39:31<br>lat: 65.75<br>lon: 12.75<br>ele: 471<br>lev: 11")
+	(label "39:31")
+	(latitude "65 45")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61987] of  OMTPoint
+
+	(description "<html>id: 39:32<br>lat: 66.0<br>lon: 12.75<br>ele: 157<br>lev: 11")
+	(label "39:32")
+	(latitude "66 0")
+	(lineColor "FF008800")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class61988] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
+
+([RasterToVector_Class61989] of  CloFuncall
+
+	(source "(rtv.core/pointsField 58 3 20 20 11 20 \"FF008800\")"))
+
+([RasterToVector_Class62108] of  OMTPoint
+
+	(description "<html>id: 15:1<br>lat: 58.25<br>lon: 6.75<br>ele: 265<br>lev: 11")
+	(label "15:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62109] of  OMTPoint
+
+	(description "<html>id: 16:1<br>lat: 58.25<br>lon: 7.0<br>ele: 226<br>lev: 11")
+	(label "16:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62110] of  OMTPoint
+
+	(description "<html>id: 17:1<br>lat: 58.25<br>lon: 7.25<br>ele: 196<br>lev: 11")
+	(label "17:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62111] of  OMTPoint
+
+	(description "<html>id: 18:1<br>lat: 58.25<br>lon: 7.5<br>ele: 212<br>lev: 11")
+	(label "18:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62112] of  OMTPoint
+
+	(description "<html>id: 19:1<br>lat: 58.25<br>lon: 7.75<br>ele: 172<br>lev: 11")
+	(label "19:1")
+	(latitude "58 15")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62113] of  OMTPoint
+
+	(description "<html>id: 11:2<br>lat: 58.5<br>lon: 5.75<br>ele: 0<br>lev: 11")
+	(label "11:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62114] of  OMTPoint
+
+	(description "<html>id: 12:2<br>lat: 58.5<br>lon: 6.0<br>ele: 191<br>lev: 11")
+	(label "12:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62115] of  OMTPoint
+
+	(description "<html>id: 13:2<br>lat: 58.5<br>lon: 6.25<br>ele: 299<br>lev: 11")
+	(label "13:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62116] of  OMTPoint
+
+	(description "<html>id: 14:2<br>lat: 58.5<br>lon: 6.5<br>ele: 272<br>lev: 11")
+	(label "14:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62117] of  OMTPoint
+
+	(description "<html>id: 15:2<br>lat: 58.5<br>lon: 6.75<br>ele: 366<br>lev: 11")
+	(label "15:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62118] of  OMTPoint
+
+	(description "<html>id: 16:2<br>lat: 58.5<br>lon: 7.0<br>ele: 527<br>lev: 11")
+	(label "16:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62119] of  OMTPoint
+
+	(description "<html>id: 17:2<br>lat: 58.5<br>lon: 7.25<br>ele: 384<br>lev: 11")
+	(label "17:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62120] of  OMTPoint
+
+	(description "<html>id: 18:2<br>lat: 58.5<br>lon: 7.5<br>ele: 403<br>lev: 11")
+	(label "18:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62121] of  OMTPoint
+
+	(description "<html>id: 19:2<br>lat: 58.5<br>lon: 7.75<br>ele: 309<br>lev: 11")
+	(label "19:2")
+	(latitude "58 30")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62122] of  OMTPoint
+
+	(description "<html>id: 10:3<br>lat: 58.75<br>lon: 5.5<br>ele: 1<br>lev: 11")
+	(label "10:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62123] of  OMTPoint
+
+	(description "<html>id: 11:3<br>lat: 58.75<br>lon: 5.75<br>ele: 6<br>lev: 11")
+	(label "11:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62124] of  OMTPoint
+
+	(description "<html>id: 12:3<br>lat: 58.75<br>lon: 6.0<br>ele: 398<br>lev: 11")
+	(label "12:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62125] of  OMTPoint
+
+	(description "<html>id: 13:3<br>lat: 58.75<br>lon: 6.25<br>ele: 587<br>lev: 11")
+	(label "13:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62126] of  OMTPoint
+
+	(description "<html>id: 14:3<br>lat: 58.75<br>lon: 6.5<br>ele: 620<br>lev: 11")
+	(label "14:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62127] of  OMTPoint
+
+	(description "<html>id: 15:3<br>lat: 58.75<br>lon: 6.75<br>ele: 640<br>lev: 11")
+	(label "15:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62128] of  OMTPoint
+
+	(description "<html>id: 16:3<br>lat: 58.75<br>lon: 7.0<br>ele: 803<br>lev: 11")
+	(label "16:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62129] of  OMTPoint
+
+	(description "<html>id: 17:3<br>lat: 58.75<br>lon: 7.25<br>ele: 702<br>lev: 11")
+	(label "17:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62130] of  OMTPoint
+
+	(description "<html>id: 18:3<br>lat: 58.75<br>lon: 7.5<br>ele: 647<br>lev: 11")
+	(label "18:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62131] of  OMTPoint
+
+	(description "<html>id: 19:3<br>lat: 58.75<br>lon: 7.75<br>ele: 548<br>lev: 11")
+	(label "19:3")
+	(latitude "58 45")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62132] of  OMTPoint
+
+	(description "<html>id: 14:4<br>lat: 59.0<br>lon: 6.5<br>ele: 998<br>lev: 11")
+	(label "14:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62133] of  OMTPoint
+
+	(description "<html>id: 15:4<br>lat: 59.0<br>lon: 6.75<br>ele: 842<br>lev: 11")
+	(label "15:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62134] of  OMTPoint
+
+	(description "<html>id: 16:4<br>lat: 59.0<br>lon: 7.0<br>ele: 901<br>lev: 11")
+	(label "16:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62135] of  OMTPoint
+
+	(description "<html>id: 17:4<br>lat: 59.0<br>lon: 7.25<br>ele: 950<br>lev: 11")
+	(label "17:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62136] of  OMTPoint
+
+	(description "<html>id: 18:4<br>lat: 59.0<br>lon: 7.5<br>ele: 586<br>lev: 11")
+	(label "18:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62137] of  OMTPoint
+
+	(description "<html>id: 19:4<br>lat: 59.0<br>lon: 7.75<br>ele: 745<br>lev: 11")
+	(label "19:4")
+	(latitude "59 0")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62138] of  OMTPoint
+
+	(description "<html>id: 13:5<br>lat: 59.25<br>lon: 6.25<br>ele: 440<br>lev: 11")
+	(label "13:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62139] of  OMTPoint
+
+	(description "<html>id: 14:5<br>lat: 59.25<br>lon: 6.5<br>ele: 906<br>lev: 11")
+	(label "14:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62140] of  OMTPoint
+
+	(description "<html>id: 19:5<br>lat: 59.25<br>lon: 7.75<br>ele: 671<br>lev: 11")
+	(label "19:5")
+	(latitude "59 15")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62141] of  OMTPoint
+
+	(description "<html>id: 9:6<br>lat: 59.5<br>lon: 5.25<br>ele: 91<br>lev: 11")
+	(label "9:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62142] of  OMTPoint
+
+	(description "<html>id: 10:6<br>lat: 59.5<br>lon: 5.5<br>ele: 93<br>lev: 11")
+	(label "10:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62143] of  OMTPoint
+
+	(description "<html>id: 12:6<br>lat: 59.5<br>lon: 6.0<br>ele: 162<br>lev: 11")
+	(label "12:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62144] of  OMTPoint
+
+	(description "<html>id: 13:6<br>lat: 59.5<br>lon: 6.25<br>ele: 415<br>lev: 11")
+	(label "13:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62145] of  OMTPoint
+
+	(description "<html>id: 14:6<br>lat: 59.5<br>lon: 6.5<br>ele: 732<br>lev: 11")
+	(label "14:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62146] of  OMTPoint
+
+	(description "<html>id: 17:6<br>lat: 59.5<br>lon: 7.25<br>ele: 892<br>lev: 11")
+	(label "17:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62147] of  OMTPoint
+
+	(description "<html>id: 19:6<br>lat: 59.5<br>lon: 7.75<br>ele: 633<br>lev: 11")
+	(label "19:6")
+	(latitude "59 30")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62148] of  OMTPoint
+
+	(description "<html>id: 13:7<br>lat: 59.75<br>lon: 6.25<br>ele: 631<br>lev: 11")
+	(label "13:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62149] of  OMTPoint
+
+	(description "<html>id: 14:7<br>lat: 59.75<br>lon: 6.5<br>ele: 904<br>lev: 11")
+	(label "14:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62150] of  OMTPoint
+
+	(description "<html>id: 18:7<br>lat: 59.75<br>lon: 7.5<br>ele: 892<br>lev: 11")
+	(label "18:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62151] of  OMTPoint
+
+	(description "<html>id: 19:7<br>lat: 59.75<br>lon: 7.75<br>ele: 902<br>lev: 11")
+	(label "19:7")
+	(latitude "59 45")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62152] of  OMTPoint
+
+	(description "<html>id: 10:8<br>lat: 60.0<br>lon: 5.5<br>ele: 188<br>lev: 11")
+	(label "10:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62153] of  OMTPoint
+
+	(description "<html>id: 12:8<br>lat: 60.0<br>lon: 6.0<br>ele: 862<br>lev: 11")
+	(label "12:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62154] of  OMTPoint
+
+	(description "<html>id: 14:8<br>lat: 60.0<br>lon: 6.5<br>ele: 716<br>lev: 11")
+	(label "14:8")
+	(latitude "60 0")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62155] of  OMTPoint
+
+	(description "<html>id: 8:9<br>lat: 60.25<br>lon: 5.0<br>ele: 38<br>lev: 11")
+	(label "8:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62156] of  OMTPoint
+
+	(description "<html>id: 10:9<br>lat: 60.25<br>lon: 5.5<br>ele: 86<br>lev: 11")
+	(label "10:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62157] of  OMTPoint
+
+	(description "<html>id: 11:9<br>lat: 60.25<br>lon: 5.75<br>ele: 197<br>lev: 11")
+	(label "11:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62158] of  OMTPoint
+
+	(description "<html>id: 13:9<br>lat: 60.25<br>lon: 6.25<br>ele: 990<br>lev: 11")
+	(label "13:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62159] of  OMTPoint
+
+	(description "<html>id: 14:9<br>lat: 60.25<br>lon: 6.5<br>ele: 650<br>lev: 11")
+	(label "14:9")
+	(latitude "60 15")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62160] of  OMTPoint
+
+	(description "<html>id: 8:10<br>lat: 60.5<br>lon: 5.0<br>ele: 3<br>lev: 11")
+	(label "8:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62161] of  OMTPoint
+
+	(description "<html>id: 9:10<br>lat: 60.5<br>lon: 5.25<br>ele: 187<br>lev: 11")
+	(label "9:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62162] of  OMTPoint
+
+	(description "<html>id: 10:10<br>lat: 60.5<br>lon: 5.5<br>ele: 318<br>lev: 11")
+	(label "10:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62163] of  OMTPoint
+
+	(description "<html>id: 11:10<br>lat: 60.5<br>lon: 5.75<br>ele: 599<br>lev: 11")
+	(label "11:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62164] of  OMTPoint
+
+	(description "<html>id: 12:10<br>lat: 60.5<br>lon: 6.0<br>ele: 876<br>lev: 11")
+	(label "12:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62165] of  OMTPoint
+
+	(description "<html>id: 13:10<br>lat: 60.5<br>lon: 6.25<br>ele: 858<br>lev: 11")
+	(label "13:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62166] of  OMTPoint
+
+	(description "<html>id: 14:10<br>lat: 60.5<br>lon: 6.5<br>ele: 90<br>lev: 11")
+	(label "14:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62167] of  OMTPoint
+
+	(description "<html>id: 15:10<br>lat: 60.5<br>lon: 6.75<br>ele: 429<br>lev: 11")
+	(label "15:10")
+	(latitude "60 30")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62168] of  OMTPoint
+
+	(description "<html>id: 10:11<br>lat: 60.75<br>lon: 5.5<br>ele: 108<br>lev: 11")
+	(label "10:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62169] of  OMTPoint
+
+	(description "<html>id: 11:11<br>lat: 60.75<br>lon: 5.75<br>ele: 790<br>lev: 11")
+	(label "11:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62170] of  OMTPoint
+
+	(description "<html>id: 12:11<br>lat: 60.75<br>lon: 6.0<br>ele: 572<br>lev: 11")
+	(label "12:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62171] of  OMTPoint
+
+	(description "<html>id: 14:11<br>lat: 60.75<br>lon: 6.5<br>ele: 719<br>lev: 11")
+	(label "14:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62172] of  OMTPoint
+
+	(description "<html>id: 15:11<br>lat: 60.75<br>lon: 6.75<br>ele: 866<br>lev: 11")
+	(label "15:11")
+	(latitude "60 45")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62173] of  OMTPoint
+
+	(description "<html>id: 9:12<br>lat: 61.0<br>lon: 5.25<br>ele: 393<br>lev: 11")
+	(label "9:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62174] of  OMTPoint
+
+	(description "<html>id: 10:12<br>lat: 61.0<br>lon: 5.5<br>ele: 655<br>lev: 11")
+	(label "10:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62175] of  OMTPoint
+
+	(description "<html>id: 11:12<br>lat: 61.0<br>lon: 5.75<br>ele: 912<br>lev: 11")
+	(label "11:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62176] of  OMTPoint
+
+	(description "<html>id: 12:12<br>lat: 61.0<br>lon: 6.0<br>ele: 859<br>lev: 11")
+	(label "12:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62177] of  OMTPoint
+
+	(description "<html>id: 13:12<br>lat: 61.0<br>lon: 6.25<br>ele: 979<br>lev: 11")
+	(label "13:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62178] of  OMTPoint
+
+	(description "<html>id: 15:12<br>lat: 61.0<br>lon: 6.75<br>ele: 946<br>lev: 11")
+	(label "15:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62179] of  OMTPoint
+
+	(description "<html>id: 16:12<br>lat: 61.0<br>lon: 7.0<br>ele: 532<br>lev: 11")
+	(label "16:12")
+	(latitude "61 0")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62180] of  OMTPoint
+
+	(description "<html>id: 8:13<br>lat: 61.25<br>lon: 5.0<br>ele: 138<br>lev: 11")
+	(label "8:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62181] of  OMTPoint
+
+	(description "<html>id: 9:13<br>lat: 61.25<br>lon: 5.25<br>ele: 278<br>lev: 11")
+	(label "9:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62182] of  OMTPoint
+
+	(description "<html>id: 10:13<br>lat: 61.25<br>lon: 5.5<br>ele: 452<br>lev: 11")
+	(label "10:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62183] of  OMTPoint
+
+	(description "<html>id: 11:13<br>lat: 61.25<br>lon: 5.75<br>ele: 528<br>lev: 11")
+	(label "11:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62184] of  OMTPoint
+
+	(description "<html>id: 12:13<br>lat: 61.25<br>lon: 6.0<br>ele: 667<br>lev: 11")
+	(label "12:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62185] of  OMTPoint
+
+	(description "<html>id: 15:13<br>lat: 61.25<br>lon: 6.75<br>ele: 487<br>lev: 11")
+	(label "15:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62186] of  OMTPoint
+
+	(description "<html>id: 16:13<br>lat: 61.25<br>lon: 7.0<br>ele: 378<br>lev: 11")
+	(label "16:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62187] of  OMTPoint
+
+	(description "<html>id: 17:13<br>lat: 61.25<br>lon: 7.25<br>ele: 0<br>lev: 11")
+	(label "17:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62188] of  OMTPoint
+
+	(description "<html>id: 18:13<br>lat: 61.25<br>lon: 7.5<br>ele: 427<br>lev: 11")
+	(label "18:13")
+	(latitude "61 15")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62189] of  OMTPoint
+
+	(description "<html>id: 9:14<br>lat: 61.5<br>lon: 5.25<br>ele: 248<br>lev: 11")
+	(label "9:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62190] of  OMTPoint
+
+	(description "<html>id: 10:14<br>lat: 61.5<br>lon: 5.5<br>ele: 234<br>lev: 11")
+	(label "10:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62191] of  OMTPoint
+
+	(description "<html>id: 11:14<br>lat: 61.5<br>lon: 5.75<br>ele: 330<br>lev: 11")
+	(label "11:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62192] of  OMTPoint
+
+	(description "<html>id: 12:14<br>lat: 61.5<br>lon: 6.0<br>ele: 514<br>lev: 11")
+	(label "12:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62193] of  OMTPoint
+
+	(description "<html>id: 13:14<br>lat: 61.5<br>lon: 6.25<br>ele: 933<br>lev: 11")
+	(label "13:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62194] of  OMTPoint
+
+	(description "<html>id: 15:14<br>lat: 61.5<br>lon: 6.75<br>ele: 843<br>lev: 11")
+	(label "15:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62195] of  OMTPoint
+
+	(description "<html>id: 16:14<br>lat: 61.5<br>lon: 7.0<br>ele: 951<br>lev: 11")
+	(label "16:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62196] of  OMTPoint
+
+	(description "<html>id: 17:14<br>lat: 61.5<br>lon: 7.25<br>ele: 898<br>lev: 11")
+	(label "17:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62197] of  OMTPoint
+
+	(description "<html>id: 18:14<br>lat: 61.5<br>lon: 7.5<br>ele: 862<br>lev: 11")
+	(label "18:14")
+	(latitude "61 30")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62198] of  OMTPoint
+
+	(description "<html>id: 9:15<br>lat: 61.75<br>lon: 5.25<br>ele: 799<br>lev: 11")
+	(label "9:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62199] of  OMTPoint
+
+	(description "<html>id: 10:15<br>lat: 61.75<br>lon: 5.5<br>ele: 962<br>lev: 11")
+	(label "10:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62200] of  OMTPoint
+
+	(description "<html>id: 11:15<br>lat: 61.75<br>lon: 5.75<br>ele: 461<br>lev: 11")
+	(label "11:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62201] of  OMTPoint
+
+	(description "<html>id: 12:15<br>lat: 61.75<br>lon: 6.0<br>ele: 708<br>lev: 11")
+	(label "12:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62202] of  OMTPoint
+
+	(description "<html>id: 13:15<br>lat: 61.75<br>lon: 6.25<br>ele: 244<br>lev: 11")
+	(label "13:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62203] of  OMTPoint
+
+	(description "<html>id: 17:15<br>lat: 61.75<br>lon: 7.25<br>ele: 909<br>lev: 11")
+	(label "17:15")
+	(latitude "61 45")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62204] of  OMTPoint
+
+	(description "<html>id: 10:16<br>lat: 62.0<br>lon: 5.5<br>ele: 512<br>lev: 11")
+	(label "10:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62205] of  OMTPoint
+
+	(description "<html>id: 11:16<br>lat: 62.0<br>lon: 5.75<br>ele: 461<br>lev: 11")
+	(label "11:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62206] of  OMTPoint
+
+	(description "<html>id: 12:16<br>lat: 62.0<br>lon: 6.0<br>ele: 502<br>lev: 11")
+	(label "12:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62207] of  OMTPoint
+
+	(description "<html>id: 13:16<br>lat: 62.0<br>lon: 6.25<br>ele: 350<br>lev: 11")
+	(label "13:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62208] of  OMTPoint
+
+	(description "<html>id: 14:16<br>lat: 62.0<br>lon: 6.5<br>ele: 606<br>lev: 11")
+	(label "14:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62209] of  OMTPoint
+
+	(description "<html>id: 15:16<br>lat: 62.0<br>lon: 6.75<br>ele: 681<br>lev: 11")
+	(label "15:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62210] of  OMTPoint
+
+	(description "<html>id: 16:16<br>lat: 62.0<br>lon: 7.0<br>ele: 868<br>lev: 11")
+	(label "16:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62211] of  OMTPoint
+
+	(description "<html>id: 19:16<br>lat: 62.0<br>lon: 7.75<br>ele: 796<br>lev: 11")
+	(label "19:16")
+	(latitude "62 0")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62212] of  OMTPoint
+
+	(description "<html>id: 11:17<br>lat: 62.25<br>lon: 5.75<br>ele: 3<br>lev: 11")
+	(label "11:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62213] of  OMTPoint
+
+	(description "<html>id: 12:17<br>lat: 62.25<br>lon: 6.0<br>ele: 422<br>lev: 11")
+	(label "12:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62214] of  OMTPoint
+
+	(description "<html>id: 13:17<br>lat: 62.25<br>lon: 6.25<br>ele: 566<br>lev: 11")
+	(label "13:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62215] of  OMTPoint
+
+	(description "<html>id: 14:17<br>lat: 62.25<br>lon: 6.5<br>ele: 559<br>lev: 11")
+	(label "14:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62216] of  OMTPoint
+
+	(description "<html>id: 15:17<br>lat: 62.25<br>lon: 6.75<br>ele: 728<br>lev: 11")
+	(label "15:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62217] of  OMTPoint
+
+	(description "<html>id: 16:17<br>lat: 62.25<br>lon: 7.0<br>ele: 723<br>lev: 11")
+	(label "16:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62218] of  OMTPoint
+
+	(description "<html>id: 17:17<br>lat: 62.25<br>lon: 7.25<br>ele: 969<br>lev: 11")
+	(label "17:17")
+	(latitude "62 15")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62219] of  OMTPoint
+
+	(description "<html>id: 15:18<br>lat: 62.5<br>lon: 6.75<br>ele: 79<br>lev: 11")
+	(label "15:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62220] of  OMTPoint
+
+	(description "<html>id: 16:18<br>lat: 62.5<br>lon: 7.0<br>ele: 681<br>lev: 11")
+	(label "16:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62221] of  OMTPoint
+
+	(description "<html>id: 17:18<br>lat: 62.5<br>lon: 7.25<br>ele: 753<br>lev: 11")
+	(label "17:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62222] of  OMTPoint
+
+	(description "<html>id: 18:18<br>lat: 62.5<br>lon: 7.5<br>ele: 919<br>lev: 11")
+	(label "18:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62223] of  OMTPoint
+
+	(description "<html>id: 19:18<br>lat: 62.5<br>lon: 7.75<br>ele: 947<br>lev: 11")
+	(label "19:18")
+	(latitude "62 30")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62224] of  OMTPoint
+
+	(description "<html>id: 18:19<br>lat: 62.75<br>lon: 7.5<br>ele: 324<br>lev: 11")
+	(label "18:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class62225] of  OMTPoint
+
+	(description "<html>id: 19:19<br>lat: 62.75<br>lon: 7.75<br>ele: 455<br>lev: 11")
+	(label "19:19")
+	(latitude "62 45")
+	(lineColor "FF008800")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
 
 ([RasterToVector_Class64804] of  RuleSet
 
+	(rules
+		[RasterToVector_Class20006]
+		[RasterToVector_Class50121]
+		[RasterToVector_Class50119]
+		[RasterToVector_Class50120])
 	(templates [Point])
 	(title "Isobath"))
-
-([RasterToVector_Class64805] of  CloFuncall
-
-	(source "(rtv.core/pointsField 40 140 80 80)"))
 
 ([RasterToVector_Class70000] of  WorkingPrograms
 
 	(butt-load-progs "Load Programs/protege.core/ldns")
 	(cloPrograms
-		[RasterToVector_Class10002]
+		[RuleEngine_Class30000]
 		[RasterToVector_Class70006])
 	(title "RtV Programs"))
 
@@ -381,6 +6564,7 @@
 		[RasterToVector_Class121600]
 		[RasterToVector_Class121620]
 		[RasterToVector_Class30000]
+		[RasterToVector_Class20001]
 		[RasterToVector_Class30011]
 		[RasterToVector_Class30012])
 	(cloNamespace [RasterToVector_Class70007])
@@ -388,12 +6572,13 @@
 		[RasterToVector_Class80004]
 		[RasterToVector_Class121602]
 		[RasterToVector_Class121603]
-		[RasterToVector_Class126070])
+		[RasterToVector_Class126070]
+		[RasterToVector_Class20002])
 	(title "RtV Program"))
 
 ([RasterToVector_Class70007] of  CloNamespace
 
-	(source "(:use protege.core\n  subcla.etoele)\n(:import\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT)")
+	(source "(:use protege.core\n  subcla.etoele\n  ru.rules)\n(:import\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT)")
 	(title "rtv.core"))
 
 ([RasterToVector_Class80000] of  CloFunction
