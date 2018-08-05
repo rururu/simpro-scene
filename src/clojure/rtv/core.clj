@@ -7,7 +7,7 @@
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT))
 
-(def STEPD 0.25)
+(def STEPD (double (* (/ 5 60) 3)))
 (def MAXH 9000)
 (def MAXD 11000)
 (def LEVCOL20 {0	"FD0000FF"
