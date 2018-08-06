@@ -1,4 +1,4 @@
-; Sun Aug 05 22:16:02 MSK 2018
+; Mon Aug 06 21:53:45 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,8 +7,17 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(multislot inside
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
 	(single-slot lon
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot side
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lat
@@ -16,7 +25,8 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot border
-		(type STRING)
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -44,7 +54,8 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot border
-		(type STRING)
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot north
@@ -58,4 +69,17 @@
 	(single-slot south
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Segment
+	(is-a RTV+Onto)
+	(role concrete)
+	(single-slot side
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot inside
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
 		(create-accessor read-write)))

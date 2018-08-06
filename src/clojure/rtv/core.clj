@@ -99,7 +99,7 @@
 	"<br>lev: " lev))
     (.hideLabel mo))))
 
-(defn pointsField
+(defn levelField
   ([lat lon w h]
   (doseq [y (range h)]
     (doseq [x (range w)] 
@@ -115,4 +115,24 @@
 	level
 	disc
 	color)))))
+
+(defn elevationPoint [id lat lon elev color]
+  (let [ele (elevation [lat lon])]
+  (if (>= ele elev)
+    (let [mo (point (str id) lat lon color)]
+      (.setDescription mo (str "<html>id: " id 
+	"<br>lat: " lat 
+	"<br>lon: " lon
+	"<br>ele: " ele))
+        (.hideLabel mo)
+        (assert-point lat lon mo)))))
+
+(defn elevationField [lat lon w h elev color]
+  (doseq [y (range h)]
+  (doseq [x (range w)] 
+    (elevationPoint (str x ":" y)
+	(+ lat (* y STEPD)) 
+	(+ lon (* x STEPD))
+	elev
+	color))))
 
