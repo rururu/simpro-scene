@@ -1,4 +1,4 @@
-; Mon Aug 06 21:53:45 MSK 2018
+; Fri Aug 10 21:25:50 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,26 +7,24 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot x
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot y
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latlon
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot inside
 		(type INSTANCE)
 ;+		(allowed-classes MapOb)
 		(create-accessor read-write))
-	(single-slot lon
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot side
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot lat
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot border
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -37,36 +35,19 @@
 (defclass Point
 	(is-a RTV+Onto)
 	(role concrete)
-	(single-slot lon
-		(type FLOAT)
+	(single-slot x
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot mapob
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
-		(create-accessor read-write))
-	(single-slot lat
-		(type FLOAT)
+	(single-slot y
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot east
+	(single-slot side
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot border
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot north
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot west
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot south
+	(single-slot latlon
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -75,8 +56,7 @@
 	(is-a RTV+Onto)
 	(role concrete)
 	(single-slot side
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot inside

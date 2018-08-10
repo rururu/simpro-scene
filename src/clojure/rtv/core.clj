@@ -52,8 +52,7 @@
   ([lab lat lon color]
   (if-let [mo (OMT/getMapOb lab)]
     (OMT/removeMapOb mo true))
-  (let [ins (crin "OMTPoint")]
-    (ssv ins "label" lab) 
+  (let [ins (foc "OMTPoint" "label" lab)]
     (ssv ins "latitude" (MapOb/getDegMin lat))
     (ssv ins "longitude" (MapOb/getDegMin lon))
     (ssv ins "lineColor" color)
@@ -62,17 +61,16 @@
 ([lab lat lon]
   (point lab lat lon "FFFF0000")))
 
-(defn assert-point [lat lon mo]
+(defn assert-point [lat lon]
   (rete.core/assert-frame
 	['Point
 	 'lat lat
 	 'lon lon
-	 'mapob mo
+	 'id (gensym "p")
 	 'north nil
 	 'south nil
 	 'west nil
-	 'east nil
-	 'border false]))
+	 'east nil]))
 
 (defn levelPoint
   ([id lat lon level disc color]
@@ -116,23 +114,16 @@
 	disc
 	color)))))
 
-(defn elevationPoint [id lat lon elev color]
-  (let [ele (elevation [lat lon])]
-  (if (>= ele elev)
-    (let [mo (point (str id) lat lon color)]
-      (.setDescription mo (str "<html>id: " id 
-	"<br>lat: " lat 
-	"<br>lon: " lon
-	"<br>ele: " ele))
-        (.hideLabel mo)
-        (assert-point lat lon mo)))))
-
-(defn elevationField [lat lon w h elev color]
+(defn elevationField [lat lon w h ele]
   (doseq [y (range h)]
-  (doseq [x (range w)] 
-    (elevationPoint (str x ":" y)
-	(+ lat (* y STEPD)) 
-	(+ lon (* x STEPD))
-	elev
-	color))))
+  (doseq [x (range w)]
+    (let [lat (+ lat (* y STEPD))
+           lon (+ lon (* x STEPD))]
+      (if (>= (elevation [lat lon]) ele)
+        (rete.core/assert-frame
+	['Point
+	 'x x
+	 'y y
+	 'latlon [lat lon]
+	 'side nil])) ) )))
 
