@@ -1,4 +1,4 @@
-; Fri Aug 10 21:25:50 MSK 2018
+; Sun Aug 12 22:08:06 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31,14 +31,14 @@
 		[igis_Class23])
 	(Debug "FINE")
 	(label "RTV Map")
-	(Latitude "60.0")
+	(Latitude "65.0")
 	(layers
 		[igis_Class40012]
 		[RasterToVector_Class10001]
 		[igis_Class1]
 		[igis_Class40011])
-	(Longitude "-4")
-	(Scale "7600000")
+	(Longitude "17.5")
+	(Scale "15000000")
 	(startUpLayers
 		[igis_Class40012]
 		[RasterToVector_Class10001]))
@@ -170,42 +170,17 @@
 
 	(source "(rtv.core/level 0 20)"))
 
-([RasterToVector_Class121608] of  CloFuncall
-
-	(source "(rtv.core/level -11000 20)"))
-
-([RasterToVector_Class121609] of  CloFuncall
-
-	(source "(rtv.core/level -12000 20)"))
-
-([RasterToVector_Class121610] of  CloFuncall
-
-	(source "(rtv.core/level -11022 20)"))
-
-([RasterToVector_Class121611] of  CloFuncall
-
-	(source "(rtv.core/level 1000 20)"))
-
-([RasterToVector_Class121612] of  CloFuncall
-
-	(source "(rtv.core/level 900 20)"))
-
-([RasterToVector_Class121613] of  CloFuncall
-
-	(source "(rtv.core/level 990 20)"))
-
-([RasterToVector_Class121614] of  CloFuncall
-
-	(source "(rtv.core/level 998 20)"))
-
-([RasterToVector_Class121615] of  CloFuncall
-
-	(source "(rtv.core/level 999 20)"))
-
 ([RasterToVector_Class126070] of  CloVar
 
 	(source "{0	\"FD0000FF\"\n1	\"E60000FF\"\n2	\"CF0000FF\"\n3	\"B80000FF\"\n4	\"A10000FF\"\n5	\"8A0000FF\"\n6	\"730000FF\"\n7	\"5C0000FF\"\n8	\"450000FF\"\n9	\"2E0000FF\"\n10	\"170000FF\"\n11	\"FF00AA00\"\n12	\"38FF0000\"\n13	\"54FF0000\"\n14	\"70FF0000\"\n15	\"8CFF0000\"\n16	\"A8FF0000\"\n17	\"C4FF0000\"\n18	\"E0FF0000\"\n19	\"FCFF0000\"}")
 	(title "LEVCOL20"))
+
+([RasterToVector_Class20000] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xe y ?yp latlon ?llp\n	(= ?yp (inc ?ye)))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	y ?yp\n	latlon ?llp)")
+	(salience -3)
+	(title "ib:GoNorth"))
 
 ([RasterToVector_Class20001] of  CloFunction
 
@@ -219,8 +194,23 @@
 
 ([RasterToVector_Class30000] of  CloFunction
 
-	(source "([lab lat lon color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTPoint\" \"label\" lab)]\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssv ins \"oval\" true)\n    (OMT/getOrAdd ins)))\n([lab lat lon]\n  (point lab lat lon \"FFFF0000\"))")
+	(source "([lab lat lon color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTPoint\" \"label\" lab)]\n    (ssv ins \"description\" lab)\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssv ins \"oval\" true)\n    (OMT/getOrAdd ins)))\n([lab lat lon]\n  (point lab lat lon \"FFFF0000\"))")
 	(title "point"))
+
+([RasterToVector_Class30001] of  Rule
+
+	(lhs "p (Point x ?x y ?y latlon ?ll)")
+	(rhs "(retract p)\n(asser Segment points []\n	x ?x\n	y ?y\n	latlon ?ll)")
+	(salience -5)
+	(title "id:Segment"))
+
+([RasterToVector_Class30002] of  CloFuncall
+
+	(source "(ru.rules/pp 'Segment)"))
+
+([RasterToVector_Class30003] of  CloFuncall
+
+	(source "(rtv.core/elevationField 58 3 40 40 0)"))
 
 ([RasterToVector_Class30011] of  CloFunction
 
@@ -239,6 +229,2125 @@
 	(salience -2)
 	(title "ib:Display Point"))
 
+([RasterToVector_Class40175] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xe y ?yp latlon ?llp\n	(= ?yp (dec ?ye)))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	y ?yp\n	latlon ?llp)")
+	(salience -3)
+	(title "ib:GoSouth"))
+
+([RasterToVector_Class40177] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?ye latlon ?llp\n	(= ?xp (inc ?xe)))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	latlon ?llp)")
+	(salience -3)
+	(title "ib:GoEast"))
+
+([RasterToVector_Class40178] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?ye latlon ?llp\n	(= ?xp (dec ?xe)))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	latlon ?llp)")
+	(salience -3)
+	(title "ib:GoWest"))
+
+([RasterToVector_Class40322] of  CloFunction
+
+	(source "([lab points color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTPoly\" \"label\" lab)\n         [lat lon] (first points)]\n    (ssv ins \"description\" lab)\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssvs ins \"points\" (vec (map #(str (MapOb/getDegMin (first %)) \" \" \n		        (MapOb/getDegMin (second %))) points)))\n    (OMT/getOrAdd ins)))\n([lab points]\n  (segment lab points \"FF0000FF\"))")
+	(title "segment"))
+
+([RasterToVector_Class40323] of  Rule
+
+	(lhs "(Segment latlon \"CLOSED\"\n	x ?x y ?y \n	points ?pts)")
+	(rhs "(println :SGT ?x ?y)\n(rtv.core/segment (str (gensym \"S\")) ?pts)")
+	(salience 0)
+	(title "ib:Display Segment"))
+
+([RasterToVector_Class40920] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?yp latlon ?llp\n	((= ?xp (inc ?xe))\n	 (= ?yp (inc ?ye))))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	y ?yp\n	latlon ?llp)")
+	(salience -4)
+	(title "ib:GoNorthEast"))
+
+([RasterToVector_Class40921] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?yp latlon ?llp\n	((= ?xp (dec ?xe))\n	 (= ?yp (inc ?ye))))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	y ?yp\n	latlon ?llp)")
+	(salience -4)
+	(title "ib:GoNorthWest"))
+
+([RasterToVector_Class40922] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?yp latlon ?llp\n	((= ?xp (inc ?xe))\n	 (= ?yp (dec ?ye))))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	y ?yp\n	latlon ?llp)")
+	(salience -4)
+	(title "ib:GoSouthEast"))
+
+([RasterToVector_Class40923] of  Rule
+
+	(lhs "s (Segment points ?pp\n	x ?xe\n	y ?ye\n	latlon ?lle)\np (Point x ?xp y ?yp latlon ?llp\n	((= ?xp (dec ?xe))\n	 (= ?yp (dec ?ye))))")
+	(rhs "(retract p)\n(modify s points (vec (conj ?pp ?lle))\n	x ?xp\n	y ?yp\n	latlon ?llp)")
+	(salience -4)
+	(title "ib:GoSouthWest"))
+
+([RasterToVector_Class40934] of  CloFuncall
+
+	(source "(rtv.core/elevationField 58 3 80 80 0)"))
+
+([RasterToVector_Class40960] of  CloFuncall
+
+	(source "(ru.rules/pp 'Point)"))
+
+([RasterToVector_Class40961] of  OMTPoint
+
+	(description "79:79")
+	(label "79:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40962] of  OMTPoint
+
+	(description "78:79")
+	(label "78:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40963] of  OMTPoint
+
+	(description "77:79")
+	(label "77:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40964] of  OMTPoint
+
+	(description "76:79")
+	(label "76:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40965] of  OMTPoint
+
+	(description "75:79")
+	(label "75:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40966] of  OMTPoint
+
+	(description "74:79")
+	(label "74:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40967] of  OMTPoint
+
+	(description "61:79")
+	(label "61:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40968] of  OMTPoint
+
+	(description "60:79")
+	(label "60:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40969] of  OMTPoint
+
+	(description "59:79")
+	(label "59:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40970] of  OMTPoint
+
+	(description "58:79")
+	(label "58:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40971] of  OMTPoint
+
+	(description "57:79")
+	(label "57:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40972] of  OMTPoint
+
+	(description "56:79")
+	(label "56:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40973] of  OMTPoint
+
+	(description "55:79")
+	(label "55:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40974] of  OMTPoint
+
+	(description "54:79")
+	(label "54:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40975] of  OMTPoint
+
+	(description "53:79")
+	(label "53:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40976] of  OMTPoint
+
+	(description "52:79")
+	(label "52:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40977] of  OMTPoint
+
+	(description "43:79")
+	(label "43:79")
+	(latitude "77 45")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40978] of  OMTPoint
+
+	(description "79:78")
+	(label "79:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40979] of  OMTPoint
+
+	(description "76:78")
+	(label "76:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40980] of  OMTPoint
+
+	(description "75:78")
+	(label "75:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40981] of  OMTPoint
+
+	(description "74:78")
+	(label "74:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40982] of  OMTPoint
+
+	(description "73:78")
+	(label "73:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40983] of  OMTPoint
+
+	(description "72:78")
+	(label "72:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "21 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40984] of  OMTPoint
+
+	(description "60:78")
+	(label "60:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40985] of  OMTPoint
+
+	(description "59:78")
+	(label "59:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40986] of  OMTPoint
+
+	(description "58:78")
+	(label "58:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40987] of  OMTPoint
+
+	(description "53:78")
+	(label "53:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40988] of  OMTPoint
+
+	(description "51:78")
+	(label "51:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40989] of  OMTPoint
+
+	(description "50:78")
+	(label "50:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40990] of  OMTPoint
+
+	(description "49:78")
+	(label "49:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "15 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40991] of  OMTPoint
+
+	(description "48:78")
+	(label "48:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "15 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40992] of  OMTPoint
+
+	(description "45:78")
+	(label "45:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "14 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40993] of  OMTPoint
+
+	(description "44:78")
+	(label "44:78")
+	(latitude "77 30")
+	(lineColor "FFFF0000")
+	(longitude "14 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40994] of  OMTPoint
+
+	(description "57:77")
+	(label "57:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40995] of  OMTPoint
+
+	(description "54:77")
+	(label "54:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40996] of  OMTPoint
+
+	(description "53:77")
+	(label "53:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40997] of  OMTPoint
+
+	(description "52:77")
+	(label "52:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40998] of  OMTPoint
+
+	(description "51:77")
+	(label "51:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class40999] of  OMTPoint
+
+	(description "50:77")
+	(label "50:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41000] of  OMTPoint
+
+	(description "49:77")
+	(label "49:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "15 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41001] of  OMTPoint
+
+	(description "48:77")
+	(label "48:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "15 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41002] of  OMTPoint
+
+	(description "47:77")
+	(label "47:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "14 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41003] of  OMTPoint
+
+	(description "46:77")
+	(label "46:77")
+	(latitude "77 15")
+	(lineColor "FFFF0000")
+	(longitude "14 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41004] of  OMTPoint
+
+	(description "56:76")
+	(label "56:76")
+	(latitude "77 0")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41005] of  OMTPoint
+
+	(description "55:76")
+	(label "55:76")
+	(latitude "77 0")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41006] of  OMTPoint
+
+	(description "56:75")
+	(label "56:75")
+	(latitude "76 45")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41007] of  OMTPoint
+
+	(description "55:75")
+	(label "55:75")
+	(latitude "76 45")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41008] of  OMTPoint
+
+	(description "54:75")
+	(label "54:75")
+	(latitude "76 45")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41009] of  OMTPoint
+
+	(description "53:75")
+	(label "53:75")
+	(latitude "76 45")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41010] of  OMTPoint
+
+	(description "52:75")
+	(label "52:75")
+	(latitude "76 45")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41011] of  OMTPoint
+
+	(description "64:66")
+	(label "64:66")
+	(latitude "74 30")
+	(lineColor "FFFF0000")
+	(longitude "19 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41012] of  OMTPoint
+
+	(description "77:50")
+	(label "77:50")
+	(latitude "70 30")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41013] of  OMTPoint
+
+	(description "76:49")
+	(label "76:49")
+	(latitude "70 15")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41014] of  OMTPoint
+
+	(description "79:48")
+	(label "79:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41015] of  OMTPoint
+
+	(description "78:48")
+	(label "78:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41016] of  OMTPoint
+
+	(description "77:48")
+	(label "77:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41017] of  OMTPoint
+
+	(description "73:48")
+	(label "73:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41018] of  OMTPoint
+
+	(description "65:48")
+	(label "65:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "19 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41019] of  OMTPoint
+
+	(description "64:48")
+	(label "64:48")
+	(latitude "70 0")
+	(lineColor "FFFF0000")
+	(longitude "19 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41020] of  OMTPoint
+
+	(description "79:47")
+	(label "79:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41021] of  OMTPoint
+
+	(description "77:47")
+	(label "77:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41022] of  OMTPoint
+
+	(description "75:47")
+	(label "75:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41023] of  OMTPoint
+
+	(description "74:47")
+	(label "74:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41024] of  OMTPoint
+
+	(description "72:47")
+	(label "72:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "21 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41025] of  OMTPoint
+
+	(description "71:47")
+	(label "71:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "20 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41026] of  OMTPoint
+
+	(description "70:47")
+	(label "70:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "20 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41027] of  OMTPoint
+
+	(description "68:47")
+	(label "68:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "20 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41028] of  OMTPoint
+
+	(description "66:47")
+	(label "66:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "19 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41029] of  OMTPoint
+
+	(description "65:47")
+	(label "65:47")
+	(latitude "69 45")
+	(lineColor "FFFF0000")
+	(longitude "19 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41030] of  OMTPoint
+
+	(description "79:46")
+	(label "79:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41031] of  OMTPoint
+
+	(description "76:46")
+	(label "76:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41032] of  OMTPoint
+
+	(description "72:46")
+	(label "72:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "21 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41033] of  OMTPoint
+
+	(description "70:46")
+	(label "70:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "20 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41034] of  OMTPoint
+
+	(description "68:46")
+	(label "68:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "20 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41035] of  OMTPoint
+
+	(description "67:46")
+	(label "67:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "19 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41036] of  OMTPoint
+
+	(description "65:46")
+	(label "65:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "19 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41037] of  OMTPoint
+
+	(description "63:46")
+	(label "63:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "18 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41038] of  OMTPoint
+
+	(description "62:46")
+	(label "62:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "18 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41039] of  OMTPoint
+
+	(description "59:46")
+	(label "59:46")
+	(latitude "69 30")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41040] of  OMTPoint
+
+	(description "79:45")
+	(label "79:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41041] of  OMTPoint
+
+	(description "71:45")
+	(label "71:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "20 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41042] of  OMTPoint
+
+	(description "69:45")
+	(label "69:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "20 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41043] of  OMTPoint
+
+	(description "66:45")
+	(label "66:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "19 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41044] of  OMTPoint
+
+	(description "64:45")
+	(label "64:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "19 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41045] of  OMTPoint
+
+	(description "63:45")
+	(label "63:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "18 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41046] of  OMTPoint
+
+	(description "61:45")
+	(label "61:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41047] of  OMTPoint
+
+	(description "59:45")
+	(label "59:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41048] of  OMTPoint
+
+	(description "58:45")
+	(label "58:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41049] of  OMTPoint
+
+	(description "57:45")
+	(label "57:45")
+	(latitude "69 15")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41050] of  OMTPoint
+
+	(description "79:44")
+	(label "79:44")
+	(latitude "69 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41051] of  OMTPoint
+
+	(description "65:44")
+	(label "65:44")
+	(latitude "69 0")
+	(lineColor "FFFF0000")
+	(longitude "19 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41052] of  OMTPoint
+
+	(description "62:44")
+	(label "62:44")
+	(latitude "69 0")
+	(lineColor "FFFF0000")
+	(longitude "18 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41053] of  OMTPoint
+
+	(description "60:44")
+	(label "60:44")
+	(latitude "69 0")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41054] of  OMTPoint
+
+	(description "59:44")
+	(label "59:44")
+	(latitude "69 0")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41055] of  OMTPoint
+
+	(description "79:43")
+	(label "79:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41056] of  OMTPoint
+
+	(description "58:43")
+	(label "58:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41057] of  OMTPoint
+
+	(description "57:43")
+	(label "57:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41058] of  OMTPoint
+
+	(description "56:43")
+	(label "56:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41059] of  OMTPoint
+
+	(description "53:43")
+	(label "53:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41060] of  OMTPoint
+
+	(description "50:43")
+	(label "50:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41061] of  OMTPoint
+
+	(description "48:43")
+	(label "48:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "15 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41062] of  OMTPoint
+
+	(description "47:43")
+	(label "47:43")
+	(latitude "68 45")
+	(lineColor "FFFF0000")
+	(longitude "14 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41063] of  OMTPoint
+
+	(description "79:42")
+	(label "79:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41064] of  OMTPoint
+
+	(description "59:42")
+	(label "59:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41065] of  OMTPoint
+
+	(description "53:42")
+	(label "53:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41066] of  OMTPoint
+
+	(description "52:42")
+	(label "52:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41067] of  OMTPoint
+
+	(description "51:42")
+	(label "51:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41068] of  OMTPoint
+
+	(description "50:42")
+	(label "50:42")
+	(latitude "68 30")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41069] of  OMTPoint
+
+	(description "79:41")
+	(label "79:41")
+	(latitude "68 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41070] of  OMTPoint
+
+	(description "58:41")
+	(label "58:41")
+	(latitude "68 15")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41071] of  OMTPoint
+
+	(description "56:41")
+	(label "56:41")
+	(latitude "68 15")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41072] of  OMTPoint
+
+	(description "55:41")
+	(label "55:41")
+	(latitude "68 15")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41073] of  OMTPoint
+
+	(description "43:41")
+	(label "43:41")
+	(latitude "68 15")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41074] of  OMTPoint
+
+	(description "79:40")
+	(label "79:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41075] of  OMTPoint
+
+	(description "57:40")
+	(label "57:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41076] of  OMTPoint
+
+	(description "54:40")
+	(label "54:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41077] of  OMTPoint
+
+	(description "53:40")
+	(label "53:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41078] of  OMTPoint
+
+	(description "52:40")
+	(label "52:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41079] of  OMTPoint
+
+	(description "40:40")
+	(label "40:40")
+	(latitude "68 0")
+	(lineColor "FFFF0000")
+	(longitude "13 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41080] of  OMTPoint
+
+	(description "79:39")
+	(label "79:39")
+	(latitude "67 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41081] of  OMTPoint
+
+	(description "51:39")
+	(label "51:39")
+	(latitude "67 45")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41082] of  OMTPoint
+
+	(description "49:39")
+	(label "49:39")
+	(latitude "67 45")
+	(lineColor "FFFF0000")
+	(longitude "15 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41083] of  OMTPoint
+
+	(description "79:38")
+	(label "79:38")
+	(latitude "67 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41084] of  OMTPoint
+
+	(description "51:38")
+	(label "51:38")
+	(latitude "67 30")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41085] of  OMTPoint
+
+	(description "47:38")
+	(label "47:38")
+	(latitude "67 30")
+	(lineColor "FFFF0000")
+	(longitude "14 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41086] of  OMTPoint
+
+	(description "79:37")
+	(label "79:37")
+	(latitude "67 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41087] of  OMTPoint
+
+	(description "50:37")
+	(label "50:37")
+	(latitude "67 15")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41088] of  OMTPoint
+
+	(description "79:36")
+	(label "79:36")
+	(latitude "67 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41089] of  OMTPoint
+
+	(description "49:36")
+	(label "49:36")
+	(latitude "67 0")
+	(lineColor "FFFF0000")
+	(longitude "15 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41090] of  OMTPoint
+
+	(description "48:36")
+	(label "48:36")
+	(latitude "67 0")
+	(lineColor "FFFF0000")
+	(longitude "15 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41091] of  OMTPoint
+
+	(description "47:36")
+	(label "47:36")
+	(latitude "67 0")
+	(lineColor "FFFF0000")
+	(longitude "14 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41092] of  OMTPoint
+
+	(description "46:36")
+	(label "46:36")
+	(latitude "67 0")
+	(lineColor "FFFF0000")
+	(longitude "14 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41093] of  OMTPoint
+
+	(description "79:35")
+	(label "79:35")
+	(latitude "66 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41094] of  OMTPoint
+
+	(description "45:35")
+	(label "45:35")
+	(latitude "66 45")
+	(lineColor "FFFF0000")
+	(longitude "14 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41095] of  OMTPoint
+
+	(description "44:35")
+	(label "44:35")
+	(latitude "66 45")
+	(lineColor "FFFF0000")
+	(longitude "14 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41096] of  OMTPoint
+
+	(description "43:35")
+	(label "43:35")
+	(latitude "66 45")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41097] of  OMTPoint
+
+	(description "79:34")
+	(label "79:34")
+	(latitude "66 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41098] of  OMTPoint
+
+	(description "43:34")
+	(label "43:34")
+	(latitude "66 30")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41099] of  OMTPoint
+
+	(description "42:34")
+	(label "42:34")
+	(latitude "66 30")
+	(lineColor "FFFF0000")
+	(longitude "13 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41100] of  OMTPoint
+
+	(description "79:33")
+	(label "79:33")
+	(latitude "66 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41101] of  OMTPoint
+
+	(description "44:33")
+	(label "44:33")
+	(latitude "66 15")
+	(lineColor "FFFF0000")
+	(longitude "14 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41102] of  OMTPoint
+
+	(description "41:33")
+	(label "41:33")
+	(latitude "66 15")
+	(lineColor "FFFF0000")
+	(longitude "13 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41103] of  OMTPoint
+
+	(description "79:32")
+	(label "79:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41104] of  OMTPoint
+
+	(description "78:32")
+	(label "78:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41105] of  OMTPoint
+
+	(description "77:32")
+	(label "77:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41106] of  OMTPoint
+
+	(description "43:32")
+	(label "43:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41107] of  OMTPoint
+
+	(description "42:32")
+	(label "42:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "13 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41108] of  OMTPoint
+
+	(description "40:32")
+	(label "40:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "13 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41109] of  OMTPoint
+
+	(description "39:32")
+	(label "39:32")
+	(latitude "66 0")
+	(lineColor "FFFF0000")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41110] of  OMTPoint
+
+	(description "76:31")
+	(label "76:31")
+	(latitude "65 45")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41111] of  OMTPoint
+
+	(description "39:31")
+	(label "39:31")
+	(latitude "65 45")
+	(lineColor "FFFF0000")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41112] of  OMTPoint
+
+	(description "75:30")
+	(label "75:30")
+	(latitude "65 30")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41113] of  OMTPoint
+
+	(description "74:30")
+	(label "74:30")
+	(latitude "65 30")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41114] of  OMTPoint
+
+	(description "39:30")
+	(label "39:30")
+	(latitude "65 30")
+	(lineColor "FFFF0000")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41116] of  OMTPoint
+
+	(description "73:29")
+	(label "73:29")
+	(latitude "65 15")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41117] of  OMTPoint
+
+	(description "39:29")
+	(label "39:29")
+	(latitude "65 15")
+	(lineColor "FFFF0000")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41118] of  OMTPoint
+
+	(description "73:28")
+	(label "73:28")
+	(latitude "65 0")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41122] of  OMTPoint
+
+	(description "72:27")
+	(label "72:27")
+	(latitude "64 45")
+	(lineColor "FFFF0000")
+	(longitude "21 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41124] of  OMTPoint
+
+	(description "73:26")
+	(label "73:26")
+	(latitude "64 30")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41127] of  OMTPoint
+
+	(description "72:25")
+	(label "72:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "21 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41128] of  OMTPoint
+
+	(description "71:25")
+	(label "71:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "20 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41133] of  OMTPoint
+
+	(description "70:24")
+	(label "70:24")
+	(latitude "64 0")
+	(lineColor "FFFF0000")
+	(longitude "20 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41138] of  OMTPoint
+
+	(description "69:23")
+	(label "69:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "20 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41139] of  OMTPoint
+
+	(description "68:23")
+	(label "68:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "20 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41140] of  OMTPoint
+
+	(description "67:23")
+	(label "67:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "19 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41141] of  OMTPoint
+
+	(description "66:23")
+	(label "66:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "19 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41146] of  OMTPoint
+
+	(description "79:22")
+	(label "79:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41147] of  OMTPoint
+
+	(description "78:22")
+	(label "78:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41148] of  OMTPoint
+
+	(description "65:22")
+	(label "65:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "19 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41149] of  OMTPoint
+
+	(description "64:22")
+	(label "64:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "19 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41150] of  OMTPoint
+
+	(description "63:22")
+	(label "63:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "18 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41155] of  OMTPoint
+
+	(description "79:21")
+	(label "79:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41156] of  OMTPoint
+
+	(description "77:21")
+	(label "77:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41157] of  OMTPoint
+
+	(description "62:21")
+	(label "62:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "18 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41164] of  OMTPoint
+
+	(description "79:20")
+	(label "79:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41165] of  OMTPoint
+
+	(description "76:20")
+	(label "76:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41166] of  OMTPoint
+
+	(description "75:20")
+	(label "75:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41167] of  OMTPoint
+
+	(description "74:20")
+	(label "74:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41168] of  OMTPoint
+
+	(description "61:20")
+	(label "61:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41169] of  OMTPoint
+
+	(description "60:20")
+	(label "60:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41172] of  OMTPoint
+
+	(description "79:19")
+	(label "79:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41173] of  OMTPoint
+
+	(description "73:19")
+	(label "73:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41174] of  OMTPoint
+
+	(description "59:19")
+	(label "59:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41178] of  OMTPoint
+
+	(description "79:18")
+	(label "79:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41179] of  OMTPoint
+
+	(description "73:18")
+	(label "73:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41180] of  OMTPoint
+
+	(description "58:18")
+	(label "58:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41185] of  OMTPoint
+
+	(description "79:17")
+	(label "79:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41186] of  OMTPoint
+
+	(description "74:17")
+	(label "74:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41187] of  OMTPoint
+
+	(description "57:17")
+	(label "57:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41192] of  OMTPoint
+
+	(description "79:16")
+	(label "79:16")
+	(latitude "62 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41193] of  OMTPoint
+
+	(description "73:16")
+	(label "73:16")
+	(latitude "62 0")
+	(lineColor "FFFF0000")
+	(longitude "21 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41194] of  OMTPoint
+
+	(description "57:16")
+	(label "57:16")
+	(latitude "62 0")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41196] of  OMTPoint
+
+	(description "79:15")
+	(label "79:15")
+	(latitude "61 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41197] of  OMTPoint
+
+	(description "74:15")
+	(label "74:15")
+	(latitude "61 45")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41198] of  OMTPoint
+
+	(description "57:15")
+	(label "57:15")
+	(latitude "61 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41200] of  OMTPoint
+
+	(description "79:14")
+	(label "79:14")
+	(latitude "61 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41201] of  OMTPoint
+
+	(description "75:14")
+	(label "75:14")
+	(latitude "61 30")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41202] of  OMTPoint
+
+	(description "56:14")
+	(label "56:14")
+	(latitude "61 30")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41205] of  OMTPoint
+
+	(description "79:13")
+	(label "79:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41206] of  OMTPoint
+
+	(description "74:13")
+	(label "74:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41207] of  OMTPoint
+
+	(description "56:13")
+	(label "56:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41211] of  OMTPoint
+
+	(description "79:12")
+	(label "79:12")
+	(latitude "61 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41212] of  OMTPoint
+
+	(description "74:12")
+	(label "74:12")
+	(latitude "61 0")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41213] of  OMTPoint
+
+	(description "56:12")
+	(label "56:12")
+	(latitude "61 0")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class41216] of  OMTPoint
+
+	(description "79:11")
+	(label "79:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
 ([RasterToVector_Class41217] of  CloVar
 
 	(source "11000")
@@ -256,9 +2365,2196 @@
 	(salience 0)
 	(title "ib:Inner Point"))
 
+([RasterToVector_Class51217] of  OMTPoint
+
+	(description "75:11")
+	(label "75:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "21 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51218] of  OMTPoint
+
+	(description "74:11")
+	(label "74:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "21 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51219] of  OMTPoint
+
+	(description "57:11")
+	(label "57:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51222] of  OMTPoint
+
+	(description "79:10")
+	(label "79:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51223] of  OMTPoint
+
+	(description "77:10")
+	(label "77:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "22 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51224] of  OMTPoint
+
+	(description "76:10")
+	(label "76:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51225] of  OMTPoint
+
+	(description "60:10")
+	(label "60:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51226] of  OMTPoint
+
+	(description "59:10")
+	(label "59:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51227] of  OMTPoint
+
+	(description "58:10")
+	(label "58:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51228] of  OMTPoint
+
+	(description "55:10")
+	(label "55:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51234] of  OMTPoint
+
+	(description "78:9")
+	(label "78:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51235] of  OMTPoint
+
+	(description "61:9")
+	(label "61:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51236] of  OMTPoint
+
+	(description "56:9")
+	(label "56:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51237] of  OMTPoint
+
+	(description "54:9")
+	(label "54:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51243] of  OMTPoint
+
+	(description "63:8")
+	(label "63:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "18 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51244] of  OMTPoint
+
+	(description "62:8")
+	(label "62:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "18 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51245] of  OMTPoint
+
+	(description "58:8")
+	(label "58:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51246] of  OMTPoint
+
+	(description "55:8")
+	(label "55:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51250] of  OMTPoint
+
+	(description "63:7")
+	(label "63:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "18 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51251] of  OMTPoint
+
+	(description "62:7")
+	(label "62:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "18 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51252] of  OMTPoint
+
+	(description "59:7")
+	(label "59:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "17 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51253] of  OMTPoint
+
+	(description "57:7")
+	(label "57:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51254] of  OMTPoint
+
+	(description "56:7")
+	(label "56:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51255] of  OMTPoint
+
+	(description "55:7")
+	(label "55:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51256] of  OMTPoint
+
+	(description "54:7")
+	(label "54:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51260] of  OMTPoint
+
+	(description "61:6")
+	(label "61:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51261] of  OMTPoint
+
+	(description "60:6")
+	(label "60:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51262] of  OMTPoint
+
+	(description "53:6")
+	(label "53:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51268] of  OMTPoint
+
+	(description "61:5")
+	(label "61:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "18 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51269] of  OMTPoint
+
+	(description "60:5")
+	(label "60:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "18 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51270] of  OMTPoint
+
+	(description "57:5")
+	(label "57:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51271] of  OMTPoint
+
+	(description "56:5")
+	(label "56:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51272] of  OMTPoint
+
+	(description "55:5")
+	(label "55:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51273] of  OMTPoint
+
+	(description "54:5")
+	(label "54:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51280] of  OMTPoint
+
+	(description "79:4")
+	(label "79:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51281] of  OMTPoint
+
+	(description "78:4")
+	(label "78:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51282] of  OMTPoint
+
+	(description "58:4")
+	(label "58:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "17 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51283] of  OMTPoint
+
+	(description "56:4")
+	(label "56:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "17 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51288] of  OMTPoint
+
+	(description "78:3")
+	(label "78:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51289] of  OMTPoint
+
+	(description "57:3")
+	(label "57:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "17 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51290] of  OMTPoint
+
+	(description "55:3")
+	(label "55:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51297] of  OMTPoint
+
+	(description "79:2")
+	(label "79:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "22 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51298] of  OMTPoint
+
+	(description "78:2")
+	(label "78:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "22 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51299] of  OMTPoint
+
+	(description "76:2")
+	(label "76:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51300] of  OMTPoint
+
+	(description "55:2")
+	(label "55:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "16 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51309] of  OMTPoint
+
+	(description "76:1")
+	(label "76:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "22 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51310] of  OMTPoint
+
+	(description "54:1")
+	(label "54:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51320] of  OMTPoint
+
+	(description "54:0")
+	(label "54:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "16 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51321] of  OMTPoint
+
+	(description "53:0")
+	(label "53:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "16 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51322] of  OMTPoint
+
+	(description "52:0")
+	(label "52:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "16 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51323] of  OMTPoint
+
+	(description "51:0")
+	(label "51:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "15 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51324] of  OMTPoint
+
+	(description "50:0")
+	(label "50:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "15 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51325] of  OMTPoint
+
+	(description "49:0")
+	(label "49:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "15 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51326] of  OMTPoint
+
+	(description "48:0")
+	(label "48:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "15 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51327] of  OMTPoint
+
+	(description "47:0")
+	(label "47:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "14 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51328] of  OMTPoint
+
+	(description "46:0")
+	(label "46:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "14 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51329] of  OMTPoint
+
+	(description "45:0")
+	(label "45:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "14 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51330] of  OMTPoint
+
+	(description "44:0")
+	(label "44:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "14 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51331] of  OMTPoint
+
+	(description "43:0")
+	(label "43:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "13 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51332] of  OMTPoint
+
+	(description "42:0")
+	(label "42:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "13 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51333] of  OMTPoint
+
+	(description "41:0")
+	(label "41:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "13 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51334] of  OMTPoint
+
+	(description "40:0")
+	(label "40:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "13 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51335] of  OMTPoint
+
+	(description "39:0")
+	(label "39:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "12 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51336] of  OMTPoint
+
+	(description "38:0")
+	(label "38:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51337] of  OMTPoint
+
+	(description "37:0")
+	(label "37:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51338] of  OMTPoint
+
+	(description "36:0")
+	(label "36:0")
+	(latitude "58 0")
+	(lineColor "FFFF0000")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51388] of  Rule
+
+	(lhs "p (Point side \"BORDER\")")
+	(rhs "(retract p)")
+	(salience -1)
+	(title "id:Retract Border Point"))
+
+([RasterToVector_Class51390] of  Rule
+
+	(lhs "s1 (Segment x ?x1 y ?y1 points ?pp)\ns2 (Segment x ?x2 y ?y2\n	(rtv.core/near 1 ?x1 ?y1 ?x2 ?y2))")
+	(rhs "(retract s2)\n(modify s1 points (vec")
+	(salience 0)
+	(title "ib:Connect two Segments 1"))
+
+([RasterToVector_Class51396] of  CloFunction
+
+	(source "(let [dx (if (> x1 x2) (- x1 x2) (- x2 x1))\n       dy (if (> y1 y2) (- y1 y2) (- y2 y1))]\n  (and (<= dx e) (<= dy e)))")
+	(title "near [e x1 y1 x2 y2]"))
+
+([RasterToVector_Class51397] of  Rule
+
+	(lhs "s (Segment x ?x y ?y latlon ?ll\n	points ?pts\n	((not (empty? ?pts))\n	 (vector? ?ll)))")
+	(rhs "(modify s points (vec (conj ?pts ?ll))\n	latlon \"CLOSED\")")
+	(salience -6)
+	(title "ib:Close Segment"))
+
+([RasterToVector_Class51612] of  OMTPoly
+
+	(description "S9720")
+	(label "S9720")
+	(latitude "59 30")
+	(lineColor "FF0000FF")
+	(longitude "5 30")
+	(playground-index 0)
+	(points
+		"59 30 5 30"
+		"59 30 5 15")
+	(relative FALSE))
+
+([RasterToVector_Class51613] of  OMTPoly
+
+	(description "S9721")
+	(label "S9721")
+	(latitude "59 30")
+	(lineColor "FF0000FF")
+	(longitude "5 30")
+	(playground-index 0)
+	(relative FALSE))
+
+([RasterToVector_Class51614] of  OMTPoint
+
+	(description "37:30")
+	(label "37:30")
+	(latitude "65 30")
+	(lineColor "FFFF0000")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51615] of  OMTPoint
+
+	(description "38:28")
+	(label "38:28")
+	(latitude "65 0")
+	(lineColor "FFFF0000")
+	(longitude "12 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51616] of  OMTPoint
+
+	(description "37:28")
+	(label "37:28")
+	(latitude "65 0")
+	(lineColor "FFFF0000")
+	(longitude "12 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51617] of  OMTPoint
+
+	(description "36:28")
+	(label "36:28")
+	(latitude "65 0")
+	(lineColor "FFFF0000")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51618] of  OMTPoint
+
+	(description "35:27")
+	(label "35:27")
+	(latitude "64 45")
+	(lineColor "FFFF0000")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51619] of  OMTPoint
+
+	(description "34:26")
+	(label "34:26")
+	(latitude "64 30")
+	(lineColor "FFFF0000")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51620] of  OMTPoint
+
+	(description "32:26")
+	(label "32:26")
+	(latitude "64 30")
+	(lineColor "FFFF0000")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51621] of  OMTPoint
+
+	(description "33:25")
+	(label "33:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51622] of  OMTPoint
+
+	(description "32:25")
+	(label "32:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51623] of  OMTPoint
+
+	(description "31:25")
+	(label "31:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51624] of  OMTPoint
+
+	(description "30:25")
+	(label "30:25")
+	(latitude "64 15")
+	(lineColor "FFFF0000")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51625] of  OMTPoint
+
+	(description "34:24")
+	(label "34:24")
+	(latitude "64 0")
+	(lineColor "FFFF0000")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51626] of  OMTPoint
+
+	(description "31:24")
+	(label "31:24")
+	(latitude "64 0")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51627] of  OMTPoint
+
+	(description "29:24")
+	(label "29:24")
+	(latitude "64 0")
+	(lineColor "FFFF0000")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51628] of  OMTPoint
+
+	(description "28:24")
+	(label "28:24")
+	(latitude "64 0")
+	(lineColor "FFFF0000")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51629] of  OMTPoint
+
+	(description "33:23")
+	(label "33:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51630] of  OMTPoint
+
+	(description "30:23")
+	(label "30:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51631] of  OMTPoint
+
+	(description "29:23")
+	(label "29:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51632] of  OMTPoint
+
+	(description "27:23")
+	(label "27:23")
+	(latitude "63 45")
+	(lineColor "FFFF0000")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51633] of  OMTPoint
+
+	(description "32:22")
+	(label "32:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51634] of  OMTPoint
+
+	(description "27:22")
+	(label "27:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51635] of  OMTPoint
+
+	(description "26:22")
+	(label "26:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51636] of  OMTPoint
+
+	(description "25:22")
+	(label "25:22")
+	(latitude "63 30")
+	(lineColor "FFFF0000")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51637] of  OMTPoint
+
+	(description "31:21")
+	(label "31:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51638] of  OMTPoint
+
+	(description "30:21")
+	(label "30:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51639] of  OMTPoint
+
+	(description "29:21")
+	(label "29:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51640] of  OMTPoint
+
+	(description "28:21")
+	(label "28:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51641] of  OMTPoint
+
+	(description "24:21")
+	(label "24:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51642] of  OMTPoint
+
+	(description "23:21")
+	(label "23:21")
+	(latitude "63 15")
+	(lineColor "FFFF0000")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51643] of  OMTPoint
+
+	(description "22:20")
+	(label "22:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51644] of  OMTPoint
+
+	(description "18:20")
+	(label "18:20")
+	(latitude "63 0")
+	(lineColor "FFFF0000")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51645] of  OMTPoint
+
+	(description "21:19")
+	(label "21:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51646] of  OMTPoint
+
+	(description "19:19")
+	(label "19:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51647] of  OMTPoint
+
+	(description "18:19")
+	(label "18:19")
+	(latitude "62 45")
+	(lineColor "FFFF0000")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51648] of  OMTPoint
+
+	(description "20:18")
+	(label "20:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51649] of  OMTPoint
+
+	(description "17:18")
+	(label "17:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51650] of  OMTPoint
+
+	(description "16:18")
+	(label "16:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51651] of  OMTPoint
+
+	(description "15:18")
+	(label "15:18")
+	(latitude "62 30")
+	(lineColor "FFFF0000")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51652] of  OMTPoint
+
+	(description "14:17")
+	(label "14:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51653] of  OMTPoint
+
+	(description "13:17")
+	(label "13:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51654] of  OMTPoint
+
+	(description "12:17")
+	(label "12:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51655] of  OMTPoint
+
+	(description "11:17")
+	(label "11:17")
+	(latitude "62 15")
+	(lineColor "FFFF0000")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51656] of  OMTPoint
+
+	(description "10:16")
+	(label "10:16")
+	(latitude "62 0")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51657] of  OMTPoint
+
+	(description "9:15")
+	(label "9:15")
+	(latitude "61 45")
+	(lineColor "FFFF0000")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51658] of  OMTPoint
+
+	(description "14:14")
+	(label "14:14")
+	(latitude "61 30")
+	(lineColor "FFFF0000")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51659] of  OMTPoint
+
+	(description "9:14")
+	(label "9:14")
+	(latitude "61 30")
+	(lineColor "FFFF0000")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51660] of  OMTPoint
+
+	(description "15:13")
+	(label "15:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51661] of  OMTPoint
+
+	(description "13:13")
+	(label "13:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51662] of  OMTPoint
+
+	(description "8:13")
+	(label "8:13")
+	(latitude "61 15")
+	(lineColor "FFFF0000")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51663] of  OMTPoint
+
+	(description "14:12")
+	(label "14:12")
+	(latitude "61 0")
+	(lineColor "FFFF0000")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51664] of  OMTPoint
+
+	(description "9:12")
+	(label "9:12")
+	(latitude "61 0")
+	(lineColor "FFFF0000")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51665] of  OMTPoint
+
+	(description "16:11")
+	(label "16:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51666] of  OMTPoint
+
+	(description "10:11")
+	(label "10:11")
+	(latitude "60 45")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51667] of  OMTPoint
+
+	(description "17:10")
+	(label "17:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51668] of  OMTPoint
+
+	(description "15:10")
+	(label "15:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51669] of  OMTPoint
+
+	(description "12:10")
+	(label "12:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51670] of  OMTPoint
+
+	(description "9:10")
+	(label "9:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51671] of  OMTPoint
+
+	(description "8:10")
+	(label "8:10")
+	(latitude "60 30")
+	(lineColor "FFFF0000")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51672] of  OMTPoint
+
+	(description "16:9")
+	(label "16:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51673] of  OMTPoint
+
+	(description "13:9")
+	(label "13:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51674] of  OMTPoint
+
+	(description "11:9")
+	(label "11:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51675] of  OMTPoint
+
+	(description "10:9")
+	(label "10:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51676] of  OMTPoint
+
+	(description "8:9")
+	(label "8:9")
+	(latitude "60 15")
+	(lineColor "FFFF0000")
+	(longitude "5 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51677] of  OMTPoint
+
+	(description "30:8")
+	(label "30:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "10 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51678] of  OMTPoint
+
+	(description "12:8")
+	(label "12:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51679] of  OMTPoint
+
+	(description "10:8")
+	(label "10:8")
+	(latitude "60 0")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51680] of  OMTPoint
+
+	(description "31:7")
+	(label "31:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51681] of  OMTPoint
+
+	(description "29:7")
+	(label "29:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51682] of  OMTPoint
+
+	(description "13:7")
+	(label "13:7")
+	(latitude "59 45")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51683] of  OMTPoint
+
+	(description "31:6")
+	(label "31:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51684] of  OMTPoint
+
+	(description "28:6")
+	(label "28:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51685] of  OMTPoint
+
+	(description "12:6")
+	(label "12:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51686] of  OMTPoint
+
+	(description "10:6")
+	(label "10:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51687] of  OMTPoint
+
+	(description "9:6")
+	(label "9:6")
+	(latitude "59 30")
+	(lineColor "FFFF0000")
+	(longitude "5 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51688] of  OMTPoint
+
+	(description "32:5")
+	(label "32:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "11 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51689] of  OMTPoint
+
+	(description "31:5")
+	(label "31:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "10 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51690] of  OMTPoint
+
+	(description "29:5")
+	(label "29:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "10 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51691] of  OMTPoint
+
+	(description "28:5")
+	(label "28:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "10 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51692] of  OMTPoint
+
+	(description "27:5")
+	(label "27:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "9 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51693] of  OMTPoint
+
+	(description "13:5")
+	(label "13:5")
+	(latitude "59 15")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51694] of  OMTPoint
+
+	(description "33:4")
+	(label "33:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51695] of  OMTPoint
+
+	(description "26:4")
+	(label "26:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "9 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51696] of  OMTPoint
+
+	(description "25:4")
+	(label "25:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "9 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51697] of  OMTPoint
+
+	(description "14:4")
+	(label "14:4")
+	(latitude "59 0")
+	(lineColor "FFFF0000")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51698] of  OMTPoint
+
+	(description "33:3")
+	(label "33:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51699] of  OMTPoint
+
+	(description "24:3")
+	(label "24:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "9 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51700] of  OMTPoint
+
+	(description "13:3")
+	(label "13:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51701] of  OMTPoint
+
+	(description "12:3")
+	(label "12:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51702] of  OMTPoint
+
+	(description "11:3")
+	(label "11:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51703] of  OMTPoint
+
+	(description "10:3")
+	(label "10:3")
+	(latitude "58 45")
+	(lineColor "FFFF0000")
+	(longitude "5 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51704] of  OMTPoint
+
+	(description "35:2")
+	(label "35:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "11 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51705] of  OMTPoint
+
+	(description "33:2")
+	(label "33:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "11 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51706] of  OMTPoint
+
+	(description "23:2")
+	(label "23:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "8 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51707] of  OMTPoint
+
+	(description "22:2")
+	(label "22:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "8 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51708] of  OMTPoint
+
+	(description "14:2")
+	(label "14:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "6 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51709] of  OMTPoint
+
+	(description "13:2")
+	(label "13:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "6 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51710] of  OMTPoint
+
+	(description "12:2")
+	(label "12:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "6 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51711] of  OMTPoint
+
+	(description "11:2")
+	(label "11:2")
+	(latitude "58 30")
+	(lineColor "FFFF0000")
+	(longitude "5 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51712] of  OMTPoint
+
+	(description "36:1")
+	(label "36:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "12 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51713] of  OMTPoint
+
+	(description "34:1")
+	(label "34:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "11 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51714] of  OMTPoint
+
+	(description "21:1")
+	(label "21:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "8 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51715] of  OMTPoint
+
+	(description "20:1")
+	(label "20:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "8 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51716] of  OMTPoint
+
+	(description "19:1")
+	(label "19:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "7 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51717] of  OMTPoint
+
+	(description "18:1")
+	(label "18:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "7 30")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51718] of  OMTPoint
+
+	(description "17:1")
+	(label "17:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "7 15")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51719] of  OMTPoint
+
+	(description "16:1")
+	(label "16:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "7 0")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51720] of  OMTPoint
+
+	(description "15:1")
+	(label "15:1")
+	(latitude "58 15")
+	(lineColor "FFFF0000")
+	(longitude "6 45")
+	(oval TRUE)
+	(playground-index 0))
+
+([RasterToVector_Class51721] of  OMTPoly
+
+	(description "S9843")
+	(label "S9843")
+	(latitude "59 30")
+	(lineColor "FF0000FF")
+	(longitude "5 30")
+	(playground-index 0)
+	(points
+		"59 30 5 30"
+		"59 30 5 15")
+	(relative FALSE))
+
+([RasterToVector_Class51722] of  OMTPoly
+
+	(description "S9844")
+	(label "S9844")
+	(latitude "60 15")
+	(lineColor "FF0000FF")
+	(longitude "6 15")
+	(playground-index 0)
+	(points
+		"60 15 6 15"
+		"60 0 6 0"
+		"59 45 6 15"
+		"59 30 6 0"
+		"59 15 6 15"
+		"59 0 6 30"
+		"58 45 6 15"
+		"58 45 6 0"
+		"58 45 5 45"
+		"58 45 5 30"
+		"58 30 5 45"
+		"58 30 6 0"
+		"58 30 6 15"
+		"58 30 6 30"
+		"58 15 6 45"
+		"58 15 7 0"
+		"58 15 7 15"
+		"58 15 7 30"
+		"58 15 7 45"
+		"58 15 8 0"
+		"58 15 8 15"
+		"58 30 8 30"
+		"58 30 8 45"
+		"58 45 9 0"
+		"59 0 9 15"
+		"59 0 9 30"
+		"59 15 9 45"
+		"59 15 10 0"
+		"59 15 10 15"
+		"59 30 10 0"
+		"59 45 10 15"
+		"60 0 10 30"
+		"59 45 10 45"
+		"59 30 10 45"
+		"59 15 10 45"
+		"59 15 11 0"
+		"59 0 11 15"
+		"58 45 11 15"
+		"58 30 11 15"
+		"58 15 11 30"
+		"58 30 11 45"
+		"58 15 12 0")
+	(relative FALSE))
+
+([RasterToVector_Class51723] of  OMTPoly
+
+	(description "S9845")
+	(label "S9845")
+	(latitude "60 30")
+	(lineColor "FF0000FF")
+	(longitude "6 0")
+	(playground-index 0)
+	(points
+		"60 30 6 0"
+		"60 15 5 45"
+		"60 15 5 30"
+		"60 0 5 30")
+	(relative FALSE))
+
+([RasterToVector_Class51724] of  OMTPoly
+
+	(description "S9846")
+	(label "S9846")
+	(latitude "60 45")
+	(lineColor "FF0000FF")
+	(longitude "7 0")
+	(playground-index 0)
+	(points
+		"60 45 7 0"
+		"60 30 6 45"
+		"60 15 7 0"
+		"60 30 7 15")
+	(relative FALSE))
+
+([RasterToVector_Class51725] of  OMTPoly
+
+	(description "S9847")
+	(label "S9847")
+	(latitude "61 30")
+	(lineColor "FF0000FF")
+	(longitude "6 30")
+	(playground-index 0)
+	(points
+		"61 30 6 30"
+		"61 15 6 15"
+		"61 0 6 30"
+		"61 15 6 45")
+	(relative FALSE))
+
+([RasterToVector_Class51726] of  OMTPoly
+
+	(description "S9848")
+	(label "S9848")
+	(latitude "62 30")
+	(lineColor "FF0000FF")
+	(longitude "7 15")
+	(playground-index 0)
+	(points
+		"62 30 7 15"
+		"62 30 7 0"
+		"62 30 6 45"
+		"62 15 6 30"
+		"62 15 6 15"
+		"62 15 6 0"
+		"62 15 5 45"
+		"62 0 5 30"
+		"61 45 5 15"
+		"61 30 5 15"
+		"61 15 5 0"
+		"61 0 5 15"
+		"60 45 5 30"
+		"60 30 5 15"
+		"60 30 5 0"
+		"60 15 5 0")
+	(relative FALSE))
+
+([RasterToVector_Class51727] of  OMTPoly
+
+	(description "S9849")
+	(label "S9849")
+	(latitude "64 0")
+	(lineColor "FF0000FF")
+	(longitude "10 45")
+	(playground-index 0)
+	(points
+		"64 0 10 45"
+		"63 45 10 30"
+		"63 45 10 15")
+	(relative FALSE))
+
+([RasterToVector_Class51728] of  OMTPoly
+
+	(description "S9850")
+	(label "S9850")
+	(latitude "64 0")
+	(lineColor "FF0000FF")
+	(longitude "11 30")
+	(playground-index 0)
+	(points
+		"64 0 11 30"
+		"63 45 11 15"
+		"63 30 11 0"
+		"63 15 10 45"
+		"63 15 10 30"
+		"63 15 10 15"
+		"63 15 10 0")
+	(relative FALSE))
+
+([RasterToVector_Class51729] of  OMTPoly
+
+	(description "S9851")
+	(label "S9851")
+	(latitude "65 0")
+	(lineColor "FF0000FF")
+	(longitude "12 30")
+	(playground-index 0)
+	(points
+		"65 0 12 30"
+		"65 0 12 15"
+		"65 0 12 0"
+		"64 45 11 45"
+		"64 30 11 30"
+		"64 15 11 15"
+		"64 15 11 0"
+		"64 15 10 45"
+		"64 15 10 30"
+		"64 0 10 15"
+		"64 0 10 0"
+		"63 45 9 45"
+		"63 30 9 45"
+		"63 30 9 30"
+		"63 30 9 15"
+		"63 15 9 0"
+		"63 15 8 45"
+		"63 0 8 30"
+		"62 45 8 15"
+		"62 30 8 0"
+		"62 45 7 45"
+		"62 45 7 30"
+		"63 0 7 30")
+	(relative FALSE))
+
+([RasterToVector_Class51730] of  OMTPoly
+
+	(description "S9973")
+	(label "S9973")
+	(latitude "59 30")
+	(lineColor "FF0000FF")
+	(longitude "5 30")
+	(playground-index 0)
+	(points
+		"59 30 5 30"
+		"59 30 5 15")
+	(relative FALSE))
+
+([RasterToVector_Class51731] of  OMTPoly
+
+	(description "S9974")
+	(label "S9974")
+	(latitude "60 15")
+	(lineColor "FF0000FF")
+	(longitude "6 15")
+	(playground-index 0)
+	(points
+		"60 15 6 15"
+		"60 0 6 0"
+		"59 45 6 15"
+		"59 30 6 0"
+		"59 15 6 15"
+		"59 0 6 30"
+		"58 45 6 15"
+		"58 45 6 0"
+		"58 45 5 45"
+		"58 45 5 30"
+		"58 30 5 45"
+		"58 30 6 0"
+		"58 30 6 15"
+		"58 30 6 30"
+		"58 15 6 45"
+		"58 15 7 0"
+		"58 15 7 15"
+		"58 15 7 30"
+		"58 15 7 45"
+		"58 15 8 0"
+		"58 15 8 15"
+		"58 30 8 30"
+		"58 30 8 45"
+		"58 45 9 0"
+		"59 0 9 15"
+		"59 0 9 30"
+		"59 15 9 45"
+		"59 15 10 0"
+		"59 15 10 15"
+		"59 30 10 0"
+		"59 45 10 15"
+		"60 0 10 30"
+		"59 45 10 45"
+		"59 30 10 45"
+		"59 15 10 45"
+		"59 15 11 0"
+		"59 0 11 15"
+		"58 45 11 15"
+		"58 30 11 15"
+		"58 15 11 30"
+		"58 30 11 45"
+		"58 15 12 0")
+	(relative FALSE))
+
+([RasterToVector_Class51732] of  OMTPoly
+
+	(description "S9975")
+	(label "S9975")
+	(latitude "60 30")
+	(lineColor "FF0000FF")
+	(longitude "6 0")
+	(playground-index 0)
+	(points
+		"60 30 6 0"
+		"60 15 5 45"
+		"60 15 5 30"
+		"60 0 5 30")
+	(relative FALSE))
+
+([RasterToVector_Class51733] of  OMTPoly
+
+	(description "S9976")
+	(label "S9976")
+	(latitude "60 45")
+	(lineColor "FF0000FF")
+	(longitude "7 0")
+	(playground-index 0)
+	(points
+		"60 45 7 0"
+		"60 30 6 45"
+		"60 15 7 0"
+		"60 30 7 15")
+	(relative FALSE))
+
+([RasterToVector_Class51734] of  OMTPoly
+
+	(description "S9977")
+	(label "S9977")
+	(latitude "61 30")
+	(lineColor "FF0000FF")
+	(longitude "6 30")
+	(playground-index 0)
+	(points
+		"61 30 6 30"
+		"61 15 6 15"
+		"61 0 6 30"
+		"61 15 6 45")
+	(relative FALSE))
+
+([RasterToVector_Class51735] of  OMTPoly
+
+	(description "S9978")
+	(label "S9978")
+	(latitude "62 30")
+	(lineColor "FF0000FF")
+	(longitude "7 15")
+	(playground-index 0)
+	(points
+		"62 30 7 15"
+		"62 30 7 0"
+		"62 30 6 45"
+		"62 15 6 30"
+		"62 15 6 15"
+		"62 15 6 0"
+		"62 15 5 45"
+		"62 0 5 30"
+		"61 45 5 15"
+		"61 30 5 15"
+		"61 15 5 0"
+		"61 0 5 15"
+		"60 45 5 30"
+		"60 30 5 15"
+		"60 30 5 0"
+		"60 15 5 0")
+	(relative FALSE))
+
+([RasterToVector_Class51736] of  OMTPoly
+
+	(description "S9979")
+	(label "S9979")
+	(latitude "64 0")
+	(lineColor "FF0000FF")
+	(longitude "10 45")
+	(playground-index 0)
+	(points
+		"64 0 10 45"
+		"63 45 10 30"
+		"63 45 10 15")
+	(relative FALSE))
+
+([RasterToVector_Class51737] of  OMTPoly
+
+	(description "S9980")
+	(label "S9980")
+	(latitude "64 0")
+	(lineColor "FF0000FF")
+	(longitude "11 30")
+	(playground-index 0)
+	(points
+		"64 0 11 30"
+		"63 45 11 15"
+		"63 30 11 0"
+		"63 15 10 45"
+		"63 15 10 30"
+		"63 15 10 15"
+		"63 15 10 0")
+	(relative FALSE))
+
+([RasterToVector_Class51738] of  OMTPoly
+
+	(description "S9981")
+	(label "S9981")
+	(latitude "65 0")
+	(lineColor "FF0000FF")
+	(longitude "12 30")
+	(playground-index 0)
+	(points
+		"65 0 12 30"
+		"65 0 12 15"
+		"65 0 12 0"
+		"64 45 11 45"
+		"64 30 11 30"
+		"64 15 11 15"
+		"64 15 11 0"
+		"64 15 10 45"
+		"64 15 10 30"
+		"64 0 10 15"
+		"64 0 10 0"
+		"63 45 9 45"
+		"63 30 9 45"
+		"63 30 9 30"
+		"63 30 9 15"
+		"63 15 9 0"
+		"63 15 8 45"
+		"63 0 8 30"
+		"62 45 8 15"
+		"62 30 8 0"
+		"62 45 7 45"
+		"62 45 7 30"
+		"63 0 7 30")
+	(relative FALSE))
+
 ([RasterToVector_Class51805] of  CloFunction
 
-	(source "(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y STEPD))\n           lon (+ lon (* x STEPD))]\n      (if (>= (elevation [lat lon]) ele)\n        (rete.core/assert-frame\n	['Point\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side nil])) ) ))")
+	(source "(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y STEPD))\n           lon (+ lon (* x STEPD))]\n      (if (>= (elevation [lat lon]) ele)\n        (rete.core/assert-frame\n	['Point\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side (if (or (= x 0)\n	                   (= y 0)\n	                   (= x (dec w))	\n	                   (= y (dec h)))\n	            \"BORDER\")])) ) ))")
 	(title "elevationField [lat lon w h ele]"))
 
 ([RasterToVector_Class64804] of  RuleSet
@@ -266,7 +4562,19 @@
 	(rules
 		[RasterToVector_Class50118]
 		[RasterToVector_Class98210]
-		[RasterToVector_Class40000])
+		[RasterToVector_Class51388]
+		[RasterToVector_Class40000]
+		[RasterToVector_Class20000]
+		[RasterToVector_Class40175]
+		[RasterToVector_Class40177]
+		[RasterToVector_Class40178]
+		[RasterToVector_Class40921]
+		[RasterToVector_Class40922]
+		[RasterToVector_Class40923]
+		[RasterToVector_Class40920]
+		[RasterToVector_Class30001]
+		[RasterToVector_Class51397]
+		[RasterToVector_Class40323])
 	(templates
 		[Point]
 		[Segment])
@@ -318,7 +4626,9 @@
 		[RasterToVector_Class20001]
 		[RasterToVector_Class30011]
 		[RasterToVector_Class30012]
-		[RasterToVector_Class51805])
+		[RasterToVector_Class51805]
+		[RasterToVector_Class40322]
+		[RasterToVector_Class51396])
 	(cloNamespace [RasterToVector_Class70007])
 	(cloVars
 		[RasterToVector_Class80004]
@@ -343,3435 +4653,9 @@
 	(source "(double (* (/ 5 60) 3))")
 	(title "STEPD"))
 
-([RasterToVector_Class91943] of  CloFuncall
-
-	(source "(ru.rules/pp :all)"))
-
-([RasterToVector_Class95830] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \""))
-
-([RasterToVector_Class95831] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"18:20\")"))
-
-([RasterToVector_Class95832] of  CloFuncall
-
-	(source "(.hideLabel (ru.igis.omtab.OMT/getMapOb \"18:20\"))"))
-
-([RasterToVector_Class95833] of  CloFuncall
-
-	(source "(rtv.core/elevationField 58 3 80 80 0)"))
-
 ([RasterToVector_Class98210] of  Rule
 
 	(lhs "p (Point side \"INSIDE\")")
 	(rhs "(retract p)")
 	(salience -1)
 	(title "id:Retract Inner Point"))
-
-([RasterToVector_Class98211] of  CloFuncall
-
-	(source "(rete.core/facts)"))
-
-([RasterToVector_Class98590] of  OMTPoint
-
-	(label "79:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98591] of  OMTPoint
-
-	(label "78:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98592] of  OMTPoint
-
-	(label "77:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98593] of  OMTPoint
-
-	(label "76:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98594] of  OMTPoint
-
-	(label "75:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98595] of  OMTPoint
-
-	(label "74:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98596] of  OMTPoint
-
-	(label "61:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98597] of  OMTPoint
-
-	(label "60:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98598] of  OMTPoint
-
-	(label "59:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98599] of  OMTPoint
-
-	(label "58:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98600] of  OMTPoint
-
-	(label "57:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98601] of  OMTPoint
-
-	(label "56:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98602] of  OMTPoint
-
-	(label "55:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98603] of  OMTPoint
-
-	(label "54:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98604] of  OMTPoint
-
-	(label "53:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98605] of  OMTPoint
-
-	(label "52:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98606] of  OMTPoint
-
-	(label "43:79")
-	(latitude "77 45")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98607] of  OMTPoint
-
-	(label "79:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98608] of  OMTPoint
-
-	(label "76:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98609] of  OMTPoint
-
-	(label "75:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98610] of  OMTPoint
-
-	(label "74:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98611] of  OMTPoint
-
-	(label "73:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98612] of  OMTPoint
-
-	(label "72:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "21 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98613] of  OMTPoint
-
-	(label "60:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98614] of  OMTPoint
-
-	(label "59:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98615] of  OMTPoint
-
-	(label "58:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98616] of  OMTPoint
-
-	(label "53:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98617] of  OMTPoint
-
-	(label "51:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98618] of  OMTPoint
-
-	(label "50:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98619] of  OMTPoint
-
-	(label "49:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "15 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98620] of  OMTPoint
-
-	(label "48:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "15 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98621] of  OMTPoint
-
-	(label "45:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "14 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98622] of  OMTPoint
-
-	(label "44:78")
-	(latitude "77 30")
-	(lineColor "FFFF0000")
-	(longitude "14 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98623] of  OMTPoint
-
-	(label "57:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98624] of  OMTPoint
-
-	(label "54:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98625] of  OMTPoint
-
-	(label "53:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98626] of  OMTPoint
-
-	(label "52:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98627] of  OMTPoint
-
-	(label "51:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98628] of  OMTPoint
-
-	(label "50:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98629] of  OMTPoint
-
-	(label "49:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "15 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98630] of  OMTPoint
-
-	(label "48:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "15 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98631] of  OMTPoint
-
-	(label "47:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "14 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98632] of  OMTPoint
-
-	(label "46:77")
-	(latitude "77 15")
-	(lineColor "FFFF0000")
-	(longitude "14 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98633] of  OMTPoint
-
-	(label "56:76")
-	(latitude "77 0")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98634] of  OMTPoint
-
-	(label "55:76")
-	(latitude "77 0")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98635] of  OMTPoint
-
-	(label "56:75")
-	(latitude "76 45")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98636] of  OMTPoint
-
-	(label "55:75")
-	(latitude "76 45")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98637] of  OMTPoint
-
-	(label "54:75")
-	(latitude "76 45")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98638] of  OMTPoint
-
-	(label "53:75")
-	(latitude "76 45")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98639] of  OMTPoint
-
-	(label "52:75")
-	(latitude "76 45")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98640] of  OMTPoint
-
-	(label "64:66")
-	(latitude "74 30")
-	(lineColor "FFFF0000")
-	(longitude "19 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98641] of  OMTPoint
-
-	(label "77:50")
-	(latitude "70 30")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98642] of  OMTPoint
-
-	(label "76:49")
-	(latitude "70 15")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98643] of  OMTPoint
-
-	(label "79:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98644] of  OMTPoint
-
-	(label "78:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98645] of  OMTPoint
-
-	(label "77:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98646] of  OMTPoint
-
-	(label "73:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98647] of  OMTPoint
-
-	(label "65:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "19 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98648] of  OMTPoint
-
-	(label "64:48")
-	(latitude "70 0")
-	(lineColor "FFFF0000")
-	(longitude "19 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98649] of  OMTPoint
-
-	(label "79:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98650] of  OMTPoint
-
-	(label "77:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98651] of  OMTPoint
-
-	(label "75:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98652] of  OMTPoint
-
-	(label "74:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98653] of  OMTPoint
-
-	(label "72:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "21 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98654] of  OMTPoint
-
-	(label "71:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "20 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98655] of  OMTPoint
-
-	(label "70:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "20 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98656] of  OMTPoint
-
-	(label "68:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "20 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98657] of  OMTPoint
-
-	(label "66:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "19 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98658] of  OMTPoint
-
-	(label "65:47")
-	(latitude "69 45")
-	(lineColor "FFFF0000")
-	(longitude "19 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98659] of  OMTPoint
-
-	(label "79:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98660] of  OMTPoint
-
-	(label "76:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98661] of  OMTPoint
-
-	(label "72:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "21 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98662] of  OMTPoint
-
-	(label "70:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "20 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98663] of  OMTPoint
-
-	(label "68:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "20 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98664] of  OMTPoint
-
-	(label "67:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "19 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98665] of  OMTPoint
-
-	(label "65:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "19 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98666] of  OMTPoint
-
-	(label "63:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "18 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98667] of  OMTPoint
-
-	(label "62:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "18 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98668] of  OMTPoint
-
-	(label "59:46")
-	(latitude "69 30")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98669] of  OMTPoint
-
-	(label "79:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98670] of  OMTPoint
-
-	(label "71:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "20 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98671] of  OMTPoint
-
-	(label "69:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "20 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98672] of  OMTPoint
-
-	(label "66:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "19 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98673] of  OMTPoint
-
-	(label "64:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "19 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98674] of  OMTPoint
-
-	(label "63:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "18 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98675] of  OMTPoint
-
-	(label "61:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98676] of  OMTPoint
-
-	(label "59:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98677] of  OMTPoint
-
-	(label "58:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98678] of  OMTPoint
-
-	(label "57:45")
-	(latitude "69 15")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98679] of  OMTPoint
-
-	(label "79:44")
-	(latitude "69 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98680] of  OMTPoint
-
-	(label "65:44")
-	(latitude "69 0")
-	(lineColor "FFFF0000")
-	(longitude "19 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98681] of  OMTPoint
-
-	(label "62:44")
-	(latitude "69 0")
-	(lineColor "FFFF0000")
-	(longitude "18 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98682] of  OMTPoint
-
-	(label "60:44")
-	(latitude "69 0")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98683] of  OMTPoint
-
-	(label "59:44")
-	(latitude "69 0")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98684] of  OMTPoint
-
-	(label "79:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98685] of  OMTPoint
-
-	(label "58:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98686] of  OMTPoint
-
-	(label "57:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98687] of  OMTPoint
-
-	(label "56:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98688] of  OMTPoint
-
-	(label "53:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98689] of  OMTPoint
-
-	(label "50:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98690] of  OMTPoint
-
-	(label "48:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "15 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98691] of  OMTPoint
-
-	(label "47:43")
-	(latitude "68 45")
-	(lineColor "FFFF0000")
-	(longitude "14 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98692] of  OMTPoint
-
-	(label "79:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98693] of  OMTPoint
-
-	(label "59:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98694] of  OMTPoint
-
-	(label "53:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98695] of  OMTPoint
-
-	(label "52:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98696] of  OMTPoint
-
-	(label "51:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98697] of  OMTPoint
-
-	(label "50:42")
-	(latitude "68 30")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98698] of  OMTPoint
-
-	(label "79:41")
-	(latitude "68 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98699] of  OMTPoint
-
-	(label "58:41")
-	(latitude "68 15")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98700] of  OMTPoint
-
-	(label "56:41")
-	(latitude "68 15")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98701] of  OMTPoint
-
-	(label "55:41")
-	(latitude "68 15")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98702] of  OMTPoint
-
-	(label "43:41")
-	(latitude "68 15")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98703] of  OMTPoint
-
-	(label "79:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98704] of  OMTPoint
-
-	(label "57:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98705] of  OMTPoint
-
-	(label "54:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98706] of  OMTPoint
-
-	(label "53:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98707] of  OMTPoint
-
-	(label "52:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98708] of  OMTPoint
-
-	(label "40:40")
-	(latitude "68 0")
-	(lineColor "FFFF0000")
-	(longitude "13 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98709] of  OMTPoint
-
-	(label "79:39")
-	(latitude "67 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98710] of  OMTPoint
-
-	(label "51:39")
-	(latitude "67 45")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98711] of  OMTPoint
-
-	(label "49:39")
-	(latitude "67 45")
-	(lineColor "FFFF0000")
-	(longitude "15 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98712] of  OMTPoint
-
-	(label "79:38")
-	(latitude "67 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98713] of  OMTPoint
-
-	(label "51:38")
-	(latitude "67 30")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98714] of  OMTPoint
-
-	(label "47:38")
-	(latitude "67 30")
-	(lineColor "FFFF0000")
-	(longitude "14 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98715] of  OMTPoint
-
-	(label "79:37")
-	(latitude "67 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98716] of  OMTPoint
-
-	(label "50:37")
-	(latitude "67 15")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98717] of  OMTPoint
-
-	(label "79:36")
-	(latitude "67 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98718] of  OMTPoint
-
-	(label "49:36")
-	(latitude "67 0")
-	(lineColor "FFFF0000")
-	(longitude "15 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98719] of  OMTPoint
-
-	(label "48:36")
-	(latitude "67 0")
-	(lineColor "FFFF0000")
-	(longitude "15 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98720] of  OMTPoint
-
-	(label "47:36")
-	(latitude "67 0")
-	(lineColor "FFFF0000")
-	(longitude "14 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98721] of  OMTPoint
-
-	(label "46:36")
-	(latitude "67 0")
-	(lineColor "FFFF0000")
-	(longitude "14 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98722] of  OMTPoint
-
-	(label "79:35")
-	(latitude "66 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98723] of  OMTPoint
-
-	(label "45:35")
-	(latitude "66 45")
-	(lineColor "FFFF0000")
-	(longitude "14 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98724] of  OMTPoint
-
-	(label "44:35")
-	(latitude "66 45")
-	(lineColor "FFFF0000")
-	(longitude "14 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98725] of  OMTPoint
-
-	(label "43:35")
-	(latitude "66 45")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98726] of  OMTPoint
-
-	(label "79:34")
-	(latitude "66 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98727] of  OMTPoint
-
-	(label "43:34")
-	(latitude "66 30")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98728] of  OMTPoint
-
-	(label "42:34")
-	(latitude "66 30")
-	(lineColor "FFFF0000")
-	(longitude "13 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98729] of  OMTPoint
-
-	(label "79:33")
-	(latitude "66 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98730] of  OMTPoint
-
-	(label "44:33")
-	(latitude "66 15")
-	(lineColor "FFFF0000")
-	(longitude "14 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98731] of  OMTPoint
-
-	(label "41:33")
-	(latitude "66 15")
-	(lineColor "FFFF0000")
-	(longitude "13 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98732] of  OMTPoint
-
-	(label "79:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98733] of  OMTPoint
-
-	(label "78:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98734] of  OMTPoint
-
-	(label "77:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98735] of  OMTPoint
-
-	(label "43:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98736] of  OMTPoint
-
-	(label "42:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "13 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98737] of  OMTPoint
-
-	(label "40:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "13 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98738] of  OMTPoint
-
-	(label "39:32")
-	(latitude "66 0")
-	(lineColor "FFFF0000")
-	(longitude "12 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98739] of  OMTPoint
-
-	(label "76:31")
-	(latitude "65 45")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98740] of  OMTPoint
-
-	(label "39:31")
-	(latitude "65 45")
-	(lineColor "FFFF0000")
-	(longitude "12 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98741] of  OMTPoint
-
-	(label "75:30")
-	(latitude "65 30")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98742] of  OMTPoint
-
-	(label "74:30")
-	(latitude "65 30")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98743] of  OMTPoint
-
-	(label "39:30")
-	(latitude "65 30")
-	(lineColor "FFFF0000")
-	(longitude "12 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98744] of  OMTPoint
-
-	(label "37:30")
-	(latitude "65 30")
-	(lineColor "FFFF0000")
-	(longitude "12 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98745] of  OMTPoint
-
-	(label "73:29")
-	(latitude "65 15")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98746] of  OMTPoint
-
-	(label "39:29")
-	(latitude "65 15")
-	(lineColor "FFFF0000")
-	(longitude "12 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98747] of  OMTPoint
-
-	(label "73:28")
-	(latitude "65 0")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98748] of  OMTPoint
-
-	(label "38:28")
-	(latitude "65 0")
-	(lineColor "FFFF0000")
-	(longitude "12 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98749] of  OMTPoint
-
-	(label "37:28")
-	(latitude "65 0")
-	(lineColor "FFFF0000")
-	(longitude "12 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98750] of  OMTPoint
-
-	(label "36:28")
-	(latitude "65 0")
-	(lineColor "FFFF0000")
-	(longitude "12 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98751] of  OMTPoint
-
-	(label "72:27")
-	(latitude "64 45")
-	(lineColor "FFFF0000")
-	(longitude "21 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98752] of  OMTPoint
-
-	(label "35:27")
-	(latitude "64 45")
-	(lineColor "FFFF0000")
-	(longitude "11 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98753] of  OMTPoint
-
-	(label "73:26")
-	(latitude "64 30")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98754] of  OMTPoint
-
-	(label "34:26")
-	(latitude "64 30")
-	(lineColor "FFFF0000")
-	(longitude "11 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98755] of  OMTPoint
-
-	(label "32:26")
-	(latitude "64 30")
-	(lineColor "FFFF0000")
-	(longitude "11 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98756] of  OMTPoint
-
-	(label "72:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "21 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98757] of  OMTPoint
-
-	(label "71:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "20 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98758] of  OMTPoint
-
-	(label "33:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "11 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98759] of  OMTPoint
-
-	(label "32:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "11 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98760] of  OMTPoint
-
-	(label "31:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98761] of  OMTPoint
-
-	(label "30:25")
-	(latitude "64 15")
-	(lineColor "FFFF0000")
-	(longitude "10 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98762] of  OMTPoint
-
-	(label "70:24")
-	(latitude "64 0")
-	(lineColor "FFFF0000")
-	(longitude "20 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98763] of  OMTPoint
-
-	(label "34:24")
-	(latitude "64 0")
-	(lineColor "FFFF0000")
-	(longitude "11 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98764] of  OMTPoint
-
-	(label "31:24")
-	(latitude "64 0")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98765] of  OMTPoint
-
-	(label "29:24")
-	(latitude "64 0")
-	(lineColor "FFFF0000")
-	(longitude "10 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98766] of  OMTPoint
-
-	(label "28:24")
-	(latitude "64 0")
-	(lineColor "FFFF0000")
-	(longitude "10 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98767] of  OMTPoint
-
-	(label "69:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "20 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98768] of  OMTPoint
-
-	(label "68:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "20 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98769] of  OMTPoint
-
-	(label "67:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "19 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98770] of  OMTPoint
-
-	(label "66:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "19 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98771] of  OMTPoint
-
-	(label "33:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "11 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98772] of  OMTPoint
-
-	(label "30:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "10 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98773] of  OMTPoint
-
-	(label "29:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "10 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98774] of  OMTPoint
-
-	(label "27:23")
-	(latitude "63 45")
-	(lineColor "FFFF0000")
-	(longitude "9 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98775] of  OMTPoint
-
-	(label "79:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98776] of  OMTPoint
-
-	(label "78:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98777] of  OMTPoint
-
-	(label "65:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "19 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98778] of  OMTPoint
-
-	(label "64:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "19 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98779] of  OMTPoint
-
-	(label "63:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "18 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98780] of  OMTPoint
-
-	(label "32:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "11 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98781] of  OMTPoint
-
-	(label "27:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "9 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98782] of  OMTPoint
-
-	(label "26:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "9 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98783] of  OMTPoint
-
-	(label "25:22")
-	(latitude "63 30")
-	(lineColor "FFFF0000")
-	(longitude "9 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98784] of  OMTPoint
-
-	(label "79:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98785] of  OMTPoint
-
-	(label "77:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98786] of  OMTPoint
-
-	(label "62:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "18 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98787] of  OMTPoint
-
-	(label "31:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98788] of  OMTPoint
-
-	(label "30:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "10 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98789] of  OMTPoint
-
-	(label "29:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "10 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98790] of  OMTPoint
-
-	(label "28:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "10 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98791] of  OMTPoint
-
-	(label "24:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "9 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98792] of  OMTPoint
-
-	(label "23:21")
-	(latitude "63 15")
-	(lineColor "FFFF0000")
-	(longitude "8 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98793] of  OMTPoint
-
-	(label "79:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98794] of  OMTPoint
-
-	(label "76:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98795] of  OMTPoint
-
-	(label "75:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98796] of  OMTPoint
-
-	(label "74:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98797] of  OMTPoint
-
-	(label "61:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98798] of  OMTPoint
-
-	(label "60:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98799] of  OMTPoint
-
-	(label "22:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "8 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98800] of  OMTPoint
-
-	(label "18:20")
-	(latitude "63 0")
-	(lineColor "FFFF0000")
-	(longitude "7 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98801] of  OMTPoint
-
-	(label "79:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98802] of  OMTPoint
-
-	(label "73:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98803] of  OMTPoint
-
-	(label "59:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98804] of  OMTPoint
-
-	(label "21:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "8 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98805] of  OMTPoint
-
-	(label "19:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "7 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98806] of  OMTPoint
-
-	(label "18:19")
-	(latitude "62 45")
-	(lineColor "FFFF0000")
-	(longitude "7 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98807] of  OMTPoint
-
-	(label "79:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98808] of  OMTPoint
-
-	(label "73:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98809] of  OMTPoint
-
-	(label "58:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98810] of  OMTPoint
-
-	(label "20:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "8 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98811] of  OMTPoint
-
-	(label "17:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "7 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98812] of  OMTPoint
-
-	(label "16:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "7 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98813] of  OMTPoint
-
-	(label "15:18")
-	(latitude "62 30")
-	(lineColor "FFFF0000")
-	(longitude "6 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98814] of  OMTPoint
-
-	(label "79:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98815] of  OMTPoint
-
-	(label "74:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98816] of  OMTPoint
-
-	(label "57:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98817] of  OMTPoint
-
-	(label "14:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "6 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98818] of  OMTPoint
-
-	(label "13:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98819] of  OMTPoint
-
-	(label "12:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98820] of  OMTPoint
-
-	(label "11:17")
-	(latitude "62 15")
-	(lineColor "FFFF0000")
-	(longitude "5 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98821] of  OMTPoint
-
-	(label "79:16")
-	(latitude "62 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98822] of  OMTPoint
-
-	(label "73:16")
-	(latitude "62 0")
-	(lineColor "FFFF0000")
-	(longitude "21 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98823] of  OMTPoint
-
-	(label "57:16")
-	(latitude "62 0")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98824] of  OMTPoint
-
-	(label "10:16")
-	(latitude "62 0")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98825] of  OMTPoint
-
-	(label "79:15")
-	(latitude "61 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98826] of  OMTPoint
-
-	(label "74:15")
-	(latitude "61 45")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98827] of  OMTPoint
-
-	(label "57:15")
-	(latitude "61 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98828] of  OMTPoint
-
-	(label "9:15")
-	(latitude "61 45")
-	(lineColor "FFFF0000")
-	(longitude "5 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98829] of  OMTPoint
-
-	(label "79:14")
-	(latitude "61 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98830] of  OMTPoint
-
-	(label "75:14")
-	(latitude "61 30")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98831] of  OMTPoint
-
-	(label "56:14")
-	(latitude "61 30")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98832] of  OMTPoint
-
-	(label "14:14")
-	(latitude "61 30")
-	(lineColor "FFFF0000")
-	(longitude "6 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98833] of  OMTPoint
-
-	(label "9:14")
-	(latitude "61 30")
-	(lineColor "FFFF0000")
-	(longitude "5 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98834] of  OMTPoint
-
-	(label "79:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98835] of  OMTPoint
-
-	(label "74:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98836] of  OMTPoint
-
-	(label "56:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98837] of  OMTPoint
-
-	(label "15:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "6 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98838] of  OMTPoint
-
-	(label "13:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98839] of  OMTPoint
-
-	(label "8:13")
-	(latitude "61 15")
-	(lineColor "FFFF0000")
-	(longitude "5 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98840] of  OMTPoint
-
-	(label "79:12")
-	(latitude "61 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98841] of  OMTPoint
-
-	(label "74:12")
-	(latitude "61 0")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98842] of  OMTPoint
-
-	(label "56:12")
-	(latitude "61 0")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98843] of  OMTPoint
-
-	(label "14:12")
-	(latitude "61 0")
-	(lineColor "FFFF0000")
-	(longitude "6 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98844] of  OMTPoint
-
-	(label "9:12")
-	(latitude "61 0")
-	(lineColor "FFFF0000")
-	(longitude "5 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98845] of  OMTPoint
-
-	(label "79:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98846] of  OMTPoint
-
-	(label "75:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "21 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98847] of  OMTPoint
-
-	(label "74:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "21 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98848] of  OMTPoint
-
-	(label "57:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98849] of  OMTPoint
-
-	(label "16:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "7 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98850] of  OMTPoint
-
-	(label "10:11")
-	(latitude "60 45")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98851] of  OMTPoint
-
-	(label "79:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98852] of  OMTPoint
-
-	(label "77:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "22 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98853] of  OMTPoint
-
-	(label "76:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98854] of  OMTPoint
-
-	(label "60:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98855] of  OMTPoint
-
-	(label "59:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98856] of  OMTPoint
-
-	(label "58:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98857] of  OMTPoint
-
-	(label "55:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98858] of  OMTPoint
-
-	(label "17:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "7 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98859] of  OMTPoint
-
-	(label "15:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "6 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98860] of  OMTPoint
-
-	(label "12:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98861] of  OMTPoint
-
-	(label "9:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "5 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98862] of  OMTPoint
-
-	(label "8:10")
-	(latitude "60 30")
-	(lineColor "FFFF0000")
-	(longitude "5 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98863] of  OMTPoint
-
-	(label "78:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98864] of  OMTPoint
-
-	(label "61:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98865] of  OMTPoint
-
-	(label "56:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98866] of  OMTPoint
-
-	(label "54:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98867] of  OMTPoint
-
-	(label "16:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "7 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98868] of  OMTPoint
-
-	(label "13:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98869] of  OMTPoint
-
-	(label "11:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "5 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98870] of  OMTPoint
-
-	(label "10:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98871] of  OMTPoint
-
-	(label "8:9")
-	(latitude "60 15")
-	(lineColor "FFFF0000")
-	(longitude "5 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98872] of  OMTPoint
-
-	(label "63:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "18 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98873] of  OMTPoint
-
-	(label "62:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "18 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98874] of  OMTPoint
-
-	(label "58:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98875] of  OMTPoint
-
-	(label "55:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98876] of  OMTPoint
-
-	(label "30:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "10 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98877] of  OMTPoint
-
-	(label "12:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98878] of  OMTPoint
-
-	(label "10:8")
-	(latitude "60 0")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98879] of  OMTPoint
-
-	(label "63:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "18 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98880] of  OMTPoint
-
-	(label "62:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "18 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98881] of  OMTPoint
-
-	(label "59:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "17 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98882] of  OMTPoint
-
-	(label "57:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98883] of  OMTPoint
-
-	(label "56:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98884] of  OMTPoint
-
-	(label "55:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98885] of  OMTPoint
-
-	(label "54:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98886] of  OMTPoint
-
-	(label "31:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98887] of  OMTPoint
-
-	(label "29:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "10 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98888] of  OMTPoint
-
-	(label "13:7")
-	(latitude "59 45")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98889] of  OMTPoint
-
-	(label "61:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98890] of  OMTPoint
-
-	(label "60:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98891] of  OMTPoint
-
-	(label "53:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98892] of  OMTPoint
-
-	(label "31:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98893] of  OMTPoint
-
-	(label "28:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "10 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98894] of  OMTPoint
-
-	(label "12:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98895] of  OMTPoint
-
-	(label "10:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98896] of  OMTPoint
-
-	(label "9:6")
-	(latitude "59 30")
-	(lineColor "FFFF0000")
-	(longitude "5 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98897] of  OMTPoint
-
-	(label "61:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "18 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98898] of  OMTPoint
-
-	(label "60:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "18 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98899] of  OMTPoint
-
-	(label "57:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98900] of  OMTPoint
-
-	(label "56:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98901] of  OMTPoint
-
-	(label "55:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98902] of  OMTPoint
-
-	(label "54:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98903] of  OMTPoint
-
-	(label "32:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "11 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98904] of  OMTPoint
-
-	(label "31:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "10 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98905] of  OMTPoint
-
-	(label "29:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "10 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98906] of  OMTPoint
-
-	(label "28:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "10 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98907] of  OMTPoint
-
-	(label "27:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "9 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98908] of  OMTPoint
-
-	(label "13:5")
-	(latitude "59 15")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98909] of  OMTPoint
-
-	(label "79:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98910] of  OMTPoint
-
-	(label "78:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98911] of  OMTPoint
-
-	(label "58:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "17 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98912] of  OMTPoint
-
-	(label "56:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "17 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98913] of  OMTPoint
-
-	(label "33:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "11 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98914] of  OMTPoint
-
-	(label "26:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "9 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98915] of  OMTPoint
-
-	(label "25:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "9 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98916] of  OMTPoint
-
-	(label "14:4")
-	(latitude "59 0")
-	(lineColor "FFFF0000")
-	(longitude "6 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98917] of  OMTPoint
-
-	(label "78:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98918] of  OMTPoint
-
-	(label "57:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "17 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98919] of  OMTPoint
-
-	(label "55:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98920] of  OMTPoint
-
-	(label "33:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "11 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98921] of  OMTPoint
-
-	(label "24:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "9 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98922] of  OMTPoint
-
-	(label "13:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98923] of  OMTPoint
-
-	(label "12:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98924] of  OMTPoint
-
-	(label "11:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "5 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98925] of  OMTPoint
-
-	(label "10:3")
-	(latitude "58 45")
-	(lineColor "FFFF0000")
-	(longitude "5 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98926] of  OMTPoint
-
-	(label "79:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "22 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98927] of  OMTPoint
-
-	(label "78:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "22 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98928] of  OMTPoint
-
-	(label "76:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98929] of  OMTPoint
-
-	(label "55:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "16 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98930] of  OMTPoint
-
-	(label "35:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "11 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98931] of  OMTPoint
-
-	(label "33:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "11 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98932] of  OMTPoint
-
-	(label "23:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "8 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98933] of  OMTPoint
-
-	(label "22:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "8 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98934] of  OMTPoint
-
-	(label "14:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "6 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98935] of  OMTPoint
-
-	(label "13:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "6 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98936] of  OMTPoint
-
-	(label "12:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "6 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98937] of  OMTPoint
-
-	(label "11:2")
-	(latitude "58 30")
-	(lineColor "FFFF0000")
-	(longitude "5 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98938] of  OMTPoint
-
-	(label "76:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "22 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98939] of  OMTPoint
-
-	(label "54:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98940] of  OMTPoint
-
-	(label "36:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "12 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98941] of  OMTPoint
-
-	(label "34:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "11 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98942] of  OMTPoint
-
-	(label "21:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "8 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98943] of  OMTPoint
-
-	(label "20:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "8 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98944] of  OMTPoint
-
-	(label "19:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "7 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98945] of  OMTPoint
-
-	(label "18:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "7 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98946] of  OMTPoint
-
-	(label "17:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "7 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98947] of  OMTPoint
-
-	(label "16:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "7 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98948] of  OMTPoint
-
-	(label "15:1")
-	(latitude "58 15")
-	(lineColor "FFFF0000")
-	(longitude "6 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98949] of  OMTPoint
-
-	(label "54:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "16 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98950] of  OMTPoint
-
-	(label "53:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "16 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98951] of  OMTPoint
-
-	(label "52:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "16 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98952] of  OMTPoint
-
-	(label "51:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "15 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98953] of  OMTPoint
-
-	(label "50:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "15 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98954] of  OMTPoint
-
-	(label "49:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "15 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98955] of  OMTPoint
-
-	(label "48:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "15 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98956] of  OMTPoint
-
-	(label "47:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "14 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98957] of  OMTPoint
-
-	(label "46:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "14 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98958] of  OMTPoint
-
-	(label "45:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "14 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98959] of  OMTPoint
-
-	(label "44:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "14 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98960] of  OMTPoint
-
-	(label "43:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "13 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98961] of  OMTPoint
-
-	(label "42:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "13 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98962] of  OMTPoint
-
-	(label "41:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "13 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98963] of  OMTPoint
-
-	(label "40:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "13 0")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98964] of  OMTPoint
-
-	(label "39:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "12 45")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98965] of  OMTPoint
-
-	(label "38:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "12 30")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98966] of  OMTPoint
-
-	(label "37:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "12 15")
-	(oval TRUE)
-	(playground-index 0))
-
-([RasterToVector_Class98967] of  OMTPoint
-
-	(label "36:0")
-	(latitude "58 0")
-	(lineColor "FFFF0000")
-	(longitude "12 0")
-	(oval TRUE)
-	(playground-index 0))

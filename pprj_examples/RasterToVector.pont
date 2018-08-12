@@ -1,4 +1,4 @@
-; Fri Aug 10 21:25:50 MSK 2018
+; Sun Aug 12 22:08:06 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -18,10 +18,6 @@
 	(single-slot latlon
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot inside
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
 		(create-accessor read-write))
 	(single-slot side
 		(type STRING)
@@ -55,11 +51,18 @@
 (defclass Segment
 	(is-a RTV+Onto)
 	(role concrete)
-	(single-slot side
+	(multislot points
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot x
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot inside
-		(type INSTANCE)
-;+		(allowed-classes MapOb)
+	(single-slot y
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latlon
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

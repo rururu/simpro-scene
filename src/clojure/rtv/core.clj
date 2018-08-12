@@ -53,6 +53,7 @@
   (if-let [mo (OMT/getMapOb lab)]
     (OMT/removeMapOb mo true))
   (let [ins (foc "OMTPoint" "label" lab)]
+    (ssv ins "description" lab)
     (ssv ins "latitude" (MapOb/getDegMin lat))
     (ssv ins "longitude" (MapOb/getDegMin lon))
     (ssv ins "lineColor" color)
@@ -125,5 +126,30 @@
 	 'x x
 	 'y y
 	 'latlon [lat lon]
-	 'side nil])) ) )))
+	 'side (if (or (= x 0)
+	                   (= y 0)
+	                   (= x (dec w))	
+	                   (= y (dec h)))
+	            "BORDER")])) ) )))
+
+(defn segment
+  ([lab points color]
+  (if-let [mo (OMT/getMapOb lab)]
+    (OMT/removeMapOb mo true))
+  (let [ins (foc "OMTPoly" "label" lab)
+         [lat lon] (first points)]
+    (ssv ins "description" lab)
+    (ssv ins "latitude" (MapOb/getDegMin lat))
+    (ssv ins "longitude" (MapOb/getDegMin lon))
+    (ssv ins "lineColor" color)
+    (ssvs ins "points" (vec (map #(str (MapOb/getDegMin (first %)) " " 
+		        (MapOb/getDegMin (second %))) points)))
+    (OMT/getOrAdd ins)))
+([lab points]
+  (segment lab points "FF0000FF")))
+
+(defn near [e x1 y1 x2 y2]
+  (let [dx (if (> x1 x2) (- x1 x2) (- x2 x1))
+       dy (if (> y1 y2) (- y1 y2) (- y2 y1))]
+  (and (<= dx e) (<= dy e))))
 
