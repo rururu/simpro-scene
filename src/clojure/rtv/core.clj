@@ -148,7 +148,7 @@
 ([lab points]
   (segment lab points "FF0000FF")))
 
-(defn near [e x1 y1 x2 y2]
+(defn near [e [y1 x1] [y2 x2]]
   (let [dx (if (> x1 x2) (- x1 x2) (- x2 x1))
        dy (if (> y1 y2) (- y1 y2) (- y2 y1))]
   (and (<= dx e) (<= dy e))))

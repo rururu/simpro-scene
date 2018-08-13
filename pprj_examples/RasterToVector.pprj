@@ -1,4 +1,4 @@
-; Sun Aug 12 22:08:06 MSK 2018
+; Mon Aug 13 21:38:04 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,8 +71,8 @@
 
 ([KB_026442_Class1] of  Map
 
-	(entries [RasterToVector_ProjectKB_Class1671])
-	(referenced_maps [RasterToVector_ProjectKB_Class1667]))
+	(entries [RasterToVector_ProjectKB_Class1601])
+	(referenced_maps [RasterToVector_ProjectKB_Class1597]))
 
 ([KB_026442_Class13] of  Property_List
 
@@ -166,28 +166,28 @@
 	(name "instances_file_name")
 	(string_value "RasterToVector.pins"))
 
-([KB_594268_Class1548] of  Map
+([KB_667370_Class1548] of  Map
 
 	(entries
-		[KB_594268_Class1549]
-		[KB_594268_Class1550]
-		[KB_594268_Class1551]))
+		[KB_667370_Class1549]
+		[KB_667370_Class1550]
+		[KB_667370_Class1551]))
 
-([KB_594268_Class1549] of  Map_Entry
+([KB_667370_Class1549] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_594268_Class1550] of  Map_Entry
+([KB_667370_Class1550] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_594268_Class1551] of  Map_Entry
+([KB_667370_Class1551] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -312,39 +312,39 @@
 	(property_list [KB_026442_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
 
-([RasterToVector_ProjectKB_Class1667] of  Map
+([RasterToVector_ProjectKB_Class1597] of  Map
 
 	(entries
-		[RasterToVector_ProjectKB_Class1668]
-		[RasterToVector_ProjectKB_Class1669]
-		[RasterToVector_ProjectKB_Class1670]))
+		[RasterToVector_ProjectKB_Class1598]
+		[RasterToVector_ProjectKB_Class1599]
+		[RasterToVector_ProjectKB_Class1600]))
 
-([RasterToVector_ProjectKB_Class1668] of  Map_Entry
+([RasterToVector_ProjectKB_Class1598] of  Map_Entry
 
 	(key "RasterToVector_Class70004")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "8 597 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([RasterToVector_ProjectKB_Class1669] of  Map_Entry
+([RasterToVector_ProjectKB_Class1599] of  Map_Entry
 
 	(key "RasterToVector_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 703 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([RasterToVector_ProjectKB_Class1670] of  Map_Entry
+([RasterToVector_ProjectKB_Class1600] of  Map_Entry
 
 	(key "RasterToVector_Class70001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "-1 506 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([RasterToVector_ProjectKB_Class1671] of  Map_Entry
+([RasterToVector_ProjectKB_Class1601] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "RasterToVector_ProjectKB_Class1667")
+	(value "RasterToVector_ProjectKB_Class1597")
 	(value_class "java.util.Map"))
 
 ([RasterToVector_ProjectKB_Class37] of  String
