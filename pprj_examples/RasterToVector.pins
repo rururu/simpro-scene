@@ -1,4 +1,4 @@
-; Mon Aug 13 21:38:04 MSK 2018
+; Tue Aug 14 22:11:13 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -149,11 +149,6 @@
 
 	(source "(doseq [i (protege.core/cls-instances \"OMTPoly\")] (protege.core/delin))"))
 
-([RasterToVector_Class121601] of  CloFunction
-
-	(source "(let [pele (+ ele MAXD)\n       rele (/ pele (+ MAXD MAXH))\n       dele (* rele disc)]\n  (int dele))")
-	(title "level1 [ele disc]"))
-
 ([RasterToVector_Class121604] of  CloFuncall
 
 	(source "(rtv.core/level 5000 20)"))
@@ -182,11 +177,6 @@
 	(salience -3)
 	(title "ib:GoNorth"))
 
-([RasterToVector_Class20001] of  CloFunction
-
-	(source "(rete.core/assert-frame\n	['Point\n	 'lat lat\n	 'lon lon\n	 'id (gensym \"p\")\n	 'north nil\n	 'south nil\n	 'west nil\n	 'east nil])")
-	(title "assert-point [lat lon]"))
-
 ([RasterToVector_Class20002] of  CloVar
 
 	(source "(let [pg0 (first (ru.igis.omtab.OMT/getPlaygrounds))]\n  (if (not (.getRuMapMouseAdapter pg0))\n    (.setRuMapMouseAdapter pg0 (ru.igis.omtab.gui.RuMapMouseAdapter.))))")
@@ -211,16 +201,6 @@
 ([RasterToVector_Class30003] of  CloFuncall
 
 	(source "(rtv.core/elevationField 58 3 40 40 0)"))
-
-([RasterToVector_Class30011] of  CloFunction
-
-	(source "([id lat lon level disc color]\n  (let [ele (elevation [lat lon])\n         lev (level1 ele disc)]\n    (if (= lev level)\n      (let [mo (point (str id) lat lon color)]\n        (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n        (.hideLabel mo)\n        (assert-point lat lon mo)))))\n([id lat lon]\n  (let [disc 20\n         ele (elevation [lat lon])\n         lev (level1 ele disc)\n         mo  (point (str id) lat lon (LEVCOL20 lev))]\n    (.setDescription mo (str \"<html>id: \" id \n	\"<br>lat: \" lat \n	\"<br>lon: \" lon\n	\"<br>ele: \" ele\n	\"<br>lev: \" lev))\n    (.hideLabel mo)))")
-	(title "levelPoint"))
-
-([RasterToVector_Class30012] of  CloFunction
-
-	(source "([lat lon w h]\n  (doseq [y (range h)]\n    (doseq [x (range w)] \n     (levelPoint (str x \":\" y)\n	(+ lat (* y STEPD)) \n	(+ lon (* x STEPD))))))\n([lat lon w h level disc color]\n  (doseq [y (range h)]\n    (doseq [x (range w)] \n      (levelPoint (str x \":\" y)\n	(+ lat (* y STEPD)) \n	(+ lon (* x STEPD))\n	level\n	disc\n	color))))")
-	(title "levelField"))
 
 ([RasterToVector_Class40000] of  Rule
 
@@ -252,13 +232,13 @@
 
 ([RasterToVector_Class40322] of  CloFunction
 
-	(source "([lab points color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTPoly\" \"label\" lab)\n         [lat lon] (first points)]\n    (ssv ins \"description\" lab)\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssvs ins \"points\" (vec (map #(str (MapOb/getDegMin (first %)) \" \" \n		        (MapOb/getDegMin (second %))) points)))\n    (OMT/getOrAdd ins)))\n([lab points]\n  (segment lab points \"FF0000FF\"))")
+	(source "([lab points color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTSpline\" \"label\" lab)\n         [lat lon] (first points)]\n    (ssv ins \"description\" lab)\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssvs ins \"points\" (vec (map #(str (MapOb/getDegMin (first %)) \" \" \n		        (MapOb/getDegMin (second %))) points)))\n    (OMT/getOrAdd ins)))\n([lab points]\n  (segment lab points \"FF0000FF\"))")
 	(title "segment"))
 
 ([RasterToVector_Class40323] of  Rule
 
 	(lhs "(Segment latlon \"CLOSED\"\n	points ?pts)")
-	(rhs "(println :SGT (first ?pts))\n(rtv.core/segment (str (first ?pts)) ?pts)")
+	(rhs "(println :SGT (first ?pts))\n(.hideLabel \n  (rtv.core/segment \n	(str (first ?pts) (last ?pts)) \n	?pts \n	(rtv.core/LEVCOL20 rtv.core/LEVEL)))")
 	(salience -2)
 	(title "ib:Display Segment"))
 
@@ -298,15 +278,21 @@
 
 	(source "(ru.rules/pp 'Point)"))
 
-([RasterToVector_Class41217] of  CloVar
+([RasterToVector_Class50000] of  CloFuncall
 
-	(source "11000")
-	(title "MAXD"))
+	(source "(rtv.core/elevationField -10 -10 80 80 0)"))
 
-([RasterToVector_Class41218] of  CloVar
+([RasterToVector_Class50002] of  CloFuncall
 
-	(source "9000")
-	(title "MAXH"))
+	(source "(rtv.core/elevationField -10 -10 40 40 0)"))
+
+([RasterToVector_Class50039] of  CloFuncall
+
+	(source "rtv.core/STEPD"))
+
+([RasterToVector_Class50040] of  CloFuncall
+
+	(source "(rtv.core/elevationField -20 -20 40 40 0)"))
 
 ([RasterToVector_Class50118] of  Rule
 
@@ -343,8 +329,8 @@
 
 ([RasterToVector_Class51805] of  CloFunction
 
-	(source "(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y STEPD))\n           lon (+ lon (* x STEPD))]\n      (if (>= (elevation [lat lon]) ele)\n        (rete.core/assert-frame\n	['Point\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side (if (or (= x 0)\n	                   (= y 0)\n	                   (= x (dec w))	\n	                   (= y (dec h)))\n	            \"BORDER\")])) ) ))")
-	(title "elevationField [lat lon w h ele]"))
+	(source "(def LEVEL level)\n(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y step))\n           lon (+ lon (* x step))]\n      (if (>= (elevation [lat lon]) ele)\n        (rete.core/assert-frame\n	['Point\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side (if (or (= x 0)\n	                   (= y 0)\n	                   (= x (dec w))	\n	                   (= y (dec h)))\n	            \"BORDER\")])) ) ))")
+	(title "elevationField [lat lon h w ele step level]"))
 
 ([RasterToVector_Class60127] of  CloFuncall
 
@@ -395,7 +381,6 @@
 		[RasterToVector_Class50118]
 		[RasterToVector_Class98210]
 		[RasterToVector_Class51388]
-		[RasterToVector_Class40000]
 		[RasterToVector_Class20000]
 		[RasterToVector_Class40175]
 		[RasterToVector_Class40177]
@@ -458,22 +443,15 @@
 ([RasterToVector_Class70006] of  CloProgram
 
 	(cloFunctions
-		[RasterToVector_Class70124]
-		[RasterToVector_Class121601]
+		[RasterToVector_Class51396]
 		[RasterToVector_Class30000]
-		[RasterToVector_Class20001]
-		[RasterToVector_Class30011]
-		[RasterToVector_Class30012]
-		[RasterToVector_Class51805]
 		[RasterToVector_Class40322]
-		[RasterToVector_Class51396])
+		[RasterToVector_Class51805])
 	(cloNamespace [RasterToVector_Class70007])
 	(cloVars
-		[RasterToVector_Class80004]
-		[RasterToVector_Class41218]
-		[RasterToVector_Class41217]
+		[RasterToVector_Class20002]
 		[RasterToVector_Class126070]
-		[RasterToVector_Class20002])
+		[RasterToVector_Class70740])
 	(title "RtV Program"))
 
 ([RasterToVector_Class70007] of  CloNamespace
@@ -481,15 +459,38 @@
 	(source "(:use protege.core\n  subcla.etoele\n  ru.rules)\n(:import\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT)")
 	(title "rtv.core"))
 
-([RasterToVector_Class70124] of  CloFunction
+([RasterToVector_Class70283] of  CloFuncall
 
-	(source "([mo r g b]\n  (fill-color mo r g b 255))\n([mo r g b a]\n  (let [mo (if (string? mo) \n	(ru.igis.omtab.OMT/getMapOb mo)\n	mo)]\n    (.setFillPaint (.getLocationMarker mo) (java.awt.Color. r g b a))))")
-	(title "fill-color"))
+	(source "(rtv.core/elevationField -20 -20 60 120 0)"))
 
-([RasterToVector_Class80004] of  CloVar
+([RasterToVector_Class70284] of  CloFuncall
 
-	(source "(double (* (/ 5 60) 3))")
-	(title "STEPD"))
+	(source "(rtv.core/elevationField -20 -20 120 60 0)"))
+
+([RasterToVector_Class70740] of  CloVar
+
+	(source "11")
+	(title "LEVEL"))
+
+([RasterToVector_Class70741] of  CloFuncall
+
+	(source "(rtv.core/elevationField 0 -70 40 70 0 1 11)"))
+
+([RasterToVector_Class70746] of  CloFuncall
+
+	(source "(rtv.core/elevationField 0 -70 40 70 1000 1 10)"))
+
+([RasterToVector_Class70752] of  CloFuncall
+
+	(source "(rtv.core/elevationField 0 -70 40 70 -1000 1 10)"))
+
+([RasterToVector_Class70758] of  CloFuncall
+
+	(source "(rtv.core/elevationField 0 -70 40 70 -2000 1 9)"))
+
+([RasterToVector_Class70768] of  CloFuncall
+
+	(source "(rtv.core/elevationField 0 -70 40 70 -3000 1 8)"))
 
 ([RasterToVector_Class98210] of  Rule
 
