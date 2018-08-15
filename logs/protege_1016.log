@@ -1,0 +1,7 @@
+2018.08.15 12:47:32.872 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2018.08.15 12:47:32.876 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_31-b13, memory=1908M, Mac OS X, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2018.08.15 12:47:32.878 MSK WARNING: Plugins directory not found: /Users/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2018.08.15 12:47:33.334 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2018.08.15 12:47:33.337 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2018.08.15 12:47:35.423 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2018.08.15 12:47:42.382 MSK INFO: Load time for file:/Users/ru/clojure/simpro-scene/pprj_examples/RasterToVector.pprj = 0 sec (project) + 1 sec (ui) -- ProjectManager$3.run()

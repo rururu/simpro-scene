@@ -10,27 +10,31 @@
 (def RMMA0 (let [pg0 (first (ru.igis.omtab.OMT/getPlaygrounds))]
   (if (not (.getRuMapMouseAdapter pg0))
     (.setRuMapMouseAdapter pg0 (ru.igis.omtab.gui.RuMapMouseAdapter.)))))
-(def LEVCOL20 {0	"FD0000FF"
-1	"E60000FF"
-2	"CF0000FF"
-3	"B80000FF"
-4	"A10000FF"
-5	"8A0000FF"
-6	"730000FF"
-7	"5C0000FF"
-8	"450000FF"
-9	"2E0000FF"
-10	"170000FF"
-11	"FF00AA00"
-12	"38FF0000"
-13	"54FF0000"
-14	"70FF0000"
-15	"8CFF0000"
-16	"A8FF0000"
-17	"C4FF0000"
-18	"E0FF0000"
-19	"FCFF0000"})
+(def LEVCOL20 {-11000	"FD5A009D"
+ -10000	"E65A009D"
+ -9000	"CF8000FF"
+ -8000	"B88000FF"
+ -7000	"A14000FF"
+ -6000	"8A4000FF"
+ -5000	"732000FF"
+ -4000	"5C2000FF"
+ -3000	"450000FF"
+ -2000	"2E0000FF"
+ -1000	"170000FF"
+ 0	"FF00AA00"
+ 1000	"38FFDF00"
+ 2000	"54FF8000"
+ 3000	"70FF8000"
+ 4000	"8CFF4000"
+ 5000	"A8FF4000"
+ 6000	"C4FF0090"
+ 7000	"E0FF00FF"
+ 8000	"FCFF00FF"})
 (def LEVEL 11)
+(def STEP 1)
+(defn line-width [mo w]
+  (.setStroke (.getLocationMarker mo) (java.awt.BasicStroke. w)))
+
 (defn near [e [y1 x1] [y2 x2]]
   (let [dx (if (> x1 x2) (- x1 x2) (- x2 x1))
        dy (if (> y1 y2) (- y1 y2) (- y2 y1))]
@@ -51,30 +55,34 @@
   (point lab lat lon "FFFF0000")))
 
 (defn segment
-  ([lab points color]
+  ([lab ele points color]
   (if-let [mo (OMT/getMapOb lab)]
     (OMT/removeMapOb mo true))
   (let [ins (foc "OMTSpline" "label" lab)
          [lat lon] (first points)]
-    (ssv ins "description" lab)
+    (ssv ins "description" (str ele))
     (ssv ins "latitude" (MapOb/getDegMin lat))
     (ssv ins "longitude" (MapOb/getDegMin lon))
     (ssv ins "lineColor" color)
     (ssvs ins "points" (vec (map #(str (MapOb/getDegMin (first %)) " " 
 		        (MapOb/getDegMin (second %))) points)))
     (OMT/getOrAdd ins)))
-([lab points]
-  (segment lab points "FF0000FF")))
+([lab ele points]
+  (segment lab ele points "FF0000FF")))
 
-(defn elevationField [lat lon h w ele step level]
+(defn elevationField [lat lon h w elev step level]
   (def LEVEL level)
+(def STEP step)
 (doseq [y (range h)]
   (doseq [x (range w)]
     (let [lat (+ lat (* y step))
-           lon (+ lon (* x step))]
-      (if (>= (elevation [lat lon]) ele)
+           lon (+ lon (* x step))
+           ele (elevation [lat lon])]
+      (if (or (and (>= elev 0) (>=  ele elev))
+                (and (< elev 0) (<= ele elev)))
         (rete.core/assert-frame
 	['Point
+	 'elevation elev
 	 'x x
 	 'y y
 	 'latlon [lat lon]

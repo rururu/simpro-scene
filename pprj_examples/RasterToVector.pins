@@ -1,10 +1,11 @@
-; Tue Aug 14 22:11:13 MSK 2018
+; Wed Aug 15 22:00:28 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([RasterToVector_Class0] of  Openmap
 
+	(BackgroundColor "FFFFFFFF")
 	(components
 		[igis_Class2]
 		[igis_Class3]
@@ -31,14 +32,14 @@
 		[igis_Class23])
 	(Debug "FINE")
 	(label "RTV Map")
-	(Latitude "65.0")
+	(Latitude "25.0")
 	(layers
 		[igis_Class40012]
 		[RasterToVector_Class10001]
 		[igis_Class1]
 		[igis_Class40011])
-	(Longitude "17.5")
-	(Scale "15000000")
+	(Longitude "40.0")
+	(Scale "30000000")
 	(startUpLayers
 		[igis_Class40012]
 		[RasterToVector_Class10001]))
@@ -49,25 +50,17 @@
 	(%3ACREATION-TIMESTAMP "2018.07.08 21:57:08.207 MSK")
 	(%3ACREATOR "ru"))
 
-([RasterToVector_Class10000] of  CloFuncall
-
-	(source "(menu.item/clojure-work)"))
-
-([RasterToVector_Class100000] of  CloFuncall
-
-	(source "(rtv.core/slope1 60 -4)"))
-
 ([RasterToVector_Class10001] of  ETOPOLayer
 
 	(class "com.bbn.openmap.layer.etopo.ETOPOEleLayer")
-	(contrast "64")
+	(contrast "1")
 	(label "ETOPO5Ele")
 	(minute.spacing "5")
-	(number.colors "128")
-	(opaque "200")
+	(number.colors "216")
+	(opaque "128")
 	(path "data/ETOPO")
 	(prettyName "ETOPO5 Elevations Access")
-	(view.type "0"))
+	(view.type "1"))
 
 ([RasterToVector_Class10002] of  CloProgram
 
@@ -117,57 +110,9 @@
 	(source "(let [bwd (or BUFWID (do (def BUFWID (.getBufferWidth THIS)) BUFWID))\n       scy (or SCY (do (def SCY (float (/ (.getBufferHeight THIS) 180.0))) SCY))\n       scx (or SCX (do (def SCX (float (/ bwd 360.0))) SCX))\n       lat_idx (int (* (- 90.0 lat) scy))\n       lon_idx (int (* lon scx))\n       ofs (+ lon_idx (* lat_idx bwd))]\n  (aget (.getDataBuffer THIS) ofs))")
 	(title "elevation [[lat lon]]"))
 
-([RasterToVector_Class101206] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getPlaygrounds)"))
-
-([RasterToVector_Class101207] of  CloFuncall
-
-	(source "(first (ru.igis.omtab.OMT/getPlaygrounds))"))
-
-([RasterToVector_Class101208] of  CloFuncall
-
-	(source "(.getRuMapMouseAdapter (first (ru.igis.omtab.OMT/getPlaygrounds)))"))
-
-([RasterToVector_Class101209] of  CloFuncall
-
-	(source "(.setRuMapMouseAdapter (first (ru.igis.omtab.OMT/getPlaygrounds)) (RuMapMouseAdapter.))"))
-
-([RasterToVector_Class101210] of  CloFuncall
-
-	(source "(.setRuMapMouseAdapter (first (ru.igis.omtab.OMT/getPlaygrounds)) (ru.igis.omtab.gui.RuMapMouseAdapter.))"))
-
-([RasterToVector_Class101211] of  CloFuncall
-
-	(source "(rtv.core/pointsField 30 130 80 80)"))
-
-([RasterToVector_Class107612] of  CloFuncall
-
-	(source "(rtv.core/pointsField 0 90 80 80)"))
-
-([RasterToVector_Class120000] of  CloFuncall
-
-	(source "(doseq [i (protege.core/cls-instances \"OMTPoly\")] (protege.core/delin))"))
-
-([RasterToVector_Class121604] of  CloFuncall
-
-	(source "(rtv.core/level 5000 20)"))
-
-([RasterToVector_Class121605] of  CloFuncall
-
-	(source "(rtv.core/level 8000 20)"))
-
-([RasterToVector_Class121606] of  CloFuncall
-
-	(source "(rtv.core/level 8800 20)"))
-
-([RasterToVector_Class121607] of  CloFuncall
-
-	(source "(rtv.core/level 0 20)"))
-
 ([RasterToVector_Class126070] of  CloVar
 
-	(source "{0	\"FD0000FF\"\n1	\"E60000FF\"\n2	\"CF0000FF\"\n3	\"B80000FF\"\n4	\"A10000FF\"\n5	\"8A0000FF\"\n6	\"730000FF\"\n7	\"5C0000FF\"\n8	\"450000FF\"\n9	\"2E0000FF\"\n10	\"170000FF\"\n11	\"FF00AA00\"\n12	\"38FF0000\"\n13	\"54FF0000\"\n14	\"70FF0000\"\n15	\"8CFF0000\"\n16	\"A8FF0000\"\n17	\"C4FF0000\"\n18	\"E0FF0000\"\n19	\"FCFF0000\"}")
+	(source "{-11000	\"FD5A009D\"\n -10000	\"E65A009D\"\n -9000	\"CF8000FF\"\n -8000	\"B88000FF\"\n -7000	\"A14000FF\"\n -6000	\"8A4000FF\"\n -5000	\"732000FF\"\n -4000	\"5C2000FF\"\n -3000	\"450000FF\"\n -2000	\"2E0000FF\"\n -1000	\"170000FF\"\n 0	\"FF00AA00\"\n 1000	\"38FFDF00\"\n 2000	\"54FF8000\"\n 3000	\"70FF8000\"\n 4000	\"8CFF4000\"\n 5000	\"A8FF4000\"\n 6000	\"C4FF0090\"\n 7000	\"E0FF00FF\"\n 8000	\"FCFF00FF\"}")
 	(title "LEVCOL20"))
 
 ([RasterToVector_Class20000] of  Rule
@@ -189,18 +134,10 @@
 
 ([RasterToVector_Class30001] of  Rule
 
-	(lhs "p (Point x ?x y ?y latlon ?ll)")
-	(rhs "(retract p)\n(asser Segment points []\n	x ?x\n	y ?y\n	latlon ?ll)")
+	(lhs "p (Point elevation ?e\n	x ?x \n	y ?y \n	latlon ?ll)")
+	(rhs "(retract p)\n(asser Segment elevation ?e\n	points []\n	x ?x\n	y ?y\n	latlon ?ll)")
 	(salience -5)
 	(title "id:Segment"))
-
-([RasterToVector_Class30002] of  CloFuncall
-
-	(source "(ru.rules/pp 'Segment)"))
-
-([RasterToVector_Class30003] of  CloFuncall
-
-	(source "(rtv.core/elevationField 58 3 40 40 0)"))
 
 ([RasterToVector_Class40000] of  Rule
 
@@ -232,13 +169,13 @@
 
 ([RasterToVector_Class40322] of  CloFunction
 
-	(source "([lab points color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTSpline\" \"label\" lab)\n         [lat lon] (first points)]\n    (ssv ins \"description\" lab)\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssvs ins \"points\" (vec (map #(str (MapOb/getDegMin (first %)) \" \" \n		        (MapOb/getDegMin (second %))) points)))\n    (OMT/getOrAdd ins)))\n([lab points]\n  (segment lab points \"FF0000FF\"))")
+	(source "([lab ele points color]\n  (if-let [mo (OMT/getMapOb lab)]\n    (OMT/removeMapOb mo true))\n  (let [ins (foc \"OMTSpline\" \"label\" lab)\n         [lat lon] (first points)]\n    (ssv ins \"description\" (str ele))\n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"lineColor\" color)\n    (ssvs ins \"points\" (vec (map #(str (MapOb/getDegMin (first %)) \" \" \n		        (MapOb/getDegMin (second %))) points)))\n    (OMT/getOrAdd ins)))\n([lab ele points]\n  (segment lab ele points \"FF0000FF\"))")
 	(title "segment"))
 
 ([RasterToVector_Class40323] of  Rule
 
-	(lhs "(Segment latlon \"CLOSED\"\n	points ?pts)")
-	(rhs "(println :SGT (first ?pts))\n(.hideLabel \n  (rtv.core/segment \n	(str (first ?pts) (last ?pts)) \n	?pts \n	(rtv.core/LEVCOL20 rtv.core/LEVEL)))")
+	(lhs "(Segment latlon \"CLOSED\"\n	elevation ?ele\n	points ?pts)")
+	(rhs "(println :SGT (first ?pts))\n(let [mo (rtv.core/segment \n	(str (first ?pts) (last ?pts)) \n	?ele\n	?pts \n	(rtv.core/LEVCOL20 rtv.core/LEVEL))]\n  (rtv.core/line-width mo 3)\n  (.hideLabel mo))")
 	(salience -2)
 	(title "ib:Display Segment"))
 
@@ -270,30 +207,6 @@
 	(salience -4)
 	(title "ib:GoSouthWest"))
 
-([RasterToVector_Class40934] of  CloFuncall
-
-	(source "(rtv.core/elevationField 58 3 80 80 0)"))
-
-([RasterToVector_Class40960] of  CloFuncall
-
-	(source "(ru.rules/pp 'Point)"))
-
-([RasterToVector_Class50000] of  CloFuncall
-
-	(source "(rtv.core/elevationField -10 -10 80 80 0)"))
-
-([RasterToVector_Class50002] of  CloFuncall
-
-	(source "(rtv.core/elevationField -10 -10 40 40 0)"))
-
-([RasterToVector_Class50039] of  CloFuncall
-
-	(source "rtv.core/STEPD"))
-
-([RasterToVector_Class50040] of  CloFuncall
-
-	(source "(rtv.core/elevationField -20 -20 40 40 0)"))
-
 ([RasterToVector_Class50118] of  Rule
 
 	(lhs "p (Point x ?x y ?y side nil)\n   (Point x ?x1 y ?y (= ?x1 (inc ?x)))\n   (Point x ?x2 y ?y (= ?x2 (dec ?x)))\n   (Point x ?x y ?y1 (= ?y1 (inc ?y)))\n   (Point x ?x y ?y2 (= ?y2 (dec ?y)))")
@@ -310,7 +223,7 @@
 
 ([RasterToVector_Class51390] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEPD) (first ?pp1) (first ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEP) (first ?pp1) (first ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat (reverse ?pp1) ?pp2)))")
 	(salience 0)
 	(title "ib:Connect two Segments HH1"))
@@ -329,51 +242,48 @@
 
 ([RasterToVector_Class51805] of  CloFunction
 
-	(source "(def LEVEL level)\n(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y step))\n           lon (+ lon (* x step))]\n      (if (>= (elevation [lat lon]) ele)\n        (rete.core/assert-frame\n	['Point\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side (if (or (= x 0)\n	                   (= y 0)\n	                   (= x (dec w))	\n	                   (= y (dec h)))\n	            \"BORDER\")])) ) ))")
-	(title "elevationField [lat lon h w ele step level]"))
+	(source "(def LEVEL level)\n(def STEP step)\n(doseq [y (range h)]\n  (doseq [x (range w)]\n    (let [lat (+ lat (* y step))\n           lon (+ lon (* x step))\n           ele (elevation [lat lon])]\n      (if (or (and (>= elev 0) (>=  ele elev))\n                (and (< elev 0) (<= ele elev)))\n        (rete.core/assert-frame\n	['Point\n	 'elevation elev\n	 'x x\n	 'y y\n	 'latlon [lat lon]\n	 'side (if (or (= x 0)\n	                   (= y 0)\n	                   (= x (dec w))	\n	                   (= y (dec h)))\n	            \"BORDER\")])) ) ))")
+	(title "elevationField [lat lon h w elev step level]"))
 
-([RasterToVector_Class60127] of  CloFuncall
+([RasterToVector_Class60000] of  CloVar
 
-	(source "(eval 'rtv.core/STEPD)"))
+	(source "1")
+	(title "STEP"))
 
 ([RasterToVector_Class60253] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEPD) (last ?pp1) (last ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEP) (last ?pp1) (last ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat ?pp1 (reverse ?pp2))))")
 	(salience 0)
 	(title "ib:Connect two Segments TT1"))
 
 ([RasterToVector_Class60485] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEPD) (last ?pp1) (first ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 1 rtv.core/STEP) (last ?pp1) (first ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat ?pp1 ?pp2)))")
 	(salience 0)
 	(title "ib:Connect two Segments HT1"))
 
 ([RasterToVector_Class60486] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEPD) (first ?pp1) (first ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEP) (first ?pp1) (first ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat (reverse ?pp1) ?pp2)))")
 	(salience -1)
 	(title "ib:Connect two Segments HH2"))
 
 ([RasterToVector_Class60487] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEPD) (last ?pp1) (first ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEP) (last ?pp1) (first ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat ?pp1 ?pp2)))")
 	(salience -1)
 	(title "ib:Connect two Segments HT2"))
 
 ([RasterToVector_Class60488] of  Rule
 
-	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEPD) (last ?pp1) (last ?pp2)))")
+	(lhs "s1 (Segment latlon \"CLOSED\" \n	points ?pp1)\ns2 (Segment latlon \"CLOSED\"\n	points ?pp2\n	(rtv.core/near (* 2 rtv.core/STEP) (last ?pp1) (last ?pp2)))")
 	(rhs "(println :CON (first ?pp1) (first ?pp2))\n(retract s2)\n(modify s1 points (vec (concat ?pp1 (reverse ?pp2))))")
 	(salience -1)
 	(title "ib:Connect two Segments TT2"))
-
-([RasterToVector_Class60847] of  CloFuncall
-
-	(source "(rtv.core/elevationField 2 2 80 80 0)"))
 
 ([RasterToVector_Class64804] of  RuleSet
 
@@ -443,6 +353,7 @@
 ([RasterToVector_Class70006] of  CloProgram
 
 	(cloFunctions
+		[RasterToVector_Class70157]
 		[RasterToVector_Class51396]
 		[RasterToVector_Class30000]
 		[RasterToVector_Class40322]
@@ -451,7 +362,8 @@
 	(cloVars
 		[RasterToVector_Class20002]
 		[RasterToVector_Class126070]
-		[RasterToVector_Class70740])
+		[RasterToVector_Class70740]
+		[RasterToVector_Class60000])
 	(title "RtV Program"))
 
 ([RasterToVector_Class70007] of  CloNamespace
@@ -459,38 +371,87 @@
 	(source "(:use protege.core\n  subcla.etoele\n  ru.rules)\n(:import\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT)")
 	(title "rtv.core"))
 
-([RasterToVector_Class70283] of  CloFuncall
+([RasterToVector_Class70157] of  CloFunction
 
-	(source "(rtv.core/elevationField -20 -20 60 120 0)"))
-
-([RasterToVector_Class70284] of  CloFuncall
-
-	(source "(rtv.core/elevationField -20 -20 120 60 0)"))
+	(source "(.setStroke (.getLocationMarker mo) (java.awt.BasicStroke. w))")
+	(title "line-width [mo w]"))
 
 ([RasterToVector_Class70740] of  CloVar
 
 	(source "11")
 	(title "LEVEL"))
 
-([RasterToVector_Class70741] of  CloFuncall
+([RasterToVector_Class80000] of  CloFuncall
 
-	(source "(rtv.core/elevationField 0 -70 40 70 0 1 11)"))
+	(source "(ru.rules/sp :all)"))
 
-([RasterToVector_Class70746] of  CloFuncall
+([RasterToVector_Class80158] of  CloFuncall
 
-	(source "(rtv.core/elevationField 0 -70 40 70 1000 1 10)"))
+	(source "(rtv.core/elevationField 10 80 40 80 0 1 11)"))
 
-([RasterToVector_Class70752] of  CloFuncall
+([RasterToVector_Class80159] of  CloFuncall
 
-	(source "(rtv.core/elevationField 0 -70 40 70 -1000 1 10)"))
+	(source "(rtv.core/elevationField 10 80 40 80 0 1 0)"))
 
-([RasterToVector_Class70758] of  CloFuncall
+([RasterToVector_Class80175] of  CloFuncall
 
-	(source "(rtv.core/elevationField 0 -70 40 70 -2000 1 9)"))
+	(source "(rtv.core/elevationField 10 80 40 80 1000 1 1000)"))
 
-([RasterToVector_Class70768] of  CloFuncall
+([RasterToVector_Class80198] of  CloFuncall
 
-	(source "(rtv.core/elevationField 0 -70 40 70 -3000 1 8)"))
+	(source "(rtv.core/elevationField 10 80 40 80 2000 1 2000)"))
+
+([RasterToVector_Class80211] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 3000 1 3000)"))
+
+([RasterToVector_Class80219] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 4000 1 4000)"))
+
+([RasterToVector_Class80226] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 5000 1 5000)"))
+
+([RasterToVector_Class80233] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 6000 1 6000)"))
+
+([RasterToVector_Class80234] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -1000 1 -1000)"))
+
+([RasterToVector_Class80252] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -2000 1 -2000)"))
+
+([RasterToVector_Class80273] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -3000 1 -3000)"))
+
+([RasterToVector_Class80296] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -4000 1 -4000)"))
+
+([RasterToVector_Class80318] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -5000 1 -5000)"))
+
+([RasterToVector_Class80341] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -6000 1 -6000)"))
+
+([RasterToVector_Class80354] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -7000 1 -7000)"))
+
+([RasterToVector_Class80359] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -8000 1 -8000)"))
+
+([RasterToVector_Class80362] of  CloFuncall
+
+	(source "(rtv.core/elevationField 10 80 40 80 -9000 1 -9000)"))
 
 ([RasterToVector_Class98210] of  Rule
 

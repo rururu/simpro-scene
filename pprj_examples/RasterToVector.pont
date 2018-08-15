@@ -1,4 +1,4 @@
-; Tue Aug 14 22:11:13 MSK 2018
+; Wed Aug 15 22:00:28 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,6 +17,10 @@
 		(create-accessor read-write))
 	(single-slot latlon
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot elevation
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot side
@@ -43,6 +47,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot elevation
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot latlon
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -60,6 +68,10 @@
 		(create-accessor read-write))
 	(single-slot y
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot elevation
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latlon
