@@ -1,4 +1,4 @@
-; Wed Aug 15 22:00:28 MSK 2018
+; Thu Aug 16 17:18:31 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -32,13 +32,13 @@
 		[igis_Class23])
 	(Debug "FINE")
 	(label "RTV Map")
-	(Latitude "25.0")
+	(Latitude "30.0")
 	(layers
 		[igis_Class40012]
 		[RasterToVector_Class10001]
 		[igis_Class1]
 		[igis_Class40011])
-	(Longitude "40.0")
+	(Longitude "120.0")
 	(Scale "30000000")
 	(startUpLayers
 		[igis_Class40012]

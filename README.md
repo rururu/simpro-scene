@@ -54,11 +54,12 @@ See examples.
 17. [Get started: Algorithms](https://www.youtube.com/watch?v=oRCMw_rnLvg&feature=youtu.be)
 18. [Everest](https://www.youtube.com/watch?v=YAZSrUjKRhk&t=10s)
 19. [Glacier Express: Above Bever - Preda tunnel](https://youtu.be/WJ3YZqWyFJ4)
+20. [From Raster to Vector](https://youtu.be/LKaAVBDUyTU)
 
 TO BE CONTINUED
 
 (*)
-When you start with the java command and the standalone jar, in Protege GUI there is no "Edit -> Clojure Work" menu item, that used in some projects to start an automation script. This script is useful to run several tasks automatically, for example, during initialization of the project (loading of the progams, start expert system and simulation mechanism and so on..). See corresponding examples. This script implemented as a function "clojure-work" without parameters in namespace "menu.item". Only one program with such namespace and such function must be in a project. When there is no "Edit -> Clojure Work" menu item, you can start the automation script by loading this program manually and executing in REPL a function call "(menu.item/clojure-work)".
+When you start with the java command and the standalone jar, in Protege GUI there is no "Edit -> Clojure Work" menu item, that used in some projects to start an automation script. This script is useful to run several tasks automatically, for example, during initialization of the project (loading of the progams, start expert system and simulation mechanism and so on..). See corresponding examples. This script implemented as a function "clojure-work" without parameters in namespace "menu.item". Only one program with such namespace and such function must be in a project. When there is no "Edit -> Clojure Work" menu item, you can start the automation script by loading this program manually and executing in REPL a function call "(menu.item/clojure-work)". See example in RasterToVector project.
 
 ## License
 
