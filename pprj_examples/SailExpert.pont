@@ -1,0 +1,74 @@
+; Fri Aug 17 21:36:37 MSK 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SailExpert+Onto
+	(is-a USER)
+	(role concrete))
+
+(defclass Boat
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MapObEvent
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot type
+		(type INSTANCE)
+;+		(allowed-classes Type)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot altitude
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Clock
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
