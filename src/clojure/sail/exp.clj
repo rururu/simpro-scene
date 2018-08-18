@@ -10,7 +10,7 @@
 (def EVT-LISTENERS (volatile! {}))
 (def ES-TIMER nil)
 (defn ass-mo-event [evt]
-  (println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
+  ;;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
 (let [tpe (.getActionCommand evt)
        obj (.getSource evt)]
   (rete/assert-frame ['MapObEvent 
@@ -32,7 +32,7 @@
 (doseq[pg (OMT/getPlaygrounds)]
   (let [al (proxy [ActionListener] []
 	(actionPerformed [evt] 
-	  (println :OMT-GEN-EVT evt)
+	  ;;(println :OMT-GEN-EVT evt)
 	  (ass-mo-event evt)))]
     (.addActionListener pg al)
     (vswap! EVT-LISTENERS assoc pg al))))
@@ -67,4 +67,23 @@
 (defn restart-sim []
   (stop-sim)
 (start-sim))
+
+(defn trim-bear [b]
+  (cond
+  (< b 0) (+ b 360)
+  (> b 360) (- b 360)
+  true b))
+
+(defn head-wind [course tack-angle]
+  (let [hta (/ tack-angle 2)
+       lhw (trim-bear (- course hta))
+       rhw (trim-bear (+ course hta))]
+  [lhw rhw]))
+
+(defn boat-status [headwind mark]
+  (if-let [mo (OMT/getMapOb mark)]
+  (if (inside (read-string headwind))
+    "HEADWIND"
+    "DOWNWIND")
+  "UNDEFINED"))
 

@@ -1,4 +1,4 @@
-; Fri Aug 17 21:36:37 MSK 2018
+; Sat Aug 18 21:50:18 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -66,8 +66,10 @@
 	(butt-step "Step/ru.rules/step-engine")
 	(instances
 		[SailExpert_Class10023]
-		[SailExpert_Class20000])
-	(mode trace-long)
+		[SailExpert_Class20000]
+		[SailExpert_Class50002]
+		[SailExpert_Class50006])
+	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011])
@@ -78,10 +80,13 @@
 
 	(rules
 		[SailExpert_Class20002]
-		[SailExpert_Class20009])
+		[SailExpert_Class50003]
+		[SailExpert_Class20009]
+		[SailExpert_Class50007])
 	(templates
 		[Boat]
-		[MapObEvent])
+		[MapObEvent]
+		[Mark])
 	(title "Boat Set"))
 
 ([SailExpert_Class10005] of  %3AINSTANCE-ANNOTATION
@@ -113,7 +118,10 @@
 		[SailExpert_Class10015]
 		[SailExpert_Class10017]
 		[SailExpert_Class10018]
-		[SailExpert_Class10019])
+		[SailExpert_Class10019]
+		[SailExpert_Class40005]
+		[SailExpert_Class40004]
+		[SailExpert_Class50004])
 	(cloNamespace [SailExpert_Class10010])
 	(cloVars
 		[SailExpert_Class10011]
@@ -177,19 +185,22 @@
 ([SailExpert_Class2] of  NavOb
 
 	(altitude 0)
-	(course 90)
-	(label "Bylina")
-	(latitude "62 26.63")
-	(longitude "6 0")
+	(course 0)
+	(label "m1")
+	(latitude "62 24.26")
+	(longitude "6 2.81")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/yachtp.png")
+	(url "file:data/images/buoy1.png")
 	(verticalSpeed 0.0))
 
 ([SailExpert_Class20000] of  Boat
 
 	(course 0)
-	(label "Bylina"))
+	(label "Bylina")
+	(mark "m1")
+	(status UNDEFINED)
+	(tack-angle 40))
 
 ([SailExpert_Class20001] of  Rule
 
@@ -200,8 +211,8 @@
 
 ([SailExpert_Class20002] of  Rule
 
-	(lhs "(Boat label ?lab)\n(not Boat label ?lab)")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Boat on map:\" ?lab))")
+	(lhs "?b (Boat label ?lab course ?crs\n	tack-angle ?taa\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
+	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (.setCourse mo ?crs)\n    (modify ?b head-wind (str (sail.exp/head-wind ?crs ?taa)))\n    (println \"Boat on map:\" ?lab \", course\" ?crs)))")
 	(salience 0)
 	(title "bs:Boat on Map"))
 
@@ -236,10 +247,10 @@
 
 ([SailExpert_Class20009] of  Rule
 
-	(lhs "?me (MapObEvent\n	type ?tpe)")
-	(rhs "(println :MOE ?tpe)")
+	(lhs "?b (Boat label ?lab course ?ocrs\n	tack-angle ?taa)\n(MapObEvent type \"UPD_COURSE\"\n	label ?lab\n	course ?ncrs\n	(not= ?ncrs ?ocrs))")
+	(rhs "(println \"Boat\" ?lab \"new course\" ?ncrs)\n(modify ?b course ?ncrs\n	head-wind (str (sail.exp/head-wind ?ncrs ?taa)))")
 	(salience 0)
-	(title "bs:Boat Change"))
+	(title "bs:Boat Change Course"))
 
 ([SailExpert_Class20010] of  Rule
 
@@ -262,3 +273,102 @@
 ([SailExpert_Class30000] of  CloFuncall
 
 	(source "(ru.rules/f 0)"))
+
+([SailExpert_Class40000] of  CloFuncall
+
+	(source "(ru.rules/pp 'Clock)"))
+
+([SailExpert_Class40001] of  CloFuncall
+
+	(source "(ru.rules/pp 'Boat)"))
+
+([SailExpert_Class40004] of  CloFunction
+
+	(source "(let [hta (/ tack-angle 2)\n       lhw (trim-bear (- course hta))\n       rhw (trim-bear (+ course hta))]\n  [lhw rhw])")
+	(title "head-wind [course tack-angle]"))
+
+([SailExpert_Class40005] of  CloFunction
+
+	(source "(cond\n  (< b 0) (+ b 360)\n  (> b 360) (- b 360)\n  true b)")
+	(title "trim-bear [b]"))
+
+([SailExpert_Class40011] of  NavOb
+
+	(altitude 0)
+	(course 90)
+	(label "Bylina")
+	(latitude "62 26.63")
+	(longitude "6 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/yachtp.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class40012] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "m2")
+	(latitude "62 26.63")
+	(longitude "6 2")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/buoy2.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class40013] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "m3")
+	(latitude "62 26.63")
+	(longitude "6 3")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/buoy3.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class40014] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "m4")
+	(latitude "62 26.63")
+	(longitude "6 4")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/buoy4.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class50002] of  Mark
+
+	(label "m1")
+	(latitude "62 24.26")
+	(longitude "6 2.81"))
+
+([SailExpert_Class50003] of  Rule
+
+	(lhs "(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Mark on map:\" ?lab \", coords\" [?lat ?lon]))")
+	(salience 0)
+	(title "bs:Mark on Map"))
+
+([SailExpert_Class50004] of  CloFunction
+
+	(title "inside [windir headwind]"))
+
+([SailExpert_Class50005] of  CloFuncall
+
+	(source "(ru.rules/f 2)"))
+
+([SailExpert_Class50006] of  Wind
+
+	(direction 160)
+	(forse 2))
+
+([SailExpert_Class50007] of  Rule
+
+	(lhs "?b (Boat head-wind ?hdw)\n(Wind direction ?wnd)")
+	(rhs "(modify ?b status (if (sail.exp/inside ?wnd (read-string headwind))\n    	      \"HEADWIND\"\n    	      \"DOWNWIND\"))")
+	(salience 0)
+	(title "bs:Boat Status"))

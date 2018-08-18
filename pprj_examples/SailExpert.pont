@@ -1,4 +1,4 @@
-; Fri Aug 17 21:36:37 MSK 2018
+; Sat Aug 18 21:50:18 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,6 +9,31 @@
 	(role abstract)
 	(single-slot time
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mark
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values BEATING DOWNWIND HEADWIND UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot forse
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot tack-angle
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot head-wind
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -23,9 +48,26 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values BEATING DOWNWIND HEADWIND UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mark
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot course
 		(type INTEGER)
 		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot head-wind
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot tack-angle
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -70,5 +112,33 @@
 	(role concrete)
 	(single-slot time
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Wind
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot forse
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Mark
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
