@@ -1,4 +1,4 @@
-; Sat Aug 18 21:50:18 MSK 2018
+; Mon Aug 20 21:23:12 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,11 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot wind
+		(type SYMBOL)
+		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -17,7 +22,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING DOWNWIND HEADWIND UNDEFINED)
+		(allowed-values BEATING GO_ON_MARK UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -32,8 +37,9 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot head-wind
-		(type STRING)
+	(single-slot tack
+		(type SYMBOL)
+		(allowed-values PORT STARBOARD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -50,11 +56,16 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING DOWNWIND HEADWIND UNDEFINED)
+		(allowed-values BEATING GO_ON_MARK UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mark
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wind
+		(type SYMBOL)
+		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot course
@@ -62,8 +73,9 @@
 		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot head-wind
-		(type STRING)
+	(single-slot tack
+		(type SYMBOL)
+		(allowed-values PORT STARBOARD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tack-angle

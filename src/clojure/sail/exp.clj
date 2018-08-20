@@ -74,16 +74,6 @@
   (> b 360) (- b 360)
   true b))
 
-(defn head-wind [course tack-angle]
-  (let [hta (/ tack-angle 2)
-       lhw (trim-bear (- course hta))
-       rhw (trim-bear (+ course hta))]
-  [lhw rhw]))
-
-(defn boat-status [headwind mark]
-  (if-let [mo (OMT/getMapOb mark)]
-  (if (inside (read-string headwind))
-    "HEADWIND"
-    "DOWNWIND")
-  "UNDEFINED"))
+(defn inside [windir headwind]
+)
 
