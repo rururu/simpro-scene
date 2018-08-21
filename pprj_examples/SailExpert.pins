@@ -1,4 +1,4 @@
-; Mon Aug 20 21:23:12 MSK 2018
+; Tue Aug 21 21:36:39 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -68,7 +68,8 @@
 		[SailExpert_Class10023]
 		[SailExpert_Class20000]
 		[SailExpert_Class50002]
-		[SailExpert_Class50006])
+		[SailExpert_Class50006]
+		[SailExpert_Class60000])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -82,12 +83,16 @@
 		[SailExpert_Class20002]
 		[SailExpert_Class50003]
 		[SailExpert_Class20009]
-		[SailExpert_Class50007])
+		[SailExpert_Class50007]
+		[SailExpert_Class60003]
+		[SailExpert_Class60001]
+		[SailExpert_Class60002])
 	(templates
 		[Boat]
 		[MapObEvent]
 		[Mark]
-		[Wind])
+		[Wind]
+		[Crew])
 	(title "Boat Set"))
 
 ([SailExpert_Class10005] of  %3AINSTANCE-ANNOTATION
@@ -199,7 +204,8 @@
 	(course 0)
 	(label "Bylina")
 	(mark "m1")
-	(tack-angle 40))
+	(status UNDEFINED)
+	(tack-angle 35))
 
 ([SailExpert_Class20001] of  Rule
 
@@ -367,6 +373,33 @@
 ([SailExpert_Class50007] of  Rule
 
 	(lhs "?b (Boat wind UNDEFINED\n	course ?crs\n	tack-angle ?taa)\n(Wind direction ?wnd)")
-	(rhs "(let [hta (/ ?taa 2)\n       dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(< dif 11.25) 'STERNWIND\n	(< dif 78.75) 'BROADREACH\n	(< dif 101.25) 'HALFWIND\n	(> dif hta) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'PORT\n	  'STARBOARD)\n	(if (< (- ?crs ?wnd) 180)\n	  'STARBOARD\n	  'PORT))]\n  (println :CRS ?crs :TAA ?taa :HTA hta :DIF dif :WND wnd)\n  (println :MWC (> ?wnd ?crs) :DWC (- ?wnd ?crs) :LDWC180 (< (- ?wnd ?crs) 180) :TCK tck)\n  (println :LWC (not (> ?wnd ?crs)) :DCW (- ?crs ?wnd) :LDCW180 (< (- ?crs ?wnd) 180) :TCK tck)\n  (modify ?b wind wnd tack tck))")
+	(rhs "(let [hta (/ ?taa 2)\n       dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(> dif 168.75) 'STERNWIND\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'HALFWIND\n	(> dif hta) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b wind wnd tack tck)\n  (println \"Boat on\" tck \"tack and on\" wnd))")
 	(salience -1)
 	(title "bs:Boat Wind and Tack"))
+
+([SailExpert_Class60000] of  Crew
+
+	(boat "Bylina")
+	(command MAKE-FOR-MARK)
+	(mark "m1"))
+
+([SailExpert_Class60001] of  Rule
+
+	(lhs "?b (Boat status CRS-ON-MARK\n	label ?lab\n	wind ?wnd\n	(not= ?wnd 'UNDEFINED))")
+	(rhs "(let [sts (if (= ?wnd 'HEADWIND)\n	'BEATING\n	'GO-ON-MARK)]\n  (println \"Boat\" ?lab \"status:\" sts)\n  (modify ?b status sts))")
+	(salience 0)
+	(title "bs:Boat Status"))
+
+([SailExpert_Class60002] of  Rule
+
+	(lhs "(Wind direction ?wnd)\n(Boat status BEATING\n	wind HEADWIND\n	label ?boat\n	course ?crs\n	tack-angle ?taa)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         hta (/ ?taa 2)\n         crs (if (< ?crs (- 360 hta))\n	(if (> ?wnd ?crs)\n	  (+ ?crs hta e)\n	  (- ?crs hta e))\n	(if (< ?wnd ?crs)\n	  (- ?crs hta e)\n	  (+ ?crs hta e)))]\n    (.setCourse bmo (int crs))))")
+	(salience 0)
+	(title "bs:Select Beating Tack"))
+
+([SailExpert_Class60003] of  Rule
+
+	(lhs "?b (Boat status UNDEFINED\n	label ?boat)\n(Mark label ?mark)\n(Crew command MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    ;;(println \"Boat\" ?boat \"ststus:\" 'CRS-ON-MARK)\n    (modify ?b status 'CRS-ON-MARK\n	wind 'UNDEFINED)))")
+	(salience 0)
+	(title "bs:Make for Mark"))

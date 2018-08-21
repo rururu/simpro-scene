@@ -1,4 +1,4 @@
-; Mon Aug 20 21:23:12 MSK 2018
+; Tue Aug 21 21:36:39 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,7 +22,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING GO_ON_MARK UNDEFINED)
+		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -37,9 +37,18 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot tack
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot command
+		(type SYMBOL)
+		(allowed-values MAKE-FOR-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -56,7 +65,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING GO_ON_MARK UNDEFINED)
+		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mark
@@ -151,6 +160,23 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Crew
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot command
+		(type SYMBOL)
+		(allowed-values MAKE-FOR-MARK)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mark
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
