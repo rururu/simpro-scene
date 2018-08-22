@@ -1,4 +1,4 @@
-; Tue Aug 21 21:36:39 MSK 2018
+; Wed Aug 22 21:50:50 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,6 +10,11 @@
 	(single-slot wind
 		(type SYMBOL)
 		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot turn
+		(type SYMBOL)
+		(allowed-values GYBE GO-ABOUT DONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -66,6 +71,11 @@
 	(single-slot status
 		(type SYMBOL)
 		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot turn
+		(type SYMBOL)
+		(allowed-values GYBE GO-ABOUT DONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mark
