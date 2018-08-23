@@ -1,4 +1,4 @@
-; Wed Aug 22 21:50:50 MSK 2018
+; Thu Aug 23 21:51:32 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -70,7 +70,7 @@
 		[SailExpert_Class50002]
 		[SailExpert_Class50006]
 		[SailExpert_Class60000])
-	(mode run)
+	(mode trace-long)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011])
@@ -376,7 +376,7 @@
 ([SailExpert_Class50007] of  Rule
 
 	(lhs "?b (Boat wind UNDEFINED\n	course ?crs\n	tack-angle ?taa)\n(Wind direction ?wnd)")
-	(rhs "(let [hta (/ ?taa 2)\n       dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(> dif 168.75) 'STERNWIND\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'HALFWIND\n	(> dif hta) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b wind wnd tack tck)\n  (println \"Boat on\" tck \"tack and on\" wnd))")
+	(rhs "(let [dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(> dif 168.75) 'STERNWIND\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'HALFWIND\n	(> dif ?taa) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b wind wnd tack tck turn 'DONE)\n  (println \"Boat on\" tck \"tack and on\" wnd))")
 	(salience -1)
 	(title "bs:Boat Wind and Tack"))
 
@@ -396,7 +396,7 @@
 ([SailExpert_Class60002] of  Rule
 
 	(lhs "(Wind direction ?wnd)\n?b (Boat status BEATING\n	wind HEADWIND\n	label ?boat\n	course ?crs\n	tack-angle ?taa)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         hta (/ ?taa 2)\n         crs (if (> ?wnd ?crs)\n	(- ?wnd hta e)\n	(+ ?wnd hta e))\n         crs (sail.exp/trim-bear crs)]\n    (.setCourse bmo (int crs))\n    (modify ?b wind 'UNDEFINED)))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         crs (if (> ?wnd ?crs)\n	(- ?wnd ?taa e)\n	(+ ?wnd ?taa e))\n         crs (sail.exp/trim-bear crs)]\n    (.setCourse bmo (int crs))\n    (modify ?b wind 'UNDEFINED)))")
 	(salience 0)
 	(title "bs:Select Beating Tack"))
 
@@ -410,13 +410,13 @@
 ([SailExpert_Class70000] of  Rule
 
 	(lhs "?b (Boat status BEATING\n	wind CLOSEHAULED\n	turn DONE\n	label ?boat\n	tack-angle ?taa\n	course ?crs\n	mark ?mark)\n(Mark label ?mark)\n(Clock)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [e 2\n           hta (/ ?taa 2)\n           bea (int (.bearingsDeg bmo mmo))\n           dif (Math/abs (- ?crs bea))]\n      (when (> dif (+ hta e))\n        (println \"Boat\" ?boat \"turn:\" 'GO-ABOUT)\n        (modify ?b turn 'GO-ABOUT)))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [e 2\n           bea (int (.bearingsDeg bmo mmo))\n           dif (Math/abs (- ?crs bea))]\n      (println :CRS ?crs :BEA bea :DIF dif :LIM (int (+ ?taa e)))\n      (when (> dif (+ ?taa e))\n        (println \"Boat\" ?boat \"turn:\" 'GO-ABOUT)\n        (modify ?b turn 'GO-ABOUT)))))")
 	(salience 0)
 	(title "bs:Beating Till Gainful"))
 
 ([SailExpert_Class80000] of  Rule
 
 	(lhs "?b (Boat turn GO-ABOUT\n	wind CLOSEHAULED\n	label ?boat\n	course ?crs\n	tack-angle ?taa\n	tack ?tack)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         crs (condp = ?tack \n                 'STARBOARD (+ ?crs ?taa (* 2 e))\n                 'PORT (- ?crs ?taa (* 2 e)))\n         crs (sail.exp/trim-bear crs)]\n    (.setCourse bmo crs)\n    (modify ?b turn 'DONE)))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         trn (* 2 (+ ?taa e))\n         crs (condp = ?tack \n                 'STARBOARD (+ ?crs trn)\n                 'PORT (- ?crs trn))\n         crs (sail.exp/trim-bear crs)]\n    (modify ?b turn 'DOING)\n    (.setCourse bmo crs)))")
 	(salience 0)
 	(title "bs:Go-about While Beating"))
