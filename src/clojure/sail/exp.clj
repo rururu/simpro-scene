@@ -1,8 +1,10 @@
 (ns sail.exp
+(:use protege.core)
 (:require
   [rete.core :as rete])
 (:import
   ru.igis.omtab.OMT
+  ru.igis.omtab.MapOb
   ru.igis.omtab.Clock
   java.awt.event.ActionListener
   java.util.TimerTask))
@@ -13,7 +15,8 @@
   ;;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
 (let [tpe (.getActionCommand evt)
        obj (.getSource evt)]
-  (rete/assert-frame ['MapObEvent 
+  (when (instance? ru.igis.omtab.NavOb obj)
+    (rete/assert-frame ['MapObEvent 
 	'type tpe 
 	'label (.getName obj)
 	'latitude (.getLatitude obj) 
@@ -21,7 +24,7 @@
 	'altitude (.getAltitude obj)
 	'course (.getCourse obj)
 	'speed (.getSpeed obj)])
-  (rete/fire)))
+    (rete/fire))))
 
 (defn stop-evt-listen []
   (doseq[[pg al] @EVT-LISTENERS]
@@ -76,4 +79,18 @@
 
 (defn inside [windir headwind]
 )
+
+(defn show-route [lab]
+  (if-let [mo (OMT/getMapOb lab)]
+  (let [rte (.getRoute mo)
+         deg (map #(map (fn[x] (Math/toDegrees x)) %) rte)
+         pnt (map #(str (MapOb/getDegMin (first %)) " " (MapOb/getDegMin (second %))) deg)
+         pli (foc "OMTPoly" "label" (str lab "-route"))]
+    (if-let [omo (OMT/getMapOb pli)]
+      (OMT/removeMapOb omo false))
+    (when (> (count deg) 0)
+      (ssv pli "latitude" (MapOb/getDegMin (ffirst deg)))
+      (ssv pli "longitude" (MapOb/getDegMin (second (first deg)))))
+    (ssvs pli "points" pnt)
+    (OMT/getOrAdd pli))))
 

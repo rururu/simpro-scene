@@ -1,4 +1,4 @@
-; Thu Aug 23 21:51:32 MSK 2018
+; Fri Aug 24 21:52:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -57,6 +57,18 @@
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
 	(onboard "Bylina"))
 
+([SailExpert_Class100000] of  CloFuncall
+
+	(source "b"))
+
+([SailExpert_Class100001] of  CloFuncall
+
+	(source "(.setCourse b 20)"))
+
+([SailExpert_Class100002] of  CloFuncall
+
+	(source "(.stopRoute b)"))
+
 ([SailExpert_Class10003] of  Run
 
 	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
@@ -70,7 +82,7 @@
 		[SailExpert_Class50002]
 		[SailExpert_Class50006]
 		[SailExpert_Class60000])
-	(mode trace-long)
+	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011])
@@ -128,7 +140,8 @@
 		[SailExpert_Class10018]
 		[SailExpert_Class10019]
 		[SailExpert_Class40005]
-		[SailExpert_Class50004])
+		[SailExpert_Class50004]
+		[SailExpert_Class90017])
 	(cloNamespace [SailExpert_Class10010])
 	(cloVars
 		[SailExpert_Class10011]
@@ -137,7 +150,7 @@
 
 ([SailExpert_Class10010] of  CloNamespace
 
-	(source "(:require\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  java.awt.event.ActionListener\n  java.util.TimerTask)")
+	(source "(:use protege.core)\n(:require\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.Clock\n  java.awt.event.ActionListener\n  java.util.TimerTask)")
 	(title "sail.exp"))
 
 ([SailExpert_Class10011] of  CloVar
@@ -147,7 +160,7 @@
 
 ([SailExpert_Class10012] of  CloFunction
 
-	(source ";;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [tpe (.getActionCommand evt)\n       obj (.getSource evt)]\n  (rete/assert-frame ['MapObEvent \n	'type tpe \n	'label (.getName obj)\n	'latitude (.getLatitude obj) \n	'longitude (.getLongitude obj)\n	'altitude (.getAltitude obj)\n	'course (.getCourse obj)\n	'speed (.getSpeed obj)])\n  (rete/fire))")
+	(source ";;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [tpe (.getActionCommand evt)\n       obj (.getSource evt)]\n  (when (instance? ru.igis.omtab.NavOb obj)\n    (rete/assert-frame ['MapObEvent \n	'type tpe \n	'label (.getName obj)\n	'latitude (.getLatitude obj) \n	'longitude (.getLongitude obj)\n	'altitude (.getAltitude obj)\n	'course (.getCourse obj)\n	'speed (.getSpeed obj)])\n    (rete/fire)))")
 	(title "ass-mo-event [evt]"))
 
 ([SailExpert_Class10013] of  CloFunction
@@ -188,6 +201,18 @@
 ([SailExpert_Class10023] of  Clock
 
 	(time 0))
+
+([SailExpert_Class110000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "Wind")
+	(latitude "62 25.16")
+	(longitude "6 8.88")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/wind1.png")
+	(verticalSpeed 0.0))
 
 ([SailExpert_Class2] of  NavOb
 
@@ -300,7 +325,7 @@
 	(altitude 0)
 	(course 0)
 	(label "Bylina")
-	(latitude "62 26.63")
+	(latitude "62 26.62")
 	(longitude "6 0")
 	(playground-index 0)
 	(speed 0.0)
@@ -402,15 +427,15 @@
 
 ([SailExpert_Class60003] of  Rule
 
-	(lhs "?b (Boat status UNDEFINED\n	label ?boat)\n(Mark label ?mark)\n(Crew command MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    ;;(println \"Boat\" ?boat \"ststus:\" 'CRS-ON-MARK)\n    (modify ?b status 'CRS-ON-MARK\n	wind 'UNDEFINED)))")
+	(lhs "?b (Boat status UNDEFINED\n	label ?boat)\n(Mark label ?mark)\n?c (Crew command MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    ;;(println \"Boat\" ?boat \"ststus:\" 'CRS-ON-MARK)\n    (retract ?c)\n    (modify ?b status 'CRS-ON-MARK\n	wind 'UNDEFINED)))")
 	(salience 0)
 	(title "bs:Make for Mark"))
 
 ([SailExpert_Class70000] of  Rule
 
 	(lhs "?b (Boat status BEATING\n	wind CLOSEHAULED\n	turn DONE\n	label ?boat\n	tack-angle ?taa\n	course ?crs\n	mark ?mark)\n(Mark label ?mark)\n(Clock)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [e 2\n           bea (int (.bearingsDeg bmo mmo))\n           dif (Math/abs (- ?crs bea))]\n      (println :CRS ?crs :BEA bea :DIF dif :LIM (int (+ ?taa e)))\n      (when (> dif (+ ?taa e))\n        (println \"Boat\" ?boat \"turn:\" 'GO-ABOUT)\n        (modify ?b turn 'GO-ABOUT)))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [e 2\n           bea (int (.bearingsDeg bmo mmo))\n           dif (Math/abs (- ?crs bea))]\n      (when (> dif (* 2 (+ ?taa e)))\n        (println \"Boat\" ?boat \"turn:\" 'GO-ABOUT)\n        (modify ?b turn 'GO-ABOUT)))))")
 	(salience 0)
 	(title "bs:Beating Till Gainful"))
 
@@ -420,3 +445,93 @@
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         trn (* 2 (+ ?taa e))\n         crs (condp = ?tack \n                 'STARBOARD (+ ?crs trn)\n                 'PORT (- ?crs trn))\n         crs (sail.exp/trim-bear crs)]\n    (modify ?b turn 'DOING)\n    (.setCourse bmo crs)))")
 	(salience 0)
 	(title "bs:Go-about While Beating"))
+
+([SailExpert_Class90000] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Bylina\")"))
+
+([SailExpert_Class90001] of  CloFuncall
+
+	(source "(def b (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
+
+([SailExpert_Class90002] of  CloFuncall
+
+	(source "(.setCourse b 100)"))
+
+([SailExpert_Class90003] of  CloFuncall
+
+	(source "(.setSpeed b 20)"))
+
+([SailExpert_Class90004] of  CloFuncall
+
+	(source "(.setSpeed b (double 20))"))
+
+([SailExpert_Class90005] of  CloFuncall
+
+	(source "(.setCourse b 140)"))
+
+([SailExpert_Class90006] of  CloFuncall
+
+	(source "(.setCourse b 150)"))
+
+([SailExpert_Class90007] of  CloFuncall
+
+	(source "(.getRoute b)"))
+
+([SailExpert_Class90008] of  CloFuncall
+
+	(source "(seq (.getRoute b))"))
+
+([SailExpert_Class90009] of  CloFuncall
+
+	(source "(map seq (.getRoute b))"))
+
+([SailExpert_Class90010] of  CloFuncall
+
+	(source "(map #(map (fn[x] (Math/toDegrees x)) %) (.getRoute b))"))
+
+([SailExpert_Class90011] of  CloFuncall
+
+	(source "(def r (map #(map (fn[x] (Math/toDegrees x)) %) (.getRoute b)))"))
+
+([SailExpert_Class90012] of  CloFuncall
+
+	(source "(.getNextPointIndex b)"))
+
+([SailExpert_Class90013] of  CloFuncall
+
+	(source "(r 9)"))
+
+([SailExpert_Class90014] of  CloFuncall
+
+	(source "r"))
+
+([SailExpert_Class90015] of  CloFuncall
+
+	(source "(get r 9)"))
+
+([SailExpert_Class90016] of  CloFuncall
+
+	(source "(nth r 9)"))
+
+([SailExpert_Class90017] of  CloFunction
+
+	(source "(if-let [mo (OMT/getMapOb lab)]\n  (let [rte (.getRoute mo)\n         deg (map #(map (fn[x] (Math/toDegrees x)) %) rte)\n         pnt (map #(str (MapOb/getDegMin (first %)) \" \" (MapOb/getDegMin (second %))) deg)\n         pli (foc \"OMTPoly\" \"label\" (str lab \"-route\"))]\n    (if-let [omo (OMT/getMapOb pli)]\n      (OMT/removeMapOb omo false))\n    (when (> (count deg) 0)\n      (ssv pli \"latitude\" (MapOb/getDegMin (ffirst deg)))\n      (ssv pli \"longitude\" (MapOb/getDegMin (second (first deg)))))\n    (ssvs pli \"points\" pnt)\n    (OMT/getOrAdd pli)))")
+	(title "show-route [lab]"))
+
+([SailExpert_Class90018] of  CloFuncall
+
+	(source "(sail.exp/show-route \"Bylina\")"))
+
+([SailExpert_Class90020] of  OMTPoly
+
+	(label "Bylina-route")
+	(latitude "62 26.63")
+	(lineColor "FF0000FF")
+	(longitude "6 0")
+	(playground-index 0)
+	(points
+		"62 26.63 6 0"
+		"62 25.59 6 3.9"
+		"54 48.65 1 19.62")
+	(relative FALSE))
