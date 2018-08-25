@@ -1,4 +1,4 @@
-; Fri Aug 24 21:52:07 MSK 2018
+; Sat Aug 25 05:10:39 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -94,6 +94,8 @@
 	(rules
 		[SailExpert_Class20002]
 		[SailExpert_Class50003]
+		[SailExpert_Class120001]
+		[SailExpert_Class120000]
 		[SailExpert_Class20009]
 		[SailExpert_Class50007]
 		[SailExpert_Class60003]
@@ -205,14 +207,28 @@
 ([SailExpert_Class110000] of  NavOb
 
 	(altitude 0)
-	(course 0)
+	(course 160)
 	(label "Wind")
-	(latitude "62 25.16")
-	(longitude "6 8.88")
+	(latitude "62 25")
+	(longitude "6 10")
 	(playground-index 0)
 	(speed 0.0)
 	(url "file:data/images/wind1.png")
 	(verticalSpeed 0.0))
+
+([SailExpert_Class120000] of  Rule
+
+	(lhs "?w (Wind direction ?dir)\n?moe (MapObEvent type \"UPD_COURSE\"\n	label \"Wind\"\n	course ?crs\n	(not= ?crs ?dir))")
+	(rhs "(println \"Wind new direction\" ?crs)\n(retract ?moe)\n(modify ?w direction ?crs)")
+	(salience 0)
+	(title "bs:Wind Change Direction"))
+
+([SailExpert_Class120001] of  Rule
+
+	(lhs "(Wind direction ?dir\n	latitude ?lat\n	longitude ?lon\n	(not (ru.igis.omtab.OMT/getMapOb \"Wind\")))")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Wind on map, direction\" ?dir \",coords\" [?lat ?lon]))")
+	(salience 0)
+	(title "bs:Wind on Map"))
 
 ([SailExpert_Class2] of  NavOb
 
@@ -244,7 +260,7 @@
 
 ([SailExpert_Class20002] of  Rule
 
-	(lhs "?b (Boat label ?lab course ?crs\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
+	(lhs "(Boat label ?lab course ?crs\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
 	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Boat on map:\" ?lab \", course\" ?crs))")
 	(salience 0)
 	(title "bs:Boat on Map"))
@@ -396,7 +412,9 @@
 ([SailExpert_Class50006] of  Wind
 
 	(direction 160)
-	(forse 2))
+	(forse 2)
+	(latitude "62 25")
+	(longitude "6 10"))
 
 ([SailExpert_Class50007] of  Rule
 
