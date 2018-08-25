@@ -1,4 +1,4 @@
-; Sat Aug 25 05:10:39 MSK 2018
+; Sat Aug 25 19:50:51 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -85,7 +85,9 @@
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
-		[SailExpert_Class20011])
+		[SailExpert_Class20011]
+		[SailExpert_Class130003]
+		[SailExpert_Class130004])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -93,22 +95,12 @@
 
 	(rules
 		[SailExpert_Class20002]
-		[SailExpert_Class50003]
-		[SailExpert_Class120001]
-		[SailExpert_Class120000]
 		[SailExpert_Class20009]
-		[SailExpert_Class50007]
-		[SailExpert_Class60003]
-		[SailExpert_Class60001]
-		[SailExpert_Class60002]
-		[SailExpert_Class70000]
-		[SailExpert_Class80000])
+		[SailExpert_Class50007])
 	(templates
 		[Boat]
 		[MapObEvent]
-		[Mark]
-		[Wind]
-		[Crew])
+		[Wind])
 	(title "Boat Set"))
 
 ([SailExpert_Class10005] of  %3AINSTANCE-ANNOTATION
@@ -219,16 +211,59 @@
 ([SailExpert_Class120000] of  Rule
 
 	(lhs "?w (Wind direction ?dir)\n?moe (MapObEvent type \"UPD_COURSE\"\n	label \"Wind\"\n	course ?crs\n	(not= ?crs ?dir))")
-	(rhs "(println \"Wind new direction\" ?crs)\n(retract ?moe)\n(modify ?w direction ?crs)")
+	(rhs "(println \"Wind new direction\" ?crs)\n(retract ?moe)\n(modify ?w direction ?crs\n	vary true)")
 	(salience 0)
-	(title "bs:Wind Change Direction"))
+	(title "ws:Wind Change Direction"))
 
 ([SailExpert_Class120001] of  Rule
 
 	(lhs "(Wind direction ?dir\n	latitude ?lat\n	longitude ?lon\n	(not (ru.igis.omtab.OMT/getMapOb \"Wind\")))")
 	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Wind on map, direction\" ?dir \",coords\" [?lat ?lon]))")
 	(salience 0)
-	(title "bs:Wind on Map"))
+	(title "ws:Wind on Map"))
+
+([SailExpert_Class130001] of  Rule
+
+	(lhs "?b (Boat wind ?wnd\n	(not= ?wnd 'UNDEFINED))\n(Wind vary true)")
+	(rhs "(println \"bs:Wind Vary\")\n(modify ?b wind 'UNDEFINED)")
+	(salience 1)
+	(title "ws:Wind Vary"))
+
+([SailExpert_Class130002] of  Rule
+
+	(lhs "?w (Wind vary true)")
+	(rhs "(println \"bs:Wind Stop Varying\")\n(modify ?w vary false)")
+	(salience 0)
+	(title "ws:Wind Stop Varying"))
+
+([SailExpert_Class130003] of  RuleSet
+
+	(rules
+		[SailExpert_Class120001]
+		[SailExpert_Class120000]
+		[SailExpert_Class130001]
+		[SailExpert_Class130002])
+	(templates
+		[Wind]
+		[MapObEvent]
+		[Boat])
+	(title "Wind Set"))
+
+([SailExpert_Class130004] of  RuleSet
+
+	(rules
+		[SailExpert_Class50003]
+		[SailExpert_Class60003]
+		[SailExpert_Class60001]
+		[SailExpert_Class60002]
+		[SailExpert_Class70000]
+		[SailExpert_Class80000])
+	(templates
+		[Mark]
+		[Boat]
+		[Wind]
+		[Pilot])
+	(title "Skipper Set"))
 
 ([SailExpert_Class2] of  NavOb
 
@@ -399,7 +434,7 @@
 	(lhs "(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
 	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Mark on map:\" ?lab \", coords\" [?lat ?lon]))")
 	(salience 0)
-	(title "bs:Mark on Map"))
+	(title "ss:Mark on Map"))
 
 ([SailExpert_Class50004] of  CloFunction
 
@@ -423,10 +458,10 @@
 	(salience -1)
 	(title "bs:Boat Wind and Tack"))
 
-([SailExpert_Class60000] of  Crew
+([SailExpert_Class60000] of  Pilot
 
+	(advice MAKE-FOR-MARK)
 	(boat "Bylina")
-	(command MAKE-FOR-MARK)
 	(mark "m1"))
 
 ([SailExpert_Class60001] of  Rule
@@ -434,35 +469,35 @@
 	(lhs "?b (Boat status CRS-ON-MARK\n	label ?lab\n	wind ?wnd\n	(not= ?wnd 'UNDEFINED))")
 	(rhs "(let [sts (if (= ?wnd 'HEADWIND)\n	'BEATING\n	'GO-ON-MARK)]\n  (println \"Boat\" ?lab \"status:\" sts)\n  (modify ?b status sts))")
 	(salience 0)
-	(title "bs:Boat Status"))
+	(title "ss:Boat for Mark Status"))
 
 ([SailExpert_Class60002] of  Rule
 
 	(lhs "(Wind direction ?wnd)\n?b (Boat status BEATING\n	wind HEADWIND\n	label ?boat\n	course ?crs\n	tack-angle ?taa)")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         crs (if (> ?wnd ?crs)\n	(- ?wnd ?taa e)\n	(+ ?wnd ?taa e))\n         crs (sail.exp/trim-bear crs)]\n    (.setCourse bmo (int crs))\n    (modify ?b wind 'UNDEFINED)))")
 	(salience 0)
-	(title "bs:Select Beating Tack"))
+	(title "ss:Select Beating Tack"))
 
 ([SailExpert_Class60003] of  Rule
 
-	(lhs "?b (Boat status UNDEFINED\n	label ?boat)\n(Mark label ?mark)\n?c (Crew command MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    ;;(println \"Boat\" ?boat \"ststus:\" 'CRS-ON-MARK)\n    (retract ?c)\n    (modify ?b status 'CRS-ON-MARK\n	wind 'UNDEFINED)))")
+	(lhs "?b (Boat status UNDEFINED\n	label ?boat)\n(Mark label ?mark)\n?a (Pilot advice MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    (retract ?a)\n    (modify ?b status 'CRS-ON-MARK\n	wind 'UNDEFINED)))")
 	(salience 0)
-	(title "bs:Make for Mark"))
+	(title "ss:Make for Mark Advice"))
 
 ([SailExpert_Class70000] of  Rule
 
 	(lhs "?b (Boat status BEATING\n	wind CLOSEHAULED\n	turn DONE\n	label ?boat\n	tack-angle ?taa\n	course ?crs\n	mark ?mark)\n(Mark label ?mark)\n(Clock)")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [e 2\n           bea (int (.bearingsDeg bmo mmo))\n           dif (Math/abs (- ?crs bea))]\n      (when (> dif (* 2 (+ ?taa e)))\n        (println \"Boat\" ?boat \"turn:\" 'GO-ABOUT)\n        (modify ?b turn 'GO-ABOUT)))))")
 	(salience 0)
-	(title "bs:Beating Till Gainful"))
+	(title "ss:Beating Till Gainful"))
 
 ([SailExpert_Class80000] of  Rule
 
 	(lhs "?b (Boat turn GO-ABOUT\n	wind CLOSEHAULED\n	label ?boat\n	course ?crs\n	tack-angle ?taa\n	tack ?tack)")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [e 2\n         trn (* 2 (+ ?taa e))\n         crs (condp = ?tack \n                 'STARBOARD (+ ?crs trn)\n                 'PORT (- ?crs trn))\n         crs (sail.exp/trim-bear crs)]\n    (modify ?b turn 'DOING)\n    (.setCourse bmo crs)))")
 	(salience 0)
-	(title "bs:Go-about While Beating"))
+	(title "ss:Go-about While Beating"))
 
 ([SailExpert_Class90000] of  CloFuncall
 

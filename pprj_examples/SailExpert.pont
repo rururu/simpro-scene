@@ -1,4 +1,4 @@
-; Sat Aug 25 05:10:39 MSK 2018
+; Sat Aug 25 19:50:51 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,6 +10,16 @@
 	(single-slot wind
 		(type SYMBOL)
 		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot advice
+		(type SYMBOL)
+		(allowed-values MAKE-FOR-MARK)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot vary
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot turn
@@ -49,11 +59,6 @@
 	(single-slot tack
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot command
-		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -161,6 +166,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot vary
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot latitude
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -182,19 +192,19 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Crew
+(defclass Pilot
 	(is-a SailExpert+Onto)
 	(role concrete)
-	(single-slot command
-		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mark
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot advice
+		(type SYMBOL)
+		(allowed-values MAKE-FOR-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
