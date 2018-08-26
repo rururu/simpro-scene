@@ -1,4 +1,4 @@
-; Sat Aug 25 19:50:51 MSK 2018
+; Sun Aug 26 22:07:21 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -14,17 +14,22 @@
 		(create-accessor read-write))
 	(single-slot advice
 		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK)
+		(allowed-values MAKE-FOR-MARK NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot vary
+	(single-slot shift
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
+		(allowed-values VEERING BACKING NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot turn
 		(type SYMBOL)
 		(allowed-values GYBE GO-ABOUT DONE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wind-shift
+		(type SYMBOL)
+		(allowed-values HEADER LIFT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -44,6 +49,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot shift-degrees
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot direction
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -58,7 +67,7 @@
 		(create-accessor read-write))
 	(single-slot tack
 		(type SYMBOL)
-		(allowed-values PORT STARBOARD)
+		(allowed-values PORT STARBOARD UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -99,7 +108,7 @@
 		(create-accessor read-write))
 	(single-slot tack
 		(type SYMBOL)
-		(allowed-values PORT STARBOARD)
+		(allowed-values PORT STARBOARD UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tack-angle
@@ -166,13 +175,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot vary
+	(single-slot shift
 		(type SYMBOL)
-		(allowed-values FALSE TRUE)
+		(allowed-values VEERING BACKING NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot shift-degrees
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -192,9 +205,14 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Pilot
+(defclass Skipper
 	(is-a SailExpert+Onto)
 	(role concrete)
+	(single-slot wind-shift
+		(type SYMBOL)
+		(allowed-values HEADER LIFT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -205,6 +223,6 @@
 		(create-accessor read-write))
 	(single-slot advice
 		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK)
+		(allowed-values MAKE-FOR-MARK NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
