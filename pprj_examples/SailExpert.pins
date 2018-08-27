@@ -1,4 +1,4 @@
-; Sun Aug 26 22:07:21 MSK 2018
+; Mon Aug 27 21:52:13 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -222,12 +222,19 @@
 	(salience 0)
 	(title "ws:Wind on Map"))
 
+([SailExpert_Class130000] of  Rule
+
+	(lhs "?b (Boat status BEATING\n	label ?lab\n	course ?crs\n	tack ?tack)\n?s (Skipper wind-shift LIFT\n	boat ?lab)\n(Wind shift NIL shift-degrees ?sid)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [crs (if (= ?tack 'STARBOARD)\n	(+ ?crs ?sid)\n	(- ?crs ?sid))\n         crs (int (sail.exp/trim-bear crs))]\n    (println :OCRS ?crs :SID ?sid :TACK ?tack :NCRS crs)\n    (modify ?s wind-shift 'NIL)\n    (.setCourse bmo crs)))")
+	(salience 0)
+	(title "ss:Bear Away while Beating"))
+
 ([SailExpert_Class130001] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack\n	wind ?wnd\n	(not= ?wnd 'UNDEFINED))\n?s (Skipper boat ?lab)\n(Wind shift VEERING)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws)\n  (modify ?b wind 'UNDEFINED\n	tack 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	tack ?tack)\n?s (Skipper boat ?lab\n	wind-shift NIL)\n(Wind shift VEERING)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws))")
 	(salience 1)
-	(title "ws:Boat Clousehauled Wind Veering"))
+	(title "ws:Wind Veering"))
 
 ([SailExpert_Class130002] of  Rule
 
@@ -258,7 +265,8 @@
 		[SailExpert_Class60001]
 		[SailExpert_Class60002]
 		[SailExpert_Class70000]
-		[SailExpert_Class80000])
+		[SailExpert_Class80000]
+		[SailExpert_Class130000])
 	(templates
 		[Mark]
 		[Boat]
@@ -268,10 +276,10 @@
 
 ([SailExpert_Class140002] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack\n	wind ?wnd\n	(not= ?wnd 'UNDEFINED))\n?s (Skipper boat ?lab)\n(Wind shift BACKING)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws)\n  (modify ?b wind 'UNDEFINED\n	tack 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	tack ?tack)\n?s (Skipper boat ?lab\n	wind-shift NIL)\n(Wind shift BACKING)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws))")
 	(salience 1)
-	(title "ws:Boat Clousehauled Wind Backing"))
+	(title "ws:Wind Backing"))
 
 ([SailExpert_Class150003] of  Wind
 
@@ -472,7 +480,8 @@
 
 	(advice MAKE-FOR-MARK)
 	(boat "Bylina")
-	(mark "m1"))
+	(mark "m1")
+	(wind-shift NIL))
 
 ([SailExpert_Class60001] of  Rule
 

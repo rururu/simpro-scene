@@ -1,4 +1,4 @@
-; Sun Aug 26 22:07:21 MSK 2018
+; Mon Aug 27 21:52:13 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,7 +29,7 @@
 		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
-		(allowed-values HEADER LIFT)
+		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -210,7 +210,7 @@
 	(role concrete)
 	(single-slot wind-shift
 		(type SYMBOL)
-		(allowed-values HEADER LIFT)
+		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
