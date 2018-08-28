@@ -1,4 +1,4 @@
-; Mon Aug 27 21:52:13 MSK 2018
+; Tue Aug 28 18:26:00 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -69,6 +69,10 @@
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD UNDEFINED)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot epsilon
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass SailExpert+Onto
@@ -82,18 +86,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot status
-		(type SYMBOL)
-		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot turn
 		(type SYMBOL)
 		(allowed-values GYBE GO-ABOUT DONE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot mark
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wind
@@ -208,6 +203,11 @@
 (defclass Skipper
 	(is-a SailExpert+Onto)
 	(role concrete)
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
@@ -224,5 +224,9 @@
 	(single-slot advice
 		(type SYMBOL)
 		(allowed-values MAKE-FOR-MARK NIL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot epsilon
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

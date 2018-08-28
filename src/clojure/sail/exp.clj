@@ -94,3 +94,8 @@
     (ssvs pli "points" pnt)
     (OMT/getOrAdd pli))))
 
+(defn course-away-from-mark [boat mark]
+  (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]
+  (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]
+    (Math/abs (- (.getCourse bmo) (int (.bearingsDeg bmo mmo)))))))
+

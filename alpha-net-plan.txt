@@ -1,12 +1,13 @@
 Boat:
- :?: {:? {:? {:? {:? {:? {:? {:? {:? 0, UNDEFINED 3}, GO-ABOUT {CLOSEHAULED 11}}}}, UNDEFINED {:? {:? {:? {:? 5}}}}, CRS-ON-MARK {:? {:? {:? {:? 7}}}}, BEATING {:? {:? {:? {HEADWIND 8}, DONE {CLOSEHAULED 9}}}}}}}}
-Mark:
- :?: {:? {:? {:? 1}}}
+ :?: {:? {:? {:? {:? {:? {:? 0, UNDEFINED 2, HEADWIND 13}, DONE {CLOSEHAULED 15}, GO-ABOUT {CLOSEHAULED 16}}}}}}
 MapObEvent:
- :?: {:? {:? {:? {:? {:? {:? {"UPD_COURSE" 2, :? 12}}}}}}}
+ :?: {:? {:? {:? {:? {:? {:? {"UPD_COURSE" 1, :? 4}}}}, "Wind" {:? {:? {:? {"UPD_COURSE" 6}}}}}}}
 Wind:
- :?: {:? {:? 4}}
-Crew:
- :?: {MAKE-FOR-MARK {:? {:? 6}}}
+ :?: {:? {:? {:? {:? {:? {:? 3}, VEERING {:? 8}, BACKING {:? 9}, NIL {:? 17}}}}}}
 Clock:
- :?: {:? 10}
+ :?: {:? 5}
+Skipper:
+ :?: {:? {:? {:? {:? {:? {NIL 7}, CRS-ON-MARK {:? 12}, BEATING {:? 14, LIFT 18}, GO-ON-MARK {LIFT 19}}}}}}
+ MAKE-FOR-MARK: {:? {:? {:? {:? {:? {:? 11}}}}}}
+Mark:
+ :?: {:? {:? {:? 10}}}
