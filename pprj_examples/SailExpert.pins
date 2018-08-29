@@ -1,4 +1,4 @@
-; Tue Aug 28 18:26:00 MSK 2018
+; Wed Aug 29 21:42:33 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -82,12 +82,11 @@
 		[SailExpert_Class50002]
 		[SailExpert_Class150003]
 		[SailExpert_Class60000])
-	(mode trace)
+	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011]
-		[SailExpert_Class130003]
-		[SailExpert_Class130004])
+		[SailExpert_Class130003])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -225,15 +224,15 @@
 
 ([SailExpert_Class130000] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	course ?crs\n	tack ?tack)\n(Wind shift NIL shift-degrees ?sid)\n?s (Skipper status BEATING\n	wind-shift LIFT\n	boat ?lab)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [crs (if (= ?tack 'STARBOARD)\n	(+ ?crs ?sid)\n	(- ?crs ?sid))\n         crs (int (sail.exp/trim-bear crs))]\n    (modify ?s wind-shift 'NIL)\n    (.setCourse bmo crs)))")
+	(lhs "(Skipper status BEATING\n	boat ?boat)\n(Boat wind-shift LIFT\n	label ?boat\n	course ?crs\n	tack ?tack)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [crs (if (= ?tack 'STARBOARD)\n	(+ ?crs ?sid)\n	(- ?crs ?sid))\n         crs (int (sail.exp/trim-bear crs))]\n    (.setCourse bmo crs)))")
 	(salience 0)
 	(title "ss:Bear Away on Beating"))
 
 ([SailExpert_Class130001] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack)\n?s (Skipper boat ?lab\n	wind-shift NIL)\n(Wind shift VEERING)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws)\n  (modify ?b wind 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	wind-shift NIL\n	tack ?tack)\n(Wind shift VEERING)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (modify ?b wind-shift ws\n	wind 'UNDEFINED\n	tack 'UNDEFINED))")
 	(salience 1)
 	(title "ws:Wind Veering"))
 
@@ -269,8 +268,7 @@
 		[SailExpert_Class70000]
 		[SailExpert_Class80000]
 		[SailExpert_Class130000]
-		[SailExpert_Class160004]
-		[SailExpert_Class150000])
+		[SailExpert_Class160004])
 	(templates
 		[Mark]
 		[Boat]
@@ -285,17 +283,10 @@
 
 ([SailExpert_Class140002] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack)\n?s (Skipper boat ?lab\n	wind-shift NIL)\n(Wind shift BACKING)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Skipper\" ?lab \"wind shift\" ws)\n  (modify ?s wind-shift ws)\n  (modify ?b wind 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	wind-shift NIL\n	tack ?tack)\n(Wind shift BACKING)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (modify ?b wind-shift ws\n	wind 'UNDEFINED\n	tack 'UNDEFINED))")
 	(salience 1)
 	(title "ws:Wind Backing"))
-
-([SailExpert_Class150000] of  Rule
-
-	(lhs "(Wind shift NIL)\n?s (Skipper status GO-ON-MARK\n	wind-shift LIFT)")
-	(rhs "(modify ?s wind-shift 'NIL\n	advice 'TRIM-SAILS)")
-	(salience 0)
-	(title "ss:Lift on Sraight Course"))
 
 ([SailExpert_Class150003] of  Wind
 
@@ -306,6 +297,17 @@
 	(shift NIL)
 	(shift-degrees 0))
 
+([SailExpert_Class160000] of  Rule
+
+	(lhs "?b (Boat wind-shift HEADER\n	label ?lab\n	course ?crs\n	tack ?tack)\n?s (Skipper status BEATING\n	boat ?lab)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (if (> ?sid 12)\n    (modify ?b turn 'GO-ABOUT)\n    (let [crs (if (= ?tack 'STARBOARD)\n	(- ?crs ?sid)\n	(+ ?crs ?sid))\n           crs (int (sail.exp/trim-bear crs))]\n      (println :OCRS ?crs :SID ?sid :NCRS crs)\n      (.setCourse bmo crs))))")
+	(salience 0)
+	(title "ss:Luff on Beating"))
+
+([SailExpert_Class160001] of  CloFuncall
+
+	(source "(ru.rules/f 18)"))
+
 ([SailExpert_Class160003] of  Rule
 
 	(lhs "?s (Skipper status CRS-ON-MARK\n	boat ?boat)\n?b (Boat label ?boat\n	wind ?wnd \n	(not= ?wnd 'HEADWIND))")
@@ -315,8 +317,8 @@
 
 ([SailExpert_Class160004] of  Rule
 
-	(lhs "(Wind shift NIL shift-degrees ?sid)\n?s (Skipper status BEATING\n	wind-shift LIFT\n	boat ?boat\n	mark ?mark\n	(< (sail.exp/course-away-from-mark ?boat ?mark) ?sid))")
-	(rhs "(println \"Skipper\" ?boat \"status\" 'GO-ON-MARK)\n(modify ?s wind-shift 'NIL\n	status 'GO-ON-MARK)")
+	(lhs "?s (Skipper status BEATING\n	boat ?lab\n	mark ?mark)\n(Boat wind-shift LIFT\n	label ?lab\n	(< (sail.exp/course-away-from-mark ?boat ?mark) ?sid))")
+	(rhs "(println \"Skipper\" ?boat \"status\" 'GO-ON-MARK)\n(modify ?s status 'GO-ON-MARK)")
 	(salience 1)
 	(title "ss:Bear Away till Can on Mark"))
 
@@ -336,7 +338,8 @@
 
 	(course 0)
 	(label "Bylina")
-	(tack-angle 38))
+	(tack-angle 38)
+	(wind-shift NIL))
 
 ([SailExpert_Class20001] of  Rule
 
@@ -499,8 +502,8 @@
 ([SailExpert_Class50007] of  Rule
 
 	(lhs "?b (Boat wind UNDEFINED\n	course ?crs\n	tack-angle ?taa)\n(Wind direction ?wnd)")
-	(rhs "(let [dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(> dif 168.75) 'STERNWIND\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'HALFWIND\n	(> dif ?taa) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b wind wnd tack tck turn 'DONE)\n  (println \"Boat on\" tck \"tack and on\" wnd))")
-	(salience 1)
+	(rhs "(let [dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       wnd (cond	(> dif 168.75) 'STERNWIND\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'HALFWIND\n	(> dif ?taa) 'CLOSEHAULED\n	true 'HEADWIND)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b wind wnd tack tck wind-shift 'NIL)\n  (println \"Boat on\" tck \"tack and on\" wnd))")
+	(salience -1)
 	(title "bs:Boat Wind and Tack"))
 
 ([SailExpert_Class60000] of  Skipper
@@ -509,12 +512,11 @@
 	(boat "Bylina")
 	(epsilon 2)
 	(mark "m1")
-	(status UNDEFINED)
-	(wind-shift NIL))
+	(status UNDEFINED))
 
 ([SailExpert_Class60001] of  Rule
 
-	(lhs "?s (Skipper status CRS-ON-MARK\n	boat ?boat)\n?b (Boat wind HEADWIND\n	label ?boat)")
+	(lhs "?s (Skipper status CRS-ON-MARK\n	boat ?boat)\n(Boat wind HEADWIND\n	label ?boat)")
 	(rhs "(modify ?s status 'BEATING)")
 	(salience 0)
 	(title "ss:Status Beating"))

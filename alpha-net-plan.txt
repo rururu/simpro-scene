@@ -1,13 +1,8 @@
 Boat:
- :?: {:? {:? {:? {:? {:? {:? 0, UNDEFINED 2, HEADWIND 13}, DONE {CLOSEHAULED 15}, GO-ABOUT {CLOSEHAULED 16}}}}}}
+ :?: {:? {:? {:? {:? {:? {:? 0, UNDEFINED 2}}}}}}
 MapObEvent:
  :?: {:? {:? {:? {:? {:? {:? {"UPD_COURSE" 1, :? 4}}}}, "Wind" {:? {:? {:? {"UPD_COURSE" 6}}}}}}}
 Wind:
- :?: {:? {:? {:? {:? {:? {:? 3}, VEERING {:? 8}, BACKING {:? 9}, NIL {:? 17}}}}}}
+ :?: {:? {:? {:? {:? {:? {:? 3}, VEERING {:? 7}, BACKING {:? 8}}}}}}
 Clock:
  :?: {:? 5}
-Skipper:
- :?: {:? {:? {:? {:? {:? {NIL 7}, CRS-ON-MARK {:? 12}, BEATING {:? 14, LIFT 18}, GO-ON-MARK {LIFT 19}}}}}}
- MAKE-FOR-MARK: {:? {:? {:? {:? {:? {:? 11}}}}}}
-Mark:
- :?: {:? {:? {:? 10}}}

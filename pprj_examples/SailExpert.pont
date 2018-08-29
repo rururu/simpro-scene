@@ -1,4 +1,4 @@
-; Tue Aug 28 18:26:00 MSK 2018
+; Wed Aug 29 21:42:33 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -89,6 +89,11 @@
 	(single-slot turn
 		(type SYMBOL)
 		(allowed-values GYBE GO-ABOUT DONE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wind-shift
+		(type SYMBOL)
+		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wind
@@ -206,11 +211,6 @@
 	(single-slot status
 		(type SYMBOL)
 		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wind-shift
-		(type SYMBOL)
-		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
