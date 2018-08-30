@@ -1,4 +1,4 @@
-; Wed Aug 29 21:42:33 MSK 2018
+; Thu Aug 30 21:26:14 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,7 @@
 		(create-accessor read-write))
 	(single-slot shift
 		(type SYMBOL)
-		(allowed-values VEERING BACKING NIL)
+		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot turn
@@ -89,11 +89,6 @@
 	(single-slot turn
 		(type SYMBOL)
 		(allowed-values GYBE GO-ABOUT DONE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wind-shift
-		(type SYMBOL)
-		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wind
@@ -177,7 +172,7 @@
 		(create-accessor read-write))
 	(single-slot shift
 		(type SYMBOL)
-		(allowed-values VEERING BACKING NIL)
+		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
@@ -228,5 +223,18 @@
 		(create-accessor read-write))
 	(single-slot epsilon
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WindShift
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot shift
+		(type SYMBOL)
+		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
