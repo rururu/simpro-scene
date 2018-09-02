@@ -1,4 +1,4 @@
-; Thu Aug 30 21:26:14 MSK 2018
+; Sun Sep 02 22:07:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,11 +7,6 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot wind
-		(type SYMBOL)
-		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot advice
 		(type SYMBOL)
 		(allowed-values MAKE-FOR-MARK NIL)
@@ -20,6 +15,11 @@
 	(single-slot shift
 		(type SYMBOL)
 		(allowed-values VEERING BACKING NIL LIFT HEADER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sail-point
+		(type SYMBOL)
+		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot turn
@@ -91,14 +91,14 @@
 		(allowed-values GYBE GO-ABOUT DONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot wind
-		(type SYMBOL)
-		(allowed-values HEADWIND CLOSEHAULED HALFWIND BROADREACH STERNWIND UNDEFINED)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot course
 		(type INTEGER)
 		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tack
@@ -108,6 +108,11 @@
 		(create-accessor read-write))
 	(single-slot tack-angle
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sail-point
+		(type SYMBOL)
+		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

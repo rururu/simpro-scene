@@ -1,4 +1,4 @@
-; Thu Aug 30 21:26:14 MSK 2018
+; Sun Sep 02 22:07:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -172,28 +172,28 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Move up"))
 
-([KB_163253_Class1717] of  Map
+([KB_577942_Class1717] of  Map
 
 	(entries
-		[KB_163253_Class1718]
-		[KB_163253_Class1719]
-		[KB_163253_Class1720]))
+		[KB_577942_Class1718]
+		[KB_577942_Class1719]
+		[KB_577942_Class1720]))
 
-([KB_163253_Class1718] of  Map_Entry
+([KB_577942_Class1718] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_163253_Class1719] of  Map_Entry
+([KB_577942_Class1719] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_163253_Class1720] of  Map_Entry
+([KB_577942_Class1720] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -360,7 +360,8 @@
 		[SailExpert_ProjectKB_Class21737]
 		[SailExpert_ProjectKB_Class21739]
 		[SailExpert_ProjectKB_Class41793]
-		[SailExpert_ProjectKB_Class51743]))
+		[SailExpert_ProjectKB_Class51743]
+		[SailExpert_ProjectKB_Class51731]))
 
 ([SailExpert_ProjectKB_Class11728] of  Property_List
 
@@ -504,8 +505,8 @@
 	(property_list [SailExpert_ProjectKB_Class21738])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
 	(width 100)
-	(x 100)
-	(y 60))
+	(x 10)
+	(y 300))
 
 ([SailExpert_ProjectKB_Class21738] of  Property_List
 )
@@ -514,7 +515,7 @@
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "wind")
+	(name "sail-point")
 	(property_list [SailExpert_ProjectKB_Class21740])
 	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
 	(width 200)
@@ -699,6 +700,20 @@
 	(key_class "java.lang.String")
 	(value "SailExpert_ProjectKB_Class51726")
 	(value_class "java.util.Map"))
+
+([SailExpert_ProjectKB_Class51731] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "speed")
+	(property_list [SailExpert_ProjectKB_Class51732])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 100)
+	(x 100)
+	(y 60))
+
+([SailExpert_ProjectKB_Class51732] of  Property_List
+)
 
 ([SailExpert_ProjectKB_Class51743] of  Widget
 
