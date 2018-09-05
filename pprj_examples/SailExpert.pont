@@ -1,4 +1,4 @@
-; Sun Sep 02 22:07:40 MSK 2018
+; Wed Sep 05 20:44:29 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -231,7 +231,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass WindShift
+(defclass BoatWindShift
 	(is-a SailExpert+Onto)
 	(role concrete)
 	(single-slot boat

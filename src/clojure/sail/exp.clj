@@ -12,7 +12,7 @@
 (def EVT-LISTENERS (volatile! {}))
 (def ES-TIMER nil)
 (defn ass-mo-event [evt]
-  (println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
+  ;;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
 (let [tpe (.getActionCommand evt)
        obj (.getSource evt)]
   (when (instance? ru.igis.omtab.NavOb obj)

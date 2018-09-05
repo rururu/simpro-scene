@@ -1,4 +1,4 @@
-; Sun Sep 02 22:07:40 MSK 2018
+; Wed Sep 05 20:44:29 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -85,7 +85,8 @@
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
-		[SailExpert_Class20011])
+		[SailExpert_Class20011]
+		[SailExpert_Class130003])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -154,7 +155,7 @@
 
 ([SailExpert_Class10012] of  CloFunction
 
-	(source "(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [tpe (.getActionCommand evt)\n       obj (.getSource evt)]\n  (when (instance? ru.igis.omtab.NavOb obj)\n    (rete/assert-frame ['MapObEvent \n	'type tpe \n	'label (.getName obj)\n	'latitude (.getLatitude obj) \n	'longitude (.getLongitude obj)\n	'altitude (.getAltitude obj)\n	'course (.getCourse obj)\n	'speed (.getSpeed obj)])\n    (rete/fire)))")
+	(source ";;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))\n(let [tpe (.getActionCommand evt)\n       obj (.getSource evt)]\n  (when (instance? ru.igis.omtab.NavOb obj)\n    (rete/assert-frame ['MapObEvent \n	'type tpe \n	'label (.getName obj)\n	'latitude (.getLatitude obj) \n	'longitude (.getLongitude obj)\n	'altitude (.getAltitude obj)\n	'course (.getCourse obj)\n	'speed (.getSpeed obj)])\n    (rete/fire)))")
 	(title "ass-mo-event [evt]"))
 
 ([SailExpert_Class10013] of  CloFunction
@@ -231,8 +232,8 @@
 
 ([SailExpert_Class130001] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack)\n(Wind shift VEERING)\n(not WindShift boat ?lab)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (asser WindShift shift ws\n	boat ?lab)\n  (modify ?b sail-point 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	tack ?tack)\n(Wind shift VEERING)\n(not BoatWindShift boat ?lab)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'LIFT\n	'HEADER)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (asser BoatWindShift shift ws\n	boat ?lab)\n  (modify ?b sail-point 'UNDEFINED))")
 	(salience 1)
 	(title "ws:Wind Veering"))
 
@@ -256,7 +257,7 @@
 		[Wind]
 		[MapObEvent]
 		[Boat]
-		[WindShift])
+		[BoatWindShift])
 	(title "Wind Set"))
 
 ([SailExpert_Class130004] of  RuleSet
@@ -286,8 +287,8 @@
 
 ([SailExpert_Class140002] of  Rule
 
-	(lhs "?b (Boat label ?lab\n	tack ?tack)\n(Wind shift BACKING)\n(not WindShift boat ?lab)")
-	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (asser WindShift shift ws\n	boat ?lab)\n  (modify ?b sail-point 'UNDEFINED))")
+	(lhs "?b (Boat label ?lab\n	tack ?tack)\n(Wind shift BACKING)\n(not BoatWindShift boat ?lab)")
+	(rhs "(let [ws (if (= ?tack 'STARBOARD)\n	'HEADER\n	'LIFT)]\n  (println \"Boat\" ?lab \"wind shift\" ws)\n  (asser BoatWindShift shift ws\n	boat ?lab)\n  (modify ?b sail-point 'UNDEFINED))")
 	(salience 1)
 	(title "ws:Wind Backing"))
 
@@ -297,10 +298,10 @@
 
 ([SailExpert_Class150001] of  Rule
 
-	(lhs "?ws (WindShift)")
-	(rhs ";;(println \"WindShift Shift End\")\n(retract ?ws)")
+	(lhs "?bws (BoatWindShift)")
+	(rhs ";;(println \"Boat Wind Shift End\")\n(retract ?bws)")
 	(salience -1)
-	(title "ws:WindShift Shift End"))
+	(title "ws:Boat Wind Shift End"))
 
 ([SailExpert_Class150003] of  Wind
 
@@ -339,7 +340,7 @@
 ([SailExpert_Class170000] of  Rule
 
 	(lhs "(Boat label ?lab	sail-point ?slp\n	speed ?spd)")
-	(rhs "(println ?spd (type ?spd) (* ?spd 0.8) (type (* ?spd 0.8)))\n(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (.setSpeed bmo (condp = ?slp\n	'RUNNING 	 (double ?spd)\n	'BROADREACH	 (* ?spd 0.8)\n	'BEAMREACH	 (* ?spd 0.7)\n	'CLOSEREACH	 (* ?spd 0.6)\n	'CLOSEHAULED	 (* ?spd 0.5)\n	0.0)))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [osp (.getSpeed bmo)\n         nsp (condp = ?slp\n	'RUNNING 	 ?spd\n	'BROADREACH	 (* ?spd 0.8)\n	'BEAMREACH	 (* ?spd 0.7)\n	'CLOSEREACH	 (* ?spd 0.6)\n	'CLOSEHAULED	 (* ?spd 0.5)\n	0.0)\n         nsp (double (Math/round nsp))]\n    (if (not= nsp osp)\n      (if (= nsp 0.0)\n        (.stopRoute bmo)\n        (.setSpeed bmo nsp)))))")
 	(salience 0)
 	(title "bs:Boat Speed"))
 
@@ -657,12 +658,28 @@
 ([SailExpert_Class90020] of  OMTPoly
 
 	(label "Bylina-route")
-	(latitude "62 26.63")
+	(latitude "62 33.4")
 	(lineColor "FF0000FF")
-	(longitude "6 0")
+	(longitude "6 14.73")
 	(playground-index 0)
 	(points
-		"62 26.63 6 0"
-		"62 25.59 6 3.9"
-		"54 48.65 1 19.62")
+		"62 33.4 6 14.73"
+		"62 33.27 6 16.3"
+		"62 33.27 6 16.3"
+		"62 33.01 6 17.26"
+		"62 33.01 6 17.26"
+		"62 32.66 6 16.98"
+		"62 32.66 6 16.98"
+		"62 32.25 6 16.22"
+		"62 32.25 6 16.22"
+		"62 32.02 6 15.38"
+		"62 31.94 6 14.34"
+		"62 31.94 6 14.34"
+		"62 32.03 6 13.25"
+		"62 32.24 6 12.44"
+		"62 32.57 6 11.85"
+		"62 32.57 6 11.85"
+		"62 32.97 6 11.53"
+		"62 32.97 6 11.53"
+		"62 44.97 6 11.53")
 	(relative FALSE))
