@@ -1,4 +1,4 @@
-; Wed Sep 05 20:44:29 MSK 2018
+; Thu Sep 06 21:38:16 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,7 +42,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -210,7 +210,7 @@
 	(role concrete)
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING GO-ON-MARK UNDEFINED CRS-ON-MARK)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat

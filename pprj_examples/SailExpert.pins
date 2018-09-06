@@ -1,4 +1,4 @@
-; Wed Sep 05 20:44:29 MSK 2018
+; Thu Sep 06 21:38:16 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -80,13 +80,14 @@
 		[SailExpert_Class10023]
 		[SailExpert_Class20000]
 		[SailExpert_Class50002]
-		[SailExpert_Class150003])
-	(instances [SailExpert_Class60000])
+		[SailExpert_Class150003]
+		[SailExpert_Class60000])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011]
-		[SailExpert_Class130003])
+		[SailExpert_Class130003]
+		[SailExpert_Class130004])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -264,15 +265,7 @@
 
 	(rules
 		[SailExpert_Class50003]
-		[SailExpert_Class60003]
-		[SailExpert_Class60001]
-		[SailExpert_Class160003]
-		[SailExpert_Class60002]
-		[SailExpert_Class70000]
-		[SailExpert_Class80000]
-		[SailExpert_Class130000]
-		[SailExpert_Class160004]
-		[SailExpert_Class160000])
+		[SailExpert_Class60001])
 	(templates
 		[Mark]
 		[Boat]
@@ -322,13 +315,6 @@
 ([SailExpert_Class160001] of  CloFuncall
 
 	(source "(ru.rules/f 18)"))
-
-([SailExpert_Class160003] of  Rule
-
-	(lhs "?s (Skipper status CRS-ON-MARK\n	boat ?boat)\n?b (Boat label ?boat\n	wind ?wnd \n	(not= ?wnd 'HEADWIND))")
-	(rhs "(modify ?s status 'GO-ON-MARK)")
-	(salience 0)
-	(title "ss:Status Go on Mark"))
 
 ([SailExpert_Class160004] of  Rule
 
@@ -545,10 +531,10 @@
 
 ([SailExpert_Class60001] of  Rule
 
-	(lhs "?s (Skipper status CRS-ON-MARK\n	boat ?boat)\n(Boat wind HEADWIND\n	label ?boat)")
-	(rhs "(modify ?s status 'BEATING)")
+	(lhs "(Mark label ?mark)\n(Wind direction ?wnd)\n?s (Skipper mark ?mark\n	boat ?boat\n	status ?sts\n	epsilon ?e)\n(Boat label ?boat\n	tack-angle ?taa)\n(Clock)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [bea (.bearingsDeg bmo mmo)\n           dif (if (> bea ?wnd) (- bea ?wnd) (- ?wnd bea))\n           dif (if (> dif 180) (- 360 dif) dif)\n           sts (if (> dif (+ ?taa ?e)) \n	'CAN-ON-MARK\n	'BEATING)]\n      (when (not= sts ?sts)\n        (println \"Skipper\" ?boat \"status\" sts)\n        (modify ?s status sts)))))")
 	(salience 0)
-	(title "ss:Status Beating"))
+	(title "ss:Skipper Status"))
 
 ([SailExpert_Class60002] of  Rule
 
