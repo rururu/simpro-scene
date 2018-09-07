@@ -1,4 +1,4 @@
-; Thu Sep 06 21:38:16 MSK 2018
+; Fri Sep 07 21:05:24 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -265,7 +265,8 @@
 
 	(rules
 		[SailExpert_Class50003]
-		[SailExpert_Class60001])
+		[SailExpert_Class60001]
+		[SailExpert_Class60002])
 	(templates
 		[Mark]
 		[Boat]
@@ -538,8 +539,8 @@
 
 ([SailExpert_Class60002] of  Rule
 
-	(lhs "(Wind direction ?wnd)\n?b (Boat wind HEADWIND\n	label ?boat\n	course ?crs\n	tack-angle ?taa)\n?s (Skipper status BEATING\n	epsilon ?e)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [crs (if (> ?wnd ?crs)\n	(- ?wnd ?taa ?e)\n	(+ ?wnd ?taa ?e))\n         crs (sail.exp/trim-bear crs)]\n    (.setCourse bmo (int crs))))")
+	(lhs "(Mark label ?mark)\n(Skipper status BEATING\n	mark ?mark\n	boat ?boat\n	epsilon ?e)\n(Boat label ?boat\n	tack-angle ?taa)\n(Wind direction ?wnd)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [bea (.bearingsDeg bmo mmo)\n           crs (if (> ?wnd bea)\n	(- ?wnd ?taa ?e)\n	(+ ?wnd ?taa ?e))\n           crs (sail.exp/trim-bear crs)]\n      (.setCourse bmo (int crs)))))")
 	(salience 0)
 	(title "ss:Select Beating Tack"))
 
