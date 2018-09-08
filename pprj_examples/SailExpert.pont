@@ -1,4 +1,4 @@
-; Fri Sep 07 21:05:24 MSK 2018
+; Sat Sep 08 21:27:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,9 +7,8 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot advice
-		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK NIL)
+	(single-slot route
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot shift
@@ -65,9 +64,19 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot marks
+		(type INSTANCE)
+;+		(allowed-classes Mark)
+		(create-accessor read-write))
 	(single-slot tack
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lap
+		(type INTEGER)
+		(range 0 %3FVARIABLE)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot epsilon
@@ -189,22 +198,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Mark
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot latitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Skipper
 	(is-a SailExpert+Onto)
 	(role concrete)
@@ -221,9 +214,14 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot advice
-		(type SYMBOL)
-		(allowed-values MAKE-FOR-MARK NIL)
+	(single-slot lap
+		(type INTEGER)
+		(range 0 %3FVARIABLE)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot epsilon
@@ -242,4 +240,20 @@
 		(type SYMBOL)
 		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Mark
+	(is-a NavOb SailExpert+Onto)
+	(role concrete))
+
+(defclass Route
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot marks
+		(type INSTANCE)
+;+		(allowed-classes Mark)
 		(create-accessor read-write)))
