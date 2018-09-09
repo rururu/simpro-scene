@@ -1,4 +1,4 @@
-; Sat Sep 08 21:27:42 MSK 2018
+; Sun Sep 09 21:57:40 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -269,13 +269,15 @@
 		[SailExpert_Class60002]
 		[SailExpert_Class180000]
 		[SailExpert_Class180001]
-		[SailExpert_Class190009])
+		[SailExpert_Class190009]
+		[SailExpert_Class230009])
 	(templates
 		[Mark]
 		[Boat]
 		[Wind]
 		[Skipper]
-		[Route])
+		[Route]
+		[Depth])
 	(title "Skipper Set"))
 
 ([SailExpert_Class140000] of  CloFunction
@@ -349,7 +351,7 @@
 ([SailExpert_Class180001] of  Rule
 
 	(lhs "(Route title ?tit	marks ?mm)\n(Mark label ?mark)\n?s (Skipper mark ?mark\n	route ?tit\n	lap ?lap\n	boat ?boat\n	status ?sts\n	(not= ?sts 'UNDEFINED))\n(Boat label ?boat)\n(Clock (sail.exp/abaft ?boat ?mark))")
-	(rhs "(println \"Boat\" ?boat \"abaft the mark\" ?mark)\n(if (> ?lap (count ?mm))\n  (println \"Boat\" ?boat \"finished route\" ?tit)\n  (let [mkn (nth ?mm ?lap)\n         mkl (protege.core/sv mkn \"label\")]\n    (ru.rules/assert-instances [mkn])\n    (modify ?s status 'UNDEFINED\n	mark mkl\n	lap (inc ?lap))\n    (println \"Boat\" ?boat \"go on next mark\" mkl)))")
+	(rhs "(println \"Boat\" ?boat \"abaft the mark\" ?mark)\n(if (>= ?lap (count ?mm))\n  (do (println \"Boat\" ?boat \"finished route\" ?tit)\n    (modify ?s status 'UNDEFINED\n	mark \"NIL\"\n	route (str ?tit \" - finished!\")\n	lap 0))    \n  (let [mkn (nth ?mm ?lap)\n         mkl (protege.core/sv mkn \"label\")]\n    (ru.rules/assert-instances [mkn])\n    (modify ?s status 'UNDEFINED\n	mark mkl\n	lap (inc ?lap))\n    (println \"Boat\" ?boat \"go on next mark\" mkl)))")
 	(salience 0)
 	(title "ss:Mark Abaft"))
 
@@ -437,12 +439,12 @@
 ([SailExpert_Class20000] of  Boat
 
 	(course 0)
+	(depth-interval 60)
 	(label "Bylina")
 	(sail-point UNDEFINED)
 	(speed 12.0)
 	(tack UNDEFINED)
-	(tack-angle 38)
-	(turn DONE))
+	(tack-angle 38))
 
 ([SailExpert_Class200000] of  CloFuncall
 
@@ -478,7 +480,7 @@
 ([SailExpert_Class20002] of  Rule
 
 	(lhs "(Boat label ?lab course ?crs\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Boat on map:\" ?lab \", course\" ?crs))")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (asser Depth boat ?lab\n	depth-time 0)\n  (println \"Boat on map:\" ?lab \", course\" ?crs))")
 	(salience 0)
 	(title "bs:Boat on Map"))
 
@@ -627,13 +629,123 @@
 ([SailExpert_Class220000] of  OMTPoly
 
 	(label "Bylina-route")
-	(latitude "62 22.06")
-	(longitude "6 10.14")
+	(latitude "62 26.62")
+	(longitude "6 0")
 	(playground-index 0)
 	(points
-		"62 22.06 6 10.14"
-		"62 25.91 6 20.07")
+		"62 26.62 6 0"
+		"62 26.62 6 0"
+		"62 25.58 6 3.89"
+		"62 24.18 6 2.78"
+		"62 23.19 6 6.47"
+		"62 22.69 6 6.08"
+		"62 22.05 6 9.87"
+		"62 21.97 6 10.16"
+		"62 22.91 6 14.97"
+		"62 22.86 6 15.17"
+		"62 23.7 6 21.99"
+		"62 24.91 6 26.52"
+		"62 25.02 6 31.22"
+		"62 24.97 6 31.42"
+		"62 26.04 6 34.49"
+		"62 27.75 6 41.76"
+		"62 27.85 6 44.31"
+		"62 27.09 6 36.26"
+		"62 26.94 6 34.56"
+		"62 26.87 6 32.83")
 	(relative FALSE))
+
+([SailExpert_Class230000] of  CloProgram
+
+	(cloFunctions [SailExpert_Class230002])
+	(cloNamespace [SailExpert_Class230001])
+	(cloVars
+		[SailExpert_Class230004]
+		[SailExpert_Class230003])
+	(title "geonames"))
+
+([SailExpert_Class230001] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  clojure.xml)\n(:import java.net.URL)\n(:gen-class :load-impl-ns false)")
+	(title "geo.names"))
+
+([SailExpert_Class230002] of  CloFunction
+
+	(source ";; Get elevation (step 30m) from Geonames Web Service\n;; Arguments can be vectors (length <= 20 on free server)\n(let [url (if (vector? lat)\n	(let [lats (apply str (interpose \",\" lat))\n	       lngs (apply str (interpose \",\" lng))]\n	   (str *elev30-url* \"?lats=\" lats \"&lngs=\" lngs))\n	(str *elev30-url* \"?lat=\" lat \"&lng=\" lng))\n       url (str url \"&type=XML&username=\" *username*)]\n (try\n  (if-let [xml (clojure.xml/parse url)]\n    (if (vector? lat)\n        (map #(first (:content %)) (filter #(some #{:astergdem} (vals %)) (:content xml)))\n        (first (:content (first (:content xml)) )) ))\n  (catch Exception e\n   (ctpl e)\n   ())))")
+	(title "call-geonames-elev30 [lat lng]"))
+
+([SailExpert_Class230003] of  CloVar
+
+	(source "\"http://api.geonames.org/astergdemXML\"")
+	(title "^:dynamic *elev30-url*"))
+
+([SailExpert_Class230004] of  CloVar
+
+	(source "\"liikalanjoki\"")
+	(title "^:dynamic *username*"))
+
+([SailExpert_Class230005] of  CloFuncall
+
+	(source "(geo.names/call-geonames-elev30 62.426 6.069)"))
+
+([SailExpert_Class230006] of  CloFuncall
+
+	(source "(geo.names/call-geonames-elev30 62.426 6.068)"))
+
+([SailExpert_Class230007] of  CloFuncall
+
+	(source "(geo.names/call-geonames-elev30 62.426 6.067)"))
+
+([SailExpert_Class230008] of  CloFuncall
+
+	(source "(geo.names/call-geonames-elev30 62.426 6.066)"))
+
+([SailExpert_Class230009] of  Rule
+
+	(lhs "(Boat label ?boat\n	depth-interval ?di)\n?d (Depth boat ?boat\n	depth-time ?dt)\n(Clock time ?t (> ?t ?dt))")
+	(rhs "(println :DDA)\n(modify ?d depth-time (+ ?t ?di))")
+	(salience 0)
+	(title "ss:Dangerous Depth Ahead"))
+
+([SailExpert_Class230010] of  CloFuncall
+
+	(source "(rem 12345 60)"))
+
+([SailExpert_Class230011] of  CloFuncall
+
+	(source "(rem 12300 60)"))
+
+([SailExpert_Class230012] of  CloFuncall
+
+	(source "(rem 12340 60)"))
+
+([SailExpert_Class230013] of  CloFuncall
+
+	(source "(rem 12359 60)"))
+
+([SailExpert_Class230014] of  CloFuncall
+
+	(source "(rem 12360 60)"))
+
+([SailExpert_Class230015] of  CloFuncall
+
+	(source "(rem 12361 60)"))
+
+([SailExpert_Class230016] of  CloFuncall
+
+	(source "(rem 12362 60)"))
+
+([SailExpert_Class230017] of  CloFuncall
+
+	(source "(rem 12400 60)"))
+
+([SailExpert_Class230018] of  CloFuncall
+
+	(source "(rem 12419 60)"))
+
+([SailExpert_Class230019] of  CloFuncall
+
+	(source "(rem 12420 60)"))
 
 ([SailExpert_Class30000] of  CloFuncall
 
@@ -756,13 +868,6 @@
 	(salience 0)
 	(title "ss:Select Beating Course"))
 
-([SailExpert_Class60003] of  Rule
-
-	(lhs "?b (Boat label ?boat)\n(Mark label ?mark)\n?s (Skipper advice MAKE-FOR-MARK\n	boat ?boat\n	mark ?mark)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (.setCourse bmo (int (.bearingsDeg bmo mmo)))\n    (modify ?s advice 'NIL\n	status 'CRS-ON-MARK)))")
-	(salience 0)
-	(title "ss:Make for Mark Advice"))
-
 ([SailExpert_Class70000] of  Rule
 
 	(lhs "?s (Skipper status BEATING\n	mark ?mark\n	boat ?boat\n	epsilon ?e)\n?b (Boat wind CLOSEHAULED\n	turn DONE\n	label ?boat\n	tack-angle ?taa)\n(Clock (> (sail.exp/course-away-from-mark ?boat ?mark) (* 2 (+ ?taa ?e))))")
@@ -784,38 +889,6 @@
 ([SailExpert_Class90001] of  CloFuncall
 
 	(source "(def b (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
-
-([SailExpert_Class90002] of  CloFuncall
-
-	(source "(.setCourse b 100)"))
-
-([SailExpert_Class90003] of  CloFuncall
-
-	(source "(.setSpeed b 20)"))
-
-([SailExpert_Class90004] of  CloFuncall
-
-	(source "(.setSpeed b (double 20))"))
-
-([SailExpert_Class90005] of  CloFuncall
-
-	(source "(.setCourse b 140)"))
-
-([SailExpert_Class90006] of  CloFuncall
-
-	(source "(.setCourse b 150)"))
-
-([SailExpert_Class90007] of  CloFuncall
-
-	(source "(.getRoute b)"))
-
-([SailExpert_Class90008] of  CloFuncall
-
-	(source "(seq (.getRoute b))"))
-
-([SailExpert_Class90009] of  CloFuncall
-
-	(source "(map seq (.getRoute b))"))
 
 ([SailExpert_Class90017] of  CloFunction
 
