@@ -9,37 +9,7 @@
   java.awt.event.ActionListener
   java.util.TimerTask))
 
-(def EVT-LISTENERS (volatile! {}))
 (def ES-TIMER nil)
-(defn ass-mo-event [evt]
-  ;;(println :ASS-MO-EVENT (.getActionCommand evt) (.getName (.getSource evt)))
-(let [tpe (.getActionCommand evt)
-       obj (.getSource evt)]
-  (when (instance? ru.igis.omtab.NavOb obj)
-    (rete/assert-frame ['MapObEvent 
-	'type tpe 
-	'label (.getName obj)
-	'latitude (.getLatitude obj) 
-	'longitude (.getLongitude obj)
-	'altitude (.getAltitude obj)
-	'course (.getCourse obj)
-	'speed (.getSpeed obj)])
-    (rete/fire))))
-
-(defn stop-evt-listen []
-  (doseq[[pg al] @EVT-LISTENERS]
-  (.removeActionListener pg al)))
-
-(defn start-evt-listen []
-  (stop-evt-listen)
-(doseq[pg (OMT/getPlaygrounds)]
-  (let [al (proxy [ActionListener] []
-	(actionPerformed [evt] 
-	  ;;(println :OMT-GEN-EVT evt)
-	  (ass-mo-event evt)))]
-    (.addActionListener pg al)
-    (vswap! EVT-LISTENERS assoc pg al))))
-
 (defn work-sim []
   (if (and (some? ES-TIMER) (OMT/isRunning))
   (let [msec (Clock/getClock)
@@ -52,7 +22,6 @@
   (when (some? ES-TIMER)
   (.cancel ES-TIMER)
   (def ES-TIMER nil)
-  (stop-evt-listen)
   (println "Simulation Stoped...")))
 
 (defn start-sim []
@@ -64,7 +33,6 @@
   (proxy [TimerTask] [] (run [] (work-sim)))
   (long 0) 
   (long 1000))
-(start-evt-listen)
 (println "Simulation Started..."))
 
 (defn restart-sim []
@@ -94,8 +62,8 @@
     (ssvs pli "points" pnt)
     (OMT/getOrAdd pli))))
 
-(defn abaft [boat mark]
+(defn near-and-abaft [boat mark radius]
   (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]
   (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]
-    (.abaft bmo mmo))))
+    (and (.near bmo mmo radius) (.abaft bmo mmo)))))
 

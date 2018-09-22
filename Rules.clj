@@ -1,7 +1,6 @@
 (ws:Wind Change Direction 0
 ?w (Wind direction ?dir)
-?moe (MapObEvent type "UPD_COURSE"
-	label "Wind"
+?nc (NewCourse boat "Wind"
 	course ?crs
 	(not= ?crs ?dir))
 =>
@@ -16,10 +15,12 @@
               'VEERING
               'BACKING))]
   (println "Wind" s d "new direction" ?crs)
-  (retract ?moe)
+  (retract ?nc)
   (modify ?w direction ?crs
 	shift s
-                        shift-degrees d)))
+                        shift-degrees d)
+  (if-let [wmo (ru.igis.omtab.OMT/getMapOb "Wind")]
+    (.setCourse wmo ?crs))))
 
 (ws:Wind on Map 0
 (Wind direction ?dir
@@ -51,7 +52,7 @@
          crs (int (sail.exp/trim-bear crs))]
     (println "Windward" ?boat)
     (retract ?ws)
-    (.setCourse bmo crs))))
+    (asser NewCourse boat ?boat course crs))))
 
 (ws:Wind Veering 1
 ?b (Boat label ?lab
@@ -87,32 +88,36 @@
 	boat ?lab)
   (modify ?b sail-point 'UNDEFINED)))
 
-(ws:Boat Wind Shift End -1
+(ws:Boat Wind Shift End 0
 ?bws (BoatWindShift)
 =>
-;;(println "Boat Wind Shift End")
+(println "Boat Wind Shift End")
 (retract ?bws))
 
-(ss:Bear off or Go About on Beating 0
+(ss:Big Header on Beating 1
 (Skipper status BEATING
-	boat ?boat)
-?ws (WindShift boat ?boat
+	boat ?boat
+	epsilon ?e)
+(BoatWindShift boat ?boat
 	shift HEADER)
-(Wind shift-degrees ?sid)
-?b (Boat label ?boat
-	course ?crs
-	tack ?tack)
+(Boat label ?boat tack ?tack
+	tack-angle ?taa)
+(Wind direction ?dir
+	shift-degrees ?sid
+	(> ?sid 10))
+(not Advice text "BIG HEADER NEW COURSE"
+	 boat ?boat)
 =>
-(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (if (> ?sid 12)
-    (modify ?b turn 'GO-ABOUT)
-    (let [crs (if (= ?tack 'STARBOARD)
-	(- ?crs ?sid)
-	(+ ?crs ?sid))
-           crs (int (sail.exp/trim-bear crs))]
-      (println :OCRS ?crs :SID ?sid :NCRS crs)
-      (retract ?ws)
-      (.setCourse bmo crs)))))
+(let [crs (if (= ?tack 'STARBOARD)
+	(+ ?dir ?taa ?e)
+	(- ?dir ?taa ?e))
+       crs (int (sail.exp/trim-bear crs))]
+  (println "Big header on boat" ?boat "recommended course" crs)
+  (asser Advice text "BIG HEADER NEW COURSE"
+	boat ?boat
+	direction ?dir)
+  (asser NewCourse boat ?boat
+	 course crs)))
 
 (ss:Winward till Can on Mark 1
 ?s (Skipper status BEATING
@@ -157,23 +162,29 @@
 (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
   (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]
     (let [bea (.bearingsDeg bmo mmo)]
-      (.setCourse bmo (int bea))))))
+      (asser NewCourse boat ?boat course (int bea))))))
 
-(ss:Mark Abaft 0
+(ss:Mark Near and Abaft 0
 (Route title ?tit	marks ?mm)
 (Mark label ?mark)
 ?s (Skipper mark ?mark
 	route ?tit
 	lap ?lap
 	boat ?boat
+	radius ?rad
 	status ?sts
-	(not= ?sts 'UNDEFINED))
+	((not= ?sts 'UNDEFINED)
+	 (not= ?sts 'OFF-SHORE)))
 (Boat label ?boat)
-(Clock (sail.exp/abaft ?boat ?mark))
+(Clock (sail.exp/near-and-abaft ?boat ?mark ?rad))
 =>
 (println "Boat" ?boat "abaft the mark" ?mark)
-(if (> ?lap (count ?mm))
-  (println "Boat" ?boat "finished route" ?tit)
+(if (>= ?lap (count ?mm))
+  (do (println "Boat" ?boat "finished route" ?tit)
+    (modify ?s status 'UNDEFINED
+	mark "NIL"
+	route (str ?tit " - finished!")
+	lap 0))    
   (let [mkn (nth ?mm ?lap)
          mkl (protege.core/sv mkn "label")]
     (ru.rules/assert-instances [mkn])
@@ -206,7 +217,9 @@
 =>
 (when-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
   (protege.core/ssv ins "course" ?crs)
-  (ru.igis.omtab.OMT/getOrAdd ins)
+  (.setKeepRoute (ru.igis.omtab.OMT/getOrAdd ins) true)
+  (asser Depth boat ?lab
+	depth-time 0)
   (println "Boat on map:" ?lab ", course" ?crs)))
 
 (sim:RetractMapObEvent -10
@@ -216,16 +229,17 @@
 
 (bs:Boat Change Course 0
 ?b (Boat label ?lab course ?ocrs)
-?moe (MapObEvent type "UPD_COURSE"
-	label ?lab
-	course ?ncrs
-	(not= ?ncrs ?ocrs))
+?nc (NewCourse boat ?lab
+	course ?ncrs)
 =>
-(println "Boat" ?lab "new course" ?ncrs)
-(retract ?moe)
-(modify ?b course ?ncrs
+(retract ?nc)
+(if (not= ?ncrs ?ocrs)
+  (when-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]
+    (println "Boat" ?lab "new course" ?ncrs)
+    (.setCourse bmo ?ncrs)
+    (modify ?b course ?ncrs
 	sail-point 'UNDEFINED
-	tack 'UNDEFINED))
+	tack 'UNDEFINED))))
 
 (sim:RetractSecondClock 10
 ?c1 (Clock time ?t1)
@@ -233,6 +247,49 @@
 	(< ?t2 ?t1))
 =>
 (retract ?c2))
+
+(ss:Shore Ahead 0
+?s (Skipper status ?sts
+	epsilon ?e
+	boat ?boat)
+(Boat label ?boat
+	course ?crs
+	depth-interval ?di
+	tack-angle ?taa
+	tack ?tack)
+?d (Depth boat ?boat
+	depth-time ?dt)
+(Clock time ?t (> ?t ?dt))
+=>
+(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
+  (let [spd (.getSpeed bmo)
+        tim (/ ?di 3600)
+        dis (double (* spd tim))
+        [lat lon] (.position bmo (double ?crs) dis)
+        dep (read-string (geo.names/call-geonames-elev30 lat lon))]
+    (println "Boat" ?boat "future depth" dep)
+    (modify ?d depth-time (if (> ?dt 0) 
+		(+ ?dt ?di)
+		(+ ?t ?di)))
+    (if (> dep 0)
+      (if (= ?sts 'BEATING)
+        (let [trn (* 2 (+ ?taa ?e))
+               crs (condp = ?tack 
+  	'STARBOARD (+ ?crs trn)
+	'PORT (- ?crs trn))
+               crs (sail.exp/trim-bear crs)]
+          (println "Skipper" ?boat "status" 'OFF-SHORE)
+          (modify ?s status 'OFF-SHORE)
+          (asser NewCourse boat ?boat course crs)))))))
+
+(ss:End of Big Header 0
+?a (Advice text "BIG HEADER NEW COURSE"
+	direction ?dir1)
+(Wind direction ?dir2
+	(not= ?dir1 ?dir2))
+=>
+(println "End of big header")
+(retract ?a))
 
 (ss:Mark on Map 0
 (Mark label ?lab latitude ?lat
@@ -274,8 +331,9 @@
 (Wind direction ?wnd)
 ?s (Skipper mark ?mark
 	boat ?boat
+	epsilon ?e
 	status ?sts
-	epsilon ?e)
+	(not= ?sts 'OFF-SHORE))
 (Boat label ?boat
 	tack-angle ?taa)
 (Clock)
@@ -289,11 +347,10 @@
 	'CAN-ON-MARK
 	'BEATING)]
       (when (not= sts ?sts)
-        (.setCourse bmo (int bea))
         (println "Skipper" ?boat "status" sts)
         (modify ?s status sts))))))
 
-(ss:Select Beating Course 0
+(ss:Gainful Beating Course 0
 (Mark label ?mark)
 (Skipper status BEATING
 	mark ?mark
@@ -302,6 +359,8 @@
 (Boat label ?boat
 	tack-angle ?taa)
 (Wind direction ?wnd)
+(not Advice text "BIG HEADER NEW COURSE"
+	 boat ?boat)
 =>
 (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
   (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]
@@ -309,35 +368,11 @@
            crs (if (> ?wnd bea)
 	(- ?wnd ?taa ?e)
 	(+ ?wnd ?taa ?e))
-           crs (sail.exp/trim-bear crs)]
-      (.setCourse bmo (int crs))))))
-
-(ss:Make for Mark Advice 0
-?b (Boat label ?boat)
-(Mark label ?mark)
-?s (Skipper advice MAKE-FOR-MARK
-	boat ?boat
-	mark ?mark)
-=>
-(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (when-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]
-    (.setCourse bmo (int (.bearingsDeg bmo mmo)))
-    (modify ?s advice 'NIL
-	status 'CRS-ON-MARK))))
-
-(ss:Beating till Gainful 0
-?s (Skipper status BEATING
-	mark ?mark
-	boat ?boat
-	epsilon ?e)
-?b (Boat wind CLOSEHAULED
-	turn DONE
-	label ?boat
-	tack-angle ?taa)
-(Clock (> (sail.exp/course-away-from-mark ?boat ?mark) (* 2 (+ ?taa ?e))))
-=>
-(println "Boat" ?boat "turn" 'GO-ABOUT)
-(modify ?b turn 'GO-ABOUT))
+           crs (sail.exp/trim-bear crs)] 
+      (println "Gainful beating course" crs "on boat" ?boat)
+      (asser NewCourse
+	   boat ?boat 
+	   course crs)))))
 
 (ss:Go-about While Beating 0
 ?b (Boat turn GO-ABOUT
@@ -356,4 +391,14 @@
          crs (sail.exp/trim-bear crs)]
     (modify ?b turn 'DOING)
     (.setCourse bmo crs))))
+
+(ss:Gone off Shore 0
+?s (Skipper status OFF-SHORE
+	boat ?boat)
+?d (Depth boat ?boat
+	depth-time ?dt)
+(Clock time ?t (> ?t ?dt))
+=>
+(modify ?s status 'UNDEFINED)
+(modify ?d depth-time ?t))
 

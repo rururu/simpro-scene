@@ -1,4 +1,4 @@
-; Sun Sep 09 21:57:40 MSK 2018
+; Sat Sep 22 13:40:29 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -36,7 +36,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -128,42 +128,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass MapObEvent
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot type
-		(type INSTANCE)
-;+		(allowed-classes Type)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot course
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot speed
-		(type FLOAT)
-		(default 0.0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot latitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot altitude
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Clock
 	(is-a SailExpert+Onto)
 	(role concrete)
@@ -206,7 +170,11 @@
 	(role concrete)
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot radius
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
@@ -271,5 +239,34 @@
 	(single-slot depth-time
 		(type INTEGER)
 		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass NewCourse
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Advice
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
