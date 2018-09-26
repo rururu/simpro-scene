@@ -17,8 +17,7 @@
                :speed 160
                :course 270}))
 (def BASE-URL "http://localhost:4444/")
-(def TIO {:vehicle 1000
- :camera 1100})
+(def TERRAIN-TIO (volatile! 4000))
 (def error-handler (fn [response]
   (let [{:keys [status status-text]} response]
     (println (str "AJAX ERROR: " status " " status-text)))))
@@ -31,6 +30,16 @@
   (go (while true
            (func param)
            (<! (timeout time-out))))))
+
+(defn repeater!
+  ([func time-out]
+  (go (while true
+           (func)
+           (<! (timeout @time-out)))))
+([func param time-out]
+  (go (while true
+           (func param)
+           (<! (timeout @time-out))))))
 
 (defn read-transit [x]
   (t/read (t/reader :json) x))
@@ -57,27 +66,6 @@
   (if (<= -180 deg 180)
     (czm/camera :roll deg))))
 
-(defn camera-vehicle [vehicle per]
-  (let [[lat lon] (:coord vehicle)
-       alt (:altitude vehicle)
-       alt (int (if (< alt czm/MAX-UPGROUND) 
-	czm/AAT
-	alt))]
-  (vswap! VEHICLE merge vehicle)
-  (set-html! "onboard-fld" (:name vehicle))
-  (set-html! "name-fld" (:name vehicle))
-  (set-html! "course-fld" (:course vehicle))
-  (set-html! "speed-fld" (:speed vehicle))
-  (set-html! "altitude-fld" alt)
-  (if (<= per 0)
-    (czm/move-to lat lon 
-	(:altitude vehicle)
-	(:course vehicle))
-    (czm/fly-to lat lon 
-	(:altitude vehicle)
-	(:course vehicle) 
-	per))))
-
 (defn camera-control [vie pit rol]
   (when vie
   (view vie)
@@ -101,26 +89,54 @@
   (roll rol)
   (.setAttribute (by-id "roll-val") "value" rol)))
 
+(defn vehicle-period-camera [vehicle period camera]
+  (let [[lat lon] (:coord vehicle)
+       alt (:altitude vehicle)
+       alt (int (if (< alt czm/MAX-UPGROUND) 
+	czm/AAT
+	alt))]
+  (vswap! VEHICLE merge vehicle)
+  (set-html! "onboard-fld" (:name vehicle))
+  (set-html! "name-fld" (:name vehicle))
+  (set-html! "course-fld" (:course vehicle))
+  (set-html! "speed-fld" (:speed vehicle))
+  (set-html! "altitude-fld" alt)
+  (if (<= period 0)
+    (czm/move-to lat lon 
+	(:altitude vehicle)
+	(:course vehicle))
+    (czm/fly-to lat lon 
+	(:altitude vehicle)
+	(:course vehicle) 
+	period))
+  (if-let [{:keys [view pitch roll]} camera]
+    (camera-control view pitch roll))))
+
 (defn vehicle-hr [response]
   (let [resp (read-transit response)]
   ;;(println :V-RESP resp)
-  (if-let [{:keys [vehicle period]} resp]
-    (camera-vehicle vehicle period))))
-
-(defn camera-hr [response]
-  (let [resp (read-transit response)]
-  ;;(println :C-RESP resp)
-  (if-let [{:keys [view pitch roll]} resp]
-    (camera-control view pitch roll))))
+  (if-let [{:keys [vehicle period camera]} resp]
+    (vehicle-period-camera vehicle period camera))))
 
 (defn receive-vehicle []
   (GET (str BASE-URL "vehicle/") 
 	{:handler vehicle-hr
                          :error-handler error-handler}))
 
-(defn receive-camera []
-  (GET (str BASE-URL "camera/") 
-	{:handler camera-hr
+(defn send-terrain-hr [response]
+  (let [resp (read-transit response)]
+  ;; (println :ST-RESP resp)
+  (if-let [[lat lon] (resp :latlon)]
+    (czm/terrain-request lat lon)
+    (if (>= czm/TERRAIN 0)
+      (czm/terrain-request 100 200)))
+  (if-let [inter (resp :interval)]
+    (vreset! TERRAIN-TIO inter))))
+
+(defn send-terrain []
+  (GET (str BASE-URL "terrain/"
+                        "?terrain=" czm/TERRAIN)
+	{:handler send-terrain-hr
                          :error-handler error-handler}))
 
 (defn left-controls []
@@ -168,8 +184,8 @@
 (defn on-load []
   (enable-console-print!)
 (czm/init-3D-view BASE-URL "yes")
-(repeater receive-vehicle (:vehicle TIO))
-(repeater receive-camera (:camera TIO))
+(repeater receive-vehicle 1000)
+(repeater! send-terrain TERRAIN-TIO)
 (show-controls))
 
 

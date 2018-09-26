@@ -1,0 +1,7 @@
+2018.09.26 17:05:45.197 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2018.09.26 17:05:45.208 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_181-8u181-b13-0ubuntu0.18.04.1-b13, memory=1610M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2018.09.26 17:05:45.216 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2018.09.26 17:05:45.442 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2018.09.26 17:05:45.451 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2018.09.26 17:05:46.495 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2018.09.26 17:06:20.151 MSK INFO: Load time for file:/home/ru/clojure/simpro-scene/pprj_base/Cezium.pprj = 1 sec (project) + 15 sec (ui) -- ProjectManager$3.run()

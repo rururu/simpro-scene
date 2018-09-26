@@ -1,4 +1,4 @@
-; Sun May 27 21:57:46 MSK 2018
+; Wed Sep 26 21:46:02 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -14,7 +14,9 @@
 		[Cezium_Class10]
 		[Cezium_Class11]
 		[Cezium_Class12]
-		[Cezium_Class13])
+		[Cezium_Class13]
+		[Cezium_Class110001]
+		[Cezium_Class110002])
 	(cloNamespace [Cezium_Class1])
 	(cloVars
 		[Cezium_Class2]
@@ -23,7 +25,8 @@
 		[Cezium_Class5]
 		[Cezium_Class80000]
 		[Cezium_Class100000]
-		[Cezium_Class90017])
+		[Cezium_Class90017]
+		[Cezium_Class110000])
 	(documentation [Cezium_Class14])
 	(title "Cezium Client"))
 
@@ -49,7 +52,7 @@
 
 ([Cezium_Class10001] of  CloFunction
 
-	(source "(enable-console-print!)\n(czm/init-3D-view BASE-URL \"yes\")\n(repeater receive-vehicle (:vehicle TIO))\n(repeater receive-camera (:camera TIO))\n(show-controls)")
+	(source "(enable-console-print!)\n(czm/init-3D-view BASE-URL \"yes\")\n(repeater receive-vehicle 1000)\n(repeater! send-terrain TERRAIN-TIO)\n(show-controls)")
 	(title "on-load []"))
 
 ([Cezium_Class10002] of  CloFunction
@@ -64,8 +67,8 @@
 
 ([Cezium_Class10006] of  CloVar
 
-	(source "{:vehicle 1000\n :camera 1100}")
-	(title "TIO"))
+	(source "(volatile! 4000)")
+	(title "TERRAIN-TIO"))
 
 ([Cezium_Class10007] of  CloVar
 
@@ -74,7 +77,7 @@
 
 ([Cezium_Class10008] of  CloFunction
 
-	(source "(let [resp (read-transit response)]\n  ;;(println :V-RESP resp)\n  (if-let [{:keys [vehicle period]} resp]\n    (camera-vehicle vehicle period)))")
+	(source "(let [resp (read-transit response)]\n  ;;(println :V-RESP resp)\n  (if-let [{:keys [vehicle period camera]} resp]\n    (vehicle-period-camera vehicle period camera)))")
 	(title "vehicle-hr [response]"))
 
 ([Cezium_Class10009] of  CloFunction
@@ -84,27 +87,67 @@
 
 ([Cezium_Class10010] of  CloFunction
 
-	(source "(let [[lat lon] (:coord vehicle)\n       alt (:altitude vehicle)\n       alt (int (if (< alt czm/MAX-UPGROUND) \n	czm/AAT\n	alt))]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" alt)\n  (if (<= per 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	per)))")
-	(title "camera-vehicle [vehicle per]"))
+	(source "(let [[lat lon] (:coord vehicle)\n       alt (:altitude vehicle)\n       alt (int (if (< alt czm/MAX-UPGROUND) \n	czm/AAT\n	alt))]\n  (vswap! VEHICLE merge vehicle)\n  (set-html! \"onboard-fld\" (:name vehicle))\n  (set-html! \"name-fld\" (:name vehicle))\n  (set-html! \"course-fld\" (:course vehicle))\n  (set-html! \"speed-fld\" (:speed vehicle))\n  (set-html! \"altitude-fld\" alt)\n  (if (<= period 0)\n    (czm/move-to lat lon \n	(:altitude vehicle)\n	(:course vehicle))\n    (czm/fly-to lat lon \n	(:altitude vehicle)\n	(:course vehicle) \n	period))\n  (if-let [{:keys [view pitch roll]} camera]\n    (camera-control view pitch roll)))")
+	(title "vehicle-period-camera [vehicle period camera]"))
 
 ([Cezium_Class11] of  CloFunction
 
 	(source "(let [pitch (condp = (:view @CAMERA)\n                \"UP\" 90\n                \"DOWN\" -90\n                (:pitch @CAMERA))\n        roll (:roll @CAMERA)\n        head (norm-crs (condp = (:view @CAMERA)\n                         \"BACKWARD\" (+ crs 180)\n                         \"RIGHT\" (+ crs 90)\n                         \"LEFT\" (- crs 90)\n                         \"FORWARD-RIGHT\" (+ crs 45)\n                         \"FORWARD-LEFT\" (- crs 45)\n                         \"BACKWARD-RIGHT\" (+ crs 135)\n                         \"BACKWARD-LEFT\" (- crs 135)\n                         crs))]\n    (move-control lat lon alt head pitch roll))")
 	(title "move-to [lat lon alt crs]"))
 
+([Cezium_Class110000] of  CloVar
+
+	(source "0")
+	(title "TERRAIN"))
+
+([Cezium_Class110001] of  CloFunction
+
+	(source "(def TERRAIN (.-height (first pos)))")
+	(title "terraHeightResponse2 [pos]"))
+
+([Cezium_Class110002] of  CloFunction
+
+	(source "(if (< lat 90)\n  (js/terraHeightRequest TERR-PROV lat lon terraHeightResponse2)\n  (def TERRAIN -1))")
+	(title "terrain-request [lat lon]"))
+
+([Cezium_Class110003] of  CloVar
+
+	(source "(volatile!\n{:terrain 0\n  :latlon [0 0]\n  :interval 4000\n  :intl-upd 4000})")
+	(title "TERRA-CTL"))
+
 ([Cezium_Class12] of  CloFunction
 
 	(source "(vswap! CAMERA assoc key val)")
 	(title "camera [key val]"))
+
+([Cezium_Class120000] of  CloFunction
+
+	(source "([func time-out]\n  (go (while true\n           (func)\n           (<! (timeout @time-out)))))\n([func param time-out]\n  (go (while true\n           (func param)\n           (<! (timeout @time-out)))))")
+	(title "repeater!"))
+
+([Cezium_Class120001] of  CloFunction
+
+	(source "([]\n  (@TERRA-CTL :interval))\n([inter]\n  (vswap! TERRA-CTL assoc :intl-upd inter))")
+	(title "terrain-interval"))
 
 ([Cezium_Class13] of  CloFunction
 
 	(source "(if (= terra \"yes\")\n  (set! (.-terrainProvider VIEWER) TERR-PROV))\n(.add (.-dataSources VIEWER) CZM-SRC)\n(.addEventListener (js/EventSource. (str base-url \"czml/\")) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW :BASE base-url :TERRA terra])")
 	(title "init-3D-view [base-url terra]"))
 
+([Cezium_Class130000] of  CloFunction
+
+	(source "(vswap! TERRA-CTL assoc :terrain -1)")
+	(title "request-terrain [lat lon]"))
+
 ([Cezium_Class14] of  CloDocumentation
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Cesium Client<br></b><br>API<br><br>1. fly-to [lat lon alt crs per]<br>2. camera [key val], keys: :view, :altitude, :pitch, :roll<br><br>CZML rendering support<br><br>Initialization: (init-3D-view)</body>\n</html>"))
+
+([Cezium_Class140000] of  CloFunction
+
+	(source "(@TERRA-CTL :terrain)")
+	(title "terrain []"))
 
 ([Cezium_Class15] of  ClsMain
 
@@ -112,6 +155,7 @@
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions
 		[Cezium_Class10000]
+		[Cezium_Class120000]
 		[Cezium_Class10009]
 		[Cezium_Class60000]
 		[Cezium_Class60002]
@@ -119,11 +163,11 @@
 		[Cezium_Class60003]
 		[Cezium_Class60004]
 		[Cezium_Class60005]
-		[Cezium_Class10010]
 		[Cezium_Class50003]
+		[Cezium_Class10010]
 		[Cezium_Class10008]
-		[Cezium_Class50002]
 		[Cezium_Class10002]
+		[Cezium_Class50002]
 		[Cezium_Class50001]
 		[Cezium_Class60001]
 		[Cezium_Class60007]
@@ -193,21 +237,25 @@
 
 	(cloFunctions
 		[Cezium_Class30033]
+		[Cezium_Class30041]
 		[Cezium_Class30034]
 		[Cezium_Class30036]
-		[Cezium_Class30041]
 		[Cezium_Class50000]
 		[Cezium_Class30037]
 		[Cezium_Class30038]
 		[Cezium_Class30039]
-		[Cezium_Class70005])
+		[Cezium_Class70005]
+		[Cezium_Class120001]
+		[Cezium_Class130000]
+		[Cezium_Class140000])
 	(cloNamespace [Cezium_Class30027])
 	(cloVars
 		[Cezium_Class30029]
 		[Cezium_Class30030]
 		[Cezium_Class30031]
 		[Cezium_Class30032]
-		[Cezium_Class30042])
+		[Cezium_Class30042]
+		[Cezium_Class110003])
 	(title "Pro Server"))
 
 ([Cezium_Class30027] of  CloNamespace
@@ -242,8 +290,8 @@
 
 ([Cezium_Class30034] of  CloFunction
 
-	(source "(-> (r/response (write-transit (deref (future-call funoarg))))\n       (r/header \"Access-Control-Allow-Origin\" \"*\")\n       (r/charset \"UTF-8\"))")
-	(title "response1 [funoarg]"))
+	(source "(-> (r/response (write-transit (deref (future-call func0))))\n       (r/header \"Access-Control-Allow-Origin\" \"*\")\n       (r/charset \"UTF-8\"))")
+	(title "response-func0 [func0]"))
 
 ([Cezium_Class30036] of  CloFunction
 
@@ -252,7 +300,7 @@
 
 ([Cezium_Class30037] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response1 vehicle-data))\n  (GET \"/camera/\" [] (response1 camera-control))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response-func0 mp-vehicle-period-camera))\n  (GET \"/terrain/\" [& params] (response-func0 #(receive-terrain params)))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
 	(title "init-server []"))
 
 ([Cezium_Class30038] of  CloFunction
@@ -267,8 +315,8 @@
 
 ([Cezium_Class30041] of  CloFunction
 
-	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (let [spd (.getSpeed mo)]\n      (.putAttribute mo \"ROAD-SPEED\" spd)\n      {:vehicle\n        {:name onb\n         :coord [(.getLatitude mo) (.getLongitude mo)]\n         :altitude (.getAltitude mo)\n         :speed spd\n         :course (.getCourse mo)}\n       :period 1})))")
-	(title "vehicle-data []"))
+	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (let [spd (.getSpeed mo)]\n      (.putAttribute mo \"ROAD-SPEED\" spd)\n      {:vehicle\n        {:name onb\n         :coord [(.getLatitude mo) (.getLongitude mo)]\n         :altitude (.getAltitude mo)\n         :speed spd\n         :course (.getCourse mo)}\n       :period 1\n       :camera (.getAttribute mo \"CAMERA\")})))")
+	(title "mp-vehicle-period-camera []"))
 
 ([Cezium_Class30042] of  CloVar
 
@@ -436,18 +484,18 @@
 
 ([Cezium_Class50000] of  CloFunction
 
-	(source "(if-let [onb @ONBOARD]\n  (if-let [mo (OMT/getMapOb onb)]\n    (.getAttribute mo \"CAMERA\")))")
-	(title "camera-control []"))
+	(source "(let [newterr (read-string (params :terrain))\n       {:keys [terrain latlon interval intl-upd]} @TERRA-CTL]\n  (if (> newterr 0)\n    (vswap! TERRA-CTL assoc :terrain newterr))\n  (cond\n    (< terrain 0) {:latlon latlon}\n    (not= interval intl-upd) (do (vswap! TERRA-CTL assoc :interval intl-upd)\n		{:interval interval})\n    true {:status 204}))")
+	(title "receive-terrain [params]"))
 
 ([Cezium_Class50001] of  CloFunction
 
-	(source "(GET (str BASE-URL \"camera/\") \n	{:handler camera-hr\n                         :error-handler error-handler})")
-	(title "receive-camera []"))
+	(source "(GET (str BASE-URL \"terrain/\"\n                        \"?terrain=\" czm/TERRAIN)\n	{:handler send-terrain-hr\n                         :error-handler error-handler})")
+	(title "send-terrain []"))
 
 ([Cezium_Class50002] of  CloFunction
 
-	(source "(let [resp (read-transit response)]\n  ;;(println :C-RESP resp)\n  (if-let [{:keys [view pitch roll]} resp]\n    (camera-control view pitch roll)))")
-	(title "camera-hr [response]"))
+	(source "(let [resp (read-transit response)]\n  ;; (println :ST-RESP resp)\n  (if-let [[lat lon] (resp :latlon)]\n    (czm/terrain-request lat lon)\n    (if (>= czm/TERRAIN 0)\n      (czm/terrain-request 100 200)))\n  (if-let [inter (resp :interval)]\n    (vreset! TERRAIN-TIO inter)))")
+	(title "send-terrain-hr [response]"))
 
 ([Cezium_Class50003] of  CloFunction
 

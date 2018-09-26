@@ -1,4 +1,4 @@
-; Sat Sep 22 13:40:29 MSK 2018
+; Wed Sep 26 21:42:14 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -68,6 +68,34 @@
 ([SailExpert_Class100002] of  CloFuncall
 
 	(source "(.stopRoute b)"))
+
+([SailExpert_Class100004] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.415 6.085])"))
+
+([SailExpert_Class100005] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.085])"))
+
+([SailExpert_Class100006] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.185])"))
+
+([SailExpert_Class100007] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.186])"))
+
+([SailExpert_Class100008] of  CloFuncall
+
+	(source "(pro.server/terrain-interval 1000)"))
+
+([SailExpert_Class100009] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.0855])"))
+
+([SailExpert_Class100010] of  CloFuncall
+
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.08553])"))
 
 ([SailExpert_Class10003] of  Run
 
@@ -187,6 +215,14 @@
 	(url "file:data/images/wind1.png")
 	(verticalSpeed 0.0))
 
+([SailExpert_Class110001] of  CloFuncall
+
+	(source "(vswap! pro.server/BACK-INFO assoc :terrain 5)"))
+
+([SailExpert_Class110002] of  CloFuncall
+
+	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.425 6.085])"))
+
 ([SailExpert_Class120000] of  Rule
 
 	(lhs "?w (Wind direction ?dir)\n?nc (NewCourse boat \"Wind\"\n	course ?crs\n	(not= ?crs ?dir))")
@@ -200,6 +236,10 @@
 	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Wind on map, direction\" ?dir \",coords\" [?lat ?lon]))")
 	(salience 0)
 	(title "ws:Wind on Map"))
+
+([SailExpert_Class130000] of  CloFuncall
+
+	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.444 6.0])"))
 
 ([SailExpert_Class130001] of  Rule
 
@@ -247,7 +287,7 @@
 		[Wind]
 		[Skipper]
 		[Route]
-		[Depth]
+		[ShoreCheck]
 		[NewCourse]
 		[Advice])
 	(title "Skipper Set"))
@@ -256,6 +296,10 @@
 
 	(source "(if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]\n    (and (.near bmo mmo radius) (.abaft bmo mmo))))")
 	(title "near-and-abaft [boat mark radius]"))
+
+([SailExpert_Class140001] of  CloFuncall
+
+	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.421 6.202])"))
 
 ([SailExpert_Class140002] of  Rule
 
@@ -468,10 +512,6 @@
 
 	(source "sail.exp/EVT-LISTENERS"))
 
-([SailExpert_Class20007] of  CloFuncall
-
-	(source "(ru.rules/f 15)"))
-
 ([SailExpert_Class20008] of  Rule
 
 	(lhs "?me (MapObEvent)")
@@ -574,22 +614,6 @@
 	(url "file:data/images/buoy1.png")
 	(verticalSpeed 0.0))
 
-([SailExpert_Class210006] of  CloFuncall
-
-	(source "(sail.exp/show-route \"Bylina\")"))
-
-([SailExpert_Class210008] of  CloFuncall
-
-	(source "(.isKeepRoute (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
-
-([SailExpert_Class210009] of  CloFuncall
-
-	(source "(.setKeepRoute (ru.igis.omtab.OMT/getMapOb \"Bylina\") false)"))
-
-([SailExpert_Class210010] of  CloFuncall
-
-	(source "(.setKeepRoute (ru.igis.omtab.OMT/getMapOb \"Bylina\") )"))
-
 ([SailExpert_Class220000] of  OMTPoly
 
 	(label "Bylina-route")
@@ -690,22 +714,6 @@
 	(source "\"liikalanjoki\"")
 	(title "^:dynamic *username*"))
 
-([SailExpert_Class230005] of  CloFuncall
-
-	(source "(geo.names/call-geonames-elev30 62.426 6.069)"))
-
-([SailExpert_Class230006] of  CloFuncall
-
-	(source "(geo.names/call-geonames-elev30 62.426 6.068)"))
-
-([SailExpert_Class230007] of  CloFuncall
-
-	(source "(geo.names/call-geonames-elev30 62.426 6.067)"))
-
-([SailExpert_Class230008] of  CloFuncall
-
-	(source "(geo.names/call-geonames-elev30 62.426 6.066)"))
-
 ([SailExpert_Class230009] of  Rule
 
 	(lhs "?s (Skipper status ?sts\n	epsilon ?e\n	boat ?boat)\n(Boat label ?boat\n	course ?crs\n	depth-interval ?di\n	tack-angle ?taa\n	tack ?tack)\n?d (Depth boat ?boat\n	depth-time ?dt)\n(Clock time ?t (> ?t ?dt))")
@@ -713,17 +721,15 @@
 	(salience 0)
 	(title "ss:Shore Ahead"))
 
-([SailExpert_Class230010] of  CloFuncall
+([SailExpert_Class30000] of  RuleSet
 
-	(source "(rem 12345 60)"))
-
-([SailExpert_Class230011] of  CloFuncall
-
-	(source "(rem 12300 60)"))
-
-([SailExpert_Class30000] of  CloFuncall
-
-	(source "(ru.rules/dr)"))
+	(rules
+		[SailExpert_Class50000]
+		[SailExpert_Class50001])
+	(templates
+		[ShoreControl]
+		[ShoreCheck])
+	(title "ShoreCheck Set"))
 
 ([SailExpert_Class30001] of  NewCourse
 
@@ -736,10 +742,6 @@
 	(rhs ";;(println \"End of big header\")\n(retract ?a)")
 	(salience 0)
 	(title "ss:End of Big Header"))
-
-([SailExpert_Class40001] of  CloFuncall
-
-	(source "(ru.rules/f 63)"))
 
 ([SailExpert_Class40005] of  CloFunction
 
@@ -794,9 +796,19 @@
 	(url "file:data/images/buoy4.png")
 	(verticalSpeed 0.0))
 
-([SailExpert_Class50000] of  CloFuncall
+([SailExpert_Class50000] of  Rule
 
-	(source "(ru.rules/f 21)"))
+	(lhs "(ShoreControl interval ?int)\n?sc (ShoreCheck status START\n	boat ?boat)\n(Clock time ?t)")
+	(rhs "(when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (pro.server/request-terrain\n	(.getLatitude bmo)\n	(.getLongitude bmo))\n  (modify ?sc time (+ ?t ?int)\n	terrain -1\n	status 'REPEAT))")
+	(salience 0)
+	(title "scs:Start Shore Check"))
+
+([SailExpert_Class50001] of  Rule
+
+	(lhs "(ShoreControl interval ?int)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Clock time ?t2 (> ?t2 ?t1))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (if (and (>= ?oter 0) (not= ?oter nter))\n        (modify ?sc status 'SHORE-AHEAD)\n        (do (pro.server/request-terrain\n	(.getLatitude bmo)\n	(.getLongitude bmo))\n          (modify ?sc time (+ ?t2 ?int)\n	terrain (int nter))))))")
+	(salience 0)
+	(title "scs:Repeat Shore Check"))
 
 ([SailExpert_Class50002] of  Mark
 
@@ -847,33 +859,25 @@
 	(salience 0)
 	(title "ss:Gainful Beating Course"))
 
-([SailExpert_Class70000] of  CloFuncall
-
-	(source "(ru.rules/f 2039)"))
-
-([SailExpert_Class70001] of  CloFuncall
-
-	(source "(ru.rules/f 37)"))
-
 ([SailExpert_Class80001] of  Document
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
 
 ([SailExpert_Class90000] of  CloFuncall
 
-	(source "(not= 1 2 3 4)"))
+	(source "(vswap! pro.server/TERRA-CTL assoc :interval 1000)"))
 
 ([SailExpert_Class90001] of  CloFuncall
 
-	(source "(not= 1 2 3 4 1)"))
+	(source "(vswap! pro.server/TERRA-CTL assoc :interval 10000)"))
 
 ([SailExpert_Class90002] of  CloFuncall
 
-	(source "(ru.rules/pp :all)"))
+	(source "pro.server/TERRA-CTL"))
 
 ([SailExpert_Class90003] of  CloFuncall
 
-	(source "(ru.igis.omtab.Clock/getTimeScale)"))
+	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.085])"))
 
 ([SailExpert_Class90004] of  Rule
 
@@ -881,10 +885,6 @@
 	(rhs "(modify ?s status 'UNDEFINED)\n(modify ?d depth-time ?t)")
 	(salience 0)
 	(title "ss:Gone off Shore"))
-
-([SailExpert_Class90005] of  CloFuncall
-
-	(source "(sim/start-sim)"))
 
 ([SailExpert_Class90017] of  CloFunction
 

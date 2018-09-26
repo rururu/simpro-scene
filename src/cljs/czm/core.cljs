@@ -13,6 +13,7 @@
 (def FLY-CTL [0 0 0 0 0 0 0])
 (def AAT 0)
 (def MAX-UPGROUND 100)
+(def TERRAIN 0)
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -96,4 +97,12 @@
 (.add (.-dataSources VIEWER) CZM-SRC)
 (.addEventListener (js/EventSource. (str base-url "czml/")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))
+
+(defn terraHeightResponse2 [pos]
+  (def TERRAIN (.-height (first pos))))
+
+(defn terrain-request [lat lon]
+  (if (< lat 90)
+  (js/terraHeightRequest TERR-PROV lat lon terraHeightResponse2)
+  (def TERRAIN -1)))
 

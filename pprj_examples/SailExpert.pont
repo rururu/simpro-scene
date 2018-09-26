@@ -1,4 +1,4 @@
-; Sat Sep 22 13:40:29 MSK 2018
+; Wed Sep 26 21:42:14 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,6 +21,11 @@
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot terrain
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
@@ -36,7 +41,7 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -66,11 +71,6 @@
 	(multislot marks
 		(type INSTANCE)
 ;+		(allowed-classes Mark)
-		(create-accessor read-write))
-	(single-slot depth-time
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tack
 		(type SYMBOL)
@@ -170,7 +170,7 @@
 	(role concrete)
 	(single-slot status
 		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot radius
@@ -229,14 +229,23 @@
 ;+		(allowed-classes Mark)
 		(create-accessor read-write)))
 
-(defclass Depth
+(defclass ShoreCheck
 	(is-a SailExpert+Onto)
 	(role concrete)
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot depth-time
+	(single-slot terrain
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 0 1)
@@ -269,4 +278,13 @@
 	(single-slot direction
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ShoreControl
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot interval
+		(type SYMBOL)
+		(allowed-values HOUR MINUTE SECOND)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
