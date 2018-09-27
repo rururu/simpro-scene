@@ -115,7 +115,7 @@
   (vswap! TERRA-CTL assoc :intl-upd inter)))
 
 (defn request-terrain [lat lon]
-  (vswap! TERRA-CTL assoc :terrain -1))
+  (vswap! TERRA-CTL assoc :latlon [lat lon] :terrain -1))
 
 (defn terrain []
   (@TERRA-CTL :terrain))

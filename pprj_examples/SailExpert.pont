@@ -1,4 +1,4 @@
-; Wed Sep 26 21:42:14 MSK 2018
+; Thu Sep 27 22:00:23 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,6 +9,14 @@
 	(role abstract)
 	(single-slot route
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot shore
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot shift
@@ -283,8 +291,15 @@
 (defclass ShoreControl
 	(is-a SailExpert+Onto)
 	(role concrete)
-	(single-slot interval
-		(type SYMBOL)
-		(allowed-values HOUR MINUTE SECOND)
-;+		(cardinality 1 1)
+	(single-slot shore
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot distance
+		(type FLOAT)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

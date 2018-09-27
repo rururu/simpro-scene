@@ -1,4 +1,4 @@
-; Wed Sep 26 21:42:14 MSK 2018
+; Thu Sep 27 22:00:23 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -109,14 +109,18 @@
 		[SailExpert_Class20000]
 		[SailExpert_Class150003]
 		[SailExpert_Class60000]
-		[SailExpert_Class190008])
-	(instances [SailExpert_Class30001])
+		[SailExpert_Class190008]
+		[SailExpert_Class70001])
+	(instances
+		[SailExpert_Class30001]
+		[SailExpert_Class70003])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
 		[SailExpert_Class20011]
 		[SailExpert_Class130003]
-		[SailExpert_Class130004])
+		[SailExpert_Class130004]
+		[SailExpert_Class30000])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -144,8 +148,8 @@
 	(butt-load-progs "Load Programs/protege.core/ldns")
 	(cloPrograms
 		[RuleEngine_Class30000]
-		[SailExpert_Class10009]
-		[SailExpert_Class230000])
+		[Cezium_Class30026]
+		[SailExpert_Class10009])
 	(title "Sail Expert Programs"))
 
 ([SailExpert_Class10007] of  %3AINSTANCE-ANNOTATION
@@ -724,11 +728,14 @@
 ([SailExpert_Class30000] of  RuleSet
 
 	(rules
+		[SailExpert_Class70000]
 		[SailExpert_Class50000]
 		[SailExpert_Class50001])
 	(templates
 		[ShoreControl]
-		[ShoreCheck])
+		[ShoreCheck]
+		[Boat]
+		[Clock])
 	(title "ShoreCheck Set"))
 
 ([SailExpert_Class30001] of  NewCourse
@@ -798,15 +805,15 @@
 
 ([SailExpert_Class50000] of  Rule
 
-	(lhs "(ShoreControl interval ?int)\n?sc (ShoreCheck status START\n	boat ?boat)\n(Clock time ?t)")
-	(rhs "(when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (pro.server/request-terrain\n	(.getLatitude bmo)\n	(.getLongitude bmo))\n  (modify ?sc time (+ ?t ?int)\n	terrain -1\n	status 'REPEAT))")
+	(lhs "(ShoreControl delay ?del)\n?sc (ShoreCheck status START\n	boat ?boat)\n(Clock time ?t)")
+	(rhs "(when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (pro.server/request-terrain\n	(.getLatitude bmo)\n	(.getLongitude bmo))\n  (modify ?sc time (+ ?t ?del)\n	terrain -1\n	status 'REPEAT))")
 	(salience 0)
 	(title "scs:Start Shore Check"))
 
 ([SailExpert_Class50001] of  Rule
 
-	(lhs "(ShoreControl interval ?int)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Clock time ?t2 (> ?t2 ?t1))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (if (and (>= ?oter 0) (not= ?oter nter))\n        (modify ?sc status 'SHORE-AHEAD)\n        (do (pro.server/request-terrain\n	(.getLatitude bmo)\n	(.getLongitude bmo))\n          (modify ?sc time (+ ?t2 ?int)\n	terrain (int nter))))))")
+	(lhs "(ShoreControl delay ?del\n	shore ?sho\n	distance ?dis)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Boat label ?boat course ?crs)\n(Clock time ?t2 (> ?t2 ?t1))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (println \"Terrain\" ?oter nter)\n    (if (and (>= ?oter 0) (> (- nter ?oter) ?sho))\n      (modify ?sc status 'SHORE-AHEAD)\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
 	(salience 0)
 	(title "scs:Repeat Shore Check"))
 
@@ -859,25 +866,52 @@
 	(salience 0)
 	(title "ss:Gainful Beating Course"))
 
-([SailExpert_Class80001] of  Document
+([SailExpert_Class70000] of  Rule
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
+	(lhs "(ShoreControl delay ?del)")
+	(rhs "(pro.server/terrain-interval (* ?del 1000))\n(println \"Shore Check Interval\" ?del \"sec.\")")
+	(salience 0)
+	(title "scs:Set Shore Check Interval"))
 
-([SailExpert_Class90000] of  CloFuncall
+([SailExpert_Class70001] of  ShoreControl
 
-	(source "(vswap! pro.server/TERRA-CTL assoc :interval 1000)"))
+	(delay 4)
+	(distance 0.8)
+	(shore 4))
 
-([SailExpert_Class90001] of  CloFuncall
+([SailExpert_Class70003] of  ShoreCheck
 
-	(source "(vswap! pro.server/TERRA-CTL assoc :interval 10000)"))
+	(boat "Bylina")
+	(status START)
+	(terrain 0))
 
-([SailExpert_Class90002] of  CloFuncall
+([SailExpert_Class70004] of  CloFuncall
+
+	(source "(pro.server/request-terrain 62.415 6.085)"))
+
+([SailExpert_Class70005] of  CloFuncall
+
+	(source "(pro.server/terrain 62.415 6.085)"))
+
+([SailExpert_Class70006] of  CloFuncall
+
+	(source "(pro.server/terrain)"))
+
+([SailExpert_Class70007] of  CloFuncall
+
+	(source "(pro.server/request-terrain 62.427 6.07)"))
+
+([SailExpert_Class70008] of  CloFuncall
+
+	(source "(pro.server/request-terrain 62.425 6.086)"))
+
+([SailExpert_Class70009] of  CloFuncall
 
 	(source "pro.server/TERRA-CTL"))
 
-([SailExpert_Class90003] of  CloFuncall
+([SailExpert_Class80001] of  Document
 
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.085])"))
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
 
 ([SailExpert_Class90004] of  Rule
 

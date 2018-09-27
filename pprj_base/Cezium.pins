@@ -1,4 +1,4 @@
-; Wed Sep 26 21:46:02 MSK 2018
+; Thu Sep 27 13:14:19 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -137,7 +137,7 @@
 
 ([Cezium_Class130000] of  CloFunction
 
-	(source "(vswap! TERRA-CTL assoc :terrain -1)")
+	(source "(vswap! TERRA-CTL assoc :latlon [lat lon] :terrain -1)")
 	(title "request-terrain [lat lon]"))
 
 ([Cezium_Class14] of  CloDocumentation
