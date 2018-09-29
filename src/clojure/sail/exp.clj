@@ -45,8 +45,9 @@
   (> b 360) (- b 360)
   true b))
 
-(defn inside [windir headwind]
-)
+(defn difference [course windir]
+  (let [dif (if (> course windir) (- course windir) (- windir course))]
+  (if (> dif 180) (- 360 dif) dif)))
 
 (defn show-route [lab]
   (if-let [mo (OMT/getMapOb lab)]

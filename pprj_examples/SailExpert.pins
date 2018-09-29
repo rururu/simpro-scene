@@ -1,4 +1,4 @@
-; Thu Sep 27 22:00:23 MSK 2018
+; Sat Sep 29 22:35:54 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -110,10 +110,9 @@
 		[SailExpert_Class150003]
 		[SailExpert_Class60000]
 		[SailExpert_Class190008]
-		[SailExpert_Class70001])
-	(instances
-		[SailExpert_Class30001]
+		[SailExpert_Class70001]
 		[SailExpert_Class70003])
+	(instances [SailExpert_Class30001])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -284,7 +283,9 @@
 		[SailExpert_Class180001]
 		[SailExpert_Class190009]
 		[SailExpert_Class160000]
-		[SailExpert_Class40000])
+		[SailExpert_Class40000]
+		[SailExpert_Class230009]
+		[SailExpert_Class90004])
 	(templates
 		[Mark]
 		[Boat]
@@ -453,7 +454,6 @@
 ([SailExpert_Class20000] of  Boat
 
 	(course 0)
-	(depth-interval 600)
 	(label "Bylina")
 	(sail-point UNDEFINED)
 	(speed 12.0)
@@ -720,8 +720,8 @@
 
 ([SailExpert_Class230009] of  Rule
 
-	(lhs "?s (Skipper status ?sts\n	epsilon ?e\n	boat ?boat)\n(Boat label ?boat\n	course ?crs\n	depth-interval ?di\n	tack-angle ?taa\n	tack ?tack)\n?d (Depth boat ?boat\n	depth-time ?dt)\n(Clock time ?t (> ?t ?dt))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [spd (.getSpeed bmo)\n        tim (/ ?di 3600)\n        dis (double (* spd tim))\n        [lat lon] (.position bmo (double ?crs) dis)\n        dep (read-string (geo.names/call-geonames-elev30 lat lon))]\n    (println \"Boat\" ?boat \"future depth\" dep)\n    (modify ?d depth-time (if (> ?dt 0) \n		(+ ?dt ?di)\n		(+ ?t ?di)))\n    (if (> dep 0)\n      (if (= ?sts 'BEATING)\n        (let [trn (* 2 (+ ?taa ?e))\n               crs (condp = ?tack \n  	'STARBOARD (+ ?crs trn)\n	'PORT (- ?crs trn))\n               crs (sail.exp/trim-bear crs)]\n          (println \"Skipper\" ?boat \"status\" 'OFF-SHORE)\n          (modify ?s status 'OFF-SHORE)\n          (asser NewCourse boat ?boat course crs))))))")
+	(lhs "?s (Skipper boat ?boat\n	delay ?del\n	epsilon ?e)\n(Wind direction ?wnd)\n(Boat label ?boat\n	course ?crs\n	tack-angle ?taa\n	tack ?tack)\n?sc (ShoreCheck status SHORE-AHEAD)\n(Clock time ?t)")
+	(rhs "(let [trn (* 2 (+ ?taa ?e))\n       crs (condp = ?tack \n               'STARBOARD (+ ?crs trn)\n               'PORT (- ?crs trn))\n       crs (sail.exp/trim-bear crs)\n       dif (sail.exp/difference crs ?wnd)\n       crs (if (<= dif ?taa) ;; INIRONS on new course\n               (sail.exp/trim-bear\n                 (condp = ?tack \n                   'STARBOARD (+ crs ?taa)\n                   'PORT (- crs ?taa)))\n               crs)]\n  (println \"Skipper\" ?boat \"status\" 'OFF-SHORE)\n  (retract ?sc)\n  (modify ?s status 'OFF-SHORE\n	time (+ ?t (* ?del 60)))\n  (asser NewCourse boat ?boat course crs))")
 	(salience 0)
 	(title "ss:Shore Ahead"))
 
@@ -813,7 +813,7 @@
 ([SailExpert_Class50001] of  Rule
 
 	(lhs "(ShoreControl delay ?del\n	shore ?sho\n	distance ?dis)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Boat label ?boat course ?crs)\n(Clock time ?t2 (> ?t2 ?t1))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (println \"Terrain\" ?oter nter)\n    (if (and (>= ?oter 0) (> (- nter ?oter) ?sho))\n      (modify ?sc status 'SHORE-AHEAD)\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (println \"Terrain\" ?oter nter)\n    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))\n      (do (println \"Shore ahead boat\" ?boat)\n        (modify ?sc status 'SHORE-AHEAD))\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
 	(salience 0)
 	(title "scs:Repeat Shore Check"))
 
@@ -833,18 +833,20 @@
 
 ([SailExpert_Class50004] of  CloFunction
 
-	(title "inside [windir headwind]"))
+	(source "(let [dif (if (> course windir) (- course windir) (- windir course))]\n  (if (> dif 180) (- 360 dif) dif))")
+	(title "difference [course windir]"))
 
 ([SailExpert_Class50007] of  Rule
 
 	(lhs "?b (Boat sail-point UNDEFINED\n	label ?boat\n	course ?crs\n	tack-angle ?taa)\n(Wind direction ?wnd)")
-	(rhs "(let [dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))\n       dif (if (> dif 180) (- 360 dif) dif)\n       slp (cond	(> dif 168.75) 'RUNNING\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'BEAMREACH\n                        (> dif 56.25) 'CLOSEREACH\n	(> dif ?taa) 'CLOSEHAULED\n	true 'INIRONS)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b sail-point slp tack tck)\n  (println \"Boat\" ?boat \"on\" tck \"tack and\" slp))")
+	(rhs "(let [dif (sail.exp/difference ?crs ?wnd)\n       slp (cond	(> dif 168.75) 'RUNNING\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'BEAMREACH\n                        (> dif 56.25) 'CLOSEREACH\n	(> dif ?taa) 'CLOSEHAULED\n	true 'INIRONS)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b sail-point slp tack tck)\n  (println \"Boat\" ?boat \"on\" tck \"tack and\" slp))")
 	(salience 0)
 	(title "bs:Boat Sail Point"))
 
 ([SailExpert_Class60000] of  Skipper
 
 	(boat "Bylina")
+	(delay 5)
 	(epsilon 2)
 	(lap 0)
 	(mark "NIL")
@@ -909,14 +911,18 @@
 
 	(source "pro.server/TERRA-CTL"))
 
+([SailExpert_Class80000] of  CloFuncall
+
+	(source "(ru.rules/f 382)"))
+
 ([SailExpert_Class80001] of  Document
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
 
 ([SailExpert_Class90004] of  Rule
 
-	(lhs "?s (Skipper status OFF-SHORE\n	boat ?boat)\n?d (Depth boat ?boat\n	depth-time ?dt)\n(Clock time ?t (> ?t ?dt))")
-	(rhs "(modify ?s status 'UNDEFINED)\n(modify ?d depth-time ?t)")
+	(lhs "?s (Skipper status OFF-SHORE\n	boat ?boat\n	time ?t1)\n(Clock time ?t2 (> ?t2 ?t1))")
+	(rhs "(modify ?s status 'UNDEFINED)\n(asser ShoreCheck status 'START\n	boat ?boat)")
 	(salience 0)
 	(title "ss:Gone off Shore"))
 
