@@ -1,4 +1,4 @@
-; Sat Sep 29 22:35:54 MSK 2018
+; Sun Sep 30 23:47:25 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -110,9 +110,10 @@
 		[SailExpert_Class150003]
 		[SailExpert_Class60000]
 		[SailExpert_Class190008]
-		[SailExpert_Class70001]
-		[SailExpert_Class70003])
-	(instances [SailExpert_Class30001])
+		[SailExpert_Class70001])
+	(instances
+		[SailExpert_Class70003]
+		[SailExpert_Class90001])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -228,8 +229,8 @@
 
 ([SailExpert_Class120000] of  Rule
 
-	(lhs "?w (Wind direction ?dir)\n?nc (NewCourse boat \"Wind\"\n	course ?crs\n	(not= ?crs ?dir))")
-	(rhs "(let [d (if (< ?crs ?dir) \n            (- ?dir ?crs) \n            (- ?crs ?dir))\n       s (if (< ?crs ?dir)\n            (if (< d 180)\n              'BACKING\n              'VEERING)\n            (if (< d 180)\n              'VEERING\n              'BACKING))]\n  (println \"Wind\" s d \"new direction\" ?crs)\n  (retract ?nc)\n  (modify ?w direction ?crs\n	shift s\n                        shift-degrees d)\n  (if-let [wmo (ru.igis.omtab.OMT/getMapOb \"Wind\")]\n    (.setCourse wmo ?crs)))")
+	(lhs "?w (Wind direction ?dir1)\n?wc (WindChange\n	direction ?dir2\n	(not= ?dir1 ?dir2))")
+	(rhs "(let [d (if (< ?dir2 ?dir1) \n            (- ?dir1 ?dir2) \n            (- ?dir2 ?dir1))\n       s (if (< ?dir2 ?dir1)\n            (if (< d 180)\n              'BACKING\n              'VEERING)\n            (if (< d 180)\n              'VEERING\n              'BACKING))]\n  (println \"Wind\" s d \"new direction\" ?dir2)\n  (retract ?wc)\n  (modify ?w direction ?dir2\n	shift s\n                        shift-degrees d)\n  (if-let [wmo (ru.igis.omtab.OMT/getMapOb \"Wind\")]\n    (.setCourse wmo ?dir2)))")
 	(salience 0)
 	(title "ws:Wind Change Direction"))
 
@@ -270,7 +271,8 @@
 	(templates
 		[Wind]
 		[Boat]
-		[BoatWindShift])
+		[BoatWindShift]
+		[WindChange])
 	(title "Wind Set"))
 
 ([SailExpert_Class130004] of  RuleSet
@@ -738,11 +740,6 @@
 		[Clock])
 	(title "ShoreCheck Set"))
 
-([SailExpert_Class30001] of  NewCourse
-
-	(boat "Wind")
-	(course 91))
-
 ([SailExpert_Class40000] of  Rule
 
 	(lhs "?a (Advice text \"BIG HEADER NEW COURSE\"\n	direction ?dir1)\n(Wind direction ?dir2\n	(not= ?dir1 ?dir2))")
@@ -878,7 +875,7 @@
 ([SailExpert_Class70001] of  ShoreControl
 
 	(delay 4)
-	(distance 0.8)
+	(distance 0.5)
 	(shore 4))
 
 ([SailExpert_Class70003] of  ShoreCheck
@@ -918,6 +915,11 @@
 ([SailExpert_Class80001] of  Document
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
+
+([SailExpert_Class90001] of  WindChange
+
+	(direction 90)
+	(randomly FALSE))
 
 ([SailExpert_Class90004] of  Rule
 

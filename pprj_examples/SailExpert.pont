@@ -1,4 +1,4 @@
-; Sat Sep 29 22:35:54 MSK 2018
+; Sun Sep 30 23:47:25 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -70,6 +70,11 @@
 		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot randomly
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot marks
@@ -301,5 +306,22 @@
 		(create-accessor read-write))
 	(single-slot distance
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WindChange
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot randomly
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
