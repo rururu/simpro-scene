@@ -41,7 +41,9 @@
     <div id="pitch"></div><div id="pitch-fld"></div>
     <div id="roll"></div><div id="roll-fld"></div>
     <script>
-      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';
+      // Grant your CesiumJS app access to your ion assets
+      // This is your actual default access token, you can copy/paste this directly into your app code
+      Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';
       function terraHeightRequest(terrProv, lat, lon, func){
         var pos = [Cesium.Cartographic.fromDegrees(lon, lat)];
         var pms = Cesium.sampleTerrain(terrProv, 11, pos);

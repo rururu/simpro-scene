@@ -1,4 +1,4 @@
-; Thu Sep 27 13:14:19 MSK 2018
+; Tue Oct 02 12:34:33 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -132,7 +132,7 @@
 
 ([Cezium_Class13] of  CloFunction
 
-	(source "(if (= terra \"yes\")\n  (set! (.-terrainProvider VIEWER) TERR-PROV))\n(.add (.-dataSources VIEWER) CZM-SRC)\n(.addEventListener (js/EventSource. (str base-url \"czml/\")) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW :BASE base-url :TERRA terra])")
+	(source ";;(if (= terra \"yes\")\n;;  (set! (.-terrainProvider VIEWER) TERR-PROV))\n(.add (.-dataSources VIEWER) CZM-SRC)\n(.addEventListener (js/EventSource. (str base-url \"czml/\")) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW :BASE base-url :TERRA terra])")
 	(title "init-3D-view [base-url terra]"))
 
 ([Cezium_Class130000] of  CloFunction
@@ -208,7 +208,7 @@
 
 ([Cezium_Class20000] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"vehicle\"></div>\n    <div id=\"name\"></div><div id=\"name-fld\"></div>\n    <div id=\"course\"></div><div id=\"course-fld\"></div>\n    <div id=\"speed\"></div><div id=\"speed-fld\"></div>\n    <div id=\"altitude\"></div><div id=\"altitude-fld\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      Cesium.BingMapsApi.defaultKey = 'Au5mRx6ODcM1h4EAWNyK8wWoyaTjeLuvGkacr7WRZgmAt4QtmyV03OrN1TYb-cr7';\n      function terraHeightRequest(terrProv, lat, lon, func){\n        var pos = [Cesium.Cartographic.fromDegrees(lon, lat)];\n        var pms = Cesium.sampleTerrain(terrProv, 11, pos);\n        Cesium.when(pms, func);\n      }\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <title>Cockpit View</title>\n    <link rel=\"stylesheet\" href=\"css/cesium.css\" />\n    <script src=\"Cesium/Cesium.js\"></script>\n    <style>\n      @import url(Cesium/Widgets/widgets.css);\n      #cesiumContainer {\n        position: absolute;\n        top: 0;\n        left: 0;\n        height: 100%;\n        width: 100%;\n        margin: 0;\n        overflow: hidden;\n        padding: 0;\n        font-family: sans-serif;\n      }\n      html {\n        height: 100%;\n      }\n      body {\n        padding: 0;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n      }\n    </style>\n  </head>\n  <body>\n    <div id=\"cesiumContainer\"></div>\n    <div id=\"vehicle\"></div>\n    <div id=\"name\"></div><div id=\"name-fld\"></div>\n    <div id=\"course\"></div><div id=\"course-fld\"></div>\n    <div id=\"speed\"></div><div id=\"speed-fld\"></div>\n    <div id=\"altitude\"></div><div id=\"altitude-fld\"></div>\n    <div id=\"camera\"></div>\n    <div id=\"onboard\"></div><div id=\"onboard-fld\"></div>\n    <div id=\"view\"></div><div id=\"view-fld\"></div>\n    <div id=\"pitch\"></div><div id=\"pitch-fld\"></div>\n    <div id=\"roll\"></div><div id=\"roll-fld\"></div>\n    <script>\n      // Grant your CesiumJS app access to your ion assets\n      // This is your actual default access token, you can copy/paste this directly into your app code\n      Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n      function terraHeightRequest(terrProv, lat, lon, func){\n        var pos = [Cesium.Cartographic.fromDegrees(lon, lat)];\n        var pms = Cesium.sampleTerrain(terrProv, 11, pos);\n        Cesium.when(pms, func);\n      }\n    </script>\n    <script type=\"text/javascript\" src=\"js/main.js\"></script>\n  </body>\n</html>")
 	(store-in "resources/public")
 	(title "cezium"))
 
@@ -220,7 +220,7 @@
 
 ([Cezium_Class3] of  CloVar
 
-	(source "(js/Cesium.Viewer. \n  \"cesiumContainer\" \n  #js{:animation false})")
+	(source "(js/Cesium.Viewer. \n  \"cesiumContainer\" \n  #js{:imageryProvider (js/Cesium.createWorldImagery)\n        :terrainProvider (js/Cesium.createWorldTerrain)\n        :animation false})")
 	(title "VIEWER"))
 
 ([Cezium_Class30000] of  ShareOnto

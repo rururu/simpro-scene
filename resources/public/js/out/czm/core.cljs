@@ -5,7 +5,9 @@
 (def TERR-PROV (js/Cesium.createWorldTerrain))
 (def VIEWER (js/Cesium.Viewer. 
   "cesiumContainer" 
-  #js{:animation false}))
+  #js{:imageryProvider (js/Cesium.createWorldImagery)
+        :terrainProvider (js/Cesium.createWorldTerrain)
+        :animation false}))
 (def CZM-SRC (js/Cesium.CzmlDataSource.))
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
@@ -92,8 +94,8 @@
   (vswap! CAMERA assoc key val))
 
 (defn init-3D-view [base-url terra]
-  (if (= terra "yes")
-  (set! (.-terrainProvider VIEWER) TERR-PROV))
+  ;;(if (= terra "yes")
+;;  (set! (.-terrainProvider VIEWER) TERR-PROV))
 (.add (.-dataSources VIEWER) CZM-SRC)
 (.addEventListener (js/EventSource. (str base-url "czml/")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))

@@ -55,6 +55,7 @@ See examples.
 18. [Everest](https://www.youtube.com/watch?v=YAZSrUjKRhk&t=10s)
 19. [Glacier Express: Above Bever - Preda tunnel](https://youtu.be/WJ3YZqWyFJ4)
 20. [From Raster to Vector](https://youtu.be/LKaAVBDUyTU)
+21. [Sailing Expert (in development stage)](https://youtu.be/9Zo0b1RnAD0)
 
 TO BE CONTINUED
 
