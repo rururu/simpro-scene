@@ -68,3 +68,9 @@
   (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]
     (and (.near bmo mmo radius) (.abaft bmo mmo)))))
 
+(defn rand-mid-min [mid min]
+  (let [dev (rand (- mid min))]
+  (if (> (rand) 0.5)
+    (+ mid dev)
+    (- mid dev))))
+

@@ -1,4 +1,4 @@
-; Sun Sep 30 23:47:25 MSK 2018
+; Thu Oct 04 13:28:55 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,10 @@
 		(create-accessor read-write))
 	(single-slot shore
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot big-oscillation
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot delay
@@ -34,6 +38,10 @@
 		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot big-interval
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
@@ -41,10 +49,15 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mark
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot small-interval
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot status
@@ -53,6 +66,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot small-oscillation
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -72,6 +89,12 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot asserted
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot randomly
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
@@ -84,6 +107,11 @@
 	(single-slot tack
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time2
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lap
@@ -138,6 +166,7 @@
 	(role concrete)
 	(single-slot time
 		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -180,6 +209,7 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot radius
@@ -252,6 +282,7 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
@@ -314,6 +345,11 @@
 	(role concrete)
 	(single-slot time
 		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot big-oscillation
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot randomly
@@ -323,5 +359,28 @@
 		(create-accessor read-write))
 	(single-slot direction
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time2
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot small-interval
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot small-oscillation
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot big-interval
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot asserted
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Sun Sep 30 23:47:25 MSK 2018
+; Thu Oct 04 13:28:56 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -110,10 +110,9 @@
 		[SailExpert_Class150003]
 		[SailExpert_Class60000]
 		[SailExpert_Class190008]
-		[SailExpert_Class70001])
-	(instances
-		[SailExpert_Class70003]
+		[SailExpert_Class70001]
 		[SailExpert_Class90001])
+	(instances [SailExpert_Class70003])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -148,6 +147,8 @@
 	(butt-load-progs "Load Programs/protege.core/ldns")
 	(cloPrograms
 		[RuleEngine_Class30000]
+		[Cezium_Class40000]
+		[Cezium_Class30043]
 		[Cezium_Class30026]
 		[SailExpert_Class10009])
 	(title "Sail Expert Programs"))
@@ -168,7 +169,8 @@
 		[SailExpert_Class40005]
 		[SailExpert_Class50004]
 		[SailExpert_Class90017]
-		[SailExpert_Class140000])
+		[SailExpert_Class140000]
+		[SailExpert_Class90000])
 	(cloNamespace [SailExpert_Class10010])
 	(cloVars [SailExpert_Class10016])
 	(title "SailExp Funcs"))
@@ -230,7 +232,7 @@
 ([SailExpert_Class120000] of  Rule
 
 	(lhs "?w (Wind direction ?dir1)\n?wc (WindChange\n	direction ?dir2\n	(not= ?dir1 ?dir2))")
-	(rhs "(let [d (if (< ?dir2 ?dir1) \n            (- ?dir1 ?dir2) \n            (- ?dir2 ?dir1))\n       s (if (< ?dir2 ?dir1)\n            (if (< d 180)\n              'BACKING\n              'VEERING)\n            (if (< d 180)\n              'VEERING\n              'BACKING))]\n  (println \"Wind\" s d \"new direction\" ?dir2)\n  (retract ?wc)\n  (modify ?w direction ?dir2\n	shift s\n                        shift-degrees d)\n  (if-let [wmo (ru.igis.omtab.OMT/getMapOb \"Wind\")]\n    (.setCourse wmo ?dir2)))")
+	(rhs "(let [d (if (< ?dir2 ?dir1) \n            (- ?dir1 ?dir2) \n            (- ?dir2 ?dir1))\n       s (if (< ?dir2 ?dir1)\n            (if (< d 180)\n              'BACKING\n              'VEERING)\n            (if (< d 180)\n              'VEERING\n              'BACKING))]\n  (println \"Wind\" s d \"new direction\" ?dir2)\n  (modify ?w direction ?dir2\n	shift s\n                        shift-degrees d)\n  (if-let [wmo (ru.igis.omtab.OMT/getMapOb \"Wind\")]\n    (.setCourse wmo ?dir2)))")
 	(salience 0)
 	(title "ws:Wind Change Direction"))
 
@@ -267,7 +269,11 @@
 		[SailExpert_Class120001]
 		[SailExpert_Class120000]
 		[SailExpert_Class130002]
-		[SailExpert_Class150001])
+		[SailExpert_Class150001]
+		[SailExpert_Class240001]
+		[SailExpert_Class240000]
+		[SailExpert_Class260007]
+		[SailExpert_Class250003])
 	(templates
 		[Wind]
 		[Boat]
@@ -382,6 +388,10 @@
 	(playground-index 0)
 	(speed 0.0)
 	(verticalSpeed 0.0))
+
+([SailExpert_Class190001] of  CloFuncall
+
+	(source "(ru.rules/dr)"))
 
 ([SailExpert_Class190005] of  Mark
 
@@ -691,6 +701,14 @@
 		"62 24.24 6 52.68")
 	(relative FALSE))
 
+([SailExpert_Class220001] of  CloFuncall
+
+	(source "(Math/round (rand 5))"))
+
+([SailExpert_Class220002] of  CloFuncall
+
+	(source "(type (Math/round (rand 5)))"))
+
 ([SailExpert_Class230000] of  CloProgram
 
 	(cloFunctions [SailExpert_Class230002])
@@ -726,6 +744,70 @@
 	(rhs "(let [trn (* 2 (+ ?taa ?e))\n       crs (condp = ?tack \n               'STARBOARD (+ ?crs trn)\n               'PORT (- ?crs trn))\n       crs (sail.exp/trim-bear crs)\n       dif (sail.exp/difference crs ?wnd)\n       crs (if (<= dif ?taa) ;; INIRONS on new course\n               (sail.exp/trim-bear\n                 (condp = ?tack \n                   'STARBOARD (+ crs ?taa)\n                   'PORT (- crs ?taa)))\n               crs)]\n  (println \"Skipper\" ?boat \"status\" 'OFF-SHORE)\n  (retract ?sc)\n  (modify ?s status 'OFF-SHORE\n	time (+ ?t (* ?del 60)))\n  (asser NewCourse boat ?boat course crs))")
 	(salience 0)
 	(title "ss:Shore Ahead"))
+
+([SailExpert_Class240000] of  Rule
+
+	(lhs "(Wind direction ?dir)\n?wc (WindChange randomly true\n	big-oscillation ?bos\n	big-interval ?bint\n	time2 ?t1)\n(Clock time ?t2 (> ?t2 ?t1))")
+	(rhs "(let [[mid min] (read-string ?bos)\n       dev (Math/round (sail.exp/rand-mid-min mid min))\n       dev (sail.exp/trim-bear dev)\n       ndir (Math/round (sail.exp/rand-mid-min ?dir (- ?dir dev)))\n       ndir (sail.exp/trim-bear ndir)\n       del (sail.exp/rand-mid-min ?bint (- ?bint (max 1 (* ?bint 0.6))))\n       del (int (* del 60))]\n  (modify ?wc direction ndir\n	time2 (+ ?t2 del)))")
+	(salience 0)
+	(title "ws:Big Oscillation"))
+
+([SailExpert_Class240001] of  Rule
+
+	(lhs "(Wind direction ?dir)\n?wc (WindChange randomly true\n	small-oscillation ?sos\n	small-interval ?sint\n	time ?t1)\n(Clock time ?t2 (> ?t2 ?t1))")
+	(rhs "(let [ndir (Math/round (sail.exp/rand-mid-min ?dir (- ?dir ?sos)))\n       ndir (sail.exp/trim-bear ndir)\n       del (sail.exp/rand-mid-min ?sint (- ?sint (max 1 (* ?sint 0.6))))\n       del (int (* del 60))]\n  (modify ?wc direction ndir\n	time (+ ?t2 del)))")
+	(salience 0)
+	(title "ws:Small Oscillation"))
+
+([SailExpert_Class250000] of  CloFuncall
+
+	(source "(ru.rules/f 56)"))
+
+([SailExpert_Class250001] of  CloFuncall
+
+	(source "(rand)"))
+
+([SailExpert_Class250002] of  CloFuncall
+
+	(source "(sail.exp/rand-mid-min 180 160)"))
+
+([SailExpert_Class250003] of  Rule
+
+	(lhs "?wc1 (WindChange asserted true)\n?wc2 (WindChange asserted ?ass\n	(not= ?ass true))")
+	(rhs "(retract ?wc1)\n(modify ?wc2 asserted true)")
+	(salience 1)
+	(title "ws:WindChange Update"))
+
+([SailExpert_Class260000] of  CloFuncall
+
+	(source "(let [[mid min] (read-string \"[225 90]\")] (println mid (type mid)))"))
+
+([SailExpert_Class260001] of  CloFuncall
+
+	(source "(ru.rules/pp 'WindChange)"))
+
+([SailExpert_Class260002] of  CloFuncall
+
+	(source "(rete.core/retract 10)"))
+
+([SailExpert_Class260003] of  CloFuncall
+
+	(source "(rete.core/clear)"))
+
+([SailExpert_Class260004] of  CloFuncall
+
+	(source "(rete.core/reset)"))
+
+([SailExpert_Class260007] of  Rule
+
+	(lhs "?wc (WindChange asserted ?a\n	(not= ?a true))\n(not WindChange)")
+	(rhs "(modify ?wc asserted true)")
+	(salience 0)
+	(title "ws:WindChange First"))
+
+([SailExpert_Class270001] of  CloFuncall
+
+	(source "(let [[mid min] (read-string \"[225 90]\")] (println mid (type mid)) (println min (type min)))"))
 
 ([SailExpert_Class30000] of  RuleSet
 
@@ -892,34 +974,30 @@
 
 	(source "(pro.server/terrain 62.415 6.085)"))
 
-([SailExpert_Class70006] of  CloFuncall
-
-	(source "(pro.server/terrain)"))
-
-([SailExpert_Class70007] of  CloFuncall
-
-	(source "(pro.server/request-terrain 62.427 6.07)"))
-
-([SailExpert_Class70008] of  CloFuncall
-
-	(source "(pro.server/request-terrain 62.425 6.086)"))
-
-([SailExpert_Class70009] of  CloFuncall
-
-	(source "pro.server/TERRA-CTL"))
-
 ([SailExpert_Class80000] of  CloFuncall
 
-	(source "(ru.rules/f 382)"))
+	(source "(menu.item/clojure-work)"))
 
 ([SailExpert_Class80001] of  Document
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    Rule: Big Header on Beating<br><br><img src=\"file:data/images/BigHeader.jpg\"><br></body>\n</html>"))
 
+([SailExpert_Class90000] of  CloFunction
+
+	(source "(let [dev (rand (- mid min))]\n  (if (> (rand) 0.5)\n    (+ mid dev)\n    (- mid dev)))")
+	(title "rand-mid-min [mid min]"))
+
 ([SailExpert_Class90001] of  WindChange
 
-	(direction 90)
-	(randomly FALSE))
+	(asserted FALSE)
+	(big-interval 30)
+	(big-oscillation "[225 90]")
+	(direction 160)
+	(randomly TRUE)
+	(small-interval 5)
+	(small-oscillation 20)
+	(time 0)
+	(time2 0))
 
 ([SailExpert_Class90004] of  Rule
 

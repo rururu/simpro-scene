@@ -1,26 +1,26 @@
 (ws:Wind Change Direction 0
-?w (Wind direction ?dir)
-?nc (NewCourse boat "Wind"
-	course ?crs
-	(not= ?crs ?dir))
+?w (Wind direction ?dir1)
+?wc (WindChange
+	direction ?dir2
+	(not= ?dir1 ?dir2))
 =>
-(let [d (if (< ?crs ?dir) 
-            (- ?dir ?crs) 
-            (- ?crs ?dir))
-       s (if (< ?crs ?dir)
+(let [d (if (< ?dir2 ?dir1) 
+            (- ?dir1 ?dir2) 
+            (- ?dir2 ?dir1))
+       s (if (< ?dir2 ?dir1)
             (if (< d 180)
               'BACKING
               'VEERING)
             (if (< d 180)
               'VEERING
               'BACKING))]
-  (println "Wind" s d "new direction" ?crs)
-  (retract ?nc)
-  (modify ?w direction ?crs
+  (println "Wind" s d "new direction" ?dir2)
+  (retract ?wc)
+  (modify ?w direction ?dir2
 	shift s
                         shift-degrees d)
   (if-let [wmo (ru.igis.omtab.OMT/getMapOb "Wind")]
-    (.setCourse wmo ?crs))))
+    (.setCourse wmo ?dir2))))
 
 (ws:Wind on Map 0
 (Wind direction ?dir
@@ -34,25 +34,6 @@
   (protege.core/ssv ins "course" ?dir)
   (ru.igis.omtab.OMT/getOrAdd ins)
   (println "Wind on map, direction" ?dir ",coords" [?lat ?lon])))
-
-(ss:Winward on Beating 0
-(Skipper status BEATING
-	boat ?boat)
-(Boat label ?boat
-	course ?crs
-	tack ?tack)
-?ws (WindShift boat ?boat
-	shift LIFT)
-(Wind shift-degrees ?sid)
-=>
-(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (let [crs (if (= ?tack 'STARBOARD)
-	(+ ?crs ?sid)
-	(- ?crs ?sid))
-         crs (int (sail.exp/trim-bear crs))]
-    (println "Windward" ?boat)
-    (retract ?ws)
-    (asser NewCourse boat ?boat course crs))))
 
 (ws:Wind Veering 1
 ?b (Boat label ?lab
@@ -118,19 +99,6 @@
 	direction ?dir)
   (asser NewCourse boat ?boat
 	 course crs)))
-
-(ss:Winward till Can on Mark 1
-?s (Skipper status BEATING
-	boat ?boat
-	mark ?mark)
-?ws (WindShift boat ?boat
-	shift LIFT)
-(Wind shift-degrees ?sid)
-(Boat label ?boat (< (sail.exp/course-away-from-mark ?boat ?mark) ?sid))
-=>
-(println "Skipper" ?boat "status" 'GO-ON-MARK)
-(retract ?ws)
-(modify ?s status 'GO-ON-MARK))
 
 (bs:Boat Speed 0
 (Boat label ?lab	sail-point ?slp
@@ -249,38 +217,34 @@
 (retract ?c2))
 
 (ss:Shore Ahead 0
-?s (Skipper status ?sts
-	epsilon ?e
-	boat ?boat)
+?s (Skipper boat ?boat
+	delay ?del
+	epsilon ?e)
+(Wind direction ?wnd)
 (Boat label ?boat
 	course ?crs
-	depth-interval ?di
 	tack-angle ?taa
 	tack ?tack)
-?d (Depth boat ?boat
-	depth-time ?dt)
-(Clock time ?t (> ?t ?dt))
+?sc (ShoreCheck status SHORE-AHEAD)
+(Clock time ?t)
 =>
-(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (let [spd (.getSpeed bmo)
-        tim (/ ?di 3600)
-        dis (double (* spd tim))
-        [lat lon] (.position bmo (double ?crs) dis)
-        dep (read-string (geo.names/call-geonames-elev30 lat lon))]
-    (println "Boat" ?boat "future depth" dep)
-    (modify ?d depth-time (if (> ?dt 0) 
-		(+ ?dt ?di)
-		(+ ?t ?di)))
-    (if (> dep 0)
-      (if (= ?sts 'BEATING)
-        (let [trn (* 2 (+ ?taa ?e))
-               crs (condp = ?tack 
-  	'STARBOARD (+ ?crs trn)
-	'PORT (- ?crs trn))
-               crs (sail.exp/trim-bear crs)]
-          (println "Skipper" ?boat "status" 'OFF-SHORE)
-          (modify ?s status 'OFF-SHORE)
-          (asser NewCourse boat ?boat course crs)))))))
+(let [trn (* 2 (+ ?taa ?e))
+       crs (condp = ?tack 
+               'STARBOARD (+ ?crs trn)
+               'PORT (- ?crs trn))
+       crs (sail.exp/trim-bear crs)
+       dif (sail.exp/difference crs ?wnd)
+       crs (if (<= dif ?taa) ;; INIRONS on new course
+               (sail.exp/trim-bear
+                 (condp = ?tack 
+                   'STARBOARD (+ crs ?taa)
+                   'PORT (- crs ?taa)))
+               crs)]
+  (println "Skipper" ?boat "status" 'OFF-SHORE)
+  (retract ?sc)
+  (modify ?s status 'OFF-SHORE
+	time (+ ?t (* ?del 60)))
+  (asser NewCourse boat ?boat course crs)))
 
 (ss:End of Big Header 0
 ?a (Advice text "BIG HEADER NEW COURSE"
@@ -288,8 +252,44 @@
 (Wind direction ?dir2
 	(not= ?dir1 ?dir2))
 =>
-(println "End of big header")
+;;(println "End of big header")
 (retract ?a))
+
+(scs:Start Shore Check 0
+(ShoreControl delay ?del)
+?sc (ShoreCheck status START
+	boat ?boat)
+(Clock time ?t)
+=>
+(when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
+  (pro.server/request-terrain
+	(.getLatitude bmo)
+	(.getLongitude bmo))
+  (modify ?sc time (+ ?t ?del)
+	terrain -1
+	status 'REPEAT)))
+
+(scs:Repeat Shore Check 0
+(ShoreControl delay ?del
+	shore ?sho
+	distance ?dis)
+?sc (ShoreCheck status REPEAT
+	boat ?boat
+	terrain ?oter
+	time ?t1)
+(Boat label ?boat course ?crs)
+(Clock time ?t2 (> ?t2 ?t1))
+=>
+(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
+  (let [nter (int (pro.server/terrain))]
+    (println "Terrain" ?oter nter)
+    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))
+      (do (println "Shore ahead boat" ?boat)
+        (modify ?sc status 'SHORE-AHEAD))
+      (let [[lat lon] (.position bmo (double ?crs) ?dis)] 
+        (pro.server/request-terrain lat lon)
+        (modify ?sc time (+ ?t2 ?del)
+	terrain (if (>= nter 0) nter ?oter)))))))
 
 (ss:Mark on Map 0
 (Mark label ?lab latitude ?lat
@@ -308,8 +308,7 @@
 	tack-angle ?taa)
 (Wind direction ?wnd)
 =>
-(let [dif (if (> ?crs ?wnd) (- ?crs ?wnd) (- ?wnd ?crs))
-       dif (if (> dif 180) (- 360 dif) dif)
+(let [dif (sail.exp/difference ?crs ?wnd)
        slp (cond	(> dif 168.75) 'RUNNING
 	(> dif 101.25) 'BROADREACH
 	(> dif 78.74) 'BEAMREACH
@@ -374,31 +373,19 @@
 	   boat ?boat 
 	   course crs)))))
 
-(ss:Go-about While Beating 0
-?b (Boat turn GO-ABOUT
-	wind CLOSEHAULED
-	label ?boat
-	course ?crs
-	tack-angle ?taa
-	tack ?tack)
+(scs:Set Shore Check Interval 0
+(ShoreControl delay ?del)
 =>
-(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (let [e 2
-         trn (* 2 (+ ?taa e))
-         crs (condp = ?tack 
-                 'STARBOARD (+ ?crs trn)
-                 'PORT (- ?crs trn))
-         crs (sail.exp/trim-bear crs)]
-    (modify ?b turn 'DOING)
-    (.setCourse bmo crs))))
+(pro.server/terrain-interval (* ?del 1000))
+(println "Shore Check Interval" ?del "sec."))
 
 (ss:Gone off Shore 0
 ?s (Skipper status OFF-SHORE
-	boat ?boat)
-?d (Depth boat ?boat
-	depth-time ?dt)
-(Clock time ?t (> ?t ?dt))
+	boat ?boat
+	time ?t1)
+(Clock time ?t2 (> ?t2 ?t1))
 =>
 (modify ?s status 'UNDEFINED)
-(modify ?d depth-time ?t))
+(asser ShoreCheck status 'START
+	boat ?boat))
 
