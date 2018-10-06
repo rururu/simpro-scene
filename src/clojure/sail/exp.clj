@@ -74,3 +74,8 @@
     (+ mid dev)
     (- mid dev))))
 
+(defn camera-control [bmo k v]
+  (let [cam (or (.getAttribute  bmo "CAMERA") {})
+       cam (assoc cam k v)]
+  (.putAttribute bmo "CAMERA" cam)))
+

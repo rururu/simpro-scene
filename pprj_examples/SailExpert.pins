@@ -1,4 +1,4 @@
-; Thu Oct 04 13:28:56 MSK 2018
+; Sat Oct 06 19:02:04 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -129,7 +129,8 @@
 		[SailExpert_Class20002]
 		[SailExpert_Class20009]
 		[SailExpert_Class50007]
-		[SailExpert_Class170000])
+		[SailExpert_Class170000]
+		[SailExpert_Class280001])
 	(templates
 		[Boat]
 		[Wind]
@@ -170,7 +171,8 @@
 		[SailExpert_Class50004]
 		[SailExpert_Class90017]
 		[SailExpert_Class140000]
-		[SailExpert_Class90000])
+		[SailExpert_Class90000]
+		[SailExpert_Class270000])
 	(cloNamespace [SailExpert_Class10010])
 	(cloVars [SailExpert_Class10016])
 	(title "SailExp Funcs"))
@@ -782,22 +784,6 @@
 
 	(source "(let [[mid min] (read-string \"[225 90]\")] (println mid (type mid)))"))
 
-([SailExpert_Class260001] of  CloFuncall
-
-	(source "(ru.rules/pp 'WindChange)"))
-
-([SailExpert_Class260002] of  CloFuncall
-
-	(source "(rete.core/retract 10)"))
-
-([SailExpert_Class260003] of  CloFuncall
-
-	(source "(rete.core/clear)"))
-
-([SailExpert_Class260004] of  CloFuncall
-
-	(source "(rete.core/reset)"))
-
 ([SailExpert_Class260007] of  Rule
 
 	(lhs "?wc (WindChange asserted ?a\n	(not= ?a true))\n(not WindChange)")
@@ -805,9 +791,33 @@
 	(salience 0)
 	(title "ws:WindChange First"))
 
-([SailExpert_Class270001] of  CloFuncall
+([SailExpert_Class270000] of  CloFunction
 
-	(source "(let [[mid min] (read-string \"[225 90]\")] (println mid (type mid)) (println min (type min)))"))
+	(source "(let [cam (or (.getAttribute  bmo \"CAMERA\") {})\n       cam (assoc cam k v)]\n  (.putAttribute bmo \"CAMERA\" cam))")
+	(title "camera-control [bmo k v]"))
+
+([SailExpert_Class280000] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Bylina\")"))
+
+([SailExpert_Class280001] of  Rule
+
+	(lhs "(Boat label ?boat sail-point ?sp\n	tack ?tk)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [heel (condp = ?sp\n	'BROADREACH  2\n	'BEAMREACH    4\n	'CLOSEREACH   7\n	'CLOSEHAULED 10\n	0)\n         sign (condp = ?tk\n	'STARBOARD -1\n	'PORT           1)]\n    (sail.exp/camera-control bmo :roll (* heel sign))))")
+	(salience 0)
+	(title "bs:Boat Heel"))
+
+([SailExpert_Class290001] of  CloFuncall
+
+	(source "(.getAttributes (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
+
+([SailExpert_Class290002] of  CloFuncall
+
+	(source "(sail.exp/camera-control (ru.igis.omtab.OMT/getMapOb \"Bylina\") :roll -10)"))
+
+([SailExpert_Class290003] of  CloFuncall
+
+	(source "(sail.exp/camera-control (ru.igis.omtab.OMT/getMapOb \"Bylina\") :roll 10)"))
 
 ([SailExpert_Class30000] of  RuleSet
 
@@ -965,18 +975,6 @@
 	(boat "Bylina")
 	(status START)
 	(terrain 0))
-
-([SailExpert_Class70004] of  CloFuncall
-
-	(source "(pro.server/request-terrain 62.415 6.085)"))
-
-([SailExpert_Class70005] of  CloFuncall
-
-	(source "(pro.server/terrain 62.415 6.085)"))
-
-([SailExpert_Class80000] of  CloFuncall
-
-	(source "(menu.item/clojure-work)"))
 
 ([SailExpert_Class80001] of  Document
 

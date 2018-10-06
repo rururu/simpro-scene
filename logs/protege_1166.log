@@ -1,0 +1,8 @@
+2018.10.06 18:27:13.776 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2018.10.06 18:27:13.870 MSK CONFIG: Protege 3.5 Build 663, JVM 10.0.2+13-Ubuntu-1ubuntu0.18.04.2, memory=494M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2018.10.06 18:27:13.895 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2018.10.06 18:27:15.288 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2018.10.06 18:27:15.300 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2018.10.06 18:27:17.465 MSK WARNING: Look and feel not found: com.apple.laf.AquaLookAndFeel -- SystemUtilities.setLookAndFeel()
+2018.10.06 18:27:19.938 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2018.10.06 18:28:13.658 MSK INFO: Load time for file:/home/ru/clojure/simpro-scene/pprj_examples/SailExpert.pprj = 10 sec (project) + 36 sec (ui) -- ProjectManager$3.run()
