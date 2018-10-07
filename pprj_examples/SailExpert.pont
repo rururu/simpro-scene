@@ -1,4 +1,4 @@
-; Sat Oct 06 19:02:04 MSK 2018
+; Sun Oct 07 17:26:46 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -85,6 +85,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot pitch
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -93,6 +97,16 @@
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pitch-interval
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot slope
+		(type SYMBOL)
+		(allowed-values UP DOWN)
+		(default DOWN)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot randomly
@@ -382,5 +396,36 @@
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Wave
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot pitch
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pitch-interval
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass BoatPitch
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot slope
+		(type SYMBOL)
+		(allowed-values UP DOWN)
+		(default DOWN)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot boat
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

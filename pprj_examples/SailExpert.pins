@@ -1,4 +1,4 @@
-; Sat Oct 06 19:02:04 MSK 2018
+; Sun Oct 07 17:26:47 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -111,7 +111,8 @@
 		[SailExpert_Class60000]
 		[SailExpert_Class190008]
 		[SailExpert_Class70001]
-		[SailExpert_Class90001])
+		[SailExpert_Class90001]
+		[SailExpert_Class270007])
 	(instances [SailExpert_Class70003])
 	(mode run)
 	(rule-sets
@@ -130,11 +131,15 @@
 		[SailExpert_Class20009]
 		[SailExpert_Class50007]
 		[SailExpert_Class170000]
-		[SailExpert_Class280001])
+		[SailExpert_Class280001]
+		[SailExpert_Class80000])
 	(templates
 		[Boat]
 		[Wind]
-		[NewCourse])
+		[NewCourse]
+		[BoatPitch]
+		[Wave]
+		[Clock])
 	(title "Boat Set"))
 
 ([SailExpert_Class10005] of  %3AINSTANCE-ANNOTATION
@@ -508,7 +513,7 @@
 ([SailExpert_Class20002] of  Rule
 
 	(lhs "(Boat label ?lab course ?crs\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (.setKeepRoute (ru.igis.omtab.OMT/getOrAdd ins) true)\n  (asser Depth boat ?lab\n	depth-time 0)\n  (println \"Boat on map:\" ?lab \", course\" ?crs))")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (when-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (.setKeepRoute bmo true)\n    (.setAltitude bmo 4)\n    (sail.exp/camera-control bmo :pitch 6)\n    (asser BoatPitch boat ?lab\n	slope 'UP\n	time 0)\n    (println \"Boat on map:\" ?lab \", course\" ?crs)))")
 	(salience 0)
 	(title "bs:Boat on Map"))
 
@@ -796,6 +801,11 @@
 	(source "(let [cam (or (.getAttribute  bmo \"CAMERA\") {})\n       cam (assoc cam k v)]\n  (.putAttribute bmo \"CAMERA\" cam))")
 	(title "camera-control [bmo k v]"))
 
+([SailExpert_Class270007] of  Wave
+
+	(pitch 1)
+	(pitch-interval 2))
+
 ([SailExpert_Class280000] of  CloFuncall
 
 	(source "(ru.igis.omtab.OMT/getMapOb \"Bylina\")"))
@@ -975,6 +985,13 @@
 	(boat "Bylina")
 	(status START)
 	(terrain 0))
+
+([SailExpert_Class80000] of  Rule
+
+	(lhs "(Wave pitch ?pit pitch-interval ?pin)\n?bp (BoatPitch boat ?boat \n	slope ?slp\n	time ?tim)\n (Clock time ?t (> ?t ?tim))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [[pit slp] (condp = ?slp\n	'UP       [(- 6 ?pit) 'DOWN]\n	'DOWN [(+ 6 ?pit) 'UP])]\n    (sail.exp/camera-control bmo :pitch pit)\n    (modify ?bp slope slp\n	time (+ ?t ?pin))))")
+	(salience 0)
+	(title "bs:Boat Pitching"))
 
 ([SailExpert_Class80001] of  Document
 
