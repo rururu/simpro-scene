@@ -1,4 +1,4 @@
-; Sun Oct 07 17:26:46 MSK 2018
+; Thu Oct 11 22:36:16 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -33,6 +33,10 @@
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot point4d
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot terrain
 		(type INTEGER)
 		(default 0)
@@ -40,6 +44,10 @@
 		(create-accessor read-write))
 	(single-slot big-interval
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot visibility
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wind-shift
@@ -426,6 +434,47 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass OthersView
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot visibility
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Other
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot point4d
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot url
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

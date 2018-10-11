@@ -10,6 +10,7 @@
   java.util.TimerTask))
 
 (def ES-TIMER nil)
+(def URLS {"Mark" "http://localhost:4444/img/buoy3.png"})
 (defn work-sim []
   (if (and (some? ES-TIMER) (OMT/isRunning))
   (let [msec (Clock/getClock)
