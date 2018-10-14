@@ -29,6 +29,7 @@
                  [org.openmap-java/openmap "5.1.15"]]
   ;; :repositories [["repo" "file:repo"]] ;; for "lein deploy" only !!!!
   :repositories {"local" {:url ~(str (.toURI (java.io.File. "repo"))) :checksum :warn}}
-  :jvm-opts ["--add-modules" "java.xml.bind"]
+  ;; :jvm-opts ["--add-modules" "java.xml.bind"]
+  :java-cmd "/home/ru/jo"
   :main simpro-scene.core)
 

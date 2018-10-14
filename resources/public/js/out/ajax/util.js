@@ -7,9 +7,9 @@ ajax.util.throw_error = (function ajax$util$throw_error(args){
 throw (new Error([cljs.core.str.cljs$core$IFn$_invoke$arity$1(args)].join('')));
 });
 ajax.util.get_content_type = (function ajax$util$get_content_type(response){
-var or__26232__auto__ = ajax.protocols._get_response_header.call(null,response,"Content-Type");
-if(cljs.core.truth_(or__26232__auto__)){
-return or__26232__auto__;
+var or__8901__auto__ = ajax.protocols._get_response_header.call(null,response,"Content-Type");
+if(cljs.core.truth_(or__8901__auto__)){
+return or__8901__auto__;
 } else {
 return "";
 }

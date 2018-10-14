@@ -1,4 +1,4 @@
-; Thu Oct 11 22:36:16 MSK 2018
+; Sun Oct 14 12:00:04 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -59,43 +59,11 @@
 
 ([SailExpert_Class100000] of  CloFuncall
 
-	(source "b"))
+	(source "(ru.rules/pp 'Other)"))
 
 ([SailExpert_Class100001] of  CloFuncall
 
-	(source "(.setCourse b 20)"))
-
-([SailExpert_Class100002] of  CloFuncall
-
-	(source "(.stopRoute b)"))
-
-([SailExpert_Class100004] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.415 6.085])"))
-
-([SailExpert_Class100005] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.085])"))
-
-([SailExpert_Class100006] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.185])"))
-
-([SailExpert_Class100007] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.416 6.186])"))
-
-([SailExpert_Class100008] of  CloFuncall
-
-	(source "(pro.server/terrain-interval 1000)"))
-
-([SailExpert_Class100009] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.0855])"))
-
-([SailExpert_Class100010] of  CloFuncall
-
-	(source "(vswap! pro.server/TERRA-CTL assoc :terrain -1 :latlon [62.425 6.08553])"))
+	(source "(cesium.core/new-doc)"))
 
 ([SailExpert_Class10003] of  Run
 
@@ -234,14 +202,6 @@
 	(url "file:data/images/wind1.png")
 	(verticalSpeed 0.0))
 
-([SailExpert_Class110001] of  CloFuncall
-
-	(source "(vswap! pro.server/BACK-INFO assoc :terrain 5)"))
-
-([SailExpert_Class110002] of  CloFuncall
-
-	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.425 6.085])"))
-
 ([SailExpert_Class120000] of  Rule
 
 	(lhs "?w (Wind direction ?dir1)\n?wc (WindChange\n	direction ?dir2\n	(not= ?dir1 ?dir2))")
@@ -255,10 +215,6 @@
 	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (let [wom (ru.igis.omtab.OMT/getOrAdd ins)]\n    (println \"Wind on map, direction\" ?dir \",coords\" [(.getLatitude wom) (.getLongitude wom)])))")
 	(salience 0)
 	(title "ws:Wind on Map"))
-
-([SailExpert_Class130000] of  CloFuncall
-
-	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.444 6.0])"))
 
 ([SailExpert_Class130001] of  Rule
 
@@ -324,10 +280,6 @@
 	(source "(if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]\n    (and (.near bmo mmo radius) (.abaft bmo mmo))))")
 	(title "near-and-abaft [boat mark radius]"))
 
-([SailExpert_Class140001] of  CloFuncall
-
-	(source "(vswap! pro.server/BACK-INFO assoc :terrain -1 :latlon [62.421 6.202])"))
-
 ([SailExpert_Class140002] of  Rule
 
 	(lhs "?b (Boat label ?lab\n	tack ?tack)\n(Wind shift BACKING)\n(not BoatWindShift boat ?lab)")
@@ -363,20 +315,12 @@
 	(salience 1)
 	(title "ss:Big Header on Beating"))
 
-([SailExpert_Class160001] of  CloFuncall
-
-	(source "(ru.rules/f 18)"))
-
 ([SailExpert_Class170000] of  Rule
 
 	(lhs "(Boat label ?lab	sail-point ?slp\n	speed ?spd)")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [osp (.getSpeed bmo)\n         nsp (condp = ?slp\n	'RUNNING 	 ?spd\n	'BROADREACH	 (* ?spd 0.8)\n	'BEAMREACH	 (* ?spd 0.7)\n	'CLOSEREACH	 (* ?spd 0.6)\n	'CLOSEHAULED	 (* ?spd 0.5)\n	0.0)\n         nsp (double (Math/round nsp))]\n    (if (not= nsp osp)\n      (if (= nsp 0.0)\n        (.stopRoute bmo)\n        (.setSpeed bmo nsp)))))")
 	(salience 0)
 	(title "bs:Boat Speed"))
-
-([SailExpert_Class170001] of  CloFuncall
-
-	(source "(type 0.0)"))
 
 ([SailExpert_Class180000] of  Rule
 
@@ -402,10 +346,6 @@
 	(playground-index 0)
 	(speed 0.0)
 	(verticalSpeed 0.0))
-
-([SailExpert_Class190001] of  CloFuncall
-
-	(source "(ru.rules/dr)"))
 
 ([SailExpert_Class190005] of  Mark
 
@@ -486,30 +426,6 @@
 	(tack UNDEFINED)
 	(tack-angle 40))
 
-([SailExpert_Class200000] of  CloFuncall
-
-	(source "(ru.igis.omtab/getMapOb \"Bylina\")"))
-
-([SailExpert_Class200001] of  CloFuncall
-
-	(source "(.getRoute (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
-
-([SailExpert_Class200002] of  CloFuncall
-
-	(source "(def r (.getRoute (ru.igis.omtab.OMT/getMapOb \"Bylina\")))"))
-
-([SailExpert_Class200003] of  CloFuncall
-
-	(source "(.getNextRoutePoint (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
-
-([SailExpert_Class200004] of  CloFuncall
-
-	(source "(.getNextPointIndex (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
-
-([SailExpert_Class200005] of  CloFuncall
-
-	(source "(count r)"))
-
 ([SailExpert_Class20001] of  Rule
 
 	(lhs "(Clock time ?t (< ?t 1))")
@@ -529,18 +445,6 @@
 	(cloFunctions [RuleEngine_Class220000])
 	(cloNamespace [Clojure_Class300001])
 	(title "SE Clojure Work"))
-
-([SailExpert_Class20004] of  CloFuncall
-
-	(source "(ru.rules/sp :all)"))
-
-([SailExpert_Class20005] of  CloFuncall
-
-	(source "(ru.rules/f 1)"))
-
-([SailExpert_Class20006] of  CloFuncall
-
-	(source "sail.exp/EVT-LISTENERS"))
 
 ([SailExpert_Class20009] of  Rule
 
@@ -707,14 +611,6 @@
 		"62 24.24 6 52.68")
 	(relative FALSE))
 
-([SailExpert_Class220001] of  CloFuncall
-
-	(source "(Math/round (rand 5))"))
-
-([SailExpert_Class220002] of  CloFuncall
-
-	(source "(type (Math/round (rand 5)))"))
-
 ([SailExpert_Class230000] of  CloProgram
 
 	(cloFunctions [SailExpert_Class230002])
@@ -765,28 +661,12 @@
 	(salience 0)
 	(title "ws:Small Oscillation"))
 
-([SailExpert_Class250000] of  CloFuncall
-
-	(source "(ru.rules/f 56)"))
-
-([SailExpert_Class250001] of  CloFuncall
-
-	(source "(rand)"))
-
-([SailExpert_Class250002] of  CloFuncall
-
-	(source "(sail.exp/rand-mid-min 180 160)"))
-
 ([SailExpert_Class250003] of  Rule
 
 	(lhs "?wc1 (WindChange asserted true)\n?wc2 (WindChange asserted ?ass\n	(not= ?ass true))")
 	(rhs "(retract ?wc1)\n(modify ?wc2 asserted true)")
 	(salience 1)
 	(title "ws:WindChange Update"))
-
-([SailExpert_Class260000] of  CloFuncall
-
-	(source "(let [[mid min] (read-string \"[225 90]\")] (println mid (type mid)))"))
 
 ([SailExpert_Class260007] of  Rule
 
@@ -805,10 +685,6 @@
 	(pitch 1)
 	(pitch-interval 2))
 
-([SailExpert_Class280000] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"Bylina\")"))
-
 ([SailExpert_Class280001] of  Rule
 
 	(lhs "(Boat label ?boat sail-point ?sp\n	tack ?tk)")
@@ -825,10 +701,6 @@
 		[Other]
 		[OthersView])
 	(title "OthersView Set"))
-
-([SailExpert_Class290001] of  CloFuncall
-
-	(source "(.getAttributes (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
 
 ([SailExpert_Class30000] of  RuleSet
 
@@ -851,7 +723,7 @@
 ([SailExpert_Class300001] of  Rule
 
 	(lhs "(OthersView delay ?del\n	visibility ?vis)\n(Boat label ?boat)\n?ot (Other label ?olab\n	latitude ?lat\n	longitude ?lon\n	url ?url\n	point4d ?p41\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [omo (ru.igis.omtab.OMT/getMapOb ?olab)]\n    (let [dis (.distanceNM bmo omo)]\n      (if (< dis ?vis)\n        (let [nlat (.getLatitude omo)\n               nlon (.getLongitude omo)\n               nalt (.getAltitude omo)\n               p42 [nlat nlon (int (/ nalt 3.28084)) (cesium.core/iso8601curt)]]\n          (cesium.core/leg ?olab\n	?url\n	(calc.core/smooth-tabfun dis [[0 1.0][?vis 0.1]])\n	?p41\n	p42)\n          (modify ?ot point4d p42\n	latitude nlat\n	longitude nlon\n	time (+ ?t ?del)))))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [omo (ru.igis.omtab.OMT/getMapOb ?olab)]\n    (let [dis (.distanceNM bmo omo)]\n      (if (< dis ?vis)\n        (let [nlat (.getLatitude omo)\n               nlon (.getLongitude omo)\n               nalt (.getAltitude omo)\n               p42 [nlat nlon nalt (cesium.core/iso8601curt)]]\n          (cesium.core/leg ?olab\n	?url\n	(calc.core/smooth-tabfun dis [[0 1.0][?vis 0.1]])\n	?p41\n	p42)\n          (modify ?ot point4d p42\n	latitude nlat\n	longitude nlon\n	time (+ ?t ?del)))))))")
 	(salience 0)
 	(title "ov:CZML-LegGeneration"))
 
@@ -900,18 +772,6 @@
 
 	(source "(let [res (tabfun x table)]\n  (if (vector? res) (second res) res))")
 	(title "smooth-tabfun [x table]"))
-
-([SailExpert_Class320000] of  CloFuncall
-
-	(source "(ru.rules/f 8)"))
-
-([SailExpert_Class320001] of  CloFuncall
-
-	(source "(ru.rules/f 16)"))
-
-([SailExpert_Class320002] of  CloFuncall
-
-	(source "(ru.rules/pp 'Other)"))
 
 ([SailExpert_Class320003] of  CloVar
 
@@ -1001,8 +861,8 @@
 
 ([SailExpert_Class50003] of  Rule
 
-	(lhs "(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	 url ?url)\n(Clock time ?t)\n(not Other label ?lab)")
-	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         lat (.getLatitude mom)\n         lon (.getLongitude mom)]\n    (asser Other label ?lab\n	latitude lat\n	longitude lon\n	url (sail.exp/URLS \"Mark\")\n	point4d [lat lon 60 (cesium.core/iso8601curt)]\n	time ?t)\n    (println \"Mark on map:\" ?lab \", coords\" [lat lon])))")
+	(lhs "(OthersView delay ?del)\n(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	 url ?url)\n(Clock time ?t)\n(not Other label ?lab)")
+	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         lat (.getLatitude mom)\n         lon (.getLongitude mom)\n         alt 60]\n    (.setAltitude mom alt)\n    (cesium.core/new-doc)\n    (asser Other label ?lab\n	latitude lat\n	longitude lon\n	url (sail.exp/URLS \"Mark\")\n	point4d [lat lon alt (cesium.core/iso8601curt)]\n	time (+ ?t ?del))\n    (println \"Mark on map:\" ?lab \", coords\" [lat lon])))")
 	(salience 0)
 	(title "ss:Mark on Map"))
 

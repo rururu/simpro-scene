@@ -7,7 +7,7 @@
 (def CZ-CHAN (asp/mk-chan))
 (def DOC-SND true)
 (defn send-event [typ dat]
-  ;;(println [:CZ-EVT typ dat])
+  (println [:CZ-EVT typ dat])
 (asp/pump-in CZ-CHAN [typ (.trim dat)]))
 
 (defn events []
@@ -48,9 +48,9 @@
 
 (defn location [label scale img-url lat lon alt span-sec]
   (when DOC-SND
-    (send-event "czml" (doc))
-    (def DOC-SND false))
-  (let [p (str "{\"id\":\""
+  (send-event "czml" (doc))
+  (def DOC-SND false))
+(let [p (str "{\"id\":\""
                label
                "\",\"availability\":\""
                (iso8601curt) "/" (iso8601futt span-sec)
@@ -69,13 +69,13 @@
                ", "
                alt
                "]}}")]
-    (send-event "czml" p)))
+  (send-event "czml" p)))
 
 (defn leg [label img-url scale [lat1 lon1 alt1 tim1] [lat2 lon2 alt2 tim2]]
   (when DOC-SND
-    (send-event "czml" (doc))
-    (def DOC-SND false))
-  (let [p (str "{\"id\":\""
+  (send-event "czml" (doc))
+  (def DOC-SND false))
+(let [p (str "{\"id\":\""
                label
                "\",\"label\":{\"scale\":"
                (/ scale 2)
@@ -102,7 +102,7 @@
                ", "
                alt2
                "]}}")]
-    (send-event "czml" p)))
+  (send-event "czml" p)))
 
 (defn point-out [txt [lat lon] dist max-dist]
   (let [min-scl 0.25

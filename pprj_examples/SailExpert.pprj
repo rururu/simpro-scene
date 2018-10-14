@@ -1,4 +1,4 @@
-; Thu Oct 11 22:36:17 MSK 2018
+; Sun Oct 14 12:00:04 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -179,28 +179,28 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Move up"))
 
-([KB_599247_Class1717] of  Map
+([KB_867388_Class1717] of  Map
 
 	(entries
-		[KB_599247_Class1718]
-		[KB_599247_Class1719]
-		[KB_599247_Class1720]))
+		[KB_867388_Class1718]
+		[KB_867388_Class1719]
+		[KB_867388_Class1720]))
 
-([KB_599247_Class1718] of  Map_Entry
+([KB_867388_Class1718] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_599247_Class1719] of  Map_Entry
+([KB_867388_Class1719] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_599247_Class1720] of  Map_Entry
+([KB_867388_Class1720] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

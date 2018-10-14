@@ -1,4 +1,4 @@
-; Tue Oct 02 12:34:33 MSK 2018
+; Sun Oct 14 11:49:03 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -358,7 +358,7 @@
 
 ([Cezium_Class30047] of  CloFunction
 
-	(source ";;(println [:CZ-EVT typ dat])\n(asp/pump-in CZ-CHAN [typ (.trim dat)])")
+	(source "(println [:CZ-EVT typ dat])\n(asp/pump-in CZ-CHAN [typ (.trim dat)])")
 	(title "send-event [typ dat]"))
 
 ([Cezium_Class30048] of  CloFunction
@@ -383,12 +383,12 @@
 
 ([Cezium_Class30052] of  CloFunction
 
-	(source "(when DOC-SND\n    (send-event \"czml\" (doc))\n    (def DOC-SND false))\n  (let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"availability\\\":\\\"\"\n               (iso8601curt) \"/\" (iso8601futt span-sec)\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\" \n               scale\n               \" ,\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -24]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\"\n               lon\n               \", \"\n               lat\n               \", \"\n               alt\n               \"]}}\")]\n    (send-event \"czml\" p))")
+	(source "(when DOC-SND\n  (send-event \"czml\" (doc))\n  (def DOC-SND false))\n(let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"availability\\\":\\\"\"\n               (iso8601curt) \"/\" (iso8601futt span-sec)\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\" \n               scale\n               \" ,\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -24]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\"\n               lon\n               \", \"\n               lat\n               \", \"\n               alt\n               \"]}}\")]\n  (send-event \"czml\" p))")
 	(title "location [label scale img-url lat lon alt span-sec]"))
 
 ([Cezium_Class30053] of  CloFunction
 
-	(source "(when DOC-SND\n    (send-event \"czml\" (doc))\n    (def DOC-SND false))\n  (let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\"\n               (/ scale 2)\n               \",\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -8]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n               tim1\n               \"\\\", \"\n               lon1\n               \", \"\n               lat1\n               \", \"\n               alt1\n               \",\\\"\"\n               tim2\n               \"\\\", \"\n               lon2\n               \", \"\n               lat2\n               \", \"\n               alt2\n               \"]}}\")]\n    (send-event \"czml\" p))")
+	(source "(when DOC-SND\n  (send-event \"czml\" (doc))\n  (def DOC-SND false))\n(let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\"\n               (/ scale 2)\n               \",\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -8]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n               tim1\n               \"\\\", \"\n               lon1\n               \", \"\n               lat1\n               \", \"\n               alt1\n               \",\\\"\"\n               tim2\n               \"\\\", \"\n               lon2\n               \", \"\n               lat2\n               \", \"\n               alt2\n               \"]}}\")]\n  (send-event \"czml\" p))")
 	(title "leg [label img-url scale [lat1 lon1 alt1 tim1] [lat2 lon2 alt2 tim2]]"))
 
 ([Cezium_Class30054] of  CloFunction
