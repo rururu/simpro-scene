@@ -25,7 +25,7 @@
 (defn cz-processor [e]
   (let [data (.-data e)
        data (js/JSON.parse data)]
-  (println [:CZML data])
+  ;; (println [:CZML data])
   (.process CZM-SRC data)))
 
 (defn fly-control [lat lon alt hea pit rol per]

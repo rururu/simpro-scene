@@ -1,4 +1,4 @@
-; Sun Oct 14 12:00:04 MSK 2018
+; Wed Oct 17 17:28:06 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -81,8 +81,8 @@
 		[SailExpert_Class70001]
 		[SailExpert_Class90001]
 		[SailExpert_Class270007]
-		[SailExpert_Class300000])
-	(instances [SailExpert_Class70003])
+		[SailExpert_Class300000]
+		[SailExpert_Class70003])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -848,7 +848,7 @@
 ([SailExpert_Class50001] of  Rule
 
 	(lhs "(ShoreControl delay ?del\n	shore ?sho\n	distance ?dis)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Boat label ?boat course ?crs)\n(Clock time ?t2 (> ?t2 ?t1))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    (println \"Terrain\" ?oter nter)\n    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))\n      (do (println \"Shore ahead boat\" ?boat)\n        (modify ?sc status 'SHORE-AHEAD))\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    ;; (println \"Terrain\" ?oter nter)\n    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))\n      (do (println \"Shore ahead boat\" ?boat)\n        (modify ?sc status 'SHORE-AHEAD))\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
 	(salience 0)
 	(title "scs:Repeat Shore Check"))
 

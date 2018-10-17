@@ -1,4 +1,4 @@
-; Sun Oct 14 11:49:03 MSK 2018
+; Wed Oct 17 14:48:53 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -358,7 +358,7 @@
 
 ([Cezium_Class30047] of  CloFunction
 
-	(source "(println [:CZ-EVT typ dat])\n(asp/pump-in CZ-CHAN [typ (.trim dat)])")
+	(source ";; (println [:CZ-EVT typ dat])\n(asp/pump-in CZ-CHAN [typ (.trim dat)])")
 	(title "send-event [typ dat]"))
 
 ([Cezium_Class30048] of  CloFunction
@@ -378,7 +378,7 @@
 
 ([Cezium_Class30051] of  CloFunction
 
-	(source "(str \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\\\"clock\\\":{\\\"currentTime\\\":\\\"\" (iso8601futt -16) \"\\\"}}\")")
+	(source "(str \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\\\"clock\\\":{\\\"currentTime\\\":\\\"\" (iso8601curt) \"\\\"}}\")")
 	(title "doc []"))
 
 ([Cezium_Class30052] of  CloFunction
@@ -554,7 +554,7 @@
 
 ([Cezium_Class7] of  CloFunction
 
-	(source "(let [data (.-data e)\n       data (js/JSON.parse data)]\n  ;;(println [:CZML data])\n  (.process CZM-SRC data))")
+	(source "(let [data (.-data e)\n       data (js/JSON.parse data)]\n  ;; (println [:CZML data])\n  (.process CZM-SRC data))")
 	(title "cz-processor [e]"))
 
 ([Cezium_Class70000] of  CloFunction
