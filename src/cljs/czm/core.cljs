@@ -7,15 +7,16 @@
   "cesiumContainer" 
   #js{:imageryProvider (js/Cesium.createWorldImagery)
         :terrainProvider (js/Cesium.createWorldTerrain)
-        :animation false}))
+        :animation false
+        :shouldAnimate true}))
 (def CZM-SRC (js/Cesium.CzmlDataSource.))
 (def CAMERA (volatile! {:view "FORWARD"
                :pitch -10
                :roll 0}))
 (def FLY-CTL [0 0 0 0 0 0 0])
-(def AAT 0)
 (def MAX-UPGROUND 100)
 (def TERRAIN 0)
+(def TERRAIN2 0)
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -25,7 +26,7 @@
 (defn cz-processor [e]
   (let [data (.-data e)
        data (js/JSON.parse data)]
-  ;; (println [:CZML data])
+  ;; (println  :CZML data)
   (.process CZM-SRC data)))
 
 (defn fly-control [lat lon alt hea pit rol per]
@@ -41,8 +42,8 @@
 
 (defn terraHeightResponse [pos]
   (let [[lat lon alt head pitch roll per] FLY-CTL]
-  (def AAT (+ alt (.-height (first pos))))
-  (fly-control lat lon AAT head pitch roll per)))
+  (def TERRAIN (.-height (first pos)))
+  (fly-control lat lon (+ alt  TERRAIN) head pitch roll per)))
 
 (defn move-control [lat lon alt hea pit rol]
   ;;(println :MC lat lon alt hea pit rol)
@@ -101,10 +102,10 @@
 (println [:INIT-3D-VIEW :BASE base-url :TERRA terra]))
 
 (defn terraHeightResponse2 [pos]
-  (def TERRAIN (.-height (first pos))))
+  (def TERRAIN2 (.-height (first pos))))
 
 (defn terrain-request [lat lon]
   (if (< lat 90)
   (js/terraHeightRequest TERR-PROV lat lon terraHeightResponse2)
-  (def TERRAIN -1)))
+  (def TERRAIN2 -1)))
 

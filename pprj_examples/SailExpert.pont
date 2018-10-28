@@ -1,4 +1,4 @@
-; Wed Oct 17 17:28:05 MSK 2018
+; Sun Oct 28 13:06:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,10 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot start
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot route
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -28,12 +32,17 @@
 		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot state
+		(type SYMBOL)
+		(allowed-values START PROCESS FINISH READY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot sail-point
 		(type SYMBOL)
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot point4d
+	(single-slot point3d
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -53,6 +62,10 @@
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot finish
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -83,6 +96,10 @@
 		(create-accessor read-write))
 	(single-slot shift-degrees
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot view
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot direction
@@ -146,6 +163,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass Yacht
+	(is-a NavOb)
+	(role concrete))
 
 (defclass SailExpert+Onto
 	(is-a USER)
@@ -438,9 +459,27 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass OthersView
+(defclass CZMLGenerator
 	(is-a SailExpert+Onto)
 	(role concrete)
+	(single-slot state
+		(type SYMBOL)
+		(allowed-values START PROCESS FINISH READY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot finish
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot visibility
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -450,31 +489,48 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Other
+(defclass CZMLSpan
 	(is-a SailExpert+Onto)
 	(role concrete)
 	(single-slot label
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot time
-		(type INTEGER)
-		(default 0)
+	(single-slot state
+		(type SYMBOL)
+		(allowed-values START PROCESS FINISH READY)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot point4d
+	(single-slot point3d
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot url
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CameraCheck
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot longitude
+	(single-slot delay
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Onboard
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot boat
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot latitude
+	(single-slot view
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

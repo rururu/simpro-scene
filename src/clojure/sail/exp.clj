@@ -10,7 +10,8 @@
   java.util.TimerTask))
 
 (def ES-TIMER nil)
-(def URLS {"Mark" "http://localhost:4444/img/buoy3.png"})
+(def URLS {"Mark" "http://localhost:4444/img/buoy3.png"
+ "Boat" "http://localhost:4444/img/yacht.png"})
 (defn work-sim []
   (if (and (some? ES-TIMER) (OMT/isRunning))
   (let [msec (Clock/getClock)
@@ -79,4 +80,24 @@
   (let [cam (or (.getAttribute  bmo "CAMERA") {})
        cam (assoc cam k v)]
   (.putAttribute bmo "CAMERA" cam)))
+
+(defn boat-heel [boat sail-point tack camera-view]
+  (let [view (condp = camera-view
+	"FORWARD"	1
+	"BACKWARD"	2
+	0)]
+  (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]
+    (if (> view 0)
+      (let [heel (condp = sail-point
+	'BROADREACH  2
+	'BEAMREACH    4
+	'CLOSEREACH   7
+	'CLOSEHAULED 10
+	0)
+             sign (condp = tack
+	'STARBOARD (if (= view 1) -1 1)
+	'PORT            (if (= view 1) 1 -1)
+	1)]
+        (sail.exp/camera-control bmo :roll (* heel sign)))
+      (sail.exp/camera-control bmo :roll 0)))))
 

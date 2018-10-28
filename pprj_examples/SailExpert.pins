@@ -1,4 +1,4 @@
-; Wed Oct 17 17:28:06 MSK 2018
+; Sun Oct 28 13:06:42 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -55,7 +55,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "Bylina"))
+	(onboard "Mars"))
 
 ([SailExpert_Class100000] of  CloFuncall
 
@@ -75,14 +75,26 @@
 	(facts
 		[SailExpert_Class10023]
 		[SailExpert_Class20000]
+		[SailExpert_Class130000]
 		[SailExpert_Class150003]
 		[SailExpert_Class60000]
+		[SailExpert_Class140001]
 		[SailExpert_Class190008]
 		[SailExpert_Class70001]
 		[SailExpert_Class90001]
 		[SailExpert_Class270007]
 		[SailExpert_Class300000]
-		[SailExpert_Class70003])
+		[SailExpert_Class70003]
+		[SailExpert_Class340003]
+		[SailExpert_Class350002]
+		[SailExpert_Class150002])
+	(instances
+		[SailExpert_Class200005]
+		[SailExpert_Class190004]
+		[SailExpert_Class200007]
+		[SailExpert_Class200006]
+		[SailExpert_Class200009]
+		[SailExpert_Class200008])
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
@@ -102,14 +114,17 @@
 		[SailExpert_Class50007]
 		[SailExpert_Class170000]
 		[SailExpert_Class280001]
-		[SailExpert_Class80000])
+		[SailExpert_Class80000]
+		[SailExpert_Class340004])
 	(templates
 		[Boat]
 		[Wind]
 		[NewCourse]
 		[BoatPitch]
 		[Wave]
-		[Clock])
+		[Clock]
+		[CameraCheck]
+		[Onboard])
 	(title "Boat Set"))
 
 ([SailExpert_Class10005] of  %3AINSTANCE-ANNOTATION
@@ -149,7 +164,8 @@
 		[SailExpert_Class90017]
 		[SailExpert_Class140000]
 		[SailExpert_Class90000]
-		[SailExpert_Class270000])
+		[SailExpert_Class270000]
+		[SailExpert_Class340001])
 	(cloNamespace [SailExpert_Class10010])
 	(cloVars
 		[SailExpert_Class10016]
@@ -212,9 +228,18 @@
 ([SailExpert_Class120001] of  Rule
 
 	(lhs "(Wind direction ?dir\n	latitude ?lat\n	longitude ?lon\n	(not (ru.igis.omtab.OMT/getMapOb \"Wind\")))")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (let [wom (ru.igis.omtab.OMT/getOrAdd ins)]\n    (println \"Wind on map, direction\" ?dir \",coords\" [(.getLatitude wom) (.getLongitude wom)])))")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" \"Wind\")]\n  (protege.core/ssv ins \"latitude\" ?lat)\n  (protege.core/ssv ins \"longitude\" ?lon)\n  (protege.core/ssv ins \"course\" ?dir)\n  (ru.igis.omtab.OMT/getOrAdd ins)\n  (println \"Wind on map, direction\" ?dir \"coords\" [?lat ?lon]))")
 	(salience 0)
 	(title "ws:Wind on Map"))
+
+([SailExpert_Class130000] of  Boat
+
+	(course 0)
+	(label "Vela")
+	(sail-point UNDEFINED)
+	(speed 11.6)
+	(tack UNDEFINED)
+	(tack-angle 38))
 
 ([SailExpert_Class130001] of  Rule
 
@@ -272,13 +297,24 @@
 		[ShoreCheck]
 		[NewCourse]
 		[Advice]
-		[Other])
+		[CZMLSpan])
 	(title "Skipper Set"))
 
 ([SailExpert_Class140000] of  CloFunction
 
 	(source "(if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb mark)]\n    (and (.near bmo mmo radius) (.abaft bmo mmo))))")
 	(title "near-and-abaft [boat mark radius]"))
+
+([SailExpert_Class140001] of  Skipper
+
+	(boat "Vela")
+	(delay 5)
+	(epsilon 2)
+	(lap 0)
+	(mark "NIL")
+	(radius 0.05)
+	(route "Along Geiranger Fjord")
+	(status UNDEFINED))
 
 ([SailExpert_Class140002] of  Rule
 
@@ -298,6 +334,12 @@
 	(salience 0)
 	(title "ws:Boat Wind Shift End"))
 
+([SailExpert_Class150002] of  ShoreCheck
+
+	(boat "Vela")
+	(status START)
+	(terrain 0))
+
 ([SailExpert_Class150003] of  Wind
 
 	(direction 160)
@@ -314,6 +356,26 @@
 	(rhs "(let [crs (if (= ?tack 'STARBOARD)\n	(+ ?dir ?taa ?e)\n	(- ?dir ?taa ?e))\n       crs (int (sail.exp/trim-bear crs))]\n  (println \"Big header on boat\" ?boat \"recommended course\" crs)\n  (asser Advice text \"BIG HEADER NEW COURSE\"\n	boat ?boat\n	direction ?dir)\n  (asser NewCourse boat ?boat\n	 course crs))")
 	(salience 1)
 	(title "ss:Big Header on Beating"))
+
+([SailExpert_Class160003] of  Yacht
+
+	(altitude 0)
+	(course 0)
+	(label "Bylina")
+	(latitude "62 26.5")
+	(longitude "6 0.02")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/yachtp.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class160004] of  CloFuncall
+
+	(source "(ru.rules/pp 'Boat)"))
+
+([SailExpert_Class160005] of  CloFuncall
+
+	(source "(ru.rules/pp 'Skipper)"))
 
 ([SailExpert_Class170000] of  Rule
 
@@ -336,16 +398,50 @@
 	(salience 0)
 	(title "ss:Mark Near and Abaft"))
 
-([SailExpert_Class190000] of  NavOb
+([SailExpert_Class190001] of  Yacht
 
 	(altitude 0)
 	(course 0)
-	(label "m1")
-	(latitude "62 24.28")
-	(longitude "6 2.81")
+	(label "Vela")
+	(latitude "62 26.64")
+	(longitude "6 0.71")
 	(playground-index 0)
 	(speed 0.0)
+	(url "file:data/images/yachtb.png")
 	(verticalSpeed 0.0))
+
+([SailExpert_Class190002] of  Yacht
+
+	(altitude 0)
+	(course 225)
+	(label "Diana")
+	(latitude "62 26.67")
+	(longitude "6 2.74")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/yachtk.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class190003] of  Yacht
+
+	(altitude 0)
+	(course 0)
+	(label "Argo")
+	(latitude "62 26.78")
+	(longitude "6 1.43")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:data/images/yachtg.png")
+	(verticalSpeed 0.0))
+
+([SailExpert_Class190004] of  Boat
+
+	(course 0)
+	(label "Mars")
+	(sail-point UNDEFINED)
+	(speed 10.0)
+	(tack UNDEFINED)
+	(tack-angle 36))
 
 ([SailExpert_Class190005] of  Mark
 
@@ -405,18 +501,6 @@
 	(salience 0)
 	(title "ss:Start Route"))
 
-([SailExpert_Class2] of  NavOb
-
-	(altitude 0)
-	(course 0)
-	(label "b1")
-	(latitude "62 24.28")
-	(longitude "6 2.81")
-	(playground-index 0)
-	(speed 0.0)
-	(url "file:data/images/buoy1.png")
-	(verticalSpeed 0.0))
-
 ([SailExpert_Class20000] of  Boat
 
 	(course 0)
@@ -425,6 +509,57 @@
 	(speed 12.0)
 	(tack UNDEFINED)
 	(tack-angle 40))
+
+([SailExpert_Class200000] of  CloFuncall
+
+	(source "@pro.server/ONBOARD"))
+
+([SailExpert_Class200001] of  CloFuncall
+
+	(source "(sail.exp/show-route \"Bylina\")"))
+
+([SailExpert_Class200005] of  Boat
+
+	(course 0)
+	(label "Argo")
+	(sail-point UNDEFINED)
+	(speed 10.0)
+	(tack UNDEFINED)
+	(tack-angle 36))
+
+([SailExpert_Class200006] of  Skipper
+
+	(boat "Mars")
+	(delay 5)
+	(epsilon 2)
+	(lap 0)
+	(mark "NIL")
+	(radius 0.05)
+	(route "Along Geiranger Fjord")
+	(status UNDEFINED))
+
+([SailExpert_Class200007] of  Skipper
+
+	(boat "Argo")
+	(delay 5)
+	(epsilon 2)
+	(lap 0)
+	(mark "NIL")
+	(radius 0.05)
+	(route "Along Geiranger Fjord")
+	(status UNDEFINED))
+
+([SailExpert_Class200008] of  ShoreCheck
+
+	(boat "Mars")
+	(status START)
+	(terrain 0))
+
+([SailExpert_Class200009] of  ShoreCheck
+
+	(boat "Argo")
+	(status START)
+	(terrain 0))
 
 ([SailExpert_Class20001] of  Rule
 
@@ -435,8 +570,8 @@
 
 ([SailExpert_Class20002] of  Rule
 
-	(lhs "(Boat label ?lab course ?crs\n	(not (ru.igis.omtab.OMT/getMapOb ?lab)))")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (when-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (.setKeepRoute bmo true)\n    (.setAltitude bmo 4)\n    (sail.exp/camera-control bmo :pitch 6)\n    (asser BoatPitch boat ?lab\n	slope 'UP\n	time 0)\n    (println \"Boat on map:\" ?lab \", course\" ?crs)))")
+	(lhs "(CZMLGenerator)\n(Boat label ?lab course ?crs)\n(Clock time ?t)\n(not CZMLSpan label ?lab)")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (if-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (let [alt 1]\n      (.setKeepRoute bmo true)\n      (.setAltitude bmo alt)\n      (sail.exp/camera-control bmo :pitch 6)\n      (asser BoatPitch boat ?lab\n	slope 'UP\n	time 0)\n      (asser CZMLSpan state 'READY\n	label ?lab\n	url (sail.exp/URLS \"Boat\")\n	point3d [(.getLongitude bmo)\n		(.getLatitude bmo)\n		(.getAltitude bmo)])\n      (println \"Boat on map:\" ?lab \", course\" ?crs))))")
 	(salience 0)
 	(title "bs:Boat on Map"))
 
@@ -549,66 +684,31 @@
 	(points
 		"62 26.62 6 0"
 		"62 26.62 6 0"
-		"62 26.56 5 59.97"
-		"62 26.53 6 0.13"
-		"62 26.51 6 0.12"
-		"62 26.5 6 0.18"
-		"62 26.47 6 0.17"
-		"62 26.46 6 0.25"
-		"62 26.34 6 0.19"
-		"62 26.33 6 0.24"
-		"62 26.32 6 0.36"
-		"62 26.3 6 0.35"
-		"62 26.27 6 0.35"
-		"62 26.24 6 0.34"
-		"62 26.22 6 0.33"
-		"62 26.2 6 0.32"
-		"62 26.18 6 0.31"
-		"62 26.15 6 0.3"
-		"62 26.14 6 0.3"
-		"62 26.13 6 0.37"
-		"62 26.07 6 0.35"
-		"62 26.04 6 0.58"
-		"62 26.01 6 0.69"
-		"62 25.99 6 0.67"
-		"62 25.95 6 0.81"
-		"62 25.93 6 0.8"
-		"62 25.9 6 0.79"
-		"62 25.86 6 0.78"
-		"62 25.84 6 0.84"
-		"62 25.79 6 0.82"
-		"62 25.77 6 0.92"
-		"62 25.77 6 0.95"
-		"62 25.76 6 0.98"
-		"62 25.75 6 1.01"
-		"62 25.12 6 3.58"
-		"62 24.19 6 2.73"
-		"62 23.23 6 6.59"
-		"62 22.64 6 6.05"
-		"62 22.02 6 9.97"
-		"62 21.97 6 10.17"
-		"62 22.49 6 12.86"
-		"62 22.24 6 13.46"
-		"62 23.94 6 17.38"
-		"62 23.87 6 17.64"
-		"62 23.86 6 17.68"
-		"62 23.85 6 17.71"
-		"62 23.83 6 17.74"
-		"62 23.83 6 17.77"
-		"62 24.59 6 19.66"
-		"62 24.34 6 20.23"
-		"62 23.62 6 21.92"
-		"62 24.69 6 25.78"
-		"62 24.64 6 25.91"
-		"62 25.96 6 28.99"
-		"62 25.26 6 30.68"
-		"62 24.99 6 31.31"
-		"62 26.07 6 34.01"
-		"62 25.92 6 34.34"
-		"62 28.27 6 40.18"
-		"62 27.68 6 41.56"
-		"62 28.34 6 43.21"
-		"62 24.24 6 52.68")
+		"62 26.62 6 0"
+		"62 26.46 6 0.75"
+		"62 26.34 6 1.2"
+		"62 25.46 6 0.47"
+		"62 25.23 6 1.43"
+		"62 25.06 6 1.95"
+		"62 24.9 6 2.24"
+		"62 24.76 6 2.08"
+		"62 24.42 6 3.01"
+		"62 24.28 6 2.81"
+		"62 24.08 6 3.37"
+		"62 23.57 6 4.69"
+		"62 23.05 6 5.97"
+		"62 22.86 6 6.37"
+		"62 22.73 6 6.11"
+		"62 22.59 6 6.85"
+		"62 22.39 6 7.96"
+		"62 22 6 10.01"
+		"62 22.02 6 10.21"
+		"62 22.52 6 10.05"
+		"62 22.52 6 10.11"
+		"62 22.94 6 9.23"
+		"62 22.94 6 10.66"
+		"62 22.94 6 11.4"
+		"62 22.81 6 25.75")
 	(relative FALSE))
 
 ([SailExpert_Class230000] of  CloProgram
@@ -661,12 +761,24 @@
 	(salience 0)
 	(title "ws:Small Oscillation"))
 
+([SailExpert_Class250000] of  CloFuncall
+
+	(source "(ru.rules/sp :all)"))
+
 ([SailExpert_Class250003] of  Rule
 
 	(lhs "?wc1 (WindChange asserted true)\n?wc2 (WindChange asserted ?ass\n	(not= ?ass true))")
 	(rhs "(retract ?wc1)\n(modify ?wc2 asserted true)")
 	(salience 1)
 	(title "ws:WindChange Update"))
+
+([SailExpert_Class260000] of  CloFuncall
+
+	(source "(rete.core/log-lst \"beta-net-plan.txt\" rete.core/BPLAN)"))
+
+([SailExpert_Class260001] of  CloFuncall
+
+	(source "(ru.rules/pp 'Wind)"))
 
 ([SailExpert_Class260007] of  Rule
 
@@ -685,22 +797,53 @@
 	(pitch 1)
 	(pitch-interval 2))
 
+([SailExpert_Class280000] of  CloFuncall
+
+	(source "(ru.rules/f 85)"))
+
 ([SailExpert_Class280001] of  Rule
 
-	(lhs "(Boat label ?boat sail-point ?sp\n	tack ?tk)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [heel (condp = ?sp\n	'BROADREACH  2\n	'BEAMREACH    4\n	'CLOSEREACH   7\n	'CLOSEHAULED 10\n	0)\n         sign (condp = ?tk\n	'STARBOARD -1\n	'PORT           1)]\n    (sail.exp/camera-control bmo :roll (* heel sign))))")
+	(lhs "(Onboard boat ?boat \n	view ?view)\n(Boat label ?boat sail-point ?sp\n	tack ?tk)")
+	(rhs "(sail.exp/boat-heel ?boat ?sp ?tk ?view)")
 	(salience 0)
 	(title "bs:Boat Heel"))
 
 ([SailExpert_Class290000] of  RuleSet
 
-	(rules [SailExpert_Class300001])
+	(rules
+		[SailExpert_Class290002]
+		[SailExpert_Class290003]
+		[SailExpert_Class290004]
+		[SailExpert_Class360002]
+		[SailExpert_Class300001])
 	(templates
 		[Boat]
 		[Clock]
-		[Other]
-		[OthersView])
-	(title "OthersView Set"))
+		[CZMLSpan]
+		[CZMLGenerator]
+		[Onboard])
+	(title "CZML Generation Set"))
+
+([SailExpert_Class290002] of  Rule
+
+	(lhs "?cg (CZMLGenerator state START\n	delay ?del\n	finish ?fin)\n(Clock time ?t)")
+	(rhs "(if (= ?fin \"START\")\n  (modify ?cg state 'FINISH\n	finish [(cesium.core/iso8601curt)])\n  (modify ?cg state 'PROCESS\n	time (+ ?t ?del)))")
+	(salience 0)
+	(title "cz:CZML Start Process"))
+
+([SailExpert_Class290003] of  Rule
+
+	(lhs "?cg (CZMLGenerator state PROCESS\n	start ?sta\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
+	(rhs "(cesium.core/send-doc (cesium.core/doc ?sta))\n(modify ?cg state 'FINISH)")
+	(salience 0)
+	(title "cz:CZML Finish"))
+
+([SailExpert_Class290004] of  Rule
+
+	(lhs "(Onboard boat ?boat)\n?cs (CZMLSpan state READY\n	label ?lab\n	url ?url\n	point3d ?p3d\n	(not= ?boat ?lab))\n(CZMLGenerator state FINISH\n	start ?sta\n	finish ?fin\n	visibility ?vis)")
+	(rhs "(if-let [omo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n    (let [dis (.distanceNM bmo omo)\n           p3d [(.getLongitude omo)\n                         (.getLatitude omo)\n                         (.getAltitude omo)]]\n      (if (< dis ?vis)\n        (cesium.core/boat-leg ?lab\n	0\n	?url\n	(calc.core/smooth-tabfun dis [[0 2.0][3 0.05]])\n	(cons ?sta ?p3d)\n	(cons (second ?fin) p3d)))\n      (modify ?cs state 'START \n	point3d p3d))))")
+	(salience 1)
+	(title "cz:CZML Leg Generation"))
 
 ([SailExpert_Class30000] of  RuleSet
 
@@ -715,17 +858,20 @@
 		[Clock])
 	(title "ShoreCheck Set"))
 
-([SailExpert_Class300000] of  OthersView
+([SailExpert_Class300000] of  CZMLGenerator
 
-	(delay 10)
+	(delay 16)
+	(finish "START")
+	(state START)
+	(time 0)
 	(visibility 4.0))
 
 ([SailExpert_Class300001] of  Rule
 
-	(lhs "(OthersView delay ?del\n	visibility ?vis)\n(Boat label ?boat)\n?ot (Other label ?olab\n	latitude ?lat\n	longitude ?lon\n	url ?url\n	point4d ?p41\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [omo (ru.igis.omtab.OMT/getMapOb ?olab)]\n    (let [dis (.distanceNM bmo omo)]\n      (if (< dis ?vis)\n        (let [nlat (.getLatitude omo)\n               nlon (.getLongitude omo)\n               nalt (.getAltitude omo)\n               p42 [nlat nlon nalt (cesium.core/iso8601curt)]]\n          (cesium.core/leg ?olab\n	?url\n	(calc.core/smooth-tabfun dis [[0 1.0][?vis 0.1]])\n	?p41\n	p42)\n          (modify ?ot point4d p42\n	latitude nlat\n	longitude nlon\n	time (+ ?t ?del)))))))")
+	(lhs "?cg (CZMLGenerator state FINISH\n	delay ?del\n	finish ?fin)")
+	(rhs "(modify ?cg state 'START\n	start (first ?fin)\n	finish [(cesium.core/iso8601futt ?del)\n	           (cesium.core/iso8601futt (+ ?del 2))])")
 	(salience 0)
-	(title "ov:CZML-LegGeneration"))
+	(title "cz:CZML Loop"))
 
 ([SailExpert_Class310000] of  CloProgram
 
@@ -773,10 +919,95 @@
 	(source "(let [res (tabfun x table)]\n  (if (vector? res) (second res) res))")
 	(title "smooth-tabfun [x table]"))
 
+([SailExpert_Class320000] of  CloFuncall
+
+	(source "(cesium.core/doc)"))
+
+([SailExpert_Class320001] of  CloFuncall
+
+	(source "(ru.rules/f 83)"))
+
+([SailExpert_Class320002] of  CloFuncall
+
+	(source "(ru.rules/pp 'CZMLSpan)"))
+
 ([SailExpert_Class320003] of  CloVar
 
-	(source "{\"Mark\" \"http://localhost:4444/img/buoy3.png\"}")
+	(source "{\"Mark\" \"http://localhost:4444/img/buoy3.png\"\n \"Boat\" \"http://localhost:4444/img/yacht.png\"}")
 	(title "URLS"))
+
+([SailExpert_Class330000] of  CloFuncall
+
+	(source "pro.server/CAMERA"))
+
+([SailExpert_Class330001] of  CloFuncall
+
+	(source "(cesium.core/doc 5)"))
+
+([SailExpert_Class330003] of  CloFuncall
+
+	(source "(ru.rules/f 36)"))
+
+([SailExpert_Class330004] of  CloFuncall
+
+	(source "(ru.rules/f 35)"))
+
+([SailExpert_Class340000] of  CloFuncall
+
+	(source "(ru.rules/f 81)"))
+
+([SailExpert_Class340001] of  CloFunction
+
+	(source "(let [view (condp = camera-view\n	\"FORWARD\"	1\n	\"BACKWARD\"	2\n	0)]\n  (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]\n    (if (> view 0)\n      (let [heel (condp = sail-point\n	'BROADREACH  2\n	'BEAMREACH    4\n	'CLOSEREACH   7\n	'CLOSEHAULED 10\n	0)\n             sign (condp = tack\n	'STARBOARD (if (= view 1) -1 1)\n	'PORT            (if (= view 1) 1 -1)\n	1)]\n        (sail.exp/camera-control bmo :roll (* heel sign)))\n      (sail.exp/camera-control bmo :roll 0))))")
+	(title "boat-heel [boat sail-point tack camera-view]"))
+
+([SailExpert_Class340003] of  CameraCheck
+
+	(delay 4)
+	(time 0))
+
+([SailExpert_Class340004] of  Rule
+
+	(lhs "?onb (Onboard boat ?boat\n	view ?view)\n?cam (CameraCheck delay ?del\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
+	(rhs "(let [onb (deref pro.server/ONBOARD)\n       vie (@pro.server/CAMERA :view)]\n  (modify ?cam time (+ ?t ?del))\n  (if (or (not= onb ?boat) (not= vie ?view))\n    (modify ?onb boat onb\n	view vie)))")
+	(salience 0)
+	(title "bs:Boat Camera Check"))
+
+([SailExpert_Class350000] of  CloFuncall
+
+	(source "(calc.core/smooth-tabfun 3.4 [[0 2.0][4 0.05]])"))
+
+([SailExpert_Class350001] of  CloFuncall
+
+	(source "(ru.rules/f 22)"))
+
+([SailExpert_Class350002] of  Onboard
+
+	(boat "Bylina")
+	(view "FORWARD"))
+
+([SailExpert_Class360001] of  CloFuncall
+
+	(source "(calc.core/smooth-tabfun 3.11 [[0 2.0][4 0.05]])"))
+
+([SailExpert_Class360002] of  Rule
+
+	(lhs "(CZMLGenerator state PROCESS)\n?cs (CZMLSpan state START)")
+	(rhs "(modify ?cs state 'READY)")
+	(salience 0)
+	(title "cz:CZMLSpan Ready"))
+
+([SailExpert_Class370002] of  CloFuncall
+
+	(source "(calc.core/smooth-tabfun 3.8 [[0 2.0][4 0.05]])"))
+
+([SailExpert_Class370003] of  CloFuncall
+
+	(source "(calc.core/smooth-tabfun 3.9 [[0 2.0][4 0.05]])"))
+
+([SailExpert_Class370004] of  CloFuncall
+
+	(source "(calc.core/smooth-tabfun 0.5 [[0 2.0][4 0.05]])"))
 
 ([SailExpert_Class40000] of  Rule
 
@@ -790,52 +1021,16 @@
 	(source "(cond\n  (< b 0) (+ b 360)\n  (> b 360) (- b 360)\n  true b)")
 	(title "trim-bear [b]"))
 
-([SailExpert_Class40011] of  NavOb
+([SailExpert_Class40011] of  Yacht
 
 	(altitude 0)
 	(course 0)
-	(label "Bylina")
-	(latitude "62 26.62")
-	(longitude "6 0")
+	(label "Mars")
+	(latitude "62 26.37")
+	(longitude "5 59.29")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/yachtp.png")
-	(verticalSpeed 0.0))
-
-([SailExpert_Class40012] of  NavOb
-
-	(altitude 0)
-	(course 0)
-	(label "b2")
-	(latitude "62 26.63")
-	(longitude "6 2")
-	(playground-index 0)
-	(speed 0.0)
-	(url "file:data/images/buoy2.png")
-	(verticalSpeed 0.0))
-
-([SailExpert_Class40013] of  NavOb
-
-	(altitude 0)
-	(course 0)
-	(label "b3")
-	(latitude "62 26.63")
-	(longitude "6 3")
-	(playground-index 0)
-	(speed 0.0)
-	(url "file:data/images/buoy3.png")
-	(verticalSpeed 0.0))
-
-([SailExpert_Class40014] of  NavOb
-
-	(altitude 0)
-	(course 0)
-	(label "b4")
-	(latitude "62 26.63")
-	(longitude "6 4")
-	(playground-index 0)
-	(speed 0.0)
-	(url "file:data/images/buoy4.png")
+	(url "file:data/images/yachtr.png")
 	(verticalSpeed 0.0))
 
 ([SailExpert_Class50000] of  Rule
@@ -848,7 +1043,7 @@
 ([SailExpert_Class50001] of  Rule
 
 	(lhs "(ShoreControl delay ?del\n	shore ?sho\n	distance ?dis)\n?sc (ShoreCheck status REPEAT\n	boat ?boat\n	terrain ?oter\n	time ?t1)\n(Boat label ?boat course ?crs)\n(Clock time ?t2 (> ?t2 ?t1))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    ;; (println \"Terrain\" ?oter nter)\n    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))\n      (do (println \"Shore ahead boat\" ?boat)\n        (modify ?sc status 'SHORE-AHEAD))\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [nter (int (pro.server/terrain))]\n    ;; (println \"Terrain\" ?oter nter)\n    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))\n      (do (println \"Shore ahead boat\" ?boat ?oter nter)\n        (modify ?sc status 'SHORE-AHEAD))\n      (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n        (pro.server/request-terrain lat lon)\n        (modify ?sc time (+ ?t2 ?del)\n	terrain (if (>= nter 0) nter ?oter))))))")
 	(salience 0)
 	(title "scs:Repeat Shore Check"))
 
@@ -861,8 +1056,8 @@
 
 ([SailExpert_Class50003] of  Rule
 
-	(lhs "(OthersView delay ?del)\n(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	 url ?url)\n(Clock time ?t)\n(not Other label ?lab)")
-	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         lat (.getLatitude mom)\n         lon (.getLongitude mom)\n         alt 60]\n    (.setAltitude mom alt)\n    (cesium.core/new-doc)\n    (asser Other label ?lab\n	latitude lat\n	longitude lon\n	url (sail.exp/URLS \"Mark\")\n	point4d [lat lon alt (cesium.core/iso8601curt)]\n	time (+ ?t ?del))\n    (println \"Mark on map:\" ?lab \", coords\" [lat lon])))")
+	(lhs "(CZMLGenerator)\n(Mark label ?lab latitude ?lat\n	 longitude ?lon\n	 url ?url)\n(Clock time ?t)\n(not CZMLSpan label ?lab)")
+	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         alt 0]\n    (.setAltitude mom alt)\n    (asser CZMLSpan  state 'READY\n	label ?lab\n	url (sail.exp/URLS \"Mark\")\n	point3d [(.getLongitude mom)\n		(.getLatitude mom)\n		(.getAltitude mom)])\n    (println \"Mark on map:\" ?lab \", coords\" [?lat ?lon])))")
 	(salience 0)
 	(title "ss:Mark on Map"))
 
@@ -924,7 +1119,7 @@
 
 ([SailExpert_Class80000] of  Rule
 
-	(lhs "(Wave pitch ?pit pitch-interval ?pin)\n?bp (BoatPitch boat ?boat \n	slope ?slp\n	time ?tim)\n (Clock time ?t (> ?t ?tim))")
+	(lhs "(Onboard boat ?boat)\n(Wave pitch ?pit pitch-interval ?pin)\n?bp (BoatPitch boat ?boat \n	slope ?slp\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [[pit slp] (condp = ?slp\n	'UP       [(- 6 ?pit) 'DOWN]\n	'DOWN [(+ 6 ?pit) 'UP])]\n    (sail.exp/camera-control bmo :pitch pit)\n    (modify ?bp slope slp\n	time (+ ?t ?pin))))")
 	(salience 0)
 	(title "bs:Boat Pitching"))

@@ -1,4 +1,4 @@
-; Wed Oct 17 14:48:54 MSK 2018
+; Sun Oct 28 11:49:28 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -187,34 +187,6 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_259641_Class444] of  Map
-
-	(entries
-		[KB_259641_Class445]
-		[KB_259641_Class446]
-		[KB_259641_Class447]))
-
-([KB_259641_Class445] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_259641_Class446] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_259641_Class447] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([KB_377789_Class0] of  String
 
 	(name "factory_class_name")
@@ -314,6 +286,34 @@
 
 	(name "instances_file_name")
 	(string_value "Cezium.pins"))
+
+([KB_405324_Class444] of  Map
+
+	(entries
+		[KB_405324_Class445]
+		[KB_405324_Class446]
+		[KB_405324_Class447]))
+
+([KB_405324_Class445] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_405324_Class446] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_405324_Class447] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

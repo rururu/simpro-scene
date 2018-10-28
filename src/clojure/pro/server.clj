@@ -21,6 +21,7 @@
   :latlon [0 0]
   :interval 4000
   :intl-upd 4000}))
+(def CAMERA (volatile! {}))
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
         w    (t/writer baos :json)
@@ -71,6 +72,7 @@
   (GET "/czml/" [] (czs/events))
   (GET "/vehicle/" [] (response-func0 mp-vehicle-period-camera))
   (GET "/terrain/" [& params] (response-func0 #(receive-terrain params)))
+  (GET "/camera/" [& params] (vreset! CAMERA params))
   (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Pro Server: Not Found!"))

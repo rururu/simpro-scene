@@ -5,7 +5,6 @@
 (:import java.util.Calendar))
 
 (def CZ-CHAN (asp/mk-chan))
-(def DOC-SND true)
 (defn send-event [typ dat]
   ;; (println [:CZ-EVT typ dat])
 (asp/pump-in CZ-CHAN [typ (.trim dat)]))
@@ -43,14 +42,24 @@
         sec (.get cld Calendar/SECOND)]
     (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
 
-(defn doc []
+(defn doc
+  ([]
   (str "{\"id\":\"document\",\"version\":\"1.0\",\"clock\":{\"currentTime\":\"" (iso8601curt) "\"}}"))
+([iso]
+  (str "{\"id\":\"document\",\"version\":\"1.0\",\"clock\":{\"currentTime\":\"" iso "\"}}")))
+
+(defn send-doc
+  ([]
+  (send-doc (doc)))
+([doc]
+  (send-event "czml" doc)
+  (def DOC-SENT true))
+([_ fut]
+  (send-event "czml" (doc fut))
+  (def DOC-SENT true)))
 
 (defn location [label scale img-url lat lon alt span-sec]
-  (when DOC-SND
-  (send-event "czml" (doc))
-  (def DOC-SND false))
-(let [p (str "{\"id\":\""
+  (let [p (str "{\"id\":\""
                label
                "\",\"availability\":\""
                (iso8601curt) "/" (iso8601futt span-sec)
@@ -69,21 +78,20 @@
                ", "
                alt
                "]}}")]
+  (if (not DOC-SENT)
+    (send-doc))
   (send-event "czml" p)))
 
-(defn leg [label img-url scale [lat1 lon1 alt1 tim1] [lat2 lon2 alt2 tim2]]
-  (when DOC-SND
-  (send-event "czml" (doc))
-  (def DOC-SND false))
-(let [p (str "{\"id\":\""
+(defn boat-leg [label lab-scl img-url bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
+  (let [p (str "{\"id\":\""
                label
                "\",\"label\":{\"scale\":"
-               (/ scale 2)
+               lab-scl
                ",\"pixelOffset\":{\"cartesian2\":[8, -8]},\"text\":\""
                label
                "\"},\"billboard\":{\"scale\":"
-               scale
-               ",\"image\":\""
+               bil-scl
+               ",\"heightReference\":\"RELATIVE_TO_GROUND\",\"verticalOrigin\":\"BOTTOM\",\"image\":\""
                img-url
                "\"},\"position\":{\"cartographicDegrees\":[\""
                tim1
@@ -102,6 +110,8 @@
                ", "
                alt2
                "]}}")]
+  (if (not DOC-SENT)
+    (send-doc))
   (send-event "czml" p)))
 
 (defn point-out [txt [lat lon] dist max-dist]
@@ -110,5 +120,5 @@
   (location txt scl "img/arrdn.png" lat lon 100 40)))
 
 (defn new-doc []
-  (def DOC-SND true))
+  (def DOC-SENT false))
 

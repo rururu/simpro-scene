@@ -1,7 +1,0 @@
-2018.10.17 15:02:35.751 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
-2018.10.17 15:02:35.755 MSK CONFIG: Protege 3.5 Build 663, JVM 1.8.0_31-b13, memory=1908M, Mac OS X, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
-2018.10.17 15:02:35.758 MSK WARNING: Plugins directory not found: /Users/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
-2018.10.17 15:02:36.514 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
-2018.10.17 15:02:36.517 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
-2018.10.17 15:02:38.741 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
-2018.10.17 15:02:51.971 MSK INFO: Load time for file:/Users/ru/clojure/simpro-scene/pprj_examples/SailExpert.pprj = 1 sec (project) + 6 sec (ui) -- ProjectManager$3.run()

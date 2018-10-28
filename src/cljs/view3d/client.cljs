@@ -17,7 +17,7 @@
                :speed 160
                :course 270}))
 (def BASE-URL "http://localhost:4444/")
-(def TERRAIN-TIO (volatile! 4000))
+(def TERRAIN2-TIO (volatile! 4000))
 (def error-handler (fn [response]
   (let [{:keys [status status-text]} response]
     (println (str "AJAX ERROR: " status " " status-text)))))
@@ -93,7 +93,7 @@
   (let [[lat lon] (:coord vehicle)
        alt (:altitude vehicle)
        alt (int (if (< alt czm/MAX-UPGROUND) 
-	czm/AAT
+	(+ alt czm/TERRAIN)
 	alt))]
   (vswap! VEHICLE merge vehicle)
   (set-html! "onboard-fld" (:name vehicle))
@@ -128,16 +128,24 @@
   ;; (println :ST-RESP resp)
   (if-let [[lat lon] (resp :latlon)]
     (czm/terrain-request lat lon)
-    (if (>= czm/TERRAIN 0)
+    (if (>= czm/TERRAIN2 0)
       (czm/terrain-request 100 200)))
   (if-let [inter (resp :interval)]
-    (vreset! TERRAIN-TIO inter))))
+    (vreset! TERRAIN2-TIO inter))))
 
 (defn send-terrain []
   (GET (str BASE-URL "terrain/"
-                        "?terrain=" czm/TERRAIN)
+                        "?terrain=" czm/TERRAIN2)
 	{:handler send-terrain-hr
                          :error-handler error-handler}))
+
+(defn send-camera []
+  (let [cam @czm/CAMERA]
+  (GET (str BASE-URL "camera/"
+                        "?view=" (cam :view)
+	"&pitch=" (cam :pitch)
+	"&roll=" (cam :roll))
+	{:error-handler error-handler})))
 
 (defn left-controls []
   (set-html! "camera" "<h4>Camera</h4>")
@@ -166,7 +174,7 @@
   "<input value='0' style='width:90px' id='roll-val'
                onchange='javascript:view3d.client.roll(this.value)'>"))
 
-(defn right-conterols []
+(defn right-controls []
   (set-html! "vehicle" "<h4>Vehicle</h4>")
 (set-html! "name" "Name:")
 (set-html! "name-fld" "")
@@ -178,14 +186,15 @@
 (set-html! "altitude-fld" ""))
 
 (defn show-controls []
-  (right-conterols)
+  (right-controls)
 (left-controls))
 
 (defn on-load []
   (enable-console-print!)
 (czm/init-3D-view BASE-URL "yes")
 (repeater receive-vehicle 1000)
-(repeater! send-terrain TERRAIN-TIO)
+(repeater! send-terrain TERRAIN2-TIO)
+(repeater send-camera 4000)
 (show-controls))
 
 
