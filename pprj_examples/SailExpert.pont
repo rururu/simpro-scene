@@ -1,4 +1,4 @@
-; Sun Oct 28 13:06:42 MSK 2018
+; Sun Nov 04 21:26:01 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,10 +7,6 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot start
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot route
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -32,18 +28,9 @@
 		(allowed-values VEERING BACKING NIL LIFT HEADER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot state
-		(type SYMBOL)
-		(allowed-values START PROCESS FINISH READY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot sail-point
 		(type SYMBOL)
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot point3d
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot terrain
@@ -62,10 +49,6 @@
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot finish
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -462,24 +445,6 @@
 (defclass CZMLGenerator
 	(is-a SailExpert+Onto)
 	(role concrete)
-	(single-slot state
-		(type SYMBOL)
-		(allowed-values START PROCESS FINISH READY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot finish
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot start
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot visibility
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -496,17 +461,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot state
-		(type SYMBOL)
-		(allowed-values START PROCESS FINISH READY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot point3d
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot url
-		(type STRING)
+	(single-slot time
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

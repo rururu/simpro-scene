@@ -78,7 +78,9 @@
   (route/not-found "Pro Server: Not Found!"))
 
 (def APP
-  (handler/site app-routes)))
+  (handler/site app-routes))
+
+(czs/base-url (str "http://localhost:" PORT "/")))
 
 (defn start-server
   ([]
@@ -101,11 +103,13 @@
 
 (defn go-onboard
   ([hm inst]
+  (czs/new-doc)
   (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 "Select NavOb")]
     (let [lab (sv sel "label")]
       (ssv inst "onboard" lab)
       (vreset! ONBOARD lab))))
 ([lab]
+  (czs/new-doc)
   (when-let [inst (first (cls-instances "CeziumControl"))]
     (ssv inst "onboard" lab)
     (vreset! ONBOARD lab))))

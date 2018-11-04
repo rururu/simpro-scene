@@ -101,3 +101,34 @@
         (sail.exp/camera-control bmo :roll (* heel sign)))
       (sail.exp/camera-control bmo :roll 0)))))
 
+(defn boat-leg [label lab-scl lab-off img-url bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
+  (let [p {:id label
+           :label {:scale lab-scl
+                     :pixelOffset {:cartesian2 lab-off}
+                     :text label}
+           :billboard {:scale bil-scl
+                            :heightReference "RELATIVE_TO_GROUND"
+                            :verticalOrigin "BOTTOM"
+                            :image img-url}
+           :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]
+  (if (not cesium.core/DOC-SENT)
+    (cesium.core/send-doc-curt))
+  (cesium.core/send-event "czml" (clojure.data.json/write-str p))))
+
+(defn navob-leg [no lab-scl lab-off bil-scl intl-sec]
+  (let [lab (.getName no)
+       lat1 (.getLatitude no)
+       lon1 (.getLongitude no)
+       alt1 (.getAltitude no)
+       crs (.getCourse no)
+       spd (.getSpeed no)
+       vsd (.getVerticalSpeed no)
+       dis (double (/ (* spd intl-sec) 3600))
+       [lat2 lon2] (seq (.position no (double crs) dis))
+       alt2 (+ alt1 (* vsd intl-sec))
+       tim1 (cesium.core/iso8601curt)
+       tim2 (cesium.core/iso8601futt intl-sec)
+       bil (or (.getDescription no) "no.png")
+       bil (str cesium.core/BASE-URL cesium.core/IMG-PATH bil)]
+  (boat-leg lab lab-scl lab-off bil bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2])))
+

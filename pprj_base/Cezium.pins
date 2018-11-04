@@ -1,4 +1,4 @@
-; Sun Oct 28 11:49:28 MSK 2018
+; Sun Nov 04 18:37:15 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -194,7 +194,7 @@
 
 ([Cezium_Class150000] of  CloFunction
 
-	(source "([]\n  (send-doc (doc)))\n([doc]\n  (send-event \"czml\" doc)\n  (def DOC-SENT true))\n([_ fut]\n  (send-event \"czml\" (doc fut))\n  (def DOC-SENT true))")
+	(source "([]\n  (send-doc (doc)))\n([doc]\n  (send-event \"czml\" doc)\n  (def DOC-SENT true))\n([_ iso]\n  (send-event \"czml\" (doc iso))\n  (def DOC-SENT true))")
 	(title "send-doc"))
 
 ([Cezium_Class16] of  CloNamespace
@@ -224,8 +224,18 @@
 
 ([Cezium_Class180000] of  CloFunction
 
+	(source "(let [p {:id label\n           :label {:scale lab-scl\n                     :pixelOffset {:cartesian2 lab-off}\n                     :text label}\n           :billboard {:scale bil-scl\n                            :heightReference \"RELATIVE_TO_GROUND\"\n                            :verticalOrigin \"BOTTOM\"\n                            :image img-url}\n           :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]\n  (if (not DOC-SENT)\n    (send-doc-curt))\n  (send-event \"czml\" (json/write-str p)))")
+	(title "boat-leg [label lab-scl lab-off img-url bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]"))
+
+([Cezium_Class190000] of  CloFunction
+
 	(source "(let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\"\n               lab-scl\n               \",\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -8]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               bil-scl\n               \",\\\"heightReference\\\":\\\"RELATIVE_TO_GROUND\\\",\\\"verticalOrigin\\\":\\\"BOTTOM\\\",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n               tim1\n               \"\\\", \"\n               lon1\n               \", \"\n               lat1\n               \", \"\n               alt1\n               \",\\\"\"\n               tim2\n               \"\\\", \"\n               lon2\n               \", \"\n               lat2\n               \", \"\n               alt2\n               \"]}}\")]\n  (if (not DOC-SENT)\n    (send-doc))\n  (send-event \"czml\" p))")
 	(title "boat-leg [label lab-scl img-url bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]"))
+
+([Cezium_Class190001] of  CloVar
+
+	(source "false")
+	(title "DOC-SENT"))
 
 ([Cezium_Class2] of  CloVar
 
@@ -238,11 +248,46 @@
 	(store-in "resources/public")
 	(title "cezium"))
 
+([Cezium_Class200000] of  CloFunction
+
+	(source "(send-doc (doc (iso8601curt)))")
+	(title "send-doc-curt []"))
+
+([Cezium_Class200001] of  CloFunction
+
+	(source "(map (fn [[x y]] (Integer/parseInt (str x y) 16)) (partition 2 hex))")
+	(title "dec16 [hex]"))
+
+([Cezium_Class200002] of  CloFunction
+
+	(source "(let [[a r g b] (dec16 lin-color)\n       p {:id label\n           :label {:scale lab-scl\n                     :pixelOffset {:cartesian2 lab-off}\n                     :text label}\n           :ellipsoid {:show  true\n                           :radii {:cartesian [x y z]}\n                           :material {:grid {:color {:rgba [r g b a]}\n                                                    :lineCount {:cartesian2 [10, 10]}\n                                                    :cellAlpha transp}}}\n           :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]\n  (if (not DOC-SENT)\n    (send-doc-curt))\n  (send-event \"czml\" (json/write-str p)))")
+	(title "dome [label lab-scl lab-off [x y z] lin-color transp [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]"))
+
+([Cezium_Class200012] of  CloFunction
+
+	(source "(let [lab (.getName no)\n       lat1 (.getLatitude no)\n       lon1 (.getLongitude no)\n       alt1 (.getAltitude no)\n       crs (.getCourse no)\n       spd (.getSpeed no)\n       vsd (.getVerticalSpeed no)\n       dis (double (/ (* spd intl-sec) 3600))\n       [lat2 lon2] (seq (.position no (double crs) dis))\n       alt2 (+ alt1 (* vsd intl-sec))\n       tim1 (iso8601curt)\n       tim2 (iso8601futt intl-sec)\n       bil (or (.getDescription no) \"no.png\")\n       bil (str BASE-URL IMG-PATH bil)]\n  (boat-leg lab lab-scl lab-off bil bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]))")
+	(title "navob-leg [no lab-scl lab-off bil-scl intl-sec]"))
+
 ([Cezium_Class20002] of  CSS
 
 	(source "#vehicle {\n  position:fixed;\n  bottom:140px;\n  right:40px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#name {\n  position:fixed;\n  bottom:130px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#course {\n  position:fixed;\n  bottom:110px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#speed {\n  position:fixed;\n  bottom:90px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#altitude {\n  position:fixed;\n  bottom:70px;\n  right:70px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#name-fld {\n  position:fixed;\n  bottom:130px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:cyan\n}\n#course-fld {\n  position:fixed;\n  bottom:110px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#speed-fld {\n  position:fixed;\n  bottom:90px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#altitude-fld {\n  position:fixed;\n  bottom:70px;\n  right:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#camera {\n  position:fixed;\n  bottom:140px;\n  left:60px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard {\n  position:fixed;\n  bottom:130px;\n  left:20px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#onboard-fld {\n  position:fixed;\n  bottom:130px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n  color:cyan\n}\n#view {\n  position:fixed;\n  bottom:110px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#view-fld {\n  position:fixed;\n  bottom:110px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#pitch {\n  position:fixed;\n  bottom:90px;\n  left:42px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#pitch-fld {\n  position:fixed;\n  bottom:90px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}\n#roll {\n  position:fixed;\n  bottom:70px;\n  left:48px;\n  padding:5px;\n  z-index:100;\n  color:yellow\n}\n#roll-fld {\n  position:fixed;\n  bottom:70px;\n  left:84px;\n  padding:5px;\n  z-index:100;\n}")
 	(store-in "resources/public/css")
 	(title "cesium"))
+
+([Cezium_Class210000] of  CloFunction
+
+	(source "(def BASE-URL url)")
+	(title "base-url [url]"))
+
+([Cezium_Class210001] of  CloVar
+
+	(source "\"\"")
+	(title "BASE-URL"))
+
+([Cezium_Class210002] of  CloVar
+
+	(source "\"img/\"")
+	(title "IMG-PATH"))
 
 ([Cezium_Class3] of  CloVar
 
@@ -327,7 +372,7 @@
 
 ([Cezium_Class30037] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response-func0 mp-vehicle-period-camera))\n  (GET \"/terrain/\" [& params] (response-func0 #(receive-terrain params)))\n  (GET \"/camera/\" [& params] (vreset! CAMERA params))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT \"cezium.html\")))\n  (GET \"/czml/\" [] (czs/events))\n  (GET \"/vehicle/\" [] (response-func0 mp-vehicle-period-camera))\n  (GET \"/terrain/\" [& params] (response-func0 #(receive-terrain params)))\n  (GET \"/camera/\" [& params] (vreset! CAMERA params))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Pro Server: Not Found!\"))\n\n(def APP\n  (handler/site app-routes))\n\n(czs/base-url (str \"http://localhost:\" PORT \"/\"))")
 	(title "init-server []"))
 
 ([Cezium_Class30038] of  CloFunction
@@ -359,23 +404,32 @@
 		[Cezium_Class30050]
 		[Cezium_Class30051]
 		[Cezium_Class150000]
+		[Cezium_Class200000]
 		[Cezium_Class30052]
 		[Cezium_Class180000]
 		[Cezium_Class30054]
-		[Cezium_Class30055])
+		[Cezium_Class30055]
+		[Cezium_Class210000]
+		[Cezium_Class200001]
+		[Cezium_Class200002]
+		[Cezium_Class200012])
 	(cloNamespace [Cezium_Class30044])
-	(cloVars [Cezium_Class30045])
+	(cloVars
+		[Cezium_Class30045]
+		[Cezium_Class190001]
+		[Cezium_Class210001]
+		[Cezium_Class210002])
 	(title "Cesium Server"))
 
 ([Cezium_Class30044] of  CloNamespace
 
-	(source "(:require\n    [ring.util.response :as r]\n    [async.proc :as asp])\n(:import java.util.Calendar)")
+	(source "(:require\n    [ring.util.response :as r]\n    [async.proc :as asp]\n    [clojure.data.json :as json])\n(:import java.util.Calendar)")
 	(title "cesium.core"))
 
 ([Cezium_Class30045] of  CloVar
 
-	(source "(asp/mk-chan)")
-	(title "CZ-CHAN"))
+	(source "(defonce CZ-CHAN (asp/mk-chan))")
+	(title "defo-CZ-CHAN"))
 
 ([Cezium_Class30047] of  CloFunction
 
@@ -399,12 +453,12 @@
 
 ([Cezium_Class30051] of  CloFunction
 
-	(source "([]\n  (str \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\\\"clock\\\":{\\\"currentTime\\\":\\\"\" (iso8601curt) \"\\\"}}\"))\n([iso]\n  (str \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\\\"clock\\\":{\\\"currentTime\\\":\\\"\" iso \"\\\"}}\"))")
+	(source "([]\n  (json/write-str {:id \"document\" :version \"1.0\"}))\n([iso]\n  (json/write-str {:id \"document\" :version \"1.0\" :clock {:currentTime iso}}))")
 	(title "doc"))
 
 ([Cezium_Class30052] of  CloFunction
 
-	(source "(let [p (str \"{\\\"id\\\":\\\"\"\n               label\n               \"\\\",\\\"availability\\\":\\\"\"\n               (iso8601curt) \"/\" (iso8601futt span-sec)\n               \"\\\",\\\"label\\\":{\\\"scale\\\":\" \n               scale\n               \" ,\\\"pixelOffset\\\":{\\\"cartesian2\\\":[8, -24]},\\\"text\\\":\\\"\"\n               label\n               \"\\\"},\\\"billboard\\\":{\\\"scale\\\":\"\n               scale\n               \",\\\"image\\\":\\\"\"\n               img-url\n               \"\\\"},\\\"position\\\":{\\\"cartographicDegrees\\\":[\"\n               lon\n               \", \"\n               lat\n               \", \"\n               alt\n               \"]}}\")]\n  (if (not DOC-SENT)\n    (send-doc))\n  (send-event \"czml\" p))")
+	(source "(let [p {:id label\n           :availability (str (iso8601curt) \"/\" (iso8601futt span-sec))\n           :label {:scale scale\n                     :pixelOffset {:cartesian2 [8, -24]}\n                     :text label}\n           :billboard {:scale scale\n                            :image img-url}\n           :position {:cartographicDegrees [lon lat alt]}}]\n  (if (not DOC-SENT)\n    (send-doc-curt))\n  (send-event \"czml\" (json/write-str p)))")
 	(title "location [label scale img-url lat lon alt span-sec]"))
 
 ([Cezium_Class30054] of  CloFunction
@@ -580,7 +634,7 @@
 
 ([Cezium_Class70005] of  CloFunction
 
-	(source "([hm inst]\n  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n    (let [lab (sv sel \"label\")]\n      (ssv inst \"onboard\" lab)\n      (vreset! ONBOARD lab))))\n([lab]\n  (when-let [inst (first (cls-instances \"CeziumControl\"))]\n    (ssv inst \"onboard\" lab)\n    (vreset! ONBOARD lab)))")
+	(source "([hm inst]\n  (czs/new-doc)\n  (if-let [sel (DisplayUtilities/pickInstanceFromCollection nil (OMT/getNavObInstances) 0 \"Select NavOb\")]\n    (let [lab (sv sel \"label\")]\n      (ssv inst \"onboard\" lab)\n      (vreset! ONBOARD lab))))\n([lab]\n  (czs/new-doc)\n  (when-let [inst (first (cls-instances \"CeziumControl\"))]\n    (ssv inst \"onboard\" lab)\n    (vreset! ONBOARD lab)))")
 	(title "go-onboard"))
 
 ([Cezium_Class8] of  CloFunction
