@@ -1,4 +1,4 @@
-; Sat Jul 14 23:04:15 MSK 2018
+; Thu Dec 06 18:39:27 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3864,6 +3864,16 @@
 	(pairs [Sea_Class180019])
 	(title "Ctx1"))
 
+([Sea_Class370000] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(WarGames)"))
+
 ([Sea_Class370001] of  ObAttribute
 
 	(attribute [Sea_Class170009])
@@ -4141,6 +4151,12 @@
 	(longitude "28 37.62")
 	(mapob [Sea_Class344]))
 
+([Sea_Class390000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Sea_Class400001])
+	(%3ACREATION-TIMESTAMP "2018.12.06 12:50:33.148 MSK")
+	(%3ACREATOR "ru"))
+
 ([Sea_Class390001] of  TwoObRelation
 
 	(ob_relation INSIDE)
@@ -4224,6 +4240,18 @@
 	(status "START")
 	(title "s1.Complex Scenario Delay"))
 
+([Sea_Class400001] of  Scenario
+
+	(context [Sea_Class450013])
+	(final_tasks [Sea_Class410002])
+	(finish_type AND)
+	(id "омц:Обна14308")
+	(initial_tasks [Sea_Class410002])
+	(run "омц:Обна14308")
+	(scenario_scheme [Sea_Class410002])
+	(status "START")
+	(title "tmd:Target Maneuver Detection"))
+
 ([Sea_Class400002] of  WaitEvent
 
 	(event [Sea_Class400003])
@@ -4289,6 +4317,110 @@
 	(lineColor "FFFF0000")
 	(longitude "28 46.99")
 	(mapob [Sea_Class346]))
+
+([Sea_Class410000] of  Result
+
+	(title "tcr")
+	(variable [Sea_Class450016]))
+
+([Sea_Class410002] of  Task
+
+	(finish_type AND)
+	(id "омц:ОМЦ14309")
+	(initial_actions [Sea_Class410003])
+	(parent "омц:Обна14308")
+	(run "омц:Обна14308")
+	(status "START")
+	(task_scheme
+		[Sea_Class410003]
+		[Sea_Class410005]
+		[Sea_Class410004]
+		[Sea_Class410006])
+	(title "tmd:TMD"))
+
+([Sea_Class410003] of  Calculus
+
+	(id "омц:Теку14482")
+	(input_data
+		[Sea_Class410009]
+		[Sea_Class410011])
+	(next_actions [Sea_Class410004])
+	(parent "омц:ОМЦ14309")
+	(results [Sea_Class410000])
+	(run "омц:Обна14308")
+	(source "_ (println target_name target_course)\n?target_course target_course")
+	(status "START")
+	(title "tmd:Current Course"))
+
+([Sea_Class410004] of  Delay
+
+	(delay "10 sec")
+	(id "омц:Заде14485")
+	(next_actions [Sea_Class410005])
+	(parent "омц:ОМЦ14309")
+	(run "омц:Обна14308")
+	(status "START")
+	(title "tmd:Delay"))
+
+([Sea_Class410005] of  EventDecision
+
+	(events [Sea_Class410008])
+	(id "омц:Курс14481")
+	(parent "омц:ОМЦ14309")
+	(run "омц:Обна14308")
+	(status "START")
+	(title "tmd:Course Changed?")
+	(variants
+		[Sea_Class410003]
+		[Sea_Class410006]))
+
+([Sea_Class410006] of  MovingObjectMessage
+
+	(category "0")
+	(id "омц:Сооб14471")
+	(next_actions [Sea_Class410003])
+	(object [Sea_Class410007])
+	(parent "омц:ОМЦ14309")
+	(run "омц:Обна14308")
+	(status "START")
+	(text "? course changed! ? ? ? ?")
+	(title "tmd:Message"))
+
+([Sea_Class410007] of  Variable
+
+	(title "?target"))
+
+([Sea_Class410008] of  ObProperty
+
+	(latitude "0 0")
+	(longitude "0 0")
+	(ob_property COURSE)
+	(object [Sea_Class410007])
+	(radius 1.0)
+	(title "tcp")
+	(value "?target_course"))
+
+([Sea_Class410009] of  InputData
+
+	(ob_property COURSE)
+	(object [Sea_Class410007])
+	(title "cct")
+	(variable [Sea_Class410010]))
+
+([Sea_Class410010] of  Variable
+
+	(title "target_course"))
+
+([Sea_Class410011] of  InputData
+
+	(ob_property NAME)
+	(object [Sea_Class410007])
+	(title "tn")
+	(variable [Sea_Class410012]))
+
+([Sea_Class410012] of  Variable
+
+	(title "target_name"))
 
 ([Sea_Class410013] of  Table2
 
@@ -4475,6 +4607,29 @@
 	(sub_scenario [Sea_Class20002])
 	(title "s1.Check Third Buoy")
 	(wait_subscenario TRUE))
+
+([Sea_Class450013] of  Context
+
+	(pairs
+		[Sea_Class450014]
+		[Sea_Class450015])
+	(title "c"))
+
+([Sea_Class450014] of  ObjectPair
+
+	(object [Sea_Class227])
+	(title "p")
+	(variable [Sea_Class410007]))
+
+([Sea_Class450015] of  ValuePair
+
+	(title "п")
+	(value "-1")
+	(variable [Sea_Class450016]))
+
+([Sea_Class450016] of  Variable
+
+	(title "?target_course"))
 
 ([Sea_Class470031] of  Table2
 

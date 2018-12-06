@@ -1,4 +1,4 @@
-; Mon Jun 11 21:08:22 MSK 2018
+; Thu Dec 06 11:36:31 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -260,7 +260,7 @@
 		(create-accessor read-write))
 	(multislot task_scheme
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(create-accessor read-write))
 	(single-slot yield
 		(type FLOAT)
@@ -507,7 +507,7 @@
 		(create-accessor read-write))
 	(multislot next_actions
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(create-accessor read-write))
 	(single-slot %3Ftarget
 		(type INSTANCE)
@@ -1024,7 +1024,7 @@
 		(create-accessor read-write))
 	(multislot task_scheme
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(create-accessor read-write))
 	(multislot initial_actions
 		(type INSTANCE)
@@ -1046,7 +1046,7 @@
 	(role abstract)
 	(multislot next_actions
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(create-accessor read-write)))
 
 (defclass ViewControl
@@ -2157,7 +2157,7 @@
 	(role abstract)
 	(multislot variants
 		(type INSTANCE)
-;+		(allowed-classes Decision Task)
+;+		(allowed-classes Decision Task Action)
 		(create-accessor read-write)))
 
 (defclass Hard
