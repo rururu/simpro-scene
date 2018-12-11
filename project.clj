@@ -26,10 +26,10 @@
                  [seesaw "1.4.5"]
                  [semantic-csv "0.2.1-alpha1"]
                  [OpenMapTab "5.2.1"]
-                 [org.openmap-java/openmap "5.1.15"]]
+                 [org.openmap-java/openmap "5.1.15"]
+                 [javax.xml.bind/jaxb-api "2.3.0"]]
   ;; :repositories [["repo" "file:repo"]] ;; for "lein deploy" only !!!!
   :repositories {"local" {:url ~(str (.toURI (java.io.File. "repo"))) :checksum :warn}}
-  ;; :jvm-opts ["--add-modules" "java.xml.bind"]
   ;; :java-cmd "/home/ru/jo"
   :main simpro-scene.core)
 
