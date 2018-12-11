@@ -24,7 +24,7 @@
 
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
-  (str "http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
+  (str "https://overpass.kumi.systems/api/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
 
 (defn way-data [bbx way-type]
   (try

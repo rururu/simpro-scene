@@ -1,4 +1,4 @@
-; Sun Jun 10 12:14:46 MSK 2018
+; Tue Dec 11 16:55:51 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -30,7 +30,7 @@
 
 ([BrigBern_Class10000] of  CloFunction
 
-	(source "(let [[w s e n] bbx]\n  (str \"http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(source "(let [[w s e n] bbx]\n  (str \"https://overpass.kumi.systems/api/interpreter?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
 	(title "way-api-url [bbx way-type]"))
 
 ([BrigBern_Class100000] of  NavOb
@@ -6582,6 +6582,14 @@
 	(id "5135140a")
 	(poly [OSMRoads_Class80000])
 	(source "[[57.076 -2.78]\n[57.0760462 -2.7801807]]"))
+
+([OSMRoads_Class120000] of  CloFuncall
+
+	(source "(in-ns 'osm.data)"))
+
+([OSMRoads_Class120001] of  CloFuncall
+
+	(source "(get-way-data [43.755 7.448] 02 \"railway\")"))
 
 ([OSMRoads_Class120004] of  SetScale
 
