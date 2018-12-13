@@ -1,4 +1,4 @@
-; Thu May 24 22:27:43 MSK 2018
+; Thu Dec 13 21:50:05 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,6 +42,18 @@
 		[FranceRoads_Class73003]
 		[FranceRoads_Class73004])
 	(title "fr4:Deploy Control Centers"))
+
+([FranceRoads_Class100000] of  CloFuncall
+
+	(source "(in-ns 'find.path)"))
+
+([FranceRoads_Class100001] of  CloFuncall
+
+	(source "(def frs (vec (first (a/layer-targets \"France Roads\"))))"))
+
+([FranceRoads_Class100002] of  CloFuncall
+
+	(source "(count frs)"))
 
 ([FranceRoads_Class100014] of  PutObAttributes
 
@@ -104,6 +116,46 @@
 	(resource [FranceRoads_Class60006])
 	(title "fr3:Delete Cars"))
 
+([FranceRoads_Class110015] of  CloProgram
+
+	(cloFunctions
+		[FranceRoads_Class110017]
+		[FranceRoads_Class110029]
+		[FranceRoads_Class110037]
+		[FranceRoads_Class130007]
+		[FranceRoads_Class130016]
+		[FranceRoads_Class130008]
+		[FranceRoads_Class130036]
+		[FranceRoads_Class130023]
+		[FranceRoads_Class130045]
+		[FranceRoads_Class130046])
+	(cloNamespace [FranceRoads_Class110016])
+	(cloVars
+		[FranceRoads_Class120000]
+		[FranceRoads_Class120001]
+		[FranceRoads_Class130022])
+	(title "Find Path"))
+
+([FranceRoads_Class110016] of  CloNamespace
+
+	(source "(:require [a])")
+	(title "find.path"))
+
+([FranceRoads_Class110017] of  CloFunction
+
+	(source "(let [lla (.getLatLonArray omp)]\n  [[(first lla) (second lla)] [(last (butlast lla)) (last lla)]])")
+	(title "from-to [omp]"))
+
+([FranceRoads_Class110029] of  CloFunction
+
+	(source "(let [[w s e n] [(- cla rad) (- cfi rad) (+ cla rad) (+ cfi rad)]]\n  (filter #(let [[[ffi fla] [tfi tla]] (from-to %)]\n               (or (and (< w fla e) (< s ffi n))\n                    (and (< w tla e) (< s tfi n)))) omps))")
+	(title "find-near [omps [cfi cla] rad]"))
+
+([FranceRoads_Class110037] of  CloFunction
+
+	(source "(let [dPI8 (/ Math/PI 8)\n       mPI8 (- dPI8)\n       ang (Math/atan2 (- fi1 fi2) (- la1 la2))]\n  (if (>= ang 0)\n    (cond \n      (< ang DPI8) [:W]\n      (< ang (* DPI8 3)) [:S :W]\n      (< ang (* DPI8 5)) [:S]\n      (< ang (* DPI8 7)) [:S :E]\n      true [:E])\n    (cond \n      (> ang MPI8) [:W]\n      (> ang (* MPI8 3)) [:N :W]\n      (> ang (* MPI8 5)) [:N]\n      (> ang (* MPI8 7)) [:N :E]\n      true [:E])))")
+	(title "rumb [[fi1 la1] [fi2 la2]]"))
+
 ([FranceRoads_Class117020] of  ObjectPair
 
 	(title "p")
@@ -114,6 +166,64 @@
 	(title "p")
 	(value "0")
 	(variable [FranceRoads_Class80003]))
+
+([FranceRoads_Class120000] of  CloVar
+
+	(source "(/ Math/PI 8)")
+	(title "DPI8"))
+
+([FranceRoads_Class120001] of  CloVar
+
+	(source "(- (/ Math/PI 8))")
+	(title "MPI8"))
+
+([FranceRoads_Class130007] of  CloFunction
+
+	(source "(let [[w s e n] [(- cla rad) (- cfi rad) (+ cla rad) (+ cfi rad)]]\n  (if (and (< w fla e) (< s ffi n))\n    :FROM\n    :TO))")
+	(title "dir-near [[cfi cla] rad [[ffi fla] & r]]"))
+
+([FranceRoads_Class130008] of  CloFunction
+
+	(source "(letfn [(omp-ft-rmb-dir-id [x] \n            (let [ft (from-to x)\n                   rmb (apply rumb ft)\n                   dir (dir-near from rad ft)\n                   id (func-id x)]\n              [x ft rmb dir id]))]\n  (map omp-ft-rmb-dir-id (find-near omps from rad)))")
+	(title "find-ways [omps from rad func-id]"))
+
+([FranceRoads_Class130009] of  CloFuncall
+
+	(source "(def fdd (find.path/find-ways frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013)))"))
+
+([FranceRoads_Class130016] of  CloFunction
+
+	(source "(let [tst (.toString (.getAttribute omp \"APP_OBJECT\"))\n       a1 (.split tst \" \")\n       a2 (.split (get a1 1) \":\")]\n  (read-string (get a2 1)))")
+	(title "e00-id [omp]"))
+
+([FranceRoads_Class130021] of  CloFuncall
+
+	(source "(find.path/find-ways frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) e00-id)"))
+
+([FranceRoads_Class130022] of  CloVar
+
+	(source "[[:N]\n [:N :W]\n [:N :E]\n [:S]\n [:S :W]\n [:S :E]\n [:W]\n [:E]]")
+	(title "DIRS"))
+
+([FranceRoads_Class130023] of  CloFunction
+
+	(source "(if (= (count dir) 1)\n  (filter (fn [x] (some #{(first dir)} x)) DIRS)\n  (list [(first dir)] dir [(second dir)]))")
+	(title "broad-dirs-map [dir]"))
+
+([FranceRoads_Class130036] of  CloFunction
+
+	(source "(if (> (count dir) 1)\n  [(first (backward-dir [(first dir)]))\n   (first (backward-dir [(second dir)]))]\n  [(get {:N :S\n           :S :N\n           :W :E\n           :E :W}  (first dir))])")
+	(title "backward-dir [dir]"))
+
+([FranceRoads_Class130045] of  CloFunction
+
+	(source "[dir]")
+	(title "narrow-dirs-map [dir]"))
+
+([FranceRoads_Class130046] of  CloFunction
+
+	(source "(if-let [ways (seq (find-ways omps from rad func-id))]\n  0)")
+	(title "search-step [omps from rad dir func-dir func-id]"))
 
 ([FranceRoads_Class20000] of  GoLayerRoute
 
