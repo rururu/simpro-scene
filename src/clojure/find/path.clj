@@ -1,5 +1,9 @@
 (ns find.path
-(:require [a]))
+(:use protege.core)
+(:require [a])
+(:import
+  ru.igis.omtab.OMT
+  ru.igis.omtab.MapOb))
 
 (def DPI8 (/ Math/PI 8))
 (def MPI8 (- (/ Math/PI 8)))
@@ -49,7 +53,7 @@
   (let [tst (.toString (.getAttribute omp "APP_OBJECT"))
        a1 (.split tst " ")
        a2 (.split (get a1 1) ":")]
-  (read-string (get a2 1))))
+  (get a2 1)))
 
 (defn find-ways [omps from rad func-id]
   (letfn [(omp-ft-rmb-dir-id [x] 
@@ -57,7 +61,7 @@
                    rmb (apply rumb ft)
                    dir (dir-near from rad ft)
                    id (func-id x)]
-              [x ft rmb dir id]))]
+              [ft rmb dir id]))]
   (map omp-ft-rmb-dir-id (find-near omps from rad))))
 
 (defn backward-dir [dir]
@@ -69,15 +73,46 @@
            :W :E
            :E :W}  (first dir))]))
 
-(defn broad-dirs-map [dir]
+(defn broad-dirs [dir]
   (if (= (count dir) 1)
   (filter (fn [x] (some #{(first dir)} x)) DIRS)
   (list [(first dir)] dir [(second dir)])))
 
-(defn narrow-dirs-map [dir]
+(defn narrow-dirs [dir]
   [dir])
 
-(defn search-step [omps from rad dir func-dir func-id]
+(defn search-step [omps from rad to func-awd-dirs func-id]
+  (letfn [(only-allowed [awd dir from-or-to]
+	(let [dir (if (= from-or-to :FROM)
+	              dir
+	              (backward-dir dir))]
+	  (some #{dir} awd)))]
   (if-let [ways (seq (find-ways omps from rad func-id))]
-  0))
+    (let [dir (rumb from to)
+           awd (func-awd-dirs dir)]
+      (println :DIR dir :AWD awd)
+      (filter #(only-allowed awd (nth % 1) (nth % 2)) ways)))))
+
+(defn create-poly [pway color]
+  (let [ins (foc "OMTPoly" "label" (sv pway "id"))
+       [[ffi fla] [tfi tla]] (read-string (sv pway "source"))
+       flat (MapOb/getDegMin (Math/toDegrees ffi))
+       flon (MapOb/getDegMin (Math/toDegrees fla))
+       tlat (MapOb/getDegMin (Math/toDegrees tfi))
+       tlon (MapOb/getDegMin (Math/toDegrees tla))]
+  (ssv ins "latitude" flat)
+  (ssv ins "longitude" flon)
+  (ssv ins "lineColor" color)
+  (ssvs ins "points" [(str flat " " flon) (str tlat " " tlon)])
+  (if (nil?  (sv pway "poly"))
+    (ssv pway "poly" ins))
+  ins))
+
+(defn create-pathways [ways]
+  (for [[ft rmb dir id] ways]
+  (let [ins (foc "Pathway" "id" id)]
+    (ssv ins "source" (str ft))
+    (ssv ins "direction" (str dir))
+    (ssv ins "rumb" (str rmb))
+    ins)))
 

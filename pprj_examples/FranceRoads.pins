@@ -1,4 +1,4 @@
-; Thu Dec 13 21:50:05 MSK 2018
+; Fri Dec 14 21:59:07 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -128,7 +128,9 @@
 		[FranceRoads_Class130036]
 		[FranceRoads_Class130023]
 		[FranceRoads_Class130045]
-		[FranceRoads_Class130046])
+		[FranceRoads_Class130046]
+		[FranceRoads_Class140019]
+		[FranceRoads_Class140014])
 	(cloNamespace [FranceRoads_Class110016])
 	(cloVars
 		[FranceRoads_Class120000]
@@ -138,7 +140,7 @@
 
 ([FranceRoads_Class110016] of  CloNamespace
 
-	(source "(:require [a])")
+	(source "(:use protege.core)\n(:require [a])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
 	(title "find.path"))
 
 ([FranceRoads_Class110017] of  CloFunction
@@ -177,6 +179,34 @@
 	(source "(- (/ Math/PI 8))")
 	(title "MPI8"))
 
+([FranceRoads_Class130000] of  CloFuncall
+
+	(source "(def fdd (find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013)))"))
+
+([FranceRoads_Class130001] of  CloFuncall
+
+	(source "(def fdd (find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [:S] narrow-dirs-map ))"))
+
+([FranceRoads_Class130002] of  CloFuncall
+
+	(source "(def fdd (find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [:S] narrow-dirs-map e00-id))"))
+
+([FranceRoads_Class130003] of  CloFuncall
+
+	(source "(count fdd)"))
+
+([FranceRoads_Class130004] of  CloFuncall
+
+	(source "(map protege.core/ctpl fdd)"))
+
+([FranceRoads_Class130005] of  CloFuncall
+
+	(source "(find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [:S] narrow-dirs e00-id))"))
+
+([FranceRoads_Class130006] of  CloFuncall
+
+	(source "(find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [(Math/toRadians 47.0) (Math/toRadians 1.811)] narrow-dirs e00-id))"))
+
 ([FranceRoads_Class130007] of  CloFunction
 
 	(source "(let [[w s e n] [(- cla rad) (- cfi rad) (+ cla rad) (+ cfi rad)]]\n  (if (and (< w fla e) (< s ffi n))\n    :FROM\n    :TO))")
@@ -184,7 +214,7 @@
 
 ([FranceRoads_Class130008] of  CloFunction
 
-	(source "(letfn [(omp-ft-rmb-dir-id [x] \n            (let [ft (from-to x)\n                   rmb (apply rumb ft)\n                   dir (dir-near from rad ft)\n                   id (func-id x)]\n              [x ft rmb dir id]))]\n  (map omp-ft-rmb-dir-id (find-near omps from rad)))")
+	(source "(letfn [(omp-ft-rmb-dir-id [x] \n            (let [ft (from-to x)\n                   rmb (apply rumb ft)\n                   dir (dir-near from rad ft)\n                   id (func-id x)]\n              [ft rmb dir id]))]\n  (map omp-ft-rmb-dir-id (find-near omps from rad)))")
 	(title "find-ways [omps from rad func-id]"))
 
 ([FranceRoads_Class130009] of  CloFuncall
@@ -193,7 +223,7 @@
 
 ([FranceRoads_Class130016] of  CloFunction
 
-	(source "(let [tst (.toString (.getAttribute omp \"APP_OBJECT\"))\n       a1 (.split tst \" \")\n       a2 (.split (get a1 1) \":\")]\n  (read-string (get a2 1)))")
+	(source "(let [tst (.toString (.getAttribute omp \"APP_OBJECT\"))\n       a1 (.split tst \" \")\n       a2 (.split (get a1 1) \":\")]\n  (get a2 1))")
 	(title "e00-id [omp]"))
 
 ([FranceRoads_Class130021] of  CloFuncall
@@ -208,7 +238,7 @@
 ([FranceRoads_Class130023] of  CloFunction
 
 	(source "(if (= (count dir) 1)\n  (filter (fn [x] (some #{(first dir)} x)) DIRS)\n  (list [(first dir)] dir [(second dir)]))")
-	(title "broad-dirs-map [dir]"))
+	(title "broad-dirs [dir]"))
 
 ([FranceRoads_Class130036] of  CloFunction
 
@@ -218,12 +248,130 @@
 ([FranceRoads_Class130045] of  CloFunction
 
 	(source "[dir]")
-	(title "narrow-dirs-map [dir]"))
+	(title "narrow-dirs [dir]"))
 
 ([FranceRoads_Class130046] of  CloFunction
 
-	(source "(if-let [ways (seq (find-ways omps from rad func-id))]\n  0)")
-	(title "search-step [omps from rad dir func-dir func-id]"))
+	(source "(letfn [(only-allowed [awd dir from-or-to]\n	(let [dir (if (= from-or-to :FROM)\n	              dir\n	              (backward-dir dir))]\n	  (some #{dir} awd)))]\n  (if-let [ways (seq (find-ways omps from rad func-id))]\n    (let [dir (rumb from to)\n           awd (func-awd-dirs dir)]\n      (println :DIR dir :AWD awd)\n      (filter #(only-allowed awd (nth % 1) (nth % 2)) ways))))")
+	(title "search-step [omps from rad to func-awd-dirs func-id]"))
+
+([FranceRoads_Class140007] of  CloFuncall
+
+	(source "(find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [(Math/toRadians 47.0) (Math/toRadians 1.811)] broad-dirs e00-id))"))
+
+([FranceRoads_Class140008] of  CloFuncall
+
+	(source "(find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [(Math/toRadians 47.1) (Math/toRadians 1.811)] narrow-dirs e00-id))"))
+
+([FranceRoads_Class140009] of  CloFuncall
+
+	(source "(find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [(Math/toRadians 47.1) (Math/toRadians 1.811)] broad-dirs e00-id))"))
+
+([FranceRoads_Class140012] of  CloFuncall
+
+	(source "(def ways (find.path/search-step frs [(Math/toRadians 47.067) (Math/toRadians 1.811)] (Math/toRadians 0.013) [(Math/toRadians 47.0) (Math/toRadians 1.811)] broad-dirs e00-id)))"))
+
+([FranceRoads_Class140013] of  CloFuncall
+
+	(source "(count ways)"))
+
+([FranceRoads_Class140014] of  CloFunction
+
+	(source "(for [[ft rmb dir id] ways]\n  (let [ins (foc \"Pathway\" \"id\" id)]\n    (ssv ins \"source\" (str ft))\n    (ssv ins \"direction\" (str dir))\n    (ssv ins \"rumb\" (str rmb))\n    ins))")
+	(title "create-pathways [ways]"))
+
+([FranceRoads_Class140015] of  CloFuncall
+
+	(source "(create-pathways ways)"))
+
+([FranceRoads_Class140019] of  CloFunction
+
+	(source "(let [ins (foc \"OMTPoly\" \"label\" (sv pway \"id\"))\n       [[ffi fla] [tfi tla]] (read-string (sv pway \"source\"))\n       flat (MapOb/getDegMin (Math/toDegrees ffi))\n       flon (MapOb/getDegMin (Math/toDegrees fla))\n       tlat (MapOb/getDegMin (Math/toDegrees tfi))\n       tlon (MapOb/getDegMin (Math/toDegrees tla))]\n  (ssv ins \"latitude\" flat)\n  (ssv ins \"longitude\" flon)\n  (ssv ins \"lineColor\" color)\n  (ssvs ins \"points\" [(str flat \" \" flon) (str tlat \" \" tlon)])\n  (if (nil?  (sv pway \"poly\"))\n    (ssv pway \"poly\" ins))\n  ins)")
+	(title "create-poly [pway color]"))
+
+([FranceRoads_Class140020] of  CloFuncall
+
+	(source "(def pws (create-pathways ways))"))
+
+([FranceRoads_Class140021] of  CloFuncall
+
+	(source "(def polys (map #(create-poly % \"FFFF0000\") pws))"))
+
+([FranceRoads_Class140022] of  CloFuncall
+
+	(source "polys"))
+
+([FranceRoads_Class140026] of  CloFuncall
+
+	(source "(empty? nil)"))
+
+([FranceRoads_Class140027] of  CloFuncall
+
+	(source "(some? nil)"))
+
+([FranceRoads_Class140028] of  CloFuncall
+
+	(source "pws"))
+
+([FranceRoads_Class140029] of  Pathway
+
+	(direction ":TO")
+	(id "3786")
+	(poly [FranceRoads_Class140032])
+	(rumb "[:N :E]")
+	(source "[[0.819869321599107 0.028222837168547118] [0.8214913198610196 0.031605340955597375]]"))
+
+([FranceRoads_Class140030] of  Pathway
+
+	(direction ":FROM")
+	(id "3801")
+	(poly [FranceRoads_Class140033])
+	(rumb "[:S :E]")
+	(source "[[0.8214913198610196 0.031605340955597375] [0.8195143888048266 0.03472674884549518]]"))
+
+([FranceRoads_Class140031] of  Pathway
+
+	(direction ":FROM")
+	(id "3874")
+	(poly [FranceRoads_Class140034])
+	(rumb "[:S :W]")
+	(source "[[0.8214913198610196 0.031605340955597375] [0.8177264090279747 0.029980760675784]]"))
+
+([FranceRoads_Class140032] of  OMTPoly
+
+	(label "3786")
+	(latitude "46 58.5")
+	(lineColor "FFFF0000")
+	(longitude "1 37.02")
+	(playground-index 0)
+	(points
+		"46 58.5 1 37.02"
+		"47 4.08 1 48.65")
+	(relative FALSE))
+
+([FranceRoads_Class140033] of  OMTPoly
+
+	(label "3801")
+	(latitude "47 4.08")
+	(lineColor "FFFF0000")
+	(longitude "1 48.65")
+	(playground-index 0)
+	(points
+		"47 4.08 1 48.65"
+		"46 57.28 1 59.38")
+	(relative FALSE))
+
+([FranceRoads_Class140034] of  OMTPoly
+
+	(label "3874")
+	(latitude "47 4.08")
+	(lineColor "FFFF0000")
+	(longitude "1 48.65")
+	(playground-index 0)
+	(points
+		"47 4.08 1 48.65"
+		"46 51.14 1 43.07")
+	(relative FALSE))
 
 ([FranceRoads_Class20000] of  GoLayerRoute
 
