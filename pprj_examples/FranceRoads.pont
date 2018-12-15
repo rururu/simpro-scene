@@ -1,4 +1,4 @@
-; Fri Dec 14 21:59:07 MSK 2018
+; Sat Dec 15 21:29:00 MSK 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,10 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(multislot pathways
+		(type INSTANCE)
+;+		(allowed-classes Pathway)
+		(create-accessor read-write))
 	(single-slot LabVisible
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -27,6 +31,12 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot roads
+		(type STRING)
+		(create-accessor read-write))
+	(multislot from-to
+		(type FLOAT)
+		(create-accessor read-write))
 	(single-slot ArcColors
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -41,18 +51,6 @@
 		(create-accessor read-write))
 	(multislot getPoliesFromTargets
 ;+		(type ANY)
-		(create-accessor read-write)))
-
-(defclass Pathway
-	(is-a Way)
-	(role concrete)
-	(single-slot rumb
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direction
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass E00Layer
@@ -83,6 +81,60 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot ArcColors
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Find+Path+Onto
+	(is-a USER)
+	(role abstract))
+
+(defclass Pathway
+	(is-a Way Find+Path+Onto)
+	(role concrete)
+	(single-slot rumb
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot from-to
+		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot parent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Roads
+	(is-a Find+Path+Onto)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot roads
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Path
+	(is-a Find+Path+Onto)
+	(role concrete)
+	(multislot pathways
+		(type INSTANCE)
+;+		(allowed-classes Pathway)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

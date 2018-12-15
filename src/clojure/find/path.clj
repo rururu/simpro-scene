@@ -17,15 +17,15 @@
  [:E]])
 (defn from-to [omp]
   (let [lla (.getLatLonArray omp)]
-  [[(first lla) (second lla)] [(last (butlast lla)) (last lla)]]))
+  [(first lla) (second lla) (last (butlast lla)) (last lla)]))
 
 (defn find-near [omps [cfi cla] rad]
   (let [[w s e n] [(- cla rad) (- cfi rad) (+ cla rad) (+ cfi rad)]]
-  (filter #(let [[[ffi fla] [tfi tla]] (from-to %)]
+  (filter #(let [[ffi fla tfi tla] (from-to %)]
                (or (and (< w fla e) (< s ffi n))
                     (and (< w tla e) (< s tfi n)))) omps)))
 
-(defn rumb [[fi1 la1] [fi2 la2]]
+(defn rumb [fi1 la1 fi2 la2]
   (let [dPI8 (/ Math/PI 8)
        mPI8 (- dPI8)
        ang (Math/atan2 (- fi1 fi2) (- la1 la2))]
@@ -43,7 +43,7 @@
       (> ang (* MPI8 7)) [:N :E]
       true [:E]))))
 
-(defn dir-near [[cfi cla] rad [[ffi fla] & r]]
+(defn dir-near [[cfi cla] rad [ffi fla & r]]
   (let [[w s e n] [(- cla rad) (- cfi rad) (+ cla rad) (+ cfi rad)]]
   (if (and (< w fla e) (< s ffi n))
     :FROM
@@ -88,31 +88,37 @@
 	              (backward-dir dir))]
 	  (some #{dir} awd)))]
   (if-let [ways (seq (find-ways omps from rad func-id))]
-    (let [dir (rumb from to)
+    (let [dir (apply rumb (concat from to))
            awd (func-awd-dirs dir)]
-      (println :DIR dir :AWD awd)
       (filter #(only-allowed awd (nth % 1) (nth % 2)) ways)))))
 
-(defn create-poly [pway color]
-  (let [ins (foc "OMTPoly" "label" (sv pway "id"))
-       [[ffi fla] [tfi tla]] (read-string (sv pway "source"))
-       flat (MapOb/getDegMin (Math/toDegrees ffi))
-       flon (MapOb/getDegMin (Math/toDegrees fla))
-       tlat (MapOb/getDegMin (Math/toDegrees tfi))
-       tlon (MapOb/getDegMin (Math/toDegrees tla))]
-  (ssv ins "latitude" flat)
-  (ssv ins "longitude" flon)
-  (ssv ins "lineColor" color)
-  (ssvs ins "points" [(str flat " " flon) (str tlat " " tlon)])
-  (if (nil?  (sv pway "poly"))
-    (ssv pway "poly" ins))
-  ins))
-
-(defn create-pathways [ways]
+(defn create-pathways [ways parent]
   (for [[ft rmb dir id] ways]
   (let [ins (foc "Pathway" "id" id)]
-    (ssv ins "source" (str ft))
+    (ssvs ins "from-to" (map float ft))
     (ssv ins "direction" (str dir))
     (ssv ins "rumb" (str rmb))
+    (ssv ins "parent" parent)
     ins)))
+
+(defn create-polys [pways color]
+  (for [pway pways]
+  (let [ins (foc "OMTPoly" "label" (sv pway "id"))
+         [ffi fla tfi tla] (vec (svs pway "from-to"))
+         flat (MapOb/getDegMin (Math/toDegrees ffi))
+         flon (MapOb/getDegMin (Math/toDegrees fla))
+         tlat (MapOb/getDegMin (Math/toDegrees tfi))
+         tlon (MapOb/getDegMin (Math/toDegrees tla))]
+    (ssv ins "latitude" flat)
+    (ssv ins "longitude" flon)
+    (ssv ins "lineColor" color)
+    (ssv ins "line" (fifos "Line" "label" "Line2"))
+    (ssvs ins "points" [(str flat " " flon) (str tlat " " tlon)])
+    (if (nil?  (sv pway "poly"))
+      (ssv pway "poly" ins))
+    ins)))
+
+(defn display-mobs [mobs]
+  (doseq [mob mobs]
+  (OMT/getOrAdd mob)))
 
