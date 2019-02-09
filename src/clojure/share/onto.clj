@@ -14,6 +14,10 @@
 (def INSS-MAPPING (atom {}))
 (def ERROR nil)
 (def copy-instance nil)
+(def REPLACE-SLOT-VAL {:class "NavOb"
+ :slot "url"
+ :func (fn [v] (.replace v "data/images" 
+                                     "resources/public/img"))})
 (defn confirm [mes]
   (= (JOptionPane/showConfirmDialog nil mes) (JOptionPane/YES_OPTION)))
 
@@ -152,4 +156,11 @@
       (when (.contains tit nix)
         (println (str "Title: " tit))
         (delin e))))))
+
+(defn replace-slot-value []
+  (let [clz  (REPLACE-SLOT-VAL :class)
+       slt   (REPLACE-SLOT-VAL :slot)
+       fun  (REPLACE-SLOT-VAL :func)]
+  (doseq [ins (cls-instances clz)]
+    (ssv ins slt (fun (sv ins slt))))))
 

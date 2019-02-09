@@ -1,4 +1,4 @@
-; Tue Nov 28 12:11:17 MSK 2017
+; Sat Feb 09 17:36:03 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -148,6 +148,16 @@
 	(source "(let [[otype & svals] frm\n       upf (fn [[k v]]\n	[k (or (mp k) v)])]\n  (cons (if (= typ :same-type) otype typ)\n    (mapcat upf (partition 2 svals))))")
 	(title "update-frame [frm typ mp]"))
 
+([RuleEngine_Class280000] of  CloFunction
+
+	(source "(if-let [esi (p/fainst (p/cls-instances \"Run\") nil)]\n  (run-engine esi))")
+	(title "restart-es []"))
+
+([RuleEngine_Class280001] of  CloFunction
+
+	(source "(rete/log-lst \"beta-net-plan.txt\" rete/BNET)")
+	(title "save-bnet-plan []"))
+
 ([RuleEngine_Class30000] of  CloProgram
 
 	(cloFunctions
@@ -182,7 +192,9 @@
 		[RuleEngine_Class200000]
 		[RuleEngine_Class250000]
 		[RuleEngine_Class260004]
-		[RuleEngine_Class260000])
+		[RuleEngine_Class260000]
+		[RuleEngine_Class280000]
+		[RuleEngine_Class280001])
 	(cloNamespace [RuleEngine_Class40000])
 	(cloVars
 		[RuleEngine_Class180001]

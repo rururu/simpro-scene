@@ -1,4 +1,4 @@
-; Thu Dec 06 11:36:31 MSK 2018
+; Sat Feb 09 17:34:21 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -446,7 +446,8 @@
 		[Scenario_Class590013]
 		[Scenario_Class590016]
 		[Scenario_Class590015]
-		[Scenario_Class610001])
+		[Scenario_Class610001]
+		[Scenario_Class620000])
 	(templates
 		[Action]
 		[Arrive]
@@ -501,7 +502,8 @@
 		[SetCenter]
 		[SetScale]
 		[FlightView]
-		[Camera])
+		[Camera]
+		[SendSignal])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -924,7 +926,8 @@
 		[ScenarioN_Class470001]
 		[ScenarioN_Class470002]
 		[ScenarioN_Class630000]
-		[ScenarioN_Class640000])
+		[ScenarioN_Class640000]
+		[Scenario_Class630003])
 	(templates
 		[UserDecision]
 		[GeneralDecision]
@@ -934,7 +937,8 @@
 		[CatchException]
 		[Exception]
 		[TDecision]
-		[Hard])
+		[Hard]
+		[SignalControl])
 	(title "DecisionExecutor"))
 
 ([Scenario_Class260000] of  Rule
@@ -1750,6 +1754,13 @@
 	(salience 0)
 	(title "a:Camera"))
 
+([Scenario_Class620000] of  Rule
+
+	(lhs "?ss (SendSignal status \"START\"\n	title ?tit\n	from1 ?frm\n	to1 ?to\n	signal ?sig\n	run ?run)")
+	(rhs "(println (str \"Action started: \" ?tit \" SendSignal\"))\n(let [frm (a/mapob-vv ?frm ?run)\n       to (a/mapob-vv ?to ?run)\n       sig (a/vv ?sig ?run)]\n  (if (and frm to (a/worth? sig))\n    (modify ?ss status \"WAIT\"\n	signal sig\n	from1 frm\n	to1 to)\n    (modify ?ss status \"FAILED\")))")
+	(salience 0)
+	(title "a:SendSignal"))
+
 ([Scenario_Class620001] of  CloFunction
 
 	(source ";;(println :TO-ROUTE (seq rou) bwd)\n(let [b (is? bwd)\n       f (not b)\n       s (or (sequential? rou) (= (str (type rou)) \"class [D\"))\n       c (and s (string? (first rou)))]\n  (cond\n    (and f c) rou\n    (and f s (not c)) (into-array Double/TYPE rou)\n    f rou\n    c (reverse rou)\n    (and s (not c)) (into-array Double/TYPE (reverse-route rou))\n    (instance? Instance rou) (reverse (svs rou \"points\"))))")
@@ -1779,6 +1790,23 @@
 
 	(source "(letfn [(rr [y] (if (empty? y)\n	  y\n	  (cons (second y) (cons (first y) (rr (nnext y))))))]\n  (rr (reverse rou)))")
 	(title "reverse-route [rou]"))
+
+([Scenario_Class630003] of  Rule
+
+	(lhs "?sc (SignalControl status \"START\" \n	title ?tit\n	from1 ?fr1\n	to1 ?to1\n	statuses ?sts\n	variants ?vrs\n	parent ?par1\n	run ?run1)\n?ss (SendSignal signal ?sig\n	instance ?ain2\n	parent ?par2\n	run ?run2\n	next_actions ?nacts2\n	from1 ?fr2 \n	to1 ?to2\n	((= (a/mapob-vv ?fr1 ?pro1 ?run1) ?fr2)\n	 (= (a/mapob-vv ?to1 ?pro1 ?run1) ?to2)))")
+	(rhs "(println (str \"Decision: \" ?tit \" SignalControl\"))\n(loop [sts ?sts vrs ?vrs]\n  (if (seq sts)\n      (if (= (first sts) ?sig)\n        (do\n          (retract ?sc)\n          (retract ?ss)\n          (asser Action status \"DONE\" \n	parent ?par2\n	instance ?ain2\n	next_actions ?nacts2)\n          (s/start-tasks-actions [(first vrs)] ?par1 ?run1))\n        (recur (rest sts) (rest vrs)))))")
+	(salience 0)
+	(title "d:SignalControl"))
+
+([Scenario_Class640000] of  Command
+
+	(label "Restart Expert System")
+	(scenario "clojuretab.ClojureTab invoke ru.rules restart-es"))
+
+([Scenario_Class640001] of  Command
+
+	(label "Save BNET Plan")
+	(scenario "clojuretab.ClojureTab invoke ru.rules save-bnet-plan"))
 
 ([Scenario_Class70000] of  Rule
 
@@ -2853,7 +2881,8 @@
 		[Scenario_Class370007]))
 
 ([SendSignal] of  ActionClass
-)
+
+	(rules [Scenario_Class620000]))
 
 ([SetCenter] of  ActionClass
 
@@ -2878,6 +2907,10 @@
 	(rules
 		[Scenario_Class490000]
 		[Scenario_Class460000]))
+
+([SignalControl] of  DecisionClass
+
+	(rules [Scenario_Class630003]))
 
 ([StartScenarios] of  ActionClass
 

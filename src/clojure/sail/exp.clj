@@ -77,15 +77,13 @@
     (- mid dev))))
 
 (defn camera-control [bmo k v]
-  (let [cam (or (.getAttribute  bmo "CAMERA") {})
-       cam (assoc cam k v)]
-  (.putAttribute bmo "CAMERA" cam)))
+  (vreset! pro.server/REQUEST {k v}))
 
-(defn boat-heel [boat sail-point tack camera-view]
-  (let [view (condp = camera-view
-	"FORWARD"	1
-	"BACKWARD"	2
-	0)]
+(defn boat-heel [boat sail-point tack view]
+  (let [view (cond
+                 (or (and (>= view 0) (< view 46)) (and (< view 0) (> view -46))) 1
+                 (or (> view 134) (< view -134)) 2
+                 true 0)]
   (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]
     (if (> view 0)
       (let [heel (condp = sail-point

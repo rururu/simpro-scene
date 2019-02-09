@@ -9,8 +9,12 @@
 (def DOC-SENT false)
 (def BASE-URL "")
 (def IMG-PATH "img/")
+(defn icon-file [url]
+  (last (seq (.split url "/"))))
+
 (defn send-event [typ dat]
   ;; (println [:CZ-EVT typ dat])
+;; (println)
 (asp/pump-in CZ-CHAN [typ (.trim dat)]))
 
 (defn events []
@@ -78,7 +82,7 @@
     (send-doc-curt))
   (send-event "czml" (json/write-str p))))
 
-(defn boat-leg [label lab-scl lab-off img-url bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
+(defn boat-leg [label lab-scl lab-off img-url bil-scl bil-rot [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
   (let [p {:id label
            :label {:scale lab-scl
                      :pixelOffset {:cartesian2 lab-off}
@@ -86,6 +90,7 @@
            :billboard {:scale bil-scl
                             :heightReference "RELATIVE_TO_GROUND"
                             :verticalOrigin "BOTTOM"
+	    :rotation bil-rot
                             :image img-url}
            :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]
   (if (not DOC-SENT)
@@ -104,7 +109,7 @@
   (def BASE-URL url))
 
 (defn dec16 [hex]
-  (map (fn [[x y]] (Integer/parseInt (str x y) 16)) (partition 2 hex)))
+  (vec (map (fn [[x y]] (Integer/parseInt (str x y) 16)) (partition 2 hex))))
 
 (defn dome [label lab-scl lab-off [x y z] lin-color transp [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
   (let [[a r g b] (dec16 lin-color)
@@ -115,27 +120,165 @@
            :ellipsoid {:show  true
                            :radii {:cartesian [x y z]}
                            :material {:grid {:color {:rgba [r g b a]}
-                                                    :lineCount {:cartesian2 [10, 10]}
+                                                    :lineCount {:cartesian2 [16, 16]}
                                                     :cellAlpha transp}}}
            :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]
   (if (not DOC-SENT)
     (send-doc-curt))
   (send-event "czml" (json/write-str p))))
 
-(defn navob-leg [no lab-scl lab-off bil-scl intl-sec]
+(defn billboard-rotation [nmo omo]
+  (let [ncrs (.getCourse nmo)]
+  (if (< (.getSpeed nmo) 0.1)
+  0
+  (let [bon (.bearingsDeg omo nmo)
+         oons (or (< bon 90) (> bon 270))
+         dir (if oons
+                (cond
+                  (= ncrs 0) (if (< bon 180) :LE :RI)
+                  (= ncrs 180) (if (< bon 180) :RI :LE)
+                  (< ncrs 180) :RI 
+                  true :LE)
+                (cond
+                  (= ncrs 0) (if (< bon 180) :RI :LE)
+                  (= ncrs 180) (if (< bon 180) :LE :RI)
+                  (< ncrs 180) :LE
+                  true :RI))]
+    (condp = dir
+      :LE 1.57
+      :RI 4.71)))))
+
+(defn navob-leg
+  ([no lab-scl lab-off bil-scl bil-rot past-sec past-crd cur-sec cur-crd]
   (let [lab (.getName no)
-       lat1 (.getLatitude no)
-       lon1 (.getLongitude no)
-       alt1 (.getAltitude no)
-       crs (.getCourse no)
-       spd (.getSpeed no)
-       vsd (.getVerticalSpeed no)
-       dis (double (/ (* spd intl-sec) 3600))
-       [lat2 lon2] (seq (.position no (double crs) dis))
-       alt2 (+ alt1 (* vsd intl-sec))
-       tim1 (iso8601curt)
-       tim2 (iso8601futt intl-sec)
+         url (.getURL no)
+         cur-tim (iso8601curt)
+         past-tim (iso8601futt (- past-sec cur-sec))
+         bil (or (icon-file url) "no.png")
+         bil (str BASE-URL IMG-PATH bil)]
+    (boat-leg lab lab-scl lab-off bil bil-scl bil-rot (cons past-tim past-crd) (cons cur-tim cur-crd))))
+([no ob lab-scl lab-off bil-scl bil-rot intl-sec]
+  (let [lab (.getName no)
+         lat1 (.getLatitude no)
+         lon1 (.getLongitude no)
+         alt1 (.getAltitude no)
+         crs (.getCourse no)
+         spd (.getSpeed no)
+         vsd (.getVerticalSpeed no)
+         dis (double (/ (* spd intl-sec) 3600))
+         [lat2 lon2] (seq (.position no (double crs) dis))
+         alt2 (+ alt1 (* vsd intl-sec))
+         tim1 (iso8601curt)
+         tim2 (iso8601futt intl-sec)
+         bil (or (.getDescription no) "no.png")
+         bil (str BASE-URL IMG-PATH bil)]
+    (boat-leg lab lab-scl lab-off bil bil-scl bil-rot [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]))))
+
+(defn dome-leg [mo lab-scl lab-off [x y z] lin-color transp past-sec past-crd cur-sec cur-crd]
+  (let [lab (.getName mo)
+       cur-tim (iso8601curt)
+       past-tim (iso8601futt (- past-sec cur-sec))]
+  (dome lab lab-scl lab-off [x y z] lin-color transp (cons past-tim past-crd) (cons cur-tim cur-crd))))
+
+(defn future-leg [no lab-scl lab-off bil-scl bil-rot cur-crd fut-sec fut-crd]
+  (let [lab (.getName no)
+       cur-tim (iso8601curt)
+       fut-tim (iso8601futt fut-sec)
        bil (or (.getDescription no) "no.png")
        bil (str BASE-URL IMG-PATH bil)]
-  (boat-leg lab lab-scl lab-off bil bil-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2])))
+  (boat-leg lab lab-scl lab-off bil bil-scl bil-rot (cons cur-tim cur-crd) (cons fut-tim fut-crd))))
+
+(defn llp-czcoords [llp alt pts?]
+  (if pts?
+  (let [cpts (map #(list (second %) (first %) alt) llp)]
+    (vec (flatten cpts)))
+  (let [degs (map #(Math/toDegrees %) llp)
+         pts (partition 2 degs)]
+    (llp-czcoords pts alt true))))
+
+(defn path [id [from to] wid color points]
+  ;; from, to - sec after (before, if negative) current time
+(let [[a r g b] (dec16 color)
+        fiso (iso8601futt from)
+        tiso (iso8601futt to)
+        N (count points)
+        step (/ (- to from) N)
+        reso (inc (max step 1))
+        pts (vec (flatten (map #(cons %1 %2) (range N) points)))
+        p {:id id
+            :availability (str fiso "/" tiso)
+            :path {:width wid
+                      :material {:solidColor {:color {:rgba [r g b a]}}}
+                      :resolution reso}
+            :position {:interpolationAlgorithm "LINEAR"
+                            :epoch fiso
+                            :cartographicDegrees pts}}]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
+
+(defn polyline [id from-to llp alt wid color name pts?]
+  ;; from, to - sec after (before, if negative) current time
+(let [[a r g b] (dec16 color)
+        pts (llp-czcoords llp alt pts?)
+        p {:id id
+            :name name
+            :polyline {:width wid
+                           :material {:solidColor {:color {:rgba [r g b a]}}}
+                           :clampToGround (= alt 0)
+                           :positions {:cartographicDegrees pts}}}
+        p (if-let [[from to] from-to]
+             (assoc p :availability (str (iso8601futt from) "/" (iso8601futt to)))
+             p)]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
+
+(defn polygon [id from-to llp alt wid color fill name pts?]
+  ;; from, to - sec after (before, if negative) current time
+(let [[a r g b] (dec16 color)
+        pts (llp-czcoords llp alt pts?)
+        p {:id id
+            :name name
+            :polygon {:outline true
+                           :outlineWidth wid
+                           :outlineColor {:rgba [r g b a]}
+                           :material {:solidColor {:color {:rgba
+                             (let [[a r g b] (or (if fill (dec16 fill)) (dec16 "00000000"))]	                               [r g b a])}}}
+                           :perPositionHeight true
+                           :positions {:cartographicDegrees pts}}}
+        p (if-let [[from to] from-to]
+             (assoc p :availability (str (iso8601futt from) "/" (iso8601futt to)))
+             p)]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
+
+(defn circle [id from-to [cla clo] radm alt wid color fill name]
+  ;; radius, height - meters
+(let [[a r g b] (dec16 color)
+        p {:id id
+            :name name
+            :ellipse {:semiMinorAxis radm
+                         :semiMajorAxis radm
+                         :height alt
+                         :material {:solidColor {:color {:rgba
+                           (let [[a r g b] (or (if fill (dec16 fill)) (dec16 "00000000"))]	                             [r g b a])}}}
+                         :outline true
+                         :outlineWidth wid
+                         :outlineColor {:rgba [r g b a]}}
+            :position {:cartographicDegrees [clo cla alt]}}
+        p (if-let [[from to] from-to]
+             (assoc p :availability (str (iso8601futt from) "/" (iso8601futt to)))
+             p)]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
+
+(defn delete [id]
+  (let [p {:id id
+           :delete true}]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
 

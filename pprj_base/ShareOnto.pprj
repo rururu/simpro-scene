@@ -1,4 +1,4 @@
-; Thu Dec 10 17:48:58 MSK 2015
+; Sat Feb 02 13:20:48 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,8 +20,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[ShareOnto_ProjectKB_Class10213]
-		[ShareOnto_ProjectKB_Class10214]))
+		[ShareOnto_ProjectKB_Class361]
+		[ShareOnto_ProjectKB_Class362]))
 
 ([CLSES_TAB] of  Widget
 
@@ -166,30 +166,30 @@
 	(name "instances_file_name")
 	(string_value "ShareOnto.pins"))
 
-([KB_813142_Class205] of  Map
+([KB_277071_Class355] of  Map
 
 	(entries
-		[KB_813142_Class206]
-		[KB_813142_Class207]
-		[KB_813142_Class208]))
+		[KB_277071_Class356]
+		[KB_277071_Class357]
+		[KB_277071_Class358]))
 
-([KB_813142_Class206] of  Map_Entry
+([KB_277071_Class356] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_277071_Class357] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_813142_Class207] of  Map_Entry
+([KB_277071_Class358] of  Map_Entry
 
 	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_813142_Class208] of  Map_Entry
-
-	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
@@ -277,12 +277,12 @@
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
-		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET]
+		[ShareOnto_ProjectKB_Class226]
 		[STANDARD_CLASS_FORM_WIDGET]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
-		[ShareOnto_ProjectKB_Class226])
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET]
+		[PAL_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
@@ -338,16 +338,6 @@
 
 ([ShareOnto_ProjectKB_Class10212] of  Property_List
 )
-
-([ShareOnto_ProjectKB_Class10213] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([ShareOnto_ProjectKB_Class10214] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
 
 ([ShareOnto_ProjectKB_Class10216] of  Widget
 
@@ -506,6 +496,16 @@
 
 ([ShareOnto_ProjectKB_Class244] of  Property_List
 )
+
+([ShareOnto_ProjectKB_Class361] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([ShareOnto_ProjectKB_Class362] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
 ([ShareOnto_ProjectKB_Class37] of  String
 

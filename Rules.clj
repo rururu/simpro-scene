@@ -15,7 +15,6 @@
               'VEERING
               'BACKING))]
   (println "Wind" s d "new direction" ?dir2)
-  (retract ?wc)
   (modify ?w direction ?dir2
 	shift s
                         shift-degrees d)
@@ -33,7 +32,7 @@
   (protege.core/ssv ins "longitude" ?lon)
   (protege.core/ssv ins "course" ?dir)
   (ru.igis.omtab.OMT/getOrAdd ins)
-  (println "Wind on map, direction" ?dir ",coords" [?lat ?lon])))
+  (println "Wind on map, direction" ?dir "coords" [?lat ?lon])))
 
 (ws:Wind Veering 1
 ?b (Boat label ?lab
@@ -180,20 +179,24 @@
 (sail.exp/start-sim))
 
 (bs:Boat on Map 0
-(Boat label ?lab course ?crs
-	(not (ru.igis.omtab.OMT/getMapOb ?lab)))
+(CZMLGenerator)
+(Boat label ?lab course ?crs)
+(Clock time ?t)
+(not CZMLSpan label ?lab)
 =>
 (when-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
   (protege.core/ssv ins "course" ?crs)
-  (.setKeepRoute (ru.igis.omtab.OMT/getOrAdd ins) true)
-  (asser Depth boat ?lab
-	depth-time 0)
-  (println "Boat on map:" ?lab ", course" ?crs)))
-
-(sim:RetractMapObEvent -10
-?me (MapObEvent)
-=>
-(retract ?me))
+  (if-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]
+    (let [alt 1]
+      (.setKeepRoute bmo true)
+      (.setAltitude bmo alt)
+      (sail.exp/camera-control bmo :pitch 6)
+      (asser BoatPitch boat ?lab
+	slope 'UP
+	time 0)
+      (asser CZMLSpan label ?lab
+	time ?t)
+      (println "Boat on map:" ?lab ", course" ?crs)))))
 
 (bs:Boat Change Course 0
 ?b (Boat label ?lab course ?ocrs)
@@ -246,6 +249,96 @@
 	time (+ ?t (* ?del 60)))
   (asser NewCourse boat ?boat course crs)))
 
+(ws:Big Oscillation 0
+(Wind direction ?dir)
+?wc (WindChange randomly true
+	big-oscillation ?bos
+	big-interval ?bint
+	time2 ?t1)
+(Clock time ?t2 (> ?t2 ?t1))
+=>
+(let [[mid min] (read-string ?bos)
+       dev (Math/round (sail.exp/rand-mid-min mid min))
+       dev (sail.exp/trim-bear dev)
+       ndir (Math/round (sail.exp/rand-mid-min ?dir (- ?dir dev)))
+       ndir (sail.exp/trim-bear ndir)
+       del (sail.exp/rand-mid-min ?bint (- ?bint (max 1 (* ?bint 0.6))))
+       del (int (* del 60))]
+  (modify ?wc direction ndir
+	time2 (+ ?t2 del))))
+
+(ws:Small Oscillation 0
+(Wind direction ?dir)
+?wc (WindChange randomly true
+	small-oscillation ?sos
+	small-interval ?sint
+	time ?t1)
+(Clock time ?t2 (> ?t2 ?t1))
+=>
+(let [ndir (Math/round (sail.exp/rand-mid-min ?dir (- ?dir ?sos)))
+       ndir (sail.exp/trim-bear ndir)
+       del (sail.exp/rand-mid-min ?sint (- ?sint (max 1 (* ?sint 0.6))))
+       del (int (* del 60))]
+  (modify ?wc direction ndir
+	time (+ ?t2 del))))
+
+(ws:WindChange Update 1
+?wc1 (WindChange asserted true)
+?wc2 (WindChange asserted ?ass
+	(not= ?ass true))
+=>
+(retract ?wc1)
+(modify ?wc2 asserted true))
+
+(ws:WindChange First 0
+?wc (WindChange asserted ?a
+	(not= ?a true))
+(not WindChange)
+=>
+(modify ?wc asserted true))
+
+(bs:Boat Heel 0
+(Onboard boat ?boat 
+	view ?view)
+(Boat label ?boat sail-point ?sp
+	tack ?tk)
+=>
+(sail.exp/boat-heel ?boat ?sp ?tk ?view))
+
+(cz:CZML Leg Generation 1
+(CZMLGenerator delay ?del
+	visibility ?vis)
+(Onboard boat ?boat)
+?cs (CZMLSpan time ?tim
+	label ?lab
+	(not= ?boat ?lab))
+(Clock time ?t (> ?t ?tim))
+=>
+(if-let [omo (ru.igis.omtab.OMT/getMapOb ?lab)]
+  (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
+    (let [dis (.distanceNM omo bmo)]
+      (if (< dis ?vis)
+        (cesium.core/navob-leg omo
+	0.2
+	[10 -10]
+	(calc.core/smooth-tabfun dis [[0 2.0][3 0.05]])
+	(+ ?del 2)))
+      (modify ?cs time ?t)))))
+
+(bs:Boat Camera Check 0
+?onb (Onboard boat ?boat
+	view ?view)
+?cam (CameraCheck delay ?del
+	time ?tim)
+(Clock time ?t (> ?t ?tim))
+=>
+(let [onb (deref pro.server/ONBOARD)
+       vie (@pro.server/CAMERA :view)]
+  (modify ?cam time (+ ?t ?del))
+  (if (or (not= onb ?boat) (not= vie ?view))
+    (modify ?onb boat onb
+	view vie))))
+
 (ss:End of Big Header 0
 ?a (Advice text "BIG HEADER NEW COURSE"
 	direction ?dir1)
@@ -262,9 +355,9 @@
 (Clock time ?t)
 =>
 (when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (pro.server/request-terrain
-	(.getLatitude bmo)
-	(.getLongitude bmo))
+  (vreset! pro.server/REQUEST
+    {:elevation [(.getLatitude bmo)
+                      (.getLongitude bmo)]})
   (modify ?sc time (+ ?t ?del)
 	terrain -1
 	status 'REPEAT)))
@@ -281,25 +374,36 @@
 (Clock time ?t2 (> ?t2 ?t1))
 =>
 (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (let [nter (int (pro.server/terrain))]
+  (let [nter (@pro.server/RESPONSE :elevation)]
     (println "Terrain" ?oter nter)
-    (if (and (> ?oter 0) (> (- nter ?oter) ?sho))
-      (do (println "Shore ahead boat" ?boat)
+    (if (and (number? nter)
+          (> nter -7777) 
+          (> ?oter 0) 
+          (> (- nter ?oter) ?sho))
+      (do (println "Shore ahead boat" ?boat ?oter nter)
         (modify ?sc status 'SHORE-AHEAD))
       (let [[lat lon] (.position bmo (double ?crs) ?dis)] 
-        (pro.server/request-terrain lat lon)
+        (vreset! pro.server/REQUEST {:elevation [lat lon]})
         (modify ?sc time (+ ?t2 ?del)
-	terrain (if (>= nter 0) nter ?oter)))))))
+	terrain (if (and (number? nter) (>= nter 0))
+                                     nter 
+                                     ?oter)))))))
 
 (ss:Mark on Map 0
+(CZMLGenerator)
 (Mark label ?lab latitude ?lat
 	 longitude ?lon
-	 url ?url
-	 (not (ru.igis.omtab.OMT/getMapOb ?lab)))
+	 url ?url)
+(Clock time ?t)
+(not CZMLSpan label ?lab)
 =>
-(when-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
-  (ru.igis.omtab.OMT/getOrAdd ins)
-  (println "Mark on map:" ?lab ", coords" [?lat ?lon])))
+(if-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
+  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)
+         alt 0]
+    (.setAltitude mom alt)
+    (asser CZMLSpan  label ?lab
+	time ?t)
+    (println "Mark on map:" ?lab ", coords" [?lat ?lon]))))
 
 (bs:Boat Sail Point 0
 ?b (Boat sail-point UNDEFINED
@@ -373,11 +477,26 @@
 	   boat ?boat 
 	   course crs)))))
 
-(scs:Set Shore Check Interval 0
+(scs:Print Shore Check Interval 0
 (ShoreControl delay ?del)
 =>
-(pro.server/terrain-interval (* ?del 1000))
 (println "Shore Check Interval" ?del "sec."))
+
+(bs:Boat Pitching 0
+(Onboard boat ?boat)
+(Wave pitch ?pit pitch-interval ?pin)
+?bp (BoatPitch boat ?boat 
+	slope ?slp
+	time ?tim)
+(Clock time ?t (> ?t ?tim))
+=>
+(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
+  (let [[pit slp] (condp = ?slp
+	'UP       [(- 6 ?pit) 'DOWN]
+	'DOWN [(+ 6 ?pit) 'UP])]
+    (sail.exp/camera-control bmo :pitch pit)
+    (modify ?bp slope slp
+	time (+ ?t ?pin)))))
 
 (ss:Gone off Shore 0
 ?s (Skipper status OFF-SHORE

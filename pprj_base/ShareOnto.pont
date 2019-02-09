@@ -1,4 +1,4 @@
-; Thu Dec 10 17:48:58 MSK 2015
+; Sat Feb 02 13:20:48 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,14 +7,9 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot but-load-prj
+	(single-slot but-deep-copy
 		(type STRING)
-		(default "Load Source Project/share.onto/load-src-prj")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-find-unref
-		(type STRING)
-		(default "Find Unreferenced/share.onto/find-unref")
+		(default "Deep Copy Instance/share.onto/deep-copy")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-shal-copy
@@ -22,18 +17,8 @@
 		(default "Shallow Copy Instances/share.onto/shal-copy")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot but-del-unref
+	(single-slot source-project
 		(type STRING)
-		(default "Delete Unreferenced/share.onto/delete-unref")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot filter-pattern
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-deep-copy
-		(type STRING)
-		(default "Deep Copy Instance/share.onto/deep-copy")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-del-fil
@@ -41,24 +26,29 @@
 		(default "Delete Filtered Instances/share.onto/delfil")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot source-project
+	(single-slot but-find-unref
 		(type STRING)
+		(default "Find Unreferenced/share.onto/find-unref")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot filter-pattern
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-load-prj
+		(type STRING)
+		(default "Load Source Project/share.onto/load-src-prj")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-del-unref
+		(type STRING)
+		(default "Delete Unreferenced/share.onto/delete-unref")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass ShareOnto
 	(is-a USER)
 	(role concrete)
-	(single-slot but-shal-copy
-		(type STRING)
-		(default "Shallow Copy Instances/share.onto/shal-copy")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-find-unref
-		(type STRING)
-		(default "Find Unreferenced/share.onto/find-unref")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot but-del-fil
 		(type STRING)
 		(default "Delete Filtered Instances/share.onto/delfil")
@@ -69,7 +59,17 @@
 		(default "Delete Unreferenced/share.onto/delete-unref")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot filter-pattern
+	(single-slot but-load-prj
+		(type STRING)
+		(default "Load Source Project/share.onto/load-src-prj")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-find-unref
+		(type STRING)
+		(default "Find Unreferenced/share.onto/find-unref")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source-project
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -78,12 +78,12 @@
 		(default "Deep Copy Instance/share.onto/deep-copy")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot source-project
+	(single-slot filter-pattern
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot but-load-prj
+	(single-slot but-shal-copy
 		(type STRING)
-		(default "Load Source Project/share.onto/load-src-prj")
+		(default "Shallow Copy Instances/share.onto/shal-copy")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

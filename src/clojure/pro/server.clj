@@ -6,22 +6,32 @@
               [compojure.handler :as handler]
               [compojure.route :as route]
               [cognitect.transit :as t]
-              [cesium.core :as czs])
-(:import java.io.ByteArrayOutputStream
+              [cesium.core :as czs]
+              [clojure.core.async :as async :refer [chan alts!! put!]])
+(:import [java.io 
+               ByteArrayOutputStream
+               ByteArrayInputStream]
              ru.igis.omtab.OMT
              edu.stanford.smi.protege.ui.DisplayUtilities))
 
 (def PORT 4444)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
-(def APP nil)
 (def SERV nil)
 (def ONBOARD (volatile! nil))
-(def TERRA-CTL (volatile!
-{:terrain 0
-  :latlon [0 0]
-  :interval 4000
-  :intl-upd 4000}))
-(def CAMERA (volatile! {}))
+(def CAMERA (volatile! 
+  {:view "0"
+   :pitch "0"
+   :roll "0"}))
+(def REQUEST (volatile! nil))
+(def RESPONSE (volatile! nil))
+(def defonceCLI-REPL-CHAN (defonce CLI-REPL-CHAN (chan)))
+(def CLI-REPL nil)
+(defn read-transit [x]
+  (let [bais (ByteArrayInputStream. (.getBytes x "UTF-8"))
+        r    (t/reader bais :json)]
+    (.reset bais)
+    (t/read r)))
+
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
         w    (t/writer baos :json)
@@ -30,22 +40,24 @@
     (.reset baos)
     ret))
 
-(defn mp-vehicle-period-camera []
+(defn mp-vehicle-request []
   (if-let [onb @ONBOARD]
   (if-let [mo (OMT/getMapOb onb)]
-    (let [spd (.getSpeed mo)]
-      (.putAttribute mo "ROAD-SPEED" spd)
-      {:vehicle
-        {:name onb
-         :coord [(.getLatitude mo) (.getLongitude mo)]
-         :altitude (.getAltitude mo)
-         :speed spd
-         :course (.getCourse mo)}
-       :period 1
-       :camera (.getAttribute mo "CAMERA")}))))
+    (let [p {:vehicle
+                {:name onb
+                 :coord [(.getLatitude mo) (.getLongitude mo)]
+                 :altitude (.getAltitude mo)
+                 :speed (.getSpeed mo)
+                 :course (.getCourse mo)}}]
+      (if-let [req @REQUEST]
+        (do (vreset! REQUEST nil)
+              (vreset! RESPONSE :WAIT)
+              (assoc p :request req))
+        p)))))
 
-(defn response-func0 [func0]
-  (-> (r/response (write-transit (deref (future-call func0))))
+(defn vehicle [params]
+  (vreset! CAMERA params)
+(-> (r/response (write-transit (deref (future-call mp-vehicle-request))))
        (r/header "Access-Control-Allow-Origin" "*")
        (r/charset "UTF-8")))
 
@@ -55,38 +67,41 @@
   (when (java.awt.Desktop/isDesktopSupported)
     (.browse (java.awt.Desktop/getDesktop) (java.net.URI. address)))))
 
-(defn receive-terrain [params]
-  (let [newterr (read-string (params :terrain))
-       {:keys [terrain latlon interval intl-upd]} @TERRA-CTL]
-  (if (> newterr 0)
-    (vswap! TERRA-CTL assoc :terrain newterr))
-  (cond
-    (< terrain 0) {:latlon latlon}
-    (not= interval intl-upd) (do (vswap! TERRA-CTL assoc :interval intl-upd)
-		{:interval interval})
-    true {:status 204})))
+(defn response [params]
+  (vreset! RESPONSE (read-transit (params :response)))
+{:status 204})
+
+(defn cli-repl [params]
+  (letfn [(cli-repl-chan-out []
+	(loop [[bit ch] (alts!! [CLI-REPL-CHAN] :default :none) bits []]
+	    (if (= bit :none)
+	      bits
+	      (recur (alts!! [CLI-REPL-CHAN] :default :none) (conj bits bit)))))]
+  (def CLI-REPL params)
+  (let [req (deref (future (cli-repl-chan-out)))]
+    ;; (println :REQ req)
+    (write-transit req))))
 
 (defn init-server []
   (defroutes app-routes
   (GET "/" [] (slurp (str ROOT "cezium.html")))
-  (GET "/czml/" [] (czs/events))
-  (GET "/vehicle/" [] (response-func0 mp-vehicle-period-camera))
-  (GET "/terrain/" [& params] (response-func0 #(receive-terrain params)))
-  (GET "/camera/" [& params] (vreset! CAMERA params))
+  (GET "/test" [] (slurp (str ROOT "test.html")))
+  (GET "/czml" [] (czs/events))
+  (GET "/vehicle" [& params] (vehicle params))
+  (GET "/response" [& params] (response params))
+  (GET "/cli-repl" [& params] (cli-repl params))
   (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Pro Server: Not Found!"))
 
-(def APP
-  (handler/site app-routes))
-
-(czs/base-url (str "http://localhost:" PORT "/")))
+(defonce APP
+  (handler/site app-routes)))
 
 (defn start-server
   ([]
     (start-server PORT))
 ([port]
-  (if (nil? APP)
+  (if (nil? SERV)
     (init-server))
   (def SERV (jetty/run-jetty APP {:port port :join? false})))
 ([hm inst]
@@ -114,15 +129,19 @@
     (ssv inst "onboard" lab)
     (vreset! ONBOARD lab))))
 
-(defn terrain-interval
+(defn clirepl
   ([]
-  (@TERRA-CTL :interval))
-([inter]
-  (vswap! TERRA-CTL assoc :intl-upd inter)))
+  (clirepl 10))
+([sec]
+  (if (> sec 0)
+    (if (= CLI-REPL :WAIT)
+      (do (Thread/sleep 1000)
+        (clirepl (dec sec)))
+      (read-transit (CLI-REPL :transit))))))
 
-(defn request-terrain [lat lon]
-  (vswap! TERRA-CTL assoc :latlon [lat lon] :terrain -1))
-
-(defn terrain []
-  (@TERRA-CTL :terrain))
+(defn replcli [sexp]
+  ;; sexp must be string or quote
+(put! CLI-REPL-CHAN {:sexp (str sexp)})
+(def CLI-REPL :WAIT)
+(clirepl))
 

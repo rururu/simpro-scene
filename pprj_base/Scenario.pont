@@ -1,4 +1,4 @@
-; Thu Dec 06 11:36:31 MSK 2018
+; Sat Feb 09 17:34:21 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -277,7 +277,7 @@
 		(create-accessor read-write))
 	(multislot initial_actions
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot stream
@@ -1028,7 +1028,7 @@
 		(create-accessor read-write))
 	(multislot initial_actions
 		(type INSTANCE)
-;+		(allowed-classes Action)
+;+		(allowed-classes Action Decision)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
@@ -2237,6 +2237,21 @@
 	(multislot objects
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass SignalControl
+	(is-a Decision)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot statuses
+		(type STRING)
 		(create-accessor read-write)))
 
 (defclass Variable

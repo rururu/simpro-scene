@@ -1,4 +1,4 @@
-; Sun Nov 04 18:37:15 MSK 2018
+; Sat Feb 09 17:17:00 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31,7 +31,7 @@
 
 ([Cezium_ProjectKB_Class361] of  Widget
 
-	(is_hidden TRUE)
+	(is_hidden FALSE)
 	(property_list [Cezium_ProjectKB_Class362])
 	(widget_class_name "ru.igis.omtab.OpenMapTab"))
 
@@ -187,28 +187,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_189551_Class444] of  Map
+([KB_052815_Class1434] of  Map
 
 	(entries
-		[KB_189551_Class445]
-		[KB_189551_Class446]
-		[KB_189551_Class447]))
+		[KB_052815_Class1435]
+		[KB_052815_Class1436]
+		[KB_052815_Class1437]))
 
-([KB_189551_Class445] of  Map_Entry
+([KB_052815_Class1435] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_189551_Class446] of  Map_Entry
+([KB_052815_Class1436] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_189551_Class447] of  Map_Entry
+([KB_052815_Class1437] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -315,6 +315,52 @@
 	(name "instances_file_name")
 	(string_value "Cezium.pins"))
 
+([KB_684256_Class1343] of  Widget
+
+	(is_hidden FALSE)
+	(name "CloNamespace")
+	(property_list [KB_684256_Class1344])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([KB_684256_Class1344] of  Property_List
+
+	(properties
+		[KB_684256_Class1345]
+		[KB_684256_Class1346]
+		[KB_684256_Class1348]))
+
+([KB_684256_Class1345] of  Property_List
+
+	(name "layout properties"))
+
+([KB_684256_Class1346] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [KB_684256_Class1347])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([KB_684256_Class1347] of  Property_List
+)
+
+([KB_684256_Class1348] of  Widget
+
+	(height 340)
+	(is_hidden FALSE)
+	(name "source")
+	(property_list [KB_684256_Class1349])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
+	(width 260)
+	(x 0)
+	(y 60))
+
+([KB_684256_Class1349] of  Property_List
+)
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -400,16 +446,17 @@
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
-		[Cezium_ProjectKB_Class448]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[PAL_FORM_WIDGET]
+		[Cezium_ProjectKB_Class448]
 		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET])
+		[KB_684256_Class1343])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
 	(included_projects
-		"Clojure.pprj"
+		"igis.pprj"
 		"ShareOnto.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
@@ -421,10 +468,10 @@
 		[SLOTS_TAB]
 		[FORMS_TAB]
 		[INSTANCES_TAB]
-		[Cezium_ProjectKB_Class361]
 		[Cezium_ProjectKB_Class367]
 		[Cezium_ProjectKB_Class359]
 		[Cezium_ProjectKB_Class363]
+		[Cezium_ProjectKB_Class361]
 		[Cezium_ProjectKB_Class365]
 		[QUERIES_TAB]))
 

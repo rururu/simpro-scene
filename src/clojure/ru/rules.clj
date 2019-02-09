@@ -288,3 +288,10 @@
   (.show p/*prj* (.getInstance p/*kb* nam))
   nam))
 
+(defn restart-es []
+  (if-let [esi (p/fainst (p/cls-instances "Run") nil)]
+  (run-engine esi)))
+
+(defn save-bnet-plan []
+  (rete/log-lst "beta-net-plan.txt" rete/BNET))
+

@@ -1,4 +1,4 @@
-; Sat Dec 15 21:29:00 MSK 2018
+; Sat Feb 02 13:42:29 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,7 +13,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class1] of  NavOb
@@ -26,7 +26,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class10000] of  PutOnMap
@@ -413,7 +413,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autow.png")
+	(url "file:resources/public/img/autow.png")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class3] of  NavOb
@@ -426,7 +426,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autos.png")
+	(url "file:resources/public/img/autos.png")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30000] of  NavOb
@@ -439,7 +439,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autor.png")
+	(url "file:resources/public/img/autor.png")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30001] of  NavOb
@@ -452,7 +452,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autog.png")
+	(url "file:resources/public/img/autog.png")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class30002] of  NavOb
@@ -465,7 +465,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class10011])
-	(url "file:data/images/autob.png")
+	(url "file:resources/public/img/autob.png")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class4] of  MissionScenario
@@ -576,7 +576,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class60003] of  Type
@@ -996,7 +996,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class97021] of  NavOb
@@ -1009,7 +1009,7 @@
 	(playground-index 0)
 	(speed 0.0)
 	(type [FranceRoads_Class60003])
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([FranceRoads_Class97022] of  Mission

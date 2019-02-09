@@ -97,7 +97,7 @@
 #view {
   position:fixed;
   bottom:110px;
-  left:42px;
+  left:22px;
   padding:5px;
   z-index:100;
   color:yellow
@@ -105,14 +105,22 @@
 #view-fld {
   position:fixed;
   bottom:110px;
-  left:84px;
+  left:64px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#view-sld {
+  position:fixed;
+  bottom:110px;
+  left:100px;
   padding:5px;
   z-index:100;
 }
 #pitch {
   position:fixed;
   bottom:90px;
-  left:42px;
+  left:22px;
   padding:5px;
   z-index:100;
   color:yellow
@@ -120,14 +128,22 @@
 #pitch-fld {
   position:fixed;
   bottom:90px;
-  left:84px;
+  left:64px;
+  padding:5px;
+  z-index:100;
+  color:yellow
+}
+#pitch-sld {
+  position:fixed;
+  bottom:90px;
+  left:100px;
   padding:5px;
   z-index:100;
 }
 #roll {
   position:fixed;
   bottom:70px;
-  left:48px;
+  left:28px;
   padding:5px;
   z-index:100;
   color:yellow
@@ -135,7 +151,23 @@
 #roll-fld {
   position:fixed;
   bottom:70px;
-  left:84px;
+  left:64px;
   padding:5px;
   z-index:100;
+  color:yellow
+}
+#roll-sld {
+  position:fixed;
+  bottom:70px;
+  left:100px;
+  padding:5px;
+  z-index:100;
+}
+#view-dir {
+  position: absolute;
+  left: 0;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+  color:yellow
 }

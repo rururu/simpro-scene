@@ -1,4 +1,4 @@
-; Sun Nov 04 21:26:01 MSK 2018
+; Sat Feb 09 21:44:19 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,13 +42,14 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot visibility
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heel
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot time
@@ -64,11 +65,6 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot status
-		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot forse
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -82,7 +78,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot view
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot direction
@@ -184,6 +180,11 @@
 	(single-slot sail-point
 		(type SYMBOL)
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heel
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -488,6 +489,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot view
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

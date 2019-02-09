@@ -1,4 +1,4 @@
-; Thu Dec 10 17:48:58 MSK 2015
+; Sat Feb 02 13:20:48 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,7 +42,8 @@
 		[ShareOnto_Class30001]
 		[ShareOnto_Class0]
 		[ShareOnto_Class20000]
-		[ShareOnto_Class50000])
+		[ShareOnto_Class50000]
+		[ShareOnto_Class60001])
 	(cloNamespace [ShareOnto_Class4])
 	(cloVars
 		[ShareOnto_Class7]
@@ -50,7 +51,8 @@
 		[ShareOnto_Class40004]
 		[ShareOnto_Class40001]
 		[ShareOnto_Class40067]
-		[ShareOnto_Class30000])
+		[ShareOnto_Class30000]
+		[ShareOnto_Class60000])
 	(title "Share Ontology"))
 
 ([ShareOnto_Class30000] of  CloVar
@@ -112,6 +114,16 @@
 
 	(source "(if-let [pth (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))]\n  (let [err (java.util.ArrayList.)]\n    (if PRJ2\n      (.dispose PRJ2))\n    (def PRJ2 (Project. pth err))\n    (if (> (.size err) 0)\n      (ssv inst \"source-project\" (apply str (seq err)))\n      (do\n        (def KB1 *kb*)\n        (def KB2 (.getKnowledgeBase PRJ2))\n        (def INSS-MAPPING (atom {}))\n        (ssv inst \"source-project\" (str KB2))) )))")
 	(title "load-src-prj [hm inst]"))
+
+([ShareOnto_Class60000] of  CloVar
+
+	(source "{:class \"NavOb\"\n :slot \"url\"\n :func (fn [v] (.replace v \"data/images\" \n                                     \"resources/public/img\"))}")
+	(title "REPLACE-SLOT-VAL"))
+
+([ShareOnto_Class60001] of  CloFunction
+
+	(source "(let [clz  (REPLACE-SLOT-VAL :class)\n       slt   (REPLACE-SLOT-VAL :slot)\n       fun  (REPLACE-SLOT-VAL :func)]\n  (doseq [ins (cls-instances clz)]\n    (ssv ins slt (fun (sv ins slt)))))")
+	(title "replace-slot-value []"))
 
 ([ShareOnto_Class7] of  CloVar
 

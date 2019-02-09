@@ -1,4 +1,4 @@
-; Wed Aug 15 12:37:29 MSK 2018
+; Sat Feb 02 13:31:01 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -75,7 +75,7 @@
 	(longitude "28 54")
 	(playground-index 1)
 	(speed 13.0)
-	(url "file:data/images/tall.gif")
+	(url "file:resources/public/img/tall.gif")
 	(verticalSpeed 0.0))
 
 ([igis_Class10001] of  NavOb
@@ -88,7 +88,7 @@
 	(longitude "28 11")
 	(playground-index 1)
 	(speed 25.0)
-	(url "file:data/images/lnrR.gif")
+	(url "file:resources/public/img/lnrR.gif")
 	(verticalSpeed 0.0))
 
 ([igis_Class11] of  Menu

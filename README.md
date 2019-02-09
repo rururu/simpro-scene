@@ -21,6 +21,15 @@ $ cd simpro-scene
 $ java -jar target/simpro-scene-0.1.0-SNAPSHOT-standalone.jar
 ```
 
+## Start with CLI tools
+
+```clj
+$ cd <..>
+$ clj
+Clojure 1.10.0
+user=> (edu.stanford.smi.protege.Application/main (into-array String []))
+```
+
 ## Start with Leiningen
 
 ```clj

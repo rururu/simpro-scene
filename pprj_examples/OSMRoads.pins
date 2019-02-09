@@ -1,4 +1,4 @@
-; Tue Dec 11 16:55:51 MSK 2018
+; Sat Feb 02 13:43:50 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,7 +42,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/trnB.gif")
+	(url "file:resources/public/img/trnB.gif")
 	(verticalSpeed 0.0))
 
 ([BrigBern_Class100001] of  NavOb
@@ -54,7 +54,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/autor.png")
+	(url "file:resources/public/img/autor.png")
 	(verticalSpeed 0.0))
 
 ([BrigBern_Class100004] of  OMTPoly
@@ -7969,7 +7969,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/plnb.gif")
+	(url "file:resources/public/img/plnb.gif")
 	(verticalSpeed 0.0))
 
 ([OSMRoads_Class30001] of  NavOb
@@ -7981,7 +7981,7 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/helr.gif")
+	(url "file:resources/public/img/helr.gif")
 	(verticalSpeed 0.0))
 
 ([OSMRoads_Class30002] of  SetScale
@@ -11694,7 +11694,7 @@
 	(longitude "9 53.3")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([OSMRoads_Class60003] of  Tagvalue
@@ -13868,7 +13868,7 @@
 	(longitude "9 50.28")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([OSMRoads_Class80006] of  NavOb
@@ -13880,7 +13880,7 @@
 	(longitude "9 26")
 	(playground-index 0)
 	(speed 0.0)
-	(url "file:data/images/home.gif")
+	(url "file:resources/public/img/home.gif")
 	(verticalSpeed 0.0))
 
 ([OSMRoads_Class81] of  Way
