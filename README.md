@@ -12,7 +12,7 @@ Includes general IDE for Clojure.
 
 ## Simple start
 
-Without preliminary Leiningen installation, has one drawback (*)
+Without preliminary CLI tools or Leiningen installation, has one drawback (*)
 
 ```clj
 $ cd <..>
