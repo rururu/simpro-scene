@@ -10,7 +10,8 @@
 (def BASE-URL "")
 (def IMG-PATH "img/")
 (defn icon-file [url]
-  (last (seq (.split url "/"))))
+  (if (and (string? url) (not (empty? url)))
+  (last (seq (.split url "/")))))
 
 (defn send-event [typ dat]
   ;; (println [:CZ-EVT typ dat])
@@ -82,15 +83,16 @@
     (send-doc-curt))
   (send-event "czml" (json/write-str p))))
 
-(defn boat-leg [label lab-scl lab-off img-url bil-scl bil-rot [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
+(defn billboard-leg [label lab-scl lab-off img-url bil-scl bil-rot [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
   (let [p {:id label
            :label {:scale lab-scl
                      :pixelOffset {:cartesian2 lab-off}
+                     :heightReference "RELATIVE_TO_GROUND"
                      :text label}
            :billboard {:scale bil-scl
                             :heightReference "RELATIVE_TO_GROUND"
                             :verticalOrigin "BOTTOM"
-	    :rotation bil-rot
+                            :rotation bil-rot
                             :image img-url}
            :position {:cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]
   (if (not DOC-SENT)
@@ -148,45 +150,65 @@
       :LE 1.57
       :RI 4.71)))))
 
+(defn model-leg [label lab-scl lab-off gltf-url mod-scl [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]
+  (let [p {:id label
+           :label {:text label
+                     :scale lab-scl
+                     :pixelOffset {:cartesian2 lab-off}}
+           :model {:gltf gltf-url
+                       :heightReference "RELATIVE_TO_GROUND"
+                       :scale mod-scl}
+           :orientation {:velocityReference "#position"}
+           :position {:interpolationAlgorithm "LINEAR"
+                           :forwardExtrapolationType "HOLD"
+                           :cartographicDegrees [tim1 lon1 lat1 alt1 tim2 lon2 lat2 alt2]}}]
+  (if (not DOC-SENT)
+    (send-doc-curt))
+  (send-event "czml" (json/write-str p))))
+
+(defn trace4d [no sec ops]
+  (let [drf (or (ops :draft) 0)
+       lat1 (.getLatitude no)
+       lon1 (.getLongitude no)
+       alt1 (- (.getAltitude no) drf)
+       crs (.getCourse no)
+       spd (.getSpeed no)
+       vsd (.getVerticalSpeed no)
+       dis (double (/ (* spd sec) 3600))
+       [lat2 lon2] (seq (.position no (double crs) dis))
+       alt2 (+ alt1 (* vsd sec))
+       tim1 (iso8601curt)
+       tim2 (iso8601futt sec)]
+  [[tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]]))
+
 (defn navob-leg
-  ([no lab-scl lab-off bil-scl bil-rot past-sec past-crd cur-sec cur-crd]
+  ([no dis sec ops]
+  (let [[c4d1 c4d2] (trace4d no sec ops)]
+    (navob-leg no dis c4d1 c4d2 ops)))
+([no dis c4d1 c4d2 ops]
   (let [lab (.getName no)
-         url (.getURL no)
-         cur-tim (iso8601curt)
-         past-tim (iso8601futt (- past-sec cur-sec))
-         bil (or (icon-file url) "no.png")
-         bil (str BASE-URL IMG-PATH bil)]
-    (boat-leg lab lab-scl lab-off bil bil-scl bil-rot (cons past-tim past-crd) (cons cur-tim cur-crd))))
-([no ob lab-scl lab-off bil-scl bil-rot intl-sec]
-  (let [lab (.getName no)
-         lat1 (.getLatitude no)
-         lon1 (.getLongitude no)
-         alt1 (.getAltitude no)
-         crs (.getCourse no)
-         spd (.getSpeed no)
-         vsd (.getVerticalSpeed no)
-         dis (double (/ (* spd intl-sec) 3600))
-         [lat2 lon2] (seq (.position no (double crs) dis))
-         alt2 (+ alt1 (* vsd intl-sec))
-         tim1 (iso8601curt)
-         tim2 (iso8601futt intl-sec)
-         bil (or (.getDescription no) "no.png")
-         bil (str BASE-URL IMG-PATH bil)]
-    (boat-leg lab lab-scl lab-off bil bil-scl bil-rot [tim1 lon1 lat1 alt1] [tim2 lon2 lat2 alt2]))))
+         gltf-url (ops :gltf-url)
+         mod-scl (or (ops :model-scale) 1.0)
+         lab-scl (or (ops :label-scale) 0.5)
+         lab-off (or (ops :label-offset) [0.0 -40.0])]
+    (if gltf-url 
+      (model-leg lab lab-scl lab-off gltf-url mod-scl c4d1 c4d2)
+      (let [url (.getURL no)
+             bil (or (ops :billboard) (icon-file url) "no.png")
+             bil (str BASE-URL IMG-PATH bil)
+             bil-scl (or (ops :billboard-scale) 1.0)
+             vis (or (ops :visibility) 4.0)
+             bil-scl (if (> dis 0) 
+                          (min (* 2 bil-scl) (* bil-scl 0.1 (/ vis dis)))
+                          bil-scl)
+             bil-rot (or (ops :billboarg-rotation) 0)]
+        (billboard-leg lab lab-scl lab-off bil bil-scl bil-rot c4d1 c4d2))))))
 
 (defn dome-leg [mo lab-scl lab-off [x y z] lin-color transp past-sec past-crd cur-sec cur-crd]
   (let [lab (.getName mo)
        cur-tim (iso8601curt)
        past-tim (iso8601futt (- past-sec cur-sec))]
   (dome lab lab-scl lab-off [x y z] lin-color transp (cons past-tim past-crd) (cons cur-tim cur-crd))))
-
-(defn future-leg [no lab-scl lab-off bil-scl bil-rot cur-crd fut-sec fut-crd]
-  (let [lab (.getName no)
-       cur-tim (iso8601curt)
-       fut-tim (iso8601futt fut-sec)
-       bil (or (.getDescription no) "no.png")
-       bil (str BASE-URL IMG-PATH bil)]
-  (boat-leg lab lab-scl lab-off bil bil-scl bil-rot (cons cur-tim cur-crd) (cons fut-tim fut-crd))))
 
 (defn llp-czcoords [llp alt pts?]
   (if pts?

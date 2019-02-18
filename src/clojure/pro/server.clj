@@ -51,7 +51,6 @@
                  :course (.getCourse mo)}}]
       (if-let [req @REQUEST]
         (do (vreset! REQUEST nil)
-              (vreset! RESPONSE :WAIT)
               (assoc p :request req))
         p)))))
 
@@ -128,6 +127,21 @@
   (when-let [inst (first (cls-instances "CeziumControl"))]
     (ssv inst "onboard" lab)
     (vreset! ONBOARD lab))))
+
+(defn request [req wait-response]
+  (vreset! REQUEST req)
+(if wait-response
+  (vreset! RESPONSE :WAIT)))
+
+(defn receive-response
+  ([]
+  (receive-response 10))
+([sec]
+  (if (> sec 0)
+    (if (= @RESPONSE :WAIT)
+      (do (Thread/sleep 1000)
+        (receive-response (dec sec)))
+      @RESPONSE))))
 
 (defn clirepl
   ([]

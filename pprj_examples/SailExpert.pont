@@ -1,4 +1,4 @@
-; Sat Feb 09 21:44:19 MSK 2019
+; Mon Feb 18 21:47:16 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31,11 +31,6 @@
 	(single-slot sail-point
 		(type SYMBOL)
 		(allowed-values INIRONS CLOSEHAULED CLOSEREACH BEAMREACH BROADREACH RUNNING UNDEFINED)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot terrain
-		(type INTEGER)
-		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot big-interval
@@ -93,7 +88,16 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot elevation
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot boat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot options
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -158,6 +162,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot course
 		(type INTEGER)
 		(default 0)
@@ -171,6 +180,11 @@
 	(single-slot tack
 		(type SYMBOL)
 		(allowed-values PORT STARBOARD UNDEFINED)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot elevation
+		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tack-angle
@@ -297,29 +311,6 @@
 	(multislot marks
 		(type INSTANCE)
 ;+		(allowed-classes Mark)
-		(create-accessor read-write)))
-
-(defclass ShoreCheck
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot status
-		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot boat
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot terrain
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass NewCourse
@@ -465,6 +456,10 @@
 	(single-slot time
 		(type INTEGER)
 		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot options
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

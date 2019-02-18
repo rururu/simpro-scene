@@ -187,7 +187,8 @@
 (when-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
   (protege.core/ssv ins "course" ?crs)
   (if-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]
-    (let [alt 1]
+    (let [desc (.getDescription bmo)
+           alt 2]
       (.setKeepRoute bmo true)
       (.setAltitude bmo alt)
       (sail.exp/camera-control bmo :pitch 6)
@@ -195,6 +196,7 @@
 	slope 'UP
 	time 0)
       (asser CZMLSpan label ?lab
+	options (read-string desc)
 	time ?t)
       (println "Boat on map:" ?lab ", course" ?crs)))))
 
@@ -220,7 +222,8 @@
 (retract ?c2))
 
 (ss:Shore Ahead 0
-?s (Skipper boat ?boat
+?s (Skipper status SHORE-AHEAD
+	boat ?boat
 	delay ?del
 	epsilon ?e)
 (Wind direction ?wnd)
@@ -228,7 +231,6 @@
 	course ?crs
 	tack-angle ?taa
 	tack ?tack)
-?sc (ShoreCheck status SHORE-AHEAD)
 (Clock time ?t)
 =>
 (let [trn (* 2 (+ ?taa ?e))
@@ -244,7 +246,6 @@
                    'PORT (- crs ?taa)))
                crs)]
   (println "Skipper" ?boat "status" 'OFF-SHORE)
-  (retract ?sc)
   (modify ?s status 'OFF-SHORE
 	time (+ ?t (* ?del 60)))
   (asser NewCourse boat ?boat course crs)))
@@ -297,35 +298,52 @@
 =>
 (modify ?wc asserted true))
 
-(bs:Boat Heel 0
+(_bs:Boat Heel 0
 (Onboard boat ?boat 
 	view ?view)
-(Boat label ?boat sail-point ?sp
+?b (Boat label ?boat sail-point ?sp
+	heel ?heel
 	tack ?tk)
 =>
-(sail.exp/boat-heel ?boat ?sp ?tk ?view))
+(if-let [bh (sail.exp/boat-heel ?boat ?sp ?tk ?view)]
+  (let [hel (bh :roll)]
+    (if (not= ?heel hel)
+      (modify ?b heel hel)))))
 
-(cz:CZML Leg Generation 1
+(cz:CZML Navob Leg Generation 1
 (CZMLGenerator delay ?del
 	visibility ?vis)
 (Onboard boat ?boat)
+(Boat label ?boat sounding ?snd)
 ?cs (CZMLSpan time ?tim
 	label ?lab
+	options ?ops
 	(not= ?boat ?lab))
 (Clock time ?t (> ?t ?tim))
 =>
 (if-let [omo (ru.igis.omtab.OMT/getMapOb ?lab)]
   (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
     (let [dis (.distanceNM omo bmo)]
+      (println :SND ?boat ?snd)
       (if (< dis ?vis)
-        (cesium.core/navob-leg omo
-	0.2
-	[10 -10]
-	(calc.core/smooth-tabfun dis [[0 2.0][3 0.05]])
-	(+ ?del 2)))
-      (modify ?cs time ?t)))))
+        (cesium.core/navob-leg 
+	omo 
+	(+ ?del 2)
+	(assoc ?ops :sounding ?snd)))
+      (modify ?cs time (+ ?t ?del))))))
 
 (bs:Boat Camera Check 0
+?onb (Onboard boat ?boat)
+?cam (CameraCheck delay ?del
+	time ?tim)
+(Clock time ?t (> ?t ?tim))
+=>
+(let [onb (deref pro.server/ONBOARD)]
+  (modify ?cam time (+ ?t ?del))
+  (if (not= onb ?boat)
+    (modify ?onb boat onb))))
+
+(_bs:Boat Camera Check 0
 ?onb (Onboard boat ?boat
 	view ?view)
 ?cam (CameraCheck delay ?del
@@ -348,60 +366,50 @@
 ;;(println "End of big header")
 (retract ?a))
 
-(scs:Start Shore Check 0
-(ShoreControl delay ?del)
-?sc (ShoreCheck status START
-	boat ?boat)
-(Clock time ?t)
-=>
-(when-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (vreset! pro.server/REQUEST
-    {:elevation [(.getLatitude bmo)
-                      (.getLongitude bmo)]})
-  (modify ?sc time (+ ?t ?del)
-	terrain -1
-	status 'REPEAT)))
-
-(scs:Repeat Shore Check 0
+(bs:Shore Check 0
 (ShoreControl delay ?del
 	shore ?sho
 	distance ?dis)
-?sc (ShoreCheck status REPEAT
-	boat ?boat
-	terrain ?oter
-	time ?t1)
-(Boat label ?boat course ?crs)
-(Clock time ?t2 (> ?t2 ?t1))
+?b (Boat label ?boat
+	course ?crs
+	elevation ?ele
+	time ?tim)
+?s (Skipper boat ?boat)
+(Clock time ?t (> ?t ?tim))
 =>
 (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]
-  (let [nter (@pro.server/RESPONSE :elevation)]
-    (println "Terrain" ?oter nter)
-    (if (and (number? nter)
-          (> nter -7777) 
-          (> ?oter 0) 
-          (> (- nter ?oter) ?sho))
-      (do (println "Shore ahead boat" ?boat ?oter nter)
-        (modify ?sc status 'SHORE-AHEAD))
-      (let [[lat lon] (.position bmo (double ?crs) ?dis)] 
-        (vreset! pro.server/REQUEST {:elevation [lat lon]})
-        (modify ?sc time (+ ?t2 ?del)
-	terrain (if (and (number? nter) (>= nter 0))
-                                     nter 
-                                     ?oter)))))))
+  (let [[lat lon] (.position bmo (double ?crs) ?dis)] 
+    (println "Elevation ahead request"  ?boat lat lon)
+    (pro.server/request {:elevation [lat lon]} true)
+    (if-let [resp (pro.server/receive-response)]
+      (let [ele (resp :elevation)]
+        (println "Elevation" ?boat ele "previous" ?ele)
+        (if (and (number? )
+              (> ele -7777) 
+              (> ?ele 0) 
+              (> (- ele ?ele) ?sho))
+          (do (println "Shore ahead boat" ?boat ele ?ele)
+            (modify ?s status 'SHORE-AHEAD))
+          (modify ?b time (+ ?t ?del)
+	elevation (if (and (number? ele) (>= ele 0))
+		ele 
+		?ele))))
+      (modify ?b time (+ ?t ?del))))))
 
 (ss:Mark on Map 0
 (CZMLGenerator)
 (Mark label ?lab latitude ?lat
-	 longitude ?lon
-	 url ?url)
+	 longitude ?lon)
 (Clock time ?t)
 (not CZMLSpan label ?lab)
 =>
 (if-let [ins (protege.core/fifos "NavOb" "label" ?lab)]
   (let [mom (ru.igis.omtab.OMT/getOrAdd ins)
+         desc (.getDescription mom)
          alt 0]
     (.setAltitude mom alt)
     (asser CZMLSpan  label ?lab
+	options (read-string desc)
 	time ?t)
     (println "Mark on map:" ?lab ", coords" [?lat ?lon]))))
 
@@ -476,11 +484,6 @@
       (asser NewCourse
 	   boat ?boat 
 	   course crs)))))
-
-(scs:Print Shore Check Interval 0
-(ShoreControl delay ?del)
-=>
-(println "Shore Check Interval" ?del "sec."))
 
 (bs:Boat Pitching 0
 (Onboard boat ?boat)
