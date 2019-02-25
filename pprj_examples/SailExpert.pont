@@ -1,4 +1,4 @@
-; Mon Feb 18 21:47:16 MSK 2019
+; Mon Feb 25 18:15:20 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -37,6 +37,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot visibility
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
@@ -58,6 +62,11 @@
 		(create-accessor read-write))
 	(single-slot small-interval
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type SYMBOL)
+		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse

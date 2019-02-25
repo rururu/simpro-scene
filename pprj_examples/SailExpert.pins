@@ -1,4 +1,4 @@
-; Mon Feb 18 21:47:16 MSK 2019
+; Mon Feb 25 18:15:20 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -55,7 +55,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "Argo"))
+	(onboard "h1"))
 
 ([SailExpert_Class100000] of  CloFuncall
 
@@ -1139,6 +1139,18 @@
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (if-let [mmo (ru.igis.omtab.OMT/getMapOb ?mark)]\n    (let [bea (.bearingsDeg bmo mmo)\n           crs (if (> ?wnd bea)\n	(- ?wnd ?taa ?e)\n	(+ ?wnd ?taa ?e))\n           crs (sail.exp/trim-bear crs)] \n      (println \"Gainful beating course\" crs \"on boat\" ?boat)\n      (asser NewCourse\n	   boat ?boat \n	   course crs))))")
 	(salience 0)
 	(title "ss:Gainful Beating Course"))
+
+([SailExpert_Class70000] of  NavOb
+
+	(altitude 40)
+	(course 0)
+	(label "h1")
+	(latitude "62 24")
+	(longitude "6 0.54")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/helr.gif")
+	(verticalSpeed 0.0))
 
 ([SailExpert_Class70001] of  ShoreControl
 

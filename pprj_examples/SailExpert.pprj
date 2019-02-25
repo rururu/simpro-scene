@@ -1,4 +1,4 @@
-; Mon Feb 18 21:47:16 MSK 2019
+; Mon Feb 25 18:15:20 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,19 +21,19 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[SailExpert_ProjectKB_Class121844]
-		[SailExpert_ProjectKB_Class121845]
-		[SailExpert_ProjectKB_Class121846]
-		[SailExpert_ProjectKB_Class121847]
-		[SailExpert_ProjectKB_Class121848]
-		[SailExpert_ProjectKB_Class121849]
-		[SailExpert_ProjectKB_Class121850]
-		[SailExpert_ProjectKB_Class121851]
-		[SailExpert_ProjectKB_Class121852]
-		[SailExpert_ProjectKB_Class121853]
-		[SailExpert_ProjectKB_Class121854]
-		[SailExpert_ProjectKB_Class121855]
-		[SailExpert_ProjectKB_Class121856]))
+		[SailExpert_ProjectKB_Class111782]
+		[SailExpert_ProjectKB_Class111783]
+		[SailExpert_ProjectKB_Class111784]
+		[SailExpert_ProjectKB_Class121785]
+		[SailExpert_ProjectKB_Class121786]
+		[SailExpert_ProjectKB_Class121787]
+		[SailExpert_ProjectKB_Class121788]
+		[SailExpert_ProjectKB_Class121789]
+		[SailExpert_ProjectKB_Class121790]
+		[SailExpert_ProjectKB_Class121791]
+		[SailExpert_ProjectKB_Class121792]
+		[SailExpert_ProjectKB_Class121793]
+		[SailExpert_ProjectKB_Class121794]))
 
 ([CLSES_TAB] of  Widget
 
@@ -85,8 +85,8 @@
 
 ([KB_094132_Class1] of  Map
 
-	(entries [SailExpert_ProjectKB_Class121861])
-	(referenced_maps [SailExpert_ProjectKB_Class121857]))
+	(entries [SailExpert_ProjectKB_Class121799])
+	(referenced_maps [SailExpert_ProjectKB_Class121795]))
 
 ([KB_094132_Class10] of  Boolean
 
@@ -179,34 +179,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Move up"))
-
-([KB_215085_Class1724] of  Map
-
-	(entries
-		[KB_215085_Class1725]
-		[KB_215085_Class1726]
-		[KB_215085_Class1727]))
-
-([KB_215085_Class1725] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_215085_Class1726] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_215085_Class1727] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_714402_Class1480] of  Widget
 
@@ -356,6 +328,34 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([KB_719645_Class1724] of  Map
+
+	(entries
+		[KB_719645_Class1725]
+		[KB_719645_Class1726]
+		[KB_719645_Class1727]))
+
+([KB_719645_Class1725] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_719645_Class1726] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_719645_Class1727] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -564,6 +564,21 @@
 ([SailExpert_ProjectKB_Class101857] of  Property_List
 )
 
+([SailExpert_ProjectKB_Class111782] of  String
+
+	(name "WindChange")
+	(string_value "{WindChange+}direction{+rand+}randomly"))
+
+([SailExpert_ProjectKB_Class111783] of  String
+
+	(name "Boat")
+	(string_value "label"))
+
+([SailExpert_ProjectKB_Class111784] of  String
+
+	(name "ShoreControl")
+	(string_value "{ShoreControl+delay+}delay{+distance++}distance{+shore+}shore"))
+
 ([SailExpert_ProjectKB_Class111785] of  Widget
 
 	(height 60)
@@ -730,104 +745,89 @@
 ([SailExpert_ProjectKB_Class11732] of  Property_List
 )
 
-([SailExpert_ProjectKB_Class121844] of  String
-
-	(name "WindChange")
-	(string_value "{WindChange+}direction{+rand+}randomly"))
-
-([SailExpert_ProjectKB_Class121845] of  String
-
-	(name "Boat")
-	(string_value "label"))
-
-([SailExpert_ProjectKB_Class121846] of  String
-
-	(name "ShoreControl")
-	(string_value "{ShoreControl+delay+}delay{+distance++}distance{+shore+}shore"))
-
-([SailExpert_ProjectKB_Class121847] of  String
+([SailExpert_ProjectKB_Class121785] of  String
 
 	(name "Route")
 	(string_value "title"))
 
-([SailExpert_ProjectKB_Class121848] of  String
+([SailExpert_ProjectKB_Class121786] of  String
 
 	(name "CZMLGenerator")
 	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
 
-([SailExpert_ProjectKB_Class121849] of  String
+([SailExpert_ProjectKB_Class121787] of  String
 
 	(name "Wave")
 	(string_value "{Wave+pitch+}pitch{+pitch-interval+}pitch-interval"))
 
-([SailExpert_ProjectKB_Class121850] of  String
+([SailExpert_ProjectKB_Class121788] of  String
 
 	(name "Onboard")
 	(string_value "{Onboard+}boat{+view+}view"))
 
-([SailExpert_ProjectKB_Class121851] of  String
+([SailExpert_ProjectKB_Class121789] of  String
 
 	(name "Mark")
 	(string_value "label"))
 
-([SailExpert_ProjectKB_Class121852] of  String
+([SailExpert_ProjectKB_Class121790] of  String
 
 	(name "NewCourse")
 	(string_value "boat{+}course"))
 
-([SailExpert_ProjectKB_Class121853] of  String
+([SailExpert_ProjectKB_Class121791] of  String
 
 	(name "Clock")
 	(string_value "{Clock%3A+}time"))
 
-([SailExpert_ProjectKB_Class121854] of  String
+([SailExpert_ProjectKB_Class121792] of  String
 
 	(name "Wind")
 	(string_value "{Wind%3A+}direction{+%3A+}forse"))
 
-([SailExpert_ProjectKB_Class121855] of  String
+([SailExpert_ProjectKB_Class121793] of  String
 
 	(name "CameraCheck")
 	(string_value "{CameraCheck+}delay"))
 
-([SailExpert_ProjectKB_Class121856] of  String
+([SailExpert_ProjectKB_Class121794] of  String
 
 	(name "Skipper")
 	(string_value "{Skipper+of+}boat{%2C+route%3A+}route"))
 
-([SailExpert_ProjectKB_Class121857] of  Map
+([SailExpert_ProjectKB_Class121795] of  Map
 
 	(entries
-		[SailExpert_ProjectKB_Class121858]
-		[SailExpert_ProjectKB_Class121859]
-		[SailExpert_ProjectKB_Class121860]))
+		[SailExpert_ProjectKB_Class121796]
+		[SailExpert_ProjectKB_Class121797]
+		[SailExpert_ProjectKB_Class121798]))
 
-([SailExpert_ProjectKB_Class121858] of  Map_Entry
+([SailExpert_ProjectKB_Class121796] of  Map_Entry
 
 	(key "SailExpert_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "-2 702 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([SailExpert_ProjectKB_Class121859] of  Map_Entry
+([SailExpert_ProjectKB_Class121797] of  Map_Entry
 
 	(key "SailExpert_Class10005")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "-5 604 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([SailExpert_ProjectKB_Class121860] of  Map_Entry
+([SailExpert_ProjectKB_Class121798] of  Map_Entry
 
 	(key "SailExpert_Class10007")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "-1 415 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([SailExpert_ProjectKB_Class121861] of  Map_Entry
+([SailExpert_ProjectKB_Class121799] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "SailExpert_ProjectKB_Class121857")
+	(value "SailExpert_ProjectKB_Class121795")
 	(value_class "java.util.Map"))
 
 ([SailExpert_ProjectKB_Class131913] of  Widget

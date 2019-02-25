@@ -1,4 +1,4 @@
-; Mon Feb 18 21:27:59 MSK 2019
+; Mon Feb 25 18:03:09 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -230,11 +230,6 @@
 	(source "\"img/\"")
 	(title "IMG-PATH"))
 
-([Cezium_Class220000] of  CloFunction
-
-	(source "(let [lab (.getName mo)\n       cur-tim (iso8601curt)\n       past-tim (iso8601futt (- past-sec cur-sec))]\n  (dome lab lab-scl lab-off [x y z] lin-color transp (cons past-tim past-crd) (cons cur-tim cur-crd)))")
-	(title "dome-leg [mo lab-scl lab-off [x y z] lin-color transp past-sec past-crd cur-sec cur-crd]"))
-
 ([Cezium_Class240000] of  CloFunction
 
 	(source ";; from, to - sec after (before, if negative) current time\n(let [[a r g b] (dec16 color)\n        fiso (iso8601futt from)\n        tiso (iso8601futt to)\n        N (count points)\n        step (/ (- to from) N)\n        reso (inc (max step 1))\n        pts (vec (flatten (map #(cons %1 %2) (range N) points)))\n        p {:id id\n            :availability (str fiso \"/\" tiso)\n            :path {:width wid\n                      :material {:solidColor {:color {:rgba [r g b a]}}}\n                      :resolution reso}\n            :position {:interpolationAlgorithm \"LINEAR\"\n                            :epoch fiso\n                            :cartographicDegrees pts}}]\n  (if (not DOC-SENT)\n    (send-doc-curt))\n  (send-event \"czml\" (json/write-str p)))")
@@ -417,7 +412,6 @@
 		[Cezium_Class100000]
 		[Cezium_Class110051]
 		[Cezium_Class200012]
-		[Cezium_Class220000]
 		[Cezium_Class330000]
 		[Cezium_Class240000]
 		[Cezium_Class250000]

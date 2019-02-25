@@ -1,4 +1,4 @@
-; Mon Feb 18 21:27:59 MSK 2019
+; Mon Feb 25 18:03:09 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,90 +7,15 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot past
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot labelScale
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot onscene
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot section
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot salience
-;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot visibility
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot but-onboard
 		(type STRING)
 		(default "Go on Board/pro.server/go-onboard")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot lhs
-;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot coord
-		(type SYMBOL)
-		(allowed-values nil)
-		(default nil)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot labelOffset
-		(type INTEGER)
-		(create-accessor read-write))
-	(single-slot status
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot rhs
-;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot span
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot future
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot rules
-;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot rotate
-		(type SYMBOL)
-		(allowed-values FALSE TRUE)
-		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-start-serv
 		(type STRING)
 		(default "Start Cesium Server/pro.server/start-server")
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot billboardScale
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot templates
-;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot but-stop-serv
 		(type STRING)
@@ -99,19 +24,6 @@
 		(create-accessor read-write))
 	(single-slot onboard
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot ceiling
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot transparency
-		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

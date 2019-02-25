@@ -204,12 +204,6 @@
              bil-rot (or (ops :billboarg-rotation) 0)]
         (billboard-leg lab lab-scl lab-off bil bil-scl bil-rot c4d1 c4d2))))))
 
-(defn dome-leg [mo lab-scl lab-off [x y z] lin-color transp past-sec past-crd cur-sec cur-crd]
-  (let [lab (.getName mo)
-       cur-tim (iso8601curt)
-       past-tim (iso8601futt (- past-sec cur-sec))]
-  (dome lab lab-scl lab-off [x y z] lin-color transp (cons past-tim past-crd) (cons cur-tim cur-crd))))
-
 (defn llp-czcoords [llp alt pts?]
   (if pts?
   (let [cpts (map #(list (second %) (first %) alt) llp)]
