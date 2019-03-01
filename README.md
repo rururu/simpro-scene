@@ -64,8 +64,7 @@ See examples.
 18. [Everest](https://www.youtube.com/watch?v=YAZSrUjKRhk&t=10s)
 19. [Glacier Express: Above Bever - Preda tunnel](https://youtu.be/WJ3YZqWyFJ4)
 20. [From Raster to Vector](https://youtu.be/LKaAVBDUyTU)
-21. [Sailing Expert 1](https://youtu.be/OS_t7uoZvX0)
-22. [Sailing Expert 2: Race of four yachts](https://youtu.be/_PJebZZJZDw)
+21. [Sailing Expert: Race with 3D models of yachts](https://youtu.be/VG87r7_gVz8)
 
 TO BE CONTINUED
 
