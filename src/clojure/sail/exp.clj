@@ -12,35 +12,6 @@
 (def ES-TIMER nil)
 (def URLS {"Mark" "http://localhost:4444/img/buoy3.png"
  "Boat" "http://localhost:4444/img/yacht.png"})
-(defn work-sim []
-  (if (and (some? ES-TIMER) (OMT/isRunning))
-  (let [msec (Clock/getClock)
-         sec (int (/ msec 1000))
-         frm ['Clock 'time sec]]
-    (rete/assert-frame frm)
-    (rete/fire))))
-
-(defn stop-sim []
-  (when (some? ES-TIMER)
-  (.cancel ES-TIMER)
-  (def ES-TIMER nil)
-  (println "Simulation Stoped...")))
-
-(defn start-sim []
-  (if (some? ES-TIMER)
-  (stop-sim))
-(def ES-TIMER (java.util.Timer.))
-(.schedule 
-  ES-TIMER 
-  (proxy [TimerTask] [] (run [] (work-sim)))
-  (long 0) 
-  (long 1000))
-(println "Simulation Started..."))
-
-(defn restart-sim []
-  (stop-sim)
-(start-sim))
-
 (defn trim-bear [b]
   (cond
   (< b 0) (+ b 360)

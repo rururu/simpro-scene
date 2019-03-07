@@ -1,0 +1,2809 @@
+; Wed Mar 06 21:21:07 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot result
+		(type SYMBOL)
+		(allowed-values %D0%9D%D0%90%D0%A7%D0%90%D0%9B%D0%9E %D0%92%D0%AB%D0%9F%D0%9E%D0%9B%D0%9D%D0%95%D0%9D%D0%90 %D0%9D%D0%95_%D0%92%D0%AB%D0%9F%D0%9E%D0%9B%D0%9D%D0%95%D0%9D%D0%90)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot remove_flag
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-start-kml-server
+		(type STRING)
+		(default "Start KML Server/kml.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot content
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Fmissile
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot channelsNumber
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot remote
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nameColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot areas
+		(type INSTANCE)
+;+		(allowed-classes OMGraphic)
+		(create-accessor read-write))
+	(multislot butt-start-sse-server
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot default_parameters
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(create-accessor read-write))
+	(multislot functions
+		(type INSTANCE)
+;+		(allowed-classes CloFunction)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot omega2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot omega1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_relation
+		(type SYMBOL)
+		(allowed-values NEAR AHEAD ABAFT ON-BEAM DISTANCE BEARING COURSE-ANGLE INSIDE FAR SAME OUTSIDE)
+		(default SAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot layerNames
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot roll
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot port
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot x
+		(type FLOAT)
+		(create-accessor read-write))
+	(multislot y
+		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot finish
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot butt-server
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot relation
+		(type SYMBOL)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted in-some-resource in-all-resource)
+		(default %3D)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detected
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot agroups
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot client
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-angle
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot attacker
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot final_actions
+		(type INSTANCE)
+;+		(allowed-classes Action)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot position-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protagonist
+		(type INSTANCE)
+;+		(allowed-classes Variable MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot script
+		(type INSTANCE)
+;+		(allowed-classes Variable Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot mapping
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polygon
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pitch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot figure2
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Flat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot vc_type
+		(type SYMBOL)
+		(allowed-values PROFILE RELIEF)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot figure1
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot string-collection
+		(type STRING)
+		(create-accessor read-write))
+	(multislot results
+		(type INSTANCE)
+;+		(allowed-classes Result)
+		(create-accessor read-write))
+	(single-slot action
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cls
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot computation
+		(type INSTANCE)
+;+		(allowed-classes Computation Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot model
+		(type INSTANCE)
+;+		(allowed-classes IGIS ScenarioOntology)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nameIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot second
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot exit
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot task_scheme
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(create-accessor read-write))
+	(single-slot yield
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot context
+		(type INSTANCE)
+;+		(allowed-classes Variable Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot clients
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot initial_actions
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot stream
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detector
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot scale2
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot agroup
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-read
+		(type STRING)
+		(default "Read CSV Files/csv.imp/read-files")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detect-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot entries
+		(type INSTANCE)
+;+		(allowed-classes Entry Variable)
+		(create-accessor read-write))
+	(multislot initial_tasks
+		(type INSTANCE)
+;+		(allowed-classes Task Decision)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot relations
+		(type SYMBOL)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D)
+		(default %3D)
+		(create-accessor read-write))
+	(multislot attributes
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+		(create-accessor read-write))
+	(single-slot delete
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot input_data
+		(type INSTANCE)
+;+		(allowed-classes InputData)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot sse-page-path
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot cezium-port
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot lat
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot bearing
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot alt
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot host
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot scenarios
+		(type INSTANCE)
+;+		(allowed-classes Scenario)
+		(create-accessor read-write))
+	(single-slot condition
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot labels
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot new_speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot butt-sz-server
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot attribute
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(multislot activities
+		(type INSTANCE)
+;+		(allowed-classes Activity)
+		(create-accessor read-write))
+	(single-slot connective
+		(type SYMBOL)
+		(allowed-values AND OR)
+		(default AND)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot composite
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lost-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot category
+		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot player
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot types
+		(type INSTANCE)
+;+		(allowed-classes Type)
+		(create-accessor read-write))
+	(single-slot sub_scenario
+		(type INSTANCE)
+;+		(allowed-classes Scenario)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot events
+		(type INSTANCE)
+;+		(allowed-classes Event)
+		(create-accessor read-write))
+	(multislot butt-stop-sse-server
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot theatre
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot global_memory
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot password
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot algo
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot conditions
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot activity
+		(type INSTANCE)
+;+		(allowed-classes Activity Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot backward
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot next_tasks
+		(type INSTANCE)
+;+		(allowed-classes Decision Task Join)
+;+		(inverse-slot join_tasks)
+		(create-accessor read-write))
+	(single-slot locationFile
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot key
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot degree
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-stop-czml-server
+		(type STRING)
+		(default "Stop CZML Server/czml/stop-czml-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot next_actions
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(create-accessor read-write))
+	(single-slot %3Ftarget
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot csvFileHasHeader
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot channels
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot %3Fcross
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-start-czml-server
+		(type STRING)
+		(default "Start CZML Server/czml/start-czml-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot seed
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot run
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot variables
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+		(create-accessor read-write))
+	(multislot butt-stop
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot step
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot target
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot repeat-action
+		(type INSTANCE)
+;+		(allowed-classes Variable RepeatAction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3Flon
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lonIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot project
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot statuses
+		(type STRING)
+		(create-accessor read-write))
+	(multislot scenario_scheme
+		(type INSTANCE)
+;+		(allowed-classes Decision Task)
+		(create-accessor read-write))
+	(single-slot dwell
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-stop-kml-server
+		(type STRING)
+		(default "Stop KML Server/kml.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot weapons
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot missile
+		(type INSTANCE)
+;+		(allowed-classes NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot aux
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start-time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write))
+	(single-slot event
+		(type INSTANCE)
+;+		(allowed-classes Event Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lla
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ranges
+		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot range
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entry_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rename
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot namespace
+		(type INSTANCE)
+;+		(allowed-classes CloNamespace)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot new_course
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detect-probability
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot probabilities
+		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot sse-root
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot wait_subscenario
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot before
+		(type INSTANCE)
+;+		(allowed-classes Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot pairs
+		(type INSTANCE)
+;+		(allowed-classes Pair)
+		(create-accessor read-write))
+	(single-slot showLocations
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot join_tasks
+		(type INSTANCE)
+;+		(allowed-classes Join Task Decision)
+		(cardinality 1 ?VARIABLE)
+;+		(inverse-slot next_tasks)
+		(create-accessor read-write))
+	(multislot final_tasks
+		(type INSTANCE)
+;+		(allowed-classes Task Join)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot lon
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes Road Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot after
+		(type INSTANCE)
+;+		(allowed-classes Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot locationColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot thing
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_property
+		(type SYMBOL)
+		(allowed-values MOVING STOPPED COURSE SPEED NEAR-POINT COORDINATES NAME VISIBLE ALTITUDE)
+		(default NAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot resource
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot actor
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot flag
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ceiling
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot user
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot finish_type
+		(type SYMBOL)
+		(allowed-values AND OR)
+		(default AND)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot shot_distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot potential
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot group_factor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-create
+		(type STRING)
+		(default "Create Instances/csv.imp/crea-inst")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot choices
+		(type INSTANCE)
+;+		(allowed-classes Choice)
+		(create-accessor read-write))
+	(multislot cezium-page
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot showNames
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot axis
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot sse-port
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot sse-chans
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot zone
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot new_altitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot date
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot scale
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot alt_profile
+		(type INSTANCE)
+;+		(allowed-classes AltProfile Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ActionClass
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot functions
+		(type INSTANCE)
+;+		(allowed-classes CloFunction)
+		(create-accessor read-write))
+	(multislot rules
+		(type INSTANCE)
+;+		(allowed-classes Rule)
+		(create-accessor read-write)))
+
+(defclass DecisionClass
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot functions
+		(type INSTANCE)
+;+		(allowed-classes CloFunction)
+		(create-accessor read-write))
+	(multislot rules
+		(type INSTANCE)
+;+		(allowed-classes Rule)
+		(create-accessor read-write)))
+
+(defclass EventClass
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(multislot functions
+		(type INSTANCE)
+;+		(allowed-classes CloFunction)
+		(create-accessor read-write)))
+
+(defclass ComputationClass
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot namespace
+		(type INSTANCE)
+;+		(allowed-classes CloNamespace)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CSVLocationHandler
+	(is-a Component)
+	(role concrete)
+	(single-slot showNames
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot showLocations
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nameIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot locationColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot locationFile
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot nameColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lonIndex
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot csvFileHasHeader
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot prettyName
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Formatter
+	(is-a Component)
+	(role concrete))
+
+(defclass ScenarioOntology
+	(is-a USER)
+	(role abstract)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Activity
+	(is-a ScenarioOntology)
+	(role abstract)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot run
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Scenario
+	(is-a Activity)
+	(role concrete)
+	(multislot scenario_scheme
+		(type INSTANCE)
+;+		(allowed-classes Decision Task)
+		(create-accessor read-write))
+	(multislot initial_tasks
+		(type INSTANCE)
+;+		(allowed-classes Task Decision)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot finish_type
+		(type SYMBOL)
+		(allowed-values AND OR)
+		(default AND)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot final_tasks
+		(type INSTANCE)
+;+		(allowed-classes Task Join)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot context
+		(type INSTANCE)
+;+		(allowed-classes Variable Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot protagonist
+		(type INSTANCE)
+;+		(allowed-classes Variable MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MissionScenario
+	(is-a Scenario)
+	(role concrete))
+
+(defclass Task
+	(is-a Activity)
+	(role concrete)
+	(multislot final_actions
+		(type INSTANCE)
+;+		(allowed-classes Action)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot next_tasks
+		(type INSTANCE)
+;+		(allowed-classes Decision Task Join)
+		(create-accessor read-write))
+	(single-slot finish_type
+		(type SYMBOL)
+		(allowed-values AND OR)
+		(default AND)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot task_scheme
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(create-accessor read-write))
+	(multislot initial_actions
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Join
+	(is-a Task)
+	(role concrete)
+	(multislot join_tasks
+		(type INSTANCE)
+;+		(allowed-classes Join Task Decision)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Action
+	(is-a Activity)
+	(role abstract)
+	(multislot next_actions
+		(type INSTANCE)
+;+		(allowed-classes Action Decision)
+		(create-accessor read-write)))
+
+(defclass ViewControl
+	(is-a Action)
+	(role abstract))
+
+(defclass SetScale
+	(is-a ViewControl)
+	(role concrete)
+	(single-slot scale
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SetCenter
+	(is-a ViewControl)
+	(role concrete)
+	(single-slot longitude
+		(type STRING)
+		(default "0 0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot units
+		(type SYMBOL)
+		(allowed-values DEG DEG_MIN)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+		(default "0 0")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FlightView
+	(is-a ViewControl)
+	(role concrete)
+	(single-slot scale
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SetTimeScale
+	(is-a ViewControl)
+	(role concrete)
+	(single-slot scale
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Camera
+	(is-a ViewControl)
+	(role concrete)
+	(single-slot pitch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot roll
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot view
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Arrive
+	(is-a Action)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PutOnMap
+	(is-a Action)
+	(role concrete)
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PutOnPlace
+	(is-a Action)
+	(role concrete)
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PutOffMap
+	(is-a Action)
+	(role concrete)
+	(single-slot delete
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Search
+	(is-a Action)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detect-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot client
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot detect-probability
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Delay
+	(is-a Action)
+	(role concrete)
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Position
+	(is-a Action)
+	(role concrete)
+	(single-slot radius
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relative
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-angle
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass RepeatActionOnOff
+	(is-a Action)
+	(role concrete)
+	(single-slot repeat-action
+		(type INSTANCE)
+;+		(allowed-classes Variable RepeatAction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot flag
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass LinkOnOff
+	(is-a Action)
+	(role concrete)
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot flag
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lineColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot line
+		(type INSTANCE)
+;+		(allowed-classes Line)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TowOnOff
+	(is-a Action)
+	(role concrete)
+	(single-slot relative
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-angle
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot flag
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Calculus
+	(is-a Action)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot input_data
+		(type INSTANCE)
+;+		(allowed-classes InputData)
+		(create-accessor read-write))
+	(multislot results
+		(type INSTANCE)
+;+		(allowed-classes Result)
+		(create-accessor read-write)))
+
+(defclass Subscenario
+	(is-a Action)
+	(role concrete)
+	(single-slot sub_scenario
+		(type INSTANCE)
+;+		(allowed-classes Scenario)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot wait_subscenario
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot context
+		(type INSTANCE)
+;+		(allowed-classes Variable Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Follow
+	(is-a Action)
+	(role concrete)
+	(single-slot lost-distance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lineColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SendSignal
+	(is-a Action)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot remote
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ReceiveSignal
+	(is-a Action)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PutObProperties
+	(is-a Action)
+	(role concrete)
+	(single-slot new_altitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot new_course
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot new_speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PutObAttributes
+	(is-a Action)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(multislot attributes
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+		(create-accessor read-write)))
+
+(defclass PolyMoving
+	(is-a Action)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass PolyMovingN
+	(is-a Action)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Go
+	(is-a Action)
+	(role abstract))
+
+(defclass GoLayerRoute
+	(is-a Go)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoRoute
+	(is-a Go)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot backward
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoRoad
+	(is-a Go)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes Road Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Show
+	(is-a Action)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot thing
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Break
+	(is-a Action)
+	(role concrete)
+	(single-slot activity
+		(type INSTANCE)
+;+		(allowed-classes Activity Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Compute
+	(is-a Action)
+	(role concrete)
+	(single-slot computation
+		(type INSTANCE)
+;+		(allowed-classes Computation Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CreateByModel
+	(is-a Action)
+	(role concrete)
+	(single-slot model
+		(type INSTANCE)
+;+		(allowed-classes IGIS ScenarioOntology)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GiveAdvice
+	(is-a Action)
+	(role abstract)
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot clients
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot category
+		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ObjectMessage
+	(is-a GiveAdvice)
+	(role concrete)
+	(single-slot url
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TimeMessage
+	(is-a GiveAdvice)
+	(role concrete))
+
+(defclass AttributeMessage
+	(is-a GiveAdvice)
+	(role concrete)
+	(single-slot attribute
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MovingObjectMessage
+	(is-a GiveAdvice)
+	(role concrete)
+	(single-slot url
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CalcMessage
+	(is-a GiveAdvice)
+	(role concrete))
+
+(defclass AssertObjects
+	(is-a Action)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass Mission
+	(is-a Action)
+	(role concrete)
+	(single-slot sub_scenario
+		(type INSTANCE)
+;+		(allowed-classes Scenario)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot player
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot wait_subscenario
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot context
+		(type INSTANCE)
+;+		(allowed-classes Variable Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass AttributesToVariables
+	(is-a Action)
+	(role concrete)
+	(multislot variables
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+		(create-accessor read-write))
+	(multislot attributes
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+		(create-accessor read-write))
+	(multislot objects
+		(type INSTANCE)
+;+		(allowed-classes NavOb Variable)
+		(create-accessor read-write)))
+
+(defclass SetModelClock
+	(is-a Action)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass StartScenarios
+	(is-a Action)
+	(role concrete)
+	(multislot scenarios
+		(type INSTANCE)
+;+		(allowed-classes Scenario)
+		(create-accessor read-write))
+	(multislot default_parameters
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(create-accessor read-write)))
+
+(defclass VerticalControl
+	(is-a Action)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot vc_type
+		(type SYMBOL)
+		(allowed-values PROFILE RELIEF)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot period
+		(type INTEGER)
+		(default 1)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot alt_profile
+		(type INSTANCE)
+;+		(allowed-classes AltProfile Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ArriveIntoPolygon
+	(is-a Action)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polygon
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CircleScan
+	(is-a Action)
+	(role concrete)
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot client
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot detector
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ConfirmPosition
+	(is-a Action)
+	(role concrete)
+	(single-slot client
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass RetractObjects
+	(is-a Action)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass MovingTrace
+	(is-a Action)
+	(role concrete)
+	(single-slot step
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polygon
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Maneuvering
+	(is-a Action)
+	(role abstract))
+
+(defclass Comb
+	(is-a Maneuvering)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot algo
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot range
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polygon
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Wait
+	(is-a Action)
+	(role abstract))
+
+(defclass WaitEvent
+	(is-a Wait)
+	(role concrete)
+	(single-slot event
+		(type INSTANCE)
+;+		(allowed-classes Event Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WaitModelClock
+	(is-a Wait)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WaitObAttributes
+	(is-a Wait)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(multislot relations
+		(type SYMBOL)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D)
+		(default %3D)
+		(create-accessor read-write))
+	(multislot attributes
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+		(create-accessor read-write))
+	(single-slot connective
+		(type SYMBOL)
+		(allowed-values AND OR)
+		(default AND)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Resource
+	(is-a Action)
+	(role abstract)
+	(single-slot resource
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass UseResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass LoadResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot rename
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot mapob
+		(type INSTANCE)
+;+		(allowed-classes MapOb)
+		(create-accessor read-write))
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot seed
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DeleteResource
+	(is-a Resource)
+	(role concrete))
+
+(defclass AddResource
+	(is-a Resource)
+	(role concrete)
+	(single-slot thing
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass Exception
+	(is-a Activity)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Decision
+	(is-a Activity)
+	(role abstract)
+	(multislot variants
+		(type INSTANCE)
+;+		(allowed-classes Decision Task Action)
+		(create-accessor read-write)))
+
+(defclass Hard
+	(is-a Decision)
+	(role concrete)
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass UserDecision
+	(is-a Decision)
+	(role concrete))
+
+(defclass IfActivityStatus
+	(is-a Decision)
+	(role concrete)
+	(multislot statuses
+		(type STRING)
+		(create-accessor read-write))
+	(multislot activities
+		(type INSTANCE)
+;+		(allowed-classes Activity)
+		(create-accessor read-write)))
+
+(defclass TDecision
+	(is-a Decision)
+	(role concrete)
+	(single-slot script
+		(type INSTANCE)
+;+		(allowed-classes Variable Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass EventDecision
+	(is-a Decision)
+	(role concrete)
+	(multislot events
+		(type INSTANCE)
+;+		(allowed-classes Event)
+		(create-accessor read-write)))
+
+(defclass GeneralDecision
+	(is-a Decision)
+	(role concrete)
+	(multislot input_data
+		(type INSTANCE)
+;+		(allowed-classes InputData)
+		(create-accessor read-write))
+	(multislot conditions
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass ODecision
+	(is-a Decision)
+	(role concrete)
+	(multislot choices
+		(type INSTANCE)
+;+		(allowed-classes Choice)
+		(create-accessor read-write))
+	(single-slot before
+		(type INSTANCE)
+;+		(allowed-classes Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot input_data
+		(type INSTANCE)
+;+		(allowed-classes InputData)
+		(create-accessor read-write)))
+
+(defclass CatchException
+	(is-a Decision)
+	(role concrete)
+	(multislot statuses
+		(type STRING)
+		(create-accessor read-write))
+	(multislot objects
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass SignalControl
+	(is-a Decision)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot statuses
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Variable
+	(is-a ScenarioOntology)
+	(role concrete))
+
+(defclass Artefact
+	(is-a ScenarioOntology)
+	(role abstract))
+
+(defclass Target
+	(is-a Artefact)
+	(role concrete)
+	(single-slot lon
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lat
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Observer
+	(is-a Artefact)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Signal
+	(is-a Artefact)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot signal
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass AltProfile
+	(is-a Artefact)
+	(role concrete)
+	(multislot alt
+		(type INTEGER)
+		(create-accessor read-write))
+	(multislot second
+		(type INTEGER)
+		(create-accessor read-write)))
+
+(defclass Script
+	(is-a Artefact)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TableFunction
+	(is-a Artefact)
+	(role concrete)
+	(multislot x
+		(type FLOAT)
+		(create-accessor read-write))
+	(multislot y
+		(type FLOAT)
+		(create-accessor read-write)))
+
+(defclass NetCom
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot host
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot user
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot project
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot password
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Attribute
+	(is-a ScenarioOntology)
+	(role concrete))
+
+(defclass Entry
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Report
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot date
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot entries
+		(type INSTANCE)
+;+		(allowed-classes Entry Variable)
+		(create-accessor read-write)))
+
+(defclass Selector
+	(is-a ScenarioOntology)
+	(role concrete)
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot action
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Context
+	(is-a ScenarioOntology)
+	(role concrete)
+	(multislot pairs
+		(type INSTANCE)
+;+		(allowed-classes Pair)
+		(create-accessor read-write)))
+
+(defclass Pair
+	(is-a ScenarioOntology)
+	(role abstract)
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CollectionPair
+	(is-a Pair)
+	(role concrete)
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write)))
+
+(defclass ObjectPair
+	(is-a Pair)
+	(role concrete)
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass StringCollectionPair
+	(is-a Pair)
+	(role concrete)
+	(multislot string-collection
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass ValuePair
+	(is-a Pair)
+	(role concrete)
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass InputData
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot attribute
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_property
+		(type SYMBOL)
+		(allowed-values MOVING STOPPED COURSE SPEED NEAR-POINT COORDINATES NAME VISIBLE ALTITUDE)
+		(default NAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_relation
+		(type SYMBOL)
+		(allowed-values NEAR AHEAD ABAFT ON-BEAM DISTANCE BEARING COURSE-ANGLE INSIDE FAR SAME OUTSIDE)
+		(default SAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Result
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot attribute
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_property
+		(type SYMBOL)
+		(allowed-values MOVING STOPPED COURSE SPEED NEAR-POINT COORDINATES NAME VISIBLE ALTITUDE)
+		(default NAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot variable
+		(type INSTANCE)
+;+		(allowed-classes Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Computation
+	(is-a ScenarioOntology)
+	(role abstract))
+
+(defclass Event
+	(is-a ScenarioOntology)
+	(role abstract)
+	(single-slot parent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Property1
+	(is-a Event)
+	(role concrete))
+
+(defclass ObProperty
+	(is-a Property1)
+	(role concrete)
+	(single-slot ob_property
+		(type SYMBOL)
+		(allowed-values MOVING STOPPED COURSE SPEED NEAR-POINT COORDINATES NAME VISIBLE ALTITUDE)
+		(default NAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot radius
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+		(default "0 0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
+		(type STRING)
+		(default "0 0")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ObAttribute
+	(is-a Property1)
+	(role concrete)
+	(single-slot attribute
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot relation
+		(type SYMBOL)
+		(allowed-values %3D %3E %3C %3E%3D %3C%3D %21%3D starts-with ends-with empty resource-exhausted in-some-resource in-all-resource)
+		(default %3D)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ActivityStatus
+	(is-a Property1)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot activity
+		(type INSTANCE)
+;+		(allowed-classes Activity Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Relation
+	(is-a Event)
+	(role concrete))
+
+(defclass TwoObRelation
+	(is-a Relation)
+	(role concrete)
+	(single-slot radius
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observer
+		(type INSTANCE)
+;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ob_relation
+		(type SYMBOL)
+		(allowed-values NEAR AHEAD ABAFT ON-BEAM DISTANCE BEARING COURSE-ANGLE INSIDE FAR SAME OUTSIDE)
+		(default SAME)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SlotValue
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Choice
+	(is-a ScenarioOntology)
+	(role concrete)
+	(single-slot after
+		(type INSTANCE)
+;+		(allowed-classes Script)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot results
+		(type INSTANCE)
+;+		(allowed-classes Result)
+		(create-accessor read-write))
+	(single-slot condition
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass SimulationOntology
+	(is-a USER)
+	(role abstract))
+
+(defclass Directive
+	(is-a SimulationOntology)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MapObEvent
+	(is-a SimulationOntology)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lon
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot course
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot speed
+		(type FLOAT)
+		(default 0.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lat
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot route
+		(type INSTANCE)
+;+		(allowed-classes Route OMTPoly Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot altitude
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CSVImport
+	(is-a USER)
+	(role concrete)
+	(single-slot but-csv-read
+		(type STRING)
+		(default "Read CSV Files/csv.imp/read-files")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-create
+		(type STRING)
+		(default "Create Instances/csv.imp/crea-inst")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Way+Onto
+	(is-a USER)
+	(role abstract))
+
+(defclass Fairway
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot entry_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot axis
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Road
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Route
+	(is-a Way+Onto)
+	(role concrete)
+	(multislot points
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Way
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Dirway
+	(is-a Way+Onto)
+	(role concrete)
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

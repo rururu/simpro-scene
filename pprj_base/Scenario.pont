@@ -209,11 +209,6 @@
 ;+		(allowed-classes %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot units
-		(type SYMBOL)
-		(allowed-values DEG DEG_MIN)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot to1
 		(type STRING)
 ;+		(cardinality 0 1)

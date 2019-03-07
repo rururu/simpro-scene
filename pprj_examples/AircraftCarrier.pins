@@ -1,0 +1,192 @@
+; Wed Mar 06 13:44:08 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([AircraftCarrier_Class0] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(SailExpert)"))
+
+([AircraftCarrier_Class10000] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(description "{:gltf-url \"models/air_carrier/scene.gltf\"}")
+	(label "ac1")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/lnrR.gif")
+	(verticalSpeed 0.0))
+
+([AircraftCarrier_Class10001] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(description "{:gltf-url \"models/idf-_plain/scene.gltf\"}")
+	(label "i1")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/plnr.gif")
+	(verticalSpeed 0.0))
+
+([AircraftCarrier_Class10002] of  Scenario
+
+	(final_tasks [AircraftCarrier_Class10003])
+	(finish_type AND)
+	(initial_tasks [AircraftCarrier_Class10003])
+	(scenario_scheme [AircraftCarrier_Class10003])
+	(title "Ready To Takeoff"))
+
+([AircraftCarrier_Class10003] of  Task
+
+	(finish_type AND)
+	(task_scheme
+		[AircraftCarrier_Class10004]
+		[AircraftCarrier_Class10006]
+		[AircraftCarrier_Class10008])
+	(title "Get Ready"))
+
+([AircraftCarrier_Class10004] of  PutOnMap
+
+	(latitude "?latitude")
+	(longitude "?longitude")
+	(next_actions [AircraftCarrier_Class10006])
+	(object [AircraftCarrier_Class10005])
+	(title "Carrier On Map"))
+
+([AircraftCarrier_Class10005] of  Variable
+
+	(title "?carrier"))
+
+([AircraftCarrier_Class10006] of  PutOnPlace
+
+	(next_actions [AircraftCarrier_Class10008])
+	(object [AircraftCarrier_Class10007])
+	(observer [AircraftCarrier_Class10005])
+	(title "Plane On Carrier"))
+
+([AircraftCarrier_Class10007] of  Variable
+
+	(title "?plane"))
+
+([AircraftCarrier_Class10008] of  PutObProperties
+
+	(new_altitude "10")
+	(object [AircraftCarrier_Class10007])
+	(title "Plane On Deck"))
+
+([AircraftCarrier_Class2] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "Geiranger Map")
+	(Latitude "62.444")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "6.0")
+	(Scale "130000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([AircraftCarrier_Class20001] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[RuleEngine_Class30000]
+		[ScenarioN_Class550020]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[Cezium_Class40000]
+		[Cezium_Class30043]
+		[Cezium_Class30026])
+	(title "AC Programs"))
+
+([AircraftCarrier_Class20002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [AircraftCarrier_Class20001])
+	(%3ACREATION-TIMESTAMP "2019.03.06 13:20:10.305 MSK")
+	(%3ACREATOR "ru"))
+
+([AircraftCarrier_Class20003] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(rule-sets
+		[ScenarioN_Class550030]
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class17]
+		[Scenario_Class340000])
+	(steps 1)
+	(title "AC Run"))
+
+([AircraftCarrier_Class20004] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [AircraftCarrier_Class20003])
+	(%3ACREATION-TIMESTAMP "2019.03.06 13:21:00.629 MSK")
+	(%3ACREATOR "ru"))
+
+([AircraftCarrier_Class20005] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(description "{:gltf-url \"models/helicopter/scene.gltf\"}")
+	(label "h1")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/helr.gif")
+	(verticalSpeed 0.0))
+
+([AircraftCarrier_Class3] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [AircraftCarrier_Class2])
+	(%3ACREATION-TIMESTAMP "2019.03.02 13:25:10.138 MSK")
+	(%3ACREATOR "ru"))

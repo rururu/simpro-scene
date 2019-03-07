@@ -1,4 +1,4 @@
-; Sat Feb 02 13:31:01 MSK 2019
+; Sat Mar 02 13:33:50 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -183,6 +183,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot fillColor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot units
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -763,7 +767,11 @@
 
 (defclass MouseMode
 	(is-a Component)
-	(role concrete))
+	(role concrete)
+	(single-slot units
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass SimpleComponent
 	(is-a Component)

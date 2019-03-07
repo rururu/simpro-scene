@@ -1,0 +1,2888 @@
+; Wed Mar 06 21:21:07 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([ActivityStatus] of  EventClass
+
+	(functions [Scenario_Class520001]))
+
+([AddResource] of  ActionClass
+
+	(rules [Scenario_Class520002]))
+
+([Arrive] of  ActionClass
+
+	(functions
+		[Scenario_Class530000]
+		[Scenario_Class610000])
+	(rules
+		[Scenario_Class120017]
+		[Scenario_Class120018]))
+
+([ArriveIntoPolygon] of  ActionClass
+
+	(rules [ScenarioN_Class280001]))
+
+([AssertObjects] of  ActionClass
+
+	(functions [Scenario_Class380000])
+	(rules [ScenarioN_Class130001]))
+
+([AttributeMessage] of  ActionClass
+
+	(functions
+		[Scenario_Class430002]
+		[Scenario_Class430004])
+	(rules [Scenario_Class430001]))
+
+([AttributesToVariables] of  ActionClass
+
+	(functions [Scenario_Class510000])
+	(rules [ScenarioN_Class160001]))
+
+([Break] of  ActionClass
+
+	(functions
+		[ScenarioN_Class750000]
+		[ScenarioN_Class750001]
+		[ScenarioN_Class750002])
+	(rules
+		[Scenario_Class310000]
+		[Scenario_Class310004]
+		[Scenario_Class330000]
+		[Scenario_Class310005]))
+
+([CalcMessage] of  ActionClass
+)
+
+([Calculus] of  ActionClass
+
+	(functions
+		[Scenario_Class230005]
+		[Scenario_Class230004]
+		[ScenarioN_Class340025]
+		[Scenario_Class230005]
+		[Scenario_Class230006]
+		[Scenario_Class230008]
+		[Scenario_Class470000])
+	(rules [Scenario_Class220001]))
+
+([Camera] of  ActionClass
+
+	(rules [Scenario_Class610001]))
+
+([CatchException] of  DecisionClass
+
+	(rules
+		[ScenarioN_Class470001]
+		[ScenarioN_Class470002]))
+
+([CircleScan] of  ActionClass
+
+	(functions [ScenarioN_Class460006])
+	(rules [ScenarioN_Class460005]))
+
+([Comb] of  ActionClass
+
+	(rules
+		[ScenarioN_Class660000]
+		[ScenarioN_Class680007]
+		[ScenarioN_Class700000]))
+
+([Compute] of  ActionClass
+
+	(functions
+		[Scenario_Class490003]
+		[Scenario_Class450000])
+	(rules
+		[Scenario_Class490002]
+		[Scenario_Class490005]))
+
+([ConfirmPosition] of  ActionClass
+
+	(rules [ScenarioN_Class460000]))
+
+([CreateByModel] of  ActionClass
+
+	(functions [Scenario_Class540002])
+	(rules [Scenario_Class540001]))
+
+([Delay] of  ActionClass
+
+	(functions [Scenario_Class80001])
+	(rules
+		[Scenario_Class90005]
+		[Scenario_Class70000]))
+
+([DeleteResource] of  ActionClass
+
+	(rules [Scenario_Class90000]))
+
+([Event] of  EventClass
+)
+
+([EventDecision] of  DecisionClass
+
+	(functions
+		[Scenario_Class230001]
+		[Scenario_Class230002]
+		[Scenario_Class250003]
+		[Scenario_Class220002])
+	(rules [Scenario_Class230000]))
+
+([FlightView] of  ActionClass
+
+	(rules
+		[Scenario_Class590013]
+		[Scenario_Class590014]
+		[Scenario_Class590015]
+		[Scenario_Class590016]))
+
+([Follow] of  ActionClass
+)
+
+([GeneralDecision] of  DecisionClass
+
+	(functions
+		[Scenario_Class260010]
+		[Scenario_Class260011]
+		[Scenario_Class230004]
+		[Scenario_Class450000]
+		[Scenario_Class230006]
+		[Scenario_Class230007])
+	(rules [Scenario_Class260009]))
+
+([GiveAdvice] of  ActionClass
+)
+
+([GoLayerRoute] of  ActionClass
+
+	(functions
+		[Scenario_Class440001]
+		[Scenario_Class170002]
+		[Scenario_Class620001])
+	(rules
+		[Scenario_Class430000]
+		[Scenario_Class440003]))
+
+([GoRoad] of  ActionClass
+
+	(rules
+		[Scenario_Class520000]
+		[Scenario_Class550001]))
+
+([GoRoute] of  ActionClass
+
+	(functions
+		[Scenario_Class620001]
+		[Scenario_Class630000])
+	(rules
+		[Scenario_Class160000]
+		[Scenario_Class160001]))
+
+([Hard] of  DecisionClass
+
+	(rules [ScenarioN_Class640000]))
+
+([IfActivityStatus] of  DecisionClass
+
+	(functions [ScenarioN_Class210001])
+	(rules [ScenarioN_Class210000]))
+
+([LinkOnOff] of  ActionClass
+
+	(rules [Scenario_Class250000]))
+
+([LoadResource] of  ActionClass
+
+	(rules [ScenarioN_Class170002]))
+
+([Maneuvering] of  ActionClass
+)
+
+([Mission] of  ActionClass
+
+	(functions
+		[Scenario_Class30000]
+		[Scenario_Class190000]
+		[RuleEngine_Class90000]
+		[RuleEngine_Class270000])
+	(rules
+		[ScenarioN_Class70001]
+		[ScenarioN_Class70002]
+		[ScenarioN_Class80003]))
+
+([MovingObjectMessage] of  ActionClass
+
+	(functions [ScenarioN_Class260003])
+	(rules
+		[ScenarioN_Class220001]
+		[ScenarioN_Class260002]))
+
+([MovingTrace] of  ActionClass
+
+	(rules
+		[ScenarioN_Class580002]
+		[ScenarioN_Class580001]))
+
+([ObAttribute] of  EventClass
+
+	(functions [Scenario_Class230002]))
+
+([ObjectMessage] of  ActionClass
+
+	(functions [Scenario_Class290001])
+	(rules
+		[Scenario_Class290000]
+		[Scenario_Class290002]))
+
+([ObProperty] of  EventClass
+
+	(functions [Scenario_Class250003]))
+
+([ODecision] of  DecisionClass
+
+	(functions
+		[ScenarioN_Class180001]
+		[Scenario_Class230004]
+		[ScenarioN_Class350009]
+		[Scenario_Class260011]
+		[Scenario_Class230006]
+		[Scenario_Class230007]
+		[Scenario_Class470000]
+		[Scenario_Class450000])
+	(rules [ScenarioN_Class180000]))
+
+([PolyMoving] of  ActionClass
+
+	(functions
+		[ScenarioN_Class520007]
+		[ScenarioN_Class520008])
+	(rules
+		[ScenarioN_Class520010]
+		[ScenarioN_Class530011]))
+
+([PolyMovingN] of  ActionClass
+
+	(functions
+		[ScenarioN_Class530014]
+		[ScenarioN_Class530015])
+	(rules
+		[ScenarioN_Class530012]
+		[ScenarioN_Class530013]))
+
+([Position] of  ActionClass
+
+	(functions
+		[Scenario_Class280001]
+		[Scenario_Class280004]
+		[Scenario_Class280000]
+		[ScenarioN_Class210004]
+		[Scenario_Class610000])
+	(rules
+		[Scenario_Class270000]
+		[Scenario_Class280002]
+		[ScenarioN_Class230006]))
+
+([PutObAttributes] of  ActionClass
+
+	(functions
+		[Scenario_Class390001]
+		[Scenario_Class390003])
+	(rules
+		[Scenario_Class390000]
+		[Scenario_Class390002]))
+
+([PutObProperties] of  ActionClass
+
+	(functions [Scenario_Class530002])
+	(rules
+		[Scenario_Class500000]
+		[Scenario_Class530001]))
+
+([PutOffMap] of  ActionClass
+
+	(rules [Scenario_Class150001]))
+
+([PutOnMap] of  ActionClass
+
+	(rules [Scenario_Class120000]))
+
+([PutOnPlace] of  ActionClass
+
+	(rules [Scenario_Class270000pop]))
+
+([ReceiveSignal] of  ActionClass
+)
+
+([RepeatActionOnOff] of  ActionClass
+
+	(functions [Scenario_Class270001])
+	(rules [Scenario_Class260000]))
+
+([RetractObjects] of  ActionClass
+
+	(rules [ScenarioN_Class520001]))
+
+([Scenario_Class0] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[RuleEngine_Class30000]
+		[CeziumEngine_Class110013]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[Cezium_Class40000]
+		[Cezium_Class30043]
+		[Cezium_Class30026]
+		[Cezium_Class300000])
+	(title "Scenario Programs"))
+
+([Scenario_Class10000] of  CloFunction
+
+	(source "(let [bmp (ru.igis.omtab.OpenMapTab/getBasicMapPanel)\n       layh (.getMapComponentByType bmp com.bbn.openmap.LayerHandler)\n       ll (.getMapLayers layh)\n       exil (filter #(= (.getName %) name) ll)]\n   (if (seq exil)\n       (.turnLayerOn layh false (first exil)))\n   (.setName layer name)\n   (.addLayer layh layer position))")
+	(title "add-map-layer [name layer position]"))
+
+([Scenario_Class100000] of  Rule
+
+	(lhs "?a (Action status \"DONE\"\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n?t (Task status \"DOING\"\n	id ?pid\n	finish_type OR\n	title ?tit\n	final_actions ?facts \n	((s/include? ?facts ?ain)\n	 (not (empty? ?facts))))")
+	(rhs "(println \"Task (OR type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
+	(salience 0)
+	(title "s:FirstORFinalActionDone"))
+
+([Scenario_Class100006] of  RuleSet
+
+	(rules
+		[Scenario_Class120017]
+		[Scenario_Class120018]
+		[Scenario_Class270000pop]
+		[Scenario_Class150001]
+		[Scenario_Class270000]
+		[ScenarioN_Class230006]
+		[Scenario_Class280002]
+		[Scenario_Class310004]
+		[Scenario_Class310000]
+		[Scenario_Class330000]
+		[Scenario_Class310005]
+		[Scenario_Class220001]
+		[Scenario_Class490002]
+		[Scenario_Class490005]
+		[Scenario_Class90005]
+		[Scenario_Class70000]
+		[Scenario_Class490000]
+		[Scenario_Class460000]
+		[Scenario_Class290000]
+		[Scenario_Class290002]
+		[Scenario_Class160000]
+		[Scenario_Class160001]
+		[Scenario_Class250000]
+		[Scenario_Class390000]
+		[Scenario_Class390002]
+		[Scenario_Class120000]
+		[Scenario_Class260000]
+		[Scenario_Class350003]
+		[Scenario_Class370000]
+		[Scenario_Class370007]
+		[Scenario_Class350004]
+		[Scenario_Class130005]
+		[Scenario_Class110000]
+		[Scenario_Class130007]
+		[Scenario_Class350000]
+		[Scenario_Class350001]
+		[Scenario_Class260006]
+		[Scenario_Class260005]
+		[Scenario_Class550002]
+		[Scenario_Class210000]
+		[Scenario_Class200000]
+		[Scenario_Class140000]
+		[Scenario_Class430001]
+		[Scenario_Class500000]
+		[Scenario_Class530001]
+		[Scenario_Class540001]
+		[ScenarioN_Class130001]
+		[ScenarioN_Class80003]
+		[ScenarioN_Class70002]
+		[ScenarioN_Class70001]
+		[ScenarioN_Class80008]
+		[ScenarioN_Class80009]
+		[ScenarioN_Class60000]
+		[ScenarioN_Class160001]
+		[ScenarioN_Class170002]
+		[ScenarioN_Class170001]
+		[ScenarioN_Class170000]
+		[ScenarioN_Class190001]
+		[ScenarioN_Class280002]
+		[ScenarioN_Class220001]
+		[ScenarioN_Class260002]
+		[ScenarioN_Class300006]
+		[ScenarioN_Class300004]
+		[ScenarioN_Class300005]
+		[ScenarioN_Class280001]
+		[ScenarioN_Class310002]
+		[ScenarioN_Class250001]
+		[ScenarioN_Class460005]
+		[ScenarioN_Class460000]
+		[ScenarioN_Class520001]
+		[ScenarioN_Class530013]
+		[ScenarioN_Class530012]
+		[ScenarioN_Class520010]
+		[ScenarioN_Class530011]
+		[ScenarioN_Class580002]
+		[ScenarioN_Class580001]
+		[ScenarioN_Class660000]
+		[ScenarioN_Class680007]
+		[ScenarioN_Class700000]
+		[Scenario_Class90000]
+		[Scenario_Class440003]
+		[Scenario_Class430000]
+		[Scenario_Class520002]
+		[Scenario_Class550001]
+		[Scenario_Class520000]
+		[Scenario_Class420000]
+		[Scenario_Class590000]
+		[Scenario_Class590014]
+		[Scenario_Class590013]
+		[Scenario_Class590016]
+		[Scenario_Class590015]
+		[Scenario_Class610001]
+		[Scenario_Class620000])
+	(templates
+		[Action]
+		[Arrive]
+		[PutOnPlace]
+		[PutOffMap]
+		[Position]
+		[Break]
+		[Calculus]
+		[Compute]
+		[Delay]
+		[Show]
+		[ObjectMessage]
+		[GoRoute]
+		[LinkOnOff]
+		[PutObAttributes]
+		[PutOnMap]
+		[RepeatActionOnOff]
+		[Search]
+		[Subscenario]
+		[TowOnOff]
+		[WaitEvent]
+		[TimeMessage]
+		[AttributeMessage]
+		[PutObProperties]
+		[CreateByModel]
+		[AssertObjects]
+		[Mission]
+		[WaitObAttributes]
+		[AttributesToVariables]
+		[LoadResource]
+		[SetModelClock]
+		[WaitModelClock]
+		[StartScenarios]
+		[MovingObjectMessage]
+		[VerticalControl]
+		[ArriveIntoPolygon]
+		[SetTimeScale]
+		[UseResource]
+		[CircleScan]
+		[ConfirmPosition]
+		[RetractObjects]
+		[PolyMoving]
+		[PolyMovingN]
+		[MovingTrace]
+		[Comb]
+		[Scenario]
+		[Task]
+		[DeleteResource]
+		[GoLayerRoute]
+		[AddResource]
+		[GoRoad]
+		[SetCenter]
+		[SetScale]
+		[FlightView]
+		[Camera]
+		[SendSignal])
+	(title "ActionExecutor"))
+
+([Scenario_Class110000] of  Rule
+
+	(lhs "?ss (Subscenario status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?id)")
+	(rhs "(retract ?ss)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 5)
+	(title "a:SubscenarioRepeat"))
+
+([Scenario_Class110001] of  Rule
+
+	(lhs "?a (Action status \"DONE\"\n	parent ?pid\n	instance ?ain \n	next_actions ?nacts)\n?t (Task status \"DOING\"\n	id ?pid\n	finish_type AND\n	title ?tit\n	final_actions ?facts \n	((s/include? ?facts ?ain)\n	 (= (count ?facts) 1)))")
+	(rhs "(println \"Task (AND type) DONE:\" ?tit)\n(modify ?t status \"DONE\")\n(retract ?a)")
+	(salience 0)
+	(title "s:LastANDFinalActionDone"))
+
+([Scenario_Class110002] of  Rule
+
+	(lhs "?a (Action status \"DONE\" \n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n?t (Task status \"DOING\"\n	id ?pid\n	finish_type AND\n	final_actions ?facts \n	((s/include? ?facts ?ain)\n	 (> (count ?facts) 1)))")
+	(rhs "(modify ?t final_actions (s/exclude ?facts ?ain))\n(retract ?a)")
+	(salience 0)
+	(title "s:InterimFinalActionDone"))
+
+([Scenario_Class120000] of  Rule
+
+	(lhs "?pom (PutOnMap status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	mapob ?mos \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(let [obj (a/vv ?obj ?run)]\n  (if (not (a/null? obj))\n    (if-let [mo (ru.igis.omtab.OMT/getOrAdd obj)]\n      (let [lat (a/vv ?lat ?run)\n            lon (a/vv ?lon ?run)]\n        (if (not (or (a/null? lat) (a/null? lon)))\n          (.setLocation mo lat lon))) )))\n(doseq [mo ?mos]\n  (ru.igis.omtab.OMT/getOrAdd mo))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PutOnMap"))
+
+([Scenario_Class120002] of  CloFunction
+
+	(source "(if (some? ES-TIMER)\n  (let [col  (edu.stanford.smi.protege.util.CollectionUtilities/createCollection (cls \"Scenario\"))\n         ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstances nil *kb* col)]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
+	(title "run-some-scenario []"))
+
+([Scenario_Class120012] of  CloFunction
+
+	(source "(or \n  (nil? x)\n  (= x :?)\n  (and (string? x) (empty? x)))")
+	(title "null? [x]"))
+
+([Scenario_Class120017] of  Rule
+
+	(lhs "?arr (Arrive status \"START\" \n	title ?tit \n	object ?obj \n	latitude ?lat \n	longitude ?lon \n	observer ?obs\n	speed ?spd1\n	spd ?spd2\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Arrive\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let [[lt ln] (if-let [obs (a/mapob-vv ?obs ?run)]\n	[(.getLatitude obs)\n	 (.getLongitude obs)]\n	[(a/degmin-to-deg ?lat ?run)\n	 (a/degmin-to-deg ?lon ?run)])\n         spd (or (a/vv ?spd2 ?run) ?spd1)]\n    (if (or (nil? lt) (nil? ln) (a/null? spd))\n      (modify ?arr status \"FAILED\")\n      (do (a/go-route mo lt ln)\n        (.setSpeed mo (double spd))\n        (modify ?arr status \"WAIT\"\n	object mo))))\n  (modify ?arr status \"FAILED\"))")
+	(salience 0)
+	(title "a:ArriveStart"))
+
+([Scenario_Class120018] of  Rule
+
+	(lhs "?arr (Arrive status \"WAIT\" \n	object ?mo\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n 	run ?run)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
+	(rhs "(retract ?moe ?arr)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:ArriveWait"))
+
+([Scenario_Class120023] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  ru.rules)\n(:require \n  [rete.core :as re])\n(:import \n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.NavOb\n  ru.igis.omtab.Util\n  edu.stanford.smi.protege.model.Instance\n  java.util.HashMap\n  clojuretab.ClojureTab\n  com.bbn.openmap.geo.Intersection\n  com.bbn.openmap.geo.Geo\n  com.bbn.openmap.proj.ProjMath\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(title "a"))
+
+([Scenario_Class120024] of  CloProgram
+
+	(cloFunctions
+		[Scenario_Class120012]
+		[Scenario_Class420001]
+		[Scenario_Class170000]
+		[Scenario_Class80001]
+		[Scenario_Class140002]
+		[Scenario_Class510000]
+		[ScenarioN_Class8]
+		[Scenario_Class530000]
+		[Scenario_Class150000]
+		[Scenario_Class160003]
+		[Scenario_Class130001]
+		[Scenario_Class220000]
+		[Scenario_Class270001]
+		[Scenario_Class280000]
+		[ScenarioN_Class40001]
+		[ScenarioN_Class210004]
+		[Scenario_Class280001]
+		[Scenario_Class280004]
+		[Scenario_Class290001]
+		[Scenario_Class320000]
+		[Scenario_Class350002]
+		[Scenario_Class390003]
+		[Scenario_Class390001]
+		[Scenario_Class460002]
+		[Scenario_Class430004]
+		[Scenario_Class430002]
+		[Scenario_Class530002]
+		[Scenario_Class540002]
+		[ScenarioN_Class80002]
+		[ScenarioN_Class110034]
+		[ScenarioN_Class220002]
+		[ScenarioN_Class220006]
+		[ScenarioN_Class80010]
+		[ScenarioN_Class240002]
+		[ScenarioN_Class260003]
+		[ScenarioN_Class400000]
+		[ScenarioN_Class460006]
+		[ScenarioN_Class750000]
+		[ScenarioN_Class750001]
+		[ScenarioN_Class750002]
+		[ScenarioN_Class670000]
+		[Scenario_Class450000]
+		[Scenario_Class490003]
+		[Scenario_Class30000]
+		[Scenario_Class380000]
+		[Scenario_Class440001]
+		[Scenario_Class440000]
+		[Scenario_Class600001]
+		[Scenario_Class600000]
+		[Scenario_Class610000]
+		[Scenario_Class630000]
+		[Scenario_Class620001]
+		[Scenario_Class170002])
+	(cloNamespace [Scenario_Class120023])
+	(cloVars [Scenario_Class480000])
+	(title "Action Functions"))
+
+([Scenario_Class130000] of  Rule
+
+	(lhs "(Scenario status \"DONE\"\n	run ?run)")
+	(rhs "(s/clear-scenario-activities ?run)")
+	(salience 0)
+	(title "s:ClearScenarioActivities"))
+
+([Scenario_Class130001] of  CloFunction
+
+	(source "(let [mo (OMT/getOrAdd pla)\n       atts (.getAttributes mo)\n       asi (sv pla \"attributeSet\")\n       hm1 (or atts (if (nil? asi) (HashMap.))) ;; (AttributeSet/instanceToMap asi)))\n       hm2 ctx] ;; (AttributeSet/instanceToMap ctx)]\n  (doseq [k (.keySet hm2)]\n    (if-let [v (.get hm2 k)]\n      (if (not (= k \"CLASS\"))\n        (.put hm1 k v)) ))\n  (doseq [k (.keySet hm1)]\n    (.put hm1 k (vv (.get hm1 k) p)))\n  (.setAttributes mo hm1))")
+	(title "update-attribute-set [pla ctx p]"))
+
+([Scenario_Class130005] of  Rule
+
+	(lhs "?ss (Subscenario status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	wait_subscenario ?wai\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Subscenario\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)]\n  (if (not (a/null? sub))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Sus\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ss status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ss status \"FAILED\")))")
+	(salience 0)
+	(title "a:SubscenarioStart"))
+
+([Scenario_Class130007] of  Rule
+
+	(lhs "?ss (Subscenario status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?ss)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:SubscenarioDone"))
+
+([Scenario_Class140000] of  Rule
+
+	(lhs "?tm (TimeMessage status \"START\"\n	title ?tit\n	clients ?cls\n	category ?cat\n	text ?txt\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"TimeMessage\")\n(a/time-message ?txt ?cat ?cls ?run)\n(retract ?tm)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:TimeMessage"))
+
+([Scenario_Class140002] of  CloFunction
+
+	(source "(if (instance? Instance v)\n  (or (.get run (sv v \"title\")) v)\n  (or (.get run v) v))")
+	(title "vv [v run]"))
+
+([Scenario_Class150000] of  CloFunction
+
+	(source "(str \"D-\" (Clock/getDay) \" \" \n	(format \"%02d\" (Clock/getHour)) \":\"\n	(format \"%02d\" (Clock/getMinute)) \":\"\n	(format \"%02d\" (Clock/getSecond)))")
+	(title "op-time []"))
+
+([Scenario_Class150001] of  Rule
+
+	(lhs "?pom (PutOffMap status \"START\"\n	title ?tit\n	mapob ?mos\n	object ?obj\n	delete ?del\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"PutOffMap\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (ru.igis.omtab.OMT/removeMapOb mo (protege.core/is? ?del)))\n(if (seq ?mos)\n  (ru.igis.omtab.OMT/clearMapObs ?mos (protege.core/is? ?del)))\n(retract ?pom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PutOffMap"))
+
+([Scenario_Class160000] of  Rule
+
+	(lhs "?gor (GoRoute status \"START\"\n	title ?tit\n	object ?obj\n	route ?rou\n	spd ?spd\n	backward ?bwd\n	run ?run\n	parent ?par)")
+	(rhs "(println \"Action started:\" ?tit \"GoRoute\")\n(let [rou (a/vv ?rou ?run)\n       mo (a/mapob-vv ?obj ?run)\n       sps (a/vv ?spd ?run)]\n  (or (and (a/worth? rou) mo (a/worth? sps) \n               (if-let [rte (a/to-route rou ?bwd)]\n	(let [speed (a/nors sps)]\n	  (.goRoute mo rte)\n	  (.setSpeed mo (double speed))\n	  (modify ?gor status \"WAIT\" object mo)\n	  true)))\n    (modify ?gor status \"FAILED\")))")
+	(salience 0)
+	(title "a:GoRouteStart"))
+
+([Scenario_Class160001] of  Rule
+
+	(lhs "?gor (GoRoute status \"WAIT\"\n	object ?mo\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
+	(rhs "(retract ?moe ?gor)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:GoRouteWait"))
+
+([Scenario_Class160003] of  CloFunction
+
+	(source "(let [txt (vv ?txt r)\n       tim (op-time)]\n    (if (empty? cls)\n      (es-mess (str tim \" \" txt) {} cat)\n      (doseq [cli cls]\n        (es-mess (str tim \" \" txt) {} cat (sv cli \"id\")))))")
+	(title "time-message [?txt cat cls r]"))
+
+([Scenario_Class17] of  RuleSet
+
+	(rules
+		[Scenario_Class50001]
+		[Scenario_Class50000]
+		[Scenario_Class100000]
+		[Scenario_Class110002]
+		[Scenario_Class110001]
+		[Scenario_Class400000]
+		[Scenario_Class20001]
+		[Scenario_Class40000]
+		[Scenario_Class40001]
+		[Scenario_Class20000]
+		[Scenario_Class80000]
+		[Scenario_Class130000]
+		[Scenario_Class560002]
+		[Scenario_Class560000]
+		[Scenario_Class560001]
+		[Scenario_Class300000]
+		[Scenario_Class300001]
+		[Scenario_Class300002])
+	(templates
+		[Scenario]
+		[MissionScenario]
+		[Task]
+		[Join]
+		[TwoObRelation])
+	(title "ScenarioExecutor"))
+
+([Scenario_Class170000] of  CloFunction
+
+	(source "(if (string? x) (read-string x) x)")
+	(title "nors [x]"))
+
+([Scenario_Class170002] of  CloFunction
+
+	(source "(ProjMath/arrayRadToDeg (.getLatLonArrayCopy omp))")
+	(title "omp-lla [omp]"))
+
+([Scenario_Class180000] of  CloFunction
+
+	(source "(doseq [ta tas]\n  (-> (ru.rules/mk-frame ta)\n    (ru.rules/update-frame\n	:same-type\n	{'status \"START\"\n	 'parent pid\n	 'run run})\n    rete.core/assert-frame))")
+	(title "start-tasks-actions [tas pid run]"))
+
+([Scenario_Class190000] of  CloFunction
+
+	(source "([ctx]\n  (let [hm (HashMap.)]\n    (if ctx\n      (doseq [p (svs ctx \"pairs\")]\n        (let [var (sv p \"variable\")\n               tit (sv var \"title\")]\n          (condp = (.getName (.getDirectType p))\n            \"ValuePair\" (.put hm tit (sv p \"value\"))\n            \"ObjectPair\" (.put hm tit (sv p \"object\"))\n            \"CollectionPair\" (.put hm tit (svs p \"collection\"))\n            \"StringCollectionPair\" (.put hm tit (svs p \"string-collection\")) )) ))\n    hm))\n([ctx pro mp]\n  (let [hm (context-to-hm ctx)]\n    (if pro\n      (.put hm \"?protagonist\" pro))\n    (or (updated-with-mp? hm mp)\n         (.update (Context.) hm \"Update Parameters\"))\n    hm))")
+	(title "context-to-hm"))
+
+([Scenario_Class20000] of  Rule
+
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin\n	(empty? ?ntasks))\n?s (Scenario status \"DOING\"\n	id ?pid\n	finish_type AND\n	title ?tit\n	final_tasks ?ftasks\n	((s/include? ?ftasks ?tin)\n	 (= (count ?ftasks) 1)))")
+	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
+	(salience 0)
+	(title "s:LastANDFinalTaskDone"))
+
+([Scenario_Class200000] of  Rule
+
+	(lhs "?we (WaitEvent status \"START\"\n	title ?tit\n	event ?evt\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"WaitEvent\")\n(if-let [evt (a/vv ?evt ?run)]\n  (let [wid (gensym \"Wte\")]\n    (-> (ru.rules/mk-frame evt)\n      (ru.rules/update-frame\n	:same-type\n	{'parent wid})\n        rete.core/assert-frame)\n    (modify ?we id wid\n	status \"REPEAT\"))\n  (modify ?we status \"FAILED\"))")
+	(salience 0)
+	(title "a:WaitEventStart"))
+
+([Scenario_Class20001] of  Rule
+
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	run ?run\n	next_tasks ?ntasks\n	(not (empty? ?ntasks)))")
+	(rhs "(s/start-tasks-actions ?ntasks ?pid ?run)\n(retract ?t)")
+	(salience 0)
+	(title "s:StartNextTasks"))
+
+([Scenario_Class21] of  CloFunction
+
+	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"3. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"4. Mission Button Support.\")\n(ClojureTab/invoke \"s\" \"mission-button-support\")\n(println \"EXPERT SYSTEM INITIALIZED\")")
+	(title "clojure-work []"))
+
+([Scenario_Class210000] of  Rule
+
+	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?tor (TwoObRelation title ?tit2\n	ob_relation ?obr\n	object ?obj\n	observer ?obs\n	radius ?rad\n	value ?val\n	parent ?id\n	(e/two-ob-relation ?obr ?obj ?obs ?rad ?val ?run))")
+	(rhs "(retract ?we ?tor)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitEventRepeatTOR"))
+
+([Scenario_Class220000] of  CloFunction
+
+	(source "(let [bnd (vec (interleave (keys ctx) (vals ctx)))]\n  (eval `(let ~bnd ~@body)))")
+	(title "eval-with-context [ctx body]"))
+
+([Scenario_Class220001] of  Rule
+
+	(lhs "?clc (Calculus status \"START\" \n	title ?tit \n	input_data ?ida \n	source ?src \n	results ?res\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Calculus\")\n(let [bnd0 (d/embed-ctx-vars ?run)\n       bnd1 (mapcat #(d/input-var-val % ?run) ?ida)\n       bnd2 (d/parse-let-body (d/uncomment  ?src))\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (d/var-val-map bnd3)\n       exp `(let ~bnd3 ~vvm)\n       ;;_ (println :EXP exp)\n       vvm2 (eval exp)]\n  (doseq [re ?res]\n    (d/var-val-to-result re vvm2 ?run)))\n(retract ?clc)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:Calculus"))
+
+([Scenario_Class220002] of  CloFunction
+
+	(source "(let [obj (mapob-vv ?obj r)\n       obs (mapob-vv ?obs r)\n       val (vv ?val r)]\n  (if (and obj obs)\n    (condp = obr\n      'NEAR (.near obs obj rad)\n      'FAR (>= (.distanceNM obs obj) rad)\n      'DISTANCE (< (Math/abs (- (.distanceNM obs obj) (read-string val))) rad)\n      'BEARING (< (Math/abs (- (.bearingsDeg obs obj) (read-string val))) rad)\n      'ABAFT (.abaft obs obj)\n      'AHEAD (not (or (.abaft obj obs) (on-beam obs obj)))\n      'ON-BEAM (on-beam obs obj)\n      'COURSE-ANGLE (< (Math/abs (- (course-angle obs obj) (read-string val))) rad)\n      'SAME (= obj obs)\n      'INSIDE (.contains obs obj)\n      'OUTSIDE (not (.contains obs obj))\n      false)))")
+	(title "two-ob-relation [obr ?obj ?obs rad ?val r]"))
+
+([Scenario_Class220003] of  CloProgram
+
+	(cloFunctions
+		[ScenarioN_Class730000]
+		[Scenario_Class260007]
+		[Scenario_Class270009]
+		[Scenario_Class260008]
+		[Scenario_Class220002]
+		[Scenario_Class250003]
+		[Scenario_Class230002]
+		[Scenario_Class520001])
+	(cloNamespace [Scenario_Class220004])
+	(title "Event Functions"))
+
+([Scenario_Class220004] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  a)\n(:require \n  [rete.core :as re])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
+	(title "e"))
+
+([Scenario_Class230000] of  Rule
+
+	(lhs "?ed (EventDecision status \"START\" \n	title ?tit\n	events ?evs\n	variants ?vrs\n	parent ?pid\n	run ?run)")
+	(rhs "(println \"Decision:\" ?tit \"EventDecision\")\n(s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?pid ?run)\n(retract ?ed)")
+	(salience 0)
+	(title "d:EventDecision"))
+
+([Scenario_Class230001] of  CloFunction
+
+	(source "(letfn [(if-event-variant [evt vrn r]\n	(condp =  (.getName (.getDirectType evt))\n	  \"ObAttribute\" (if (ob-attribute\n		(sv evt \"attribute\")\n		(sv evt \"object\")\n		(sv evt \"relation\")\n		(sv evt \"value\")\n		r) vrn)\n	  \"ObProperty\" (if (ob-property\n		(symbol (sv evt \"ob_property\"))\n		(sv evt \"object\")\n		(sv evt \"radius\")\n		(sv evt \"latitude\")\n		(sv evt \"longitude\")\n		(sv evt \"value\")\n		r) vrn)\n	  \"TwoObRelation\" (if (two-ob-relation \n		(symbol (sv evt \"ob_relation\"))\n		(sv evt \"object\")\n		(sv evt \"observer\")\n		(sv evt \"radius\")\n		(sv evt \"value\")\n		r) vrn)))]\n  (or \n    (seq (filter #(not (nil? %)) (map #(if-event-variant %1 %2 r) evs (butlast vrs))))\n    [(last vrs)]))")
+	(title "event-decision [evs vrs r]"))
+
+([Scenario_Class230002] of  CloFunction
+
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)\n       rel (if (string? rel) (symbol rel) rel)]\n  (if (and (some? obj) (some? atr))\n    (let [avl (try-str-num (.getAttribute obj (sv atr \"title\")))\n           vvl (try-str-num val)]\n      (condp = rel\n        '= (= avl vvl)\n        '!= (not= avl vvl)\n        '> (> avl vvl)\n        '< (< avl vvl)\n        '>= (>= avl vvl)\n        '<= (<= avl vvl)\n        'starts-with (and avl vvl(.startsWith avl (str vvl)))\n        'ends-with (and avl vvl(.endsWith avl (str vvl)))\n        'empty (empty? avl)\n        'resource-exhausted (>= (first avl) (count (rest avl)))\n        'in-some-resource (some #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        'in-all-resource (every? #(if-let[p (OMT/getMapOb %)] \n		     (.contains p (OMT/getMapOb vvl))) (rest avl))\n        false))))")
+	(title "ob-attribute [atr ?obj rel ?val r]"))
+
+([Scenario_Class230004] of  CloFunction
+
+	(source "(let [iobj (vv (sv idata \"object\") r)\n      iobs (vv (sv idata \"observer\") r)\n      varn (sv (sv idata \"variable\") \"title\")\n      atr (sv idata \"attribute\")\n      obp (sv idata \"ob_property\")\n      obr (sv idata \"ob_relation\")\n      obj (OMT/getMapOb iobj)\n      obs (OMT/getMapOb iobs)\n      var (symbol varn)]\n  (cond\n    (and (some? obj) (some? obr) (some? obs))\n      [var (ob-rel-val (symbol obr) obj obs)]\n    (and (some? obj) (some? obp))\n      [var (ob-prop-val (symbol obp) obj)]\n    (and (some? obj) (some? atr))\n      [var (to-clj-type (.getAttribute obj (sv atr \"title\")))]\n    (some? obj)\n      [var (to-clj-type (vv (sv idata \"variable\") r))]))")
+	(title "input-var-val [idata r]"))
+
+([Scenario_Class230005] of  CloFunction
+
+	(source "(let [iobj (vv (sv result \"object\") r)\n      var (sv (sv result \"variable\") \"title\")\n      atr (sv result \"attribute\")\n      obp (sv result \"ob_property\")\n      obj (OMT/getMapOb iobj)\n      val (get vvmap var)]\n  (cond\n    (nil? obj) (vvr var val r)\n    (and (some? obj) (some? atr) (some? val)) (.putAttribute obj (sv atr \"title\") val)\n    (and (some? obj) (some? obp) (some? val)) (set-ob-prop (symbol obp) obj val)))")
+	(title "var-val-to-result [result vvmap r]"))
+
+([Scenario_Class230006] of  CloFunction
+
+	(source "(condp = obp\n  'NAME (.getName obj)\n  'COURSE (.getCourse obj)\n  'SPEED (.getSpeed obj)\n  'COORDINATES [(.getLatitude obj) (.getLongitude obj)]\n  'VISIBLE (.isVisible obj)\n  (println (str \"Unimplemented: \" obp \" \" obj)))")
+	(title "ob-prop-val [obp obj]"))
+
+([Scenario_Class230007] of  CloFunction
+
+	(source "(condp = obr\n  'DISTANCE (.distanceNM obs obj)\n  'BEARING (.bearingsDeg obs obj)\n  'COURSE-ANGLE (course-angle obs obj)\n  'ABAFT (.abaft obs obj)\n  'AHEAD (not (or (.abaft obs obj) (on-beam obs obj)))\n  'ON-BEAM (on-beam obs obj)\n  (println (str \"Unimplemented: \" obr \" \" obs obj)))")
+	(title "ob-rel-val [obr obj obs]"))
+
+([Scenario_Class230008] of  CloFunction
+
+	(source "(condp = obp\n  'COURSE (.setCourse obj (int val))\n  'SPEED (.setSpeed obj (double val))\n  'COORDINATES (.setLocation (first val) (second val))\n  (println (str \"Unimplemented: \" obp \" \" obj \" \" val)))")
+	(title "set-ob-prop [obp obj val]"))
+
+([Scenario_Class240000] of  CloFunction
+
+	(source "(if (empty? nacts)\n  (rete.core/assert-frame\n    ['Action 'status \"DONE\"\n	'parent pid\n	'instance ain\n	'next_actions nacts])\n  (s/start-tasks-actions nacts pid run))")
+	(title "start-next [nacts pid ain run]"))
+
+([Scenario_Class250000] of  Rule
+
+	(lhs "?loo (LinkOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	lineColor ?col\n	line ?lin\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println (str \"Action started: \" ?tit \" LinkOnOff\"))\n(let [obj (a/mapob-vv ?obj ?run)\n       obs (a/mapob-vv ?obs ?run)\n       col (a/vv ?col ?run)\n       lin (a/vv ?lin ?run)]\n  (if (and obj obs)\n    (let [pg (.getPlayground obs)\n           nam (str (.getName obs) \"-\" (.getName obj))]\n      (if (protege.core/is? ?flg)\n        (ru.igis.omtab.OMT/addMapOb (ru.igis.omtab.Link. nam obs obj col lin) pg)\n        (if-let[lnk (ru.igis.omtab.OMT/getMapOb nam)]\n          (ru.igis.omtab.OMT/removeMapOb lnk false)))\n      (retract ?loo)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?loo status \"FAILED\")))")
+	(salience 0)
+	(title "a:LinkOnOff"))
+
+([Scenario_Class250003] of  CloFunction
+
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       val (vv ?val r)]\n  (if (not (nil? obj))\n    (condp = prop\n      'NAME (= (.getName obj) val)\n      'MOVING (not (= (.getSpeed obj) 0))\n      'STOPPED (= (.getSpeed obj) 0)\n      'COURSE (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getCourse obj) vvl)) rad))\n      'SPEED (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getSpeed obj) vvl)) rad))\n      'ALTITUDE (let [vvl (if (string? val) (read-string val) val)] \n	(< (Math/abs (- (.getAltitude obj) vvl)) rad))\n      'NEAR-POINT (< (.distanceNM obj \n	(MapOb/getDeg (vv ?lat r))\n	(MapOb/getDeg (vv ?lon r))) rad)\n      'COORDINATES (let [lat (vv ?lat r) lon (vv ?lon r)] (and\n	(or (nil? lat) (< (Math/abs (- (.getLatitude obj) (MapOb/getDeg lat))) (/ rad 60)))\n	(or (nil? lon) (< (Math/abs (- (.getLongitude obj) (MapOb/getDeg lon))) (/ rad 60))) ))\n      false)\n    false))")
+	(title "ob-property [prop ?obj rad ?lat ?lon ?val r]"))
+
+([Scenario_Class250007] of  Rule
+
+	(lhs "?ud (UserDecision status \"START\" \n	title ?tit \n	parent ?pid\n	run ?run\n	variants ?vrs)")
+	(rhs "(println \"Decision:\" ?tit \"UserDecision\")\n(s/start-tasks-actions (d/user-decision ?vrs) ?pid ?run)\n(retract ?ud)")
+	(salience 0)
+	(title "d:UserDecision"))
+
+([Scenario_Class250008] of  CloProgram
+
+	(cloFunctions
+		[Scenario_Class250010]
+		[Scenario_Class230001]
+		[Scenario_Class230006]
+		[Scenario_Class230007]
+		[Scenario_Class230004]
+		[Scenario_Class260011]
+		[ScenarioN_Class680012]
+		[Scenario_Class470000]
+		[Scenario_Class260010]
+		[ScenarioN_Class340025]
+		[ScenarioN_Class340000]
+		[ScenarioN_Class610000]
+		[ScenarioN_Class640001]
+		[ScenarioN_Class350009]
+		[Scenario_Class230008]
+		[Scenario_Class230005]
+		[ScenarioN_Class180001]
+		[ScenarioN_Class210001])
+	(cloNamespace [Scenario_Class250009])
+	(title "Decision Functions"))
+
+([Scenario_Class250009] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  ru.rules\n  a\n  e)\n(:import \n  edu.stanford.smi.protege.model.Instance\n  edu.stanford.smi.protege.ui.DisplayUtilities\n  ru.igis.omtab.OMT)")
+	(title "d"))
+
+([Scenario_Class250010] of  CloFunction
+
+	(source "[@(future (DisplayUtilities/pickInstanceFromCollection nil vrs 0 \"Select Variant\"))]")
+	(title "user-decision [vrs]"))
+
+([Scenario_Class250011] of  RuleSet
+
+	(rules
+		[Scenario_Class250007]
+		[Scenario_Class260009]
+		[Scenario_Class230000]
+		[ScenarioN_Class180000]
+		[ScenarioN_Class210000]
+		[ScenarioN_Class470001]
+		[ScenarioN_Class470002]
+		[ScenarioN_Class630000]
+		[ScenarioN_Class640000]
+		[Scenario_Class630003])
+	(templates
+		[UserDecision]
+		[GeneralDecision]
+		[EventDecision]
+		[ODecision]
+		[IfActivityStatus]
+		[CatchException]
+		[Exception]
+		[TDecision]
+		[Hard]
+		[SignalControl])
+	(title "DecisionExecutor"))
+
+([Scenario_Class260000] of  Rule
+
+	(lhs "?rao (RepeatActionOnOff status \"START\" \n	title ?tit \n	collection ?col\n	flag ?flg \n	repeat-action ?ra\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"RepeatActionOnOff\")\n(a/repeat-action-onoff ?ra ?col ?flg ?run)\n(retract ?rao)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:RepeatActionOnOff"))
+
+([Scenario_Class260005] of  Rule
+
+	(lhs "?we (WaitEvent status \"REPEAT\" \n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?op (ObProperty title ?tit2\n	ob_property ?prop\n	object ?obj\n	radius ?rad\n	latitude ?lat\n	longitude ?lon\n	value ?val\n	parent ?id\n	(e/ob-property ?prop ?obj ?rad ?lat ?lon ?val ?run))")
+	(rhs "(retract ?we ?op)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitEventRepeatOP"))
+
+([Scenario_Class260006] of  Rule
+
+	(lhs "?we (WaitEvent status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?oa (ObAttribute title ?tit2\n	attribute ?atr\n	object ?obj\n	relation ?rel\n	value ?val\n	parent ?id\n	(e/ob-attribute ?atr ?obj ?rel ?val ?run))")
+	(rhs "(retract ?we ?oa)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitEventRepeatOA"))
+
+([Scenario_Class260007] of  CloFunction
+
+	(source "(cond\n  (> ca 180)  (- ca 360)\n  (< ca -180) (+ ca 360)\n  true ca)")
+	(title "correct-ca [ca]"))
+
+([Scenario_Class260008] of  CloFunction
+
+	(source "(let [ca (course-angle obs obj)]\n  (or \n    (and (> ca 87) (< ca 93))\n    (and (< ca -87) (> ca -93))))")
+	(title "on-beam [obs obj]"))
+
+([Scenario_Class260009] of  Rule
+
+	(lhs "?gd (GeneralDecision status \"START\" \n	title ?tit\n	input_data ?ida\n	conditions ?cds\n	variants ?vrs\n	parent ?pid\n	run ?run)")
+	(rhs "(println \"Decision:\" ?tit \"GeneralDecision\")\n(s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?pid ?run)\n(retract ?gd)")
+	(salience 0)
+	(title "d:GeneralDecision"))
+
+([Scenario_Class260010] of  CloFunction
+
+	(source "(let [cds (map parse-cond conditions)\n       prs (interleave cds (range (count cds)))\n       body [(cons 'cond prs)]\n       bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) idata)\n       bnd2 (vec (concat bnd0 bnd1))\n       exp `(let ~bnd2 ~@body)\n       nv (eval exp)]\n  (if (number? nv)\n    [(nth (seq variants) nv)]\n    [(last variants)]))")
+	(title "general-decision [idata conditions variants r]"))
+
+([Scenario_Class260011] of  CloFunction
+
+	(source "(letfn[(fwop [exp]\n	(if (some #{(first exp)} '(Math/random)) \n	  exp\n	  (infix-to-prefix (first exp))))]\n(if (seq? exp)\n  (cond\n    (< (count exp) 2) (fwop exp)\n    (= (first exp) 'not) (list (first exp) (infix-to-prefix (second exp)))\n    (and (> (count exp) 2) (some #{(second exp)} '(and or = > < >= <= + - * /)))\n      (list (second exp) (infix-to-prefix (first exp)) (infix-to-prefix (nnext exp)))\n    true (map infix-to-prefix exp))\n  exp))")
+	(title "infix-to-prefix [exp]"))
+
+([Scenario_Class270000] of  Rule
+
+	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \" Position\")\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       posa (a/vv ?posa ?run)\n       posd (a/vv ?posd ?run)\n       poss (a/vv ?poss ?run)]\n  (if (and (some? mob) (some? mos) (a/worth? posa) (a/worth? posd) (a/worth? poss))\n    (if-let [[lat lon spdb] (a/future-position mob mos posa posd poss ?rel ?rad)]\n      (if (> spdb 0)\n        (do (a/go-route mob lat lon)\n          (.setSpeed mob (double spdb))\n          (modify ?pos status \"WAIT\"\n	object mob\n	observer mos\n	position-angle posa \n	position-distance posd \n	position-speed poss))\n        (do (a/take-position mob mos posa posd poss ?rel)\n          (retract ?pos)\n          (s/start-next ?nacts ?pid ?ain ?run)))\n      (modify ?pos status \"FAILED\"))\n    (modify ?pos status \"FAILED\")))")
+	(salience 0)
+	(title "a:PositionStart"))
+
+([Scenario_Class270000pop] of  Rule
+
+	(lhs "?pop (PutOnPlace status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	mapob ?mos\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"PutOnPlace\")\n(let [obj (a/vv ?obj ?run)\n       obs (a/vv ?obs ?run)\n       sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))\n               \"FAILED\"\n               (if-let [ms (ru.igis.omtab.OMT/getOrAdd obs)]\n                 (let [lat (.getLatitudeDM ms)\n                        lon (.getLongitudeDM ms)]\n                   (doseq [mo ?mos]\n                     (-> (ru.igis.omtab.OMT/getOrAdd mo) \n                       (.setLocation lat lon)))\n                   (if (not (a/null? obj))\n                     (.setLocation (ru.igis.omtab.OMT/getOrAdd obj) lat lon))\n                   \"DONE\")\n                 \"FAILED\"))]\n  (retract ?pop)\n  (s/start-next ?nacts ?pid ?ain ?run))")
+	(salience 0)
+	(title "a:PutOnPlace"))
+
+([Scenario_Class270001] of  CloFunction
+
+	(source "(if (= flg true)\n  (do\n    (OMT/startProtegeRepeatAction (vv ?ra r))\n    (if (not (null? col))\n      (OMT/startProtegeRepeatActions col)))\n  (do\n    (OMT/removeProtegeRepeatAction (vv ?ra r))\n    (if (not (null? col))\n      (OMT/removeProtegeRepeatActions col)) ))")
+	(title "repeat-action-onoff [?ra col flg r]"))
+
+([Scenario_Class270009] of  CloFunction
+
+	(source "(let [bea (.bearingsDeg obs obj)\n       crs (.getCourse obs)]\n  (correct-ca (- bea crs)))")
+	(title "course-angle [obs obj]"))
+
+([Scenario_Class280000] of  CloFunction
+
+	(source "(cond\n  (> a 360) (- a 360)\n  (< a 0) (+ a 360)\n  true a)")
+	(title "trim-angle [a]"))
+
+([Scenario_Class280001] of  CloFunction
+
+	(source "(let [an1 (nors posa)\n       dist (nors posd)\n       spdb (nors poss)\n       crss (.getCourse mos)\n       spds (.getSpeed mos)\n       ang (if (= rel true) (trim-angle (+ an1 crss)) an1)\n       [lat lon] (a/meeting-point mos mob spdb rad)]\n  (if (> lat 90)\n    (do (println (str \"Position off \" (.getName mos) \" unreachable by \" (.getName mob) \"!\"))\n      (println [:OBSERV (.getLatitude mos) (.getLongitude mos) (.getCourse mos) (.getSpeed mos)])\n      (println [:OBJECT (.getLatitude mob) (.getLongitude mob) (.getCourse mob) (.getSpeed mob)])\n      nil)\n    (let [[lat2 lon2] (seq (Util/relPos lat lon ang dist))]\n      [lat2 lon2 spdb])))")
+	(title "future-position [mob mos posa posd poss rel rad]"))
+
+([Scenario_Class280002] of  Rule
+
+	(lhs "?pos (Position status \"WAIT\" \n	object ?mob\n	observer ?mos\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel \n	run ?run\n	instance ?ain\n	parent ?pid\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mob)")
+	(rhs "(a/take-position ?mob ?mos ?posa ?posd ?poss ?rel)\n(retract ?moe ?pos)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PositionWait"))
+
+([Scenario_Class280004] of  CloFunction
+
+	(source "(let [an1 (nors posa)\n       dist (nors posd)\n       spd (nors poss)\n       ang (if (= rel true) (trim-angle (+ an1 (.getCourse mos))) an1)\n       pos (.position mos ang dist)\n       lat (aget pos 0)\n       lon (aget pos 1)]\n  (.setLatitude mob (double lat))\n  (.setLongitude mob (double lon))\n  (.setSpeed mob (.getSpeed mos))\n  (.setCourse mob (.getCourse mos)))")
+	(title "take-position [mob mos posa posd poss rel]"))
+
+([Scenario_Class290000] of  Rule
+
+	(lhs "?om (ObjectMessage status \"START\"\n	title ?tit\n	clients ?cls\n	object ?obj\n	category ?cat\n	text ?txt\n	url ?url\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"ObjectMessage\")\n(modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?run))")
+	(salience 0)
+	(title "a:ObjectMessageStart"))
+
+([Scenario_Class290001] of  CloFunction
+
+	(source "(if-let [obj (OMT/getMapOb (vv ?obj r))]\n  (let [txt (vv ?txt r)\n         url (vv ?url r)\n         spl (seq (.split txt \"\\\\?\"))\n         lab (.getName obj)\n         lat (.getLatitudeDM obj)\n         lon (.getLongitudeDM obj)\n         tim (op-time)\n         c2 [lab lat lon]\n         c3 (concat (interleave spl c2) (nthrest spl (count c2)))\n         txt2 (apply str c3)\n         mp {\"url\" url \"?title\" atit \"?time\" tim \"?object\" lab \"?latitude\" lat \"?longitude\" lon}]\n    (if (empty? cls)\n      (es-mess (str tim \" \" txt2) mp cat)\n      (doseq [cli cls]\n        (es-mess (str tim \" \" txt2) mp cat (sv cli \"id\"))))\n    \"DONE\")\n  \"FAILED\")")
+	(title "object-message [atit ?obj ?txt ?url cat cls r]"))
+
+([Scenario_Class290002] of  Rule
+
+	(lhs "?om (ObjectMessage status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?om)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:ObjectMessageDone"))
+
+([Scenario_Class3] of  CloProgram
+
+	(cloFunctions
+		[Scenario_Class410000]
+		[Scenario_Class360000]
+		[Scenario_Class190000]
+		[Scenario_Class30005]
+		[Scenario_Class180000]
+		[Scenario_Class240000]
+		[Scenario_Class40002]
+		[Scenario_Class40007]
+		[Scenario_Class120002]
+		[ScenarioN_Class240000]
+		[Scenario_Class360001]
+		[ScenarioN_Class130000]
+		[ScenarioN_Class140000]
+		[ScenarioN_Class680000]
+		[ScenarioN_Class300000]
+		[ScenarioN_Class470000])
+	(cloNamespace [Scenario_Class4])
+	(title "Scenario Functions"))
+
+([Scenario_Class30000] of  CloFunction
+
+	(source "(doseq [h (.keySet hm)]\n  (.put hm h (vv (.get hm h) run)))\n(doseq [r (.keySet run)]\n  (if (nil? (.get hm r))\n    (.put hm r (.get run r))))")
+	(title "merge-hm-run [hm run]"))
+
+([Scenario_Class300000] of  Rule
+
+	(lhs "(TwoObRelation parent \"Run\"\n	observer ?run1\n	object ?run2)\n(TwoObRelation parent \"Run\"\n	observer ?run2\n	object ?run3)")
+	(rhs "(asser TwoObRelation parent \"Run\"\n	observer ?run1\n	object ?run3)")
+	(salience 0)
+	(title "s:Transitivity of Runs"))
+
+([Scenario_Class300001] of  Rule
+
+	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation observer ?obs\n	(= (.hashCode ?run) ?obs))")
+	(rhs "(retract ?tor)")
+	(salience 0)
+	(title "s:Retract Runs Relation for Observer"))
+
+([Scenario_Class300002] of  Rule
+
+	(lhs "(Scenario status \"DONE\"\n	run ?run)\n?tor (TwoObRelation object ?obj\n	(= (.hashCode ?run) ?obj))")
+	(rhs "(retract ?tor)")
+	(salience 0)
+	(title "s:Retract Runs Relation for Object"))
+
+([Scenario_Class30005] of  CloFunction
+
+	(source "(if-let [si (if (string? siorti) (fifos \"Scenario\" \"title\" siorti) siorti)]\n  (-> (ru.rules/mk-frame si)\n    (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run (context-to-hm (sv si \"context\") (sv si \"protagonist\") mp)\n	 'id (gensym ipx)})\n    rete.core/assert-frame)\n  true)")
+	(title "start-scenario [siorti mp ipx]"))
+
+([Scenario_Class310000] of  Rule
+
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(= (protege.core/typ (a/vv ?act ?run)) \"Task\"))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (a/break-task act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 0)
+	(title "a:Break Tasks"))
+
+([Scenario_Class310004] of  Rule
+
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (and (not= (protege.core/typ act) \"Task\")\n	    (not= (protege.core/typ act) \"Scenario\")\n	    (not= (protege.core/typ act) \"MissionScenario\"))))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do (a/break-action  act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 0)
+	(title "a:Break Actions"))
+
+([Scenario_Class310005] of  Rule
+
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"MissionScenario\"))))\n(TwoObRelation parent \"Run\"\n	observer ?obs\n	object ?obj)\n(Scenario run ?run2\n	((= (.hashCode ?run) ?obs)\n	 (= (.hashCode ?run2) ?obj)))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run2)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 1)
+	(title "a:Break Subscenarios"))
+
+([Scenario_Class320000] of  CloFunction
+
+	(source "(let [dw (drop-while #(not= % slot) frame)]\n  (if (seq dw)\n    (second dw)))")
+	(title "frame-slot-val [frame slot]"))
+
+([Scenario_Class330000] of  Rule
+
+	(lhs "?brk (Break status \"START\"\n	title ?tit\n	activity ?act\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(let [act (a/vv ?act ?run)]\n	  (or (= (protege.core/typ act) \"Scenario\")\n	    (= (protege.core/typ act) \"MissionScenario\"))))")
+	(rhs "(println \"Action started:\" ?tit \"Break\")\n(if-let [act (a/vv ?act ?run)]\n  (do \n    (a/break-scenario act ?run)\n    (retract ?brk)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?brk status \"FAILED\"))")
+	(salience 0)
+	(title "a:Break Scenario"))
+
+([Scenario_Class340000] of  RuleSet
+
+	(templates
+		[ObAttribute]
+		[ObProperty]
+		[ActivityStatus]
+		[TwoObRelation])
+	(title "EventExecutor"))
+
+([Scenario_Class350000] of  Rule
+
+	(lhs "?too (TowOnOff status \"START\" \n	title ?tit \n	object ?obj \n	observer ?obs \n	flag ?flg\n	position-angle ?poa\n	position-distance ?pod\n	relative ?rel\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"TowOnOff\")\n(modify ?too status (a/tow-on-off ?obj ?obs ?flg ?poa ?pod ?rel ?run))")
+	(salience 0)
+	(title "a:TowOnOffStart"))
+
+([Scenario_Class350001] of  Rule
+
+	(lhs "?too (TowOnOff status \"DONE\" \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?too)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:TowOnOffDone"))
+
+([Scenario_Class350002] of  CloFunction
+
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))\n       obs (OMT/getMapOb (vv ?obs r))\n       poa (vv ?poa r)\n       pod (vv ?pod r)]\n  (if (not (or (nil? obj) (nil? obs) (null? poa) (null? pod)))\n    (do\n      (if (= flg true)\n        (let [ang (Double. poa)\n               dist (Double. pod)\n               relt (if rel true false)]\n          (.onTow obs obj ang dist relt))\n        (.removeTow obs obj))\n      \"DONE\")\n    \"FAILED\"))")
+	(title "tow-on-off [?obj ?obs flg ?poa ?pod rel r]"))
+
+([Scenario_Class350003] of  Rule
+
+	(lhs "?sea (Search status \"START\" \n	title ?tit \n	time ?tim\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"Search\")\n(modify ?sea status \"OUTSIDE\" \n	N (a/to-be ?t (a/vv ?tim ?run)))")
+	(salience 0)
+	(title "a:SearchStart"))
+
+([Scenario_Class350004] of  Rule
+
+	(lhs "(Clock time ?t)\n?sea (Search status ?sta\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	((not= ?sta \"DONE\")\n	 (number? ?n)\n	 (> ?t ?n)))")
+	(rhs "(retract ?sea)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:SearchTimeEnd"))
+
+([Scenario_Class360000] of  CloFunction
+
+	(source "(when mp\n  (doseq [[k v] mp]\n    (.put hm k v))\n  true)")
+	(title "updated-with-mp? [hm mp]"))
+
+([Scenario_Class360001] of  CloFunction
+
+	(source "(let [me (proxy [ru.igis.omtab.MissionExecutor] []\n	(execMission [no]\n	  (if-let [typ (sv (.getInstance no) \"type\")]\n	    (let [tt (svs typ \"missions\")\n	           sel (DisplayUtilities/pickInstancesFromCollection nil tt \"SelectMissions\")]\n	       (doseq [ms sel]\n	         (when-let [si (fifos \"Scenario\" \"title\" (sv ms \"label\"))]\n	           (ssv si \"protagonist\" (.getInstance no))\n  	           (start-scenario si nil \"Adm\"))) ) )))]\n  (OMT/clearMissionExecutors)\n  (OMT/addMissionExecutor me)\n  (println [:ME-ADDED me]))")
+	(title "mission-button-support []"))
+
+([Scenario_Class370000] of  Rule
+
+	(lhs "?sea (Search status \"OUTSIDE\"\n	object ?obj\n	observer ?obs\n	detect-distance ?dd\n	detect-probability ?dp\n	client ?cli\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock)")
+	(rhs "(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)]\n  (cond\n    (nil? mos) (modify ?sea status \"FAILED\")\n    (nil? mob) (let [obj (a/vv ?obj ?run)]\n	(asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)\n	(modify ?sea status \"FAILED\"))\n    true\n      (let [dd (a/vv ?dd ?run)\n             dp (a/vv ?dp ?run)]\n        (if (not (or (a/null? dd) (a/null? dp)))\n          (if (<= (.distanceNM mos mob) (read-string dd))\n            (if (<= (Math/random) (read-string dp))\n              (do (.putAttribute mos \"DETECT\" (.getName mob))\n                (.putAttribute mob \"DETECTED-BY\" (.getName mos)) \n                (retract ?sea)\n                (s/start-next ?nacts ?pid ?ain ?run))\n              (modify ?sea status \"INSIDE\")))\n          (modify ?sea status \"FAILED\")))))")
+	(salience 0)
+	(title "a:SearchOutside"))
+
+([Scenario_Class370007] of  Rule
+
+	(lhs "?sea (Search status \"INSIDE\"\n	object ?obj\n	observer ?obs\n	detect-distance ?dd\n	run ?run)\n(Clock)")
+	(rhs "(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)]\n  (cond\n    (nil? mos) (modify ?sea status \"FAILED\")\n    (nil? mob) (let [obj (a/vv ?obj ?run)]\n	(asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)\n	(modify ?sea status \"FAILED\"))\n    true\n      (if (> (.distanceNM mos mob) (read-string (a/vv ?dd ?run)))\n        (modify ?sea status \"OUTSIDE\"))))")
+	(salience 0)
+	(title "a:SearchInside"))
+
+([Scenario_Class380000] of  CloFunction
+
+	(source "(letfn [(frm-suv [ins]\n            (let [[typ & svals] (ru.rules/mk-frame ins) \n                   suf (fn [[k v]]\n	   [k (vv v run)])]\n              (cons typ (mapcat suf (partition 2 svals)))))]\n  (doseq [ins inss]\n    (rete.core/assert-frame (frm-suv ins))))")
+	(title "assert-objects [inss run]"))
+
+([Scenario_Class390000] of  Rule
+
+	(lhs "?poa (PutObAttributes status \"START\"\n	title ?tit\n	object ?obj\n	attributes ?atrs\n	values ?vals\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutObAttributes\")\n(modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?run))")
+	(salience 0)
+	(title "a:PutObAttributesStart"))
+
+([Scenario_Class390001] of  CloFunction
+
+	(source "(let [obj (OMT/getMapOb (vv ?obj r))]\n  (if (null? obj)\n    \"FAILED\"\n    (do\n      (doall (map #(put-attr-val obj %1 %2 r) atrs vals))\n      \"DONE\")))")
+	(title "put-ob-attributes [?obj atrs vals r]"))
+
+([Scenario_Class390002] of  Rule
+
+	(lhs "?poa (PutObAttributes status \"DONE\" \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?poa)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PutObAttributesDone"))
+
+([Scenario_Class390003] of  CloFunction
+
+	(source "(let [atri (vv ?atr r)\n       val (vv ?val r)]\n  (if (not (or (null? atri) (null? val)))\n    (let [num (read-string val)\n           exp (seq (.split val \"=\"))\n           atr (if (instance? Instance atri) (sv atri \"title\") atri)]\n      (cond\n        (number? num) (.putAttribute obj atr num)\n        (> (count exp) 1)\n          (let [newn (read-string (second exp))\n                 oldn (or (.getAttribute obj atr) 0)]\n            (condp = (first exp)\n	\"+\" (.putAttribute obj atr (+ oldn newn))\n	\"-\" (.putAttribute obj atr (- oldn newn))\n	\"*\" (.putAttribute obj atr (* oldn newn))\n	\"/\" (.putAttribute obj atr (/ oldn newn)) ))\n        true (.putAttribute obj atr val)) ) ))")
+	(title "put-attr-val [obj ?atr ?val r]"))
+
+([Scenario_Class4] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  ru.rules\n  sim)\n(:import \n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  ru.igis.omtab.Context\n  ru.igis.omtab.OpenMapTab\n  java.util.HashMap\n  edu.stanford.smi.protege.ui.DisplayUtilities\n  edu.stanford.smi.protege.util.ModalDialog\n  clojuretab.ClojureTab)")
+	(title "s"))
+
+([Scenario_Class40000] of  Rule
+
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin\n	next_tasks ?ntasks\n	(empty? ?ntasks))\n?s (Scenario status \"DOING\" \n	id ?pid\n	finish_type OR\n	title ?tit\n	final_tasks ?ftasks \n	((s/include? ?ftasks ?tin)\n	 (not (empty? ?ftasks))))")
+	(rhs "(println \"Scenario DONE:\" ?tit)\n(modify ?s status \"DONE\")\n(retract ?t)")
+	(salience 0)
+	(title "s:FirstORFinalTaskDone"))
+
+([Scenario_Class400000] of  Rule
+
+	(lhs "?ac (Action status \"DONE\" \n	next_actions ?nacts\n	(empty? ?nacts))")
+	(rhs "(retract ?ac)")
+	(salience -5)
+	(title "s:HangingFinalActionDone"))
+
+([Scenario_Class40001] of  Rule
+
+	(lhs "?t (Task status \"DONE\"\n	parent ?pid\n	instance ?tin\n	(empty? ?ntasks))\n?s (Scenario status \"DOING\"\n	id ?pid\n	finish_type AND\n	final_tasks ?ftasks \n	((s/include? ?ftasks ?tin)\n	 (> (count ?ftasks) 1)))")
+	(rhs "(modify ?s final_tasks (s/exclude ?ftasks ?tin))\n(retract ?t)")
+	(salience 0)
+	(title "s:InterimFinalTaskDone"))
+
+([Scenario_Class40002] of  CloFunction
+
+	(source "(some #{x} y)")
+	(title "include? [y x]"))
+
+([Scenario_Class40007] of  CloFunction
+
+	(source "(remove #{x} y)")
+	(title "exclude [y x]"))
+
+([Scenario_Class410000] of  CloFunction
+
+	(source "(or \n  (nil? x)\n  (= x :?))")
+	(title "qm [x]"))
+
+([Scenario_Class420000] of  Rule
+
+	(lhs "?sc (SetCenter status \"START\"\n	title ?tit\n	latitude ?lat\n	longitude ?lon\n	units ?uni\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetCenter\")\n(let [lat (a/vv ?lat ?run)\n       lon (a/vv ?lon ?run)]\n  (if (and (a/worth? lat) (a/worth? lon))\n    (let [dm (= ?uni 'DEG_MIN)\n           lat (if dm (ru.igis.omtab.MapOb/getDeg lat) (read-string lat))\n           lon (if dm (ru.igis.omtab.MapOb/getDeg lon) (read-string lon))]\n       (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n          (.setCenter lat lon))\n       (retract ?sc)\n       (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?sc status\"FAILED\")))")
+	(salience 0)
+	(title "a:SetCenter"))
+
+([Scenario_Class420001] of  CloFunction
+
+	(source "(not (null? x))")
+	(title "worth? [x]"))
+
+([Scenario_Class430000] of  Rule
+
+	(lhs "?glr (GoLayerRoute status \"START\"\n	title ?tit\n	object ?obj\n	layer ?lay\n	number ?num\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)")
+	(rhs "(println \"Action started:\" ?tit \"GoLayerRoute\")\n(let [mo (a/mapob-vv ?obj ?run)\n       lay (a/vv ?lay ?run)\n       num (a/vv ?num ?run)\n       sps (a/vv ?spd ?run)\n       dir (a/vv ?dir ?run)]\n  (or (and mo (a/worth? lay) (a/worth? num) (a/worth? sps) (a/worth? dir)\n               (if-let [tgs (a/layer-targets (protege.core/sv lay \"prettyName\"))]\n 	(let [gg (vec (first tgs))\n	       num (a/nors num)\n                               lla (a/omp-lla (nth gg num))\n	       bwd (= dir \"BACKWARD\")\n	       [lat lon] (if bwd \n		[(last (butlast lla)) (last lla)]\n		[(first lla) (second lla)])\n	       rte (a/to-route lla bwd)\n	       speed (a/nors sps)]\n	  (.setLocation mo lat lon)\n	  (.goRoute mo rte)\n	  (.setSpeed mo (double speed))\n	  (modify ?glr status \"WAIT\" \n		object mo)\n	  true)))\n    (modify ?glr status \"FAILED\")))")
+	(salience 0)
+	(title "a:GoLayerRouteStart"))
+
+([Scenario_Class430001] of  Rule
+
+	(lhs "?am (AttributeMessage status \"START\"\n	title ?tit\n	clients ?cls\n	category ?cat\n	text ?txt\n	object ?obj\n	attribute ?atr\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AttributeMessage\")\n(a/attribute-message ?txt ?obj ?atr ?cat ?cls ?run)\n(retract ?am)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:AttributeMessage"))
+
+([Scenario_Class430002] of  CloFunction
+
+	(source "(let [txt (vv ?txt r)\n       obj (vv ?obj r)\n       tim (op-time)]\n  (if-let [mo (OMT/getMapOb obj)]\n    (let [avl (str (or (.getAttribute mo (sv atr \"title\")) \"\"))\n           mes (cond\n	(null? txt) avl\n	(not (.contains txt \"?$\")) (str txt \" \" avl)\n	true (ordered-subst txt avl \"?$\"))\n           mes (.replace mes \"?obj\" (.getName mo))]\n      (if (empty? cls)\n        (es-mess (str tim \" \" mes) nil cat)\n        (doseq [cli cls]\n          (es-mess (str tim \" \" mes) nil cat (sv cli \"id\")))) )))")
+	(title "attribute-message [?txt ?obj atr cat cls r]"))
+
+([Scenario_Class430004] of  CloFunction
+
+	(source "(loop [a (.split avl \" \") i (count a) r txt]\n  (if (> i 0)\n    (recur a (dec i) (.replace r (str pfx i) (aget a (dec i))))\n    r))")
+	(title "ordered-subst [txt avl pfx]"))
+
+([Scenario_Class440000] of  CloFunction
+
+	(source "(reduce #(.replaceAll %1 (str \"\\\\\" %2) (str (.get hm %2))) s (.keySet hm))")
+	(title "subst-hm-vars [hm s]"))
+
+([Scenario_Class440001] of  CloFunction
+
+	(source "(if-let [flt (seq (->> (ru.igis.omtab.OpenMapTab/getMapBean)\n	.getComponents\n	(filter #(= (.getName %) name))))]\n  (-> (first flt)\n    .getList\n    .getTargets))")
+	(title "layer-targets [name]"))
+
+([Scenario_Class440003] of  Rule
+
+	(lhs "?glr (GoLayerRoute status \"WAIT\"\n	object ?mo\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
+	(rhs "(retract ?moe ?glr)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:GoLayerRouteWait"))
+
+([Scenario_Class450000] of  CloFunction
+
+	(source "(cond\n  (nil? v)\n    v\n  (number? v) \n    v\n  (= (type v) java.util.Collections$UnmodifiableCollection)\n    (vec (map to-clj-type v))\n  (or (instance? Instance v) (instance? MapOb v))\n    (.getName v)\n  (string? v)\n    (val-from-str v)\n  true \n    (do (println \"to-clj-type - unknown type of: \" v) v))")
+	(title "to-clj-type [v]"))
+
+([Scenario_Class450007] of  Table2
+
+	(column1
+		"units"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"title"
+		"status"
+		"id"
+		"latitude")
+	(column2
+		"DEG_MIN"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class450005 of [Cls(SetCenter)])"
+		"[]"
+		"-72 55"
+		"test"
+		"START"
+		":?"
+		"-13  10")
+	(title "SetCenter 0"))
+
+([Scenario_Class450008] of  Table2
+
+	(column1
+		"units"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"longitude"
+		"title"
+		"status"
+		"id"
+		"latitude")
+	(column2
+		"DEG_MIN"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class450005 of [Cls(SetCenter)])"
+		"[]"
+		"-72 55"
+		"test"
+		"START"
+		":?"
+		"-13  10")
+	(title "SetCenter 0"))
+
+([Scenario_Class460000] of  Rule
+
+	(lhs "?dis (Show status \"DONE\" \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?dis)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:ShowDone"))
+
+([Scenario_Class460002] of  CloFunction
+
+	(source "(let [thi (vv ?thi r)\n       txt (vv ?txt r)\n       lab (vv ?lab r)]\n  (if (not (null? thi))\n    (if (ClojureTab/showModalInstance thi (or txt \"\"))\n      \"DONE\"\n      \"FAILED\")\n    (if (ClojureTab/showModal atit (javax.swing.JLabel. lab) (or txt \"\"))\n      \"DONE\"\n      \"FAILED\")))")
+	(title "show [atit ?thi ?txt ?lab r]"))
+
+([Scenario_Class470000] of  CloFunction
+
+	(source "(mapcat #(list (symbol (first %)) (to-clj-type (second %))) (into {} run))")
+	(title "embed-ctx-vars [run]"))
+
+([Scenario_Class480000] of  CloVar
+
+	(source "{\n1 \"#4444FF\"\n2 \"#FFFF00\"\n3 \"#FF4444\"\n\"1\" \"#4444FF\"\n\"2\" \"#FFFF00\"\n\"3\" \"#FF4444\"\n}")
+	(title "CATEGORY"))
+
+([Scenario_Class490000] of  Rule
+
+	(lhs "?dis (Show status \"START\" \n	title ?tit \n	thing ?thi\n	text ?txt\n	label ?lab\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Show\")\n(modify ?dis status (a/show ?tit ?thi ?txt ?lab ?run))")
+	(salience 0)
+	(title "a:ShowStart"))
+
+([Scenario_Class490002] of  Rule
+
+	(lhs "?cmp (Compute status \"START\" \n	title ?tit \n	computation ?com \n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Compute\")\n(modify ?cmp status (a/compute ?com ?run))")
+	(salience 0)
+	(title "a:ComputeStart"))
+
+([Scenario_Class490003] of  CloFunction
+
+	(source "(let [com (vv ?com r)]\n  (if (not (null? com))\n    (let [typ (.getDirectType com)\n           ns (sv typ \"namespace\")\n           sc (sv typ \"source\")\n           n2 (if (nil? ns) \n                  \"\" \n                  (str \"(in-ns '\" (sv ns \"title\") \")\"))\n           sm (partition 2 (rest (mk-frame com)))\n           bi (mapcat \n	(fn [[k v]] (list (symbol k) (to-clj-type (vv v r)) )) \n	sm) \n           s2 (str n2 \" (let \" (vec bi) \" \" sc \")\")\n           ;;_ (println :COMPUTE s2)\n           rz (load-string s2)]\n      (if (and (number? rz) (< rz 0))\n        \"FAILED\"\n        \"DONE\"))\n    \"FAILED\"))")
+	(title "compute [?com r]"))
+
+([Scenario_Class490005] of  Rule
+
+	(lhs "?cmp (Compute status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?cmp)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:ComputeDone"))
+
+([Scenario_Class50000] of  Rule
+
+	(lhs "?t (Task status \"START\" \n	title ?tit\n	run ?run\n	initial_actions ?iacts)")
+	(rhs "(println \"Task started:\" ?tit)\n(let [tid (gensym \"Tsk\")]\n  (modify ?t id tid\n	status \"DOING\")\n  (s/start-tasks-actions ?iacts tid ?run))")
+	(salience 0)
+	(title "s:StartTask"))
+
+([Scenario_Class500000] of  Rule
+
+	(lhs "?pop (PutObProperties status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	new_course ?crs\n	new_speed ?spd\n	new_altitude ?alt\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"PutObProperties\")\n(modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?alt ?run))")
+	(salience 0)
+	(title "a:PutObPropertiesStart"))
+
+([Scenario_Class50001] of  Rule
+
+	(lhs "?s (Scenario status \"START\"\n	id ?sid\n	title ?tit\n	run ?run\n	initial_tasks ?itasks)")
+	(rhs "(println \"Scenario started:\" ?tit)\n(modify ?s status \"DOING\")\n(s/start-tasks-actions ?itasks ?sid ?run)")
+	(salience 0)
+	(title "s:StartScenario"))
+
+([Scenario_Class50017] of  CloFunction
+
+	(source "(let [tms (set (mapcat #(svs % \"templates\") rule-sets))\n      rls (set (mapcat #(svs % \"rules\") rule-sets))\n      mts (mk-templates (seq tms) '[parent scen status])\n      v (println (str \"Templates: \" (count mts)))\n      mrs (map mk-rule (seq rls))\n      v (println (str \"Rules: \" (count mrs)))\n      mfs [] ;;(map cli-fact (seq facts))\n      v  (println (str \"ru.rules/cli-fact mapping done: \" (count mfs)))]\n  [mts mrs mfs])")
+	(title "mk-templs-rules-facts [rule-sets facts]"))
+
+([Scenario_Class510000] of  CloFunction
+
+	(source "(let [varnam (if (instance? Instance var) (sv var \"title\") var)]\n  (.put run varnam val))")
+	(title "vvr [var val run]"))
+
+([Scenario_Class520000] of  Rule
+
+	(lhs "?gor (GoRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	direction ?dir\n	run ?run\n	parent ?par)")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       dir (a/vv ?dir ?run)\n       sps (a/vv ?spd ?run)]\n  (if (and (some? mo) (a/worth? roa) (a/worth? dir) (a/worth? sps))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           gbw (= dir \"BACKWARD\")\n           dws (if gbw (reverse dws) dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           bwd (= dn \"BACKWARD\")\n           bwd (if bwd (not gbw) gbw)\n           way (protege.core/sv dw \"way\")\n           lla (read-string (protege.core/sv way \"source\"))\n           [lat lon] (if bwd (last lla) (first lla))\n           lla (flatten lla)\n           rte (a/to-route lla bwd)\n           rsp (a/nors sps)]\n      (.setLocation mo lat lon)\n      (.goRoute mo rte)\n      (.setSpeed mo (double rsp))\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"WAIT\"\n	object mo\n	road (rest dws)\n	direction gbw))\n    (modify ?gor status \"FAILED\")))")
+	(salience 0)
+	(title "a:GoRoadStart"))
+
+([Scenario_Class520001] of  CloFunction
+
+	(source "(let [act (vv ?act r)\n       sts (vv ?sts r)\n       atp (typ act)\n       flt (filter #(= (re/slot-value 'run %) r) (re/facts-with-slot-value (symbol atp) 'instance = act))]\n    (if (seq flt)\n      (if (= (re/slot-value 'status (first flt)) sts)\n        true\n        false)))")
+	(title "act-status [?act ?sts r]"))
+
+([Scenario_Class520002] of  Rule
+
+	(lhs "?ar (AddResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	collection ?col\n	thing ?thi\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AddResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       thi (a/vv ?thi ?run)\n       col (concat ?col (if (not (a/null? thi)) [thi]))]\n  (if (and mo (not (a/null? ?res)) (seq col))\n    (let [atr (protege.core/sv ?res \"title\")\n           avv (.getAttribute mo atr)\n           nvv (vec (concat avv col))]\n      (.putAttribute mo atr nvv)\n      (retract ?ar)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ar status \"FAILED\")))")
+	(salience 0)
+	(title "a:AddResource"))
+
+([Scenario_Class530000] of  CloFunction
+
+	(source "(MapOb/getDeg (vv ?lat r))")
+	(title "degmin-to-deg [?lat r]"))
+
+([Scenario_Class530001] of  Rule
+
+	(lhs "?pop (PutObProperties status \"DONE\" \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?pop)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PutObPropertiesDone"))
+
+([Scenario_Class530002] of  CloFunction
+
+	(source "(let [obj (vv ?obj r)\n       lat (vv ?lat r)\n       lon (vv ?lon r)\n       crs (vv ?crs r)\n       spd (vv ?spd r)\n       alt (vv ?alt r)]\n  (if (null? obj)\n    \"FAILED\"\n    (if-let [mo (OMT/getMapOb obj)]\n      (try \n        (if-let [c (if (not (null? crs)) (Integer. crs))]\n          (.setCourse mo c))\n        (if-let [s (if (not (null? spd)) (Double. spd))]\n          (.setSpeed mo s))\n        (if-let [a (if (not (null? alt)) (Integer. alt))]\n          (.setAltitude mo a))\n        (if (not (or (null? lat) (null? lon)))\n          (.setLocation mo lat lon))\n        \"DONE\"\n      (catch Exception e\n        \"FAILED\")) ) ))")
+	(title "put-ob-properties [?obj ?lat ?lon ?crs ?spd ?alt r]"))
+
+([Scenario_Class540000] of  ScenarioRepeatAction
+
+	(interval SECOND)
+	(label "Scenario Expert System")
+	(lifetime 0)
+	(period 1)
+	(playground-index 0)
+	(scenario "clojuretab.ClojureTab invoke s s-expert-work"))
+
+([Scenario_Class540001] of  Rule
+
+	(lhs "?cbm (CreateByModel status \"START\"\n	title ?tit\n	model ?mod\n	object ?obj\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"CreateByModel\")\n(a/create-by-model ?mod ?obj ?run)\n(retract ?cbm)\n(s/start-next ?nacts ?pid ?pid ?run)")
+	(salience 0)
+	(title "a:CreateByModel"))
+
+([Scenario_Class540002] of  CloFunction
+
+	(source "(let [mod (vv ?mod r)\n       obj (vv ?obj r)\n       typ (.getDirectType mod)\n       sls (.getTemplateSlots typ)\n       ins (crin (.getName typ))]\n  (doseq [slt sls]\n    (let [sln (.getName slt)]\n      (if (.getAllowsMultipleValues slt)\n        (ssvs ins sln (doall (map #(vv % r) (svs mod sln))))\n        (ssv ins sln (vv (sv mod sln) r)) ) ))\n  (vvr ?obj ins r))")
+	(title "create-by-model [?mod ?obj r]"))
+
+([Scenario_Class550001] of  Rule
+
+	(lhs "?gor (GoRoad status \"WAIT\"\n	object ?mo\n	road ?dws\n	direction ?gbw\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
+	(rhs "(retract ?moe)\n(if (empty? ?dws)\n  (do (.removeAttribute ?mo \"ROAD-SPEED\")\n    (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n       dn (protege.core/sv dw \"direction\")\n       bwd (= dn \"BACKWARD\")\n       bwd (if bwd (not ?gbw) ?gbw)\n       way (protege.core/sv dw \"way\")\n       lla (read-string (protege.core/sv way \"source\"))\n       lla (if bwd (butlast lla) (rest lla))\n       rte (a/to-route (flatten lla) bwd)\n       rsp (.getAttribute ?mo \"ROAD-SPEED\")]\n  (.goRoute ?mo rte)\n  (.setSpeed ?mo (double rsp))\n  (modify ?gor road (rest ?dws))))")
+	(salience 0)
+	(title "a:GoRoadWait"))
+
+([Scenario_Class550002] of  Rule
+
+	(lhs "?we (WaitEvent status \"REPEAT\" \n	id ?id\n	parent ?pid \n	instance ?ain \n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)\n?as (ActivityStatus parent ?id\n	activity ?act\n	status ?sts\n	(e/act-status ?act ?sts ?run))")
+	(rhs "(retract ?we ?as)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitEventAS"))
+
+([Scenario_Class560000] of  Rule
+
+	(lhs "?t (Task status \"DONE\"\n	run ?run\n	instance ?tin)\n?j (Join status \"START\"\n	run ?run\n	title ?tit\n	join_tasks ?jtasks\n	(s/include? ?jtasks ?tin))")
+	(rhs "(modify ?j join_tasks (s/exclude ?jtasks ?tin)\n	status \"REPEAT\")\n(retract ?t)")
+	(salience 0)
+	(title "s:JoinTaskDone"))
+
+([Scenario_Class560001] of  Rule
+
+	(lhs "?j1 (Join status \"REPEAT\"\n	run ?run\n	instance ?jin\n	join_tasks ?jtasks1)\n?j2 (Join status \"REPEAT\"\n	run ?run\n	instance ?jin\n	join_tasks ?jtasks2\n	(< (count ?jtasks1) (count ?jtasks2)))")
+	(rhs "(retract ?j2)")
+	(salience 0)
+	(title "s:RetractRedundantJoin"))
+
+([Scenario_Class560002] of  Rule
+
+	(lhs "?j (Join status \"REPEAT\"\n	title ?tit\n	parent ?pid\n	run ?run\n	join_tasks ?jtasks\n	next_tasks ?ntasks\n	(empty? ?jtasks))")
+	(rhs "(println \"Join DONE:\" ?tit)\n(retract ?j)\n(s/start-tasks-actions ?ntasks ?pid ?run)")
+	(salience 0)
+	(title "s:JoinDone"))
+
+([Scenario_Class570000] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "Duplicate definition of class Railroad was ignored"))
+
+([Scenario_Class570047] of  Table2
+
+	(column1
+		"object"
+		"direction"
+		"road"
+		"run"
+		"parent"
+		"instance"
+		"next_actions"
+		"title"
+		"status"
+		"id"
+		"spd")
+	(column2
+		"SimpleInstance(igis_Class10000 of [Cls(NavOb)])"
+		":?"
+		"SimpleInstance(Scenario_Class570002 of [Cls(Railroad)])"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class570045 of [Cls(GoRoad)])"
+		"[]"
+		"test"
+		"FAILED"
+		":?"
+		"20")
+	(title "GoRoad 2"))
+
+([Scenario_Class580000] of  CloFuncall
+
+	(source "(ru.rules/dr)"))
+
+([Scenario_Class580002] of  CloFuncall
+
+	(source "(ru.rules/sp :all)"))
+
+([Scenario_Class590000] of  Rule
+
+	(lhs "?ss (SetScale status \"START\"\n	title ?tit\n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetScale\")\n(let [scl (a/vv ?scl ?run)]\n  (if (a/worth? scl)\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (retract ?ss)\n       (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ss status\"FAILED\")))")
+	(salience 0)
+	(title "a:SetScale"))
+
+([Scenario_Class590013] of  Rule
+
+	(lhs "?fv (FlightView status \"START\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	run ?run)\n(not FlightView)")
+	(rhs "(println \"Action started:\" ?tit \"FlightView\")\n(let [mo (a/mapob-vv ?obj ?run)\n       scl (a/vv ?scl ?run)]\n  (if (and (some? mo) (a/worth? scl))\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (modify ?fv status \"REPEAT\"))\n    (modify ?fv status\"FAILED\")))")
+	(salience 0)
+	(title "a:FlightViewStart"))
+
+([Scenario_Class590014] of  Rule
+
+	(lhs "?fv (FlightView status \"REPEAT\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n    (.setCenter (.getLatitude mo) (.getLongitude mo)))\n  (do (retract ?fv)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(salience 0)
+	(title "a:FlightViewRepeat"))
+
+([Scenario_Class590015] of  Rule
+
+	(lhs "?fv1 (FlightView status \"REPEAT\")\n?fv2 (FlightView status \"START\")")
+	(rhs "(retract ?fv1)")
+	(salience 1)
+	(title "a:FlightViewSwitch"))
+
+([Scenario_Class590016] of  Rule
+
+	(lhs "?fv (FlightView status \"REPEAT\")\n(SetCenter)")
+	(rhs "(retract ?fv)")
+	(salience 1)
+	(title "a:FlightViewStop"))
+
+([Scenario_Class590018] of  Table2
+
+	(column1
+		"object"
+		"run"
+		"parent"
+		"instance"
+		"scale"
+		"next_actions"
+		"title"
+		"status"
+		"id")
+	(column2
+		"SimpleInstance(igis_Class10001 of [Cls(NavOb)])"
+		"{}"
+		":?"
+		"SimpleInstance(Scenario_Class590012 of [Cls(FlightView)])"
+		"200000"
+		"[]"
+		"test"
+		"REPEAT"
+		":?")
+	(title "FlightView 289"))
+
+([Scenario_Class60000] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "Scenario Map")
+	(Latitude "60.0")
+	(layers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "30.0")
+	(Scale "10000000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([Scenario_Class600000] of  CloFunction
+
+	(source ";; returns [course rway] or [course rtime(sec)]\n(loop [[p1 p2 & rway] way t (/ sec 3600)]\n  (let [[la1 lo1] p1\n         [la2 lo2] p2\n         D (MapOb/distanceNM la1 lo1 la2 lo2)\n         C (int (MapOb/bearingsDeg la1 lo1 la2 lo2))\n         T (/ D V)]\n    (if (< t T)\n      [C (cons (inner-point p1 p2 T t) (cons p2 rway))]\n      (let [rt (- t T)]\n        (if (empty? rway)\n          [C (int (* rt 3600))]\n          (let [rway (cons p2 rway)]\n            (if (> rt 0)\n              (recur rway rt)\n              [C rway])))))))")
+	(title "next-way-point [way sec V]"))
+
+([Scenario_Class600001] of  CloFunction
+
+	(source "(let [yt (+ y1 (/ (* t (- y2 y1)) T))\n       xt (+ x1 (/ (* t (- x2 x1)) T))]\n  [yt xt])")
+	(title "inner-point [[y1 x1] [y2 x2] T t]"))
+
+([Scenario_Class60001] of  Playground
+
+	(class "ru.igis.omtab.Playground")
+	(label "runa")
+	(playground-index 0)
+	(prettyName "RuNA")
+	(scenario "clojuretab.ClojureTab invoke s run-annotated-scenario"))
+
+([Scenario_Class60002] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "CW"))
+
+([Scenario_Class60003] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Scenario_Class60002])
+	(%3ACREATION-TIMESTAMP "2017.10.23 21:20:21.761 MSK")
+	(%3ACREATOR "ru"))
+
+([Scenario_Class610000] of  CloFunction
+
+	(source "(let [step 100\n       flt (.getLatitude mo)\n       fln (.getLongitude mo)\n       rte (NavOb/greatCircleRoute \n	(double flt) (double fln) \n	(double tlt) (double tln) \n	(double step))]\n  (.goRoute mo rte))")
+	(title "go-route [mo tlt tln]"))
+
+([Scenario_Class610001] of  Rule
+
+	(lhs "?cam (Camera status \"START\"\n	title ?tit\n	object ?obj\n	view ?vie\n	pitch ?pit\n	roll ?rol\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"Camera\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let [vie (a/vv ?vie ?run)\n         pit (a/vv ?pit ?run)\n         rol (a/vv ?rol ?run)\n         cam (if (a/worth? vie) {:view vie} {})\n         cam (if (a/worth? pit) (assoc cam :pitch pit) cam)\n         cam (if (a/worth? rol) (assoc cam :roll rol) cam)]\n    (clojuretab.ClojureTab/invoke \n	\"pro.server\" \n	\"go-onboard\"\n	(.getName mo))\n    (.putAttribute mo \"CAMERA\" cam)\n    (retract ?cam)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?cam status \"FAILED\"))")
+	(salience 0)
+	(title "a:Camera"))
+
+([Scenario_Class620000] of  Rule
+
+	(lhs "?ss (SendSignal status \"START\"\n	title ?tit\n	from1 ?frm\n	to1 ?to\n	signal ?sig\n	run ?run)")
+	(rhs "(println (str \"Action started: \" ?tit \" SendSignal\"))\n(let [frm (a/mapob-vv ?frm ?run)\n       to (a/mapob-vv ?to ?run)\n       sig (a/vv ?sig ?run)]\n  (if (and frm to (a/worth? sig))\n    (modify ?ss status \"WAIT\"\n	signal sig\n	from1 frm\n	to1 to)\n    (modify ?ss status \"FAILED\")))")
+	(salience 0)
+	(title "a:SendSignal"))
+
+([Scenario_Class620001] of  CloFunction
+
+	(source ";;(println :TO-ROUTE (seq rou) bwd)\n(let [b (is? bwd)\n       f (not b)\n       s (or (sequential? rou) (= (str (type rou)) \"class [D\"))\n       c (and s (string? (first rou)))]\n  (cond\n    (and f c) rou\n    (and f s (not c)) (into-array Double/TYPE rou)\n    f rou\n    c (reverse rou)\n    (and s (not c)) (into-array Double/TYPE (reverse-route rou))\n    (instance? Instance rou) (reverse (svs rou \"points\"))))")
+	(title "to-route [rou bwd]"))
+
+([Scenario_Class630000] of  CloFunction
+
+	(source "(letfn [(rr [y] (if (empty? y)\n	  y\n	  (cons (second y) (cons (first y) (rr (nnext y))))))]\n  (rr (reverse rou)))")
+	(title "reverse-route [rou]"))
+
+([Scenario_Class630003] of  Rule
+
+	(lhs "?sc (SignalControl status \"START\" \n	title ?tit\n	from1 ?fr1\n	to1 ?to1\n	statuses ?sts\n	variants ?vrs\n	parent ?par1\n	run ?run1)\n?ss (SendSignal signal ?sig\n	instance ?ain2\n	parent ?par2\n	run ?run2\n	next_actions ?nacts2\n	from1 ?fr2 \n	to1 ?to2\n	((= (a/mapob-vv ?fr1 ?pro1 ?run1) ?fr2)\n	 (= (a/mapob-vv ?to1 ?pro1 ?run1) ?to2)))")
+	(rhs "(println (str \"Decision: \" ?tit \" SignalControl\"))\n(loop [sts ?sts vrs ?vrs]\n  (if (seq sts)\n      (if (= (first sts) ?sig)\n        (do\n          (retract ?sc)\n          (retract ?ss)\n          (asser Action status \"DONE\" \n	parent ?par2\n	instance ?ain2\n	next_actions ?nacts2)\n          (s/start-tasks-actions [(first vrs)] ?par1 ?run1))\n        (recur (rest sts) (rest vrs)))))")
+	(salience 0)
+	(title "d:SignalControl"))
+
+([Scenario_Class640000] of  Command
+
+	(label "Restart Expert System")
+	(scenario "clojuretab.ClojureTab invoke ru.rules restart-es"))
+
+([Scenario_Class640001] of  Command
+
+	(label "Save BNET Plan")
+	(scenario "clojuretab.ClojureTab invoke ru.rules save-bnet-plan"))
+
+([Scenario_Class70000] of  Rule
+
+	(lhs "(Clock time ?t)\n?del (Delay status \"REPEAT\" \n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?n))")
+	(rhs "(retract ?del)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:DelayRepeat"))
+
+([Scenario_Class80000] of  Rule
+
+	(lhs "?ts (Task status \"START\" \n	title ?tit \n	task_scheme ?tsc\n	(empty? ?tsc))")
+	(rhs "(println \"Empty Task DONE:\" ?tit)\n(modify ?ts status \"DONE\")")
+	(salience 0)
+	(title "s:EndEmptyTask"))
+
+([Scenario_Class80001] of  CloFunction
+
+	(source "([del]\n (let [[n u] (seq (.split del \" \"))\n        d (read-string n)]\n   (condp = u\n     \"sec\" d\n     \"min\" (* d 60)\n     \"hrs\" (* d 3600)\n     \"days\" (* d 3600 24))))\n([sec del]\n (+ sec (to-be del)))")
+	(title "to-be"))
+
+([Scenario_Class80010] of  CSVImport
+
+	(but-csv-create "Create Instances/csv.imp/crea-inst")
+	(but-csv-read "Read CSV Files/csv.imp/read-files"))
+
+([Scenario_Class90000] of  Rule
+
+	(lhs "?dr (DeleteResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"DeleteResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       atr (protege.core/sv ?res \"title\")\n       rr (.getAttribute mo atr)]\n  (if (seq rr)\n    (do (doseq [ins (rest rr)]\n            (ru.igis.omtab.OMT/removeMapOb ins false)\n            (protege.core/delin ins))\n        (.removeAttribute mo atr)\n        (retract ?dr)\n        (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?dr status \"FAILED\")))")
+	(salience 0)
+	(title "a:DeleteResource"))
+
+([Scenario_Class90005] of  Rule
+
+	(lhs "?d (Delay status \"START\" \n	title ?tit \n	delay ?del\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit  \"Delay\")\n(if-let [del (a/vv ?del ?run)]\n  (modify ?d status \"REPEAT\" \n	N (a/to-be ?t del))\n  (modify ?d status \"FAILED\"))")
+	(salience 0)
+	(title "a:DelayStart"))
+
+([Scenario_Instance_10] of  CSVLocationHandler
+
+	(class "com.bbn.openmap.layer.location.csv.CSVLocationHandler")
+	(csvFileHasHeader "true")
+	(label "csvcities")
+	(latIndex "5")
+	(locationColor "FF0000")
+	(locationFile "data/cities.csv")
+	(lonIndex "4")
+	(nameColor "008C54")
+	(nameIndex "0")
+	(prettyName "World Cities")
+	(showLocations "true")
+	(showNames "true"))
+
+([Scenario_Instance_210003] of  Command
+
+	(label "Restart Simulation")
+	(scenario "clojuretab.ClojureTab invoke sim restart-sim"))
+
+([Scenario_Instance_230001] of  Command
+
+	(label "Store Snapshot")
+	(scenario "clojuretab.ClojureTab invoke sst stor-snapshot"))
+
+([Scenario_Instance_240000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "http://localhost:8080/*?request=GetMap&layers=graticule,Coastlines&format=image/png&srs=EPSG:4326&width=800&height=600&bbox=27.5,60.0,29.5,61.0")
+	(%3ACREATION-TIMESTAMP "2007.02.06 22:28:59.560 MSK")
+	(%3ACREATOR "Ruslan"))
+
+([Scenario_Instance_280005] of  Command
+
+	(label "Task Button Support")
+	(scenario "clojuretab.ClojureTab invoke s task-button-support"))
+
+([Scenario_Instance_380000] of  NetCom
+
+	(host "localhost")
+	(password "guest")
+	(project "NetCom")
+	(title "Local Net Communication")
+	(user "Guest"))
+
+([Scenario_Instance_440000] of  Command
+
+	(label "Show Labels")
+	(scenario "clojuretab.ClojureTab invoke s show-labels"))
+
+([Scenario_Instance_440001] of  Command
+
+	(label "Toggle Visible Objects")
+	(scenario "clojuretab.ClojureTab invoke sim toggle-visible-objects"))
+
+([ScenarioN_Class100000] of  Formatter
+
+	(class "com.bbn.openmap.image.SunJPEGFormatter")
+	(label "jpeg"))
+
+([ScenarioN_Class110007] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATION-TEXT "0")
+	(%3ACREATION-TIMESTAMP "2014.03.21 21:28:04.429 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class110034] of  CloFunction
+
+	(source "(let [nor (Geo. 0.0 0.0 0.1)\n      ang (Geo/angle nor g1 g2)\n      azi (.azimuth g1 g2)\n      mpi (Math/PI)]\n  (if (> azi mpi)\n    (- (* 2 mpi) ang)\n    ang))")
+	(title "geo-azi [g1 g2]"))
+
+([ScenarioN_Class130000] of  CloFunction
+
+	(source "(let [ii (OMT/getMapObInstances)\n      tt (DisplayUtilities/pickInstancesFromCollection nil ii \"Toggle Labels Visible\")]\n  (doseq [t tt]\n    (if-let[mo (OMT/getMapOb t)]\n      (.showLabel mo)) ))")
+	(title "show-labels []"))
+
+([ScenarioN_Class130001] of  Rule
+
+	(lhs "?aos (AssertObjects status \"START\"\n	title ?tit\n	object ?obj\n	collection ?col\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AssertObjects\")\n(let [obj (a/vv ?obj ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (a/assert-objects inss ?run))\n(retract ?aos)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:AssertObjects"))
+
+([ScenarioN_Class130005] of  CloFunction
+
+	(source "(.setName mo (str (.getName mo) \" \" sfx))")
+	(title "init-display-suffix [mo sfx]"))
+
+([ScenarioN_Class130008] of  CloFunction
+
+	(source "(let [n1 (.getName mo)\n       a (seq (.split n1 \" \"))\n       b (concat (butlast a) [sfx])\n       n2 (apply str (interpose \" \" b))]\n  (.setName mo n2))")
+	(title "upd-display-suffix [mo sfx]"))
+
+([ScenarioN_Class140000] of  CloFunction
+
+	(source "(let [ii (OMT/getMapObInstances)\n      tt (DisplayUtilities/pickInstancesFromCollection nil ii \"Toggle Labels Visible\")]\n  (doseq [t tt]\n    (if-let[mo (OMT/getMapOb t)]\n      (.hideLabel mo)) ))")
+	(title "hide-labels []"))
+
+([ScenarioN_Class160001] of  Rule
+
+	(lhs "?atv (AttributesToVariables status \"START\"\n	title ?tit\n	objects ?obs\n	attributes ?ats\n	variables ?vrs\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"AttributesToVariables\")\n(loop [oo ?obs aa ?ats vv ?vrs]\n  (if (and (seq oo) (seq aa) (seq vv))\n    (if-let [mo (a/mapob-vv (first oo) ?run)]\n      (when-let [avl (.getAttribute mo (protege.core/sv (first aa) \"title\"))]\n        (a/vvr (first vv) avl ?run)\n        (recur (rest oo) (rest aa) (rest vv))) )))\n(retract ?atv)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:AttributesToVariables"))
+
+([ScenarioN_Class170000] of  Rule
+
+	(lhs "?wms (WaitModelClock status \"START\" \n	title ?tit \n	time ?tim\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"WaitModelClock\")\n(if-let [tim (a/vv ?tim ?run)]\n  (modify ?wms status \"REPEAT\" \n	N (a/op-time-sec tim))\n  (modify ?wms status \"FAILED\"))")
+	(salience 0)
+	(title "a:WaitModelClockStart"))
+
+([ScenarioN_Class170001] of  Rule
+
+	(lhs "?smc (SetModelClock status \"START\"\n	title ?tit\n	time ?tim\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetModelClock\")\n(let [tim (a/vv ?tim ?run)\n      sec (a/op-time-sec tim)]\n    (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))\n(retract ?smc)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:SetModelClock"))
+
+([ScenarioN_Class170002] of  Rule
+
+	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	seed ?sed\n                      number ?num\n	rename ?ren\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"LoadResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (and mo\n            (or (seq ?mos) \n               (and sed num\n                 (let [nms (if (protege.core/sv sed \"label\") \"label\" \"title\")\n                        nam (protege.core/sv sed nms)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] (let [c (.shallowCopy sed nil nil)]\n	              (if (protege.core/is? ?ren)\n	                (protege.core/ssv c nms (str nam i))) \n                                      c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
+	(salience 0)
+	(title "a:LoadResource"))
+
+([ScenarioN_Class180000] of  Rule
+
+	(lhs "?od (ODecision status \"START\" \n	title ?tit\n	input_data ?ida\n	before ?bef\n	choices ?chs\n	variants ?vrs\n	parent ?pid\n	run ?run)")
+	(rhs "(println \"Decision:\" ?tit \"ODecision\")\n(s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?pid ?run)\n(retract ?od)")
+	(salience 0)
+	(title "d:ODecision"))
+
+([ScenarioN_Class180001] of  CloFunction
+
+	(source "(let [bnd0 (embed-ctx-vars r) \n       bnd1 (mapcat #(input-var-val % r) ida)\n       bnd2 (if (not (null? bef)) \n                  (parse-let-body (uncomment (sv bef \"source\")))\n                  [])\n       bnd3 (vec (concat bnd0 bnd1 bnd2))\n       vvm (var-val-map bnd3)\n       cchs (count chs)\n       cvrs (count vrs)\n       cprs (mapcat #(cond-pair %1 %2 vvm) chs (range cchs)) \n       cprs2 (if (> cvrs cchs) (concat cprs [true [cchs vvm]]) cprs)\n       exp `(let ~bnd3 (cond ~@cprs2))\n       ;;_ (println :EXP exp)\n       [nv vvm2] (eval exp)]\n  (if (< nv cchs)\n    (let [cho ((vec chs) nv)]\n      (doseq [res (svs cho \"results\")]\n        (var-val-to-result res vvm2 r))))\n  [((vec vrs) nv)])")
+	(title "o-decision [ida bef chs vrs r]"))
+
+([ScenarioN_Class190001] of  Rule
+
+	(lhs "(Clock time ?t)\n?wms (WaitModelClock status \"REPEAT\" \n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?n))")
+	(rhs "(retract ?wms)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitModelClockRepeat"))
+
+([ScenarioN_Class200001] of  Command
+
+	(label "Hide Labels")
+	(scenario "clojuretab.ClojureTab invoke s hide-labels"))
+
+([ScenarioN_Class210000] of  Rule
+
+	(lhs "?ias (IfActivityStatus status \"START\" \n	title ?tit \n	activities ?ats\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)")
+	(rhs "(println \"Decision:\" ?tit \"IfActivityStatus\")\n(s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?pid ?run)\n(retract ?ias)")
+	(salience 0)
+	(title "d:IfActivityStatus"))
+
+([ScenarioN_Class210001] of  CloFunction
+
+	(source "(loop [aa ats ss sts vv (butlast vrs)]\n  (if (seq vv)\n    (let [typ (.getDirectType (first aa))\n           typ (symbol (.getName typ))\n           tit (sv (first aa) \"title\")]\n      (if-let [fts (seq (rete.core/facts-with-slot-value typ 'title = tit))]\n        (if-let [fts (seq (rete.core/facts-with-slot-value typ 'run = run fts))]\n          (if (seq (rete.core/facts-with-slot-value typ 'status = (first ss) fts))\n            [(first vv)]\n            (recur (rest aa) (rest ss) (rest vv)))\n          (recur (rest aa) (rest ss) (rest vv)))\n        (recur (rest aa) (rest ss) (rest vv))))\n    [(last vrs)]))")
+	(title "if-activity-status [ats sts vrs run]"))
+
+([ScenarioN_Class210004] of  CloFunction
+
+	(source "([mot mob spd radius]\n (let [spt (.getSpeed mot)\n        lat (.getLatitude mot)\n        lot (.getLongitude mot)\n        crt (.getCourse mot)\n        lao (.getLatitude mob)\n        loo (.getLongitude mob)\n        dla (Math/abs (- lat lao))\n        dlo (Math/abs (- lot loo))]\n   (if (and (> spt 0) (or (> dla radius) (> dlo radius)))\n     (let [g1 (Geo. lat lot)\n            nms1 (/ spt 3600)\n            gaz (Geo/radians (double crt))]\n       (meeting-point g1 nms1 gaz lao loo spd radius))\n     [lat lot])))\n([g1 nms1 gaz lao loo spd radius]\n (let [g2 (Geo. lao loo)\n        nms2 (/ spd 3600)\n        g3 (meeting-point g1 nms1 gaz g2 nms2 radius)]\n   (if (nil? g3)\n     [99 189]\n     [(.getLatitude g3) (.getLongitude g3)])))\n([g1 nms1 gaz g2 nms2 radius]\n (let [d1 (Geo/distance g1 g2) \n       g3 (Geo/offset g1 d1 gaz)\n       t1 (/ (Geo/nm d1) nms1)\n       t2 (/ (Geo/distanceNM g2 g3) nms2)\n       mv (/ (+ nms1 nms2) 2)\n       eps (/ radius mv)\n       meps (- 0 eps)]\n   (if (>= t1 t2)\n       (loop [d (- d1 (/ d1 2)) ma d1 mi 0]\n	(let [g3 (Geo/offset g1 d gaz)\n	      t1 (/ (Geo/nm d) nms1)\n	      t2 (/ (Geo/distanceNM g2 g3) nms2)\n	      dt (- t1 t2)]\n	  (cond\n	    (or (= dt eps) (= dt meps)) g3\n	    (and (> dt 0) (> dt eps)) (recur (- d (/ (- d mi) 2)) d mi)\n	    (and (< dt 0) (< dt meps)) (recur (+ d (/ (- ma d) 2)) ma d)\n	    true g3)) )) ))")
+	(title "meeting-point"))
+
+([ScenarioN_Class220001] of  Rule
+
+	(lhs "?mom (MovingObjectMessage status \"START\"\n	title ?tit\n	clients ?cls\n	object ?obj\n	category ?cat\n	text ?txt\n	url ?url\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"MovingObjectMessage\")\n(modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?run))")
+	(salience 0)
+	(title "a:MovingObjectMessageStart"))
+
+([ScenarioN_Class220002] of  CloFunction
+
+	(source "(let [name (.getName mo)\n      g-start (Geo. lat-start lon-start)\n      g-finish (Geo. lat-finish lon-finish)\n      azimuth (geo-azi g-start g-finish)\n      full-rad (.distance g-start g-finish)\n      velo-nms (/ spd 3600)]\n  (.setCourse mo (int (Geo/degrees azimuth)))\n  (.setSpeed mo 0.0)\n  (.setLatitude mo lat-start)\n  (.setLongitude mo lon-start)\n  ;; (pump-speed name spd)\n  [g-finish azimuth full-rad velo-nms])")
+	(title "flight-start [mo spd lat-start lon-start lat-finish lon-finish]"))
+
+([ScenarioN_Class220006] of  CloFunction
+
+	(source "(if-let [mo (mapob-vv ?obj p r)]\n  (let [ela-sec (- curr-sec start-sec)\n         curr-nm (* velo-nms ela-sec)\n         curr-rad (Geo/nmToAngle curr-nm)]\n    (if (>= curr-rad full-rad)\n      (do \n        (.setLatitude mo (.getLatitude g-finish))\n        (.setLongitude mo (.getLongitude g-finish))\n        (.setCourse mo 90)\n        true)\n      (let [name (.getName mo)\n             g-curr (Geo/offset (Geo. lat-start lon-start) curr-rad azimuth)\n             new-azi (geo-azi g-curr g-finish)\n             new-crs (int (Geo/degrees new-azi))]\n        (.setLatitude mo (.getLatitude g-curr))\n        (.setLongitude mo (.getLongitude g-curr))\n        (.setCourse mo new-crs)\n        ;; (pump-speed name (* velo-nms 3600))\n        false)))\n  (do (println [:FLIGHT-IN-POINT? :OBJ ?obj :NOT-ON-MAP :PROTO p :RUN r])\n    false))")
+	(title "flight-in-point? [?obj lat-start lon-start g-finish azimuth full-rad velo-nms start-sec curr-sec p r]"))
+
+([ScenarioN_Class230001] of  Command
+
+	(label "Toggle Visible Zones")
+	(scenario "clojuretab.ClojureTab invoke sim toggle-visible-zones"))
+
+([ScenarioN_Class230006] of  Rule
+
+	(lhs "?pos (Position status \"WAIT\" \n	object ?mob\n	observer ?mos\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	run ?run)\n?moe (MapObEvent status ?stss\n	object ?mos\n	[(= ?stss \"UPD_COURSE\")\n	 (= ?stss \"UPD_SPEED\")])")
+	(rhs "(if-let [[lat lon spdb] (a/future-position ?mob ?mos ?posa ?posd ?poss ?rel ?rad)]\n  (.goRoute ?mob lat lon)\n  (.stopRoute ?mob))\n(retract ?moe)")
+	(salience -1)
+	(title "a:PositionObserverManeuver"))
+
+([ScenarioN_Class240000] of  CloFunction
+
+	(source "(if (some? ES-TIMER)\n  (let [all (cls-instances \"Scenario\")\n        sf (.getSystemFrames *kb*)\n        ac (.getAnnotationCls sf)\n        is (.getName (.getAnnotatedInstanceSlot sf))\n        ais (map #(sv % is) (.getInstances ac))\n        nis (filter #(not (nil? %)) ais)\n        sis (filter #(= (.getName (.getDirectType %)) \"Scenario\") nis)\n        ss (edu.stanford.smi.protege.ui.DisplayUtilities/pickInstancesFromCollection nil sis \"Select Start Scenarios\")]\n    (if (seq ss)\n      (doseq [s ss]\n        (if-let [pro (sv s \"protagonist\")]\n          (or (OMT/getMapOb pro) (OMT/getOrAdd pro)))\n        (start-scenario s nil \"Adm\")) ))\n  (println \"Simulation not started!\"))")
+	(title "run-annotated-scenario []"))
+
+([ScenarioN_Class240002] of  CloFunction
+
+	(source "(let [dt (.split tim \" \")\n      dd (.split (aget dt 0) \"-\")\n      hms (.split (aget dt 1) \":\")\n      ds (* (Integer. (aget dd 1)) 3600 24)\n      hs (* (Integer. (aget hms 0)) 3600)\n      ms (* (Integer. (aget hms 1)) 60)\n      ss (Integer. (aget hms 2))]\n  (+ ds hs ms ss))")
+	(title "op-time-sec [tim]"))
+
+([ScenarioN_Class250000] of  CloProgram
+
+	(cloFunctions
+		[ScenarioN_Class320002]
+		[ScenarioN_Class280000]
+		[ScenarioN_Class330005]
+		[ScenarioN_Class330000]
+		[ScenarioN_Class410041]
+		[ScenarioN_Class390087]
+		[ScenarioN_Class50273]
+		[ScenarioN_Class390025]
+		[ScenarioN_Class60155])
+	(cloNamespace [ScenarioN_Class290001])
+	(cloVars
+		[ScenarioN_Class330006]
+		[ScenarioN_Class380000]
+		[ScenarioN_Class330007]
+		[ScenarioN_Class290000]
+		[ScenarioN_Class330001])
+	(title "CSV Import"))
+
+([ScenarioN_Class250001] of  Rule
+
+	(lhs "?ur (UseResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	variable ?var\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"UseResource\")\n(let [mo (a/mapob-vv ?obj ?run)\n       atr (protege.core/sv ?res \"title\")\n       [idx & rr] (.getAttribute mo atr)]\n  (if (and mo atr idx rr)\n    (do (if (< idx (count rr))\n            (do (a/vvr ?var (nth rr idx) ?run)\n              (.putAttribute mo atr (vec (cons (inc idx) rr))))\n            (a/vvr ?var nil ?run))\n      (retract ?ur)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ur status \"FAILED\")))")
+	(salience 0)
+	(title "a:UseResource"))
+
+([ScenarioN_Class260001] of  CloProgram
+
+	(cloFunctions
+		[ScenarioN_Class300003]
+		[ScenarioN_Class310005]
+		[ScenarioN_Class310007]
+		[ScenarioN_Class310008]
+		[ScenarioN_Class310009]
+		[ScenarioN_Class310010]
+		[ScenarioN_Class310011]
+		[ScenarioN_Class310012]
+		[ScenarioN_Class310014]
+		[ScenarioN_Class310015])
+	(cloNamespace [ScenarioN_Class310016])
+	(cloVars [ScenarioN_Class320009])
+	(title "Snapshot"))
+
+([ScenarioN_Class260002] of  Rule
+
+	(lhs "?mom (MovingObjectMessage status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?mom)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:MovingObjectMessageDone"))
+
+([ScenarioN_Class260003] of  CloFunction
+
+	(source "(if-let [obj (OMT/getMapOb (vv ?obj r))]\n  (let [txt (vv ?txt r)\n         url (vv ?url r)\n         spl (seq (.split txt \"\\\\?\"))\n         lab (.getName obj)\n         lat (.getLatitudeDM obj)\n         lon (.getLongitudeDM obj)\n         crs (.getCourse obj)\n         spd (.getSpeed obj)\n         tim (op-time)\n         c2 [lab lat lon crs spd]\n         c3 (concat (interleave spl c2) (nthrest spl (count c2)))\n         txt2 (apply str c3)\n         mp {\"url\" url \"?title\" atit \"?time\" tim \"?object\" lab \"?latitude\" lat \"?longitude\" lon \"course\" crs \"speed\" spd}]\n    (if (empty? cls)\n      (es-mess (str tim \" \" txt2) mp cat)\n      (doseq [cli cls]\n        (es-mess (str tim \" \" txt2) mp cat (sv cli \"id\"))))\n    \"DONE\")\n  \"FAILED\")")
+	(title "moving-object-message [atit ?obj ?txt ?url cat cls r]"))
+
+([ScenarioN_Class280000] of  CloFunction
+
+	(source "(let [fc (JFileChooser. s)]\n  (.setMultiSelectionEnabled fc true)\n  (if-let [rv (.showOpenDialog fc nil)]\n    (map #(.getPath %) (.getSelectedFiles fc))))")
+	(title "file-chooser [s]"))
+
+([ScenarioN_Class280001] of  Rule
+
+	(lhs "?aip (ArriveIntoPolygon status \"START\" \n	title ?tit \n	object ?obj \n	polygon ?pol \n	spd ?spd \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"ArriveIntoPolygon\")\n(if-let [pol (a/vv ?pol ?run)]\n  (let [lat (protege.core/sv pol \"latitude\")\n        lon (protege.core/sv pol \"longitude\")\n        spd (a/vv ?spd ?run)]\n    (retract ?aip)\n    (asser Arrive status \"START\"\n	title ?tit\n	object ?obj\n	latitude lat\n	longitude lon\n	speed (Float. spd)\n	radius 0.2\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts))\n  (modify ?aip status \"FAILED\"))")
+	(salience 0)
+	(title "a:ArriveIntoPolygon"))
+
+([ScenarioN_Class280002] of  Rule
+
+	(lhs "?ss (StartScenarios status \"START\"\n	id ?pid\n	title ?tit\n	scenarios ?scs\n	default_parameters ?dfs\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"StartScenarios\")\n(loop [ss ?scs dd ?dfs]\n  (when (seq ss)\n    (s/start-scenario (first ss) (if (= (first dd) true) {}))\n    (recur (rest ss) (rest dd))))\n(retract ?ss)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:StartScenarios"))
+
+([ScenarioN_Class290000] of  CloVar
+
+	(source ":Title")
+	(title "TIT"))
+
+([ScenarioN_Class290001] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [clojure.java.io :as io]\n  [clojure-csv.core :as csv]\n  [semantic-csv.core :as sc :refer :all])\n(:import \n  javax.swing.JFileChooser\n  edu.stanford.smi.protege.model.ValueType\n  edu.stanford.smi.protege.model.Instance)")
+	(title "csv.imp"))
+
+([ScenarioN_Class290002] of  Command
+
+	(label "Toggle Visible Polygons")
+	(scenario "clojuretab.ClojureTab invoke sim toggle-visible-polygons"))
+
+([ScenarioN_Class290013] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2014.02.19 17:08:12.237 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class300000] of  CloFunction
+
+	(source "(if-let [pla (if (string? player) (fifos \"MapOb\" \"label\" player) player)]\n  (when-let [si (if (string? siorti) \n	(or (fifos \"Scenario\" \"title\" siorti) (find-general-scenario siorti))\n	siorti)]\n    (ssv si \"protagonist\" pla)\n    (start-scenario si mp \"Pla\")))")
+	(title "player-start-scenario [player siorti mp]"))
+
+([ScenarioN_Class300003] of  CloFunction
+
+	(source "(condp = (type it)\n  Geo (str \"#<Geo \" [(.getLatitude it)(.getLongitude it)])\n  NavOb (str \"#<NavOb \" (.getName it))\n  DefaultSimpleInstance (str \"#<\" (.getName it))\n  Collections$UnmodifiableCollection (vec (map jn-struct-with-inss it))\n  HashMap (jn-struct-with-inss (into {} it))\n  Hashtable (jn-struct-with-inss (into {} it))\n  (cond\n    (vector? it) (vec (map jn-struct-with-inss it))\n    (seq? it) (seq (map jn-struct-with-inss it))\n    (map? it) (reduce-kv\n	(fn [m k v] (assoc m k (jn-struct-with-inss v)))\n	{}\n	it)\n    true it))")
+	(title "jn-struct-with-inss [it]"))
+
+([ScenarioN_Class300004] of  Rule
+
+	(lhs "?vc (VerticalControl status \"REPEAT\" \n	vc_type \"PROFILE\"\n	title ?tit \n	object ?obj\n	alt_profile ?apf\n	N ?n\n	speed ?spd\n	time1 ?tm1\n	run ?run)\n(Clock time ?t)")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let[a0 (.getAltitude mo)\n       apf (a/vv ?apf ?run)\n       alts0 (nthrest (protege.core/svs apf \"alt\") ?n)\n       [a1 a2 & alts] (seq alts0)]\n    (.setAltitude mo (int (Math/round (+ a0 ?spd)) ))\n    (if (and (>= ?t ?tm1) (not (nil? a2)))\n      (let [secs0 (nthrest (protege.core/svs apf \"second\") ?n)\n            [s1 s2 & secs] (seq secs0)\n            ds (- s2 s1)]\n        (.setAltitude mo a1)\n        (modify ?vc speed (float (/ (- a2 a1) ds))\n	time1  (+ ?tm1 ds)\n	N (inc ?n)) ) ))\n  (modify ?vc status \"FAILED\"))")
+	(salience 0)
+	(title "a:VerticalControlProfile"))
+
+([ScenarioN_Class300005] of  Rule
+
+	(lhs "(Clock time ?t)\n?vc (VerticalControl status \"REPEAT\" \n	object ?obj\n	vc_type ?vct\n	alt_profile ?apf\n	period ?prd \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?prd))")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (do\n    (if (= ?vct \"PROFILE\")\n      (let[apf (a/vv ?apf ?run)\n           alts (seq (protege.core/svs apf \"alt\"))]\n        (.setAltitude mo (last alts))))\n    (.removeAttribute mo \"VC_TYPE\")))\n(retract ?vc)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:VerticalControlRepeat"))
+
+([ScenarioN_Class300006] of  Rule
+
+	(lhs "?vc (VerticalControl status \"START\" \n	title ?tit \n	object ?obj\n	vc_type ?vct\n	height ?hgt\n	time ?tim\n	alt_profile ?apf\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"VerticalControl\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (do (.putAttribute mo \"VC_TYPE\" ?vct)\n    (condp = ?vct\n      \"PROFILE\"\n      (if-let[apf (a/vv ?apf ?run)]\n        (let [[s1 s2 & secs] (seq (protege.core/svs apf \"second\"))\n               [a1 a2 & alts] (seq (protege.core/svs apf \"alt\"))]\n          (.setAltitude mo a1)\n          (modify ?vc status \"REPEAT\"\n	speed (float (/ (- a2 a1) (- s2 s1)))\n	time1  (+ ?t s2)\n	N 1\n	period (+ ?t (last secs))))\n        (modify ?vc status \"FAILED\"))\n      \"RELIEF\"\n      (let [hgt (a/vv ?hgt ?run)\n            tim (a/vv ?tim ?run)]\n        (if (not (or (nil? hgt) (nil? tim)))\n          (do (.setAltitude mo (Integer. hgt))\n            (modify ?vc status \"REPEAT\"\n	period (+ ?t (Integer. ?tim)) )) )) ))\n  (modify ?vc status \"FAILED\"))")
+	(salience 0)
+	(title "a:VerticalControlStart"))
+
+([ScenarioN_Class310002] of  Rule
+
+	(lhs "?sts (SetTimeScale status \"START\"\n	title ?tit \n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"SetTimeScale\")\n(if-let [scl (a/vv ?scl ?run)]\n  (ru.igis.omtab.OMT/setTimeScale scl))\n(retract ?sts)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:SetTimeScale"))
+
+([ScenarioN_Class310003] of  Command
+
+	(label "Restore Snapshot")
+	(scenario "clojuretab.ClojureTab invoke sst rstor-snapshot"))
+
+([ScenarioN_Class310005] of  CloFunction
+
+	(source "(let [att (.getAttributes no)\n      amp (if att (dissoc (into {} att) \"att_map_key\"))]\n  {:type \"NavOb\"\n    :name (.getName no)\n    :instance (if-let [ins (.getInstance no)] (jn-struct-with-inss ins))\n    :course (.getCourse no)\n    :speed (.getSpeed no)\n    :attributes (if att (jn-struct-with-inss amp))\n    :coordinates [(.getLatitude no) (.getLongitude no)]})")
+	(title "jn-navob [no]"))
+
+([ScenarioN_Class310007] of  CloFunction
+
+	(source "(let [lm (.getLocationMarker omtp)\n      crd (vec (.getLatLonArrayCopy lm))]\n  {:type \"OMTPoly\"\n    :name (.getName omtp)\n    :instance (if-let [ins (.getInstance omtp)] (jn-struct-with-inss ins))\n    :coordinates crd})")
+	(title "jn-omtpoly [omtp]"))
+
+([ScenarioN_Class310008] of  CloFunction
+
+	(source "(println [:MAPOB (type mo) (.getName mo)])\n(condp = (type mo)\n  ru.igis.omtab.NavOb (jn-navob mo)\n  ru.igis.omtab.OMTPoly (jn-omtpoly mo)\n  ru.igis.omtab.Spill (jn-omtpoly mo)\n  nil)")
+	(title "jn-mapob [mo]"))
+
+([ScenarioN_Class310009] of  CloFunction
+
+	(source "(let [jms (map jn-mapob (OMT/getMapObs))\n        nns (filter #(not (nil? %)) jms)]\n  (apply str (interpose \"\\n\" nns)))")
+	(title "jn-mapobs []"))
+
+([ScenarioN_Class310010] of  CloFunction
+
+	(source "(cond\n  (and (string? it) (.startsWith it \"#<Geo \")) \n	(let [[lat lon] (read-string (.substring it 6))]\n	  (Geo. lat lon))\n  (and (string? it) (.startsWith it \"#<NavOb \"))\n	(let [lab (.substring it 8)]\n	  (OMT/getOrAdd lab))\n  (and (string? it) (.startsWith it \"#<\")) (.getInstance *kb* (.substring it 2))\n  (vector? it) (vec (map resolve-struct-with-inss it))\n  (seq? it) (seq (map resolve-struct-with-inss it))\n  (map? it) (reduce-kv\n	(fn [m k v] (assoc m k (resolve-struct-with-inss v)))\n	{}\n	it)\n  true it)")
+	(title "resolve-struct-with-inss [it]"))
+
+([ScenarioN_Class310011] of  CloFunction
+
+	(source "(let [sw (split-with #(not= x %) y)]\n  (if (empty? (second sw))\n    [(first sw)]\n    (cons (first sw) (split-by x (rest (second sw))) )))")
+	(title "split-by [x y]"))
+
+([ScenarioN_Class310012] of  CloFunction
+
+	(source "([]\n (let [dir (str SSFLD \"/\")\n       cld (Calendar/getInstance)\n       yar (.get cld Calendar/YEAR )\n       mon (.get cld Calendar/MONTH)\n       dat (.get cld Calendar/DATE)\n       hor (.get cld Calendar/HOUR_OF_DAY)\n       min (.get cld Calendar/MINUTE)\n       pth (str dir (.getName *prj*) \"_\" yar \"-\" mon \"-\" dat \"_\" hor \"-\" min \".txt\")\n       yon (JOptionPane/showConfirmDialog nil pth)]\n    (when (= yon JOptionPane/YES_OPTION)\n      (stor-snapshot pth)\n      (JOptionPane/showMessageDialog nil (str \"Snapshot stored in: \" pth)) ) ))\n([path]\n (println [:STORE-IN path])\n (let [sep \"<<[[{{}}]]>>\\n\"]\n   (with-open [wrt (writer path)]\n     (.write wrt (str (Clock/getClock) \"\\n\"))\n     (.write wrt sep)\n     (doseq [fact (map rest (rete.core/fact-list))]\n       (.write wrt (str (jn-struct-with-inss fact) \"\\n\")))\n     (.write wrt sep)\n     (.write wrt (jn-mapobs)) ) ))")
+	(title "stor-snapshot"))
+
+([ScenarioN_Class310014] of  CloFunction
+
+	(source "(let [typ (mp :type)\n       nam (mp :name)\n       ins (mp :instance)\n       crs (mp :course)\n       spd (mp :speed)\n       att (mp :attributes)\n       crd (mp :coordinates)\n       ncd (count crd)]\n  (println [:MAPOB nam ins crs spd (if (> ncd 2) (/ ncd 2) crd)])\n  (if-let [inst (resolve-struct-with-inss ins)]\n    (let [mo (OMT/getOrAdd inst)]\n      (condp = typ\n        \"NavOb\" (do \n	(.setLatitude mo (first crd))\n	(.setLongitude mo (second crd))\n	(.setCourse mo crs)\n	(.setSpeed mo spd)\n	(.updateRPNOF mo)\n	(if-let [ats (resolve-struct-with-inss att)]\n	  (doseq [k (keys ats)]\n	    (.putAttribute mo k (ats k)) ) ))\n        \"OMTPoly\" (let [da (double-array crd)\n	        lm (.getLocationMarker mo)]\n	   (.setLocation lm da (OMGraphic/RADIANS)))\n        (println \"--unsupported--\")) ) ))")
+	(title "rstor-mapob [mp]"))
+
+([ScenarioN_Class310015] of  CloFunction
+
+	(source "([]\n (let [dir (str \"/\" SSFLD)\n       fc (JFileChooser. (str (java.lang.System/getProperty \"user.dir\") dir))\n       rv (.showOpenDialog fc nil)]\n   (if (= rv JFileChooser/APPROVE_OPTION)\n     (let [pth (.getPath (.getSelectedFile fc))]\n       (rstor-snapshot pth)\n       (JOptionPane/showMessageDialog nil (str \"Snapshot restored from: \" pth)) )) ))\n([path]\n (println [:RESTORE-FROM path])\n (with-open [rdr (reader path)]\n   (let [ls (line-seq rdr)\n         [clc fts mbs] (split-by \"<<[[{{}}]]>>\" ls)\n         clock (Long. (first clc))\n         fts2 (map read-string fts)\n         facts (map #(map resolve-struct-with-inss %) fts2)\n         mps (map read-string mbs)]\n     (Clock/setClock clock)\n     (doseq [mb mps]\n       (rstor-mapob mb))\n     (doseq [f facts]\n       (let [fact (vec f)]\n         (println [:FACT fact])\n         (rete.core/assert-frame fact)) )) ))")
+	(title "rstor-snapshot"))
+
+([ScenarioN_Class310016] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  clojure.java.io\n  rete.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock\n  ru.igis.omtab.NavOb\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.proj.ProjMath\n  javax.swing.JOptionPane\n  javax.swing.JFileChooser\n  java.util.Calendar\n  edu.stanford.smi.protege.model.DefaultSimpleInstance\n  com.bbn.openmap.geo.Geo\n  java.util.Collections$UnmodifiableCollection\n  java.util.HashMap\n  java.util.Hashtable)")
+	(title "sst"))
+
+([ScenarioN_Class320002] of  CloFunction
+
+	(source "(sc/slurp-csv pth)")
+	(title "read-csv [pth]"))
+
+([ScenarioN_Class320007] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2014.05.20 12:59:48.146 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class320009] of  CloVar
+
+	(source "\"snapshots\"")
+	(title "SSFLD"))
+
+([ScenarioN_Class330000] of  CloFunction
+
+	(source "([]\n  (vreset! IMAP {})\n  (doseq [m @DATA]\n    (if-let [[clz nam ins] (create-bare-instances m)]\n      (vswap! IMAP assoc-in [clz nam] ins))))\n([m]\n  (let [clz (CLS m)]\n    (if-let [ins (crin clz)]\n      (if-let [lab (get m LAB)]\n        (do (ssv ins \"label\" lab) [clz lab ins])\n        (if-let [tit (get m TIT)]\n          (do (ssv ins \"title\" tit) [clz tit ins]))))))")
+	(title "create-bare-instances"))
+
+([ScenarioN_Class330001] of  CloVar
+
+	(source "(volatile! {})")
+	(title "IMAP"))
+
+([ScenarioN_Class330002] of  CloProgram
+
+	(cloFunctions
+		[ScenarioN_Class330004]
+		[ScenarioN_Class420000]
+		[ScenarioN_Class440001]
+		[ScenarioN_Class440002]
+		[ScenarioN_Class440008])
+	(cloNamespace [ScenarioN_Class330003])
+	(title "Calc Functions"))
+
+([ScenarioN_Class330003] of  CloNamespace
+
+	(source "(:use protege.core)")
+	(title "c"))
+
+([ScenarioN_Class330004] of  CloFunction
+
+	(source "(float (+ y1 (/ (* (- y2 y1) (- x x1)) (- x2 x1))))")
+	(title "linint [x [x1 y1] [x2 y2]]"))
+
+([ScenarioN_Class330005] of  CloFunction
+
+	(source "(let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))]\n  (when (seq pths)\n    (doseq [pth pths]\n      (let [csv (read-csv pth)\n             csv (filter #(or (not (empty? (LAB %)))\n	              (not (empty? (TIT %)))) csv)]\n        (println (str \"In file: \" pth \" \" (count csv) \" objects\"))\n        (vswap! DATA concat csv)))))")
+	(title "read-files [hm inst]"))
+
+([ScenarioN_Class330006] of  CloVar
+
+	(source "(volatile! [])")
+	(title "DATA"))
+
+([ScenarioN_Class330007] of  CloVar
+
+	(source ":Label")
+	(title "LAB"))
+
+([ScenarioN_Class340000] of  CloFunction
+
+	(source "(read-string (str \"[\" s \"]\"))")
+	(title "parse-let-body [s]"))
+
+([ScenarioN_Class340025] of  CloFunction
+
+	(source "(let [p2 (partition 2 bnd)\n      vars (map first p2)\n      nams (map name vars)]\n  (zipmap nams vars))")
+	(title "var-val-map [bnd]"))
+
+([ScenarioN_Class350009] of  CloFunction
+
+	(source "(let [aft (sv cho \"after\")\n      cnd (sv cho \"condition\")\n      cnd3 (parse-cond cnd)\n      bnd3 (if (not (null? aft)) \n                 (parse-let-body (uncomment (sv aft \"source\")))\n                 [])\n      vvm3 (var-val-map bnd3)\n      vvm4 (merge vvm vvm3)]\n  [cnd3 `(let ~bnd3\n	[~vn ~vvm4])])")
+	(title "cond-pair [cho vn vvm]"))
+
+([ScenarioN_Class370007] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2014.05.20 11:05:38.615 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class380000] of  CloVar
+
+	(source ":Class")
+	(title "CLS"))
+
+([ScenarioN_Class380010] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2014.06.25 17:11:52.756 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class390025] of  CloFunction
+
+	(source "([]\n  (doseq [m @DATA]\n    (fill-instances (CLS m) (or (LAB m) (TIT m)) m)))\n([clz nam m]\n  (when-let [ins (get-in @IMAP [clz nam])]\n    (println (str \"Instance: \" nam))\n    (let [typ (.getDirectType ins)\n           sls (.getTemplateSlots typ)\n           snm (into {} (map #(vector (.toLowerCase (name %)) %) (keys m)))]\n      (doseq [sl sls]\n        (if-let [val (m (snm (.getName sl)))]\n          (let [sn (.getName sl)\n                 mv (.getAllowsMultipleValues sl)]\n            (if (and (not= sn \"label\") (not= sn \"title\"))\n              (if-let [val (if mv (trans-vals sl val) (trans-val sl val))]\n                (try\n                  (if mv (ssvs ins sn val) (ssv ins sn val))\n                  (catch Exception e\n	(println (str \"Wrong value: \" val \" for slot: \" sn \n		\" for obj: \" (or (sv ins \"label\") (sv ins \"title\")))) )))) )))) ))")
+	(title "fill-instances"))
+
+([ScenarioN_Class390087] of  CloFunction
+
+	(source "(cond \n  (integer? val) val\n  (number? val) (float val)\n  (instance? Instance val) val\n  (not (empty? val))\n    (condp = (.getValueType slt)\n      ValueType/FLOAT (float (read-string val))\n      ValueType/INTEGER (int (read-string val))\n      ValueType/INSTANCE (find-value slt val)\n      val)\n  true val)")
+	(title "trans-val [slt val]"))
+
+([ScenarioN_Class400000] of  CloFunction
+
+	(source "(int (/ (Clock/getClock) 1000))")
+	(title "clock []"))
+
+([ScenarioN_Class40001] of  CloFunction
+
+	(source "(OMT/getMapOb (vv ?obj ?run))")
+	(title "mapob-vv [?obj ?run]"))
+
+([ScenarioN_Class410041] of  CloFunction
+
+	(source "(let [vv (for [[clz inss] (seq @IMAP)]\n 	(get inss val))\n       vv (filter some? vv)]\n  (if (> (count vv) 1)\n    (println (str \"Ambiguity for slot \" (.getName slt) \" value: \" val \" \"\n	(vec (map #(or (sv % \"label\") (sv % \"title\")) vv)))))\n  (first vv))")
+	(title "find-value [slt val]"))
+
+([ScenarioN_Class420000] of  CloFunction
+
+	(source ";; left and right borders in table are exclusive\n(let [[lo hi] (split-with #(< (first %) x) table)]\n  (if (seq lo)\n    (if (seq hi)\n      (linint x (last lo) (first hi))\n      [:UB (second (last table))])\n    [:LB (second (first table))]))")
+	(title "tabfun [x table]"))
+
+([ScenarioN_Class430004] of  CloFunction
+
+	(source "(println (str \"Hello \" greetee \"!\"))")
+	(title "-main [greetee]"))
+
+([ScenarioN_Class440001] of  CloFunction
+
+	(source ";; inverse function, only for monotone(!!!) functions\n(tabfun y (map #(vector (second %)(first %)) table))")
+	(title "i-mono-tabfun [y table]"))
+
+([ScenarioN_Class440002] of  CloFunction
+
+	(source ";; result behind border equal boarders\n(let [res (tabfun x table)]\n  (if (vector? res) (second res) res))")
+	(title "smooth-tabfun [x table]"))
+
+([ScenarioN_Class440008] of  CloFunction
+
+	(source "(let [xx (svs inst \"x\")\n       yy (svs inst \"y\")]\n  (vec (map #(vector %1 %2) xx yy)))")
+	(title "create-tabfun [inst]"))
+
+([ScenarioN_Class460000] of  Rule
+
+	(lhs "?cp (ConfirmPosition status \"START\" \n	title ?tit \n	object ?obj\n	latitude ?lat\n	longitude ?lon\n	client ?cli\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"ConfirmPosition\")\n(let [obj (a/vv ?obj ?run)\n       lat (a/degmin-to-deg ?lat ?run)\n       lon (a/degmin-to-deg ?lon ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (nil? lat) (nil? lon) (a/null? cli))\n    (do (modify ?cp status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)))\n    (let [bb (int (.bearingsDeg mo lat lon))\n           dir (or (.getAttribute mo \"SAT-DIR\")\n	(let [newdir \"FORWARD\"]\n	  (.putAttribute mo \"SAT-DIR\" newdir)\n	  newdir))\n           old (or (.getAttribute mo \"SAT-BBEAR\") bb)\n           dif (if (> old bb) (- old bb) (- bb old))\n           dir (if (>= dif 180)  (let [newdir (if (= dir \"FORWARD\") \"BACKWARD\" \"FORWARD\")]\n		(.putAttribute mo \"SAT-DIR\" newdir)\n		newdir)\n 	                 dir)\n           crs (if (= dir \"FORWARD\")\n	(+ bb 180)\n	bb)\n           crs (if (>= crs 360) (- crs 360) crs)]\n      ;; (navobs.commands/pump-in-evt (protege.core/sv cli \"id\")\n	;; {:event :update-navob \n	;;	:name (.getName mo)\n	;;	:lat (.getLatitude mo)\n	;;	:lon (.getLongitude mo)\n	;;	:crs crs\n	;;	:spd (.getSpeed mo)\n	;;	:clk (ru.igis.omtab.Clock/getCurrentTime)})\n      (.putAttribute mo \"SAT-BBEAR\" bb)\n      (retract ?cp)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(salience 0)
+	(title "a:ConfirmPosition"))
+
+([ScenarioN_Class460005] of  Rule
+
+	(lhs "?cs (CircleScan status \"START\"\n	title ?tit \n	object ?obj \n	detector ?det\n	client ?cli\n	text ?txt\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"CircleScan\")\n(let [obj (a/vv ?obj ?run)\n       det (a/vv ?det ?run)\n       cli (a/vv ?cli ?run)\n       mo (ru.igis.omtab.OMT/getMapOb obj)]\n  (if (or (nil? mo) (a/null? det))\n    (do (modify ?cs status \"FAILED\")\n      (if (and obj (nil? mo))\n        (asser Exception status \"LOST\" object obj title (protege.core/sv obj \"label\") run ?run)))\n    (let [types (protege.core/svs det \"types\")\n           ranges (protege.core/svs det \"ranges\")\n           probs (protege.core/svs det \"probabilities\")]\n      (doseq [tgt (ru.igis.omtab.OMT/getMapObs)]\n        (if (a/detected mo tgt types ranges probs)\n          (let [tgn (.getName tgt)]\n            (asser Exception status \"DETECTED\" object obj title (eval tgn) run ?run)\n            (.putAttribute mo \"DETECT\" (.getName tgt))\n            (.putAttribute tgt \"DETECTED-BY\" (.getName mo)))))\n            ;;(if (a/null? cli)\n            ;;  (navobs.commands/set-visible tgn true)\n            ;;  (let [clid (protege.core/sv cli \"id\")]\n            ;;    (a/es-mess (str (a/op-time) \" Докладывает \" (.getName mo) \": \" ?txt \" \" tgn\n	;; (format \" ш %.3f\" (.getLatitude tgt))\n	;; (format \" д %.3f\" (.getLongitude tgt))\n	;; \" курс \" (.getCourse tgt)\n	;; \" скорость \" (.getSpeed tgt)) {} 0 clid)\n                ;; (navobs.commands/set-visible true tgt clid))) )))\n      (retract ?cs)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(salience 0)
+	(title "a:CircleScan"))
+
+([ScenarioN_Class460006] of  CloFunction
+
+	(source "(if (instance? NavOb tgt)\n  (let [typ (.getType tgt)]\n    (loop [tps types rns ranges prs probs]\n      (if (seq tps)\n        (if (= (first tps) typ)\n          (if (and (<= (.distanceNM mo tgt) (first rns))\n                   (<= (rand) (first prs)))\n            true\n            (recur (rest tps) (rest rns) (rest prs)))\n          (recur (rest tps) (rest rns) (rest prs)))\n        false))))")
+	(title "detected [mo tgt types ranges probs]"))
+
+([ScenarioN_Class470000] of  CloFunction
+
+	(source "(let [acts (rete.core/facts-with-slot-value 'run = run)\n       fids (map first acts)]\n  (doseq [fid fids]\n     (rete.core/retract-fact fid)))")
+	(title "clear-scenario-activities [run]"))
+
+([ScenarioN_Class470001] of  Rule
+
+	(lhs "?ce (CatchException status \"START\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	run ?run\n	variants ?vrs)")
+	(rhs "(modify ?ce status \"WAIT\"\n	objects (map #(a/vv % ?run) ?obs)\n	statuses (map #(a/vv % ?run) ?sts))")
+	(salience 0)
+	(title "d:CatchExceptionStart"))
+
+([ScenarioN_Class470002] of  Rule
+
+	(lhs "?ce (CatchException status \"WAIT\" \n	title ?tit \n	objects ?obs\n	statuses ?sts\n	parent ?pid\n	run ?run\n	variants ?vrs)\n?ex (Exception status ?sta\n	object ?obj\n	((some #{?sta} ?sts)\n	 (some #{?obj} ?obs)))")
+	(rhs "(println \"Decision:\" ?tit \"CatchException status WAIT\")\n(loop [oo ?obs ss ?sts vv ?vrs]\n  (if (seq oo)\n    (if (and (= (first oo) ?obj) (= (first ss) ?sta))\n      (do (s/start-tasks-actions [(first vv)] ?pid ?run)\n        (retract ?ce ?ex))\n      (recur (rest oo) (rest ss) (rest vv)))))")
+	(salience 0)
+	(title "d:CatchExceptionWait"))
+
+([ScenarioN_Class500009] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2015.06.30 17:31:31.030 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class50273] of  CloFunction
+
+	(source "(if (not (empty? val))\n  (vec (map #(trans-val slt %) (read-string val))))")
+	(title "trans-vals [slt val]"))
+
+([ScenarioN_Class510000] of  CloProgram
+
+	(cloFunctions
+		[ScenarioN_Class510001]
+		[ScenarioN_Class510002]
+		[ScenarioN_Class510003]
+		[ScenarioN_Class510004]
+		[ScenarioN_Class510005]
+		[ScenarioN_Class510006]
+		[ScenarioN_Class520007]
+		[ScenarioN_Class520008]
+		[ScenarioN_Class530015]
+		[ScenarioN_Class530014]
+		[ScenarioN_Class520000]
+		[ScenarioN_Class550004])
+	(cloNamespace [ScenarioN_Class520009])
+	(title "Poly Moving"))
+
+([ScenarioN_Class510001] of  CloFunction
+
+	(source "; while mixing take n elements from x and one element from y repeatedly\n(cond\n  (< (.size x) n)(concat x y)\n  (< (.size y) 1) x\n true (concat (take n x)(take 1 y)(mix-lists-by-n n (drop n x)(drop 1 y))))")
+	(title "mix-lists-by-n [n x y]"))
+
+([ScenarioN_Class510002] of  CloFunction
+
+	(source "; if lists differ in length remarkably, repeatedly takes from longer list more than from shorter one\n(let [lx (.size x)\n       ly (.size y)]\n (if (> lx ly)\n     (mix-lists-by-n (int (Math/floor (float (/ lx ly)))) x y)\n     (mix-lists-by-n (int (Math/floor (float (/ ly lx)))) y x)))")
+	(title "evenly-mix-lists [x y]"))
+
+([ScenarioN_Class510003] of  CloFunction
+
+	(source "; min always less then max\n; Returns vector of numbers for repetition of points\n(let [nd (/ min max)\n       nr (.numerator nd)\n       dr (.denominator nd)]\n (if (= nr 1)\n     (list dr)\n     (let [mr (- nr 1)\n            ce (int (Math/floor (float (/ dr nr))))\n            rs (- dr (* ce mr))\n            df (- (- rs ce) 1)]\n       (if (< df 2)\n           (concat (repeat mr ce)(list rs))\n           (let [m2 (- mr df)\n                  c2 (+ ce 1)\n                  r2 (- rs df)]\n             (concat (evenly-mix-lists (repeat df c2)(repeat m2 ce))(list r2)) )) )) )")
+	(title "points-repeater [min max]"))
+
+([ScenarioN_Class510004] of  CloFunction
+
+	(source "; Repeat some points to fit certain number\n(letfn [(rp [pp r r0]\n            (cond\n                (empty? r) (rp pp r0 r0)\n                (seq pp) (concat \n                                 (repeat (first r) (first pp))\n                                 (rp (rest pp) (rest r) r0) )))]\n  (rp points repeater repeater))")
+	(title "repeat-points [points repeater]"))
+
+([ScenarioN_Class510005] of  CloFunction
+
+	(source "(apply concat (repeat-points (partition 2 lla) (points-repeater (/ le1 2)(/ le2 2))))")
+	(title "reppp [lla le1 le2]"))
+
+([ScenarioN_Class510006] of  CloFunction
+
+	(source "(if (and (seq llas) (seq llaf))\n  (let [[p1 l1 & llas2] llas\n         [p2 l2 & llaf2] llaf\n         d0 (GreatCircle/sphericalDistance p1 l1 p2 l2)\n         dis (* d0 ratio)\n         azi (GreatCircle/sphericalAzimuth p1 l1 p2 l2)\n         poi (GreatCircle/sphericalBetween p1 l1 dis azi 1)]\n    (lazy-cat [(aget poi 2)] [(aget poi 3)] (step-poly ratio llas2 llaf2)) ))")
+	(title "step-poly [ratio llas llaf]"))
+
+([ScenarioN_Class520000] of  CloFunction
+
+	(source "(let [pts (map #(ru.igis.omtab.MapOb/getDegMin %) llv)\n       pts (partition 2 pts)]\n  (for [[la lo & re] pts] (str la \" \" lo)))")
+	(title "latlon-to-degmin [llv]"))
+
+([ScenarioN_Class520001] of  Rule
+
+	(lhs "?ros (RetractObjects status \"START\"\n	title ?tit\n	object ?obj\n	collection ?col\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(println \"Action started:\" ?tit \"RetractObjects\")\n(let [obj (a/vv ?obj ?run)\n      inss (if (a/null? obj) ?col (cons obj ?col))]\n  (ru.rules/retract-instances inss))\n(retract ?ros)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:RetractObjects"))
+
+([ScenarioN_Class520007] of  CloFunction
+
+	(source "(try\n  (let [att (.getAttribute mob \"PM-PARAMS\")\n         finis (att :finish)]\n    (if (> ?t finis)\n        0\n        (let [llas (att :sta-points)\n               llaf (att :fin-points)\n               peri (att :period)\n               rest (- finis ?t)\n               ratio (/ (- peri rest) peri)\n               ipp (step-poly ratio llas llaf)\n               arr (double-array ipp)]\n           (.. mob (getLocationMarker) (setLocation arr (OMGraphic/RADIANS)))\n           1)))\n(catch Exception ex\n  (println ex)\n  -1))")
+	(title "pm-repeat [mob ?t]"))
+
+([ScenarioN_Class520008] of  CloFunction
+
+	(source "(try\n  (let [llaj (.getLLPoints mob)\n         llas (map #(ProjMath/degToRad %) (OMTPoly/getLLPoints (svs obs \"points\")))\n         lenj (alength llaj)\n         lens (count llas)\n         fin (+ ?t tim)\n         att {:period tim :finish fin}]\n    (.putAttribute mob \"PM-PARAMS\"\n      (cond\n         (> lenj lens) (assoc att :sta-points (vec llaj) :fin-points (reppp llas lens lenj))\n         (< lenj lens) (assoc att :sta-points (reppp llaj lenj lens) :fin-points llas)\n         (= lenj lens) (assoc att :sta-points (vec llaj) :fin-points llas)))\n     1)\n(catch Exception ex\n  (println ex)\n  -1))")
+	(title "pm-start [mob obs tim ?t]"))
+
+([ScenarioN_Class520009] of  CloNamespace
+
+	(source "(:use\n  protege.core)\n(:import \n  ru.igis.omtab.OMT\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.proj.GreatCircle\n  com.bbn.openmap.proj.ProjMath\n  ru.igis.omtab.OMTPoly)")
+	(title "poly.moving"))
+
+([ScenarioN_Class520010] of  Rule
+
+	(lhs "?pm (PolyMoving status \"REPEAT\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	time ?tim\n	run ?run\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n\n(Clock time ?t)")
+	(rhs "(if-let [mob (a/mapob-vv ?obj ?run)]\n  (let [re (poly.moving/pm-repeat mob ?t)]\n    (cond\n      (< re 0) (modify ?pm status \"FAILED\")\n      (= re 0) (do (retract ?pm)\n                       (s/start-next ?nacts ?pid ?ain ?run))))\n  (modify ?pm status \"FAILED\"))")
+	(salience 0)
+	(title "a:PolyMovingRepeat"))
+
+([ScenarioN_Class520024] of  CloFunction
+
+	(source "(println \"Directive: Listen MapOb Events\")\n(ru.igis.omtab.OMT/addActionListener\n  (proxy [java.awt.event.ActionListener] []\n    (actionPerformed [evt] \n      (sim/mapob-event evt))))")
+	(title "Listen MapOb Events"))
+
+([ScenarioN_Class530011] of  Rule
+
+	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	time ?tim\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"PolyMoving\")\n(let [mob (a/mapob-vv ?obj ?run)\n       obs (a/vv ?obs ?run)\n       tim (a/vv ?tim ?run)]\n  (if (or (nil? mob)\n            (a/null? obs)\n            (a/null? tim)\n            (< (poly.moving/pm-start mob obs (a/to-be tim) ?t) 0))\n      (modify ?pm status \"FAILED\")\n      (modify ?pm status \"REPEAT\")))")
+	(salience 0)
+	(title "a:PolyMovingStart"))
+
+([ScenarioN_Class530012] of  Rule
+
+	(lhs "?pmn (PolyMovingN status \"START\"\n	title ?tit\n	mapob ?mpb\n	time ?tim\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"PolyMovingN\")\n(let [tim (a/vv ?tim ?run)]\n  (if (or (empty? ?mpb)\n            (a/null? tim)\n            (< (poly.moving/pm-start-n ?mpb (a/to-be tim) ?t) 0))\n      (modify ?pmn status \"FAILED\")\n      (modify ?pmn status \"REPEAT\"\n	N 1\n	time (a/to-be tim))))")
+	(salience 0)
+	(title "a:PolyMovingNStart"))
+
+([ScenarioN_Class530013] of  Rule
+
+	(lhs "?pmn (PolyMovingN status \"REPEAT\"\n	title ?tit\n	mapob ?mpb\n	N ?n\n	time ?tim\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n\n(Clock time ?t)")
+	(rhs "(let [re (poly.moving/pm-repeat-n ?mpb ?tim ?n ?t)]\n  (cond\n      (< re 0) (modify ?pmn status \"FAILED\")\n      (= re 0) (let [nxt (inc ?n)]\n	(if (>= nxt (count ?mpb))\n	  (do (retract ?pmn)\n	     (s/start-next ?nacts ?pid ?ain ?run))\n	  (modify ?pmn N nxt)))))")
+	(salience 0)
+	(title "a:PolyMovingNRepeat"))
+
+([ScenarioN_Class530014] of  CloFunction
+
+	(source "(let [mm (into [] ?mpb)\n       len (count mm)]\n  (if (> len 1)\n      (pm-start (OMT/getOrAdd (first mm)) (second mm) (/ tim len) ?t)\n      -1))")
+	(title "pm-start-n [?mpb tim ?t]"))
+
+([ScenarioN_Class530015] of  CloFunction
+
+	(source "(let [mm (into [] ?mpb)\n       len (count mm)\n       fst (OMT/getMapOb (first mm))\n       nxt (inc ?n)\n       rep (pm-repeat fst ?t)]\n   (if (and (= rep 0)(< nxt len))\n       (pm-start fst (nth mm nxt) (/ tim len) ?t))\n   rep)")
+	(title "pm-repeat-n [?mpb tim ?n ?t]"))
+
+([ScenarioN_Class540004] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2015.08.30 17:43:14.178 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class550004] of  CloFunction
+
+	(source "(if-let [pinst (if (string? poly) (fifos \"OMTPoly\" \"label\" poly) poly)]\n  (ssvs pinst \"points\" (latlon-to-degmin llv)))")
+	(title "set-poly-points [poly llv]"))
+
+([ScenarioN_Class570000] of  Variable
+
+	(title "?protagonist"))
+
+([ScenarioN_Class580001] of  Rule
+
+	(lhs "?mt (MovingTrace status \"REPEAT\"\n	title ?tit\n	object ?obj\n	polygon ?pol\n	step ?stp\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n	run ?run)\n(Clock time ?t)")
+	(rhs "(let [mo (a/mapob-vv ?obj ?run)\n       mt (if (some? mo)\n	(.getAttribute mo \"MOTRACE\"))]\n  (if (some? mt)\n    (let[lat (.getLatitude mo)\n         lon (.getLongitude mo)\n         crs0 (.getCourse mo)\n         p2d (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n	.getProjection\n	(.forward lat lon))\n         x0 (.getX p2d)\n         y0 (.getY p2d)\n         [x1 y1] (:x1y1 mt)\n         dx (- x0 x1)\n         dy (- y0 x1)\n         [crs1 crs2] (:crs1crs2 mt)\n         trc1 (:trace mt)]\n      (if (> (+ (* dx dx) (* dy dy)) (* ?stp ?stp))\n        (let [trc0 (cons (Math/toRadians lat)\n	(cons (Math/toRadians lon)\n	(if (= crs0 crs1 crs2)\n	  (-> trc1 rest rest)\n	  trc1)))\n               lla (double-array trc0)]\n          (.setLocation (:ompoly mt) lla com.bbn.openmap.omGraphics.OMGraphic/RADIANS)\n          (.putAttribute mo \"MOTRACE\" (assoc mt :trace trc0\n			:crs1crs2 [crs0 crs1]\n			:x1y1 [x0 y0])))))\n    (do (retract ?mt)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(salience 0)
+	(title "a:MovingTraceRepeat"))
+
+([ScenarioN_Class580002] of  Rule
+
+	(lhs "?mt (MovingTrace status \"START\"\n	title ?tit\n	object ?obj\n	polygon ?pol\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"MovingTrace\")\n(let [mo (a/mapob-vv ?obj ?run)\n      pol (a/vv ?pol ?run)]\n  (if (and (some? mo) (not (a/null? pol)))\n    (let [mt {:ompoly (-> (ru.igis.omtab.OMT/getOrAdd pol)\n		.getLocationMarker)\n                        :crs1crs2 [0 0]\n	:x1y1 [0 0]}]\n      (.putAttribute mo \"MOTRACE\" mt)\n      (modify ?mt status \"REPEAT\"\n	polygon pol))\n    (do (retract ?mt)\n      (s/start-next ?nacts ?pid ?ain ?run))))")
+	(salience 0)
+	(title "a:MovingTraceStart"))
+
+([ScenarioN_Class590017] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2015.09.05 12:36:42.620 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class60000] of  Rule
+
+	(lhs "?woa (WaitObAttributes status \"DONE\" \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?woa)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:WaitObAttributesDone"))
+
+([ScenarioN_Class600000] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(rule-sets
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class17]
+		[Scenario_Class340000]
+		[CeziumEngine_Class110007])
+	(steps 1)
+	(title "ESMainRun"))
+
+([ScenarioN_Class600001] of  LocationLayer
+
+	(class "com.bbn.openmap.layer.location.LocationLayer")
+	(declutterMatrix "com.bbn.openmap.layer.DeclutterMatrix")
+	(label "csvcities")
+	(locationHandlers "csvcities")
+	(prettyName "World Cities")
+	(useDeclutter "false"))
+
+([ScenarioN_Class60155] of  CloFunction
+
+	(source "(create-bare-instances)\n(fill-instances)\n(vreset! DATA {})")
+	(title "crea-inst [hm inst]"))
+
+([ScenarioN_Class610000] of  CloFunction
+
+	(source "(rete.core/slurp-with-comments (java.io.StringReader. src))")
+	(title "uncomment [src]"))
+
+([ScenarioN_Class620009] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2017.05.11 12:00:17.053 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class630000] of  Rule
+
+	(lhs "?td (TDecision status \"START\" \n	title ?tit\n	script ?scr\n	variants ?vrs\n	parent ?pid\n	run ?run)")
+	(rhs "(println \"Decision:\" ?tit \"TDecision\")\n(s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?pid ?run)\n(retract ?td)")
+	(salience 0)
+	(title "d:TDecision"))
+
+([ScenarioN_Class630002] of  Command
+
+	(label "Exec Activity")
+	(scenario "clojuretab.ClojureTab invoke sim exec-activity"))
+
+([ScenarioN_Class630003] of  Command
+
+	(label "Fact Inspector")
+	(scenario "clojuretab.ClojureTab invoke ru.rules fact-inspector"))
+
+([ScenarioN_Class640000] of  Rule
+
+	(lhs "?hd (Hard status \"START\" \n	title ?tit \n	number ?num\n	parent ?pid\n	run ?run\n	variants ?vrs)")
+	(rhs "(println \"Decision:\" ?tit \"Hard\")\n(s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?pid ?run)\n(retract ?hd)")
+	(salience 0)
+	(title "d:Hard"))
+
+([ScenarioN_Class640001] of  CloFunction
+
+	(source "(let [scr (vv scr p r) \n       scr (uncomment (sv scr \"source\"))\n       bnd (parse-let-body scr)\n       exp `(let ~(vec (butlast (butlast bnd))) ~ (last bnd))\n       nv (eval exp)]\n  [((vec vrs) nv)])")
+	(title "t-decision [scr vrs p r]"))
+
+([ScenarioN_Class640008] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2017.05.17 19:26:30.339 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class650008] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2017.05.18 13:44:35.289 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class660000] of  Rule
+
+	(lhs "?cb (Comb status \"START\"\n	title ?tit \n	object ?obj \n	polygon ?pol\n	algo ?alg\n	range ?rng\n	spd ?spd\n	time ?tim\n	route ?rte\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Comb\")\n(let [obj (a/mapob-vv ?obj ?run)\n       pol (a/mapob-vv ?pol ?run)\n       alg (a/vv ?alg ?run)\n       rng (a/vv ?rng ?run)\n       spd (a/vv ?spd ?run)\n       tim (a/vv ?tim ?run)\n       rte (a/vv ?rte ?run)\n       dsp (a/vv ?dsp ?run)]\n  (if (every? some? [obj pol alg  rng spd tim rte])\n    (let [hrs (/ (a/to-be tim) 3600)]\n      (algo.exe/do-algorithm alg\n	{\"район\" (.getInstance pol)\n	 \"объект\" (.getInstance obj)\n	 \"Наше-место\" [(.getLatitude obj) (.getLongitude obj)]\n	 \"маршрут\" rte\n	 \"Добн\" (read-string rng)\n	 \"Скорость\" (read-string spd)\n	 \"Время\" hrs})\n      (modify ?cb status \"REPEAT\"))\n    (modify ?cb status \"FAILED\")))")
+	(salience 0)
+	(title "a:CombStart"))
+
+([ScenarioN_Class670000] of  CloFunction
+
+	(source "(try\n  (Integer/parseInt s)\n  (catch NumberFormatException e\n    (try\n      (Double/parseDouble s)\n      (catch NumberFormatException e\n        s))))")
+	(title "val-from-str [s]"))
+
+([ScenarioN_Class680000] of  CloFunction
+
+	(source ";; Title of specific scenario STARTS WITH title of general scenario\n(first (seq (filter #(.startsWith title (sv % \"title\")) (cls-instances \"Scenario\"))))")
+	(title "find-general-scenario [title]"))
+
+([ScenarioN_Class680007] of  Rule
+
+	(lhs "?cb (Comb status \"REPEAT\"\n	title ?tit \n	object ?obj \n	spd ?spd\n	route ?rte\n	run ?run)\n(Clock)")
+	(rhs "(let [obj (a/vv ?obj ?run)\n       spd (a/vv ?spd ?run)\n       rte (a/vv ?rte ?run)\n       tit (gensym \"CoRo\")]\n  (when (every? some? [obj spd rte])\n    (rete.core/assert-frame \n	['GoRoute \n	 'status \"START\"\n	 'title tit\n	 'object obj\n	 'route rte\n	 'spd spd\n	 'radius 0.2\n	 'run ?run])\n    (modify ?cb status tit)))")
+	(salience 0)
+	(title "a:CombRepeat"))
+
+([ScenarioN_Class680011] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2017.05.13 19:26:02.467 MSK")
+	(%3ACREATOR "ru"))
+
+([ScenarioN_Class680012] of  CloFunction
+
+	(source "(infix-to-prefix (read-string (str \"(\" cnd \")\")))")
+	(title "parse-cond [cnd]"))
+
+([ScenarioN_Class700000] of  Rule
+
+	(lhs "?cb (Comb status ?sts\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	((not= ?sts \"START\")\n	 (not= ?sts \"REPEAT\")))\n(Clock)\n(not GoRoute title ?sts)")
+	(rhs "(retract ?cb)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:CombDone"))
+
+([ScenarioN_Class70001] of  Rule
+
+	(lhs "?ot (Mission status \"START\"\n	title ?tit\n	sub_scenario ?sub\n	context ?ctx \n	player ?pla \n	wait_subscenario ?wai\n	run ?run)")
+	(rhs "(println \"Action started:\" ?tit \"Mission\")\n(let [sub (a/vv ?sub ?run)\n       ctx (a/vv ?ctx ?run)\n       pla (a/vv ?pla ?run)\n       mo (ru.igis.omtab.OMT/getMapOb pla)]\n  (if (and mo (not (a/null? sub)))\n    (let [ctx0 (protege.core/sv sub \"context\")\n           hm0 (s/context-to-hm ctx0)\n           hm1 (s/context-to-hm ctx)\n           gid (gensym \"Ots\")]\n      (.putAll hm0 hm1)\n      (a/merge-hm-run hm0 ?run)\n      (.put hm0 \"?protagonist\" pla)\n      (-> (ru.rules/mk-frame sub)\n        (ru.rules/update-frame\n	'Scenario\n	{'status \"START\"\n	 'run hm0\n	 'parent gid})\n        rete.core/assert-frame)\n      (asser TwoObRelation parent \"Run\"\n	observer (.hashCode ?run)\n	object (.hashCode hm0))\n      (modify ?ot status (if (protege.core/is? ?wai) \"REPEAT\" \"DONE\")\n	id gid))\n    (modify ?ot status \"FAILED\")))")
+	(salience 0)
+	(title "a:MissionStart"))
+
+([ScenarioN_Class70002] of  Rule
+
+	(lhs "?ot (Mission status \"REPEAT\"\n	id ?id\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Scenario status \"DONE\"\n	parent ?id)")
+	(rhs "(retract ?ot)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 5)
+	(title "a:MissionRepeat"))
+
+([ScenarioN_Class730000] of  CloFunction
+
+	(source "(if (string? x)\n  (try \n    (let [rs (read-string x)]\n      (if (number? rs) rs x))\n    (catch Exception e\n      x))\n  x)")
+	(title "try-str-num [x]"))
+
+([ScenarioN_Class740000] of  Command
+
+	(label "Break Scenarios")
+	(scenario "clojuretab.ClojureTab invoke a break-scenario"))
+
+([ScenarioN_Class740001] of  Command
+
+	(label "Break Tasks")
+	(scenario "clojuretab.ClojureTab invoke a break-task"))
+
+([ScenarioN_Class750000] of  CloFunction
+
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [sins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) sins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (if-let [tins (DisplayUtilities/pickInstanceFromCollection nil tis 0 \"Select Task\")]\n          (let [tid (re/slot-value 'id (first (filter #(= (re/slot-value 'instance %) tins) tt)))\n                 aa (re/facts-with-slot-value 'parent = tid)\n                 tts (map #(re/slot-value 'title %) aa)\n                 xis (map #(foc \"Aux\" \"title\" %) tts)]\n            (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil xis \"Select Actions\")]\n              (break-action (sv ins \"title\") run))\n            (doseq [xi xis]\n              (delin xi))))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (identical? (re/slot-value 'run fact) run)\n      (re/retract-fact (first fact)))))")
+	(title "break-action"))
+
+([ScenarioN_Class750001] of  CloFunction
+
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (if-let [ins (DisplayUtilities/pickInstanceFromCollection nil sis 0 \"Select Scenario\")]\n      (let [sft (first (filter #(= (re/slot-value 'instance %) ins) ss))\n             sid (re/slot-value 'id sft)\n             run (re/slot-value 'run sft)\n             tt (re/facts-with-slot-value 'Task 'parent = sid)\n             tt (filter #(not= (re/slot-value 'status %) \"DONE\") tt)\n             tis (map #(re/slot-value 'instance %) tt)]\n        (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil tis \"Select Tasks\")]\n          (break-task ins run))))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'Task 'instance = act)]\n    (when (identical? (re/slot-value 'run fact) run)\n      (doseq [acf (re/facts-with-slot-value 'parent = (re/slot-value 'id fact))]\n        (re/retract-fact (first acf)))\n      (re/retract-fact (first fact))\n      (println \"Task breaked \" (re/slot-value 'title fact)))))")
+	(title "break-task"))
+
+([ScenarioN_Class750002] of  CloFunction
+
+	(source "([]\n  (let [ss (re/fact-list 'Scenario)\n         sis (map #(re/slot-value 'instance %) ss)]\n    (doseq [ins (DisplayUtilities/pickInstancesFromCollection nil sis \"Select Scenarios\")]\n      (break-scenario (re/slot-value 'run (first (filter #(= (re/slot-value 'instance %) ins) ss)))))))\n\n([run]\n  (doseq [fact (re/facts-with-slot-value 'run = run)]\n    (re/retract-fact (first fact))))\n\n([act run]\n  (doseq [fact (re/facts-with-slot-value 'instance = act)]\n    (if (= (re/slot-value 'run fact) run)\n      (break-scenario run))))")
+	(title "break-scenario"))
+
+([ScenarioN_Class760000] of  Command
+
+	(label "Break Actions")
+	(scenario "clojuretab.ClojureTab invoke a break-action"))
+
+([ScenarioN_Class8] of  CloFunction
+
+	(source "([txt mp category]\n  (ClojureTab/showESMessage txt mp (CATEGORY category)))\n([txt mp category client]\n  (ClojureTab/showESMessage txt mp (CATEGORY category)))")
+	(title "es-mess"))
+
+([ScenarioN_Class80002] of  CloFunction
+
+	(source "(.setLatitude mo2 (.getLatitude mo1))\n(.setLongitude mo2 (.getLongitude mo1))")
+	(title "place-on [mo1 mo2]"))
+
+([ScenarioN_Class80003] of  Rule
+
+	(lhs "?ot (Mission status \"DONE\"\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(retract ?ot)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:MissionDone"))
+
+([ScenarioN_Class80008] of  Rule
+
+	(lhs "?woa (WaitObAttributes status \"START\"\n	title ?tit)")
+	(rhs "(println \"Action started:\" ?tit \"WaitObAttributes\")\n(modify ?woa status \"REPEAT\")")
+	(salience 0)
+	(title "a:WaitObAttributesStart"))
+
+([ScenarioN_Class80009] of  Rule
+
+	(lhs "?woa (WaitObAttributes status \"REPEAT\"\n	object ?obj\n	attributes ?ats\n	relations ?rls\n	values ?vls\n	connective ?cnv\n	run ?run)\n(Clock time ?t)")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (loop [ats ?ats rls ?rls vls ?vls]\n    (if (and (seq ats) (seq rls) (seq vls))\n      (let [atr (protege.core/sv (first ats) \"title\")\n            rel (first rls)\n            val (a/vv (first vls) ?run)\n            avl (.getAttribute mo atr)]\n        (if (and avl (a/is-relation avl rel val))\n          (if (= ?cnv 'OR)\n            (modify ?woa status \"DONE\")\n            (recur (rest ats) (rest rls) (rest vls)))\n          (if (= ?cnv 'OR)\n            (recur (rest ats) (rest rls) (rest vls)) ) ))\n      (if (= ?cnv 'AND)\n        (modify ?woa status \"DONE\")) ) ))")
+	(salience 0)
+	(title "a:WaitObAttributesRepeat"))
+
+([ScenarioN_Class80010] of  CloFunction
+
+	(source "(try\n  (let [dav (nors avl)\n        dva (nors  val)]\n    (condp = rel\n      '= (= dav dva)\n      '> (> dav dva)\n      '>= (>= dav dva)\n      '< (< dav dva)\n      '<= (<= dav dva)\n      '!= (not= dav dva)\n      (do (println (str \"Wrong relation \" avl \" \" rel \" \" val))\n        false)))\n (catch NumberFormatException nfe\n   (if (= rel '=)\n     (= avl val)\n     false)))")
+	(title "is-relation [avl rel val]"))
+
+([Search] of  ActionClass
+
+	(rules
+		[Scenario_Class350003]
+		[Scenario_Class350004]
+		[Scenario_Class370000]
+		[Scenario_Class370007]))
+
+([SendSignal] of  ActionClass
+
+	(rules [Scenario_Class620000]))
+
+([SetCenter] of  ActionClass
+
+	(rules [Scenario_Class420000]))
+
+([SetModelClock] of  ActionClass
+
+	(functions [ScenarioN_Class240002])
+	(rules [ScenarioN_Class170001]))
+
+([SetScale] of  ActionClass
+
+	(rules [Scenario_Class590000]))
+
+([SetTimeScale] of  ActionClass
+
+	(rules [ScenarioN_Class310002]))
+
+([Show] of  ActionClass
+
+	(functions [Scenario_Class460002])
+	(rules
+		[Scenario_Class490000]
+		[Scenario_Class460000]))
+
+([SignalControl] of  DecisionClass
+
+	(rules [Scenario_Class630003]))
+
+([StartScenarios] of  ActionClass
+
+	(rules [ScenarioN_Class280002]))
+
+([Subscenario] of  ActionClass
+
+	(functions
+		[Scenario_Class30000]
+		[Scenario_Class190000]
+		[RuleEngine_Class90000]
+		[RuleEngine_Class270000])
+	(rules
+		[Scenario_Class130005]
+		[Scenario_Class130007]
+		[Scenario_Class110000]))
+
+([TDecision] of  DecisionClass
+
+	(functions [ScenarioN_Class640001])
+	(rules [ScenarioN_Class630000]))
+
+([TimeMessage] of  ActionClass
+
+	(functions [Scenario_Class160003])
+	(rules [Scenario_Class140000]))
+
+([TowOnOff] of  ActionClass
+
+	(functions [Scenario_Class350002])
+	(rules
+		[Scenario_Class350000]
+		[Scenario_Class350001]))
+
+([TwoObRelation] of  EventClass
+
+	(functions
+		[Scenario_Class220002]
+		[Scenario_Class260008]
+		[Scenario_Class270009]
+		[Scenario_Class260007]
+		[Scenario_Class260008]))
+
+([UserDecision] of  DecisionClass
+
+	(functions [Scenario_Class250010])
+	(rules [Scenario_Class250007]))
+
+([UseResource] of  ActionClass
+
+	(rules [ScenarioN_Class250001]))
+
+([VerticalControl] of  ActionClass
+
+	(rules
+		[ScenarioN_Class300006]
+		[ScenarioN_Class300004]
+		[ScenarioN_Class300005]))
+
+([WaitEvent] of  ActionClass
+
+	(functions
+		[Scenario_Class220002]
+		[Scenario_Class230002]
+		[Scenario_Class250003])
+	(rules
+		[Scenario_Class200000]
+		[Scenario_Class210000]
+		[Scenario_Class260005]
+		[Scenario_Class260006]
+		[Scenario_Class550002]))
+
+([WaitModelClock] of  ActionClass
+
+	(functions [ScenarioN_Class240002])
+	(rules
+		[ScenarioN_Class170000]
+		[ScenarioN_Class190001]))
+
+([WaitObAttributes] of  ActionClass
+
+	(functions [ScenarioN_Class80010])
+	(rules
+		[ScenarioN_Class80008]
+		[ScenarioN_Class80009]
+		[ScenarioN_Class60000]))

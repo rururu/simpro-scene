@@ -1,4 +1,4 @@
-; Sat Feb 02 13:31:01 MSK 2019
+; Sat Mar 02 13:33:50 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -142,7 +142,8 @@
 ([igis_Class19] of  MouseMode
 
 	(class "ru.igis.omtab.gui.RuDistanceMouseMode")
-	(label "RuDistanceMouseMode"))
+	(label "RuDistanceMouseMode")
+	(units "all"))
 
 ([igis_Class2] of  GraphicLoaderConnector
 

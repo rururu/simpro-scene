@@ -1,4 +1,4 @@
-; Mon Feb 25 18:15:20 MSK 2019
+; Thu Mar 07 21:14:49 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,10 +19,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot delay
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot shift
 		(type SYMBOL)
 		(allowed-values VEERING BACKING NIL LIFT HEADER)
@@ -37,21 +33,12 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot visibility
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot wind-shift
 		(type SYMBOL)
 		(allowed-values HEADER LIFT NIL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot heel
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 0 1)
@@ -81,10 +68,6 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot view
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot direction
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -103,10 +86,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot boat
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot options
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -206,15 +185,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot heel
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Clock
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot time
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 0 1)
@@ -443,35 +413,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass CZMLGenerator
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot visibility
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot delay
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass CZMLSpan
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot options
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass CameraCheck
 	(is-a SailExpert+Onto)
 	(role concrete)
@@ -481,18 +422,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot delay
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Onboard
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot boat
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot view
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

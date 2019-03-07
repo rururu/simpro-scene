@@ -1,4 +1,4 @@
-; Mon Feb 25 18:15:20 MSK 2019
+; Thu Mar 07 21:14:49 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -73,7 +73,6 @@
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
 	(facts
-		[SailExpert_Class10023]
 		[SailExpert_Class150003]
 		[SailExpert_Class20000]
 		[SailExpert_Class130000]
@@ -94,10 +93,9 @@
 	(mode run)
 	(rule-sets
 		[SailExpert_Class10004]
-		[SailExpert_Class20011]
 		[SailExpert_Class130003]
 		[SailExpert_Class130004]
-		[SailExpert_Class290000])
+		[CeziumEngine_Class110007])
 	(steps 1)
 	(title "Sail Expert"))
 
@@ -139,6 +137,7 @@
 		[Cezium_Class30043]
 		[Cezium_Class30026]
 		[Cezium_Class30043]
+		[CeziumEngine_Class110013]
 		[SailExpert_Class310000]
 		[SailExpert_Class10009])
 	(title "Sail Expert Programs"))
@@ -152,10 +151,6 @@
 ([SailExpert_Class10009] of  CloProgram
 
 	(cloFunctions
-		[SailExpert_Class10015]
-		[SailExpert_Class10017]
-		[SailExpert_Class10018]
-		[SailExpert_Class10019]
 		[SailExpert_Class40005]
 		[SailExpert_Class50004]
 		[SailExpert_Class90017]
@@ -175,34 +170,10 @@
 	(source "(:use protege.core)\n(:require\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.Clock\n  java.awt.event.ActionListener\n  java.util.TimerTask)")
 	(title "sail.exp"))
 
-([SailExpert_Class10015] of  CloFunction
-
-	(source "(if (and (some? ES-TIMER) (OMT/isRunning))\n  (let [msec (Clock/getClock)\n         sec (int (/ msec 1000))\n         frm ['Clock 'time sec]]\n    (rete/assert-frame frm)\n    (rete/fire)))")
-	(title "work-sim []"))
-
 ([SailExpert_Class10016] of  CloVar
 
 	(source "nil")
 	(title "ES-TIMER"))
-
-([SailExpert_Class10017] of  CloFunction
-
-	(source "(when (some? ES-TIMER)\n  (.cancel ES-TIMER)\n  (def ES-TIMER nil)\n  (println \"Simulation Stoped...\"))")
-	(title "stop-sim []"))
-
-([SailExpert_Class10018] of  CloFunction
-
-	(source "(if (some? ES-TIMER)\n  (stop-sim))\n(def ES-TIMER (java.util.Timer.))\n(.schedule \n  ES-TIMER \n  (proxy [TimerTask] [] (run [] (work-sim)))\n  (long 0) \n  (long 1000))\n(println \"Simulation Started...\")")
-	(title "start-sim []"))
-
-([SailExpert_Class10019] of  CloFunction
-
-	(source "(stop-sim)\n(start-sim)")
-	(title "restart-sim []"))
-
-([SailExpert_Class10023] of  Clock
-
-	(time 0))
 
 ([SailExpert_Class110000] of  NavOb
 
@@ -374,8 +345,8 @@
 
 ([SailExpert_Class170000] of  Rule
 
-	(lhs "(Boat label ?lab	sail-point ?slp\n	speed ?spd)")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [osp (.getSpeed bmo)\n         nsp (condp = ?slp\n	'RUNNING 	 ?spd\n	'BROADREACH	 (* ?spd 0.8)\n	'BEAMREACH	 (* ?spd 0.7)\n	'CLOSEREACH	 (* ?spd 0.6)\n	'CLOSEHAULED	 (* ?spd 0.5)\n	0.0)\n         nsp (double (Math/round nsp))]\n    (if (not= nsp osp)\n      (if (= nsp 0.0)\n        (.stopRoute bmo)\n        (.setSpeed bmo nsp)))))")
+	(lhs "(Boat label ?lab sail-point ?slp\n	speed ?spd)")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [osp (.getSpeed bmo)\n         nsp (condp = ?slp\n	'RUNNING ?spd\n	'BROADREACH (* ?spd 0.8)\n	'BEAMREACH (* ?spd 0.7)\n	'CLOSEREACH (* ?spd 0.6)\n	'CLOSEHAULED (* ?spd 0.5)\n	0.0)\n         nsp (double (Math/round nsp))]\n    (if (not= nsp osp)\n      (if (= nsp 0.0)\n        (.stopRoute bmo)\n        (.setSpeed bmo nsp)))))")
 	(salience 0)
 	(title "bs:Boat Speed"))
 
@@ -504,7 +475,7 @@
 
 ([SailExpert_Class190009] of  Rule
 
-	(lhs "(Route title ?tit	marks ?mm)\n?s (Skipper boat ?boat\n	route ?tit\n	lap 0\n	mark \"NIL\")")
+	(lhs "(Route title ?tit marks ?mm)\n?s (Skipper boat ?boat\n	route ?tit\n	lap 0\n	mark \"NIL\")")
 	(rhs "(when-let [mk1 (first ?mm)]\n  (ru.rules/assert-instances [mk1])\n  (modify ?s mark (protege.core/sv mk1 \"label\")\n	lap 1)\n  (println \"Boat\" ?boat \"started route\" ?tit))")
 	(salience 0)
 	(title "ss:Start Route"))
@@ -563,13 +534,6 @@
 	(route "Along Geiranger Fjord")
 	(status UNDEFINED))
 
-([SailExpert_Class20001] of  Rule
-
-	(lhs "(Clock time ?t (< ?t 1))")
-	(rhs "(sail.exp/start-sim)")
-	(salience 0)
-	(title "sim:Start Simulation"))
-
 ([SailExpert_Class20002] of  Rule
 
 	(lhs "(CZMLGenerator)\n(Boat label ?lab course ?crs)\n(Clock time ?t)\n(not CZMLSpan label ?lab)")
@@ -589,21 +553,6 @@
 	(rhs "(retract ?nc)\n(if (not= ?ncrs ?ocrs)\n  (when-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n    (println \"Boat\" ?lab \"new course\" ?ncrs)\n    (.setCourse bmo ?ncrs)\n    (modify ?b course ?ncrs\n	sail-point 'UNDEFINED\n	tack 'UNDEFINED)))")
 	(salience 0)
 	(title "bs:Boat Change Course"))
-
-([SailExpert_Class20010] of  Rule
-
-	(lhs "?c1 (Clock time ?t1)\n?c2 (Clock time ?t2\n	(< ?t2 ?t1))")
-	(rhs "(retract ?c2)")
-	(salience 10)
-	(title "sim:RetractSecondClock"))
-
-([SailExpert_Class20011] of  RuleSet
-
-	(rules
-		[SailExpert_Class20010]
-		[SailExpert_Class20001])
-	(templates [Clock])
-	(title "Simulation Set"))
 
 ([SailExpert_Class210000] of  Mark
 
@@ -821,31 +770,6 @@
 
 	(source "(ru.rules/f 85)"))
 
-([SailExpert_Class280001] of  Rule
-
-	(lhs "(Onboard boat ?boat \n	view ?view)\n?b (Boat label ?boat sail-point ?sp\n	heel ?heel\n	tack ?tk)")
-	(rhs "(if-let [bh (sail.exp/boat-heel ?boat ?sp ?tk ?view)]\n  (let [hel (bh :roll)]\n    (if (not= ?heel hel)\n      (modify ?b heel hel))))")
-	(salience 0)
-	(title "_bs:Boat Heel"))
-
-([SailExpert_Class290000] of  RuleSet
-
-	(rules [SailExpert_Class290004])
-	(templates
-		[Boat]
-		[Clock]
-		[CZMLSpan]
-		[CZMLGenerator]
-		[Onboard])
-	(title "CZML Generation Set"))
-
-([SailExpert_Class290004] of  Rule
-
-	(lhs "(CZMLGenerator delay ?del\n	visibility ?vis)\n(Onboard boat ?boat)\n?cs (CZMLSpan time ?tim\n	label ?lab\n	options ?ops\n	(not= ?boat ?lab))\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(if-let [omo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n    (let [dis (.distanceNM omo bmo)]\n      (if (< dis ?vis)\n        (cesium.core/navob-leg \n	omo\n	dis\n	(+ ?del 2)\n	?ops))\n      (modify ?cs time (+ ?t ?del)))))")
-	(salience 1)
-	(title "cz:CZML Navob Leg Generation"))
-
 ([SailExpert_Class30000] of  CloFuncall
 
 	(source "(ru.rules/dr)"))
@@ -966,7 +890,7 @@
 
 ([SailExpert_Class340004] of  Rule
 
-	(lhs "?onb (Onboard boat ?boat)\n?cam (CameraCheck delay ?del\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
+	(lhs "?onb (Onboard label ?boat)\n?cam (CameraCheck delay ?del\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
 	(rhs "(let [onb (deref pro.server/ONBOARD)]\n  (modify ?cam time (+ ?t ?del))\n  (if (not= onb ?boat)\n    (modify ?onb boat onb)))")
 	(salience 0)
 	(title "bs:Boat Camera Check"))
@@ -978,13 +902,6 @@
 ([SailExpert_Class350002] of  CloFuncall
 
 	(source "(ru.rules/f 626)"))
-
-([SailExpert_Class350003] of  Rule
-
-	(lhs "?onb (Onboard boat ?boat\n	view ?view)\n?cam (CameraCheck delay ?del\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(let [onb (deref pro.server/ONBOARD)\n       vie (@pro.server/CAMERA :view)]\n  (modify ?cam time (+ ?t ?del))\n  (if (or (not= onb ?boat) (not= vie ?view))\n    (modify ?onb boat onb\n	view vie)))")
-	(salience 0)
-	(title "_bs:Boat Camera Check"))
 
 ([SailExpert_Class350004] of  CloFuncall
 
@@ -1052,7 +969,7 @@
 
 ([SailExpert_Class400000] of  Onboard
 
-	(boat "Bylina")
+	(label "Bylina")
 	(view 0))
 
 ([SailExpert_Class40005] of  CloFunction
@@ -1160,7 +1077,7 @@
 
 ([SailExpert_Class80000] of  Rule
 
-	(lhs "(Onboard boat ?boat)\n(Wave pitch ?pit pitch-interval ?pin)\n?bp (BoatPitch boat ?boat \n	slope ?slp\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
+	(lhs "(Onboard label ?boat)\n(Wave pitch ?pit pitch-interval ?pin)\n?bp (BoatPitch boat ?boat \n	slope ?slp\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [[pit slp] (condp = ?slp\n	'UP       [(- 6 ?pit) 'DOWN]\n	'DOWN [(+ 6 ?pit) 'UP])]\n    (sail.exp/camera-control bmo :pitch pit)\n    (modify ?bp slope slp\n	time (+ ?t ?pin))))")
 	(salience 0)
 	(title "bs:Boat Pitching"))
