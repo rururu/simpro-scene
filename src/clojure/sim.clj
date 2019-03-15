@@ -12,6 +12,20 @@
   java.awt.event.ActionListener))
 
 (def ES-TIMER nil)
+(def EVT-LISTENERS (volatile! {}))
+(defn start-evt-listen []
+  (doseq[pg (OMT/getPlaygrounds)]
+  (let [al (proxy [ActionListener] []
+	(actionPerformed [evt] 
+	  ;;(println :OMT-GEN-EVT evt)
+  	(rete/assert-frame ['MapObEvent 'status (.getActionCommand evt) 'object (.getSource evt)])))]
+    (.addActionListener pg al)
+    (vswap! EVT-LISTENERS assoc pg al))))
+
+(defn stop-evt-listen []
+  (doseq[[pg al] @EVT-LISTENERS]
+  (.removeActionListener pg al)))
+
 (defn work-sim []
   (if (and (some? ES-TIMER) (OMT/isRunning))
   (let [msec (Clock/getClock)
@@ -24,6 +38,7 @@
   (when (some? ES-TIMER)
   (.cancel ES-TIMER)
   (def ES-TIMER nil)
+  (stop-evt-listen)
   (println "Simulation Stoped...")))
 
 (defn start-sim []
@@ -35,9 +50,13 @@
   (proxy [java.util.TimerTask] [] (run [] (work-sim)))
   (long 0) 
   (long 1000))
+(start-evt-listen)
 (println "Simulation Started..."))
 
 (defn restart-sim []
   (stop-sim)
 (start-sim))
+
+(defn reset-time []
+  (Clock/setClock 0))
 

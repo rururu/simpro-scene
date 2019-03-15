@@ -1,4 +1,4 @@
-; Thu Mar 07 18:29:41 MSK 2019
+; Fri Mar 15 21:19:42 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -789,17 +789,39 @@
 	(source "(/ (* rad 180) js/Math.PI)")
 	(title "degrees [rad]"))
 
+([CeziumEngine_Class0] of  CloVar
+
+	(source "(volatile! {})")
+	(title "EVT-LISTENERS"))
+
+([CeziumEngine_Class1] of  CloFunction
+
+	(source "(doseq[pg (OMT/getPlaygrounds)]\n  (let [al (proxy [ActionListener] []\n	(actionPerformed [evt] \n	  ;;(println :OMT-GEN-EVT evt)\n  	(rete/assert-frame ['MapObEvent 'status (.getActionCommand evt) 'object (.getSource evt)])))]\n    (.addActionListener pg al)\n    (vswap! EVT-LISTENERS assoc pg al)))")
+	(title "start-evt-listen []"))
+
+([CeziumEngine_Class10000] of  Rule
+
+	(lhs "?moe (MapObEvent status ?sts\n	object ?obj)")
+	(rhs ";;(println :MapObEvent ?sts ?obj)\n(retract ?moe)")
+	(salience -10)
+	(title "sim:RetractMapObEvent"))
+
 ([CeziumEngine_Class110007] of  RuleSet
 
 	(rules
 		[CeziumEngine_Class110009]
 		[CeziumEngine_Class110008]
+		[CeziumEngine_Class10000]
+		[CeziumEngine_Class20001]
+		[CeziumEngine_Class20002]
+		[CeziumEngine_Class20000]
 		[CeziumEngine_Class110010])
 	(templates
 		[Clock]
 		[CZMLGenerator]
 		[CZMLSpan]
-		[Onboard])
+		[Onboard]
+		[MapObEvent])
 	(title "CZML Generation Set"))
 
 ([CeziumEngine_Class110008] of  Rule
@@ -818,20 +840,25 @@
 
 ([CeziumEngine_Class110010] of  Rule
 
-	(lhs "(CZMLGenerator delay ?del\n	visibility ?vis)\n(Onboard label ?olab)\n?cs (CZMLSpan time ?tim\n	label ?nlab\n	options ?ops\n	(not= ?olab ?nlab))\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(if-let [omo (ru.igis.omtab.OMT/getMapOb ?olab)]\n  (if-let [nmo (ru.igis.omtab.OMT/getMapOb ?nlab)]\n    (let [dis (.distanceNM omo nmo)]\n      (if (< dis ?vis)\n        (cesium.core/navob-leg \n	nmo\n	dis\n	(+ ?del 2)\n	?ops))\n      (modify ?cs time (+ ?t ?del)))))")
+	(lhs "(CZMLGenerator delay ?del\n	visibility ?vis)\n(Onboard label ?onb)\n?cs (CZMLSpan time ?tim\n	object ?obj\n	options ?ops\n	(not= ?onb ?obj))\n(Clock time ?t ((number? ?tim) (> ?t ?tim)))")
+	(rhs "(if-let [omo (ru.igis.omtab.OMT/getMapOb ?onb)]\n  (if-let [nmo (ru.igis.omtab.OMT/getMapOb ?obj)]\n    (let [dis (.distanceNM omo nmo)]\n      (if (< dis ?vis)\n        (cesium.core/navob-leg \n	nmo\n	dis\n	(+ ?del 2)\n	?ops))\n      (modify ?cs time (+ ?t ?del)))))")
 	(salience 1)
 	(title "czm:CZML Navob Leg Generation"))
 
 ([CeziumEngine_Class110013] of  CloProgram
 
 	(cloFunctions
+		[CeziumEngine_Class1]
+		[CeziumEngine_Class3]
 		[CeziumEngine_Class110021]
 		[CeziumEngine_Class110022]
 		[CeziumEngine_Class110023]
-		[CeziumEngine_Class110024])
+		[CeziumEngine_Class110024]
+		[CeziumEngine_Class4])
 	(cloNamespace [CeziumEngine_Class110014])
-	(cloVars [CeziumEngine_Class110015])
+	(cloVars
+		[CeziumEngine_Class110015]
+		[CeziumEngine_Class0])
 	(title "Simple Simulator"))
 
 ([CeziumEngine_Class110014] of  CloNamespace
@@ -851,15 +878,46 @@
 
 ([CeziumEngine_Class110022] of  CloFunction
 
-	(source "(when (some? ES-TIMER)\n  (.cancel ES-TIMER)\n  (def ES-TIMER nil)\n  (println \"Simulation Stoped...\"))")
+	(source "(when (some? ES-TIMER)\n  (.cancel ES-TIMER)\n  (def ES-TIMER nil)\n  (stop-evt-listen)\n  (println \"Simulation Stoped...\"))")
 	(title "stop-sim []"))
 
 ([CeziumEngine_Class110023] of  CloFunction
 
-	(source "(if (some? ES-TIMER)\n  (stop-sim))\n(def ES-TIMER (java.util.Timer.))\n(.schedule \n  ES-TIMER \n  (proxy [java.util.TimerTask] [] (run [] (work-sim)))\n  (long 0) \n  (long 1000))\n(println \"Simulation Started...\")")
+	(source "(if (some? ES-TIMER)\n  (stop-sim))\n(def ES-TIMER (java.util.Timer.))\n(.schedule \n  ES-TIMER \n  (proxy [java.util.TimerTask] [] (run [] (work-sim)))\n  (long 0) \n  (long 1000))\n(start-evt-listen)\n(println \"Simulation Started...\")")
 	(title "start-sim []"))
 
 ([CeziumEngine_Class110024] of  CloFunction
 
 	(source "(stop-sim)\n(start-sim)")
 	(title "restart-sim []"))
+
+([CeziumEngine_Class20000] of  Rule
+
+	(lhs "?cs (CZMLSpan time ?tim\n	object ?obj\n	options ?ops\n	(string? ?ops))")
+	(rhs "(modify ?cs object (protege.core/sv ?obj \"label\")\n	options (read-string ?ops)\n	time (read-string ?tim))")
+	(salience 0)
+	(title "czm:CZMLSpan Init"))
+
+([CeziumEngine_Class20001] of  Rule
+
+	(lhs "?onb (Onboard time ?tim\n	(string? ?tim))")
+	(rhs "(modify ?onb time (read-string ?tim))")
+	(salience 0)
+	(title "czm:Onboard Init"))
+
+([CeziumEngine_Class20002] of  Rule
+
+	(lhs "(CZMLGenerator delay ?del)\n?onb (Onboard label ?lab\n	time ?tim\n	(number? ?tim))\n(Clock time ?t (> ?t ?tim))")
+	(rhs "(let [onb (deref pro.server/ONBOARD)\n       fut (+ ?t ?del)]\n  (if (not= onb ?lab)\n    (modify ?onb time fut label onb)\n    (modify ?onb time fut)))")
+	(salience 0)
+	(title "czm:Check Onboard"))
+
+([CeziumEngine_Class3] of  CloFunction
+
+	(source "(doseq[[pg al] @EVT-LISTENERS]\n  (.removeActionListener pg al))")
+	(title "stop-evt-listen []"))
+
+([CeziumEngine_Class4] of  CloFunction
+
+	(source "(Clock/setClock 0)")
+	(title "reset-time []"))

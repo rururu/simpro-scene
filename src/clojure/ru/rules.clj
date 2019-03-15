@@ -100,7 +100,7 @@
 (defn retract-instances [inss]
   (doseq [ins inss]
   (doseq [fact (rete/facts-with-slot-value 'instance = ins)]
-    (rete/retract-fact (first fact) true))))
+    (rete/retract-fact (first fact)))))
 
 (defn ass-inss [hm inst]
   (let [mp (into {} hm)

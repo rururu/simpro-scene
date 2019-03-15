@@ -305,14 +305,14 @@
     "FAILED"
     (if-let [mo (OMT/getMapOb obj)]
       (try 
+        (if (not (or (null? lat) (null? lon)))
+          (.setLocation mo lat lon))
         (if-let [c (if (not (null? crs)) (Integer. crs))]
           (.setCourse mo c))
         (if-let [s (if (not (null? spd)) (Double. spd))]
           (.setSpeed mo s))
         (if-let [a (if (not (null? alt)) (Integer. alt))]
           (.setAltitude mo a))
-        (if (not (or (null? lat) (null? lon)))
-          (.setLocation mo lat lon))
         "DONE"
       (catch Exception e
         "FAILED")) ) )))

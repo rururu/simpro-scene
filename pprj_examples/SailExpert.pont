@@ -1,4 +1,4 @@
-; Thu Mar 07 21:14:49 MSK 2019
+; Sun Mar 10 12:07:32 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -49,11 +49,6 @@
 		(create-accessor read-write))
 	(single-slot small-interval
 		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot status
-		(type SYMBOL)
-		(allowed-values BEATING UNDEFINED CAN-ON-MARK OFF-SHORE START REPEAT SHORE-AHEAD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot forse
@@ -410,18 +405,5 @@
 		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass CameraCheck
-	(is-a SailExpert+Onto)
-	(role concrete)
-	(single-slot time
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot delay
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

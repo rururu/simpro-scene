@@ -1,4 +1,4 @@
-; Thu Mar 07 21:14:49 MSK 2019
+; Sun Mar 10 12:07:32 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -83,7 +83,6 @@
 		[SailExpert_Class90001]
 		[SailExpert_Class270007]
 		[SailExpert_Class300000]
-		[SailExpert_Class340003]
 		[SailExpert_Class400000])
 	(instances
 		[SailExpert_Class200005]
@@ -108,7 +107,6 @@
 		[SailExpert_Class50007]
 		[SailExpert_Class170000]
 		[SailExpert_Class80000]
-		[SailExpert_Class340004]
 		[SailExpert_Class50001])
 	(templates
 		[Boat]
@@ -117,7 +115,6 @@
 		[BoatPitch]
 		[Wave]
 		[Clock]
-		[CameraCheck]
 		[Onboard]
 		[ShoreControl])
 	(title "Boat Set"))
@@ -536,8 +533,8 @@
 
 ([SailExpert_Class20002] of  Rule
 
-	(lhs "(CZMLGenerator)\n(Boat label ?lab course ?crs)\n(Clock time ?t)\n(not CZMLSpan label ?lab)")
-	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (if-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (let [desc (.getDescription bmo)\n           alt 2]\n      (.setKeepRoute bmo true)\n      (.setAltitude bmo alt)\n      (sail.exp/camera-control bmo :pitch 6)\n      (asser BoatPitch boat ?lab\n	slope 'UP\n	time 0)\n      (asser CZMLSpan label ?lab\n	options (read-string desc)\n	time ?t)\n      (println \"Boat on map:\" ?lab \", course\" ?crs))))")
+	(lhs "(CZMLGenerator)\n(Boat label ?lab course ?crs)\n(Clock time ?t)\n(not CZMLSpan object ?lab)")
+	(rhs "(when-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (protege.core/ssv ins \"course\" ?crs)\n  (if-let [bmo (ru.igis.omtab.OMT/getOrAdd ins)]\n    (let [desc (.getDescription bmo)\n           alt 2]\n      (.setKeepRoute bmo true)\n      (.setAltitude bmo alt)\n      (sail.exp/camera-control bmo :pitch 6)\n      (asser BoatPitch boat ?lab\n	slope 'UP\n	time 0)\n      (asser CZMLSpan object ?lab\n	options (read-string desc)\n	time ?t)\n      (println \"Boat on map:\" ?lab \", course\" ?crs))))")
 	(salience 0)
 	(title "bs:Boat on Map"))
 
@@ -883,18 +880,6 @@
 	(source "(let [view (cond\n                 (or (and (>= view 0) (< view 46)) (and (< view 0) (> view -46))) 1\n                 (or (> view 134) (< view -134)) 2\n                 true 0)]\n  (if-let [bmo (ru.igis.omtab.OMT/getMapOb boat)]\n    (if (> view 0)\n      (let [heel (condp = sail-point\n	'BROADREACH  2\n	'BEAMREACH    4\n	'CLOSEREACH   7\n	'CLOSEHAULED 10\n	0)\n             sign (condp = tack\n	'STARBOARD (if (= view 1) -1 1)\n	'PORT            (if (= view 1) 1 -1)\n	1)]\n        (sail.exp/camera-control bmo :roll (* heel sign)))\n      (sail.exp/camera-control bmo :roll 0))))")
 	(title "boat-heel [boat sail-point tack view]"))
 
-([SailExpert_Class340003] of  CameraCheck
-
-	(delay 4)
-	(time 0))
-
-([SailExpert_Class340004] of  Rule
-
-	(lhs "?onb (Onboard label ?boat)\n?cam (CameraCheck delay ?del\n	time ?tim)\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(let [onb (deref pro.server/ONBOARD)]\n  (modify ?cam time (+ ?t ?del))\n  (if (not= onb ?boat)\n    (modify ?onb boat onb)))")
-	(salience 0)
-	(title "bs:Boat Camera Check"))
-
 ([SailExpert_Class350001] of  CloFuncall
 
 	(source "pro.server/ONBOARD"))
@@ -1015,8 +1000,8 @@
 
 ([SailExpert_Class50003] of  Rule
 
-	(lhs "(CZMLGenerator)\n(Mark label ?lab latitude ?lat\n	 longitude ?lon)\n(Clock time ?t)\n(not CZMLSpan label ?lab)")
-	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         desc (.getDescription mom)\n         alt 0]\n    (.setAltitude mom alt)\n    (asser CZMLSpan  label ?lab\n	options (read-string desc)\n	time ?t)\n    (println \"Mark on map:\" ?lab \", coords\" [?lat ?lon])))")
+	(lhs "(CZMLGenerator)\n(Mark label ?lab latitude ?lat\n	 longitude ?lon)\n(Clock time ?t)\n(not CZMLSpan object ?lab)")
+	(rhs "(if-let [ins (protege.core/fifos \"NavOb\" \"label\" ?lab)]\n  (let [mom (ru.igis.omtab.OMT/getOrAdd ins)\n         desc (.getDescription mom)\n         alt 0]\n    (.setAltitude mom alt)\n    (asser CZMLSpan object ?lab\n	options (read-string desc)\n	time ?t)\n    (println \"Mark on map:\" ?lab \", coords\" [?lat ?lon])))")
 	(salience 0)
 	(title "ss:Mark on Map"))
 

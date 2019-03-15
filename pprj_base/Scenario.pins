@@ -1,4 +1,4 @@
-; Sat Feb 09 17:34:21 MSK 2019
+; Mon Mar 11 10:27:07 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -992,7 +992,7 @@
 ([Scenario_Class270000] of  Rule
 
 	(lhs "?pos (Position status \"START\" \n	title ?tit \n	object ?obj\n	observer ?obs\n	position-angle ?posa \n	position-distance ?posd \n	position-speed ?poss \n	relative ?rel\n	radius ?rad\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \" Position\")\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       posa (a/vv ?posa ?run)\n       posd (a/vv ?posd ?run)\n       poss (a/vv ?poss ?run)]\n  (if (and (some? mob) (some? mos) (a/worth? posa) (a/worth? posd) (a/worth? poss))\n    (if-let [[lat lon spdb] (a/future-position mob mos posa posd poss ?rel ?rad)]\n      (if (> spdb 0)\n        (do (a/go-route mob lat lon)\n          (.setSpeed mob (double spdb))\n          (modify ?pos status \"WAIT\"\n	object mob\n	observer mos\n	position-angle posa \n	position-distance posd \n	position-speed poss))\n        (do (a/take-position mob mos posa posd poss ?rel)\n          (retract ?pos)\n          (s/start-next ?nacts ?pid ?ain ?run)))\n      (modify ?pos status \"FAILED\"))\n    (modify ?pos status \"FAILED\")))")
+	(rhs "(println \"Action started:\" ?tit \" Position\")\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       posa (a/vv ?posa ?run)\n       posd (a/vv ?posd ?run)\n       poss (a/vv ?poss ?run)]\n  (if (and (some? mob) (some? mos) (a/worth? posa) (a/worth? posd) (a/worth? poss))\n    (if (<= (read-string poss) 0)\n      (do (a/take-position mob mos posa posd poss ?rel)\n        (retract ?pos)\n        (s/start-next ?nacts ?pid ?ain ?run))\n      (if-let [[lat lon spdb] (a/future-position mob mos posa posd poss ?rel ?rad)]\n        (do (a/go-route mob lat lon)\n          (.setSpeed mob (double spdb))\n          (modify ?pos status \"WAIT\"\n	object mob\n	observer mos\n	position-angle posa \n	position-distance posd \n	position-speed poss))\n        (modify ?pos status \"FAILED\")))\n    (modify ?pos status \"FAILED\")))")
 	(salience 0)
 	(title "a:PositionStart"))
 
@@ -1503,7 +1503,7 @@
 
 ([Scenario_Class530002] of  CloFunction
 
-	(source "(let [obj (vv ?obj r)\n       lat (vv ?lat r)\n       lon (vv ?lon r)\n       crs (vv ?crs r)\n       spd (vv ?spd r)\n       alt (vv ?alt r)]\n  (if (null? obj)\n    \"FAILED\"\n    (if-let [mo (OMT/getMapOb obj)]\n      (try \n        (if-let [c (if (not (null? crs)) (Integer. crs))]\n          (.setCourse mo c))\n        (if-let [s (if (not (null? spd)) (Double. spd))]\n          (.setSpeed mo s))\n        (if-let [a (if (not (null? alt)) (Integer. alt))]\n          (.setAltitude mo a))\n        (if (not (or (null? lat) (null? lon)))\n          (.setLocation mo lat lon))\n        \"DONE\"\n      (catch Exception e\n        \"FAILED\")) ) ))")
+	(source "(let [obj (vv ?obj r)\n       lat (vv ?lat r)\n       lon (vv ?lon r)\n       crs (vv ?crs r)\n       spd (vv ?spd r)\n       alt (vv ?alt r)]\n  (if (null? obj)\n    \"FAILED\"\n    (if-let [mo (OMT/getMapOb obj)]\n      (try \n        (if (not (or (null? lat) (null? lon)))\n          (.setLocation mo lat lon))\n        (if-let [c (if (not (null? crs)) (Integer. crs))]\n          (.setCourse mo c))\n        (if-let [s (if (not (null? spd)) (Double. spd))]\n          (.setSpeed mo s))\n        (if-let [a (if (not (null? alt)) (Integer. alt))]\n          (.setAltitude mo a))\n        \"DONE\"\n      (catch Exception e\n        \"FAILED\")) ) ))")
 	(title "put-ob-properties [?obj ?lat ?lon ?crs ?spd ?alt r]"))
 
 ([Scenario_Class540000] of  ScenarioRepeatAction

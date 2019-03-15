@@ -1,4 +1,4 @@
-; Sat Feb 09 17:36:03 MSK 2019
+; Mon Mar 11 11:20:23 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -120,7 +120,7 @@
 
 ([RuleEngine_Class230000] of  CloFunction
 
-	(source "(doseq [ins inss]\n  (doseq [fact (rete/facts-with-slot-value 'instance = ins)]\n    (rete/retract-fact (first fact) true)))")
+	(source "(doseq [ins inss]\n  (doseq [fact (rete/facts-with-slot-value 'instance = ins)]\n    (rete/retract-fact (first fact))))")
 	(title "retract-instances [inss]"))
 
 ([RuleEngine_Class240000] of  CloFunction

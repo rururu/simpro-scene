@@ -1,4 +1,4 @@
-; Thu Mar 07 18:29:41 MSK 2019
+; Fri Mar 15 21:19:42 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,6 +9,11 @@
 	(role abstract)
 	(single-slot delay
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot visibility
@@ -22,10 +27,16 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot view
 		(type INTEGER)
+		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot options
@@ -89,12 +100,14 @@
 (defclass CZMLSpan
 	(is-a CeziumEngine+Ontology)
 	(role concrete)
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot time
 		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot options
@@ -107,6 +120,7 @@
 	(role concrete)
 	(single-slot time
 		(type STRING)
+		(default "0")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -117,7 +131,26 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot time
+		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot view
 		(type INTEGER)
+		(default 0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MapObEvent
+	(is-a CeziumEngine+Ontology)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
