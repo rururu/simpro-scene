@@ -1,4 +1,4 @@
-; Sat Feb 02 13:43:50 MSK 2019
+; Sat Mar 16 12:59:07 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2855,13 +2855,6 @@
 	(%3AANNOTATED-INSTANCE [BrigBern_Class4])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
-
-([BrigBern_Class50000] of  CeziumControl
-
-	(but-onboard "Go on Board/pro.server/go-onboard")
-	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "car"))
 
 ([BrigBern_Class50003] of  OMTPoly
 
@@ -6646,6 +6639,13 @@
 ([OSMRoads_Class120011] of  Attribute
 
 	(title "CAMERA"))
+
+([OSMRoads_Class130000] of  CeziumControl
+
+	(but-onboard "Go on Board/pro.server/go-onboard")
+	(but-start-serv "Start Cesium Server/pro.server/start-server")
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
+	(onboard "train"))
 
 ([OSMRoads_Class14] of  Railroad
 

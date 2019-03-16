@@ -1,4 +1,4 @@
-; Fri Mar 15 21:19:42 MSK 2019
+; Sat Mar 16 11:25:34 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -840,7 +840,7 @@
 
 ([CeziumEngine_Class110010] of  Rule
 
-	(lhs "(CZMLGenerator delay ?del\n	visibility ?vis)\n(Onboard label ?onb)\n?cs (CZMLSpan time ?tim\n	object ?obj\n	options ?ops\n	(not= ?onb ?obj))\n(Clock time ?t ((number? ?tim) (> ?t ?tim)))")
+	(lhs "(CZMLGenerator delay ?del\n	visibility ?vis)\n(Onboard label ?onb)\n?cs (CZMLSpan time ?tim\n	object ?obj\n	options ?ops)\n(Clock time ?t ((number? ?tim) (> ?t ?tim)))")
 	(rhs "(if-let [omo (ru.igis.omtab.OMT/getMapOb ?onb)]\n  (if-let [nmo (ru.igis.omtab.OMT/getMapOb ?obj)]\n    (let [dis (.distanceNM omo nmo)]\n      (if (< dis ?vis)\n        (cesium.core/navob-leg \n	nmo\n	dis\n	(+ ?del 2)\n	?ops))\n      (modify ?cs time (+ ?t ?del)))))")
 	(salience 1)
 	(title "czm:CZML Navob Leg Generation"))
