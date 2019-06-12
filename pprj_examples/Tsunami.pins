@@ -1,4 +1,4 @@
-; Sun Jun 10 12:16:47 MSK 2018
+; Tue Jun 11 18:49:55 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -263,6 +263,14 @@
 
 	(source "(let [bwd (or BUFWID (do (def BUFWID (.getBufferWidth THIS)) BUFWID))\n       scy (or SCY (do (def SCY (float (/ (.getBufferHeight THIS) 180.0))) SCY))\n       scx (or SCX (do (def SCX (float (/ bwd 360.0))) SCX))\n       lat_idx (int (* (- 90.0 lat) scy))\n       lon_idx (int (* lon scx))\n       ofs (+ lon_idx (* lat_idx bwd))]\n  (aget (.getDataBuffer THIS) ofs))")
 	(title "elevation [[lat lon]]"))
+
+([Tsunami_Class30000] of  CloFuncall
+
+	(source "(compile 'subcla.etoele)"))
+
+([Tsunami_Class30001] of  CloFuncall
+
+	(source "(compile 'ra.tsunami)"))
 
 ([Tsunami_Class6] of  CloFunction
 

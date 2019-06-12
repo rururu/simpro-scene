@@ -1,4 +1,4 @@
-; Sat Mar 16 12:59:07 MSK 2019
+; Wed Jun 12 17:17:16 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -16,10 +16,7 @@
 		[Scenario_Class220003]
 		[Scenario_Class250008]
 		[ScenarioN_Class510000]
-		[BrigBern_Class7]
-		[Cezium_Class40000]
-		[Cezium_Class30043]
-		[Cezium_Class30026])
+		[BrigBern_Class7])
 	(title "OSMRoads Programs"))
 
 ([BrigBern_Class1] of  %3AINSTANCE-ANNOTATION
@@ -6639,13 +6636,6 @@
 ([OSMRoads_Class120011] of  Attribute
 
 	(title "CAMERA"))
-
-([OSMRoads_Class130000] of  CeziumControl
-
-	(but-onboard "Go on Board/pro.server/go-onboard")
-	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "train"))
 
 ([OSMRoads_Class14] of  Railroad
 

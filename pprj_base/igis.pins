@@ -1,4 +1,4 @@
-; Sat Mar 02 13:33:50 MSK 2019
+; Tue Jun 11 12:18:08 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -51,13 +51,13 @@
 	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
 	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
 	(fileExt ".png")
-	(label "OSM_Tiles")
+	(label "ArcGIS_Tiles")
 	(land.fillColor "DECD8B")
 	(land.lineColor "DECD8B")
-	(localCacheRootDir "data/tiles/osmtiles")
+	(localCacheRootDir "data/tiles/arcgis")
 	(noCoverageZoom "13")
-	(prettyName "OSM Tiles")
-	(rootDir "http://a.tile.openstreetmap.org")
+	(prettyName "ArcGIS Tiles")
+	(rootDir "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class10] of  Menu
@@ -346,6 +346,22 @@
 	(label "omtHelp3")
 	(source "file:src/OpenMapTab/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
+
+([igis_Class80000] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "OSM_Tiles")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/osmtiles")
+	(noCoverageZoom "13")
+	(prettyName "OSM Tiles")
+	(rootDir "http://a.tile.openstreetmap.org")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class9] of  Menu
 

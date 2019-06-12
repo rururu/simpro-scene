@@ -1,4 +1,4 @@
-; Sun Jun 10 12:09:32 MSK 2018
+; Tue Jun 11 12:31:28 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -55,13 +55,14 @@
 	(Latitude "65.0")
 	(layers
 		[Timeline_Class10027]
-		[Timeline_Class10028]
-		[Timeline_Class10029])
+		[igis_Class1]
+		[Timeline_Class10028])
 	(Longitude "27.0")
 	(Scale "16000000")
 	(startUpLayers
 		[Timeline_Class10027]
-		[Timeline_Class10029]))
+		[igis_Class1]
+		[Timeline_Class10027]))
 
 ([Timeline_Class10002] of  MenuList
 
@@ -227,22 +228,6 @@
 	(lineColor "ff000000")
 	(prettyName "DCWPO")
 	(shapeFile "data/shape/dcwpo-browse.shp"))
-
-([Timeline_Class10029] of  MapTileLayer
-
-	(background.fillColor "FFFFFF")
-	(background.lineColor "FFFFFF")
-	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
-	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
-	(fileExt ".png")
-	(label "OSM_Tiles")
-	(land.fillColor "DECD8B")
-	(land.lineColor "DECD8B")
-	(localCacheRootDir "data/tiles/osmtiles")
-	(noCoverageZoom "13")
-	(prettyName "OSM Tiles")
-	(rootDir "http://a.tile.openstreetmap.org")
-	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([Timeline_Class11] of  CloFunction
 

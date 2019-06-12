@@ -1,4 +1,4 @@
-; Fri Mar 15 21:47:32 MSK 2019
+; Sat Mar 16 18:44:09 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -290,7 +290,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "i1"))
+	(onboard "h1"))
 
 ([AircraftCarrier_Class40000] of  Task
 
@@ -453,7 +453,7 @@
 ([AircraftCarrier_Class80001] of  CZMLSpan
 
 	(object [AircraftCarrier_Class80000])
-	(options "{:gltf-url \"models/low_poly_helicopter/scene.gltf\"\n :model-scale 0.03}")
+	(options "{:gltf-url \"models/low_poly_helicopter/scene.gltf\"\n :model-scale 0.02}")
 	(time "0"))
 
 ([AircraftCarrier_Class90000] of  CloFuncall

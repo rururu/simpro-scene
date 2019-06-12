@@ -1,4 +1,4 @@
-; Sat Jan 06 18:51:58 MSK 2018
+; Wed Jun 12 17:13:07 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -105,14 +105,12 @@
 	(seed [PyongyangStPetersburg_Class10008])
 	(title "rt:Generate Trains"))
 
-([PyongyangStPetersburg_Class10007] of  GoLayer
+([PyongyangStPetersburg_Class10007] of  GoLayerRoute
 
 	(direction "?direct")
-	(getPoliesFromTargets "(fn[x] (nthrest (rr/omp-flt x) (dec ?road)))")
 	(layer [PyongyangStPetersburg_Class10023])
 	(next_actions [PyongyangStPetersburg_Class10003])
 	(object [ScenarioN_Class570000])
-	(resource [PyongyangStPetersburg_Class10004])
 	(spd "40")
 	(title "rt:Trains Traffic"))
 
@@ -165,9 +163,8 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(speed 0.0)
-	( 0.0)
 	(type [PyongyangStPetersburg_Class10016])
-	(url "file:data/images/trnB.gif"))
+	(url "file:resources/public/img/trnB.gif"))
 
 ([PyongyangStPetersburg_Class10016] of  Type
 
@@ -200,9 +197,8 @@
 	(longitude "37 37")
 	(playground-index 0)
 	(speed 0.0)
-	( 0.0)
 	(type [PyongyangStPetersburg_Class10021])
-	(url "file:data/images/home.gif"))
+	(url "file:resources/public/img/home.gif"))
 
 ([PyongyangStPetersburg_Class10021] of  Type
 
@@ -1632,7 +1628,6 @@
 ([PyongyangStPetersburg_Class20000] of  GoRoute
 
 	(object [ScenarioN_Class570000])
-	(radius 0.1)
 	(route [PyongyangStPetersburg_Class30006])
 	(spd "?speed")
 	(title "or:Forward"))
@@ -1641,7 +1636,6 @@
 
 	(backward TRUE)
 	(object [ScenarioN_Class570000])
-	(radius 0.1)
 	(route [PyongyangStPetersburg_Class30006])
 	(spd "?speed")
 	(title "or:Backward"))
@@ -3024,8 +3018,7 @@
 	(longitude "30 21.81")
 	(playground-index 0)
 	(speed 0.0)
-	( 0.0)
-	(url "file:data/images/home.gif"))
+	(url "file:resources/public/img/home.gif"))
 
 ([PyongyangStPetersburg_Class70001] of  PutOnPlace
 
@@ -3047,8 +3040,7 @@
 	(longitude "125 44.26")
 	(playground-index 0)
 	(speed 0.0)
-	( 0.0)
-	(url "file:data/images/home.gif"))
+	(url "file:resources/public/img/home.gif"))
 
 ([PyongyangStPetersburg_Class80001] of  PutOnPlace
 

@@ -1,4 +1,4 @@
-; Sun Jun 10 12:09:32 MSK 2018
+; Tue Jun 11 12:31:28 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -24,9 +24,6 @@
 	(single-slot end
 		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot units
-;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot begin
 		(type INTEGER)
