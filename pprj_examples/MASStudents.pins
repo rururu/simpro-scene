@@ -1,0 +1,49 @@
+; Fri Jul 12 19:03:48 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASStudents_Class0] of  CloProgram
+
+	(cloFunctions
+		[MASStudents_Class2]
+		[MASStudents_Class3]
+		[MASStudents_Class10000])
+	(cloNamespace [MASStudents_Class1])
+	(title "MAS Students"))
+
+([MASStudents_Class1] of  CloNamespace
+
+	(source "(:import\n  sim.engine.SimState)\n\n(:gen-class\n  :name mas.stud.Students\n  :extends sim.engine.SimState\n  ;; alias method start() in superclass. (Don't name it 'super-start'. Use a Java name.)\n  :exposes-methods {start superStart}\n  :state state\n  :init init\n  :main true)")
+	(title "mas.stud.Students"))
+
+([MASStudents_Class10000] of  CloFunction
+
+	(source "(.superStart this)")
+	(title "-start [this]"))
+
+([MASStudents_Class10001] of  CloFuncall
+
+	(source "(mas.stud.Students/-main)"))
+
+([MASStudents_Class2] of  CloFunction
+
+	(source "[[seed] {}]")
+	(title "-init [seed]"))
+
+([MASStudents_Class20000] of  CloFuncall
+
+	(source "(compile 'mas.stud.Students)"))
+
+([MASStudents_Class3] of  CloFunction
+
+	(source "(let [state (mas.stud.Students. (System/currentTimeMillis))]\n  (println :S1 state)\n  (.start state)\n  (println :S2 state)\n  (println :SS (.getSteps (.-schedule state)))\n  (println :ST (.step (.-schedule state) state))\n  (println :i)\n  (.finish state)\n  (println :finish))")
+	(title "-main [& args]"))
+
+([MASStudents_Class30000] of  CloFuncall
+
+	(source "(mas.stud.Students/-main (into-array String []))"))
+
+([MASStudents_Class30001] of  CloFuncall
+
+	(source "(mas.stud.Students/main (into-array String []))"))

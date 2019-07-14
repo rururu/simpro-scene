@@ -1,4 +1,4 @@
-; Wed Jun 12 17:17:16 MSK 2019
+; Thu Jun 13 16:02:03 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1312,12 +1312,10 @@
 	(from1 "Brig")
 	(to1 "Lalden"))
 
-([BrigBern_Class110000] of  GoRoad
+([BrigBern_Class110000] of  PutOnPlace
 
-	(direction "FORWARD")
 	(object [BrigBern_Class100000])
-	(road [BrigBern_Class50009])
-	(spd "40")
+	(observer [OSMRoads_Class60000])
 	(status "START")
 	(title "test"))
 
@@ -6636,6 +6634,12 @@
 ([OSMRoads_Class120011] of  Attribute
 
 	(title "CAMERA"))
+
+([OSMRoads_Class130000] of  CeziumControl
+
+	(but-onboard "Go on Board/pro.server/go-onboard")
+	(but-start-serv "Start Cesium Server/pro.server/start-server")
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server"))
 
 ([OSMRoads_Class14] of  Railroad
 
