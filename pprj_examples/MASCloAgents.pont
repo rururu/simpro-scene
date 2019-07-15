@@ -1,0 +1,13 @@
+; Mon Jul 15 18:50:13 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot sim.engine.Steppable
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Sun Dec 03 22:01:01 MSK 2017
+; Mon Jul 15 16:49:29 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -68,7 +68,6 @@
 
 ([Clojure_Class100005] of  CloRecord
 
-	(cloImplementations [Clojure_Class90002])
 	(title "Bird"))
 
 ([Clojure_Class11] of  CloVar

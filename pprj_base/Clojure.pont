@@ -1,4 +1,4 @@
-; Sun Dec 03 22:01:01 MSK 2017
+; Mon Jul 15 16:49:29 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -60,6 +60,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes CloExtendType)
 		(create-accessor read-write))
+	(multislot options
+		(type INSTANCE)
+;+		(allowed-classes Option)
+		(create-accessor read-write))
 	(single-slot source
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -67,6 +71,10 @@
 	(multislot required
 		(type INSTANCE)
 ;+		(allowed-classes ClsRequired)
+		(create-accessor read-write))
+	(single-slot argument
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot output-to
 		(type STRING)
@@ -90,8 +98,11 @@
 ;+		(allowed-classes HTML)
 		(create-accessor read-write))
 	(multislot fields
-		(type INSTANCE)
-;+		(allowed-classes %3ASTANDARD-SLOT)
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot keyword
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot cloTypes
 		(type INSTANCE)
@@ -296,17 +307,20 @@
 (defclass CloType
 	(is-a ClojureOntology)
 	(role concrete)
-	(multislot cloImplementations
+	(multislot cloProtocols
 		(type INSTANCE)
-;+		(allowed-classes CloImplementation)
+;+		(allowed-classes CloProtocol)
 		(create-accessor read-write))
 	(multislot fields
-		(type INSTANCE)
-;+		(allowed-classes %3ASTANDARD-SLOT)
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot options
+		(type INSTANCE)
+;+		(allowed-classes Option)
 		(create-accessor read-write)))
 
 (defclass CloRecord
@@ -359,6 +373,18 @@
 	(single-slot butt-load-progs
 		(type STRING)
 		(default "Load Programs/protege.core/ldns")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Option
+	(is-a ClojureOntology)
+	(role concrete)
+	(single-slot keyword
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot argument
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

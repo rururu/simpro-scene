@@ -5,7 +5,6 @@
  edu.stanford.smi.protege.model.ValueType
  edu.stanford.smi.protege.model.Instance
  clojuretab.ClojureTab))
-
 (def ^:dynamic *prj* (.getCurrentProject (ProjectManager/getProjectManager)))
 (def ^:dynamic *kb* (.getKnowledgeBase *prj*))
 (defn ins [name]

@@ -1,6 +1,0 @@
-2019.07.10 15:05:34.996 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
-2019.07.10 15:05:35.005 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.2+9-LTS, memory=2076M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
-2019.07.10 15:05:35.007 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
-2019.07.10 15:05:35.111 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
-2019.07.10 15:05:35.113 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
-2019.07.10 15:05:35.513 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()

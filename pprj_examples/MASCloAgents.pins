@@ -1,0 +1,87 @@
+; Mon Jul 15 18:50:13 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASCloAgents_Class0] of  CloProgram
+
+	(cloNamespace [MASCloAgents_Class1])
+	(cloTypes [MASCloAgents_Class2])
+	(title "MAS CloAgent"))
+
+([MASCloAgents_Class1] of  CloNamespace
+
+	(title "mas.cloagents"))
+
+([MASCloAgents_Class10000] of  Option
+
+	(argument "false")
+	(keyword ":load-ns"))
+
+([MASCloAgents_Class10001] of  CloProtocol
+
+	(cloFunctions [MASCloAgents_Class30001])
+	(title "sim.engine.Steppable"))
+
+([MASCloAgents_Class2] of  CloType
+
+	(cloProtocols [MASCloAgents_Class10001])
+	(options [MASCloAgents_Class10000])
+	(title "CloAgent"))
+
+([MASCloAgents_Class20000] of  CloFuncall
+
+	(source "(compile 'mas.cloagents.Agents1)"))
+
+([MASCloAgents_Class30000] of  CloFuncall
+
+	(source "(compile 'mas.cloagents)"))
+
+([MASCloAgents_Class30001] of  CloFunction
+
+	(source "(println :s (.getSteps (.schedule agents)))")
+	(title "step [this agents]"))
+
+([MASCloAgents_Class4] of  CloImplementation
+
+	(title "step [this state]"))
+
+([MASStudents_Class10001] of  CloFuncall
+
+	(source "(mas.stud.Students/-main)"))
+
+([MASStudents_Class20000] of  CloFuncall
+
+	(source "(compile 'mas.stud.Students)"))
+
+([MASStudents_Class30000] of  CloFuncall
+
+	(source "(mas.stud.Students/-main (into-array String []))"))
+
+([MASStudents_Class30001] of  CloFuncall
+
+	(source "(mas.stud.Students/main (into-array String []))"))
+
+([MASStudents_Class40000] of  CloFuncall
+
+	(source "(mas.agents.CloAgents/-main [])"))
+
+([MASStudents_Class40001] of  CloFuncall
+
+	(source "(compile 'mas.agents.CloAgents)"))
+
+([MASStudents_Class40006] of  CloFuncall
+
+	(source "(compile 'mas.agents.CloAgent)"))
+
+([MASStudents_Class40007] of  CloFuncall
+
+	(source "(mas.agents.CloAgents/-main)"))
+
+([MASStudents_Class50001] of  CloFuncall
+
+	(source "(mas.agents.CloAgents/-main (into-array String  []))"))
+
+([MASStudents_Class50002] of  CloFuncall
+
+	(source "(mas.agents.CloAgents/main (into-array String  []))"))
