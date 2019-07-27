@@ -1,4 +1,4 @@
-; Mon Jul 15 18:50:13 MSK 2019
+; Sat Jul 27 23:19:05 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,11 +6,16 @@
 ([MASCloAgents_Class0] of  CloProgram
 
 	(cloNamespace [MASCloAgents_Class1])
-	(cloTypes [MASCloAgents_Class2])
-	(title "MAS CloAgent"))
+	(cloTypes
+		[MASCloAgents_Class2]
+		[MASCloAgents_Class40000]
+		[MASCloAgents_Class20000])
+	(cloVars [MASCloAgents_Class60000])
+	(title "MAS CloAgents"))
 
 ([MASCloAgents_Class1] of  CloNamespace
 
+	(source "(:import\n  java.awt.Color\n  sim.field.continuous.Continuous2D\n  sim.util.Double2D\n  sim.portrayal.FieldPortrayal2D\n  sim.portrayal.continuous.ContinuousPortrayal2D\n  sim.portrayal.simple.OvalPortrayal2D)")
 	(title "mas.cloagents"))
 
 ([MASCloAgents_Class10000] of  Option
@@ -26,12 +31,18 @@
 ([MASCloAgents_Class2] of  CloType
 
 	(cloProtocols [MASCloAgents_Class10001])
-	(options [MASCloAgents_Class10000])
+	(fields "astat")
 	(title "CloAgent"))
 
-([MASCloAgents_Class20000] of  CloFuncall
+([MASCloAgents_Class20000] of  CloType
 
-	(source "(compile 'mas.cloagents.Agents1)"))
+	(cloProtocols [MASCloAgents_Class50001])
+	(title "CloAgentsPortsImpl"))
+
+([MASCloAgents_Class20001] of  CloFunction
+
+	(source "(def AREA (Continuous2D. 1.0, 10.0, 10.0))")
+	(title "init [this]"))
 
 ([MASCloAgents_Class30000] of  CloFuncall
 
@@ -39,49 +50,66 @@
 
 ([MASCloAgents_Class30001] of  CloFunction
 
-	(source "(println :s (.getSteps (.schedule agents)))")
+	(source ";; (println :s (.getSteps (.schedule agents)))\n(let [a @astat\n       x (+ (:x a) (/ (- 1.0 (* 2 (Math/random))) 1000)) \n       y (+ (:y a) (/ (- 1.0 (* 2 (Math/random))) 1000))]\n  (reset! astat {:x x :y y})\n  (.setObjectLocation AREA this (Double2D. x y)))")
 	(title "step [this agents]"))
 
 ([MASCloAgents_Class4] of  CloImplementation
 
 	(title "step [this state]"))
 
-([MASStudents_Class10001] of  CloFuncall
+([MASCloAgents_Class40000] of  CloType
 
-	(source "(mas.stud.Students/-main)"))
+	(cloProtocols [MASCloAgents_Class40001])
+	(title "CloAgentsStateImpl"))
 
-([MASStudents_Class20000] of  CloFuncall
+([MASCloAgents_Class40001] of  CloProtocol
 
-	(source "(compile 'mas.stud.Students)"))
+	(cloFunctions
+		[MASCloAgents_Class20001]
+		[MASCloAgents_Class40002]
+		[MASCloAgents_Class50002])
+	(title "ru.igis.sim.CloAgentsState"))
 
-([MASStudents_Class30000] of  CloFuncall
+([MASCloAgents_Class40002] of  CloFunction
 
-	(source "(mas.stud.Students/-main (into-array String []))"))
+	(source "(let [anum 1000\n       rnd (.random cloants)\n       sch (.schedule cloants)]\n  (.clear AREA)\n  (dotimes [i anum]\n    (let [x (+ (* (.getWidth AREA) 0.5) (* 5 (.nextDouble rnd)) -0.5)\n           y (+ (* (.getHeight AREA) 0.5) (* 5 (.nextDouble rnd)) -0.5)\n           ast (atom {:x x :y y})\n           ant (CloAgent. ast)]\n      (.setObjectLocation AREA ant (Double2D. x y))\n      (.scheduleRepeating sch ant))))")
+	(title "cloStart [this cloants]"))
 
-([MASStudents_Class30001] of  CloFuncall
+([MASCloAgents_Class50000] of  CloFunction
 
-	(source "(mas.stud.Students/main (into-array String []))"))
+	(source "800")
+	(title "displayWidth [this]"))
 
-([MASStudents_Class40000] of  CloFuncall
+([MASCloAgents_Class50001] of  CloProtocol
 
-	(source "(mas.agents.CloAgents/-main [])"))
+	(cloFunctions
+		[MASCloAgents_Class60002]
+		[MASCloAgents_Class50000]
+		[MASCloAgents_Class60001]
+		[MASCloAgents_Class60003])
+	(title "ru.igis.sim.CloAgentsPorts"))
 
-([MASStudents_Class40001] of  CloFuncall
+([MASCloAgents_Class50002] of  CloFunction
 
-	(source "(compile 'mas.agents.CloAgents)"))
+	(source "AREA")
+	(title "takeArea [this]"))
 
-([MASStudents_Class40006] of  CloFuncall
+([MASCloAgents_Class60000] of  CloVar
 
-	(source "(compile 'mas.agents.CloAgent)"))
+	(source "nil")
+	(title "AREA"))
 
-([MASStudents_Class40007] of  CloFuncall
+([MASCloAgents_Class60001] of  CloFunction
 
-	(source "(mas.agents.CloAgents/-main)"))
+	(source "600")
+	(title "displayHeight [this]"))
 
-([MASStudents_Class50001] of  CloFuncall
+([MASCloAgents_Class60002] of  CloFunction
 
-	(source "(mas.agents.CloAgents/-main (into-array String  []))"))
+	(source "(ContinuousPortrayal2D.)")
+	(title "createAreaPortrayal [this]"))
 
-([MASStudents_Class50002] of  CloFuncall
+([MASCloAgents_Class60003] of  CloFunction
 
-	(source "(mas.agents.CloAgents/main (into-array String  []))"))
+	(source "(.setPortrayalForAll aport (OvalPortrayal2D. Color/GREEN 0.1))")
+	(title "cloSetupPorts [this aport]"))

@@ -1,4 +1,4 @@
-; Mon Jul 15 18:50:13 MSK 2019
+; Sat Jul 27 23:19:05 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,10 +20,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[MASCloAgents_ProjectKB_Class10379]
-		[MASCloAgents_ProjectKB_Class10380]
-		[MASCloAgents_ProjectKB_Class10381]
-		[MASCloAgents_ProjectKB_Class10382]))
+		[MASCloAgents_ProjectKB_Class10375]
+		[MASCloAgents_ProjectKB_Class10376]
+		[MASCloAgents_ProjectKB_Class10377]
+		[MASCloAgents_ProjectKB_Class10378]))
 
 ([CLSES_TAB] of  Widget
 
@@ -67,74 +67,74 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_536737_Class271] of  Widget
+([KB_418838_Class271] of  Widget
 
 	(is_hidden FALSE)
 	(name "option")
-	(property_list [KB_536737_Class272])
+	(property_list [KB_418838_Class272])
 	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
-([KB_536737_Class272] of  Property_List
+([KB_418838_Class272] of  Property_List
 
 	(properties
-		[KB_536737_Class273]
-		[KB_536737_Class274]
-		[KB_536737_Class276]))
+		[KB_418838_Class273]
+		[KB_418838_Class274]
+		[KB_418838_Class276]))
 
-([KB_536737_Class273] of  Property_List
+([KB_418838_Class273] of  Property_List
 
 	(name "layout properties"))
 
-([KB_536737_Class274] of  Widget
+([KB_418838_Class274] of  Widget
 
 	(height 60)
 	(is_hidden FALSE)
 	(name "keyword")
-	(property_list [KB_536737_Class275])
+	(property_list [KB_418838_Class275])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
 	(y 0))
 
-([KB_536737_Class275] of  Property_List
+([KB_418838_Class275] of  Property_List
 )
 
-([KB_536737_Class276] of  Widget
+([KB_418838_Class276] of  Widget
 
 	(height 60)
 	(is_hidden FALSE)
 	(name "argument")
-	(property_list [KB_536737_Class277])
+	(property_list [KB_418838_Class277])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 200)
 	(y 0))
 
-([KB_536737_Class277] of  Property_List
+([KB_418838_Class277] of  Property_List
 )
 
-([KB_536737_Class362] of  Map
+([KB_418838_Class362] of  Map
 
 	(entries
-		[KB_536737_Class363]
-		[KB_536737_Class364]
-		[KB_536737_Class365]))
+		[KB_418838_Class363]
+		[KB_418838_Class364]
+		[KB_418838_Class365]))
 
-([KB_536737_Class363] of  Map_Entry
+([KB_418838_Class363] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_536737_Class364] of  Map_Entry
+([KB_418838_Class364] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_536737_Class365] of  Map_Entry
+([KB_418838_Class365] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -583,22 +583,22 @@
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
 
-([MASCloAgents_ProjectKB_Class10379] of  String
+([MASCloAgents_ProjectKB_Class10375] of  String
 
 	(name "Option")
 	(string_value "keyword{+}argument"))
 
-([MASCloAgents_ProjectKB_Class10380] of  String
+([MASCloAgents_ProjectKB_Class10376] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([MASCloAgents_ProjectKB_Class10381] of  String
+([MASCloAgents_ProjectKB_Class10377] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([MASCloAgents_ProjectKB_Class10382] of  String
+([MASCloAgents_ProjectKB_Class10378] of  String
 
 	(name "CloType")
 	(string_value "title"))

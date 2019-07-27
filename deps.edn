@@ -34,4 +34,5 @@
   portfolio {:local/root "lib_mas/portfolio.jar"}
   surfaceplotter {:local/root "lib_mas/surfaceplotter-2.0.2-20131206.230546-631.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}}
- :paths ["src" "src/clojure" "classes" "resources"]}
+  CloAgents {:local/root "lib/CloAgents.jar"}
+ :paths ["src" "src/clojure" "classes" "resources" "/home/ru/mas/pro/CloAgents/bin"]}
