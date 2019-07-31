@@ -1,10 +1,11 @@
-; Sat Jul 27 23:19:05 MSK 2019
+; Wed Jul 31 10:38:15 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([MASCloAgents_Class0] of  CloProgram
+([MASCloAgents_Class0] of  MASProgram
 
+	(cloFunctions [MASCloAgents_Class70006])
 	(cloNamespace [MASCloAgents_Class1])
 	(cloTypes
 		[MASCloAgents_Class2]
@@ -111,5 +112,14 @@
 
 ([MASCloAgents_Class60003] of  CloFunction
 
-	(source "(.setPortrayalForAll aport (OvalPortrayal2D. Color/GREEN 0.1))")
+	(source "(.setPortrayalForAll aport (OvalPortrayal2D. Color/RED 0.1))")
 	(title "cloSetupPorts [this aport]"))
+
+([MASCloAgents_Class70000] of  MASPanel
+
+	(but-mas-run "Run with GUI/mas.cloagents/run-with-GUI"))
+
+([MASCloAgents_Class70006] of  CloFunction
+
+	(source "(println (clojure.java.shell/sh  \"clj\" \"-e\" \"(ru.igis.sim.CloAgentsGUI/main (into-array String []))\"))")
+	(title "run-with-GUI [hm inst]"))

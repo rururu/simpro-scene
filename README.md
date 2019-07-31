@@ -66,6 +66,7 @@ See examples.
 20. [From Raster to Vector](https://youtu.be/LKaAVBDUyTU)
 21. [Sailing Expert: Race with 3D models of yachts](https://youtu.be/VG87r7_gVz8)
 22. [Landing on aircraft carrier](https://youtu.be/gkRWfLXRaoo)
+23. [Multi-agent system based on MASON (https://cs.gmu.edu/~eclab/projects/mason/) and Clojure. Lesson1](https://youtu.be/2mJ2EarlK7s)
 
 TO BE CONTINUED
 

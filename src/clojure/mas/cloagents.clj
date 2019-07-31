@@ -37,5 +37,8 @@
 	(createAreaPortrayal [this] (ContinuousPortrayal2D.))
 	(displayWidth [this] 800)
 	(displayHeight [this] 600)
-	(cloSetupPorts [this aport] (.setPortrayalForAll aport (OvalPortrayal2D. Color/GREEN 0.1)))
+	(cloSetupPorts [this aport] (.setPortrayalForAll aport (OvalPortrayal2D. Color/BLUE 0.1)))
 )
+(defn run-with-GUI [hm inst]
+  (println (clojure.java.shell/sh  "clj" "-e" "(ru.igis.sim.CloAgentsGUI/main (into-array String []))")))
+
