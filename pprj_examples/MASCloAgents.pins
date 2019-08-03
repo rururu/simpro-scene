@@ -1,4 +1,4 @@
-; Wed Jul 31 10:38:15 MSK 2019
+; Sat Aug 03 18:36:16 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -117,9 +117,10 @@
 
 ([MASCloAgents_Class70000] of  MASPanel
 
-	(but-mas-run "Run with GUI/mas.cloagents/run-with-GUI"))
+	(but-mas-run "Run with GUI/mas.cloagents/run-with-GUI")
+	(java-class "ru.igis.sim.CloAgentsGUI"))
 
 ([MASCloAgents_Class70006] of  CloFunction
 
-	(source "(println (clojure.java.shell/sh  \"clj\" \"-e\" \"(ru.igis.sim.CloAgentsGUI/main (into-array String []))\"))")
+	(source "(let [mp (into {} hm)\n       cmd (str \"(\" (mp \"java-class\") \"/main (into-array String []))\")]\n  (println (clojure.java.shell/sh  \"clj\" \"-e\" cmd)))")
 	(title "run-with-GUI [hm inst]"))

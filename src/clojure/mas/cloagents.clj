@@ -40,5 +40,7 @@
 	(cloSetupPorts [this aport] (.setPortrayalForAll aport (OvalPortrayal2D. Color/RED 0.1)))
 )
 (defn run-with-GUI [hm inst]
-  (println (clojure.java.shell/sh  "clj" "-e" "(ru.igis.sim.CloAgentsGUI/main (into-array String []))")))
+  (let [mp (into {} hm)
+       cmd (str "(" (mp "java-class") "/main (into-array String []))")]
+  (println (clojure.java.shell/sh  "clj" "-e" cmd))))
 

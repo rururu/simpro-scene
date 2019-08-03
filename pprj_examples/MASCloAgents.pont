@@ -1,4 +1,4 @@
-; Wed Jul 31 10:38:15 MSK 2019
+; Sat Aug 03 18:36:16 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -15,6 +15,10 @@
 	(single-slot sim.engine.Steppable
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot java-class
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass MASProgram
@@ -27,5 +31,9 @@
 	(single-slot but-mas-run
 		(type STRING)
 		(default "Run with GUI/mas.cloagents/run-with-GUI")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot java-class
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

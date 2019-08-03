@@ -1,0 +1,136 @@
+; Sat Aug 03 22:17:42 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASCampus_Class0] of  MASProgram
+
+	(cloNamespace [MASCampus_Class1])
+	(cloTypes
+		[MASCampus_Class2]
+		[MASCampus_Class3]
+		[MASCampus_Class4])
+	(cloVars
+		[MASCampus_Class13]
+		[MASCampus_Class14]
+		[MASCampus_Class15]
+		[MASCampus_Class30001]
+		[MASCampus_Class16]
+		[MASCampus_Class10000]
+		[MASCampus_Class30000]
+		[MASCampus_Class30002])
+	(title "CampusWorld"))
+
+([MASCampus_Class1] of  CloNamespace
+
+	(source "(:import\n  java.net.URL\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.MasonGeometry\n  sim.display.Display2D\n  com.vividsolutions.jts.geom.Envelope\n  java.awt.Color)")
+	(title "mas.world"))
+
+([MASCampus_Class10] of  CloProtocol
+
+	(cloFunctions
+		[MASCampus_Class11]
+		[MASCampus_Class12])
+	(title "ru.igis.sim.IPorts"))
+
+([MASCampus_Class10000] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "roads"))
+
+([MASCampus_Class11] of  CloFunction
+
+	(source "(def dispay (Display2D. WIDTH HEIGHT wgui))")
+	(title "createDisplay [this wgui]"))
+
+([MASCampus_Class12] of  CloFunction
+
+	(source "nil")
+	(title "setup [this world display]"))
+
+([MASCampus_Class13] of  CloVar
+
+	(source "1000")
+	(title "WIDTH"))
+
+([MASCampus_Class14] of  CloVar
+
+	(source "1000")
+	(title "HEIGHT"))
+
+([MASCampus_Class15] of  CloVar
+
+	(source "50")
+	(title "NUM_AGENTS"))
+
+([MASCampus_Class16] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "walkways"))
+
+([MASCampus_Class2] of  CloType
+
+	(cloProtocols [MASCampus_Class5])
+	(fields "astat")
+	(title "Agent"))
+
+([MASCampus_Class20000] of  CloFuncall
+
+	(source "(compile 'mas.world)"))
+
+([MASCampus_Class3] of  CloType
+
+	(cloProtocols [MASCampus_Class7])
+	(title "IWorldImpl"))
+
+([MASCampus_Class30000] of  CloVar
+
+	(source "nil")
+	(title "display"))
+
+([MASCampus_Class30001] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "buildings"))
+
+([MASCampus_Class30002] of  CloVar
+
+	(source "nil")
+	(title "colorMap"))
+
+([MASCampus_Class4] of  CloType
+
+	(cloProtocols [MASCampus_Class10])
+	(title "IPortsImpl"))
+
+([MASCampus_Class5] of  CloProtocol
+
+	(cloFunctions [MASCampus_Class6])
+	(title "sim.engine.Steppable"))
+
+([MASCampus_Class50000] of  MASPanel
+
+	(but-mas-run "Run with GUI/mas.cloagents/run-with-GUI")
+	(java-class "ru.igis.sim.WorldGUI"))
+
+([MASCampus_Class6] of  CloFunction
+
+	(source "nil")
+	(title "step [this agents]"))
+
+([MASCampus_Class7] of  CloProtocol
+
+	(cloFunctions
+		[MASCampus_Class8]
+		[MASCampus_Class9])
+	(title "ru.igis.sim.IWorld"))
+
+([MASCampus_Class8] of  CloFunction
+
+	(source "(let [buildings (GeomVectorField. 1000 1000)\n       roads (GeomVectorField. 1000 1000) \n       walkways (GeomVectorField. 1000 1000)\n       masked (Bag.)\n       _ (.add masked \"NAME\")\n       _ (.add masked \"FLOORS\")\n       _ (.add masked \"ADDR_NUM\")\n       _ (println \"reading buildings layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/bldg.shp\") buildings)\n       MBR (.getMBR buildings)\n       _ (println \"reading roads layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/roads.shp\") roads)\n       _ (.expandToInclude MBR (.getMBR roads))\n       _ (println \"reading walkways layer\")\n       _ (ShapeFileImporter/read (URL. \"file:data/campus/walk_ways.shp\") walkways)\n       _ (.expandToInclude MBR (.getMBR walkways))]\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR))")
+	(title "init [this]"))
+
+([MASCampus_Class9] of  CloFunction
+
+	(source "nil")
+	(title "start [this word]"))
