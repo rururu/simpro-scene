@@ -11,16 +11,18 @@
   sim.portrayal.geo.GeomPortrayal
   sim.portrayal.geo.GeomVectorFieldPortrayal
   com.vividsolutions.jts.geom.Envelope
+  com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory))
-(deftype Agent [astat ]
+(deftype Agent [astate ]
 	sim.engine.Steppable
-	(step [this agents] nil)
+	(step [this world] (println :AS astate)
+(move world))
 )
 (deftype IWorldImpl [^java.util.HashMap wstate ]
 	ru.igis.sim.IWorld
 	(initialise [this] (let [width 1000
        height 1000
-       num-agents 50
+       num-agents 10
        buildings (GeomVectorField. width height)
        roads (GeomVectorField. width height) 
        walkways (GeomVectorField. width height)
@@ -59,13 +61,23 @@
   (.put wstate :buildings buildings)
   (.put wstate :roads roads)
   (.put wstate :walkways walkways)
-  (.put wstate :agents agents)))
+  (.put wstate :agents agents)
+  (load "mas/world")))
 	(start [this world] (let [wst (into {} (.wstate (.iworld world)))
        agents (:agents wst)
-       buildings (:buildings wst)]
+       buildings (:buildings wst)
+       num-agents (:num-agents wst)
+       schedule (.schedule world)]
   (.clear agents)
+  (dotimes [i num-agents]
+    (let [fact (GeometryFactory.)
+           point (.createPoint fact (Coordinate. 10 10))
+           astate {:location (MasonGeometry. point)}
+           a (Agent. astate)]
+      (.addGeometry agents (:location (.astate a)))
+      (.scheduleRepeating schedule a)))
   (.setMBR agents (.getMBR buildings))
-  (.scheduleRepeating (.schedule world) (.scheduleSpatialIndexUpdater agents) Integer/MAX_VALUE 1.0)))
+  (.scheduleRepeating schedule (.scheduleSpatialIndexUpdater agents) Integer/MAX_VALUE 1.0)))
 )
 (deftype IPortsImpl []
 	ru.igis.sim.IPorts
@@ -81,7 +93,6 @@
   (.put wstate :build-port build-port)
   (.put wstate :road-port road-port)
   (.put wstate :walk-port walk-port)
-  (println :DISP display)
   display))
 	(setup [this display world] (let [wst (into {} (.wstate (.iworld world)))
        build-port (:build-port wst)
@@ -94,3 +105,6 @@
   (.setField road-port (:roads wst))
   (.setPortrayalForAll road-port (GeomPortrayal. Color/LIGHT_GRAY true))))
 )
+(defn move [world]
+  (println :MOVE world))
+

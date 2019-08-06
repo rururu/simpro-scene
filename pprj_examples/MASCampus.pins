@@ -1,10 +1,11 @@
-; Sun Aug 04 21:35:44 MSK 2019
+; Tue Aug 06 21:52:30 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([MASCampus_Class0] of  MASProgram
 
+	(cloFunctions [MASCampus_Class10002])
 	(cloNamespace [MASCampus_Class1])
 	(cloTypes
 		[MASCampus_Class2]
@@ -14,7 +15,7 @@
 
 ([MASCampus_Class1] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.GeometryFactory)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory)")
 	(title "mas.world"))
 
 ([MASCampus_Class10] of  CloProtocol
@@ -23,6 +24,11 @@
 		[MASCampus_Class11]
 		[MASCampus_Class12])
 	(title "ru.igis.sim.IPorts"))
+
+([MASCampus_Class10002] of  CloFunction
+
+	(source "(println :MOVE world)")
+	(title "move [world]"))
 
 ([MASCampus_Class11] of  CloFunction
 
@@ -37,7 +43,7 @@
 ([MASCampus_Class2] of  CloType
 
 	(cloProtocols [MASCampus_Class5])
-	(fields "astat")
+	(fields "astate")
 	(title "Agent"))
 
 ([MASCampus_Class20000] of  CloFuncall
@@ -67,8 +73,8 @@
 
 ([MASCampus_Class6] of  CloFunction
 
-	(source "nil")
-	(title "step [this agents]"))
+	(source "(println :AS astate)\n(move world)")
+	(title "step [this world]"))
 
 ([MASCampus_Class7] of  CloProtocol
 
@@ -79,10 +85,10 @@
 
 ([MASCampus_Class8] of  CloFunction
 
-	(source "(let [width 1000\n       height 1000\n       num-agents 50\n       buildings (GeomVectorField. width height)\n       roads (GeomVectorField. width height) \n       walkways (GeomVectorField. width height)\n       agents (GeomVectorField. width height) \n       network (GeomPlanarGraph.)\n       netiter (.nodeIterator network)\n       fact (GeometryFactory.)\n       junctions (GeomVectorField. width height) \n       masked (Bag.)\n       _ (.add masked \"NAME\")\n       _ (.add masked \"FLOORS\")\n       _ (.add masked \"ADDR_NUM\")\n       _ (println \"reading buildings layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/bldg.shp\") buildings)\n       MBR (.getMBR buildings)\n       _ (println \"reading roads layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/roads.shp\") roads)\n       _ (.expandToInclude MBR (.getMBR roads))\n       _ (println \"reading walkways layer\")\n       _ (ShapeFileImporter/read (URL. \"file:data/campus/walk_ways.shp\") walkways)\n       _ (.expandToInclude MBR (.getMBR walkways))]\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint fact coord)]\n      (.addGeometry junctions (MasonGeometry. point))))\n  ;; Store world state\n  (.put wstate :width width)\n  (.put wstate :height height)\n  (.put wstate :num-agents num-agents)\n  (.put wstate :buildings buildings)\n  (.put wstate :roads roads)\n  (.put wstate :walkways walkways)\n  (.put wstate :agents agents))")
+	(source "(let [width 1000\n       height 1000\n       num-agents 10\n       buildings (GeomVectorField. width height)\n       roads (GeomVectorField. width height) \n       walkways (GeomVectorField. width height)\n       agents (GeomVectorField. width height) \n       network (GeomPlanarGraph.)\n       netiter (.nodeIterator network)\n       fact (GeometryFactory.)\n       junctions (GeomVectorField. width height) \n       masked (Bag.)\n       _ (.add masked \"NAME\")\n       _ (.add masked \"FLOORS\")\n       _ (.add masked \"ADDR_NUM\")\n       _ (println \"reading buildings layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/bldg.shp\") buildings)\n       MBR (.getMBR buildings)\n       _ (println \"reading roads layer\") \n       _ (ShapeFileImporter/read (URL. \"file:data/campus/roads.shp\") roads)\n       _ (.expandToInclude MBR (.getMBR roads))\n       _ (println \"reading walkways layer\")\n       _ (ShapeFileImporter/read (URL. \"file:data/campus/walk_ways.shp\") walkways)\n       _ (.expandToInclude MBR (.getMBR walkways))]\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint fact coord)]\n      (.addGeometry junctions (MasonGeometry. point))))\n  ;; Store world state\n  (.put wstate :width width)\n  (.put wstate :height height)\n  (.put wstate :num-agents num-agents)\n  (.put wstate :buildings buildings)\n  (.put wstate :roads roads)\n  (.put wstate :walkways walkways)\n  (.put wstate :agents agents)\n  (load \"mas/world\"))")
 	(title "initialise [this]"))
 
 ([MASCampus_Class9] of  CloFunction
 
-	(source "(let [wst (into {} (.wstate (.iworld world)))\n       agents (:agents wst)\n       buildings (:buildings wst)]\n  (.clear agents)\n  (.setMBR agents (.getMBR buildings))\n  (.scheduleRepeating (.schedule world) (.scheduleSpatialIndexUpdater agents) Integer/MAX_VALUE 1.0))")
+	(source "(let [wst (into {} (.wstate (.iworld world)))\n       agents (:agents wst)\n       buildings (:buildings wst)\n       num-agents (:num-agents wst)\n       schedule (.schedule world)]\n  (.clear agents)\n  (dotimes [i num-agents]\n    (let [fact (GeometryFactory.)\n           point (.createPoint fact (Coordinate. 10 10))\n           astate {:location (MasonGeometry. point)}\n           a (Agent. astate)]\n      (.addGeometry agents (:location (.astate a)))\n      (.scheduleRepeating schedule a)))\n  (.setMBR agents (.getMBR buildings))\n  (.scheduleRepeating schedule (.scheduleSpatialIndexUpdater agents) Integer/MAX_VALUE 1.0))")
 	(title "start [this world]"))
