@@ -1,4 +1,4 @@
-; Tue Aug 06 21:52:30 MSK 2019
+; Wed Aug 07 21:47:35 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [MASCampus_ProjectKB_Class10560]))
+	(properties [MASCampus_ProjectKB_Class10562]))
 
 ([CLSES_TAB] of  Widget
 
@@ -62,6 +62,80 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_493600_Class271] of  Widget
+
+	(is_hidden FALSE)
+	(name "option")
+	(property_list [KB_493600_Class272])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([KB_493600_Class272] of  Property_List
+
+	(properties
+		[KB_493600_Class273]
+		[KB_493600_Class274]
+		[KB_493600_Class276]))
+
+([KB_493600_Class273] of  Property_List
+
+	(name "layout properties"))
+
+([KB_493600_Class274] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "keyword")
+	(property_list [KB_493600_Class275])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([KB_493600_Class275] of  Property_List
+)
+
+([KB_493600_Class276] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "argument")
+	(property_list [KB_493600_Class277])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 200)
+	(y 0))
+
+([KB_493600_Class277] of  Property_List
+)
+
+([KB_493600_Class525] of  Map
+
+	(entries
+		[KB_493600_Class526]
+		[KB_493600_Class527]
+		[KB_493600_Class528]))
+
+([KB_493600_Class526] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_493600_Class527] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_493600_Class528] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_501461_Class334] of  Widget
 
@@ -109,7 +183,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 180)
 	(x 0)
-	(y 60))
+	(y 120))
 
 ([KB_501461_Class340] of  Property_List
 
@@ -135,8 +209,8 @@
 	(property_list [KB_501461_Class344])
 	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
 	(width 90)
-	(x 90)
-	(y 0))
+	(x 0)
+	(y 60))
 
 ([KB_501461_Class344] of  Property_List
 )
@@ -195,14 +269,14 @@
 
 ([KB_501461_Class421] of  Widget
 
-	(height 280)
+	(height 320)
 	(is_hidden FALSE)
 	(name "cloFunctions")
 	(property_list [KB_501461_Class422])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 160)
-	(x 200)
-	(y 310))
+	(width 250)
+	(x 250)
+	(y 440))
 
 ([KB_501461_Class422] of  Property_List
 
@@ -228,13 +302,13 @@
 
 ([KB_501461_Class426] of  Widget
 
-	(height 190)
+	(height 320)
 	(is_hidden FALSE)
 	(name "cloVars")
 	(property_list [KB_501461_Class427])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 160)
-	(x 200)
+	(width 250)
+	(x 250)
 	(y 120))
 
 ([KB_501461_Class427] of  Property_List
@@ -280,7 +354,7 @@
 	(name "cloNamespace")
 	(property_list [KB_501461_Class434])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
+	(width 250)
 	(x 0)
 	(y 60))
 
@@ -321,13 +395,13 @@
 
 ([KB_501461_Class440] of  Widget
 
-	(height 470)
+	(height 640)
 	(is_hidden FALSE)
 	(label "CloTypes")
 	(name "cloTypes")
 	(property_list [KB_501461_Class441])
 	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
-	(width 200)
+	(width 250)
 	(x 0)
 	(y 120))
 
@@ -409,9 +483,9 @@
 	(name "documentation")
 	(property_list [KB_501461_Class477])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 360)
-	(x 0)
-	(y 590))
+	(width 250)
+	(x 250)
+	(y 60))
 
 ([KB_501461_Class477] of  Property_List
 
@@ -434,80 +508,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([KB_852523_Class271] of  Widget
-
-	(is_hidden FALSE)
-	(name "option")
-	(property_list [KB_852523_Class272])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([KB_852523_Class272] of  Property_List
-
-	(properties
-		[KB_852523_Class273]
-		[KB_852523_Class274]
-		[KB_852523_Class276]))
-
-([KB_852523_Class273] of  Property_List
-
-	(name "layout properties"))
-
-([KB_852523_Class274] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "keyword")
-	(property_list [KB_852523_Class275])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([KB_852523_Class275] of  Property_List
-)
-
-([KB_852523_Class276] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "argument")
-	(property_list [KB_852523_Class277])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 200)
-	(y 0))
-
-([KB_852523_Class277] of  Property_List
-)
-
-([KB_852523_Class525] of  Map
-
-	(entries
-		[KB_852523_Class526]
-		[KB_852523_Class527]
-		[KB_852523_Class528]))
-
-([KB_852523_Class526] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_852523_Class527] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_852523_Class528] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_940823_Class0] of  String
 
@@ -614,7 +614,7 @@
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
 
-([MASCampus_ProjectKB_Class10560] of  String
+([MASCampus_ProjectKB_Class10562] of  String
 
 	(name "MASPanel")
 	(string_value "java-class"))

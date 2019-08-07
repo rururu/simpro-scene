@@ -7,30 +7,50 @@
   sim.io.geo.ShapeFileImporter
   sim.util.geo.GeomPlanarGraph
   sim.util.geo.MasonGeometry
+  sim.util.geo.PointMoveTo
   sim.display.Display2D
   sim.portrayal.geo.GeomPortrayal
   sim.portrayal.geo.GeomVectorFieldPortrayal
   com.vividsolutions.jts.geom.Envelope
   com.vividsolutions.jts.geom.Coordinate
-  com.vividsolutions.jts.geom.GeometryFactory))
+  com.vividsolutions.jts.geom.GeometryFactory
+  com.vividsolutions.jts.linearref.LengthIndexedLine))
+(def WIDTH 1000)
+(def HEIGHT 1000)
+(def NUM-AGENTS 10)
+(def buildings (GeomVectorField. WIDTH HEIGHT))
+(def roads (GeomVectorField. WIDTH HEIGHT))
+(def walkways (GeomVectorField. WIDTH HEIGHT))
+(def agents (GeomVectorField. WIDTH HEIGHT))
+(def junctions (GeomVectorField. WIDTH HEIGHT))
+(def network (GeomPlanarGraph.))
+(def factory (GeometryFactory.))
+(def build-port (GeomVectorFieldPortrayal.))
+(def road-port (GeomVectorFieldPortrayal.))
+(def walk-port (GeomVectorFieldPortrayal.))
+(def declare-before (declare
+  init-world
+  start-world
+  create-display
+  setup-ports
+  move))
 (deftype Agent [astate ]
 	sim.engine.Steppable
-	(step [this world] (println :AS astate)
-(move world))
+	(step [this world] (move astate world))
 )
-(deftype IWorldImpl [^java.util.HashMap wstate ]
+(deftype IWorldImpl []
 	ru.igis.sim.IWorld
-	(initialise [this] (let [width 1000
-       height 1000
-       num-agents 10
-       buildings (GeomVectorField. width height)
-       roads (GeomVectorField. width height) 
-       walkways (GeomVectorField. width height)
-       agents (GeomVectorField. width height) 
-       network (GeomPlanarGraph.)
-       netiter (.nodeIterator network)
-       fact (GeometryFactory.)
-       junctions (GeomVectorField. width height) 
+	(initialise [this] (load "mas/world")
+(init-world))
+	(start [this world] (start-world world))
+)
+(deftype IPortsImpl []
+	ru.igis.sim.IPorts
+	(createDisplay [this wgui world] (create-display wgui world))
+	(setup [this display world] (setup-ports display world))
+)
+(defn init-world []
+  (let [netiter (.nodeIterator network)
        masked (Bag.)
        _ (.add masked "NAME")
        _ (.add masked "FLOORS")
@@ -52,59 +72,92 @@
   (while (.hasNext netiter)
     (let [node (.next netiter)
            coord (.getCoordinate node)
-           point (.createPoint fact coord)]
-      (.addGeometry junctions (MasonGeometry. point))))
-  ;; Store world state
-  (.put wstate :width width)
-  (.put wstate :height height)
-  (.put wstate :num-agents num-agents)
-  (.put wstate :buildings buildings)
-  (.put wstate :roads roads)
-  (.put wstate :walkways walkways)
-  (.put wstate :agents agents)
-  (load "mas/world")))
-	(start [this world] (let [wst (into {} (.wstate (.iworld world)))
-       agents (:agents wst)
-       buildings (:buildings wst)
-       num-agents (:num-agents wst)
-       schedule (.schedule world)]
+           point (.createPoint factory coord)]
+      (.addGeometry junctions (MasonGeometry. point))))))
+
+(defn move-to [coord]
+  nil)
+
+(defn set-new-route [line start astate]
+  (let [seg (LengthIndexedLine. line)
+       sind (.getStartIndex seg)
+       eind (.getEndIndex seg)]
+  (vswap! astate assoc
+    :segment seg
+    :start-index sind
+    :end-index eind)
+  (if start
+    (do (vswap! astate assoc
+            :curr-index sind
+            :move-rate (:base-rate @astate))
+      (move-to (.extractPoint seg sind)))
+    (do (vswap! astate assoc
+            :curr-index eind
+            :move-rate -(:base-rate @astate))
+      (move-to (.extractPoint seg eind))))))
+
+(defn create-astate [world]
+  (let [point (.createPoint factory (Coordinate. 10 10))
+       loc (MasonGeometry. point)
+       base-rate 1.0
+       astate (volatile! {:base-rate base-rate
+                                 :move-rate base-rate
+                                 :segment nil
+                                 :start-index 0.0
+                                 :end-index 0.0
+                                 :curr-index 0.0
+                                 :point-to (PointMoveTo.)
+                                 })
+       rand (.random world)
+       ww-geos (.getGeometries walkways)
+       wwn (.nextInt rand (.numObjs ww-geos))
+       mg (.get ww-geos wwn)]
+  (set! (.isMovable loc) true)
+  (set-new-route (.getGeometry mg) true astate)
+  (println :LOC loc)
+  (if (.nextBoolean rand)
+         (do (.addStringAttribute loc "TYPE" "STUDENT")
+               (.addIntegerAttribute loc "AGE"
+                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))
+         (do (.addStringAttribute loc "TYPE" "FACULTY")
+               (.addIntegerAttribute loc "AGE"
+                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))
+  (let [base-rate (* base-rate (Math/abs (.nextGaussian rand)))]
+    (.addDoubleAttribute loc "MOVE RATE" base-rate)
+    (vswap! astate assoc
+      :location loc
+      :base-rate base-rate))
+  astate))
+
+(defn start-world [world]
+  (let [schedule (.schedule world)]
   (.clear agents)
-  (dotimes [i num-agents]
-    (let [fact (GeometryFactory.)
-           point (.createPoint fact (Coordinate. 10 10))
-           astate {:location (MasonGeometry. point)}
+  (dotimes [i NUM-AGENTS]
+    (let [astate (create-astate world)
            a (Agent. astate)]
-      (.addGeometry agents (:location (.astate a)))
+      (.addGeometry agents (:location @astate))
       (.scheduleRepeating schedule a)))
   (.setMBR agents (.getMBR buildings))
-  (.scheduleRepeating schedule (.scheduleSpatialIndexUpdater agents) Integer/MAX_VALUE 1.0)))
-)
-(deftype IPortsImpl []
-	ru.igis.sim.IPorts
-	(createDisplay [this wgui world] (let [build-port (GeomVectorFieldPortrayal.)
-       road-port (GeomVectorFieldPortrayal.)
-       walk-port (GeomVectorFieldPortrayal.)
-       wstate (.wstate (.iworld world))
-       wst (into {} wstate)
-       display (Display2D. (:width wst) (:height wst) wgui)]
+  (.scheduleRepeating schedule 
+    (.scheduleSpatialIndexUpdater agents)
+    Integer/MAX_VALUE 
+    1.0)))
+
+(defn create-display [wgui world]
+  (let [display (Display2D. WIDTH HEIGHT wgui)]
   (.attach display build-port "Buildings" true)
   (.attach display road-port "Roads" true)
   (.attach display walk-port "Walkways" true)
-  (.put wstate :build-port build-port)
-  (.put wstate :road-port road-port)
-  (.put wstate :walk-port walk-port)
   display))
-	(setup [this display world] (let [wst (into {} (.wstate (.iworld world)))
-       build-port (:build-port wst)
-       road-port (:road-port wst)
-       walk-port (:walk-port wst)]
-  (.setField walk-port (:walkways wst))
-  (.setPortrayalForAll walk-port (GeomPortrayal. Color/PINK true))
-  (.setField build-port (:buildings wst))
-  (.setPortrayalForAll build-port (GeomPortrayal. Color/GRAY))
-  (.setField road-port (:roads wst))
-  (.setPortrayalForAll road-port (GeomPortrayal. Color/LIGHT_GRAY true))))
-)
-(defn move [world]
-  (println :MOVE world))
+
+(defn move [astate world]
+  (println :AS astate))
+
+(defn setup-ports [display world]
+  (.setField walk-port walkways)
+(.setPortrayalForAll walk-port (GeomPortrayal. Color/PINK true))
+(.setField build-port buildings)
+(.setPortrayalForAll build-port (GeomPortrayal. Color/GRAY))
+(.setField road-port roads)
+(.setPortrayalForAll road-port (GeomPortrayal. Color/LIGHT_GRAY true)))
 

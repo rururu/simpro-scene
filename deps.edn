@@ -37,4 +37,4 @@
   jts {:local/root "lib_mas/jts-1.13.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
   CloAgents {:local/root "lib/CloAgents.jar"}}
- :paths ["src" "src/clojure" "classes" "resources" "/home/ru/mas/pro/CloAgents/bin"]}
+ :paths ["src" "src/clojure" "classes" "resources"]}
