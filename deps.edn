@@ -35,6 +35,6 @@
   surfaceplotter {:local/root "lib_mas/surfaceplotter-2.0.2-20131206.230546-631.jar"}
   geomason {:local/root "lib_mas/geomason.1.5.jar"}
   jts {:local/root "lib_mas/jts-1.13.jar"}
-  javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
-  CloAgents {:local/root "lib/CloAgents.jar"}}
- :paths ["src" "src/clojure" "classes" "resources"]}
+  javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}}
+  ;;CloAgents {:local/root "lib/CloAgents.jar"}}
+ :paths ["src" "src/clojure" "classes" "resources" "/home/ru/mas/pro/CloAgents/bin"]}
