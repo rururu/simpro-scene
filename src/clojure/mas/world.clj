@@ -15,7 +15,9 @@
   com.vividsolutions.jts.geom.Envelope
   com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory
-  com.vividsolutions.jts.linearref.LengthIndexedLine))
+  com.vividsolutions.jts.linearref.LengthIndexedLine)
+(:require
+  clojure.java.shell))
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def NUM-AGENTS 1000)
@@ -211,11 +213,7 @@
   (let [mp (into {} hm)
        iwd (mp "iWorld-class")
        ipts (mp "iPorts-class")
-       cwd (Class/forName iwd)
-       cpts (Class/forName ipts)
-       cwd (.getConstructors cwd)
-       cpts (.getConstructors cpts)
-       iwd (.newInstance (first cwd) nil)
-       ipts (.newInstance (first cpts) nil)]
-  (ru.igis.sim.WorldGUI/run iwd ipts)))
+       cmd (str "(ru.igis.sim.WorldGUI/main (into-array String [\"" iwd "\" \"" ipts "\"]))")]
+  (println cmd)
+  (println (clojure.java.shell/sh  "clj" "-e" cmd))))
 

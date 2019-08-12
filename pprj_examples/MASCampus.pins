@@ -1,4 +1,4 @@
-; Sun Aug 11 22:32:52 MSK 2019
+; Mon Aug 12 17:29:46 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -41,7 +41,7 @@
 
 ([MASCampus_Class1] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine)\n(:require\n  clojure.java.shell)")
 	(title "mas.world"))
 
 ([MASCampus_Class10] of  CloProtocol
@@ -222,7 +222,7 @@
 
 ([MASCampus_Class60004] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       iwd (mp \"iWorld-class\")\n       ipts (mp \"iPorts-class\")\n       cwd (Class/forName iwd)\n       cpts (Class/forName ipts)\n       cwd (.getConstructors cwd)\n       cpts (.getConstructors cpts)\n       iwd (.newInstance (first cwd) nil)\n       ipts (.newInstance (first cpts) nil)]\n  (ru.igis.sim.WorldGUI/run iwd ipts))")
+	(source "(let [mp (into {} hm)\n       iwd (mp \"iWorld-class\")\n       ipts (mp \"iPorts-class\")\n       cmd (str \"(ru.igis.sim.WorldGUI/main (into-array String [\\\"\" iwd \"\\\" \\\"\" ipts \"\\\"]))\")]\n  (println cmd)\n  (println (clojure.java.shell/sh  \"clj\" \"-e\" cmd)))")
 	(title "run-world-gui [hm inst]"))
 
 ([MASCampus_Class60005] of  MASWorldPanel
