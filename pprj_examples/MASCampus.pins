@@ -1,4 +1,4 @@
-; Mon Aug 12 17:29:46 MSK 2019
+; Mon Aug 12 18:22:26 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -209,11 +209,6 @@
 
 	(cloFunctions [MASCampus_Class6])
 	(title "sim.engine.Steppable"))
-
-([MASCampus_Class50000] of  MASPanel
-
-	(but-mas-run "Run with GUI/mas.cloagents/run-with-GUI")
-	(java-class "ru.igis.sim.WorldGUI"))
 
 ([MASCampus_Class6] of  CloFunction
 
