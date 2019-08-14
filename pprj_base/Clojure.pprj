@@ -1,4 +1,4 @@
-; Mon Jul 15 16:49:29 MSK 2019
+; Tue Aug 13 17:31:04 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,67 +20,56 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Clojure_ProjectKB_Class100220]
-		[Clojure_ProjectKB_Class100221]
-		[Clojure_ProjectKB_Class100222]
-		[Clojure_ProjectKB_Class100223]
-		[Clojure_ProjectKB_Class100224]
-		[Clojure_ProjectKB_Class100225]
-		[Clojure_ProjectKB_Class100226]
-		[Clojure_ProjectKB_Class100227]
-		[Clojure_ProjectKB_Class100228]
-		[Clojure_ProjectKB_Class100229]
-		[Clojure_ProjectKB_Class100230]
-		[Clojure_ProjectKB_Class100231]
-		[Clojure_ProjectKB_Class100232]
-		[Clojure_ProjectKB_Class100233]
-		[Clojure_ProjectKB_Class100234]))
-
-([Clojure_ProjectKB_Class100004] of  Widget
-
-	(is_hidden FALSE)
-	(name "option")
-	(property_list [Clojure_ProjectKB_Class100005])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Clojure_ProjectKB_Class100005] of  Property_List
-
-	(properties
+		[Clojure_ProjectKB_Class100004]
+		[Clojure_ProjectKB_Class100005]
 		[Clojure_ProjectKB_Class100006]
 		[Clojure_ProjectKB_Class100007]
-		[Clojure_ProjectKB_Class100009]))
+		[Clojure_ProjectKB_Class100008]
+		[Clojure_ProjectKB_Class100009]
+		[Clojure_ProjectKB_Class100010]
+		[Clojure_ProjectKB_Class110011]
+		[Clojure_ProjectKB_Class110012]
+		[Clojure_ProjectKB_Class110013]
+		[Clojure_ProjectKB_Class110014]
+		[Clojure_ProjectKB_Class110015]
+		[Clojure_ProjectKB_Class110016]
+		[Clojure_ProjectKB_Class110017]
+		[Clojure_ProjectKB_Class110018]))
 
-([Clojure_ProjectKB_Class100006] of  Property_List
+([Clojure_ProjectKB_Class100004] of  String
 
-	(name "layout properties"))
+	(name "WorkingPrograms")
+	(string_value "title"))
 
-([Clojure_ProjectKB_Class100007] of  Widget
+([Clojure_ProjectKB_Class100005] of  String
 
-	(height 60)
-	(is_hidden FALSE)
-	(name "keyword")
-	(property_list [Clojure_ProjectKB_Class100008])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
+	(name "CloFunction")
+	(string_value "title"))
 
-([Clojure_ProjectKB_Class100008] of  Property_List
-)
+([Clojure_ProjectKB_Class100006] of  String
 
-([Clojure_ProjectKB_Class100009] of  Widget
+	(name "CloExtendType")
+	(string_value "title"))
 
-	(height 60)
-	(is_hidden FALSE)
-	(name "argument")
-	(property_list [Clojure_ProjectKB_Class100010])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 200)
-	(y 0))
+([Clojure_ProjectKB_Class100007] of  String
 
-([Clojure_ProjectKB_Class100010] of  Property_List
-)
+	(name "CloRecord")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class100008] of  String
+
+	(name "CloProgram")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class100009] of  String
+
+	(name "CSS")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class100010] of  String
+
+	(name "CloProtocol")
+	(string_value "title"))
 
 ([Clojure_ProjectKB_Class100011] of  Widget
 
@@ -123,33 +112,6 @@
 ([Clojure_ProjectKB_Class100016] of  Property_List
 )
 
-([Clojure_ProjectKB_Class100017] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "options")
-	(property_list [Clojure_ProjectKB_Class100018])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 200)
-	(y 120))
-
-([Clojure_ProjectKB_Class100018] of  Property_List
-
-	(properties
-		[Clojure_ProjectKB_Class100019]
-		[Clojure_ProjectKB_Class100020]))
-
-([Clojure_ProjectKB_Class100019] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Clojure_ProjectKB_Class100020] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
 ([Clojure_ProjectKB_Class100021] of  Widget
 
 	(height 120)
@@ -187,102 +149,6 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
-([Clojure_ProjectKB_Class100220] of  String
-
-	(name "WorkingPrograms")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100221] of  String
-
-	(name "CloFunction")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100222] of  String
-
-	(name "CloExtendType")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100223] of  String
-
-	(name "CloRecord")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100224] of  String
-
-	(name "CloProgram")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100225] of  String
-
-	(name "CSS")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100226] of  String
-
-	(name "CloProtocol")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100227] of  String
-
-	(name "CloFuncall")
-	(string_value "source"))
-
-([Clojure_ProjectKB_Class100228] of  String
-
-	(name "CloVar")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100229] of  String
-
-	(name "CloMacro")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100230] of  String
-
-	(name "HTML")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100231] of  String
-
-	(name "CloNamespace")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100232] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([Clojure_ProjectKB_Class100233] of  String
-
-	(name "CloDocumentation")
-	(string_value "source"))
-
-([Clojure_ProjectKB_Class100234] of  String
-
-	(name "CloExtendProtocol")
-	(string_value "title"))
-
-([Clojure_ProjectKB_Class100235] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([Clojure_ProjectKB_Class100236] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([Clojure_ProjectKB_Class100237] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([Clojure_ProjectKB_Class109] of  String
 
 	(name "SearchTab_Query"))
@@ -294,6 +160,67 @@
 		[Clojure_ProjectKB_Class13]
 		[Clojure_ProjectKB_Class15]
 		[Clojure_ProjectKB_Class60012]))
+
+([Clojure_ProjectKB_Class110011] of  String
+
+	(name "CloFuncall")
+	(string_value "source"))
+
+([Clojure_ProjectKB_Class110012] of  String
+
+	(name "CloVar")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110013] of  String
+
+	(name "CloMacro")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110014] of  String
+
+	(name "HTML")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110015] of  String
+
+	(name "CloNamespace")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110016] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([Clojure_ProjectKB_Class110017] of  String
+
+	(name "CloDocumentation")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110018] of  String
+
+	(name "CloExtendProtocol")
+	(string_value "title"))
+
+([Clojure_ProjectKB_Class110019] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Clojure_ProjectKB_Class110020] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Clojure_ProjectKB_Class110021] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([Clojure_ProjectKB_Class110069] of  Property_List
 
@@ -1351,7 +1278,8 @@
 
 	(properties
 		[Clojure_ProjectKB_Class30006]
-		[Clojure_ProjectKB_Class30007]))
+		[Clojure_ProjectKB_Class30007]
+		[Clojure_ProjectKB_Class60004]))
 
 ([Clojure_ProjectKB_Class30006] of  Property_List
 
@@ -1366,7 +1294,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.widget.editorpane.EditorPaneWidget")
 	(width 830)
 	(x 0)
-	(y 0))
+	(y 60))
 
 ([Clojure_ProjectKB_Class30008] of  Boolean
 
@@ -1496,34 +1424,6 @@
 
 	(name "layout properties"))
 
-([Clojure_ProjectKB_Class40027] of  Widget
-
-	(height 180)
-	(is_hidden FALSE)
-	(name "fields")
-	(property_list [Clojure_ProjectKB_Class40028])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([Clojure_ProjectKB_Class40028] of  Property_List
-
-	(properties
-		[Clojure_ProjectKB_Class40029]
-		[Clojure_ProjectKB_Class40030]
-		[Clojure_ProjectKB_Class80117]))
-
-([Clojure_ProjectKB_Class40029] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Clojure_ProjectKB_Class40030] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
 ([Clojure_ProjectKB_Class40031] of  Widget
 
 	(height 60)
@@ -1537,34 +1437,6 @@
 
 ([Clojure_ProjectKB_Class40032] of  Property_List
 )
-
-([Clojure_ProjectKB_Class40033] of  Widget
-
-	(height 180)
-	(is_hidden FALSE)
-	(name "cloImplementations")
-	(property_list [Clojure_ProjectKB_Class40034])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 200)
-	(y 180))
-
-([Clojure_ProjectKB_Class40034] of  Property_List
-
-	(properties
-		[Clojure_ProjectKB_Class40035]
-		[Clojure_ProjectKB_Class40036]
-		[Clojure_ProjectKB_Class80118]))
-
-([Clojure_ProjectKB_Class40035] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Clojure_ProjectKB_Class40036] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
 ([Clojure_ProjectKB_Class4538] of  Widget
 
@@ -1795,6 +1667,20 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
+([Clojure_ProjectKB_Class60004] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [Clojure_ProjectKB_Class60005])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([Clojure_ProjectKB_Class60005] of  Property_List
+)
+
 ([Clojure_ProjectKB_Class60008] of  Property_List
 )
 
@@ -1882,16 +1768,6 @@
 	(name "ClsMain")
 	(property_list [Clojure_ProjectKB_Class110069])
 	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Clojure_ProjectKB_Class80117] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Clojure_ProjectKB_Class80118] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([Clojure_ProjectKB_Class90004] of  Widget
 
@@ -2280,9 +2156,9 @@
 ([KB_127677_Class1] of  Map
 
 	(entries
-		[Clojure_ProjectKB_Class100235]
-		[Clojure_ProjectKB_Class100236]
-		[Clojure_ProjectKB_Class100237]))
+		[Clojure_ProjectKB_Class110019]
+		[Clojure_ProjectKB_Class110020]
+		[Clojure_ProjectKB_Class110021]))
 
 ([KB_127677_Class100] of  Property_List
 )
@@ -2377,7 +2253,7 @@
 ([KB_127677_Class99] of  Property_List
 )
 
-([KB_881350_Class3] of  Map
+([KB_209137_Class3] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -2472,7 +2348,6 @@
 		[Clojure_ProjectKB_Class14565]
 		[Clojure_ProjectKB_Class90004]
 		[Clojure_ProjectKB_Class110161]
-		[Clojure_ProjectKB_Class100004]
 		[Clojure_ProjectKB_Class14558]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[Clojure_ProjectKB_Class4]

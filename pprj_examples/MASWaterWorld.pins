@@ -1,0 +1,177 @@
+; Wed Aug 14 22:14:55 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASWaterWorld_Class0] of  MASProgram
+
+	(cloFunctions
+		[MASWaterWorld_Class4]
+		[MASWaterWorld_Class5]
+		[MASWaterWorld_Class10009]
+		[MASWaterWorld_Class10016])
+	(cloNamespace [MASWaterWorld_Class1])
+	(cloTypes
+		[MASWaterWorld_Class10024]
+		[MASWaterWorld_Class10020])
+	(cloVars
+		[MASWaterWorld_Class10030]
+		[MASWaterWorld_Class10031]
+		[MASWaterWorld_Class10028]
+		[MASWaterWorld_Class10027]
+		[MASWaterWorld_Class10023])
+	(title "WaterWorld"))
+
+([MASWaterWorld_Class1] of  CloNamespace
+
+	(source "(:import\n  sim.util.Bag\n  sim.engine.Steppable\n  sim.field.grid.Grid2D)")
+	(title "mas.waterworld"))
+
+([MASWaterWorld_Class10000] of  CloFuncall
+
+	(source "(in-ns 'mas.waterworld)"))
+
+([MASWaterWorld_Class10001] of  CloFuncall
+
+	(source "(def b (Basin. {:drops [] :cumulative-height 0 :raindrop-factor 1})"))
+
+([MASWaterWorld_Class10002] of  CloFuncall
+
+	(source "(def b (Basin. {:drops [] :cumulative-height 0 :raindrop-factor 1}))"))
+
+([MASWaterWorld_Class10003] of  CloFuncall
+
+	(source "(addDrop b 5)"))
+
+([MASWaterWorld_Class10004] of  CloFuncall
+
+	(source "b"))
+
+([MASWaterWorld_Class10005] of  CloFuncall
+
+	(source "(def b (Basin. (volatile! {:drops [] :cumulative-height 0 :raindrop-factor 1})))"))
+
+([MASWaterWorld_Class10006] of  CloFuncall
+
+	(source "(addDrop b 7)"))
+
+([MASWaterWorld_Class10007] of  CloFuncall
+
+	(source "(addDrops b [6 8])"))
+
+([MASWaterWorld_Class10008] of  CloFuncall
+
+	(source "(add-drops b [6 8])"))
+
+([MASWaterWorld_Class10009] of  CloFunction
+
+	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (remove #{drop} (:drops bst))\n    :cumulative-height (- (:cumulative-height bst)\n                                     (:raindrop-factor bst))))")
+	(title "remove-drop [basin drop]"))
+
+([MASWaterWorld_Class10010] of  CloFuncall
+
+	(source "@b"))
+
+([MASWaterWorld_Class10011] of  CloFuncall
+
+	(source "(.bstate b)"))
+
+([MASWaterWorld_Class10012] of  CloFuncall
+
+	(source "(add-drops b [5 7])"))
+
+([MASWaterWorld_Class10013] of  CloFuncall
+
+	(source "(add-drop b 4)"))
+
+([MASWaterWorld_Class10014] of  CloFuncall
+
+	(source "(remove-drop b 6)"))
+
+([MASWaterWorld_Class10015] of  CloFuncall
+
+	(source "(remove-drop b 7)"))
+
+([MASWaterWorld_Class10016] of  CloFunction
+
+	(source "(doseq [drop drops]\n  (remove-drop basin drop))")
+	(title "remove-drops [basin drops]"))
+
+([MASWaterWorld_Class10017] of  CloFuncall
+
+	(source "(add-drops b [6 7])"))
+
+([MASWaterWorld_Class10018] of  CloFuncall
+
+	(source "(add-drops b [4 5 6 7 8])"))
+
+([MASWaterWorld_Class10019] of  CloFuncall
+
+	(source "(remove-drops b [5 7])"))
+
+([MASWaterWorld_Class10020] of  CloType
+
+	(cloProtocols [MASWaterWorld_Class10021])
+	(fields "dstate")
+	(title "Raindrop"))
+
+([MASWaterWorld_Class10021] of  CloImplementation
+
+	(cloFunctions [MASWaterWorld_Class10022])
+	(title "sim.engine.Steppable"))
+
+([MASWaterWorld_Class10022] of  CloFunction
+
+	(source "(let [dst @dstate\n       basin (:basin dst)\n       stopper (:stopper dst)\n       bst @basin\n       loc-x (:loc-x bst)\n       loc-y (:loc-y bst)\n       my-height (:cumulative-height bst)\n       neighbors (Bag.)\n       _ (.getMooreNeighbors landscape loc-x loc-y 1 Grid2D/TOROIDAL true neighbors nil nil)\n       minheight (apply min (map #(get % :cumulative-height) neighbors))\n       mins (filter #(= (:cumulative-height %) minheight) neighbors)]\n  (if (>= minheight my-height)\n    (if (or (= 0 loc-x) (= 0 loc-y) \n          (= loc-x (dec (.getWidth landscape))) \n          (= loc-y (dec (.getHeight landscape))))\n      (do (.stop stopper)\n        (remove-drop basin this)\n        (vreset! world-drops (remove #{this} @world-drops)))\n      (let [idx (.nextInt (.random world) (count mins))\n             newbasin (nth mins idx)]\n        (add-drop newbasin this)\n        (vswap! dstate assoc\n          :basin newbasin)))))")
+	(title "step [this world]"))
+
+([MASWaterWorld_Class10023] of  CloVar
+
+	(source "(volatile! [])")
+	(title "world-drops"))
+
+([MASWaterWorld_Class10024] of  CloType
+
+	(cloProtocols [MASWaterWorld_Class10025])
+	(fields "cstate")
+	(title "Raincloud"))
+
+([MASWaterWorld_Class10025] of  CloImplementation
+
+	(cloFunctions [MASWaterWorld_Class10026])
+	(title "sim.engine.Steppable"))
+
+([MASWaterWorld_Class10026] of  CloFunction
+
+	(source "(let [rnd (.random world)\n       sch (.schedule world)]\n  (dotimes [i NUM-DROPS-PER-TURN]\n    (let [x (.nextInt GRID-WIDTH)\n           y (.nextInt GRID-HEIGHT)\n           b (.get landscape x y)\n           ds (volatile! {:basin b})\n           d (Raindrop. ds)\n           s (.scheduleRepeating d)]\n      (vswap! ds assoc :stopper s)\n      (vreset! world-drops (cons d @world-drops))\n      (add-drop b d))))")
+	(title "step [this world]"))
+
+([MASWaterWorld_Class10027] of  CloVar
+
+	(source "nil")
+	(title "landscape"))
+
+([MASWaterWorld_Class10028] of  CloVar
+
+	(source "400")
+	(title "NUM-DROPS-PER-TURN"))
+
+([MASWaterWorld_Class10030] of  CloVar
+
+	(source "100")
+	(title "GRID-WIDTH"))
+
+([MASWaterWorld_Class10031] of  CloVar
+
+	(source "100")
+	(title "GRID-HEIGHT"))
+
+([MASWaterWorld_Class4] of  CloFunction
+
+	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (cons drop (:drops bst))\n    :cumulative-height (+ (:raindrop-factor bst) \n                                      (:cumulative-height bst))))")
+	(title "add-drop [basin drop]"))
+
+([MASWaterWorld_Class5] of  CloFunction
+
+	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (concat drops (:drops bst))\n    :cumulative-height (+ (* (:raindrop-factor bst)\n                                          (count drops))\n                                      (:cumulative-height bst))))")
+	(title "add-drops [basin drops]"))

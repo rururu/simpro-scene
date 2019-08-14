@@ -1,4 +1,4 @@
-; Mon Jul 15 16:49:29 MSK 2019
+; Tue Aug 13 17:31:04 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -355,6 +355,10 @@
 	(is-a ClojureOntology)
 	(role concrete)
 	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
