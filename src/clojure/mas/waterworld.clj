@@ -32,11 +32,6 @@
   land-ele-data
   create-display
   setup-ports))
-(deftype WaterWorldPorts []
-	ru.igis.sim.IPorts
-	(createDisplay [this wgui world] (create-display wgui world))
-	(setup [this display world] (setup-ports display world))
-)
 (deftype Raindrop [dstate ]
 	sim.engine.Steppable
 	(step [this world] (let [dst @dstate
@@ -48,32 +43,33 @@
        my-height (:cumulative-height bst)
        neighbors (Bag.)
        _ (.getMooreNeighbors landscape loc-x loc-y 1 Grid2D/TOROIDAL true neighbors nil nil)
-       minheight (apply min (map #(get % :cumulative-height) neighbors))
-       mins (filter #(= (:cumulative-height %) minheight) neighbors)]
+       minheight (apply min (map #(get @% :cumulative-height) neighbors))]
   (if (>= minheight my-height)
     (if (or (= 0 loc-x) (= 0 loc-y) 
           (= loc-x (dec (.getWidth landscape))) 
           (= loc-y (dec (.getHeight landscape))))
       (do (.stop stopper)
         (remove-drop basin this)
-        (vreset! world-drops (remove #{this} @world-drops)))
-      (let [idx (.nextInt (.random world) (count mins))
-             newbasin (nth mins idx)]
-        (add-drop newbasin this)
-        (vswap! dstate assoc
-          :basin newbasin))))))
+        (vreset! world-drops (remove #{this} @world-drops))))
+    (let [mins (filter #(= (:cumulative-height @%) minheight) neighbors)
+           idx (.nextInt (.random world) (count mins))
+           newbasin (nth mins idx)]
+      (remove-drop basin this)
+      (add-drop newbasin this)
+      (vswap! dstate assoc
+          :basin newbasin)))))
 )
 (deftype Raincloud []
 	sim.engine.Steppable
 	(step [this world] (let [rnd (.random world)
        sch (.schedule world)]
   (dotimes [i NUM-DROPS-PER-TURN]
-    (let [x (.nextInt GRID-WIDTH)
-           y (.nextInt GRID-HEIGHT)
+    (let [x (.nextInt rnd GRID-WIDTH)
+           y (.nextInt rnd GRID-HEIGHT)
            b (.get landscape x y)
            ds (volatile! {:basin b})
            d (Raindrop. ds)
-           s (.scheduleRepeating d)]
+           s (.scheduleRepeating sch d)]
       (vswap! ds assoc :stopper s)
       (vreset! world-drops (cons d @world-drops))
       (add-drop b d)))))
@@ -87,6 +83,11 @@
     "GRADIENT-IN" (land-gradient-in)
     (land-ele-data LAND)))
 (.scheduleRepeating (.schedule world) (Raincloud.)))
+)
+(deftype WaterWorldPorts []
+	ru.igis.sim.IPorts
+	(createDisplay [this wgui world] (create-display wgui world))
+	(setup [this display world] (setup-ports display world))
 )
 (defn add-drop [basin drop]
   (let [bst @basin]
@@ -118,11 +119,13 @@
   (let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)]
   (dotimes [i GRID-WIDTH]
     (dotimes [j GRID-HEIGHT]
-      (.set og2d i j {:loc-x i
-                            :loc-y j
-                            :base-height 0
-                            :cumulative-height 0
-                            :raindrop-factor 1})))))
+      (.set og2d i j 
+        (volatile! {:loc-x i
+                        :loc-y j
+                        :base-height 0
+                        :cumulative-height 0
+                        :raindrop-factor 1}))))
+  og2d))
 
 (defn land-gradient-in []
   (let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)
@@ -133,11 +136,13 @@
       (let [k1 (- i hwid)
              k2 (- j hhei)
              hei (int (Math/sqrt (+ (* k1 k1) (* k2 k2))))]
-        (.set og2d i j {:loc-x i
-                              :loc-y j
-                              :base-height hei
-                              :cumulative-height hei
-                              :raindrop-factor 1}))))))
+        (.set og2d i j 
+          (volatile! {:loc-x i
+                          :loc-y j
+                          :base-height hei
+                          :cumulative-height hei
+                          :raindrop-factor 1})))))
+  og2d))
 
 (defn land-ele-data [gz]
   (let [efi (GeomGridField.)
@@ -151,15 +156,17 @@
   (dotimes [x GRID-WIDTH]
     (dotimes [y GRID-HEIGHT]
       (let [hei (.get ele x y)]
-        (.set og2d x y {:loc-x x
-                              :loc-y y
-                              :base-height hei
-                              :cumulative-height hei
-                              :raindrop-factor 1}))))))
+        (.set og2d x y 
+          (volatile! {:loc-x x
+                          :loc-y y
+                          :base-height hei
+                          :cumulative-height hei
+                          :raindrop-factor 1})))))
+  og2d))
 
 (defn create-display [wgui world]
   (let [display (Display2D. 600 600 wgui)]
-  (.setClipping false)
+  (.setClipping display false)
   (.attach display ground "Ground")
   (.attach display water "Water")
   display))

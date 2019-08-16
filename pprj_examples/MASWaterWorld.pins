@@ -1,4 +1,4 @@
-; Thu Aug 15 22:15:23 MSK 2019
+; Fri Aug 16 22:09:05 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,10 +17,10 @@
 		[MASWaterWorld_Class30013])
 	(cloNamespace [MASWaterWorld_Class1])
 	(cloTypes
-		[MASWaterWorld_Class30006]
 		[MASWaterWorld_Class10020]
 		[MASWaterWorld_Class10024]
-		[MASWaterWorld_Class20000])
+		[MASWaterWorld_Class20000]
+		[MASWaterWorld_Class30006])
 	(cloVars
 		[MASWaterWorld_Class10030]
 		[MASWaterWorld_Class10031]
@@ -133,7 +133,7 @@
 
 ([MASWaterWorld_Class10022] of  CloFunction
 
-	(source "(let [dst @dstate\n       basin (:basin dst)\n       stopper (:stopper dst)\n       bst @basin\n       loc-x (:loc-x bst)\n       loc-y (:loc-y bst)\n       my-height (:cumulative-height bst)\n       neighbors (Bag.)\n       _ (.getMooreNeighbors landscape loc-x loc-y 1 Grid2D/TOROIDAL true neighbors nil nil)\n       minheight (apply min (map #(get % :cumulative-height) neighbors))\n       mins (filter #(= (:cumulative-height %) minheight) neighbors)]\n  (if (>= minheight my-height)\n    (if (or (= 0 loc-x) (= 0 loc-y) \n          (= loc-x (dec (.getWidth landscape))) \n          (= loc-y (dec (.getHeight landscape))))\n      (do (.stop stopper)\n        (remove-drop basin this)\n        (vreset! world-drops (remove #{this} @world-drops)))\n      (let [idx (.nextInt (.random world) (count mins))\n             newbasin (nth mins idx)]\n        (add-drop newbasin this)\n        (vswap! dstate assoc\n          :basin newbasin)))))")
+	(source "(let [dst @dstate\n       basin (:basin dst)\n       stopper (:stopper dst)\n       bst @basin\n       loc-x (:loc-x bst)\n       loc-y (:loc-y bst)\n       my-height (:cumulative-height bst)\n       neighbors (Bag.)\n       _ (.getMooreNeighbors landscape loc-x loc-y 1 Grid2D/TOROIDAL true neighbors nil nil)\n       minheight (apply min (map #(get @% :cumulative-height) neighbors))]\n  (if (>= minheight my-height)\n    (if (or (= 0 loc-x) (= 0 loc-y) \n          (= loc-x (dec (.getWidth landscape))) \n          (= loc-y (dec (.getHeight landscape))))\n      (do (.stop stopper)\n        (remove-drop basin this)\n        (vreset! world-drops (remove #{this} @world-drops))))\n    (let [mins (filter #(= (:cumulative-height @%) minheight) neighbors)\n           idx (.nextInt (.random world) (count mins))\n           newbasin (nth mins idx)]\n      (remove-drop basin this)\n      (add-drop newbasin this)\n      (vswap! dstate assoc\n          :basin newbasin))))")
 	(title "step [this world]"))
 
 ([MASWaterWorld_Class10023] of  CloVar
@@ -153,7 +153,7 @@
 
 ([MASWaterWorld_Class10026] of  CloFunction
 
-	(source "(let [rnd (.random world)\n       sch (.schedule world)]\n  (dotimes [i NUM-DROPS-PER-TURN]\n    (let [x (.nextInt GRID-WIDTH)\n           y (.nextInt GRID-HEIGHT)\n           b (.get landscape x y)\n           ds (volatile! {:basin b})\n           d (Raindrop. ds)\n           s (.scheduleRepeating d)]\n      (vswap! ds assoc :stopper s)\n      (vreset! world-drops (cons d @world-drops))\n      (add-drop b d))))")
+	(source "(let [rnd (.random world)\n       sch (.schedule world)]\n  (dotimes [i NUM-DROPS-PER-TURN]\n    (let [x (.nextInt rnd GRID-WIDTH)\n           y (.nextInt rnd GRID-HEIGHT)\n           b (.get landscape x y)\n           ds (volatile! {:basin b})\n           d (Raindrop. ds)\n           s (.scheduleRepeating sch d)]\n      (vswap! ds assoc :stopper s)\n      (vreset! world-drops (cons d @world-drops))\n      (add-drop b d))))")
 	(title "step [this world]"))
 
 ([MASWaterWorld_Class10027] of  CloVar
@@ -205,17 +205,17 @@
 
 ([MASWaterWorld_Class30001] of  CloFunction
 
-	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (.set og2d i j {:loc-x i\n                            :loc-y j\n                            :base-height 0\n                            :cumulative-height 0\n                            :raindrop-factor 1}))))")
+	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (.set og2d i j \n        (volatile! {:loc-x i\n                        :loc-y j\n                        :base-height 0\n                        :cumulative-height 0\n                        :raindrop-factor 1}))))\n  og2d)")
 	(title "land-flat []"))
 
 ([MASWaterWorld_Class30002] of  CloFunction
 
-	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       hwid (/ GRID-WIDTH 2)\n       hhei (/ GRID-HEIGHT)]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (let [k1 (- i hwid)\n             k2 (- j hhei)\n             hei (int (Math/sqrt (+ (* k1 k1) (* k2 k2))))]\n        (.set og2d i j {:loc-x i\n                              :loc-y j\n                              :base-height hei\n                              :cumulative-height hei\n                              :raindrop-factor 1})))))")
+	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       hwid (/ GRID-WIDTH 2)\n       hhei (/ GRID-HEIGHT)]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (let [k1 (- i hwid)\n             k2 (- j hhei)\n             hei (int (Math/sqrt (+ (* k1 k1) (* k2 k2))))]\n        (.set og2d i j \n          (volatile! {:loc-x i\n                          :loc-y j\n                          :base-height hei\n                          :cumulative-height hei\n                          :raindrop-factor 1})))))\n  og2d)")
 	(title "land-gradient-in []"))
 
 ([MASWaterWorld_Class30003] of  CloFunction
 
-	(source "(let [efi (GeomGridField.)\n       ins (FileInputStream. LAND)\n       cin (GZIPInputStream. ins)\n       _ (ArcInfoASCGridImporter/read cin GeomGridField$GridDataType/INTEGER efi)\n       _ (def GRID-WIDTH (.getGridWidth efi))\n       _ (def GRID-HEIGHT (.getGridHeight efi))\n       og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       ele (.getGrid efi)]\n  (dotimes [x GRID-WIDTH]\n    (dotimes [y GRID-HEIGHT]\n      (let [hei (.get ele x y)]\n        (.set og2d x y {:loc-x x\n                              :loc-y y\n                              :base-height hei\n                              :cumulative-height hei\n                              :raindrop-factor 1})))))")
+	(source "(let [efi (GeomGridField.)\n       ins (FileInputStream. LAND)\n       cin (GZIPInputStream. ins)\n       _ (ArcInfoASCGridImporter/read cin GeomGridField$GridDataType/INTEGER efi)\n       _ (def GRID-WIDTH (.getGridWidth efi))\n       _ (def GRID-HEIGHT (.getGridHeight efi))\n       og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       ele (.getGrid efi)]\n  (dotimes [x GRID-WIDTH]\n    (dotimes [y GRID-HEIGHT]\n      (let [hei (.get ele x y)]\n        (.set og2d x y \n          (volatile! {:loc-x x\n                          :loc-y y\n                          :base-height hei\n                          :cumulative-height hei\n                          :raindrop-factor 1})))))\n  og2d)")
 	(title "land-ele-data [gz]"))
 
 ([MASWaterWorld_Class30004] of  CloVar
@@ -257,7 +257,7 @@
 
 ([MASWaterWorld_Class30012] of  CloFunction
 
-	(source "(let [display (Display2D. 600 600 wgui)]\n  (.setClipping false)\n  (.attach display ground \"Ground\")\n  (.attach display water \"Water\")\n  display)")
+	(source "(let [display (Display2D. 600 600 wgui)]\n  (.setClipping display false)\n  (.attach display ground \"Ground\")\n  (.attach display water \"Water\")\n  display)")
 	(title "create-display [wgui world]"))
 
 ([MASWaterWorld_Class30013] of  CloFunction
@@ -269,6 +269,16 @@
 
 	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (cons drop (:drops bst))\n    :cumulative-height (+ (:raindrop-factor bst) \n                                      (:cumulative-height bst))))")
 	(title "add-drop [basin drop]"))
+
+([MASWaterWorld_Class40000] of  CloFuncall
+
+	(source "(compile 'mas.waterworld)"))
+
+([MASWaterWorld_Class40001] of  MASWorldPanel
+
+	(but-world-run "Run WorldGUI/mas.world/run-world-gui")
+	(iPorts-class "mas.waterworld.WaterWorldPorts")
+	(iWorld-class "mas.waterworld.WaterWorld"))
 
 ([MASWaterWorld_Class5] of  CloFunction
 

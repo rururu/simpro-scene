@@ -1,4 +1,4 @@
-; Thu Aug 15 22:15:23 MSK 2019
+; Fri Aug 16 22:09:05 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -62,33 +62,106 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_476694_Class520] of  Map
+([KB_097642_Class581] of  Widget
 
-	(entries
-		[KB_476694_Class521]
-		[KB_476694_Class522]
-		[KB_476694_Class523]))
+	(is_hidden FALSE)
+	(name "CloType")
+	(property_list [KB_097642_Class582])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
-([KB_476694_Class521] of  Map_Entry
+([KB_097642_Class582] of  Property_List
 
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
+	(properties
+		[KB_097642_Class583]
+		[KB_097642_Class586]
+		[KB_097642_Class588]
+		[KB_097642_Class592]
+		[KB_097642_Class594]))
 
-([KB_476694_Class522] of  Map_Entry
+([KB_097642_Class583] of  Property_List
 
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
+	(name "layout properties")
+	(properties
+		[KB_097642_Class584]
+		[KB_097642_Class585]))
 
-([KB_476694_Class523] of  Map_Entry
+([KB_097642_Class584] of  String
 
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([KB_097642_Class585] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([KB_097642_Class586] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [KB_097642_Class587])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 90)
+	(x 0)
+	(y 0))
+
+([KB_097642_Class587] of  Property_List
+)
+
+([KB_097642_Class588] of  Widget
+
+	(height 70)
+	(is_hidden FALSE)
+	(name "cloProtocols")
+	(property_list [KB_097642_Class589])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 180)
+	(x 0)
+	(y 60))
+
+([KB_097642_Class589] of  Property_List
+
+	(properties
+		[KB_097642_Class590]
+		[KB_097642_Class591]))
+
+([KB_097642_Class590] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([KB_097642_Class591] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([KB_097642_Class592] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "fields")
+	(property_list [KB_097642_Class593])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 90)
+	(x 90)
+	(y 0))
+
+([KB_097642_Class593] of  Property_List
+)
+
+([KB_097642_Class594] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "options")
+	(property_list [KB_097642_Class595])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([KB_097642_Class595] of  Property_List
+)
 
 ([KB_617019_Class0] of  String
 
@@ -97,8 +170,8 @@
 
 ([KB_617019_Class1] of  Map
 
-	(entries [MASWaterWorld_ProjectKB_Class10604])
-	(referenced_maps [MASWaterWorld_ProjectKB_Class10600]))
+	(entries [MASWaterWorld_ProjectKB_Class705])
+	(referenced_maps [MASWaterWorld_ProjectKB_Class701]))
 
 ([KB_617019_Class13] of  Property_List
 
@@ -233,14 +306,14 @@
 
 ([KB_895843_Class418] of  Widget
 
-	(height 320)
+	(height 360)
 	(is_hidden FALSE)
 	(name "cloFunctions")
 	(property_list [KB_895843_Class419])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 170)
+	(width 210)
 	(x 210)
-	(y 280))
+	(y 240))
 
 ([KB_895843_Class419] of  Property_List
 
@@ -266,14 +339,14 @@
 
 ([KB_895843_Class423] of  Widget
 
-	(height 160)
+	(height 360)
 	(is_hidden FALSE)
 	(name "cloVars")
 	(property_list [KB_895843_Class424])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 170)
-	(x 210)
-	(y 120))
+	(width 210)
+	(x 0)
+	(y 240))
 
 ([KB_895843_Class424] of  Property_List
 
@@ -359,47 +432,21 @@
 
 ([KB_895843_Class437] of  Widget
 
-	(height 480)
+	(height 120)
 	(is_hidden FALSE)
 	(label "CloTypes")
 	(name "cloTypes")
 	(property_list [KB_895843_Class438])
-	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
-	(width 210)
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 420)
 	(x 0)
 	(y 120))
 
 ([KB_895843_Class438] of  Property_List
 
 	(properties
-		[MASWaterWorld_ProjectKB_Class10552]
-		[MASWaterWorld_ProjectKB_Class10553]
-		[MASWaterWorld_ProjectKB_Class10554]
-		[MASWaterWorld_ProjectKB_Class10555]
-		[MASWaterWorld_ProjectKB_Class10556]
-		[MASWaterWorld_ProjectKB_Class10557]
-		[MASWaterWorld_ProjectKB_Class10558]
-		[MASWaterWorld_ProjectKB_Class10559]
-		[MASWaterWorld_ProjectKB_Class10560]
-		[MASWaterWorld_ProjectKB_Class10561]
-		[MASWaterWorld_ProjectKB_Class10562]
-		[MASWaterWorld_ProjectKB_Class10563]
-		[MASWaterWorld_ProjectKB_Class10564]
-		[MASWaterWorld_ProjectKB_Class10565]
-		[MASWaterWorld_ProjectKB_Class10566]
-		[MASWaterWorld_ProjectKB_Class10567]
-		[MASWaterWorld_ProjectKB_Class10568]
-		[MASWaterWorld_ProjectKB_Class10569]
-		[MASWaterWorld_ProjectKB_Class10570]
-		[MASWaterWorld_ProjectKB_Class10571]
-		[MASWaterWorld_ProjectKB_Class10572]
-		[MASWaterWorld_ProjectKB_Class10573]
-		[MASWaterWorld_ProjectKB_Class10574]
-		[MASWaterWorld_ProjectKB_Class10575]
-		[MASWaterWorld_ProjectKB_Class10576]
-		[MASWaterWorld_ProjectKB_Class10577]
-		[MASWaterWorld_ProjectKB_Class10578]
-		[MASWaterWorld_ProjectKB_Class10579]))
+		[MASWaterWorld_ProjectKB_Class709]
+		[MASWaterWorld_ProjectKB_Class710]))
 
 ([KB_895843_Class467] of  Widget
 
@@ -447,9 +494,9 @@
 	(name "documentation")
 	(property_list [KB_895843_Class474])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 380)
-	(x 0)
-	(y 600))
+	(width 210)
+	(x 210)
+	(y 60))
 
 ([KB_895843_Class474] of  Property_List
 
@@ -473,184 +520,38 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
+([KB_913920_Class683] of  Map
+
+	(entries
+		[KB_913920_Class684]
+		[KB_913920_Class685]
+		[KB_913920_Class686]))
+
+([KB_913920_Class684] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_913920_Class685] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_913920_Class686] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
-
-([MASWaterWorld_ProjectKB_Class10552] of  String
-
-	(name "tooltip_text"))
-
-([MASWaterWorld_ProjectKB_Class10553] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Insert:At:Current:Selection"))
-
-([MASWaterWorld_ProjectKB_Class10554] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Select:New:Insertions"))
-
-([MASWaterWorld_ProjectKB_Class10555] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Create:Form:For:New:Instances"))
-
-([MASWaterWorld_ProjectKB_Class10556] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Subwidget:Selection:Enabled"))
-
-([MASWaterWorld_ProjectKB_Class10557] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Summary:Panel"))
-
-([MASWaterWorld_ProjectKB_Class10558] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Number:Of:Subordinates"))
-
-([MASWaterWorld_ProjectKB_Class10559] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Subordinate:Browser:Keys"))
-
-([MASWaterWorld_ProjectKB_Class10560] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Use:Separators:Between:Subwidgets"))
-
-([MASWaterWorld_ProjectKB_Class10561] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Comtain:In:Vertical:Direction"))
-
-([MASWaterWorld_ProjectKB_Class10562] of  Integer
-
-	(integer_value 10)
-	(name ":Size:Of:Space:Between:Subwidgets"))
-
-([MASWaterWorld_ProjectKB_Class10563] of  Integer
-
-	(integer_value 1)
-	(name ":Prototype:Depth"))
-
-([MASWaterWorld_ProjectKB_Class10564] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Create:Instance:Button"))
-
-([MASWaterWorld_ProjectKB_Class10565] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Add:Instance:Button"))
-
-([MASWaterWorld_ProjectKB_Class10566] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:View:Instance:Button"))
-
-([MASWaterWorld_ProjectKB_Class10567] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Remove:Instance:Button"))
-
-([MASWaterWorld_ProjectKB_Class10568] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Delete:Instance:Button"))
-
-([MASWaterWorld_ProjectKB_Class10569] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Prototype:Button"))
-
-([MASWaterWorld_ProjectKB_Class10570] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Move:Instance:Buttons"))
-
-([MASWaterWorld_ProjectKB_Class10571] of  String
-
-	(name ":Create:Instance:Button:Tooltip")
-	(string_value "Create a new instance"))
-
-([MASWaterWorld_ProjectKB_Class10572] of  String
-
-	(name ":Add:Instance:Button:Tooltip")
-	(string_value "Select an already existing instance"))
-
-([MASWaterWorld_ProjectKB_Class10573] of  String
-
-	(name ":View:Instance:Button:Tooltip")
-	(string_value "View the selected instance"))
-
-([MASWaterWorld_ProjectKB_Class10574] of  String
-
-	(name ":Remove:Instance:Button:Tooltip")
-	(string_value "Remove the selected instance(s)"))
-
-([MASWaterWorld_ProjectKB_Class10575] of  String
-
-	(name ":Delete:Instance:Button:Tooltip")
-	(string_value "Delete the selected instance(s) from the knowledge base"))
-
-([MASWaterWorld_ProjectKB_Class10576] of  String
-
-	(name ":Prototype:Button:Tooltip")
-	(string_value "Create a new instance which is a duplicate of the selected instance"))
-
-([MASWaterWorld_ProjectKB_Class10577] of  String
-
-	(name ":Move:Instance:Buttons:Tooltip")
-	(string_value "Move the selected instance"))
-
-([MASWaterWorld_ProjectKB_Class10578] of  String
-
-	(name ":Create:Instance:Dialog:Title")
-	(string_value "Create a new instance"))
-
-([MASWaterWorld_ProjectKB_Class10579] of  String
-
-	(name ":Add:Instance:Dialog:Title")
-	(string_value "Select an already existing instance"))
-
-([MASWaterWorld_ProjectKB_Class10600] of  Map
-
-	(entries
-		[MASWaterWorld_ProjectKB_Class10601]
-		[MASWaterWorld_ProjectKB_Class10602]
-		[MASWaterWorld_ProjectKB_Class10603]))
-
-([MASWaterWorld_ProjectKB_Class10601] of  Map_Entry
-
-	(key "MASWaterWorld_Class20000")
-	(key_class "java.lang.String")
-	(value "370 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10602] of  Map_Entry
-
-	(key "MASWaterWorld_Class10020")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10603] of  Map_Entry
-
-	(key "MASWaterWorld_Class10024")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10604] of  Map_Entry
-
-	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
-	(key_class "java.lang.String")
-	(value "MASWaterWorld_ProjectKB_Class10600")
-	(value_class "java.util.Map"))
 
 ([MASWaterWorld_ProjectKB_Class37] of  String
 
@@ -700,6 +601,51 @@
 
 ([MASWaterWorld_ProjectKB_Class533] of  Property_List
 )
+
+([MASWaterWorld_ProjectKB_Class701] of  Map
+
+	(entries
+		[MASWaterWorld_ProjectKB_Class702]
+		[MASWaterWorld_ProjectKB_Class703]
+		[MASWaterWorld_ProjectKB_Class704]))
+
+([MASWaterWorld_ProjectKB_Class702] of  Map_Entry
+
+	(key "MASWaterWorld_Class20000")
+	(key_class "java.lang.String")
+	(value "370 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class703] of  Map_Entry
+
+	(key "MASWaterWorld_Class10020")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class704] of  Map_Entry
+
+	(key "MASWaterWorld_Class10024")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class705] of  Map_Entry
+
+	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
+	(key_class "java.lang.String")
+	(value "MASWaterWorld_ProjectKB_Class701")
+	(value_class "java.util.Map"))
+
+([MASWaterWorld_ProjectKB_Class709] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([MASWaterWorld_ProjectKB_Class710] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
 ([option_instance] of  Options
 
@@ -784,12 +730,13 @@
 		[KB_895843_Class413]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET])
+		[PAL_FORM_WIDGET]
+		[KB_097642_Class581])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "MASCloAgents.pprj")
+	(included_projects "MASCampus.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
