@@ -1,4 +1,4 @@
-; Fri Aug 16 22:09:05 MSK 2019
+; Mon Aug 19 21:07:51 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -36,89 +36,21 @@
 ([MASWaterWorld_Class1] of  CloNamespace
 
 	(source "(:import\n  sim.util.Bag\n  sim.engine.Steppable\n  sim.field.grid.Grid2D\n  sim.field.grid.ObjectGrid2D\n  sim.field.geo.GeomGridField\n  sim.field.geo.GeomGridField$GridDataType\n  sim.io.geo.ArcInfoASCGridImporter\n  sim.util.gui.SimpleColorMap\n  java.awt.Color\n  java.awt.Graphics2D\n  java.io.FileInputStream\n  java.util.zip.GZIPInputStream\n  sim.portrayal.grid.ObjectGridPortrayal2D\n  sim.portrayal.simple.RectanglePortrayal2D\n  sim.portrayal.DrawInfo2D\n  sim.display.Display2D)")
-	(title "mas.waterworld"))
+	(title "mas.world.water"))
 
 ([MASWaterWorld_Class10000] of  CloFuncall
 
-	(source "(in-ns 'mas.waterworld)"))
-
-([MASWaterWorld_Class10001] of  CloFuncall
-
-	(source "(def b (Basin. {:drops [] :cumulative-height 0 :raindrop-factor 1})"))
-
-([MASWaterWorld_Class10002] of  CloFuncall
-
-	(source "(def b (Basin. {:drops [] :cumulative-height 0 :raindrop-factor 1}))"))
-
-([MASWaterWorld_Class10003] of  CloFuncall
-
-	(source "(addDrop b 5)"))
-
-([MASWaterWorld_Class10004] of  CloFuncall
-
-	(source "b"))
-
-([MASWaterWorld_Class10005] of  CloFuncall
-
-	(source "(def b (Basin. (volatile! {:drops [] :cumulative-height 0 :raindrop-factor 1})))"))
-
-([MASWaterWorld_Class10006] of  CloFuncall
-
-	(source "(addDrop b 7)"))
-
-([MASWaterWorld_Class10007] of  CloFuncall
-
-	(source "(addDrops b [6 8])"))
-
-([MASWaterWorld_Class10008] of  CloFuncall
-
-	(source "(add-drops b [6 8])"))
+	(source "(compile 'mas.world.water)"))
 
 ([MASWaterWorld_Class10009] of  CloFunction
 
 	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (remove #{drop} (:drops bst))\n    :cumulative-height (- (:cumulative-height bst)\n                                     (:raindrop-factor bst))))")
 	(title "remove-drop [basin drop]"))
 
-([MASWaterWorld_Class10010] of  CloFuncall
-
-	(source "@b"))
-
-([MASWaterWorld_Class10011] of  CloFuncall
-
-	(source "(.bstate b)"))
-
-([MASWaterWorld_Class10012] of  CloFuncall
-
-	(source "(add-drops b [5 7])"))
-
-([MASWaterWorld_Class10013] of  CloFuncall
-
-	(source "(add-drop b 4)"))
-
-([MASWaterWorld_Class10014] of  CloFuncall
-
-	(source "(remove-drop b 6)"))
-
-([MASWaterWorld_Class10015] of  CloFuncall
-
-	(source "(remove-drop b 7)"))
-
 ([MASWaterWorld_Class10016] of  CloFunction
 
 	(source "(doseq [drop drops]\n  (remove-drop basin drop))")
 	(title "remove-drops [basin drops]"))
-
-([MASWaterWorld_Class10017] of  CloFuncall
-
-	(source "(add-drops b [6 7])"))
-
-([MASWaterWorld_Class10018] of  CloFuncall
-
-	(source "(add-drops b [4 5 6 7 8])"))
-
-([MASWaterWorld_Class10019] of  CloFuncall
-
-	(source "(remove-drops b [5 7])"))
 
 ([MASWaterWorld_Class10020] of  CloType
 
@@ -163,7 +95,7 @@
 
 ([MASWaterWorld_Class10028] of  CloVar
 
-	(source "400")
+	(source "200")
 	(title "NUM-DROPS-PER-TURN"))
 
 ([MASWaterWorld_Class10030] of  CloVar
@@ -190,7 +122,7 @@
 
 ([MASWaterWorld_Class20002] of  CloFunction
 
-	(source "(load \"mas/waterworld\")")
+	(source "(load \"mas/world/water\")")
 	(title "initialise [this]"))
 
 ([MASWaterWorld_Class20003] of  CloFunction
@@ -210,7 +142,7 @@
 
 ([MASWaterWorld_Class30002] of  CloFunction
 
-	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       hwid (/ GRID-WIDTH 2)\n       hhei (/ GRID-HEIGHT)]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (let [k1 (- i hwid)\n             k2 (- j hhei)\n             hei (int (Math/sqrt (+ (* k1 k1) (* k2 k2))))]\n        (.set og2d i j \n          (volatile! {:loc-x i\n                          :loc-y j\n                          :base-height hei\n                          :cumulative-height hei\n                          :raindrop-factor 1})))))\n  og2d)")
+	(source "(let [og2d (ObjectGrid2D. GRID-WIDTH GRID-HEIGHT)\n       hwid (int (/ GRID-WIDTH 2))\n       hhei (int (/ GRID-HEIGHT 2))]\n  (dotimes [i GRID-WIDTH]\n    (dotimes [j GRID-HEIGHT]\n      (let [k1 (- i hwid)\n             k2 (- j hhei)\n             hei (int (Math/sqrt (+ (* k1 k1) (* k2 k2))))]\n        (.set og2d i j \n          (volatile! {:loc-x i\n                          :loc-y j\n                          :base-height hei\n                          :cumulative-height hei\n                          :raindrop-factor 1})))))\n  og2d)")
 	(title "land-gradient-in []"))
 
 ([MASWaterWorld_Class30003] of  CloFunction
@@ -232,7 +164,8 @@
 
 	(cloFunctions
 		[MASWaterWorld_Class30008]
-		[MASWaterWorld_Class30009])
+		[MASWaterWorld_Class30009]
+		[MASWaterWorld_Class50000])
 	(title "ru.igis.sim.IPorts"))
 
 ([MASWaterWorld_Class30008] of  CloFunction
@@ -262,7 +195,7 @@
 
 ([MASWaterWorld_Class30013] of  CloFunction
 
-	(source "(let [ele-colors (SimpleColorMap. 0 300 (Color. 250 246 237) (Color. 53 44 36))\n       dep-colors (SimpleColorMap. 0 10 (Color. 70 100 200 0) (Color. 70 100 200 255))\n       GroundPort (proxy [RectanglePortrayal2D] []\n                            (draw [object ^Graphics2D graphics ^DrawInfo2D info]\n                              (let [drw (.draw info)\n                                     scl (.scale this)\n                                     wid (* (.width drw) scl)\n                                     hei (* (.height drw) scl)\n                                     x (int (- (.x drw) (/ wid 2.0)))\n                                     y (int (- (.y drw) (/ hei 2.0)))\n                                     bh (:base-height @object)]\n                                 (.setColor graphics (.getColor ele-colors bh))\n                                 (.fillRect graphics x y (int wid) (int hei)))))\n       WaterPort (proxy [RectanglePortrayal2D] []\n                            (draw [object ^Graphics2D graphics ^DrawInfo2D info]\n                              (let [drw (.draw info)\n                                     scl (.scale this)\n                                     wid (* (.width drw) scl)\n                                     hei (* (.height drw) scl)\n                                     x (int (- (.x drw) (/ wid 2.0)))\n                                     y (int (- (.y drw) (/ hei 2.0)))\n                                     bh (:base-height @object)]\n                                 (.setColor graphics (.getColor dep-colors bh))\n                                 (.fillRect graphics x y (int wid) (int hei)))))]\n  (.setField ground landscape)\n  (.setPortrayalForAll ground GroundPort)\n  (.setField water landscape)\n  (.setPortrayalForAll water GroundPort))")
+	(source "(let [ele-colors (SimpleColorMap. 0 300 (Color. 250 246 237) (Color. 53 44 36))\n       dep-colors (SimpleColorMap. 0 10 (Color. 70 100 200 0) (Color. 70 100 200 255))\n       GroundPort (proxy [RectanglePortrayal2D] []\n                            (draw [object ^Graphics2D graphics ^DrawInfo2D info]\n                              (let [drw (.draw info)\n                                     scl (.scale this)\n                                     wid (* (.width drw) scl)\n                                     hei (* (.height drw) scl)\n                                     x (int (- (.x drw) (/ wid 2.0)))\n                                     y (int (- (.y drw) (/ hei 2.0)))\n                                     bh (:base-height @object)]\n                                 (.setColor graphics (.getColor ele-colors bh))\n                                 (.fillRect graphics x y (int wid) (int hei)))))\n       WaterPort (proxy [RectanglePortrayal2D] []\n                            (draw [object ^Graphics2D graphics ^DrawInfo2D info]\n                              (let [drw (.draw info)\n                                     scl (.scale this)\n                                     wid (* (.width drw) scl)\n                                     hei (* (.height drw) scl)\n                                     x (int (- (.x drw) (/ wid 2.0)))\n                                     y (int (- (.y drw) (/ hei 2.0)))\n                                     cd (count (:drops @object))]\n                                 (.setColor graphics (.getColor dep-colors cd))\n                                 (.fillRect graphics x y (int wid) (int hei)))))]\n  (.setField ground landscape)\n  (.setPortrayalForAll ground GroundPort)\n  (.setField water landscape)\n  (.setPortrayalForAll water WaterPort))")
 	(title "setup-ports [display world]"))
 
 ([MASWaterWorld_Class4] of  CloFunction
@@ -270,17 +203,18 @@
 	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (cons drop (:drops bst))\n    :cumulative-height (+ (:raindrop-factor bst) \n                                      (:cumulative-height bst))))")
 	(title "add-drop [basin drop]"))
 
-([MASWaterWorld_Class40000] of  CloFuncall
-
-	(source "(compile 'mas.waterworld)"))
-
 ([MASWaterWorld_Class40001] of  MASWorldPanel
 
 	(but-world-run "Run WorldGUI/mas.world/run-world-gui")
-	(iPorts-class "mas.waterworld.WaterWorldPorts")
-	(iWorld-class "mas.waterworld.WaterWorld"))
+	(iPorts-class "mas.world.water.WaterWorldPorts")
+	(iWorld-class "mas.world.water.WaterWorld"))
 
 ([MASWaterWorld_Class5] of  CloFunction
 
 	(source "(let [bst @basin]\n  (vswap! basin assoc\n    :drops (concat drops (:drops bst))\n    :cumulative-height (+ (* (:raindrop-factor bst)\n                                          (count drops))\n                                      (:cumulative-height bst))))")
 	(title "add-drops [basin drops]"))
+
+([MASWaterWorld_Class50000] of  CloFunction
+
+	(source "(java.net.URL. \"file:resources/public/mas/WaterWorld.html\")")
+	(title "info [this]"))

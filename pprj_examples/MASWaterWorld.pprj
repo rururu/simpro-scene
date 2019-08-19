@@ -1,4 +1,4 @@
-; Fri Aug 16 22:09:05 MSK 2019
+; Mon Aug 19 21:07:51 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -62,107 +62,6 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_097642_Class581] of  Widget
-
-	(is_hidden FALSE)
-	(name "CloType")
-	(property_list [KB_097642_Class582])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([KB_097642_Class582] of  Property_List
-
-	(properties
-		[KB_097642_Class583]
-		[KB_097642_Class586]
-		[KB_097642_Class588]
-		[KB_097642_Class592]
-		[KB_097642_Class594]))
-
-([KB_097642_Class583] of  Property_List
-
-	(name "layout properties")
-	(properties
-		[KB_097642_Class584]
-		[KB_097642_Class585]))
-
-([KB_097642_Class584] of  String
-
-	(name "horizontal_stretcher")
-	(string_value "<<all>>"))
-
-([KB_097642_Class585] of  String
-
-	(name "vertical_stretcher")
-	(string_value "<<none>>"))
-
-([KB_097642_Class586] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "title")
-	(property_list [KB_097642_Class587])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 90)
-	(x 0)
-	(y 0))
-
-([KB_097642_Class587] of  Property_List
-)
-
-([KB_097642_Class588] of  Widget
-
-	(height 70)
-	(is_hidden FALSE)
-	(name "cloProtocols")
-	(property_list [KB_097642_Class589])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 180)
-	(x 0)
-	(y 60))
-
-([KB_097642_Class589] of  Property_List
-
-	(properties
-		[KB_097642_Class590]
-		[KB_097642_Class591]))
-
-([KB_097642_Class590] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_097642_Class591] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_097642_Class592] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "fields")
-	(property_list [KB_097642_Class593])
-	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
-	(width 90)
-	(x 90)
-	(y 0))
-
-([KB_097642_Class593] of  Property_List
-)
-
-([KB_097642_Class594] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "options")
-	(property_list [KB_097642_Class595])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([KB_097642_Class595] of  Property_List
-)
-
 ([KB_617019_Class0] of  String
 
 	(name "factory_class_name")
@@ -170,8 +69,8 @@
 
 ([KB_617019_Class1] of  Map
 
-	(entries [MASWaterWorld_ProjectKB_Class705])
-	(referenced_maps [MASWaterWorld_ProjectKB_Class701]))
+	(entries [MASWaterWorld_ProjectKB_Class517])
+	(referenced_maps [MASWaterWorld_ProjectKB_Class513]))
 
 ([KB_617019_Class13] of  Property_List
 
@@ -265,283 +164,28 @@
 	(name "instances_file_name")
 	(string_value "MASWaterWorld.pins"))
 
-([KB_895843_Class413] of  Widget
-
-	(is_hidden FALSE)
-	(name "MASProgram")
-	(property_list [KB_895843_Class414])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([KB_895843_Class414] of  Property_List
-
-	(properties
-		[KB_895843_Class415]
-		[KB_895843_Class418]
-		[KB_895843_Class423]
-		[KB_895843_Class428]
-		[KB_895843_Class430]
-		[KB_895843_Class435]
-		[KB_895843_Class437]
-		[KB_895843_Class467]
-		[KB_895843_Class469]
-		[KB_895843_Class471]
-		[KB_895843_Class473]))
-
-([KB_895843_Class415] of  Property_List
-
-	(name "layout properties")
-	(properties
-		[KB_895843_Class416]
-		[KB_895843_Class417]))
-
-([KB_895843_Class416] of  String
-
-	(name "horizontal_stretcher")
-	(string_value "<<all>>"))
-
-([KB_895843_Class417] of  String
-
-	(name "vertical_stretcher")
-	(string_value "<<none>>"))
-
-([KB_895843_Class418] of  Widget
-
-	(height 360)
-	(is_hidden FALSE)
-	(name "cloFunctions")
-	(property_list [KB_895843_Class419])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 210)
-	(x 210)
-	(y 240))
-
-([KB_895843_Class419] of  Property_List
-
-	(properties
-		[KB_895843_Class420]
-		[KB_895843_Class421]
-		[KB_895843_Class422]))
-
-([KB_895843_Class420] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_895843_Class421] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_895843_Class422] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([KB_895843_Class423] of  Widget
-
-	(height 360)
-	(is_hidden FALSE)
-	(name "cloVars")
-	(property_list [KB_895843_Class424])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 210)
-	(x 0)
-	(y 240))
-
-([KB_895843_Class424] of  Property_List
-
-	(properties
-		[KB_895843_Class425]
-		[KB_895843_Class426]
-		[KB_895843_Class427]))
-
-([KB_895843_Class425] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_895843_Class426] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_895843_Class427] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([KB_895843_Class428] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "title")
-	(property_list [KB_895843_Class429])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 210)
-	(x 0)
-	(y 0))
-
-([KB_895843_Class429] of  Property_List
-)
-
-([KB_895843_Class430] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "cloNamespace")
-	(property_list [KB_895843_Class431])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 210)
-	(x 0)
-	(y 60))
-
-([KB_895843_Class431] of  Property_List
-
-	(properties
-		[KB_895843_Class432]
-		[KB_895843_Class433]
-		[KB_895843_Class434]))
-
-([KB_895843_Class432] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_895843_Class433] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_895843_Class434] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([KB_895843_Class435] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "cloProtocols")
-	(property_list [KB_895843_Class436])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([KB_895843_Class436] of  Property_List
-)
-
-([KB_895843_Class437] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(label "CloTypes")
-	(name "cloTypes")
-	(property_list [KB_895843_Class438])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 420)
-	(x 0)
-	(y 120))
-
-([KB_895843_Class438] of  Property_List
-
-	(properties
-		[MASWaterWorld_ProjectKB_Class709]
-		[MASWaterWorld_ProjectKB_Class710]))
-
-([KB_895843_Class467] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "cloRecords")
-	(property_list [KB_895843_Class468])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([KB_895843_Class468] of  Property_List
-)
-
-([KB_895843_Class469] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "cloExtendProtocols")
-	(property_list [KB_895843_Class470])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([KB_895843_Class470] of  Property_List
-)
-
-([KB_895843_Class471] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "cloExtendTypes")
-	(property_list [KB_895843_Class472])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([KB_895843_Class472] of  Property_List
-)
-
-([KB_895843_Class473] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "documentation")
-	(property_list [KB_895843_Class474])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 210)
-	(x 210)
-	(y 60))
-
-([KB_895843_Class474] of  Property_List
-
-	(properties
-		[KB_895843_Class475]
-		[KB_895843_Class476]
-		[KB_895843_Class477]))
-
-([KB_895843_Class475] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_895843_Class476] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_895843_Class477] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([KB_913920_Class683] of  Map
+([KB_736813_Class504] of  Map
 
 	(entries
-		[KB_913920_Class684]
-		[KB_913920_Class685]
-		[KB_913920_Class686]))
+		[KB_736813_Class505]
+		[KB_736813_Class506]
+		[KB_736813_Class507]))
 
-([KB_913920_Class684] of  Map_Entry
+([KB_736813_Class505] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_913920_Class685] of  Map_Entry
+([KB_736813_Class506] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_913920_Class686] of  Map_Entry
+([KB_736813_Class507] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -556,6 +200,41 @@
 ([MASWaterWorld_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
+
+([MASWaterWorld_ProjectKB_Class513] of  Map
+
+	(entries
+		[MASWaterWorld_ProjectKB_Class514]
+		[MASWaterWorld_ProjectKB_Class515]
+		[MASWaterWorld_ProjectKB_Class516]))
+
+([MASWaterWorld_ProjectKB_Class514] of  Map_Entry
+
+	(key "MASWaterWorld_Class20000")
+	(key_class "java.lang.String")
+	(value "370 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class515] of  Map_Entry
+
+	(key "MASWaterWorld_Class10020")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class516] of  Map_Entry
+
+	(key "MASWaterWorld_Class10024")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class517] of  Map_Entry
+
+	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
+	(key_class "java.lang.String")
+	(value "MASWaterWorld_ProjectKB_Class513")
+	(value_class "java.util.Map"))
 
 ([MASWaterWorld_ProjectKB_Class524] of  Widget
 
@@ -601,51 +280,6 @@
 
 ([MASWaterWorld_ProjectKB_Class533] of  Property_List
 )
-
-([MASWaterWorld_ProjectKB_Class701] of  Map
-
-	(entries
-		[MASWaterWorld_ProjectKB_Class702]
-		[MASWaterWorld_ProjectKB_Class703]
-		[MASWaterWorld_ProjectKB_Class704]))
-
-([MASWaterWorld_ProjectKB_Class702] of  Map_Entry
-
-	(key "MASWaterWorld_Class20000")
-	(key_class "java.lang.String")
-	(value "370 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class703] of  Map_Entry
-
-	(key "MASWaterWorld_Class10020")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class704] of  Map_Entry
-
-	(key "MASWaterWorld_Class10024")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class705] of  Map_Entry
-
-	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
-	(key_class "java.lang.String")
-	(value "MASWaterWorld_ProjectKB_Class701")
-	(value_class "java.util.Map"))
-
-([MASWaterWorld_ProjectKB_Class709] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([MASWaterWorld_ProjectKB_Class710] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([option_instance] of  Options
 
@@ -727,16 +361,14 @@
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
-		[KB_895843_Class413]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET]
-		[KB_097642_Class581])
+		[PAL_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "MASCampus.pprj")
+	(included_projects "MASWorld.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])

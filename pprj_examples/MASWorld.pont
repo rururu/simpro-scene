@@ -1,0 +1,43 @@
+; Mon Aug 19 17:06:19 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot but-world-run
+		(type STRING)
+		(default "Run WorldGUI/mas.world/run-world-gui")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot iWorld-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot iPorts-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MASProgram
+	(is-a CloProgram)
+	(role concrete))
+
+(defclass MASWorldPanel
+	(is-a USER)
+	(role concrete)
+	(single-slot but-world-run
+		(type STRING)
+		(default "Run WorldGUI/mas.world/run-world-gui")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot iPorts-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot iWorld-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

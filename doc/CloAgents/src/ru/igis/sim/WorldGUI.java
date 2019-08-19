@@ -16,12 +16,12 @@ public class WorldGUI extends GUIState  {
 
 	public Display2D display;
 	public JFrame displayFrame;
-	public IPorts iports;
+	public static IPorts iports;
 
 	
 	public WorldGUI(IWorld iworld, IPorts iports) {
 		super(new World(System.currentTimeMillis(), iworld));
-		this.iports = iports;
+		WorldGUI.iports = iports;
 	}
 
 	public WorldGUI(SimState state) {
@@ -72,4 +72,7 @@ public class WorldGUI extends GUIState  {
 		displayFrame.setVisible(true);
 	}
 	
+	public static Object getInfo() {
+		return iports.info();
+	}
 }
