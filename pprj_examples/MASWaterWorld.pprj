@@ -1,4 +1,4 @@
-; Mon Aug 19 21:07:51 MSK 2019
+; Tue Aug 20 09:54:55 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -164,28 +164,28 @@
 	(name "instances_file_name")
 	(string_value "MASWaterWorld.pins"))
 
-([KB_736813_Class504] of  Map
+([KB_995662_Class504] of  Map
 
 	(entries
-		[KB_736813_Class505]
-		[KB_736813_Class506]
-		[KB_736813_Class507]))
+		[KB_995662_Class505]
+		[KB_995662_Class506]
+		[KB_995662_Class507]))
 
-([KB_736813_Class505] of  Map_Entry
+([KB_995662_Class505] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_736813_Class506] of  Map_Entry
+([KB_995662_Class506] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_736813_Class507] of  Map_Entry
+([KB_995662_Class507] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

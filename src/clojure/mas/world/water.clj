@@ -19,7 +19,7 @@
 (def GRID-WIDTH 100)
 (def GRID-HEIGHT 100)
 (def NUM-DROPS-PER-TURN 200)
-(def LAND "/home/ru/mas/pro/GeoMasondemo/data/elevation.txt.gz")
+(def LAND "data/mas/water/elevation.txt.gz")
 (def landscape nil)
 (def world-drops (volatile! []))
 (def ground (ObjectGridPortrayal2D.))
@@ -88,7 +88,7 @@
 	ru.igis.sim.IPorts
 	(createDisplay [this wgui world] (create-display wgui world))
 	(setup [this display world] (setup-ports display world))
-	(info [this] (java.net.URL. "file:resources/public/mas/WaterWorld.html"))
+	(info [this] (java.net.URL. "file:data/mas/water/WaterWorld.html"))
 )
 (defn add-drop [basin drop]
   (let [bst @basin]

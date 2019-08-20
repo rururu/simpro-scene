@@ -1,4 +1,4 @@
-; Mon Aug 19 21:07:51 MSK 2019
+; Tue Aug 20 09:54:55 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -132,7 +132,7 @@
 
 ([MASWaterWorld_Class30000] of  CloVar
 
-	(source "\"/home/ru/mas/pro/GeoMasondemo/data/elevation.txt.gz\"")
+	(source "\"data/mas/water/elevation.txt.gz\"")
 	(title "LAND"))
 
 ([MASWaterWorld_Class30001] of  CloFunction
@@ -216,5 +216,5 @@
 
 ([MASWaterWorld_Class50000] of  CloFunction
 
-	(source "(java.net.URL. \"file:resources/public/mas/WaterWorld.html\")")
+	(source "(java.net.URL. \"file:data/mas/water/WaterWorld.html\")")
 	(title "info [this]"))

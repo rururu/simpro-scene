@@ -36,6 +36,9 @@
   create-display
   setup-ports
   move))
+(def BUILDINGS-URL "file:data/mas/campus/bldg.shp")
+(def ROADS-URL "file:data/mas/campus/roads.shp")
+(def WALKWAYS-URL "file:data/mas/campus/walk_ways.shp")
 (deftype Agent [astate ]
 	sim.engine.Steppable
 	(step [this world] (move astate world))
@@ -50,6 +53,7 @@
 	ru.igis.sim.IPorts
 	(createDisplay [this wgui world] (create-display wgui world))
 	(setup [this display world] (setup-ports display world))
+	(info [this] (URL. "file:data/mas/campus/CampusWorld.html"))
 )
 (defn init-world []
   (let [netiter (.nodeIterator network)
@@ -59,12 +63,12 @@
   (.add masked "FLOORS")
   (.add masked "ADDR_NUM")
   (println "reading buildings layer") 
-  (ShapeFileImporter/read (URL. "file:data/campus/bldg.shp") buildings)
+  (ShapeFileImporter/read (URL. BUILDINGS-URL) buildings)
   (println "reading roads layer") 
-  (ShapeFileImporter/read (URL. "file:data/campus/roads.shp") roads)
+  (ShapeFileImporter/read (URL. ROADS-URL) roads)
   (.expandToInclude MBR (.getMBR roads))
   (println "reading walkways layer")
-  (ShapeFileImporter/read (URL. "file:data/campus/walk_ways.shp") walkways)
+  (ShapeFileImporter/read (URL. WALKWAYS-URL) walkways)
   (.expandToInclude MBR (.getMBR walkways))
   (println "Done reading data")
   (.setMBR buildings MBR)

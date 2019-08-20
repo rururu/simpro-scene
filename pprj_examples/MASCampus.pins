@@ -1,4 +1,4 @@
-; Mon Aug 19 17:10:03 MSK 2019
+; Tue Aug 20 09:13:57 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -35,7 +35,10 @@
 		[MASCampus_Class20014]
 		[MASCampus_Class20015]
 		[MASCampus_Class40001]
-		[MASCampus_Class20002])
+		[MASCampus_Class20002]
+		[MASCampus_Class20000]
+		[MASCampus_Class20001]
+		[MASCampus_Class30002])
 	(title "CampusWorld"))
 
 ([MASCampus_Class1] of  CloNamespace
@@ -47,7 +50,8 @@
 
 	(cloFunctions
 		[MASCampus_Class11]
-		[MASCampus_Class12])
+		[MASCampus_Class12]
+		[MASCampus_Class60000])
 	(title "ru.igis.sim.IPorts"))
 
 ([MASCampus_Class10000] of  CloVar
@@ -57,7 +61,7 @@
 
 ([MASCampus_Class10001] of  CloFunction
 
-	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. \"file:data/campus/bldg.shp\") buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. \"file:data/campus/roads.shp\") roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. \"file:data/campus/walk_ways.shp\") walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. BUILDINGS-URL) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. ROADS-URL) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. WALKWAYS-URL) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
 	(title "init-world []"))
 
 ([MASCampus_Class10002] of  CloFunction
@@ -80,6 +84,16 @@
 	(cloProtocols [MASCampus_Class5])
 	(fields "astate")
 	(title "Agent"))
+
+([MASCampus_Class20000] of  CloVar
+
+	(source "\"file:data/mas/campus/bldg.shp\"")
+	(title "BUILDINGS-URL"))
+
+([MASCampus_Class20001] of  CloVar
+
+	(source "\"file:data/mas/campus/roads.shp\"")
+	(title "ROADS-URL"))
 
 ([MASCampus_Class20002] of  CloVar
 
@@ -186,6 +200,11 @@
 	(source "(if-let [curr-junc (.findNode network (.getCoordinate loc-geo))]\n  (let [des (.getOutEdges curr-junc)\n         edges (.getEdges des)\n         nxt (.nextInt (.random world) (count edges))\n         dired (nth (seq edges) nxt)\n         edge (.getEdge dired)\n         newp (.getLine edge)\n         startp (.getStartPoint newp)\n         endp (.getEndPoint newp)]\n    (if (= startp loc-geo)\n      [newp true]\n      (if (= endp loc-geo)\n        [newp false]\n        (do (println \"Where am I?\") nil)))))")
 	(title "find-new-path [world loc-geo]"))
 
+([MASCampus_Class30002] of  CloVar
+
+	(source "\"file:data/mas/campus/walk_ways.shp\"")
+	(title "WALKWAYS-URL"))
+
 ([MASCampus_Class4] of  CloType
 
 	(cloProtocols [MASCampus_Class10])
@@ -215,6 +234,11 @@
 
 	(source "(move astate world)")
 	(title "step [this world]"))
+
+([MASCampus_Class60000] of  CloFunction
+
+	(source "(URL. \"file:data/mas/campus/CampusWorld.html\")")
+	(title "info [this]"))
 
 ([MASCampus_Class7] of  CloImplementation
 
