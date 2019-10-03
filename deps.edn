@@ -36,5 +36,6 @@
   geomason {:local/root "lib_mas/geomason.1.5.jar"}
   jts {:local/root "lib_mas/jts-1.13.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
-  CloAgents {:local/root "lib/CloAgents.jar"}}
- :paths ["src" "src/clojure" "classes" "resources"]}
+  CloAgents {:local/root "lib/CloAgents.jar"}
+  quil {:mvn/version "3.0.0"}}
+  :paths ["src" "src/clojure" "classes" "resources"]}

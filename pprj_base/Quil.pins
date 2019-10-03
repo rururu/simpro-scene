@@ -1,0 +1,77 @@
+; Thu Oct 03 18:10:18 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Quil_Class0] of  CloProgram
+
+	(cloFunctions
+		[Quil_Class10001]
+		[Quil_Class10002]
+		[Quil_Class10003]
+		[Quil_Class10004]
+		[Quil_Class10005]
+		[Quil_Class10011])
+	(cloNamespace [Quil_Class1])
+	(cloVars [Quil_Class10000])
+	(title "Quil Base"))
+
+([Quil_Class1] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require \n  [quil.core :as q]\n  [quil.middleware :as m])")
+	(title "quil.one"))
+
+([Quil_Class10000] of  CloVar
+
+	(source "10")
+	(title "MIN-R"))
+
+([Quil_Class10001] of  CloFunction
+
+	(source "{:x 0 :y 0 :r MIN-R}")
+	(title "setup []"))
+
+([Quil_Class10002] of  CloFunction
+
+	(source "(update-in state [:r] inc)")
+	(title "update [state]"))
+
+([Quil_Class10003] of  CloFunction
+
+	(source "(q/background 255)\n(q/ellipse (:x state) (:y state) (:r state) (:r state))")
+	(title "draw [state]"))
+
+([Quil_Class10004] of  CloFunction
+
+	(source "(max MIN-R (dec r))")
+	(title "shrink [r]"))
+
+([Quil_Class10005] of  CloFunction
+
+	(source "(-> state\n  (assoc :x (:x event) :y (:y event))\n  (update-in [:r] shrink))")
+	(title "mouse-moved [state event]"))
+
+([Quil_Class10008] of  CloFuncall
+
+	(source "quil.one/sketch"))
+
+([Quil_Class10009] of  CloFuncall
+
+	(source "(quil.one/sketch)"))
+
+([Quil_Class10010] of  CloFuncall
+
+	(source "(eval quil.one/sketch)"))
+
+([Quil_Class10011] of  CloFunction
+
+	(source "(q/defsketch one\n   :title \"One\"\n   :size [900 900]\n   :setup setup\n   :draw draw\n   :update update\n   :mouse-moved mouse-moved\n   :middleware [m/fun-mode])")
+	(title "run []"))
+
+([Quil_Class10012] of  CloFuncall
+
+	(source "quil.one/run"))
+
+([Quil_Class10013] of  CloFuncall
+
+	(source "(quil.one/run)"))

@@ -1,4 +1,4 @@
-; Tue Aug 20 09:13:57 MSK 2019
+; Mon Sep 02 16:45:35 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,9 +21,12 @@
 		[MASCampus_Class3]
 		[MASCampus_Class4])
 	(cloVars
+		[MASCampus_Class20004]
 		[MASCampus_Class10000]
 		[MASCampus_Class20003]
-		[MASCampus_Class20004]
+		[MASCampus_Class20000]
+		[MASCampus_Class20001]
+		[MASCampus_Class30002]
 		[MASCampus_Class20005]
 		[MASCampus_Class20006]
 		[MASCampus_Class20007]
@@ -35,10 +38,7 @@
 		[MASCampus_Class20014]
 		[MASCampus_Class20015]
 		[MASCampus_Class40001]
-		[MASCampus_Class20002]
-		[MASCampus_Class20000]
-		[MASCampus_Class20001]
-		[MASCampus_Class30002])
+		[MASCampus_Class20002])
 	(title "CampusWorld"))
 
 ([MASCampus_Class1] of  CloNamespace

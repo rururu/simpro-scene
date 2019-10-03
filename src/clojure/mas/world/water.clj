@@ -16,10 +16,16 @@
   sim.portrayal.simple.RectanglePortrayal2D
   sim.portrayal.DrawInfo2D
   sim.display.Display2D))
-(def GRID-WIDTH 100)
-(def GRID-HEIGHT 100)
-(def NUM-DROPS-PER-TURN 200)
-(def LAND "data/mas/water/elevation.txt.gz")
+(def GRID-WIDTH ;; 689
+;; 344
+100)
+(def GRID-HEIGHT ;; 257
+;; 128
+100)
+(def NUM-DROPS-PER-TURN 100)
+(def LAND ;; "data/mas/water/gmted2010Vuoksi.asc.gz"
+;; "data/mas/water/gt30demVuoksi.asc.gz"
+"data/mas/water/elevation.txt.gz")
 (def landscape nil)
 (def world-drops (volatile! []))
 (def ground (ObjectGridPortrayal2D.))

@@ -1,4 +1,4 @@
-; Tue Aug 20 09:54:55 MSK 2019
+; Fri Sep 06 14:10:57 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -95,17 +95,17 @@
 
 ([MASWaterWorld_Class10028] of  CloVar
 
-	(source "200")
+	(source "100")
 	(title "NUM-DROPS-PER-TURN"))
 
 ([MASWaterWorld_Class10030] of  CloVar
 
-	(source "100")
+	(source ";; 689\n;; 344\n100")
 	(title "GRID-WIDTH"))
 
 ([MASWaterWorld_Class10031] of  CloVar
 
-	(source "100")
+	(source ";; 257\n;; 128\n100")
 	(title "GRID-HEIGHT"))
 
 ([MASWaterWorld_Class20000] of  CloType
@@ -132,7 +132,7 @@
 
 ([MASWaterWorld_Class30000] of  CloVar
 
-	(source "\"data/mas/water/elevation.txt.gz\"")
+	(source ";; \"data/mas/water/gmted2010Vuoksi.asc.gz\"\n;; \"data/mas/water/gt30demVuoksi.asc.gz\"\n\"data/mas/water/elevation.txt.gz\"")
 	(title "LAND"))
 
 ([MASWaterWorld_Class30001] of  CloFunction

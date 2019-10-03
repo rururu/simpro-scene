@@ -1,4 +1,4 @@
-; Tue Aug 20 09:54:55 MSK 2019
+; Fri Sep 06 14:10:57 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -69,8 +69,8 @@
 
 ([KB_617019_Class1] of  Map
 
-	(entries [MASWaterWorld_ProjectKB_Class517])
-	(referenced_maps [MASWaterWorld_ProjectKB_Class513]))
+	(entries [MASWaterWorld_ProjectKB_Class10532])
+	(referenced_maps [MASWaterWorld_ProjectKB_Class10528]))
 
 ([KB_617019_Class13] of  Property_List
 
@@ -164,28 +164,28 @@
 	(name "instances_file_name")
 	(string_value "MASWaterWorld.pins"))
 
-([KB_995662_Class504] of  Map
+([KB_849601_Class504] of  Map
 
 	(entries
-		[KB_995662_Class505]
-		[KB_995662_Class506]
-		[KB_995662_Class507]))
+		[KB_849601_Class505]
+		[KB_849601_Class506]
+		[KB_849601_Class507]))
 
-([KB_995662_Class505] of  Map_Entry
+([KB_849601_Class505] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_995662_Class506] of  Map_Entry
+([KB_849601_Class506] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_995662_Class507] of  Map_Entry
+([KB_849601_Class507] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -197,44 +197,44 @@
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
 
-([MASWaterWorld_ProjectKB_Class37] of  String
-
-	(name "SearchTab_Query"))
-
-([MASWaterWorld_ProjectKB_Class513] of  Map
+([MASWaterWorld_ProjectKB_Class10528] of  Map
 
 	(entries
-		[MASWaterWorld_ProjectKB_Class514]
-		[MASWaterWorld_ProjectKB_Class515]
-		[MASWaterWorld_ProjectKB_Class516]))
+		[MASWaterWorld_ProjectKB_Class10529]
+		[MASWaterWorld_ProjectKB_Class10530]
+		[MASWaterWorld_ProjectKB_Class10531]))
 
-([MASWaterWorld_ProjectKB_Class514] of  Map_Entry
+([MASWaterWorld_ProjectKB_Class10529] of  Map_Entry
 
 	(key "MASWaterWorld_Class20000")
 	(key_class "java.lang.String")
 	(value "370 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([MASWaterWorld_ProjectKB_Class515] of  Map_Entry
+([MASWaterWorld_ProjectKB_Class10530] of  Map_Entry
 
 	(key "MASWaterWorld_Class10020")
 	(key_class "java.lang.String")
 	(value "70 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([MASWaterWorld_ProjectKB_Class516] of  Map_Entry
+([MASWaterWorld_ProjectKB_Class10531] of  Map_Entry
 
 	(key "MASWaterWorld_Class10024")
 	(key_class "java.lang.String")
 	(value "220 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([MASWaterWorld_ProjectKB_Class517] of  Map_Entry
+([MASWaterWorld_ProjectKB_Class10532] of  Map_Entry
 
 	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
 	(key_class "java.lang.String")
-	(value "MASWaterWorld_ProjectKB_Class513")
+	(value "MASWaterWorld_ProjectKB_Class10528")
 	(value_class "java.util.Map"))
+
+([MASWaterWorld_ProjectKB_Class37] of  String
+
+	(name "SearchTab_Query"))
 
 ([MASWaterWorld_ProjectKB_Class524] of  Widget
 

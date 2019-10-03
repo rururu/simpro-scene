@@ -279,3 +279,12 @@ s)
     (doseq [pm pms]
       (println (str (if (ldns (sv pm "cloNamespace")) " + " " - ") (sv pm "title")))))))
 
+(defn has-typ [instance name]
+  (.hasType instance (cls name)))
+
+(defn collect-along [instance slot-path]
+  (loop [ii [instance] ss slot-path]
+  (if (seq ss)
+    (recur (mapcat #(svs % (first ss)) ii) (rest ss))
+    ii)))
+
