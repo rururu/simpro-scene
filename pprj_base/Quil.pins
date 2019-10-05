@@ -1,4 +1,4 @@
-; Thu Oct 03 18:10:18 MSK 2019
+; Sat Oct 05 21:59:00 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -14,7 +14,7 @@
 		[Quil_Class10011])
 	(cloNamespace [Quil_Class1])
 	(cloVars [Quil_Class10000])
-	(title "Quil Base"))
+	(title "Quil1"))
 
 ([Quil_Class1] of  CloNamespace
 
@@ -75,3 +75,188 @@
 ([Quil_Class10013] of  CloFuncall
 
 	(source "(quil.one/run)"))
+
+([Quil_Class20000] of  CloFuncall
+
+	(source "(quil.applet/with-applet quil.one (q/stroke-weight 10)"))
+
+([Quil_Class20001] of  CloFuncall
+
+	(source "(quil.applet/with-applet quil.one/one (q/stroke-weight 10))"))
+
+([Quil_Class20002] of  CloFuncall
+
+	(source "(in-ns 'quil.one)"))
+
+([Quil_Class20003] of  CloFuncall
+
+	(source "(run)"))
+
+([Quil_Class20004] of  CloFuncall
+
+	(source "(quil.applet/with-applet quil.one/one (q/stroke 255 100 10))"))
+
+([Quil_Class20005] of  CloFuncall
+
+	(source "(quil.applet/with-applet quil.one/one (q/point 55 55))"))
+
+([Quil_Class20006] of  CloFuncall
+
+	(source "(quil.applet/with-applet quil.one/one (q/background 0 255 0))"))
+
+([Quil_Class20007] of  CloProgram
+
+	(cloFunctions
+		[Quil_Class20009]
+		[Quil_Class20010]
+		[Quil_Class20013]
+		[Quil_Class20011])
+	(cloNamespace [Quil_Class20008])
+	(title "Middleware Added"))
+
+([Quil_Class20008] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require \n  [quil.core :as q])")
+	(title "quil.midadded"))
+
+([Quil_Class20009] of  CloFunction
+
+	(source "(q/frame-rate 30)\n(q/color-mode :hsb)")
+	(title "setup []"))
+
+([Quil_Class20010] of  CloFunction
+
+	(source "(q/background 240)\n(let [period 100\n       cur (mod (q/frame-count) period)\n       angle (q/map-range cur\n                           0 period\n                           0 q/PI)]\n  (q/fill (q/map-range cur 0 period 0 255) 255 255)\n  (q/ellipse 100 100\n               (* 150 (q/sin angle))\n               (* 150 (q/cos angle))))")
+	(title "draw []"))
+
+([Quil_Class20011] of  CloFunction
+
+	(source "(q/defsketch midadd\n  :title \"Middleware Added\"\n  :size [400 400]\n  :setup setup\n  :draw draw\n  :middleware [show-frame-rate])")
+	(title "run []"))
+
+([Quil_Class20012] of  CloFuncall
+
+	(source "(quil.midadded/run)"))
+
+([Quil_Class20013] of  CloFunction
+
+	(source "(let [; retrieve existing draw function or use empty one if not present\n       draw (:draw options (fn []))\n       ; updated-draw will replace draw\n       updated-draw (fn []\n                       (draw) ; call user-provided draw function\n                       (q/fill 0)\n                       (q/text-num (q/current-frame-rate) 20 40))]\n  ; set updated-draw as :draw function\n  (assoc options :draw updated-draw))")
+	(title "show-frame-rate [options]"))
+
+([Quil_Class30000] of  CloProgram
+
+	(cloFunctions
+		[Quil_Class40000]
+		[Quil_Class50002]
+		[Quil_Class30004]
+		[Quil_Class40013]
+		[Quil_Class30005]
+		[Quil_Class30003])
+	(cloNamespace [Quil_Class30001])
+	(cloVars
+		[Quil_Class30002]
+		[Quil_Class40012]
+		[Quil_Class50001])
+	(title "Quil OMT"))
+
+([Quil_Class30001] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require \n  [quil.core :as q]\n  [quil.middleware :as m])\n(:import\n  com.bbn.openmap.image.SunJPEGFormatter\n  ru.igis.omtab.OpenMapTab\n  java.io.FileOutputStream)")
+	(title "quil.omt"))
+
+([Quil_Class30002] of  CloVar
+
+	(source "\"data/CurrentMap.jpeg\"")
+	(title "BG-PATH"))
+
+([Quil_Class30003] of  CloFunction
+
+	(source "(q/defsketch omt\n   :title \"OMT\"\n   :size SIZE\n   :setup setup\n   :update update\n   :draw draw\n   :middleware [m/fun-mode])")
+	(title "run []"))
+
+([Quil_Class30004] of  CloFunction
+
+	(source "(let [[wid hei prj] (save-current-map)]\n  {:proj prj\n    :latlon [0 0]\n    :image (q/load-image BG-PATH)})")
+	(title "setup []"))
+
+([Quil_Class30005] of  CloFunction
+
+	(source "(let [img (:image state)\n       pnt (:latlon state)\n       [x y] (forward (:proj state) pnt)]\n  (if (q/loaded? img)\n    (q/image img 0 0))\n  (q/stroke-weight 4)\n  (q/stroke 255 0 0)\n  (q/point x y))")
+	(title "draw [state]"))
+
+([Quil_Class30006] of  CloFuncall
+
+	(source "(quil.omt/run)"))
+
+([Quil_Class40000] of  CloFunction
+
+	(source "(let [fmt (SunJPEGFormatter.)\n       mb (OpenMapTab/getMapBean)\n       cnt (.getCenter mb)\n       prj (.getProjection mb)\n       wid (dec (.getWidth prj))\n       hei (dec (.getHeight prj))\n       bts (.getImageFromMapBean fmt mb wid hei)\n       fil (FileOutputStream. BG-PATH)]\n  (.write fil bts)\n  (.close fil)\n  [wid hei prj])")
+	(title "save-current-map []"))
+
+([Quil_Class40001] of  CloFuncall
+
+	(source "(quil.one/sketch"))
+
+([Quil_Class40002] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 1000 1000)"))
+
+([Quil_Class40003] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 1200 1200)"))
+
+([Quil_Class40004] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 2000 2000)"))
+
+([Quil_Class40005] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 100 100)"))
+
+([Quil_Class40006] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 800 800)"))
+
+([Quil_Class40007] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 600 600)"))
+
+([Quil_Class40008] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 400 400)"))
+
+([Quil_Class40009] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 200 200)"))
+
+([Quil_Class40010] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 1200 800)"))
+
+([Quil_Class40011] of  CloFuncall
+
+	(source "(quil.omt/save-current-map 1600 1600)"))
+
+([Quil_Class40012] of  CloVar
+
+	(source "[1200 800]")
+	(title "SIZE"))
+
+([Quil_Class40013] of  CloFunction
+
+	(source "(assoc state :latlon LATLON)")
+	(title "update [state]"))
+
+([Quil_Class50000] of  CloFuncall
+
+	(source "(quil.omt/update {:point [0 0]})"))
+
+([Quil_Class50001] of  CloVar
+
+	(source "[89 0]")
+	(title "LATLON"))
+
+([Quil_Class50002] of  CloFunction
+
+	(source "(let [p2d (.forward prj (double lat) (double lon))]\n  [(.getX p2d) (.getY p2d)])")
+	(title "forward [prj [lat lon]]"))

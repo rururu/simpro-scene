@@ -1,4 +1,4 @@
-; Thu Oct 03 18:10:18 MSK 2019
+; Sat Oct 05 21:59:00 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -18,10 +18,7 @@
 	(y 0))
 
 ([BROWSER_SLOT_NAMES] of  Property_List
-
-	(properties
-		[Quil_ProjectKB_Class10363]
-		[Quil_ProjectKB_Class10364]))
+)
 
 ([CLSES_TAB] of  Widget
 
@@ -65,28 +62,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_890332_Class357] of  Map
+([KB_098755_Class1347] of  Map
 
 	(entries
-		[KB_890332_Class358]
-		[KB_890332_Class359]
-		[KB_890332_Class360]))
+		[KB_098755_Class1348]
+		[KB_098755_Class1349]
+		[KB_098755_Class1350]))
 
-([KB_890332_Class358] of  Map_Entry
+([KB_098755_Class1348] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_890332_Class359] of  Map_Entry
+([KB_098755_Class1349] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_890332_Class360] of  Map_Entry
+([KB_098755_Class1350] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -279,13 +276,15 @@
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET])
+		[PAL_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "Clojure.pprj")
+	(included_projects
+		"Clojure.pprj"
+		"igis.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
@@ -296,28 +295,18 @@
 		[SLOTS_TAB]
 		[FORMS_TAB]
 		[INSTANCES_TAB]
-		[QUERIES_TAB]
 		[Quil_ProjectKB_Class369]
 		[Quil_ProjectKB_Class361]
 		[Quil_ProjectKB_Class365]
 		[Quil_ProjectKB_Class363]
-		[Quil_ProjectKB_Class367]))
+		[Quil_ProjectKB_Class367]
+		[QUERIES_TAB]))
 
 ([QUERIES_TAB] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [KB_938679_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
-
-([Quil_ProjectKB_Class10363] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([Quil_ProjectKB_Class10364] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
 
 ([Quil_ProjectKB_Class361] of  Widget
 
@@ -330,7 +319,7 @@
 
 ([Quil_ProjectKB_Class363] of  Widget
 
-	(is_hidden TRUE)
+	(is_hidden FALSE)
 	(property_list [Quil_ProjectKB_Class364])
 	(widget_class_name "ru.igis.omtab.OpenMapTab"))
 

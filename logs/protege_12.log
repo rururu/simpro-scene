@@ -1,0 +1,7 @@
+2019.10.04 11:32:17.711 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2019.10.04 11:32:17.721 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.2+9-LTS, memory=2076M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2019.10.04 11:32:17.723 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2019.10.04 11:32:18.025 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2019.10.04 11:32:18.027 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2019.10.04 11:32:18.158 MSK WARNING: Look and feel not found: ch.randelshofer.quaqua.QuaquaLookAndFeel -- SystemUtilities.setLookAndFeel()
+2019.10.04 11:32:18.338 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
