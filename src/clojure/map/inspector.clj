@@ -10,7 +10,6 @@
   com.bbn.openmap.omGraphics.OMPoly
   com.bbn.openmap.omGraphics.OMGraphicList
   edu.stanford.smi.protege.util.SelectionListener))
-
 (def ^:dynamic *mb* ; MapBean
 (OpenMapTab/getMapBean))
 (def ^:dynamic *mem* [])
