@@ -1,4 +1,4 @@
-; Mon Aug 19 17:06:19 MSK 2019
+; Tue Oct 08 14:56:28 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,10 +20,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[MASWorld_ProjectKB_Class480]
-		[MASWorld_ProjectKB_Class481]
-		[MASWorld_ProjectKB_Class482]
-		[MASWorld_ProjectKB_Class483]))
+		[MASWorld_ProjectKB_Class10365]
+		[MASWorld_ProjectKB_Class10366]
+		[MASWorld_ProjectKB_Class10367]
+		[MASWorld_ProjectKB_Class10368]))
 
 ([CLSES_TAB] of  Widget
 
@@ -258,28 +258,28 @@
 ([KB_144769_Class341] of  Property_List
 )
 
-([KB_144769_Class357] of  Map
+([KB_612933_Class357] of  Map
 
 	(entries
-		[KB_144769_Class358]
-		[KB_144769_Class359]
-		[KB_144769_Class360]))
+		[KB_612933_Class358]
+		[KB_612933_Class359]
+		[KB_612933_Class360]))
 
-([KB_144769_Class358] of  Map_Entry
+([KB_612933_Class358] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_144769_Class359] of  Map_Entry
+([KB_612933_Class359] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_144769_Class360] of  Map_Entry
+([KB_612933_Class360] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -290,6 +290,26 @@
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
+
+([MASWorld_ProjectKB_Class10365] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([MASWorld_ProjectKB_Class10366] of  String
+
+	(name "MASWorldPanel")
+	(string_value "iWorld-class"))
+
+([MASWorld_ProjectKB_Class10367] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([MASWorld_ProjectKB_Class10368] of  String
+
+	(name "CloType")
+	(string_value "title"))
 
 ([MASWorld_ProjectKB_Class361] of  Widget
 
@@ -739,26 +759,6 @@
 
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
-
-([MASWorld_ProjectKB_Class480] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([MASWorld_ProjectKB_Class481] of  String
-
-	(name "MASWorldPanel")
-	(string_value "iWorld-class"))
-
-([MASWorld_ProjectKB_Class482] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([MASWorld_ProjectKB_Class483] of  String
-
-	(name "CloType")
-	(string_value "title"))
 
 ([option_instance] of  Options
 

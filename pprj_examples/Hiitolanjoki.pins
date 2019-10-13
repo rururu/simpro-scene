@@ -1,7 +1,16 @@
-; Sun Oct 06 22:03:45 MSK 2019
+; Tue Oct 08 16:47:37 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([Hiitolanjoki_Class0] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "200000FF")
+	(label "Agents")
+	(lineColor "ff0000ff")
+	(prettyName "Agents")
+	(shapeFile "data/mas/campus/Agents.shp"))
 
 ([Hiitolanjoki_Class12] of  OMTPoly
 
@@ -1335,7 +1344,8 @@
 		[igis_Class40012]
 		[VuoksiLohi_Class1]
 		[igis_Class1]
-		[igis_Class40011])
+		[igis_Class40011]
+		[Hiitolanjoki_Class0])
 	(Longitude "29.63")
 	(Scale "400000")
 	(startUpLayers

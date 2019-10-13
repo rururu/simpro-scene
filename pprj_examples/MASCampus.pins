@@ -1,4 +1,4 @@
-; Mon Sep 02 16:45:35 MSK 2019
+; Sun Oct 13 15:24:59 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -43,7 +43,7 @@
 
 ([MASCampus_Class1] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine)")
 	(title "mas.world.campus"))
 
 ([MASCampus_Class10] of  CloImplementation
@@ -59,9 +59,17 @@
 	(source "1000")
 	(title "WIDTH"))
 
+([MASCampus_Class100000] of  CloFuncall
+
+	(source "(def stat (sim.engine.SimState. 1000))"))
+
+([MASCampus_Class100003] of  CloFuncall
+
+	(source "(def re (ru.igis.sim.util.RandomEdge.))"))
+
 ([MASCampus_Class10001] of  CloFunction
 
-	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. BUILDINGS-URL) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. ROADS-URL) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. WALKWAYS-URL) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)\n       [bsh bdb] BUILDINGS-URLS\n       [rsh rdb] ROADS-URLS\n       [wsh wdb] WALKWAYS-URLS]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. wsh) (URL. wdb) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
 	(title "init-world []"))
 
 ([MASCampus_Class10002] of  CloFunction
@@ -74,10 +82,34 @@
 	(source "(create-display wgui world)")
 	(title "createDisplay [this wgui world]"))
 
+([MASCampus_Class110001] of  CloFuncall
+
+	(source "(def mg10 (sim.util.geo.MasonGeometry. pnt10))"))
+
+([MASCampus_Class110002] of  CloFuncall
+
+	(source "(dotimes [i 100] (.step nwf stat))"))
+
 ([MASCampus_Class12] of  CloFunction
 
 	(source "(setup-ports display world)")
 	(title "setup [this display world]"))
+
+([MASCampus_Class120000] of  CloFuncall
+
+	(source "(def pnt10 (.createPoint mas.world.campus/factory crd10))"))
+
+([MASCampus_Class120001] of  CloFuncall
+
+	(source "(dotimes [i 100] (.step nwf stat) )"))
+
+([MASCampus_Class120004] of  CloFuncall
+
+	(source "(def crd10 (-> mas.world.campus/network .getNetwork .getAllNodes (.get 860) .getCoordinate))"))
+
+([MASCampus_Class120006] of  CloFuncall
+
+	(source "(dotimes [i 100] (.step nwf stat) (println i (.getLocation nwf)))"))
 
 ([MASCampus_Class2] of  CloType
 
@@ -87,13 +119,13 @@
 
 ([MASCampus_Class20000] of  CloVar
 
-	(source "\"file:data/mas/campus/bldg.shp\"")
-	(title "BUILDINGS-URL"))
+	(source "[\"file:data/mas/campus/bldg.shp\"\n \"file:data/mas/campus/bldg.dbf\"]")
+	(title "BUILDINGS-URLS"))
 
 ([MASCampus_Class20001] of  CloVar
 
-	(source "\"file:data/mas/campus/roads.shp\"")
-	(title "ROADS-URL"))
+	(source "[\"file:data/mas/campus/roads.shp\"\n \"file:data/mas/campus/roads.dbf\"]")
+	(title "ROADS-URLS"))
 
 ([MASCampus_Class20002] of  CloVar
 
@@ -202,8 +234,8 @@
 
 ([MASCampus_Class30002] of  CloVar
 
-	(source "\"file:data/mas/campus/walk_ways.shp\"")
-	(title "WALKWAYS-URL"))
+	(source "[\"file:data/mas/campus/walk_ways.shp\"\n \"file:data/mas/campus/walk_ways.dbf\"]")
+	(title "WALKWAYS-URLS"))
 
 ([MASCampus_Class4] of  CloType
 
@@ -228,7 +260,7 @@
 
 ([MASCampus_Class50000] of  CloFuncall
 
-	(source "(compile 'mas.world.campus)"))
+	(source "(mas.world.campus/init-world)"))
 
 ([MASCampus_Class6] of  CloFunction
 
@@ -244,8 +276,14 @@
 
 	(cloFunctions
 		[MASCampus_Class8]
-		[MASCampus_Class9])
+		[MASCampus_Class9]
+		[MASCampus_Class70000])
 	(title "ru.igis.sim.IWorld"))
+
+([MASCampus_Class70000] of  CloFunction
+
+	(source "(ShapeFileExporter/write \"data/mas/campus/Agents\" agents)")
+	(title "finish [this world]"))
 
 ([MASCampus_Class8] of  CloFunction
 

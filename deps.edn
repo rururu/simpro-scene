@@ -24,7 +24,7 @@
   semantic-csv {:mvn/version "0.2.1-alpha1"}
   seesaw {:mvn/version "1.5.0"}
   GeographicLib {:local/root "lib_ext/GeographicLib-Java-1.42.jar"}
-  mason {:local/root "lib_mas/mason.19.jar"}
+  mason {:local/root "lib_mas/mason.20.jar"}
   batik {:local/root "lib_mas/batik-all-1.9.jar"}
   bsh {:local/root "lib_mas/bsh-2.0b4.jar"}
   itext {:local/root "lib_mas/itext-1.2.jar"}
@@ -33,7 +33,7 @@
   jmf {:local/root "lib_mas/jmf.jar"}
   portfolio {:local/root "lib_mas/portfolio.jar"}
   surfaceplotter {:local/root "lib_mas/surfaceplotter-2.0.2-20131206.230546-631.jar"}
-  geomason {:local/root "lib_mas/geomason.1.5.jar"}
+  geomason {:local/root "lib_mas/geomason-1.6.jar"}
   jts {:local/root "lib_mas/jts-1.13.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
   CloAgents {:local/root "lib/CloAgents.jar"}
