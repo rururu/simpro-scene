@@ -1,4 +1,4 @@
-; Sun Oct 13 22:35:07 MSK 2019
+; Wed Oct 16 21:59:39 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -43,7 +43,7 @@
 
 ([MASCampus_Class1] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdge)")
 	(title "mas.world.campus"))
 
 ([MASCampus_Class10] of  CloImplementation
@@ -204,7 +204,7 @@
 
 ([MASCampus_Class20018] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       rand (.random world)\n       nds (-> network\n               .getNetwork \n               .getAllNodes)\n       crd (-> nds \n               (.get (.nextInt rand (.size nds))) \n               .getCoordinate)\n       pnt (.createPoint factory crd)\n       loc (MasonGeometry. pnt)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       nwf (NetworkFollower. network loc rate re world)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       ww-geos (.getGeometries walkways)\n       wwn (.nextInt rand (.numObjs ww-geos))\n       mg (.get ww-geos wwn)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       lf (LineFollower. (.getGeometry mg) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
 	(title "create-astate [world]"))
 
 ([MASCampus_Class3] of  CloType

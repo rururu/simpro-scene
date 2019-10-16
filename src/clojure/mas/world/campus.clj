@@ -17,6 +17,7 @@
   com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory
   com.vividsolutions.jts.linearref.LengthIndexedLine
+  ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.RandomEdge))
 (def NUM-AGENTS 1000)
@@ -93,17 +94,15 @@
 
 (defn create-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
+       point (.createPoint factory (Coordinate. 10 10))
+       loc (MasonGeometry. point)
        rand (.random world)
-       nds (-> network
-               .getNetwork 
-               .getAllNodes)
-       crd (-> nds 
-               (.get (.nextInt rand (.size nds))) 
-               .getCoordinate)
-       pnt (.createPoint factory crd)
-       loc (MasonGeometry. pnt)
+       ww-geos (.getGeometries walkways)
+       wwn (.nextInt rand (.numObjs ww-geos))
+       mg (.get ww-geos wwn)
        rate (* 1.0 (Math/abs (.nextGaussian rand)))
-       nwf (NetworkFollower. network loc rate re world)]
+       lf (LineFollower. (.getGeometry mg) loc rate)
+       nwf (NetworkFollower. network lf loc rate re world)]
   (if (.nextBoolean rand)
          (do (.addStringAttribute loc "TYPE" "STUDENT")
                (.addIntegerAttribute loc "AGE"
