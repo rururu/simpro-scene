@@ -1,4 +1,4 @@
-; Sun Oct 13 15:24:59 MSK 2019
+; Thu Oct 17 14:01:08 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -59,14 +59,6 @@
 	(source "1000")
 	(title "WIDTH"))
 
-([MASCampus_Class100000] of  CloFuncall
-
-	(source "(def stat (sim.engine.SimState. 1000))"))
-
-([MASCampus_Class100003] of  CloFuncall
-
-	(source "(def re (ru.igis.sim.util.RandomEdge.))"))
-
 ([MASCampus_Class10001] of  CloFunction
 
 	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)\n       [bsh bdb] BUILDINGS-URLS\n       [rsh rdb] ROADS-URLS\n       [wsh wdb] WALKWAYS-URLS]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. wsh) (URL. wdb) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
@@ -82,34 +74,10 @@
 	(source "(create-display wgui world)")
 	(title "createDisplay [this wgui world]"))
 
-([MASCampus_Class110001] of  CloFuncall
-
-	(source "(def mg10 (sim.util.geo.MasonGeometry. pnt10))"))
-
-([MASCampus_Class110002] of  CloFuncall
-
-	(source "(dotimes [i 100] (.step nwf stat))"))
-
 ([MASCampus_Class12] of  CloFunction
 
 	(source "(setup-ports display world)")
 	(title "setup [this display world]"))
-
-([MASCampus_Class120000] of  CloFuncall
-
-	(source "(def pnt10 (.createPoint mas.world.campus/factory crd10))"))
-
-([MASCampus_Class120001] of  CloFuncall
-
-	(source "(dotimes [i 100] (.step nwf stat) )"))
-
-([MASCampus_Class120004] of  CloFuncall
-
-	(source "(def crd10 (-> mas.world.campus/network .getNetwork .getAllNodes (.get 860) .getCoordinate))"))
-
-([MASCampus_Class120006] of  CloFuncall
-
-	(source "(dotimes [i 100] (.step nwf stat) (println i (.getLocation nwf)))"))
 
 ([MASCampus_Class2] of  CloType
 
@@ -258,10 +226,6 @@
 	(cloFunctions [MASCampus_Class6])
 	(title "sim.engine.Steppable"))
 
-([MASCampus_Class50000] of  CloFuncall
-
-	(source "(mas.world.campus/init-world)"))
-
 ([MASCampus_Class6] of  CloFunction
 
 	(source "(move astate world)")
@@ -289,6 +253,10 @@
 
 	(source "(load \"mas/world/campus\")\n(init-world)")
 	(title "initialise [this]"))
+
+([MASCampus_Class80000] of  CloFuncall
+
+	(source "(compile 'mas.world.campus)"))
 
 ([MASCampus_Class9] of  CloFunction
 

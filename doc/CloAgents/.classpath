@@ -6,9 +6,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/ru/clojure/simpro-scene/lib_mas/mason.19.jar"/>
+	<classpathentry kind="lib" path="/home/ru/clojure/simpro-scene/lib_mas/mason.20.jar"/>
 	<classpathentry kind="lib" path="/home/ru/clojure/simpro-scene/classes"/>
 	<classpathentry kind="lib" path="/home/ru/pro/Scena-1.2.1/lib_ext/clojure-1.10.0.jar"/>
 	<classpathentry kind="lib" path="/home/ru/pro/Scena-1.2.1/lib_ext/spec.alpha-0.2.176.jar"/>
+	<classpathentry kind="lib" path="/home/ru/clojure/simpro-scene/lib_mas/geomason-1.6.jar"/>
+	<classpathentry kind="lib" path="/home/ru/clojure/simpro-scene/lib_mas/jts-1.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

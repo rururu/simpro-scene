@@ -6,4 +6,6 @@ public interface IWorld {
 	
 	public void start(World world);    
 
+	public void finish(World world);    
+
 }

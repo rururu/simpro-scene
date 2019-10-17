@@ -20,6 +20,11 @@ public class World extends SimState  {
 		iworld.start(this);
 	}
 	
+	public void finish() {
+		super.finish();
+		iworld.finish(this);
+	}
+	
 	@SuppressWarnings("all")
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {

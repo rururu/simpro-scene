@@ -1,4 +1,4 @@
-; Tue Oct 08 16:47:37 MSK 2019
+; Thu Oct 17 21:13:05 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,6 +11,16 @@
 	(lineColor "ff0000ff")
 	(prettyName "Agents")
 	(shapeFile "data/mas/campus/Agents.shp"))
+
+([Hiitolanjoki_Class10000] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "200000FF")
+	(label "HiiLakes")
+	(lineColor "ff0000ff")
+	(prettyName "Hiitolanjoki Lakes")
+	(shapeFile "data/shape/hiitolanjoki/hiitolanjoki_a.shp")
+	(spatialIndex "data/shape/vuoksi/hiitolanjoki_a.shx"))
 
 ([Hiitolanjoki_Class12] of  OMTPoly
 
@@ -1343,6 +1353,7 @@
 	(layers
 		[igis_Class40012]
 		[VuoksiLohi_Class1]
+		[Hiitolanjoki_Class10000]
 		[igis_Class1]
 		[igis_Class40011]
 		[Hiitolanjoki_Class0])
@@ -1350,6 +1361,7 @@
 	(Scale "400000")
 	(startUpLayers
 		[igis_Class40012]
+		[Hiitolanjoki_Class10000]
 		[VuoksiLohi_Class1]
 		[igis_Class1]
 		[igis_Class40011]))
@@ -1358,11 +1370,11 @@
 
 	(class "com.bbn.openmap.layer.shape.ShapeLayer")
 	(fillColor "200000FF")
-	(label "HiiVesi")
+	(label "HiiRivers")
 	(lineColor "ff0000ff")
-	(prettyName "Hiitolanjoki Vesi")
-	(shapeFile "data/shape/hiitolanjoki/water_l.shp")
-	(spatialIndex "data/shape/vuoksi/water_l.shx"))
+	(prettyName "Hiitolanjoki Rivers")
+	(shapeFile "data/shape/hiitolanjoki/hiitolanjoki_l.shp")
+	(spatialIndex "data/shape/vuoksi/hiitolanjoki_l.shx"))
 
 ([VuoksiLohi_Class2] of  %3AINSTANCE-ANNOTATION
 
