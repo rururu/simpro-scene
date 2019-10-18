@@ -16,10 +16,7 @@
   com.vividsolutions.jts.geom.Envelope
   com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory
-  com.vividsolutions.jts.linearref.LengthIndexedLine
-  ru.igis.sim.util.LineFollower
-  ru.igis.sim.util.NetworkFollower
-  ru.igis.sim.util.RandomEdge))
+  com.vividsolutions.jts.linearref.LengthIndexedLine))
 (def NUM-AGENTS 1000)
 (def WIDTH 1000)
 (def HEIGHT 1000)
@@ -48,7 +45,7 @@
   move))
 (deftype Agent [astate ]
 	sim.engine.Steppable
-	(step [this world] (.step (:net-follower @astate) world))
+	(step [this world] (move astate world))
 )
 (deftype CampusWorld []
 	ru.igis.sim.IWorld
@@ -65,14 +62,10 @@
 )
 (defn init-world []
   (let [netiter (.nodeIterator network)
-       masked (Bag.)
        MBR (.getMBR buildings)
        [bsh bdb] BUILDINGS-URLS
        [rsh rdb] ROADS-URLS
        [wsh wdb] WALKWAYS-URLS]
-  (.add masked "NAME")
-  (.add masked "FLOORS")
-  (.add masked "ADDR_NUM")
   (println "reading buildings layer") 
   (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)
   (println "reading roads layer") 
@@ -92,17 +85,65 @@
            point (.createPoint factory coord)]
       (.addGeometry junctions (MasonGeometry. point))))))
 
+(defn move-to [coord point-to loc-geo]
+  (.setCoordinate point-to coord)
+(.apply loc-geo point-to)
+(.geometryChanged loc-geo))
+
+(defn find-new-path [world loc-geo]
+  (if-let [curr-junc (.findNode network (.getCoordinate loc-geo))]
+  (let [des (.getOutEdges curr-junc)
+         edges (.getEdges des)
+         nxt (.nextInt (.random world) (count edges))
+         dired (nth (seq edges) nxt)
+         edge (.getEdge dired)
+         newp (.getLine edge)
+         startp (.getStartPoint newp)
+         endp (.getEndPoint newp)]
+    (if (= startp loc-geo)
+      [newp true]
+      (if (= endp loc-geo)
+        [newp false]
+        (do (println "Where am I?") nil))))))
+
+(defn set-new-route [line start astate point-to loc-geo]
+  (let [seg (LengthIndexedLine. line)
+       sind (.getStartIndex seg)
+       eind (.getEndIndex seg)]
+  (vswap! astate assoc
+    :segment seg
+    :start-index sind
+    :end-index eind)
+  (if start
+    (do (vswap! astate assoc
+            :curr-index sind
+            :move-rate (:base-rate @astate))
+      (move-to (.extractPoint seg sind) point-to loc-geo))
+    (do (vswap! astate assoc
+            :curr-index eind
+            :move-rate (- (:base-rate @astate)))
+      (move-to (.extractPoint seg eind) point-to loc-geo)))))
+
 (defn create-astate [world]
-  (let [re (ru.igis.sim.util.RandomEdge.)
-       point (.createPoint factory (Coordinate. 10 10))
+  (let [point (.createPoint factory (Coordinate. 10 10))
        loc (MasonGeometry. point)
+       loc-geo (.getGeometry loc)
+       point-to (PointMoveTo.)
+       base-rate 1.0
+       astate (volatile! {:base-rate base-rate
+                                 :move-rate base-rate
+                                 :segment nil
+                                 :start-index 0.0
+                                 :end-index 0.0
+                                 :curr-index 0.0
+                                 :point-to point-to
+                                 })
        rand (.random world)
        ww-geos (.getGeometries walkways)
        wwn (.nextInt rand (.numObjs ww-geos))
-       mg (.get ww-geos wwn)
-       rate (* 1.0 (Math/abs (.nextGaussian rand)))
-       lf (LineFollower. (.getGeometry mg) loc rate)
-       nwf (NetworkFollower. network lf loc rate re world)]
+       mg (.get ww-geos wwn)]
+  (set! (.isMovable loc) true)
+  (set-new-route (.getGeometry mg) true astate point-to loc-geo)
   (if (.nextBoolean rand)
          (do (.addStringAttribute loc "TYPE" "STUDENT")
                (.addIntegerAttribute loc "AGE"
@@ -110,9 +151,12 @@
          (do (.addStringAttribute loc "TYPE" "FACULTY")
                (.addIntegerAttribute loc "AGE"
                   (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))
-  (.addDoubleAttribute loc "MOVE RATE" rate)
-  (volatile! {:location loc
-                  :net-follower nwf})))
+  (let [base-rate (* base-rate (Math/abs (.nextGaussian rand)))]
+    (.addDoubleAttribute loc "MOVE RATE" base-rate)
+    (vswap! astate assoc
+      :location loc
+      :base-rate base-rate))
+  astate))
 
 (defn start-world [world]
   (let [schedule (.schedule world)]
@@ -135,6 +179,31 @@
   (.attach display walk-port "Walkways" true)
   (.attach display agent-port "Agents" true)
   display))
+
+(defn move [astate world]
+  (let [ast @astate
+       move-rate (:move-rate ast)
+       curr-index (:curr-index ast)
+       start-index (:start-index ast)
+       end-index (:end-index ast)
+       point-to (:point-to ast)
+       location (:location ast)
+       loc-geo (.getGeometry location)]
+  (if (or (and (> move-rate 0) (>= curr-index end-index))
+           (and (< move-rate 0) (<= curr-index start-index)))
+    (let [[newp start] (find-new-path world loc-geo)]
+      (set-new-route newp start astate point-to loc-geo))
+    (let [curr-index (+ curr-index move-rate)
+           curr-index (if (< move-rate 0)
+                              (if (< curr-index start-index)
+                                  start-index
+                                  curr-index)
+                              (if (> curr-index end-index)
+                                  end-index
+                                  curr-index))
+           curr-pos (.extractPoint (:segment ast) curr-index)]
+      (move-to curr-pos point-to loc-geo)
+      (vswap! astate assoc :curr-index curr-index)))))
 
 (defn setup-ports [display world]
   (.setField walk-port walkways)

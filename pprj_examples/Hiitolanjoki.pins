@@ -1,4 +1,4 @@
-; Thu Oct 17 21:13:05 MSK 2019
+; Fri Oct 18 21:51:10 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -384,6 +384,72 @@
 	(poly [Hiitolanjoki_Class21])
 	(title "Hiitolanjoki Vesi371 69"))
 
+([Hiitolanjoki_Class20000] of  MASProgram
+
+	(cloFunctions
+		[Hiitolanjoki_Class30046]
+		[Hiitolanjoki_Class30014]
+		[Hiitolanjoki_Class30015]
+		[Hiitolanjoki_Class30009])
+	(cloNamespace [Hiitolanjoki_Class20001])
+	(cloTypes
+		[Hiitolanjoki_Class20002]
+		[Hiitolanjoki_Class20005])
+	(cloVars
+		[Hiitolanjoki_Class30006]
+		[Hiitolanjoki_Class30007]
+		[Hiitolanjoki_Class30000]
+		[Hiitolanjoki_Class30001]
+		[Hiitolanjoki_Class30004]
+		[Hiitolanjoki_Class30005]
+		[Hiitolanjoki_Class30002]
+		[Hiitolanjoki_Class30003]
+		[Hiitolanjoki_Class30012]
+		[Hiitolanjoki_Class30011]
+		[Hiitolanjoki_Class30016]
+		[Hiitolanjoki_Class30017]
+		[Hiitolanjoki_Class30018])
+	(title "Hiitolanjoki"))
+
+([Hiitolanjoki_Class20001] of  CloNamespace
+
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdge)")
+	(title "mas.world.hiitolanjoki"))
+
+([Hiitolanjoki_Class20002] of  CloType
+
+	(cloProtocols [Hiitolanjoki_Class20003])
+	(fields "astate")
+	(title "AdultSalmon"))
+
+([Hiitolanjoki_Class20003] of  CloImplementation
+
+	(cloFunctions [Hiitolanjoki_Class20004])
+	(title "sim.engine.Steppable"))
+
+([Hiitolanjoki_Class20004] of  CloFunction
+
+	(source "(.step (:net-follower @astate) world)")
+	(title "step [this world]"))
+
+([Hiitolanjoki_Class20005] of  CloType
+
+	(cloProtocols [Hiitolanjoki_Class20006])
+	(title "JokiWorld"))
+
+([Hiitolanjoki_Class20006] of  CloImplementation
+
+	(cloFunctions
+		[Hiitolanjoki_Class20007]
+		[Hiitolanjoki_Class30008]
+		[Hiitolanjoki_Class30013])
+	(title "ru.igis.sim.IWorld"))
+
+([Hiitolanjoki_Class20007] of  CloFunction
+
+	(source "(load \"mas/world/hiitolanjoki\")\n(let [netiter (.nodeIterator network)\n       MBR (.getMBR rivers)\n       [rsh rdb] RIVERS-URLS\n       [lsh ldb] LAKES-URLS]\n  (println \"reading rivers layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) rivers)\n  (println \"reading lakes layer\") \n  (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)\n  (.expandToInclude MBR (.getMBR lakes))\n  (println \"Done reading data\")\n  (.setMBR rivers MBR)\n  (.setMBR lakes MBR)\n  (.createFromGeomField network rivers)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(title "initialise [this]"))
+
 ([Hiitolanjoki_Class21] of  OMTPoly
 
 	(label "Asilanjoki")
@@ -675,6 +741,181 @@
 		"61 24.33 29 24.8"
 		"61 24.31 29 24.83")
 	(relative FALSE))
+
+([Hiitolanjoki_Class30000] of  CloVar
+
+	(source "1000")
+	(title "WIDTH"))
+
+([Hiitolanjoki_Class30001] of  CloVar
+
+	(source "1000")
+	(title "HEIGHT"))
+
+([Hiitolanjoki_Class30002] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "rivers"))
+
+([Hiitolanjoki_Class30003] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "lakes"))
+
+([Hiitolanjoki_Class30004] of  CloVar
+
+	(source "[\"file:data/mas/shape/hiitolanjoki/hiitolanjoki_1.shp\"\n \"file:data/mas/shape/hiitolanjoki/hiitolanjoki_1.dbf\"]")
+	(title "RIVERS-URLS"))
+
+([Hiitolanjoki_Class30005] of  CloVar
+
+	(source "[\"file:data/mas/shape/hiitolanjoki/hiitolanjoki_a.shp\"\n \"file:data/mas/shape/hiitolanjoki/hiitolanjoki_a.dbf\"]")
+	(title "LAKES-URLS"))
+
+([Hiitolanjoki_Class30006] of  CloVar
+
+	(source "1")
+	(title "NUM-A-SALMONS"))
+
+([Hiitolanjoki_Class30007] of  CloVar
+
+	(source "1")
+	(title "NUM-Y-SALMONS"))
+
+([Hiitolanjoki_Class30008] of  CloFunction
+
+	(source "(let [schedule (.schedule world)]\n  (.clear agents)\n  (create-geo-agents AdultSalmon NUM-A-SALMONS create-adult-salmon adult-salmons)\n  (create-geo-agents YoungSalmon NUM-Y-SALMONS create-young-salmon young-salmons)\n  (.setMBR adult-salmons (.getMBR rivers))\n  (.setMBR young-salmons (.getMBR rivers))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater adult-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0))")
+	(title "start [this world]"))
+
+([Hiitolanjoki_Class30009] of  CloFunction
+
+	(source "(dotimes [i anumb]\n  (let [astate (create-agent-fn world)\n         a (instance agent-class astate)]\n    (.addGeometry geo-vec-field (:location @astate))\n    (.scheduleRepeating schedule a)))")
+	(title "create-geo-agents [agent-class anumb create-agent-fn geo-vec-field]"))
+
+([Hiitolanjoki_Class30011] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "young-salmons"))
+
+([Hiitolanjoki_Class30012] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "adult-salmons"))
+
+([Hiitolanjoki_Class30013] of  CloFunction
+
+	(source ";;(ShapeFileExporter/write \"data/mas/campus/Agents\" agents)\nnil")
+	(title "finish [this world]"))
+
+([Hiitolanjoki_Class30014] of  CloFunction
+
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       ww-geos (.getGeometries walkways)\n       wwn (.nextInt rand (.numObjs ww-geos))\n       mg (.get ww-geos wwn)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       lf (LineFollower. (.getGeometry mg) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(title "create-adult-salmon [world]"))
+
+([Hiitolanjoki_Class30015] of  CloFunction
+
+	(source "nil")
+	(title "create-young-salmon [world]"))
+
+([Hiitolanjoki_Class30016] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "junctions"))
+
+([Hiitolanjoki_Class30017] of  CloVar
+
+	(source "(GeomPlanarGraph.)")
+	(title "network"))
+
+([Hiitolanjoki_Class30018] of  CloVar
+
+	(source "(GeometryFactory.)")
+	(title "factory"))
+
+([Hiitolanjoki_Class30026] of  CloFuncall
+
+	(source "(f1 [x] `((class ~x).))"))
+
+([Hiitolanjoki_Class30027] of  CloFuncall
+
+	(source "(f1 [x] `(new (class ~x)))"))
+
+([Hiitolanjoki_Class30028] of  CloFuncall
+
+	(source "(defn f1 [x] `((class ~x).))"))
+
+([Hiitolanjoki_Class30029] of  CloFuncall
+
+	(source "(defmacro f1 [x] `((class ~x).))"))
+
+([Hiitolanjoki_Class30030] of  CloFuncall
+
+	(source "(macroexpand (f1 sim.util.Bag))"))
+
+([Hiitolanjoki_Class30031] of  CloFuncall
+
+	(source "(defmacro f1 [x] `(~x.))"))
+
+([Hiitolanjoki_Class30032] of  CloFuncall
+
+	(source "(defmacro f1 [x] `(new (class ~x)))"))
+
+([Hiitolanjoki_Class30033] of  CloFuncall
+
+	(source "(in-ns '"))
+
+([Hiitolanjoki_Class30034] of  CloFuncall
+
+	(source "(in-ns 'mas.world.hiitolanjoki)"))
+
+([Hiitolanjoki_Class30035] of  CloFuncall
+
+	(source "(f1 (class sim.util.Bag))"))
+
+([Hiitolanjoki_Class30036] of  CloFuncall
+
+	(source "(f1 (class Bag))"))
+
+([Hiitolanjoki_Class30037] of  CloFuncall
+
+	(source "(f1 Bag)"))
+
+([Hiitolanjoki_Class30038] of  CloFuncall
+
+	(source "(Bag.)"))
+
+([Hiitolanjoki_Class30039] of  CloFuncall
+
+	(source "(type Bag)"))
+
+([Hiitolanjoki_Class30040] of  CloFuncall
+
+	(source "(defmacro f1 [x] `(new ~x))"))
+
+([Hiitolanjoki_Class30041] of  CloFuncall
+
+	(source "(defmacro f1 [x & args] `(new ~x ~@args))"))
+
+([Hiitolanjoki_Class30042] of  CloFuncall
+
+	(source "(f1 javax.swing.Label \"QQ\")"))
+
+([Hiitolanjoki_Class30043] of  CloFuncall
+
+	(source "(f1 javax.swing.JLabel \"QQ\")"))
+
+([Hiitolanjoki_Class30044] of  CloFuncall
+
+	(source "(f1 javax.swing.JFrame \"QQ\")"))
+
+([Hiitolanjoki_Class30045] of  CloFuncall
+
+	(source "(f1 java.awt.Dimension 100 200)"))
+
+([Hiitolanjoki_Class30046] of  CloMacro
+
+	(source "`(new ~x ~@args)")
+	(title "instance [x & args]"))
 
 ([Hiitolanjoki_Class7] of  OMTPoly
 

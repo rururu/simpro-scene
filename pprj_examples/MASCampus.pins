@@ -1,4 +1,4 @@
-; Thu Oct 17 14:01:08 MSK 2019
+; Fri Oct 18 15:13:34 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -61,7 +61,7 @@
 
 ([MASCampus_Class10001] of  CloFunction
 
-	(source "(let [netiter (.nodeIterator network)\n       masked (Bag.)\n       MBR (.getMBR buildings)\n       [bsh bdb] BUILDINGS-URLS\n       [rsh rdb] ROADS-URLS\n       [wsh wdb] WALKWAYS-URLS]\n  (.add masked \"NAME\")\n  (.add masked \"FLOORS\")\n  (.add masked \"ADDR_NUM\")\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. wsh) (URL. wdb) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(source "(let [netiter (.nodeIterator network)\n       MBR (.getMBR buildings)\n       [bsh bdb] BUILDINGS-URLS\n       [rsh rdb] ROADS-URLS\n       [wsh wdb] WALKWAYS-URLS]\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. wsh) (URL. wdb) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
 	(title "init-world []"))
 
 ([MASCampus_Class10002] of  CloFunction
