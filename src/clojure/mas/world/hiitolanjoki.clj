@@ -35,7 +35,15 @@
 (def junctions (GeomVectorField. WIDTH HEIGHT))
 (def network (GeomPlanarGraph.))
 (def factory (GeometryFactory.))
+(def declare-before (declare
+  create-adult-salmon
+  create-young-salmon
+  create-geo-agents))
 (deftype AdultSalmon [astate ]
+	sim.engine.Steppable
+	(step [this world] (.step (:net-follower @astate) world))
+)
+(deftype YoungSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (.step (:net-follower @astate) world))
 )
@@ -61,9 +69,18 @@
            point (.createPoint factory coord)]
       (.addGeometry junctions (MasonGeometry. point))))))
 	(start [this world] (let [schedule (.schedule world)]
-  (.clear agents)
-  (create-adult)
-  (create-young)
+  (.clear adult-salmons)
+  (.clear young-salmons)
+  (dotimes [i NUM-A-SALMONS]
+    (let [astate (create-asalmon-astate world)
+           a (AdultSalmon. astate)]
+      (.addGeometry adult-salmons (:location @astate))
+      (.scheduleRepeating schedule a)))
+  (dotimes [i NUM-Y-SALMONS]
+    (let [astate (create-ysalmon-astate world)
+           a (YoungSalmon. astate)]
+      (.addGeometry young-salmons (:location @astate))
+      (.scheduleRepeating schedule a)))
   (.setMBR adult-salmons (.getMBR rivers))
   (.setMBR young-salmons (.getMBR rivers))
   (.scheduleRepeating schedule 
@@ -77,42 +94,20 @@
 	(finish [this world] ;;(ShapeFileExporter/write "data/mas/campus/Agents" agents)
 nil)
 )
-(defn create-adult-salmon [world]
+(defn create-asalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
        point (.createPoint factory (Coordinate. 10 10))
        loc (MasonGeometry. point)
        rand (.random world)
-       ww-geos (.getGeometries walkways)
-       wwn (.nextInt rand (.numObjs ww-geos))
-       mg (.get ww-geos wwn)
+       rivgs (.getGeometries rivers)
+       next (.nextInt rand (.numObjs rivgs))
+       rig (.get rivgs next)
        rate (* 1.0 (Math/abs (.nextGaussian rand)))
-       lf (LineFollower. (.getGeometry mg) loc rate)
+       lf (LineFollower. (.getGeometry rig) loc rate)
        nwf (NetworkFollower. network lf loc rate re world)]
-  (if (.nextBoolean rand)
-         (do (.addStringAttribute loc "TYPE" "STUDENT")
-               (.addIntegerAttribute loc "AGE"
-                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))
-         (do (.addStringAttribute loc "TYPE" "FACULTY")
-               (.addIntegerAttribute loc "AGE"
-                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))
-  (.addDoubleAttribute loc "MOVE RATE" rate)
   (volatile! {:location loc
                   :net-follower nwf})))
 
-(defn create-young-salmon [world]
+(defn create-ysalmon-astate [world]
   nil)
-
-(defn create-adult []
-  (dotimes [i NUM-A-SALMONS]
-  (let [astate (create-adult-salmon world)
-         a (AdultSalmon. astate)]
-    (.addGeometry adult-salmons (:location @astate))
-    (.scheduleRepeating schedule a))))
-
-(defn create-young []
-  (dotimes [i NUM-Y-SALMONS]
-  (let [astate (create-young-salmon world)
-         a (YoungSalmon. astate)]
-    (.addGeometry young-salmons (:location @astate))
-    (.scheduleRepeating schedule a))))
 

@@ -1,4 +1,4 @@
-; Fri Oct 18 21:51:10 MSK 2019
+; Sat Oct 19 23:33:50 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -387,13 +387,12 @@
 ([Hiitolanjoki_Class20000] of  MASProgram
 
 	(cloFunctions
-		[Hiitolanjoki_Class30046]
 		[Hiitolanjoki_Class30014]
-		[Hiitolanjoki_Class30015]
-		[Hiitolanjoki_Class30009])
+		[Hiitolanjoki_Class30015])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class20002]
+		[Hiitolanjoki_Class40000]
 		[Hiitolanjoki_Class20005])
 	(cloVars
 		[Hiitolanjoki_Class30006]
@@ -408,7 +407,8 @@
 		[Hiitolanjoki_Class30011]
 		[Hiitolanjoki_Class30016]
 		[Hiitolanjoki_Class30017]
-		[Hiitolanjoki_Class30018])
+		[Hiitolanjoki_Class30018]
+		[Hiitolanjoki_Class40002])
 	(title "Hiitolanjoki"))
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
@@ -784,13 +784,8 @@
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(let [schedule (.schedule world)]\n  (.clear agents)\n  (create-geo-agents AdultSalmon NUM-A-SALMONS create-adult-salmon adult-salmons)\n  (create-geo-agents YoungSalmon NUM-Y-SALMONS create-young-salmon young-salmons)\n  (.setMBR adult-salmons (.getMBR rivers))\n  (.setMBR young-salmons (.getMBR rivers))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater adult-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0))")
+	(source "(let [schedule (.schedule world)]\n  (.clear adult-salmons)\n  (.clear young-salmons)\n  (dotimes [i NUM-A-SALMONS]\n    (let [astate (create-asalmon-astate world)\n           a (AdultSalmon. astate)]\n      (.addGeometry adult-salmons (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (dotimes [i NUM-Y-SALMONS]\n    (let [astate (create-ysalmon-astate world)\n           a (YoungSalmon. astate)]\n      (.addGeometry young-salmons (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (.setMBR adult-salmons (.getMBR rivers))\n  (.setMBR young-salmons (.getMBR rivers))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater adult-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0))")
 	(title "start [this world]"))
-
-([Hiitolanjoki_Class30009] of  CloFunction
-
-	(source "(dotimes [i anumb]\n  (let [astate (create-agent-fn world)\n         a (instance agent-class astate)]\n    (.addGeometry geo-vec-field (:location @astate))\n    (.scheduleRepeating schedule a)))")
-	(title "create-geo-agents [agent-class anumb create-agent-fn geo-vec-field]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
 
@@ -809,13 +804,13 @@
 
 ([Hiitolanjoki_Class30014] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       ww-geos (.getGeometries walkways)\n       wwn (.nextInt rand (.numObjs ww-geos))\n       mg (.get ww-geos wwn)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       lf (LineFollower. (.getGeometry mg) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
-	(title "create-adult-salmon [world]"))
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       rivgs (.getGeometries rivers)\n       next (.nextInt rand (.numObjs rivgs))\n       rig (.get rivgs next)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       lf (LineFollower. (.getGeometry rig) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(title "create-asalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
 	(source "nil")
-	(title "create-young-salmon [world]"))
+	(title "create-ysalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30016] of  CloVar
 
@@ -912,10 +907,36 @@
 
 	(source "(f1 java.awt.Dimension 100 200)"))
 
-([Hiitolanjoki_Class30046] of  CloMacro
+([Hiitolanjoki_Class40000] of  CloType
 
-	(source "`(new ~x ~@args)")
-	(title "instance [x & args]"))
+	(cloProtocols [Hiitolanjoki_Class20003])
+	(fields "astate")
+	(title "YoungSalmon"))
+
+([Hiitolanjoki_Class40002] of  CloVar
+
+	(source "(declare\n  create-adult-salmon\n  create-young-salmon\n  create-geo-agents)")
+	(title "declare-before"))
+
+([Hiitolanjoki_Class40003] of  CloFuncall
+
+	(source "(in-ns "))
+
+([Hiitolanjoki_Class40004] of  CloFuncall
+
+	(source "(instance Bag)"))
+
+([Hiitolanjoki_Class40005] of  CloFuncall
+
+	(source "(defn test [x] [let [inst (instance x)] inst)"))
+
+([Hiitolanjoki_Class40006] of  CloFuncall
+
+	(source "(defn test [x] (let [inst (instance x)] inst)"))
+
+([Hiitolanjoki_Class40007] of  CloFuncall
+
+	(source "(defn test [x] (let [inst (instance x)] inst))"))
 
 ([Hiitolanjoki_Class7] of  OMTPoly
 
