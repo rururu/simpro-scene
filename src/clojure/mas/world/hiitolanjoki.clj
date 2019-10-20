@@ -20,14 +20,14 @@
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.RandomEdge))
-(def NUM-A-SALMONS 1)
-(def NUM-Y-SALMONS 1)
+(def NUM-A-SALMONS 100)
+(def NUM-Y-SALMONS 100)
 (def WIDTH 1000)
 (def HEIGHT 1000)
-(def RIVERS-URLS ["file:data/mas/shape/hiitolanjoki/hiitolanjoki_1.shp"
- "file:data/mas/shape/hiitolanjoki/hiitolanjoki_1.dbf"])
-(def LAKES-URLS ["file:data/mas/shape/hiitolanjoki/hiitolanjoki_a.shp"
- "file:data/mas/shape/hiitolanjoki/hiitolanjoki_a.dbf"])
+(def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
+ "file:data/shape/hiitolanjoki/hiitolanjoki_l.dbf"])
+(def LAKES-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_a.shp"
+ "file:data/shape/hiitolanjoki/hiitolanjoki_a.dbf"])
 (def rivers (GeomVectorField. WIDTH HEIGHT))
 (def lakes (GeomVectorField. WIDTH HEIGHT))
 (def adult-salmons (GeomVectorField. WIDTH HEIGHT))
@@ -35,10 +35,13 @@
 (def junctions (GeomVectorField. WIDTH HEIGHT))
 (def network (GeomPlanarGraph.))
 (def factory (GeometryFactory.))
+(def rivers-port (GeomVectorFieldPortrayal.))
+(def lakes-port (GeomVectorFieldPortrayal.))
+(def asalmons-port (GeomVectorFieldPortrayal.))
+(def ysalmons-port (GeomVectorFieldPortrayal.))
 (def declare-before (declare
-  create-adult-salmon
-  create-young-salmon
-  create-geo-agents))
+  create-asalmon-astate
+  create-ysalmon-astate))
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (.step (:net-follower @astate) world))
@@ -94,6 +97,24 @@
 	(finish [this world] ;;(ShapeFileExporter/write "data/mas/campus/Agents" agents)
 nil)
 )
+(deftype JokiPorts []
+	ru.igis.sim.IPorts
+	(createDisplay [this wgui world] (let [display (Display2D. WIDTH HEIGHT wgui)]
+  (.attach display rivers-port "Rivers" true)
+  (.attach display lakes-port "Lakes" true)
+  (.attach display asalmons-port "ASalmons" true)
+  (.attach display ysalmons-port "YSalmons" true)
+  display))
+	(setup [this display world] (.setField rivers-port rivers)
+(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))
+(.setField lakes-port lakes)
+(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))
+(.setField asalmons-port adult-salmons)
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 3.0))
+(.setField ysalmons-port young-salmons)
+(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 2.0)))
+	(info [this] "Hiitolanjoki's Salmon")
+)
 (defn create-asalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
        point (.createPoint factory (Coordinate. 10 10))
@@ -102,12 +123,23 @@ nil)
        rivgs (.getGeometries rivers)
        next (.nextInt rand (.numObjs rivgs))
        rig (.get rivgs next)
-       rate (* 1.0 (Math/abs (.nextGaussian rand)))
+       rate 0.001
        lf (LineFollower. (.getGeometry rig) loc rate)
        nwf (NetworkFollower. network lf loc rate re world)]
   (volatile! {:location loc
                   :net-follower nwf})))
 
 (defn create-ysalmon-astate [world]
-  nil)
+  (let [re (ru.igis.sim.util.RandomEdge.)
+       point (.createPoint factory (Coordinate. 10 10))
+       loc (MasonGeometry. point)
+       rand (.random world)
+       rivgs (.getGeometries rivers)
+       next (.nextInt rand (.numObjs rivgs))
+       rig (.get rivgs next)
+       rate 0.001
+       lf (LineFollower. (.getGeometry rig) loc rate)
+       nwf (NetworkFollower. network lf loc rate re world)]
+  (volatile! {:location loc
+                  :net-follower nwf})))
 

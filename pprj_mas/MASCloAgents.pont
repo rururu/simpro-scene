@@ -1,0 +1,39 @@
+; Sun Oct 20 21:43:33 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot but-mas-run
+		(type STRING)
+		(default "Run with GUI/mas.cloagents/run-with-GUI")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sim.engine.Steppable
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot java-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass MASProgram
+	(is-a CloProgram)
+	(role concrete))
+
+(defclass MASPanel
+	(is-a USER)
+	(role concrete)
+	(single-slot but-mas-run
+		(type STRING)
+		(default "Run with GUI/mas.cloagents/run-with-GUI")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot java-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Sun Jun 10 12:04:00 MSK 2018
+; Sun Oct 20 18:46:20 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -191,10 +191,6 @@
 		[MapInspector_Class20017]
 		[MapInspector_Class20018])
 	(title "Map Inspector"))
-
-([MapInspector_Class10000] of  CloFuncall
-
-	(source "(ru.igis.omtab.OpenMapTab/getMapBean)"))
 
 ([MapInspector_Class20000] of  MLayer
 

@@ -1,0 +1,232 @@
+; Sun Oct 20 21:46:27 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASTurkana_Class0] of  MASProgram
+
+	(cloNamespace [MASTurkana_Class1])
+	(cloTypes
+		[MASTurkana_Class2]
+		[MASTurkana_Class3]
+		[MASTurkana_Class4])
+	(cloVars
+		[MASTurkana_Class31]
+		[MASTurkana_Class32]
+		[MASTurkana_Class14]
+		[MASTurkana_Class33]
+		[MASTurkana_Class15]
+		[MASTurkana_Class16]
+		[MASTurkana_Class17]
+		[MASTurkana_Class18]
+		[MASTurkana_Class19]
+		[MASTurkana_Class20]
+		[MASTurkana_Class21]
+		[MASTurkana_Class22]
+		[MASTurkana_Class23]
+		[MASTurkana_Class24]
+		[MASTurkana_Class25]
+		[MASTurkana_Class26]
+		[MASTurkana_Class27]
+		[MASTurkana_Class28]
+		[MASTurkana_Class29]
+		[MASTurkana_Class30]
+		[MASTurkana_Class38])
+	(title "Turcana"))
+
+([MASTurkana_Class1] of  CloNamespace
+
+	(title "mas.world.turcana"))
+
+([MASTurkana_Class10] of  CloImplementation
+
+	(cloFunctions
+		[MASTurkana_Class11]
+		[MASTurkana_Class12]
+		[MASTurkana_Class13])
+	(title "ru.igis.sim.IPorts"))
+
+([MASTurkana_Class10000] of  CloFuncall
+
+	(source "(compile 'mas.world.turcana)"))
+
+([MASTurkana_Class10001] of  MASWorldPanel
+
+	(but-world-run "Run WorldGUI/mas.world/run-world-gui"))
+
+([MASTurkana_Class11] of  CloFunction
+
+	(source "nil")
+	(title "createDisplay [this wgui world]"))
+
+([MASTurkana_Class12] of  CloFunction
+
+	(source "nil")
+	(title "setup [this display world]"))
+
+([MASTurkana_Class13] of  CloFunction
+
+	(source "nil")
+	(title "info [this]"))
+
+([MASTurkana_Class14] of  CloVar
+
+	(source "144")
+	(title "MONTHS-OF-WEATHER"))
+
+([MASTurkana_Class15] of  CloVar
+
+	(source "[]")
+	(title "agents"))
+
+([MASTurkana_Class16] of  CloVar
+
+	(source "0")
+	(title "pop-dens-grid"))
+
+([MASTurkana_Class17] of  CloVar
+
+	(source "0")
+	(title "rain-grid"))
+
+([MASTurkana_Class18] of  CloVar
+
+	(source "[]")
+	(title "mon-rain-grids"))
+
+([MASTurkana_Class19] of  CloVar
+
+	(source "0")
+	(title "ndvi-grid"))
+
+([MASTurkana_Class2] of  CloType
+
+	(cloProtocols [MASTurkana_Class5])
+	(fields "tstate")
+	(title "Turcanian"))
+
+([MASTurkana_Class20] of  CloVar
+
+	(title "veget-grid"))
+
+([MASTurkana_Class21] of  CloVar
+
+	(title "agent-grid"))
+
+([MASTurkana_Class22] of  CloVar
+
+	(source "(volatile! 0.1)")
+	(title "veg-grow-rate"))
+
+([MASTurkana_Class23] of  CloVar
+
+	(source "(volatile! 0.1)")
+	(title "veg-cons-rate"))
+
+([MASTurkana_Class24] of  CloVar
+
+	(source "(volatile! 1)")
+	(title "veg-max-level"))
+
+([MASTurkana_Class25] of  CloVar
+
+	(source "(volatile! 15)")
+	(title "veg-engy-peruni"))
+
+([MASTurkana_Class26] of  CloVar
+
+	(source "(volatile! 20)")
+	(title "birth-engy"))
+
+([MASTurkana_Class27] of  CloVar
+
+	(source "(volatile! 1)")
+	(title "engy-cons-rate"))
+
+([MASTurkana_Class28] of  CloVar
+
+	(source "(volatile! -2)")
+	(title "starv-level"))
+
+([MASTurkana_Class29] of  CloVar
+
+	(source "(volatile! true)")
+	(title "ini-with-ndvi"))
+
+([MASTurkana_Class3] of  CloType
+
+	(cloProtocols [MASTurkana_Class7])
+	(title "TurcanaModel"))
+
+([MASTurkana_Class30] of  CloVar
+
+	(source "(volatile! 50)")
+	(title "agents-num"))
+
+([MASTurkana_Class31] of  CloVar
+
+	(source "400")
+	(title "WIN-WIDTH"))
+
+([MASTurkana_Class32] of  CloVar
+
+	(source "400")
+	(title "WIN-HEIGHT"))
+
+([MASTurkana_Class33] of  CloVar
+
+	(source "1")
+	(title "HERDER-VISION"))
+
+([MASTurkana_Class34] of  CloFuncall
+
+	(source "mas.world.turcana/veg-grow-rate"))
+
+([MASTurkana_Class35] of  CloFuncall
+
+	(source "(set! mas.world.turcana/veg-grow-rate 0.2)"))
+
+([MASTurkana_Class36] of  CloFuncall
+
+	(source "(reset! mas.world.turcana/veg-grow-rate 0.2)"))
+
+([MASTurkana_Class37] of  CloFuncall
+
+	(source "(vreset! mas.world.turcana/veg-grow-rate 0.2)"))
+
+([MASTurkana_Class38] of  CloVar
+
+	(source "(volatile! 0)")
+	(title "month"))
+
+([MASTurkana_Class4] of  CloType
+
+	(cloProtocols [MASTurkana_Class10])
+	(title "TurcanaModelGUI"))
+
+([MASTurkana_Class5] of  CloImplementation
+
+	(cloFunctions [MASTurkana_Class6])
+	(title "sim.engine.Steppable"))
+
+([MASTurkana_Class6] of  CloFunction
+
+	(source "nil")
+	(title "step [this world]"))
+
+([MASTurkana_Class7] of  CloImplementation
+
+	(cloFunctions
+		[MASTurkana_Class8]
+		[MASTurkana_Class9])
+	(title "ru.igis.sim.IWorld"))
+
+([MASTurkana_Class8] of  CloFunction
+
+	(source "nil")
+	(title "initialise [this]"))
+
+([MASTurkana_Class9] of  CloFunction
+
+	(source "nil")
+	(title "start [this world]"))

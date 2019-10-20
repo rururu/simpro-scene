@@ -1,6 +1,9 @@
 (ns mas.world.turcana
 )
+(def WIN-WIDTH 400)
+(def WIN-HEIGHT 400)
 (def MONTHS-OF-WEATHER 144)
+(def HERDER-VISION 1)
 (def agents [])
 (def pop-dens-grid 0)
 (def rain-grid 0)
@@ -17,9 +20,7 @@
 (def starv-level (volatile! -2))
 (def ini-with-ndvi (volatile! true))
 (def agents-num (volatile! 50))
-(def WIN-WIDTH 400)
-(def WIN-HEIGHT 400)
-(def HERDER-VISION 1)
+(def month (volatile! 0))
 (deftype Turcanian [tstate ]
 	sim.engine.Steppable
 	(step [this world] nil)

@@ -89,6 +89,7 @@
     "GRADIENT-IN" (land-gradient-in)
     (land-ele-data LAND)))
 (.scheduleRepeating (.schedule world) (Raincloud.)))
+	(finish [this world] nil)
 )
 (deftype WaterWorldPorts []
 	ru.igis.sim.IPorts
