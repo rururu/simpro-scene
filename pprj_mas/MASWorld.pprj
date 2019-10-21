@@ -1,4 +1,4 @@
-; Sun Oct 20 18:36:01 MSK 2019
+; Mon Oct 21 16:49:40 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,10 +20,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[MASWorld_ProjectKB_Class20361]
-		[MASWorld_ProjectKB_Class20362]
-		[MASWorld_ProjectKB_Class20363]
-		[MASWorld_ProjectKB_Class20364]))
+		[MASWorld_ProjectKB_Class30361]
+		[MASWorld_ProjectKB_Class30362]
+		[MASWorld_ProjectKB_Class30363]
+		[MASWorld_ProjectKB_Class30364]))
 
 ([CLSES_TAB] of  Widget
 
@@ -167,6 +167,34 @@
 	(name "instances_file_name")
 	(string_value "MASWorld.pins"))
 
+([KB_136922_Class357] of  Map
+
+	(entries
+		[KB_136922_Class358]
+		[KB_136922_Class359]
+		[KB_136922_Class360]))
+
+([KB_136922_Class358] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_136922_Class359] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_136922_Class360] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_144769_Class329] of  Widget
 
 	(is_hidden FALSE)
@@ -258,34 +286,6 @@
 ([KB_144769_Class341] of  Property_List
 )
 
-([KB_232670_Class357] of  Map
-
-	(entries
-		[KB_232670_Class358]
-		[KB_232670_Class359]
-		[KB_232670_Class360]))
-
-([KB_232670_Class358] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_232670_Class359] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_232670_Class360] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -310,25 +310,19 @@
 	(boolean_value TRUE)
 	(name ":Create:Form:For:New:Instances"))
 
-([MASWorld_ProjectKB_Class20361] of  String
+([MASWorld_ProjectKB_Class20361] of  Widget
 
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-world-run1")
+	(property_list [MASWorld_ProjectKB_Class20362])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 300)
+	(x 0)
+	(y 180))
 
-([MASWorld_ProjectKB_Class20362] of  String
-
-	(name "MASWorldPanel")
-	(string_value "iWorld-class"))
-
-([MASWorld_ProjectKB_Class20363] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([MASWorld_ProjectKB_Class20364] of  String
-
-	(name "CloType")
-	(string_value "title"))
+([MASWorld_ProjectKB_Class20362] of  Property_List
+)
 
 ([MASWorld_ProjectKB_Class20365] of  Boolean
 
@@ -450,6 +444,26 @@
 	(name ":Add:Instance:Dialog:Title")
 	(string_value "Select an already existing instance"))
 
+([MASWorld_ProjectKB_Class30361] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([MASWorld_ProjectKB_Class30362] of  String
+
+	(name "MASWorldPanel")
+	(string_value "iWorld-class"))
+
+([MASWorld_ProjectKB_Class30363] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([MASWorld_ProjectKB_Class30364] of  String
+
+	(name "CloType")
+	(string_value "title"))
+
 ([MASWorld_ProjectKB_Class361] of  Widget
 
 	(is_hidden TRUE)
@@ -512,7 +526,8 @@
 		[MASWorld_ProjectKB_Class373]
 		[MASWorld_ProjectKB_Class374]
 		[MASWorld_ProjectKB_Class376]
-		[MASWorld_ProjectKB_Class378]))
+		[MASWorld_ProjectKB_Class378]
+		[MASWorld_ProjectKB_Class20361]))
 
 ([MASWorld_ProjectKB_Class373] of  Property_List
 

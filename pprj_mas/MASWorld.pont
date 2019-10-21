@@ -1,4 +1,4 @@
-; Sun Oct 20 18:36:01 MSK 2019
+; Mon Oct 21 16:49:40 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,11 +9,16 @@
 	(role abstract)
 	(single-slot but-world-run
 		(type STRING)
-		(default "Run WorldGUI/mas.world/run-world-gui")
+		(default "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot iWorld-class
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-world-run1
+		(type STRING)
+		(default "One Run WorldGUI/mas.world/one-run-world-gui")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot iPorts-class
@@ -30,7 +35,12 @@
 	(role concrete)
 	(single-slot but-world-run
 		(type STRING)
-		(default "Run WorldGUI/mas.world/run-world-gui")
+		(default "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-world-run1
+		(type STRING)
+		(default "One Run WorldGUI/mas.world/one-run-world-gui")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot iPorts-class

@@ -1,4 +1,4 @@
-; Sun Oct 20 18:43:21 MSK 2019
+; Mon Oct 21 23:03:09 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -892,20 +892,146 @@
 	(source "\"Hiitolanjoki's Salmon\"")
 	(title "info [this]"))
 
-([Hiitolanjoki_Class50009] of  CloFuncall
-
-	(source "(compile 'mas.world.hiitolanjoki)"))
-
-([Hiitolanjoki_Class50010] of  MASWorldPanel
-
-	(but-world-run "Run WorldGUI/mas.world/run-world-gui")
-	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
-	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
-
 ([Hiitolanjoki_Class50011] of  CloDocumentation
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          <b>Agents</b><br>      <br>      AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>      YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>      <br>      <b>JokiWorld</b><br>      <br>      initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>      start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>      finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br>      <br>      <b>JokiPorts</b><br>      <br>      createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>      setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>      info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br>      <br>     </body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
+
+([Hiitolanjoki_Class60038] of  CloFuncall
+
+	(source "(some #{linstr2} (map #(.getGeometry %) riv-geos))"))
+
+([Hiitolanjoki_Class60039] of  CloFuncall
+
+	(source "(def riv-gms (map #(.getGeometry %) riv-geos))"))
+
+([Hiitolanjoki_Class60040] of  CloFuncall
+
+	(source "riv-gms"))
+
+([Hiitolanjoki_Class60041] of  CloFuncall
+
+	(source "(map #(.hashCode %) riv-gms)"))
+
+([Hiitolanjoki_Class60042] of  CloFuncall
+
+	(source "(.hashCode linstr0)"))
+
+([Hiitolanjoki_Class60043] of  CloFuncall
+
+	(source "(.hashCode linstr1)"))
+
+([Hiitolanjoki_Class60044] of  CloFuncall
+
+	(source "(.hashCode linstr2)"))
+
+([Hiitolanjoki_Class60045] of  CloFuncall
+
+	(source "(def lincrd (map #(.getCoordinates %) riv-gms)) "))
+
+([Hiitolanjoki_Class60046] of  CloFuncall
+
+	(source "lincrd"))
+
+([Hiitolanjoki_Class60047] of  CloFuncall
+
+	(source "(map seq lincrd)"))
+
+([Hiitolanjoki_Class60048] of  CloFuncall
+
+	(source "(map #(vector (.getStartPoint %) (.getEndPoint %)) riv-gms)"))
+
+([Hiitolanjoki_Class60049] of  CloFuncall
+
+	(source "(def septs (map #(vector (.getStartPoint %) (.getEndPoint %)) riv-gms))"))
+
+([Hiitolanjoki_Class60050] of  CloFuncall
+
+	(source "(map #(vector (.getStartPoint %) (.getEndPoint %)) [linstr1])"))
+
+([Hiitolanjoki_Class60051] of  CloFuncall
+
+	(source "(type linstr1)"))
+
+([Hiitolanjoki_Class60052] of  CloFuncall
+
+	(source "(type linstr2)"))
+
+([Hiitolanjoki_Class60053] of  CloFuncall
+
+	(source "(first linstr2)"))
+
+([Hiitolanjoki_Class60054] of  CloFuncall
+
+	(source "(some #{(first linstr2)} (map #(.getGeometry %) riv-geos))"))
+
+([Hiitolanjoki_Class60055] of  CloFuncall
+
+	(source "(some #{(first linstr0)} (map #(.getGeometry %) riv-geos))"))
+
+([Hiitolanjoki_Class60056] of  CloFuncall
+
+	(source "(some #{(first linstr1)} (map #(.getGeometry %) riv-geos))"))
+
+([Hiitolanjoki_Class60057] of  CloFuncall
+
+	(source "riv-geos"))
+
+([Hiitolanjoki_Class60058] of  CloFuncall
+
+	(source "(.get riv-geos 0)"))
+
+([Hiitolanjoki_Class60059] of  CloFuncall
+
+	(source "(.get (.getGeometries rivers) 0)"))
+
+([Hiitolanjoki_Class60060] of  CloFuncall
+
+	(source "(.getAttribute (.get (.getGeometries rivers) 0) (sim.util.geo.AttributeValue. \"NAME\"))"))
+
+([Hiitolanjoki_Class60061] of  CloFuncall
+
+	(source "(.getAttribute (.get (.getGeometries rivers) 0) \"NAME\")"))
+
+([Hiitolanjoki_Class60062] of  CloFuncall
+
+	(source "(.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"\"))"))
+
+([Hiitolanjoki_Class60063] of  CloFuncall
+
+	(source "(.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\"))"))
+
+([Hiitolanjoki_Class60064] of  CloFuncall
+
+	(source "(.getGeometry (.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\")))"))
+
+([Hiitolanjoki_Class60065] of  CloFuncall
+
+	(source "(def lsKokk (.getGeometry (.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\"))))"))
+
+([Hiitolanjoki_Class60066] of  CloFuncall
+
+	(source "(.getStartPoint lsKokk)"))
+
+([Hiitolanjoki_Class60067] of  CloFuncall
+
+	(source "(.getCoordinate (.getStartPoint lsKokk))"))
+
+([Hiitolanjoki_Class60068] of  CloFuncall
+
+	(source "(.getCoordinates (.getStartPoint lsKokk))"))
+
+([Hiitolanjoki_Class60069] of  CloFuncall
+
+	(source "(def startKokk (.getCoordinate (.getStartPoint lsKokk)))"))
+
+([Hiitolanjoki_Class60070] of  CloFuncall
+
+	(source "(def endKokk (.getCoordinate (.getEndPoint lsKokk)))"))
+
+([Hiitolanjoki_Class60071] of  CloFuncall
+
+	(source "(.distance endKokk startKokk)"))
 
 ([Hiitolanjoki_Class7] of  OMTPoly
 
@@ -1550,6 +1676,13 @@
 		"61 15.31 29 40.54"
 		"61 15.28 29 40.57")
 	(relative FALSE))
+
+([Hiitolanjoki_Class70000] of  MASWorldPanel
+
+	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
+	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
+	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
+	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
 
 ([VuoksiLohi_Class0] of  Openmap
 
