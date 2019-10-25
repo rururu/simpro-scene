@@ -1,4 +1,4 @@
-; Mon Oct 21 23:03:09 MSK 2019
+; Fri Oct 25 21:32:00 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -402,6 +402,8 @@
 		[Hiitolanjoki_Class30001]
 		[Hiitolanjoki_Class30004]
 		[Hiitolanjoki_Class30005]
+		[Hiitolanjoki_Class80000]
+		[Hiitolanjoki_Class80001]
 		[Hiitolanjoki_Class30002]
 		[Hiitolanjoki_Class30003]
 		[Hiitolanjoki_Class30012]
@@ -419,12 +421,12 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
 
-	(cloProtocols [Hiitolanjoki_Class20003])
+	(cloProtocols [Hiitolanjoki_Class60001])
 	(fields "astate")
 	(title "AdultSalmon"))
 
@@ -435,7 +437,7 @@
 
 ([Hiitolanjoki_Class20004] of  CloFunction
 
-	(source "(.step (:net-follower @astate) world)")
+	(source "(condp = (:phase @astate)\n  :LAKE (.step (:lake-follower @astate) world)\n  :RIVER (.step (:river-follower @astate) world))\n(if (= (.getRate (:lake-follower @astate)) 0.0)\n  (vswap! astate assoc :phase :RIVER))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class20005] of  CloType
@@ -780,12 +782,12 @@
 
 ([Hiitolanjoki_Class30006] of  CloVar
 
-	(source "100")
+	(source "1")
 	(title "NUM-A-SALMONS"))
 
 ([Hiitolanjoki_Class30007] of  CloVar
 
-	(source "100")
+	(source "1")
 	(title "NUM-Y-SALMONS"))
 
 ([Hiitolanjoki_Class30008] of  CloFunction
@@ -810,12 +812,12 @@
 
 ([Hiitolanjoki_Class30014] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       rivgs (.getGeometries rivers)\n       next (.nextInt rand (.numObjs rivgs))\n       rig (.get rivgs next)\n       rate 0.001\n       lf (LineFollower. (.getGeometry rig) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 30.017 61.203))\n       point2 (Coordinate. 29.882 61.179)\n       loc (MasonGeometry. point1)\n       rate 0.001\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
 	(title "create-asalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point (.createPoint factory (Coordinate. 10 10))\n       loc (MasonGeometry. point)\n       rand (.random world)\n       rivgs (.getGeometries rivers)\n       next (.nextInt rand (.numObjs rivgs))\n       rig (.get rivgs next)\n       rate 0.001\n       lf (LineFollower. (.getGeometry rig) loc rate)\n       nwf (NetworkFollower. network lf loc rate re world)]\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 29.384 61.451))\n       point2 (Coordinate. 29.348 61.444)\n       loc (MasonGeometry. point1)\n       rate 0.001\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
 	(title "create-ysalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30016] of  CloVar
@@ -894,144 +896,22 @@
 
 ([Hiitolanjoki_Class50011] of  CloDocumentation
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          <b>Agents</b><br>      <br>      AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>      YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>      <br>      <b>JokiWorld</b><br>      <br>      initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>      start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>      finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br>      <br>      <b>JokiPorts</b><br>      <br>      createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>      setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>      info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br>      <br>     </body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
 
-([Hiitolanjoki_Class60038] of  CloFuncall
+([Hiitolanjoki_Class60000] of  CloFuncall
 
-	(source "(some #{linstr2} (map #(.getGeometry %) riv-geos))"))
+	(source "(compile 'mas.world.hiitolanjoki)"))
 
-([Hiitolanjoki_Class60039] of  CloFuncall
+([Hiitolanjoki_Class60001] of  CloImplementation
 
-	(source "(def riv-gms (map #(.getGeometry %) riv-geos))"))
+	(cloFunctions [Hiitolanjoki_Class60002])
+	(title "sim.engine.Steppable"))
 
-([Hiitolanjoki_Class60040] of  CloFuncall
+([Hiitolanjoki_Class60002] of  CloFunction
 
-	(source "riv-gms"))
-
-([Hiitolanjoki_Class60041] of  CloFuncall
-
-	(source "(map #(.hashCode %) riv-gms)"))
-
-([Hiitolanjoki_Class60042] of  CloFuncall
-
-	(source "(.hashCode linstr0)"))
-
-([Hiitolanjoki_Class60043] of  CloFuncall
-
-	(source "(.hashCode linstr1)"))
-
-([Hiitolanjoki_Class60044] of  CloFuncall
-
-	(source "(.hashCode linstr2)"))
-
-([Hiitolanjoki_Class60045] of  CloFuncall
-
-	(source "(def lincrd (map #(.getCoordinates %) riv-gms)) "))
-
-([Hiitolanjoki_Class60046] of  CloFuncall
-
-	(source "lincrd"))
-
-([Hiitolanjoki_Class60047] of  CloFuncall
-
-	(source "(map seq lincrd)"))
-
-([Hiitolanjoki_Class60048] of  CloFuncall
-
-	(source "(map #(vector (.getStartPoint %) (.getEndPoint %)) riv-gms)"))
-
-([Hiitolanjoki_Class60049] of  CloFuncall
-
-	(source "(def septs (map #(vector (.getStartPoint %) (.getEndPoint %)) riv-gms))"))
-
-([Hiitolanjoki_Class60050] of  CloFuncall
-
-	(source "(map #(vector (.getStartPoint %) (.getEndPoint %)) [linstr1])"))
-
-([Hiitolanjoki_Class60051] of  CloFuncall
-
-	(source "(type linstr1)"))
-
-([Hiitolanjoki_Class60052] of  CloFuncall
-
-	(source "(type linstr2)"))
-
-([Hiitolanjoki_Class60053] of  CloFuncall
-
-	(source "(first linstr2)"))
-
-([Hiitolanjoki_Class60054] of  CloFuncall
-
-	(source "(some #{(first linstr2)} (map #(.getGeometry %) riv-geos))"))
-
-([Hiitolanjoki_Class60055] of  CloFuncall
-
-	(source "(some #{(first linstr0)} (map #(.getGeometry %) riv-geos))"))
-
-([Hiitolanjoki_Class60056] of  CloFuncall
-
-	(source "(some #{(first linstr1)} (map #(.getGeometry %) riv-geos))"))
-
-([Hiitolanjoki_Class60057] of  CloFuncall
-
-	(source "riv-geos"))
-
-([Hiitolanjoki_Class60058] of  CloFuncall
-
-	(source "(.get riv-geos 0)"))
-
-([Hiitolanjoki_Class60059] of  CloFuncall
-
-	(source "(.get (.getGeometries rivers) 0)"))
-
-([Hiitolanjoki_Class60060] of  CloFuncall
-
-	(source "(.getAttribute (.get (.getGeometries rivers) 0) (sim.util.geo.AttributeValue. \"NAME\"))"))
-
-([Hiitolanjoki_Class60061] of  CloFuncall
-
-	(source "(.getAttribute (.get (.getGeometries rivers) 0) \"NAME\")"))
-
-([Hiitolanjoki_Class60062] of  CloFuncall
-
-	(source "(.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"\"))"))
-
-([Hiitolanjoki_Class60063] of  CloFuncall
-
-	(source "(.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\"))"))
-
-([Hiitolanjoki_Class60064] of  CloFuncall
-
-	(source "(.getGeometry (.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\")))"))
-
-([Hiitolanjoki_Class60065] of  CloFuncall
-
-	(source "(def lsKokk (.getGeometry (.getGeometry rivers \"NAME\" (sim.util.geo.AttributeValue. \"Кокколанйоки\"))))"))
-
-([Hiitolanjoki_Class60066] of  CloFuncall
-
-	(source "(.getStartPoint lsKokk)"))
-
-([Hiitolanjoki_Class60067] of  CloFuncall
-
-	(source "(.getCoordinate (.getStartPoint lsKokk))"))
-
-([Hiitolanjoki_Class60068] of  CloFuncall
-
-	(source "(.getCoordinates (.getStartPoint lsKokk))"))
-
-([Hiitolanjoki_Class60069] of  CloFuncall
-
-	(source "(def startKokk (.getCoordinate (.getStartPoint lsKokk)))"))
-
-([Hiitolanjoki_Class60070] of  CloFuncall
-
-	(source "(def endKokk (.getCoordinate (.getEndPoint lsKokk)))"))
-
-([Hiitolanjoki_Class60071] of  CloFuncall
-
-	(source "(.distance endKokk startKokk)"))
+	(source "(condp = (:phase @astate)\n  :LAKE (.step (:lake-follower @astate) world)\n  :RIVER (.step (:river-follower @astate) world))\n(if (= (.getRate (:lake-follower @astate)) 0.0)\n  (vswap! astate assoc :phase :RIVER))")
+	(title "step [this world]"))
 
 ([Hiitolanjoki_Class7] of  OMTPoly
 
@@ -1683,6 +1563,16 @@
 	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
 	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
 	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
+
+([Hiitolanjoki_Class80000] of  CloVar
+
+	(source "[[\"NAME\" \"Асиланйоки\"]\n [\"NAME\" \"Вейяланъярви\"]\n [\"NAME\" \"Кокколанйоки1\"]\n [\"NAME\" \"Кокколанйоки2\"]\n [\"NAME\" \"Hiitolanjoki\"]]")
+	(title "ASALMON_RIVER_ROUTE"))
+
+([Hiitolanjoki_Class80001] of  CloVar
+
+	(source "[[\"NAME\" \"Hiitolanjoki\"]\n [\"NAME\" \"Кокколанйоки2\"]\n [\"NAME\" \"Кокколанйоки1\"]\n [\"NAME\" \"Вейяланъярви\"]\n [\"NAME\" \"Асиланйоки\"]]")
+	(title "YSALMON_RIVER_ROUTE"))
 
 ([VuoksiLohi_Class0] of  Openmap
 

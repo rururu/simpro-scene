@@ -19,15 +19,27 @@
   com.vividsolutions.jts.linearref.LengthIndexedLine
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
+  ru.igis.sim.util.AttributesFollower
+  ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
-(def NUM-A-SALMONS 100)
-(def NUM-Y-SALMONS 100)
+(def NUM-A-SALMONS 1)
+(def NUM-Y-SALMONS 1)
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
  "file:data/shape/hiitolanjoki/hiitolanjoki_l.dbf"])
 (def LAKES-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_a.shp"
  "file:data/shape/hiitolanjoki/hiitolanjoki_a.dbf"])
+(def ASALMON_RIVER_ROUTE [["NAME" "Асиланйоки"]
+ ["NAME" "Вейяланъярви"]
+ ["NAME" "Кокколанйоки1"]
+ ["NAME" "Кокколанйоки2"]
+ ["NAME" "Hiitolanjoki"]])
+(def YSALMON_RIVER_ROUTE [["NAME" "Hiitolanjoki"]
+ ["NAME" "Кокколанйоки2"]
+ ["NAME" "Кокколанйоки1"]
+ ["NAME" "Вейяланъярви"]
+ ["NAME" "Асиланйоки"]])
 (def rivers (GeomVectorField. WIDTH HEIGHT))
 (def lakes (GeomVectorField. WIDTH HEIGHT))
 (def adult-salmons (GeomVectorField. WIDTH HEIGHT))
@@ -44,11 +56,19 @@
   create-ysalmon-astate))
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (.step (:net-follower @astate) world))
+	(step [this world] (condp = (:phase @astate)
+  :LAKE (.step (:lake-follower @astate) world)
+  :RIVER (.step (:river-follower @astate) world))
+(if (= (.getRate (:lake-follower @astate)) 0.0)
+  (vswap! astate assoc :phase :RIVER)))
 )
 (deftype YoungSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (.step (:net-follower @astate) world))
+	(step [this world] (condp = (:phase @astate)
+  :LAKE (.step (:lake-follower @astate) world)
+  :RIVER (.step (:river-follower @astate) world))
+(if (= (.getRate (:lake-follower @astate)) 0.0)
+  (vswap! astate assoc :phase :RIVER)))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
@@ -117,29 +137,37 @@ nil)
 )
 (defn create-asalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
-       point (.createPoint factory (Coordinate. 10 10))
-       loc (MasonGeometry. point)
-       rand (.random world)
-       rivgs (.getGeometries rivers)
-       next (.nextInt rand (.numObjs rivgs))
-       rig (.get rivgs next)
+       point1 (.createPoint factory (Coordinate. 30.017 61.203))
+       point2 (Coordinate. 29.882 61.179)
+       loc (MasonGeometry. point1)
        rate 0.001
-       lf (LineFollower. (.getGeometry rig) loc rate)
-       nwf (NetworkFollower. network lf loc rate re world)]
+       lf (Arriver. loc point2 rate)
+       rf (AttributesFollower. 
+            rivers 
+            (into-array String (map first ASALMON_RIVER_ROUTE))
+            (into-array Object (map second ASALMON_RIVER_ROUTE))
+            loc 
+            rate)]
   (volatile! {:location loc
-                  :net-follower nwf})))
+                  :phase :LAKE
+                  :lake-follower lf
+                  :river-follower rf})))
 
 (defn create-ysalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
-       point (.createPoint factory (Coordinate. 10 10))
-       loc (MasonGeometry. point)
-       rand (.random world)
-       rivgs (.getGeometries rivers)
-       next (.nextInt rand (.numObjs rivgs))
-       rig (.get rivgs next)
+       point1 (.createPoint factory (Coordinate. 29.384 61.451))
+       point2 (Coordinate. 29.348 61.444)
+       loc (MasonGeometry. point1)
        rate 0.001
-       lf (LineFollower. (.getGeometry rig) loc rate)
-       nwf (NetworkFollower. network lf loc rate re world)]
+       lf (Arriver. loc point2 rate)
+       rf (AttributesFollower. 
+            rivers 
+            (into-array String (map first YSALMON_RIVER_ROUTE))
+            (into-array Object (map second YSALMON_RIVER_ROUTE))
+            loc 
+            rate)]
   (volatile! {:location loc
-                  :net-follower nwf})))
+                  :phase :LAKE
+                  :lake-follower lf
+                  :river-follower rf})))
 

@@ -1,4 +1,4 @@
-; Mon Oct 21 16:49:40 MSK 2019
+; Tue Oct 22 12:41:14 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,10 +12,6 @@
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <u>Interface ru.igis.sim.IWorld</u><br><br><br><div http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" style=\"background-color: #ffffff; line-height: 19px; white-space: pre\">  <div>    <span><font color=\"#0000ff\">package</font><font color=\"#000000\">     ru.igis.sim;</font></span>  </div>  <br>  <br>  <div>    <span><font color=\"#0000ff\">public</font><font color=\"#000000\"> </font><font color=\"#0000ff\">interface</font><font color=\"#000000\">     </font><font color=\"#267f99\">IWorld</font><font color=\"#000000\"> {</font></span>  </div>  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font></span>  </div>  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font><font color=\"#0000ff\">public</font><font color=\"#000000\">     </font><font color=\"#267f99\">void</font><font color=\"#000000\"> </font><font color=\"#795e26\">initialise</font><font color=\"#000000\">();</font></span>  </div>  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font></span>  </div></div><div http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" style=\"background-color: #ffffff; line-height: 19px; white-space: pre\">  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font><font color=\"#0000ff\">public</font><font color=\"#000000\">     </font><font color=\"#267f99\">void</font><font color=\"#000000\"> start(</font><font color=\"#267f99\">World</font><font color=\"#000000\">     </font><font color=\"#001080\">world</font><font color=\"#000000\">);</font></span>  </div>  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font></span>  </div></div><div http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" style=\"background-color: #ffffff; line-height: 19px; white-space: pre\">  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font><font color=\"#0000ff\">public</font><font color=\"#000000\">     </font><font color=\"#267f99\">void</font><font color=\"#000000\"> finish(</font><font color=\"#267f99\">World</font><font color=\"#000000\">     </font><font color=\"#001080\">world</font><font color=\"#000000\">);</font></span>  </div>  <div>    <span><font color=\"#000000\">&#160;&#160;&#160;&#160;</font></span>  </div></div><div http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" style=\"background-color: #ffffff; line-height: 19px; white-space: pre\">  <div>    <span><font color=\"#000000\">}</font></span>  </div>  <br>  </div>&#0;</body>\n</html>")
 	(title "IWorld"))
-
-([MASWorld_Class10000] of  CloFuncall
-
-	(source "(str \"(invoke-later (ru.igis.sim.WorldGUI/main (into-array String [\\\"\" iwd \"\\\" \\\"\" ipts \"\\\"])))\")"))
 
 ([MASWorld_Class10001] of  CloFunction
 
@@ -31,10 +27,6 @@
 
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <u>Java source of used interfaces and classes in CloAgents.jar</u><br><br>1. Interface ru.igis.sim.IWorld <a href=\"internalLink\">@'MASWorld_Class10'</a>&#160;<br><br>2. Interface ru.igis.sim.IPorts <a href=\"internalLink\">@'MASWorld_Class11'</a>&#160;<br><br>3. Class ru.igis.sim.World <a href=\"internalLink\">@'MASWorld_Class9'</a>&#160;<br><br>4. Class ru.igis.sim.WorldGUI <a href=\"internalLink\">@'MASWorld_Class8'</a>&#160;<br></body>\n</html>")
 	(title "Java source of used interfaces and classes"))
-
-([MASWorld_Class20001] of  CloFuncall
-
-	(source "(str \"(invoke-later (ru.igis.sim.WorldGUI/main (into-array String [\\\"\" 1 \"\\\" \\\"\" 2 \"\\\"])))\")"))
 
 ([MASWorld_Class4] of  CloProgram
 
