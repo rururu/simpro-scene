@@ -9,6 +9,7 @@
   sim.util.geo.GeomPlanarGraph
   sim.util.geo.MasonGeometry
   sim.util.geo.PointMoveTo
+  sim.util.distribution.Normal
   sim.display.Display2D
   sim.portrayal.geo.GeomPortrayal
   sim.portrayal.geo.GeomVectorFieldPortrayal
@@ -17,13 +18,16 @@
   com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory
   com.vividsolutions.jts.linearref.LengthIndexedLine
+  ec.util.MersenneTwisterFast
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.AttributesFollower
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
-(def NUM-A-SALMONS 1)
-(def NUM-Y-SALMONS 1)
+(def random-gen (MersenneTwisterFast.))
+(def normal-distr (Normal. 0.0 0.0 random-gen))
+(def NUM-A-SALMONS 1000)
+(def NUM-Y-SALMONS 1000)
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
@@ -54,6 +58,12 @@
 (def declare-before (declare
   create-asalmon-astate
   create-ysalmon-astate))
+(def YOUNG-RATE 0.00001)
+(def ADULT-RATE 0.00002)
+(def KIVIJARVI_ROUTE [29.360 61.446
+ 29.366 61.446 
+ 29.374 61.446 
+ 29.36 61.446])
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (condp = (:phase @astate)
@@ -65,10 +75,13 @@
 (deftype YoungSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (condp = (:phase @astate)
-  :LAKE (.step (:lake-follower @astate) world)
-  :RIVER (.step (:river-follower @astate) world))
-(if (= (.getRate (:lake-follower @astate)) 0.0)
-  (vswap! astate assoc :phase :RIVER)))
+  :LAKE1 (if (= (.getMoveRate (:lake-follower1 @astate)) 0.0)
+                (vswap! astate assoc :phase :LAKE2)
+                (.step (:lake-follower1 @astate) world))
+  :LAKE2 (if (= (.getRate (:lake-follower2 @astate)) 0.0)
+                (vswap! astate assoc :phase :RIVER)
+                (.step (:lake-follower2 @astate) world))
+  :RIVER (.step (:river-follower @astate) world)))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
@@ -130,17 +143,24 @@ nil)
 (.setField lakes-port lakes)
 (.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))
 (.setField asalmons-port adult-salmons)
-(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 3.0))
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))
 (.setField ysalmons-port young-salmons)
-(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 2.0)))
+(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))
+(.setScale display 64.0)
+(.setScrollPosition display 0.208 0.28))
 	(info [this] "Hiitolanjoki's Salmon")
 )
+(defn random-route-walker [route loc rate]
+  (let [rte (into-array Double/TYPE route)
+       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 random-gen)]
+  (LineFollower. rnd factory loc rate)))
+
 (defn create-asalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
        point1 (.createPoint factory (Coordinate. 30.017 61.203))
        point2 (Coordinate. 29.882 61.179)
        loc (MasonGeometry. point1)
-       rate 0.001
+       rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
        lf (Arriver. loc point2 rate)
        rf (AttributesFollower. 
             rivers 
@@ -155,11 +175,12 @@ nil)
 
 (defn create-ysalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
-       point1 (.createPoint factory (Coordinate. 29.384 61.451))
-       point2 (Coordinate. 29.348 61.444)
-       loc (MasonGeometry. point1)
-       rate 0.001
-       lf (Arriver. loc point2 rate)
+       inp (.createPoint factory (Coordinate. 29.0 61.0))
+       hii (Coordinate. 29.347 61.444)
+       loc (MasonGeometry. inp)
+       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))
+       lf (random-route-walker KIVIJARVI_ROUTE loc rate)
+       af (Arriver. loc hii rate)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first YSALMON_RIVER_ROUTE))
@@ -167,7 +188,8 @@ nil)
             loc 
             rate)]
   (volatile! {:location loc
-                  :phase :LAKE
-                  :lake-follower lf
+                  :phase :LAKE1
+                  :lake-follower1 lf
+                  :lake-follower2 af
                   :river-follower rf})))
 

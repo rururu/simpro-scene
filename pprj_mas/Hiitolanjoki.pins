@@ -1,4 +1,4 @@
-; Fri Oct 25 21:32:00 MSK 2019
+; Sat Oct 26 20:05:32 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,6 +21,16 @@
 	(prettyName "Hiitolanjoki Lakes")
 	(shapeFile "data/shape/hiitolanjoki/hiitolanjoki_a.shp")
 	(spatialIndex "data/shape/vuoksi/hiitolanjoki_a.shx"))
+
+([Hiitolanjoki_Class100000] of  CloVar
+
+	(source "[29.360 61.446\n 29.366 61.446 \n 29.374 61.446 \n 29.36 61.446]")
+	(title "KIVIJARVI_ROUTE"))
+
+([Hiitolanjoki_Class110000] of  CloVar
+
+	(source "(Normal. 0.0 0.0 random-gen)")
+	(title "normal-distr"))
 
 ([Hiitolanjoki_Class12] of  OMTPoly
 
@@ -387,6 +397,7 @@
 ([Hiitolanjoki_Class20000] of  MASProgram
 
 	(cloFunctions
+		[Hiitolanjoki_Class90001]
 		[Hiitolanjoki_Class30014]
 		[Hiitolanjoki_Class30015])
 	(cloNamespace [Hiitolanjoki_Class20001])
@@ -396,6 +407,8 @@
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
+		[Hiitolanjoki_Class90004]
+		[Hiitolanjoki_Class110000]
 		[Hiitolanjoki_Class30006]
 		[Hiitolanjoki_Class30007]
 		[Hiitolanjoki_Class30000]
@@ -415,13 +428,16 @@
 		[Hiitolanjoki_Class50004]
 		[Hiitolanjoki_Class50005]
 		[Hiitolanjoki_Class50006]
-		[Hiitolanjoki_Class40002])
+		[Hiitolanjoki_Class40002]
+		[Hiitolanjoki_Class90002]
+		[Hiitolanjoki_Class90003]
+		[Hiitolanjoki_Class100000])
 	(documentation [Hiitolanjoki_Class50011])
 	(title "Hiitolanjoki"))
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -437,7 +453,7 @@
 
 ([Hiitolanjoki_Class20004] of  CloFunction
 
-	(source "(condp = (:phase @astate)\n  :LAKE (.step (:lake-follower @astate) world)\n  :RIVER (.step (:river-follower @astate) world))\n(if (= (.getRate (:lake-follower @astate)) 0.0)\n  (vswap! astate assoc :phase :RIVER))")
+	(source "(condp = (:phase @astate)\n  :LAKE1 (if (= (.getMoveRate (:lake-follower1 @astate)) 0.0)\n                (vswap! astate assoc :phase :LAKE2)\n                (.step (:lake-follower1 @astate) world))\n  :LAKE2 (if (= (.getRate (:lake-follower2 @astate)) 0.0)\n                (vswap! astate assoc :phase :RIVER)\n                (.step (:lake-follower2 @astate) world))\n  :RIVER (.step (:river-follower @astate) world))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class20005] of  CloType
@@ -782,12 +798,12 @@
 
 ([Hiitolanjoki_Class30006] of  CloVar
 
-	(source "1")
+	(source "1000")
 	(title "NUM-A-SALMONS"))
 
 ([Hiitolanjoki_Class30007] of  CloVar
 
-	(source "1")
+	(source "1000")
 	(title "NUM-Y-SALMONS"))
 
 ([Hiitolanjoki_Class30008] of  CloFunction
@@ -812,12 +828,12 @@
 
 ([Hiitolanjoki_Class30014] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 30.017 61.203))\n       point2 (Coordinate. 29.882 61.179)\n       loc (MasonGeometry. point1)\n       rate 0.001\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 30.017 61.203))\n       point2 (Coordinate. 29.882 61.179)\n       loc (MasonGeometry. point1)\n       rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
 	(title "create-asalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 29.384 61.451))\n       point2 (Coordinate. 29.348 61.444)\n       loc (MasonGeometry. point1)\n       rate 0.001\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       inp (.createPoint factory (Coordinate. 29.0 61.0))\n       hii (Coordinate. 29.347 61.444)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       lf (random-route-walker KIVIJARVI_ROUTE loc rate)\n       af (Arriver. loc hii rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE1\n                  :lake-follower1 lf\n                  :lake-follower2 af\n                  :river-follower rf}))")
 	(title "create-ysalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30016] of  CloVar
@@ -886,7 +902,7 @@
 
 ([Hiitolanjoki_Class50007] of  CloFunction
 
-	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 3.0))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 2.0))")
+	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))\n(.setScale display 64.0)\n(.setScrollPosition display 0.208 0.28)")
 	(title "setup [this display world]"))
 
 ([Hiitolanjoki_Class50008] of  CloFunction
@@ -1573,6 +1589,26 @@
 
 	(source "[[\"NAME\" \"Hiitolanjoki\"]\n [\"NAME\" \"Кокколанйоки2\"]\n [\"NAME\" \"Кокколанйоки1\"]\n [\"NAME\" \"Вейяланъярви\"]\n [\"NAME\" \"Асиланйоки\"]]")
 	(title "YSALMON_RIVER_ROUTE"))
+
+([Hiitolanjoki_Class90001] of  CloFunction
+
+	(source "(let [rte (into-array Double/TYPE route)\n       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 random-gen)]\n  (LineFollower. rnd factory loc rate))")
+	(title "random-route-walker [route loc rate]"))
+
+([Hiitolanjoki_Class90002] of  CloVar
+
+	(source "0.00001")
+	(title "YOUNG-RATE"))
+
+([Hiitolanjoki_Class90003] of  CloVar
+
+	(source "0.00002")
+	(title "ADULT-RATE"))
+
+([Hiitolanjoki_Class90004] of  CloVar
+
+	(source "(MersenneTwisterFast.)")
+	(title "random-gen"))
 
 ([VuoksiLohi_Class0] of  Openmap
 
