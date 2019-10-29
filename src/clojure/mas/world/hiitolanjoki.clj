@@ -22,11 +22,11 @@
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.AttributesFollower
+  ru.igis.sim.util.RandomWalker
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
-(def random-gen (MersenneTwisterFast.))
-(def normal-distr (Normal. 0.0 0.0 random-gen))
-(def NUM-A-SALMONS 1000)
+(def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
+(def NUM-A-SALMONS 10)
 (def NUM-Y-SALMONS 1000)
 (def WIDTH 1000)
 (def HEIGHT 1000)
@@ -146,22 +146,21 @@ nil)
 (.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))
 (.setField ysalmons-port young-salmons)
 (.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))
-(.setScale display 64.0)
-(.setScrollPosition display 0.208 0.28))
+(.setScale display 32.0)
+(.setScrollPosition display 0.33 0.43))
 	(info [this] "Hiitolanjoki's Salmon")
 )
 (defn random-route-walker [route loc rate]
   (let [rte (into-array Double/TYPE route)
-       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 random-gen)]
+       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 normal-distr)]
   (LineFollower. rnd factory loc rate)))
 
 (defn create-asalmon-astate [world]
   (let [re (ru.igis.sim.util.RandomEdge.)
-       point1 (.createPoint factory (Coordinate. 30.017 61.203))
-       point2 (Coordinate. 29.882 61.179)
+       point1 (.createPoint factory (Coordinate. 29.917 61.179))
        loc (MasonGeometry. point1)
        rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
-       lf (Arriver. loc point2 rate)
+       lf (RandomWalker. loc rate 0.0 1000 0 10000 normal-distr lakes)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first ASALMON_RIVER_ROUTE))

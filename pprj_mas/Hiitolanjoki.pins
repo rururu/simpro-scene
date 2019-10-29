@@ -1,4 +1,4 @@
-; Sat Oct 26 20:05:32 MSK 2019
+; Tue Oct 29 17:00:39 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,7 +29,7 @@
 
 ([Hiitolanjoki_Class110000] of  CloVar
 
-	(source "(Normal. 0.0 0.0 random-gen)")
+	(source "(Normal. 0.0 0.0 (MersenneTwisterFast.))")
 	(title "normal-distr"))
 
 ([Hiitolanjoki_Class12] of  OMTPoly
@@ -407,7 +407,6 @@
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
-		[Hiitolanjoki_Class90004]
 		[Hiitolanjoki_Class110000]
 		[Hiitolanjoki_Class30006]
 		[Hiitolanjoki_Class30007]
@@ -437,7 +436,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -798,7 +797,7 @@
 
 ([Hiitolanjoki_Class30006] of  CloVar
 
-	(source "1000")
+	(source "10")
 	(title "NUM-A-SALMONS"))
 
 ([Hiitolanjoki_Class30007] of  CloVar
@@ -828,7 +827,7 @@
 
 ([Hiitolanjoki_Class30014] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 30.017 61.203))\n       point2 (Coordinate. 29.882 61.179)\n       loc (MasonGeometry. point1)\n       rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))\n       lf (Arriver. loc point2 rate)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
+	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       point1 (.createPoint factory (Coordinate. 29.917 61.179))\n       loc (MasonGeometry. point1)\n       rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))\n       lf (RandomWalker. loc rate 0.0 1000 0 10000 normal-distr lakes)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
 	(title "create-asalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30015] of  CloFunction
@@ -902,7 +901,7 @@
 
 ([Hiitolanjoki_Class50007] of  CloFunction
 
-	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))\n(.setScale display 64.0)\n(.setScrollPosition display 0.208 0.28)")
+	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))\n(.setScale display 32.0)\n(.setScrollPosition display 0.33 0.43)")
 	(title "setup [this display world]"))
 
 ([Hiitolanjoki_Class50008] of  CloFunction
@@ -1592,7 +1591,7 @@
 
 ([Hiitolanjoki_Class90001] of  CloFunction
 
-	(source "(let [rte (into-array Double/TYPE route)\n       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 random-gen)]\n  (LineFollower. rnd factory loc rate))")
+	(source "(let [rte (into-array Double/TYPE route)\n       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 normal-distr)]\n  (LineFollower. rnd factory loc rate))")
 	(title "random-route-walker [route loc rate]"))
 
 ([Hiitolanjoki_Class90002] of  CloVar
@@ -1604,11 +1603,6 @@
 
 	(source "0.00002")
 	(title "ADULT-RATE"))
-
-([Hiitolanjoki_Class90004] of  CloVar
-
-	(source "(MersenneTwisterFast.)")
-	(title "random-gen"))
 
 ([VuoksiLohi_Class0] of  Openmap
 
