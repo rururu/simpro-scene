@@ -26,7 +26,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
-(def NUM-A-SALMONS 10)
+(def NUM-A-SALMONS 1000)
 (def NUM-Y-SALMONS 1000)
 (def WIDTH 1000)
 (def HEIGHT 1000)
@@ -55,27 +55,35 @@
 (def lakes-port (GeomVectorFieldPortrayal.))
 (def asalmons-port (GeomVectorFieldPortrayal.))
 (def ysalmons-port (GeomVectorFieldPortrayal.))
-(def declare-before (declare
-  create-asalmon-astate
-  create-ysalmon-astate))
-(def YOUNG-RATE 0.00001)
-(def ADULT-RATE 0.00002)
+(def YOUNG-RATE 0.0001)
+(def ADULT-RATE 0.0002)
 (def KIVIJARVI_ROUTE [29.360 61.446
  29.366 61.446 
  29.374 61.446 
  29.36 61.446])
+(def PASTURES (volatile! {:coords 
+	[[29.898 61.187]
+	 [29.924 61.193]
+	 [29.917 61.179]
+	 [29.893 61.163]]
+                :idx 0}))
+(def declare-before (declare
+  process
+  next-pasture-coord
+  create-asalmon-astate
+  create-ysalmon-astate))
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (condp = (:phase @astate)
-  :LAKE (.step (:lake-follower @astate) world)
-  :RIVER (.step (:river-follower @astate) world))
-(if (= (.getRate (:lake-follower @astate)) 0.0)
-  (vswap! astate assoc :phase :RIVER)))
+	(step [this world] (let [{:keys [phase lake-follower river-arriver river-follower]} @astate]
+  (condp = phase
+    :LAKE      (process lake-follower :TORIVER astate world)
+    :TORIVER (process river-arriver :RIVER astate world)
+    :RIVER     (process river-follower :DONE astate world))))
 )
 (deftype YoungSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (condp = (:phase @astate)
-  :LAKE1 (if (= (.getMoveRate (:lake-follower1 @astate)) 0.0)
+  :LAKE1 (if (= (.getRate (:lake-follower1 @astate)) 0.0)
                 (vswap! astate assoc :phase :LAKE2)
                 (.step (:lake-follower1 @astate) world))
   :LAKE2 (if (= (.getRate (:lake-follower2 @astate)) 0.0)
@@ -143,24 +151,39 @@ nil)
 (.setField lakes-port lakes)
 (.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))
 (.setField asalmons-port adult-salmons)
-(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/RED 0.30))
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/GREEN 0.30))
 (.setField ysalmons-port young-salmons)
-(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/ORANGE 0.2))
+(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/RED 0.2))
 (.setScale display 32.0)
-(.setScrollPosition display 0.33 0.43))
+(.setScrollPosition display 0.15 0.31))
 	(info [this] "Hiitolanjoki's Salmon")
 )
+(defn process [phase next-key astate world]
+  (if (= (.getStatus phase) "DONE")
+  (vswap! astate assoc :phase next-key)
+  (.step phase world)))
+
 (defn random-route-walker [route loc rate]
   (let [rte (into-array Double/TYPE route)
        rnd (LineFollower/randomisedRoute rte 0.002 0.0015 normal-distr)]
   (LineFollower. rnd factory loc rate)))
 
+(defn next-pasture-coord [pastures]
+  (let [pp @pastures
+       idx (:idx pp)
+       cds (:coords pp)
+       crd (nth cds idx)
+       nxt (inc idx)]
+  (vswap! pastures assoc :idx (if (< nxt (count cds)) nxt 0))
+  (Coordinate. (first crd) (second crd))))
+
 (defn create-asalmon-astate [world]
-  (let [re (ru.igis.sim.util.RandomEdge.)
-       point1 (.createPoint factory (Coordinate. 29.917 61.179))
-       loc (MasonGeometry. point1)
+  (let [rivent (Coordinate. 29.886 61.18)
+       loc (MasonGeometry. (.createPoint factory (next-pasture-coord PASTURES)))
        rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
-       lf (RandomWalker. loc rate 0.0 1000 0 10000 normal-distr lakes)
+       lf (RandomWalker. loc rate 1000 1000 normal-distr lakes)
+       bp (RandomWalker. loc rate 0.0 100.0 10.0 600 normal-distr lakes)
+       af (Arriver. loc rivent rate lakes bp)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first ASALMON_RIVER_ROUTE))
@@ -170,6 +193,7 @@ nil)
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf
+                  :river-arriver af
                   :river-follower rf})))
 
 (defn create-ysalmon-astate [world]
