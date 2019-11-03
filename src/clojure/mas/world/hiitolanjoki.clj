@@ -26,8 +26,8 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
-(def NUM-A-SALMONS 1000)
-(def NUM-Y-SALMONS 1000)
+(def NUM-A-SALMONS 100)
+(def NUM-Y-SALMONS 100)
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
@@ -57,10 +57,11 @@
 (def ysalmons-port (GeomVectorFieldPortrayal.))
 (def YOUNG-RATE 0.0001)
 (def ADULT-RATE 0.0002)
-(def KIVIJARVI_ROUTE [29.360 61.446
- 29.366 61.446 
- 29.374 61.446 
- 29.36 61.446])
+(def KIVIJARVI_ROUTES (volatile! {:routes 
+ [[29.363 61.450 29.367 61.448 29.373 61.443 29.36 61.447 29.353 61.446 29.348 61.444]
+  [29.380 61.445 29.375 61.449 29.372 61.443 29.36 61.447 29.353 61.446 29.348 61.444]
+  [29.371 61.442 29.377 61.446 29.372 61.448 29.36 61.447 29.353 61.446 29.348 61.444]]
+                :idx 0}))
 (def PASTURES (volatile! {:coords 
 	[[29.898 61.187]
 	 [29.924 61.193]
@@ -72,24 +73,27 @@
   next-pasture-coord
   create-asalmon-astate
   create-ysalmon-astate))
+(def SPAWN-PLACES (volatile! {:coords 
+	[[29.363 61.450]
+	 [29.380 61.445]
+	 [29.363 61.445]]
+                :idx 0}))
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (let [{:keys [phase lake-follower river-arriver river-follower]} @astate]
   (condp = phase
     :LAKE      (process lake-follower :TORIVER astate world)
     :TORIVER (process river-arriver :RIVER astate world)
-    :RIVER     (process river-follower :DONE astate world))))
+    :RIVER     (process river-follower :DONE astate world)
+    nil)))
 )
 (deftype YoungSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (condp = (:phase @astate)
-  :LAKE1 (if (= (.getRate (:lake-follower1 @astate)) 0.0)
-                (vswap! astate assoc :phase :LAKE2)
-                (.step (:lake-follower1 @astate) world))
-  :LAKE2 (if (= (.getRate (:lake-follower2 @astate)) 0.0)
-                (vswap! astate assoc :phase :RIVER)
-                (.step (:lake-follower2 @astate) world))
-  :RIVER (.step (:river-follower @astate) world)))
+	(step [this world] (let [{:keys [phase lake-follower river-follower]} @astate]
+  (condp = phase
+    :LAKE      (process lake-follower :RIVER astate world)
+    :RIVER     (process river-follower :DONE astate world)
+    nil)))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
@@ -151,11 +155,11 @@ nil)
 (.setField lakes-port lakes)
 (.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))
 (.setField asalmons-port adult-salmons)
-(.setPortrayalForAll asalmons-port (OvalPortrayal2D. Color/GREEN 0.30))
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.30))
 (.setField ysalmons-port young-salmons)
-(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. Color/RED 0.2))
+(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))
 (.setScale display 32.0)
-(.setScrollPosition display 0.15 0.31))
+(.setScrollPosition display 0.0 0.18))
 	(info [this] "Hiitolanjoki's Salmon")
 )
 (defn process [phase next-key astate world]
@@ -163,9 +167,15 @@ nil)
   (vswap! astate assoc :phase next-key)
   (.step phase world)))
 
-(defn random-route-walker [route loc rate]
-  (let [rte (into-array Double/TYPE route)
-       rnd (LineFollower/randomisedRoute rte 0.002 0.0015 normal-distr)]
+(defn random-route-walker [routes-map loc rate [sx sy] distro]
+  (let [rsm @routes-map
+       idx (:idx rsm)
+       rts (:routes rsm)
+       rte (nth rts idx)
+       nxt (inc idx)
+       rte (into-array Double/TYPE rte)
+       rnd (LineFollower/randomisedRoute rte sx sy distro)]
+  (vswap! routes-map assoc :idx (if (< nxt (count rts)) nxt 0))
   (LineFollower. rnd factory loc rate)))
 
 (defn next-pasture-coord [pastures]
@@ -179,9 +189,11 @@ nil)
 
 (defn create-asalmon-astate [world]
   (let [rivent (Coordinate. 29.886 61.18)
-       loc (MasonGeometry. (.createPoint factory (next-pasture-coord PASTURES)))
-       rate  (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
-       lf (RandomWalker. loc rate 1000 1000 normal-distr lakes)
+       loc (MasonGeometry. 
+              (.createPoint factory 
+                (next-pasture-coord PASTURES)))
+       rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
+       lf (RandomWalker. loc rate 100 800 normal-distr lakes)
        bp (RandomWalker. loc rate 0.0 100.0 10.0 600 normal-distr lakes)
        af (Arriver. loc rivent rate lakes bp)
        rf (AttributesFollower. 
@@ -202,8 +214,7 @@ nil)
        hii (Coordinate. 29.347 61.444)
        loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))
-       lf (random-route-walker KIVIJARVI_ROUTE loc rate)
-       af (Arriver. loc hii rate)
+       lf (random-route-walker KIVIJARVI_ROUTES loc rate [0.002 0.0001] normal-distr)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first YSALMON_RIVER_ROUTE))
@@ -211,8 +222,7 @@ nil)
             loc 
             rate)]
   (volatile! {:location loc
-                  :phase :LAKE1
-                  :lake-follower1 lf
-                  :lake-follower2 af
+                  :phase :LAKE
+                  :lake-follower lf
                   :river-follower rf})))
 
