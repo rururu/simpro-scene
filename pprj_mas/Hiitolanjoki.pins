@@ -1,4 +1,4 @@
-; Sun Nov 03 22:14:42 MSK 2019
+; Fri Nov 08 22:58:37 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -356,26 +356,6 @@
 	(source "(let [pp @pastures\n       idx (:idx pp)\n       cds (:coords pp)\n       crd (nth cds idx)\n       nxt (inc idx)]\n  (vswap! pastures assoc :idx (if (< nxt (count cds)) nxt 0))\n  (Coordinate. (first crd) (second crd)))")
 	(title "next-pasture-coord [pastures]"))
 
-([Hiitolanjoki_Class120003] of  CloFuncall
-
-	(source "(mas.world.hiitolanjoki/next-pasture-coord mas.world.hiitolanjoki/PASTURES)"))
-
-([Hiitolanjoki_Class120004] of  CloFuncall
-
-	(source "(nth mas.world.hiitolanjoki/PASTURES 0)"))
-
-([Hiitolanjoki_Class120005] of  CloFuncall
-
-	(source "(nth @mas.world.hiitolanjoki/PASTURES 0)"))
-
-([Hiitolanjoki_Class120006] of  CloFuncall
-
-	(source "(nth (:coord @mas.world.hiitolanjoki/PASTURES) 0)"))
-
-([Hiitolanjoki_Class120007] of  CloFuncall
-
-	(source "(nth (:coords @mas.world.hiitolanjoki/PASTURES) 0)"))
-
 ([Hiitolanjoki_Class13] of  OMTPoly
 
 	(label "Kokkolanjoki2")
@@ -397,17 +377,51 @@
 	(source "(volatile! {:coords \n	[[29.363 61.450]\n	 [29.380 61.445]\n	 [29.363 61.445]]\n                :idx 0})")
 	(title "SPAWN-PLACES"))
 
-([Hiitolanjoki_Class130001] of  CloFuncall
+([Hiitolanjoki_Class140000] of  CloType
 
-	(source "(in-ns 'mas.world.hiitolanjoki)"))
+	(cloProtocols [Hiitolanjoki_Class140001])
+	(fields "astate")
+	(title "ChildSalmon"))
 
-([Hiitolanjoki_Class130002] of  CloFuncall
+([Hiitolanjoki_Class140001] of  CloImplementation
 
-	(source "(random-route-walker "))
+	(cloFunctions [Hiitolanjoki_Class140002])
+	(title "sim.engine.Steppable"))
 
-([Hiitolanjoki_Class130003] of  CloFuncall
+([Hiitolanjoki_Class140002] of  CloFunction
 
-	(source "(random-route-walker KIVIJARVI_ROUTE"))
+	(source "(let [{:keys [phase lake-follower location stopper]} @astate]\n  (condp = phase\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-ysalmon (.getCoordinate (.geometry location)) world))\n                 ;;(.moveTo lake-follower ORIGIN))\n    nil))")
+	(title "step [this world]"))
+
+([Hiitolanjoki_Class140003] of  CloFunction
+
+	(source "(let [schedule (.schedule world)\n       astate (create-ysalmon-astate crd world)\n       a (YoungSalmon. astate)]\n  (.addGeometry young-salmons (:location @astate))\n  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))\n  (.setMBR young-salmons (.getMBR rivers)))")
+	(title "start-ysalmon [crd world]"))
+
+([Hiitolanjoki_Class140005] of  CloVar
+
+	(source "0.0001")
+	(title "CHILD-RATE"))
+
+([Hiitolanjoki_Class140006] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "child-salmons"))
+
+([Hiitolanjoki_Class140007] of  CloVar
+
+	(source "(GeomVectorFieldPortrayal.)")
+	(title "csalmons-port"))
+
+([Hiitolanjoki_Class150000] of  CloFunction
+
+	(source "(let [inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :RIVER\n                  :river-follower rf}))")
+	(title "create-ysalmon-astate [crd world]"))
+
+([Hiitolanjoki_Class160000] of  CloVar
+
+	(source "(Coordinate. 0.0 0.0)")
+	(title "ORIGIN"))
 
 ([Hiitolanjoki_Class17] of  OMTPoly
 
@@ -447,35 +461,41 @@
 		[Hiitolanjoki_Class90000]
 		[Hiitolanjoki_Class90001]
 		[Hiitolanjoki_Class120001]
+		[Hiitolanjoki_Class30015]
+		[Hiitolanjoki_Class150000]
 		[Hiitolanjoki_Class30014]
-		[Hiitolanjoki_Class30015])
+		[Hiitolanjoki_Class140003])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
-		[Hiitolanjoki_Class20002]
+		[Hiitolanjoki_Class140000]
 		[Hiitolanjoki_Class40000]
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
 		[Hiitolanjoki_Class110000]
-		[Hiitolanjoki_Class30006]
 		[Hiitolanjoki_Class30007]
+		[Hiitolanjoki_Class30006]
 		[Hiitolanjoki_Class30000]
 		[Hiitolanjoki_Class30001]
 		[Hiitolanjoki_Class30004]
 		[Hiitolanjoki_Class30005]
-		[Hiitolanjoki_Class80000]
 		[Hiitolanjoki_Class80001]
+		[Hiitolanjoki_Class80000]
+		[Hiitolanjoki_Class160000]
 		[Hiitolanjoki_Class30002]
 		[Hiitolanjoki_Class30003]
-		[Hiitolanjoki_Class30012]
+		[Hiitolanjoki_Class140006]
 		[Hiitolanjoki_Class30011]
+		[Hiitolanjoki_Class30012]
 		[Hiitolanjoki_Class30016]
 		[Hiitolanjoki_Class30017]
 		[Hiitolanjoki_Class30018]
 		[Hiitolanjoki_Class50003]
 		[Hiitolanjoki_Class50004]
+		[Hiitolanjoki_Class140007]
 		[Hiitolanjoki_Class50005]
 		[Hiitolanjoki_Class50006]
+		[Hiitolanjoki_Class140005]
 		[Hiitolanjoki_Class90002]
 		[Hiitolanjoki_Class90003]
 		[Hiitolanjoki_Class100000]
@@ -503,7 +523,7 @@
 
 ([Hiitolanjoki_Class20004] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower river-follower]} @astate]\n  (condp = phase\n    :LAKE      (process lake-follower :RIVER astate world)\n    :RIVER     (process river-follower :DONE astate world)\n    nil))")
+	(source "(let [{:keys [phase lake-follower river-follower location]} @astate]\n  (condp = phase\n    :RIVER (process river-follower :DONE astate world)\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class20005] of  CloType
@@ -854,11 +874,11 @@
 ([Hiitolanjoki_Class30007] of  CloVar
 
 	(source "100")
-	(title "NUM-Y-SALMONS"))
+	(title "NUM-C-SALMONS"))
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(let [schedule (.schedule world)]\n  (.clear adult-salmons)\n  (.clear young-salmons)\n  (dotimes [i NUM-A-SALMONS]\n    (let [astate (create-asalmon-astate world)\n           a (AdultSalmon. astate)]\n      (.addGeometry adult-salmons (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (dotimes [i NUM-Y-SALMONS]\n    (let [astate (create-ysalmon-astate world)\n           a (YoungSalmon. astate)]\n      (.addGeometry young-salmons (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (.setMBR adult-salmons (.getMBR rivers))\n  (.setMBR young-salmons (.getMBR rivers))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater adult-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0))")
+	(source "(let [schedule (.schedule world)]\n  (.clear child-salmons)\n  (.clear young-salmons)\n  (.clear adult-salmons)\n  (dotimes [i NUM-C-SALMONS]\n    (let [astate (create-csalmon-astate world)\n           a (ChildSalmon. astate)]\n      (.addGeometry child-salmons (:location @astate))\n      (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))\n  (.setMBR child-salmons (.getMBR rivers))\n;;  (.scheduleRepeating schedule \n;;    (.scheduleSpatialIndexUpdater adult-salmons)\n;;    Integer/MAX_VALUE \n;;    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater child-salmons)\n    Integer/MAX_VALUE \n    1.0))")
 	(title "start [this world]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
@@ -883,8 +903,8 @@
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
-	(source "(let [re (ru.igis.sim.util.RandomEdge.)\n       inp (.createPoint factory (Coordinate. 29.0 61.0))\n       hii (Coordinate. 29.347 61.444)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       lf (random-route-walker KIVIJARVI_ROUTES loc rate [0.002 0.0001] normal-distr)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-follower rf}))")
-	(title "create-ysalmon-astate [world]"))
+	(source "(let [inp (.createPoint factory (Coordinate. 0.0 0.0))\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))\n       lf (random-route-walker KIVIJARVI_ROUTES loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf}))")
+	(title "create-csalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30016] of  CloVar
 
@@ -909,7 +929,7 @@
 
 ([Hiitolanjoki_Class40002] of  CloVar
 
-	(source "(declare\n  process\n  next-pasture-coord\n  create-asalmon-astate\n  create-ysalmon-astate)")
+	(source "(declare\n  process\n  next-pasture-coord\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon)")
 	(title "declare-before"))
 
 ([Hiitolanjoki_Class50000] of  CloType
@@ -927,7 +947,7 @@
 
 ([Hiitolanjoki_Class50002] of  CloFunction
 
-	(source "(let [display (Display2D. WIDTH HEIGHT wgui)]\n  (.attach display rivers-port \"Rivers\" true)\n  (.attach display lakes-port \"Lakes\" true)\n  (.attach display asalmons-port \"ASalmons\" true)\n  (.attach display ysalmons-port \"YSalmons\" true)\n  display)")
+	(source "(let [display (Display2D. WIDTH HEIGHT wgui)]\n  (.attach display rivers-port \"Rivers\" true)\n  (.attach display lakes-port \"Lakes\" true)\n  (.attach display csalmons-port \"CSalmons\" true)\n  (.attach display ysalmons-port \"YSalmons\" true)\n  (.attach display asalmons-port \"ASalmons\" true)\n  display)")
 	(title "createDisplay [this wgui world]"))
 
 ([Hiitolanjoki_Class50003] of  CloVar
@@ -952,7 +972,7 @@
 
 ([Hiitolanjoki_Class50007] of  CloFunction
 
-	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.30))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
+	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField csalmons-port child-salmons)\n(.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
 	(title "setup [this display world]"))
 
 ([Hiitolanjoki_Class50008] of  CloFunction
@@ -962,7 +982,7 @@
 
 ([Hiitolanjoki_Class50011] of  CloDocumentation
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
 
 ([Hiitolanjoki_Class60000] of  CloFuncall
@@ -1652,12 +1672,12 @@
 
 ([Hiitolanjoki_Class90002] of  CloVar
 
-	(source "0.0001")
+	(source "0.0002")
 	(title "YOUNG-RATE"))
 
 ([Hiitolanjoki_Class90003] of  CloVar
 
-	(source "0.0002")
+	(source "0.0003")
 	(title "ADULT-RATE"))
 
 ([VuoksiLohi_Class0] of  Openmap

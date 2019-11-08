@@ -1,8 +1,0 @@
-2019.11.03 14:10:52.440 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
-2019.11.03 14:10:52.497 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.2+9-LTS, memory=2076M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
-2019.11.03 14:10:52.507 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
-2019.11.03 14:10:53.759 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
-2019.11.03 14:10:53.774 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
-2019.11.03 14:10:54.590 MSK WARNING: Look and feel not found:  -- SystemUtilities.setLookAndFeel()
-2019.11.03 14:10:55.676 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
-2019.11.03 14:11:21.252 MSK INFO: Load time for file:/home/ru/clojure/simpro-scene/pprj_mas/Hiitolanjoki.pprj = 1 sec (project) + 6 sec (ui) -- ProjectManager$3.run()

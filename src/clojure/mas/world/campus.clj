@@ -20,7 +20,7 @@
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.RandomEdge))
-(def NUM-AGENTS 1000)
+(def NUM-AGENTS 2)
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def BUILDINGS-URLS ["file:data/mas/campus/bldg.shp"
