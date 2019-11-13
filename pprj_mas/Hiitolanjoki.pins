@@ -1,4 +1,4 @@
-; Fri Nov 08 22:58:37 MSK 2019
+; Wed Nov 13 23:15:11 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -437,6 +437,222 @@
 		"61 11.3 29 47.22"
 		"61 10.83 29 48.21")
 	(relative FALSE))
+
+([Hiitolanjoki_Class170011] of  PASTURES
+
+	(label "Pasture4")
+	(latitude "61 9.78")
+	(lineColor "FFFF0000")
+	(longitude "29 53.58")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 10))
+
+([Hiitolanjoki_Class170012] of  PASTURES
+
+	(label "Pasture2")
+	(latitude "61 11.58")
+	(lineColor "FFFF0000")
+	(longitude "29 55.44")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 10))
+
+([Hiitolanjoki_Class170013] of  PASTURES
+
+	(label "Pasture3")
+	(latitude "61 10.74")
+	(lineColor "FFFF0000")
+	(longitude "29 55.02")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 10))
+
+([Hiitolanjoki_Class170014] of  PASTURES
+
+	(label "Pasture1")
+	(latitude "61 11.22")
+	(lineColor "FFFF0000")
+	(longitude "29 53.88")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 10))
+
+([Hiitolanjoki_Class170015] of  CloFuncall
+
+	(source "(ru.igis.omtab.MapOb/getMapOb \"Pasture1\")"))
+
+([Hiitolanjoki_Class170016] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Pasture1\")"))
+
+([Hiitolanjoki_Class170017] of  CloFuncall
+
+	(source "(.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Pasture1\"))"))
+
+([Hiitolanjoki_Class170018] of  CloFuncall
+
+	(source "(.getRadius (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Pasture1\")))"))
+
+([Hiitolanjoki_Class170019] of  CloFuncall
+
+	(source "(.getFillColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Pasture1\")))"))
+
+([Hiitolanjoki_Class170020] of  CloFuncall
+
+	(source "(.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Pasture1\")))"))
+
+([Hiitolanjoki_Class170021] of  KIVIJARVI_ROUTES
+
+	(label "kr1")
+	(latitude "61 27")
+	(lineColor "FFFF7D00")
+	(longitude "29 21.78")
+	(playground-index 0)
+	(points
+		"61 27 29 21.78"
+		"61 26.88 29 22.02"
+		"61 26.58 29 22.38"
+		"61 26.82 29 21.6"
+		"61 26.76 29 21.18"
+		"61 26.64 29 20.88")
+	(relative FALSE))
+
+([Hiitolanjoki_Class170022] of  KIVIJARVI_ROUTES
+
+	(label "kr3")
+	(latitude "61 26.52")
+	(lineColor "FFFF7D00")
+	(longitude "29 22.26")
+	(playground-index 0)
+	(points
+		"61 26.52 29 22.26"
+		"61 26.76 29 22.62"
+		"61 26.88 29 22.32"
+		"61 26.82 29 21.6"
+		"61 26.76 29 21.18"
+		"61 26.64 29 20.88")
+	(relative FALSE))
+
+([Hiitolanjoki_Class170023] of  KIVIJARVI_ROUTES
+
+	(label "kr2")
+	(latitude "61 26.7")
+	(lineColor "FFFF7D00")
+	(longitude "29 22.8")
+	(playground-index 0)
+	(points
+		"61 26.7 29 22.8"
+		"61 26.94 29 22.5"
+		"61 26.58 29 22.32"
+		"61 26.82 29 21.6"
+		"61 26.76 29 21.18"
+		"61 26.64 29 20.88")
+	(relative FALSE))
+
+([Hiitolanjoki_Class170024] of  CloFuncall
+
+	(source "(in-ns 'mas.world.hiitolanjoki)"))
+
+([Hiitolanjoki_Class170025] of  CloFuncall
+
+	(source "KIVIJARVI_ROUTES"))
+
+([Hiitolanjoki_Class170026] of  CloFuncall
+
+	(source "(@KIVIJARVI_ROUTES :routes)"))
+
+([Hiitolanjoki_Class170027] of  CloFuncall
+
+	(source "(def rts (@KIVIJARVI_ROUTES :routes))"))
+
+([Hiitolanjoki_Class170028] of  CloFuncall
+
+	(source "(partition 2 (nth rts 0))"))
+
+([Hiitolanjoki_Class170029] of  CloFuncall
+
+	(source "(let [p (partition 2 (nth rts 0))] (interleave (map second p) (map first p)))"))
+
+([Hiitolanjoki_Class170030] of  CloFuncall
+
+	(source "(def kr1 (let [p (partition 2 (nth rts 0))] (interleave (map second p) (map first p))))"))
+
+([Hiitolanjoki_Class170031] of  CloFuncall
+
+	(source "(def kr2 (let [p (partition 2 (nth rts 1))] (interleave (map second p) (map first p))))"))
+
+([Hiitolanjoki_Class170032] of  CloFuncall
+
+	(source "(def kr3 (let [p (partition 2 (nth rts 2))] (interleave (map second p) (map first p))))"))
+
+([Hiitolanjoki_Class170033] of  CloFuncall
+
+	(source "kr1"))
+
+([Hiitolanjoki_Class170034] of  CloFuncall
+
+	(source "kr2"))
+
+([Hiitolanjoki_Class170035] of  CloFuncall
+
+	(source "kr3"))
+
+([Hiitolanjoki_Class170036] of  CloFuncall
+
+	(source "(def kr1 (partition 2 kr1))"))
+
+([Hiitolanjoki_Class170037] of  CloFuncall
+
+	(source "(def kr2 (partition 2 kr2))"))
+
+([Hiitolanjoki_Class170038] of  CloFuncall
+
+	(source "(def kr3 (partition 2 kr3))"))
+
+([Hiitolanjoki_Class170039] of  CloFuncall
+
+	(source "(def kr0 (map #(str (ru.igis.omtab.MapOb/getDegMin (first %)) \" \" (ru.igis.omtab.MapOb/getDegMin (second %))) kr3))"))
+
+([Hiitolanjoki_Class170040] of  CloFuncall
+
+	(source "kr0"))
+
+([Hiitolanjoki_Class170041] of  CloFuncall
+
+	(source "(first kr0)"))
+
+([Hiitolanjoki_Class170042] of  CloFuncall
+
+	(source "(def kr3 (map #(str (ru.igis.omtab.MapOb/getDegMin (first %)) \" \" (ru.igis.omtab.MapOb/getDegMin (second %))) kr3))"))
+
+([Hiitolanjoki_Class170043] of  CloFuncall
+
+	(source "(def kr2 (map #(str (ru.igis.omtab.MapOb/getDegMin (first %)) \" \" (ru.igis.omtab.MapOb/getDegMin (second %))) kr2))"))
+
+([Hiitolanjoki_Class170044] of  CloFuncall
+
+	(source "(def kr1 (map #(str (ru.igis.omtab.MapOb/getDegMin (first %)) \" \" (ru.igis.omtab.MapOb/getDegMin (second %))) kr1))"))
+
+([Hiitolanjoki_Class170045] of  CloFuncall
+
+	(source "(protege.core/"))
+
+([Hiitolanjoki_Class170046] of  CloFuncall
+
+	(source "(protege.core/fifos \"OMTPoly\" \"label\" \"kr1\")"))
+
+([Hiitolanjoki_Class170047] of  CloFuncall
+
+	(source "(protege.core/ssvs (protege.core/fifos \"OMTPoly\" \"label\" \"kr1\") \"points\" kr1)"))
+
+([Hiitolanjoki_Class170048] of  CloFuncall
+
+	(source "(protege.core/ssvs (protege.core/fifos \"OMTPoly\" \"label\" \"kr2\") \"points\" kr2)"))
+
+([Hiitolanjoki_Class170049] of  CloFuncall
+
+	(source "(protege.core/ssvs (protege.core/fifos \"OMTPoly\" \"label\" \"kr3\") \"points\" kr3)"))
 
 ([Hiitolanjoki_Class18] of  MLayer
 
@@ -985,9 +1201,15 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
 
-([Hiitolanjoki_Class60000] of  CloFuncall
+([Hiitolanjoki_Class60000] of  ShareOnto
 
-	(source "(compile 'mas.world.hiitolanjoki)"))
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(Mason)"))
 
 ([Hiitolanjoki_Class60001] of  CloImplementation
 
@@ -1649,6 +1871,53 @@
 	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
 	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
 	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
+
+([Hiitolanjoki_Class70001] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (set-onclick (partial make-region (mp \"poly\"))))")
+	(title "create-route [hm inst]"))
+
+([Hiitolanjoki_Class70002] of  CloFunction
+
+	(source "(if-let [p (OMT/getMapOb pi)]\n  (OMT/removeMapOb p false))\n(let [pp (svs pi \"points\")]\n  (when (empty? pp)\n    (ssv pi \"latitude\" (dms lat))\n    (ssv pi \"longitude\" (dms lon)))\n  (ssvs pi \"points\"\n    (concat pp [(dms [lat lon])]))\n  (OMT/getOrAdd pi))")
+	(title "make-region [pi mo [lat lon]]"))
+
+([Hiitolanjoki_Class70003] of  CloFunction
+
+	(source "(if-let [p (OMT/getMapOb pi)]\n  (OMT/removeMapOb p false))\n(let [hd (/ h 60)\n       mfi (Math/toRadians (- lat (/ hd 2)))\n       wd (/ (/ w 60) (Math/cos mfi))\n       nw [lat lon]\n       ne [lat (+ lon wd)]\n       se [(- lat hd) (+ lon wd)]\n       sw[(- lat hd) lon]]\n  (ssv pi \"latitude\" (dms lat))\n  (ssv pi \"longitude\" (dms lon))\n  (ssvs pi \"points\" [(dms nw)\n                             (dms ne)\n                             (dms se)\n                             (dms sw)])\n  (OMT/getOrAdd pi))")
+	(title "move-extend-region [pi w h mo [lat lon]]"))
+
+([Hiitolanjoki_Class70004] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       w (mp \"width\") \n       h (mp \"height\")\n       p (mp \"poly\")]\n    (set-onclick (partial move-extend-region p w h)))")
+	(title "move-region [hm inst]"))
+
+([Hiitolanjoki_Class70005] of  CloFunction
+
+	(source "(let [pg0 (first (OMT/getPlaygrounds))\n       rumma (proxy [RuMapMouseAdapter] []\n                     (mouseLeftButtonClickedOn [mo llp runa]\n                       (fun mo (seq llp))\n                       (.manageGraphics pg0)\n                       true))]\n  (.setRuMapMouseAdapter pg0 rumma))")
+	(title "set-onclick [fun]"))
+
+([Hiitolanjoki_Class70006] of  CloProgram
+
+	(cloFunctions
+		[Hiitolanjoki_Class70005]
+		[Hiitolanjoki_Class70008]
+		[Hiitolanjoki_Class70002]
+		[Hiitolanjoki_Class70003]
+		[Hiitolanjoki_Class70001]
+		[Hiitolanjoki_Class70004])
+	(cloNamespace [Hiitolanjoki_Class70007])
+	(title "Utils Poly"))
+
+([Hiitolanjoki_Class70007] of  CloNamespace
+
+	(source "(:use \n  protege.core)\n(:import\n  ru.igis.omtab.OpenMapTab\n  ru.igis.omtab.OMT\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.NavOb)")
+	(title "utils.poly"))
+
+([Hiitolanjoki_Class70008] of  CloFunction
+
+	(source "(if (number? x)\n  (MapOb/getDegMin x)\n  (str (MapOb/getDegMin (first x))\n        \" \"\n        (MapOb/getDegMin (second x))))")
+	(title "dms [x]"))
 
 ([Hiitolanjoki_Class80000] of  CloVar
 

@@ -7,7 +7,6 @@
   edu.stanford.smi.protege.model.Cls
   edu.stanford.smi.protege.model.Instance
   edu.stanford.smi.protege.model.Project))
-
 (def PRJ2 nil)
 (def KB2 nil)
 (def KB1 nil)
