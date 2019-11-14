@@ -1,4 +1,8 @@
 (ns mas.world.hiitolanjoki
+(:use
+  protege.core)
+(:require
+  [utils.poly :as up])
 (:import
   java.net.URL
   java.awt.Color
@@ -28,8 +32,8 @@
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def NUM-C-SALMONS 100)
 (def NUM-A-SALMONS 100)
-(def WIDTH 1000)
-(def HEIGHT 1000)
+(def WIDTH 800)
+(def HEIGHT 800)
 (def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
  "file:data/shape/hiitolanjoki/hiitolanjoki_l.dbf"])
 (def LAKES-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_a.shp"
@@ -61,10 +65,9 @@
 (def CHILD-RATE 0.0001)
 (def YOUNG-RATE 0.0002)
 (def ADULT-RATE 0.0003)
-(def KIVIJARVI_ROUTES (volatile! {:routes 
- [[29.363 61.450 29.367 61.448 29.373 61.443 29.36 61.447 29.353 61.446 29.348 61.444]
-  [29.380 61.445 29.375 61.449 29.372 61.443 29.36 61.447 29.353 61.446 29.348 61.444]
-  [29.371 61.442 29.377 61.446 29.372 61.448 29.36 61.447 29.353 61.446 29.348 61.444]]
+(def KIVIJARVI_WAYS (volatile! {:ways []
+                :idx 0}))
+(def LADOGA_WAYS (volatile! {:ways []
                 :idx 0}))
 (def PASTURES (volatile! {:coords 
 	[[29.898 61.187]
@@ -77,7 +80,8 @@
   next-pasture-coord
   create-asalmon-astate
   create-csalmon-astate
-  start-ysalmon))
+  start-ysalmon
+  fill-ways))
 (def SPAWN-PLACES (volatile! {:coords 
 	[[29.363 61.450]
 	 [29.380 61.445]
@@ -97,7 +101,8 @@
 	sim.engine.Steppable
 	(step [this world] (let [{:keys [phase lake-follower river-follower location]} @astate]
   (condp = phase
-    :RIVER (process river-follower :DONE astate world)
+    :RIVER (process river-follower :LAKE astate world)
+    :LAKE  (process lake-follower :DONE astate world)
     nil)))
 )
 (deftype JokiWorld []
@@ -113,8 +118,10 @@
   (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)
   (.expandToInclude MBR (.getMBR lakes))
   (println "Done reading data")
-  (.setMBR rivers MBR)
+  (.setMBR rivers MBR) 
   (.setMBR lakes MBR)
+  (fill-ways KIVIJARVI_WAYS "KIVIJARVI_ROUTES")
+  (fill-ways LADOGA_WAYS "LADOGA_ROUTES")
   (.createFromGeomField network rivers)
   (while (.hasNext netiter)
     (let [node (.next netiter)
@@ -174,15 +181,23 @@ nil)
   (vswap! astate assoc :phase next-key)
   (.step phase world)))
 
-(defn random-route-walker [routes-map loc rate [sx sy] distro]
-  (let [rsm @routes-map
+(defn fill-ways [ways-map subpoly]
+  (vswap! ways-map 
+  assoc :ways 
+  (for [poi (cls-instances subpoly)]
+    (let [pp (up/latlon (svs poi "points"))
+           ilv (interleave (map second pp) (map first pp))]
+      (vec ilv)))))
+
+(defn random-ways-walker [ways-map loc rate [sx sy] distro]
+  (let [rsm @ways-map
        idx (:idx rsm)
-       rts (:routes rsm)
+       rts (:ways rsm)
        rte (nth rts idx)
        nxt (inc idx)
        rte (into-array Double/TYPE rte)
        rnd (LineFollower/randomisedRoute rte sx sy distro)]
-  (vswap! routes-map assoc :idx (if (< nxt (count rts)) nxt 0))
+  (vswap! ways-map assoc :idx (if (< nxt (count rts)) nxt 0))
   (LineFollower. rnd factory loc rate)))
 
 (defn next-pasture-coord [pastures]
@@ -198,7 +213,7 @@ nil)
   (let [inp (.createPoint factory (Coordinate. 0.0 0.0))
        loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))
-       lf (random-route-walker KIVIJARVI_ROUTES loc rate [0.002 0.0001] normal-distr)]
+       lf (random-ways-walker KIVIJARVI_WAYS loc rate [0.002 0.0001] normal-distr)]
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf})))
@@ -212,10 +227,12 @@ nil)
             (into-array String (map first YSALMON_RIVER_ROUTE))
             (into-array Object (map second YSALMON_RIVER_ROUTE))
             loc 
-            rate)]
+            rate)
+       lf (random-ways-walker LADOGA_WAYS loc rate [0.002 0.0001] normal-distr)]
   (volatile! {:location loc
                   :phase :RIVER
-                  :river-follower rf})))
+                  :river-follower rf
+                  :lake-follower lf})))
 
 (defn create-asalmon-astate [world]
   (let [rivent (Coordinate. 29.886 61.18)

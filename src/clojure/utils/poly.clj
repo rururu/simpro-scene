@@ -16,12 +16,20 @@
                        true))]
   (.setRuMapMouseAdapter pg0 rumma)))
 
-(defn dms [x]
-  (if (number? x)
-  (MapOb/getDegMin x)
-  (str (MapOb/getDegMin (first x))
-        " "
-        (MapOb/getDegMin (second x)))))
+(defn dms [y]
+  (cond
+  (number? y) (MapOb/getDegMin y)
+  (number? (first y)) (str (MapOb/getDegMin (first y))
+                                 " "
+                                 (MapOb/getDegMin (second y)))
+  true (vec (map dms y))))
+
+(defn latlon [y]
+  (if (string? y)
+  (let [[da ma do mo] (.split y " ")]
+    [(MapOb/getDeg (str da " " ma))
+     (MapOb/getDeg (str do " " mo))])
+  (vec (map latlon y))))
 
 (defn make-region [pi mo [lat lon]]
   (if-let [p (OMT/getMapOb pi)]

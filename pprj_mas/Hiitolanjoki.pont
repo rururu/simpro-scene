@@ -1,4 +1,4 @@
-; Wed Nov 13 23:15:11 MSK 2019
+; Thu Nov 14 14:12:10 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,12 +17,12 @@
 		(create-accessor read-write))
 	(single-slot but-route
 		(type STRING)
-		(default "Create Route/mas.util/create-route")
+		(default "Create Route/utils.poly/create-route")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-region
 		(type STRING)
-		(default "Move Region/mas.util/move-region")
+		(default "Move Region/utils.poly/move-region")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -31,6 +31,10 @@
 	(role concrete))
 
 (defclass KIVIJARVI_ROUTES
+	(is-a OMTPoly)
+	(role concrete))
+
+(defclass LADOGA_ROUTES
 	(is-a OMTPoly)
 	(role concrete))
 
@@ -44,7 +48,7 @@
 		(create-accessor read-write))
 	(single-slot but-route
 		(type STRING)
-		(default "Create Route/mas.util/create-route")
+		(default "Create Route/utils.poly/create-route")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -58,7 +62,7 @@
 		(create-accessor read-write))
 	(single-slot but-route
 		(type STRING)
-		(default "Create Route/mas.util/create-route")
+		(default "Create Route/utils.poly/create-route")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot height
