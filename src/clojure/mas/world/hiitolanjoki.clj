@@ -1,8 +1,4 @@
 (ns mas.world.hiitolanjoki
-(:use
-  protege.core)
-(:require
-  [utils.poly :as up])
 (:import
   java.net.URL
   java.awt.Color
@@ -34,10 +30,10 @@
 (def NUM-A-SALMONS 100)
 (def WIDTH 800)
 (def HEIGHT 800)
-(def RIVERS-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_l.shp"
- "file:data/shape/hiitolanjoki/hiitolanjoki_l.dbf"])
-(def LAKES-URLS ["file:data/shape/hiitolanjoki/hiitolanjoki_a.shp"
- "file:data/shape/hiitolanjoki/hiitolanjoki_a.dbf"])
+(def RIVERS-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
+ "file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.dbf"])
+(def LAKES-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
+ "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"])
 (def YSALMON_RIVER_ROUTE [["NAME" "Hiitolanjoki"]
  ["NAME" "Кокколанйоки2"]
  ["NAME" "Кокколанйоки1"]
@@ -65,9 +61,11 @@
 (def CHILD-RATE 0.0001)
 (def YOUNG-RATE 0.0002)
 (def ADULT-RATE 0.0003)
-(def KIVIJARVI_WAYS (volatile! {:ways []
+(def KIVIJARVI-ROUTES-FILE "data/mas/hiitolanjoki/kivijarvi_ways.clj")
+(def LADOGA-ROUTES-FILE "data/mas/hiitolanjoki/ladoga_ways.clj")
+(def KIVIJARVI-WAYS (volatile! {:ways (read-string (slurp KIVIJARVI-ROUTES-FILE))
                 :idx 0}))
-(def LADOGA_WAYS (volatile! {:ways []
+(def LADOGA-WAYS (volatile! {:ways (read-string (slurp LADOGA-ROUTES-FILE))
                 :idx 0}))
 (def PASTURES (volatile! {:coords 
 	[[29.898 61.187]
@@ -120,8 +118,6 @@
   (println "Done reading data")
   (.setMBR rivers MBR) 
   (.setMBR lakes MBR)
-  (fill-ways KIVIJARVI_WAYS "KIVIJARVI_ROUTES")
-  (fill-ways LADOGA_WAYS "LADOGA_ROUTES")
   (.createFromGeomField network rivers)
   (while (.hasNext netiter)
     (let [node (.next netiter)
@@ -181,14 +177,6 @@ nil)
   (vswap! astate assoc :phase next-key)
   (.step phase world)))
 
-(defn fill-ways [ways-map subpoly]
-  (vswap! ways-map 
-  assoc :ways 
-  (for [poi (cls-instances subpoly)]
-    (let [pp (up/latlon (svs poi "points"))
-           ilv (interleave (map second pp) (map first pp))]
-      (vec ilv)))))
-
 (defn random-ways-walker [ways-map loc rate [sx sy] distro]
   (let [rsm @ways-map
        idx (:idx rsm)
@@ -213,7 +201,7 @@ nil)
   (let [inp (.createPoint factory (Coordinate. 0.0 0.0))
        loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))
-       lf (random-ways-walker KIVIJARVI_WAYS loc rate [0.002 0.0001] normal-distr)]
+       lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf})))
@@ -228,7 +216,7 @@ nil)
             (into-array Object (map second YSALMON_RIVER_ROUTE))
             loc 
             rate)
-       lf (random-ways-walker LADOGA_WAYS loc rate [0.002 0.0001] normal-distr)]
+       lf (random-ways-walker LADOGA-WAYS loc rate [0.002 0.0001] normal-distr)]
   (volatile! {:location loc
                   :phase :RIVER
                   :river-follower rf

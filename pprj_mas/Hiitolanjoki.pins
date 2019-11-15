@@ -1,4 +1,4 @@
-; Thu Nov 14 14:12:10 MSK 2019
+; Fri Nov 15 23:06:37 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,13 +19,22 @@
 	(label "HiiLakes")
 	(lineColor "ff0000ff")
 	(prettyName "Hiitolanjoki Lakes")
-	(shapeFile "data/shape/hiitolanjoki/hiitolanjoki_a.shp")
-	(spatialIndex "data/shape/vuoksi/hiitolanjoki_a.shx"))
+	(shapeFile "data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp")
+	(spatialIndex "data/mas/hiitolanjoki/shape/hiitolanjoki_a.shx"))
 
 ([Hiitolanjoki_Class100000] of  CloVar
 
-	(source "(volatile! {:ways []\n                :idx 0})")
-	(title "KIVIJARVI_WAYS"))
+	(source "(volatile! {:ways (read-string (slurp KIVIJARVI-ROUTES-FILE))\n                :idx 0})")
+	(title "KIVIJARVI-WAYS"))
+
+([Hiitolanjoki_Class100001] of  CloVar
+
+	(source "\"data/mas/hiitolanjoki/ladoga_ways.clj\"")
+	(title "LADOGA-ROUTES-FILE"))
+
+([Hiitolanjoki_Class100002] of  CloFuncall
+
+	(source "mas.world.hiitolanjoki/KIVIJARVI-WAYS"))
 
 ([Hiitolanjoki_Class110000] of  CloVar
 
@@ -415,7 +424,7 @@
 
 ([Hiitolanjoki_Class150000] of  CloFunction
 
-	(source "(let [inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)\n       lf (random-ways-walker LADOGA_WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :RIVER\n                  :river-follower rf\n                  :lake-follower lf}))")
+	(source "(let [inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)\n       lf (random-ways-walker LADOGA-WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :RIVER\n                  :river-follower rf\n                  :lake-follower lf}))")
 	(title "create-ysalmon-astate [crd world]"))
 
 ([Hiitolanjoki_Class160000] of  CloVar
@@ -437,6 +446,17 @@
 		"61 11.3 29 47.22"
 		"61 10.83 29 48.21")
 	(relative FALSE))
+
+([Hiitolanjoki_Class170000] of  CloProgram
+
+	(cloFunctions
+		[Hiitolanjoki_Class180011]
+		[Hiitolanjoki_Class180002])
+	(cloNamespace [Hiitolanjoki_Class180001])
+	(cloVars
+		[Hiitolanjoki_Class70000]
+		[Hiitolanjoki_Class100001])
+	(title "World Utilities"))
 
 ([Hiitolanjoki_Class170001] of  LADOGA_ROUTES
 
@@ -528,8 +548,8 @@
 
 ([Hiitolanjoki_Class170010] of  CloVar
 
-	(source "(volatile! {:ways []\n                :idx 0})")
-	(title "LADOGA_WAYS"))
+	(source "(volatile! {:ways (read-string (slurp LADOGA-ROUTES-FILE))\n                :idx 0})")
+	(title "LADOGA-WAYS"))
 
 ([Hiitolanjoki_Class170011] of  PASTURES
 
@@ -625,10 +645,28 @@
 	(pointer 4)
 	(title "Hiitolanjoki Vesi"))
 
+([Hiitolanjoki_Class180001] of  CloNamespace
+
+	(source "(:use\n  protege.core)\n(:require\n  [utils.poly :as up])\n(:import\n  edu.stanford.smi.protege.model.Instance)")
+	(title "mas.world.util"))
+
+([Hiitolanjoki_Class180002] of  CloFunction
+
+	(source "(println \"Prepare World..\")\n(println \"Write\" KIVIJARVI-ROUTES-FILE)\n(save-points-lola (cls-instances \"KIVIJARVI_ROUTES\") KIVIJARVI-ROUTES-FILE)\n(println \"Write\" LADOGA-ROUTES-FILE)\n(save-points-lola (cls-instances \"LADOGA_ROUTES\") LADOGA-ROUTES-FILE)")
+	(title "prepare-world [hm ins]"))
+
+([Hiitolanjoki_Class180003] of  MASWorldPanel
+
+	(but-world-prepare "Prepare World/mas.world.util/prepare-world")
+	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
+	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
+	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
+	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
+
 ([Hiitolanjoki_Class180011] of  CloFunction
 
-	(source "(vswap! ways-map \n  assoc :ways \n  (for [poi (cls-instances subpoly)]\n    (let [pp (up/latlon (svs poi \"points\"))\n           ilv (interleave (map second pp) (map first pp))]\n      (vec ilv))))")
-	(title "fill-ways [ways-map subpoly]"))
+	(source "([y]\n  (if (instance? Instance y)\n    (let [pp (up/latlon (svs y \"points\"))]\n      (vec (interleave (map second pp) (map first pp))))\n    (vec (for [poi y] (save-points-lola poi)))))\n([y f]\n  (spit f (save-points-lola y)))")
+	(title "save-points-lola"))
 
 ([Hiitolanjoki_Class180012] of  CloFunction
 
@@ -654,7 +692,6 @@
 
 	(cloFunctions
 		[Hiitolanjoki_Class90000]
-		[Hiitolanjoki_Class180011]
 		[Hiitolanjoki_Class90001]
 		[Hiitolanjoki_Class120001]
 		[Hiitolanjoki_Class30015]
@@ -694,6 +731,8 @@
 		[Hiitolanjoki_Class140005]
 		[Hiitolanjoki_Class90002]
 		[Hiitolanjoki_Class90003]
+		[Hiitolanjoki_Class70000]
+		[Hiitolanjoki_Class100001]
 		[Hiitolanjoki_Class100000]
 		[Hiitolanjoki_Class170010]
 		[Hiitolanjoki_Class120000]
@@ -704,7 +743,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:use\n  protege.core)\n(:require\n  [utils.poly :as up])\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -738,7 +777,7 @@
 
 ([Hiitolanjoki_Class20007] of  CloFunction
 
-	(source "(load \"mas/world/hiitolanjoki\")\n(let [netiter (.nodeIterator network)\n       MBR (.getMBR rivers)\n       [rsh rdb] RIVERS-URLS\n       [lsh ldb] LAKES-URLS]\n  (println \"reading rivers layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) rivers)\n  (println \"reading lakes layer\") \n  (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)\n  (.expandToInclude MBR (.getMBR lakes))\n  (println \"Done reading data\")\n  (.setMBR rivers MBR) \n  (.setMBR lakes MBR)\n  (fill-ways KIVIJARVI_WAYS \"KIVIJARVI_ROUTES\")\n  (fill-ways LADOGA_WAYS \"LADOGA_ROUTES\")\n  (.createFromGeomField network rivers)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(source "(load \"mas/world/hiitolanjoki\")\n(let [netiter (.nodeIterator network)\n       MBR (.getMBR rivers)\n       [rsh rdb] RIVERS-URLS\n       [lsh ldb] LAKES-URLS]\n  (println \"reading rivers layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) rivers)\n  (println \"reading lakes layer\") \n  (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)\n  (.expandToInclude MBR (.getMBR lakes))\n  (println \"Done reading data\")\n  (.setMBR rivers MBR) \n  (.setMBR lakes MBR)\n  (.createFromGeomField network rivers)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
 	(title "initialise [this]"))
 
 ([Hiitolanjoki_Class21] of  OMTPoly
@@ -1055,12 +1094,12 @@
 
 ([Hiitolanjoki_Class30004] of  CloVar
 
-	(source "[\"file:data/shape/hiitolanjoki/hiitolanjoki_l.shp\"\n \"file:data/shape/hiitolanjoki/hiitolanjoki_l.dbf\"]")
+	(source "[\"file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp\"\n \"file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.dbf\"]")
 	(title "RIVERS-URLS"))
 
 ([Hiitolanjoki_Class30005] of  CloVar
 
-	(source "[\"file:data/shape/hiitolanjoki/hiitolanjoki_a.shp\"\n \"file:data/shape/hiitolanjoki/hiitolanjoki_a.dbf\"]")
+	(source "[\"file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp\"\n \"file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf\"]")
 	(title "LAKES-URLS"))
 
 ([Hiitolanjoki_Class30006] of  CloVar
@@ -1100,7 +1139,7 @@
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
-	(source "(let [inp (.createPoint factory (Coordinate. 0.0 0.0))\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))\n       lf (random-ways-walker KIVIJARVI_WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf}))")
+	(source "(let [inp (.createPoint factory (Coordinate. 0.0 0.0))\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))\n       lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf}))")
 	(title "create-csalmon-astate [world]"))
 
 ([Hiitolanjoki_Class30016] of  CloVar
@@ -1846,12 +1885,10 @@
 		"61 15.28 29 40.57")
 	(relative FALSE))
 
-([Hiitolanjoki_Class70000] of  MASWorldPanel
+([Hiitolanjoki_Class70000] of  CloVar
 
-	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
-	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
-	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
-	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
+	(source "\"data/mas/hiitolanjoki/kivijarvi_ways.clj\"")
+	(title "KIVIJARVI-ROUTES-FILE"))
 
 ([Hiitolanjoki_Class70001] of  CloFunction
 
@@ -1984,8 +2021,8 @@
 	(label "HiiRivers")
 	(lineColor "ff0000ff")
 	(prettyName "Hiitolanjoki Rivers")
-	(shapeFile "data/shape/hiitolanjoki/hiitolanjoki_l.shp")
-	(spatialIndex "data/shape/vuoksi/hiitolanjoki_l.shx"))
+	(shapeFile "data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp")
+	(spatialIndex "data/mas/hiitolanjoki/shape/hiitolanjoki_l.shx"))
 
 ([VuoksiLohi_Class2] of  %3AINSTANCE-ANNOTATION
 

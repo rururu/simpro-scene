@@ -1,4 +1,4 @@
-; Fri Nov 08 21:07:21 MSK 2019
+; Fri Nov 15 14:52:19 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,8 +8,9 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agent</b><br><br>Agent.step <a href=\"internalLink\">@'MASCampus_Class6'</a>&#160;<br><br><b>CampusWorld</b><br><br>initialise <a href=\"internalLink\">@'MASCampus_Class8'</a>&#160;<br>start <a href=\"internalLink\">@'MASCampus_Class8'</a>&#160;<br>finish <a href=\"internalLink\">@'MASCampus_Class70000'</a>&#160;<br><br><b>CampusPorts </b><br><br>createDisplay <a href=\"internalLink\">@'MASCampus_Class11'</a>&#160;<br>setup <a href=\"internalLink\">@'MASCampus_Class12'</a>&#160;<br>info <a href=\"internalLink\">@'MASCampus_Class60000'</a>&#160;</body>\n</html>")
 	(title "CampusWorld Implementation"))
 
-([MASCampus2_Class10000] of  MASWorldPanel
+([MASCampus2_Class20000] of  MASWorldPanel
 
+	(but-world-prepare "Prepare World/mas.world.util/prepare-world")
 	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
 	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
 	(iPorts-class "mas.world.campus.CampusPorts")
