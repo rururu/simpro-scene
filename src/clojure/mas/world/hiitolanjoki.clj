@@ -26,8 +26,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
-(def NUM-C-SALMONS 100)
-(def NUM-A-SALMONS 100)
+(def INIT-NUM-SPAWN 20)
 (def WIDTH 800)
 (def HEIGHT 800)
 (def RIVERS-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
@@ -44,14 +43,11 @@
  ["NAME" "Кокколанйоки1"]
  ["NAME" "Кокколанйоки2"]
  ["NAME" "Hiitolanjoki"]])
-(def ORIGIN (Coordinate. 0.0 0.0))
 (def rivers (GeomVectorField. WIDTH HEIGHT))
 (def lakes (GeomVectorField. WIDTH HEIGHT))
 (def child-salmons (GeomVectorField. WIDTH HEIGHT))
 (def young-salmons (GeomVectorField. WIDTH HEIGHT))
 (def adult-salmons (GeomVectorField. WIDTH HEIGHT))
-(def junctions (GeomVectorField. WIDTH HEIGHT))
-(def network (GeomPlanarGraph.))
 (def factory (GeometryFactory.))
 (def rivers-port (GeomVectorFieldPortrayal.))
 (def lakes-port (GeomVectorFieldPortrayal.))
@@ -67,11 +63,11 @@
                 :idx 0}))
 (def LADOGA-WAYS (volatile! {:ways (read-string (slurp LADOGA-ROUTES-FILE))
                 :idx 0}))
-(def PASTURES (volatile! {:coords 
-	[[29.898 61.187]
-	 [29.924 61.193]
-	 [29.917 61.179]
-	 [29.893 61.163]]
+(def NUM-SPAWN 2)
+(def SPAWN-PLACES (volatile! {:places 
+	[[29.363 61.450]
+	 [29.380 61.445]
+	 [29.363 61.445]]
                 :idx 0}))
 (def declare-before (declare
   process
@@ -79,12 +75,8 @@
   create-asalmon-astate
   create-csalmon-astate
   start-ysalmon
-  fill-ways))
-(def SPAWN-PLACES (volatile! {:coords 
-	[[29.363 61.450]
-	 [29.380 61.445]
-	 [29.363 61.445]]
-                :idx 0}))
+  start-asalmon
+  spawn))
 (deftype ChildSalmon [astate ]
 	sim.engine.Steppable
 	(step [this world] (let [{:keys [phase lake-follower location stopper]} @astate]
@@ -92,22 +84,40 @@
     :LAKE  (process lake-follower :DONE astate world)
     :DONE (do (.stop stopper)
                  (start-ysalmon (.getCoordinate (.geometry location)) world))
-                 ;;(.moveTo lake-follower ORIGIN))
     nil)))
 )
 (deftype YoungSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase lake-follower river-follower location]} @astate]
+	(step [this world] (let [{:keys [phase lake-follower river-follower location stopper]} @astate]
   (condp = phase
     :RIVER (process river-follower :LAKE astate world)
     :LAKE  (process lake-follower :DONE astate world)
+    :DONE (do (.stop stopper)
+                 (start-asalmon (.getCoordinate (.geometry location)) world))
+    nil)))
+)
+(deftype AdultSalmon [astate ]
+	sim.engine.Steppable
+	(step [this world] (let [{:keys [phase 
+                   lake-follower 
+                   river-arriver 
+                   river-follower 
+                   spawn-arriver 
+                   stopper 
+                   location]} @astate]
+  (condp = phase
+    :LAKE        (process lake-follower :TORIVER astate world)
+    :TORIVER   (process river-arriver :RIVER astate world)
+    :RIVER       (process river-follower :TOSPAWN astate world)
+    :TOSPAWN (process spawn-arriver :DONE astate world)
+    :DONE       (do (.stop stopper) 
+                       (spawn (.getCoordinate (.geometry location)) world NUM-SPAWN))
     nil)))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
 	(initialise [this] (load "mas/world/hiitolanjoki")
-(let [netiter (.nodeIterator network)
-       MBR (.getMBR rivers)
+(let [MBR (.getMBR rivers)
        [rsh rdb] RIVERS-URLS
        [lsh ldb] LAKES-URLS]
   (println "reading rivers layer") 
@@ -117,35 +127,19 @@
   (.expandToInclude MBR (.getMBR lakes))
   (println "Done reading data")
   (.setMBR rivers MBR) 
-  (.setMBR lakes MBR)
-  (.createFromGeomField network rivers)
-  (while (.hasNext netiter)
-    (let [node (.next netiter)
-           coord (.getCoordinate node)
-           point (.createPoint factory coord)]
-      (.addGeometry junctions (MasonGeometry. point))))))
-	(start [this world] (let [schedule (.schedule world)]
-  (.clear child-salmons)
-  (.clear young-salmons)
-  (.clear adult-salmons)
-  (dotimes [i NUM-C-SALMONS]
-    (let [astate (create-csalmon-astate world)
-           a (ChildSalmon. astate)]
-      (.addGeometry child-salmons (:location @astate))
-      (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
-  (.setMBR child-salmons (.getMBR rivers))
-;;  (.scheduleRepeating schedule 
-;;    (.scheduleSpatialIndexUpdater adult-salmons)
-;;    Integer/MAX_VALUE 
-;;    1.0)
-  (.scheduleRepeating schedule 
-    (.scheduleSpatialIndexUpdater young-salmons)
-    Integer/MAX_VALUE 
-    1.0)
-  (.scheduleRepeating schedule 
-    (.scheduleSpatialIndexUpdater child-salmons)
-    Integer/MAX_VALUE 
-    1.0)))
+  (.setMBR lakes MBR)))
+	(start [this world] (.clear child-salmons)
+(.clear young-salmons)
+(.clear adult-salmons)
+(dotimes [i INIT-NUM-SPAWN]
+  (spawn (Coordinate. 0.0 0.0) world))
+(.setMBR child-salmons (.getMBR rivers))
+(.setMBR young-salmons (.getMBR rivers))
+(.setMBR adult-salmons (.getMBR rivers))
+(.scheduleRepeating (.schedule world)
+  (.scheduleSpatialIndexUpdater child-salmons)
+  Integer/MAX_VALUE 
+  1.0))
 	(finish [this world] ;;(ShapeFileExporter/write "data/mas/campus/Agents" agents)
 nil)
 )
@@ -167,7 +161,7 @@ nil)
 (.setField ysalmons-port young-salmons)
 (.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))
 (.setField asalmons-port adult-salmons)
-(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33 20) 0.4))
 (.setScale display 32.0)
 (.setScrollPosition display 0.0 0.18))
 	(info [this] "Hiitolanjoki's Salmon")
@@ -188,6 +182,16 @@ nil)
   (vswap! ways-map assoc :idx (if (< nxt (count rts)) nxt 0))
   (LineFollower. rnd factory loc rate)))
 
+(defn places-arriver [places-map loc rate bound bypass]
+  (let [pm @places-map
+       idx (:idx pm)
+       ps (:places pm)
+       [lo la] (nth ps idx)
+       nxt (inc idx)
+       crd (Coordinate. lo la)]
+  (vswap! places-map assoc :idx (if (< nxt (count ps)) nxt 0))
+  (Arriver. loc crd rate bound bypass)))
+
 (defn next-pasture-coord [pastures]
   (let [pp @pastures
        idx (:idx pp)
@@ -197,8 +201,8 @@ nil)
   (vswap! pastures assoc :idx (if (< nxt (count cds)) nxt 0))
   (Coordinate. (first crd) (second crd))))
 
-(defn create-csalmon-astate [world]
-  (let [inp (.createPoint factory (Coordinate. 0.0 0.0))
+(defn create-csalmon-astate [crd world]
+  (let [inp (.createPoint factory crd)
        loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))
        lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]
@@ -222,32 +226,51 @@ nil)
                   :river-follower rf
                   :lake-follower lf})))
 
-(defn create-asalmon-astate [world]
+(defn create-asalmon-astate [crd world]
   (let [rivent (Coordinate. 29.886 61.18)
-       loc (MasonGeometry. 
-              (.createPoint factory 
-                (next-pasture-coord PASTURES)))
+       inp (.createPoint factory crd)
+       loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
        lf (RandomWalker. loc rate 100 800 normal-distr lakes)
-       bp (RandomWalker. loc rate 0.0 100.0 10.0 600 normal-distr lakes)
+       bp (RandomWalker. loc rate 0.0 50.0 5.0 600 normal-distr lakes)
        af (Arriver. loc rivent rate lakes bp)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first ASALMON_RIVER_ROUTE))
             (into-array Object (map second ASALMON_RIVER_ROUTE))
             loc 
-            rate)]
+            rate)
+       bp2 (RandomWalker. loc rate 0.0 20.0 4.0 200 normal-distr lakes)
+       pa (places-arriver SPAWN-PLACES loc rate lakes bp2)]
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf
                   :river-arriver af
-                  :river-follower rf})))
+                  :river-follower rf
+                  :spawn-arriver pa})))
 
 (defn start-ysalmon [crd world]
   (let [schedule (.schedule world)
        astate (create-ysalmon-astate crd world)
        a (YoungSalmon. astate)]
   (.addGeometry young-salmons (:location @astate))
-  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))
-  (.setMBR young-salmons (.getMBR rivers))))
+  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+
+(defn start-asalmon [crd world]
+  (let [schedule (.schedule world)
+       astate (create-asalmon-astate crd world)
+       a (AdultSalmon. astate)]
+  (.addGeometry adult-salmons (:location @astate))
+  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+
+(defn spawn
+  ([crd world]
+  (let [schedule (.schedule world)
+         astate (create-csalmon-astate crd world)
+         a (ChildSalmon. astate)]
+    (.addGeometry child-salmons (:location @astate))
+    (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+([crd world N]
+  (dotimes [i N]
+    (spawn crd world))))
 

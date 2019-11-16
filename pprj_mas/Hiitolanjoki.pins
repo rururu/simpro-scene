@@ -1,4 +1,4 @@
-; Fri Nov 15 23:06:37 MSK 2019
+; Sat Nov 16 22:36:56 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31,10 +31,6 @@
 
 	(source "\"data/mas/hiitolanjoki/ladoga_ways.clj\"")
 	(title "LADOGA-ROUTES-FILE"))
-
-([Hiitolanjoki_Class100002] of  CloFuncall
-
-	(source "mas.world.hiitolanjoki/KIVIJARVI-WAYS"))
 
 ([Hiitolanjoki_Class110000] of  CloVar
 
@@ -357,8 +353,8 @@
 
 ([Hiitolanjoki_Class120000] of  CloVar
 
-	(source "(volatile! {:coords \n	[[29.898 61.187]\n	 [29.924 61.193]\n	 [29.917 61.179]\n	 [29.893 61.163]]\n                :idx 0})")
-	(title "PASTURES"))
+	(source "2")
+	(title "NUM-SPAWN"))
 
 ([Hiitolanjoki_Class120001] of  CloFunction
 
@@ -383,7 +379,7 @@
 
 ([Hiitolanjoki_Class130000] of  CloVar
 
-	(source "(volatile! {:coords \n	[[29.363 61.450]\n	 [29.380 61.445]\n	 [29.363 61.445]]\n                :idx 0})")
+	(source "(volatile! {:places \n	[[29.363 61.450]\n	 [29.380 61.445]\n	 [29.363 61.445]]\n                :idx 0})")
 	(title "SPAWN-PLACES"))
 
 ([Hiitolanjoki_Class140000] of  CloType
@@ -399,12 +395,12 @@
 
 ([Hiitolanjoki_Class140002] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower location stopper]} @astate]\n  (condp = phase\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-ysalmon (.getCoordinate (.geometry location)) world))\n                 ;;(.moveTo lake-follower ORIGIN))\n    nil))")
+	(source "(let [{:keys [phase lake-follower location stopper]} @astate]\n  (condp = phase\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-ysalmon (.getCoordinate (.geometry location)) world))\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class140003] of  CloFunction
 
-	(source "(let [schedule (.schedule world)\n       astate (create-ysalmon-astate crd world)\n       a (YoungSalmon. astate)]\n  (.addGeometry young-salmons (:location @astate))\n  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))\n  (.setMBR young-salmons (.getMBR rivers)))")
+	(source "(let [schedule (.schedule world)\n       astate (create-ysalmon-astate crd world)\n       a (YoungSalmon. astate)]\n  (.addGeometry young-salmons (:location @astate))\n  (vswap! astate assoc :stopper (.scheduleRepeating schedule a)))")
 	(title "start-ysalmon [crd world]"))
 
 ([Hiitolanjoki_Class140005] of  CloVar
@@ -426,11 +422,6 @@
 
 	(source "(let [inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first YSALMON_RIVER_ROUTE))\n            (into-array Object (map second YSALMON_RIVER_ROUTE))\n            loc \n            rate)\n       lf (random-ways-walker LADOGA-WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :RIVER\n                  :river-follower rf\n                  :lake-follower lf}))")
 	(title "create-ysalmon-astate [crd world]"))
-
-([Hiitolanjoki_Class160000] of  CloVar
-
-	(source "(Coordinate. 0.0 0.0)")
-	(title "ORIGIN"))
 
 ([Hiitolanjoki_Class17] of  OMTPoly
 
@@ -645,6 +636,11 @@
 	(pointer 4)
 	(title "Hiitolanjoki Vesi"))
 
+([Hiitolanjoki_Class180000] of  CloFunction
+
+	(source "(let [schedule (.schedule world)\n       astate (create-asalmon-astate crd world)\n       a (AdultSalmon. astate)]\n  (.addGeometry adult-salmons (:location @astate))\n  (vswap! astate assoc :stopper (.scheduleRepeating schedule a)))")
+	(title "start-asalmon [crd world]"))
+
 ([Hiitolanjoki_Class180001] of  CloNamespace
 
 	(source "(:use\n  protege.core)\n(:require\n  [utils.poly :as up])\n(:import\n  edu.stanford.smi.protege.model.Instance)")
@@ -682,6 +678,16 @@
 	(pointer 5)
 	(title "ArcGIS Tiles"))
 
+([Hiitolanjoki_Class190001] of  CloFunction
+
+	(source "(let [pm @places-map\n       idx (:idx pm)\n       ps (:places pm)\n       [lo la] (nth ps idx)\n       nxt (inc idx)\n       crd (Coordinate. lo la)]\n  (vswap! places-map assoc :idx (if (< nxt (count ps)) nxt 0))\n  (Arriver. loc crd rate bound bypass))")
+	(title "places-arriver [places-map loc rate bound bypass]"))
+
+([Hiitolanjoki_Class190002] of  CloFunction
+
+	(source "([crd world]\n  (let [schedule (.schedule world)\n         astate (create-csalmon-astate crd world)\n         a (ChildSalmon. astate)]\n    (.addGeometry child-salmons (:location @astate))\n    (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))\n([crd world N]\n  (dotimes [i N]\n    (spawn crd world)))")
+	(title "spawn"))
+
 ([Hiitolanjoki_Class20] of  MPolygon
 
 	(pointer 7)
@@ -693,35 +699,35 @@
 	(cloFunctions
 		[Hiitolanjoki_Class90000]
 		[Hiitolanjoki_Class90001]
+		[Hiitolanjoki_Class190001]
 		[Hiitolanjoki_Class120001]
 		[Hiitolanjoki_Class30015]
 		[Hiitolanjoki_Class150000]
 		[Hiitolanjoki_Class30014]
-		[Hiitolanjoki_Class140003])
+		[Hiitolanjoki_Class140003]
+		[Hiitolanjoki_Class180000]
+		[Hiitolanjoki_Class190002])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class140000]
 		[Hiitolanjoki_Class40000]
+		[Hiitolanjoki_Class20002]
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
 		[Hiitolanjoki_Class110000]
 		[Hiitolanjoki_Class30007]
-		[Hiitolanjoki_Class30006]
 		[Hiitolanjoki_Class30000]
 		[Hiitolanjoki_Class30001]
 		[Hiitolanjoki_Class30004]
 		[Hiitolanjoki_Class30005]
 		[Hiitolanjoki_Class80001]
 		[Hiitolanjoki_Class80000]
-		[Hiitolanjoki_Class160000]
 		[Hiitolanjoki_Class30002]
 		[Hiitolanjoki_Class30003]
 		[Hiitolanjoki_Class140006]
 		[Hiitolanjoki_Class30011]
 		[Hiitolanjoki_Class30012]
-		[Hiitolanjoki_Class30016]
-		[Hiitolanjoki_Class30017]
 		[Hiitolanjoki_Class30018]
 		[Hiitolanjoki_Class50003]
 		[Hiitolanjoki_Class50004]
@@ -736,8 +742,8 @@
 		[Hiitolanjoki_Class100000]
 		[Hiitolanjoki_Class170010]
 		[Hiitolanjoki_Class120000]
-		[Hiitolanjoki_Class40002]
-		[Hiitolanjoki_Class130000])
+		[Hiitolanjoki_Class130000]
+		[Hiitolanjoki_Class40002])
 	(documentation [Hiitolanjoki_Class50011])
 	(title "Hiitolanjoki"))
 
@@ -759,7 +765,7 @@
 
 ([Hiitolanjoki_Class20004] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower river-follower location]} @astate]\n  (condp = phase\n    :RIVER (process river-follower :LAKE astate world)\n    :LAKE  (process lake-follower :DONE astate world)\n    nil))")
+	(source "(let [{:keys [phase lake-follower river-follower location stopper]} @astate]\n  (condp = phase\n    :RIVER (process river-follower :LAKE astate world)\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-asalmon (.getCoordinate (.geometry location)) world))\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class20005] of  CloType
@@ -777,7 +783,7 @@
 
 ([Hiitolanjoki_Class20007] of  CloFunction
 
-	(source "(load \"mas/world/hiitolanjoki\")\n(let [netiter (.nodeIterator network)\n       MBR (.getMBR rivers)\n       [rsh rdb] RIVERS-URLS\n       [lsh ldb] LAKES-URLS]\n  (println \"reading rivers layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) rivers)\n  (println \"reading lakes layer\") \n  (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)\n  (.expandToInclude MBR (.getMBR lakes))\n  (println \"Done reading data\")\n  (.setMBR rivers MBR) \n  (.setMBR lakes MBR)\n  (.createFromGeomField network rivers)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(source "(load \"mas/world/hiitolanjoki\")\n(let [MBR (.getMBR rivers)\n       [rsh rdb] RIVERS-URLS\n       [lsh ldb] LAKES-URLS]\n  (println \"reading rivers layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) rivers)\n  (println \"reading lakes layer\") \n  (ShapeFileImporter/read (URL. lsh) (URL. ldb) lakes)\n  (.expandToInclude MBR (.getMBR lakes))\n  (println \"Done reading data\")\n  (.setMBR rivers MBR) \n  (.setMBR lakes MBR))")
 	(title "initialise [this]"))
 
 ([Hiitolanjoki_Class21] of  OMTPoly
@@ -1102,19 +1108,14 @@
 	(source "[\"file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp\"\n \"file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf\"]")
 	(title "LAKES-URLS"))
 
-([Hiitolanjoki_Class30006] of  CloVar
-
-	(source "100")
-	(title "NUM-A-SALMONS"))
-
 ([Hiitolanjoki_Class30007] of  CloVar
 
-	(source "100")
-	(title "NUM-C-SALMONS"))
+	(source "20")
+	(title "INIT-NUM-SPAWN"))
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(let [schedule (.schedule world)]\n  (.clear child-salmons)\n  (.clear young-salmons)\n  (.clear adult-salmons)\n  (dotimes [i NUM-C-SALMONS]\n    (let [astate (create-csalmon-astate world)\n           a (ChildSalmon. astate)]\n      (.addGeometry child-salmons (:location @astate))\n      (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))\n  (.setMBR child-salmons (.getMBR rivers))\n;;  (.scheduleRepeating schedule \n;;    (.scheduleSpatialIndexUpdater adult-salmons)\n;;    Integer/MAX_VALUE \n;;    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater young-salmons)\n    Integer/MAX_VALUE \n    1.0)\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater child-salmons)\n    Integer/MAX_VALUE \n    1.0))")
+	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(dotimes [i INIT-NUM-SPAWN]\n  (spawn (Coordinate. 0.0 0.0) world))\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)")
 	(title "start [this world]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
@@ -1134,23 +1135,13 @@
 
 ([Hiitolanjoki_Class30014] of  CloFunction
 
-	(source "(let [rivent (Coordinate. 29.886 61.18)\n       loc (MasonGeometry. \n              (.createPoint factory \n                (next-pasture-coord PASTURES)))\n       rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))\n       lf (RandomWalker. loc rate 100 800 normal-distr lakes)\n       bp (RandomWalker. loc rate 0.0 100.0 10.0 600 normal-distr lakes)\n       af (Arriver. loc rivent rate lakes bp)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-arriver af\n                  :river-follower rf}))")
-	(title "create-asalmon-astate [world]"))
+	(source "(let [rivent (Coordinate. 29.886 61.18)\n       inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))\n       lf (RandomWalker. loc rate 100 800 normal-distr lakes)\n       bp (RandomWalker. loc rate 0.0 50.0 5.0 600 normal-distr lakes)\n       af (Arriver. loc rivent rate lakes bp)\n       rf (AttributesFollower. \n            rivers \n            (into-array String (map first ASALMON_RIVER_ROUTE))\n            (into-array Object (map second ASALMON_RIVER_ROUTE))\n            loc \n            rate)\n       bp2 (RandomWalker. loc rate 0.0 20.0 4.0 200 normal-distr lakes)\n       pa (places-arriver SPAWN-PLACES loc rate lakes bp2)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf\n                  :river-arriver af\n                  :river-follower rf\n                  :spawn-arriver pa}))")
+	(title "create-asalmon-astate [crd world]"))
 
 ([Hiitolanjoki_Class30015] of  CloFunction
 
-	(source "(let [inp (.createPoint factory (Coordinate. 0.0 0.0))\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))\n       lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf}))")
-	(title "create-csalmon-astate [world]"))
-
-([Hiitolanjoki_Class30016] of  CloVar
-
-	(source "(GeomVectorField. WIDTH HEIGHT)")
-	(title "junctions"))
-
-([Hiitolanjoki_Class30017] of  CloVar
-
-	(source "(GeomPlanarGraph.)")
-	(title "network"))
+	(source "(let [inp (.createPoint factory crd)\n       loc (MasonGeometry. inp)\n       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))\n       lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]\n  (volatile! {:location loc\n                  :phase :LAKE\n                  :lake-follower lf}))")
+	(title "create-csalmon-astate [crd world]"))
 
 ([Hiitolanjoki_Class30018] of  CloVar
 
@@ -1165,7 +1156,7 @@
 
 ([Hiitolanjoki_Class40002] of  CloVar
 
-	(source "(declare\n  process\n  next-pasture-coord\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  fill-ways)")
+	(source "(declare\n  process\n  next-pasture-coord\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn)")
 	(title "declare-before"))
 
 ([Hiitolanjoki_Class50000] of  CloType
@@ -1208,7 +1199,7 @@
 
 ([Hiitolanjoki_Class50007] of  CloFunction
 
-	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField csalmons-port child-salmons)\n(.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
+	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField csalmons-port child-salmons)\n(.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33 20) 0.4))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
 	(title "setup [this display world]"))
 
 ([Hiitolanjoki_Class50008] of  CloFunction
@@ -1238,7 +1229,7 @@
 
 ([Hiitolanjoki_Class60002] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower river-arriver river-follower]} @astate]\n  (condp = phase\n    :LAKE      (process lake-follower :TORIVER astate world)\n    :TORIVER (process river-arriver :RIVER astate world)\n    :RIVER     (process river-follower :DONE astate world)\n    nil))")
+	(source "(let [{:keys [phase \n                   lake-follower \n                   river-arriver \n                   river-follower \n                   spawn-arriver \n                   stopper \n                   location]} @astate]\n  (condp = phase\n    :LAKE        (process lake-follower :TORIVER astate world)\n    :TORIVER   (process river-arriver :RIVER astate world)\n    :RIVER       (process river-follower :TOSPAWN astate world)\n    :TOSPAWN (process spawn-arriver :DONE astate world)\n    :DONE       (do (.stop stopper) \n                       (spawn (.getCoordinate (.geometry location)) world NUM-SPAWN))\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class7] of  OMTPoly
