@@ -1,4 +1,4 @@
-; Sat Nov 16 22:36:56 MSK 2019
+; Tue Nov 19 22:36:20 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -385,7 +385,7 @@
 ([Hiitolanjoki_Class140000] of  CloType
 
 	(cloProtocols [Hiitolanjoki_Class140001])
-	(fields "astate")
+	(fields "cstate")
 	(title "ChildSalmon"))
 
 ([Hiitolanjoki_Class140001] of  CloImplementation
@@ -395,7 +395,7 @@
 
 ([Hiitolanjoki_Class140002] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower location stopper]} @astate]\n  (condp = phase\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-ysalmon (.getCoordinate (.geometry location)) world))\n    nil))")
+	(source "(let [{:keys [phase lake-follower]} @cstate]\n  (condp = phase\n    :LAKE  (process lake-follower :DONE cstate world)\n    :DONE (start-ysalmon (relay-process lake-follower @cstate) world)\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class140003] of  CloFunction
@@ -698,6 +698,7 @@
 
 	(cloFunctions
 		[Hiitolanjoki_Class90000]
+		[Hiitolanjoki_Class200000]
 		[Hiitolanjoki_Class90001]
 		[Hiitolanjoki_Class190001]
 		[Hiitolanjoki_Class120001]
@@ -747,6 +748,11 @@
 	(documentation [Hiitolanjoki_Class50011])
 	(title "Hiitolanjoki"))
 
+([Hiitolanjoki_Class200000] of  CloFunction
+
+	(source "(let [{:keys [location stopper]} astate\n       crd (.getCoordinate (.geometry location))\n       cpy (Coordinate. (.x crd) (.y crd))]\n  (.moveLocationTo phase (Coordinate. 0.0 0.0))\n  (.stop stopper)\n  cpy)")
+	(title "relay-process [phase astate]"))
+
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
 	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
@@ -765,7 +771,7 @@
 
 ([Hiitolanjoki_Class20004] of  CloFunction
 
-	(source "(let [{:keys [phase lake-follower river-follower location stopper]} @astate]\n  (condp = phase\n    :RIVER (process river-follower :LAKE astate world)\n    :LAKE  (process lake-follower :DONE astate world)\n    :DONE (do (.stop stopper)\n                 (start-asalmon (.getCoordinate (.geometry location)) world))\n    nil))")
+	(source "(let [{:keys [phase lake-follower river-follower]} @ystate]\n  (condp = phase\n    :RIVER (process river-follower :LAKE ystate world)\n    :LAKE  (process lake-follower :DONE ystate world)\n    :DONE (start-asalmon (relay-process lake-follower @ystate) world)\n    nil))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class20005] of  CloType
@@ -1110,12 +1116,12 @@
 
 ([Hiitolanjoki_Class30007] of  CloVar
 
-	(source "20")
+	(source "1")
 	(title "INIT-NUM-SPAWN"))
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(dotimes [i INIT-NUM-SPAWN]\n  (spawn (Coordinate. 0.0 0.0) world))\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)")
+	(source "(def WORLD world)\n(def THIS this)\n(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(dotimes [i INIT-NUM-SPAWN]\n  (spawn (Coordinate. 0.0 0.0) world))\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater young-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater adult-salmons)\n  Integer/MAX_VALUE \n  1.0)")
 	(title "start [this world]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
@@ -1151,12 +1157,12 @@
 ([Hiitolanjoki_Class40000] of  CloType
 
 	(cloProtocols [Hiitolanjoki_Class20003])
-	(fields "astate")
+	(fields "ystate")
 	(title "YoungSalmon"))
 
 ([Hiitolanjoki_Class40002] of  CloVar
 
-	(source "(declare\n  process\n  next-pasture-coord\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn)")
+	(source "(declare\n  process\n  relay-process\n  next-pasture-coord\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn)")
 	(title "declare-before"))
 
 ([Hiitolanjoki_Class50000] of  CloType
@@ -1199,7 +1205,7 @@
 
 ([Hiitolanjoki_Class50007] of  CloFunction
 
-	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField csalmons-port child-salmons)\n(.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33 20) 0.4))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
+	(source "(.setField rivers-port rivers)\n(.setPortrayalForAll rivers-port (GeomPortrayal. Color/BLUE true))\n(.setField lakes-port lakes)\n(.setPortrayalForAll lakes-port (GeomPortrayal. Color/LIGHT_GRAY))\n(.setField csalmons-port child-salmons)\n(.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))\n(.setField ysalmons-port young-salmons)\n(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))\n(.setField asalmons-port adult-salmons)\n(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))\n(.setScale display 32.0)\n(.setScrollPosition display 0.0 0.18)")
 	(title "setup [this display world]"))
 
 ([Hiitolanjoki_Class50008] of  CloFunction

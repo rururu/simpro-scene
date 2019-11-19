@@ -26,7 +26,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
-(def INIT-NUM-SPAWN 20)
+(def INIT-NUM-SPAWN 1)
 (def WIDTH 800)
 (def HEIGHT 800)
 (def RIVERS-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
@@ -71,29 +71,28 @@
                 :idx 0}))
 (def declare-before (declare
   process
+  relay-process
   next-pasture-coord
   create-asalmon-astate
   create-csalmon-astate
   start-ysalmon
   start-asalmon
   spawn))
-(deftype ChildSalmon [astate ]
+(deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase lake-follower location stopper]} @astate]
+	(step [this world] (let [{:keys [phase lake-follower]} @cstate]
   (condp = phase
-    :LAKE  (process lake-follower :DONE astate world)
-    :DONE (do (.stop stopper)
-                 (start-ysalmon (.getCoordinate (.geometry location)) world))
+    :LAKE  (process lake-follower :DONE cstate world)
+    :DONE (start-ysalmon (relay-process lake-follower @cstate) world)
     nil)))
 )
-(deftype YoungSalmon [astate ]
+(deftype YoungSalmon [ystate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase lake-follower river-follower location stopper]} @astate]
+	(step [this world] (let [{:keys [phase lake-follower river-follower location stopper]} @ystate]
   (condp = phase
-    :RIVER (process river-follower :LAKE astate world)
-    :LAKE  (process lake-follower :DONE astate world)
-    :DONE (do (.stop stopper)
-                 (start-asalmon (.getCoordinate (.geometry location)) world))
+    :RIVER (process river-follower :LAKE ystate world)
+    :LAKE  (process lake-follower :DONE ystate world)
+    :DONE (start-asalmon (relay-process lake-follower @ystate) world)
     nil)))
 )
 (deftype AdultSalmon [astate ]
@@ -128,7 +127,9 @@
   (println "Done reading data")
   (.setMBR rivers MBR) 
   (.setMBR lakes MBR)))
-	(start [this world] (.clear child-salmons)
+	(start [this world] (def WORLD world)
+(def THIS this)
+(.clear child-salmons)
 (.clear young-salmons)
 (.clear adult-salmons)
 (dotimes [i INIT-NUM-SPAWN]
@@ -138,6 +139,14 @@
 (.setMBR adult-salmons (.getMBR rivers))
 (.scheduleRepeating (.schedule world)
   (.scheduleSpatialIndexUpdater child-salmons)
+  Integer/MAX_VALUE 
+  1.0)
+(.scheduleRepeating (.schedule world)
+  (.scheduleSpatialIndexUpdater young-salmons)
+  Integer/MAX_VALUE 
+  1.0)
+(.scheduleRepeating (.schedule world)
+  (.scheduleSpatialIndexUpdater adult-salmons)
   Integer/MAX_VALUE 
   1.0))
 	(finish [this world] ;;(ShapeFileExporter/write "data/mas/campus/Agents" agents)
@@ -161,7 +170,7 @@ nil)
 (.setField ysalmons-port young-salmons)
 (.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))
 (.setField asalmons-port adult-salmons)
-(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33 20) 0.4))
+(.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))
 (.setScale display 32.0)
 (.setScrollPosition display 0.0 0.18))
 	(info [this] "Hiitolanjoki's Salmon")
@@ -170,6 +179,14 @@ nil)
   (if (= (.getStatus phase) "DONE")
   (vswap! astate assoc :phase next-key)
   (.step phase world)))
+
+(defn relay-process [phase astate]
+  (let [{:keys [location stopper]} astate
+       crd (.getCoordinate (.geometry location))
+       cpy (Coordinate. (.x crd) (.y crd))]
+  (.moveLocationTo phase (Coordinate. 0.0 0.0))
+  (.stop stopper)
+  cpy))
 
 (defn random-ways-walker [ways-map loc rate [sx sy] distro]
   (let [rsm @ways-map
