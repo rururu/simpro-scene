@@ -26,7 +26,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
 (def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
-(def INIT-NUM-SPAWN 1)
+(def INIT-NUM-SPAWN 12)
 (def WIDTH 800)
 (def HEIGHT 800)
 (def RIVERS-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
@@ -45,8 +45,8 @@
  ["NAME" "Hiitolanjoki"]])
 (def rivers (GeomVectorField. WIDTH HEIGHT))
 (def lakes (GeomVectorField. WIDTH HEIGHT))
-(def child-salmons (GeomVectorField. WIDTH HEIGHT))
 (def young-salmons (GeomVectorField. WIDTH HEIGHT))
+(def child-salmons (GeomVectorField. WIDTH HEIGHT))
 (def adult-salmons (GeomVectorField. WIDTH HEIGHT))
 (def factory (GeometryFactory.))
 (def rivers-port (GeomVectorFieldPortrayal.))
@@ -63,12 +63,13 @@
                 :idx 0}))
 (def LADOGA-WAYS (volatile! {:ways (read-string (slurp LADOGA-ROUTES-FILE))
                 :idx 0}))
-(def NUM-SPAWN 2)
+(def NUM-SPAWN 8)
 (def SPAWN-PLACES (volatile! {:places 
 	[[29.363 61.450]
 	 [29.380 61.445]
 	 [29.363 61.445]]
                 :idx 0}))
+(def ESTUARY (Coordinate. 29.886 61.18))
 (def declare-before (declare
   process
   relay-process
@@ -80,37 +81,37 @@
   spawn))
 (deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase lake-follower]} @cstate]
+	(step [this world] (let [cst @cstate
+       {:keys [phase lake-follower]} cst]
   (condp = phase
     :LAKE  (process lake-follower :DONE cstate world)
-    :DONE (start-ysalmon (relay-process lake-follower @cstate) world)
+    :DONE (start-ysalmon (relay-process lake-follower cst) world)
     nil)))
 )
 (deftype YoungSalmon [ystate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase lake-follower river-follower location stopper]} @ystate]
+	(step [this world] (let [yst @ystate
+       {:keys [phase lake-follower river-follower]} yst]
   (condp = phase
     :RIVER (process river-follower :LAKE ystate world)
     :LAKE  (process lake-follower :DONE ystate world)
-    :DONE (start-asalmon (relay-process lake-follower @ystate) world)
+    :DONE (start-asalmon (relay-process lake-follower yst) world)
     nil)))
 )
 (deftype AdultSalmon [astate ]
 	sim.engine.Steppable
-	(step [this world] (let [{:keys [phase 
+	(step [this world] (let [ast @astate
+       {:keys [phase 
                    lake-follower 
                    river-arriver 
                    river-follower 
-                   spawn-arriver 
-                   stopper 
-                   location]} @astate]
+                   spawn-arriver]} ast]
   (condp = phase
     :LAKE        (process lake-follower :TORIVER astate world)
     :TORIVER   (process river-arriver :RIVER astate world)
     :RIVER       (process river-follower :TOSPAWN astate world)
     :TOSPAWN (process spawn-arriver :DONE astate world)
-    :DONE       (do (.stop stopper) 
-                       (spawn (.getCoordinate (.geometry location)) world NUM-SPAWN))
+    :DONE       (spawn (relay-process spawn-arriver ast) world NUM-SPAWN)
     nil)))
 )
 (deftype JokiWorld []
@@ -168,7 +169,7 @@ nil)
 (.setField csalmons-port child-salmons)
 (.setPortrayalForAll csalmons-port (OvalPortrayal2D. (Color. 255 100 0) 0.2))
 (.setField ysalmons-port young-salmons)
-(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 125 0) 0.3))
+(.setPortrayalForAll ysalmons-port (OvalPortrayal2D. (Color. 0 200 0) 0.3))
 (.setField asalmons-port adult-salmons)
 (.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))
 (.setScale display 32.0)
@@ -183,10 +184,11 @@ nil)
 (defn relay-process [phase astate]
   (let [{:keys [location stopper]} astate
        crd (.getCoordinate (.geometry location))
-       cpy (Coordinate. (.x crd) (.y crd))]
+       x (.x crd)
+       y (.y crd)]
   (.moveLocationTo phase (Coordinate. 0.0 0.0))
   (.stop stopper)
-  cpy))
+  [x y]))
 
 (defn random-ways-walker [ways-map loc rate [sx sy] distro]
   (let [rsm @ways-map
@@ -244,13 +246,12 @@ nil)
                   :lake-follower lf})))
 
 (defn create-asalmon-astate [crd world]
-  (let [rivent (Coordinate. 29.886 61.18)
-       inp (.createPoint factory crd)
+  (let [inp (.createPoint factory crd)
        loc (MasonGeometry. inp)
        rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
        lf (RandomWalker. loc rate 100 800 normal-distr lakes)
        bp (RandomWalker. loc rate 0.0 50.0 5.0 600 normal-distr lakes)
-       af (Arriver. loc rivent rate lakes bp)
+       af (Arriver. loc ESTUARY rate lakes bp)
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first ASALMON_RIVER_ROUTE))
@@ -266,15 +267,17 @@ nil)
                   :river-follower rf
                   :spawn-arriver pa})))
 
-(defn start-ysalmon [crd world]
+(defn start-ysalmon [[x y] world]
   (let [schedule (.schedule world)
+       crd (Coordinate. x y)
        astate (create-ysalmon-astate crd world)
        a (YoungSalmon. astate)]
   (.addGeometry young-salmons (:location @astate))
   (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
 
-(defn start-asalmon [crd world]
+(defn start-asalmon [[x y] world]
   (let [schedule (.schedule world)
+       crd (Coordinate. x y)
        astate (create-asalmon-astate crd world)
        a (AdultSalmon. astate)]
   (.addGeometry adult-salmons (:location @astate))
@@ -287,7 +290,7 @@ nil)
          a (ChildSalmon. astate)]
     (.addGeometry child-salmons (:location @astate))
     (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
-([crd world N]
+([[x y] world N]
   (dotimes [i N]
-    (spawn crd world))))
+    (spawn (Coordinate. x y) world))))
 
