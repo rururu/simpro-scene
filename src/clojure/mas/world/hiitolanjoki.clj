@@ -25,7 +25,7 @@
   ru.igis.sim.util.RandomWalker
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge))
-(def normal-distr (Normal. 0.0 0.0 (MersenneTwisterFast.)))
+(def normal-distro (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def INIT-NUM-SPAWN 12)
 (def WIDTH 800)
 (def HEIGHT 800)
@@ -64,21 +64,16 @@
 (def LADOGA-WAYS (volatile! {:ways (read-string (slurp LADOGA-ROUTES-FILE))
                 :idx 0}))
 (def NUM-SPAWN 8)
-(def SPAWN-PLACES (volatile! {:places 
-	[[29.363 61.450]
-	 [29.380 61.445]
-	 [29.363 61.445]]
-                :idx 0}))
 (def ESTUARY (Coordinate. 29.886 61.18))
 (def declare-before (declare
   process
   relay-process
-  next-pasture-coord
   create-asalmon-astate
   create-csalmon-astate
   start-ysalmon
   start-asalmon
-  spawn))
+  spawn
+  snapshot))
 (deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
 	(step [this world] (let [cst @cstate
@@ -111,8 +106,17 @@
     :TORIVER   (process river-arriver :RIVER astate world)
     :RIVER       (process river-follower :TOSPAWN astate world)
     :TOSPAWN (process spawn-arriver :DONE astate world)
-    :DONE       (spawn (relay-process spawn-arriver ast) world NUM-SPAWN)
+    :DONE       (do (relay-process spawn-arriver ast)
+                      (spawn (:children-way ast) world NUM-SPAWN))
     nil)))
+)
+(deftype Shooter []
+	sim.engine.Steppable
+	(step [this world] (let [interval 500
+       steps (.getSteps (.schedule world))]
+  (when (= (mod steps interval) 0)
+    (snapshot)
+    (println :steps steps))))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
@@ -133,8 +137,7 @@
 (.clear child-salmons)
 (.clear young-salmons)
 (.clear adult-salmons)
-(dotimes [i INIT-NUM-SPAWN]
-  (spawn (Coordinate. 0.0 0.0) world))
+(spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)
 (.setMBR child-salmons (.getMBR rivers))
 (.setMBR young-salmons (.getMBR rivers))
 (.setMBR adult-salmons (.getMBR rivers))
@@ -149,9 +152,9 @@
 (.scheduleRepeating (.schedule world)
   (.scheduleSpatialIndexUpdater adult-salmons)
   Integer/MAX_VALUE 
-  1.0))
-	(finish [this world] ;;(ShapeFileExporter/write "data/mas/campus/Agents" agents)
-nil)
+  1.0)
+(.scheduleRepeating (.schedule world) (Shooter.)))
+	(finish [this world] (snapshot))
 )
 (deftype JokiPorts []
 	ru.igis.sim.IPorts
@@ -190,41 +193,38 @@ nil)
   (.stop stopper)
   [x y]))
 
-(defn random-ways-walker [ways-map loc rate [sx sy] distro]
-  (let [rsm @ways-map
-       idx (:idx rsm)
-       rts (:ways rsm)
-       rte (nth rts idx)
+(defn random-ways-walker [ways-map loc rate sx sy distro]
+  (let [wm @ways-map
+       idx (:idx wm)
+       ws (:ways wm)
+       way (nth ws idx)
+       way (into-array Double/TYPE way)
        nxt (inc idx)
-       rte (into-array Double/TYPE rte)
-       rnd (LineFollower/randomisedRoute rte sx sy distro)]
-  (vswap! ways-map assoc :idx (if (< nxt (count rts)) nxt 0))
+       rnd (LineFollower/randomisedRoute way sx sy distro)]
+  (vswap! ways-map assoc :idx (if (< nxt (count ws)) nxt 0))
   (LineFollower. rnd factory loc rate)))
 
-(defn places-arriver [places-map loc rate bound bypass]
-  (let [pm @places-map
-       idx (:idx pm)
-       ps (:places pm)
-       [lo la] (nth ps idx)
+(defn spawn-places-arriver [ways-map loc rate sx sy bound bypass]
+  (let [wm @ways-map
+       idx (:idx wm)
+       ws (:ways wm)
+       way (nth ws idx)
        nxt (inc idx)
-       crd (Coordinate. lo la)]
-  (vswap! places-map assoc :idx (if (< nxt (count ps)) nxt 0))
-  (Arriver. loc crd rate bound bypass)))
+       crd (Coordinate. (first way) (second way))
+       way (into-array Double/TYPE way)
+       rnd (LineFollower/randomisedRoute way sx sy normal-distro)]
+  (vswap! ways-map assoc :idx (if (< nxt (count ws)) nxt 0))
+  [(Arriver. loc crd rate bound bypass)
+   way]))
 
-(defn next-pasture-coord [pastures]
-  (let [pp @pastures
-       idx (:idx pp)
-       cds (:coords pp)
-       crd (nth cds idx)
-       nxt (inc idx)]
-  (vswap! pastures assoc :idx (if (< nxt (count cds)) nxt 0))
-  (Coordinate. (first crd) (second crd))))
-
-(defn create-csalmon-astate [crd world]
-  (let [inp (.createPoint factory crd)
+(defn create-csalmon-astate [way world]
+  (let [crd (Coordinate.  (first way) (second way))
+       inp (.createPoint factory crd)
        loc (MasonGeometry. inp)
-       rate (.nextDouble normal-distr CHILD-RATE (/ CHILD-RATE 4))
-       lf (random-ways-walker KIVIJARVI-WAYS loc rate [0.002 0.0001] normal-distr)]
+       rate (.nextDouble normal-distro CHILD-RATE (/ CHILD-RATE 4))
+       way (into-array Double/TYPE way)
+       rnd (LineFollower/randomisedRoute way 0.002 0.0001 normal-distro)
+       lf (LineFollower. rnd factory loc rate)]
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf})))
@@ -232,14 +232,14 @@ nil)
 (defn create-ysalmon-astate [crd world]
   (let [inp (.createPoint factory crd)
        loc (MasonGeometry. inp)
-       rate (.nextDouble normal-distr YOUNG-RATE (/ YOUNG-RATE 4))
+       rate (.nextDouble normal-distro YOUNG-RATE (/ YOUNG-RATE 4))
        rf (AttributesFollower. 
             rivers 
             (into-array String (map first YSALMON_RIVER_ROUTE))
             (into-array Object (map second YSALMON_RIVER_ROUTE))
             loc 
             rate)
-       lf (random-ways-walker LADOGA-WAYS loc rate [0.002 0.0001] normal-distr)]
+       lf (random-ways-walker LADOGA-WAYS loc rate 0.002 0.0001 normal-distro)]
   (volatile! {:location loc
                   :phase :RIVER
                   :river-follower rf
@@ -248,9 +248,9 @@ nil)
 (defn create-asalmon-astate [crd world]
   (let [inp (.createPoint factory crd)
        loc (MasonGeometry. inp)
-       rate (.nextDouble normal-distr ADULT-RATE (/ ADULT-RATE 4))
-       lf (RandomWalker. loc rate 100 800 normal-distr lakes)
-       bp (RandomWalker. loc rate 0.0 50.0 5.0 600 normal-distr lakes)
+       rate (.nextDouble normal-distro ADULT-RATE (/ ADULT-RATE 4))
+       lf (RandomWalker. loc rate 100 800 normal-distro lakes)
+       bp (RandomWalker. loc rate 0.0 50.0 5.0 600 normal-distro lakes)
        af (Arriver. loc ESTUARY rate lakes bp)
        rf (AttributesFollower. 
             rivers 
@@ -258,14 +258,15 @@ nil)
             (into-array Object (map second ASALMON_RIVER_ROUTE))
             loc 
             rate)
-       bp2 (RandomWalker. loc rate 0.0 20.0 4.0 200 normal-distr lakes)
-       pa (places-arriver SPAWN-PLACES loc rate lakes bp2)]
+       bp2 (RandomWalker. loc rate 0.0 10.0 4.0 100 normal-distro lakes)
+       [spa cw] (spawn-places-arriver KIVIJARVI-WAYS loc rate 0.002 0.0001 lakes bp2)]
   (volatile! {:location loc
                   :phase :LAKE
                   :lake-follower lf
                   :river-arriver af
                   :river-follower rf
-                  :spawn-arriver pa})))
+                  :spawn-arriver spa
+                  :children-way cw})))
 
 (defn start-ysalmon [[x y] world]
   (let [schedule (.schedule world)
@@ -284,13 +285,29 @@ nil)
   (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
 
 (defn spawn
-  ([crd world]
+  ([way world]
   (let [schedule (.schedule world)
-         astate (create-csalmon-astate crd world)
+         astate (create-csalmon-astate way world)
          a (ChildSalmon. astate)]
     (.addGeometry child-salmons (:location @astate))
     (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
-([[x y] world N]
+([way-or-vol world N]
   (dotimes [i N]
-    (spawn (Coordinate. x y) world))))
+    (if (volatile? way-or-vol)
+      (let [wm @way-or-vol
+             idx (:idx wm)
+             ws (:ways wm)
+             way (nth ws idx)
+             nxt (inc idx)]
+        (vswap! way-or-vol assoc :idx (if (< nxt (count ws)) nxt 0)) 
+        (spawn way world))
+      (spawn way-or-vol world)))))
+
+(defn snapshot []
+  (if (> (.size (.getGeometries child-salmons)) 0)
+  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Child_salmons" child-salmons))
+(if (> (.size (.getGeometries young-salmons)) 0)
+  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Young_salmons" young-salmons))
+(if (> (.size (.getGeometries adult-salmons)) 0)
+  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Adult_salmons" adult-salmons)))
 
