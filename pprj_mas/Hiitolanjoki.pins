@@ -1,4 +1,4 @@
-; Sat Nov 23 22:45:28 MSK 2019
+; Sun Dec 01 23:03:54 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -742,7 +742,8 @@
 		[Hiitolanjoki_Class140003]
 		[Hiitolanjoki_Class180000]
 		[Hiitolanjoki_Class190002]
-		[Hiitolanjoki_Class220002])
+		[Hiitolanjoki_Class220002]
+		[Hiitolanjoki_Class220000])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class140000]
@@ -803,7 +804,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.PropertyHandler\n  com.bbn.openmap.gui.OverlayMapPanel)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -948,6 +949,11 @@
 
 	(source "(= (mod 149 10) 0)"))
 
+([Hiitolanjoki_Class220000] of  CloFunction
+
+	(source "(let [omt (OpenMapTab/getOpenMapTab)\n       bmp (OpenMapTab/getBasicMapPanel)\n       props (OpenMapTab/getProperties)\n       phand (PropertyHandler. props)\n       bmp2 (OverlayMapPanel. phand)]\n  (.remove omt bmp)\n  (.add omt bmp2 java.awt.BorderLayout/CENTER))")
+	(title "update-map []"))
+
 ([Hiitolanjoki_Class220001] of  ShapeLayer
 
 	(class "com.bbn.openmap.layer.shape.ShapeLayer")
@@ -962,8 +968,48 @@
 
 ([Hiitolanjoki_Class220002] of  CloFunction
 
-	(source "(if (> (.size (.getGeometries child-salmons)) 0)\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Child_salmons\" child-salmons))\n(if (> (.size (.getGeometries young-salmons)) 0)\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Young_salmons\" young-salmons))\n(if (> (.size (.getGeometries adult-salmons)) 0)\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Adult_salmons\" adult-salmons))")
+	(source "(when (> (.size (.getGeometries child-salmons)) 0)\n  (println :CS (.size (.getGeometries child-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Child_salmons\" child-salmons))\n(when (> (.size (.getGeometries young-salmons)) 0)\n  (println :YS (.size (.getGeometries young-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Young_salmons\" young-salmons))\n(when (> (.size (.getGeometries adult-salmons)) 0)\n  (println :AS (.size (.getGeometries adult-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Adult_salmons\" adult-salmons))")
 	(title "snapshot []"))
+
+([Hiitolanjoki_Class230000] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-map)"))
+
+([Hiitolanjoki_Class230001] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layer nil)"))
+
+([Hiitolanjoki_Class230002] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers nil)"))
+
+([Hiitolanjoki_Class230003] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers \"\")"))
+
+([Hiitolanjoki_Class230004] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers \"Young Salmons\")"))
+
+([Hiitolanjoki_Class230005] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers [\"[Child Salmons\" \"Young Salmons\"])"))
+
+([Hiitolanjoki_Class230006] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers [\"Child Salmons\" \"Young Salmons\"])"))
+
+([Hiitolanjoki_Class230007] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers [\"Child Salmons\" \"Young Salmons\" \"Adult Salmons\"])"))
+
+([Hiitolanjoki_Class230008] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers )"))
+
+([Hiitolanjoki_Class230009] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/refresh-layers nil nil)"))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 

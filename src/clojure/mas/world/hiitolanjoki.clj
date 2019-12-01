@@ -24,7 +24,10 @@
   ru.igis.sim.util.AttributesFollower
   ru.igis.sim.util.RandomWalker
   ru.igis.sim.util.Arriver
-  ru.igis.sim.util.RandomEdge))
+  ru.igis.sim.util.RandomEdge
+  ru.igis.omtab.OpenMapTab
+  com.bbn.openmap.PropertyHandler
+  com.bbn.openmap.gui.OverlayMapPanel))
 (def normal-distro (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def INIT-NUM-SPAWN 12)
 (def WIDTH 800)
@@ -304,10 +307,22 @@
       (spawn way-or-vol world)))))
 
 (defn snapshot []
-  (if (> (.size (.getGeometries child-salmons)) 0)
+  (when (> (.size (.getGeometries child-salmons)) 0)
+  (println :CS (.size (.getGeometries child-salmons)))
   (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Child_salmons" child-salmons))
-(if (> (.size (.getGeometries young-salmons)) 0)
+(when (> (.size (.getGeometries young-salmons)) 0)
+  (println :YS (.size (.getGeometries young-salmons)))
   (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Young_salmons" young-salmons))
-(if (> (.size (.getGeometries adult-salmons)) 0)
+(when (> (.size (.getGeometries adult-salmons)) 0)
+  (println :AS (.size (.getGeometries adult-salmons)))
   (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Adult_salmons" adult-salmons)))
+
+(defn update-map []
+  (let [omt (OpenMapTab/getOpenMapTab)
+       bmp (OpenMapTab/getBasicMapPanel)
+       props (OpenMapTab/getProperties)
+       phand (PropertyHandler. props)
+       bmp2 (OverlayMapPanel. phand)]
+  (.remove omt bmp)
+  (.add omt bmp2 java.awt.BorderLayout/CENTER)))
 
