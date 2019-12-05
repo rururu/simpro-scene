@@ -26,8 +26,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge
   ru.igis.omtab.OpenMapTab
-  com.bbn.openmap.PropertyHandler
-  com.bbn.openmap.gui.OverlayMapPanel))
+  com.bbn.openmap.layer.shape.SpatialIndex))
 (def normal-distro (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def INIT-NUM-SPAWN 12)
 (def WIDTH 800)
@@ -51,6 +50,11 @@
 (def young-salmons (GeomVectorField. WIDTH HEIGHT))
 (def child-salmons (GeomVectorField. WIDTH HEIGHT))
 (def adult-salmons (GeomVectorField. WIDTH HEIGHT))
+(def AGENT-LAYERS {:update-interval 50
+  :path  "data/mas/hiitolanjoki/shape/agents/"
+  :layers [["Child_Salmons" child-salmons]
+              ["Young_Salmons" young-salmons]
+              ["Adult_Salmons" adult-salmons]]})
 (def factory (GeometryFactory.))
 (def rivers-port (GeomVectorFieldPortrayal.))
 (def lakes-port (GeomVectorFieldPortrayal.))
@@ -76,7 +80,8 @@
   start-ysalmon
   start-asalmon
   spawn
-  snapshot))
+  snapshot
+  update-shape))
 (deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
 	(step [this world] (let [cst @cstate
@@ -115,11 +120,12 @@
 )
 (deftype Shooter []
 	sim.engine.Steppable
-	(step [this world] (let [interval 500
+	(step [this world] (let [interval (:update-interval AGENT-LAYERS)
        steps (.getSteps (.schedule world))]
   (when (= (mod steps interval) 0)
+    (println :steps steps)
     (snapshot)
-    (println :steps steps))))
+    (update-shape (:path AGENT-LAYERS) (map first (:layers AGENT-LAYERS))))))
 )
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
@@ -307,22 +313,21 @@
       (spawn way-or-vol world)))))
 
 (defn snapshot []
-  (when (> (.size (.getGeometries child-salmons)) 0)
-  (println :CS (.size (.getGeometries child-salmons)))
-  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Child_salmons" child-salmons))
-(when (> (.size (.getGeometries young-salmons)) 0)
-  (println :YS (.size (.getGeometries young-salmons)))
-  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Young_salmons" young-salmons))
-(when (> (.size (.getGeometries adult-salmons)) 0)
-  (println :AS (.size (.getGeometries adult-salmons)))
-  (ShapeFileExporter/write "data/mas/hiitolanjoki/shape/Adult_salmons" adult-salmons)))
+  (doseq [[lay ags] (:layers AGENT-LAYERS)]
+  (let [fin (str (:path AGENT-LAYERS) lay)
+         shp (clojure.java.io/file (str fin ".shp"))]
+    (if (> (.size (.getGeometries ags)) 0)
+      (ShapeFileExporter/write fin ags)
+      (if (.exists shp)
+        (clojure.java.io/delete-file shp))))))
 
-(defn update-map []
-  (let [omt (OpenMapTab/getOpenMapTab)
-       bmp (OpenMapTab/getBasicMapPanel)
-       props (OpenMapTab/getProperties)
-       phand (PropertyHandler. props)
-       bmp2 (OverlayMapPanel. phand)]
-  (.remove omt bmp)
-  (.add omt bmp2 java.awt.BorderLayout/CENTER)))
+(defn update-shape [path lays]
+  (let [mb (OpenMapTab/getMapBean)
+       cms (.getComponents mb)]
+  (doseq [lay lays]
+    (let [shp (str path lay ".shp")
+           lr (first (filter #(= (.getName %) lay) cms))]
+      (when (and lr (.exists (clojure.java.io/file shp)))
+        (.setSpatialIndex lr (SpatialIndex/locateAndSetShapeData shp))
+        (.doPrepare lr))))))
 

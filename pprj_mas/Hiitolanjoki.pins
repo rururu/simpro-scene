@@ -1,4 +1,4 @@
-; Sun Dec 01 23:03:54 MSK 2019
+; Thu Dec 05 21:17:54 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,7 +11,7 @@
 	(lineColor "FFFF6400")
 	(pointOval "true")
 	(pointRadius "2")
-	(prettyName "Child Salmons")
+	(prettyName "Child_Salmons")
 	(shapeFile "data/mas/hiitolanjoki/shape/Child_salmons.shp")
 	(spatialIndex "data/mas/hiitolanjoki/shape/Child_salmons.shx"))
 
@@ -446,7 +446,7 @@
 
 ([Hiitolanjoki_Class150005] of  CloFunction
 
-	(source "(let [interval 500\n       steps (.getSteps (.schedule world))]\n  (when (= (mod steps interval) 0)\n    (snapshot)\n    (println :steps steps)))")
+	(source "(let [interval (:update-interval AGENT-LAYERS)\n       steps (.getSteps (.schedule world))]\n  (when (= (mod steps interval) 0)\n    (println :steps steps)\n    (snapshot)\n    (update-shape (:path AGENT-LAYERS) (map first (:layers AGENT-LAYERS)))))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class160000] of  CloVar
@@ -766,6 +766,7 @@
 		[Hiitolanjoki_Class30011]
 		[Hiitolanjoki_Class140006]
 		[Hiitolanjoki_Class30012]
+		[Hiitolanjoki_Class240005]
 		[Hiitolanjoki_Class30018]
 		[Hiitolanjoki_Class50003]
 		[Hiitolanjoki_Class50004]
@@ -804,7 +805,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.PropertyHandler\n  com.bbn.openmap.gui.OverlayMapPanel)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -929,7 +930,7 @@
 	(lineColor "FF00C800")
 	(pointOval "true")
 	(pointRadius "3")
-	(prettyName "Young Salmons")
+	(prettyName "Young_Salmons")
 	(shapeFile "data/mas/hiitolanjoki/shape/Young_salmons.shp")
 	(spatialIndex "data/mas/hiitolanjoki/shape/Child_salmons.shx"))
 
@@ -951,8 +952,8 @@
 
 ([Hiitolanjoki_Class220000] of  CloFunction
 
-	(source "(let [omt (OpenMapTab/getOpenMapTab)\n       bmp (OpenMapTab/getBasicMapPanel)\n       props (OpenMapTab/getProperties)\n       phand (PropertyHandler. props)\n       bmp2 (OverlayMapPanel. phand)]\n  (.remove omt bmp)\n  (.add omt bmp2 java.awt.BorderLayout/CENTER))")
-	(title "update-map []"))
+	(source "(let [mb (OpenMapTab/getMapBean)\n       cms (.getComponents mb)]\n  (doseq [lay lays]\n    (let [shp (str path lay \".shp\")\n           lr (first (filter #(= (.getName %) lay) cms))]\n      (when (and lr (.exists (clojure.java.io/file shp)))\n        (.setSpatialIndex lr (SpatialIndex/locateAndSetShapeData shp))\n        (.doPrepare lr)))))")
+	(title "update-shape [path lays]"))
 
 ([Hiitolanjoki_Class220001] of  ShapeLayer
 
@@ -962,13 +963,13 @@
 	(lineColor "FF654321")
 	(pointOval "true")
 	(pointRadius "3")
-	(prettyName "Adult Salmons")
+	(prettyName "Adult_Salmons")
 	(shapeFile "data/mas/hiitolanjoki/shape/Adult_salmons.shp")
 	(spatialIndex "data/mas/hiitolanjoki/shape/Child_salmons.shx"))
 
 ([Hiitolanjoki_Class220002] of  CloFunction
 
-	(source "(when (> (.size (.getGeometries child-salmons)) 0)\n  (println :CS (.size (.getGeometries child-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Child_salmons\" child-salmons))\n(when (> (.size (.getGeometries young-salmons)) 0)\n  (println :YS (.size (.getGeometries young-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Young_salmons\" young-salmons))\n(when (> (.size (.getGeometries adult-salmons)) 0)\n  (println :AS (.size (.getGeometries adult-salmons)))\n  (ShapeFileExporter/write \"data/mas/hiitolanjoki/shape/Adult_salmons\" adult-salmons))")
+	(source "(doseq [[lay ags] (:layers AGENT-LAYERS)]\n  (let [fin (str (:path AGENT-LAYERS) lay)\n         shp (clojure.java.io/file (str fin \".shp\"))]\n    (if (> (.size (.getGeometries ags)) 0)\n      (ShapeFileExporter/write fin ags)\n      (if (.exists shp)\n        (clojure.java.io/delete-file shp)))))")
 	(title "snapshot []"))
 
 ([Hiitolanjoki_Class230000] of  CloFuncall
@@ -1010,6 +1011,47 @@
 ([Hiitolanjoki_Class230009] of  CloFuncall
 
 	(source "(mas.world.hiitolanjoki/refresh-layers nil nil)"))
+
+([Hiitolanjoki_Class240000] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-shape [\"Child Salmons\"])"))
+
+([Hiitolanjoki_Class240001] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-shape [\"Adult Salmons\"])"))
+
+([Hiitolanjoki_Class240002] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-shape [\"Adult Salmons\" \"Child Salmons\"])"))
+
+([Hiitolanjoki_Class240003] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-shape {\"Child Salmons\" \"\"})"))
+
+([Hiitolanjoki_Class240004] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/update-shape {\"Child Salmons\" \"data/mas/hiitolanjoki/shape/Child_salmons.shp\"})"))
+
+([Hiitolanjoki_Class240005] of  CloVar
+
+	(source "{:update-interval 50\n  :path  \"data/mas/hiitolanjoki/shape/agents/\"\n  :layers [[\"Child_Salmons\" child-salmons]\n              [\"Young_Salmons\" young-salmons]\n              [\"Adult_Salmons\" adult-salmons]]}")
+	(title "AGENT-LAYERS"))
+
+([Hiitolanjoki_Class240006] of  CloFuncall
+
+	(source "(clojure.java.io/file \"qq\")"))
+
+([Hiitolanjoki_Class240007] of  CloFuncall
+
+	(source "(.exists (clojure.java.io/file \"qq\"))"))
+
+([Hiitolanjoki_Class240008] of  CloFuncall
+
+	(source "(.exists (clojure.java.io/file \"/home/ru/clojure/simpro-scene/data/mas/hiitolanjoki/shape/agents\"))"))
+
+([Hiitolanjoki_Class240009] of  CloFuncall
+
+	(source "(.exists (clojure.java.io/file \"/home/ru/clojure/simpro-scene/data/mas/hiitolanjoki/shape/hiitolanjoki_a.cpg\"))"))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 
@@ -1301,7 +1343,7 @@
 
 ([Hiitolanjoki_Class40002] of  CloVar
 
-	(source "(declare\n  process\n  relay-process\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn\n  snapshot)")
+	(source "(declare\n  process\n  relay-process\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn\n  snapshot\n  update-shape)")
 	(title "declare-before"))
 
 ([Hiitolanjoki_Class50000] of  CloType
