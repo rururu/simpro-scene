@@ -1,4 +1,4 @@
-; Tue Jun 11 12:18:08 MSK 2019
+; Sun Dec 08 18:40:19 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6762,15 +6762,15 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_187922_Class3] of  Map
-)
-
 ([KB_266843_Class0] of  Map
 
 	(entries
 		[igis_ProjectKB_Class120019]
 		[igis_ProjectKB_Class120020]
 		[igis_ProjectKB_Class120021]))
+
+([KB_272522_Class3] of  Map
+)
 
 ([KB_337263_Instance_0] of  String
 

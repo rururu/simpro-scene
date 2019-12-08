@@ -72,6 +72,7 @@
                 :idx 0}))
 (def NUM-SPAWN 8)
 (def ESTUARY (Coordinate. 29.886 61.18))
+(def ADULT-LIFE 12000)
 (def declare-before (declare
   process
   relay-process
@@ -81,7 +82,8 @@
   start-asalmon
   spawn
   snapshot
-  update-shape))
+  update-shape
+  steps))
 (deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
 	(step [this world] (let [cst @cstate
@@ -105,25 +107,28 @@
 	sim.engine.Steppable
 	(step [this world] (let [ast @astate
        {:keys [phase 
+                   life-start
                    lake-follower 
                    river-arriver 
                    river-follower 
                    spawn-arriver]} ast]
-  (condp = phase
-    :LAKE        (process lake-follower :TORIVER astate world)
-    :TORIVER   (process river-arriver :RIVER astate world)
-    :RIVER       (process river-follower :TOSPAWN astate world)
-    :TOSPAWN (process spawn-arriver :DONE astate world)
-    :DONE       (do (relay-process spawn-arriver ast)
-                      (spawn (:children-way ast) world NUM-SPAWN))
-    nil)))
+  (if (> (- (steps world) life-start) ADULT-LIFE)
+    (relay-process lake-follower ast)
+    (condp = phase
+      :LAKE        (process lake-follower :TORIVER astate world)
+      :TORIVER   (process river-arriver :RIVER astate world)
+      :RIVER       (process river-follower :TOSPAWN astate world)
+      :TOSPAWN (process spawn-arriver :DONE astate world)
+      :DONE       (do (relay-process spawn-arriver ast)
+                         (spawn (:children-way ast) world NUM-SPAWN))
+      nil))))
 )
 (deftype Shooter []
 	sim.engine.Steppable
 	(step [this world] (let [interval (:update-interval AGENT-LAYERS)
-       steps (.getSteps (.schedule world))]
-  (when (= (mod steps interval) 0)
-    (println :steps steps)
+       ss (steps world)]
+  (when (= (mod ss interval) 0)
+    (println :steps ss)
     (snapshot)
     (update-shape (:path AGENT-LAYERS) (map first (:layers AGENT-LAYERS))))))
 )
@@ -141,9 +146,7 @@
   (println "Done reading data")
   (.setMBR rivers MBR) 
   (.setMBR lakes MBR)))
-	(start [this world] (def WORLD world)
-(def THIS this)
-(.clear child-salmons)
+	(start [this world] (.clear child-salmons)
 (.clear young-salmons)
 (.clear adult-salmons)
 (spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)
@@ -188,19 +191,22 @@
 (.setScrollPosition display 0.0 0.18))
 	(info [this] "Hiitolanjoki's Salmon")
 )
+(defn steps [world]
+  (.getSteps (.schedule world)))
+
 (defn process [phase next-key astate world]
   (if (= (.getStatus phase) "DONE")
   (vswap! astate assoc :phase next-key)
   (.step phase world)))
 
-(defn relay-process [phase astate]
-  (let [{:keys [location stopper]} astate
+(defn relay-process [phase ast]
+  (let [{:keys [location stopper]} ast
        crd (.getCoordinate (.geometry location))
        x (.x crd)
        y (.y crd)]
   (.moveLocationTo phase (Coordinate. 0.0 0.0))
   (.stop stopper)
-  [x y]))
+  [x y ast]))
 
 (defn random-ways-walker [ways-map loc rate sx sy distro]
   (let [wm @ways-map
@@ -277,29 +283,38 @@
                   :spawn-arriver spa
                   :children-way cw})))
 
-(defn start-ysalmon [[x y] world]
+(defn start-ysalmon [[x y ast] world]
   (let [schedule (.schedule world)
        crd (Coordinate. x y)
        astate (create-ysalmon-astate crd world)
+       loc (:location @astate)
        a (YoungSalmon. astate)]
-  (.addGeometry young-salmons (:location @astate))
-  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+  (.addGeometry young-salmons loc)
+  (vswap! astate assoc :stopper (.scheduleRepeating schedule a)
+                                  :life-start (:life-start ast))
+  (.setUserData loc astate)))
 
-(defn start-asalmon [[x y] world]
+(defn start-asalmon [[x y ast] world]
   (let [schedule (.schedule world)
        crd (Coordinate. x y)
        astate (create-asalmon-astate crd world)
+       loc (:location @astate)
        a (AdultSalmon. astate)]
-  (.addGeometry adult-salmons (:location @astate))
-  (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+  (.addGeometry adult-salmons loc)
+  (vswap! astate assoc :stopper (.scheduleRepeating schedule a)
+                                  :life-start (:life-start ast))
+  (.setUserData loc astate)))
 
 (defn spawn
   ([way world]
   (let [schedule (.schedule world)
          astate (create-csalmon-astate way world)
+         loc (:location @astate)
          a (ChildSalmon. astate)]
-    (.addGeometry child-salmons (:location @astate))
-    (vswap! astate assoc :stopper (.scheduleRepeating schedule a))))
+    (.addGeometry child-salmons loc)
+    (vswap! astate assoc :stopper (.scheduleRepeating schedule a)
+                                     :life-start (steps world))
+    (.setUserData loc astate)))
 ([way-or-vol world N]
   (dotimes [i N]
     (if (volatile? way-or-vol)
@@ -330,4 +345,7 @@
       (when (and lr (.exists (clojure.java.io/file shp)))
         (.setSpatialIndex lr (SpatialIndex/locateAndSetShapeData shp))
         (.doPrepare lr))))))
+
+(defn agent-state [field index]
+  (.getUserData (.get (.getGeometries field) index)))
 

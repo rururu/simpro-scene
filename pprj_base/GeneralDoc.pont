@@ -1,0 +1,37 @@
+; Sun Dec 08 18:25:29 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Documentation
+	(is-a USER)
+	(role abstract)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass HTMLDoc
+	(is-a Documentation)
+	(role concrete))
+
+(defclass ImageDoc
+	(is-a Documentation)
+	(role concrete))
+
+(defclass InternalDoc
+	(is-a Documentation)
+	(role concrete))

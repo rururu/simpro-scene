@@ -1,0 +1,119 @@
+; Wed Dec 04 12:49:49 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([ScenarioND_Class1] of  HTMLDoc
+
+	(source "file:doc/Visualizacia.html")
+	(title "Визуализация создания объектов карты"))
+
+([ScenarioND_Class10000] of  HTMLDoc
+
+	(source "file:doc/ScenaAlgorithm.html")
+	(title "Использование алгоритмов в моделях"))
+
+([ScenarioND_Class10001] of  HTMLDoc
+
+	(source "file:doc/MetodikaSozdaniaModelei.html")
+	(title "Методика разработки, отладки и тестирования моделей"))
+
+([ScenarioND_Class10002] of  HTMLDoc
+
+	(source "file:doc/Методика.html")
+	(title "Общая методика разработки военной игры"))
+
+([ScenarioND_Class10003] of  HTMLDoc
+
+	(source "file:doc/WebClientOntology.html")
+	(title "Разработка клиент-серверной составляющей"))
+
+([ScenarioND_Class10004] of  HTMLDoc
+
+	(source "file:doc/СценаОписание.html")
+	(title "СМКВИ \"Сцена-1.2.1\""))
+
+([ScenarioND_Class10005] of  HTMLDoc
+
+	(source "file:doc/MenuHelp.html")
+	(title "Справочная система СМКВИ «Сцена»"))
+
+([ScenarioND_Class10006] of  ImageDoc
+
+	(source "file:doc/MenuHelp.png")
+	(title "HelpMenu"))
+
+([ScenarioND_Class10007] of  InernalDoc
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: times; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    &#1055;&#1086;&#1083;&#1091;&#1095;&#1077;&#1085;&#1080;&#1077; &#1089;&#1074;&#1077;&#1076;&#1077;&#1085;&#1080;&#1081; &#1086; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1103;&#1093; &#1085;&#1072; &#1084;&#1086;&#1088;&#1077;.<br><br>&#1054;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; &#1082;&#1083;&#1072;&#1089;&#1089; <u><i>Action</i></u>. <a href=\"internalLink\">@'Action'</a>&#160;<br>&#1054;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; &#1101;&#1082;&#1079;&#1077;&#1084;&#1087;&#1083;&#1103;&#1088; &#1082;&#1083;&#1072;&#1089;&#1089;&#1072; &#1076;&#1077;&#1081;&#1089;&#1090;&#1074;&#1080;&#1077;. &#1053;&#1072;&#1087;&#1088;&#1080;&#1084;&#1077;&#1088;: <a href=\"internalLink\">@'&#1042;&#1086;&#1079;&#1084;&#1086;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080; &#1057;&#1094;&#1077;&#1085;&#1099;_Class420029'</a>&#160;<br>&#1050;&#1072;&#1088;&#1090;&#1080;&#1085;&#1082;&#1072;:<br><img src=\"file:data/html/logo.gif\"><br>HelpMenu<br><a href=\"internalLink\">@'&#1055;&#1086;&#1082;&#1072;&#1079;_Class630001'</a>&#160;<br>&#1052;&#1077;&#1090;&#1086;&#1076;&#1080;&#1082;&#1072;<br><a href=\"internalLink\">@'&#1055;&#1086;&#1082;&#1072;&#1079;_Class620001'</a>&#160;</body>\n</html>")
+	(title "Справка"))
+
+([ScenarioND_Class10008] of  InernalDoc
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          <a href=\"internalLink\">@'&#1055;&#1086;&#1082;&#1072;&#1079;_Class220000'</a>&#160;</body>\n</html>")
+	(title "Справка СМКВИ Сцена"))
+
+([ScenarioND_Class10009] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(Показ)"))
+
+([ScenarioND_Class20002] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp1")
+	(source "file:doc/СценаОписание.html")
+	(text "СМКВИ \"Сцена-1.2.1\""))
+
+([ScenarioND_Class20003] of  HelpMenu
+
+	(class "com.bbn.openmap.gui.DefaultHelpMenu")
+	(items "kmiHelp1 kmiHelp2 kmiHelp3 kmiHelp4 kmiHelp5 kmiHelp6 kmiHelp7")
+	(label "kHelpMenu"))
+
+([ScenarioND_Class20004] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp2")
+	(source "file:doc/ScenaMetodikaPodgotovkiIgr.html")
+	(text "Общая методика разработки военной игры"))
+
+([ScenarioND_Class20005] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp3")
+	(source "file:doc/MetodikaSozdaniaModelei.html")
+	(text "Методика разработки, отладки и тестирования моделей"))
+
+([ScenarioND_Class20006] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp4")
+	(source "file:doc/WebClientOntology.html")
+	(text "Разработка клиент-серверной составляющей"))
+
+([ScenarioND_Class20007] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp5")
+	(source "file:doc/ScenaAlgorithm.html")
+	(text "Использование алгоритмов в моделях"))
+
+([ScenarioND_Class20008] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp6")
+	(source "file:doc/Visualizacia.html")
+	(text "Визуализация создания объектов карты"))
+
+([ScenarioND_Class20009] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.URLHelpMenuItem")
+	(label "kmiHelp7")
+	(source "file:doc/MenuHelp.html")
+	(text "Справочная система СМКВИ \"Сцена\""))
