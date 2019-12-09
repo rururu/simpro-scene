@@ -1,4 +1,4 @@
-; Sun Dec 08 22:11:27 MSK 2019
+; Mon Dec 09 22:21:35 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -946,8 +946,23 @@
 
 ([Hiitolanjoki_Class230000] of  InternalDoc
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>Agents in this projects are lake salmons on the differen phases of their life.<b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\"><br>Orange points represent child lake salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\"><br>Green points represent young lake salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\"><br>Brown points represent adult lake salmons.</body>\n</html>")
-	(title "Agents"))
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Salmon Life Model<br><br></b>This multiagent model simulates the life of Ladoga salmon after dismantling dams that impede its migration to spawning sites.<br><b><br>Agents</b><br><br>Agents in this projects are Ladoga lake salmons on the differen phases of their life.<br><b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\">Orange points represent some number of child salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\">Green points represent some number of young salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\">Brown points represent some number of adult salmons.<br><br>It takes 2-3 years for the Ladoga child salmon fry to get to the river, after which they migrate to feed in Ladoga.<br>After the lake phase (1-5 years), mature salmon rise up the river for spawning.<br><br>In this model, each group of adult individuals reaching one of the spawning sites produces a certain number of fry and dies. Fry are born from caviar and begin movement to the river source.<br><br><b>Custamizable options:</b><br><br>Initial number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class30007'</a>&#160; (12)<br>Repeatable number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class120000'</a>&#160; (8)<br>Lifetime of salmon in steps <a href=\"internalLink\">@'Hiitolanjoki_Class250001'</a>&#160; (12000)<br>Propagation rate of child salmon <a href=\"internalLink\">@'Hiitolanjoki_Class140005'</a>&#160; (0.0001)<br>Propagation rate of young salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90002'</a>&#160; (0.0002)<br>Propagation rate of adult salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90003'</a>&#160; (0.0003)<br>Migration routes in Kivijarvi lake <a href=\"internalLink\">@'Hiitolanjoki_Class260000'</a>&#160;,..<br>Migration routes in Ladoga lake <a href=\"internalLink\">@'Hiitolanjoki_Class170002'</a>&#160;,..<br><br><b>References:</b><br><br><a http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" href=\"https://hiitolanjoki.fi/\">https://hiitolanjoki.fi/</a>&#0;<br><br><img src=\"file:data/mas/hiitolanjoki/LadogaSalmon.png\"></body>\n</html>")
+	(title "Salmon Life Model"))
+
+([Hiitolanjoki_Class240000] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectFin.png")
+	(title "Hiitolanjoki Hanke"))
+
+([Hiitolanjoki_Class240001] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectEng.png")
+	(title "Hiitolanjoki Project"))
+
+([Hiitolanjoki_Class240002] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectRus.png")
+	(title "Проект Хиитоланёки"))
 
 ([Hiitolanjoki_Class240005] of  CloVar
 
@@ -963,6 +978,21 @@
 
 	(source "12000")
 	(title "ADULT-LIFE"))
+
+([Hiitolanjoki_Class260000] of  Route
+
+	(but-route "Create Route/utils.poly/create-route")
+	(poly [Hiitolanjoki_Class170021]))
+
+([Hiitolanjoki_Class260001] of  Route
+
+	(but-route "Create Route/utils.poly/create-route")
+	(poly [Hiitolanjoki_Class170023]))
+
+([Hiitolanjoki_Class260002] of  Route
+
+	(but-route "Create Route/utils.poly/create-route")
+	(poly [Hiitolanjoki_Class170022]))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 
