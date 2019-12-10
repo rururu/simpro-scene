@@ -1,4 +1,4 @@
-; Mon Dec 09 22:21:35 MSK 2019
+; Tue Dec 10 22:30:19 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -463,14 +463,9 @@
 
 ([Hiitolanjoki_Class170000] of  CloProgram
 
-	(cloFunctions
-		[Hiitolanjoki_Class180011]
-		[Hiitolanjoki_Class180002])
-	(cloNamespace [Hiitolanjoki_Class180001])
-	(cloVars
-		[Hiitolanjoki_Class70000]
-		[Hiitolanjoki_Class100001])
-	(title "World Utilities"))
+	(cloFunctions [Clojure_Class300000])
+	(cloNamespace [Clojure_Class300001])
+	(title "CW"))
 
 ([Hiitolanjoki_Class170001] of  LADOGA_ROUTES
 
@@ -664,27 +659,23 @@
 	(source "(let [schedule (.schedule world)\n       crd (Coordinate. x y)\n       astate (create-asalmon-astate crd world)\n       loc (:location @astate)\n       a (AdultSalmon. astate)]\n  (.addGeometry adult-salmons loc)\n  (vswap! astate assoc :stopper (.scheduleRepeating schedule a)\n                                  :life-start (:life-start ast))\n  (.setUserData loc astate))")
 	(title "start-asalmon [[x y ast] world]"))
 
-([Hiitolanjoki_Class180001] of  CloNamespace
+([Hiitolanjoki_Class180001] of  WorkingPrograms
 
-	(source "(:use\n  protege.core)\n(:require\n  [utils.poly :as up])\n(:import\n  edu.stanford.smi.protege.model.Instance)")
-	(title "mas.world.util"))
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[MASWorld_Class4]
+		[Hiitolanjoki_Class70006]
+		[Hiitolanjoki_Class20000])
+	(title "Hiitolanjoki Programs"))
 
 ([Hiitolanjoki_Class180002] of  CloFunction
 
 	(source "(println \"Prepare World..\")\n(println \"Write\" KIVIJARVI-ROUTES-FILE)\n(save-points-lola (cls-instances \"KIVIJARVI_ROUTES\") KIVIJARVI-ROUTES-FILE)\n(println \"Write\" LADOGA-ROUTES-FILE)\n(save-points-lola (cls-instances \"LADOGA_ROUTES\") LADOGA-ROUTES-FILE)")
-	(title "prepare-world [hm ins]"))
-
-([Hiitolanjoki_Class180003] of  MASWorldPanel
-
-	(but-world-prepare "Prepare World/mas.world.util/prepare-world")
-	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
-	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
-	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
-	(iWorld-class "mas.world.hiitolanjoki.JokiWorld"))
+	(title "save-routes []"))
 
 ([Hiitolanjoki_Class180011] of  CloFunction
 
-	(source "([y]\n  (if (instance? Instance y)\n    (let [pp (up/latlon (svs y \"points\"))]\n      (vec (interleave (map second pp) (map first pp))))\n    (vec (for [poi y] (save-points-lola poi)))))\n([y f]\n  (spit f (save-points-lola y)))")
+	(source "([y]\n  (if (instance? Instance y)\n    (let [pp (utils.poly/latlon (svs y \"points\"))]\n      (vec (interleave (map second pp) (map first pp))))\n    (vec (for [poi y] (save-points-lola poi)))))\n([y f]\n  (spit f (save-points-lola y)))")
 	(title "save-points-lola"))
 
 ([Hiitolanjoki_Class180012] of  CloFunction
@@ -737,7 +728,9 @@
 		[Hiitolanjoki_Class190002]
 		[Hiitolanjoki_Class220002]
 		[Hiitolanjoki_Class220000]
-		[Hiitolanjoki_Class200005])
+		[Hiitolanjoki_Class200005]
+		[Hiitolanjoki_Class180011]
+		[Hiitolanjoki_Class180002])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class140000]
@@ -786,6 +779,12 @@
 	(source "(let [{:keys [location stopper]} ast\n       crd (.getCoordinate (.geometry location))\n       x (.x crd)\n       y (.y crd)]\n  (.moveLocationTo phase (Coordinate. 0.0 0.0))\n  (.stop stopper)\n  [x y ast])")
 	(title "relay-process [phase ast]"))
 
+([Hiitolanjoki_Class200002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Hiitolanjoki_Class180001])
+	(%3ACREATION-TIMESTAMP "2019.12.10 22:29:28.302 MSK")
+	(%3ACREATOR "ru"))
+
 ([Hiitolanjoki_Class200005] of  CloFunction
 
 	(source "(.getUserData (.get (.getGeometries field) index))")
@@ -793,7 +792,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex)")
+	(source "(:use\n  protege.core)\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex\n  edu.stanford.smi.protege.model.Instance)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -993,6 +992,15 @@
 
 	(but-route "Create Route/utils.poly/create-route")
 	(poly [Hiitolanjoki_Class170022]))
+
+([Hiitolanjoki_Class270000] of  MASWorldPanel
+
+	(but-world-prepare "Prepare World/mas.world/prepare-world")
+	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
+	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
+	(iPorts-class "mas.world.hiitolanjoki.JokiPorts")
+	(iWorld-class "mas.world.hiitolanjoki.JokiWorld")
+	(prepare "(mas.world.hiitolanjoki/save-routes)"))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 

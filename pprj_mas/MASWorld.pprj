@@ -1,4 +1,4 @@
-; Fri Nov 15 14:47:51 MSK 2019
+; Tue Dec 10 18:40:47 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,10 +20,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[MASWorld_ProjectKB_Class40361]
-		[MASWorld_ProjectKB_Class40362]
-		[MASWorld_ProjectKB_Class40363]
-		[MASWorld_ProjectKB_Class40364]))
+		[MASWorld_ProjectKB_Class50372]
+		[MASWorld_ProjectKB_Class50373]
+		[MASWorld_ProjectKB_Class50374]
+		[MASWorld_ProjectKB_Class50375]))
 
 ([CLSES_TAB] of  Widget
 
@@ -167,34 +167,6 @@
 	(name "instances_file_name")
 	(string_value "MASWorld.pins"))
 
-([KB_084470_Class357] of  Map
-
-	(entries
-		[KB_084470_Class358]
-		[KB_084470_Class359]
-		[KB_084470_Class360]))
-
-([KB_084470_Class358] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_084470_Class359] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_084470_Class360] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([KB_144769_Class329] of  Widget
 
 	(is_hidden FALSE)
@@ -286,6 +258,34 @@
 ([KB_144769_Class341] of  Property_List
 )
 
+([KB_154528_Class357] of  Map
+
+	(entries
+		[KB_154528_Class358]
+		[KB_154528_Class359]
+		[KB_154528_Class360]))
+
+([KB_154528_Class358] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_154528_Class359] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_154528_Class360] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -319,7 +319,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 260)
 	(x 0)
-	(y 240))
+	(y 300))
 
 ([MASWorld_ProjectKB_Class20362] of  Property_List
 )
@@ -453,7 +453,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 260)
 	(x 0)
-	(y 120))
+	(y 180))
 
 ([MASWorld_ProjectKB_Class30362] of  Property_List
 )
@@ -522,7 +522,8 @@
 		[MASWorld_ProjectKB_Class376]
 		[MASWorld_ProjectKB_Class378]
 		[MASWorld_ProjectKB_Class20361]
-		[MASWorld_ProjectKB_Class30361]))
+		[MASWorld_ProjectKB_Class30361]
+		[MASWorld_ProjectKB_Class50361]))
 
 ([MASWorld_ProjectKB_Class373] of  Property_List
 
@@ -537,7 +538,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 260)
 	(x 0)
-	(y 180))
+	(y 240))
 
 ([MASWorld_ProjectKB_Class375] of  Property_List
 )
@@ -638,26 +639,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
-
-([MASWorld_ProjectKB_Class40361] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([MASWorld_ProjectKB_Class40362] of  String
-
-	(name "MASWorldPanel")
-	(string_value "iWorld-class"))
-
-([MASWorld_ProjectKB_Class40363] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([MASWorld_ProjectKB_Class40364] of  String
-
-	(name "CloType")
-	(string_value "title"))
 
 ([MASWorld_ProjectKB_Class406] of  Widget
 
@@ -939,6 +920,40 @@
 
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
+
+([MASWorld_ProjectKB_Class50361] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "prepare")
+	(property_list [MASWorld_ProjectKB_Class50362])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 260)
+	(x 0)
+	(y 120))
+
+([MASWorld_ProjectKB_Class50362] of  Property_List
+)
+
+([MASWorld_ProjectKB_Class50372] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([MASWorld_ProjectKB_Class50373] of  String
+
+	(name "MASWorldPanel")
+	(string_value "iWorld-class"))
+
+([MASWorld_ProjectKB_Class50374] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([MASWorld_ProjectKB_Class50375] of  String
+
+	(name "CloType")
+	(string_value "title"))
 
 ([option_instance] of  Options
 

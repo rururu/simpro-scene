@@ -1,4 +1,6 @@
 (ns mas.world.hiitolanjoki
+(:use
+  protege.core)
 (:import
   java.net.URL
   java.awt.Color
@@ -26,7 +28,8 @@
   ru.igis.sim.util.Arriver
   ru.igis.sim.util.RandomEdge
   ru.igis.omtab.OpenMapTab
-  com.bbn.openmap.layer.shape.SpatialIndex))
+  com.bbn.openmap.layer.shape.SpatialIndex
+  edu.stanford.smi.protege.model.Instance))
 (def normal-distro (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def INIT-NUM-SPAWN 12)
 (def WIDTH 800)
@@ -348,4 +351,20 @@
 
 (defn agent-state [field index]
   (.getUserData (.get (.getGeometries field) index)))
+
+(defn save-points-lola
+  ([y]
+  (if (instance? Instance y)
+    (let [pp (utils.poly/latlon (svs y "points"))]
+      (vec (interleave (map second pp) (map first pp))))
+    (vec (for [poi y] (save-points-lola poi)))))
+([y f]
+  (spit f (save-points-lola y))))
+
+(defn save-routes []
+  (println "Prepare World..")
+(println "Write" KIVIJARVI-ROUTES-FILE)
+(save-points-lola (cls-instances "KIVIJARVI_ROUTES") KIVIJARVI-ROUTES-FILE)
+(println "Write" LADOGA-ROUTES-FILE)
+(save-points-lola (cls-instances "LADOGA_ROUTES") LADOGA-ROUTES-FILE))
 

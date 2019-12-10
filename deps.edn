@@ -36,6 +36,10 @@
   geomason {:local/root "lib_mas/geomason-1.6.jar"}
   jts {:local/root "lib_mas/jts-1.13.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
+  j3dcore {:local/root "lib_j3d/j3dcore.jar"}
+  j3dutils {:local/root "lib_j3d/j3dutils.jar"}
+  jogamp-fat {:local/root "lib_j3d/jogamp-fat.jar"}
+  vecmath {:local/root "lib_j3d/vecmath.jar"}
   CloAgents {:local/root "lib/CloAgents.jar"}
   quil {:mvn/version "3.0.0"}}
   :paths ["src" "src/clojure" "classes" "resources"]}

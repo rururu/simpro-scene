@@ -1,4 +1,4 @@
-; Fri Nov 15 14:47:51 MSK 2019
+; Tue Dec 10 18:40:47 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -28,11 +28,17 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <u>Java source of used interfaces and classes in CloAgents.jar</u><br><br>1. Interface ru.igis.sim.IWorld <a href=\"internalLink\">@'MASWorld_Class10'</a>&#160;<br><br>2. Interface ru.igis.sim.IPorts <a href=\"internalLink\">@'MASWorld_Class11'</a>&#160;<br><br>3. Class ru.igis.sim.World <a href=\"internalLink\">@'MASWorld_Class9'</a>&#160;<br><br>4. Class ru.igis.sim.WorldGUI <a href=\"internalLink\">@'MASWorld_Class8'</a>&#160;<br></body>\n</html>")
 	(title "Java source of used interfaces and classes"))
 
+([MASWorld_Class20001] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       pre (mp \"prepare\")]\n  (if (not (empty? pre))\n    (eval (read-string pre))))")
+	(title "prepare-world [hm inst]"))
+
 ([MASWorld_Class4] of  CloProgram
 
 	(cloFunctions
 		[MASWorld_Class5]
-		[MASWorld_Class10001])
+		[MASWorld_Class10001]
+		[MASWorld_Class20001])
 	(cloNamespace [MASWorld_Class6])
 	(title "MAS World"))
 

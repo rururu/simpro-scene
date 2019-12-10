@@ -1,4 +1,4 @@
-; Fri Nov 15 14:47:51 MSK 2019
+; Tue Dec 10 18:40:47 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -14,7 +14,11 @@
 		(create-accessor read-write))
 	(single-slot but-world-prepare
 		(type STRING)
-		(default "Prepare World/mas.world.util/prepare-world")
+		(default "Prepare World/mas.world/prepare-world")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot prepare
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot iWorld-class
@@ -52,9 +56,13 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot prepare
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-world-prepare
 		(type STRING)
-		(default "Prepare World/mas.world.util/prepare-world")
+		(default "Prepare World/mas.world/prepare-world")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot iWorld-class
