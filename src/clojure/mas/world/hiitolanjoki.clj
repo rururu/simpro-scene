@@ -192,7 +192,7 @@
 (.setPortrayalForAll asalmons-port (OvalPortrayal2D. (Color. 101 67 33) 0.4))
 (.setScale display 32.0)
 (.setScrollPosition display 0.0 0.18))
-	(info [this] "Hiitolanjoki's Salmon")
+	(info [this] "<img src='file:data/mas/hiitolanjoki/Logo.png'")
 )
 (defn steps [world]
   (.getSteps (.schedule world)))

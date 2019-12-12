@@ -1,6 +1,6 @@
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.1"}
-  protege {:local/root "lib_ext/protege-3.5.0.jar"}
+  edu.stanford.protege/protege {:mvn/version "3.5.0"}
   protege/standard-extensions {:local/root "lib_ext/standard-extensions-3.5.0.jar"}
   protege/looks {:local/root "lib_ext/looks-3.5.0.jar"}
   protege/unicode_panel {:local/root "lib_ext/unicode_panel-3.5.0.jar"}
