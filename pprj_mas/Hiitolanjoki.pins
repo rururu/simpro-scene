@@ -1,4 +1,4 @@
-; Thu Dec 12 21:24:25 MSK 2019
+; Sat Dec 14 22:14:10 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -945,7 +945,7 @@
 
 ([Hiitolanjoki_Class230000] of  InternalDoc
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Salmon Life Model<br><br></b>This multiagent model simulates the life of Ladoga salmon after dismantling dams that impede its migration to spawning sites.<br><b><br>Agents</b><br><br>Agents in this projects are Ladoga lake salmons on the differen phases of their life.<br><b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\">Orange points represent some number of child salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\">Green points represent some number of young salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\">Brown points represent some number of adult salmons.<br><br>It takes 2-3 years for the Ladoga child salmon fry to get to the river, after which they migrate to feed in Ladoga.<br>After the lake phase (1-5 years), mature salmon rise up the river for spawning.<br><br>In this model, each group of adult individuals reaching one of the spawning sites produces a certain number of fry and dies. Fry are born from caviar and begin movement to the river source.<br><br><b>Custamizable options:</b><br><br>Initial number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class30007'</a>&#160; (12)<br>Repeatable number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class120000'</a>&#160; (8)<br>Lifetime of salmon in steps <a href=\"internalLink\">@'Hiitolanjoki_Class250001'</a>&#160; (12000)<br>Propagation rate of child salmon <a href=\"internalLink\">@'Hiitolanjoki_Class140005'</a>&#160; (0.0001)<br>Propagation rate of young salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90002'</a>&#160; (0.0002)<br>Propagation rate of adult salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90003'</a>&#160; (0.0003)<br>Migration routes in Kivijarvi lake <a href=\"internalLink\">@'Hiitolanjoki_Class260000'</a>&#160;,..<br>Migration routes in Ladoga lake <a href=\"internalLink\">@'Hiitolanjoki_Class170002'</a>&#160;,..<br><br><b>References:</b><br><br><a http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" href=\"https://hiitolanjoki.fi/\">https://hiitolanjoki.fi/</a>&#0;<br><br><img src=\"file:data/mas/hiitolanjoki/LadogaSalmon.png\"></body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Salmon Life Model<br><br></b>This multiagent model simulates the life of Ladoga salmon after dismantling dams that impede its migration to spawning sites.<br><b><br>Agents</b><br><br>Agents in this projects are Ladoga lake salmons on the differen phases of their life.<br><b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\">Orange points represent some number of child salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\">Green points represent some number of young salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\">Brown points represent some number of adult salmons.<br><br>It takes 2-3 years for the Ladoga child salmon fry to get to the river, after which they migrate to feed in Ladoga.<br>After the lake phase (1-5 years), mature salmon rise up the river for spawning.<br><br>In this model, each group of adult individuals reaching one of the spawning sites produces a certain number of fry and dies. Fry are born from caviar and begin movement to the river source.<br><br><b>Custamizable options:</b><br><br>Initial number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class30007'</a>&#160; (12)<br>Repeatable number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class120000'</a>&#160; (8)<br>Lifetime of salmon in steps <a href=\"internalLink\">@'Hiitolanjoki_Class250001'</a>&#160; (12000)<br>Propagation rate of child salmon <a href=\"internalLink\">@'Hiitolanjoki_Class140005'</a>&#160; (0.0001)<br>Propagation rate of young salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90002'</a>&#160; (0.0002)<br>Propagation rate of adult salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90003'</a>&#160; (0.0003)<br>Migration routes in Kivijarvi lake <a href=\"internalLink\">@'Hiitolanjoki_Class260000'</a>&#160;,..<br>Migration routes in Ladoga lake <a href=\"internalLink\">@'Hiitolanjoki_Class170002'</a>&#160;,..<br><br></body>\n</html>")
 	(title "Salmon Life Model"))
 
 ([Hiitolanjoki_Class240000] of  ImageDoc
@@ -975,7 +975,7 @@
 
 ([Hiitolanjoki_Class250001] of  CloVar
 
-	(source "12000")
+	(source "24000")
 	(title "ADULT-LIFE"))
 
 ([Hiitolanjoki_Class260000] of  Route
@@ -1005,7 +1005,7 @@
 ([Hiitolanjoki_Class280000] of  HelpMenu
 
 	(class "com.bbn.openmap.gui.DefaultHelpMenu")
-	(items "hiiHelp1 hiiHelp2 hiiHelp3 hiiHelp4")
+	(items "hiiHelp1 hiiHelp2 hiiHelp3 hiiHelp4 hiiHelp5 hiiHelp6 hiiHelp7 hiiHelp8")
 	(label "hiiHelpMenu"))
 
 ([Hiitolanjoki_Class280001] of  HelpMenuItem
@@ -1013,14 +1013,14 @@
 	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
 	(label "hiiHelp2")
 	(source "Hiitolanjoki_Class240000")
-	(text "Hiitolanjoki Hanke"))
+	(text "Noin Hiitolanjoki Hanke"))
 
 ([Hiitolanjoki_Class280002] of  HelpMenuItem
 
 	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
 	(label "hiiHelp3")
 	(source "Hiitolanjoki_Class240001")
-	(text "Hiitolanjoki Project"))
+	(text "About Hiitolanjoki Project"))
 
 ([Hiitolanjoki_Class280003] of  HelpMenuItem
 
@@ -1034,7 +1034,7 @@
 	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
 	(label "hiiHelp1")
 	(source "Hiitolanjoki_Class240002")
-	(text "Проект Хиитоланёки"))
+	(text "О Проект Хиитоланёки"))
 
 ([Hiitolanjoki_Class280005] of  MenuList
 
@@ -1048,6 +1048,18 @@
 		[igis_Class10]
 		[igis_Class11]
 		[Hiitolanjoki_Class280000]))
+
+([Hiitolanjoki_Class290000] of  CloFuncall
+
+	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"\")"))
+
+([Hiitolanjoki_Class290001] of  CloFuncall
+
+	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"https://hiitolanjoki.fi\")"))
+
+([Hiitolanjoki_Class290002] of  CloFuncall
+
+	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"http://hiitolanjoki.fi\")"))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 
@@ -1266,6 +1278,13 @@
 	(source "800")
 	(title "WIDTH"))
 
+([Hiitolanjoki_Class300000] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp8")
+	(source "Hiitolanjoki_Class330000")
+	(text "Ladoga Salmon"))
+
 ([Hiitolanjoki_Class30001] of  CloVar
 
 	(source "800")
@@ -1330,6 +1349,72 @@
 
 	(source "(GeometryFactory.)")
 	(title "factory"))
+
+([Hiitolanjoki_Class310000] of  CloFuncall
+
+	(source "(ru.igis.omtab.FXBrowser. \"Hii\" \"https://\""))
+
+([Hiitolanjoki_Class310001] of  CloFuncall
+
+	(source "(ru.igis.omtab.FXBrowser. \"Hii\" \"https://hiitolanjoki.fi\")"))
+
+([Hiitolanjoki_Class320000] of  CloFuncall
+
+	(source "(clojure.java.browse/browse-url \"https://hiitolanjoki.fi\")"))
+
+([Hiitolanjoki_Class320001] of  CloFuncall
+
+	(source "(clojure.java.browse-ui/open-url-in-swing \"https://hiitolanjoki.fi\")"))
+
+([Hiitolanjoki_Class330000] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/LadogaSalmon.png")
+	(title "Ladoga Salmon"))
+
+([Hiitolanjoki_Class340000] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "hiiHelp5")
+	(source "https://hiitolanjoki.fi")
+	(text "Hiitolanjoki Project"))
+
+([Hiitolanjoki_Class340001] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "hiiHelp6")
+	(source "https://cs.gmu.edu/~eclab/projects/mason/")
+	(text "MASON Project"))
+
+([Hiitolanjoki_Class340002] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "hiiHelp7")
+	(source "https://github.com/rururu/simpro-scene")
+	(text "Simpro-scene Project"))
+
+([Hiitolanjoki_Class350000] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) \"oogis.ru\")"))
+
+([Hiitolanjoki_Class350001] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) (java.io.URI/create \"oogis.ru\"))"))
+
+([Hiitolanjoki_Class350002] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"oogis.ru\"))"))
+
+([Hiitolanjoki_Class350003] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://oogis.ru\"))"))
+
+([Hiitolanjoki_Class350004] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://www.oogis.ru\"))"))
+
+([Hiitolanjoki_Class350005] of  CloFuncall
+
+	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://ntb.oogis.ru/\"))"))
 
 ([Hiitolanjoki_Class40000] of  CloType
 
@@ -2164,7 +2249,11 @@
 		[Hiitolanjoki_Class280004]
 		[Hiitolanjoki_Class280001]
 		[Hiitolanjoki_Class280002]
-		[Hiitolanjoki_Class280003])
+		[Hiitolanjoki_Class280003]
+		[Hiitolanjoki_Class300000]
+		[Hiitolanjoki_Class340000]
+		[Hiitolanjoki_Class340001]
+		[Hiitolanjoki_Class340002])
 	(Debug "FINE")
 	(label "Hiitolanjoki Map")
 	(Latitude "61.29")

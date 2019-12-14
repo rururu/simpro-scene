@@ -11,19 +11,17 @@ import com.vividsolutions.jts.planargraph.DirectedEdgeStar;
 import com.vividsolutions.jts.planargraph.Node;
 
 import sim.engine.SimState;
-import sim.engine.Steppable;
 import sim.util.geo.GeomPlanarGraph;
 import sim.util.geo.GeomPlanarGraphDirectedEdge;
 import sim.util.geo.GeomPlanarGraphEdge;
 import sim.util.geo.MasonGeometry;
 
-public class NetworkFollower implements Steppable {
+public class NetworkFollower extends Phase {
 	private static final long serialVersionUID = 1L;
 
 	private GeomPlanarGraph network;
-	private MasonGeometry location;
 	private double moveRate = 0.0;
-	private double currentRate = 0.0;
+	private double rate = 0.0;
 	private LineFollower lineFollower;
 	private BiFunction<List<DirectedEdge>, Object, DirectedEdge> nextEdge;
 	private Object nextEdgeParam;
@@ -40,10 +38,8 @@ public class NetworkFollower implements Steppable {
 		this.moveRate = moveRate;
 		this.nextEdge = nextEdge;
 		this.nextEdgeParam = nextEdgeParam;
-		if(lineFollower == null)
-			this.lineFollower = findNewPath();
-		else
-			this.lineFollower = lineFollower;
+		this.lineFollower = lineFollower;
+		status = START;
 	}
 
 	private LineFollower findNewPath() {
@@ -81,24 +77,29 @@ public class NetworkFollower implements Steppable {
 	
 	@Override
 	public void step(SimState state) {
-		if (lineFollower != null) {
+		if (status == PROCESS) {
 			lineFollower.step(state);
-			currentRate = lineFollower.getMoveRate();
-			if (currentRate == 0.0) {
+			if (lineFollower.status == DONE) {
 				lineFollower = findNewPath();
+				if (lineFollower == null) {
+					status = DONE;
+				}
 			}
-		} else {
-			currentRate = 0;
+		} else if (status == START) {
+			if (lineFollower == null)
+				lineFollower = findNewPath();
+			if (lineFollower == null) {
+				status = FAILED;
+			} else
+				status = PROCESS;
 		}
-		
 	}
 
-	public MasonGeometry getLocation() {
-		return location;
+	public double getRate() {
+		return rate;
 	}
 
-	public double getCurrentRate() {
-		return currentRate;
+	public double getMoveRate() {
+		return moveRate;
 	}
-
 }

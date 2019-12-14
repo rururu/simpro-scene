@@ -75,7 +75,7 @@
                 :idx 0}))
 (def NUM-SPAWN 8)
 (def ESTUARY (Coordinate. 29.886 61.18))
-(def ADULT-LIFE 12000)
+(def ADULT-LIFE 24000)
 (def declare-before (declare
   process
   relay-process
