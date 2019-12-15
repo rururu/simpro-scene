@@ -69,6 +69,7 @@ See examples.
 23. [Multi-agent system based on MASON and Clojure. Lesson 1](https://youtu.be/2mJ2EarlK7s) (See https://cs.gmu.edu/~eclab/projects/mason/)
 24. [MAS Lesson 2. GeoMASON. Campus World](https://youtu.be/1QyRsYgDq6I) (See https://cs.gmu.edu/~eclab/projects/mason/extensions/geomason/)
 25. [MAS Lesson 3. GeoMASON. WaterWorld](https://youtu.be/5qlE8I2V6FU)
+26. [MAS. GeoMASON. Hiitolanjoki project](https://youtu.be/Snd3VKUevNg)
 
 TO BE CONTINUED
 
