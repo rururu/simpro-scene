@@ -1,4 +1,4 @@
-; Sat Dec 14 22:14:10 MSK 2019
+; Wed Dec 18 19:25:36 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -792,7 +792,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:use\n  protege.core)\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.sim.util.RandomEdge\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex\n  edu.stanford.smi.protege.model.Instance)")
+	(source "(:use\n  protege.core)\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex\n  edu.stanford.smi.protege.model.Instance)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType

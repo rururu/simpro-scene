@@ -19,7 +19,7 @@
   com.vividsolutions.jts.linearref.LengthIndexedLine
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
-  ru.igis.sim.util.RandomEdge))
+  ru.igis.sim.util.RandomEdgeFollower))
 (def NUM-AGENTS 1000)
 (def WIDTH 1000)
 (def HEIGHT 1000)
@@ -89,16 +89,17 @@
       (.addGeometry junctions (MasonGeometry. point))))))
 
 (defn create-astate [world]
-  (let [re (ru.igis.sim.util.RandomEdge.)
-       point (.createPoint factory (Coordinate. 10 10))
-       loc (MasonGeometry. point)
-       rand (.random world)
+  (let [rand (.random world)
        ww-geos (.getGeometries walkways)
        wwn (.nextInt rand (.numObjs ww-geos))
        mg (.get ww-geos wwn)
+       linstr (.getGeometry mg)
+       pnt0 (.getCoordinateN linstr 0)
+       point (.createPoint factory (Coordinate. (.x pnt0) (.y pnt0)))
+       loc (MasonGeometry. point)
        rate (* 1.0 (Math/abs (.nextGaussian rand)))
-       lf (LineFollower. (.getGeometry mg) loc rate)
-       nwf (NetworkFollower. network lf loc rate re world)]
+       ref (ru.igis.sim.util.RandomEdgeFollower.)
+       nwf (NetworkFollower. network loc rate ref)]
   (if (.nextBoolean rand)
          (do (.addStringAttribute loc "TYPE" "STUDENT")
                (.addIntegerAttribute loc "AGE"
@@ -141,4 +142,9 @@
 (.setPortrayalForAll road-port (GeomPortrayal. Color/LIGHT_GRAY true))
 (.setField agent-port agents)
 (.setPortrayalForAll agent-port (OvalPortrayal2D. Color/RED 10.0)))
+
+(defn astar-path-edges [n1 n2 network]
+  (let [nnv (vec (.getNodes network))]
+  (println (count nnv))
+  (vec (.astarPath as (nth nnv n1) (nth nnv n2)))))
 

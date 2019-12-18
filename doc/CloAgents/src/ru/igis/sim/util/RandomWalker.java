@@ -74,6 +74,7 @@ public class RandomWalker extends Walker {
 			tackTime = 0;
 			elapsedTime = 0;
 			determineNewDirection();
+			super.step(state);
 		}
 		if (status == PROCESS) {
 			if (elapsedTime < timeLimit) {

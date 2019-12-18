@@ -1,0 +1,358 @@
+; Wed Dec 18 22:59:15 MSK 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([MASCampus2_Class0] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agent</b><br><br>Agent.step <a href=\"internalLink\">@'MASCampus_Class6'</a>&#160;<br><br><b>CampusWorld</b><br><br>initialise <a href=\"internalLink\">@'MASCampus_Class8'</a>&#160;<br>start <a href=\"internalLink\">@'MASCampus_Class9'</a>&#160;<br>finish <a href=\"internalLink\">@'MASCampus_Class70000'</a>&#160;<br><br><b>CampusPorts </b><br><br>createDisplay <a href=\"internalLink\">@'MASCampus_Class11'</a>&#160;<br>setup <a href=\"internalLink\">@'MASCampus_Class12'</a>&#160;<br>info <a href=\"internalLink\">@'MASCampus_Class60000'</a>&#160;</body>\n</html>")
+	(title "CampusWorld Implementation"))
+
+([MASCampus2_Class20000] of  MASWorldPanel
+
+	(but-world-prepare "Prepare World/mas.world.util/prepare-world")
+	(but-world-run "Multiple Run WorldGUI/mas.world/mult-run-world-gui")
+	(but-world-run1 "One Run WorldGUI/mas.world/one-run-world-gui")
+	(iPorts-class "mas.world.campus.CampusPorts")
+	(iWorld-class "mas.world.campus.CampusWorld"))
+
+([MASCampus2_Class80006] of  CloFuncall
+
+	(source "(compile 'mas.world.campus)"))
+
+([MASCampus3_Class0] of  CloFuncall
+
+	(source "(def as (ru.igis.sim.util.AStar.))"))
+
+([MASCampus3_Class1] of  CloFuncall
+
+	(source "as"))
+
+([MASCampus3_Class10] of  CloFuncall
+
+	(source "(type nn)"))
+
+([MASCampus3_Class11] of  CloFuncall
+
+	(source "(vec nn)"))
+
+([MASCampus3_Class12] of  CloFuncall
+
+	(source "(nth (vec nn) 100)"))
+
+([MASCampus3_Class13] of  CloFuncall
+
+	(source "(nth (vec nn) 600)"))
+
+([MASCampus3_Class14] of  CloFuncall
+
+	(source "(def nnv (vec nn))"))
+
+([MASCampus3_Class15] of  CloFuncall
+
+	(source "(def ap  (.astarPath (nth nnv 100) (nth nnv 600)))"))
+
+([MASCampus3_Class16] of  CloFuncall
+
+	(source "(def ap  (.astarPath as (nth nnv 100) (nth nnv 600)))"))
+
+([MASCampus3_Class17] of  CloFuncall
+
+	(source "ap"))
+
+([MASCampus3_Class18] of  CloFuncall
+
+	(source "(.keySet nn)"))
+
+([MASCampus3_Class19] of  CloFuncall
+
+	(source "(.keySet mas.world.campus/network)"))
+
+([MASCampus3_Class2] of  CloFuncall
+
+	(source "mas.world.campus/network"))
+
+([MASCampus3_Class20] of  CloFuncall
+
+	(source "mas.world.campus/network)"))
+
+([MASCampus3_Class21] of  CloFunction
+
+	(source "(let [nnv (vec (.getNodes network))]\n  (println (count nnv))\n  (vec (.astarPath as (nth nnv n1) (nth nnv n2))))")
+	(title "astar-path-edges [n1 n2 network]"))
+
+([MASCampus3_Class22] of  CloFuncall
+
+	(source "(mas.world.campus/astar-path-edges 100 600 mas.world.campus/network)"))
+
+([MASCampus3_Class23] of  CloFuncall
+
+	(source "(mas.world.campus/astar-path-edges 600 100 mas.world.campus/network)"))
+
+([MASCampus3_Class24] of  CloFuncall
+
+	(source "(mas.world.campus/astar-path-edges 100 101 mas.world.campus/network)"))
+
+([MASCampus3_Class25] of  CloFuncall
+
+	(source "(mas.world.campus/astar-path-edges 101 100 mas.world.campus/network)"))
+
+([MASCampus3_Class26] of  CloFuncall
+
+	(source "(mas.world.campus/astar-path-edges 101 900 mas.world.campus/network)"))
+
+([MASCampus3_Class3] of  CloFuncall
+
+	(source "(def nn (.getNodes mas.world.campus/network))"))
+
+([MASCampus3_Class4] of  CloFuncall
+
+	(source "nn"))
+
+([MASCampus3_Class5] of  CloFuncall
+
+	(source "(count nn)"))
+
+([MASCampus3_Class6] of  CloFuncall
+
+	(source "(first nn)"))
+
+([MASCampus3_Class7] of  CloFuncall
+
+	(source "(def n100 (nth nn 100))"))
+
+([MASCampus3_Class8] of  CloFuncall
+
+	(source "(def n100 (seq (nth nn 100)))"))
+
+([MASCampus3_Class9] of  CloFuncall
+
+	(source "(nth (.values nn) 100)"))
+
+([MASCampus_Class0] of  MASProgram
+
+	(cloFunctions
+		[MASCampus_Class10001]
+		[MASCampus_Class20018]
+		[MASCampus_Class20016]
+		[MASCampus_Class20012]
+		[MASCampus_Class20017]
+		[MASCampus3_Class21])
+	(cloNamespace [MASCampus_Class1])
+	(cloTypes
+		[MASCampus_Class2]
+		[MASCampus_Class3]
+		[MASCampus_Class4])
+	(cloVars
+		[MASCampus_Class20004]
+		[MASCampus_Class10000]
+		[MASCampus_Class20003]
+		[MASCampus_Class20000]
+		[MASCampus_Class20001]
+		[MASCampus_Class30002]
+		[MASCampus_Class20005]
+		[MASCampus_Class20006]
+		[MASCampus_Class20007]
+		[MASCampus_Class20008]
+		[MASCampus_Class20009]
+		[MASCampus_Class20010]
+		[MASCampus_Class20011]
+		[MASCampus_Class20013]
+		[MASCampus_Class20014]
+		[MASCampus_Class20015]
+		[MASCampus_Class40001]
+		[MASCampus_Class20002])
+	(documentation [MASCampus2_Class0])
+	(title "CampusWorld"))
+
+([MASCampus_Class1] of  CloNamespace
+
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdgeFollower)")
+	(title "mas.world.campus"))
+
+([MASCampus_Class10] of  CloImplementation
+
+	(cloFunctions
+		[MASCampus_Class11]
+		[MASCampus_Class12]
+		[MASCampus_Class60000])
+	(title "ru.igis.sim.IPorts"))
+
+([MASCampus_Class10000] of  CloVar
+
+	(source "1000")
+	(title "WIDTH"))
+
+([MASCampus_Class10001] of  CloFunction
+
+	(source "(let [netiter (.nodeIterator network)\n       MBR (.getMBR buildings)\n       [bsh bdb] BUILDINGS-URLS\n       [rsh rdb] ROADS-URLS\n       [wsh wdb] WALKWAYS-URLS]\n  (println \"reading buildings layer\") \n  (ShapeFileImporter/read (URL. bsh) (URL. bdb) buildings)\n  (println \"reading roads layer\") \n  (ShapeFileImporter/read (URL. rsh) (URL. rdb) roads)\n  (.expandToInclude MBR (.getMBR roads))\n  (println \"reading walkways layer\")\n  (ShapeFileImporter/read (URL. wsh) (URL. wdb) walkways)\n  (.expandToInclude MBR (.getMBR walkways))\n  (println \"Done reading data\")\n  (.setMBR buildings MBR)\n  (.setMBR roads MBR)\n  (.setMBR walkways MBR)\n  (.createFromGeomField network walkways)\n  (while (.hasNext netiter)\n    (let [node (.next netiter)\n           coord (.getCoordinate node)\n           point (.createPoint factory coord)]\n      (.addGeometry junctions (MasonGeometry. point)))))")
+	(title "init-world []"))
+
+([MASCampus_Class11] of  CloFunction
+
+	(source "(create-display wgui world)")
+	(title "createDisplay [this wgui world]"))
+
+([MASCampus_Class12] of  CloFunction
+
+	(source "(setup-ports display world)")
+	(title "setup [this display world]"))
+
+([MASCampus_Class2] of  CloType
+
+	(cloProtocols [MASCampus_Class5])
+	(fields "astate")
+	(title "Agent"))
+
+([MASCampus_Class20000] of  CloVar
+
+	(source "[\"file:data/mas/campus/bldg.shp\"\n \"file:data/mas/campus/bldg.dbf\"]")
+	(title "BUILDINGS-URLS"))
+
+([MASCampus_Class20001] of  CloVar
+
+	(source "[\"file:data/mas/campus/roads.shp\"\n \"file:data/mas/campus/roads.dbf\"]")
+	(title "ROADS-URLS"))
+
+([MASCampus_Class20002] of  CloVar
+
+	(source "(declare\n  init-world\n  start-world\n  create-display\n  setup-ports\n  move)")
+	(title "declare-before"))
+
+([MASCampus_Class20003] of  CloVar
+
+	(source "1000")
+	(title "HEIGHT"))
+
+([MASCampus_Class20004] of  CloVar
+
+	(source "1000")
+	(title "NUM-AGENTS"))
+
+([MASCampus_Class20005] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "buildings"))
+
+([MASCampus_Class20006] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "roads"))
+
+([MASCampus_Class20007] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "walkways"))
+
+([MASCampus_Class20008] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "agents"))
+
+([MASCampus_Class20009] of  CloVar
+
+	(source "(GeomVectorField. WIDTH HEIGHT)")
+	(title "junctions"))
+
+([MASCampus_Class20010] of  CloVar
+
+	(source "(GeomPlanarGraph.)")
+	(title "network"))
+
+([MASCampus_Class20011] of  CloVar
+
+	(source "(GeometryFactory.)")
+	(title "factory"))
+
+([MASCampus_Class20012] of  CloFunction
+
+	(source "(let [display (Display2D. WIDTH HEIGHT wgui)]\n  (.attach display build-port \"Buildings\" true)\n  (.attach display road-port \"Roads\" true)\n  (.attach display walk-port \"Walkways\" true)\n  (.attach display agent-port \"Agents\" true)\n  display)")
+	(title "create-display [wgui world]"))
+
+([MASCampus_Class20013] of  CloVar
+
+	(source "(GeomVectorFieldPortrayal.)")
+	(title "build-port"))
+
+([MASCampus_Class20014] of  CloVar
+
+	(source "(GeomVectorFieldPortrayal.)")
+	(title "road-port"))
+
+([MASCampus_Class20015] of  CloVar
+
+	(source "(GeomVectorFieldPortrayal.)")
+	(title "walk-port"))
+
+([MASCampus_Class20016] of  CloFunction
+
+	(source "(let [schedule (.schedule world)]\n  (.clear agents)\n  (dotimes [i NUM-AGENTS]\n    (let [astate (create-astate world)\n           a (Agent. astate)]\n      (.addGeometry agents (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (.setMBR agents (.getMBR buildings))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater agents)\n    Integer/MAX_VALUE \n    1.0))")
+	(title "start-world [world]"))
+
+([MASCampus_Class20017] of  CloFunction
+
+	(source "(.setField walk-port walkways)\n(.setPortrayalForAll walk-port (GeomPortrayal. Color/PINK true))\n(.setField build-port buildings)\n(.setPortrayalForAll build-port (GeomPortrayal. Color/GRAY))\n(.setField road-port roads)\n(.setPortrayalForAll road-port (GeomPortrayal. Color/LIGHT_GRAY true))\n(.setField agent-port agents)\n(.setPortrayalForAll agent-port (OvalPortrayal2D. Color/RED 10.0))")
+	(title "setup-ports [display world]"))
+
+([MASCampus_Class20018] of  CloFunction
+
+	(source "(let [rand (.random world)\n       ww-geos (.getGeometries walkways)\n       wwn (.nextInt rand (.numObjs ww-geos))\n       mg (.get ww-geos wwn)\n       linstr (.getGeometry mg)\n       pnt0 (.getCoordinateN linstr 0)\n       point (.createPoint factory (Coordinate. (.x pnt0) (.y pnt0)))\n       loc (MasonGeometry. point)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       ref (ru.igis.sim.util.RandomEdgeFollower.)\n       nwf (NetworkFollower. network loc rate ref)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
+	(title "create-astate [world]"))
+
+([MASCampus_Class3] of  CloType
+
+	(cloProtocols [MASCampus_Class7])
+	(title "CampusWorld"))
+
+([MASCampus_Class30002] of  CloVar
+
+	(source "[\"file:data/mas/campus/walk_ways.shp\"\n \"file:data/mas/campus/walk_ways.dbf\"]")
+	(title "WALKWAYS-URLS"))
+
+([MASCampus_Class4] of  CloType
+
+	(cloProtocols [MASCampus_Class10])
+	(title "CampusPorts"))
+
+([MASCampus_Class40001] of  CloVar
+
+	(source "(GeomVectorFieldPortrayal.)")
+	(title "agent-port"))
+
+([MASCampus_Class5] of  CloImplementation
+
+	(cloFunctions [MASCampus_Class6])
+	(title "sim.engine.Steppable"))
+
+([MASCampus_Class6] of  CloFunction
+
+	(source "(.step (:net-follower @astate) world)")
+	(title "step [this world]"))
+
+([MASCampus_Class60000] of  CloFunction
+
+	(source "(URL. \"file:data/mas/campus/CampusWorld.html\")")
+	(title "info [this]"))
+
+([MASCampus_Class7] of  CloImplementation
+
+	(cloFunctions
+		[MASCampus_Class8]
+		[MASCampus_Class9]
+		[MASCampus_Class70000])
+	(title "ru.igis.sim.IWorld"))
+
+([MASCampus_Class70000] of  CloFunction
+
+	(source "(ShapeFileExporter/write \"data/mas/campus/Agents\" agents)")
+	(title "finish [this world]"))
+
+([MASCampus_Class8] of  CloFunction
+
+	(source "(load \"mas/world/campus\")\n(init-world)")
+	(title "initialise [this]"))
+
+([MASCampus_Class9] of  CloFunction
+
+	(source "(start-world world)")
+	(title "start [this world]"))

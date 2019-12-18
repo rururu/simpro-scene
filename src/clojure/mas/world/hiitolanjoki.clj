@@ -26,7 +26,6 @@
   ru.igis.sim.util.AttributesFollower
   ru.igis.sim.util.RandomWalker
   ru.igis.sim.util.Arriver
-  ru.igis.sim.util.RandomEdge
   ru.igis.omtab.OpenMapTab
   com.bbn.openmap.layer.shape.SpatialIndex
   edu.stanford.smi.protege.model.Instance))
