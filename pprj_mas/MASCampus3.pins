@@ -1,11 +1,11 @@
-; Wed Dec 18 22:59:15 MSK 2019
+; Thu Dec 19 22:19:50 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([MASCampus2_Class0] of  CloDocumentation
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agent</b><br><br>Agent.step <a href=\"internalLink\">@'MASCampus_Class6'</a>&#160;<br><br><b>CampusWorld</b><br><br>initialise <a href=\"internalLink\">@'MASCampus_Class8'</a>&#160;<br>start <a href=\"internalLink\">@'MASCampus_Class9'</a>&#160;<br>finish <a href=\"internalLink\">@'MASCampus_Class70000'</a>&#160;<br><br><b>CampusPorts </b><br><br>createDisplay <a href=\"internalLink\">@'MASCampus_Class11'</a>&#160;<br>setup <a href=\"internalLink\">@'MASCampus_Class12'</a>&#160;<br>info <a href=\"internalLink\">@'MASCampus_Class60000'</a>&#160;</body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agent</b><br><br>Agent.step <a href=\"internalLink\">@'MASCampus_Class6'</a>&#160;<br><br><b>CampusWorld</b><br><br>initialise <a href=\"internalLink\">@'MASCampus_Class8'</a>&#160;<br>start <a href=\"internalLink\">@'MASCampus_Class9'</a>&#160;<br>finish <a href=\"internalLink\">@'MASCampus_Class70000'</a>&#160;<br><br><b>CampusPorts </b><br><br>createDisplay <a href=\"internalLink\">@'MASCampus_Class11'</a>&#160;<br>setup <a href=\"internalLink\">@'MASCampus_Class12'</a>&#160;<br>info <a href=\"internalLink\">@'MASCampus_Class60000'</a>&#160;<br><b><br>EdgesPathFollower</b><br><br>apply <a href=\"internalLink\">@'MASCampus3_Class10002'</a>&#160;</body>\n</html>")
 	(title "CampusWorld Implementation"))
 
 ([MASCampus2_Class20000] of  MASWorldPanel
@@ -31,6 +31,52 @@
 ([MASCampus3_Class10] of  CloFuncall
 
 	(source "(type nn)"))
+
+([MASCampus3_Class10000] of  CloType
+
+	(cloProtocols [MASCampus3_Class10001])
+	(fields "epf-state")
+	(title "EdgesPathFollower"))
+
+([MASCampus3_Class10001] of  CloImplementation
+
+	(cloFunctions [MASCampus3_Class10002])
+	(title "java.util.function.BiFunction"))
+
+([MASCampus3_Class10002] of  CloFunction
+
+	(source "(let [{:keys [path index]} @epf-state]\n  (println :IDX index :P (count path))\n  (when (< index (count path))\n    (vswap! epf-state assoc :index (inc index))\n    (.edgeFollower netfol (path index))))")
+	(title "apply [this netfol world]"))
+
+([MASCampus3_Class10003] of  CloVar
+
+	(source "(AStar.)")
+	(title "ASTAR"))
+
+([MASCampus3_Class10004] of  CloFuncall
+
+	(source "([:a :b :c] 1)"))
+
+([MASCampus3_Class10005] of  CloFuncall
+
+	(source "([:a :b :c] 2)"))
+
+([MASCampus3_Class10006] of  CloFuncall
+
+	(source "((:a :b :c) 2)"))
+
+([MASCampus3_Class10007] of  CloFuncall
+
+	(source "([:a :b :c] 0)"))
+
+([MASCampus3_Class10008] of  CloVar
+
+	(source "nil")
+	(title "NODES"))
+
+([MASCampus3_Class10009] of  CloFuncall
+
+	(source "(mas.world.campus/NODES 0)"))
 
 ([MASCampus3_Class11] of  CloFuncall
 
@@ -76,10 +122,22 @@
 
 	(source "mas.world.campus/network)"))
 
+([MASCampus3_Class20000] of  CloFuncall
+
+	(source "(count mas.world.campus/NODES)"))
+
+([MASCampus3_Class20001] of  CloFuncall
+
+	(source "count mas.world.campus/nerwork"))
+
+([MASCampus3_Class20002] of  CloFuncall
+
+	(source "count mas.world.campus/NODES"))
+
 ([MASCampus3_Class21] of  CloFunction
 
-	(source "(let [nnv (vec (.getNodes network))]\n  (println (count nnv))\n  (vec (.astarPath as (nth nnv n1) (nth nnv n2))))")
-	(title "astar-path-edges [n1 n2 network]"))
+	(source "(vec (.astarPath ASTAR (NODES n1) (NODES n2)))")
+	(title "astar-path-edges [n1 n2]"))
 
 ([MASCampus3_Class22] of  CloFuncall
 
@@ -105,29 +163,46 @@
 
 	(source "(def nn (.getNodes mas.world.campus/network))"))
 
-([MASCampus3_Class4] of  CloFuncall
+([MASCampus3_Class30000] of  CloFuncall
 
-	(source "nn"))
+	(source "mas.world.campus/nerwork"))
 
-([MASCampus3_Class5] of  CloFuncall
+([MASCampus3_Class30001] of  CloFuncall
 
-	(source "(count nn)"))
+	(source "mas.world.campus/NODES"))
 
-([MASCampus3_Class6] of  CloFuncall
+([MASCampus3_Class30002] of  CloFuncall
 
-	(source "(first nn)"))
+	(source "(mas.world.campus/NODES 1)"))
 
-([MASCampus3_Class7] of  CloFuncall
+([MASCampus3_Class30003] of  CloFuncall
 
-	(source "(def n100 (nth nn 100))"))
+	(source "(mas.world.campus/NODES 100)"))
 
-([MASCampus3_Class8] of  CloFuncall
+([MASCampus3_Class40000] of  CloFuncall
 
-	(source "(def n100 (seq (nth nn 100)))"))
+	(source "(mas.world.campus/astar-path-edges 100 101)"))
 
-([MASCampus3_Class9] of  CloFuncall
+([MASCampus3_Class40002] of  CloFuncall
 
-	(source "(nth (.values nn) 100)"))
+	(source "(def pat (mas.world.campus/astar-path-edges 100 101))"))
+
+([MASCampus3_Class40003] of  CloFuncall
+
+	(source "(pat 0)"))
+
+([MASCampus3_Class40004] of  CloFuncall
+
+	(source "(.getCoorinate (pat 0))"))
+
+([MASCampus3_Class40005] of  CloFuncall
+
+	(source "(.getCoordinate (pat 0))"))
+
+([MASCampus3_Class40006] of  CloVar
+
+	(source "0.03")
+	(title "RATE"))
 
 ([MASCampus_Class0] of  MASProgram
 
@@ -142,7 +217,8 @@
 	(cloTypes
 		[MASCampus_Class2]
 		[MASCampus_Class3]
-		[MASCampus_Class4])
+		[MASCampus_Class4]
+		[MASCampus3_Class10000])
 	(cloVars
 		[MASCampus_Class20004]
 		[MASCampus_Class10000]
@@ -161,13 +237,16 @@
 		[MASCampus_Class20014]
 		[MASCampus_Class20015]
 		[MASCampus_Class40001]
+		[MASCampus3_Class10003]
+		[MASCampus3_Class10008]
+		[MASCampus3_Class40006]
 		[MASCampus_Class20002])
 	(documentation [MASCampus2_Class0])
 	(title "CampusWorld"))
 
 ([MASCampus_Class1] of  CloNamespace
 
-	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdgeFollower)")
+	(source "(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ru.igis.sim.util.AStar\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.RandomEdgeFollower)")
 	(title "mas.world.campus"))
 
 ([MASCampus_Class10] of  CloImplementation
@@ -216,7 +295,7 @@
 
 ([MASCampus_Class20002] of  CloVar
 
-	(source "(declare\n  init-world\n  start-world\n  create-display\n  setup-ports\n  move)")
+	(source "(declare\n  init-world\n  start-world\n  create-display\n  setup-ports\n  move\n  astar-path-edges)")
 	(title "declare-before"))
 
 ([MASCampus_Class20003] of  CloVar
@@ -226,7 +305,7 @@
 
 ([MASCampus_Class20004] of  CloVar
 
-	(source "1000")
+	(source "1")
 	(title "NUM-AGENTS"))
 
 ([MASCampus_Class20005] of  CloVar
@@ -286,7 +365,7 @@
 
 ([MASCampus_Class20016] of  CloFunction
 
-	(source "(let [schedule (.schedule world)]\n  (.clear agents)\n  (dotimes [i NUM-AGENTS]\n    (let [astate (create-astate world)\n           a (Agent. astate)]\n      (.addGeometry agents (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (.setMBR agents (.getMBR buildings))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater agents)\n    Integer/MAX_VALUE \n    1.0))")
+	(source "(let [schedule (.schedule world)]\n  (.clear agents)\n  (dotimes [i NUM-AGENTS]\n    (let [astate (create-astate world i)\n           a (Agent. astate)]\n      (.addGeometry agents (:location @astate))\n      (.scheduleRepeating schedule a)))\n  (.setMBR agents (.getMBR buildings))\n  (.scheduleRepeating schedule \n    (.scheduleSpatialIndexUpdater agents)\n    Integer/MAX_VALUE \n    1.0))")
 	(title "start-world [world]"))
 
 ([MASCampus_Class20017] of  CloFunction
@@ -296,8 +375,8 @@
 
 ([MASCampus_Class20018] of  CloFunction
 
-	(source "(let [rand (.random world)\n       ww-geos (.getGeometries walkways)\n       wwn (.nextInt rand (.numObjs ww-geos))\n       mg (.get ww-geos wwn)\n       linstr (.getGeometry mg)\n       pnt0 (.getCoordinateN linstr 0)\n       point (.createPoint factory (Coordinate. (.x pnt0) (.y pnt0)))\n       loc (MasonGeometry. point)\n       rate (* 1.0 (Math/abs (.nextGaussian rand)))\n       ref (ru.igis.sim.util.RandomEdgeFollower.)\n       nwf (NetworkFollower. network loc rate ref)]\n  (if (.nextBoolean rand)\n         (do (.addStringAttribute loc \"TYPE\" \"STUDENT\")\n               (.addIntegerAttribute loc \"AGE\"\n                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))\n         (do (.addStringAttribute loc \"TYPE\" \"FACULTY\")\n               (.addIntegerAttribute loc \"AGE\"\n                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))\n  (.addDoubleAttribute loc \"MOVE RATE\" rate)\n  (volatile! {:location loc\n                  :net-follower nwf}))")
-	(title "create-astate [world]"))
+	(source "(let [pat (astar-path-edges (+ i 200) (+ i 700))\n       crd1 (.getCoordinate (pat 0))\n       crd2 (Coordinate.  (.x crd1) (.y crd1))\n       pnt (.createPoint factory crd2)\n       loc (MasonGeometry. pnt)\n       est (volatile! {:path pat\n                            :index 0})      \n       epf (EdgesPathFollower. est)\n       ntf (NetworkFollower. network loc RATE epf)]\n  (println :LOC loc)\n  (volatile! {:location loc\n                  :net-follower ntf}))")
+	(title "create-astate [world i]"))
 
 ([MASCampus_Class3] of  CloType
 
@@ -349,7 +428,7 @@
 
 ([MASCampus_Class8] of  CloFunction
 
-	(source "(load \"mas/world/campus\")\n(init-world)")
+	(source "(load \"mas/world/campus\")\n(init-world)\n(def NODES (vec (.getNodes network)))")
 	(title "initialise [this]"))
 
 ([MASCampus_Class9] of  CloFunction

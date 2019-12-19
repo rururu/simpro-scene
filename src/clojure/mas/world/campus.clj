@@ -17,10 +17,11 @@
   com.vividsolutions.jts.geom.Coordinate
   com.vividsolutions.jts.geom.GeometryFactory
   com.vividsolutions.jts.linearref.LengthIndexedLine
+  ru.igis.sim.util.AStar
   ru.igis.sim.util.LineFollower
   ru.igis.sim.util.NetworkFollower
   ru.igis.sim.util.RandomEdgeFollower))
-(def NUM-AGENTS 1000)
+(def NUM-AGENTS 1)
 (def WIDTH 1000)
 (def HEIGHT 1000)
 (def BUILDINGS-URLS ["file:data/mas/campus/bldg.shp"
@@ -40,12 +41,16 @@
 (def road-port (GeomVectorFieldPortrayal.))
 (def walk-port (GeomVectorFieldPortrayal.))
 (def agent-port (GeomVectorFieldPortrayal.))
+(def ASTAR (AStar.))
+(def NODES nil)
+(def RATE 0.03)
 (def declare-before (declare
   init-world
   start-world
   create-display
   setup-ports
-  move))
+  move
+  astar-path-edges))
 (deftype Agent [astate ]
 	sim.engine.Steppable
 	(step [this world] (.step (:net-follower @astate) world))
@@ -53,7 +58,8 @@
 (deftype CampusWorld []
 	ru.igis.sim.IWorld
 	(initialise [this] (load "mas/world/campus")
-(init-world))
+(init-world)
+(def NODES (vec (.getNodes network))))
 	(start [this world] (start-world world))
 	(finish [this world] (ShapeFileExporter/write "data/mas/campus/Agents" agents))
 )
@@ -62,6 +68,14 @@
 	(createDisplay [this wgui world] (create-display wgui world))
 	(setup [this display world] (setup-ports display world))
 	(info [this] (URL. "file:data/mas/campus/CampusWorld.html"))
+)
+(deftype EdgesPathFollower [epf-state ]
+	java.util.function.BiFunction
+	(apply [this netfol world] (let [{:keys [path index]} @epf-state]
+  (println :IDX index :P (count path))
+  (when (< index (count path))
+    (vswap! epf-state assoc :index (inc index))
+    (.edgeFollower netfol (path index)))))
 )
 (defn init-world []
   (let [netiter (.nodeIterator network)
@@ -88,34 +102,25 @@
            point (.createPoint factory coord)]
       (.addGeometry junctions (MasonGeometry. point))))))
 
-(defn create-astate [world]
-  (let [rand (.random world)
-       ww-geos (.getGeometries walkways)
-       wwn (.nextInt rand (.numObjs ww-geos))
-       mg (.get ww-geos wwn)
-       linstr (.getGeometry mg)
-       pnt0 (.getCoordinateN linstr 0)
-       point (.createPoint factory (Coordinate. (.x pnt0) (.y pnt0)))
-       loc (MasonGeometry. point)
-       rate (* 1.0 (Math/abs (.nextGaussian rand)))
-       ref (ru.igis.sim.util.RandomEdgeFollower.)
-       nwf (NetworkFollower. network loc rate ref)]
-  (if (.nextBoolean rand)
-         (do (.addStringAttribute loc "TYPE" "STUDENT")
-               (.addIntegerAttribute loc "AGE"
-                 (int (+ 20.0 (* 2.0 (.nextGaussian rand))))))
-         (do (.addStringAttribute loc "TYPE" "FACULTY")
-               (.addIntegerAttribute loc "AGE"
-                  (int (+ 40.0 (* 9.0 (.nextGaussian rand)))))))
-  (.addDoubleAttribute loc "MOVE RATE" rate)
+(defn create-astate [world i]
+  (let [pat (astar-path-edges (+ i 200) (+ i 700))
+       crd1 (.getCoordinate (pat 0))
+       crd2 (Coordinate.  (.x crd1) (.y crd1))
+       pnt (.createPoint factory crd2)
+       loc (MasonGeometry. pnt)
+       est (volatile! {:path pat
+                            :index 0})      
+       epf (EdgesPathFollower. est)
+       ntf (NetworkFollower. network loc RATE epf)]
+  (println :LOC loc)
   (volatile! {:location loc
-                  :net-follower nwf})))
+                  :net-follower ntf})))
 
 (defn start-world [world]
   (let [schedule (.schedule world)]
   (.clear agents)
   (dotimes [i NUM-AGENTS]
-    (let [astate (create-astate world)
+    (let [astate (create-astate world i)
            a (Agent. astate)]
       (.addGeometry agents (:location @astate))
       (.scheduleRepeating schedule a)))
@@ -143,8 +148,6 @@
 (.setField agent-port agents)
 (.setPortrayalForAll agent-port (OvalPortrayal2D. Color/RED 10.0)))
 
-(defn astar-path-edges [n1 n2 network]
-  (let [nnv (vec (.getNodes network))]
-  (println (count nnv))
-  (vec (.astarPath as (nth nnv n1) (nth nnv n2)))))
+(defn astar-path-edges [n1 n2]
+  (vec (.astarPath ASTAR (NODES n1) (NODES n2))))
 
