@@ -1,4 +1,4 @@
-; Wed Dec 18 19:25:36 MSK 2019
+; Fri Dec 20 18:27:11 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2199,12 +2199,12 @@
 
 ([Hiitolanjoki_Class80000] of  CloVar
 
-	(source "[[\"NAME\" \"Асиланйоки\"]\n [\"NAME\" \"Вейяланъярви\"]\n [\"NAME\" \"Кокколанйоки1\"]\n [\"NAME\" \"Кокколанйоки2\"]\n [\"NAME\" \"Hiitolanjoki\"]]")
+	(source "[[\"NAME\" \"Asilanjoki\"]\n [\"NAME\" \"Veijalanjarvi\"]\n [\"NAME\" \"Kokkolanjoki1\"]\n [\"NAME\" \"Kokkolanjoki2\"]\n [\"NAME\" \"Hiitolanjoki\"]]")
 	(title "ASALMON_RIVER_ROUTE"))
 
 ([Hiitolanjoki_Class80001] of  CloVar
 
-	(source "[[\"NAME\" \"Hiitolanjoki\"]\n [\"NAME\" \"Кокколанйоки2\"]\n [\"NAME\" \"Кокколанйоки1\"]\n [\"NAME\" \"Вейяланъярви\"]\n [\"NAME\" \"Асиланйоки\"]]")
+	(source "[[\"NAME\" \"Hiitolanjoki\"]\n [\"NAME\" \"Kokkolanjoki2\"]\n [\"NAME\" \"Kokkolanjoki1\"]\n [\"NAME\" \"Veijalanjarvi\"]\n [\"NAME\" \"Asilanjoki\"]]")
 	(title "YSALMON_RIVER_ROUTE"))
 
 ([Hiitolanjoki_Class90000] of  CloFunction

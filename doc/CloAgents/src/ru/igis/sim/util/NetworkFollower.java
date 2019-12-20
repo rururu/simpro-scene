@@ -103,12 +103,6 @@ public class NetworkFollower extends Phase {
 	public void setLineFollower(LineFollower lineFollower) {
 		this.lineFollower = lineFollower;
 	}
-	public BiFunction<NetworkFollower, SimState, LineFollower> getFunkLineFollower() {
-		return funkEdgeFollower;
-	}
-	public void setFunkLineFollower(BiFunction<NetworkFollower, SimState, LineFollower> funkLineFollower) {
-		this.funkEdgeFollower = funkLineFollower;
-	}
 	public void setMoveRate(double moveRate) {
 		this.moveRate = moveRate;
 	}

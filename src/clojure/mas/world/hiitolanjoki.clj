@@ -38,14 +38,14 @@
 (def LAKES-URLS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
  "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"])
 (def YSALMON_RIVER_ROUTE [["NAME" "Hiitolanjoki"]
- ["NAME" "Кокколанйоки2"]
- ["NAME" "Кокколанйоки1"]
- ["NAME" "Вейяланъярви"]
- ["NAME" "Асиланйоки"]])
-(def ASALMON_RIVER_ROUTE [["NAME" "Асиланйоки"]
- ["NAME" "Вейяланъярви"]
- ["NAME" "Кокколанйоки1"]
- ["NAME" "Кокколанйоки2"]
+ ["NAME" "Kokkolanjoki2"]
+ ["NAME" "Kokkolanjoki1"]
+ ["NAME" "Veijalanjarvi"]
+ ["NAME" "Asilanjoki"]])
+(def ASALMON_RIVER_ROUTE [["NAME" "Asilanjoki"]
+ ["NAME" "Veijalanjarvi"]
+ ["NAME" "Kokkolanjoki1"]
+ ["NAME" "Kokkolanjoki2"]
  ["NAME" "Hiitolanjoki"]])
 (def rivers (GeomVectorField. WIDTH HEIGHT))
 (def lakes (GeomVectorField. WIDTH HEIGHT))
