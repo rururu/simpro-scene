@@ -1,4 +1,4 @@
-; Sun Oct 20 21:41:46 MSK 2019
+; Tue Dec 24 10:56:02 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -62,6 +62,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_550971_Class535] of  Map
+
+	(entries
+		[KB_550971_Class536]
+		[KB_550971_Class537]
+		[KB_550971_Class538]))
+
+([KB_550971_Class536] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_550971_Class537] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_550971_Class538] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_617019_Class0] of  String
 
 	(name "factory_class_name")
@@ -69,8 +97,8 @@
 
 ([KB_617019_Class1] of  Map
 
-	(entries [MASWaterWorld_ProjectKB_Class10537])
-	(referenced_maps [MASWaterWorld_ProjectKB_Class10533]))
+	(entries [MASWaterWorld_ProjectKB_Class548])
+	(referenced_maps [MASWaterWorld_ProjectKB_Class544]))
 
 ([KB_617019_Class13] of  Property_List
 
@@ -164,73 +192,10 @@
 	(name "instances_file_name")
 	(string_value "MASWaterWorld.pins"))
 
-([KB_878866_Class529] of  Map
-
-	(entries
-		[KB_878866_Class530]
-		[KB_878866_Class531]
-		[KB_878866_Class532]))
-
-([KB_878866_Class530] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_878866_Class531] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_878866_Class532] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
-
-([MASWaterWorld_ProjectKB_Class10533] of  Map
-
-	(entries
-		[MASWaterWorld_ProjectKB_Class10534]
-		[MASWaterWorld_ProjectKB_Class10535]
-		[MASWaterWorld_ProjectKB_Class10536]))
-
-([MASWaterWorld_ProjectKB_Class10534] of  Map_Entry
-
-	(key "MASWaterWorld_Class20000")
-	(key_class "java.lang.String")
-	(value "370 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10535] of  Map_Entry
-
-	(key "MASWaterWorld_Class10020")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10536] of  Map_Entry
-
-	(key "MASWaterWorld_Class10024")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([MASWaterWorld_ProjectKB_Class10537] of  Map_Entry
-
-	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
-	(key_class "java.lang.String")
-	(value "MASWaterWorld_ProjectKB_Class10533")
-	(value_class "java.util.Map"))
 
 ([MASWaterWorld_ProjectKB_Class37] of  String
 
@@ -280,6 +245,41 @@
 
 ([MASWaterWorld_ProjectKB_Class533] of  Property_List
 )
+
+([MASWaterWorld_ProjectKB_Class544] of  Map
+
+	(entries
+		[MASWaterWorld_ProjectKB_Class545]
+		[MASWaterWorld_ProjectKB_Class546]
+		[MASWaterWorld_ProjectKB_Class547]))
+
+([MASWaterWorld_ProjectKB_Class545] of  Map_Entry
+
+	(key "MASWaterWorld_Class20000")
+	(key_class "java.lang.String")
+	(value "370 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class546] of  Map_Entry
+
+	(key "MASWaterWorld_Class10020")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class547] of  Map_Entry
+
+	(key "MASWaterWorld_Class10024")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([MASWaterWorld_ProjectKB_Class548] of  Map_Entry
+
+	(key "InstanceGraphWidget.MASWaterWorld_Class0.cloTypes")
+	(key_class "java.lang.String")
+	(value "MASWaterWorld_ProjectKB_Class544")
+	(value_class "java.util.Map"))
 
 ([option_instance] of  Options
 
