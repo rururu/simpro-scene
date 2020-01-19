@@ -1,0 +1,270 @@
+; Sun Jan 19 22:54:14 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot wibut-upd-start-page
+		(type STRING)
+		(default "Update Start Page/wint.server/update-start-page")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wibut-stop
+		(type STRING)
+		(default "Stop Server/wint.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wibut-start
+		(type STRING)
+		(default "Start Server/wint.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wicenter
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiid
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wicolor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wii-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wisource
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wisidebars
+		(type INSTANCE)
+;+		(allowed-classes WiSidebar)
+		(cardinality 0 2)
+		(create-accessor read-write))
+	(single-slot widefault-value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiheader
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wilayers
+		(type INSTANCE)
+;+		(allowed-classes WiLayer)
+		(create-accessor read-write))
+	(single-slot wistart-page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiattributes
+		(type STRING)
+		(default "GeoJSON")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiexec-button
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiside
+		(type SYMBOL)
+		(allowed-values LEFT RIGHT)
+		(default LEFT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wiparameters
+		(type INSTANCE)
+;+		(allowed-classes WiParameter)
+		(create-accessor read-write))
+	(single-slot wizoom
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot witasks
+		(type INSTANCE)
+;+		(allowed-classes WiTask)
+		(create-accessor read-write))
+	(single-slot wifooter
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiport
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wiparam-options
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot wilayer-type
+		(type SYMBOL)
+		(allowed-values Base Tile GeoJSON)
+		(default Base)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WintOnto
+	(is-a USER)
+	(role abstract))
+
+(defclass WiClient
+	(is-a WintOnto)
+	(role concrete)
+	(single-slot wicolor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiheader
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wisidebars
+		(type INSTANCE)
+;+		(allowed-classes WiSidebar)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass WiMap
+	(is-a WintOnto)
+	(role concrete)
+	(multislot wilayers
+		(type INSTANCE)
+;+		(allowed-classes WiLayer)
+		(create-accessor read-write))
+	(single-slot wicenter
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wizoom
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiParameter
+	(is-a WintOnto)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiOptionParameter
+	(is-a WiParameter)
+	(role concrete)
+	(multislot wiparam-options
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass WiValueParameter
+	(is-a WiParameter)
+	(role concrete)
+	(single-slot widefault-value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiSidebar
+	(is-a WintOnto)
+	(role concrete)
+	(multislot witasks
+		(type INSTANCE)
+;+		(allowed-classes WiTask)
+		(create-accessor read-write))
+	(single-slot wiside
+		(type SYMBOL)
+		(allowed-values LEFT RIGHT)
+		(default LEFT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiTask
+	(is-a WintOnto)
+	(role concrete)
+	(single-slot wiid
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wii-class
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiheader
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiexec-button
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wiparameters
+		(type INSTANCE)
+;+		(allowed-classes WiParameter)
+		(create-accessor read-write))
+	(single-slot wifooter
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiServer
+	(is-a WintOnto)
+	(role concrete)
+	(single-slot wiport
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cloNamespace
+		(type INSTANCE)
+;+		(allowed-classes CloNamespace)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wibut-upd-start-page
+		(type STRING)
+		(default "Update Start Page/wint.server/update-start-page")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wibut-stop
+		(type STRING)
+		(default "Stop Server/wint.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wibut-start
+		(type STRING)
+		(default "Start Server/wint.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wistart-page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WiLayer
+	(is-a WintOnto)
+	(role concrete)
+	(single-slot wilayer-type
+		(type SYMBOL)
+		(allowed-values Base Tile GeoJSON)
+		(default Base)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wiattributes
+		(type STRING)
+		(default "GeoJSON")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wisource
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

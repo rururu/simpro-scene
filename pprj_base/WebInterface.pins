@@ -1,0 +1,244 @@
+; Sun Jan 19 22:54:14 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([WebInterface_Class10000] of  CloFunction
+
+	(source "(condp = (lmp :type)\n  :Base (base-layers)\n  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}\n  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}\n  (js/alert (str \"Unknown layer class \" (lmp :type))))")
+	(title "create-layer [lmp]"))
+
+([WebInterface_Class10001] of  CloVar
+
+	(source "nil")
+	(title "NAMESPACE"))
+
+([WebInterface_Class10005] of  WiLayer
+
+	(title "Base")
+	(wilayer-type Base))
+
+([WebInterface_Class20000] of  CloFuncall
+
+	(source "(first{:a 1 :b 2 :c 3})"))
+
+([WebInterface_Class20001] of  CloFuncall
+
+	(source "(reduce-kv #(assoc %1 %2 (vector :F %3)) {} {:a 1 :b 2 :c 3})"))
+
+([WebInterface_Class20003] of  CloFunction
+
+	(source "(let [tile1 (js/L.tileLayer \"http://{s}.tile.osm.org/{z}/{x}/{y}.png\"\n                                   #js{:maxZoom 20\n                                       :attribution \"Ru, OpenStreetMap &copy;\"})\n        tile2 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile3 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile4 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile5 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})]\n  {\"OpenStreetMap\" tile1\n    \"Google Satellite\" tile2\n    \"Google Streets\" tile3\n    \"Google Hybrid\" tile4\n    \"Google Terrain\" tile5})")
+	(title "base-layers []"))
+
+([WebInterface_Class20006] of  WiLayer
+
+	(title "World Countries")
+	(wiattributes "{:style {:weight 2\n             :color \"orange\"}}")
+	(wilayer-type GeoJSON)
+	(wisource "map/countries.geo.json"))
+
+([WebInterface_Class30000] of  CloFuncall
+
+	(source "(wint.server/NAMESPACE)"))
+
+([WebInterface_Class30001] of  CloFuncall
+
+	(source "(read-string nil)"))
+
+([WebInterface_Class40001] of  CloFuncall
+
+	(source "wint.server/NAMESPACE"))
+
+([WebServer_Class10000] of  HTML
+
+	(source "<!DOCTYPE html>\n<html>\n<head>\n<TITLE>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/wint.css\" />\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n</head>\n<body>\n<SIDEBARS>\n<HEADER>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <script src=\"js/wic.js\"></script>\n</body>\n</html>")
+	(store-in "resources/public")
+	(title "wint"))
+
+([WebServer_Class10001] of  CSS
+
+	(source "#header {\n  position: fixed;\n  top:0px;\n  left:0;\n  right:0;\n  padding:5px;\n  z-index:100;\n  font-size: 25px;\n}\n#MAP {\n  position: absolute;\n  top: 40px;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: -1;\n}")
+	(store-in "resources/public/css")
+	(title "wint"))
+
+([WebServer_Class10003] of  CloVar
+
+	(source "nil")
+	(title "MAP"))
+
+([WebServer_Class10004] of  CloFunction
+
+	(source "(GET \"/map\" {:handler request-map-hr\n                      :error-handler error-handler})")
+	(title "request-map []"))
+
+([WebServer_Class10005] of  CloFunction
+
+	(source "(def MAP (js/L.map \"MAP\"))\n(if (by-id \"LEFT\")\n  (.addTo (js/L.control.sidebar \"LEFT\" #js{:position \"left\"}) MAP))\n(if (by-id \"RIGHT\")\n  (.addTo (js/L.control.sidebar \"RIGHT\" #js{:position \"right\"}) MAP))\n(request-map)")
+	(title "init []"))
+
+([WebServer_Class20000] of  CloFunction
+
+	(source "(let [name (sv par-inst \"title\")\n       value (or (sv par-inst \"widefault-value\") (vec (svs par-inst \"wiparam-options\")))]\n  (str\n  \"            <tr><td>\" name \"</td><td>\"\n  (if (vector? value)\n    (str \"<select name=\\\"\" name \"\\\" style=\\\"width:120px\\\">\\n\"\n      (apply str \n        (for [x value]\n          (str\n  \"              <option value=\\\"\" x \"\\\">\" x \"</option>\\n\")))\n  \"                </select></td></tr>\\n\")\n    (str \"<input name=\\\"\" name \"\\\" style=\\\"width:120px\\\" type=\\\"text\\\" value=\\\"\" value \"\\\" /></td></tr>\\n\"))))")
+	(title "param-row [par-inst]"))
+
+([WebServer_Class20004] of  CloFunction
+
+	(source "([task]\n  (params-form (sv task \"wiid\") \n                       (sv task \"wiheader\") \n                       (svs task \"wiparameters\") \n                       (sv task \"wiexec-button\") \n                       (sv task \"wifooter\")))\n([id header params exec-but footer]\n  (str\n  \"          <h3>\" header \"</h3>\\n\"\n  \"          <form method=\\\"post\\\">\\n\"\n  \"            <input name=\\\"task\\\" value=\\\"\" id \"\\\" type=\\\"hidden\\\"/>\\n\"\n  \"            <table>\\n\"\n  (if (seq params)\n    (apply str\n      (for [p params] (param-row p))))\n  \"            </table><br><br>\\n\"\n  \"            <input type=\\\"submit\\\" value=\\\"\" exec-but \"\\\" background-color=\\\"#BCE;\\\"/>\\n\"\n  \"          </form><br>\\n\"\n  \"          <h4>\" footer \"</h4>\\n\"))")
+	(title "params-form"))
+
+([WebServer_Class20023] of  CloFuncall
+
+	(source "(web.server/prebuild)"))
+
+([WebServer_Class3] of  CloProgram
+
+	(cloFunctions
+		[WebServer_Class40004]
+		[WebServer_Class20000]
+		[WebServer_Class20004]
+		[WebServer_Class9]
+		[WebServer_Class7]
+		[WebServer_Class40015]
+		[WebServer_Class40016]
+		[WebServer_Class50001]
+		[WebServer_Class50002]
+		[WebServer_Class40003]
+		[WebServer_Class40009]
+		[WebServer_Class40012]
+		[WebServer_Class40014])
+	(cloNamespace [WebServer_Class4])
+	(cloVars
+		[WebServer_Class40010]
+		[WebServer_Class40011]
+		[WebServer_Class40013]
+		[WebInterface_Class10001])
+	(title "Wint Server"))
+
+([WebServer_Class30000] of  CloFunction
+
+	(source "(.getElementById js/document id)")
+	(title "by-id [id]"))
+
+([WebServer_Class4] of  CloNamespace
+
+	(source "(:use\n  protege.core)\n(:require\n  [cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET POST]]\n  [compojure.route :as route]\n  [compojure.handler :as handler])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab)")
+	(title "wint.server"))
+
+([WebServer_Class40000] of  CloFunction
+
+	(source "(let [{:keys [status status-text]} resp]\n  (println \"AJAX ERROR:\" status status-text))")
+	(title "error-handler [resp]"))
+
+([WebServer_Class40001] of  CloFunction
+
+	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (not (empty? mp))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)]\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP))))")
+	(title "request-map-hr [resp]"))
+
+([WebServer_Class40002] of  CloFunction
+
+	(source "(t/read (t/reader :json) x)")
+	(title "read-transit [x]"))
+
+([WebServer_Class40003] of  CloFunction
+
+	(source "(let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                 {:zoom (sv mapi \"wizoom\") \n                   :center (read-string (sv mapi \"wicenter\"))\n                   :layers (map-layers mapi)}\n                 {})]\n  (write-transit resp))")
+	(title "response-map []"))
+
+([WebServer_Class40004] of  CloFunction
+
+	(source "(let [baos (ByteArrayOutputStream.)\n        w    (t/writer baos :json)\n        _    (t/write w x)\n        ret  (.toString baos)]\n    (.reset baos)\n    ret)")
+	(title "write-transit [x]"))
+
+([WebServer_Class40009] of  CloFunction
+
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (start-page)))\n  (POST \"/\" [& params] (request params))\n  (GET \"/map\" [] (response-map))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Not Found\"))\n\n(def APP\n  (handler/site app-routes))")
+	(title "defapp []"))
+
+([WebServer_Class40010] of  CloVar
+
+	(source "nil")
+	(title "APP"))
+
+([WebServer_Class40011] of  CloVar
+
+	(source "(str (System/getProperty \"user.dir\")\n       \"/resources/public/\")")
+	(title "ROOT"))
+
+([WebServer_Class40012] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       nsi (mp \"cloNamespace\")\n       port (mp \"wiport\")]\n  (if (nil? NAMESPACE)\n    (def NAMESPACE (sv nsi \"title\")))\n  (when (nil? APP)\n    (defapp)\n    (if (nil? SERVER)\n      (def SERVER (jetty/run-jetty APP {:port (read-string port) :join? false})))))")
+	(title "start-server [hm inst]"))
+
+([WebServer_Class40013] of  CloVar
+
+	(source "nil")
+	(title "SERVER"))
+
+([WebServer_Class40014] of  CloFunction
+
+	(source "(when SERVER\n  (.stop SERVER)\n  (def SERVER nil)\n  (def APP nil)\n  (println \"WebServer stopped.\"))")
+	(title "stop-server [hm inst]"))
+
+([WebServer_Class40015] of  CloFunction
+
+	(source "(if-let [ws (first (cls-instances \"WiServer\"))]\n  (sv ws \"wistart-page\"))")
+	(title "start-page []"))
+
+([WebServer_Class40016] of  CloFunction
+
+	(source "(println [:POST params])\n(try\n  (ClojureTab/invoke NAMESPACE \"exec-task\" params)\n  {:status 204}\n  (catch Exception e\n    (println :ERROR e)\n    (str \"Task execution error for parameters:\" params)))")
+	(title "request [params]"))
+
+([WebServer_Class5] of  ClsMain
+
+	(asset-path "js/outwic")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[WebServer_Class30000]
+		[WebServer_Class40002]
+		[WebServer_Class40000]
+		[WebInterface_Class20003]
+		[WebInterface_Class10000]
+		[WebServer_Class40001]
+		[WebServer_Class10004]
+		[WebServer_Class10005])
+	(cloNamespace [WebServer_Class6])
+	(cloVars [WebServer_Class10003])
+	(compiler-options "{:verbose false}")
+	(css [WebServer_Class10001])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init))")
+	(html [WebServer_Class10000])
+	(output-dir "resources/public/js/outwic")
+	(output-to "resources/public/js/wic.js")
+	(store-in "src/cljs")
+	(title "Wint Client"))
+
+([WebServer_Class50001] of  CloFunction
+
+	(source "(letfn [(laymap [x]\n             {:type (if-let [t (sv x \"wilayer-type\")] (keyword t))\n               :title (sv x \"title\")\n               :source (sv x \"wisource\")\n               :attributes (if-let [a (sv x \"wiattributes\")] (read-string a))})]\n  (vec (map laymap (svs mapi \"wilayers\"))))")
+	(title "map-layers [mapi]"))
+
+([WebServer_Class50002] of  CloFunction
+
+	(source "(vec (map keyword (svs mapi \"wicontrols\")))")
+	(title "map-controls [mapi]"))
+
+([WebServer_Class50007] of  CloFuncall
+
+	(source "(keyword \"mouse\")"))
+
+([WebServer_Class6] of  CloNamespace
+
+	(source "(:require\n  [ajax.core :refer (GET)]\n  [cognitect.transit :as t])")
+	(title "wint.client"))
+
+([WebServer_Class7] of  CloFunction
+
+	(source "(if-let [cli (first (cls-instances \"WiClient\"))]\n  (if-let [wc (first (cls-instances \"ClsMain\"))]\n    (if-let [idx (first (svs wc \"html\"))]\n      (let [src (sv idx \"source\")\n             sbs (apply str (map sidebar (svs cli \"wisidebars\")))\n             tit (str \"  <title>\" (sv cli \"wiheader\") \"</title>\\n\")\n             hdr (str \"   <div id=\\\"header\\\" style=\\\"background:\" (sv cli \"wicolor\") \";text-align:center;\\\">\" (sv cli \"wiheader\") \"</div>\\n\")\n             src (.replace src \"<SIDEBARS>\" sbs)\n             src (.replace src \"<HEADER>\" hdr)\n             src (.replace src \"<TITLE>\" tit)\n             spg (sv inst \"wistart-page\")]\n          (spit spg src)))))")
+	(title "update-start-page [hm inst]"))
+
+([WebServer_Class9] of  CloFunction
+
+	(source "([side-bar]\n  (sidebar (sv side-bar \"wiside\") (svs side-bar \"witasks\")))\n([side tasks]\n  (let [caret (if (= side \"LEFT\") \n                    \"fa fa-caret-left\"\n                    \"fa fa-caret-right\")]\n    (str\n    \"  <div id=\\\"\" side \"\\\" class=\\\"sidebar collapsed\\\">\\n\"\n    \"    <div class=\\\"sidebar-tabs\\\">\\n\"\n    \"      <ul role=\\\"tablist\\\">\\n\"\n    (apply str \n      (for [tk tasks]\n        (str \n    \"        <li><a href=\\\"#\" (sv tk \"wiid\") \"\\\" role=\\\"tab\\\"><i class=\\\"\" (sv tk \"wii-class\") \"\\\"></i></a></li>\\n\")))\n    \"      </ul>\\n\"\n    \"    </div>\\n\"\n    \"    <div class=\\\"sidebar-content\\\">\\n\"\n    (apply str \n      (for [tk tasks]\n        (str \n    \"      <div class=\\\"sidebar-pane\\\" id=\\\"\" (sv tk \"wiid\") \"\\\">\\n\"\n    \"        <h1 class=\\\"sidebar-header\\\">\" (sv tk \"title\") \"<span class=\\\"sidebar-close\\\"><i class=\\\"\" caret \"\\\"></i></span></h1>\\n\"\n          (params-form tk) \n    \"      </div>\\n\\n\")))\n    \"    </div>\\n\"\n    \"  </div>\\n\")))")
+	(title "sidebar"))
