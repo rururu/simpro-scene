@@ -3,6 +3,7 @@
   [ajax.core :refer (GET)]
   [cognitect.transit :as t]))
 (def MAP nil)
+(def TO-EVENTS 2000)
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -46,7 +47,30 @@
   :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}
   (js/alert (str "Unknown layer class " (lmp :type)))))
 
-(defn request-map-hr [resp]
+(defn add-popup [params]
+  (let [lat (params :lat)
+       lon (params :lon)
+       pos (if (and lat lon)
+               #js[lat lon]
+               (.getCenter MAP))]
+  (.addLayer MAP (-> js/L 
+                             (.popup. #js{})
+                             (.setLatLng pos)
+                             (.setContent (params :html))))))
+
+(defn events-hr [resp]
+  (doseq [{:keys [event] :as evt} (read-transit resp)]
+  (println [:EVENTS-HR evt])
+  (condp = event
+    :popup (add-popup evt)
+    (js/alert "Unknown event: " [event evt]))))
+
+(defn request-events []
+  (GET "/events" {:handler events-hr
+                      :error-handler error-handler})
+(js/setTimeout request-events TO-EVENTS))
+
+(defn map-hr [resp]
   (let [mp (read-transit resp)]
   (println :RMR mp)
   (if (not (empty? mp))
@@ -59,11 +83,12 @@
       (.addTo lctl MAP)))))
 
 (defn request-map []
-  (GET "/map" {:handler request-map-hr
+  (GET "/map" {:handler map-hr
                       :error-handler error-handler}))
 
 (defn init []
   (def MAP (js/L.map "MAP"))
+(.setView MAP #js[0 0] 4)
 (if (by-id "LEFT")
   (.addTo (js/L.control.sidebar "LEFT" #js{:position "left"}) MAP))
 (if (by-id "RIGHT")
@@ -73,3 +98,4 @@
 
 (enable-console-print!)
 (set! (.-onload js/window) (init))
+(request-events)

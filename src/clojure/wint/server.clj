@@ -1,6 +1,7 @@
 (ns wint.server
 (:use
-  protege.core)
+  protege.core
+  [clojure.core.async :as async :refer [chan alts!! put!]])
 (:require
   [cognitect.transit :as t]
   [ring.adapter.jetty :as jetty]
@@ -17,6 +18,7 @@
        "/resources/public/"))
 (def SERVER nil)
 (def NAMESPACE nil)
+(def defonceCHAN (defonce CHAN (chan)))
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
         w    (t/writer baos :json)
@@ -123,8 +125,22 @@
                :attributes (if-let [a (sv x "wiattributes")] (read-string a))})]
   (vec (map laymap (svs mapi "wilayers")))))
 
+(defn pump-in [result]
+  (put! CHAN result))
+
+(defn pump-out [chn]
+  (loop [[bit ch] (alts!! [chn] :default :none) bits []]
+    (if (= bit :none)
+      bits
+      (recur (alts!! [chn] :default :none) (conj bits bit)))))
+
 (defn map-controls [mapi]
   (vec (map keyword (svs mapi "wicontrols"))))
+
+(defn response-events []
+  (let [evt (deref (future (pump-out CHAN)))]
+  ;; (println :EVT evt)
+  (write-transit evt)))
 
 (defn response-map []
   (let [resp (if-let [mapi (first (cls-instances "WiMap"))]
@@ -139,6 +155,7 @@
   (GET "/" [] (slurp (start-page)))
   (POST "/" [& params] (request params))
   (GET "/map" [] (response-map))
+  (GET "/events" [] (response-events))
   (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Not Found"))

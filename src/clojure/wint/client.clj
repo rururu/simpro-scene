@@ -3,6 +3,7 @@
   [ajax.core :refer (GET)]
   [cognitect.transit :as t]))
 (def MAP nil)
+(def TO-EVENTS 2000)
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -13,45 +14,72 @@
   (let [{:keys [status status-text]} resp]
   (println "AJAX ERROR:" status status-text)))
 
+(defn base-layers []
+  (let [tile1 (js/L.tileLayer "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                                   #js{:maxZoom 20
+                                       :attribution "Ru, OpenStreetMap &copy;"})
+        tile2 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                                   #js{:maxZoom 20
+                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
+                                       :attribution "Ru, Google &copy;"})
+        tile3 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                                   #js{:maxZoom 20
+                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
+                                       :attribution "Ru, Google &copy;"})
+        tile4 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                   #js{:maxZoom 20
+                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
+                                       :attribution "Ru, Google &copy;"})
+        tile5 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
+                                   #js{:maxZoom 20
+                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
+                                       :attribution "Ru, Google &copy;"})]
+  {"OpenStreetMap" tile1
+    "Google Satellite" tile2
+    "Google Streets" tile3
+    "Google Hybrid" tile4
+    "Google Terrain" tile5}))
+
 (defn create-layer [lmp]
-  (condp = (lmp :class)
-  :tile (js/ol.layer.Tile. #js{:title (lmp :title)
-                                       :source (condp = (lmp :source)
-                                                     :osm (js/ol.source.OSM.)
-                                                     :xyz  (js/ol.source.XYZ. #js{:url (lmp :url)})
-                                                     (js/alert (str "Unknown layer source " (lmp :source))))})
-   (js/alert (str "Unknown layer class " (lmp :class)))))
+  (condp = (lmp :type)
+  :Base (base-layers)
+  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}
+  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}
+  (js/alert (str "Unknown layer class " (lmp :type)))))
 
-(defn create-view [vmp]
-  (js/ol.View. #js{:center (js/ol.proj.fromLonLat (clj->js (vmp :center)))
-                        :zoom (vmp :zoom)}))
+(defn events-hr [resp]
+  (doseq [{:keys [event] :as evt} (read-transit res)]
+  (println [:EVENTS-HR evt])
+  (condp = event
+    :popup (add-popup evt)
+    (js/alert "Unknown event: " [event evt]))))
 
-(defn create-control [ctl]
-  (condp = ctl
-  :mouse (js/ol.control.MousePosition. #js{:coordinateFormat (js/ol.coordinate.createStringXY 4)
-                                                               :projection "EPSG:4326"})
-  :layer-switcher (js/ol.control.LayerSwitcher. #js{:mouseover true})
-  (js/alert (str "Unknown control " ctl))))
+(defn request-events []
+  (GET "/events" {:handler events-hr
+                      :error-handler error-handler})
+(js/setTimeout request-events TO-EVENTS))
 
-(defn request-map-hr [resp]
+(defn map-hr [resp]
   (let [mp (read-transit resp)]
   (println :RMR mp)
-  (when (not (empty? mp))
-    (doseq [lay (mp :layers)]
-      (.addLayer MAP (create-layer lay)))
-    (doseq [ctl (mp :controls)]
-      (.addControl MAP (create-control ctl)))
-    (.setView MAP (create-view (mp :view))))))
+  (if (not (empty? mp))
+    (let [lmps (apply merge (map create-layer (mp :layers)))
+           flay (second (first  lmps)) 
+           lctl (js/L.control.layers (clj->js lmps) nil)]
+      (.addTo flay MAP)
+      (.setView MAP (clj->js (mp :center)) (mp :zoom))
+      (.addTo (js/L.control.mousePosition.) MAP)
+      (.addTo lctl MAP)))))
 
 (defn request-map []
-  (GET "/map" {:handler request-map-hr
+  (GET "/map" {:handler map-hr
                       :error-handler error-handler}))
 
 (defn init []
-  (def MAP (js/ol.Map. #js{:target (by-id "MAP")}))
+  (def MAP (js/L.map "MAP"))
 (if (by-id "LEFT")
-  (.addControl MAP (js/ol.control.Sidebar. #js{:element "LEFT" :position "left"})))
+  (.addTo (js/L.control.sidebar "LEFT" #js{:position "left"}) MAP))
 (if (by-id "RIGHT")
-  (.addControl MAP (js/ol.control.Sidebar. #js{:element "RIGHT" :position "right"})))
+  (.addTo (js/L.control.sidebar "RIGHT" #js{:position "right"}) MAP))
 (request-map))
 
