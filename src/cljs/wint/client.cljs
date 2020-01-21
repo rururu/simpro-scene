@@ -4,6 +4,7 @@
   [cognitect.transit :as t]))
 (def MAP nil)
 (def TO-EVENTS 2000)
+(def OBS (volatile! {}))
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -47,14 +48,24 @@
   :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}
   (js/alert (str "Unknown layer class " (lmp :type)))))
 
+(defn add-heatmap [params]
+  (.addTo (js/L.heatLayer. (clj->js[
+[60.8786, 30.3785188667, 1],
+[60.8838, 30.3885188667, 2],
+[60.8839, 30.3745188667, 3],
+[60.8869090667, 30.3657417333, 6],
+[60.8894207167, 30.4015351167, 5],
+[60.8927369333, 30.4087452333, 4],
+[60.8883536333, 30.3888573833, 7]])
+                                    #js{:max 0.01}) MAP))
+
 (defn add-popup [params]
   (let [lat (params :lat)
        lon (params :lon)
        pos (if (and lat lon)
                #js[lat lon]
                (.getCenter MAP))]
-  (.addLayer MAP (-> js/L 
-                             (.popup. #js{})
+  (.addLayer MAP (-> (js/L.popup. #js{})
                              (.setLatLng pos)
                              (.setContent (params :html))))))
 
@@ -77,6 +88,7 @@
     (let [lmps (apply merge (map create-layer (mp :layers)))
            flay (second (first  lmps)) 
            lctl (js/L.control.layers (clj->js lmps) nil)]
+      (add-heatmap {})
       (.addTo flay MAP)
       (.setView MAP (clj->js (mp :center)) (mp :zoom))
       (.addTo (js/L.control.mousePosition.) MAP)

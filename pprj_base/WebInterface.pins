@@ -1,4 +1,4 @@
-; Mon Jan 20 21:33:04 MSK 2020
+; Tue Jan 21 22:01:01 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -133,14 +133,14 @@
 
 ([WebInterface_Class50001] of  CloFunction
 
-	(source "(let [lat (params :lat)\n       lon (params :lon)\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter MAP))]\n  (.addLayer MAP (-> js/L \n                             (.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent (params :html)))))")
+	(source "(let [lat (params :lat)\n       lon (params :lon)\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter MAP))]\n  (.addLayer MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent (params :html)))))")
 	(title "add-popup [params]"))
 
 ([WebInterface_Class50002] of  WiMap
 
-	(wicenter "[60 30]")
+	(wicenter "[60.88 30.38]")
 	(wilayers [WebInterface_Class50003])
-	(wizoom 6))
+	(wizoom 12))
 
 ([WebInterface_Class50003] of  WiLayer
 
@@ -151,6 +151,16 @@
 
 	(title "number2")
 	(widefault-value "6"))
+
+([WebInterface_Class60000] of  CloFunction
+
+	(source "(.addTo (js/L.heatLayer. (clj->js[\n[60.8786, 30.3785188667, 1],\n[60.8838, 30.3885188667, 2],\n[60.8839, 30.3745188667, 3],\n[60.8869090667, 30.3657417333, 6],\n[60.8894207167, 30.4015351167, 5],\n[60.8927369333, 30.4087452333, 4],\n[60.8883536333, 30.3888573833, 7]])\n                                    #js{:max 0.01}) MAP)")
+	(title "add-heatmap [params]"))
+
+([WebInterface_Class60001] of  CloVar
+
+	(source "(volatile! {})")
+	(title "OBS"))
 
 ([WebInterface_Class7] of  WiOptionParameter
 
@@ -174,7 +184,7 @@
 
 ([WebServer_Class10000] of  HTML
 
-	(source "<!DOCTYPE html>\n<html>\n<head>\n<TITLE>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/wint.css\" />\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n</head>\n<body>\n<SIDEBARS>\n<HEADER>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <script src=\"js/wic.js\"></script>\n</body>\n</html>")
+	(source "<!DOCTYPE html>\n<html>\n<head>\n<TITLE>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/wint.css\" />\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"js/leaflet-heat.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n</head>\n<body>\n<SIDEBARS>\n<HEADER>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <script src=\"js/wic.js\"></script>\n</body>\n</html>")
 	(store-in "resources/public")
 	(title "wint"))
 
@@ -258,7 +268,7 @@
 
 ([WebServer_Class40001] of  CloFunction
 
-	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (not (empty? mp))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)]\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP))))")
+	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (not (empty? mp))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)]\n      (add-heatmap {})\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP))))")
 	(title "map-hr [resp]"))
 
 ([WebServer_Class40002] of  CloFunction
@@ -326,6 +336,7 @@
 		[WebServer_Class40000]
 		[WebInterface_Class20003]
 		[WebInterface_Class10000]
+		[WebInterface_Class60000]
 		[WebInterface_Class50001]
 		[WebInterface_Class16]
 		[WebInterface_Class15]
@@ -335,7 +346,8 @@
 	(cloNamespace [WebServer_Class6])
 	(cloVars
 		[WebServer_Class10003]
-		[WebInterface_Class40000])
+		[WebInterface_Class40000]
+		[WebInterface_Class60001])
 	(compiler-options "{:verbose false}")
 	(css [WebServer_Class10001])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init))\n(request-events)")

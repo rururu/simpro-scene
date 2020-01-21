@@ -1,4 +1,4 @@
-; Mon Jan 20 21:33:04 MSK 2020
+; Tue Jan 21 22:01:01 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,16 +20,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[WebInterface_ProjectKB_Class20367]
-		[WebInterface_ProjectKB_Class20368]
-		[WebInterface_ProjectKB_Class20369]
-		[WebInterface_ProjectKB_Class20370]
-		[WebInterface_ProjectKB_Class20371]
-		[WebInterface_ProjectKB_Class20372]
-		[WebInterface_ProjectKB_Class20373]
-		[WebInterface_ProjectKB_Class20374]
-		[WebInterface_ProjectKB_Class20375]
-		[WebInterface_ProjectKB_Class20376]))
+		[WebInterface_ProjectKB_Class40497]
+		[WebInterface_ProjectKB_Class40498]
+		[WebInterface_ProjectKB_Class40499]
+		[WebInterface_ProjectKB_Class40500]
+		[WebInterface_ProjectKB_Class40501]
+		[WebInterface_ProjectKB_Class40502]
+		[WebInterface_ProjectKB_Class40503]
+		[WebInterface_ProjectKB_Class40504]
+		[WebInterface_ProjectKB_Class40505]
+		[WebInterface_ProjectKB_Class40506]))
 
 ([CLSES_TAB] of  Widget
 
@@ -73,28 +73,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_201407_Class357] of  Map
+([KB_220399_Class357] of  Map
 
 	(entries
-		[KB_201407_Class358]
-		[KB_201407_Class359]
-		[KB_201407_Class360]))
+		[KB_220399_Class358]
+		[KB_220399_Class359]
+		[KB_220399_Class360]))
 
-([KB_201407_Class358] of  Map_Entry
+([KB_220399_Class358] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_201407_Class359] of  Map_Entry
+([KB_220399_Class359] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_201407_Class360] of  Map_Entry
+([KB_220399_Class360] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -705,56 +705,6 @@
 ([WebInterface_ProjectKB_Class10412] of  Property_List
 )
 
-([WebInterface_ProjectKB_Class20367] of  String
-
-	(name "WiMap")
-	(string_value "{Map}"))
-
-([WebInterface_ProjectKB_Class20368] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([WebInterface_ProjectKB_Class20369] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([WebInterface_ProjectKB_Class20370] of  String
-
-	(name "WiServer")
-	(string_value "{Port%3A+}wiport{+}wistart-page"))
-
-([WebInterface_ProjectKB_Class20371] of  String
-
-	(name "WiTask")
-	(string_value "wiid"))
-
-([WebInterface_ProjectKB_Class20372] of  String
-
-	(name "WiClient")
-	(string_value "wiheader"))
-
-([WebInterface_ProjectKB_Class20373] of  String
-
-	(name "WiSidebar")
-	(string_value "wiside"))
-
-([WebInterface_ProjectKB_Class20374] of  String
-
-	(name "WiValueParameter")
-	(string_value "title{+}widefault-value"))
-
-([WebInterface_ProjectKB_Class20375] of  String
-
-	(name "WiLayer")
-	(string_value "title"))
-
-([WebInterface_ProjectKB_Class20376] of  String
-
-	(name "WiOptionParameter")
-	(string_value "title"))
-
 ([WebInterface_ProjectKB_Class20411] of  Boolean
 
 	(boolean_value FALSE)
@@ -1020,10 +970,60 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
 
+([WebInterface_ProjectKB_Class40497] of  String
+
+	(name "WiMap")
+	(string_value "{Map}"))
+
+([WebInterface_ProjectKB_Class40498] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([WebInterface_ProjectKB_Class40499] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
 ([WebInterface_ProjectKB_Class405] of  Boolean
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+
+([WebInterface_ProjectKB_Class40500] of  String
+
+	(name "WiServer")
+	(string_value "{Port%3A+}wiport{+}wistart-page"))
+
+([WebInterface_ProjectKB_Class40501] of  String
+
+	(name "WiTask")
+	(string_value "wiid"))
+
+([WebInterface_ProjectKB_Class40502] of  String
+
+	(name "WiClient")
+	(string_value "wiheader"))
+
+([WebInterface_ProjectKB_Class40503] of  String
+
+	(name "WiSidebar")
+	(string_value "wiside"))
+
+([WebInterface_ProjectKB_Class40504] of  String
+
+	(name "WiValueParameter")
+	(string_value "title{+}widefault-value"))
+
+([WebInterface_ProjectKB_Class40505] of  String
+
+	(name "WiLayer")
+	(string_value "title"))
+
+([WebInterface_ProjectKB_Class40506] of  String
+
+	(name "WiOptionParameter")
+	(string_value "title"))
 
 ([WebInterface_ProjectKB_Class406] of  Widget
 
