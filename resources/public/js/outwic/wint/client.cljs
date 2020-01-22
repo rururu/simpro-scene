@@ -49,15 +49,18 @@
   (js/alert (str "Unknown layer class " (lmp :type)))))
 
 (defn add-heatmap [params]
-  (.addTo (js/L.heatLayer. (clj->js[
-[60.8786, 30.3785188667, 1],
-[60.8838, 30.3885188667, 2],
-[60.8839, 30.3745188667, 3],
-[60.8869090667, 30.3657417333, 6],
-[60.8894207167, 30.4015351167, 5],
-[60.8927369333, 30.4087452333, 4],
-[60.8883536333, 30.3888573833, 7]])
-                                    #js{:max 0.01}) MAP))
+  (if-let [tit (params :title)]
+  (let [lay (js/L.heatLayer. 
+                 (clj->js (params :data))
+                 (clj->js (params :options)))]
+    (vswap! OBS assoc tit lay)
+    (.addTo lay MAP))))
+
+(defn remove-layer [params]
+  (if-let [tit (params :title)]
+  (when-let [lay (@OBS tit)]
+    (.remove lay)
+    (vswap! OBS dissoc tit))))
 
 (defn add-popup [params]
   (let [lat (params :lat)
@@ -71,9 +74,11 @@
 
 (defn events-hr [resp]
   (doseq [{:keys [event] :as evt} (read-transit resp)]
-  (println [:EVENTS-HR evt])
+  ;;(println [:EVENTS-HR evt])
   (condp = event
     :popup (add-popup evt)
+    :heatmap (add-heatmap evt)
+    :remove (remove-layer evt)
     (js/alert "Unknown event: " [event evt]))))
 
 (defn request-events []

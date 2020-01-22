@@ -1,4 +1,4 @@
-; Tue Jan 21 22:01:01 MSK 2020
+; Wed Jan 22 22:18:13 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -58,7 +58,7 @@
 
 ([WebInterface_Class16] of  CloFunction
 
-	(source "(doseq [{:keys [event] :as evt} (read-transit resp)]\n  (println [:EVENTS-HR evt])\n  (condp = event\n    :popup (add-popup evt)\n    (js/alert \"Unknown event: \" [event evt])))")
+	(source "(doseq [{:keys [event] :as evt} (read-transit resp)]\n  ;;(println [:EVENTS-HR evt])\n  (condp = event\n    :popup (add-popup evt)\n    :heatmap (add-heatmap evt)\n    :remove (remove-layer evt)\n    (js/alert \"Unknown event: \" [event evt])))")
 	(title "events-hr [resp]"))
 
 ([WebInterface_Class2] of  WiClient
@@ -90,7 +90,9 @@
 ([WebInterface_Class3] of  WiSidebar
 
 	(wiside LEFT)
-	(witasks [WebInterface_Class4]))
+	(witasks
+		[WebInterface_Class70003]
+		[WebInterface_Class4]))
 
 ([WebInterface_Class30000] of  CloFuncall
 
@@ -102,16 +104,13 @@
 
 ([WebInterface_Class4] of  WiTask
 
-	(title "Test Task")
-	(wiexec-button "Calculate")
-	(wifooter "Look at the results")
+	(title "Heatmap")
+	(wiexec-button "Open")
+	(wifooter "Look at the heatmap")
 	(wiheader "Enter parameters")
 	(wii-class "fa fa-info-circle")
-	(wiid "ttask")
-	(wiparameters
-		[WebInterface_Class5]
-		[WebInterface_Class6]
-		[WebInterface_Class7]))
+	(wiid "heatmap")
+	(wiparameters [WebInterface_Class70001]))
 
 ([WebInterface_Class40000] of  CloVar
 
@@ -138,7 +137,7 @@
 
 ([WebInterface_Class50002] of  WiMap
 
-	(wicenter "[60.88 30.38]")
+	(wicenter "[-37.8839 175.3745]")
 	(wilayers [WebInterface_Class50003])
 	(wizoom 12))
 
@@ -154,7 +153,7 @@
 
 ([WebInterface_Class60000] of  CloFunction
 
-	(source "(.addTo (js/L.heatLayer. (clj->js[\n[60.8786, 30.3785188667, 1],\n[60.8838, 30.3885188667, 2],\n[60.8839, 30.3745188667, 3],\n[60.8869090667, 30.3657417333, 6],\n[60.8894207167, 30.4015351167, 5],\n[60.8927369333, 30.4087452333, 4],\n[60.8883536333, 30.3888573833, 7]])\n                                    #js{:max 0.01}) MAP)")
+	(source "(if-let [tit (params :title)]\n  (let [lay (js/L.heatLayer. \n                 (clj->js (params :data))\n                 (clj->js (params :options)))]\n    (vswap! OBS assoc tit lay)\n    (.addTo lay MAP)))")
 	(title "add-heatmap [params]"))
 
 ([WebInterface_Class60001] of  CloVar
@@ -171,6 +170,29 @@
 		"*"
 		"/"))
 
+([WebInterface_Class70000] of  CloFunction
+
+	(source "(if-let [tit (params :title)]\n  (when-let [lay (@OBS tit)]\n    (.remove lay)\n    (vswap! OBS dissoc tit)))")
+	(title "remove-layer [params]"))
+
+([WebInterface_Class70001] of  WiValueParameter
+
+	(title "file")
+	(widefault-value "resources/public/realworld10000.clj"))
+
+([WebInterface_Class70003] of  WiTask
+
+	(title "Test Task")
+	(wiexec-button "Execute")
+	(wifooter "Look at the result")
+	(wiheader "Enter parameters")
+	(wii-class "fa fa-info-circle")
+	(wiid "ttask")
+	(wiparameters
+		[WebInterface_Class5]
+		[WebInterface_Class6]
+		[WebInterface_Class7]))
+
 ([WebInterface_Class8] of  CloProgram
 
 	(cloFunctions [WebInterface_Class9])
@@ -179,7 +201,7 @@
 
 ([WebInterface_Class9] of  CloFunction
 
-	(source "(println :PARAMS params)\n(let [{:keys [operator number1 number2]} params\n       res ((resolve (symbol operator)) (read-string number1) (read-string number2))]\n (println :RESULT res)\n (pump-in (assoc params :event :popup\n                                       :html (str \"<h1>\" res \"</h1>\"))))")
+	(source "(println :PARAMS params)\n(condp = (params :task)\n  \"ttask\" (let [{:keys [operator number1 number2]} params\n                     res ((resolve (symbol operator)) (read-string number1) (read-string number2))]\n                (println :RESULT res)\n                (pump-in (assoc params :event :popup\n                                                       :html (str \"<h1>\" res \"</h1>\"))))\n  \"heatmap\" (let [{:keys [file]} params\n                           data (slurp file)\n                           data (read-string data)]\n                      (println :DATA [(first data) (second data) \"..\"])\n                      (pump-in (assoc params :event :heatmap\n                                                             :title \"hm1\"\n                                                             :data data\n                                                             :options {})))\n  (str \"Unimplemented task:\" (params :task)))")
 	(title "exec-task [params]"))
 
 ([WebServer_Class10000] of  HTML
@@ -337,6 +359,7 @@
 		[WebInterface_Class20003]
 		[WebInterface_Class10000]
 		[WebInterface_Class60000]
+		[WebInterface_Class70000]
 		[WebInterface_Class50001]
 		[WebInterface_Class16]
 		[WebInterface_Class15]

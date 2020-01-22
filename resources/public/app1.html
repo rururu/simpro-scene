@@ -25,6 +25,7 @@
     <div class="sidebar-tabs">
       <ul role="tablist">
         <li><a href="#ttask" role="tab"><i class="fa fa-info-circle"></i></a></li>
+        <li><a href="#heatmap" role="tab"><i class="fa fa-info-circle"></i></a></li>
       </ul>
     </div>
     <div class="sidebar-content">
@@ -43,9 +44,22 @@
               <option value="/">/</option>
                 </select></td></tr>
             </table><br><br>
-            <input type="submit" value="Calculate" background-color="#BCE;"/>
+            <input type="submit" value="Execute" background-color="#BCE;"/>
           </form><br>
-          <h4>Look at the results</h4>
+          <h4>Look at the result</h4>
+      </div>
+
+      <div class="sidebar-pane" id="heatmap">
+        <h1 class="sidebar-header">Heatmap<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          <h3>Enter parameters</h3>
+          <form method="post">
+            <input name="task" value="heatmap" type="hidden"/>
+            <table>
+            <tr><td>file</td><td><input name="file" style="width:120px" type="text" value="resources/public/realworld10000.clj" /></td></tr>
+            </table><br><br>
+            <input type="submit" value="Open" background-color="#BCE;"/>
+          </form><br>
+          <h4>Look at the heatmap</h4>
       </div>
 
     </div>
