@@ -11,11 +11,19 @@
                                                        :html (str "<h1>" res "</h1>"))))
   "heatmap" (let [{:keys [file]} params
                            data (slurp file)
-                           data (read-string data)]
-                      (println :DATA [(first data) (second data) ".."])
+                           data (read-string data)
+                           tonum (fn [x] (try (if (string? (nth x 2)) (read-string (nth x 2)) (nth x 2))
+                                                  (catch Exception e 0)))
+                           maxv (apply max (map tonum  data))
+                           data {:max maxv
+                                     :data (vec (map #(hash-map :lat (first %) :lng (second %) :value (nth % 2)) data))}]
+                      (println :MAX (data :max) :DATA [(first (data :data)) (second (data :data)) ".."])
                       (pump-in (assoc params :event :heatmap
                                                              :title "hm1"
                                                              :data data
-                                                             :options {})))
+                                                             :options {:scaleRadius true
+                                                                             :radius 0.001
+                                                                             :valueField "value"
+                                                                             :useLocalExtrema false})))
   (str "Unimplemented task:" (params :task))))
 

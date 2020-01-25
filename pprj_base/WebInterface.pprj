@@ -1,4 +1,4 @@
-; Wed Jan 22 22:18:13 MSK 2020
+; Sat Jan 25 22:44:56 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,16 +20,16 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[WebInterface_ProjectKB_Class20387]
-		[WebInterface_ProjectKB_Class20388]
-		[WebInterface_ProjectKB_Class20389]
-		[WebInterface_ProjectKB_Class20390]
-		[WebInterface_ProjectKB_Class20391]
-		[WebInterface_ProjectKB_Class20392]
-		[WebInterface_ProjectKB_Class20393]
-		[WebInterface_ProjectKB_Class20394]
-		[WebInterface_ProjectKB_Class20395]
-		[WebInterface_ProjectKB_Class20396]))
+		[WebInterface_ProjectKB_Class20367]
+		[WebInterface_ProjectKB_Class20368]
+		[WebInterface_ProjectKB_Class20369]
+		[WebInterface_ProjectKB_Class20370]
+		[WebInterface_ProjectKB_Class20371]
+		[WebInterface_ProjectKB_Class20372]
+		[WebInterface_ProjectKB_Class20373]
+		[WebInterface_ProjectKB_Class20374]
+		[WebInterface_ProjectKB_Class20375]
+		[WebInterface_ProjectKB_Class20376]))
 
 ([CLSES_TAB] of  Widget
 
@@ -72,6 +72,34 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_277039_Class357] of  Map
+
+	(entries
+		[KB_277039_Class358]
+		[KB_277039_Class359]
+		[KB_277039_Class360]))
+
+([KB_277039_Class358] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_277039_Class359] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_277039_Class360] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_941803_Class0] of  String
 
@@ -174,34 +202,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_958805_Class357] of  Map
-
-	(entries
-		[KB_958805_Class358]
-		[KB_958805_Class359]
-		[KB_958805_Class360]))
-
-([KB_958805_Class358] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_958805_Class359] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_958805_Class360] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -705,52 +705,52 @@
 ([WebInterface_ProjectKB_Class10412] of  Property_List
 )
 
-([WebInterface_ProjectKB_Class20387] of  String
+([WebInterface_ProjectKB_Class20367] of  String
 
 	(name "WiMap")
 	(string_value "{Map}"))
 
-([WebInterface_ProjectKB_Class20388] of  String
+([WebInterface_ProjectKB_Class20368] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([WebInterface_ProjectKB_Class20389] of  String
+([WebInterface_ProjectKB_Class20369] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([WebInterface_ProjectKB_Class20390] of  String
+([WebInterface_ProjectKB_Class20370] of  String
 
 	(name "WiServer")
 	(string_value "{Port%3A+}wiport{+}wistart-page"))
 
-([WebInterface_ProjectKB_Class20391] of  String
+([WebInterface_ProjectKB_Class20371] of  String
 
 	(name "WiTask")
 	(string_value "wiid"))
 
-([WebInterface_ProjectKB_Class20392] of  String
+([WebInterface_ProjectKB_Class20372] of  String
 
 	(name "WiClient")
 	(string_value "wiheader"))
 
-([WebInterface_ProjectKB_Class20393] of  String
+([WebInterface_ProjectKB_Class20373] of  String
 
 	(name "WiSidebar")
 	(string_value "wiside"))
 
-([WebInterface_ProjectKB_Class20394] of  String
+([WebInterface_ProjectKB_Class20374] of  String
 
 	(name "WiValueParameter")
 	(string_value "title{+}widefault-value"))
 
-([WebInterface_ProjectKB_Class20395] of  String
+([WebInterface_ProjectKB_Class20375] of  String
 
 	(name "WiLayer")
 	(string_value "title"))
 
-([WebInterface_ProjectKB_Class20396] of  String
+([WebInterface_ProjectKB_Class20376] of  String
 
 	(name "WiOptionParameter")
 	(string_value "title"))
