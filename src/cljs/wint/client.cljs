@@ -94,8 +94,8 @@
 
 (defn map-hr [resp]
   (let [mp (read-transit resp)]
-  ;;(println :RMR mp)
-  (if (not (empty? mp))
+  (println :RMR mp)
+  (if (and (map? mp) (not (empty? mp)))
     (let [lmps (apply merge (map create-layer (mp :layers)))
            flay (second (first  lmps)) 
            lctl (js/L.control.layers (clj->js lmps) nil)
@@ -106,7 +106,8 @@
       (.addTo (js/L.control.mousePosition.) MAP)
       (.addTo lctl MAP)
       (fzoom)
-      (.on MAP "zoomend" fzoom)))))
+      (.on MAP "zoomend" fzoom))
+    (add-popup {:html (str "<h1>" mp "</h1>")}))))
 
 (defn request-map []
   (GET "/map" {:handler map-hr

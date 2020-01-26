@@ -1,4 +1,4 @@
-; Sat Jan 25 22:44:56 MSK 2020
+; Sun Jan 26 12:18:12 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -224,6 +224,15 @@
 	(source "(println :PARAMS params)\n(condp = (params :task)\n  \"ttask\" (let [{:keys [operator number1 number2]} params\n                     res ((resolve (symbol operator)) (read-string number1) (read-string number2))]\n                (println :RESULT res)\n                (pump-in (assoc params :event :popup\n                                                       :html (str \"<h1>\" res \"</h1>\"))))\n  \"heatmap\" (let [{:keys [file]} params\n                           data (slurp file)\n                           data (read-string data)\n                           tonum (fn [x] (try (if (string? (nth x 2)) (read-string (nth x 2)) (nth x 2))\n                                                  (catch Exception e 0)))\n                           maxv (apply max (map tonum  data))\n                           data {:max maxv\n                                     :data (vec (map #(hash-map :lat (first %) :lng (second %) :value (nth % 2)) data))}]\n                      (println :MAX (data :max) :DATA [(first (data :data)) (second (data :data)) \"..\"])\n                      (pump-in (assoc params :event :heatmap\n                                                             :title \"hm1\"\n                                                             :data data\n                                                             :options {:scaleRadius true\n                                                                             :radius 0.001\n                                                                             :valueField \"value\"\n                                                                             :useLocalExtrema false})))\n  (str \"Unimplemented task:\" (params :task)))")
 	(title "exec-task [params]"))
 
+([WebInterface_Class90000] of  CloVar
+
+	(source "nil")
+	(title "BUSY"))
+
+([WebInterface_Class90001] of  CloFuncall
+
+	(source "(wint.server/pump-in {:event :remove :title \"hm1\"})"))
+
 ([WebServer_Class10000] of  HTML
 
 	(source "<!DOCTYPE html>\n<html>\n<head>\n<TITLE>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/wint.css\" />\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"js/heatmap.js\"></script>\n  <script src=\"js/leaflet-heatmap.js\"></script>\n</head>\n<body>\n<SIDEBARS>\n<HEADER>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <div id=\"zoom\"/>\n   <script src=\"js/wic.js\"></script>\n</body>\n</html>")
@@ -290,7 +299,8 @@
 		[WebServer_Class40011]
 		[WebServer_Class40013]
 		[WebInterface_Class10001]
-		[WebInterface_Class14])
+		[WebInterface_Class14]
+		[WebInterface_Class90000])
 	(title "Wint Server"))
 
 ([WebServer_Class30000] of  CloFunction
@@ -310,7 +320,7 @@
 
 ([WebServer_Class40001] of  CloFunction
 
-	(source "(let [mp (read-transit resp)]\n  ;;(println :RMR mp)\n  (if (not (empty? mp))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)\n           fzoom (fn [] (set-html! \"zoom\" (str \"zoom \" (.getZoom MAP))))]\n      (add-heatmap {})\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP)\n      (fzoom)\n      (.on MAP \"zoomend\" fzoom))))")
+	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)\n           fzoom (fn [] (set-html! \"zoom\" (str \"zoom \" (.getZoom MAP))))]\n      (add-heatmap {})\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP)\n      (fzoom)\n      (.on MAP \"zoomend\" fzoom))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
 	(title "map-hr [resp]"))
 
 ([WebServer_Class40002] of  CloFunction
@@ -320,7 +330,7 @@
 
 ([WebServer_Class40003] of  CloFunction
 
-	(source "(let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                 {:zoom (sv mapi \"wizoom\") \n                   :center (read-string (sv mapi \"wicenter\"))\n                   :layers (map-layers mapi)}\n                 {})]\n  (write-transit resp))")
+	(source "(if BUSY \n  (write-transit \"BUSY\")\n  (let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                   {:zoom (sv mapi \"wizoom\") \n                     :center (read-string (sv mapi \"wicenter\"))\n                     :layers (map-layers mapi)}\n                   {})]\n    (def BUSY true)\n    (write-transit resp)))")
 	(title "response-map []"))
 
 ([WebServer_Class40004] of  CloFunction

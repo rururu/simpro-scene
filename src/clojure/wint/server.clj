@@ -19,6 +19,7 @@
 (def SERVER nil)
 (def NAMESPACE nil)
 (def defonceCHAN (defonce CHAN (chan)))
+(def BUSY nil)
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
         w    (t/writer baos :json)
@@ -143,12 +144,15 @@
   (write-transit evt)))
 
 (defn response-map []
+  (if BUSY 
+  (write-transit "BUSY")
   (let [resp (if-let [mapi (first (cls-instances "WiMap"))]
-                 {:zoom (sv mapi "wizoom") 
-                   :center (read-string (sv mapi "wicenter"))
-                   :layers (map-layers mapi)}
-                 {})]
-  (write-transit resp)))
+                   {:zoom (sv mapi "wizoom") 
+                     :center (read-string (sv mapi "wicenter"))
+                     :layers (map-layers mapi)}
+                   {})]
+    (def BUSY true)
+    (write-transit resp))))
 
 (defn defapp []
   (defroutes app-routes
