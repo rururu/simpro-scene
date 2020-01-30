@@ -1,4 +1,4 @@
-; Sun Jan 26 12:18:12 MSK 2020
+; Thu Jan 30 22:06:11 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -26,6 +26,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot size
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wiid
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -51,6 +55,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot multiple
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wiheader
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -61,6 +70,10 @@
 		(create-accessor read-write))
 	(single-slot wistart-page
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot width
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wiattributes
@@ -147,17 +160,30 @@
 
 (defclass WiParameter
 	(is-a WintOnto)
-	(role concrete)
+	(role abstract)
 	(single-slot title
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot width
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass WiOptionParameter
 	(is-a WiParameter)
 	(role concrete)
+	(single-slot multiple
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot wiparam-options
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot size
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass WiValueParameter
