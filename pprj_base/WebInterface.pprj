@@ -1,4 +1,4 @@
-; Thu Jan 30 22:06:11 MSK 2020
+; Fri Jan 31 22:38:51 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,14 +20,14 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[WebInterface_ProjectKB_Class20383]
-		[WebInterface_ProjectKB_Class20384]
-		[WebInterface_ProjectKB_Class20385]
-		[WebInterface_ProjectKB_Class20386]
-		[WebInterface_ProjectKB_Class20387]
-		[WebInterface_ProjectKB_Class20388]
-		[WebInterface_ProjectKB_Class20389]
-		[WebInterface_ProjectKB_Class20390]))
+		[WebInterface_ProjectKB_Class30463]
+		[WebInterface_ProjectKB_Class30464]
+		[WebInterface_ProjectKB_Class30465]
+		[WebInterface_ProjectKB_Class30466]
+		[WebInterface_ProjectKB_Class30467]
+		[WebInterface_ProjectKB_Class30468]
+		[WebInterface_ProjectKB_Class30469]
+		[WebInterface_ProjectKB_Class30470]))
 
 ([CLSES_TAB] of  Widget
 
@@ -71,28 +71,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_919734_Class357] of  Map
+([KB_346846_Class357] of  Map
 
 	(entries
-		[KB_919734_Class358]
-		[KB_919734_Class359]
-		[KB_919734_Class360]))
+		[KB_346846_Class358]
+		[KB_346846_Class359]
+		[KB_346846_Class360]))
 
-([KB_919734_Class358] of  Map_Entry
+([KB_346846_Class358] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_919734_Class359] of  Map_Entry
+([KB_346846_Class359] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_919734_Class360] of  Map_Entry
+([KB_346846_Class360] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -741,46 +741,6 @@
 ([WebInterface_ProjectKB_Class10412] of  Property_List
 )
 
-([WebInterface_ProjectKB_Class20383] of  String
-
-	(name "WiServer")
-	(string_value "{Port%3A+}wiport{+}wistart-page"))
-
-([WebInterface_ProjectKB_Class20384] of  String
-
-	(name "WiTask")
-	(string_value "wiid"))
-
-([WebInterface_ProjectKB_Class20385] of  String
-
-	(name "WiClient")
-	(string_value "wiheader"))
-
-([WebInterface_ProjectKB_Class20386] of  String
-
-	(name "WiSidebar")
-	(string_value "wiside"))
-
-([WebInterface_ProjectKB_Class20387] of  String
-
-	(name "WiMap")
-	(string_value "{Map}"))
-
-([WebInterface_ProjectKB_Class20388] of  String
-
-	(name "WiValueParameter")
-	(string_value "title{+}widefault-value"))
-
-([WebInterface_ProjectKB_Class20389] of  String
-
-	(name "WiLayer")
-	(string_value "title"))
-
-([WebInterface_ProjectKB_Class20390] of  String
-
-	(name "WiOptionParameter")
-	(string_value "title"))
-
 ([WebInterface_ProjectKB_Class20393] of  Widget
 
 	(height 60)
@@ -900,6 +860,46 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
+
+([WebInterface_ProjectKB_Class30463] of  String
+
+	(name "WiServer")
+	(string_value "{Port%3A+}wiport{+}wistart-page"))
+
+([WebInterface_ProjectKB_Class30464] of  String
+
+	(name "WiTask")
+	(string_value "wiid"))
+
+([WebInterface_ProjectKB_Class30465] of  String
+
+	(name "WiClient")
+	(string_value "wiheader"))
+
+([WebInterface_ProjectKB_Class30466] of  String
+
+	(name "WiSidebar")
+	(string_value "wiside"))
+
+([WebInterface_ProjectKB_Class30467] of  String
+
+	(name "WiMap")
+	(string_value "{Map}"))
+
+([WebInterface_ProjectKB_Class30468] of  String
+
+	(name "WiValueParameter")
+	(string_value "title{+}widefault-value"))
+
+([WebInterface_ProjectKB_Class30469] of  String
+
+	(name "WiLayer")
+	(string_value "title"))
+
+([WebInterface_ProjectKB_Class30470] of  String
+
+	(name "WiOptionParameter")
+	(string_value "title"))
 
 ([WebInterface_ProjectKB_Class30488] of  Widget
 

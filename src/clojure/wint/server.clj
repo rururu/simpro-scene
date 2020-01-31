@@ -1,13 +1,13 @@
 (ns wint.server
 (:use
-  protege.core
-  [clojure.core.async :as async :refer [chan alts!! put!]])
+  protege.core)
 (:require
   [cognitect.transit :as t]
   [ring.adapter.jetty :as jetty]
   [compojure.core :refer [defroutes GET POST]]
   [compojure.route :as route]
-  [compojure.handler :as handler])
+  [compojure.handler :as handler]
+  [async.proc :as asp])
 (:import 
   [java.io 
     ByteArrayOutputStream
@@ -18,7 +18,7 @@
        "/resources/public/"))
 (def SERVER nil)
 (def NAMESPACE nil)
-(def defonceCHAN (defonce CHAN (chan)))
+(def defonceCHAN (defonce CHAN (asp/mk-chan)))
 (def BUSY nil)
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
@@ -30,17 +30,20 @@
 
 (defn param-row [par-inst]
   (let [name (sv par-inst "title")
+       wid (or (sv par-inst "width") 120)
+       size (if-let [s (sv par-inst "size")] (str "size=\"" s "\""))
+       mult (if (is? (sv par-inst "multiple")) "multiple=\"true\"")
        value (or (sv par-inst "widefault-value") (vec (svs par-inst "wiparam-options")))]
   (str
   "            <tr><td>" name "</td><td>"
   (if (vector? value)
-    (str "<select name=\"" name "\" style=\"width:120px\">\n"
+    (str "<select name=\"" name "\" style=\"width:" wid "px\"" mult " " size ">\n"
       (apply str 
         (for [x value]
           (str
   "              <option value=\"" x "\">" x "</option>\n")))
   "                </select></td></tr>\n")
-    (str "<input name=\"" name "\" style=\"width:120px\" type=\"text\" value=\"" value "\" /></td></tr>\n")))))
+    (str "<input name=\"" name "\" style=\"width:" wid "px\" type=\"text\" value=\"" value "\" /></td></tr>\n")))))
 
 (defn params-form
   ([task]
@@ -126,20 +129,11 @@
                :attributes (if-let [a (sv x "wiattributes")] (read-string a))})]
   (vec (map laymap (svs mapi "wilayers")))))
 
-(defn pump-in [result]
-  (put! CHAN result))
-
-(defn pump-out [chn]
-  (loop [[bit ch] (alts!! [chn] :default :none) bits []]
-    (if (= bit :none)
-      bits
-      (recur (alts!! [chn] :default :none) (conj bits bit)))))
-
 (defn map-controls [mapi]
   (vec (map keyword (svs mapi "wicontrols"))))
 
 (defn response-events []
-  (let [evt (deref (future (pump-out CHAN)))]
+  (let [evt (deref (future (asp/pump-out CHAN)))]
   ;; (println :EVT evt)
   (write-transit evt)))
 
@@ -151,7 +145,7 @@
                      :center (read-string (sv mapi "wicenter"))
                      :layers (map-layers mapi)}
                    {})]
-    (def BUSY true)
+    ;;(def BUSY true)
     (write-transit resp))))
 
 (defn defapp []
@@ -175,8 +169,9 @@
     (def NAMESPACE (sv nsi "title")))
   (when (nil? APP)
     (defapp)
-    (if (nil? SERVER)
-      (def SERVER (jetty/run-jetty APP {:port (read-string port) :join? false}))))))
+    (when (nil? SERVER)
+      (def SERVER (jetty/run-jetty APP {:port (read-string port) :join? false}))
+      (def BUSY nil)))))
 
 (defn stop-server [hm inst]
   (when SERVER

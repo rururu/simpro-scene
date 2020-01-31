@@ -1,11 +1,15 @@
 (ns wint.client
 (:require
   [ajax.core :refer (GET)]
-  [cognitect.transit :as t]))
+  [cognitect.transit :as t]
+  [mvo.move :as mvo]))
 (def MAP nil)
 (def TO-EVENTS 2000)
-(def OBS (volatile! {}))
+(def TO-MOVE 200)
+(def OBJECTS (volatile! {}))
+(def MOVERS (volatile! {}))
 (def DATA nil)
+(def T-SCALE 1.0)
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -52,39 +56,100 @@
   :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}
   (js/alert (str "Unknown layer class " (lmp :type)))))
 
-(defn add-heatmap [params]
-  (if-let [tit (params :title)]
-  (let [data (clj->js (params :data))
-         ops (clj->js (params :options))
-         lay (js/HeatmapOverlay. ops)]
-    (def DATA data)
-    (vswap! OBS assoc tit lay)
-    (.addTo lay MAP)
-    (.setData lay data))))
-
 (defn remove-layer [params]
   (if-let [tit (params :title)]
-  (when-let [lay (@OBS tit)]
-    (.remove lay)
-    (vswap! OBS dissoc tit))))
+  (do
+    (when-let [lay (@OBJECTS tit)]
+      (.remove lay)
+      (vswap! OBJECTS dissoc tit))
+    (if-let [mov (@MOVERS tit)]
+      (vswap! MOVERS dissoc mov)))))
+
+(defn add-path [params]
+  (let [{:keys [title type coord options]} params]
+  (when title
+    (if (@OBJECTS title)
+      (remove-layer params))
+    (let [ops (clj->js options)
+           crd (clj->js coord)
+           lay (condp = type
+                   :polyline (js/L.polyline. crd ops)
+                   :polygon (js/L.polygon. crd ops)
+                   :rectangle (js/L.rectangle. crd ops)
+                   :circle (js/L.circle. crd ops)
+                   :circle-marker (js/L.circleMarker. crd ops)
+                   nil)]
+         (when lay
+           (vswap! OBJECTS assoc title lay)
+           (.addTo lay MAP))))))
+
+(defn add-marker [params]
+  (let [{:keys [title coord course speed url icon-size draggable]} params]
+  (when title
+    (if (@OBJECTS title)
+      (remove-layer params))
+    (let [[lat lon] coord
+           pos (js/L.LatLng. lat lon)
+           ico (js/L.icon #js{:iconUrl url :iconSize (or (clj->js icon-size) #js[32, 32])})
+           ops #js{:title title
+                         :icon ico 
+                         :rotationAngle course
+                         :rotationOrigin "center center"
+                         :draggable (or (clj->js draggable) true)}
+            mrk (js/L.marker. pos ops)]
+       (vswap! OBJECTS assoc title mrk)
+       (if speed
+         (vswap! MOVERS assoc title
+           (mvo/create-mover [lat lon] course speed mrk)))
+       (.addTo mrk MAP)
+       mrk))))
+
+(defn add-heatmap [params]
+  (let [{:keys [title data options]} params]
+  (when title
+    (if (@OBJECTS title)
+      (remove-layer params))
+    (let [data (clj->js data)
+           lay (js/HeatmapOverlay. (clj->js options))]
+      (def DATA data)
+      (vswap! OBJECTS assoc title lay)
+      (.addTo lay MAP)
+      (.setData lay data)))))
 
 (defn add-popup [params]
-  (let [lat (params :lat)
-       lon (params :lon)
+  (let [{:keys [lat lon html]} params
        pos (if (and lat lon)
                #js[lat lon]
                (.getCenter MAP))]
   (.addLayer MAP (-> (js/L.popup. #js{})
                              (.setLatLng pos)
-                             (.setContent (params :html))))))
+                             (.setContent html)))))
+
+(defn set-time-scale [params]
+  (def T-SCALE (params :time-scale))
+(mvo/set-timeout-hrs TO-MOVE T-SCALE))
+
+(defn move-control [params]
+  (let [{:keys [title coord course speed]} params]
+  (when-let [mv (@MOVERS title)]
+    (if coord
+      (mvo/set-coord mv coord))
+    (if course
+      (mvo/set-course mv course))
+    (if speed
+      (mvo/set-speed mv speed)))))
 
 (defn events-hr [resp]
   (doseq [{:keys [event] :as evt} (read-transit resp)]
   ;;(println [:EVENTS-HR evt])
   (condp = event
+    :path (add-path evt)
+    :marker (add-marker evt)
     :popup (add-popup evt)
     :heatmap (add-heatmap evt)
     :remove (remove-layer evt)
+    :time-scale (set-time-scale evt)
+    :move (move-control evt)
     (js/alert "Unknown event: " [event evt]))))
 
 (defn request-events []
@@ -122,6 +187,11 @@
   (.addTo (js/L.control.sidebar "RIGHT" #js{:position "right"}) MAP))
 (request-map))
 
+(defn move-markers []
+  (doseq [[n m] @MOVERS]
+  (mvo/move m))
+(js/setTimeout move-markers TO-MOVE))
+
 (defn tst []
   (add-heatmap 
 {:title "hm1"
@@ -138,3 +208,5 @@
 (enable-console-print!)
 (set! (.-onload js/window) (init))
 (request-events)
+(mvo/set-timeout-hrs TO-MOVE T-SCALE)
+(move-markers)

@@ -58,5 +58,6 @@ goog.addDependency("../cljs/core/async/impl/timers.js", ['cljs.core.async.impl.t
 goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core', 'cljs.core.async.impl.buffers', 'cljs.core.async.impl.protocols', 'cljs.core.async.impl.ioc_helpers', 'cljs.core.async.impl.timers']);
 goog.addDependency("../view3d/client.js", ['view3d.client'], ['ajax.core', 'czm.core', 'goog.string', 'cljs.js', 'cljs.core', 'cljs.core.async', 'geo.calc', 'cognitect.transit', 'goog.string.format', 'cljs.reader']);
 goog.addDependency("../web/client.js", ['web.client'], ['ajax.core', 'cljs.core', 'cognitect.transit']);
-goog.addDependency("../wint/client.js", ['wint.client'], ['ajax.core', 'cljs.core', 'cognitect.transit']);
+goog.addDependency("../mvo/move.js", ['mvo.move'], ['cljs.core']);
+goog.addDependency("../wint/client.js", ['wint.client'], ['ajax.core', 'cljs.core', 'mvo.move', 'cognitect.transit']);
 goog.addDependency("../calc/geo.js", ['calc.geo'], ['cljs.core']);
