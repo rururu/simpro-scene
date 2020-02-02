@@ -20,13 +20,13 @@ var ldiff = (lambda - lambda0);
 var cosphi = Math.cos(phi);
 return Math.atan2((cosphi * Math.sin.call(null,ldiff)),((Math.cos(phi1) * Math.sin(phi)) - ((Math.sin(phi1) * cosphi) * Math.cos(ldiff))));
 });
-mvo.move.bear_deg_js = (function mvo$move$bear_deg_js(p__29347,p__29348){
-var vec__29349 = p__29347;
-var la1 = cljs.core.nth.call(null,vec__29349,(0),null);
-var lo1 = cljs.core.nth.call(null,vec__29349,(1),null);
-var vec__29352 = p__29348;
-var la2 = cljs.core.nth.call(null,vec__29352,(0),null);
-var lo2 = cljs.core.nth.call(null,vec__29352,(1),null);
+mvo.move.bear_deg_js = (function mvo$move$bear_deg_js(p__875,p__876){
+var vec__877 = p__875;
+var la1 = cljs.core.nth.call(null,vec__877,(0),null);
+var lo1 = cljs.core.nth.call(null,vec__877,(1),null);
+var vec__880 = p__876;
+var la2 = cljs.core.nth.call(null,vec__880,(0),null);
+var lo2 = cljs.core.nth.call(null,vec__880,(1),null);
 var fi1 = (la1 * mvo.move.PID180);
 var ld1 = (lo1 * mvo.move.PID180);
 var fi2 = (la2 * mvo.move.PID180);
@@ -49,10 +49,10 @@ return (
 mvo.move.TIMEOUT_HRS = ((timeout_mcec / (3600000)) * time_scale))
 ;
 });
-mvo.move.set_turn_point = (function mvo$move$set_turn_point(mvo__$1,p__29355,crs,spd){
-var vec__29356 = p__29355;
-var lat = cljs.core.nth.call(null,vec__29356,(0),null);
-var lon = cljs.core.nth.call(null,vec__29356,(1),null);
+mvo.move.set_turn_point = (function mvo$move$set_turn_point(mvo__$1,p__883,crs,spd){
+var vec__884 = p__883;
+var lat = cljs.core.nth.call(null,vec__884,(0),null);
+var lon = cljs.core.nth.call(null,vec__884,(1),null);
 return cljs.core._vreset_BANG_.call(null,mvo__$1,cljs.core.assoc.call(null,cljs.core._deref.call(null,mvo__$1),new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032),(lat * mvo.move.PID180),new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490),(lon * mvo.move.PID180),new cljs.core.Keyword(null,"dir","dir",1734754661),(crs * mvo.move.PID180),new cljs.core.Keyword(null,"rdh","rdh",1247569967),(spd * mvo.move.NMRAD),new cljs.core.Keyword(null,"elt-tur","elt-tur",-1114335595),0.0));
 });
 mvo.move.get_coord = (function mvo$move$get_coord(mo){
@@ -89,9 +89,9 @@ mvo.move.move = (function mvo$move$move(mvo__$1){
 var mo = cljs.core.deref.call(null,mvo__$1);
 var elt = (mo.call(null,new cljs.core.Keyword(null,"elt-tur","elt-tur",-1114335595)) + mvo.move.TIMEOUT_HRS);
 var way = (mo.call(null,new cljs.core.Keyword(null,"rdh","rdh",1247569967)) * elt);
-var vec__29359 = mvo.move.spherical_between_js.call(null,mo.call(null,new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032)),mo.call(null,new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490)),way,mo.call(null,new cljs.core.Keyword(null,"dir","dir",1734754661)));
-var phi = cljs.core.nth.call(null,vec__29359,(0),null);
-var lam = cljs.core.nth.call(null,vec__29359,(1),null);
+var vec__887 = mvo.move.spherical_between_js.call(null,mo.call(null,new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032)),mo.call(null,new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490)),way,mo.call(null,new cljs.core.Keyword(null,"dir","dir",1734754661)));
+var phi = cljs.core.nth.call(null,vec__887,(0),null);
+var lam = cljs.core.nth.call(null,vec__887,(1),null);
 var pos = (new L.LatLng((phi / mvo.move.PID180),(lam / mvo.move.PID180)));
 mo.call(null,new cljs.core.Keyword(null,"marker","marker",865118313)).setLatLng(pos);
 

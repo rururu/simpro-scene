@@ -13,13 +13,14 @@
     ByteArrayOutputStream
     ByteArrayInputStream]
   clojuretab.ClojureTab))
-(def APP nil)
-(def ROOT (str (System/getProperty "user.dir")
-       "/resources/public/"))
-(def SERVER nil)
-(def NAMESPACE nil)
-(def defonceCHAN (defonce CHAN (asp/mk-chan)))
-(def BUSY nil)
+(def defoceSYS (def SYS 
+  (volatile! 
+   {:SERVER nil
+     :APP nil
+     :ROOT (str (System/getProperty "user.dir") "/resources/public/")
+     :NAMESPACE nil
+     :CHAN (asp/mk-chan)
+     :BUSY nil})))
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
         w    (t/writer baos :json)
@@ -115,7 +116,7 @@
 (defn request [params]
   (println [:POST params])
 (try
-  (ClojureTab/invoke NAMESPACE "exec-task" params)
+  (ClojureTab/invoke (@SYS :NAMESPACE) "exec-task" params)
   {:status 204}
   (catch Exception e
     (println :ERROR e)
@@ -133,19 +134,19 @@
   (vec (map keyword (svs mapi "wicontrols"))))
 
 (defn response-events []
-  (let [evt (deref (future (asp/pump-out CHAN)))]
+  (let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]
   ;; (println :EVT evt)
   (write-transit evt)))
 
 (defn response-map []
-  (if BUSY 
+  (if (@SYS :BUSY) 
   (write-transit "BUSY")
   (let [resp (if-let [mapi (first (cls-instances "WiMap"))]
                    {:zoom (sv mapi "wizoom") 
                      :center (read-string (sv mapi "wicenter"))
                      :layers (map-layers mapi)}
                    {})]
-    ;;(def BUSY true)
+    ;;(vswap! SYS assoc :BUSY true)
     (write-transit resp))))
 
 (defn defapp []
@@ -154,29 +155,30 @@
   (POST "/" [& params] (request params))
   (GET "/map" [] (response-map))
   (GET "/events" [] (response-events))
-  (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
+  (route/files "/" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))
   (route/resources "/")
   (route/not-found "Not Found"))
 
-(def APP
+(vswap! SYS assoc :APP
   (handler/site app-routes)))
 
 (defn start-server [hm inst]
   (let [mp (into {} hm)
        nsi (mp "cloNamespace")
        port (mp "wiport")]
-  (if (nil? NAMESPACE)
-    (def NAMESPACE (sv nsi "title")))
-  (when (nil? APP)
+  (if (nil? (@SYS :NAMESPACE))
+    (vswap! SYS assoc :NAMESPACE (sv nsi "title")))
+  (when (nil? (@SYS :APP))
     (defapp)
-    (when (nil? SERVER)
-      (def SERVER (jetty/run-jetty APP {:port (read-string port) :join? false}))
-      (def BUSY nil)))))
+    (when (nil? (@SYS :SERVER))
+      (vswap! SYS assoc :SERVER 
+        (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))
+      (vswap! SYS assoc :BUSY nil)))))
 
 (defn stop-server [hm inst]
-  (when SERVER
-  (.stop SERVER)
-  (def SERVER nil)
-  (def APP nil)
+  (when (@SYS :SERVER)
+  (.stop (@SYS :SERVER))
+  (vswap! SYS assoc :SERVER nil)
+  (vswap! SYS assoc :APP nil)
   (println "WebServer stopped.")))
 

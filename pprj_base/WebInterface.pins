@@ -1,4 +1,4 @@
-; Fri Jan 31 22:38:51 MSK 2020
+; Sun Feb 02 12:48:55 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -48,11 +48,6 @@
 	(source "(condp = (lmp :type)\n  :Base (base-layers)\n  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}\n  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}\n  (js/alert (str \"Unknown layer class \" (lmp :type))))")
 	(title "create-layer [lmp]"))
 
-([WebInterface_Class10001] of  CloVar
-
-	(source "nil")
-	(title "NAMESPACE"))
-
 ([WebInterface_Class10010] of  CloFunction
 
 	(source "(chan)")
@@ -70,13 +65,8 @@
 
 ([WebInterface_Class11] of  CloFunction
 
-	(source "(let [evt (deref (future (asp/pump-out CHAN)))]\n  ;; (println :EVT evt)\n  (write-transit evt))")
+	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;; (println :EVT evt)\n  (write-transit evt))")
 	(title "response-events []"))
-
-([WebInterface_Class14] of  CloVar
-
-	(source "(defonce CHAN (asp/mk-chan))")
-	(title "defonceCHAN"))
 
 ([WebInterface_Class15] of  CloFunction
 
@@ -248,6 +238,10 @@
 	(source "(vreset! status \"FINISH\")")
 	(title "stop-process [status]"))
 
+([WebInterface_Class50000] of  CloFuncall
+
+	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :title \"m1\" :coord [60 30] :url \"img/ARRr.png\" :course 315 :speed 22 })"))
+
 ([WebInterface_Class50001] of  CloFunction
 
 	(source "(let [{:keys [lat lon html]} params\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter MAP))]\n  (.addLayer MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent html))))")
@@ -282,6 +276,10 @@
 
 	(source "(if-let [tit (params :title)]\n  (do\n    (when-let [lay (@OBJECTS tit)]\n      (.remove lay)\n      (vswap! OBJECTS dissoc tit))\n    (if-let [mov (@MOVERS tit)]\n      (vswap! MOVERS dissoc mov))))")
 	(title "remove-layer [params]"))
+
+([WebInterface_Class70001] of  CloFuncall
+
+	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :marker :title \"m1\" :coord [60 30] :url \"img/ARRr.png\" :course 315 :speed 22 })"))
 
 ([WebInterface_Class70002] of  CloVar
 
@@ -469,10 +467,13 @@
 	(source "(loop [out []]\n  (if (empty? out)\n    (recur (<!! chn))\n    out))")
 	(title "one-out [chn]"))
 
-([WebInterface_Class90000] of  CloVar
+([WebInterface_Class90002] of  CloFuncall
 
-	(source "nil")
-	(title "BUSY"))
+	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :move :title \"m1\" :course 270 })"))
+
+([WebInterface_Class90003] of  CloFuncall
+
+	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :path :title \"c2\" :type :circle :coord [60 30] :options {:radius 10000 :color \"yellow\"} })"))
 
 ([WebServer_Class10000] of  HTML
 
@@ -529,13 +530,7 @@
 		[WebServer_Class40012]
 		[WebServer_Class40014])
 	(cloNamespace [WebServer_Class4])
-	(cloVars
-		[WebServer_Class40010]
-		[WebServer_Class40011]
-		[WebServer_Class40013]
-		[WebInterface_Class10001]
-		[WebInterface_Class14]
-		[WebInterface_Class90000])
+	(cloVars [WebServer_Class40013])
 	(title "Wint Server"))
 
 ([WebServer_Class30000] of  CloFunction
@@ -565,7 +560,7 @@
 
 ([WebServer_Class40003] of  CloFunction
 
-	(source "(if BUSY \n  (write-transit \"BUSY\")\n  (let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                   {:zoom (sv mapi \"wizoom\") \n                     :center (read-string (sv mapi \"wicenter\"))\n                     :layers (map-layers mapi)}\n                   {})]\n    ;;(def BUSY true)\n    (write-transit resp)))")
+	(source "(if (@SYS :BUSY) \n  (write-transit \"BUSY\")\n  (let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                   {:zoom (sv mapi \"wizoom\") \n                     :center (read-string (sv mapi \"wicenter\"))\n                     :layers (map-layers mapi)}\n                   {})]\n    ;;(vswap! SYS assoc :BUSY true)\n    (write-transit resp)))")
 	(title "response-map []"))
 
 ([WebServer_Class40004] of  CloFunction
@@ -575,32 +570,22 @@
 
 ([WebServer_Class40009] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (start-page)))\n  (POST \"/\" [& params] (request params))\n  (GET \"/map\" [] (response-map))\n  (GET \"/events\" [] (response-events))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Not Found\"))\n\n(def APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (start-page)))\n  (POST \"/\" [& params] (request params))\n  (GET \"/map\" [] (response-map))\n  (GET \"/events\" [] (response-events))\n  (route/files \"/\" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))\n  (route/resources \"/\")\n  (route/not-found \"Not Found\"))\n\n(vswap! SYS assoc :APP\n  (handler/site app-routes))")
 	(title "defapp []"))
-
-([WebServer_Class40010] of  CloVar
-
-	(source "nil")
-	(title "APP"))
-
-([WebServer_Class40011] of  CloVar
-
-	(source "(str (System/getProperty \"user.dir\")\n       \"/resources/public/\")")
-	(title "ROOT"))
 
 ([WebServer_Class40012] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       nsi (mp \"cloNamespace\")\n       port (mp \"wiport\")]\n  (if (nil? NAMESPACE)\n    (def NAMESPACE (sv nsi \"title\")))\n  (when (nil? APP)\n    (defapp)\n    (when (nil? SERVER)\n      (def SERVER (jetty/run-jetty APP {:port (read-string port) :join? false}))\n      (def BUSY nil))))")
+	(source "(let [mp (into {} hm)\n       nsi (mp \"cloNamespace\")\n       port (mp \"wiport\")]\n  (if (nil? (@SYS :NAMESPACE))\n    (vswap! SYS assoc :NAMESPACE (sv nsi \"title\")))\n  (when (nil? (@SYS :APP))\n    (defapp)\n    (when (nil? (@SYS :SERVER))\n      (vswap! SYS assoc :SERVER \n        (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))\n      (vswap! SYS assoc :BUSY nil))))")
 	(title "start-server [hm inst]"))
 
 ([WebServer_Class40013] of  CloVar
 
-	(source "nil")
-	(title "SERVER"))
+	(source "(def SYS \n  (volatile! \n   {:SERVER nil\n     :APP nil\n     :ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\")\n     :NAMESPACE nil\n     :CHAN (asp/mk-chan)\n     :BUSY nil}))")
+	(title "defoceSYS"))
 
 ([WebServer_Class40014] of  CloFunction
 
-	(source "(when SERVER\n  (.stop SERVER)\n  (def SERVER nil)\n  (def APP nil)\n  (println \"WebServer stopped.\"))")
+	(source "(when (@SYS :SERVER)\n  (.stop (@SYS :SERVER))\n  (vswap! SYS assoc :SERVER nil)\n  (vswap! SYS assoc :APP nil)\n  (println \"WebServer stopped.\"))")
 	(title "stop-server [hm inst]"))
 
 ([WebServer_Class40015] of  CloFunction
@@ -610,7 +595,7 @@
 
 ([WebServer_Class40016] of  CloFunction
 
-	(source "(println [:POST params])\n(try\n  (ClojureTab/invoke NAMESPACE \"exec-task\" params)\n  {:status 204}\n  (catch Exception e\n    (println :ERROR e)\n    (str \"Task execution error for parameters:\" params)))")
+	(source "(println [:POST params])\n(try\n  (ClojureTab/invoke (@SYS :NAMESPACE) \"exec-task\" params)\n  {:status 204}\n  (catch Exception e\n    (println :ERROR e)\n    (str \"Task execution error for parameters:\" params)))")
 	(title "request [params]"))
 
 ([WebServer_Class5] of  ClsMain

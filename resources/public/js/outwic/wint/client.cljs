@@ -141,7 +141,7 @@
 
 (defn events-hr [resp]
   (doseq [{:keys [event] :as evt} (read-transit resp)]
-  ;;(println [:EVENTS-HR evt])
+  (println [:EVENTS-HR evt])
   (condp = event
     :path (add-path evt)
     :marker (add-marker evt)
