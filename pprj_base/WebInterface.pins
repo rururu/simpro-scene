@@ -1,4 +1,4 @@
-; Sun Feb 02 12:48:55 MSK 2020
+; Mon Feb 10 13:05:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,7 +9,6 @@
 		[WebInterface_Class30004]
 		[WebInterface_Class30005]
 		[WebInterface_Class30006]
-		[WebInterface_Class70006]
 		[WebInterface_Class30007]
 		[WebInterface_Class30017]
 		[WebInterface_Class30018]
@@ -18,12 +17,16 @@
 		[WebInterface_Class30009]
 		[WebInterface_Class30020]
 		[WebInterface_Class30011]
-		[WebInterface_Class30010])
+		[WebInterface_Class90001]
+		[WebInterface_Class30010]
+		[WebInterface_Class70001]
+		[WebInterface_Class70006])
 	(cloNamespace [WebInterface_Class20001])
 	(cloVars
 		[WebInterface_Class20002]
 		[WebInterface_Class30003]
-		[WebInterface_Class70005])
+		[WebInterface_Class70005]
+		[WebInterface_Class50000])
 	(documentation [WebInterface_Class30016])
 	(title "Moving Program"))
 
@@ -48,6 +51,16 @@
 	(source "(condp = (lmp :type)\n  :Base (base-layers)\n  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}\n  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}\n  (js/alert (str \"Unknown layer class \" (lmp :type))))")
 	(title "create-layer [lmp]"))
 
+([WebInterface_Class100000] of  CloFunction
+
+	(source "(if (vector? p) p [p])")
+	(title "to-vec-param [p]"))
+
+([WebInterface_Class100002] of  CloFunction
+
+	(source "(let [{:keys [title tug bear dist]} params]\n  (if-let [mov (@MOVERS tug)]\n    (if-let [obj (@OBJECTS title)]\n      (do\n        (vswap! mov assoc-in [:tows obj]\n          [(* (/ dist 60) mvo/PID180) (* bear mvo/PID180)])\n        (if-let [mov (@MOVERS title)]\n          (vswap! MOVERS dissoc title)))\n      (js/alert \"Object \" title \" on tow of \" tug \" is missing!\"))\n    (js/alert \"Tug \"\" for object \"\" on tow  is missing!\")))")
+	(title "add-tow [params]"))
+
 ([WebInterface_Class10010] of  CloFunction
 
 	(source "(chan)")
@@ -68,6 +81,11 @@
 	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;; (println :EVT evt)\n  (write-transit evt))")
 	(title "response-events []"))
 
+([WebInterface_Class110006] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       ops (vec (map #(sv % (mp \"wislot\")) (mp \"wilist\")))\n       pins (crin \"WiOptionParameter\")]\n  (ssvs inst \"wiparam-options\" ops)\n  (ssvs pins \"wiparam-options\" ops)\n  (ssv pins \"title\" (mp \"title\"))\n  (ssv pins \"width\" (mp \"width\"))\n  (ssv pins \"size\" (mp \"size\"))\n  (ssv pins \"multiple\" (mp \"multiple\")))")
+	(title "par-ops-gen [hm inst]"))
+
 ([WebInterface_Class15] of  CloFunction
 
 	(source "(GET \"/events\" {:handler events-hr\n                      :error-handler error-handler})\n(js/setTimeout request-events TO-EVENTS)")
@@ -75,7 +93,7 @@
 
 ([WebInterface_Class16] of  CloFunction
 
-	(source "(doseq [{:keys [event] :as evt} (read-transit resp)]\n  ;;(println [:EVENTS-HR evt])\n  (condp = event\n    :path (add-path evt)\n    :marker (add-marker evt)\n    :popup (add-popup evt)\n    :heatmap (add-heatmap evt)\n    :remove (remove-layer evt)\n    :time-scale (set-time-scale evt)\n    :move (move-control evt)\n    (js/alert \"Unknown event: \" [event evt])))")
+	(source "(doseq [{:keys [event] :as evt} (read-transit resp)]\n  (if DEBUG (println [:EVENTS-HR evt]))\n  (condp = event\n    :path (add-path evt)\n    :marker (add-marker evt)\n    :popup (add-popup evt)\n    :heatmap (add-heatmap evt)\n    :remove (remove-layer evt)\n    :time-scale (set-time-scale evt)\n    :time-run (set-time-run evt)\n    :move (move-control evt)\n    :tow (add-tow evt)\n    :endtow (remove-tow evt)\n    :debug (set-debug evt)\n    (js/alert \"Unknown event: \" [event evt])))")
 	(title "events-hr [resp]"))
 
 ([WebInterface_Class2] of  CloNamespace
@@ -119,15 +137,6 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          Wint Client<br>      <br>      Function add-marker <a href=\"internalLink\">@'WebInterface_Class20000'</a>&#160;</body>\n</html>")
 	(title "Wint Client"))
 
-([WebInterface_Class30002] of  WiServer
-
-	(cloNamespace [WebInterface_Class40003])
-	(wibut-start "Start Server/wint.server/start-server")
-	(wibut-stop "Stop Server/wint.server/stop-server")
-	(wibut-upd-start-page "Update Start Page/wint.server/update-start-page")
-	(wiport "4444")
-	(wistart-page "resources/public/wint.html"))
-
 ([WebInterface_Class30003] of  CloVar
 
 	(source "(/ Math.PI 10800)")
@@ -155,17 +164,17 @@
 
 ([WebInterface_Class30008] of  CloFunction
 
-	(source "(let [mo @mvo]\n  (set-turn-point mvo (get-coord mo) crs (get-speed mo))\n  (.setRotationAngle (mo :marker) crs))")
+	(source "(let [mv @mvo]\n  (set-turn-point mvo (get-coord mv) crs (get-speed mv))\n  (.setRotationAngle (mv :marker) crs))")
 	(title "set-course [mvo crs]"))
 
 ([WebInterface_Class30009] of  CloFunction
 
-	(source "(let [mo @mvo]\n  (set-turn-point mvo (get-coord mo) (get-course mo) spd))")
+	(source "(let [mv @mvo]\n  (set-turn-point mvo (get-coord mv) (get-course mv) spd))")
 	(title "set-speed [mvo spd]"))
 
 ([WebInterface_Class30010] of  CloFunction
 
-	(source "(let [mo @mvo\n       elt (+ (mo :elt-tur) TIMEOUT-HRS)\n       way (* (mo :rdh) elt)\n       [phi lam] (spherical-between-js (mo :phi-tur) (mo :lam-tur) way (mo :dir))\n       pos (js/L.LatLng. (/ phi PID180) (/ lam PID180))]\n  (.setLatLng (mo :marker) pos)\n  (vswap! mvo assoc :elt-tur elt))")
+	(source "(if TIME-RUN\n  (let [mv @mvo\n         elt (+ (mv :elt-tur) TIMEOUT-HRS)\n         way (* (mv :rdh) elt)\n         [phi lam] (spherical-between-js (mv :phi-tur) (mv :lam-tur) way (mv :dir))\n         pos (js/L.LatLng. (/ phi PID180) (/ lam PID180))]\n    (.setLatLng (mv :marker) pos)\n    (doseq [twd (mv :tows)]\n       (tow twd phi lam (get-course mv)))\n    (vswap! mvo assoc :elt-tur elt)))")
 	(title "move [mvo]"))
 
 ([WebInterface_Class30011] of  CloFunction
@@ -190,22 +199,22 @@
 
 ([WebInterface_Class30017] of  CloFunction
 
-	(source "(let [ll (.getLatLng (mo :marker))]\n  [(.-lat ll) (.-lng ll)])")
-	(title "get-coord [mo]"))
+	(source "(let [ll (.getLatLng (mv :marker))]\n  [(.-lat ll) (.-lng ll)])")
+	(title "get-coord [mv]"))
 
 ([WebInterface_Class30018] of  CloFunction
 
-	(source "(/ (mo :dir) PID180)")
-	(title "get-course [mo]"))
+	(source "(/ (mv :dir) PID180)")
+	(title "get-course [mv]"))
 
 ([WebInterface_Class30019] of  CloFunction
 
-	(source "(/ (mo :rdh) NMRAD)")
-	(title "get-speed [mo]"))
+	(source "(/ (mv :rdh) NMRAD)")
+	(title "get-speed [mv]"))
 
 ([WebInterface_Class30020] of  CloFunction
 
-	(source "(let [mo @mvo]\n  (set-turn-point mvo crd (get-course mo) (get-speed mo)))")
+	(source "(let [mv @mvo\n       [lat lon] crd]\n  (set-turn-point mvo crd (get-course mv) (get-speed mv))\n  (.setLatLng (mv :marker) (js/L.LatLng. lat lon)))")
 	(title "set-coord [mvo crd]"))
 
 ([WebInterface_Class4] of  CloFunction
@@ -222,25 +231,15 @@
 
 	(title "wint.test"))
 
-([WebInterface_Class40004] of  WiClient
-
-	(wicolor "Bisque")
-	(wiheader "Test Client"))
-
-([WebInterface_Class40005] of  WiMap
-
-	(wicenter "[60 30]")
-	(wilayers [WebInterface_Class50003])
-	(wizoom 8))
-
 ([WebInterface_Class5] of  CloFunction
 
 	(source "(vreset! status \"FINISH\")")
 	(title "stop-process [status]"))
 
-([WebInterface_Class50000] of  CloFuncall
+([WebInterface_Class50000] of  CloVar
 
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :title \"m1\" :coord [60 30] :url \"img/ARRr.png\" :course 315 :speed 22 })"))
+	(source "false")
+	(title "TIME-RUN"))
 
 ([WebInterface_Class50001] of  CloFunction
 
@@ -274,12 +273,13 @@
 
 ([WebInterface_Class70000] of  CloFunction
 
-	(source "(if-let [tit (params :title)]\n  (do\n    (when-let [lay (@OBJECTS tit)]\n      (.remove lay)\n      (vswap! OBJECTS dissoc tit))\n    (if-let [mov (@MOVERS tit)]\n      (vswap! MOVERS dissoc mov))))")
+	(source "(if-let [tit (params :title)]\n  (do\n    (when-let [lay (@OBJECTS tit)]\n      (.remove lay)\n      (vswap! OBJECTS dissoc tit))\n    (if-let [mov (@MOVERS tit)]\n      (vswap! MOVERS dissoc tit))))")
 	(title "remove-layer [params]"))
 
-([WebInterface_Class70001] of  CloFuncall
+([WebInterface_Class70001] of  CloFunction
 
-	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :marker :title \"m1\" :coord [60 30] :url \"img/ARRr.png\" :course 315 :speed 22 })"))
+	(source "(def TIME-RUN bool)")
+	(title "set-time-run [bool]"))
 
 ([WebInterface_Class70002] of  CloVar
 
@@ -291,10 +291,6 @@
 	(source "(doseq [[n m] @MOVERS]\n  (mvo/move m))\n(js/setTimeout move-markers TO-MOVE)")
 	(title "move-markers []"))
 
-([WebInterface_Class70004] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :mode :create :title \"m1\" :coord [60 30] :url \"img/ARRr.png\" :course 315 :speed 22 })"))
-
 ([WebInterface_Class70005] of  CloVar
 
 	(source "0")
@@ -304,22 +300,6 @@
 
 	(source "(def TIMEOUT-HRS (* (/ timeout-mcec 3600000) time-scale))")
 	(title "set-timeout-hrs [timeout-mcec time-scale]"))
-
-([WebInterface_Class70007] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :mode :create :title \"m2\" :coord [60 30] :url \"img/ARRb.png\" :course 315 :speed 222 })"))
-
-([WebInterface_Class70008] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :mode :create :title \"m3\" :coord [60 30] :url \"img/ARRb.png\" :course 280 :speed 222 })"))
-
-([WebInterface_Class70009] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :mode :create :title \"m3\" :coord [60 30] :url \"img/ARRb.png\" :course 270 :speed 222 })"))
-
-([WebInterface_Class70010] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :mode :create :title \"m4\" :coord [60 30] :url \"img/ARRb.png\" :course 270 :speed 222 })"))
 
 ([WebInterface_Class70011] of  CloVar
 
@@ -331,111 +311,15 @@
 	(source "(def T-SCALE (params :time-scale))\n(mvo/set-timeout-hrs TO-MOVE T-SCALE)")
 	(title "set-time-scale [params]"))
 
-([WebInterface_Class70013] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :time-scale :time-scale 8})"))
-
-([WebInterface_Class70014] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :time-scale :time-scale 0.5})"))
-
 ([WebInterface_Class70015] of  CloFunction
 
 	(source "(let [{:keys [title coord course speed]} params]\n  (when-let [mv (@MOVERS title)]\n    (if coord\n      (mvo/set-coord mv coord))\n    (if course\n      (mvo/set-course mv course))\n    (if speed\n      (mvo/set-speed mv speed))))")
 	(title "move-control [params]"))
 
-([WebInterface_Class70016] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :course 270})"))
-
-([WebInterface_Class70017] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :course 270})"))
-
-([WebInterface_Class70018] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :course 180})"))
-
-([WebInterface_Class70019] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :speed 180})"))
-
-([WebInterface_Class70020] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :course 290})"))
-
-([WebInterface_Class70021] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :coord [60 29.70]})"))
-
-([WebInterface_Class70022] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :time-scale :time-scale 0.25})"))
-
-([WebInterface_Class70023] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :time-scale :time-scale 32})"))
-
-([WebInterface_Class70024] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :time-scale :time-scale 1})"))
-
-([WebInterface_Class70025] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m1\" :course 100})"))
-
-([WebInterface_Class70026] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m2\" :course 180})"))
-
-([WebInterface_Class70027] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m2\" :speed 20})"))
-
-([WebInterface_Class70028] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :move :title \"m2\" :course 280})"))
-
 ([WebInterface_Class70029] of  CloFunction
 
 	(source "(let [{:keys [title type coord options]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [ops (clj->js options)\n           crd (clj->js coord)\n           lay (condp = type\n                   :polyline (js/L.polyline. crd ops)\n                   :polygon (js/L.polygon. crd ops)\n                   :rectangle (js/L.rectangle. crd ops)\n                   :circle (js/L.circle. crd ops)\n                   :circle-marker (js/L.circleMarker. crd ops)\n                   nil)]\n         (when lay\n           (vswap! OBJECTS assoc title lay)\n           (.addTo lay MAP)))))")
 	(title "add-path [params]"))
-
-([WebInterface_Class70030] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :marker :title \"m2\" :coord [60 30] :url \"img/ARRb.png\" :course 315 :speed 222 })"))
-
-([WebInterface_Class70031] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c1\" :type :circle :coord [60 30] :options {:radius 1000 :color \"red\"} })"))
-
-([WebInterface_Class70032] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c2\" :type :circle :coord [60 30] :options {:radius 10000 :color \"yellow\"} })"))
-
-([WebInterface_Class70033] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c2\" :type :rectangle :coord [[59 29][60 30]] :options {:color \"green\"} })"))
-
-([WebInterface_Class70034] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c2\" :type :rectangle :coord [[59.9 29.9][60 30]] :options {:color \"green\"} })"))
-
-([WebInterface_Class70035] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c2\" :type :rectangle :coord [[59.9 29.9][59.95 29.85 ][60 30]] :options {:color \"blue\"} })"))
-
-([WebInterface_Class70036] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c3\" :type :polygon :coord [[59.9 29.9][59.95 29.85 ][60 30]] :options {:color \"green\"} })"))
-
-([WebInterface_Class70037] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c5\" :type :circle-marker :coord [59.95 30.1] :options {:radius 10 :color \"brown\"} })"))
-
-([WebInterface_Class70038] of  CloFuncall
-
-	(source "(async.proc/pump-in wint.server/CHAN {:event :path :title \"c5\" :type :circle-marker :coord [59.95 30.1] :options {:title \"qq\" :radius 10 :color \"brown\"} })"))
 
 ([WebInterface_Class8] of  CloFunction
 
@@ -467,13 +351,30 @@
 	(source "(loop [out []]\n  (if (empty? out)\n    (recur (<!! chn))\n    out))")
 	(title "one-out [chn]"))
 
-([WebInterface_Class90002] of  CloFuncall
+([WebInterface_Class90000] of  CloFunction
 
-	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :move :title \"m1\" :course 270 })"))
+	(source "(let [{:keys [title tug]} params]\n  (if-let [mov (@MOVERS tug)]\n    (if-let [obj (@OBJECTS title)]\n      (vswap! mov assoc :tows\n        (dissoc (@mov :tows) obj)))))")
+	(title "remove-tow [params]"))
 
-([WebInterface_Class90003] of  CloFuncall
+([WebInterface_Class90001] of  CloFunction
 
-	(source "(async.proc/pump-in (@wint.server/SYS :CHAN) {:event :path :title \"c2\" :type :circle :coord [60 30] :options {:radius 10000 :color \"yellow\"} })"))
+	(source "(let [[phi2 lam2] (spherical-between-js phi lam rd az)\n       pos2 (js/L.LatLng. (/ phi2 PID180) (/ lam2 PID180))]\n  (.setLatLng cmk pos2)\n  (if (instance? js/L.Marker cmk)\n    (.setRotationAngle cmk crs)))")
+	(title "tow [[cmk [rd az]] phi lam crs]"))
+
+([WebInterface_Class90002] of  CloFunction
+
+	(source "(mvo/set-time-run (params :time-run))")
+	(title "set-time-run [params]"))
+
+([WebInterface_Class90003] of  CloVar
+
+	(source "false")
+	(title "DEBUG"))
+
+([WebInterface_Class90004] of  CloFunction
+
+	(source "(def DEBUG (params :debug))")
+	(title "set-debug [params]"))
 
 ([WebServer_Class10000] of  HTML
 
@@ -518,6 +419,7 @@
 		[WebServer_Class40004]
 		[WebServer_Class20000]
 		[WebServer_Class20004]
+		[WebInterface_Class100000]
 		[WebServer_Class9]
 		[WebServer_Class7]
 		[WebServer_Class40015]
@@ -528,7 +430,8 @@
 		[WebServer_Class40003]
 		[WebServer_Class40009]
 		[WebServer_Class40012]
-		[WebServer_Class40014])
+		[WebServer_Class40014]
+		[WebInterface_Class110006])
 	(cloNamespace [WebServer_Class4])
 	(cloVars [WebServer_Class40013])
 	(title "Wint Server"))
@@ -580,8 +483,8 @@
 
 ([WebServer_Class40013] of  CloVar
 
-	(source "(def SYS \n  (volatile! \n   {:SERVER nil\n     :APP nil\n     :ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\")\n     :NAMESPACE nil\n     :CHAN (asp/mk-chan)\n     :BUSY nil}))")
-	(title "defoceSYS"))
+	(source "(defonce SYS \n  (volatile! \n   {:SERVER nil\n     :APP nil\n     :ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\")\n     :NAMESPACE nil\n     :CHAN (asp/mk-chan)\n     :BUSY nil}))")
+	(title "defonceSYS"))
 
 ([WebServer_Class40014] of  CloFunction
 
@@ -610,12 +513,16 @@
 		[WebInterface_Class20003]
 		[WebInterface_Class10000]
 		[WebInterface_Class70000]
+		[WebInterface_Class90000]
+		[WebInterface_Class100002]
 		[WebInterface_Class70029]
 		[WebInterface_Class30015]
 		[WebInterface_Class60000]
 		[WebInterface_Class50001]
 		[WebInterface_Class70012]
 		[WebInterface_Class70015]
+		[WebInterface_Class90002]
+		[WebInterface_Class90004]
 		[WebInterface_Class16]
 		[WebInterface_Class15]
 		[WebServer_Class40001]
@@ -631,7 +538,8 @@
 		[WebInterface_Class60001]
 		[WebInterface_Class30014]
 		[WebInterface_Class80003]
-		[WebInterface_Class70011])
+		[WebInterface_Class70011]
+		[WebInterface_Class90003])
 	(compiler-options "{:verbose false}")
 	(css [WebServer_Class10001])
 	(documentation [WebInterface_Class30000])

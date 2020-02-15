@@ -1,4 +1,4 @@
-; Sun Feb 02 12:48:55 MSK 2020
+; Mon Feb 10 13:05:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -16,6 +16,10 @@
 		(type STRING)
 		(default "Stop Server/wint.server/stop-server")
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wilist
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
 		(create-accessor read-write))
 	(single-slot wibut-start
 		(type STRING)
@@ -114,10 +118,19 @@
 	(multislot wiparam-options
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot wislot
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wilayer-type
 		(type SYMBOL)
 		(allowed-values Base Tile GeoJSON)
 		(default Base)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-par-ops-gen
+		(type STRING)
+		(default "Generate Options/wint.server/par-ops-gen")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -183,6 +196,23 @@
 		(create-accessor read-write))
 	(single-slot size
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ParOpsGen
+	(is-a WiOptionParameter)
+	(role concrete)
+	(multislot wilist
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+		(create-accessor read-write))
+	(single-slot wislot
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot butt-par-ops-gen
+		(type STRING)
+		(default "Generate Options/wint.server/par-ops-gen")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
