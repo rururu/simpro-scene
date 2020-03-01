@@ -4,7 +4,6 @@
   [rete.core :as rete])
 (:import
   edu.stanford.smi.protege.model.Instance))
-
 (def do-next nil)
 (def destruct nil)
 (def TRACE false)

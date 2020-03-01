@@ -7,7 +7,6 @@
   com.bbn.openmap.proj.GreatCircle
   com.bbn.openmap.proj.ProjMath
   ru.igis.omtab.OMTPoly))
-
 (defn mix-lists-by-n [n x y]
   ; while mixing take n elements from x and one element from y repeatedly
 (cond

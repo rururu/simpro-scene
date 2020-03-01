@@ -12,7 +12,6 @@
   edu.stanford.smi.protege.ui.DisplayUtilities
   edu.stanford.smi.protege.util.ModalDialog
   clojuretab.ClojureTab))
-
 (defn qm [x]
   (or 
   (nil? x)

@@ -8,7 +8,6 @@
   edu.stanford.smi.protege.model.Instance
   edu.stanford.smi.protege.ui.DisplayUtilities
   ru.igis.omtab.OMT))
-
 (defn user-decision [vrs]
   [@(future (DisplayUtilities/pickInstanceFromCollection nil vrs 0 "Select Variant"))])
 

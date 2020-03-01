@@ -13,7 +13,6 @@
                ByteArrayInputStream]
              ru.igis.omtab.OMT
              edu.stanford.smi.protege.ui.DisplayUtilities))
-
 (def PORT 4444)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def SERV nil)

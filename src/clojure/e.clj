@@ -7,7 +7,6 @@
 (:import
   ru.igis.omtab.OMT
   ru.igis.omtab.MapOb))
-
 (defn try-str-num [x]
   (if (string? x)
   (try 

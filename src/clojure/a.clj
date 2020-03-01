@@ -17,7 +17,6 @@
   com.bbn.openmap.geo.Geo
   com.bbn.openmap.proj.ProjMath
   edu.stanford.smi.protege.ui.DisplayUtilities))
-
 (def CATEGORY {
 1 "#4444FF"
 2 "#FFFF00"
