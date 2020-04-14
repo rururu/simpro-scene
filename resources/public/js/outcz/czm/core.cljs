@@ -1,7 +1,6 @@
 (ns czm.core
 (:require
   [geo.calc :as geo]))
-
 (def VIEWER (js/Cesium.Viewer. 
   "cesiumContainer" 
   #js{:imageryProvider (js/Cesium.createWorldImagery)

@@ -1,4 +1,4 @@
-; Sat Aug 31 18:13:53 MSK 2019
+; Mon Apr 13 13:51:23 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -174,7 +174,7 @@
 
 ([Clojure_Class260000] of  CloFunction
 
-	(source ";; map to instance\n;; mp - itm\n([mp]\n  (if (and (map? mp) (>= (:DEPTH mp) 0))\n    (mti mp (:DEPTH mp))))\n([mp dep]\n  (if (< dep 0)\n    mp\n    (if-let [clz (cls (str (:DIRTYP mp)))]\n      (reduce-kv #(mti %1 (str %2) %3 dep) \n	(crin (str (:DIRTYP mp)))\n	(dissoc mp :DIRTYP :DEPTH)))))\n([ins sn vmis dep]\n  (if-let [sl (slt sn)]\n    (let [st (.getValueType sl)\n           sc (.getAllowsMultipleValues sl)\n           vmis (if (symbol? vmis) (name vmis) vmis)\n           tonum (fn [x] (if (number? x) x (read-string x)))\n           toinst (fn [x] (if (instance? Instance x) x (.getInstance *kb* x)))]\n      (cond\n        (and sc (vector? vmis)) (ssvs ins sn (map #(mti % (dec dep)) vmis))\n        (and sc (map? vmis)) (ssv ins sn (mti vmis (dec dep)))\n        (or (= st (ValueType/STRING)) (= st (ValueType/SYMBOL))) (ssv ins sn (str vmis))\n        (= st (ValueType/INTEGER)) (ssv ins sn (int (tonum vmis)))\n        (= st (ValueType/FLOAT)) (ssv ins sn (float (tonum vmis)))\n        (= st (ValueType/INSTANCE)) (ssv ins sn (toinst vmis))\n        (= st (ValueType/BOOLEAN)) (ssv ins sn (and (not= vmis false) (not (nil? vmis)))))\n      ins)\n    (do (println (str \"Slot \" sn \" not found!\"))\n      ins)))")
+	(source ";; map to instance\n;; mp - itm\n([mp]\n  (if (and (map? mp) (>= (:DEPTH mp) 0))\n    (mti mp (:DEPTH mp))))\n([mp dep]\n  (if (< dep 0)\n    mp\n    (if-let [clz (cls (str (:DIRTYP mp)))]\n      (reduce-kv #(mti %1 (str %2) %3 dep) \n	(crin (str (:DIRTYP mp)))\n	(dissoc mp :DIRTYP :DEPTH)))))\n([ins sn vmis dep]\n  (if-let [sl (slt sn)]\n    (let [st (.getValueType sl)\n           sc (.getAllowsMultipleValues sl)\n           vmis (if (symbol? vmis) (name vmis) vmis)\n           toint (fn [x] (and x (number? x) (int x)))\n           tofloat (fn [x] (and x (number? x) (float x)))\n           toinst (fn [x] (and x (instance? Instance x) (.getInstance *kb* x)))]\n      (cond\n        (and sc (vector? vmis)) (ssvs ins sn (map #(mti % (dec dep)) vmis))\n        (and sc (map? vmis)) (ssv ins sn (mti vmis (dec dep)))\n        (or (= st (ValueType/STRING)) (= st (ValueType/SYMBOL))) (ssv ins sn (str vmis))\n        (= st (ValueType/INTEGER)) (ssv ins sn (toint vmis))\n        (= st (ValueType/FLOAT)) (ssv ins sn (tofloat vmis))\n        (= st (ValueType/INSTANCE)) (ssv ins sn (toinst vmis))\n        (= st (ValueType/BOOLEAN)) (ssv ins sn (and (not= vmis false) (not (nil? vmis)))))\n      ins)\n    (do (println (str \"Slot \" sn \" not found!\"))\n      ins)))")
 	(title "mti"))
 
 ([Clojure_Class270000] of  CloFunction

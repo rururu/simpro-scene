@@ -13,7 +13,7 @@
                ByteArrayInputStream]
              ru.igis.omtab.OMT
              edu.stanford.smi.protege.ui.DisplayUtilities))
-(def PORT 4444)
+(def PORT 4448)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def SERV nil)
 (def ONBOARD (volatile! nil))
@@ -88,6 +88,7 @@
   (GET "/vehicle" [& params] (vehicle params))
   (GET "/response" [& params] (response params))
   (GET "/cli-repl" [& params] (cli-repl params))
+  (GET "/terravisi" [] (slurp (str ROOT "terravisi.html")))
   (route/files "/" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Pro Server: Not Found!"))

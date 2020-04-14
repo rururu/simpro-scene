@@ -1,6 +1,5 @@
 (ns geo.calc
 )
-
 (defn radians [deg]
   (/ (* deg js/Math.PI) 180))
 

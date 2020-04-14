@@ -1,4 +1,4 @@
-; Sat Mar 16 11:25:34 MSK 2019
+; Thu Mar 26 17:22:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -37,10 +37,6 @@
 	(single-slot view
 		(type INTEGER)
 		(default 0)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot options
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-start-serv

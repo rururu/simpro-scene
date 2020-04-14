@@ -1,4 +1,4 @@
-; Sat Mar 16 11:25:34 MSK 2019
+; Thu Mar 26 17:22:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,10 +20,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CeziumEngine_ProjectKB_Class21636]
-		[CeziumEngine_ProjectKB_Class21637]
-		[CeziumEngine_ProjectKB_Class21638]
-		[CeziumEngine_ProjectKB_Class21639]))
+		[CeziumEngine_ProjectKB_Class21734]
+		[CeziumEngine_ProjectKB_Class21735]
+		[CeziumEngine_ProjectKB_Class21736]
+		[CeziumEngine_ProjectKB_Class21737]))
 
 ([Cezium_ProjectKB_Class1636] of  Widget
 
@@ -331,22 +331,22 @@
 ([CeziumEngine_ProjectKB_Class1691] of  Property_List
 )
 
-([CeziumEngine_ProjectKB_Class21636] of  String
+([CeziumEngine_ProjectKB_Class21734] of  String
 
 	(name "CZMLGenerator")
 	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
 
-([CeziumEngine_ProjectKB_Class21637] of  String
+([CeziumEngine_ProjectKB_Class21735] of  String
 
 	(name "Onboard")
 	(string_value "label"))
 
-([CeziumEngine_ProjectKB_Class21638] of  String
+([CeziumEngine_ProjectKB_Class21736] of  String
 
 	(name "CZMLSpan")
 	(string_value "object"))
 
-([CeziumEngine_ProjectKB_Class21639] of  String
+([CeziumEngine_ProjectKB_Class21737] of  String
 
 	(name "Clock")
 	(string_value "{Clock+}time"))
@@ -539,28 +539,28 @@
 ([KB_684256_Class1349] of  Property_List
 )
 
-([KB_965561_Class1632] of  Map
+([KB_915533_Class1634] of  Map
 
 	(entries
-		[KB_965561_Class1633]
-		[KB_965561_Class1634]
-		[KB_965561_Class1635]))
+		[KB_915533_Class1635]
+		[KB_915533_Class1636]
+		[KB_915533_Class1637]))
 
-([KB_965561_Class1633] of  Map_Entry
+([KB_915533_Class1635] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_965561_Class1634] of  Map_Entry
+([KB_915533_Class1636] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_965561_Class1635] of  Map_Entry
+([KB_915533_Class1637] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

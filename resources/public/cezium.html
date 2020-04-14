@@ -50,6 +50,17 @@
         var pms = Cesium.sampleTerrain(terrProv, 11, pos);
         Cesium.when(pms, func);
       }
+      function fillPointPrimColl(prims, lla, color, size){
+        for(i = 0; i < lla.length; i++){
+          var lat = lla[i][0];
+          var lon = lla[i][1];
+            prims.add({
+              position : Cesium.Cartesian3.fromDegrees(lon, lat),
+              color : color,
+              heightReference : Cesium.HeightReference.CLAMP_TO_GROUND
+            });
+        }
+      }
     </script>
     <script type="text/javascript" src="js/cesium.js"></script>
   </body>

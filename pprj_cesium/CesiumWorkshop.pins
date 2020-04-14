@@ -1,0 +1,158 @@
+; Tue Apr 14 21:03:28 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CesiumWorkshop_Class0] of  CloFunction
+
+	(source "(println :HB e)\n(set! (.-cancel e) true)\n(.flyTo (.-camera (.-scene VIEWER)) HOME-VIEW)")
+	(title "home-button [e]"))
+
+([CesiumWorkshop_Class1] of  CloVar
+
+	(source "nil")
+	(title "HOME-VIEW"))
+
+([CesiumWorkshop_Class10000] of  CloFunction
+
+	(source "(let [nei (.getElementById js/document \"neighborhoods\")\n       sha (.getElementById js/document \"shadows\")\n       lind (.getElementById js/document \"loadingIndicator\")]\n)")
+	(title "extras []"))
+
+([CesiumWorkshop_Class10002] of  CloFunction
+
+	(source "(let [clk (.-clock VIEWER)]\n  (set! (.-shouldAnimate clk) animate)\n  (set! (.-startTime clk) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clk) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clk) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clk) mult)\n  (set! (.-clockStep clk) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)\n  (set! (.-clockRange clk) js/Cesium.ClockRange.LOOP_STOP)\n  (.zoomTo (.-timeline VIEWER) (.-startTime clk) (.-stopTime clk)))")
+	(title "clock-control [animate start stop current mult]"))
+
+([CesiumWorkshop_Class10003] of  CloFunction
+
+	(source "(let [scene (.-scene VIEWER)\n       kmlops #js{:camera (.-camera scene)\n                          :canvas (.-canvas scene)\n                          :clampToGround ground}\n       promise (js/Cesium.KmlDataSource.load source kmlops)]\n  (.then promise (fn [ds] \n                            (.add (.-dataSources VIEWER) ds)\n                            (let [vals (.-values (.-entities ds))\n                                   ebbs (filter #(js/Cesium.defined (.-billboard %)) vals)]\n                              (doseq [ebb ebbs]\n                                (set! (.-verticalOrigin (.-billboard ebb)) js/Cesium.VerticalOrigin.BOTTOM)\n                                (set! (.-label ebb) nil)\n                                (set! (.-distanceDisplayCondition (.-billboard ebb)) (js/Cesium.DistanceDisplayCondition. 10.0 20000.0))\n                                ;; Infobox modification\n                                (let [pos (.getValue (.-position ebb) (js/Cesium.JulianDate.now))\n                                       pos (js/Cesium.Cartographic.fromCartesian pos)\n                                       lat (js/Cesium.Math.toDegrees (.-latitude pos))\n                                       lon (js/Cesium.Math.toDegrees (.-longitude pos))\n                                       desc (str \"<table class=\\\"cesium-infoBox-defaultTable cesium-infoBox-defaultTable-lighter\\\"><tbody>\"\n                                                      \"<tr><th>Longitude</th><td>\" (.toFixed lon 5) \"</td></tr>\"\n                                                      \"<tr><th>Latitude</th><td>\" (.toFixed lat 5) \"</td></tr>\"\n                                                      \"</tbody></table>\")]\n                                  (set! (.-description ebb) desc))) ) )))")
+	(title "load-kml [source ground]"))
+
+([CesiumWorkshop_Class10004] of  CloFunction
+
+	(source "(let [promise (js/Cesium.GeoJsonDataSource.load source #{:clampToGround ground})]\n  (.then promise (fn [ds] \n                            (.add (.-dataSources VIEWER) ds)\n                            (let [vals (.-values (.-entities ds))\n                                   epls (filter #(js/Cesium.defined (.-polygon %)) vals)]\n                              (doseq [epl epls]\n                                (set! (.-name epl) (.-neighborhood (.-properties epl)))\n                                (set! (.-material (.-polygon epl)) (js/Cesium.Color.fromRandom\n                                                                                     #js{:red 0.1\n                                                                                            :maximumGreen 0.5\n                                                                                            :minimumBlue 0.5\n                                                                                            :alpha 0.6}))\n                                (set! (.-classificationType (.-polygon epl)) js/Cesium.ClassificationType.TERRAIN)\n                                (let [poss (.-positions (.getValue (.-hierarchy (.-polygon epl)) (js/Cesium.JulianDate.now)))\n                                        cntr (.-center (js/Cesium.BoundingSphere.fromPoints poss))\n                                        cntr (js/Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface cntr)]\n                                  (set! (.-position epl) cntr)\n                                  (set! (.-label epl) #js{:text (.-name epl)\n                                                                    :showBackground true\n                                                                    :scale 0.6\n                                                                    :horizontalOrigin js/Cesium.HorizontalOrigin.CENTER\n                                                                    :verticalOrigin js/Cesium.VerticalOrigin.BOTTOM\n                                                                    :distanceDisplayCondition (js/Cesium.DistanceDisplayCondition. 10.0 8000.0)\n                                                                    :disableDepthTestDistance 100.0}))) ) )))")
+	(title "load-geojson [source ground]"))
+
+([CesiumWorshop_Class0] of  ClsMain
+
+	(asset-path "js/workshop")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[CesiumWorshop_Class10015]
+		[CesiumWorshop_Class10016]
+		[CesiumWorshop_Class10017]
+		[CesiumWorkshop_Class10002]
+		[CesiumWorkshop_Class10003]
+		[CesiumWorkshop_Class10004]
+		[CesiumWorshop_Class10014])
+	(cloNamespace [CesiumWorshop_Class10000])
+	(cloVars
+		[CesiumWorshop_Class10002]
+		[CesiumWorkshop_Class1])
+	(compiler-options "{:verbose false}")
+	(css [CesiumWorshop_Class10001])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-client))")
+	(html [CesiumWorshop_Class1])
+	(output-dir "resources/public/js/workshop")
+	(output-to "resources/public/js/workshop.js")
+	(store-in "src/cljs/workshop")
+	(title "Workshop Client"))
+
+([CesiumWorshop_Class1] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>New York City</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/workshop.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n        <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <!-- Some input elements for our app. -->\n        <div class=\"backdrop\" id=\"menu\">\n            <h2>Sample NYC Geocaches</h2>\n            <span><strong>Camera Mode</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"freeMode\" name=\"source\" type=\"radio\" checked/>\n                <label for=\"freeMode\">Free</label>\n            </div>\n            <div class=\"nowrap\">\n                <input id=\"droneMode\" name=\"source\" type=\"radio\"/>\n                <label for=\"droneMode\">Drone View</label>\n            </div>\n            <br>\n            <span><strong>3d Tile Styling</strong></span>\n            <div class=\"nowrap\">\n                <select id=\"tileStyle\">\n                    <option value=\"none\">None</option>\n                    <option value=\"height\">Height</option>\n                    <option value=\"transparent\">Transparent</option>\n                </select>\n            </div>\n            <br>\n            <span><strong>Display Options</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"shadows\" type=\"checkbox\"/>\n                <label for=\"shadows\">Shadows</label>\n            </div>\n\n            <div class=\"nowrap\">\n                <input id=\"neighborhoods\" type=\"checkbox\" checked/>\n                <label for=\"neighborhoods\">Neighborhoods</label>\n            </div>\n            <br>\n        </div>\n        <div id=\"loadingIndicator\" class=\"cover\">\n            <div id=\"loadingIcon\" class=\"loadingIndicator\"></div>\n        </div>\n\n        <!-- Our app code. -->\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/workshop.js\"></script>\n\n    </body>\n</html>")
+	(store-in "resources/public")
+	(title "workshop"))
+
+([CesiumWorshop_Class10000] of  CloNamespace
+
+	(title "workshop.client"))
+
+([CesiumWorshop_Class10001] of  CSS
+
+	(source ".backdrop {\n    display: inline-block;\n    background: rgba(42, 42, 42, 0.7);\n    border-radius: 5px;\n    border: 1px solid #444;\n    padding: 5px 10px;\n    color: #fff;\n    line-height: 150%;\n    font-size: small;\n}\n\n#heightSliderLabel, #heightValue {\n    vertical-align: top;\n}\n\n.backdrop a:link, .backdrop a:visited, .backdrop a:hover {\n    color: #fff\n}\n\n.loadingIndicator {\n    display: none;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    margin-top: -33px;\n    margin-left: -33px;\n    width: 66px;\n    height: 66px;\n    background: url(Source/Images/ajax-loader.gif) center no-repeat;\n}\n\n.cover {\n    display: none;\n    position: absolute;\n    background-color: rgba(0, 0, 0, 0.75);\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n\n#menu {\n    position: absolute;\n    left: 10px;\n    top: 10px;\n}\n\n.nowrap {\n    white-space: nowrap;\n}\n\nhtml, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n\nbutton.cesium-infoBox-camera {\n    display: none;\n}\n\n#3DTiles {\n    padding-top: 10px;\n}")
+	(store-in "resources/public/css")
+	(title "workshop"))
+
+([CesiumWorshop_Class10002] of  CloVar
+
+	(source "(js/Cesium.Viewer. \n  \"cesiumContainer\" \n  #js{:scene3DOnly true\n         :selectionIndicator false\n         :baseLayerPicker false})")
+	(title "VIEWER"))
+
+([CesiumWorshop_Class10003] of  CloProgram
+
+	(cloFunctions
+		[CesiumWorshop_Class10005]
+		[CesiumWorshop_Class10010]
+		[CesiumWorshop_Class10011])
+	(cloNamespace [CesiumWorshop_Class10004])
+	(cloVars
+		[CesiumWorshop_Class10006]
+		[CesiumWorshop_Class10007]
+		[CesiumWorshop_Class10008]
+		[CesiumWorshop_Class10009])
+	(title "Workshop Server"))
+
+([CesiumWorshop_Class10004] of  CloNamespace
+
+	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route])")
+	(title "workshop.server"))
+
+([CesiumWorshop_Class10005] of  CloFunction
+
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT PAGE)))\n  (route/files \"/\" (do (println [:ROOT-FILES ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Workshop Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
+	(title "init-server []"))
+
+([CesiumWorshop_Class10006] of  CloVar
+
+	(source "4442")
+	(title "PORT"))
+
+([CesiumWorshop_Class10007] of  CloVar
+
+	(source "(str (System/getProperty \"user.dir\") \"/resources/public/\")")
+	(title "ROOT"))
+
+([CesiumWorshop_Class10008] of  CloVar
+
+	(source "\"workshop.html\"")
+	(title "PAGE"))
+
+([CesiumWorshop_Class10009] of  CloVar
+
+	(source "nil")
+	(title "SERV"))
+
+([CesiumWorshop_Class10010] of  CloFunction
+
+	(source "([]\n  (start-server PORT))\n([port]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))\n([hm inst]\n  (start-server))")
+	(title "start-server"))
+
+([CesiumWorshop_Class10011] of  CloFunction
+
+	(source "([]\n  (when-let [serv SERV]\n    (.stop serv)\n    (def SERV nil)\n    (println \"Server stopped!\")))\n([hm inst]\n  (stop-server))")
+	(title "stop-server"))
+
+([CesiumWorshop_Class10012] of  CloFuncall
+
+	(source "(workshop.server/start-server)"))
+
+([CesiumWorshop_Class10014] of  CloFunction
+
+	(source ";;;; Adding Imagery\n\n(add-imagery-by-asset-id 3954)\n\n;;;; Adding Terrain\n\n(add-terrain)\n\n;;;; Camera Control\n\n(camera-control -73.998114468289017509\n                           40.674512895646692812\n                           2631.082799425431\n                           7.1077496389876024807\n                          -31.987223091598949054\n                           0.025883251314954971306)\n\n;;;; Clock Control\n\n(clock-control true\n                      \"2017-07-11T16:00:00Z\"\n                      \"2017-07-11T16:20:00Z\"\n                      \"2017-07-11T16:00:00Z\"\n                      2)\n\n;;;; Load KML Source\n\n(load-kml \"data/sampleGeocacheLocations.kml\" true)\n\n;;;; Load GeoJSON Source\n\n(load-geojson \"data/sampleNeighborhoods.geojson\" true)")
+	(title "init-client []"))
+
+([CesiumWorshop_Class10015] of  CloFunction
+
+	(source "(let [ilays (.-imageryLayers VIEWER)]\n  (.remove ilays (.get ilays 0))\n  (.addImageryProvider ilays (js/Cesium.IonImageryProvider. #js{:assetId id})))")
+	(title "add-imagery-by-asset-id [id]"))
+
+([CesiumWorshop_Class10016] of  CloFunction
+
+	(source "(set! (.-terrainProvider VIEWER) \n         (js/Cesium.createWorldTerrain. #js{:requestWaterMask true\n                                                                 :requestVertexNormals true}))\n(set! (.-depthTestAgainstTerrain (.-globe (.-scene VIEWER))) true)")
+	(title "add-terrain []"))
+
+([CesiumWorshop_Class10017] of  CloFunction
+
+	(source "(let [pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)\n       cam (.-camera (.-scene VIEWER))\n       func (fn [e]\n                 (set! (.-cancel e) true)\n                 (.flyTo (.-camera (.-scene VIEWER)) HOME-VIEW))]\n  (def HOME-VIEW (clj->js {:destination pos\n                                         :orientation {:heading (.-heading orient)\n                                                              :pitch (.-pitch orient)\n                                                              :roll (.-roll orient)}\n                                         ;; animation options\n                                         :duration 4.0\n                                         :maximumHeight 2000\n                                         :pitchAdjustHeight 2000\n                                         :endTransform js/Cesium.Matrix4.IDENTITY}))\n  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER)))) func)\n  (.flyTo cam HOME-VIEW))")
+	(title "camera-control [longitude latitude height heading pitch roll]"))

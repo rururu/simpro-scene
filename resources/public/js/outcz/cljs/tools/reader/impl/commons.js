@@ -18,8 +18,8 @@ cljs.tools.reader.impl.commons.read_past = (function cljs$tools$reader$impl$comm
 var ch = cljs.tools.reader.reader_types.read_char.call(null,rdr);
 while(true){
 if(pred.call(null,ch)){
-var G__16942 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
-ch = G__16942;
+var G__2318 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
+ch = G__2318;
 continue;
 } else {
 return ch;
@@ -82,8 +82,8 @@ return parseFloat(s);
 }
 });
 cljs.tools.reader.impl.commons.matches_QMARK_ = (function cljs$tools$reader$impl$commons$matches_QMARK_(pattern,s){
-var vec__16943 = cljs.core.re_find.call(null,pattern,s);
-var match = cljs.core.nth.call(null,vec__16943,(0),null);
+var vec__2319 = cljs.core.re_find.call(null,pattern,s);
+var match = cljs.core.nth.call(null,vec__2319,(0),null);
 return (match === s);
 });
 cljs.tools.reader.impl.commons.match_number = (function cljs$tools$reader$impl$commons$match_number(s){
@@ -133,14 +133,14 @@ return null;
 });
 cljs.tools.reader.impl.commons.read_comment = (function cljs$tools$reader$impl$commons$read_comment(var_args){
 var args__4647__auto__ = [];
-var len__4641__auto___16948 = arguments.length;
-var i__4642__auto___16949 = (0);
+var len__4641__auto___2324 = arguments.length;
+var i__4642__auto___2325 = (0);
 while(true){
-if((i__4642__auto___16949 < len__4641__auto___16948)){
-args__4647__auto__.push((arguments[i__4642__auto___16949]));
+if((i__4642__auto___2325 < len__4641__auto___2324)){
+args__4647__auto__.push((arguments[i__4642__auto___2325]));
 
-var G__16950 = (i__4642__auto___16949 + (1));
-i__4642__auto___16949 = G__16950;
+var G__2326 = (i__4642__auto___2325 + (1));
+i__4642__auto___2325 = G__2326;
 continue;
 } else {
 }
@@ -158,34 +158,34 @@ return cljs.tools.reader.impl.commons.skip_line.call(null,rdr);
 cljs.tools.reader.impl.commons.read_comment.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-cljs.tools.reader.impl.commons.read_comment.cljs$lang$applyTo = (function (seq16946){
-var G__16947 = cljs.core.first.call(null,seq16946);
-var seq16946__$1 = cljs.core.next.call(null,seq16946);
+cljs.tools.reader.impl.commons.read_comment.cljs$lang$applyTo = (function (seq2322){
+var G__2323 = cljs.core.first.call(null,seq2322);
+var seq2322__$1 = cljs.core.next.call(null,seq2322);
 var self__4628__auto__ = this;
-return self__4628__auto__.cljs$core$IFn$_invoke$arity$variadic(G__16947,seq16946__$1);
+return self__4628__auto__.cljs$core$IFn$_invoke$arity$variadic(G__2323,seq2322__$1);
 });
 
 cljs.tools.reader.impl.commons.throwing_reader = (function cljs$tools$reader$impl$commons$throwing_reader(msg){
 return (function() { 
-var G__16951__delegate = function (rdr,_){
+var G__2327__delegate = function (rdr,_){
 return cljs.tools.reader.impl.errors.reader_error.call(null,rdr,msg);
 };
-var G__16951 = function (rdr,var_args){
+var G__2327 = function (rdr,var_args){
 var _ = null;
 if (arguments.length > 1) {
-var G__16952__i = 0, G__16952__a = new Array(arguments.length -  1);
-while (G__16952__i < G__16952__a.length) {G__16952__a[G__16952__i] = arguments[G__16952__i + 1]; ++G__16952__i;}
-  _ = new cljs.core.IndexedSeq(G__16952__a,0,null);
+var G__2328__i = 0, G__2328__a = new Array(arguments.length -  1);
+while (G__2328__i < G__2328__a.length) {G__2328__a[G__2328__i] = arguments[G__2328__i + 1]; ++G__2328__i;}
+  _ = new cljs.core.IndexedSeq(G__2328__a,0,null);
 } 
-return G__16951__delegate.call(this,rdr,_);};
-G__16951.cljs$lang$maxFixedArity = 1;
-G__16951.cljs$lang$applyTo = (function (arglist__16953){
-var rdr = cljs.core.first(arglist__16953);
-var _ = cljs.core.rest(arglist__16953);
-return G__16951__delegate(rdr,_);
+return G__2327__delegate.call(this,rdr,_);};
+G__2327.cljs$lang$maxFixedArity = 1;
+G__2327.cljs$lang$applyTo = (function (arglist__2329){
+var rdr = cljs.core.first(arglist__2329);
+var _ = cljs.core.rest(arglist__2329);
+return G__2327__delegate(rdr,_);
 });
-G__16951.cljs$core$IFn$_invoke$arity$variadic = G__16951__delegate;
-return G__16951;
+G__2327.cljs$core$IFn$_invoke$arity$variadic = G__2327__delegate;
+return G__2327;
 })()
 ;
 });
