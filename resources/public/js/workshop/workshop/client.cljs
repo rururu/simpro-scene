@@ -5,7 +5,12 @@
   #js{:scene3DOnly true
          :selectionIndicator false
          :baseLayerPicker false}))
+(def CLOCK (.-clock VIEWER))
+(def SCENE (.-scene VIEWER))
+(def CAMERA (.-camera SCENE))
+(def CANVAS (.-canvas SCENE))
 (def HOME-VIEW nil)
+(def PEPIC nil)
 (defn add-imagery-by-asset-id [id]
   (let [ilays (.-imageryLayers VIEWER)]
   (.remove ilays (.get ilays 0))
@@ -15,15 +20,11 @@
   (set! (.-terrainProvider VIEWER) 
          (js/Cesium.createWorldTerrain. #js{:requestWaterMask true
                                                                  :requestVertexNormals true}))
-(set! (.-depthTestAgainstTerrain (.-globe (.-scene VIEWER))) true))
+(set! (.-depthTestAgainstTerrain (.-globe SCENE)) true))
 
 (defn camera-control [longitude latitude height heading pitch roll]
   (let [pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)
-       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)
-       cam (.-camera (.-scene VIEWER))
-       func (fn [e]
-                 (set! (.-cancel e) true)
-                 (.flyTo (.-camera (.-scene VIEWER)) HOME-VIEW))]
+       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)]
   (def HOME-VIEW (clj->js {:destination pos
                                          :orientation {:heading (.-heading orient)
                                                               :pitch (.-pitch orient)
@@ -33,24 +34,25 @@
                                          :maximumHeight 2000
                                          :pitchAdjustHeight 2000
                                          :endTransform js/Cesium.Matrix4.IDENTITY}))
-  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER)))) func)
-  (.flyTo cam HOME-VIEW)))
+  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))
+                                 (fn [e]
+                                   (set! (.-cancel e) true)
+                                   (.flyTo CAMERA HOME-VIEW)))
+  (.flyTo CAMERA HOME-VIEW)))
 
 (defn clock-control [animate start stop current mult]
-  (let [clk (.-clock VIEWER)]
-  (set! (.-shouldAnimate clk) animate)
-  (set! (.-startTime clk) (js/Cesium.JulianDate.fromIso8601 start))
-  (set! (.-stopTime clk) (js/Cesium.JulianDate.fromIso8601 stop))
-  (set! (.-currentTime clk) (js/Cesium.JulianDate.fromIso8601 current))
-  (set! (.-multiplier clk) mult)
-  (set! (.-clockStep clk) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)
-  (set! (.-clockRange clk) js/Cesium.ClockRange.LOOP_STOP)
-  (.zoomTo (.-timeline VIEWER) (.-startTime clk) (.-stopTime clk))))
+  (set! (.-shouldAnimate CLOCK) animate)
+(set! (.-startTime CLOCK) (js/Cesium.JulianDate.fromIso8601 start))
+(set! (.-stopTime CLOCK) (js/Cesium.JulianDate.fromIso8601 stop))
+(set! (.-currentTime CLOCK) (js/Cesium.JulianDate.fromIso8601 current))
+(set! (.-multiplier CLOCK) mult)
+(set! (.-clockStep CLOCK) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)
+(set! (.-clockRange CLOCK) js/Cesium.ClockRange.LOOP_STOP)
+(.zoomTo (.-timeline VIEWER) (.-startTime CLOCK) (.-stopTime CLOCK)))
 
 (defn load-kml [source ground]
-  (let [scene (.-scene VIEWER)
-       kmlops #js{:camera (.-camera scene)
-                          :canvas (.-canvas scene)
+  (let [kmlops #js{:camera CAMERA
+                          :canvas CANVAS
                           :clampToGround ground}
        promise (js/Cesium.KmlDataSource.load source kmlops)]
   (.then promise (fn [ds] 
@@ -98,6 +100,88 @@
                                                                     :distanceDisplayCondition (js/Cesium.DistanceDisplayCondition. 10.0 8000.0)
                                                                     :disableDepthTestDistance 100.0}))) ) ))))
 
+(defn camera-modes [entity]
+  (let [fme (.getElementById js/document "freeMode")
+       dme (.getElementById js/document "droneMode")
+       cmf (fn [e]
+                (if (.-checked dme)
+                  (set! (.-trackedEntity VIEWER) entity)
+                  (do (set! (.-trackedEntity VIEWER) nil)
+                    (.flyTo CAMERA HOME-VIEW))))]
+  (.addEventListener fme "change" cmf)
+  (.addEventListener dme "change" cmf)
+  (.addEventListener (.-trackedEntityChanged VIEWER)
+    (fn [e]
+      (when (= (.-trackedEntity VIEWER) entity)
+        (set! (.-checked fme) false)
+        (set! (.-checked dme) true))))))
+
+(defn drone-flight [drone]
+  (camera-modes drone)
+(let [dpos (.-position drone)]
+  (set! (.-model drone) #js{:uri "models/drone/CesiumDrone.gltf"
+                                           :minimumPixelSize 128
+                                           :maximumScale 1000
+                                           :silhouetteColor js/Cesium.Color.WHITE
+                                           :silhouetteSize 2})
+  (set! (.-orientation drone) (js/Cesium.VelocityOrientationProperty. dpos))
+  (.setInterpolationOptions dpos #js{:interpolationDegree 3
+                                                          :interpolationAlgorithm js/Cesium.HermitePolynomialApproximation})))
+
+(defn load-drone-flight [source]
+  (let [promise (js/Cesium.CzmlDataSource.load source)]
+  (.then promise (fn [ds] 
+                            (.add (.-dataSources VIEWER) ds)
+                            (drone-flight (.getById (.-entities ds) "Aircraft/Aircraft1"))))))
+
+(defn add-3D-tileset [id]
+  (let [city (.add (.-primitives SCENE) 
+                       (js/Cesium.Cesium3DTileset. #js{:url (js/Cesium.IonResource.fromAssetId id)}))
+       sty-default (js/Cesium.Cesium3DTileStyle. #js{:color "color('white')"
+                                                                              :show true})
+       sty-transp (js/Cesium.Cesium3DTileStyle. #js{:color "color('white', 0.3)"
+                                                                              :show true})
+       sty-height (js/Cesium.Cesium3DTileStyle. 
+                           (clj->js{:color 
+                                        {:conditions
+                                          [["${height} >= 300" "rgba(45, 0, 75, 0.5)"]
+                                           ["${height} >= 200" "rgb(102, 71, 151)"]
+                                           ["${height} >= 100" "rgb(170, 162, 204)"]
+                                           ["${height} >= 50" "rgb(224, 226, 238)"]
+                                           ["${height} >= 25" "rgb(252, 230, 200)"]
+                                           ["${height} >= 10" "rgb(248, 176, 87)"]
+                                           ["${height} >= 5" "rgb(198, 106, 11)"]
+                                           ["true" "rgb(127, 59, 8)"]]}}))
+       tile-sty (.getElementById js/document "tileStyle")
+       hoff -32]
+  (.then (.-readyPromise city) (fn [ts]
+                                                (let [bds (.-boundingSphere ts)
+                                                       crt (js/Cesium.Cartographic.fromCartesian (.-center bds))
+                                                       poss (js/Cesium.Cartesian3.fromRadians (.-longitude crt) (.-latitude crt) 0.0)
+                                                       poso (js/Cesium.Cartesian3.fromRadians (.-longitude crt) (.-latitude crt) hoff)
+                                                       trans (js/Cesium.Cartesian3.subtract poso poss (js/Cesium.Cartesian3.))]
+                                                   (set! (.-modelMatrix ts) (js/Cesium.Matrix4.fromTranslation trans)))))
+  (set! (.-style city) sty-default)
+  (.addEventListener tile-sty "change" (fn [e]
+                                                             (condp = (.-value (.item (.-options tile-sty) (.-selectedIndex tile-sty)))
+                                                               "none" (set! (.-style city) sty-default)
+                                                               "height" (set! (.-style city) sty-height)
+                                                               "transparent" (set! (.-style city) sty-transp))))))
+
+(defn mouse-interactivity []
+  (letfn [(input-action [mov]
+             (let [ppic (.pick SCENE (.-endPosition mov))
+                    epic (if (js/Cesium.defined ppic) (.-id ppic))]
+               (when (js/Cesium.defined PEPIC)
+                 (set! (.-scale (.-billboard PEPIC)) 1.0)
+                 (set! (.-color (.-billboard PEPIC)) js/Cesium.Color.WHITE))
+               (when (and (js/Cesium.defined epic) (js/Cesium.defined (.-billboard epic)))
+                 (set! (.-scale (.-billboard epic)) 2.0)
+                 (set! (.-color (.-billboard epic)) js/Cesium.Color.ORANGERED)
+                 (def PEPIC epic))))]
+  (let [hand (js/Cesium.ScreenSpaceEventHandler. CANVAS)]
+    (.setInputAction hand input-action js/Cesium.ScreenSpaceEventType.MOUSE_MOVE))))
+
 (defn init-client []
   ;;;; Adding Imagery
 
@@ -124,13 +208,25 @@
                       "2017-07-11T16:00:00Z"
                       2)
 
-;;;; Load KML Source
+;;;; Load Billboards from KML Source
 
 (load-kml "data/sampleGeocacheLocations.kml" true)
 
-;;;; Load GeoJSON Source
+;;;; Load Polygons from GeoJSON Source
 
-(load-geojson "data/sampleNeighborhoods.geojson" true))
+(load-geojson "data/sampleNeighborhoods.geojson" true)
+
+;;;; Drone Flight with Path from CZML Source
+
+(load-drone-flight "data/sampleFlight.czml")
+
+;;;; City 3D Tileset
+
+(add-3D-tileset 75343)
+
+;;;; Mouse Interactivity
+
+(mouse-interactivity))
 
 
 (enable-console-print!)
