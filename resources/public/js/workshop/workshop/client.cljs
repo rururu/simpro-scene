@@ -84,9 +84,9 @@
                               (doseq [epl epls]
                                 (set! (.-name epl) (.-neighborhood (.-properties epl)))
                                 (set! (.-material (.-polygon epl)) (js/Cesium.Color.fromRandom
-                                                                                     #js{:minimumRed 0.5
+                                                                                     #js{:red 0.1
                                                                                             :maximumGreen 0.5
-                                                                                            :blue 0.1
+                                                                                            :minimumBlue 0.5
                                                                                             :alpha 0.6}))
                                 (set! (.-classificationType (.-polygon epl)) js/Cesium.ClassificationType.TERRAIN)
                                 (let [poss (.-positions (.getValue (.-hierarchy (.-polygon epl)) (js/Cesium.JulianDate.now)))
