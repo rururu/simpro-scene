@@ -70,6 +70,7 @@ See examples.
 24. [MAS Lesson 2. GeoMASON. Campus World](https://youtu.be/1QyRsYgDq6I) (See https://cs.gmu.edu/~eclab/projects/mason/extensions/geomason/)
 25. [MAS Lesson 3. GeoMASON. WaterWorld](https://youtu.be/5qlE8I2V6FU)
 26. [MAS. GeoMASON. Hiitolanjoki project](https://youtu.be/Snd3VKUevNg)
+27. [Cesium Lesson 1. Cesium Workshop](https://www.youtube.com/watch?v=FOlSx6Mg-V0)
 
 TO BE CONTINUED
 

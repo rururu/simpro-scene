@@ -11,6 +11,7 @@
 (def CANVAS (.-canvas SCENE))
 (def HOME-VIEW nil)
 (def PEPIC nil)
+(def Neighborhoods (.add (.-entities VIEWER) (js/Cesium.Entity.)))
 (defn add-imagery-by-asset-id [id]
   (let [ilays (.-imageryLayers VIEWER)]
   (.remove ilays (.get ilays 0))
@@ -83,15 +84,16 @@
                               (doseq [epl epls]
                                 (set! (.-name epl) (.-neighborhood (.-properties epl)))
                                 (set! (.-material (.-polygon epl)) (js/Cesium.Color.fromRandom
-                                                                                     #js{:red 0.1
+                                                                                     #js{:minimumRed 0.5
                                                                                             :maximumGreen 0.5
-                                                                                            :minimumBlue 0.5
+                                                                                            :blue 0.1
                                                                                             :alpha 0.6}))
                                 (set! (.-classificationType (.-polygon epl)) js/Cesium.ClassificationType.TERRAIN)
                                 (let [poss (.-positions (.getValue (.-hierarchy (.-polygon epl)) (js/Cesium.JulianDate.now)))
                                         cntr (.-center (js/Cesium.BoundingSphere.fromPoints poss))
                                         cntr (js/Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface cntr)]
                                   (set! (.-position epl) cntr)
+                                  (set! (.-parent epl) Neighborhoods)
                                   (set! (.-label epl) #js{:text (.-name epl)
                                                                     :showBackground true
                                                                     :scale 0.6
@@ -137,6 +139,7 @@
 (defn add-3D-tileset [id]
   (let [city (.add (.-primitives SCENE) 
                        (js/Cesium.Cesium3DTileset. #js{:url (js/Cesium.IonResource.fromAssetId id)}))
+       load-indi (.getElementById js/document "loadingIndicator")
        sty-default (js/Cesium.Cesium3DTileStyle. #js{:color "color('white')"
                                                                               :show true})
        sty-transp (js/Cesium.Cesium3DTileStyle. #js{:color "color('white', 0.3)"
@@ -154,7 +157,9 @@
                                            ["true" "rgb(127, 59, 8)"]]}}))
        tile-sty (.getElementById js/document "tileStyle")
        hoff -32]
+  (set! (.-display (.-style load-indi)) "block")
   (.then (.-readyPromise city) (fn [ts]
+                                                (set! (.-display (.-style load-indi)) "none")
                                                 (let [bds (.-boundingSphere ts)
                                                        crt (js/Cesium.Cartographic.fromCartesian (.-center bds))
                                                        poss (js/Cesium.Cartesian3.fromRadians (.-longitude crt) (.-latitude crt) 0.0)
@@ -182,16 +187,26 @@
   (let [hand (js/Cesium.ScreenSpaceEventHandler. CANVAS)]
     (.setInputAction hand input-action js/Cesium.ScreenSpaceEventType.MOUSE_MOVE))))
 
+(defn extras []
+  (let [nbe (.getElementById js/document "neighborhoods")
+       she (.getElementById js/document "shadows")]
+  (.addEventListener nbe "change" 
+    (fn [e]
+       (set! (.-show Neighborhoods) (.-checked (.-target e)))))
+  (.addEventListener she "change" 
+    (fn [e]
+       (set! (.-shadows VIEWER) (.-checked (.-target e)))))))
+
 (defn init-client []
-  ;;;; Adding Imagery
+  ;;;; Adding Imagery ::::
 
 (add-imagery-by-asset-id 3954)
 
-;;;; Adding Terrain
+;;;; Adding Terrain ::::
 
 (add-terrain)
 
-;;;; Camera Control
+;;;; Camera Control ::::
 
 (camera-control -73.998114468289017509
                            40.674512895646692812
@@ -200,7 +215,7 @@
                           -31.987223091598949054
                            0.025883251314954971306)
 
-;;;; Clock Control
+;;;; Clock Control ::::
 
 (clock-control true
                       "2017-07-11T16:00:00Z"
@@ -208,25 +223,33 @@
                       "2017-07-11T16:00:00Z"
                       2)
 
-;;;; Load Billboards from KML Source
+;;;; Load Billboards from KML Source ::::
 
 (load-kml "data/sampleGeocacheLocations.kml" true)
 
-;;;; Load Polygons from GeoJSON Source
+;;;; Load Polygons from GeoJSON Source ::::
 
 (load-geojson "data/sampleNeighborhoods.geojson" true)
 
-;;;; Drone Flight with Path from CZML Source
+;;;; Drone Flight with Path from CZML Source ::::
 
 (load-drone-flight "data/sampleFlight.czml")
 
-;;;; City 3D Tileset
+;;;; City 3D Tileset ::::
 
 (add-3D-tileset 75343)
 
-;;;; Mouse Interactivity
+;;;; Mouse Interactivity ::::
 
-(mouse-interactivity))
+(mouse-interactivity)
+
+;;;; Camera Modes ::::
+
+;; function "camera-modes" added in function "load-drone-flight"
+
+;;;; Extras ;;;;
+
+(extras))
 
 
 (enable-console-print!)

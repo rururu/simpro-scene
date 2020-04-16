@@ -1,4 +1,4 @@
-; Wed Apr 15 22:26:42 MSK 2020
+; Thu Apr 16 14:30:51 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,15 +20,15 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumWorkshop_ProjectKB_Class414]
-		[CesiumWorkshop_ProjectKB_Class415]))
+		[CesiumWorkshop_ProjectKB_Class402]
+		[CesiumWorkshop_ProjectKB_Class403]))
 
-([CesiumWorkshop_ProjectKB_Class414] of  String
+([CesiumWorkshop_ProjectKB_Class402] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumWorkshop_ProjectKB_Class415] of  String
+([CesiumWorkshop_ProjectKB_Class403] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
@@ -123,34 +123,6 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_638647_Class392] of  Map
-
-	(entries
-		[KB_638647_Class393]
-		[KB_638647_Class394]
-		[KB_638647_Class395]))
-
-([KB_638647_Class393] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_638647_Class394] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_638647_Class395] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_851107_Class0] of  String
 
@@ -251,6 +223,34 @@
 
 	(name "instances_file_name")
 	(string_value "CesiumWorkshop.pins"))
+
+([KB_947461_Class392] of  Map
+
+	(entries
+		[KB_947461_Class393]
+		[KB_947461_Class394]
+		[KB_947461_Class395]))
+
+([KB_947461_Class393] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_947461_Class394] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_947461_Class395] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
