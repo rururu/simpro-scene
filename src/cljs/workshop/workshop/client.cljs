@@ -76,7 +76,7 @@
                                   (set! (.-description ebb) desc))) ) ))))
 
 (defn load-geojson [source ground]
-  (let [promise (js/Cesium.GeoJsonDataSource.load source #{:clampToGround ground})]
+  (let [promise (js/Cesium.GeoJsonDataSource.load source #js{:clampToGround ground})]
   (.then promise (fn [ds] 
                             (.add (.-dataSources VIEWER) ds)
                             (let [vals (.-values (.-entities ds))
@@ -245,7 +245,7 @@
 
 ;;;; Camera Modes ::::
 
-;; function "camera-modes" added in function "load-drone-flight"
+;; function "camera-modes" added in function "drone-flight"
 
 ;;;; Extras ;;;;
 

@@ -1,0 +1,230 @@
+; Tue Apr 21 21:26:55 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CesiumBase_Class0] of  ClsRequired
+
+	(cloFunctions
+		[CesiumBase_Class20005]
+		[CesiumBase_Class20006]
+		[CesiumBase_Class10001]
+		[CesiumBase_Class10007]
+		[CesiumBase_Class20002])
+	(cloNamespace [CesiumBase_Class1])
+	(cloVars
+		[CesiumBase_Class10002]
+		[CesiumBase_Class10005]
+		[CesiumBase_Class10004]
+		[CesiumBase_Class10003]
+		[CesiumBase_Class10006]
+		[CesiumBase_Class10000]
+		[CesiumBase_Class10008])
+	(title "Cesium Base Client"))
+
+([CesiumBase_Class1] of  CloNamespace
+
+	(title "cesium.base.client"))
+
+([CesiumBase_Class10000] of  CloVar
+
+	(source "{:longitude 30.1\n  :latitude 60.0\n  :height 2500\n  :heading 120\n  :pitch -20\n  :roll 0}")
+	(title "HOME-VIEW"))
+
+([CesiumBase_Class10001] of  CloFunction
+
+	(source "(let [{:keys [longitude latitude height heading pitch roll]} view\n       pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)]\n  (def HOME-VIEW (clj->js {:destination pos\n                                         :orientation {:heading (.-heading orient)\n                                                              :pitch (.-pitch orient)\n                                                              :roll (.-roll orient)}\n                                         ;; animation options\n                                         :duration 4.0\n                                         :maximumHeight 2000\n                                         :pitchAdjustHeight 2000\n                                         :endTransform js/Cesium.Matrix4.IDENTITY}))\n  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))\n                                 (fn [e]\n                                   (set! (.-cancel e) true)\n                                   (.flyTo camera HOME-VIEW)))\n  (.flyTo camera HOME-VIEW))")
+	(title "camera-home [camera view ]"))
+
+([CesiumBase_Class10002] of  CloVar
+
+	(source "(js/Cesium.Viewer. \"cesiumContainer\")")
+	(title "VIEWER"))
+
+([CesiumBase_Class10003] of  CloVar
+
+	(source "(.-camera SCENE)")
+	(title "CAMERA"))
+
+([CesiumBase_Class10004] of  CloVar
+
+	(source "(.-scene VIEWER)")
+	(title "SCENE"))
+
+([CesiumBase_Class10005] of  CloVar
+
+	(source "(.-clock VIEWER)")
+	(title "CLOCK"))
+
+([CesiumBase_Class10006] of  CloVar
+
+	(source "(.-canvas SCENE)")
+	(title "CANVAS"))
+
+([CesiumBase_Class10007] of  CloFunction
+
+	(source "(let [{:keys [animate start stop current mult]} settings]\n  (set! (.-shouldAnimate clock) animate)\n  (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clock) mult)\n  (set! (.-clockStep clock) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)\n  (set! (.-clockRange clock) js/Cesium.ClockRange.LOOP_STOP)\n  (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock)))")
+	(title "clock-settings [clock settings viewer]"))
+
+([CesiumBase_Class10008] of  CloVar
+
+	(source "{:animate true\n  :start \"2020-08-08T16:00:00Z\"\n  :stop \"2020-08-08T16:20:00Z\"\n  :current \"2020-08-08T16:00:00Z\"\n  :mult 4}")
+	(title "CLOCK-SET"))
+
+([CesiumBase_Class10009] of  ClsMain
+
+	(asset-path "js/test")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions [CesiumBase_Class20003])
+	(cloNamespace [CesiumBase_Class10010])
+	(cloVars [CesiumBase_Class20004])
+	(compiler-options "{:verbose false}")
+	(css [CesiumBase_Class10012])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-client))")
+	(html [CesiumBase_Class10011])
+	(output-dir "resources/public/js/test")
+	(output-to "resources/public/js/test.js")
+	(required [CesiumBase_Class0])
+	(store-in "src/cljs/test")
+	(title "Test Client"))
+
+([CesiumBase_Class10010] of  CloNamespace
+
+	(source "(:require \n  [cesium.base.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET]])")
+	(title "cesium.test.client"))
+
+([CesiumBase_Class10011] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Санкт-Петербург</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"test/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public/test")
+	(title "test"))
+
+([CesiumBase_Class10012] of  CSS
+
+	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}")
+	(store-in "resources/public/test")
+	(title "test"))
+
+([CesiumBase_Class20000] of  CloFuncall
+
+	(source "(cesium.base.server/start-server)"))
+
+([CesiumBase_Class20001] of  CesiumServer
+
+	(butt-start-cs-server "Start/cesium.base.server/start-server")
+	(butt-stop-cs-server "Stop/cesium.base.server/stop-server")
+	(page "test/test.html")
+	(port 4448))
+
+([CesiumBase_Class20002] of  CloFunction
+
+	(source "(let [promise (condp = format\n                       :GeoJSON (js/Cesium.GeoJsonDataSource.load source options)\n                       :CZML (js/Cesium.CzmlDataSource.load source options)\n                       :KML (js/Cesium.KmlDataSource.load source options))]\n  (.then promise (fn [ds] \n                            (.add (.-dataSources viewer) ds)\n                            (processor ds))))")
+	(title "load-data [format source options viewer processor]"))
+
+([CesiumBase_Class20003] of  CloFunction
+
+	(source ";;(add-imagery-by-asset-id 3954 VIEWER)\n(add-terrain #js{:requestVertexNormals true} VIEWER)\n(camera-home CAMERA tHOME-VIEW)\n(clock-settings CLOCK CLOCK-SET VIEWER)\n(load-data :GeoJSON \"data/sampleNeighborhoods.geojson\" #js{:clampToGround true} VIEWER #(println :D %))\n(load-data :KML \"data/sampleGeocacheLocations.kml\" #js{\n                          :camera CAMERA\n                          :canvas CANVAS\n                          :clampToGround true} VIEWER #(println :D %))\n(load-data :CZML \"data/sampleFlight.czml\" nil VIEWER #(println :D %))")
+	(title "init-client []"))
+
+([CesiumBase_Class20004] of  CloVar
+
+	(source "{:longitude -73.998114468289017509\n  :latitude 40.674512895646692812\n  :height 2631.082799425431\n  :heading 7.1077496389876024807\n  :pitch -31.987223091598949054\n  :roll 0.025883251314954971306}")
+	(title "tHOME-VIEW"))
+
+([CesiumBase_Class20005] of  CloFunction
+
+	(source "(let [ilays (.-imageryLayers viewer)]\n  (.remove ilays (.get ilays 0))\n  (.addImageryProvider ilays (js/Cesium.IonImageryProvider. #js{:assetId id})))")
+	(title "add-imagery-by-asset-id [id viewer]"))
+
+([CesiumBase_Class20006] of  CloFunction
+
+	(source "(set! (.-terrainProvider viewer) (js/Cesium.createWorldTerrain. options))\n(set! (.-depthTestAgainstTerrain (.-globe (.-scene viewer))) true)")
+	(title "add-terrain [options viewer]"))
+
+([CesiumServer_Class0] of  CloFuncall
+
+	(source "(cesium.server/start-server)"))
+
+([CesiumServer_Class10001] of  CloFunction
+
+	(source "(let [evt-hr (fn [dat]\n                   (str \"event: czml\\ndata: \" dat \"\\n\\n\"))\n       ee (deref (future (pump-out-czml)))\n       resp (if (seq ee)\n                 (apply str (map evt-hr ee))\n                 \"\")]\n  (-> (r/response resp)\n         (r/header \"Access-Control-Allow-Origin\" \"*\")\n         (r/header \"Content-Type\" \"text/event-stream;charset=utf-8\")))")
+	(title "czml-events []"))
+
+([CesiumServer_Class10002] of  CloVar
+
+	(source "(defonce CZ-CHAN (chan))")
+	(title "defonceCZ-CHAN"))
+
+([CesiumServer_Class10003] of  CloFunction
+
+	(source "(loop [[bit ch] (alts!! [CZ-CHAN] :default :none) bits []]\n  (if (= bit :none)\n    bits\n    (recur (alts!! [CZ-CHAN] :default :none) (conj bits bit))))")
+	(title "pump-out-czml []"))
+
+([CesiumServer_Class10004] of  CloFunction
+
+	(source "(put! CZ-CHAN czml)")
+	(title "send-czml [czml]"))
+
+([CesiumServer_Class10005] of  CloVar
+
+	(source "\"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"}\"")
+	(title "DOC"))
+
+([CesiumWorshop_Class10003] of  CloProgram
+
+	(cloFunctions
+		[CesiumServer_Class10004]
+		[CesiumServer_Class10003]
+		[CesiumServer_Class10001]
+		[CesiumWorshop_Class10005]
+		[CesiumWorshop_Class10010]
+		[CesiumWorshop_Class10011])
+	(cloNamespace [CesiumWorshop_Class10004])
+	(cloVars
+		[CesiumWorshop_Class10006]
+		[CesiumWorshop_Class10007]
+		[CesiumWorshop_Class10008]
+		[CesiumWorshop_Class10009]
+		[CesiumServer_Class10002]
+		[CesiumServer_Class10005])
+	(title "Cesium Base Server"))
+
+([CesiumWorshop_Class10004] of  CloNamespace
+
+	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [clojure.core.async :refer [chan alts!! put!]])")
+	(title "cesium.base.server"))
+
+([CesiumWorshop_Class10005] of  CloFunction
+
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT PAGE)))\n  (GET \"/czml\" [] (czml-events))\n  (route/files \"/\" (do (println [:ROOT ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Cesium Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
+	(title "init-server []"))
+
+([CesiumWorshop_Class10006] of  CloVar
+
+	(source "4442")
+	(title "PORT"))
+
+([CesiumWorshop_Class10007] of  CloVar
+
+	(source "(str (System/getProperty \"user.dir\") \"/resources/public/\")")
+	(title "ROOT"))
+
+([CesiumWorshop_Class10008] of  CloVar
+
+	(source "\"test/test.html\"")
+	(title "PAGE"))
+
+([CesiumWorshop_Class10009] of  CloVar
+
+	(source "nil")
+	(title "SERV"))
+
+([CesiumWorshop_Class10010] of  CloFunction
+
+	(source "([]\n  (start-server PORT))\n([port]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))\n([hm inst]\n  (let [mp (into {} hm)]\n    (def PORT (mp \"port\"))\n    (def PAGE (mp \"page\"))\n    (start-server)))")
+	(title "start-server"))
+
+([CesiumWorshop_Class10011] of  CloFunction
+
+	(source "([]\n  (when-let [serv SERV]\n    (.stop serv)\n    (def SERV nil)\n    (println \"Server stopped!\")))\n([hm inst]\n  (stop-server))")
+	(title "stop-server"))

@@ -146,7 +146,7 @@ break;
 );
 });
 workshop.client.load_geojson = (function workshop$client$load_geojson(source,ground){
-var promise = Cesium.GeoJsonDataSource.load(source,cljs.core.PersistentHashSet.createAsIfByAssoc([ground,new cljs.core.Keyword(null,"clampToGround","clampToGround",1108773872)]));
+var promise = Cesium.GeoJsonDataSource.load(source,({"clampToGround": ground}));
 return promise.then(((function (promise){
 return (function (ds){
 workshop.client.VIEWER.dataSources.add(ds);

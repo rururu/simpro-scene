@@ -1,4 +1,4 @@
-; Tue Apr 21 21:26:29 MSK 2020
+; Tue Apr 21 21:26:55 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,18 +20,100 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumWorkshop_ProjectKB_Class396]
-		[CesiumWorkshop_ProjectKB_Class397]))
+		[CesiumBase_ProjectKB_Class423]
+		[CesiumBase_ProjectKB_Class424]
+		[CesiumBase_ProjectKB_Class425]))
 
-([CesiumWorkshop_ProjectKB_Class396] of  String
+([CesiumBase_ProjectKB_Class423] of  String
+
+	(name "CesiumServer")
+	(string_value "port{+}page"))
+
+([CesiumBase_ProjectKB_Class424] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumWorkshop_ProjectKB_Class397] of  String
+([CesiumBase_ProjectKB_Class425] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
+
+([CesiumServer_ProjectKB_Class10403] of  Widget
+
+	(is_hidden FALSE)
+	(name "CesiumServer")
+	(property_list [CesiumServer_ProjectKB_Class10404])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([CesiumServer_ProjectKB_Class10404] of  Property_List
+
+	(properties
+		[CesiumServer_ProjectKB_Class10405]
+		[CesiumServer_ProjectKB_Class10406]
+		[CesiumServer_ProjectKB_Class10408]
+		[CesiumServer_ProjectKB_Class10410]
+		[CesiumServer_ProjectKB_Class10412]))
+
+([CesiumServer_ProjectKB_Class10405] of  Property_List
+
+	(name "layout properties"))
+
+([CesiumServer_ProjectKB_Class10406] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "butt-stop-cs-server")
+	(property_list [CesiumServer_ProjectKB_Class10407])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([CesiumServer_ProjectKB_Class10407] of  Property_List
+)
+
+([CesiumServer_ProjectKB_Class10408] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "butt-start-cs-server")
+	(property_list [CesiumServer_ProjectKB_Class10409])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([CesiumServer_ProjectKB_Class10409] of  Property_List
+)
+
+([CesiumServer_ProjectKB_Class10410] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "page")
+	(property_list [CesiumServer_ProjectKB_Class10411])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([CesiumServer_ProjectKB_Class10411] of  Property_List
+)
+
+([CesiumServer_ProjectKB_Class10412] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "port")
+	(property_list [CesiumServer_ProjectKB_Class10413])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([CesiumServer_ProjectKB_Class10413] of  Property_List
+)
 
 ([CesiumWorshop_ProjectKB_Class37] of  String
 
@@ -124,28 +206,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_708294_Class392] of  Map
+([KB_438916_Class392] of  Map
 
 	(entries
-		[KB_708294_Class393]
-		[KB_708294_Class394]
-		[KB_708294_Class395]))
+		[KB_438916_Class393]
+		[KB_438916_Class394]
+		[KB_438916_Class395]))
 
-([KB_708294_Class393] of  Map_Entry
+([KB_438916_Class393] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_708294_Class394] of  Map_Entry
+([KB_438916_Class394] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_708294_Class395] of  Map_Entry
+([KB_438916_Class395] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -245,12 +327,12 @@
 ([KB_851107_Class35] of  String
 
 	(name "classes_file_name")
-	(string_value "CesiumWorkshop.pont"))
+	(string_value "CesiumBase.pont"))
 
 ([KB_851107_Class36] of  String
 
 	(name "instances_file_name")
-	(string_value "CesiumWorkshop.pins"))
+	(string_value "CesiumBase.pins"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -336,6 +418,7 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
+		[CesiumServer_ProjectKB_Class10403]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
@@ -344,7 +427,7 @@
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "file:/home/ru/clojure/simpro-scene/pprj_base/Clojure.pprj")
+	(included_projects "../pprj_base/Clojure.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
