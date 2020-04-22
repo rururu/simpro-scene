@@ -1,4 +1,4 @@
-; Tue Apr 21 21:26:55 MSK 2020
+; Wed Apr 22 18:23:13 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,7 +10,8 @@
 		[CesiumBase_Class20006]
 		[CesiumBase_Class10001]
 		[CesiumBase_Class10007]
-		[CesiumBase_Class20002])
+		[CesiumBase_Class20002]
+		[CesiumBase_Class30000])
 	(cloNamespace [CesiumBase_Class1])
 	(cloVars
 		[CesiumBase_Class10002]
@@ -18,18 +19,15 @@
 		[CesiumBase_Class10004]
 		[CesiumBase_Class10003]
 		[CesiumBase_Class10006]
-		[CesiumBase_Class10000]
-		[CesiumBase_Class10008])
-	(title "Cesium Base Client"))
+		[CesiumBase_Class10008]
+		[CesiumBase_Class30001]
+		[CesiumBase_Class30002]
+		[CesiumBase_Class30003])
+	(title "Cesium Client"))
 
 ([CesiumBase_Class1] of  CloNamespace
 
-	(title "cesium.base.client"))
-
-([CesiumBase_Class10000] of  CloVar
-
-	(source "{:longitude 30.1\n  :latitude 60.0\n  :height 2500\n  :heading 120\n  :pitch -20\n  :roll 0}")
-	(title "HOME-VIEW"))
+	(title "cesium.client"))
 
 ([CesiumBase_Class10001] of  CloFunction
 
@@ -90,31 +88,20 @@
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.base.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET]])")
-	(title "cesium.test.client"))
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-czml-processing\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     CZML-URL\n     CZML-DEBUG]])")
+	(title "cesium.testclient"))
 
 ([CesiumBase_Class10011] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Санкт-Петербург</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"test/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
-	(store-in "resources/public/test")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Санкт-Петербург</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public")
 	(title "test"))
 
 ([CesiumBase_Class10012] of  CSS
 
 	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}")
-	(store-in "resources/public/test")
+	(store-in "resources/public/css")
 	(title "test"))
-
-([CesiumBase_Class20000] of  CloFuncall
-
-	(source "(cesium.base.server/start-server)"))
-
-([CesiumBase_Class20001] of  CesiumServer
-
-	(butt-start-cs-server "Start/cesium.base.server/start-server")
-	(butt-stop-cs-server "Stop/cesium.base.server/stop-server")
-	(page "test/test.html")
-	(port 4448))
 
 ([CesiumBase_Class20002] of  CloFunction
 
@@ -123,7 +110,7 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source ";;(add-imagery-by-asset-id 3954 VIEWER)\n(add-terrain #js{:requestVertexNormals true} VIEWER)\n(camera-home CAMERA tHOME-VIEW)\n(clock-settings CLOCK CLOCK-SET VIEWER)\n(load-data :GeoJSON \"data/sampleNeighborhoods.geojson\" #js{:clampToGround true} VIEWER #(println :D %))\n(load-data :KML \"data/sampleGeocacheLocations.kml\" #js{\n                          :camera CAMERA\n                          :canvas CANVAS\n                          :clampToGround true} VIEWER #(println :D %))\n(load-data :CZML \"data/sampleFlight.czml\" nil VIEWER #(println :D %))")
+	(source "(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)")
 	(title "init-client []"))
 
 ([CesiumBase_Class20004] of  CloVar
@@ -140,6 +127,67 @@
 
 	(source "(set! (.-terrainProvider viewer) (js/Cesium.createWorldTerrain. options))\n(set! (.-depthTestAgainstTerrain (.-globe (.-scene viewer))) true)")
 	(title "add-terrain [options viewer]"))
+
+([CesiumBase_Class30000] of  CloFunction
+
+	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if CZML-DEBUG\n                 (println :data data))\n               (.process CZML-DS (js/JSON.parse data))))]\n  (.add (.-dataSources viewer) CZML-DS)\n  (.addEventListener (js/EventSource. CZML-URL) \"czml\" cz-processor false))")
+	(title "start-czml-processing [czml-url viewer]"))
+
+([CesiumBase_Class30001] of  CloVar
+
+	(source "(js/Cesium.CzmlDataSource.)")
+	(title "CZML-DS"))
+
+([CesiumBase_Class30002] of  CloVar
+
+	(source "\"http://localhost:4448/czml\"")
+	(title "CZML-URL"))
+
+([CesiumBase_Class30003] of  CloVar
+
+	(source "false")
+	(title "CZML-DEBUG"))
+
+([CesiumBase_Class30004] of  CloProgram
+
+	(cloFunctions
+		[CesiumBase_Class30008]
+		[CesiumBase_Class30006]
+		[CesiumBase_Class30007]
+		[CesiumBase_Class30009])
+	(cloNamespace [CesiumBase_Class30005])
+	(title "CZML Generator"))
+
+([CesiumBase_Class30005] of  CloNamespace
+
+	(title "czml.generator"))
+
+([CesiumBase_Class30006] of  CloFunction
+
+	(source "([lalo-points height-ref size]\n  (let [s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n             (apply \n               str \n               (map \n                 #(let [[iR iG iB iA] (nth %2 2)\n                           rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")]\n                     (str \"{\\\"id\\\":\\\"\" %1 \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" (second %2) \",\" (first %2) \",\" (nth %2 3) \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}},\"))\n                 (range (count lalo-points))  \n                 lalo-points)))]\n    (str (.substring s 0 (dec (count s))) \"]\")))\n([lalo-points height height-ref size]\n  (let [s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n             (apply \n               str \n               (map \n                 #(let [[iR iG iB iA] (nth %2 2)\n                           rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")]\n                     (str \"{\\\"id\\\":\\\"\" %1 \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" (second %2) \",\" (first %2) \",\" height \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}},\"))\n                 (range (count lalo-points))  \n                 lalo-points)))]\n    (str (.substring s 0 (dec (count s))) \"]\")))\n([lalo-points height height-ref [iR iG iB iA] size]\n  (let [rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n         s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n              (apply \n                str \n                (map \n                  #(str \"{\\\"id\\\":\\\"\" %1 \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" (second %2) \",\" (first %2) \",\" height \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}},\") \n                  (range (count lalo-points))  \n                  lalo-points)))]\n    (str (.substring s 0 (dec (count s))) \"]\")))")
+	(title "add-points"))
+
+([CesiumBase_Class30007] of  CloFunction
+
+	(source "(let [s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n            (apply str (map #(str \"{\\\"id\\\":\\\"\" % \"\\\",\\\"delete\\\":true},\") (range number))))]\n  (str (.substring s 0 (dec (count s))) \"]\"))")
+	(title "delete-points [number]"))
+
+([CesiumBase_Class30008] of  CloFunction
+
+	(source "(str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},{\\\"id\\\":\\\"\" id \"\\\",\\\"delete\\\":true}]\")")
+	(title "delete [id]"))
+
+([CesiumBase_Class30009] of  CloFunction
+
+	(source "(str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},{\\\"id\\\":\\\"\" id \"\\\",\\\"rectangle\\\":{\\\"coordinates\\\":{\\\"wsenDegrees\\\":[\" w \",\" s \",\" e \",\" n \"]},\\\"material\\\":{\\\"image\\\":{\\\"image\\\":{\\\"uri\\\":\\\"\" uri \"\\\"},\\\"color\\\":{\\\"rgba\\\":[255,255,255,\" trans \"]}}}}}]\")")
+	(title "add-image [id uri [w s e n] trans]"))
+
+([CesiumBase_Class30010] of  CesiumServer
+
+	(butt-start-cs-server "Start/cesium.server/start-server")
+	(butt-stop-cs-server "Stop/cesium.server/stop-server")
+	(page "test.html")
+	(port 4448))
 
 ([CesiumServer_Class0] of  CloFuncall
 
@@ -187,12 +235,12 @@
 		[CesiumWorshop_Class10009]
 		[CesiumServer_Class10002]
 		[CesiumServer_Class10005])
-	(title "Cesium Base Server"))
+	(title "Cesium Server"))
 
 ([CesiumWorshop_Class10004] of  CloNamespace
 
-	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [clojure.core.async :refer [chan alts!! put!]])")
-	(title "cesium.base.server"))
+	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [clojure.core.async :refer [chan alts!! put!]]\n              [czml.generator])")
+	(title "cesium.server"))
 
 ([CesiumWorshop_Class10005] of  CloFunction
 
@@ -211,7 +259,7 @@
 
 ([CesiumWorshop_Class10008] of  CloVar
 
-	(source "\"test/test.html\"")
+	(source "\"test.html\"")
 	(title "PAGE"))
 
 ([CesiumWorshop_Class10009] of  CloVar

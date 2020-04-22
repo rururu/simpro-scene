@@ -22,10 +22,10 @@
 (defn init-client []
   ;;(add-imagery-by-asset-id 3954 VIEWER)
 (add-terrain #js{:requestVertexNormals true} VIEWER)
-(camera-home CAMERA tHOME-VIEW)
+(camera-home CAMERA HOME-VIEW)
 (clock-settings CLOCK CLOCK-SET VIEWER)
-(load-data :GeoJSON "data/sampleNeighborhoods.geojson" #js{:clampToGround true} VIEWER #(println :D %))
-(load-data :KML "data/sampleGeocacheLocations.kml" #js{
+(load-data :GeoJSON "earth-coastlines-1km.geo.json" nil VIEWER #(println :D %))
+(load-data :KML "2012_Earthquakes_Mag5.kml" #js{
                           :camera CAMERA
                           :canvas CANVAS
                           :clampToGround true} VIEWER #(println :D %))

@@ -1,4 +1,4 @@
-; Tue Apr 21 21:26:55 MSK 2020
+; Wed Apr 22 18:23:13 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,12 +17,12 @@
 		(create-accessor read-write))
 	(single-slot butt-stop-cs-server
 		(type STRING)
-		(default "Stop/cesium.base.server/stop-server")
+		(default "Stop/cesium.server/stop-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot butt-start-cs-server
 		(type STRING)
-		(default "Start/cesium.base.server/start-server")
+		(default "Start/cesium.server/start-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -31,12 +31,12 @@
 	(role concrete)
 	(single-slot butt-stop-cs-server
 		(type STRING)
-		(default "Stop/cesium.base.server/stop-server")
+		(default "Stop/cesium.server/stop-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot butt-start-cs-server
 		(type STRING)
-		(default "Start/cesium.base.server/start-server")
+		(default "Start/cesium.server/start-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot page

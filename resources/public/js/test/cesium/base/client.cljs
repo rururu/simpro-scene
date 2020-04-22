@@ -16,6 +16,9 @@
   :stop "2020-08-08T16:20:00Z"
   :current "2020-08-08T16:00:00Z"
   :mult 4})
+(def CZML-DS (js/Cesium.CzmlDataSource.))
+(def CZML-URL "http://localhost:4448/czml")
+(def CZML-DEBUG false)
 (defn add-imagery-by-asset-id [id viewer]
   (let [ilays (.-imageryLayers viewer)]
   (.remove ilays (.get ilays 0))
@@ -63,4 +66,13 @@
   (.then promise (fn [ds] 
                             (.add (.-dataSources viewer) ds)
                             (processor ds)))))
+
+(defn start-czml-processing [czml-url viewer]
+  (letfn [(cz-processor [e]
+             (let [data (.-data e)]
+               (if CZML-DEBUG
+                 (println :data data))
+               (.process CZML-DS (js/JSON.parse data))))]
+  (.add (.-dataSources viewer) CZML-DS)
+  (.addEventListener (js/EventSource. CZML-URL) "czml" cz-processor false)))
 

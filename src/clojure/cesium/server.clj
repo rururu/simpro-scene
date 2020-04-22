@@ -4,10 +4,11 @@
               [compojure.core :refer [defroutes GET]]
               [compojure.handler :as handler]
               [compojure.route :as route]
-              [clojure.core.async :refer [chan alts!! put!]]))
+              [clojure.core.async :refer [chan alts!! put!]]
+              [czml.generator]))
 (def PORT 4442)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
-(def PAGE "workshop.html")
+(def PAGE "test.html")
 (def SERV nil)
 (def defonceCZ-CHAN (defonce CZ-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
