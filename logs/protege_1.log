@@ -1,0 +1,7 @@
+2020.04.23 21:15:49.160 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2020.04.23 21:15:49.168 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.6+10-post-Debian-1deb10u1, memory=2076M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2020.04.23 21:15:49.171 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2020.04.23 21:15:49.479 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2020.04.23 21:15:49.481 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2020.04.23 21:15:49.609 MSK WARNING: Look and feel not found:  -- SystemUtilities.setLookAndFeel()
+2020.04.23 21:15:49.798 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()

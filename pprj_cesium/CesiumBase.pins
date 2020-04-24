@@ -1,4 +1,4 @@
-; Wed Apr 22 18:23:13 MSK 2020
+; Fri Apr 24 22:20:59 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,7 +11,11 @@
 		[CesiumBase_Class10001]
 		[CesiumBase_Class10007]
 		[CesiumBase_Class20002]
-		[CesiumBase_Class30000])
+		[CesiumBase_Class30000]
+		[CesiumBase_Class20000]
+		[CesiumBase_Class40001]
+		[CesiumBase_Class40000]
+		[CesiumBase_Class10000])
 	(cloNamespace [CesiumBase_Class1])
 	(cloVars
 		[CesiumBase_Class10002]
@@ -19,15 +23,22 @@
 		[CesiumBase_Class10004]
 		[CesiumBase_Class10003]
 		[CesiumBase_Class10006]
+		[CesiumBase_Class20001]
 		[CesiumBase_Class10008]
 		[CesiumBase_Class30001]
 		[CesiumBase_Class30002]
-		[CesiumBase_Class30003])
+		[CesiumBase_Class30003]
+		[CesiumBase_Class40002])
 	(title "Cesium Client"))
 
 ([CesiumBase_Class1] of  CloNamespace
 
 	(title "cesium.client"))
+
+([CesiumBase_Class10000] of  CloFunction
+
+	(source "(letfn[(fly-one [cam next]\n            (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)\n                                       :duration (@ORBIT :step-sec)\n                                       :complete #(fly-next cam (inc next))\n                                       :cancel #(fly-cancel cam next)}))\n          (fly-next [cam next]\n            (if (< next (count (@ORBIT :ring)))\n              (fly-one cam next)\n              (fly-one cam 0)))\n          (fly-cancel [cam next]\n             (vswap! ORBIT assoc :next next))\n          (make-ring []\n            (let [[clam cphi alt] (@ORBIT :center-lpm)\n                    radr (* (/ (@ORBIT :radius-nm) 60 180) js/Math.PI)\n                    prr (points-ring-rad [clam cphi] radr alt 12)\n                    ring (vec (map #(js/Cesium.Cartesian3. %1 %2 %3) prr))]\n              (vswap! ORBIT assoc :ring ring)))]            \n            \n  (let [obut (.createElement js/document \"button\")]\n    (set! (.-innerHTML obut) \"Toggle orbit\")\n    (.add (.-classList obut) \"cesium-button\")\n    (.prepend (.querySelector js/document \".cesium-viewer-toolbar\") obut)\n    (set! (.-onclick obut)\n      (fn []\n        (println :OB)))))")
+	(title "add-orbit-button []"))
 
 ([CesiumBase_Class10001] of  CloFunction
 
@@ -75,7 +86,6 @@
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions [CesiumBase_Class20003])
 	(cloNamespace [CesiumBase_Class10010])
-	(cloVars [CesiumBase_Class20004])
 	(compiler-options "{:verbose false}")
 	(css [CesiumBase_Class10012])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-client))")
@@ -88,7 +98,7 @@
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-czml-processing\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     CZML-URL\n     CZML-DEBUG]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-czml-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     CZML-URL\n     CZML-DEBUG]])")
 	(title "cesium.testclient"))
 
 ([CesiumBase_Class10011] of  HTML
@@ -103,6 +113,16 @@
 	(store-in "resources/public/css")
 	(title "test"))
 
+([CesiumBase_Class20000] of  CloFunction
+
+	(source "(let [cosphi1 (js/Math.cos phi1)\n       sinphi1 (js/Math.sin phi1)\n       cosaz (js/Math.cos az)\n       sinaz (js/Math.sin az)\n       sinc (js/Math.sin c)\n       cosc (js/Math.cos c)\n       phi2 (js/Math.asin (+ (* sinphi1 cosc) (* cosphi1 sinc cosaz)))\n       lam2 (+ (js/Math.atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]\n  [lam2 phi2])")
+	(title "position-js [^double lambda0 ^double phi1 ^double c ^double az]"))
+
+([CesiumBase_Class20001] of  CloVar
+
+	(source "{:latitude 60.0\n  :longitude 30.1\n  :height 2000\n  :heading 120\n  :pitch -20\n  :roll 0}")
+	(title "HOME-VIEW"))
+
 ([CesiumBase_Class20002] of  CloFunction
 
 	(source "(let [promise (condp = format\n                       :GeoJSON (js/Cesium.GeoJsonDataSource.load source options)\n                       :CZML (js/Cesium.CzmlDataSource.load source options)\n                       :KML (js/Cesium.KmlDataSource.load source options))]\n  (.then promise (fn [ds] \n                            (.add (.-dataSources viewer) ds)\n                            (processor ds))))")
@@ -110,13 +130,8 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source "(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)")
+	(source "(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button)")
 	(title "init-client []"))
-
-([CesiumBase_Class20004] of  CloVar
-
-	(source "{:longitude -73.998114468289017509\n  :latitude 40.674512895646692812\n  :height 2631.082799425431\n  :heading 7.1077496389876024807\n  :pitch -31.987223091598949054\n  :roll 0.025883251314954971306}")
-	(title "tHOME-VIEW"))
 
 ([CesiumBase_Class20005] of  CloFunction
 
@@ -188,6 +203,37 @@
 	(butt-stop-cs-server "Stop/cesium.server/stop-server")
 	(page "test.html")
 	(port 4448))
+
+([CesiumBase_Class40000] of  CloFunction
+
+	(source "(let [cmp (.-position camera)\n       cmp (js/Cesium.Cartographic.fromCartesian cmp)\n       [lam phi alt] [(.-longitude cmp) (.-latitude cmp) (.-height cmp)]\n       az (.-heading camera)\n       c (* (/ nm 60 180) js/Math.PI)\n       [lam2 phi2] (position-js lam phi c az)]\n  [lam2 phi2 alt])")
+	(title "look-at [camera nm]"))
+
+([CesiumBase_Class40001] of  CloFunction
+
+	(source "(let [s (double (/ (* js/Math.PI 2) N))\n       azs (range 0 (* N s) s)]\n  (vec (map #(concat (position-js c-lambda c-phi rad-rad %) [alt]) azs)))")
+	(title "points-ring-rad [[c-lambda c-phi] rad-rad alt N]"))
+
+([CesiumBase_Class40002] of  CloVar
+
+	(source "(volatile! \n  {:ring []\n    :next 0\n    :center-lpm [0 0 0]\n    :radius-nm 0\n    :step-sec 0})")
+	(title "ORBIT"))
+
+([CesiumBase_Class40003] of  CloFuncall
+
+	(source "("))
+
+([CesiumBase_Class40004] of  CloFuncall
+
+	(source "(/ 24 2 3)"))
+
+([CesiumBase_Class40005] of  CloFuncall
+
+	(source "(* 0.13365588726472535 (/ 180 Math/PI))"))
+
+([CesiumBase_Class40006] of  CloFuncall
+
+	(source "(* 0.8024416225760423 (/ 180 Math/PI))"))
 
 ([CesiumServer_Class0] of  CloFuncall
 
