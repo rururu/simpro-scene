@@ -1,4 +1,4 @@
-; Fri Apr 24 22:20:59 MSK 2020
+; Sun Apr 26 19:40:35 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,7 @@
 		[CesiumBase_Class20002]
 		[CesiumBase_Class30000]
 		[CesiumBase_Class20000]
+		[CesiumBase_Class50000]
 		[CesiumBase_Class40001]
 		[CesiumBase_Class40000]
 		[CesiumBase_Class10000])
@@ -37,12 +38,12 @@
 
 ([CesiumBase_Class10000] of  CloFunction
 
-	(source "(letfn[(fly-one [cam next]\n            (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)\n                                       :duration (@ORBIT :step-sec)\n                                       :complete #(fly-next cam (inc next))\n                                       :cancel #(fly-cancel cam next)}))\n          (fly-next [cam next]\n            (if (< next (count (@ORBIT :ring)))\n              (fly-one cam next)\n              (fly-one cam 0)))\n          (fly-cancel [cam next]\n             (vswap! ORBIT assoc :next next))\n          (make-ring []\n            (let [[clam cphi alt] (@ORBIT :center-lpm)\n                    radr (* (/ (@ORBIT :radius-nm) 60 180) js/Math.PI)\n                    prr (points-ring-rad [clam cphi] radr alt 12)\n                    ring (vec (map #(js/Cesium.Cartesian3. %1 %2 %3) prr))]\n              (vswap! ORBIT assoc :ring ring)))]            \n            \n  (let [obut (.createElement js/document \"button\")]\n    (set! (.-innerHTML obut) \"Toggle orbit\")\n    (.add (.-classList obut) \"cesium-button\")\n    (.prepend (.querySelector js/document \".cesium-viewer-toolbar\") obut)\n    (set! (.-onclick obut)\n      (fn []\n        (println :OB)))))")
-	(title "add-orbit-button []"))
+	(source "(letfn[(fly-one [cam next]\n            (let [orient (js/Cesium.HeadingPitchRoll. (nth (@ORBIT :headings) next) (.-pitch cam) (.-roll cam))]\n              (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)\n                                       :orientation #js{:heading (.-heading orient)\n                                                               :pitch (.-pitch orient)\n                                                               :roll (.-roll orient)}\n                                       :duration (@ORBIT :step-sec)\n                                       :easingFunction js/Cesium.EasingFunction.LINEAR_NONE\n                                       :complete #(fly-next cam (inc next))\n                                       :cancel #(fly-cancel cam next)})))\n          (fly-next [cam next]\n            (if (< next (count (@ORBIT :ring)))\n              (fly-one cam next)\n              (fly-one cam 0)))\n          (fly-cancel [cam next]\n             (vswap! ORBIT assoc :next next))\n          (next [az azs]\n            (let [N (count azs)\n                   n (+ (/ N 2) (count (filter #(< % az) azs)))]\n              (if (> n (dec N)) (- n N) n)))]\n            \n  (let [obut (.createElement js/document \"button\")]\n    (set! (.-innerHTML obut) \"Toggle orbit\")\n    (.add (.-classList obut) \"cesium-button\")\n    (.prepend (.querySelector js/document \".cesium-viewer-toolbar\") obut)\n    (set! (.-onclick obut)\n      (fn []\n        (condp = (@ORBIT :status)\n          :init\n          (vswap! ORBIT assoc :status :stop)\n          :stop\n          (let [steps (@ORBIT :steps)\n                 radm (@ORBIT :radius-m)\n                 radr (* (/ radm 1852 60 180) js/Math.PI)\n                 [lam phi hgt :as look] (look-at camera radm)\n                 [azs pts] (azimuths&points [lam phi] radr hgt steps)\n                 ring (vec (map #(js/Cesium.Cartesian3.fromRadians (first %) (second %) (nth % 2)) pts))\n                 headings (vec (map #(normaz (+ % js/Math.PI)) azs))\n                 begin (next (.-heading camera) azs)]\n            (vswap! ORBIT assoc :ring ring\n                                             :headings headings\n                                             :center (js/Cesium.Cartesian3.fromRadians lam phi hgt)\n                                             :next begin\n                                             :status :run)\n            (fly-one camera begin))\n          :run\n          (do (.cancelFlight camera)\n            (vswap! ORBIT assoc :status :stop)))))))")
+	(title "add-orbit-button [camera]"))
 
 ([CesiumBase_Class10001] of  CloFunction
 
-	(source "(let [{:keys [longitude latitude height heading pitch roll]} view\n       pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)]\n  (def HOME-VIEW (clj->js {:destination pos\n                                         :orientation {:heading (.-heading orient)\n                                                              :pitch (.-pitch orient)\n                                                              :roll (.-roll orient)}\n                                         ;; animation options\n                                         :duration 4.0\n                                         :maximumHeight 2000\n                                         :pitchAdjustHeight 2000\n                                         :endTransform js/Cesium.Matrix4.IDENTITY}))\n  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))\n                                 (fn [e]\n                                   (set! (.-cancel e) true)\n                                   (.flyTo camera HOME-VIEW)))\n  (.flyTo camera HOME-VIEW))")
+	(source "(let [{:keys [longitude latitude height heading pitch roll]} view\n       pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)]\n  (def HOME-VIEW (clj->js {:destination pos\n                                         :orientation {:heading (.-heading orient)\n                                                              :pitch (.-pitch orient)\n                                                              :roll (.-roll orient)}\n                                         ;; animation options\n                                         :duration 4.0\n                                         :maximumHeight 2000\n                                         :pitchAdjustHeight 2000\n                                         :endTransform js/Cesium.Matrix4.IDENTITY}))\n  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))\n                                 (fn [e]\n                                   (set! (.-cancel e) true)\n                                   (.flyTo camera HOME-VIEW)))\n  (.flyTo camera HOME-VIEW))")
 	(title "camera-home [camera view ]"))
 
 ([CesiumBase_Class10002] of  CloVar
@@ -103,7 +104,7 @@
 
 ([CesiumBase_Class10011] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Санкт-Петербург</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Everest</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
 	(store-in "resources/public")
 	(title "test"))
 
@@ -120,7 +121,7 @@
 
 ([CesiumBase_Class20001] of  CloVar
 
-	(source "{:latitude 60.0\n  :longitude 30.1\n  :height 2000\n  :heading 120\n  :pitch -20\n  :roll 0}")
+	(source "{:latitude 28.02\n  :longitude 86.93\n  :height 8848\n  :heading 180\n  :pitch -10\n  :roll 0}")
 	(title "HOME-VIEW"))
 
 ([CesiumBase_Class20002] of  CloFunction
@@ -130,7 +131,7 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source "(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-client []"))
 
 ([CesiumBase_Class20005] of  CloFunction
@@ -206,38 +207,27 @@
 
 ([CesiumBase_Class40000] of  CloFunction
 
-	(source "(let [cmp (.-position camera)\n       cmp (js/Cesium.Cartographic.fromCartesian cmp)\n       [lam phi alt] [(.-longitude cmp) (.-latitude cmp) (.-height cmp)]\n       az (.-heading camera)\n       c (* (/ nm 60 180) js/Math.PI)\n       [lam2 phi2] (position-js lam phi c az)]\n  [lam2 phi2 alt])")
-	(title "look-at [camera nm]"))
+	(source "(let [cmp (.-position camera)\n       cmp (js/Cesium.Cartographic.fromCartesian cmp)\n       [lam phi hgt] [(.-longitude cmp) (.-latitude cmp) (.-height cmp)]\n       az (.-heading camera)\n       c (* (/ dist-m 1852 60 180) js/Math.PI)\n       [lam2 phi2] (position-js lam phi c az)]\n  [lam2 phi2 hgt])")
+	(title "look-at [camera dist-m]"))
 
 ([CesiumBase_Class40001] of  CloFunction
 
-	(source "(let [s (double (/ (* js/Math.PI 2) N))\n       azs (range 0 (* N s) s)]\n  (vec (map #(concat (position-js c-lambda c-phi rad-rad %) [alt]) azs)))")
-	(title "points-ring-rad [[c-lambda c-phi] rad-rad alt N]"))
+	(source "(let [s (/ (* js/Math.PI 2) N)\n       azs (range 0 (* N s) s)]\n  [azs (vec (map #(concat (position-js c-lambda c-phi radr %) [hgt]) azs))])")
+	(title "azimuths&points [[c-lambda c-phi] radr hgt N]"))
 
 ([CesiumBase_Class40002] of  CloVar
 
-	(source "(volatile! \n  {:ring []\n    :next 0\n    :center-lpm [0 0 0]\n    :radius-nm 0\n    :step-sec 0})")
+	(source "(volatile! \n  {:status :init\n    :steps 24\n    :ring []\n    :headings []\n    :next 0\n    :center nil\n    :radius-m 4000\n    :step-sec 2})")
 	(title "ORBIT"))
 
-([CesiumBase_Class40003] of  CloFuncall
+([CesiumBase_Class50000] of  CloFunction
 
-	(source "("))
+	(source "(cond \n  (> az js/Math.PI) (- az (* 2 js/Math.PI))\n  (< az (- js/Math.PI)) (+ az (* 2 js/Math.PI))\n  true az)")
+	(title "normaz [az]"))
 
-([CesiumBase_Class40004] of  CloFuncall
+([CesiumBase_Class50001] of  CloFuncall
 
-	(source "(/ 24 2 3)"))
-
-([CesiumBase_Class40005] of  CloFuncall
-
-	(source "(* 0.13365588726472535 (/ 180 Math/PI))"))
-
-([CesiumBase_Class40006] of  CloFuncall
-
-	(source "(* 0.8024416225760423 (/ 180 Math/PI))"))
-
-([CesiumServer_Class0] of  CloFuncall
-
-	(source "(cesium.server/start-server)"))
+	(source "(Math/toRadians -20)"))
 
 ([CesiumServer_Class10001] of  CloFunction
 

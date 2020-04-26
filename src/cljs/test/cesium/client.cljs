@@ -5,11 +5,11 @@
 (def SCENE (.-scene VIEWER))
 (def CAMERA (.-camera SCENE))
 (def CANVAS (.-canvas SCENE))
-(def HOME-VIEW {:latitude 60.0
-  :longitude 30.1
-  :height 2000
-  :heading 120
-  :pitch -20
+(def HOME-VIEW {:latitude 28.02
+  :longitude 86.93
+  :height 8848
+  :heading 180
+  :pitch -10
   :roll 0})
 (def CLOCK-SET {:animate true
   :start "2020-08-08T16:00:00Z"
@@ -20,11 +20,14 @@
 (def CZML-URL "http://localhost:4448/czml")
 (def CZML-DEBUG false)
 (def ORBIT (volatile! 
-  {:ring []
+  {:status :init
+    :steps 24
+    :ring []
+    :headings []
     :next 0
-    :center-lpm [0 0 0]
-    :radius-nm 0
-    :step-sec 0}))
+    :center nil
+    :radius-m 4000
+    :step-sec 2}))
 (defn add-imagery-by-asset-id [id viewer]
   (let [ilays (.-imageryLayers viewer)]
   (.remove ilays (.get ilays 0))
@@ -37,7 +40,7 @@
 (defn camera-home [camera view ]
   (let [{:keys [longitude latitude height heading pitch roll]} view
        pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)
-       orient (js/Cesium.HeadingPitchRoll.fromDegrees. heading pitch roll)]
+       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)]
   (def HOME-VIEW (clj->js {:destination pos
                                          :orientation {:heading (.-heading orient)
                                                               :pitch (.-pitch orient)
@@ -93,39 +96,47 @@
        lam2 (+ (js/Math.atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]
   [lam2 phi2]))
 
-(defn points-ring-rad [[c-lambda c-phi] rad-rad alt N]
-  (let [s (double (/ (* js/Math.PI 2) N))
-       azs (range 0 (* N s) s)]
-  (vec (map #(concat (position-js c-lambda c-phi rad-rad %) [alt]) azs))))
+(defn normaz [az]
+  (cond 
+  (> az js/Math.PI) (- az (* 2 js/Math.PI))
+  (< az (- js/Math.PI)) (+ az (* 2 js/Math.PI))
+  true az))
 
-(defn look-at [camera nm]
+(defn azimuths&points [[c-lambda c-phi] radr hgt N]
+  (let [s (/ (* js/Math.PI 2) N)
+       azs (range 0 (* N s) s)]
+  [azs (vec (map #(concat (position-js c-lambda c-phi radr %) [hgt]) azs))]))
+
+(defn look-at [camera dist-m]
   (let [cmp (.-position camera)
        cmp (js/Cesium.Cartographic.fromCartesian cmp)
-       [lam phi alt] [(.-longitude cmp) (.-latitude cmp) (.-height cmp)]
+       [lam phi hgt] [(.-longitude cmp) (.-latitude cmp) (.-height cmp)]
        az (.-heading camera)
-       c (* (/ nm 60 180) js/Math.PI)
+       c (* (/ dist-m 1852 60 180) js/Math.PI)
        [lam2 phi2] (position-js lam phi c az)]
-  (println :LA (* (/ lam2 js/Math.PI) 180) (* (/ phi2 js/Math.PI) 180))
-  [lam2 phi2 alt]))
+  [lam2 phi2 hgt]))
 
-(defn add-orbit-button []
+(defn add-orbit-button [camera]
   (letfn[(fly-one [cam next]
-            (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)
+            (let [orient (js/Cesium.HeadingPitchRoll. (nth (@ORBIT :headings) next) (.-pitch cam) (.-roll cam))]
+              (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)
+                                       :orientation #js{:heading (.-heading orient)
+                                                               :pitch (.-pitch orient)
+                                                               :roll (.-roll orient)}
                                        :duration (@ORBIT :step-sec)
+                                       :easingFunction js/Cesium.EasingFunction.LINEAR_NONE
                                        :complete #(fly-next cam (inc next))
-                                       :cancel #(fly-cancel cam next)}))
+                                       :cancel #(fly-cancel cam next)})))
           (fly-next [cam next]
             (if (< next (count (@ORBIT :ring)))
               (fly-one cam next)
               (fly-one cam 0)))
           (fly-cancel [cam next]
              (vswap! ORBIT assoc :next next))
-          (make-ring []
-            (let [[clam cphi alt] (@ORBIT :center-lpm)
-                    radr (* (/ (@ORBIT :radius-nm) 60 180) js/Math.PI)
-                    prr (points-ring-rad [clam cphi] radr alt 12)
-                    ring (vec (map #(js/Cesium.Cartesian3. %1 %2 %3) prr))]
-              (vswap! ORBIT assoc :ring ring)))]            
+          (next [az azs]
+            (let [N (count azs)
+                   n (+ (/ N 2) (count (filter #(< % az) azs)))]
+              (if (> n (dec N)) (- n N) n)))]
             
   (let [obut (.createElement js/document "button")]
     (set! (.-innerHTML obut) "Toggle orbit")
@@ -133,5 +144,25 @@
     (.prepend (.querySelector js/document ".cesium-viewer-toolbar") obut)
     (set! (.-onclick obut)
       (fn []
-        (println :OB))))))
+        (condp = (@ORBIT :status)
+          :init
+          (vswap! ORBIT assoc :status :stop)
+          :stop
+          (let [steps (@ORBIT :steps)
+                 radm (@ORBIT :radius-m)
+                 radr (* (/ radm 1852 60 180) js/Math.PI)
+                 [lam phi hgt :as look] (look-at camera radm)
+                 [azs pts] (azimuths&points [lam phi] radr hgt steps)
+                 ring (vec (map #(js/Cesium.Cartesian3.fromRadians (first %) (second %) (nth % 2)) pts))
+                 headings (vec (map #(normaz (+ % js/Math.PI)) azs))
+                 begin (next (.-heading camera) azs)]
+            (vswap! ORBIT assoc :ring ring
+                                             :headings headings
+                                             :center (js/Cesium.Cartesian3.fromRadians lam phi hgt)
+                                             :next begin
+                                             :status :run)
+            (fly-one camera begin))
+          :run
+          (do (.cancelFlight camera)
+            (vswap! ORBIT assoc :status :stop))))))))
 

@@ -1,4 +1,4 @@
-; Fri Apr 24 22:20:59 MSK 2020
+; Sun Apr 26 19:40:35 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,21 +20,21 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumBase_ProjectKB_Class411]
-		[CesiumBase_ProjectKB_Class412]
-		[CesiumBase_ProjectKB_Class413]))
+		[CesiumBase_ProjectKB_Class438]
+		[CesiumBase_ProjectKB_Class439]
+		[CesiumBase_ProjectKB_Class440]))
 
-([CesiumBase_ProjectKB_Class411] of  String
+([CesiumBase_ProjectKB_Class438] of  String
 
 	(name "CesiumServer")
 	(string_value "port{+}page"))
 
-([CesiumBase_ProjectKB_Class412] of  String
+([CesiumBase_ProjectKB_Class439] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumBase_ProjectKB_Class413] of  String
+([CesiumBase_ProjectKB_Class440] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
@@ -206,6 +206,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_115202_Class392] of  Map
+
+	(entries
+		[KB_115202_Class393]
+		[KB_115202_Class394]
+		[KB_115202_Class395]))
+
+([KB_115202_Class393] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_115202_Class394] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_115202_Class395] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_851107_Class0] of  String
 
 	(name "factory_class_name")
@@ -305,34 +333,6 @@
 
 	(name "instances_file_name")
 	(string_value "CesiumBase.pins"))
-
-([KB_858186_Class392] of  Map
-
-	(entries
-		[KB_858186_Class393]
-		[KB_858186_Class394]
-		[KB_858186_Class395]))
-
-([KB_858186_Class393] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_858186_Class394] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_858186_Class395] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

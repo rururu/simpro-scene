@@ -20,9 +20,10 @@
      CZML-URL
      CZML-DEBUG]]))
 (defn init-client []
-  (camera-home CAMERA HOME-VIEW)
+  (add-terrain nil VIEWER)
+(camera-home CAMERA HOME-VIEW)
 (start-czml-processing CZML-URL VIEWER)
-(add-orbit-button))
+(add-orbit-button CAMERA))
 
 
 (enable-console-print!)
