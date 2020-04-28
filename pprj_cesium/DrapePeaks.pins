@@ -1,0 +1,189 @@
+; Tue Apr 28 22:43:05 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([DrapePeaks_Class0] of  ClsMain
+
+	(asset-path "js/drape")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions [DrapePeaks_Class2])
+	(cloNamespace [DrapePeaks_Class1])
+	(compiler-options "{:verbose false}")
+	(css [CesiumBase_Class10012])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-drape))")
+	(html [DrapePeaks_Class3])
+	(output-dir "resources/public/js/drape")
+	(output-to "resources/public/js/drape.js")
+	(required [CesiumBase_Class0])
+	(store-in "src/cljs/drape")
+	(title "Drape Client"))
+
+([DrapePeaks_Class1] of  CloNamespace
+
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-czml-processing\n     add-orbit-button\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     CZML-DEBUG\n     CZML-URL]])")
+	(title "cesium.drape"))
+
+([DrapePeaks_Class10000] of  CloFunction
+
+	(source "(let [[lat lon] (if (and (vector lat) (vector lon))\n                       [(degminsec-to-deg lat) (degminsec-to-deg lon)]\n                       [lat lon])]\n  [(- lon deviation) (- lat deviation) (+ lon deviation) (+ lat deviation)])")
+	(title "calculate-wsen [[lat lon] deviation]"))
+
+([DrapePeaks_Class2] of  CloFunction
+
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button CAMERA)")
+	(title "init-drape []"))
+
+([DrapePeaks_Class20000] of  CloProgram
+
+	(cloFunctions
+		[DrapePeaks_Class20002]
+		[DrapePeaks_Class10000]
+		[DrapePeaks_Class40028])
+	(cloNamespace [DrapePeaks_Class20001])
+	(title "Drape Server"))
+
+([DrapePeaks_Class20001] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all]\n  [czml.generator :refer :all])")
+	(title "cesium.drape"))
+
+([DrapePeaks_Class20002] of  CloFunction
+
+	(source "(+ deg (/ min 60) (/ sec 60 60))")
+	(title "degminsec-to-deg [[deg min sec]]"))
+
+([DrapePeaks_Class3] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Drape Peaks</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/drape.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public")
+	(title "drape"))
+
+([DrapePeaks_Class30000] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/ch_flag.png\" (cesium.drape/calculate-wsen [[27 59 17] [86 55 31]] 0.01)128))"))
+
+([DrapePeaks_Class30001] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/np_flag.png\" (cesium.drape/calculate-wsen [[27 59 17] [86 55 31]] 0.01)128))"))
+
+([DrapePeaks_Class4] of  CesiumServer
+
+	(butt-start-cs-server "Start/cesium.server/start-server")
+	(butt-stop-cs-server "Stop/cesium.server/stop-server")
+	(page "drape.html")
+	(port 4448))
+
+([DrapePeaks_Class40000] of  Selector
+
+	(but-drape "Drape Peak/cesium.drape/drape-peak")
+	(flag [DrapePeaks_Class40034])
+	(peak [DrapePeaks_Class40008])
+	(transparency 0.5))
+
+([DrapePeaks_Class40007] of  Peak
+
+	(latitude "[27 59 17]")
+	(longitude "[86 55 31]")
+	(title "Everest"))
+
+([DrapePeaks_Class40008] of  Peak
+
+	(latitude "[45 58 35]")
+	(longitude "[7 39 31]")
+	(title "Matterhorn"))
+
+([DrapePeaks_Class40009] of  Peak
+
+	(latitude "[35 21 29]")
+	(longitude "[138 43 52]")
+	(title "Fuji"))
+
+([DrapePeaks_Class40010] of  Peak
+
+	(latitude "[56 3 22]")
+	(longitude "[160 38 39]")
+	(title "Klyuchevskaya Sopka"))
+
+([DrapePeaks_Class40011] of  Peak
+
+	(latitude "[3 4 33]")
+	(longitude "[37 21 12]")
+	(title "Kilimanjaro"))
+
+([DrapePeaks_Class40012] of  Peak
+
+	(latitude "[43 21 18]")
+	(longitude "[42 26 21]")
+	(title "Elbrus"))
+
+([DrapePeaks_Class40013] of  Peak
+
+	(latitude "[19 1 48]")
+	(longitude "[-97 -16 -12]")
+	(title "Pico de Orizaba"))
+
+([DrapePeaks_Class40016] of  Flag
+
+	(country "China")
+	(source "data/flags/ch_flag.png"))
+
+([DrapePeaks_Class40017] of  Flag
+
+	(country "Nepal")
+	(source "data/flags/np_flag.png"))
+
+([DrapePeaks_Class40018] of  Flag
+
+	(country "USA")
+	(source "data/flags/us_flag.png"))
+
+([DrapePeaks_Class40019] of  Flag
+
+	(country "Russia")
+	(source "data/flags/ru_flag.png"))
+
+([DrapePeaks_Class40020] of  Flag
+
+	(country "Great Britain")
+	(source "data/flags/ch_flag.png"))
+
+([DrapePeaks_Class40021] of  Flag
+
+	(country "Mexico")
+	(source "data/flags/mx_flag.png"))
+
+([DrapePeaks_Class40022] of  Flag
+
+	(country "Cesium")
+	(source "data/flags/cs_flag.png"))
+
+([DrapePeaks_Class40023] of  Flag
+
+	(country "Tanzania")
+	(source "data/flags/tz_flag.png"))
+
+([DrapePeaks_Class40024] of  Flag
+
+	(country "Japan")
+	(source "data/flags/jp_flag.png"))
+
+([DrapePeaks_Class40025] of  Flag
+
+	(country "Finland")
+	(source "data/flags/fi_flag.jpg"))
+
+([DrapePeaks_Class40028] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       peak (mp \"peak\")\n       flag (mp \"flag\")\n       trans (mp \"transparency\")\n       trans (int (* trans 255))]\n  (send-czml \n    (add-image \"flag\"\n      (sv flag \"source\")\n      (calculate-wsen \n        [(read-string (sv peak \"latitude\"))\n         (read-string (sv peak \"longitude\"))]\n        0.01) \n      trans)))")
+	(title "drape-peak [hm inst]"))
+
+([DrapePeaks_Class40033] of  Flag
+
+	(country "Switzerland")
+	(source "data/flags/sw_flag.png"))
+
+([DrapePeaks_Class40034] of  Flag
+
+	(country "Italy")
+	(source "data/flags/it_flag.jpg"))

@@ -1,4 +1,4 @@
-; Tue Apr 28 11:38:37 MSK 2020
+; Tue Apr 28 22:43:05 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,149 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumBase_ProjectKB_Class10401]
-		[CesiumBase_ProjectKB_Class10402]
-		[CesiumBase_ProjectKB_Class10403]))
-
-([CesiumBase_ProjectKB_Class10401] of  String
-
-	(name "CesiumServer")
-	(string_value "port{+}page"))
-
-([CesiumBase_ProjectKB_Class10402] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([CesiumBase_ProjectKB_Class10403] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([CesiumServer_ProjectKB_Class10403] of  Widget
-
-	(is_hidden FALSE)
-	(name "CesiumServer")
-	(property_list [CesiumServer_ProjectKB_Class10404])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([CesiumServer_ProjectKB_Class10404] of  Property_List
-
-	(properties
-		[CesiumServer_ProjectKB_Class10405]
-		[CesiumServer_ProjectKB_Class10406]
-		[CesiumServer_ProjectKB_Class10408]
-		[CesiumServer_ProjectKB_Class10410]
-		[CesiumServer_ProjectKB_Class10412]))
-
-([CesiumServer_ProjectKB_Class10405] of  Property_List
-
-	(name "layout properties"))
-
-([CesiumServer_ProjectKB_Class10406] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "butt-stop-cs-server")
-	(property_list [CesiumServer_ProjectKB_Class10407])
-	(widget_class_name "clojuretab.ClojureActionButton")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([CesiumServer_ProjectKB_Class10407] of  Property_List
-)
-
-([CesiumServer_ProjectKB_Class10408] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "butt-start-cs-server")
-	(property_list [CesiumServer_ProjectKB_Class10409])
-	(widget_class_name "clojuretab.ClojureActionButton")
-	(width 200)
-	(x 0)
-	(y 120))
-
-([CesiumServer_ProjectKB_Class10409] of  Property_List
-)
-
-([CesiumServer_ProjectKB_Class10410] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "page")
-	(property_list [CesiumServer_ProjectKB_Class10411])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([CesiumServer_ProjectKB_Class10411] of  Property_List
-)
-
-([CesiumServer_ProjectKB_Class10412] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "port")
-	(property_list [CesiumServer_ProjectKB_Class10413])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([CesiumServer_ProjectKB_Class10413] of  Property_List
-)
-
-([CesiumWorshop_ProjectKB_Class37] of  String
-
-	(name "SearchTab_Query"))
-
-([CesiumWorshop_ProjectKB_Class396] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [CesiumWorshop_ProjectKB_Class397])
-	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
-
-([CesiumWorshop_ProjectKB_Class397] of  Property_List
-)
-
-([CesiumWorshop_ProjectKB_Class398] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [CesiumWorshop_ProjectKB_Class399])
-	(widget_class_name "ru.igis.omtab.OpenMapTab"))
-
-([CesiumWorshop_ProjectKB_Class399] of  Property_List
-)
-
-([CesiumWorshop_ProjectKB_Class400] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [CesiumWorshop_ProjectKB_Class401])
-	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
-
-([CesiumWorshop_ProjectKB_Class401] of  Property_List
-)
-
-([CesiumWorshop_ProjectKB_Class402] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [CesiumWorshop_ProjectKB_Class403])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
-([CesiumWorshop_ProjectKB_Class403] of  Property_List
-)
-
-([CesiumWorshop_ProjectKB_Class404] of  Widget
-
-	(is_hidden FALSE)
-	(property_list [CesiumWorshop_ProjectKB_Class405])
-	(widget_class_name "clojuretab.ClojureTab"))
-
-([CesiumWorshop_ProjectKB_Class405] of  Property_List
-)
+		[DrapePeaks_ProjectKB_Class20476]
+		[DrapePeaks_ProjectKB_Class20477]
+		[DrapePeaks_ProjectKB_Class20478]))
 
 ([CLSES_TAB] of  Widget
 
@@ -176,6 +36,233 @@
 ([CREATOR_WIDGET] of  Widget
 
 	(name ":CREATOR"))
+
+([DrapePeaks_ProjectKB_Class10476] of  Widget
+
+	(is_hidden FALSE)
+	(name "Peak")
+	(property_list [DrapePeaks_ProjectKB_Class10477])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([DrapePeaks_ProjectKB_Class10477] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class10478]
+		[DrapePeaks_ProjectKB_Class10479]
+		[DrapePeaks_ProjectKB_Class10481]
+		[DrapePeaks_ProjectKB_Class10483]))
+
+([DrapePeaks_ProjectKB_Class10478] of  Property_List
+
+	(name "layout properties"))
+
+([DrapePeaks_ProjectKB_Class10479] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [DrapePeaks_ProjectKB_Class10480])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([DrapePeaks_ProjectKB_Class10480] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class10481] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "longitude")
+	(property_list [DrapePeaks_ProjectKB_Class10482])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([DrapePeaks_ProjectKB_Class10482] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class10483] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "latitude")
+	(property_list [DrapePeaks_ProjectKB_Class10484])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([DrapePeaks_ProjectKB_Class10484] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class10485] of  Widget
+
+	(is_hidden FALSE)
+	(name "Selector")
+	(property_list [DrapePeaks_ProjectKB_Class10486])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([DrapePeaks_ProjectKB_Class10486] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class10487]
+		[DrapePeaks_ProjectKB_Class10488]
+		[DrapePeaks_ProjectKB_Class10509]
+		[DrapePeaks_ProjectKB_Class10515]
+		[DrapePeaks_ProjectKB_Class10517]))
+
+([DrapePeaks_ProjectKB_Class10487] of  Property_List
+
+	(name "layout properties"))
+
+([DrapePeaks_ProjectKB_Class10488] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "peak")
+	(property_list [DrapePeaks_ProjectKB_Class10489])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([DrapePeaks_ProjectKB_Class10489] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class10490]
+		[DrapePeaks_ProjectKB_Class10491]))
+
+([DrapePeaks_ProjectKB_Class10490] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([DrapePeaks_ProjectKB_Class10491] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([DrapePeaks_ProjectKB_Class10509] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "flag")
+	(property_list [DrapePeaks_ProjectKB_Class10510])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([DrapePeaks_ProjectKB_Class10510] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class10511]
+		[DrapePeaks_ProjectKB_Class10512]))
+
+([DrapePeaks_ProjectKB_Class10511] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([DrapePeaks_ProjectKB_Class10512] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([DrapePeaks_ProjectKB_Class10515] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "transparency")
+	(property_list [DrapePeaks_ProjectKB_Class10516])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([DrapePeaks_ProjectKB_Class10516] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class10517] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-drape")
+	(property_list [DrapePeaks_ProjectKB_Class10518])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([DrapePeaks_ProjectKB_Class10518] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class20476] of  String
+
+	(name "Selector")
+	(string_value "{Peak+selector}"))
+
+([DrapePeaks_ProjectKB_Class20477] of  String
+
+	(name "Peak")
+	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class20478] of  String
+
+	(name "Flag")
+	(string_value "country"))
+
+([DrapePeaks_ProjectKB_Class37] of  String
+
+	(name "SearchTab_Query"))
+
+([DrapePeaks_ProjectKB_Class476] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [DrapePeaks_ProjectKB_Class477])
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
+
+([DrapePeaks_ProjectKB_Class477] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class478] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [DrapePeaks_ProjectKB_Class479])
+	(widget_class_name "ru.igis.omtab.OpenMapTab"))
+
+([DrapePeaks_ProjectKB_Class479] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class480] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [DrapePeaks_ProjectKB_Class481])
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
+
+([DrapePeaks_ProjectKB_Class481] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class482] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [DrapePeaks_ProjectKB_Class483])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
+([DrapePeaks_ProjectKB_Class483] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class484] of  Widget
+
+	(is_hidden FALSE)
+	(property_list [DrapePeaks_ProjectKB_Class485])
+	(widget_class_name "clojuretab.ClojureTab"))
+
+([DrapePeaks_ProjectKB_Class485] of  Property_List
+)
 
 ([FORMS_TAB] of  Widget
 
@@ -206,133 +293,133 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_575218_Class392] of  Map
+([KB_305706_Class0] of  String
+
+	(name "factory_class_name")
+	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
+
+([KB_305706_Class1] of  Map
+)
+
+([KB_305706_Class13] of  Property_List
+
+	(properties
+		[KB_305706_Class14]
+		[KB_305706_Class15]))
+
+([KB_305706_Class14] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([KB_305706_Class15] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([KB_305706_Class16] of  Property_List
+)
+
+([KB_305706_Class17] of  Property_List
+)
+
+([KB_305706_Class18] of  Property_List
+
+	(properties
+		[KB_305706_Class19]
+		[KB_305706_Class20]))
+
+([KB_305706_Class19] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Move up"))
+
+([KB_305706_Class20] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Move down"))
+
+([KB_305706_Class21] of  Property_List
+)
+
+([KB_305706_Class22] of  Property_List
+
+	(name "layout properties"))
+
+([KB_305706_Class23] of  Property_List
+)
+
+([KB_305706_Class24] of  Property_List
+)
+
+([KB_305706_Class25] of  Property_List
+)
+
+([KB_305706_Class26] of  Property_List
+)
+
+([KB_305706_Class27] of  Property_List
+)
+
+([KB_305706_Class28] of  Property_List
+)
+
+([KB_305706_Class29] of  Property_List
+)
+
+([KB_305706_Class30] of  Property_List
+)
+
+([KB_305706_Class31] of  Property_List
+)
+
+([KB_305706_Class32] of  Property_List
+)
+
+([KB_305706_Class33] of  Property_List
+)
+
+([KB_305706_Class34] of  Property_List
+
+	(properties [DrapePeaks_ProjectKB_Class37]))
+
+([KB_305706_Class35] of  String
+
+	(name "classes_file_name")
+	(string_value "DrapePeaks.pont"))
+
+([KB_305706_Class36] of  String
+
+	(name "instances_file_name")
+	(string_value "DrapePeaks.pins"))
+
+([KB_506416_Class472] of  Map
 
 	(entries
-		[KB_575218_Class393]
-		[KB_575218_Class394]
-		[KB_575218_Class395]))
+		[KB_506416_Class473]
+		[KB_506416_Class474]
+		[KB_506416_Class475]))
 
-([KB_575218_Class393] of  Map_Entry
+([KB_506416_Class473] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_575218_Class394] of  Map_Entry
+([KB_506416_Class474] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_575218_Class395] of  Map_Entry
+([KB_506416_Class475] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([KB_851107_Class0] of  String
-
-	(name "factory_class_name")
-	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
-
-([KB_851107_Class1] of  Map
-)
-
-([KB_851107_Class13] of  Property_List
-
-	(properties
-		[KB_851107_Class14]
-		[KB_851107_Class15]))
-
-([KB_851107_Class14] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([KB_851107_Class15] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_851107_Class16] of  Property_List
-)
-
-([KB_851107_Class17] of  Property_List
-)
-
-([KB_851107_Class18] of  Property_List
-
-	(properties
-		[KB_851107_Class19]
-		[KB_851107_Class20]))
-
-([KB_851107_Class19] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Move up"))
-
-([KB_851107_Class20] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Move down"))
-
-([KB_851107_Class21] of  Property_List
-)
-
-([KB_851107_Class22] of  Property_List
-
-	(name "layout properties"))
-
-([KB_851107_Class23] of  Property_List
-)
-
-([KB_851107_Class24] of  Property_List
-)
-
-([KB_851107_Class25] of  Property_List
-)
-
-([KB_851107_Class26] of  Property_List
-)
-
-([KB_851107_Class27] of  Property_List
-)
-
-([KB_851107_Class28] of  Property_List
-)
-
-([KB_851107_Class29] of  Property_List
-)
-
-([KB_851107_Class30] of  Property_List
-)
-
-([KB_851107_Class31] of  Property_List
-)
-
-([KB_851107_Class32] of  Property_List
-)
-
-([KB_851107_Class33] of  Property_List
-)
-
-([KB_851107_Class34] of  Property_List
-
-	(properties [CesiumWorshop_ProjectKB_Class37]))
-
-([KB_851107_Class35] of  String
-
-	(name "classes_file_name")
-	(string_value "CesiumBase.pont"))
-
-([KB_851107_Class36] of  String
-
-	(name "instances_file_name")
-	(string_value "CesiumBase.pins"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -418,8 +505,9 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
-		[CesiumServer_ProjectKB_Class10403]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[DrapePeaks_ProjectKB_Class10485]
+		[DrapePeaks_ProjectKB_Class10476]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET])
@@ -427,11 +515,11 @@
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "../pprj_base/Clojure.pprj")
+	(included_projects "CesiumBase.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
-	(property_map [KB_851107_Class1])
+	(property_map [KB_305706_Class1])
 	(sources [SOURCES])
 	(tabs
 		[CLSES_TAB]
@@ -439,16 +527,16 @@
 		[FORMS_TAB]
 		[INSTANCES_TAB]
 		[QUERIES_TAB]
-		[CesiumWorshop_ProjectKB_Class404]
-		[CesiumWorshop_ProjectKB_Class396]
-		[CesiumWorshop_ProjectKB_Class400]
-		[CesiumWorshop_ProjectKB_Class398]
-		[CesiumWorshop_ProjectKB_Class402]))
+		[DrapePeaks_ProjectKB_Class484]
+		[DrapePeaks_ProjectKB_Class476]
+		[DrapePeaks_ProjectKB_Class480]
+		[DrapePeaks_ProjectKB_Class478]
+		[DrapePeaks_ProjectKB_Class482]))
 
 ([QUERIES_TAB] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [KB_851107_Class34])
+	(property_list [KB_305706_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
 
 ([SLOTS_TAB] of  Widget
@@ -459,16 +547,16 @@
 ([SOURCES] of  Property_List
 
 	(properties
-		[KB_851107_Class0]
-		[KB_851107_Class35]
-		[KB_851107_Class36]))
+		[KB_305706_Class0]
+		[KB_305706_Class35]
+		[KB_305706_Class36]))
 
 ([STANDARD_CLASS_CONSTRAINTS_WIDGET] of  Widget
 
 	(height 120)
 	(label "Constraints")
 	(name ":SLOT-CONSTRAINTS")
-	(property_list [KB_851107_Class13])
+	(property_list [KB_305706_Class13])
 	(widget_class_name "edu.stanford.smi.protege.widget.ConstraintsWidget")
 	(width 200)
 	(x 400)
@@ -495,7 +583,7 @@
 	(height 120)
 	(label "Documentation")
 	(name ":DOCUMENTATION")
-	(property_list [KB_851107_Class16])
+	(property_list [KB_305706_Class16])
 	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
 	(width 200)
 	(x 200)
@@ -512,7 +600,7 @@
 	(height 60)
 	(label "Name")
 	(name ":NAME")
-	(property_list [KB_851107_Class17])
+	(property_list [KB_305706_Class17])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
 	(width 200)
 	(x 0)
@@ -523,7 +611,7 @@
 	(height 60)
 	(label "Role")
 	(name ":ROLE")
-	(property_list [KB_851107_Class21])
+	(property_list [KB_305706_Class21])
 	(widget_class_name "edu.stanford.smi.protege.widget.RoleWidget")
 	(width 200)
 	(x 0)
@@ -534,7 +622,7 @@
 	(height 150)
 	(label "Template Slots")
 	(name ":DIRECT-TEMPLATE-SLOTS")
-	(property_list [KB_851107_Class18])
+	(property_list [KB_305706_Class18])
 	(widget_class_name "edu.stanford.smi.protege.widget.TemplateSlotsWidget")
 	(width 600)
 	(x 0)
@@ -612,7 +700,7 @@
 	(height 90)
 	(label "Default")
 	(name ":SLOT-DEFAULTS")
-	(property_list [KB_851107_Class25])
+	(property_list [KB_305706_Class25])
 	(widget_class_name "edu.stanford.smi.protege.widget.DefaultValuesWidget")
 	(width 200)
 	(x 400)
@@ -623,7 +711,7 @@
 	(height 95)
 	(label "Domain")
 	(name ":DIRECT-DOMAIN")
-	(property_list [KB_851107_Class23])
+	(property_list [KB_305706_Class23])
 	(widget_class_name "edu.stanford.smi.protege.widget.DirectDomainWidget")
 	(width 200)
 	(x 400)
@@ -638,7 +726,7 @@
 	(height 120)
 	(label "Documentation")
 	(name ":DOCUMENTATION")
-	(property_list [KB_851107_Class26])
+	(property_list [KB_305706_Class26])
 	(widget_class_name "edu.stanford.smi.protege.widget.DocumentationWidget")
 	(width 200)
 	(x 200)
@@ -655,7 +743,7 @@
 	(height 60)
 	(label "Inverse Slot")
 	(name ":SLOT-INVERSE")
-	(property_list [KB_851107_Class32])
+	(property_list [KB_305706_Class32])
 	(widget_class_name "edu.stanford.smi.protege.widget.InverseSlotWidget")
 	(width 200)
 	(x 200)
@@ -665,7 +753,7 @@
 
 	(height 35)
 	(name ":SLOT-MAXIMUM-CARDINALITY")
-	(property_list [KB_851107_Class31])
+	(property_list [KB_305706_Class31])
 	(widget_class_name "edu.stanford.smi.protege.widget.MaximumCardinalityWidget")
 	(width 200)
 	(x 200)
@@ -676,7 +764,7 @@
 	(height 60)
 	(label "Maximum")
 	(name ":SLOT-NUMERIC-MAXIMUM")
-	(property_list [KB_851107_Class27])
+	(property_list [KB_305706_Class27])
 	(widget_class_name "edu.stanford.smi.protege.widget.NumericMaximumWidget")
 	(width 100)
 	(x 100)
@@ -687,7 +775,7 @@
 	(height 60)
 	(label "Cardinality")
 	(name ":SLOT-MINIMUM-CARDINALITY")
-	(property_list [KB_851107_Class30])
+	(property_list [KB_305706_Class30])
 	(widget_class_name "edu.stanford.smi.protege.widget.MinimumCardinalityWidget")
 	(width 200)
 	(x 200)
@@ -698,7 +786,7 @@
 	(height 60)
 	(label "Minimum")
 	(name ":SLOT-NUMERIC-MINIMUM")
-	(property_list [KB_851107_Class28])
+	(property_list [KB_305706_Class28])
 	(widget_class_name "edu.stanford.smi.protege.widget.NumericMinimumWidget")
 	(width 100)
 	(x 0)
@@ -709,7 +797,7 @@
 	(height 60)
 	(label "Name")
 	(name ":NAME")
-	(property_list [KB_851107_Class29])
+	(property_list [KB_305706_Class29])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceNameWidget")
 	(width 200)
 	(x 0)
@@ -728,7 +816,7 @@
 	(height 155)
 	(label "Value Type")
 	(name ":SLOT-VALUE-TYPE")
-	(property_list [KB_851107_Class33])
+	(property_list [KB_305706_Class33])
 	(widget_class_name "edu.stanford.smi.protege.widget.ValueTypeWidget")
 	(width 200)
 	(x 0)
@@ -739,7 +827,7 @@
 	(height 90)
 	(label "Template Values")
 	(name ":SLOT-VALUES")
-	(property_list [KB_851107_Class24])
+	(property_list [KB_305706_Class24])
 	(widget_class_name "edu.stanford.smi.protege.widget.SlotValuesWidget")
 	(width 200)
 	(x 400)
@@ -765,7 +853,7 @@
 		[STANDARD_SLOT_NAME_WIDGET]
 		[STANDARD_SLOT_INVERSE_WIDGET]
 		[STANDARD_SLOT_TYPE_WIDGET]
-		[KB_851107_Class22]))
+		[KB_305706_Class22]))
 
 ([VERTICAL_STRETCHER] of  String
 

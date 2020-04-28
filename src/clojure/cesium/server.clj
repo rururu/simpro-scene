@@ -5,7 +5,7 @@
               [compojure.handler :as handler]
               [compojure.route :as route]
               [clojure.core.async :refer [chan alts!! put!]]
-              [czml.generator]))
+              [czml.generator :refer :all]))
 (def PORT 4442)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def PAGE "test.html")
