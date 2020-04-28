@@ -71,7 +71,7 @@ See examples.
 25. [MAS Lesson 3. GeoMASON. WaterWorld](https://youtu.be/5qlE8I2V6FU)
 26. [MAS. GeoMASON. Hiitolanjoki project](https://youtu.be/Snd3VKUevNg)
 27. [Cesium Lesson 1. Cesium Workshop](https://www.youtube.com/watch?v=FOlSx6Mg-V0)
-28. [Cesium Lesson 1. Drape Peaks](https://youtu.be/G4-4ByOJpSE)
+28. [Cesium Lesson 2. Drape Peaks](https://youtu.be/G4-4ByOJpSE)
 
 TO BE CONTINUED
 
