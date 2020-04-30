@@ -7,11 +7,14 @@
   ru.igis.omtab.gui.RuMapMouseAdapter
   ru.igis.omtab.MapOb
   ru.igis.omtab.NavOb
+  ru.oogis.kml.Base64
   com.bbn.openmap.omGraphics.grid.OMGridData
   com.bbn.openmap.omGraphics.grid.OMGridData$Int
   com.bbn.openmap.omGraphics.grid.OMGridData$Double
   com.bbn.openmap.omGraphics.OMGrid
   com.bbn.openmap.omGraphics.OMRaster
+  com.bbn.openmap.omGraphics.OMPoint
+  Acme.JPM.Encoders.GifEncoder
   edu.stanford.smi.protege.ui.DisplayUtilities
   edu.stanford.smi.protege.model.Instance
   java.awt.Color
@@ -21,7 +24,9 @@
 (:require  [incanter.core :as i]
   [incanter.charts :as c]
   [incanter.interpolation :as ii]
-  [plot.3d :as p3d]))
+  [plot.3d :as p3d]
+  [async.proc :as asp]
+  [cesium.core :as cs]))
 (def defonceMAS (defonce MAS nil))
 (def CONSOLE nil)
 (def MAPBEAN nil)
@@ -31,7 +36,11 @@
 (def INTER nil)
 (def HEATMAP nil)
 (def MINH false)
-(def WIN3D nil)
+(def MODRIVEN (volatile! {}))
+(def D-WIDTH 1200)
+(def CS-DISTAT (volatile! "START"))
+(def OM-DISTAT (volatile! "START"))
+(def SEND-HMCZ-N 1)
 (defn set-onclick [fun]
   (let [pg0 (first (OMT/getPlaygrounds))
        rumma (proxy [RuMapMouseAdapter] []
@@ -54,6 +63,9 @@
               az)
        crs (Math/toDegrees az)] 
   (int crs)))
+
+(defn rs-speed [rs]
+  (* (Math/toDegrees rs) 60 3600))
 
 (defn move-extend-region [pi w h mo [lat lon]]
   (if-let [p (OMT/getMapOb pi)]
@@ -132,11 +144,11 @@
 ([w s e n]
   [(- e w) (- n s)]))
 
-(defn forces-prop [inss attr]
-  (to-vec-str (map #(sv % attr) inss)))
+(defn sval-list [inss slt]
+  (to-vec-str (map #(sv % slt) inss)))
 
-(defn forces-num-prop [inss attr]
-  (let [lst (map #(count (svs % attr)) inss)]
+(defn sval-num [inss slt]
+  (let [lst (map #(count (svs % slt)) inss)]
   (if (seq lst)
     (to-vec-str lst)
     "0")))
@@ -171,45 +183,89 @@
        mb (OpenMapTab/getMapBean)]
   (.setCenter mb lat lon)))
 
-(defn open-mas [hm inst]
+(defn initial-assert [tgt are rts frs]
+  (ru.rules/assert-instances (vec (concat [tgt] [are] rts frs))))
+
+(defn distrib-course [ins]
+  (let [pv (condp = (typ ins)
+              "НормальноеКурса" ['N1 (sv ins "meanC") (sv ins "standardDeviationC")]
+              "РавномерноеКурса" ['U1 (sv ins "cmin") (sv ins "cmax")]
+              nil)]
+  (if pv
+    (to-vec-str pv))))
+
+(defn distrib-speed [ins]
+  (let [pv (condp = (typ ins)
+              "НормальноеСкорости" ['N1 (sv ins "meanS") (sv ins "standardDeviationS")]
+              "РавномерноеСкорости" ['U1 (sv ins "smin") (sv ins "smax")]
+              nil)]
+  (if pv
+    (to-vec-str pv))))
+
+(defn points-rad [poli]
+  (letfn [(philam [pnt]
+             (let [[n1 n2 n3 n4] (.split pnt " ")
+                     lat (MapOb/getDeg (str n1 " " n2)) 
+                     lon (MapOb/getDeg (str n3 " " n4))]
+               [(Math/toRadians lat) (Math/toRadians lon)]))]
+  (println :POLI poli)
+  (if poli
+    (flatten (map philam (svs poli "points"))))))
+
+(defn params [prs]
+  [(map #(sv % "сила") prs)
+ (map #(sv % "цель") prs)
+ (map #(sv (sv % "сила") "маршрут") prs)
+ (map #(sv % "скорость_поиска") prs)
+ (map #(sv % "дистанция_обнаружения") prs)
+ (map #(sv % "скорость_уклонения") prs)
+ (map #(sv % "дистанция_уклонения") prs)])
+
+(defn open-mas
+  ([hm inst]
   (let [mp (into {} hm)
-       run (mp "run-instance")
-       are (mp "район")
-       rts (mp "маршруты")
-       frs (mp "силы_поиска")
-       tgt (mp "цель")
-       cln (mp "ячеек")
-       agn (mp "агентов")
-       pxn (mp "высота_окна")
-       dis (mp "распределение")
-       [w s e n] (bbx (sv are "poly"))
-       p (Properties.)]
-  (println pxn)
-  (.setProperty p "cells" (str cln))
-  (.setProperty p "south" (str s))
-  (.setProperty p "west" (str w))
-  (.setProperty p "width" (str (- e w)))
-  (.setProperty p "height" (str (- n s)))
-  (.setProperty p "aNumber" (str agn))
-  (.setProperty p "rNumber" (str (count rts)))
-  (.setProperty p "aSpeed" (str (sv tgt "speed")))
-  (.setProperty p "eSpeed" (to-vec-str (svs tgt "e-speed")))
-  (.setProperty p "suSpeed" (forces-prop frs "speed")) 
-  (.setProperty p "suDist" (forces-prop frs "distance")) 
-  (.setProperty p "suNames" (.replaceAll (forces-prop frs "title") "\"" ""))
-  (.setProperty p "suNumbers" (forces-num-prop frs "mapob"))
-  (.setProperty p "aDistrib" (distrib-prop dis))
-  (.setProperty p "tTime" (str (sv tgt "t-time")))
-  (.setProperty p "pixelsV" (str pxn))
-  (set-routes-props p "routeLats" "routeLons" rts)
-  (println :Properties)
-  (println p)
-  (ru.rules/run-engine run)
-  (sim/start-sim)
-  (def  MAS (ru.igis.sim.AgentsWithGUI. p))
-  (def CONSOLE (sim.display.Console. MAS))
-  (.setVisible CONSOLE true)
-  (set-map-center w s e n)))
+         run (mp "run-instance")
+         are (mp "район")
+         tgt (mp "цель")
+         [frs tgs rts sss dds ess tds] (params (selection mp "силы_на_маршрутах"))
+         cln (mp "ячеек")
+         agn (mp "агентов")
+         dis (mp "распределение")
+         bnd (mp "граница")
+         [w s e n] (bbx (sv are "poly"))]
+    (open-mas inst run are tgt frs rts sss dds ess tds cln agn dis bnd [w s e n])))
+([mod run are tgt frs rts sss dds ess tds cln agn dis bnd [w s e n]]
+  (let [p (Properties.)]
+    (.setProperty p "cells" (str cln))
+    (.setProperty p "south" (str s))
+    (.setProperty p "west" (str w))
+    (.setProperty p "width" (str (- e w)))
+    (.setProperty p "height" (str (- n s)))
+    (.setProperty p "aNumber" (str agn))
+    (.setProperty p "rNumber" (str (count rts)))
+    (.setProperty p "eSpeed" (to-vec-str ess))
+    (.setProperty p "suSpeed" (to-vec-str sss)) 
+    (.setProperty p "suDist" (to-vec-str dds)) 
+    (.setProperty p "tDist" (to-vec-str tds)) 
+    (.setProperty p "suNames" (.replaceAll (sval-list frs "title") "\"" ""))
+    (.setProperty p "suNumbers" (sval-num frs "mapob"))
+    (.setProperty p "aDistrib" (distrib-prop dis))
+    (.setProperty p "dDistrib" (distrib-course (sv tgt "course-distro")))
+    (.setProperty p "sDistrib" (distrib-speed (sv tgt "speed-distro")))
+    (.setProperty p "boundary" (to-vec-str (points-rad bnd)))
+    (.setProperty p "tTime" (str (sv tgt "t-time")))
+    (.setProperty p "dWidth" (str D-WIDTH))
+    (set-routes-props p "routeLats" "routeLons" rts)
+    (println :Properties)
+    (doseq [pi p]
+      (println pi))
+    (ru.rules/run-engine run)
+    (initial-assert tgt are rts frs)
+    (sim/start-sim)
+    (def  MAS (ru.igis.sim.AgentsWithGUI. p))
+    (def CONSOLE (sim.display.Console. MAS))
+    (.setVisible CONSOLE true)
+    (set-map-center w s e n))))
 
 (defn connect-mas [hm inst]
   (def MAS ru.igis.sim.AgentsWithGUI/awg))
@@ -297,49 +353,45 @@
       (.add lis idx omg)
       (.manageGraphics pg1)))))
 
-(defn heatmap
-  ([b alpha view]
-  (let [ats (.getAgents mas.util/MAS)
-         adh (.getAgentsDistroForHeatmap ats)
-         vals (.get adh "adist")
-         lons (.get adh "xx")
-         lats  (.get adh "yy")
-         rtag (.-realTaget ats)
-         rtag (list (Math/toDegrees (.getPhi rtag)) (Math/toDegrees (.getLambda rtag)))
-         sus (map #(list (Math/toDegrees (.getPhi %)) (Math/toDegrees (.getLambda %))) Agents/sus)
-         sus (cons rtag sus)
-         ;;rou (.-route ats)
-         ;;rxs (map #(Math/toDegrees %) (.-lambdas rou))
-         ;;rys (map #(Math/toDegrees %) (.-phis rou))
-         ;;pol (map #(list %1 %2) rxs rys)
-         inter (ii/interpolate-grid vals :bicubic :xs lons :ys lats)
-         xmin (- (first lons) b) xmax (+ (last lons) b)
-         ymin (- (first lats) b) ymax (+ (last lats) b)
-         f1 (fn[x] (format "%.1f" x))
-         hmap (-> (c/heat-map inter
-                           xmin xmax
-                           ymin ymax
-                           :x-label (str (f1 xmin) " < долгота < " (f1 xmax))
-                           :y-label (str (f1 ymin) " < широта < " (f1 ymax))
-                           :z-label "плотность вероятности"
-                           :include-zero? false)
-                        (c/set-alpha alpha)
-                        (c/add-points (map second sus) (map first sus)))]
-                        ;;(c/add-polygon pol))]
-    (when view
-      (i/view hmap)
-      (def INTER inter)
-      (def HM-DATA adh)
-      (def HEATMAP hmap))
-    hmap))
-([hm inst]
-  (ru.rules/retract-instances [inst])
-  (ru.rules/assert-instances [inst])))
+(defn heatmap [b alpha view]
+  (let [adh (Agents/getAgentsDistroForHeatmap)
+       vals (.get adh "adist")
+       lons (.get adh "xx")
+       lats  (.get adh "yy")
+       rtag (Agents/realTaget)
+       rtag (list (Math/toDegrees (.getPhi rtag)) (Math/toDegrees (.getLambda rtag)))
+       sus (map #(list (Math/toDegrees (.getPhi %)) (Math/toDegrees (.getLambda %))) Agents/sus)
+       sus (cons rtag sus)
+       ;;rou (.-route ats)
+       ;;rxs (map #(Math/toDegrees %) (.-lambdas rou))
+       ;;rys (map #(Math/toDegrees %) (.-phis rou))
+       ;;pol (map #(list %1 %2) rxs rys)
+       inter (ii/interpolate-grid vals :bicubic :xs lons :ys lats)
+       xmin (- (first lons) b)
+       xmax (+ (last lons) b)
+       ymin (- (first lats) b)
+       ymax (+ (last lats) b)
+       f1 (fn[x] (format "%.1f" x))
+       hmap (-> (c/heat-map inter
+                         xmin xmax
+                         ymin ymax
+                         :x-label (str (f1 xmin) " < долгота < " (f1 xmax))
+                         :y-label (str (f1 ymin) " < широта < " (f1 ymax))
+                         :z-label "плотность вероятности"
+                         :include-zero? false)
+                      (c/set-alpha alpha)
+                      (c/add-points (map second sus) (map first sus)))]
+                      ;;(c/add-polygon pol))]
+  (def HM-DATA adh)
+  (when view
+    (i/view hmap)
+    (def INTER inter)
+    (def HEATMAP hmap))
+  hmap))
 
 (defn adistro-surface-model []
-  (if  mas.util/MAS
-  (let [ats (.getAgents mas.util/MAS)
-         adh (.getAgentsDistroForHeatmap ats)
+  (if mas.util/MAS
+  (let [adh (Agents/getAgentsDistroForHeatmap)
          z (.get adh "adist")
          xx (.get adh "xx")
          yy (.get adh "yy")
@@ -383,7 +435,7 @@
     (.add lis idx omr)
     (.manageGraphics pg1))))
 
-(defn plot-update [title config typ3d paint x0 y0 w0 h0]
+(defn plot-update [title config typ3d paint x0 y0 w0 h0 frame]
   (if-let [mod (adistro-surface-model)]
   (when-let[mod (condp = typ3d
                      'SURFACE (do (.setSurfaceType mod true) mod)
@@ -399,11 +451,12 @@
       'FOG (.setFogMode mod true)
       (.setSpectrumMode mod true))
     (p3d/viewpoint3d)
-    (if (nil? WIN3D)
-      (def WIN3D (p3d/plot mod "Плотность вероятности" title false x0 y0 w0 h0))
-      (do (.setContentPane WIN3D (p3d/panel3d mod title config))
-        (.validate WIN3D)
-        (.repaint WIN3D))))))
+    (if (instance? javax.swing.JFrame frame)
+      (do (.setContentPane frame (p3d/panel3d mod title config))
+        (.validate frame)
+        (.repaint frame)
+        frame)
+      (p3d/plot mod "Плотность вероятности" title false x0 y0 w0 h0)))))
 
 (defn switch3d [hm inst]
   (ru.rules/retract-instances [inst])
@@ -450,39 +503,177 @@
     (OMT/removeMapOb pins false)
     (.hideLabel (OMT/getOrAdd pins)))))
 
-(defn add-modriven
-  ([name]
-  (if-let [ags (.getAgents MAS)]
-    (let [pg1 (getPlayground1)
-           rec (.getReceiver pg1)
-           lis (.getList rec)
-           tgs (.getTargets lis)
-           flt (filter #(and (instance? NavOb %) (= (.getName %) name)) tgs)]
-      (if (seq flt)
-        (.addMODriven ags (first flt))))))
-([hm inst]
-  (let [mp (into {} hm)
-         rts (mp "маршруты")
-         frs (mp "силы_поиска")
-         frs (drop (count rts) frs)]
-    (if-let [sfr (DisplayUtilities/pickInstanceFromCollection nil frs 0 "Управляемые силы")]
-      (doseq [moi (svs sfr "mapob")]
-        (let [mo (OMT/getOrAdd moi)]
-          (tow-off mo)
-          (OMT/controlObject moi)
-          (mas.util/add-modriven (.getName mo))
-          (if (ru.rules/confirm (str "Показывать след " (.getName mo)))
-            (if-let [pins (fifos "След" "object" moi)] 
-              (do (trace-line pins moi)
-                (ru.rules/assert-instances [pins]))
-              (println "No instance of class След")))))))))
+(defn standard-dev3 [mos dist]
+  (let [mx (sv dist "meanX")
+       my (sv dist "meanY")
+       sdx (sv dist "standardDeviationX")]
+  (loop [ms mos i 0]
+    (when-let [moi (first ms)]
+      (if (> i 0)
+        (ssv moi "radius" (float (* sdx i))))
+      (let [mo (OMT/getOrAdd moi)]
+        (.setLocation mo (double my) (double mx))
+        (recur (rest ms) (inc i)))))))
 
-(defn standard-dev3 [?mos ?mx ?my ?sdx]
-  (loop [mos ?mos i 0]
-  (when-let [moi (first mos)]
-    (if (> i 0)
-      (ssv moi "radius" (float (* ?sdx i))))
-    (let [mo (OMT/getOrAdd moi)]
-      (.setLocation mo (double ?my) (double ?mx))
-      (recur (rest mos) (inc i))))))
+(defn add-controlled
+  ([hm inst]
+  (let [mp (into {} hm)]
+    (doseq [prw (selection mp "управляемые_силы")]
+      (add-controlled 
+        (sv prw "сила") 
+        (sv prw "скорость_поиска") 
+        (sv prw "дистанция_обнаружения")
+        (sv prw "скорость_уклонения")
+        (sv prw "дистанция_уклонения"))
+      (wint.igis/check-no-add (svs (sv prw "сила") "mapob")))))
+([for ss dd es td]
+  (if mas.util/MAS
+    (when-let [ats (.getAgents mas.util/MAS)]
+      (loop [mois (svs for "mapob") trs (svs for "следы")]
+        (when (seq mois)
+          (when-let [mo (OMT/getOrAdd (first mois))]
+            (println :УПЕ (.getName mo))
+            (if (not (@MODRIVEN mo))
+              (vswap! MODRIVEN assoc (first mois) (.addMODriven ats mo es td dd)))
+            (if-let [tr (first trs)]
+              (ru.rules/assert-instances [tr])))
+          (recur (rest mois) (rest trs))))))))
+
+(defn remove-controlled
+  ([hm inst]
+  (let [mp (into {} hm)]
+    (doseq [prw (selection mp "управляемые_силы")]
+      (remove-controlled (sv prw "сила")))))
+([for]
+  (if mas.util/MAS
+    (when-let [ats (.getAgents mas.util/MAS)]
+      (loop [mois (svs for "mapob")]
+        (when (seq mois)
+          (when-let [mod (@MODRIVEN (first mois))]
+            (.removeMODriven ats mod)
+            (vswap! MODRIVEN dissoc (first mois)))
+          (recur (rest mois))))))))
+
+(defn find-param-row [tgt for]
+  (let [tbl (first (cls-instances "Таблица параметров"))
+        rows (svs tbl "ряд_параметров")
+        rows (filter #(= (sv % "сила") for) rows)
+        rows (filter #(= (sv % "цель") tgt) rows)]
+  (if (seq rows)
+    [(sv (first rows) "N")
+     (sv (first rows) "сила")
+     (sv (first rows) "цель")
+     (sv (first rows) "скорость_поиска")
+     (sv (first rows) "дистанция_обнаружения")
+     (sv (first rows) "скорость_уклонения")
+     (sv (first rows) "дистанция_уклонения")]
+    (do (ru.rules/display 
+            (str "Строка не найдена для цели " 
+              (sv tgt "title")
+              " и силы " 
+              (sv for "title"))) nil))))
+
+(defn a-display-czm-clear []
+  (cs/delete-points (count (Agents/targets)))
+(cs/delete-points (count (Agents/searchUnits)))
+(cs/delete-points (count (Agents/moDrivens))))
+
+(defn a-display-czm
+  ([hm inst]
+  (let [mp (into {} hm)]
+    (a-display-czm 
+      (mp "display-TO") 
+      [(mp "height1") (mp "height-reference")]
+      [[(read-string (mp "t-color"))
+        (read-string (mp "su-color"))
+        (read-string (mp "md-color"))]
+       [(mp "t-size") (mp "su-size") (mp "md-size")]])))
+([timeout [height height-ref] [colors sizes]]
+  (if mas.util/MAS
+    (if (not= @CS-DISTAT "RUN")
+      (asp/start-process CS-DISTAT
+        #(a-display-czm height height-ref colors sizes)
+        timeout
+        #(a-display-czm-clear))
+      (asp/stop-process CS-DISTAT))))     
+([height height-ref [t-clr su-clr md-clr] [t-siz su-siz md-siz]]
+  (a-display-czm (Agents/targets) height height-ref t-clr t-siz)
+  (a-display-czm (Agents/searchUnits) height height-ref su-clr su-siz)
+  (a-display-czm (Agents/moDrivens) height height-ref md-clr md-siz)
+  true)  
+([as height height-ref color size]
+  (if (> (.size as) 0)
+    (cs/send-points (Agents/points as) height height-ref color size))))
+
+(defn a-display-om
+  ([hm inst]
+  (let [mp (into {} hm)]
+    (a-display-om
+      (read-string (mp "playground-index"))
+      (mp "display-TO") 
+      [(read-string (mp "t-color"))
+        (read-string (mp "su-color"))
+        (read-string (mp "md-color"))]
+       [(mp "t-size") (mp "su-size") (mp "md-size")])))
+([pgn timeout colors sizes]
+  (if-let [pg (nth (OMT/getPlaygrounds) pgn)]
+    (if mas.util/MAS
+      (let [omgl (.getMapObs pg)]
+        (if (not= @OM-DISTAT "RUN")
+          (asp/start-process OM-DISTAT
+            #(a-display-om colors sizes omgl)
+            timeout
+            #(.clear omgl))
+          (asp/stop-process OM-DISTAT)))))) 
+([colors sizes omgl]
+  (let [tgs (Agents/targets)
+         sus (Agents/searchUnits)
+         mds (Agents/moDrivens)
+         ags [tgs sus mds]
+         lic (Color. 0 0 0 0)]
+    (.clear omgl)
+    (loop [c colors s sizes a ags]
+      (if (seq c)
+        (when (> (.size (first a)) 0)
+          (doseq [[lat lon] (Agents/points (first a))]
+            (let [p (OMPoint. lat lon (first s))
+                   [r g b a] (first c)
+                   fic (Color. r g b a)]
+              (.setLineColor p lic)
+              (.setFillColor p fic)
+              (.setOval p true)
+              (.add omgl p)))
+          (recur (rest c) (rest s) (rest a)))))
+    true)))
+
+(defn poly-wsen [poly]
+  (let [llp (.getLLPoints poly)
+       llp (partition 2 llp)
+       las (map first llp)
+       los (map second llp)
+       w (apply min los)
+       s (apply min las)
+       e (apply max los)
+       n (apply max las)]
+  (vec (map #(Math/toDegrees %) [w s e n]))))
+
+(defn send-heatmap-czm [mo trans]
+  (let [hm (mas.util/heatmap 0.0 0.5 false)
+       _ (.clearSubtitles hm)
+       _ (.removeLegend hm)
+       _ (.setBorderVisible hm false)
+       file (str SEND-HMCZ-N ".gif")
+       path (str "resources/public/" file)
+       [L T R B] [60 10 12 60]
+       wsen (poly-wsen mo)
+       prt (poly-rect mo)
+       [x y wid hei] (map int prt)
+       bim (.createBufferedImage hm wid hei)
+       bim (.getSubimage bim L T (- wid L R) (- hei T B))
+       fos (java.io.FileOutputStream. path)
+       gie (Acme.JPM.Encoders.GifEncoder. bim fos)]
+  (.delete (java.io.File. (str "resources/public/" (dec SEND-HMCZ-N) ".gif")))
+  (.encode gie)
+  (cesium.core/send-image "heatmap" file wsen trans)
+  (def SEND-HMCZ-N (inc SEND-HMCZ-N))))
 

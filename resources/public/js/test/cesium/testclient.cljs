@@ -6,7 +6,7 @@
      camera-home
      clock-settings
      load-data
-     start-czml-processing
+     start-event-processing
      look-at
      add-orbit-button
      VIEWER
@@ -16,13 +16,13 @@
      CANVAS
      HOME-VIEW
      CLOCK-SET
-     CZML-DS
-     CZML-URL
-     CZML-DEBUG]]))
+     EVENT-URL
+     CZML-DEBUG
+     KML-DEBUG]]))
 (defn init-client []
   (add-terrain nil VIEWER)
 (camera-home CAMERA HOME-VIEW)
-(start-czml-processing CZML-URL VIEWER)
+(start-event-processing VIEWER)
 (add-orbit-button CAMERA))
 
 

@@ -1,4 +1,4 @@
-; Tue Apr 28 22:43:05 MSK 2020
+; Thu Apr 30 22:16:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,7 +21,7 @@
 
 ([DrapePeaks_Class1] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-czml-processing\n     add-orbit-button\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     CZML-DEBUG\n     CZML-URL]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     CZML-DEBUG\n     EVENT-URL]])")
 	(title "cesium.drape"))
 
 ([DrapePeaks_Class10000] of  CloFunction
@@ -31,7 +31,7 @@
 
 ([DrapePeaks_Class2] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-drape []"))
 
 ([DrapePeaks_Class20000] of  CloProgram
@@ -77,8 +77,8 @@
 ([DrapePeaks_Class40000] of  Selector
 
 	(but-drape "Drape Peak/cesium.drape/drape-peak")
-	(flag [DrapePeaks_Class40034])
-	(peak [DrapePeaks_Class40008])
+	(flag [DrapePeaks_Class40023])
+	(peak [DrapePeaks_Class40010])
 	(transparency 0.5))
 
 ([DrapePeaks_Class40007] of  Peak
@@ -187,3 +187,7 @@
 
 	(country "Italy")
 	(source "data/flags/it_flag.jpg"))
+
+([DrapePeaks_Class50000] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/ru_flag.png\" (cesium.drape/calculate-wsen [[27 59 17] [86 55 31]] 0.01)128))"))

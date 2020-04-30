@@ -17,8 +17,12 @@
   :current "2020-08-08T16:00:00Z"
   :mult 4})
 (def CZML-DS (js/Cesium.CzmlDataSource.))
-(def CZML-URL "http://localhost:4448/czml")
 (def CZML-DEBUG false)
+(def KML-DS (js/Cesium.KmlDataSource. 
+  #js{:camera CAMERA
+         :canvas  CANVAS}))
+(def KML-DEBUG false)
+(def EVENT-URL "http://localhost:4448/event")
 (def ORBIT (volatile! 
   {:status :init
     :steps 24
@@ -76,14 +80,21 @@
                             (.add (.-dataSources viewer) ds)
                             (processor ds)))))
 
-(defn start-czml-processing [czml-url viewer]
+(defn start-event-processing [viewer]
   (letfn [(cz-processor [e]
              (let [data (.-data e)]
                (if CZML-DEBUG
-                 (println :data data))
-               (.process CZML-DS (js/JSON.parse data))))]
+                 (println :CZML data))
+               (.process CZML-DS (js/JSON.parse data))))
+          (km-processor [e]
+             (let [data (.-data e)]
+               (if KML-DEBUG
+                 (println :KML data))
+               (.load KML-DS (.parseFromString (js/DOMParser.) data "text/xml"))))]
   (.add (.-dataSources viewer) CZML-DS)
-  (.addEventListener (js/EventSource. CZML-URL) "czml" cz-processor false)))
+  (.add (.-dataSources viewer) KML-DS)
+  (.addEventListener (js/EventSource. EVENT-URL) "czml" cz-processor false)
+  (.addEventListener (js/EventSource. EVENT-URL) "kml" km-processor false)))
 
 (defn position-js [^double lambda0 ^double phi1 ^double c ^double az]
   (let [cosphi1 (js/Math.cos phi1)

@@ -7,7 +7,7 @@ cesium.client.add_terrain.call(null,null,cesium.client.VIEWER);
 
 cesium.client.camera_home.call(null,cesium.client.CAMERA,cesium.client.HOME_VIEW);
 
-cesium.client.start_czml_processing.call(null,cesium.client.CZML_URL,cesium.client.VIEWER);
+cesium.client.start_event_processing.call(null,cesium.client.VIEWER);
 
 return cesium.client.add_orbit_button.call(null,cesium.client.CAMERA);
 });

@@ -10,23 +10,24 @@
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def PAGE "test.html")
 (def SERV nil)
-(def defonceCZ-CHAN (defonce CZ-CHAN (chan)))
+(def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
 (defn send-czml [czml]
-  (put! CZ-CHAN czml))
+  (put! EVT-CHAN (str "event: czml\ndata: " czml "\n\n")))
 
-(defn pump-out-czml []
-  (loop [[bit ch] (alts!! [CZ-CHAN] :default :none) bits []]
+(defn send-kml [kml]
+  (put! EVT-CHAN (str "event: kml\ndata: " kml "\n\n")))
+
+(defn pump-out-events []
+  (loop [[bit ch] (alts!! [EVT-CHAN] :default :none) bits []]
   (if (= bit :none)
     bits
-    (recur (alts!! [CZ-CHAN] :default :none) (conj bits bit)))))
+    (recur (alts!! [EVT-CHAN] :default :none) (conj bits bit)))))
 
-(defn czml-events []
-  (let [evt-hr (fn [dat]
-                   (str "event: czml\ndata: " dat "\n\n"))
-       ee (deref (future (pump-out-czml)))
+(defn event-response []
+  (let [ee (deref (future (pump-out-events)))
        resp (if (seq ee)
-                 (apply str (map evt-hr ee))
+                 (apply str ee)
                  "")]
   (-> (r/response resp)
          (r/header "Access-Control-Allow-Origin" "*")
@@ -35,7 +36,7 @@
 (defn init-server []
   (defroutes app-routes
   (GET "/" [] (slurp (str ROOT PAGE)))
-  (GET "/czml" [] (czml-events))
+  (GET "/event" [] (event-response))
   (route/files "/" (do (println [:ROOT ROOT]) {:root ROOT}))
   (route/resources "/")
   (route/not-found "Cesium Server: Not Found!"))

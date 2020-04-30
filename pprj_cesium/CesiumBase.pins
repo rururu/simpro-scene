@@ -1,4 +1,4 @@
-; Tue Apr 28 11:38:37 MSK 2020
+; Thu Apr 30 22:13:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -27,8 +27,10 @@
 		[CesiumBase_Class20001]
 		[CesiumBase_Class10008]
 		[CesiumBase_Class30001]
-		[CesiumBase_Class30002]
 		[CesiumBase_Class30003]
+		[CesiumBase_Class60001]
+		[CesiumBase_Class60003]
+		[CesiumBase_Class30002]
 		[CesiumBase_Class40002])
 	(title "Cesium Client"))
 
@@ -99,7 +101,7 @@
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-czml-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     CZML-URL\n     CZML-DEBUG]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     CZML-DEBUG\n     KML-DEBUG]])")
 	(title "cesium.testclient"))
 
 ([CesiumBase_Class10011] of  HTML
@@ -131,7 +133,7 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-czml-processing CZML-URL VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-client []"))
 
 ([CesiumBase_Class20005] of  CloFunction
@@ -146,8 +148,8 @@
 
 ([CesiumBase_Class30000] of  CloFunction
 
-	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if CZML-DEBUG\n                 (println :data data))\n               (.process CZML-DS (js/JSON.parse data))))]\n  (.add (.-dataSources viewer) CZML-DS)\n  (.addEventListener (js/EventSource. CZML-URL) \"czml\" cz-processor false))")
-	(title "start-czml-processing [czml-url viewer]"))
+	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if CZML-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if KML-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))]\n  (.add (.-dataSources viewer) CZML-DS)\n  (.add (.-dataSources viewer) KML-DS)\n  (.addEventListener (js/EventSource. EVENT-URL) \"czml\" cz-processor false)\n  (.addEventListener (js/EventSource. EVENT-URL) \"kml\" km-processor false))")
+	(title "start-event-processing [viewer]"))
 
 ([CesiumBase_Class30001] of  CloVar
 
@@ -156,8 +158,8 @@
 
 ([CesiumBase_Class30002] of  CloVar
 
-	(source "\"http://localhost:4448/czml\"")
-	(title "CZML-URL"))
+	(source "\"http://localhost:4448/event\"")
+	(title "EVENT-URL"))
 
 ([CesiumBase_Class30003] of  CloVar
 
@@ -225,24 +227,44 @@
 	(source "(cond \n  (> az js/Math.PI) (- az (* 2 js/Math.PI))\n  (< az (- js/Math.PI)) (+ az (* 2 js/Math.PI))\n  true az)")
 	(title "normaz [az]"))
 
+([CesiumBase_Class60001] of  CloVar
+
+	(source "(js/Cesium.KmlDataSource. \n  #js{:camera CAMERA\n         :canvas  CANVAS})")
+	(title "KML-DS"))
+
+([CesiumBase_Class60003] of  CloVar
+
+	(source "false")
+	(title "KML-DEBUG"))
+
+([CesiumBase_Class60005] of  CloFunction
+
+	(source "(put! EVT-CHAN (str \"event: kml\\ndata: \" kml \"\\n\\n\"))")
+	(title "send-kml [kml]"))
+
+([CesiumBase_Class70000] of  HTML
+
+	(source "<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\"><Placemark><name>Simple placemark</name><description>Attached to the ground.</description><Point><coordinates>30.1,60.0,0</coordinates></Point></Placemark></kml>")
+	(title "KML"))
+
 ([CesiumServer_Class10001] of  CloFunction
 
-	(source "(let [evt-hr (fn [dat]\n                   (str \"event: czml\\ndata: \" dat \"\\n\\n\"))\n       ee (deref (future (pump-out-czml)))\n       resp (if (seq ee)\n                 (apply str (map evt-hr ee))\n                 \"\")]\n  (-> (r/response resp)\n         (r/header \"Access-Control-Allow-Origin\" \"*\")\n         (r/header \"Content-Type\" \"text/event-stream;charset=utf-8\")))")
-	(title "czml-events []"))
+	(source "(let [ee (deref (future (pump-out-events)))\n       resp (if (seq ee)\n                 (apply str ee)\n                 \"\")]\n  (-> (r/response resp)\n         (r/header \"Access-Control-Allow-Origin\" \"*\")\n         (r/header \"Content-Type\" \"text/event-stream;charset=utf-8\")))")
+	(title "event-response []"))
 
 ([CesiumServer_Class10002] of  CloVar
 
-	(source "(defonce CZ-CHAN (chan))")
-	(title "defonceCZ-CHAN"))
+	(source "(defonce EVT-CHAN (chan))")
+	(title "defonceEVT-CHAN"))
 
 ([CesiumServer_Class10003] of  CloFunction
 
-	(source "(loop [[bit ch] (alts!! [CZ-CHAN] :default :none) bits []]\n  (if (= bit :none)\n    bits\n    (recur (alts!! [CZ-CHAN] :default :none) (conj bits bit))))")
-	(title "pump-out-czml []"))
+	(source "(loop [[bit ch] (alts!! [EVT-CHAN] :default :none) bits []]\n  (if (= bit :none)\n    bits\n    (recur (alts!! [EVT-CHAN] :default :none) (conj bits bit))))")
+	(title "pump-out-events []"))
 
 ([CesiumServer_Class10004] of  CloFunction
 
-	(source "(put! CZ-CHAN czml)")
+	(source "(put! EVT-CHAN (str \"event: czml\\ndata: \" czml \"\\n\\n\"))")
 	(title "send-czml [czml]"))
 
 ([CesiumServer_Class10005] of  CloVar
@@ -254,6 +276,7 @@
 
 	(cloFunctions
 		[CesiumServer_Class10004]
+		[CesiumBase_Class60005]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
 		[CesiumWorshop_Class10005]
@@ -276,7 +299,7 @@
 
 ([CesiumWorshop_Class10005] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT PAGE)))\n  (GET \"/czml\" [] (czml-events))\n  (route/files \"/\" (do (println [:ROOT ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Cesium Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT PAGE)))\n  (GET \"/event\" [] (event-response))\n  (route/files \"/\" (do (println [:ROOT ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Cesium Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
 	(title "init-server []"))
 
 ([CesiumWorshop_Class10006] of  CloVar
