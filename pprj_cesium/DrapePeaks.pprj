@@ -1,4 +1,4 @@
-; Thu Apr 30 22:16:27 MSK 2020
+; Fri May 01 21:41:26 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[DrapePeaks_ProjectKB_Class20476]
-		[DrapePeaks_ProjectKB_Class20477]
-		[DrapePeaks_ProjectKB_Class20478]))
+		[DrapePeaks_ProjectKB_Class20484]
+		[DrapePeaks_ProjectKB_Class20485]
+		[DrapePeaks_ProjectKB_Class20486]))
 
 ([CLSES_TAB] of  Widget
 
@@ -200,17 +200,17 @@
 ([DrapePeaks_ProjectKB_Class10518] of  Property_List
 )
 
-([DrapePeaks_ProjectKB_Class20476] of  String
+([DrapePeaks_ProjectKB_Class20484] of  String
 
 	(name "Selector")
 	(string_value "{Peak+selector}"))
 
-([DrapePeaks_ProjectKB_Class20477] of  String
+([DrapePeaks_ProjectKB_Class20485] of  String
 
 	(name "Peak")
 	(string_value "title"))
 
-([DrapePeaks_ProjectKB_Class20478] of  String
+([DrapePeaks_ProjectKB_Class20486] of  String
 
 	(name "Flag")
 	(string_value "country"))
@@ -292,34 +292,6 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_269811_Class472] of  Map
-
-	(entries
-		[KB_269811_Class473]
-		[KB_269811_Class474]
-		[KB_269811_Class475]))
-
-([KB_269811_Class473] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_269811_Class474] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_269811_Class475] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_305706_Class0] of  String
 
@@ -420,6 +392,34 @@
 
 	(name "instances_file_name")
 	(string_value "DrapePeaks.pins"))
+
+([KB_561691_Class472] of  Map
+
+	(entries
+		[KB_561691_Class473]
+		[KB_561691_Class474]
+		[KB_561691_Class475]))
+
+([KB_561691_Class473] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_561691_Class474] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_561691_Class475] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

@@ -17,8 +17,7 @@
      HOME-VIEW
      CLOCK-SET
      EVENT-URL
-     CZML-DEBUG
-     KML-DEBUG]]))
+     EVENT-DEBUG]]))
 (defn init-client []
   (add-terrain nil VIEWER)
 (camera-home CAMERA HOME-VIEW)

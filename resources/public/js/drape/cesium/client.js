@@ -9,10 +9,9 @@ cesium.client.CANVAS = cesium.client.SCENE.canvas;
 cesium.client.HOME_VIEW = new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"latitude","latitude",394867543),28.02,new cljs.core.Keyword(null,"longitude","longitude",-1268876372),86.93,new cljs.core.Keyword(null,"height","height",1025178622),(8848),new cljs.core.Keyword(null,"heading","heading",-1312171873),(180),new cljs.core.Keyword(null,"pitch","pitch",1495126700),(-10),new cljs.core.Keyword(null,"roll","roll",11266999),(0)], null);
 cesium.client.CLOCK_SET = new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"animate","animate",1850194573),true,new cljs.core.Keyword(null,"start","start",-355208981),"2020-08-08T16:00:00Z",new cljs.core.Keyword(null,"stop","stop",-2140911342),"2020-08-08T16:20:00Z",new cljs.core.Keyword(null,"current","current",-1088038603),"2020-08-08T16:00:00Z",new cljs.core.Keyword(null,"mult","mult",1466794774),(4)], null);
 cesium.client.CZML_DS = (new Cesium.CzmlDataSource());
-cesium.client.CZML_DEBUG = false;
 cesium.client.KML_DS = (new Cesium.KmlDataSource(({"camera": cesium.client.CAMERA, "canvas": cesium.client.CANVAS})));
-cesium.client.KML_DEBUG = false;
 cesium.client.EVENT_URL = "http://localhost:4448/event";
+cesium.client.EVENT_DEBUG = false;
 cesium.client.ORBIT = cljs.core.volatile_BANG_.call(null,new cljs.core.PersistentArrayMap(null, 8, [new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"init","init",-1875481434),new cljs.core.Keyword(null,"steps","steps",-128433302),(24),new cljs.core.Keyword(null,"ring","ring",-974350330),cljs.core.PersistentVector.EMPTY,new cljs.core.Keyword(null,"headings","headings",-383220458),cljs.core.PersistentVector.EMPTY,new cljs.core.Keyword(null,"next","next",-117701485),(0),new cljs.core.Keyword(null,"center","center",-748944368),null,new cljs.core.Keyword(null,"radius-m","radius-m",-1490686729),(4000),new cljs.core.Keyword(null,"step-sec","step-sec",-1096271625),(2)], null));
 cesium.client.add_imagery_by_asset_id = (function cesium$client$add_imagery_by_asset_id(id,viewer){
 var ilays = viewer.imageryLayers;
@@ -100,7 +99,7 @@ return processor.call(null,ds);
 cesium.client.start_event_processing = (function cesium$client$start_event_processing(viewer){
 var cz_processor = (function cesium$client$start_event_processing_$_cz_processor(e){
 var data = e.data;
-if(cesium.client.CZML_DEBUG){
+if(cesium.client.EVENT_DEBUG){
 cljs.core.println.call(null,new cljs.core.Keyword(null,"CZML","CZML",-1539311408),data);
 } else {
 }
@@ -109,20 +108,21 @@ return cesium.client.CZML_DS.process(JSON.parse(data));
 });
 var km_processor = (function cesium$client$start_event_processing_$_km_processor(e){
 var data = e.data;
-if(cesium.client.KML_DEBUG){
+if(cesium.client.EVENT_DEBUG){
 cljs.core.println.call(null,new cljs.core.Keyword(null,"KML","KML",1829561453),data);
 } else {
 }
 
-return cesium.client.KML_DS.load(data);
+return cesium.client.KML_DS.load((new DOMParser()).parseFromString(data,"text/xml"));
 });
+var es = (new EventSource(cesium.client.EVENT_URL));
 viewer.dataSources.add(cesium.client.CZML_DS);
 
 viewer.dataSources.add(cesium.client.KML_DS);
 
-(new EventSource(cesium.client.EVENT_URL)).addEventListener("czml",cz_processor,false);
+es.addEventListener("czml",cz_processor,false);
 
-return (new EventSource(cesium.client.EVENT_URL)).addEventListener("kml",km_processor,false);
+return es.addEventListener("kml",km_processor,false);
 });
 cesium.client.position_js = (function cesium$client$position_js(lambda0,phi1,c,az){
 var cosphi1 = Math.cos(phi1);

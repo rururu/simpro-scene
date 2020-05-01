@@ -1,4 +1,4 @@
-; Thu Apr 30 22:13:31 MSK 2020
+; Fri May 01 21:30:19 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -27,10 +27,9 @@
 		[CesiumBase_Class20001]
 		[CesiumBase_Class10008]
 		[CesiumBase_Class30001]
-		[CesiumBase_Class30003]
 		[CesiumBase_Class60001]
-		[CesiumBase_Class60003]
 		[CesiumBase_Class30002]
+		[CesiumBase_Class30003]
 		[CesiumBase_Class40002])
 	(title "Cesium Client"))
 
@@ -101,7 +100,7 @@
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     CZML-DEBUG\n     KML-DEBUG]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     EVENT-DEBUG]])")
 	(title "cesium.testclient"))
 
 ([CesiumBase_Class10011] of  HTML
@@ -148,7 +147,7 @@
 
 ([CesiumBase_Class30000] of  CloFunction
 
-	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if CZML-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if KML-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))]\n  (.add (.-dataSources viewer) CZML-DS)\n  (.add (.-dataSources viewer) KML-DS)\n  (.addEventListener (js/EventSource. EVENT-URL) \"czml\" cz-processor false)\n  (.addEventListener (js/EventSource. EVENT-URL) \"kml\" km-processor false))")
+	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))]\n  (let [es (js/EventSource. EVENT-URL)]\n    (.add (.-dataSources viewer) CZML-DS)\n    (.add (.-dataSources viewer) KML-DS)\n    (.addEventListener es \"czml\" cz-processor false)\n    (.addEventListener es \"kml\" km-processor false)))")
 	(title "start-event-processing [viewer]"))
 
 ([CesiumBase_Class30001] of  CloVar
@@ -164,7 +163,7 @@
 ([CesiumBase_Class30003] of  CloVar
 
 	(source "false")
-	(title "CZML-DEBUG"))
+	(title "EVENT-DEBUG"))
 
 ([CesiumBase_Class30004] of  CloProgram
 
@@ -232,20 +231,10 @@
 	(source "(js/Cesium.KmlDataSource. \n  #js{:camera CAMERA\n         :canvas  CANVAS})")
 	(title "KML-DS"))
 
-([CesiumBase_Class60003] of  CloVar
-
-	(source "false")
-	(title "KML-DEBUG"))
-
 ([CesiumBase_Class60005] of  CloFunction
 
 	(source "(put! EVT-CHAN (str \"event: kml\\ndata: \" kml \"\\n\\n\"))")
 	(title "send-kml [kml]"))
-
-([CesiumBase_Class70000] of  HTML
-
-	(source "<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\"><Placemark><name>Simple placemark</name><description>Attached to the ground.</description><Point><coordinates>30.1,60.0,0</coordinates></Point></Placemark></kml>")
-	(title "KML"))
 
 ([CesiumServer_Class10001] of  CloFunction
 

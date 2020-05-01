@@ -8,7 +8,7 @@
      VIEWER
      CAMERA
      HOME-VIEW
-     CZML-DEBUG
+     EVENT-DEBUG
      EVENT-URL]]))
 (defn init-drape []
   (add-terrain nil VIEWER)
