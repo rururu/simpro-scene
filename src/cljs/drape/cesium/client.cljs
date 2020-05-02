@@ -40,23 +40,25 @@
   (set! (.-terrainProvider viewer) (js/Cesium.createWorldTerrain. options))
 (set! (.-depthTestAgainstTerrain (.-globe (.-scene viewer))) true))
 
-(defn camera-home [camera view ]
+(defn camera-fly [camera longitude latitude height heading pitch roll]
+  (let [pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)
+       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)
+       fvw (clj->js {:destination pos
+                          :orientation {:heading (.-heading orient)
+                                               :pitch (.-pitch orient)
+                                               :roll (.-roll orient)}})]
+  (.flyTo camera fvw)
+  fvw))
+
+(defn camera-home [camera view]
   (let [{:keys [longitude latitude height heading pitch roll]} view
-       pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)
-       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)]
-  (def HOME-VIEW (clj->js {:destination pos
-                                         :orientation {:heading (.-heading orient)
-                                                              :pitch (.-pitch orient)
-                                                              :roll (.-roll orient)}
-                                         ;; animation options
-                                         :duration 4.0
-                                         :maximumHeight 2000
-                                         :pitchAdjustHeight 2000
-                                         :endTransform js/Cesium.Matrix4.IDENTITY}))
-  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))
-                                 (fn [e]
-                                   (set! (.-cancel e) true)
-                                   (.flyTo camera HOME-VIEW)))
+       fvw (camera-fly camera longitude latitude height heading pitch roll)]
+  (def HOME-VIEW fvw)
+  (.addEventListener 
+    (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))
+    (fn [e]
+      (set! (.-cancel e) true)
+      (.flyTo camera HOME-VIEW)))
   (.flyTo camera HOME-VIEW)))
 
 (defn clock-settings [clock settings viewer]
@@ -89,12 +91,18 @@
              (let [data (.-data e)]
                (if EVENT-DEBUG
                  (println :KML data))
-               (.load KML-DS (.parseFromString (js/DOMParser.) data "text/xml"))))]
+               (.load KML-DS (.parseFromString (js/DOMParser.) data "text/xml"))))
+          (js-processor [e]
+             (let [data (.-data e)]
+               (if EVENT-DEBUG
+                 (println :JS data))
+               (js/eval data)))]
   (let [es (js/EventSource. EVENT-URL)]
     (.add (.-dataSources viewer) CZML-DS)
     (.add (.-dataSources viewer) KML-DS)
     (.addEventListener es "czml" cz-processor false)
-    (.addEventListener es "kml" km-processor false))))
+    (.addEventListener es "kml" km-processor false)
+    (.addEventListener es "js" js-processor false))))
 
 (defn position-js [^double lambda0 ^double phi1 ^double c ^double az]
   (let [cosphi1 (js/Math.cos phi1)

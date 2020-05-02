@@ -1,4 +1,4 @@
-; Fri May 01 21:30:19 MSK 2020
+; Sat May 02 21:47:37 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,6 +8,7 @@
 	(cloFunctions
 		[CesiumBase_Class20005]
 		[CesiumBase_Class20006]
+		[CesiumBase_Class70019]
 		[CesiumBase_Class10001]
 		[CesiumBase_Class10007]
 		[CesiumBase_Class20002]
@@ -44,8 +45,8 @@
 
 ([CesiumBase_Class10001] of  CloFunction
 
-	(source "(let [{:keys [longitude latitude height heading pitch roll]} view\n       pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)]\n  (def HOME-VIEW (clj->js {:destination pos\n                                         :orientation {:heading (.-heading orient)\n                                                              :pitch (.-pitch orient)\n                                                              :roll (.-roll orient)}\n                                         ;; animation options\n                                         :duration 4.0\n                                         :maximumHeight 2000\n                                         :pitchAdjustHeight 2000\n                                         :endTransform js/Cesium.Matrix4.IDENTITY}))\n  (.addEventListener (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))\n                                 (fn [e]\n                                   (set! (.-cancel e) true)\n                                   (.flyTo camera HOME-VIEW)))\n  (.flyTo camera HOME-VIEW))")
-	(title "camera-home [camera view ]"))
+	(source "(let [{:keys [longitude latitude height heading pitch roll]} view\n       fvw (camera-fly camera longitude latitude height heading pitch roll)]\n  (def HOME-VIEW fvw)\n  (.addEventListener \n    (.-beforeExecute (.-command (.-viewModel (.-homeButton VIEWER))))\n    (fn [e]\n      (set! (.-cancel e) true)\n      (.flyTo camera HOME-VIEW)))\n  (.flyTo camera HOME-VIEW))")
+	(title "camera-home [camera view]"))
 
 ([CesiumBase_Class10002] of  CloVar
 
@@ -147,7 +148,7 @@
 
 ([CesiumBase_Class30000] of  CloFunction
 
-	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))]\n  (let [es (js/EventSource. EVENT-URL)]\n    (.add (.-dataSources viewer) CZML-DS)\n    (.add (.-dataSources viewer) KML-DS)\n    (.addEventListener es \"czml\" cz-processor false)\n    (.addEventListener es \"kml\" km-processor false)))")
+	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))\n          (js-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :JS data))\n               (js/eval data)))]\n  (let [es (js/EventSource. EVENT-URL)]\n    (.add (.-dataSources viewer) CZML-DS)\n    (.add (.-dataSources viewer) KML-DS)\n    (.addEventListener es \"czml\" cz-processor false)\n    (.addEventListener es \"kml\" km-processor false)\n    (.addEventListener es \"js\" js-processor false)))")
 	(title "start-event-processing [viewer]"))
 
 ([CesiumBase_Class30001] of  CloVar
@@ -226,6 +227,11 @@
 	(source "(cond \n  (> az js/Math.PI) (- az (* 2 js/Math.PI))\n  (< az (- js/Math.PI)) (+ az (* 2 js/Math.PI))\n  true az)")
 	(title "normaz [az]"))
 
+([CesiumBase_Class60000] of  CloFunction
+
+	(source "(let [js (.replaceAll js \"\\\\n\" \"\")\n       evt (str \"event: js\\ndata: \" js \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
+	(title "send-js [js]"))
+
 ([CesiumBase_Class60001] of  CloVar
 
 	(source "(js/Cesium.KmlDataSource. \n  #js{:camera CAMERA\n         :canvas  CANVAS})")
@@ -233,8 +239,13 @@
 
 ([CesiumBase_Class60005] of  CloFunction
 
-	(source "(put! EVT-CHAN (str \"event: kml\\ndata: \" kml \"\\n\\n\"))")
+	(source "(let [kml (.replaceAll kml \"\\\\n\" \"\")\n       evt (str \"event: kml\\ndata: \" kml \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
 	(title "send-kml [kml]"))
+
+([CesiumBase_Class70019] of  CloFunction
+
+	(source "(let [pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)\n       fvw (clj->js {:destination pos\n                          :orientation {:heading (.-heading orient)\n                                               :pitch (.-pitch orient)\n                                               :roll (.-roll orient)}})]\n  (.flyTo camera fvw)\n  fvw)")
+	(title "camera-fly [camera longitude latitude height heading pitch roll]"))
 
 ([CesiumServer_Class10001] of  CloFunction
 
@@ -253,7 +264,7 @@
 
 ([CesiumServer_Class10004] of  CloFunction
 
-	(source "(put! EVT-CHAN (str \"event: czml\\ndata: \" czml \"\\n\\n\"))")
+	(source "(let [czml (.replaceAll czml \"\\\\n\" \"\")\n       evt (str \"event: czml\\ndata: \" czml \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
 	(title "send-czml [czml]"))
 
 ([CesiumServer_Class10005] of  CloVar
@@ -266,6 +277,7 @@
 	(cloFunctions
 		[CesiumServer_Class10004]
 		[CesiumBase_Class60005]
+		[CesiumBase_Class60000]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
 		[CesiumWorshop_Class10005]

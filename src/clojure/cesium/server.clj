@@ -13,10 +13,19 @@
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
 (defn send-czml [czml]
-  (put! EVT-CHAN (str "event: czml\ndata: " czml "\n\n")))
+  (let [czml (.replaceAll czml "\\n" "")
+       evt (str "event: czml\ndata: " czml "\n\n")]
+  (put! EVT-CHAN evt)))
 
 (defn send-kml [kml]
-  (put! EVT-CHAN (str "event: kml\ndata: " kml "\n\n")))
+  (let [kml (.replaceAll kml "\\n" "")
+       evt (str "event: kml\ndata: " kml "\n\n")]
+  (put! EVT-CHAN evt)))
+
+(defn send-js [js]
+  (let [js (.replaceAll js "\\n" "")
+       evt (str "event: js\ndata: " js "\n\n")]
+  (put! EVT-CHAN evt)))
 
 (defn pump-out-events []
   (loop [[bit ch] (alts!! [EVT-CHAN] :default :none) bits []]
