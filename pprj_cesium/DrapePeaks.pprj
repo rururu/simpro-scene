@@ -1,4 +1,4 @@
-; Fri May 01 21:41:26 MSK 2020
+; Mon May 04 22:20:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[DrapePeaks_ProjectKB_Class20484]
-		[DrapePeaks_ProjectKB_Class20485]
-		[DrapePeaks_ProjectKB_Class20486]))
+		[DrapePeaks_ProjectKB_Class30476]
+		[DrapePeaks_ProjectKB_Class30477]
+		[DrapePeaks_ProjectKB_Class40478]
+		[DrapePeaks_ProjectKB_Class40479]
+		[DrapePeaks_ProjectKB_Class50480]))
 
 ([CLSES_TAB] of  Widget
 
@@ -50,7 +52,8 @@
 		[DrapePeaks_ProjectKB_Class10478]
 		[DrapePeaks_ProjectKB_Class10479]
 		[DrapePeaks_ProjectKB_Class10481]
-		[DrapePeaks_ProjectKB_Class10483]))
+		[DrapePeaks_ProjectKB_Class10483]
+		[DrapePeaks_ProjectKB_Class20478]))
 
 ([DrapePeaks_ProjectKB_Class10478] of  Property_List
 
@@ -200,24 +203,220 @@
 ([DrapePeaks_ProjectKB_Class10518] of  Property_List
 )
 
-([DrapePeaks_ProjectKB_Class20484] of  String
+([DrapePeaks_ProjectKB_Class20476] of  Widget
 
-	(name "Selector")
-	(string_value "{Peak+selector}"))
+	(height 240)
+	(is_hidden FALSE)
+	(name "flags")
+	(property_list [DrapePeaks_ProjectKB_Class20477])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 200)
+	(y 60))
 
-([DrapePeaks_ProjectKB_Class20485] of  String
+([DrapePeaks_ProjectKB_Class20477] of  Property_List
 
-	(name "Peak")
+	(properties
+		[DrapePeaks_ProjectKB_Class30478]
+		[DrapePeaks_ProjectKB_Class30479]))
+
+([DrapePeaks_ProjectKB_Class20478] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "height")
+	(property_list [DrapePeaks_ProjectKB_Class20479])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
+	(width 100)
+	(x 0)
+	(y 180))
+
+([DrapePeaks_ProjectKB_Class20479] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class20486] of  Widget
+
+	(is_hidden FALSE)
+	(name "Tour")
+	(property_list [DrapePeaks_ProjectKB_Class20487])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([DrapePeaks_ProjectKB_Class20487] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class20488]
+		[DrapePeaks_ProjectKB_Class20489]
+		[DrapePeaks_ProjectKB_Class20491]
+		[DrapePeaks_ProjectKB_Class20495]
+		[DrapePeaks_ProjectKB_Class20497]
+		[DrapePeaks_ProjectKB_Class20499]
+		[DrapePeaks_ProjectKB_Class20476]
+		[DrapePeaks_ProjectKB_Class40484]))
+
+([DrapePeaks_ProjectKB_Class20488] of  Property_List
+
+	(name "layout properties"))
+
+([DrapePeaks_ProjectKB_Class20489] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [DrapePeaks_ProjectKB_Class20490])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([DrapePeaks_ProjectKB_Class20490] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class20491] of  Widget
+
+	(height 240)
+	(is_hidden FALSE)
+	(name "places")
+	(property_list [DrapePeaks_ProjectKB_Class20492])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([DrapePeaks_ProjectKB_Class20492] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class20493]
+		[DrapePeaks_ProjectKB_Class20494]))
+
+([DrapePeaks_ProjectKB_Class20493] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([DrapePeaks_ProjectKB_Class20494] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([DrapePeaks_ProjectKB_Class20495] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-tour-add-flag")
+	(property_list [DrapePeaks_ProjectKB_Class20496])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 130)
+	(x 400)
+	(y 180))
+
+([DrapePeaks_ProjectKB_Class20496] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class20497] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-tour-drape-place")
+	(property_list [DrapePeaks_ProjectKB_Class20498])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 130)
+	(x 400)
+	(y 120))
+
+([DrapePeaks_ProjectKB_Class20498] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class20499] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-tour-goto-selected")
+	(property_list [DrapePeaks_ProjectKB_Class20500])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 300))
+
+([DrapePeaks_ProjectKB_Class20500] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class30476] of  String
+
+	(name "Tour")
 	(string_value "title"))
 
-([DrapePeaks_ProjectKB_Class20486] of  String
+([DrapePeaks_ProjectKB_Class30477] of  String
 
-	(name "Flag")
-	(string_value "country"))
+	(name "Place")
+	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class30478] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([DrapePeaks_ProjectKB_Class30479] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
 ([DrapePeaks_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
+
+([DrapePeaks_ProjectKB_Class40478] of  String
+
+	(name "Selector")
+	(string_value "{Peak+selector}"))
+
+([DrapePeaks_ProjectKB_Class40479] of  String
+
+	(name "Peak")
+	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class40480] of  Widget
+
+	(is_hidden FALSE)
+	(name "Place")
+	(property_list [DrapePeaks_ProjectKB_Class40481])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([DrapePeaks_ProjectKB_Class40481] of  Property_List
+
+	(properties
+		[DrapePeaks_ProjectKB_Class40482]
+		[DrapePeaks_ProjectKB_Class40483]
+		[DrapePeaks_ProjectKB_Class50485]
+		[DrapePeaks_ProjectKB_Class50487]))
+
+([DrapePeaks_ProjectKB_Class40482] of  Property_List
+
+	(name "layout properties"))
+
+([DrapePeaks_ProjectKB_Class40483] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [DrapePeaks_ProjectKB_Class50484])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([DrapePeaks_ProjectKB_Class40484] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "transparency")
+	(property_list [DrapePeaks_ProjectKB_Class40485])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 200)
+	(x 200)
+	(y 300))
+
+([DrapePeaks_ProjectKB_Class40485] of  Property_List
+)
 
 ([DrapePeaks_ProjectKB_Class476] of  Widget
 
@@ -262,6 +461,42 @@
 	(widget_class_name "clojuretab.ClojureTab"))
 
 ([DrapePeaks_ProjectKB_Class485] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class50480] of  String
+
+	(name "Flag")
+	(string_value "country"))
+
+([DrapePeaks_ProjectKB_Class50484] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class50485] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "longitude")
+	(property_list [DrapePeaks_ProjectKB_Class50486])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([DrapePeaks_ProjectKB_Class50486] of  Property_List
+)
+
+([DrapePeaks_ProjectKB_Class50487] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "latitude")
+	(property_list [DrapePeaks_ProjectKB_Class50488])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([DrapePeaks_ProjectKB_Class50488] of  Property_List
 )
 
 ([FORMS_TAB] of  Widget
@@ -393,28 +628,28 @@
 	(name "instances_file_name")
 	(string_value "DrapePeaks.pins"))
 
-([KB_561691_Class472] of  Map
+([KB_521243_Class472] of  Map
 
 	(entries
-		[KB_561691_Class473]
-		[KB_561691_Class474]
-		[KB_561691_Class475]))
+		[KB_521243_Class473]
+		[KB_521243_Class474]
+		[KB_521243_Class475]))
 
-([KB_561691_Class473] of  Map_Entry
+([KB_521243_Class473] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_561691_Class474] of  Map_Entry
+([KB_521243_Class474] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_561691_Class475] of  Map_Entry
+([KB_521243_Class475] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -506,6 +741,8 @@
 	(customized_instance_widgets
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[DrapePeaks_ProjectKB_Class20486]
+		[DrapePeaks_ProjectKB_Class40480]
 		[DrapePeaks_ProjectKB_Class10485]
 		[DrapePeaks_ProjectKB_Class10476]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]

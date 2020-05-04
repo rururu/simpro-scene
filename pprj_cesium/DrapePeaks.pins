@@ -1,4 +1,4 @@
-; Fri May 01 21:41:26 MSK 2020
+; Mon May 04 22:20:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -16,13 +16,13 @@
 	(output-dir "resources/public/js/drape")
 	(output-to "resources/public/js/drape.js")
 	(required [CesiumBase_Class0])
-	(store-in "src/cljs/drape")
+	(store-in "src/cljs/")
 	(title "Drape Client"))
 
 ([DrapePeaks_Class1] of  CloNamespace
 
 	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     EVENT-DEBUG\n     EVENT-URL]])")
-	(title "cesium.drape"))
+	(title "cesium.drape.client"))
 
 ([DrapePeaks_Class10000] of  CloFunction
 
@@ -39,14 +39,21 @@
 	(cloFunctions
 		[DrapePeaks_Class20002]
 		[DrapePeaks_Class10000]
-		[DrapePeaks_Class40028])
+		[DrapePeaks_Class40028]
+		[DrapePeaks_Class50012]
+		[DrapePeaks_Class50011]
+		[DrapePeaks_Class50010]
+		[DrapePeaks_Class70002]
+		[DrapePeaks_Class70003]
+		[DrapePeaks_Class70004])
 	(cloNamespace [DrapePeaks_Class20001])
+	(cloVars [DrapePeaks_Class90007])
 	(title "Drape Server"))
 
 ([DrapePeaks_Class20001] of  CloNamespace
 
 	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all]\n  [czml.generator :refer :all])")
-	(title "cesium.drape"))
+	(title "cesium.drape.server"))
 
 ([DrapePeaks_Class20002] of  CloFunction
 
@@ -59,9 +66,43 @@
 	(store-in "resources/public")
 	(title "drape"))
 
-([DrapePeaks_Class30000] of  CloFuncall
+([DrapePeaks_Class30000] of  Tour
 
-	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/np_flag.png\" (cesium.drape/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+	(but-tour-add-flag "Add Flag/cesium.drape.server/tour-add-flag")
+	(but-tour-drape-place "Drape Place/cesium.drape.server/tour-drape-place")
+	(but-tour-goto-selected "Goto Selected/cesium.drape.server/tour-goto-selected")
+	(flags
+		[DrapePeaks_Class40022]
+		[DrapePeaks_Class40016]
+		[DrapePeaks_Class40025]
+		[DrapePeaks_Class40020]
+		[DrapePeaks_Class40034]
+		[DrapePeaks_Class40024]
+		[DrapePeaks_Class40021]
+		[DrapePeaks_Class40017]
+		[DrapePeaks_Class40019]
+		[DrapePeaks_Class40033]
+		[DrapePeaks_Class40023]
+		[DrapePeaks_Class40018]
+		[DrapePeaks_Class30001])
+	(places
+		[DrapePeaks_Class40012]
+		[DrapePeaks_Class40007]
+		[DrapePeaks_Class40009]
+		[DrapePeaks_Class40011]
+		[DrapePeaks_Class40010]
+		[DrapePeaks_Class40008]
+		[DrapePeaks_Class40013]
+		[DrapePeaks_Class80001]
+		[DrapePeaks_Class90002]
+		[DrapePeaks_Class50000])
+	(title "Tour1")
+	(transparency 0.8))
+
+([DrapePeaks_Class30001] of  Flag
+
+	(country "Holland")
+	(source "data/flags/hl_flag.png"))
 
 ([DrapePeaks_Class4] of  CesiumServer
 
@@ -73,48 +114,55 @@
 ([DrapePeaks_Class40000] of  Selector
 
 	(but-drape "Drape Peak/cesium.drape/drape-peak")
-	(flag [DrapePeaks_Class40023])
-	(peak [DrapePeaks_Class40010])
+	(flag [DrapePeaks_Class40033])
+	(peak [DrapePeaks_Class40007])
 	(transparency 0.5))
 
 ([DrapePeaks_Class40007] of  Peak
 
+	(height 8848)
 	(latitude "[27 59 17]")
 	(longitude "[86 55 31]")
 	(title "Everest"))
 
 ([DrapePeaks_Class40008] of  Peak
 
+	(height 4478)
 	(latitude "[45 58 35]")
 	(longitude "[7 39 31]")
 	(title "Matterhorn"))
 
 ([DrapePeaks_Class40009] of  Peak
 
+	(height 3776)
 	(latitude "[35 21 29]")
 	(longitude "[138 43 52]")
 	(title "Fuji"))
 
 ([DrapePeaks_Class40010] of  Peak
 
+	(height 4750)
 	(latitude "[56 3 22]")
 	(longitude "[160 38 39]")
 	(title "Klyuchevskaya Sopka"))
 
 ([DrapePeaks_Class40011] of  Peak
 
+	(height 5895)
 	(latitude "[3 4 33]")
 	(longitude "[37 21 12]")
 	(title "Kilimanjaro"))
 
 ([DrapePeaks_Class40012] of  Peak
 
+	(height 5642)
 	(latitude "[43 21 18]")
 	(longitude "[42 26 21]")
 	(title "Elbrus"))
 
 ([DrapePeaks_Class40013] of  Peak
 
+	(height 5636)
 	(latitude "[19 1 48]")
 	(longitude "[-97 -16 -12]")
 	(title "Pico de Orizaba"))
@@ -142,7 +190,7 @@
 ([DrapePeaks_Class40020] of  Flag
 
 	(country "Great Britain")
-	(source "data/flags/ch_flag.png"))
+	(source "data/flags/gb_flag.png"))
 
 ([DrapePeaks_Class40021] of  Flag
 
@@ -171,7 +219,7 @@
 
 ([DrapePeaks_Class40028] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       peak (mp \"peak\")\n       flag (mp \"flag\")\n       trans (mp \"transparency\")\n       trans (int (* trans 255))]\n  (send-czml \n    (add-image \"flag\"\n      (sv flag \"source\")\n      (calculate-wsen \n        [(read-string (sv peak \"latitude\"))\n         (read-string (sv peak \"longitude\"))]\n        0.01) \n      trans)))")
+	(source "(let [mp (into {} hm)\n       peak (mp \"peak\")\n       flag (mp \"flag\")\n       trans (mp \"transparency\")\n       trans (int (* 225 trans))]\n    (add-image \"flag\"\n      (sv flag \"source\")\n      (calculate-wsen \n        [(read-string (sv peak \"latitude\"))\n         (read-string (sv peak \"longitude\"))]\n        0.01) \n      trans))")
 	(title "drape-peak [hm inst]"))
 
 ([DrapePeaks_Class40033] of  Flag
@@ -183,3 +231,60 @@
 
 	(country "Italy")
 	(source "data/flags/it_flag.jpg"))
+
+([DrapePeaks_Class50000] of  Place
+
+	(latitude "[60 10 15]")
+	(longitude "[24 56 15]")
+	(title "Helsinki"))
+
+([DrapePeaks_Class50001] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/np_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class50010] of  CloFunction
+
+	(source "(let [hgt (or (sv place \"height\") height)\n       lat (read-string (sv place \"latitude\"))\n       lon (read-string (sv place \"longitude\"))\n       lat (degminsec-to-deg lat)\n       lon (degminsec-to-deg lon)\n       phi (Math/toRadians lat)\n       lam (Math/toRadians lon)\n       c (Math/toRadians (/ distance 1852 60))\n       az (normaz (+ Math/PI (Math/toRadians heading)))\n       [lam2 phi2] (position lam phi c az)\n       lon2 (Math/toDegrees lam2)\n       lat2 (Math/toDegrees phi2)\n       cmd (str \"cesium.client.camera_fly(cesium.client.CAMERA, \"\n                     lon2 \", \"\n                     lat2 \", \"\n                     hgt \", \"\n                     heading \", \"\n                     pitch \", 0)\")]\n  (send-js cmd))")
+	(title "fly-to [place heading distance height pitch]"))
+
+([DrapePeaks_Class50011] of  CloFunction
+
+	(source "(let [cosphi1 (Math/cos phi1)\n       sinphi1 (Math/sin phi1)\n       cosaz (Math/cos az)\n       sinaz (Math/sin az)\n       sinc (Math/sin c)\n       cosc (Math/cos c)\n       phi2 (Math/asin (+ (* sinphi1 cosc) (* cosphi1 sinc cosaz)))\n       lam2 (+ (Math/atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]\n  [lam2 phi2])")
+	(title "position [^double lambda0 ^double phi1 ^double c ^double az]"))
+
+([DrapePeaks_Class50012] of  CloFunction
+
+	(source "(cond \n  (> az Math/PI) (- az (* 2 Math/PI))\n  (< az (- Math/PI)) (+ az (* 2 Math/PI))\n  true az)")
+	(title "normaz [az]"))
+
+([DrapePeaks_Class70002] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)\n             trans (int (* 225 trans))]\n        (def FLAG-COUNT (inc FLAG-COUNT))\n        (send-czml\n          (add-image FLAG-COUNT\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
+	(title "tour-add-flag [hm inst]"))
+
+([DrapePeaks_Class70003] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (let [height (sv place \"height\")]\n      (when (> FLAG-COUNT 0)\n        (send-czml (delete-points (inc FLAG-COUNT)))\n        (def FLAG-COUNT 0))\n      (fly-to place\n              180\n              4000\n              (or height 1000)\n              (if height 0 -15)))))")
+	(title "tour-goto-selected [hm inst]"))
+
+([DrapePeaks_Class70004] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)\n             trans (int (* 225 trans))]\n        (send-czml\n          (add-image 0\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
+	(title "tour-drape-place [hm inst]"))
+
+([DrapePeaks_Class80001] of  Place
+
+	(latitude "[40 39 40]")
+	(longitude "[-73 -56 -38]")
+	(title "New York City"))
+
+([DrapePeaks_Class90002] of  Place
+
+	(latitude "[59 56 15]")
+	(longitude "[30 18 31]")
+	(title "Saint Petersburg"))
+
+([DrapePeaks_Class90007] of  CloVar
+
+	(source "0")
+	(title "FLAG-COUNT"))

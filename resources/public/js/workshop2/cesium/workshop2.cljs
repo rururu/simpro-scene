@@ -6,7 +6,7 @@
      camera-home
      clock-settings
      load-data
-     start-czml-processing
+     start-event-processing
      VIEWER
      CLOCK
      SCENE
@@ -15,8 +15,9 @@
      HOME-VIEW
      CLOCK-SET
      CZML-DS
-     CZML-URL
-     CZML-DEBUG]]))
+     KML-DS
+     EVENT-URL
+     EVENT-DEBUG]]))
 (def W2-HOME-VIEW {:longitude -73.998114468289017509
   :latitude 40.674512895646692812
   :height 2631.082799425431
@@ -199,7 +200,10 @@
 
 ;;;; Drone Flight with Path from CZML Source ::::
 
-(load-data :CZML "data/sampleFlight.czml" nil VIEWER #(drone-flight (.getById (.-entities %) "Aircraft/Aircraft1")))
+(load-data :CZML "data/sampleFlight.czml" 
+                            nil 
+                            VIEWER 
+                            #(drone-flight (.getById (.-entities %) "Aircraft/Aircraft1")))
 
 ;;;; City 3D Tileset ::::
 

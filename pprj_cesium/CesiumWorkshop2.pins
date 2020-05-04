@@ -1,4 +1,4 @@
-; Wed Apr 22 21:40:35 MSK 2020
+; Mon May 04 20:59:35 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29,7 +29,7 @@
 	(output-dir "resources/public/js/workshop2")
 	(output-to "resources/public/js/workshop2.js")
 	(required [CesiumBase_Class0])
-	(store-in "src/cljs/workshop2")
+	(store-in "src/cljs")
 	(title "Workshop Client"))
 
 ([CesiumWorkshop2_Class1] of  CSS
@@ -86,8 +86,8 @@
 
 ([CesiumWorkshop2_Class4] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-czml-processing\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     CZML-URL\n     CZML-DEBUG]])")
-	(title "cesium.workshop2"))
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     KML-DS\n     EVENT-URL\n     EVENT-DEBUG]])")
+	(title "cesium.workshop2.client"))
 
 ([CesiumWorkshop2_Class5] of  CloVar
 

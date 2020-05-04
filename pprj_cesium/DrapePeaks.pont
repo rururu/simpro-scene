@@ -1,4 +1,4 @@
-; Fri May 01 21:41:26 MSK 2020
+; Mon May 04 22:20:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,16 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot but-tour-add-flag
+		(type STRING)
+		(default "Add Flag/cesium.drape.server/tour-add-flag")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-tour-drape-place
+		(type STRING)
+		(default "Drape Place/cesium.drape.server/tour-drape-place")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot flag
 		(type INSTANCE)
 ;+		(allowed-classes Flag)
@@ -21,9 +31,18 @@
 ;+		(allowed-classes Peak)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-tour-goto-selected
+		(type STRING)
+		(default "Goto Selected/cesium.drape.server/tour-goto-selected")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot places
+		(type INSTANCE)
+;+		(allowed-classes Place)
+		(create-accessor read-write))
 	(single-slot but-drape
 		(type STRING)
-		(default "Drape Peak/cesium.drape/drape-peak")
+		(default "Drape Peak/cesium.drape.server/drape-peak")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot country
@@ -34,17 +53,60 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot height
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot transparency
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot flags
+		(type INSTANCE)
+;+		(allowed-classes Flag)
+		(create-accessor read-write)))
+
+(defclass Drapery+Ontology
+	(is-a USER)
+	(role abstract))
+
+(defclass Selector
+	(is-a Drapery+Ontology)
+	(role concrete)
+	(single-slot flag
+		(type INSTANCE)
+;+		(allowed-classes Flag)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-drape
+		(type STRING)
+		(default "Drape Peak/cesium.drape.server/drape-peak")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot peak
+		(type INSTANCE)
+;+		(allowed-classes Peak)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot transparency
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Drapety+Ontology
-	(is-a USER)
-	(role abstract))
+(defclass Flag
+	(is-a Drapery+Ontology)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot country
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
-(defclass Peak
-	(is-a Drapety+Ontology)
+(defclass Place
+	(is-a Drapery+Ontology)
 	(role concrete)
 	(single-slot title
 		(type STRING)
@@ -59,37 +121,45 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Selector
-	(is-a Drapety+Ontology)
+(defclass Peak
+	(is-a Place)
 	(role concrete)
-	(single-slot flag
-		(type INSTANCE)
-;+		(allowed-classes Flag)
+	(single-slot height
+		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-drape
+		(create-accessor read-write)))
+
+(defclass Tour
+	(is-a Drapery+Ontology)
+	(role concrete)
+	(single-slot but-tour-goto-selected
 		(type STRING)
-		(default "Drape Peak/cesium.drape/drape-peak")
+		(default "Goto Selected/cesium.drape.server/tour-goto-selected")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot peak
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot places
 		(type INSTANCE)
-;+		(allowed-classes Peak)
+;+		(allowed-classes Place)
+		(create-accessor read-write))
+	(single-slot but-tour-add-flag
+		(type STRING)
+		(default "Add Flag/cesium.drape.server/tour-add-flag")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot transparency
 		(type FLOAT)
 ;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Flag
-	(is-a Drapety+Ontology)
-	(role concrete)
-	(single-slot source
+		(create-accessor read-write))
+	(single-slot but-tour-drape-place
 		(type STRING)
+		(default "Drape Place/cesium.drape.server/tour-drape-place")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot country
-		(type STRING)
-;+		(cardinality 0 1)
+	(multislot flags
+		(type INSTANCE)
+;+		(allowed-classes Flag)
 		(create-accessor read-write)))

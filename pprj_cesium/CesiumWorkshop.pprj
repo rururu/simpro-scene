@@ -1,4 +1,4 @@
-; Tue Apr 21 21:26:29 MSK 2020
+; Mon May 04 21:09:10 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,15 +20,15 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumWorkshop_ProjectKB_Class396]
-		[CesiumWorkshop_ProjectKB_Class397]))
+		[CesiumWorkshop_ProjectKB_Class10401]
+		[CesiumWorkshop_ProjectKB_Class10402]))
 
-([CesiumWorkshop_ProjectKB_Class396] of  String
+([CesiumWorkshop_ProjectKB_Class10401] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumWorkshop_ProjectKB_Class397] of  String
+([CesiumWorkshop_ProjectKB_Class10402] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
@@ -124,28 +124,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_708294_Class392] of  Map
+([KB_035992_Class392] of  Map
 
 	(entries
-		[KB_708294_Class393]
-		[KB_708294_Class394]
-		[KB_708294_Class395]))
+		[KB_035992_Class393]
+		[KB_035992_Class394]
+		[KB_035992_Class395]))
 
-([KB_708294_Class393] of  Map_Entry
+([KB_035992_Class393] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_708294_Class394] of  Map_Entry
+([KB_035992_Class394] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_708294_Class395] of  Map_Entry
+([KB_035992_Class395] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

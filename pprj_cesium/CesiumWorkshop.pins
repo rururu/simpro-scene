@@ -1,4 +1,4 @@
-; Tue Apr 21 21:26:29 MSK 2020
+; Mon May 04 21:09:10 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -93,6 +93,10 @@
 	(source "(let [nbe (.getElementById js/document \"neighborhoods\")\n       she (.getElementById js/document \"shadows\")]\n  (.addEventListener nbe \"change\" \n    (fn [e]\n       (set! (.-show Neighborhoods) (.-checked (.-target e)))))\n  (.addEventListener she \"change\" \n    (fn [e]\n       (set! (.-shadows VIEWER) (.-checked (.-target e))))))")
 	(title "extras []"))
 
+([CesiumWorkshop_Class50000] of  CloFuncall
+
+	(source "(cesium.workshop.server/start-server)"))
+
 ([CesiumWorshop_Class0] of  ClsMain
 
 	(asset-path "js/workshop")
@@ -127,7 +131,7 @@
 	(html [CesiumWorshop_Class1])
 	(output-dir "resources/public/js/workshop")
 	(output-to "resources/public/js/workshop.js")
-	(store-in "src/cljs/workshop")
+	(store-in "src/cljs/")
 	(title "Workshop Client"))
 
 ([CesiumWorshop_Class1] of  HTML
@@ -138,7 +142,7 @@
 
 ([CesiumWorshop_Class10000] of  CloNamespace
 
-	(title "workshop.client"))
+	(title "cesium.workshop.client"))
 
 ([CesiumWorshop_Class10001] of  CSS
 
@@ -168,7 +172,7 @@
 ([CesiumWorshop_Class10004] of  CloNamespace
 
 	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route])")
-	(title "workshop.server"))
+	(title "cesium.workshop.server"))
 
 ([CesiumWorshop_Class10005] of  CloFunction
 
@@ -204,10 +208,6 @@
 
 	(source "([]\n  (when-let [serv SERV]\n    (.stop serv)\n    (def SERV nil)\n    (println \"Server stopped!\")))\n([hm inst]\n  (stop-server))")
 	(title "stop-server"))
-
-([CesiumWorshop_Class10012] of  CloFuncall
-
-	(source "(workshop.server/start-server)"))
 
 ([CesiumWorshop_Class10014] of  CloFunction
 

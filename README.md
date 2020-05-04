@@ -72,6 +72,7 @@ See examples.
 26. [MAS. GeoMASON. Hiitolanjoki project](https://youtu.be/Snd3VKUevNg)
 27. [Cesium Lesson 1. Cesium Workshop](https://www.youtube.com/watch?v=FOlSx6Mg-V0)
 28. [Cesium Lesson 2. Drape Peaks](https://youtu.be/G4-4ByOJpSE)
+28. [Cesium Lesson 3. Drape Places](https://youtu.be/H9MbAJSaopo)
 
 TO BE CONTINUED
 
