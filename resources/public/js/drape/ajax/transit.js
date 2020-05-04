@@ -5,10 +5,10 @@ goog.require('cognitect.transit');
 goog.require('ajax.interceptors');
 goog.require('ajax.protocols');
 goog.require('ajax.util');
-ajax.transit.transit_type = (function ajax$transit$transit_type(p__20176){
-var map__20177 = p__20176;
-var map__20177__$1 = (((((!((map__20177 == null))))?(((((map__20177.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__20177.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__20177):map__20177);
-var type = cljs.core.get.call(null,map__20177__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+ajax.transit.transit_type = (function ajax$transit$transit_type(p__23775){
+var map__23776 = p__23775;
+var map__23776__$1 = (((((!((map__23776 == null))))?(((((map__23776.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__23776.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__23776):map__23776);
+var type = cljs.core.get.call(null,map__23776__$1,new cljs.core.Keyword(null,"type","type",1174270348));
 var or__4047__auto__ = type;
 if(cljs.core.truth_(or__4047__auto__)){
 return or__4047__auto__;
@@ -40,8 +40,8 @@ return cognitect.transit.write.call(null,writer,params);
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_request_format = (function ajax$transit$transit_request_format(var_args){
-var G__20180 = arguments.length;
-switch (G__20180) {
+var G__23779 = arguments.length;
+switch (G__23779) {
 case 0:
 return ajax.transit.transit_request_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -90,8 +90,8 @@ return cognitect.transit.read.call(null,reader,ajax.protocols._body.call(null,re
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_response_format = (function ajax$transit$transit_response_format(var_args){
-var G__20183 = arguments.length;
-switch (G__20183) {
+var G__23782 = arguments.length;
+switch (G__23782) {
 case 0:
 return ajax.transit.transit_response_format.cljs$core$IFn$_invoke$arity$0();
 

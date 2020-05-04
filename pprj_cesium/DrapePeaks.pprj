@@ -1,4 +1,4 @@
-; Mon May 04 22:20:25 MSK 2020
+; Mon May 04 23:38:32 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -628,28 +628,28 @@
 	(name "instances_file_name")
 	(string_value "DrapePeaks.pins"))
 
-([KB_521243_Class472] of  Map
+([KB_987504_Class472] of  Map
 
 	(entries
-		[KB_521243_Class473]
-		[KB_521243_Class474]
-		[KB_521243_Class475]))
+		[KB_987504_Class473]
+		[KB_987504_Class474]
+		[KB_987504_Class475]))
 
-([KB_521243_Class473] of  Map_Entry
+([KB_987504_Class473] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_521243_Class474] of  Map_Entry
+([KB_987504_Class474] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_521243_Class475] of  Map_Entry
+([KB_987504_Class475] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

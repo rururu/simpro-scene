@@ -1,4 +1,4 @@
-; Mon May 04 22:20:25 MSK 2020
+; Mon May 04 23:38:32 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -94,8 +94,7 @@
 		[DrapePeaks_Class40008]
 		[DrapePeaks_Class40013]
 		[DrapePeaks_Class80001]
-		[DrapePeaks_Class90002]
-		[DrapePeaks_Class50000])
+		[DrapePeaks_Class90002])
 	(title "Tour1")
 	(transparency 0.8))
 
@@ -231,12 +230,6 @@
 
 	(country "Italy")
 	(source "data/flags/it_flag.jpg"))
-
-([DrapePeaks_Class50000] of  Place
-
-	(latitude "[60 10 15]")
-	(longitude "[24 56 15]")
-	(title "Helsinki"))
 
 ([DrapePeaks_Class50001] of  CloFuncall
 

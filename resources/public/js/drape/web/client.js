@@ -11,10 +11,10 @@ web.client.read_transit = (function web$client$read_transit(x){
 return cognitect.transit.read.call(null,cognitect.transit.reader.call(null,new cljs.core.Keyword(null,"json","json",1279968570)),x);
 });
 web.client.error_handler = (function web$client$error_handler(resp){
-var map__20305 = resp;
-var map__20305__$1 = (((((!((map__20305 == null))))?(((((map__20305.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__20305.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__20305):map__20305);
-var status = cljs.core.get.call(null,map__20305__$1,new cljs.core.Keyword(null,"status","status",-1997798413));
-var status_text = cljs.core.get.call(null,map__20305__$1,new cljs.core.Keyword(null,"status-text","status-text",-1834235478));
+var map__24012 = resp;
+var map__24012__$1 = (((((!((map__24012 == null))))?(((((map__24012.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__24012.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__24012):map__24012);
+var status = cljs.core.get.call(null,map__24012__$1,new cljs.core.Keyword(null,"status","status",-1997798413));
+var status_text = cljs.core.get.call(null,map__24012__$1,new cljs.core.Keyword(null,"status-text","status-text",-1834235478));
 return cljs.core.println.call(null,"AJAX ERROR:",status,status_text);
 });
 web.client.request_map_hr = (function web$client$request_map_hr(resp){

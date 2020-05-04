@@ -27,20 +27,20 @@ return shifted;
 cljs.source_map.base64_vlq.encode_val = (function cljs$source_map$base64_vlq$encode_val(n){
 var sb = (new goog.string.StringBuffer());
 var vlq = cljs.source_map.base64_vlq.to_vlq_signed.call(null,n);
-var digit_17849 = (vlq & cljs.source_map.base64_vlq.vlq_base_mask);
-var vlq_17850__$1 = (vlq >>> (5));
+var digit_19336 = (vlq & cljs.source_map.base64_vlq.vlq_base_mask);
+var vlq_19337__$1 = (vlq >>> (5));
 while(true){
-if((vlq_17850__$1 > (0))){
-var digit_17851__$1 = (digit_17849 | cljs.source_map.base64_vlq.vlq_continuation_bit);
-sb.append(cljs.source_map.base64.encode.call(null,digit_17851__$1));
+if((vlq_19337__$1 > (0))){
+var digit_19338__$1 = (digit_19336 | cljs.source_map.base64_vlq.vlq_continuation_bit);
+sb.append(cljs.source_map.base64.encode.call(null,digit_19338__$1));
 
-var G__17852 = (vlq_17850__$1 & cljs.source_map.base64_vlq.vlq_base_mask);
-var G__17853 = (vlq_17850__$1 >>> (5));
-digit_17849 = G__17852;
-vlq_17850__$1 = G__17853;
+var G__19339 = (vlq_19337__$1 & cljs.source_map.base64_vlq.vlq_base_mask);
+var G__19340 = (vlq_19337__$1 >>> (5));
+digit_19336 = G__19339;
+vlq_19337__$1 = G__19340;
 continue;
 } else {
-sb.append(cljs.source_map.base64.encode.call(null,digit_17849));
+sb.append(cljs.source_map.base64.encode.call(null,digit_19336));
 }
 break;
 }
@@ -68,12 +68,12 @@ var digit__$1 = (digit & cljs.source_map.base64_vlq.vlq_base_mask);
 var result__$1 = (result + (digit__$1 << shift));
 var shift__$1 = (shift + (5));
 if(continuation_QMARK_){
-var G__17854 = i__$1;
-var G__17855 = result__$1;
-var G__17856 = shift__$1;
-i = G__17854;
-result = G__17855;
-shift = G__17856;
+var G__19341 = i__$1;
+var G__19342 = result__$1;
+var G__19343 = shift__$1;
+i = G__19341;
+result = G__19342;
+shift = G__19343;
 continue;
 } else {
 return (new cljs.core.LazySeq(null,((function (i,result,shift,i__$1,continuation_QMARK_,digit__$1,result__$1,shift__$1,digit,l){
