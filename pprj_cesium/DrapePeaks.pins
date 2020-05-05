@@ -1,4 +1,4 @@
-; Mon May 04 23:38:32 MSK 2020
+; Tue May 05 10:42:47 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -84,7 +84,9 @@
 		[DrapePeaks_Class40033]
 		[DrapePeaks_Class40023]
 		[DrapePeaks_Class40018]
-		[DrapePeaks_Class30001])
+		[DrapePeaks_Class30001]
+		[DrapePeaks_Class50000]
+		[DrapePeaks_Class60001])
 	(places
 		[DrapePeaks_Class40012]
 		[DrapePeaks_Class40007]
@@ -96,7 +98,7 @@
 		[DrapePeaks_Class80001]
 		[DrapePeaks_Class90002])
 	(title "Tour1")
-	(transparency 0.8))
+	(transparency 0.7))
 
 ([DrapePeaks_Class30001] of  Flag
 
@@ -224,12 +226,17 @@
 ([DrapePeaks_Class40033] of  Flag
 
 	(country "Switzerland")
-	(source "data/flags/sw_flag.png"))
+	(source "data/flags/sz_flag.png"))
 
 ([DrapePeaks_Class40034] of  Flag
 
 	(country "Italy")
 	(source "data/flags/it_flag.jpg"))
+
+([DrapePeaks_Class50000] of  Flag
+
+	(country "Novgorod")
+	(source "data/flags/ng_flag.png"))
 
 ([DrapePeaks_Class50001] of  CloFuncall
 
@@ -249,6 +256,11 @@
 
 	(source "(cond \n  (> az Math/PI) (- az (* 2 Math/PI))\n  (< az (- Math/PI)) (+ az (* 2 Math/PI))\n  true az)")
 	(title "normaz [az]"))
+
+([DrapePeaks_Class60001] of  Flag
+
+	(country "Sweden")
+	(source "data/flags/sw_flag.png"))
 
 ([DrapePeaks_Class70002] of  CloFunction
 
