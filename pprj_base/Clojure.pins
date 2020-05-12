@@ -1,4 +1,4 @@
-; Mon Apr 13 13:51:23 MSK 2020
+; Tue May 12 11:12:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -328,8 +328,8 @@
 
 ([Clojure_Class60002] of  CloFunction
 
-	(source "; Return new instance of class cls\n(.createInstance *kb* nil (.getCls *kb* cls))")
-	(title "crin [cls]"))
+	(source "; Return new instance of class of name clname\n(.createInstance *kb* nil (.getCls *kb* clname))")
+	(title "crin [clname]"))
 
 ([Clojure_Class60003] of  CloFunction
 

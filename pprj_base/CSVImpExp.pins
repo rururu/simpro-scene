@@ -1,0 +1,45 @@
+; Tue May 12 19:11:43 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CSVImpExp_Class1] of  CloFunction
+
+	(source "(if (empty? pre)\n  (boolean val)\n  (eval (read-string (str \"(\" pre \" \\\"\" val \"\\\")\"))))")
+	(title "predicate [pre val]"))
+
+([CSVImport_Class21212] of  CloFunction
+
+	(source "(sc/spit-csv pth data)")
+	(title "write-csv [pth data]"))
+
+([CSVImport_Class21218] of  CloFunction
+
+	(source "([hm inst]\n  (let [mp (into {} hm)\n         clz (mp \"class\")\n         cols (mp \"csv-columns\")\n         file (mp \"csv-file\")\n         cln (.getName clz)\n         cmp (reduce \n                   #(assoc %1 (keyword (sv %2 \"csv-column\"))\n                                       (.getName (sv %2 \"slot\")))\n                   {} \n                   cols)]\n    (csv-save file cln cmp)))\n([file cln cmp]\n  (let [inss (cls-instances cln)\n         data (for [i inss] \n                   (reduce-kv\n                     #(assoc %1 (keyword %2)\n                                         (str (sv i %3)))\n                     {} \n                     cmp))]\n    (write-csv file data)))")
+	(title "csv-save"))
+
+([Heatmap_Class1] of  CloProgram
+
+	(cloFunctions
+		[Heatmap_Class8]
+		[CSVImport_Class21212]
+		[CSVImpExp_Class1]
+		[Heatmap_Class16]
+		[CSVImport_Class21218])
+	(cloNamespace [Heatmap_Class2])
+	(title "CSV Import-Export"))
+
+([Heatmap_Class16] of  CloFunction
+
+	(source "([hm inst]\n  (let [mp (into {} hm)\n         clz (mp \"class\")\n         cols (mp \"csv-columns\")\n         file (mp \"csv-file\")\n         pre (mp \"predicate\")\n         cln (.getName clz)\n         cmp (reduce \n                   #(assoc %1 (keyword (sv %2 \"csv-column\"))\n                                       (.getName (sv %2 \"slot\")))\n                   {} \n                   cols)]\n    (csv-load file cln cmp pre)))\n([file cln cmp pre]\n  (let [data (read-csv file)]\n    (doseq [d data]\n      (let [inst (crin cln)]\n        (doseq [[col val] d]\n          (let [sln (cmp col)\n                 slt (slt sln)\n                 v (read-string val)\n                 svl (condp = (.getValueType slt)\n                        ValueType/FLOAT (float v)\n                        ValueType/INTEGER (int v)\n                        ValueType/BOOLEAN (predicate pre v)\n                        val)]\n            (ssv inst sln svl)))))))")
+	(title "csv-load"))
+
+([Heatmap_Class2] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [clojure-csv.core :as csv]\n  [semantic-csv.core :as sc :refer :all])\n(:import \n  edu.stanford.smi.protege.model.ValueType)")
+	(title "csv.impexp"))
+
+([Heatmap_Class8] of  CloFunction
+
+	(source "(sc/slurp-csv pth)")
+	(title "read-csv [pth]"))

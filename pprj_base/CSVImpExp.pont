@@ -1,0 +1,93 @@
+; Tue May 12 19:11:43 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot csv-column
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot class
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-CLASS)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot csv-file
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-load
+		(type STRING)
+		(default "Load/csv.impexp/csv-load")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot slot
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-save
+		(type STRING)
+		(default "Save/csv.impexp/csv-save")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot predicate
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot csv-columns
+		(type INSTANCE)
+;+		(allowed-classes CSVColumn)
+		(create-accessor read-write)))
+
+(defclass CSV+Impexp+Onto
+	(is-a USER)
+	(role abstract))
+
+(defclass CSVTable
+	(is-a CSV+Impexp+Onto)
+	(role concrete)
+	(single-slot class
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-CLASS)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot predicate
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-save
+		(type STRING)
+		(default "Save/csv.impexp/csv-save")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot csv-columns
+		(type INSTANCE)
+;+		(allowed-classes CSVColumn)
+		(create-accessor read-write))
+	(single-slot csv-file
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-csv-load
+		(type STRING)
+		(default "Load/csv.impexp/csv-load")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CSVColumn
+	(is-a CSV+Impexp+Onto)
+	(role concrete)
+	(single-slot csv-column
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot slot
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-SLOT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

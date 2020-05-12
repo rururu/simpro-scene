@@ -1,0 +1,5557 @@
+; Tue May 12 23:11:42 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Heatmap_Class0] of  CSVTable
+
+	(but-csv-load "Load/csv.impexp/csv-load")
+	(but-csv-save "Save/csv.impexp/csv-save")
+	(class [City])
+	(csv-columns
+		[Heatmap_Class10007]
+		[Heatmap_Class10008]
+		[Heatmap_Class10009]
+		[Heatmap_Class10010]
+		[Heatmap_Class10001]
+		[Heatmap_Class10000])
+	(csv-file "file:data/csv/cities.csv")
+	(predicate "#(= % \"Y\")"))
+
+([Heatmap_Class10000] of  CSVColumn
+
+	(csv-column "LATITUDE")
+	(slot [latitude]))
+
+([Heatmap_Class10001] of  CSVColumn
+
+	(csv-column "LONGITUDE")
+	(slot [longitude]))
+
+([Heatmap_Class10007] of  CSVColumn
+
+	(csv-column "CITY_NAME")
+	(slot [title]))
+
+([Heatmap_Class10008] of  CSVColumn
+
+	(csv-column "COUNTRY")
+	(slot [country]))
+
+([Heatmap_Class10009] of  CSVColumn
+
+	(csv-column "POP")
+	(slot [population]))
+
+([Heatmap_Class10010] of  CSVColumn
+
+	(csv-column "CAP")
+	(slot [capital]))
+
+([Heatmap_Class10011] of  CloFuncall
+
+	(source "(eval (read-string \"((fn [x] (= x \\\"Y\\\")) \\\"Y\\\")\"))"))
+
+([Heatmap_Class10012] of  CloFuncall
+
+	(source "(eval (read-string \"((fn [x] (= x \\\"Y\\\")) \\\"N\\\")\"))"))
+
+([Heatmap_Class20000] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 68.96355)
+	(longitude 33.08604)
+	(population 468000)
+	(title "Murmansk"))
+
+([Heatmap_Class20001] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 64.52067)
+	(longitude 40.64616)
+	(population 416000)
+	(title "Arkhangelsk"))
+
+([Heatmap_Class20002] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 59.95189)
+	(longitude 30.453327)
+	(population 5825000)
+	(title "Saint Petersburg"))
+
+([Heatmap_Class20003] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 59.571)
+	(longitude 150.78001)
+	(population 152000)
+	(title "Magadan"))
+
+([Heatmap_Class20004] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 58.000237)
+	(longitude 56.232464)
+	(population 1160000)
+	(title "Perm'"))
+
+([Heatmap_Class20005] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 56.846542)
+	(longitude 60.61013)
+	(population 1620000)
+	(title "Yekaterinburg"))
+
+([Heatmap_Class20006] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 56.289677)
+	(longitude 43.94067)
+	(population 2025000)
+	(title "Nizhniy Novgorod"))
+
+([Heatmap_Class20007] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 55.86281)
+	(longitude -4.2699475)
+	(population 1800000)
+	(title "Glasgow"))
+
+([Heatmap_Class20008] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 55.733006)
+	(longitude 49.145466)
+	(population 1140000)
+	(title "Kazan'"))
+
+([Heatmap_Class20009] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 55.145)
+	(longitude 61.392612)
+	(population 1325000)
+	(title "Chelyabinsk"))
+
+([Heatmap_Class20010] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 55.063305)
+	(longitude 73.25029)
+	(population 1175000)
+	(title "Omsk"))
+
+([Heatmap_Class20011] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 55.0321)
+	(longitude 82.94285)
+	(population 1600000)
+	(title "Novosibirsk"))
+
+([Heatmap_Class20012] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 54.821735)
+	(longitude 56.096127)
+	(population 1100000)
+	(title "Ufa"))
+
+([Heatmap_Class20013] of  City
+
+	(capital TRUE)
+	(country "Lithuania")
+	(latitude 54.68857)
+	(longitude 25.275967)
+	(population 582000)
+	(title "Vilnius"))
+
+([Heatmap_Class20014] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 54.586926)
+	(longitude -5.9096603)
+	(population 685000)
+	(title "Belfast"))
+
+([Heatmap_Class20015] of  City
+
+	(capital FALSE)
+	(country "Poland")
+	(latitude 54.366203)
+	(longitude 18.624943)
+	(population 909000)
+	(title "Gdansk"))
+
+([Heatmap_Class20016] of  City
+
+	(capital TRUE)
+	(country "Byelarus")
+	(latitude 53.899937)
+	(longitude 27.575567)
+	(population 1650000)
+	(title "Minsk"))
+
+([Heatmap_Class20017] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 53.808712)
+	(longitude -1.4975275)
+	(population 1540000)
+	(title "Leeds"))
+
+([Heatmap_Class20018] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 53.57112)
+	(longitude 10.027606)
+	(population 2225000)
+	(title "Hamburg"))
+
+([Heatmap_Class20019] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 53.479664)
+	(longitude -2.2617786)
+	(population 2775000)
+	(title "Manchester"))
+
+([Heatmap_Class20020] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 53.374043)
+	(longitude -1.4629892)
+	(population 710000)
+	(title "Sheffield"))
+
+([Heatmap_Class20021] of  City
+
+	(capital TRUE)
+	(country "Ireland")
+	(latitude 53.34156)
+	(longitude -6.2573466)
+	(population 1140000)
+	(title "Dublin"))
+
+([Heatmap_Class20022] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 53.138596)
+	(longitude 50.09618)
+	(population 1505000)
+	(title "Samara"))
+
+([Heatmap_Class20023] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 53.080105)
+	(longitude 8.857626)
+	(population 800000)
+	(title "Bremen"))
+
+([Heatmap_Class20024] of  City
+
+	(capital TRUE)
+	(country "Germany")
+	(latitude 52.516273)
+	(longitude 13.327573)
+	(population 5061248)
+	(title "Berlin"))
+
+([Heatmap_Class20025] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 52.492752)
+	(longitude -1.8633478)
+	(population 2675000)
+	(title "Birmingham"))
+
+([Heatmap_Class20026] of  City
+
+	(capital FALSE)
+	(country "Netherlands")
+	(latitude 52.373043)
+	(longitude 4.894833)
+	(population 1860000)
+	(title "Amsterdam"))
+
+([Heatmap_Class20027] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 52.317432)
+	(longitude 104.24783)
+	(population 626000)
+	(title "Irkutsk"))
+
+([Heatmap_Class20028] of  City
+
+	(capital TRUE)
+	(country "Poland")
+	(latitude 52.244946)
+	(longitude 21.011879)
+	(population 2323000)
+	(title "Warsaw"))
+
+([Heatmap_Class20029] of  City
+
+	(capital FALSE)
+	(country "Netherlands")
+	(latitude 51.925594)
+	(longitude 4.4851522)
+	(population 1110000)
+	(title "Rotterdam"))
+
+([Heatmap_Class20030] of  City
+
+	(capital FALSE)
+	(country "Poland")
+	(latitude 51.77791)
+	(longitude 19.47644)
+	(population 1061000)
+	(title "Lodz"))
+
+([Heatmap_Class20031] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 51.513813)
+	(longitude 7.4664183)
+	(population 568164)
+	(title "Dortmund"))
+
+([Heatmap_Class20032] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 51.489338)
+	(longitude 6.7753043)
+	(population 514628)
+	(title "Duisburg"))
+
+([Heatmap_Class20033] of  City
+
+	(capital TRUE)
+	(country "UK")
+	(latitude 51.48791)
+	(longitude -0.17799813)
+	(population 11100000)
+	(title "London"))
+
+([Heatmap_Class20034] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 51.354042)
+	(longitude 7.122435)
+	(population 3867000)
+	(title "Essen"))
+
+([Heatmap_Class20035] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 51.34933)
+	(longitude 12.398074)
+	(population 700000)
+	(title "Leipzig"))
+
+([Heatmap_Class20036] of  City
+
+	(capital FALSE)
+	(country "Belgium")
+	(latitude 51.207348)
+	(longitude 4.4260545)
+	(population 1100000)
+	(title "Antwerpen"))
+
+([Heatmap_Class20037] of  City
+
+	(capital FALSE)
+	(country "Poland")
+	(latitude 51.12182)
+	(longitude 17.038128)
+	(population 640200)
+	(title "Wroclaw"))
+
+([Heatmap_Class20038] of  City
+
+	(capital FALSE)
+	(country "Belgium")
+	(latitude 51.047554)
+	(longitude 3.7362912)
+	(population 465000)
+	(title "Gent"))
+
+([Heatmap_Class20039] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 51.04568)
+	(longitude 13.705358)
+	(population 670000)
+	(title "Dresden"))
+
+([Heatmap_Class20040] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 51.03)
+	(longitude -114.05)
+	(population 671326)
+	(title "Calgary"))
+
+([Heatmap_Class20041] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 50.942345)
+	(longitude 6.9348717)
+	(population 1760000)
+	(title "Koln"))
+
+([Heatmap_Class20042] of  City
+
+	(capital TRUE)
+	(country "Belgium")
+	(latitude 50.837048)
+	(longitude 4.3676124)
+	(population 2385000)
+	(title "Bruxelles"))
+
+([Heatmap_Class20043] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 50.73456)
+	(longitude 7.0998187)
+	(population 570000)
+	(title "Bonn"))
+
+([Heatmap_Class20044] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 50.632084)
+	(longitude 3.0629013)
+	(population 1020000)
+	(title "Lille"))
+
+([Heatmap_Class20045] of  City
+
+	(capital FALSE)
+	(country "Belgium")
+	(latitude 50.622528)
+	(longitude 5.5694356)
+	(population 750000)
+	(title "Liege"))
+
+([Heatmap_Class20046] of  City
+
+	(capital TRUE)
+	(country "Ukraine")
+	(latitude 50.44816)
+	(longitude 30.502111)
+	(population 2900000)
+	(title "Kiev"))
+
+([Heatmap_Class20047] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 50.129997)
+	(longitude 8.668167)
+	(population 1855000)
+	(title "Frankfurt am Main"))
+
+([Heatmap_Class20048] of  City
+
+	(capital TRUE)
+	(country "Czech Repub")
+	(latitude 50.105896)
+	(longitude 14.45652)
+	(population 1325000)
+	(title "Praha"))
+
+([Heatmap_Class20049] of  City
+
+	(capital FALSE)
+	(country "Poland")
+	(latitude 50.06224)
+	(longitude 19.945057)
+	(population 828000)
+	(title "Krakow"))
+
+([Heatmap_Class20050] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 49.92117)
+	(longitude -97.12444)
+	(population 625304)
+	(title "Winnipeg"))
+
+([Heatmap_Class20051] of  City
+
+	(capital FALSE)
+	(country "Kazakhstan")
+	(latitude 49.879208)
+	(longitude 73.20264)
+	(population 614000)
+	(title "Karaganda"))
+
+([Heatmap_Class20052] of  City
+
+	(capital FALSE)
+	(country "Ukraine")
+	(latitude 49.83731)
+	(longitude 24.034521)
+	(population 790000)
+	(title "Lvov"))
+
+([Heatmap_Class20053] of  City
+
+	(capital FALSE)
+	(country "Czech Repub")
+	(latitude 49.20298)
+	(longitude 16.616245)
+	(population 450000)
+	(title "Brno"))
+
+([Heatmap_Class20054] of  City
+
+	(capital TRUE)
+	(country "France")
+	(latitude 48.881554)
+	(longitude 2.4328327)
+	(population 9775000)
+	(title "Paris"))
+
+([Heatmap_Class20055] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 48.710247)
+	(longitude 44.48363)
+	(population 1360000)
+	(title "Volgograd"))
+
+([Heatmap_Class20056] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 48.583435)
+	(longitude 7.7679944)
+	(population 400000)
+	(title "Strasbourg"))
+
+([Heatmap_Class20057] of  City
+
+	(capital FALSE)
+	(country "Austria")
+	(latitude 48.297596)
+	(longitude 14.293901)
+	(population 335000)
+	(title "Linz"))
+
+([Heatmap_Class20058] of  City
+
+	(capital TRUE)
+	(country "Austria")
+	(latitude 48.202118)
+	(longitude 16.320986)
+	(population 1875000)
+	(title "Vienna"))
+
+([Heatmap_Class20059] of  City
+
+	(capital FALSE)
+	(country "Germany")
+	(latitude 48.140976)
+	(longitude 11.5429535)
+	(population 1955000)
+	(title "Munchen"))
+
+([Heatmap_Class20060] of  City
+
+	(capital FALSE)
+	(country "Ukraine")
+	(latitude 48.040146)
+	(longitude 37.737053)
+	(population 2200000)
+	(title "Donets'k"))
+
+([Heatmap_Class20061] of  City
+
+	(capital TRUE)
+	(country "Mongolia")
+	(latitude 47.928596)
+	(longitude 106.91235)
+	(population 548400)
+	(title "Ulaanbaatar"))
+
+([Heatmap_Class20062] of  City
+
+	(capital TRUE)
+	(country "Hungary")
+	(latitude 47.514626)
+	(longitude 19.09425)
+	(population 2565000)
+	(title "Budapest"))
+
+([Heatmap_Class20063] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 47.344006)
+	(longitude 123.964966)
+	(population 1150000)
+	(title "Qiqihar"))
+
+([Heatmap_Class20064] of  City
+
+	(capital FALSE)
+	(country "Austria")
+	(latitude 47.26546)
+	(longitude 11.349982)
+	(population 185000)
+	(title "Innsbruck"))
+
+([Heatmap_Class20065] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 47.232098)
+	(longitude 39.688038)
+	(population 1165000)
+	(title "Rostov-na-Donu"))
+
+([Heatmap_Class20066] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 47.219433)
+	(longitude -1.5615612)
+	(population 464857)
+	(title "Nantes"))
+
+([Heatmap_Class20067] of  City
+
+	(capital FALSE)
+	(country "Austria")
+	(latitude 47.064922)
+	(longitude 15.431101)
+	(population 325000)
+	(title "Graz"))
+
+([Heatmap_Class20068] of  City
+
+	(capital TRUE)
+	(country "Switzerland")
+	(latitude 46.948208)
+	(longitude 7.4457364)
+	(population 298800)
+	(title "Bern"))
+
+([Heatmap_Class20069] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 46.802074)
+	(longitude -71.244934)
+	(population 603267)
+	(title "Quebec"))
+
+([Heatmap_Class20070] of  City
+
+	(capital FALSE)
+	(country "Ukraine")
+	(latitude 46.5722)
+	(longitude 30.683937)
+	(population 1185000)
+	(title "Odessa"))
+
+([Heatmap_Class20071] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 45.75522)
+	(longitude 126.622635)
+	(population 2670000)
+	(title "Harbin"))
+
+([Heatmap_Class20072] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 45.74708)
+	(longitude 4.8554006)
+	(population 1275000)
+	(title "Lyon"))
+
+([Heatmap_Class20073] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 45.541016)
+	(longitude -73.653534)
+	(population 2921357)
+	(title "Montreal"))
+
+([Heatmap_Class20074] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 45.47338)
+	(longitude 9.190464)
+	(population 3750000)
+	(title "Milano"))
+
+([Heatmap_Class20075] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 45.424774)
+	(longitude 12.37072)
+	(population 420000)
+	(title "Venezia"))
+
+([Heatmap_Class20076] of  City
+
+	(capital TRUE)
+	(country "Canada")
+	(latitude 45.374218)
+	(longitude -75.65075)
+	(population 819263)
+	(title "Ottawa"))
+
+([Heatmap_Class20077] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 45.074875)
+	(longitude 7.666426)
+	(population 1550000)
+	(title "Torino"))
+
+([Heatmap_Class20078] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 44.924187)
+	(longitude -93.30779)
+	(population 2012400)
+	(title "Minneapolis"))
+
+([Heatmap_Class20079] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 44.841473)
+	(longitude -0.59949875)
+	(population 640012)
+	(title "Bordeaux"))
+
+([Heatmap_Class20080] of  City
+
+	(capital TRUE)
+	(country "Serbia")
+	(latitude 44.799683)
+	(longitude 20.412556)
+	(population 1400000)
+	(title "Beograd"))
+
+([Heatmap_Class20081] of  City
+
+	(capital TRUE)
+	(country "Romania")
+	(latitude 44.430485)
+	(longitude 26.122976)
+	(population 2250000)
+	(title "Bucuresti"))
+
+([Heatmap_Class20082] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 43.881317)
+	(longitude 125.31265)
+	(population 1740000)
+	(title "Changchung"))
+
+([Heatmap_Class20083] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 43.850216)
+	(longitude 126.56706)
+	(population 1170000)
+	(title "Jilin"))
+
+([Heatmap_Class20084] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 43.782665)
+	(longitude 87.58652)
+	(population 1040000)
+	(title "Urumqi"))
+
+([Heatmap_Class20085] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 43.781574)
+	(longitude 11.207746)
+	(population 640000)
+	(title "Firenze"))
+
+([Heatmap_Class20086] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 43.720768)
+	(longitude -79.412636)
+	(population 3427168)
+	(title "Toronto"))
+
+([Heatmap_Class20087] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 43.59996)
+	(longitude 1.437983)
+	(population 541271)
+	(title "Toulouse"))
+
+([Heatmap_Class20088] of  City
+
+	(capital FALSE)
+	(country "Spain")
+	(latitude 43.282158)
+	(longitude -2.9737833)
+	(population 985000)
+	(title "Bilbao"))
+
+([Heatmap_Class20089] of  City
+
+	(capital TRUE)
+	(country "Kazakhstan")
+	(latitude 43.255062)
+	(longitude 76.91263)
+	(population 1190000)
+	(title "Almaty"))
+
+([Heatmap_Class20090] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 43.210464)
+	(longitude -77.63561)
+	(population 816200)
+	(title "Rochester"))
+
+([Heatmap_Class20091] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 43.067947)
+	(longitude -87.99074)
+	(population 1374700)
+	(title "Milwaukee"))
+
+([Heatmap_Class20092] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 43.055252)
+	(longitude 141.34547)
+	(population 1900000)
+	(title "Sapporo"))
+
+([Heatmap_Class20093] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 42.898663)
+	(longitude -78.848434)
+	(population 1483000)
+	(title "Buffalo"))
+
+([Heatmap_Class20094] of  City
+
+	(capital TRUE)
+	(country "Bulgaria")
+	(latitude 42.707264)
+	(longitude 23.331871)
+	(population 1205000)
+	(title "Sofiya"))
+
+([Heatmap_Class20095] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 42.394314)
+	(longitude -83.078926)
+	(population 4691900)
+	(title "Detroit"))
+
+([Heatmap_Class20096] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 42.375298)
+	(longitude -71.102585)
+	(population 3971700)
+	(title "Boston"))
+
+([Heatmap_Class20097] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 41.859158)
+	(longitude 123.90557)
+	(population 1270000)
+	(title "Fushun"))
+
+([Heatmap_Class20098] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 41.826546)
+	(longitude -87.641304)
+	(population 7717100)
+	(title "Chicago"))
+
+([Heatmap_Class20099] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 41.802162)
+	(longitude 123.38306)
+	(population 3840000)
+	(title "Shenyang"))
+
+([Heatmap_Class20100] of  City
+
+	(capital TRUE)
+	(country "Georgia")
+	(latitude 41.72181)
+	(longitude 44.783127)
+	(population 1460000)
+	(title "T'Bilisi"))
+
+([Heatmap_Class20101] of  City
+
+	(capital FALSE)
+	(country "Spain")
+	(latitude 41.651264)
+	(longitude -0.87820506)
+	(population 575317)
+	(title "Zaragoza"))
+
+([Heatmap_Class20102] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 41.390717)
+	(longitude -81.72751)
+	(population 2218400)
+	(title "Cleveland"))
+
+([Heatmap_Class20103] of  City
+
+	(capital TRUE)
+	(country "Albania")
+	(latitude 41.331654)
+	(longitude 19.831804)
+	(population 210800)
+	(title "Tirane"))
+
+([Heatmap_Class20104] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 41.115246)
+	(longitude 122.97701)
+	(population 1300000)
+	(title "Anshan"))
+
+([Heatmap_Class20105] of  City
+
+	(capital FALSE)
+	(country "Turkey")
+	(latitude 41.065956)
+	(longitude 29.00607)
+	(population 5750000)
+	(title "Istanbul"))
+
+([Heatmap_Class20106] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 40.69392)
+	(longitude -111.89217)
+	(population 682400)
+	(title "Salt Lake City"))
+
+([Heatmap_Class20107] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 40.497204)
+	(longitude -79.997086)
+	(population 2218800)
+	(title "Pittsburgh"))
+
+([Heatmap_Class20108] of  City
+
+	(capital TRUE)
+	(country "Spain")
+	(latitude 40.44222)
+	(longitude -3.6909695)
+	(population 4650000)
+	(title "Madrid"))
+
+([Heatmap_Class20109] of  City
+
+	(capital TRUE)
+	(country "Azerbaijan")
+	(latitude 40.3243)
+	(longitude 49.81624)
+	(population 2020000)
+	(title "Baku"))
+
+([Heatmap_Class20110] of  City
+
+	(capital TRUE)
+	(country "Armenia")
+	(latitude 40.208023)
+	(longitude 44.53267)
+	(population 1315000)
+	(title "Yerevan"))
+
+([Heatmap_Class20111] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 40.044643)
+	(longitude -82.99271)
+	(population 963600)
+	(title "Columbus"))
+
+([Heatmap_Class20112] of  City
+
+	(capital TRUE)
+	(country "Turkey")
+	(latitude 39.92933)
+	(longitude 32.85327)
+	(population 2400000)
+	(title "Ankara"))
+
+([Heatmap_Class20113] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 39.92755)
+	(longitude -75.21822)
+	(population 5208600)
+	(title "Philadelphia"))
+
+([Heatmap_Class20114] of  City
+
+	(capital TRUE)
+	(country "China")
+	(latitude 39.906193)
+	(longitude 116.38804)
+	(population 6450000)
+	(title "Beijing"))
+
+([Heatmap_Class20115] of  City
+
+	(capital FALSE)
+	(country "Turkey")
+	(latitude 39.904453)
+	(longitude 41.291824)
+	(population 246053)
+	(title "Erzurum"))
+
+([Heatmap_Class20116] of  City
+
+	(capital FALSE)
+	(country "Uzbekistan")
+	(latitude 39.65758)
+	(longitude 66.9476)
+	(population 366000)
+	(title "Samarkand"))
+
+([Heatmap_Class20117] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 39.615444)
+	(longitude 118.180214)
+	(population 1060000)
+	(title "Tangshan"))
+
+([Heatmap_Class20118] of  City
+
+	(capital FALSE)
+	(country "Spain")
+	(latitude 39.470917)
+	(longitude -0.36740094)
+	(population 1270000)
+	(title "Valencia"))
+
+([Heatmap_Class20119] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 39.321884)
+	(longitude -76.61838)
+	(population 1960400)
+	(title "Baltimore"))
+
+([Heatmap_Class20120] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 39.225143)
+	(longitude 9.10891)
+	(population 305000)
+	(title "Cagliari"))
+
+([Heatmap_Class20121] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 39.14801)
+	(longitude -84.47702)
+	(population 1480100)
+	(title "Cincinnati"))
+
+([Heatmap_Class20122] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 39.128414)
+	(longitude 117.18523)
+	(population 4880000)
+	(title "Tianjin"))
+
+([Heatmap_Class20123] of  City
+
+	(capital TRUE)
+	(country "Korea D P Rp")
+	(latitude 39.028515)
+	(longitude 125.757515)
+	(population 1600000)
+	(title "Pyongyang"))
+
+([Heatmap_Class20124] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 38.994118)
+	(longitude -94.626564)
+	(population 1272400)
+	(title "Kansas City"))
+
+([Heatmap_Class20125] of  City
+
+	(capital TRUE)
+	(country "US")
+	(latitude 38.89091)
+	(longitude -76.953835)
+	(population 3221400)
+	(title "Washington D.C."))
+
+([Heatmap_Class20126] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 38.638885)
+	(longitude -90.34198)
+	(population 2203000)
+	(title "St. Louis"))
+
+([Heatmap_Class20127] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 38.567017)
+	(longitude -121.42271)
+	(population 866400)
+	(title "Sacramento"))
+
+([Heatmap_Class20128] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 38.08098)
+	(longitude 46.29012)
+	(population 971482)
+	(title "Tabriz"))
+
+([Heatmap_Class20129] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 38.077095)
+	(longitude 114.55971)
+	(population 1190000)
+	(title "Shijiazhuang"))
+
+([Heatmap_Class20130] of  City
+
+	(capital TRUE)
+	(country "Turkmenistan")
+	(latitude 37.95042)
+	(longitude 58.390133)
+	(population 398000)
+	(title "Ashkhabad"))
+
+([Heatmap_Class20131] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 37.893055)
+	(longitude 112.551704)
+	(population 1660000)
+	(title "Taiyuan"))
+
+([Heatmap_Class20132] of  City
+
+	(capital TRUE)
+	(country "Korea Rep")
+	(latitude 37.54235)
+	(longitude 126.93525)
+	(population 15850000)
+	(title "Seoul"))
+
+([Heatmap_Class20133] of  City
+
+	(capital FALSE)
+	(country "Spain")
+	(latitude 37.372646)
+	(longitude -5.970832)
+	(population 945000)
+	(title "Sevilla"))
+
+([Heatmap_Class20134] of  City
+
+	(capital FALSE)
+	(country "Turkey")
+	(latitude 36.99998)
+	(longitude 35.324364)
+	(population 777554)
+	(title "Adana"))
+
+([Heatmap_Class20135] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 36.87929)
+	(longitude -76.26857)
+	(population 795600)
+	(title "Norfolk"))
+
+([Heatmap_Class20136] of  City
+
+	(capital TRUE)
+	(country "Tunisia")
+	(latitude 36.818813)
+	(longitude 10.16596)
+	(population 1225000)
+	(title "Tunis"))
+
+([Heatmap_Class20137] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 36.791496)
+	(longitude 118.06204)
+	(population 830000)
+	(title "Zibo"))
+
+([Heatmap_Class20138] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 36.655537)
+	(longitude 116.96706)
+	(population 1460000)
+	(title "Jinan"))
+
+([Heatmap_Class20139] of  City
+
+	(capital FALSE)
+	(country "Iraq")
+	(latitude 36.335567)
+	(longitude 43.137127)
+	(population 570926)
+	(title "Mosul"))
+
+([Heatmap_Class20140] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 36.29007)
+	(longitude 59.59685)
+	(population 1463508)
+	(title "Mashhad"))
+
+([Heatmap_Class20141] of  City
+
+	(capital FALSE)
+	(country "Syria")
+	(latitude 36.215546)
+	(longitude 37.159283)
+	(population 1216000)
+	(title "Aleppo"))
+
+([Heatmap_Class20142] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 36.11343)
+	(longitude 103.599594)
+	(population 1270000)
+	(title "Lanzhou"))
+
+([Heatmap_Class20143] of  City
+
+	(capital FALSE)
+	(country "Korea Rep")
+	(latitude 35.863537)
+	(longitude 128.59138)
+	(population 2206000)
+	(title "Taegu"))
+
+([Heatmap_Class20144] of  City
+
+	(capital TRUE)
+	(country "Iran")
+	(latitude 35.774475)
+	(longitude 51.44765)
+	(population 6400000)
+	(title "Tehran"))
+
+([Heatmap_Class20145] of  City
+
+	(capital TRUE)
+	(country "Japan")
+	(latitude 35.683056)
+	(longitude 139.80919)
+	(population 23620000)
+	(title "Tokyo"))
+
+([Heatmap_Class20146] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 35.50457)
+	(longitude 139.72722)
+	(population 1088624)
+	(title "Kawasaki"))
+
+([Heatmap_Class20147] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 35.48959)
+	(longitude -97.5303)
+	(population 742000)
+	(title "Oklahoma City"))
+
+([Heatmap_Class20148] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 35.437386)
+	(longitude 139.61966)
+	(population 2992926)
+	(title "Yokohama"))
+
+([Heatmap_Class20149] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 35.205814)
+	(longitude -80.835686)
+	(population 479200)
+	(title "Charlotte"))
+
+([Heatmap_Class20150] of  City
+
+	(capital FALSE)
+	(country "Korea Rep")
+	(latitude 35.157867)
+	(longitude 129.05469)
+	(population 3800000)
+	(title "Pusan"))
+
+([Heatmap_Class20151] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 35.154922)
+	(longitude 136.9206)
+	(population 4800000)
+	(title "Nagoya"))
+
+([Heatmap_Class20152] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 35.114727)
+	(longitude -90.00033)
+	(population 852900)
+	(title "Memphis"))
+
+([Heatmap_Class20153] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 35.00913)
+	(longitude 135.75482)
+	(population 1479218)
+	(title "Kyoto"))
+
+([Heatmap_Class20154] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 34.757683)
+	(longitude 113.64178)
+	(population 1170000)
+	(title "Zhengzhou"))
+
+([Heatmap_Class20155] of  City
+
+	(capital FALSE)
+	(country "Syria")
+	(latitude 34.733875)
+	(longitude 36.718174)
+	(population 431000)
+	(title "Homs"))
+
+([Heatmap_Class20156] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 34.67135)
+	(longitude 112.36124)
+	(population 740000)
+	(title "Luoyang"))
+
+([Heatmap_Class20157] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 34.63553)
+	(longitude 135.51912)
+	(population 15040000)
+	(title "Osaka"))
+
+([Heatmap_Class20158] of  City
+
+	(capital TRUE)
+	(country "Afghanistan")
+	(latitude 34.530907)
+	(longitude 69.13676)
+	(population 1179000)
+	(title "Kabul"))
+
+([Heatmap_Class20159] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 34.377556)
+	(longitude 132.44478)
+	(population 1575000)
+	(title "Hiroshima"))
+
+([Heatmap_Class20160] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 34.265697)
+	(longitude 108.88336)
+	(population 2050000)
+	(title "Xian"))
+
+([Heatmap_Class20161] of  City
+
+	(capital FALSE)
+	(country "Morocco")
+	(latitude 34.043568)
+	(longitude -4.995548)
+	(population 535000)
+	(title "Fes"))
+
+([Heatmap_Class20162] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 33.7957)
+	(longitude -84.34923)
+	(population 1962500)
+	(title "Atlanta"))
+
+([Heatmap_Class20163] of  City
+
+	(capital TRUE)
+	(country "Pakistan")
+	(latitude 33.71815)
+	(longitude 73.06055)
+	(population 204364)
+	(title "Islamabad"))
+
+([Heatmap_Class20164] of  City
+
+	(capital FALSE)
+	(country "Pakistan")
+	(latitude 33.605804)
+	(longitude 73.04375)
+	(population 836000)
+	(title "Rawalpindi"))
+
+([Heatmap_Class20165] of  City
+
+	(capital TRUE)
+	(country "Syria")
+	(latitude 33.519302)
+	(longitude 36.313454)
+	(population 1850000)
+	(title "Damascus"))
+
+([Heatmap_Class20166] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 33.50902)
+	(longitude -112.11026)
+	(population 1482400)
+	(title "Phoenix"))
+
+([Heatmap_Class20167] of  City
+
+	(capital TRUE)
+	(country "Iraq")
+	(latitude 33.334038)
+	(longitude 44.397835)
+	(population 3841268)
+	(title "Baghdad"))
+
+([Heatmap_Class20168] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 32.76373)
+	(longitude -96.66369)
+	(population 2727300)
+	(title "Dallas"))
+
+([Heatmap_Class20169] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 32.65139)
+	(longitude 51.679188)
+	(population 986753)
+	(title "Esfahan"))
+
+([Heatmap_Class20170] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 32.048367)
+	(longitude 118.768906)
+	(population 2290000)
+	(title "Nanjing"))
+
+([Heatmap_Class20171] of  City
+
+	(capital TRUE)
+	(country "Jordan")
+	(latitude 31.949383)
+	(longitude 35.932907)
+	(population 1250000)
+	(title "Amman"))
+
+([Heatmap_Class20172] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 31.63089)
+	(longitude 74.87155)
+	(population 594844)
+	(title "Amritsar"))
+
+([Heatmap_Class20173] of  City
+
+	(capital FALSE)
+	(country "Pakistan")
+	(latitude 31.545053)
+	(longitude 74.340675)
+	(population 3025000)
+	(title "Lahore"))
+
+([Heatmap_Class20174] of  City
+
+	(capital FALSE)
+	(country "Pakistan")
+	(latitude 31.40895)
+	(longitude 73.08346)
+	(population 1104209)
+	(title "Faisalabad"))
+
+([Heatmap_Class20175] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 31.24787)
+	(longitude 121.47266)
+	(population 9300000)
+	(title "Shanghai"))
+
+([Heatmap_Class20176] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 30.670069)
+	(longitude 104.07127)
+	(population 1810000)
+	(title "Chengdu"))
+
+([Heatmap_Class20177] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 30.572498)
+	(longitude 114.27922)
+	(population 3490000)
+	(title "Wuhan"))
+
+([Heatmap_Class20178] of  City
+
+	(capital FALSE)
+	(country "Iraq")
+	(latitude 30.50349)
+	(longitude 47.760864)
+	(population 616700)
+	(title "Al Basra"))
+
+([Heatmap_Class20179] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 30.252625)
+	(longitude 120.16508)
+	(population 1270000)
+	(title "Hangzhou"))
+
+([Heatmap_Class20180] of  City
+
+	(capital TRUE)
+	(country "Egypt")
+	(latitude 30.077911)
+	(longitude 31.250797)
+	(population 9300000)
+	(title "Cairo"))
+
+([Heatmap_Class20181] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 29.956379)
+	(longitude -90.09869)
+	(population 1185000)
+	(title "New Orleans"))
+
+([Heatmap_Class20182] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 29.77183)
+	(longitude -95.40711)
+	(population 2755100)
+	(title "Houston"))
+
+([Heatmap_Class20183] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 29.650703)
+	(longitude 91.13209)
+	(population 84400)
+	(title "Lhasa"))
+
+([Heatmap_Class20184] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 29.544104)
+	(longitude 106.52269)
+	(population 2450000)
+	(title "Chongqing"))
+
+([Heatmap_Class20185] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 29.429922)
+	(longitude -98.524574)
+	(population 968200)
+	(title "San Antonio"))
+
+([Heatmap_Class20186] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 28.67124)
+	(longitude 115.88941)
+	(population 1030000)
+	(title "Nanchang"))
+
+([Heatmap_Class20187] of  City
+
+	(capital TRUE)
+	(country "India")
+	(latitude 28.568726)
+	(longitude 77.21675)
+	(population 273036)
+	(title "New Delhi"))
+
+([Heatmap_Class20188] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 28.526459)
+	(longitude 77.22437)
+	(population 7200000)
+	(title "Delhi"))
+
+([Heatmap_Class20189] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 28.197641)
+	(longitude 112.96848)
+	(population 1190000)
+	(title "Changsha"))
+
+([Heatmap_Class20190] of  City
+
+	(capital TRUE)
+	(country "Nepal")
+	(latitude 27.712017)
+	(longitude 85.31295)
+	(population 320000)
+	(title "Kathmandu"))
+
+([Heatmap_Class20191] of  City
+
+	(capital TRUE)
+	(country "Bhutan")
+	(latitude 27.442606)
+	(longitude 89.66733)
+	(population 12000)
+	(title "Thimbu"))
+
+([Heatmap_Class20192] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 26.905113)
+	(longitude 75.80128)
+	(population 1025000)
+	(title "Jaipur"))
+
+([Heatmap_Class20193] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 26.849428)
+	(longitude 80.91972)
+	(population 1060000)
+	(title "Lucknow"))
+
+([Heatmap_Class20194] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 26.571941)
+	(longitude 106.7003)
+	(population 1010000)
+	(title "Guiyang"))
+
+([Heatmap_Class20195] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 26.45783)
+	(longitude 80.31786)
+	(population 1875000)
+	(title "Kanpur"))
+
+([Heatmap_Class20196] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 26.071016)
+	(longitude 119.30352)
+	(population 890000)
+	(title "Fuzhou"))
+
+([Heatmap_Class20197] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 25.83213)
+	(longitude -80.27022)
+	(population 2827300)
+	(title "Miami"))
+
+([Heatmap_Class20198] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 25.677353)
+	(longitude -100.317085)
+	(population 2015000)
+	(title "Monterrey"))
+
+([Heatmap_Class20199] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 25.613897)
+	(longitude 85.135345)
+	(population 1025000)
+	(title "Patna"))
+
+([Heatmap_Class20200] of  City
+
+	(capital FALSE)
+	(country "Pakistan")
+	(latitude 25.380186)
+	(longitude 68.36647)
+	(population 800000)
+	(title "Hyderabad"))
+
+([Heatmap_Class20201] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 25.282011)
+	(longitude 82.95634)
+	(population 925000)
+	(title "Benares"))
+
+([Heatmap_Class20202] of  City
+
+	(capital TRUE)
+	(country "Qatar")
+	(latitude 25.203642)
+	(longitude 51.497234)
+	(population 310000)
+	(title "Doha"))
+
+([Heatmap_Class20203] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 25.051033)
+	(longitude 102.702126)
+	(population 1280000)
+	(title "Kunming"))
+
+([Heatmap_Class20204] of  City
+
+	(capital TRUE)
+	(country "Taiwan")
+	(latitude 25.035091)
+	(longitude 121.50673)
+	(population 6130000)
+	(title "Taipei"))
+
+([Heatmap_Class20205] of  City
+
+	(capital FALSE)
+	(country "Taiwan")
+	(latitude 24.143642)
+	(longitude 120.67028)
+	(population 715107)
+	(title "T`ai-chung"))
+
+([Heatmap_Class20206] of  City
+
+	(capital TRUE)
+	(country "Bangladesh")
+	(latitude 23.709919)
+	(longitude 90.40714)
+	(population 3430312)
+	(title "Dhaka"))
+
+([Heatmap_Class20207] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 23.096195)
+	(longitude 113.29361)
+	(population 3050000)
+	(title "Guangzhou"))
+
+([Heatmap_Class20208] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 23.039791)
+	(longitude 72.566864)
+	(population 2400000)
+	(title "Ahmadabad"))
+
+([Heatmap_Class20209] of  City
+
+	(capital FALSE)
+	(country "Bangladesh")
+	(latitude 22.842648)
+	(longitude 89.55824)
+	(population 648359)
+	(title "Khulna"))
+
+([Heatmap_Class20210] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 22.543537)
+	(longitude 88.33422)
+	(population 11100000)
+	(title "Calcutta"))
+
+([Heatmap_Class20211] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 22.243235)
+	(longitude -97.84263)
+	(population 435000)
+	(title "Tampico"))
+
+([Heatmap_Class20212] of  City
+
+	(capital FALSE)
+	(country "Burma")
+	(latitude 21.975945)
+	(longitude 96.08415)
+	(population 532895)
+	(title "Mandalay"))
+
+([Heatmap_Class20213] of  City
+
+	(capital FALSE)
+	(country "Saudi Arabia")
+	(latitude 21.427382)
+	(longitude 39.81484)
+	(population 550000)
+	(title "Mecca"))
+
+([Heatmap_Class20214] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 21.155758)
+	(longitude 79.08911)
+	(population 1302066)
+	(title "Nagpur"))
+
+([Heatmap_Class20215] of  City
+
+	(capital TRUE)
+	(country "Vietnam")
+	(latitude 21.031948)
+	(longitude 105.81991)
+	(population 1500000)
+	(title "Hanoi"))
+
+([Heatmap_Class20216] of  City
+
+	(capital FALSE)
+	(country "Vietnam")
+	(latitude 20.861359)
+	(longitude 106.679794)
+	(population 385210)
+	(title "Haiphong"))
+
+([Heatmap_Class20217] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 20.821869)
+	(longitude -89.552864)
+	(population 400142)
+	(title "Merida"))
+
+([Heatmap_Class20218] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 20.673592)
+	(longitude -103.343796)
+	(population 2325000)
+	(title "Guadalajara"))
+
+([Heatmap_Class20219] of  City
+
+	(capital FALSE)
+	(country "Sudan")
+	(latitude 19.615713)
+	(longitude 37.21969)
+	(population 206727)
+	(title "Bur Sudan"))
+
+([Heatmap_Class20220] of  City
+
+	(capital TRUE)
+	(country "Mexico")
+	(latitude 19.427046)
+	(longitude -99.12757)
+	(population 14100000)
+	(title "Mexico City"))
+
+([Heatmap_Class20221] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 19.048632)
+	(longitude -98.19295)
+	(population 1055000)
+	(title "Puebla de Zaragoza"))
+
+([Heatmap_Class20222] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 18.535748)
+	(longitude 73.85227)
+	(population 1775000)
+	(title "Pune"))
+
+([Heatmap_Class20223] of  City
+
+	(capital TRUE)
+	(country "Haiti")
+	(latitude 18.526617)
+	(longitude -72.34311)
+	(population 880000)
+	(title "Port-au-Prince"))
+
+([Heatmap_Class20224] of  City
+
+	(capital TRUE)
+	(country "Puerto Rico")
+	(latitude 18.400616)
+	(longitude -66.08176)
+	(population 1775260)
+	(title "San Juan"))
+
+([Heatmap_Class20225] of  City
+
+	(capital TRUE)
+	(country "Jamaica")
+	(latitude 18.015713)
+	(longitude -76.7973)
+	(population 770000)
+	(title "Kingston"))
+
+([Heatmap_Class20226] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 17.394547)
+	(longitude 78.48503)
+	(population 2750000)
+	(title "Hyderabad"))
+
+([Heatmap_Class20227] of  City
+
+	(capital TRUE)
+	(country "Burma")
+	(latitude 16.872223)
+	(longitude 96.12489)
+	(population 2800000)
+	(title "Rangoon"))
+
+([Heatmap_Class20228] of  City
+
+	(capital TRUE)
+	(country "Yemen")
+	(latitude 15.361444)
+	(longitude 44.209503)
+	(population 427150)
+	(title "Sanaa"))
+
+([Heatmap_Class20229] of  City
+
+	(capital TRUE)
+	(country "Guatemala")
+	(latitude 14.618008)
+	(longitude -90.5249)
+	(population 1400000)
+	(title "Guatemala"))
+
+([Heatmap_Class20230] of  City
+
+	(capital TRUE)
+	(country "Honduras")
+	(latitude 14.0990505)
+	(longitude -87.203094)
+	(population 551606)
+	(title "Tegucigalpa"))
+
+([Heatmap_Class20231] of  City
+
+	(capital TRUE)
+	(country "Thailand")
+	(latitude 13.745571)
+	(longitude 100.552666)
+	(population 6450000)
+	(title "Bangkok"))
+
+([Heatmap_Class20232] of  City
+
+	(capital TRUE)
+	(country "El Salvador")
+	(latitude 13.701412)
+	(longitude -89.20023)
+	(population 920000)
+	(title "San Salvador"))
+
+([Heatmap_Class20233] of  City
+
+	(capital TRUE)
+	(country "Niger")
+	(latitude 13.604544)
+	(longitude 2.0834498)
+	(population 398265)
+	(title "Niamey"))
+
+([Heatmap_Class20234] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 13.061503)
+	(longitude 80.247826)
+	(population 4475000)
+	(title "Madras"))
+
+([Heatmap_Class20235] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 12.9747505)
+	(longitude 77.58773)
+	(population 2950000)
+	(title "Bangalore"))
+
+([Heatmap_Class20236] of  City
+
+	(capital TRUE)
+	(country "Mali")
+	(latitude 12.65295)
+	(longitude -7.9864817)
+	(population 646163)
+	(title "Bamako"))
+
+([Heatmap_Class20237] of  City
+
+	(capital TRUE)
+	(country "Nicaragua")
+	(latitude 12.151473)
+	(longitude -86.27303)
+	(population 682000)
+	(title "Managua"))
+
+([Heatmap_Class20238] of  City
+
+	(capital TRUE)
+	(country "Cambodia")
+	(latitude 11.564736)
+	(longitude 104.91319)
+	(population 700000)
+	(title "Phnom Penh"))
+
+([Heatmap_Class20239] of  City
+
+	(capital FALSE)
+	(country "Vietnam")
+	(latitude 10.759182)
+	(longitude 106.66245)
+	(population 3100000)
+	(title "Ho Chi Minh City"))
+
+([Heatmap_Class20240] of  City
+
+	(capital FALSE)
+	(country "Venezuela")
+	(latitude 10.645043)
+	(longitude -71.637146)
+	(population 890643)
+	(title "Maracaibo"))
+
+([Heatmap_Class20241] of  City
+
+	(capital TRUE)
+	(country "Venezuela")
+	(latitude 10.496049)
+	(longitude -66.898285)
+	(population 3600000)
+	(title "Caracas"))
+
+([Heatmap_Class20242] of  City
+
+	(capital FALSE)
+	(country "Venezuela")
+	(latitude 10.065665)
+	(longitude -69.339195)
+	(population 497635)
+	(title "Barquisimeto"))
+
+([Heatmap_Class20243] of  City
+
+	(capital TRUE)
+	(country "Costa Rica")
+	(latitude 9.930476)
+	(longitude -84.07861)
+	(population 670000)
+	(title "San Jose"))
+
+([Heatmap_Class20244] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 9.913986)
+	(longitude 78.12173)
+	(population 960000)
+	(title "Madurai"))
+
+([Heatmap_Class20245] of  City
+
+	(capital FALSE)
+	(country "Nigeria")
+	(latitude 7.3788404)
+	(longitude 3.8952785)
+	(population 1144000)
+	(title "Ibadan"))
+
+([Heatmap_Class20246] of  City
+
+	(capital FALSE)
+	(country "Philippines")
+	(latitude 7.08008)
+	(longitude 125.61368)
+	(population 408775)
+	(title "Davao"))
+
+([Heatmap_Class20247] of  City
+
+	(capital FALSE)
+	(country "Nigeria")
+	(latitude 6.4505386)
+	(longitude 7.49208)
+	(population 252500)
+	(title "Enugu"))
+
+([Heatmap_Class20248] of  City
+
+	(capital FALSE)
+	(country "Colombia")
+	(latitude 6.2411466)
+	(longitude -75.59203)
+	(population 2095000)
+	(title "Medellin"))
+
+([Heatmap_Class20249] of  City
+
+	(capital TRUE)
+	(country "Ghana")
+	(latitude 5.5585628)
+	(longitude -0.20092364)
+	(population 1250000)
+	(title "Accra"))
+
+([Heatmap_Class20250] of  City
+
+	(capital TRUE)
+	(country "Ivory Coast")
+	(latitude 5.324857)
+	(longitude -4.021887)
+	(population 1950000)
+	(title "Abidjan"))
+
+([Heatmap_Class20251] of  City
+
+	(capital TRUE)
+	(country "Colombia")
+	(latitude 4.63022)
+	(longitude -74.08051)
+	(population 4260000)
+	(title "Bogota"))
+
+([Heatmap_Class20252] of  City
+
+	(capital TRUE)
+	(country "Cent Af Rep")
+	(latitude 4.365856)
+	(longitude 18.562342)
+	(population 473817)
+	(title "Bangui"))
+
+([Heatmap_Class20253] of  City
+
+	(capital TRUE)
+	(country "Cameroon")
+	(latitude 3.865123)
+	(longitude 11.513641)
+	(population 653670)
+	(title "Yaounde"))
+
+([Heatmap_Class20254] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude 3.585242)
+	(longitude 98.6756)
+	(population 1373747)
+	(title "Medan"))
+
+([Heatmap_Class20255] of  City
+
+	(capital FALSE)
+	(country "Colombia")
+	(latitude 3.4568553)
+	(longitude -76.52244)
+	(population 1400000)
+	(title "Cali"))
+
+([Heatmap_Class20256] of  City
+
+	(capital TRUE)
+	(country "Malaysia")
+	(latitude 3.1502104)
+	(longitude 101.70767)
+	(population 1475000)
+	(title "Kuala Lumpur"))
+
+([Heatmap_Class20257] of  City
+
+	(capital TRUE)
+	(country "Somalia")
+	(latitude 2.0411775)
+	(longitude 45.344143)
+	(population 600000)
+	(title "Muqdisho"))
+
+([Heatmap_Class20258] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude 0.5192849)
+	(longitude 25.196148)
+	(population 282650)
+	(title "Kisangani"))
+
+([Heatmap_Class20259] of  City
+
+	(capital TRUE)
+	(country "Ecuador")
+	(latitude -0.22949813)
+	(longitude -78.524284)
+	(population 1050000)
+	(title "Quito"))
+
+([Heatmap_Class20260] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -3.7528954)
+	(longitude -73.19149)
+	(population 178738)
+	(title "Iquitos"))
+
+([Heatmap_Class20261] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -3.7833219)
+	(longitude -38.5889)
+	(population 1825000)
+	(title "Fortaleza"))
+
+([Heatmap_Class20262] of  City
+
+	(capital TRUE)
+	(country "Congo")
+	(latitude -4.285187)
+	(longitude 15.285149)
+	(population 585812)
+	(title "Brazzaville"))
+
+([Heatmap_Class20263] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude -5.892211)
+	(longitude 22.402779)
+	(population 290898)
+	(title "Kananga"))
+
+([Heatmap_Class20264] of  City
+
+	(capital TRUE)
+	(country "Tanzania")
+	(latitude -6.817359)
+	(longitude 39.25335)
+	(population 1300000)
+	(title "Dar es Salaam"))
+
+([Heatmap_Class20265] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -6.9124303)
+	(longitude 107.6069)
+	(population 1800000)
+	(title "Bandung"))
+
+([Heatmap_Class20266] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -8.085168)
+	(longitude -34.91464)
+	(population 2625000)
+	(title "Recife"))
+
+([Heatmap_Class20267] of  City
+
+	(capital FALSE)
+	(country "Angola")
+	(latitude -12.717735)
+	(longitude 13.46488)
+	(population 155000)
+	(title "Benguela"))
+
+([Heatmap_Class20268] of  City
+
+	(capital TRUE)
+	(country "Brazil")
+	(latitude -15.7921095)
+	(longitude -47.897747)
+	(population 1567709)
+	(title "Brasilia"))
+
+([Heatmap_Class20269] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -16.39754)
+	(longitude -71.52274)
+	(population 446942)
+	(title "Arequipa"))
+
+([Heatmap_Class20270] of  City
+
+	(capital TRUE)
+	(country "Bolivia")
+	(latitude -16.499006)
+	(longitude -68.14625)
+	(population 992592)
+	(title "La Paz"))
+
+([Heatmap_Class20271] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -16.7267)
+	(longitude -49.25481)
+	(population 990000)
+	(title "Goiania"))
+
+([Heatmap_Class20272] of  City
+
+	(capital FALSE)
+	(country "Bolivia")
+	(latitude -17.788792)
+	(longitude -63.19742)
+	(population 441717)
+	(title "Santa Cruz de La Sierra"))
+
+([Heatmap_Class20273] of  City
+
+	(capital FALSE)
+	(country "Bolivia")
+	(latitude -19.042135)
+	(longitude -65.25588)
+	(population 86609)
+	(title "Sucre"))
+
+([Heatmap_Class20274] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -19.85172)
+	(longitude -43.90907)
+	(population 2950000)
+	(title "Belo Horizonte"))
+
+([Heatmap_Class20275] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -22.721573)
+	(longitude -43.455177)
+	(population 10150000)
+	(title "Rio de Janeiro"))
+
+([Heatmap_Class20276] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -23.581305)
+	(longitude -46.6229)
+	(population 15175000)
+	(title "Sao Paulo"))
+
+([Heatmap_Class20277] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -23.9547)
+	(longitude -46.309494)
+	(population 1065000)
+	(title "Santos"))
+
+([Heatmap_Class20278] of  City
+
+	(capital TRUE)
+	(country "Botswana")
+	(latitude -24.661442)
+	(longitude 25.794802)
+	(population 95163)
+	(title "Gaborone"))
+
+([Heatmap_Class20279] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -25.43048)
+	(longitude -49.284508)
+	(population 1700000)
+	(title "Curitiba"))
+
+([Heatmap_Class20280] of  City
+
+	(capital TRUE)
+	(country "South Africa")
+	(latitude -25.731346)
+	(longitude 28.218372)
+	(population 960000)
+	(title "Pretoria"))
+
+([Heatmap_Class20281] of  City
+
+	(capital TRUE)
+	(country "Mozambique")
+	(latitude -25.962154)
+	(longitude 32.573692)
+	(population 1069727)
+	(title "Maputo"))
+
+([Heatmap_Class20282] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -26.178957)
+	(longitude 28.004309)
+	(population 3650000)
+	(title "Johannesburg"))
+
+([Heatmap_Class20283] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -27.453913)
+	(longitude 153.02649)
+	(population 1149401)
+	(title "Brisbane"))
+
+([Heatmap_Class20284] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -29.836372)
+	(longitude 30.942188)
+	(population 1550000)
+	(title "Durban"))
+
+([Heatmap_Class20285] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -30.039534)
+	(longitude -51.20799)
+	(population 2600000)
+	(title "Porto Alegre"))
+
+([Heatmap_Class20286] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -31.316278)
+	(longitude -64.179855)
+	(population 1070000)
+	(title "Cordoba"))
+
+([Heatmap_Class20287] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -31.616898)
+	(longitude -60.69784)
+	(population 292165)
+	(title "Santa Fe"))
+
+([Heatmap_Class20288] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -32.897438)
+	(longitude -68.829735)
+	(population 650000)
+	(title "Mendoza"))
+
+([Heatmap_Class20289] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -32.937737)
+	(longitude -60.66394)
+	(population 1045000)
+	(title "Rosario"))
+
+([Heatmap_Class20290] of  City
+
+	(capital TRUE)
+	(country "Chile")
+	(latitude -33.475025)
+	(longitude -70.647514)
+	(population 4100000)
+	(title "Santiago"))
+
+([Heatmap_Class20291] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -33.881577)
+	(longitude 25.484299)
+	(population 690000)
+	(title "Port Elizabeth"))
+
+([Heatmap_Class20292] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -33.889774)
+	(longitude 151.0282)
+	(population 3364858)
+	(title "Sydney"))
+
+([Heatmap_Class20293] of  City
+
+	(capital TRUE)
+	(country "Argentina")
+	(latitude -34.6654)
+	(longitude -58.40959)
+	(population 10750000)
+	(title "Buenos Aires"))
+
+([Heatmap_Class20294] of  City
+
+	(capital TRUE)
+	(country "Australia")
+	(latitude -35.349926)
+	(longitude 149.04163)
+	(population 271362)
+	(title "Canberra"))
+
+([Heatmap_Class20295] of  City
+
+	(capital FALSE)
+	(country "New Zealand")
+	(latitude -36.893253)
+	(longitude 174.80106)
+	(population 850000)
+	(title "Auckland"))
+
+([Heatmap_Class20296] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -37.85296)
+	(longitude 145.0751)
+	(population 2832893)
+	(title "Melbourne"))
+
+([Heatmap_Class20297] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -38.725273)
+	(longitude -62.274067)
+	(population 223818)
+	(title "Bahia Blanca"))
+
+([Heatmap_Class20298] of  City
+
+	(capital FALSE)
+	(country "New Zealand")
+	(latitude -43.548916)
+	(longitude 172.68365)
+	(population 320000)
+	(title "Christchurch"))
+
+([Heatmap_Class20299] of  City
+
+	(capital TRUE)
+	(country "Finland")
+	(latitude 60.196423)
+	(longitude 24.9767)
+	(population 900000)
+	(title "Helsinki"))
+
+([Heatmap_Class20300] of  City
+
+	(capital FALSE)
+	(country "Tunisia")
+	(latitude 34.74523)
+	(longitude 10.759258)
+	(population 310000)
+	(title "Sfax"))
+
+([Heatmap_Class20301] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 34.66384)
+	(longitude 135.18184)
+	(population 1410834)
+	(title "Kobe"))
+
+([Heatmap_Class20302] of  City
+
+	(capital FALSE)
+	(country "Israel")
+	(latitude 31.773746)
+	(longitude 35.22522)
+	(population 490000)
+	(title "Jerusalem"))
+
+([Heatmap_Class20303] of  City
+
+	(capital FALSE)
+	(country "Venezuela")
+	(latitude 10.178221)
+	(longitude -68.00311)
+	(population 616224)
+	(title "Valencia"))
+
+([Heatmap_Class20304] of  City
+
+	(capital FALSE)
+	(country "Ecuador")
+	(latitude -2.2038162)
+	(longitude -79.90939)
+	(population 1255000)
+	(title "Guayaquil"))
+
+([Heatmap_Class20305] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 37.727512)
+	(longitude -122.308815)
+	(population 4053800)
+	(title "San Francisco"))
+
+([Heatmap_Class20306] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 55.87525)
+	(longitude -3.2987833)
+	(population 630000)
+	(title "Edinburgh"))
+
+([Heatmap_Class20307] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 45.700283)
+	(longitude 13.9328375)
+	(population 239031)
+	(title "Trieste"))
+
+([Heatmap_Class20308] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 33.309906)
+	(longitude 130.31718)
+	(population 1750000)
+	(title "Fukuoka"))
+
+([Heatmap_Class20309] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 33.681866)
+	(longitude 130.79745)
+	(population 1525000)
+	(title "Kita Kyushu"))
+
+([Heatmap_Class20310] of  City
+
+	(capital TRUE)
+	(country "Chad")
+	(latitude 12.104139)
+	(longitude 15.240824)
+	(population 303000)
+	(title "N'Djamena"))
+
+([Heatmap_Class20311] of  City
+
+	(capital TRUE)
+	(country "Libya")
+	(latitude 32.751617)
+	(longitude 13.2118225)
+	(population 990697)
+	(title "Tripoli"))
+
+([Heatmap_Class20312] of  City
+
+	(capital FALSE)
+	(country "Turkey")
+	(latitude 38.43892)
+	(longitude 27.205769)
+	(population 1550000)
+	(title "Izmir"))
+
+([Heatmap_Class20313] of  City
+
+	(capital TRUE)
+	(country "Zaire")
+	(latitude -4.3886747)
+	(longitude 15.469294)
+	(population 3000000)
+	(title "Kinshasa"))
+
+([Heatmap_Class20314] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -34.918537)
+	(longitude 138.87068)
+	(population 977721)
+	(title "Adelaide"))
+
+([Heatmap_Class20315] of  City
+
+	(capital TRUE)
+	(country "Indonesia")
+	(latitude -6.2939043)
+	(longitude 106.76247)
+	(population 8600000)
+	(title "Jakarta"))
+
+([Heatmap_Class20316] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -7.0278444)
+	(longitude 110.44426)
+	(population 1024940)
+	(title "Semarang"))
+
+([Heatmap_Class20317] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -12.04354)
+	(longitude -76.83563)
+	(population 264133)
+	(title "Callao"))
+
+([Heatmap_Class20318] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -1.605329)
+	(longitude -48.316277)
+	(population 1200000)
+	(title "Belem"))
+
+([Heatmap_Class20319] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 36.148354)
+	(longitude 120.43413)
+	(population 1270000)
+	(title "Qingdao"))
+
+([Heatmap_Class20320] of  City
+
+	(capital TRUE)
+	(country "Laos")
+	(latitude 18.001732)
+	(longitude 102.68024)
+	(population 377409)
+	(title "Vientiane"))
+
+([Heatmap_Class20321] of  City
+
+	(capital FALSE)
+	(country "Austria")
+	(latitude 47.80117)
+	(longitude 13.0908985)
+	(population 220000)
+	(title "Salzburg"))
+
+([Heatmap_Class20322] of  City
+
+	(capital TRUE)
+	(country "Croatia")
+	(latitude 45.807076)
+	(longitude 15.964386)
+	(population 697925)
+	(title "Zagreb"))
+
+([Heatmap_Class20323] of  City
+
+	(capital TRUE)
+	(country "Burundi")
+	(latitude -3.2690837)
+	(longitude 29.533587)
+	(population 273000)
+	(title "Bujumbura"))
+
+([Heatmap_Class20324] of  City
+
+	(capital TRUE)
+	(country "Cyprus")
+	(latitude 35.16507)
+	(longitude 33.385162)
+	(population 185000)
+	(title "Nicosia"))
+
+([Heatmap_Class20325] of  City
+
+	(capital TRUE)
+	(country "Rwanda")
+	(latitude -2.1179352)
+	(longitude 29.991486)
+	(population 181600)
+	(title "Kigali"))
+
+([Heatmap_Class20326] of  City
+
+	(capital TRUE)
+	(country "Slovenia")
+	(latitude 46.068302)
+	(longitude 14.639612)
+	(population 233200)
+	(title "Ljubljana"))
+
+([Heatmap_Class20327] of  City
+
+	(capital TRUE)
+	(country "Lesotho")
+	(latitude -29.25671)
+	(longitude 27.890388)
+	(population 109382)
+	(title "Maseru"))
+
+([Heatmap_Class20328] of  City
+
+	(capital TRUE)
+	(country "Luxembourg")
+	(latitude 49.740406)
+	(longitude 6.273256)
+	(population 133000)
+	(title "Luxembourg"))
+
+([Heatmap_Class20329] of  City
+
+	(capital TRUE)
+	(country "Netherlands")
+	(latitude 51.90362)
+	(longitude 4.3006244)
+	(population 770000)
+	(title "The Hague"))
+
+([Heatmap_Class20330] of  City
+
+	(capital TRUE)
+	(country "Slovakia")
+	(latitude 48.27451)
+	(longitude 17.269806)
+	(population 435499)
+	(title "Bratislava"))
+
+([Heatmap_Class20331] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 52.11)
+	(longitude -106.63)
+	(population 200665)
+	(title "Saskatoon"))
+
+([Heatmap_Class20332] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 50.41)
+	(longitude -104.65)
+	(population 186521)
+	(title "Regina"))
+
+([Heatmap_Class20333] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 31.78)
+	(longitude -106.45)
+	(population 1037700)
+	(title "El Paso"))
+
+([Heatmap_Class20334] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 30.33)
+	(longitude -81.66)
+	(population 635900)
+	(title "Jacksonville"))
+
+([Heatmap_Class20335] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 51.33)
+	(longitude -80.73)
+	(population -99)
+	(title "Moosonee"))
+
+([Heatmap_Class20336] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 54.86)
+	(longitude -67.01)
+	(population 1997)
+	(title "Schefferville"))
+
+([Heatmap_Class20337] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 53.31)
+	(longitude -60.55)
+	(population -99)
+	(title "Goose Bay"))
+
+([Heatmap_Class20338] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -8.75)
+	(longitude -63.9)
+	(population 202011)
+	(title "Porto Velho"))
+
+([Heatmap_Class20339] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -13.6)
+	(longitude -71.86)
+	(population 184550)
+	(title "Cuzco"))
+
+([Heatmap_Class20340] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -15.55)
+	(longitude -56.05)
+	(population 279651)
+	(title "Cuiaba"))
+
+([Heatmap_Class20341] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -27.4)
+	(longitude -58.9)
+	(population 220104)
+	(title "Resistencia"))
+
+([Heatmap_Class20342] of  City
+
+	(capital FALSE)
+	(country "Mali")
+	(latitude 16.76)
+	(longitude -3.01)
+	(population 31925)
+	(title "Tombouctoo"))
+
+([Heatmap_Class20343] of  City
+
+	(capital FALSE)
+	(country "Niger")
+	(latitude 11.88)
+	(longitude 13.26)
+	(population 255100)
+	(title "Maiduguri"))
+
+([Heatmap_Class20344] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude -5.81)
+	(longitude 13.45)
+	(population 144742)
+	(title "Matadi"))
+
+([Heatmap_Class20345] of  City
+
+	(capital FALSE)
+	(country "Angola")
+	(latitude -12.73)
+	(longitude 15.78)
+	(population 203000)
+	(title "Huambo"))
+
+([Heatmap_Class20346] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -28.66)
+	(longitude 24.83)
+	(population 145000)
+	(title "Kimberley"))
+
+([Heatmap_Class20347] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -33.03)
+	(longitude 27.9)
+	(population 320000)
+	(title "East London"))
+
+([Heatmap_Class20348] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude -7.33)
+	(longitude 19.0)
+	(population -99)
+	(title "Kahemba"))
+
+([Heatmap_Class20349] of  City
+
+	(capital FALSE)
+	(country "Tanzania")
+	(latitude -6.18)
+	(longitude 35.75)
+	(population 54000)
+	(title "Dodoma"))
+
+([Heatmap_Class20350] of  City
+
+	(capital FALSE)
+	(country "Norway")
+	(latitude 68.35)
+	(longitude 17.3)
+	(population 19080)
+	(title "Narvik"))
+
+([Heatmap_Class20351] of  City
+
+	(capital FALSE)
+	(country "Afghanistan")
+	(latitude 34.46)
+	(longitude 62.21)
+	(population 160000)
+	(title "Herat"))
+
+([Heatmap_Class20352] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 55.88)
+	(longitude 37.75)
+	(population -99)
+	(title "Druzba"))
+
+([Heatmap_Class20353] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 39.48)
+	(longitude 76.0)
+	(population 146300)
+	(title "Kashi"))
+
+([Heatmap_Class20354] of  City
+
+	(capital FALSE)
+	(country "Taiwan")
+	(latitude 24.98)
+	(longitude 121.53)
+	(population -99)
+	(title "Chingmei"))
+
+([Heatmap_Class20355] of  City
+
+	(capital FALSE)
+	(country "Vietnam")
+	(latitude 16.46)
+	(longitude 107.7)
+	(population 165710)
+	(title "Hue"))
+
+([Heatmap_Class20356] of  City
+
+	(capital FALSE)
+	(country "Malaysia")
+	(latitude 1.5)
+	(longitude 110.43)
+	(population 72555)
+	(title "Kuching"))
+
+([Heatmap_Class20357] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -1.21)
+	(longitude 116.86)
+	(population 208040)
+	(title "Balikpapan"))
+
+([Heatmap_Class20358] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 50.33)
+	(longitude 110.75)
+	(population -99)
+	(title "Chatanga"))
+
+([Heatmap_Class20359] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 52.05)
+	(longitude 113.58)
+	(population -99)
+	(title "Chita"))
+
+([Heatmap_Class20360] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 67.58)
+	(longitude 133.41)
+	(population -99)
+	(title "Verkhoyvensk"))
+
+([Heatmap_Class20361] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 62.01)
+	(longitude 129.83)
+	(population 187000)
+	(title "Yakutsk"))
+
+([Heatmap_Class20362] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 59.33)
+	(longitude 143.25)
+	(population -99)
+	(title "Okhotsk"))
+
+([Heatmap_Class20363] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 50.08)
+	(longitude 45.53)
+	(population -99)
+	(title "Nikolayevsk"))
+
+([Heatmap_Class20364] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 46.96)
+	(longitude 142.75)
+	(population -99)
+	(title "Yuzhno-Sakhalinsk"))
+
+([Heatmap_Class20365] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -23.63)
+	(longitude 133.93)
+	(population -99)
+	(title "Alice Springs"))
+
+([Heatmap_Class20366] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -16.85)
+	(longitude 145.71)
+	(population 39096)
+	(title "Cairns"))
+
+([Heatmap_Class20367] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -19.3)
+	(longitude 146.83)
+	(population 106416)
+	(title "Townsville"))
+
+([Heatmap_Class20368] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -23.43)
+	(longitude 150.48)
+	(population 59056)
+	(title "Rockhampton"))
+
+([Heatmap_Class20369] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -33.0)
+	(longitude 151.91)
+	(population 405089)
+	(title "Newcastle"))
+
+([Heatmap_Class20370] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -43.0)
+	(longitude 147.5)
+	(population 175082)
+	(title "Hobart"))
+
+([Heatmap_Class20371] of  City
+
+	(capital FALSE)
+	(country "New Zealand")
+	(latitude -45.86)
+	(longitude 170.5)
+	(population 109000)
+	(title "Dunedin"))
+
+([Heatmap_Class20372] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 48.654568)
+	(longitude -123.56911)
+	(population 255547)
+	(title "Victoria"))
+
+([Heatmap_Class20373] of  City
+
+	(capital TRUE)
+	(country "Benin")
+	(latitude 6.601096)
+	(longitude 2.6325028)
+	(population 164000)
+	(title "Porto Novo"))
+
+([Heatmap_Class20374] of  City
+
+	(capital FALSE)
+	(country "Cameroon")
+	(latitude 4.13665)
+	(longitude 9.706374)
+	(population 1029731)
+	(title "Douala"))
+
+([Heatmap_Class20375] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -5.19043)
+	(longitude 119.72279)
+	(population 708465)
+	(title "Vjuag Padang"))
+
+([Heatmap_Class20376] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -3.3865533)
+	(longitude 129.31293)
+	(population 111914)
+	(title "Ambon"))
+
+([Heatmap_Class20377] of  City
+
+	(capital FALSE)
+	(country "Korea Rep")
+	(latitude 37.58945)
+	(longitude 126.76744)
+	(population 1604000)
+	(title "Inch`on"))
+
+([Heatmap_Class20378] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 39.031715)
+	(longitude 121.5982)
+	(population 1680000)
+	(title "Dalian"))
+
+([Heatmap_Class20379] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 45.44213)
+	(longitude -122.64168)
+	(population 1227200)
+	(title "Portland"))
+
+([Heatmap_Class20380] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -3.122305)
+	(longitude -60.014618)
+	(population 809914)
+	(title "Manaus"))
+
+([Heatmap_Class20381] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -2.46)
+	(longitude -54.61)
+	(population 226618)
+	(title "Santarem"))
+
+([Heatmap_Class20382] of  City
+
+	(capital FALSE)
+	(country "New Zealand")
+	(latitude -46.41)
+	(longitude 168.45)
+	(population 52807)
+	(title "Invercargill"))
+
+([Heatmap_Class20383] of  City
+
+	(capital FALSE)
+	(country "Tanzania")
+	(latitude -10.26)
+	(longitude 40.18)
+	(population 48510)
+	(title "Mtwara"))
+
+([Heatmap_Class20384] of  City
+
+	(capital FALSE)
+	(country "Madagascar")
+	(latitude -18.23)
+	(longitude 49.41)
+	(population 100000)
+	(title "Toamasina"))
+
+([Heatmap_Class20385] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -29.15)
+	(longitude 26.26)
+	(population 235000)
+	(title "Bloemfontein"))
+
+([Heatmap_Class20386] of  City
+
+	(capital FALSE)
+	(country "Zimbabwe")
+	(latitude -20.2)
+	(longitude 28.71)
+	(population 413814)
+	(title "Bulawayo"))
+
+([Heatmap_Class20387] of  City
+
+	(capital FALSE)
+	(country "Zambia")
+	(latitude -17.83)
+	(longitude 25.88)
+	(population 61296)
+	(title "Livingstone"))
+
+([Heatmap_Class20388] of  City
+
+	(capital FALSE)
+	(country "Saudi Arabia")
+	(latitude 24.43)
+	(longitude 39.7)
+	(population 290000)
+	(title "Al Madinah"))
+
+([Heatmap_Class20389] of  City
+
+	(capital FALSE)
+	(country "Sudan")
+	(latitude 21.76)
+	(longitude 31.28)
+	(population -99)
+	(title "Wadi Halfa"))
+
+([Heatmap_Class20390] of  City
+
+	(capital FALSE)
+	(country "Egypt")
+	(latitude 24.08)
+	(longitude 32.95)
+	(population 191461)
+	(title "Aswan"))
+
+([Heatmap_Class20391] of  City
+
+	(capital FALSE)
+	(country "Libya")
+	(latitude 25.91)
+	(longitude 13.91)
+	(population -99)
+	(title "Murzuq"))
+
+([Heatmap_Class20392] of  City
+
+	(capital FALSE)
+	(country "Algeria")
+	(latitude 27.7)
+	(longitude -8.16)
+	(population -99)
+	(title "Tindouf"))
+
+([Heatmap_Class20393] of  City
+
+	(capital FALSE)
+	(country "Niger")
+	(latitude 16.96)
+	(longitude 7.98)
+	(population 50164)
+	(title "Agadez"))
+
+([Heatmap_Class20394] of  City
+
+	(capital FALSE)
+	(country "Sudan")
+	(latitude 13.18)
+	(longitude 30.16)
+	(population 140000)
+	(title "El Obeid"))
+
+([Heatmap_Class20395] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude 0.05)
+	(longitude 18.46)
+	(population 125263)
+	(title "Mbandaka"))
+
+([Heatmap_Class20396] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 60.65)
+	(longitude -135.01)
+	(population 15199)
+	(title "Whitehorse"))
+
+([Heatmap_Class20397] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -53.15)
+	(longitude -70.8)
+	(population 95332)
+	(title "Punte Arenas"))
+
+([Heatmap_Class20398] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -41.48)
+	(longitude -73.0)
+	(population 84410)
+	(title "Puerto Montt"))
+
+([Heatmap_Class20399] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -51.71)
+	(longitude -69.41)
+	(population -99)
+	(title "Rio Gallegos"))
+
+([Heatmap_Class20400] of  City
+
+	(capital FALSE)
+	(country "Argentina")
+	(latitude -45.83)
+	(longitude -67.5)
+	(population 96817)
+	(title "Comodoro Rivadavia"))
+
+([Heatmap_Class20401] of  City
+
+	(capital FALSE)
+	(country "Egypt")
+	(latitude 29.96)
+	(longitude 32.56)
+	(population 326820)
+	(title "Suez"))
+
+([Heatmap_Class20402] of  City
+
+	(capital FALSE)
+	(country "Egypt")
+	(latitude 31.074604)
+	(longitude 29.97781)
+	(population 3350000)
+	(title "Alexandria"))
+
+([Heatmap_Class20403] of  City
+
+	(capital FALSE)
+	(country "Mozambique")
+	(latitude -15.05)
+	(longitude 40.7)
+	(population -99)
+	(title "Mocambique"))
+
+([Heatmap_Class20404] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 19.045347)
+	(longitude 73.17235)
+	(population 9950000)
+	(title "Bombay"))
+
+([Heatmap_Class20405] of  City
+
+	(capital TRUE)
+	(country "Algeria")
+	(latitude 36.596493)
+	(longitude 2.993693)
+	(population 2547983)
+	(title "Algiers"))
+
+([Heatmap_Class20406] of  City
+
+	(capital FALSE)
+	(country "Ukraine")
+	(latitude 49.989674)
+	(longitude 36.208313)
+	(population 1940000)
+	(title "Kharkov"))
+
+([Heatmap_Class20407] of  City
+
+	(capital FALSE)
+	(country "Ukraine")
+	(latitude 48.42289)
+	(longitude 35.137894)
+	(population 1600000)
+	(title "Dnepropetrovsk"))
+
+([Heatmap_Class20408] of  City
+
+	(capital TRUE)
+	(country "Estonia")
+	(latitude 59.277573)
+	(longitude 24.752056)
+	(population 482000)
+	(title "Tallinn"))
+
+([Heatmap_Class20409] of  City
+
+	(capital FALSE)
+	(country "Mongolia")
+	(latitude 47.81)
+	(longitude 97.0)
+	(population -99)
+	(title "Uliastay"))
+
+([Heatmap_Class20410] of  City
+
+	(capital TRUE)
+	(country "Dominican Rp")
+	(latitude 18.49973)
+	(longitude -69.91049)
+	(population 1313172)
+	(title "Santo Domingo"))
+
+([Heatmap_Class20411] of  City
+
+	(capital TRUE)
+	(country "Brunei")
+	(latitude 4.933)
+	(longitude 114.967)
+	(population 64000)
+	(title "Bandar Seri Begawan"))
+
+([Heatmap_Class20412] of  City
+
+	(capital TRUE)
+	(country "Gambia")
+	(latitude 13.445272)
+	(longitude -16.494616)
+	(population 95000)
+	(title "Banjul"))
+
+([Heatmap_Class20413] of  City
+
+	(capital TRUE)
+	(country "Trinidad")
+	(latitude 10.639734)
+	(longitude -61.490063)
+	(population 370000)
+	(title "Port of Spain"))
+
+([Heatmap_Class20414] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 16.974386)
+	(longitude -99.931496)
+	(population 301902)
+	(title "Acapulco"))
+
+([Heatmap_Class20415] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 64.40016)
+	(longitude 177.13019)
+	(population -99)
+	(title "Anadyr"))
+
+([Heatmap_Class20416] of  City
+
+	(capital FALSE)
+	(country "Greenland")
+	(latitude 65.67)
+	(longitude -37.311867)
+	(population 2618)
+	(title "Angmagssalik"))
+
+([Heatmap_Class20417] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -23.832537)
+	(longitude -70.22545)
+	(population 185486)
+	(title "Antofagasta"))
+
+([Heatmap_Class20418] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 40.75)
+	(longitude 140.67)
+	(population 294045)
+	(title "Aomori"))
+
+([Heatmap_Class20419] of  City
+
+	(capital FALSE)
+	(country "Libya")
+	(latitude 32.043053)
+	(longitude 20.308676)
+	(population 435886)
+	(title "Banghazi"))
+
+([Heatmap_Class20420] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -15.75)
+	(longitude 133.22)
+	(population -99)
+	(title "Birdum"))
+
+([Heatmap_Class20421] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude 2.75)
+	(longitude -60.5)
+	(population -99)
+	(title "Boa Vista"))
+
+([Heatmap_Class20422] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -6.62)
+	(longitude -79.83)
+	(population 279527)
+	(title "Chiclayo"))
+
+([Heatmap_Class20423] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -8.9301)
+	(longitude -78.45315)
+	(population 223341)
+	(title "Chimbote"))
+
+([Heatmap_Class20424] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 58.710766)
+	(longitude -94.18)
+	(population 1304)
+	(title "Churchill"))
+
+([Heatmap_Class20425] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 9.987988)
+	(longitude 76.52178)
+	(population 685836)
+	(title "Cochin"))
+
+([Heatmap_Class20426] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -36.883297)
+	(longitude -72.85164)
+	(population 675000)
+	(title "Concepcion"))
+
+([Heatmap_Class20427] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -31.0)
+	(longitude -71.02)
+	(population 62186)
+	(title "Coquimbo"))
+
+([Heatmap_Class20428] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -12.7015)
+	(longitude 130.99455)
+	(population 72937)
+	(title "Darwin"))
+
+([Heatmap_Class20429] of  City
+
+	(capital TRUE)
+	(country "Djibouti")
+	(latitude 11.5)
+	(longitude 43.1)
+	(population 120000)
+	(title "Djibouti"))
+
+([Heatmap_Class20430] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -32.044167)
+	(longitude 115.93457)
+	(population 22484)
+	(title "Fremantle"))
+
+([Heatmap_Class20431] of  City
+
+	(capital FALSE)
+	(country "Malaysia")
+	(latitude 5.35)
+	(longitude 100.54714)
+	(population 495000)
+	(title "George Town"))
+
+([Heatmap_Class20432] of  City
+
+	(capital FALSE)
+	(country "Greenland")
+	(latitude 69.38314)
+	(longitude -53.63)
+	(population 1012)
+	(title "Godhavn"))
+
+([Heatmap_Class20433] of  City
+
+	(capital TRUE)
+	(country "Greenland")
+	(latitude 64.27119)
+	(longitude -51.58)
+	(population 12426)
+	(title "Godthab"))
+
+([Heatmap_Class20434] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 44.63)
+	(longitude -63.58)
+	(population 295990)
+	(title "Halifax"))
+
+([Heatmap_Class20435] of  City
+
+	(capital FALSE)
+	(country "Norway")
+	(latitude 70.39133)
+	(longitude 23.906342)
+	(population 7208)
+	(title "Hammerfest"))
+
+([Heatmap_Class20436] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 67.35)
+	(longitude 86.55)
+	(population -99)
+	(title "Igarka"))
+
+([Heatmap_Class20437] of  City
+
+	(capital FALSE)
+	(country "Algeria")
+	(latitude 27.2)
+	(longitude 2.53)
+	(population 18800)
+	(title "In Salah"))
+
+([Heatmap_Class20438] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 68.27)
+	(longitude -133.67)
+	(population -99)
+	(title "Inuvik"))
+
+([Heatmap_Class20439] of  City
+
+	(capital FALSE)
+	(country "Tanzania")
+	(latitude -4.95)
+	(longitude 30.0)
+	(population 50044)
+	(title "Kigoma"))
+
+([Heatmap_Class20440] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 61.15)
+	(longitude 47.0)
+	(population 69000)
+	(title "Kotlas"))
+
+([Heatmap_Class20441] of  City
+
+	(capital FALSE)
+	(country "W Sahara")
+	(latitude 27.0)
+	(longitude -13.18)
+	(population 93875)
+	(title "Laayoune"))
+
+([Heatmap_Class20442] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude 1.4200861)
+	(longitude 124.88424)
+	(population 217091)
+	(title "Manado"))
+
+([Heatmap_Class20443] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 12.95)
+	(longitude 75.16088)
+	(population 306078)
+	(title "Mangalore"))
+
+([Heatmap_Class20444] of  City
+
+	(capital FALSE)
+	(country "Morocco")
+	(latitude 31.15)
+	(longitude -8.0)
+	(population 535000)
+	(title "Marrakech"))
+
+([Heatmap_Class20445] of  City
+
+	(capital TRUE)
+	(country "Swaziland")
+	(latitude -26.303381)
+	(longitude 31.191298)
+	(population 38290)
+	(title "Mbabne"))
+
+([Heatmap_Class20446] of  City
+
+	(capital FALSE)
+	(country "Japan")
+	(latitude 32.882748)
+	(longitude 129.85747)
+	(population 449382)
+	(title "Nagasaki"))
+
+([Heatmap_Class20447] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -5.78)
+	(longitude -35.25)
+	(population 510106)
+	(title "Natal"))
+
+([Heatmap_Class20448] of  City
+
+	(capital FALSE)
+	(country "New Zealand")
+	(latitude -41.3)
+	(longitude 173.27)
+	(population 33304)
+	(title "Nelson"))
+
+([Heatmap_Class20449] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 64.58628)
+	(longitude -165.27)
+	(population 3500)
+	(title "Nome"))
+
+([Heatmap_Class20450] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 69.33)
+	(longitude 88.1)
+	(population 174000)
+	(title "Noril`sk"))
+
+([Heatmap_Class20451] of  City
+
+	(capital FALSE)
+	(country "Mauritania")
+	(latitude 20.9)
+	(longitude -16.825647)
+	(population 21961)
+	(title "Nouadnibou"))
+
+([Heatmap_Class20452] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 53.7)
+	(longitude 87.17)
+	(population 600000)
+	(title "Novokuznetsk"))
+
+([Heatmap_Class20453] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 46.92)
+	(longitude -122.88)
+	(population 97400)
+	(title "Olympia"))
+
+([Heatmap_Class20454] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -0.9175788)
+	(longitude 100.47506)
+	(population 296675)
+	(title "Padang"))
+
+([Heatmap_Class20455] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -3.0)
+	(longitude 104.83)
+	(population 786607)
+	(title "Palembang"))
+
+([Heatmap_Class20456] of  City
+
+	(capital FALSE)
+	(country "Greece")
+	(latitude 38.14124)
+	(longitude 21.88317)
+	(population 154596)
+	(title "Patrai"))
+
+([Heatmap_Class20457] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 53.2)
+	(longitude 158.72)
+	(population 269000)
+	(title "Petropavloski-Kamchatskiy"))
+
+([Heatmap_Class20458] of  City
+
+	(capital TRUE)
+	(country "Montenegro")
+	(latitude 42.5)
+	(longitude 19.4)
+	(population 82500)
+	(title "Podgorica"))
+
+([Heatmap_Class20459] of  City
+
+	(capital FALSE)
+	(country "Congo")
+	(latitude -4.638708)
+	(longitude 12.058093)
+	(population 294203)
+	(title "Pointe Noire"))
+
+([Heatmap_Class20460] of  City
+
+	(capital FALSE)
+	(country "Gabon")
+	(latitude -0.82)
+	(longitude 9.153344)
+	(population 124400)
+	(title "Port Gentil"))
+
+([Heatmap_Class20461] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 54.42028)
+	(longitude -130.04808)
+	(population 16197)
+	(title "Prince Rupert"))
+
+([Heatmap_Class20462] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 45.338135)
+	(longitude -65.64995)
+	(population 121265)
+	(title "Saint John"))
+
+([Heatmap_Class20463] of  City
+
+	(capital FALSE)
+	(country "Senegal")
+	(latitude 15.95121)
+	(longitude -16.297838)
+	(population 91485)
+	(title "Saint Louis"))
+
+([Heatmap_Class20464] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 66.57)
+	(longitude 66.58)
+	(population -99)
+	(title "Salekhard"))
+
+([Heatmap_Class20465] of  City
+
+	(capital FALSE)
+	(country "Turkey")
+	(latitude 41.32)
+	(longitude 36.37)
+	(population 240674)
+	(title "Samsun"))
+
+([Heatmap_Class20466] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -2.5)
+	(longitude -44.430058)
+	(population 600000)
+	(title "Sao Luis"))
+
+([Heatmap_Class20467] of  City
+
+	(capital TRUE)
+	(country "Bosnia/Herz")
+	(latitude 43.87)
+	(longitude 18.43)
+	(population 341200)
+	(title "Sarajevo"))
+
+([Heatmap_Class20468] of  City
+
+	(capital FALSE)
+	(country "Greenland")
+	(latitude 70.52857)
+	(longitude -22.996323)
+	(population -99)
+	(title "Scoresbyund"))
+
+([Heatmap_Class20469] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 50.282547)
+	(longitude -66.40254)
+	(population 29262)
+	(title "Sept-Iles"))
+
+([Heatmap_Class20470] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 60.12)
+	(longitude -149.45)
+	(population 2699)
+	(title "Seward"))
+
+([Heatmap_Class20471] of  City
+
+	(capital TRUE)
+	(country "Macedonia")
+	(latitude 42.0)
+	(longitude 21.53)
+	(population 444900)
+	(title "Skopje"))
+
+([Heatmap_Class20472] of  City
+
+	(capital FALSE)
+	(country "Algeria")
+	(latitude 22.83)
+	(longitude 5.55)
+	(population -99)
+	(title "Tamanrasset"))
+
+([Heatmap_Class20473] of  City
+
+	(capital FALSE)
+	(country "Greenland")
+	(latitude 77.67)
+	(longitude -69.0)
+	(population -99)
+	(title "Thule"))
+
+([Heatmap_Class20474] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 71.7)
+	(longitude 128.75)
+	(population -99)
+	(title "Tiksi"))
+
+([Heatmap_Class20475] of  City
+
+	(capital FALSE)
+	(country "Madagascar")
+	(latitude -23.290155)
+	(longitude 44.019093)
+	(population 55000)
+	(title "Toliara"))
+
+([Heatmap_Class20476] of  City
+
+	(capital FALSE)
+	(country "Peru")
+	(latitude -7.93)
+	(longitude -79.0)
+	(population 354301)
+	(title "Trujillo"))
+
+([Heatmap_Class20477] of  City
+
+	(capital FALSE)
+	(country "India")
+	(latitude 17.75)
+	(longitude 83.33)
+	(population 603630)
+	(title "Vishakhapatnam"))
+
+([Heatmap_Class20478] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 67.8)
+	(longitude 64.33)
+	(population 116000)
+	(title "Vorkuta"))
+
+([Heatmap_Class20479] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 31.97)
+	(longitude 54.45)
+	(population 230483)
+	(title "Yazd"))
+
+([Heatmap_Class20480] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 29.6)
+	(longitude 60.83)
+	(population 281923)
+	(title "Zahedan"))
+
+([Heatmap_Class20481] of  City
+
+	(capital FALSE)
+	(country "Yemen")
+	(latitude 12.861159)
+	(longitude 45.18)
+	(population 318000)
+	(title "Aden"))
+
+([Heatmap_Class20482] of  City
+
+	(capital TRUE)
+	(country "Ethiopia")
+	(latitude 9.03)
+	(longitude 38.7)
+	(population 1500000)
+	(title "Adis Abeba"))
+
+([Heatmap_Class20483] of  City
+
+	(capital TRUE)
+	(country "Kuwait")
+	(latitude 29.19499)
+	(longitude 48.002777)
+	(population 1375000)
+	(title "Al Kuwayt"))
+
+([Heatmap_Class20484] of  City
+
+	(capital TRUE)
+	(country "Madagascar")
+	(latitude -18.87)
+	(longitude 47.5)
+	(population 663000)
+	(title "Antananarivo"))
+
+([Heatmap_Class20485] of  City
+
+	(capital TRUE)
+	(country "Saudi Arabia")
+	(latitude 24.65)
+	(longitude 46.77)
+	(population 1250000)
+	(title "Ar Riyad"))
+
+([Heatmap_Class20486] of  City
+
+	(capital TRUE)
+	(country "Eritrea")
+	(latitude 15.33)
+	(longitude 38.97)
+	(population 275385)
+	(title "Asmara"))
+
+([Heatmap_Class20487] of  City
+
+	(capital TRUE)
+	(country "Paraguay")
+	(latitude -25.22)
+	(longitude -57.67)
+	(population 700000)
+	(title "Asuncion"))
+
+([Heatmap_Class20488] of  City
+
+	(capital TRUE)
+	(country "Greece")
+	(latitude 38.1216)
+	(longitude 23.654863)
+	(population 3027331)
+	(title "Athinai"))
+
+([Heatmap_Class20489] of  City
+
+	(capital FALSE)
+	(country "China")
+	(latitude 40.65)
+	(longitude 109.98)
+	(population 1120000)
+	(title "Baotou"))
+
+([Heatmap_Class20490] of  City
+
+	(capital FALSE)
+	(country "Spain")
+	(latitude 41.53)
+	(longitude 2.17)
+	(population 4040000)
+	(title "Barcelona"))
+
+([Heatmap_Class20491] of  City
+
+	(capital FALSE)
+	(country "Colombia")
+	(latitude 11.014295)
+	(longitude -74.68)
+	(population 1140000)
+	(title "Barranquilla"))
+
+([Heatmap_Class20492] of  City
+
+	(capital FALSE)
+	(country "Mozambique")
+	(latitude -19.769283)
+	(longitude 35.02317)
+	(population 291604)
+	(title "Beira"))
+
+([Heatmap_Class20493] of  City
+
+	(capital TRUE)
+	(country "Lebanon")
+	(latitude 33.78)
+	(longitude 35.657944)
+	(population 1675000)
+	(title "Beirut"))
+
+([Heatmap_Class20494] of  City
+
+	(capital TRUE)
+	(country "Belize")
+	(latitude 17.12)
+	(longitude -88.8)
+	(population 4500)
+	(title "Belmopan"))
+
+([Heatmap_Class20495] of  City
+
+	(capital FALSE)
+	(country "Norway")
+	(latitude 60.35)
+	(longitude 5.4906783)
+	(population 239000)
+	(title "Bergen"))
+
+([Heatmap_Class20496] of  City
+
+	(capital TRUE)
+	(country "GuineaBissau")
+	(latitude 11.91099)
+	(longitude -15.65)
+	(population 109486)
+	(title "Bissau"))
+
+([Heatmap_Class20497] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -33.80401)
+	(longitude 18.690432)
+	(population 1790000)
+	(title "Cape Town"))
+
+([Heatmap_Class20498] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 51.5)
+	(longitude -3.15)
+	(population 625000)
+	(title "Cardiff"))
+
+([Heatmap_Class20499] of  City
+
+	(capital FALSE)
+	(country "Morocco")
+	(latitude 33.54441)
+	(longitude -7.534092)
+	(population 2475000)
+	(title "Casablanca"))
+
+([Heatmap_Class20500] of  City
+
+	(capital TRUE)
+	(country "Fr Guiana")
+	(latitude 4.92)
+	(longitude -52.4)
+	(population 38091)
+	(title "Cayenne"))
+
+([Heatmap_Class20501] of  City
+
+	(capital FALSE)
+	(country "Bangladesh")
+	(latitude 22.48)
+	(longitude 91.832794)
+	(population 1391877)
+	(title "Chittagong"))
+
+([Heatmap_Class20502] of  City
+
+	(capital TRUE)
+	(country "Sri Lanka")
+	(latitude 7.02)
+	(longitude 80.08833)
+	(population 2050000)
+	(title "Colombo"))
+
+([Heatmap_Class20503] of  City
+
+	(capital TRUE)
+	(country "Guinea")
+	(latitude 9.52)
+	(longitude -12.8)
+	(population 800000)
+	(title "Conakry"))
+
+([Heatmap_Class20504] of  City
+
+	(capital TRUE)
+	(country "Senegal")
+	(latitude 14.63)
+	(longitude -16.848095)
+	(population 1428084)
+	(title "Dakar"))
+
+([Heatmap_Class20505] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 39.75)
+	(longitude -105.07)
+	(population 1405300)
+	(title "Denver"))
+
+([Heatmap_Class20506] of  City
+
+	(capital TRUE)
+	(country "Tajikistan")
+	(latitude 38.63)
+	(longitude 68.9)
+	(population 595000)
+	(title "Dushanfe"))
+
+([Heatmap_Class20507] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 53.57)
+	(longitude -113.27)
+	(population 785465)
+	(title "Edmonton"))
+
+([Heatmap_Class20508] of  City
+
+	(capital FALSE)
+	(country "Egypt")
+	(latitude 30.47)
+	(longitude 30.85)
+	(population 1870508)
+	(title "El-Giza"))
+
+([Heatmap_Class20509] of  City
+
+	(capital TRUE)
+	(country "Sierra Leone")
+	(latitude 8.382771)
+	(longitude -12.910276)
+	(population 525000)
+	(title "Freetown"))
+
+([Heatmap_Class20510] of  City
+
+	(capital TRUE)
+	(country "Kyrgyzstan")
+	(latitude 42.88)
+	(longitude 74.77)
+	(population 616000)
+	(title "Frunze"))
+
+([Heatmap_Class20511] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 44.45509)
+	(longitude 8.922296)
+	(population 805000)
+	(title "Genova"))
+
+([Heatmap_Class20512] of  City
+
+	(capital TRUE)
+	(country "Guyana")
+	(latitude 6.77)
+	(longitude -58.17)
+	(population 188000)
+	(title "Georgetown"))
+
+([Heatmap_Class20513] of  City
+
+	(capital FALSE)
+	(country "Sweden")
+	(latitude 57.75)
+	(longitude 12.0)
+	(population 710894)
+	(title "Goteborg"))
+
+([Heatmap_Class20514] of  City
+
+	(capital TRUE)
+	(country "Zimbabwe")
+	(latitude -17.83)
+	(longitude 31.02)
+	(population 890000)
+	(title "Harare"))
+
+([Heatmap_Class20515] of  City
+
+	(capital TRUE)
+	(country "Cuba")
+	(latitude 23.048952)
+	(longitude -82.41645)
+	(population 2125000)
+	(title "Havana"))
+
+([Heatmap_Class20516] of  City
+
+	(capital FALSE)
+	(country "Saudi Arabia")
+	(latitude 21.62)
+	(longitude 39.373306)
+	(population 1300000)
+	(title "Jiddah"))
+
+([Heatmap_Class20517] of  City
+
+	(capital TRUE)
+	(country "Uganda")
+	(latitude 0.32)
+	(longitude 32.58)
+	(population 460000)
+	(title "Kampala"))
+
+([Heatmap_Class20518] of  City
+
+	(capital FALSE)
+	(country "Nigeria")
+	(latitude 11.92)
+	(longitude 8.52)
+	(population 538300)
+	(title "Kano"))
+
+([Heatmap_Class20519] of  City
+
+	(capital FALSE)
+	(country "Taiwan")
+	(latitude 22.673416)
+	(longitude 120.341484)
+	(population 1845000)
+	(title "Kao-Hsiung"))
+
+([Heatmap_Class20520] of  City
+
+	(capital FALSE)
+	(country "Pakistan")
+	(latitude 24.85)
+	(longitude 67.03)
+	(population 5300000)
+	(title "Karachi"))
+
+([Heatmap_Class20521] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 48.53)
+	(longitude 135.07)
+	(population 601000)
+	(title "Khabarovsk"))
+
+([Heatmap_Class20522] of  City
+
+	(capital TRUE)
+	(country "Sudan")
+	(latitude 15.55)
+	(longitude 32.53)
+	(population 924000)
+	(title "Khartoum"))
+
+([Heatmap_Class20523] of  City
+
+	(capital TRUE)
+	(country "Moldova")
+	(latitude 47.0)
+	(longitude 28.83)
+	(population 665000)
+	(title "Kishinev"))
+
+([Heatmap_Class20524] of  City
+
+	(capital TRUE)
+	(country "Denmark")
+	(latitude 55.72)
+	(longitude 12.55)
+	(population 1685000)
+	(title "Kobenhavn"))
+
+([Heatmap_Class20525] of  City
+
+	(capital TRUE)
+	(country "Nigeria")
+	(latitude 6.45)
+	(longitude 3.3)
+	(population 3800000)
+	(title "Lagos"))
+
+([Heatmap_Class20526] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 49.32402)
+	(longitude 0.22)
+	(population 254595)
+	(title "Le Havre"))
+
+([Heatmap_Class20527] of  City
+
+	(capital TRUE)
+	(country "Gabon")
+	(latitude -0.50414455)
+	(longitude 9.490457)
+	(population 235700)
+	(title "Libreville"))
+
+([Heatmap_Class20528] of  City
+
+	(capital TRUE)
+	(country "Malawi")
+	(latitude -13.92)
+	(longitude 33.82)
+	(population 233973)
+	(title "Lilongwe"))
+
+([Heatmap_Class20529] of  City
+
+	(capital TRUE)
+	(country "Peru")
+	(latitude -12.067996)
+	(longitude -76.823555)
+	(population 4344000)
+	(title "Lima"))
+
+([Heatmap_Class20530] of  City
+
+	(capital TRUE)
+	(country "Portugal")
+	(latitude 38.73)
+	(longitude -9.13)
+	(population 2250000)
+	(title "Lisboa"))
+
+([Heatmap_Class20531] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 53.422688)
+	(longitude -2.7668364)
+	(population 1525000)
+	(title "Liverpool"))
+
+([Heatmap_Class20532] of  City
+
+	(capital TRUE)
+	(country "Togo")
+	(latitude 6.28)
+	(longitude 1.35)
+	(population 400000)
+	(title "Lome"))
+
+([Heatmap_Class20533] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 34.0)
+	(longitude -118.25)
+	(population 9763600)
+	(title "Los Angeles"))
+
+([Heatmap_Class20534] of  City
+
+	(capital TRUE)
+	(country "Angola")
+	(latitude -9.0)
+	(longitude 13.461779)
+	(population 1459900)
+	(title "Luanda"))
+
+([Heatmap_Class20535] of  City
+
+	(capital FALSE)
+	(country "Zaire")
+	(latitude -11.68)
+	(longitude 27.55)
+	(population 543268)
+	(title "Lumumbashi"))
+
+([Heatmap_Class20536] of  City
+
+	(capital TRUE)
+	(country "Zambia")
+	(latitude -15.43)
+	(longitude 28.17)
+	(population 535830)
+	(title "Lusaka"))
+
+([Heatmap_Class20537] of  City
+
+	(capital TRUE)
+	(country "Eq Guinea")
+	(latitude 3.6446848)
+	(longitude 8.82)
+	(population 30710)
+	(title "Malabo"))
+
+([Heatmap_Class20538] of  City
+
+	(capital TRUE)
+	(country "Philippines")
+	(latitude 14.55)
+	(longitude 121.17341)
+	(population 5474000)
+	(title "Manila"))
+
+([Heatmap_Class20539] of  City
+
+	(capital FALSE)
+	(country "France")
+	(latitude 43.3)
+	(longitude 5.38)
+	(population 1225000)
+	(title "Marseille"))
+
+([Heatmap_Class20540] of  City
+
+	(capital TRUE)
+	(country "Oman")
+	(latitude 23.51664)
+	(longitude 58.62748)
+	(population 50000)
+	(title "Masqat"))
+
+([Heatmap_Class20541] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 23.361511)
+	(longitude -106.27)
+	(population 199830)
+	(title "Mazatlan"))
+
+([Heatmap_Class20542] of  City
+
+	(capital FALSE)
+	(country "Kenya")
+	(latitude -4.02)
+	(longitude 39.67)
+	(population 442369)
+	(title "Mombasa"))
+
+([Heatmap_Class20543] of  City
+
+	(capital TRUE)
+	(country "Liberia")
+	(latitude 6.5174394)
+	(longitude -10.77)
+	(population 465000)
+	(title "Monrovia"))
+
+([Heatmap_Class20544] of  City
+
+	(capital TRUE)
+	(country "Uruguay")
+	(latitude -34.92)
+	(longitude -56.17)
+	(population 1550000)
+	(title "Montevideo"))
+
+([Heatmap_Class20545] of  City
+
+	(capital TRUE)
+	(country "Russia")
+	(latitude 55.75)
+	(longitude 37.7)
+	(population 13100000)
+	(title "Moskva"))
+
+([Heatmap_Class20546] of  City
+
+	(capital TRUE)
+	(country "Kenya")
+	(latitude -1.17)
+	(longitude 36.83)
+	(population 1286200)
+	(title "Nairobi"))
+
+([Heatmap_Class20547] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 40.83)
+	(longitude 14.27)
+	(population 2875000)
+	(title "Napoli"))
+
+([Heatmap_Class20548] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 40.75)
+	(longitude -74.1)
+	(population 16472000)
+	(title "New York"))
+
+([Heatmap_Class20549] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 40.72)
+	(longitude -74.2)
+	(population 329248)
+	(title "Newark"))
+
+([Heatmap_Class20550] of  City
+
+	(capital TRUE)
+	(country "Mauritania")
+	(latitude 18.03)
+	(longitude -15.782861)
+	(population 285000)
+	(title "Nouakchott"))
+
+([Heatmap_Class20551] of  City
+
+	(capital FALSE)
+	(country "Denmark")
+	(latitude 55.574535)
+	(longitude 9.902999)
+	(population 138400)
+	(title "Odense"))
+
+([Heatmap_Class20552] of  City
+
+	(capital FALSE)
+	(country "Sudan")
+	(latitude 15.62)
+	(longitude 32.48)
+	(population 526287)
+	(title "Omdurman"))
+
+([Heatmap_Class20553] of  City
+
+	(capital FALSE)
+	(country "Algeria")
+	(latitude 35.75)
+	(longitude -0.52)
+	(population 628558)
+	(title "Oran"))
+
+([Heatmap_Class20554] of  City
+
+	(capital TRUE)
+	(country "Norway")
+	(latitude 59.93)
+	(longitude 10.72)
+	(population 720000)
+	(title "Oslo"))
+
+([Heatmap_Class20555] of  City
+
+	(capital TRUE)
+	(country "Burkina Faso")
+	(latitude 12.48)
+	(longitude -1.67)
+	(population 441514)
+	(title "Ouagadouou"))
+
+([Heatmap_Class20556] of  City
+
+	(capital FALSE)
+	(country "Italy")
+	(latitude 38.13)
+	(longitude 13.4)
+	(population 723732)
+	(title "Palermo"))
+
+([Heatmap_Class20557] of  City
+
+	(capital TRUE)
+	(country "Panama")
+	(latitude 8.95)
+	(longitude -79.4)
+	(population 625000)
+	(title "Panama"))
+
+([Heatmap_Class20558] of  City
+
+	(capital TRUE)
+	(country "Suriname")
+	(latitude 5.93)
+	(longitude -55.23)
+	(population 241000)
+	(title "Paramaribo"))
+
+([Heatmap_Class20559] of  City
+
+	(capital FALSE)
+	(country "Australia")
+	(latitude -31.975864)
+	(longitude 115.92337)
+	(population 994472)
+	(title "Perth"))
+
+([Heatmap_Class20560] of  City
+
+	(capital TRUE)
+	(country "Papua N Guin")
+	(latitude -9.55)
+	(longitude 147.41452)
+	(population 152100)
+	(title "Port Moresby"))
+
+([Heatmap_Class20561] of  City
+
+	(capital FALSE)
+	(country "Portugal")
+	(latitude 41.15)
+	(longitude -8.487948)
+	(population 1225000)
+	(title "Porto"))
+
+([Heatmap_Class20562] of  City
+
+	(capital FALSE)
+	(country "Afghanistan")
+	(latitude 31.6)
+	(longitude 65.5)
+	(population 203000)
+	(title "Qandahar"))
+
+([Heatmap_Class20563] of  City
+
+	(capital FALSE)
+	(country "Philippines")
+	(latitude 14.65)
+	(longitude 121.03)
+	(population 1326035)
+	(title "Quezon City"))
+
+([Heatmap_Class20564] of  City
+
+	(capital TRUE)
+	(country "Morocco")
+	(latitude 33.920197)
+	(longitude -6.7480407)
+	(population 980000)
+	(title "Rabat"))
+
+([Heatmap_Class20565] of  City
+
+	(capital TRUE)
+	(country "Iceland")
+	(latitude 64.31326)
+	(longitude -21.33682)
+	(population 137941)
+	(title "Reykjavik"))
+
+([Heatmap_Class20566] of  City
+
+	(capital TRUE)
+	(country "Latvia")
+	(latitude 56.88)
+	(longitude 24.05)
+	(population 1005000)
+	(title "Riga"))
+
+([Heatmap_Class20567] of  City
+
+	(capital TRUE)
+	(country "Italy")
+	(latitude 41.88)
+	(longitude 12.52)
+	(population 3175000)
+	(title "Roma"))
+
+([Heatmap_Class20568] of  City
+
+	(capital FALSE)
+	(country "Brazil")
+	(latitude -12.600257)
+	(longitude -38.48)
+	(population 2050000)
+	(title "Salvador"))
+
+([Heatmap_Class20569] of  City
+
+	(capital FALSE)
+	(country "Iran")
+	(latitude 29.63)
+	(longitude 52.57)
+	(population 848289)
+	(title "Shiraz"))
+
+([Heatmap_Class20570] of  City
+
+	(capital TRUE)
+	(country "Sweden")
+	(latitude 59.244633)
+	(longitude 18.084269)
+	(population 1449972)
+	(title "Stockholm"))
+
+([Heatmap_Class20571] of  City
+
+	(capital FALSE)
+	(country "Indonesia")
+	(latitude -7.4)
+	(longitude 112.68437)
+	(population 2027913)
+	(title "Surabaja"))
+
+([Heatmap_Class20572] of  City
+
+	(capital FALSE)
+	(country "Taiwan")
+	(latitude 23.17)
+	(longitude 120.23)
+	(population 656927)
+	(title "T`ai-nan"))
+
+([Heatmap_Class20573] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 27.997358)
+	(longitude -82.593025)
+	(population 594500)
+	(title "Tampa"))
+
+([Heatmap_Class20574] of  City
+
+	(capital TRUE)
+	(country "Israel")
+	(latitude 31.917198)
+	(longitude 34.856834)
+	(population 1670000)
+	(title "Tel Aviv-Yafo"))
+
+([Heatmap_Class20575] of  City
+
+	(capital FALSE)
+	(country "Greece")
+	(latitude 40.63)
+	(longitude 22.8)
+	(population 706180)
+	(title "Thessaloniki"))
+
+([Heatmap_Class20576] of  City
+
+	(capital TRUE)
+	(country "Uzbekistan")
+	(latitude 41.247932)
+	(longitude 69.34987)
+	(population 2325000)
+	(title "Toshkent"))
+
+([Heatmap_Class20577] of  City
+
+	(capital FALSE)
+	(country "Lebanon")
+	(latitude 34.343758)
+	(longitude 36.00707)
+	(population 198000)
+	(title "Tripoli"))
+
+([Heatmap_Class20578] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -32.9)
+	(longitude -71.29934)
+	(population 675000)
+	(title "Valparaiso"))
+
+([Heatmap_Class20579] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 49.2743)
+	(longitude -122.963066)
+	(population 1380729)
+	(title "Vancouver"))
+
+([Heatmap_Class20580] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 43.13)
+	(longitude 131.96043)
+	(population 648000)
+	(title "Vladivostok"))
+
+([Heatmap_Class20581] of  City
+
+	(capital FALSE)
+	(country "South Africa")
+	(latitude -23.101868)
+	(longitude 14.617105)
+	(population 16607)
+	(title "Walvis Bay"))
+
+([Heatmap_Class20582] of  City
+
+	(capital TRUE)
+	(country "Namibia")
+	(latitude -22.57)
+	(longitude 17.1)
+	(population 114500)
+	(title "Windhoek"))
+
+([Heatmap_Class20583] of  City
+
+	(capital TRUE)
+	(country "New Zealand")
+	(latitude -41.210396)
+	(longitude 175.14494)
+	(population 350000)
+	(title "Wellington"))
+
+([Heatmap_Class20584] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 47.588554)
+	(longitude -122.31665)
+	(population 2077100)
+	(title "Seattle"))
+
+([Heatmap_Class20585] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 32.76146)
+	(longitude -117.125496)
+	(population 2098500)
+	(title "San Diego"))
+
+([Heatmap_Class20586] of  City
+
+	(capital FALSE)
+	(country "Chile")
+	(latitude -20.26)
+	(longitude -69.91326)
+	(population 110153)
+	(title "Iquique"))
+
+([Heatmap_Class20587] of  City
+
+	(capital TRUE)
+	(country "Untd Arab Em")
+	(latitude 24.236008)
+	(longitude 54.61927)
+	(population 242975)
+	(title "Abu Zaby"))
+
+([Heatmap_Class20588] of  City
+
+	(capital FALSE)
+	(country "Venezuela")
+	(latitude 7.576601)
+	(longitude -72.005455)
+	(population 198793)
+	(title "San Cristobal"))
+
+([Heatmap_Class20589] of  City
+
+	(capital FALSE)
+	(country "Russia")
+	(latitude 46.25)
+	(longitude 48.0)
+	(population 509000)
+	(title "Astrakhan"))
+
+([Heatmap_Class20590] of  City
+
+	(capital FALSE)
+	(country "Libya")
+	(latitude 30.138603)
+	(longitude 9.818351)
+	(population -99)
+	(title "Ghadamis"))
+
+([Heatmap_Class20591] of  City
+
+	(capital FALSE)
+	(country "Uruguay")
+	(latitude -31.305153)
+	(longitude -57.708775)
+	(population 77400)
+	(title "Salto"))
+
+([Heatmap_Class20592] of  City
+
+	(capital FALSE)
+	(country "Canada")
+	(latitude 62.520615)
+	(longitude -114.06136)
+	(population 11753)
+	(title "Yellowknife"))
+
+([Heatmap_Class20593] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 19.714815)
+	(longitude -155.06729)
+	(population 43200)
+	(title "Hilo"))
+
+([Heatmap_Class20594] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 21.321177)
+	(longitude -157.80618)
+	(population 762600)
+	(title "Honolulu"))
+
+([Heatmap_Class20595] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 61.18865)
+	(longitude -149.17297)
+	(population 184300)
+	(title "Anchorage"))
+
+([Heatmap_Class20596] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 64.838745)
+	(longitude -147.65118)
+	(population 39900)
+	(title "Fairbanks"))
+
+([Heatmap_Class20597] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 58.391006)
+	(longitude -134.13248)
+	(population 19528)
+	(title "Juneau"))
+
+([Heatmap_Class20598] of  City
+
+	(capital FALSE)
+	(country "US")
+	(latitude 37.308105)
+	(longitude -121.84746)
+	(population 629400)
+	(title "San Jose"))
+
+([Heatmap_Class20599] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 28.55814)
+	(longitude -105.96664)
+	(population 385603)
+	(title "Chihuaha"))
+
+([Heatmap_Class20600] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 19.009676)
+	(longitude -96.08406)
+	(population 385000)
+	(title "Veracruz"))
+
+([Heatmap_Class20601] of  City
+
+	(capital FALSE)
+	(country "Mexico")
+	(latitude 16.920906)
+	(longitude -96.94204)
+	(population 154223)
+	(title "Oaxaca"))
+
+([Heatmap_Class20602] of  City
+
+	(capital FALSE)
+	(country "Norway")
+	(latitude 78.2)
+	(longitude 15.66)
+	(population -99)
+	(title "Longyearbyen"))
+
+([Heatmap_Class20603] of  City
+
+	(capital TRUE)
+	(country "UK")
+	(latitude 22.428406)
+	(longitude 114.145706)
+	(population 5395997)
+	(title "Hong Kong"))
+
+([Heatmap_Class20604] of  City
+
+	(capital FALSE)
+	(country "UK")
+	(latitude 22.379896)
+	(longitude 114.23012)
+	(population 774781)
+	(title "Kowloon"))
+
+([Heatmap_Class20605] of  City
+
+	(capital FALSE)
+	(country "Singapore")
+	(latitude 1.2297935)
+	(longitude 104.17712)
+	(population 3025000)
+	(title "Singapore"))
+
+([Heatmap_Class20606] of  ClsMain
+
+	(asset-path "js/heat")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[Heatmap_Class20608]
+		[Heatmap_Class20611])
+	(cloNamespace [Heatmap_Class20607])
+	(compiler-options "{:verbose false}")
+	(css [CesiumBase_Class10012])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))\n(tst)")
+	(html [Heatmap_Class20609])
+	(output-dir "resources/public/js/heat")
+	(output-to "resources/public/js/heat.js")
+	(required [CesiumBase_Class0])
+	(store-in "src/cljs/")
+	(title "Heatmap Client"))
+
+([Heatmap_Class20607] of  CloNamespace
+
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA]])")
+	(title "cesium.heat.client"))
+
+([Heatmap_Class20608] of  CloFunction
+
+	(source "(add-terrain nil VIEWER)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
+	(title "init-heat []"))
+
+([Heatmap_Class20609] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Heatmap</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <!-- The Heatmap plugin. -->\n        <script src=\"js/CesiumHeatmap.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/heat.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public")
+	(title "heat"))
+
+([Heatmap_Class20610] of  CesiumServer
+
+	(butt-start-cs-server "Start/cesium.server/start-server")
+	(butt-stop-cs-server "Stop/cesium.server/stop-server")
+	(page "heat.html")
+	(port 4448))
+
+([Heatmap_Class20611] of  CloFunction
+
+	(source "(let [bnds #js{:west 147.13833844\n                       :east 147.13856899\n                       :south -41.43606916\n                       :north -41.43582929}\n       data [{\"x\" 147.1383442264 \"y\" -41.4360048372 \"value\" 76}\n                 {\"x\" 147.1384363011 \"y\" -41.4360298848 \"value\" 63}\n                  {\"x\" 147.138368102 \"y\" -41.4358360603 \"value\" 1}\n                  {\"x\" 147.1385627739 \"y\" -41.4358799123 \"value\" 21}]\n       hm (js/CesiumHeatmap.create VIEWER bnds {})\n       valmin 0\n       valmax 100]\n  (.setWGS84Data hm valmin valmax (clj->js data))\n  (println :HM data))")
+	(title "tst []"))

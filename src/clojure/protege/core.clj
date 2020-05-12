@@ -91,9 +91,9 @@ s)
       (.setAllowedClses slot cls))
   slot))
 
-(defn crin [cls]
-  ; Return new instance of class cls
-(.createInstance *kb* nil (.getCls *kb* cls)))
+(defn crin [clname]
+  ; Return new instance of class of name clname
+(.createInstance *kb* nil (.getCls *kb* clname)))
 
 (defn delin [instance]
   ; Delete instance

@@ -33,35 +33,35 @@ camera.flyTo(fvw);
 return fvw;
 });
 cesium.client.camera_home = (function cesium$client$camera_home(camera,view){
-var map__15026 = view;
-var map__15026__$1 = (((((!((map__15026 == null))))?(((((map__15026.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__15026.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__15026):map__15026);
-var longitude = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"longitude","longitude",-1268876372));
-var latitude = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"latitude","latitude",394867543));
-var height = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"height","height",1025178622));
-var heading = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"heading","heading",-1312171873));
-var pitch = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"pitch","pitch",1495126700));
-var roll = cljs.core.get.call(null,map__15026__$1,new cljs.core.Keyword(null,"roll","roll",11266999));
+var map__891 = view;
+var map__891__$1 = (((((!((map__891 == null))))?(((((map__891.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__891.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__891):map__891);
+var longitude = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"longitude","longitude",-1268876372));
+var latitude = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"latitude","latitude",394867543));
+var height = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"height","height",1025178622));
+var heading = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"heading","heading",-1312171873));
+var pitch = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"pitch","pitch",1495126700));
+var roll = cljs.core.get.call(null,map__891__$1,new cljs.core.Keyword(null,"roll","roll",11266999));
 var fvw = cesium.client.camera_fly.call(null,camera,longitude,latitude,height,heading,pitch,roll);
 cesium.client.HOME_VIEW = fvw;
 
-cesium.client.VIEWER.homeButton.viewModel.command.beforeExecute.addEventListener(((function (map__15026,map__15026__$1,longitude,latitude,height,heading,pitch,roll,fvw){
+cesium.client.VIEWER.homeButton.viewModel.command.beforeExecute.addEventListener(((function (map__891,map__891__$1,longitude,latitude,height,heading,pitch,roll,fvw){
 return (function (e){
 e.cancel = true;
 
 return camera.flyTo(cesium.client.HOME_VIEW);
-});})(map__15026,map__15026__$1,longitude,latitude,height,heading,pitch,roll,fvw))
+});})(map__891,map__891__$1,longitude,latitude,height,heading,pitch,roll,fvw))
 );
 
 return camera.flyTo(cesium.client.HOME_VIEW);
 });
 cesium.client.clock_settings = (function cesium$client$clock_settings(clock,settings,viewer){
-var map__15028 = settings;
-var map__15028__$1 = (((((!((map__15028 == null))))?(((((map__15028.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__15028.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__15028):map__15028);
-var animate = cljs.core.get.call(null,map__15028__$1,new cljs.core.Keyword(null,"animate","animate",1850194573));
-var start = cljs.core.get.call(null,map__15028__$1,new cljs.core.Keyword(null,"start","start",-355208981));
-var stop = cljs.core.get.call(null,map__15028__$1,new cljs.core.Keyword(null,"stop","stop",-2140911342));
-var current = cljs.core.get.call(null,map__15028__$1,new cljs.core.Keyword(null,"current","current",-1088038603));
-var mult = cljs.core.get.call(null,map__15028__$1,new cljs.core.Keyword(null,"mult","mult",1466794774));
+var map__893 = settings;
+var map__893__$1 = (((((!((map__893 == null))))?(((((map__893.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__893.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__893):map__893);
+var animate = cljs.core.get.call(null,map__893__$1,new cljs.core.Keyword(null,"animate","animate",1850194573));
+var start = cljs.core.get.call(null,map__893__$1,new cljs.core.Keyword(null,"start","start",-355208981));
+var stop = cljs.core.get.call(null,map__893__$1,new cljs.core.Keyword(null,"stop","stop",-2140911342));
+var current = cljs.core.get.call(null,map__893__$1,new cljs.core.Keyword(null,"current","current",-1088038603));
+var mult = cljs.core.get.call(null,map__893__$1,new cljs.core.Keyword(null,"mult","mult",1466794774));
 clock.shouldAnimate = animate;
 
 clock.startTime = Cesium.JulianDate.fromIso8601(start);
@@ -79,18 +79,18 @@ clock.clockRange = Cesium.ClockRange.LOOP_STOP;
 return viewer.timeline.zoomTo(clock.startTime,clock.stopTime);
 });
 cesium.client.load_data = (function cesium$client$load_data(format,source,options,viewer,processor){
-var promise = (function (){var pred__15030 = cljs.core._EQ_;
-var expr__15031 = format;
-if(cljs.core.truth_(pred__15030.call(null,new cljs.core.Keyword(null,"GeoJSON","GeoJSON",33508860),expr__15031))){
+var promise = (function (){var pred__895 = cljs.core._EQ_;
+var expr__896 = format;
+if(cljs.core.truth_(pred__895.call(null,new cljs.core.Keyword(null,"GeoJSON","GeoJSON",33508860),expr__896))){
 return Cesium.GeoJsonDataSource.load(source,options);
 } else {
-if(cljs.core.truth_(pred__15030.call(null,new cljs.core.Keyword(null,"CZML","CZML",-1539311408),expr__15031))){
+if(cljs.core.truth_(pred__895.call(null,new cljs.core.Keyword(null,"CZML","CZML",-1539311408),expr__896))){
 return Cesium.CzmlDataSource.load(source,options);
 } else {
-if(cljs.core.truth_(pred__15030.call(null,new cljs.core.Keyword(null,"KML","KML",1829561453),expr__15031))){
+if(cljs.core.truth_(pred__895.call(null,new cljs.core.Keyword(null,"KML","KML",1829561453),expr__896))){
 return Cesium.KmlDataSource.load(source,options);
 } else {
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__15031)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__896)].join('')));
 }
 }
 }
@@ -165,30 +165,30 @@ return az;
 }
 }
 });
-cesium.client.azimuths_AMPERSAND_points = (function cesium$client$azimuths_AMPERSAND_points(p__15034,radr,hgt,N){
-var vec__15035 = p__15034;
-var c_lambda = cljs.core.nth.call(null,vec__15035,(0),null);
-var c_phi = cljs.core.nth.call(null,vec__15035,(1),null);
+cesium.client.azimuths_AMPERSAND_points = (function cesium$client$azimuths_AMPERSAND_points(p__899,radr,hgt,N){
+var vec__900 = p__899;
+var c_lambda = cljs.core.nth.call(null,vec__900,(0),null);
+var c_phi = cljs.core.nth.call(null,vec__900,(1),null);
 var s = ((Math.PI * (2)) / N);
 var azs = cljs.core.range.call(null,(0),(N * s),s);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [azs,cljs.core.vec.call(null,cljs.core.map.call(null,((function (s,azs,vec__15035,c_lambda,c_phi){
-return (function (p1__15033_SHARP_){
-return cljs.core.concat.call(null,cesium.client.position_js.call(null,c_lambda,c_phi,radr,p1__15033_SHARP_),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [hgt], null));
-});})(s,azs,vec__15035,c_lambda,c_phi))
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [azs,cljs.core.vec.call(null,cljs.core.map.call(null,((function (s,azs,vec__900,c_lambda,c_phi){
+return (function (p1__898_SHARP_){
+return cljs.core.concat.call(null,cesium.client.position_js.call(null,c_lambda,c_phi,radr,p1__898_SHARP_),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [hgt], null));
+});})(s,azs,vec__900,c_lambda,c_phi))
 ,azs))], null);
 });
 cesium.client.look_at = (function cesium$client$look_at(camera,dist_m){
 var cmp = camera.position;
 var cmp__$1 = Cesium.Cartographic.fromCartesian(cmp);
-var vec__15038 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cmp__$1.longitude,cmp__$1.latitude,cmp__$1.height], null);
-var lam = cljs.core.nth.call(null,vec__15038,(0),null);
-var phi = cljs.core.nth.call(null,vec__15038,(1),null);
-var hgt = cljs.core.nth.call(null,vec__15038,(2),null);
+var vec__903 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cmp__$1.longitude,cmp__$1.latitude,cmp__$1.height], null);
+var lam = cljs.core.nth.call(null,vec__903,(0),null);
+var phi = cljs.core.nth.call(null,vec__903,(1),null);
+var hgt = cljs.core.nth.call(null,vec__903,(2),null);
 var az = camera.heading;
 var c = ((((dist_m / (1852)) / (60)) / (180)) * Math.PI);
-var vec__15041 = cesium.client.position_js.call(null,lam,phi,c,az);
-var lam2 = cljs.core.nth.call(null,vec__15041,(0),null);
-var phi2 = cljs.core.nth.call(null,vec__15041,(1),null);
+var vec__906 = cesium.client.position_js.call(null,lam,phi,c,az);
+var lam2 = cljs.core.nth.call(null,vec__906,(0),null);
+var phi2 = cljs.core.nth.call(null,vec__906,(1),null);
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [lam2,phi2,hgt], null);
 });
 cesium.client.add_orbit_button = (function cesium$client$add_orbit_button(camera){
@@ -217,8 +217,8 @@ return cljs.core._vreset_BANG_.call(null,cesium.client.ORBIT,cljs.core.assoc.cal
 var next = (function cesium$client$add_orbit_button_$_next(az,azs){
 var N = cljs.core.count.call(null,azs);
 var n = ((N / (2)) + cljs.core.count.call(null,cljs.core.filter.call(null,((function (N){
-return (function (p1__15044_SHARP_){
-return (p1__15044_SHARP_ < az);
+return (function (p1__909_SHARP_){
+return (p1__909_SHARP_ < az);
 });})(N))
 ,azs)));
 if((n > (N - (1)))){
@@ -236,44 +236,44 @@ document.querySelector(".cesium-viewer-toolbar").prepend(obut);
 
 return obut.onclick = ((function (obut){
 return (function (){
-var pred__15047 = cljs.core._EQ_;
-var expr__15048 = cljs.core.deref.call(null,cesium.client.ORBIT).call(null,new cljs.core.Keyword(null,"status","status",-1997798413));
-if(cljs.core.truth_(pred__15047.call(null,new cljs.core.Keyword(null,"init","init",-1875481434),expr__15048))){
+var pred__912 = cljs.core._EQ_;
+var expr__913 = cljs.core.deref.call(null,cesium.client.ORBIT).call(null,new cljs.core.Keyword(null,"status","status",-1997798413));
+if(cljs.core.truth_(pred__912.call(null,new cljs.core.Keyword(null,"init","init",-1875481434),expr__913))){
 return cljs.core._vreset_BANG_.call(null,cesium.client.ORBIT,cljs.core.assoc.call(null,cljs.core._deref.call(null,cesium.client.ORBIT),new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"stop","stop",-2140911342)));
 } else {
-if(cljs.core.truth_(pred__15047.call(null,new cljs.core.Keyword(null,"stop","stop",-2140911342),expr__15048))){
+if(cljs.core.truth_(pred__912.call(null,new cljs.core.Keyword(null,"stop","stop",-2140911342),expr__913))){
 var steps = cljs.core.deref.call(null,cesium.client.ORBIT).call(null,new cljs.core.Keyword(null,"steps","steps",-128433302));
 var radm = cljs.core.deref.call(null,cesium.client.ORBIT).call(null,new cljs.core.Keyword(null,"radius-m","radius-m",-1490686729));
 var radr = ((((radm / (1852)) / (60)) / (180)) * Math.PI);
-var vec__15050 = cesium.client.look_at.call(null,camera,radm);
-var lam = cljs.core.nth.call(null,vec__15050,(0),null);
-var phi = cljs.core.nth.call(null,vec__15050,(1),null);
-var hgt = cljs.core.nth.call(null,vec__15050,(2),null);
-var look = vec__15050;
-var vec__15053 = cesium.client.azimuths_AMPERSAND_points.call(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [lam,phi], null),radr,hgt,steps);
-var azs = cljs.core.nth.call(null,vec__15053,(0),null);
-var pts = cljs.core.nth.call(null,vec__15053,(1),null);
-var ring = cljs.core.vec.call(null,cljs.core.map.call(null,((function (steps,radm,radr,vec__15050,lam,phi,hgt,look,vec__15053,azs,pts,pred__15047,expr__15048,obut){
-return (function (p1__15045_SHARP_){
-return Cesium.Cartesian3.fromRadians(cljs.core.first.call(null,p1__15045_SHARP_),cljs.core.second.call(null,p1__15045_SHARP_),cljs.core.nth.call(null,p1__15045_SHARP_,(2)));
-});})(steps,radm,radr,vec__15050,lam,phi,hgt,look,vec__15053,azs,pts,pred__15047,expr__15048,obut))
+var vec__915 = cesium.client.look_at.call(null,camera,radm);
+var lam = cljs.core.nth.call(null,vec__915,(0),null);
+var phi = cljs.core.nth.call(null,vec__915,(1),null);
+var hgt = cljs.core.nth.call(null,vec__915,(2),null);
+var look = vec__915;
+var vec__918 = cesium.client.azimuths_AMPERSAND_points.call(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [lam,phi], null),radr,hgt,steps);
+var azs = cljs.core.nth.call(null,vec__918,(0),null);
+var pts = cljs.core.nth.call(null,vec__918,(1),null);
+var ring = cljs.core.vec.call(null,cljs.core.map.call(null,((function (steps,radm,radr,vec__915,lam,phi,hgt,look,vec__918,azs,pts,pred__912,expr__913,obut){
+return (function (p1__910_SHARP_){
+return Cesium.Cartesian3.fromRadians(cljs.core.first.call(null,p1__910_SHARP_),cljs.core.second.call(null,p1__910_SHARP_),cljs.core.nth.call(null,p1__910_SHARP_,(2)));
+});})(steps,radm,radr,vec__915,lam,phi,hgt,look,vec__918,azs,pts,pred__912,expr__913,obut))
 ,pts));
-var headings = cljs.core.vec.call(null,cljs.core.map.call(null,((function (steps,radm,radr,vec__15050,lam,phi,hgt,look,vec__15053,azs,pts,ring,pred__15047,expr__15048,obut){
-return (function (p1__15046_SHARP_){
-return cesium.client.normaz.call(null,(p1__15046_SHARP_ + Math.PI));
-});})(steps,radm,radr,vec__15050,lam,phi,hgt,look,vec__15053,azs,pts,ring,pred__15047,expr__15048,obut))
+var headings = cljs.core.vec.call(null,cljs.core.map.call(null,((function (steps,radm,radr,vec__915,lam,phi,hgt,look,vec__918,azs,pts,ring,pred__912,expr__913,obut){
+return (function (p1__911_SHARP_){
+return cesium.client.normaz.call(null,(p1__911_SHARP_ + Math.PI));
+});})(steps,radm,radr,vec__915,lam,phi,hgt,look,vec__918,azs,pts,ring,pred__912,expr__913,obut))
 ,azs));
 var begin = next.call(null,camera.heading,azs);
 cljs.core._vreset_BANG_.call(null,cesium.client.ORBIT,cljs.core.assoc.call(null,cljs.core._deref.call(null,cesium.client.ORBIT),new cljs.core.Keyword(null,"ring","ring",-974350330),ring,new cljs.core.Keyword(null,"headings","headings",-383220458),headings,new cljs.core.Keyword(null,"center","center",-748944368),Cesium.Cartesian3.fromRadians(lam,phi,hgt),new cljs.core.Keyword(null,"next","next",-117701485),begin,new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"run","run",-1821166653)));
 
 return fly_one.call(null,camera,begin);
 } else {
-if(cljs.core.truth_(pred__15047.call(null,new cljs.core.Keyword(null,"run","run",-1821166653),expr__15048))){
+if(cljs.core.truth_(pred__912.call(null,new cljs.core.Keyword(null,"run","run",-1821166653),expr__913))){
 camera.cancelFlight();
 
 return cljs.core._vreset_BANG_.call(null,cesium.client.ORBIT,cljs.core.assoc.call(null,cljs.core._deref.call(null,cesium.client.ORBIT),new cljs.core.Keyword(null,"status","status",-1997798413),new cljs.core.Keyword(null,"stop","stop",-2140911342)));
 } else {
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__15048)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__913)].join('')));
 }
 }
 }
