@@ -1,4 +1,4 @@
-; Tue May 12 23:11:42 MSK 2020
+; Wed May 13 22:30:36 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -47,14 +47,6 @@
 
 	(csv-column "CAP")
 	(slot [capital]))
-
-([Heatmap_Class10011] of  CloFuncall
-
-	(source "(eval (read-string \"((fn [x] (= x \\\"Y\\\")) \\\"Y\\\")\"))"))
-
-([Heatmap_Class10012] of  CloFuncall
-
-	(source "(eval (read-string \"((fn [x] (= x \\\"Y\\\")) \\\"N\\\")\"))"))
 
 ([Heatmap_Class20000] of  City
 
@@ -5515,12 +5507,19 @@
 	(asset-path "js/heat")
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions
-		[Heatmap_Class20608]
-		[Heatmap_Class20611])
+		[Heatmap_Class40003]
+		[Heatmap_Class40004]
+		[Heatmap_Class20608])
 	(cloNamespace [Heatmap_Class20607])
+	(cloVars
+		[Heatmap_Class30000]
+		[Heatmap_Class40002]
+		[Heatmap_Class40006]
+		[Heatmap_Class40007]
+		[Heatmap_Class40008])
 	(compiler-options "{:verbose false}")
 	(css [CesiumBase_Class10012])
-	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))\n(tst)")
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))\n(heatmap-init BOUNDS OPTIONS)\n(heatmap-data 0 8 DATA)")
 	(html [Heatmap_Class20609])
 	(output-dir "resources/public/js/heat")
 	(output-to "resources/public/js/heat.js")
@@ -5530,12 +5529,12 @@
 
 ([Heatmap_Class20607] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA]])")
 	(title "cesium.heat.client"))
 
 ([Heatmap_Class20608] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA MY-HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-heat []"))
 
 ([Heatmap_Class20609] of  HTML
@@ -5551,7 +5550,37 @@
 	(page "heat.html")
 	(port 4448))
 
-([Heatmap_Class20611] of  CloFunction
+([Heatmap_Class30000] of  CloVar
 
-	(source "(let [bnds #js{:west 147.13833844\n                       :east 147.13856899\n                       :south -41.43606916\n                       :north -41.43582929}\n       data [{\"x\" 147.1383442264 \"y\" -41.4360048372 \"value\" 76}\n                 {\"x\" 147.1384363011 \"y\" -41.4360298848 \"value\" 63}\n                  {\"x\" 147.138368102 \"y\" -41.4358360603 \"value\" 1}\n                  {\"x\" 147.1385627739 \"y\" -41.4358799123 \"value\" 21}]\n       hm (js/CesiumHeatmap.create VIEWER bnds {})\n       valmin 0\n       valmax 100]\n  (.setWGS84Data hm valmin valmax (clj->js data))\n  (println :HM data))")
-	(title "tst []"))
+	(source "{:latitude 60.0\n  :longitude 30.15\n  :height 2000\n  :heading 130\n  :pitch -15\n  :roll 0}")
+	(title "MY-HOME-VIEW"))
+
+([Heatmap_Class40002] of  CloVar
+
+	(source "nil")
+	(title "HEATMAP"))
+
+([Heatmap_Class40003] of  CloFunction
+
+	(source "(def HEATMAP\n  (js/CesiumHeatmap.create \n    VIEWER \n    (clj->js bounds) \n    (clj->js options)))")
+	(title "heatmap-init [bounds options]"))
+
+([Heatmap_Class40004] of  CloFunction
+
+	(source "(.setWGS84Data HEATMAP\n  valmin \n  valmax \n  (clj->js (for [[x y v] data] (hash-map \"x\" x \"y\" y \"value\" v))))")
+	(title "heatmap-data [valmin valmax data]"))
+
+([Heatmap_Class40006] of  CloVar
+
+	(source "[[30.278 59.971 5]\n [30.395 59.956 7]\n [30.252 59.917 8]\n [30.343 59.919 6]]")
+	(title "DATA"))
+
+([Heatmap_Class40007] of  CloVar
+
+	(source "{:west 30.252\n  :east 30.395\n  :south 59.917\n  :north 59.971}")
+	(title "BOUNDS"))
+
+([Heatmap_Class40008] of  CloVar
+
+	(source "{:radius 600\n  :maxOpacity 0.8\n  :scaleRadius false\n  :blur 0.85\n  :useLocalExtrema false}")
+	(title "OPTIONS"))
