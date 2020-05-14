@@ -1,4 +1,4 @@
-; Mon May 11 12:39:46 MSK 2020
+; Thu May 14 18:47:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -242,10 +242,25 @@
 	(source "(let [kml (.replaceAll kml \"\\\\n\" \"\")\n       evt (str \"event: kml\\ndata: \" kml \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
 	(title "send-kml [kml]"))
 
+([CesiumBase_Class70000] of  CloFunction
+
+	(source "(cond\n  (nil? obj)\n  \"null\"\n  (string? obj)\n  (str \"\\\"\" obj \"\\\"\")\n  (or (number? obj) (symbol? obj) (= obj true) (= obj false))\n  (str obj)\n  (map? obj)\n  (apply str (concat [\"{\"] (interpose \",\" (for [[k v] obj] (str (name k) \":\" (clj->js-str v)))) [\"}\"]))\n  (or (vector? obj) (list? obj))\n  (apply str (concat [\"[\"] (interpose \",\" (map clj->js-str obj)) [\"]\"]))\n  true\n  \"\")")
+	(title "clj->js-str [obj]"))
+
+([CesiumBase_Class70003] of  CloFunction
+
+	(source "(let [[func & args] fcl\n        func (.replace (str func) \"/\" \".\")\n        func (.replace func \"-\" \"_\")\n        args (map clj->js-str args)\n        args (interpose \",\" args)]\n  (apply str (concat [func \"(\"] args [\")\"])))")
+	(title "clj-funcall->js-str [fcl]"))
+
 ([CesiumBase_Class70019] of  CloFunction
 
 	(source "(let [pos (js/Cesium.Cartesian3.fromDegrees. longitude latitude height)\n       orient (js/Cesium.HeadingPitchRoll.fromDegrees heading pitch roll)\n       fvw (clj->js {:destination pos\n                          :orientation {:heading (.-heading orient)\n                                               :pitch (.-pitch orient)\n                                               :roll (.-roll orient)}})]\n  (.flyTo camera fvw)\n  fvw)")
 	(title "camera-fly [camera longitude latitude height heading pitch roll]"))
+
+([CesiumBase_Class80000] of  CloFunction
+
+	(source "(let [js (clj-funcall->js-str fcl)\n       evt (str \"event: js\\ndata: \" js \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
+	(title "send-clj-funcall [fcl]"))
 
 ([CesiumServer_Class10001] of  CloFunction
 
@@ -275,9 +290,12 @@
 ([CesiumWorshop_Class10003] of  CloProgram
 
 	(cloFunctions
+		[CesiumBase_Class70000]
+		[CesiumBase_Class70003]
 		[CesiumServer_Class10004]
 		[CesiumBase_Class60005]
 		[CesiumBase_Class60000]
+		[CesiumBase_Class80000]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
 		[CesiumWorshop_Class10005]

@@ -1,4 +1,4 @@
-; Wed May 13 22:30:36 MSK 2020
+; Thu May 14 22:14:33 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5513,13 +5513,10 @@
 	(cloNamespace [Heatmap_Class20607])
 	(cloVars
 		[Heatmap_Class30000]
-		[Heatmap_Class40002]
-		[Heatmap_Class40006]
-		[Heatmap_Class40007]
-		[Heatmap_Class40008])
+		[Heatmap_Class40002])
 	(compiler-options "{:verbose false}")
 	(css [CesiumBase_Class10012])
-	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))\n(heatmap-init BOUNDS OPTIONS)\n(heatmap-data 0 8 DATA)")
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))")
 	(html [Heatmap_Class20609])
 	(output-dir "resources/public/js/heat")
 	(output-to "resources/public/js/heat.js")
@@ -5534,7 +5531,7 @@
 
 ([Heatmap_Class20608] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA MY-HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n;;(camera-home CAMERA MY-HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-heat []"))
 
 ([Heatmap_Class20609] of  HTML
@@ -5555,6 +5552,24 @@
 	(source "{:latitude 60.0\n  :longitude 30.15\n  :height 2000\n  :heading 130\n  :pitch -15\n  :roll 0}")
 	(title "MY-HOME-VIEW"))
 
+([Heatmap_Class40000] of  CloProgram
+
+	(cloFunctions
+		[Heatmap_Class50002]
+		[Heatmap_Class50003]
+		[Heatmap_Class60000])
+	(cloNamespace [Heatmap_Class40001])
+	(cloVars
+		[Heatmap_Class40007]
+		[Heatmap_Class40008]
+		[Heatmap_Class40006])
+	(title "Heatmap Server"))
+
+([Heatmap_Class40001] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all])")
+	(title "cesium.heat.server"))
+
 ([Heatmap_Class40002] of  CloVar
 
 	(source "nil")
@@ -5562,12 +5577,12 @@
 
 ([Heatmap_Class40003] of  CloFunction
 
-	(source "(def HEATMAP\n  (js/CesiumHeatmap.create \n    VIEWER \n    (clj->js bounds) \n    (clj->js options)))")
+	(source "(def HEATMAP (js/CesiumHeatmap.create VIEWER bounds options))")
 	(title "heatmap-init [bounds options]"))
 
 ([Heatmap_Class40004] of  CloFunction
 
-	(source "(.setWGS84Data HEATMAP\n  valmin \n  valmax \n  (clj->js (for [[x y v] data] (hash-map \"x\" x \"y\" y \"value\" v))))")
+	(source "(let [data (for [[x y v] data] {\"x\" x \"y\" y \"value\" v})\n        data (clj->js data)]\n  (.setWGS84Data HEATMAP valmin valmax data))")
 	(title "heatmap-data [valmin valmax data]"))
 
 ([Heatmap_Class40006] of  CloVar
@@ -5577,10 +5592,49 @@
 
 ([Heatmap_Class40007] of  CloVar
 
-	(source "{:west 30.252\n  :east 30.395\n  :south 59.917\n  :north 59.971}")
+	(source "{:west 0\n  :east 100\n  :south 0\n  :north 70}")
 	(title "BOUNDS"))
 
 ([Heatmap_Class40008] of  CloVar
 
-	(source "{:radius 600\n  :maxOpacity 0.8\n  :scaleRadius false\n  :blur 0.85\n  :useLocalExtrema false}")
+	(source "{:radius 20\n  :maxOpacity 0.8\n  :scaleRadius true\n  :blur 1.0\n  :useLocalExtrema false}")
 	(title "OPTIONS"))
+
+([Heatmap_Class50002] of  CloFunction
+
+	(source "(send-clj-funcall `(cesium.heat.client/heatmap-init ~bounds ~options))")
+	(title "send-heatmap-init [bounds options]"))
+
+([Heatmap_Class50003] of  CloFunction
+
+	(source "(send-clj-funcall `(cesium.heat.client/heatmap-data ~valmin ~valmax ~data))")
+	(title "send-heatmap-data [valmin valmax data]"))
+
+([Heatmap_Class60000] of  CloFunction
+
+	(source "(let [data (map #(vector (sv % x-slot) (sv % y-slot) (sv % value-slot)) inss)\n       vals (map #(nth % 2) data)\n       valmin (apply min vals)\n       valmax (apply max vals)]\n  [valmin valmax (vec data)])")
+	(title "heatmap-data [x-slot y-slot value-slot inss]"))
+
+([Heatmap_Class70000] of  CloFuncall
+
+	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (take 10 (cls-instances \"City\"))))"))
+
+([Heatmap_Class70001] of  CloFuncall
+
+	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (drop 400 (cls-instances \"City\"))))"))
+
+([Heatmap_Class80003] of  CloFuncall
+
+	(source "(send-heatmap-data 0 (second data) (nth data 2))"))
+
+([Heatmap_Class80004] of  CloFuncall
+
+	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (drop 300 (cls-instances \"City\"))))"))
+
+([Heatmap_Class80005] of  CloFuncall
+
+	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (cls-instances \"City\")))"))
+
+([Heatmap_Class80007] of  CloFuncall
+
+	(source "(count (nth data 2))"))

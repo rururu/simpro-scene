@@ -12,6 +12,29 @@
 (def SERV nil)
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
+(defn clj->js-str [obj]
+  (cond
+  (nil? obj)
+  "null"
+  (string? obj)
+  (str "\"" obj "\"")
+  (or (number? obj) (symbol? obj) (= obj true) (= obj false))
+  (str obj)
+  (map? obj)
+  (apply str (concat ["{"] (interpose "," (for [[k v] obj] (str (name k) ":" (clj->js-str v)))) ["}"]))
+  (or (vector? obj) (list? obj))
+  (apply str (concat ["["] (interpose "," (map clj->js-str obj)) ["]"]))
+  true
+  ""))
+
+(defn clj-funcall->js-str [fcl]
+  (let [[func & args] fcl
+        func (.replace (str func) "/" ".")
+        func (.replace func "-" "_")
+        args (map clj->js-str args)
+        args (interpose "," args)]
+  (apply str (concat [func "("] args [")"]))))
+
 (defn send-czml [czml]
   (let [czml (.replaceAll czml "\\n" "")
        evt (str "event: czml\ndata: " czml "\n\n")]
@@ -24,6 +47,11 @@
 
 (defn send-js [js]
   (let [js (.replaceAll js "\\n" "")
+       evt (str "event: js\ndata: " js "\n\n")]
+  (put! EVT-CHAN evt)))
+
+(defn send-clj-funcall [fcl]
+  (let [js (clj-funcall->js-str fcl)
        evt (str "event: js\ndata: " js "\n\n")]
   (put! EVT-CHAN evt)))
 
