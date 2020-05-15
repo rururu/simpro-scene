@@ -6,9 +6,9 @@
               [compojure.route :as route]
               [clojure.core.async :refer [chan alts!! put!]]
               [czml.generator :refer :all]))
-(def PORT 4442)
-(def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
-(def PAGE "test.html")
+(def defoncePORT (defonce PORT 4442))
+(def defonceROOT (defonce ROOT (str (System/getProperty "user.dir") "/resources/public/")))
+(def defoncePAGE (defonce PAGE "test.html"))
 (def SERV nil)
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")

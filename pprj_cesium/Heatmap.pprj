@@ -1,4 +1,4 @@
-; Thu May 14 22:14:33 MSK 2020
+; Fri May 15 21:44:00 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [Heatmap_ProjectKB_Class20615]))
+	(properties [Heatmap_ProjectKB_Class30610]))
 
 ([CLSES_TAB] of  Widget
 
@@ -46,14 +46,28 @@
 	(name "capital")
 	(property_list [Heatmap_ProjectKB_Class10610])
 	(widget_class_name "edu.stanford.smi.protege.widget.CheckBoxWidget")
-	(width 200)
+	(width 100)
 	(x 0)
-	(y 60))
+	(y 180))
 
 ([Heatmap_ProjectKB_Class10610] of  Property_List
 )
 
-([Heatmap_ProjectKB_Class20615] of  String
+([Heatmap_ProjectKB_Class20609] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "pop-category")
+	(property_list [Heatmap_ProjectKB_Class20610])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
+	(width 110)
+	(x 100)
+	(y 180))
+
+([Heatmap_ProjectKB_Class20610] of  Property_List
+)
+
+([Heatmap_ProjectKB_Class30610] of  String
 
 	(name "City")
 	(string_value "title"))
@@ -123,7 +137,8 @@
 		[Heatmap_ProjectKB_Class624]
 		[Heatmap_ProjectKB_Class628]
 		[Heatmap_ProjectKB_Class630]
-		[Heatmap_ProjectKB_Class10609]))
+		[Heatmap_ProjectKB_Class10609]
+		[Heatmap_ProjectKB_Class20609]))
 
 ([Heatmap_ProjectKB_Class619] of  Property_List
 
@@ -136,9 +151,9 @@
 	(name "population")
 	(property_list [Heatmap_ProjectKB_Class621])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 200)
+	(width 210)
 	(x 0)
-	(y 180))
+	(y 120))
 
 ([Heatmap_ProjectKB_Class621] of  Property_List
 )
@@ -150,7 +165,7 @@
 	(name "title")
 	(property_list [Heatmap_ProjectKB_Class623])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
+	(width 210)
 	(x 0)
 	(y 0))
 
@@ -164,9 +179,9 @@
 	(name "country")
 	(property_list [Heatmap_ProjectKB_Class625])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
+	(width 210)
 	(x 0)
-	(y 120))
+	(y 60))
 
 ([Heatmap_ProjectKB_Class625] of  Property_List
 )
@@ -178,7 +193,7 @@
 	(name "longitude")
 	(property_list [Heatmap_ProjectKB_Class629])
 	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
-	(width 100)
+	(width 110)
 	(x 100)
 	(y 240))
 
@@ -223,28 +238,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_314661_Class605] of  Map
+([KB_627228_Class605] of  Map
 
 	(entries
-		[KB_314661_Class606]
-		[KB_314661_Class607]
-		[KB_314661_Class608]))
+		[KB_627228_Class606]
+		[KB_627228_Class607]
+		[KB_627228_Class608]))
 
-([KB_314661_Class606] of  Map_Entry
+([KB_627228_Class606] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_314661_Class607] of  Map_Entry
+([KB_627228_Class607] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_314661_Class608] of  Map_Entry
+([KB_627228_Class608] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

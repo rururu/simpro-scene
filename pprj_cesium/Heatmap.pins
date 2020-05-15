@@ -1,4 +1,4 @@
-; Thu May 14 22:14:33 MSK 2020
+; Fri May 15 21:44:00 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -54,6 +54,7 @@
 	(country "Russia")
 	(latitude 68.96355)
 	(longitude 33.08604)
+	(pop-category 2)
 	(population 468000)
 	(title "Murmansk"))
 
@@ -63,6 +64,7 @@
 	(country "Russia")
 	(latitude 64.52067)
 	(longitude 40.64616)
+	(pop-category 2)
 	(population 416000)
 	(title "Arkhangelsk"))
 
@@ -72,6 +74,7 @@
 	(country "Russia")
 	(latitude 59.95189)
 	(longitude 30.453327)
+	(pop-category 4)
 	(population 5825000)
 	(title "Saint Petersburg"))
 
@@ -81,6 +84,7 @@
 	(country "Russia")
 	(latitude 59.571)
 	(longitude 150.78001)
+	(pop-category 2)
 	(population 152000)
 	(title "Magadan"))
 
@@ -90,6 +94,7 @@
 	(country "Russia")
 	(latitude 58.000237)
 	(longitude 56.232464)
+	(pop-category 3)
 	(population 1160000)
 	(title "Perm'"))
 
@@ -99,6 +104,7 @@
 	(country "Russia")
 	(latitude 56.846542)
 	(longitude 60.61013)
+	(pop-category 3)
 	(population 1620000)
 	(title "Yekaterinburg"))
 
@@ -108,6 +114,7 @@
 	(country "Russia")
 	(latitude 56.289677)
 	(longitude 43.94067)
+	(pop-category 3)
 	(population 2025000)
 	(title "Nizhniy Novgorod"))
 
@@ -117,6 +124,7 @@
 	(country "UK")
 	(latitude 55.86281)
 	(longitude -4.2699475)
+	(pop-category 3)
 	(population 1800000)
 	(title "Glasgow"))
 
@@ -126,6 +134,7 @@
 	(country "Russia")
 	(latitude 55.733006)
 	(longitude 49.145466)
+	(pop-category 3)
 	(population 1140000)
 	(title "Kazan'"))
 
@@ -135,6 +144,7 @@
 	(country "Russia")
 	(latitude 55.145)
 	(longitude 61.392612)
+	(pop-category 3)
 	(population 1325000)
 	(title "Chelyabinsk"))
 
@@ -144,6 +154,7 @@
 	(country "Russia")
 	(latitude 55.063305)
 	(longitude 73.25029)
+	(pop-category 3)
 	(population 1175000)
 	(title "Omsk"))
 
@@ -153,6 +164,7 @@
 	(country "Russia")
 	(latitude 55.0321)
 	(longitude 82.94285)
+	(pop-category 3)
 	(population 1600000)
 	(title "Novosibirsk"))
 
@@ -162,6 +174,7 @@
 	(country "Russia")
 	(latitude 54.821735)
 	(longitude 56.096127)
+	(pop-category 3)
 	(population 1100000)
 	(title "Ufa"))
 
@@ -171,6 +184,7 @@
 	(country "Lithuania")
 	(latitude 54.68857)
 	(longitude 25.275967)
+	(pop-category 2)
 	(population 582000)
 	(title "Vilnius"))
 
@@ -180,6 +194,7 @@
 	(country "UK")
 	(latitude 54.586926)
 	(longitude -5.9096603)
+	(pop-category 2)
 	(population 685000)
 	(title "Belfast"))
 
@@ -189,6 +204,7 @@
 	(country "Poland")
 	(latitude 54.366203)
 	(longitude 18.624943)
+	(pop-category 2)
 	(population 909000)
 	(title "Gdansk"))
 
@@ -198,6 +214,7 @@
 	(country "Byelarus")
 	(latitude 53.899937)
 	(longitude 27.575567)
+	(pop-category 3)
 	(population 1650000)
 	(title "Minsk"))
 
@@ -207,6 +224,7 @@
 	(country "UK")
 	(latitude 53.808712)
 	(longitude -1.4975275)
+	(pop-category 3)
 	(population 1540000)
 	(title "Leeds"))
 
@@ -216,6 +234,7 @@
 	(country "Germany")
 	(latitude 53.57112)
 	(longitude 10.027606)
+	(pop-category 3)
 	(population 2225000)
 	(title "Hamburg"))
 
@@ -225,6 +244,7 @@
 	(country "UK")
 	(latitude 53.479664)
 	(longitude -2.2617786)
+	(pop-category 3)
 	(population 2775000)
 	(title "Manchester"))
 
@@ -234,6 +254,7 @@
 	(country "UK")
 	(latitude 53.374043)
 	(longitude -1.4629892)
+	(pop-category 2)
 	(population 710000)
 	(title "Sheffield"))
 
@@ -243,6 +264,7 @@
 	(country "Ireland")
 	(latitude 53.34156)
 	(longitude -6.2573466)
+	(pop-category 3)
 	(population 1140000)
 	(title "Dublin"))
 
@@ -252,6 +274,7 @@
 	(country "Russia")
 	(latitude 53.138596)
 	(longitude 50.09618)
+	(pop-category 3)
 	(population 1505000)
 	(title "Samara"))
 
@@ -261,6 +284,7 @@
 	(country "Germany")
 	(latitude 53.080105)
 	(longitude 8.857626)
+	(pop-category 2)
 	(population 800000)
 	(title "Bremen"))
 
@@ -270,6 +294,7 @@
 	(country "Germany")
 	(latitude 52.516273)
 	(longitude 13.327573)
+	(pop-category 4)
 	(population 5061248)
 	(title "Berlin"))
 
@@ -279,6 +304,7 @@
 	(country "UK")
 	(latitude 52.492752)
 	(longitude -1.8633478)
+	(pop-category 3)
 	(population 2675000)
 	(title "Birmingham"))
 
@@ -288,6 +314,7 @@
 	(country "Netherlands")
 	(latitude 52.373043)
 	(longitude 4.894833)
+	(pop-category 3)
 	(population 1860000)
 	(title "Amsterdam"))
 
@@ -297,6 +324,7 @@
 	(country "Russia")
 	(latitude 52.317432)
 	(longitude 104.24783)
+	(pop-category 2)
 	(population 626000)
 	(title "Irkutsk"))
 
@@ -306,6 +334,7 @@
 	(country "Poland")
 	(latitude 52.244946)
 	(longitude 21.011879)
+	(pop-category 3)
 	(population 2323000)
 	(title "Warsaw"))
 
@@ -315,6 +344,7 @@
 	(country "Netherlands")
 	(latitude 51.925594)
 	(longitude 4.4851522)
+	(pop-category 3)
 	(population 1110000)
 	(title "Rotterdam"))
 
@@ -324,6 +354,7 @@
 	(country "Poland")
 	(latitude 51.77791)
 	(longitude 19.47644)
+	(pop-category 3)
 	(population 1061000)
 	(title "Lodz"))
 
@@ -333,6 +364,7 @@
 	(country "Germany")
 	(latitude 51.513813)
 	(longitude 7.4664183)
+	(pop-category 2)
 	(population 568164)
 	(title "Dortmund"))
 
@@ -342,6 +374,7 @@
 	(country "Germany")
 	(latitude 51.489338)
 	(longitude 6.7753043)
+	(pop-category 2)
 	(population 514628)
 	(title "Duisburg"))
 
@@ -351,6 +384,7 @@
 	(country "UK")
 	(latitude 51.48791)
 	(longitude -0.17799813)
+	(pop-category 5)
 	(population 11100000)
 	(title "London"))
 
@@ -360,6 +394,7 @@
 	(country "Germany")
 	(latitude 51.354042)
 	(longitude 7.122435)
+	(pop-category 3)
 	(population 3867000)
 	(title "Essen"))
 
@@ -369,6 +404,7 @@
 	(country "Germany")
 	(latitude 51.34933)
 	(longitude 12.398074)
+	(pop-category 2)
 	(population 700000)
 	(title "Leipzig"))
 
@@ -378,6 +414,7 @@
 	(country "Belgium")
 	(latitude 51.207348)
 	(longitude 4.4260545)
+	(pop-category 3)
 	(population 1100000)
 	(title "Antwerpen"))
 
@@ -387,6 +424,7 @@
 	(country "Poland")
 	(latitude 51.12182)
 	(longitude 17.038128)
+	(pop-category 2)
 	(population 640200)
 	(title "Wroclaw"))
 
@@ -396,6 +434,7 @@
 	(country "Belgium")
 	(latitude 51.047554)
 	(longitude 3.7362912)
+	(pop-category 2)
 	(population 465000)
 	(title "Gent"))
 
@@ -405,6 +444,7 @@
 	(country "Germany")
 	(latitude 51.04568)
 	(longitude 13.705358)
+	(pop-category 2)
 	(population 670000)
 	(title "Dresden"))
 
@@ -414,6 +454,7 @@
 	(country "Canada")
 	(latitude 51.03)
 	(longitude -114.05)
+	(pop-category 2)
 	(population 671326)
 	(title "Calgary"))
 
@@ -423,6 +464,7 @@
 	(country "Germany")
 	(latitude 50.942345)
 	(longitude 6.9348717)
+	(pop-category 3)
 	(population 1760000)
 	(title "Koln"))
 
@@ -432,6 +474,7 @@
 	(country "Belgium")
 	(latitude 50.837048)
 	(longitude 4.3676124)
+	(pop-category 3)
 	(population 2385000)
 	(title "Bruxelles"))
 
@@ -441,6 +484,7 @@
 	(country "Germany")
 	(latitude 50.73456)
 	(longitude 7.0998187)
+	(pop-category 2)
 	(population 570000)
 	(title "Bonn"))
 
@@ -450,6 +494,7 @@
 	(country "France")
 	(latitude 50.632084)
 	(longitude 3.0629013)
+	(pop-category 3)
 	(population 1020000)
 	(title "Lille"))
 
@@ -459,6 +504,7 @@
 	(country "Belgium")
 	(latitude 50.622528)
 	(longitude 5.5694356)
+	(pop-category 2)
 	(population 750000)
 	(title "Liege"))
 
@@ -468,6 +514,7 @@
 	(country "Ukraine")
 	(latitude 50.44816)
 	(longitude 30.502111)
+	(pop-category 3)
 	(population 2900000)
 	(title "Kiev"))
 
@@ -477,6 +524,7 @@
 	(country "Germany")
 	(latitude 50.129997)
 	(longitude 8.668167)
+	(pop-category 3)
 	(population 1855000)
 	(title "Frankfurt am Main"))
 
@@ -486,6 +534,7 @@
 	(country "Czech Repub")
 	(latitude 50.105896)
 	(longitude 14.45652)
+	(pop-category 3)
 	(population 1325000)
 	(title "Praha"))
 
@@ -495,6 +544,7 @@
 	(country "Poland")
 	(latitude 50.06224)
 	(longitude 19.945057)
+	(pop-category 2)
 	(population 828000)
 	(title "Krakow"))
 
@@ -504,6 +554,7 @@
 	(country "Canada")
 	(latitude 49.92117)
 	(longitude -97.12444)
+	(pop-category 2)
 	(population 625304)
 	(title "Winnipeg"))
 
@@ -513,6 +564,7 @@
 	(country "Kazakhstan")
 	(latitude 49.879208)
 	(longitude 73.20264)
+	(pop-category 2)
 	(population 614000)
 	(title "Karaganda"))
 
@@ -522,6 +574,7 @@
 	(country "Ukraine")
 	(latitude 49.83731)
 	(longitude 24.034521)
+	(pop-category 2)
 	(population 790000)
 	(title "Lvov"))
 
@@ -531,6 +584,7 @@
 	(country "Czech Repub")
 	(latitude 49.20298)
 	(longitude 16.616245)
+	(pop-category 2)
 	(population 450000)
 	(title "Brno"))
 
@@ -540,6 +594,7 @@
 	(country "France")
 	(latitude 48.881554)
 	(longitude 2.4328327)
+	(pop-category 4)
 	(population 9775000)
 	(title "Paris"))
 
@@ -549,6 +604,7 @@
 	(country "Russia")
 	(latitude 48.710247)
 	(longitude 44.48363)
+	(pop-category 3)
 	(population 1360000)
 	(title "Volgograd"))
 
@@ -558,6 +614,7 @@
 	(country "France")
 	(latitude 48.583435)
 	(longitude 7.7679944)
+	(pop-category 2)
 	(population 400000)
 	(title "Strasbourg"))
 
@@ -567,6 +624,7 @@
 	(country "Austria")
 	(latitude 48.297596)
 	(longitude 14.293901)
+	(pop-category 2)
 	(population 335000)
 	(title "Linz"))
 
@@ -576,6 +634,7 @@
 	(country "Austria")
 	(latitude 48.202118)
 	(longitude 16.320986)
+	(pop-category 3)
 	(population 1875000)
 	(title "Vienna"))
 
@@ -585,6 +644,7 @@
 	(country "Germany")
 	(latitude 48.140976)
 	(longitude 11.5429535)
+	(pop-category 3)
 	(population 1955000)
 	(title "Munchen"))
 
@@ -594,6 +654,7 @@
 	(country "Ukraine")
 	(latitude 48.040146)
 	(longitude 37.737053)
+	(pop-category 3)
 	(population 2200000)
 	(title "Donets'k"))
 
@@ -603,6 +664,7 @@
 	(country "Mongolia")
 	(latitude 47.928596)
 	(longitude 106.91235)
+	(pop-category 2)
 	(population 548400)
 	(title "Ulaanbaatar"))
 
@@ -612,6 +674,7 @@
 	(country "Hungary")
 	(latitude 47.514626)
 	(longitude 19.09425)
+	(pop-category 3)
 	(population 2565000)
 	(title "Budapest"))
 
@@ -621,6 +684,7 @@
 	(country "China")
 	(latitude 47.344006)
 	(longitude 123.964966)
+	(pop-category 3)
 	(population 1150000)
 	(title "Qiqihar"))
 
@@ -630,6 +694,7 @@
 	(country "Austria")
 	(latitude 47.26546)
 	(longitude 11.349982)
+	(pop-category 2)
 	(population 185000)
 	(title "Innsbruck"))
 
@@ -639,6 +704,7 @@
 	(country "Russia")
 	(latitude 47.232098)
 	(longitude 39.688038)
+	(pop-category 3)
 	(population 1165000)
 	(title "Rostov-na-Donu"))
 
@@ -648,6 +714,7 @@
 	(country "France")
 	(latitude 47.219433)
 	(longitude -1.5615612)
+	(pop-category 2)
 	(population 464857)
 	(title "Nantes"))
 
@@ -657,6 +724,7 @@
 	(country "Austria")
 	(latitude 47.064922)
 	(longitude 15.431101)
+	(pop-category 2)
 	(population 325000)
 	(title "Graz"))
 
@@ -666,6 +734,7 @@
 	(country "Switzerland")
 	(latitude 46.948208)
 	(longitude 7.4457364)
+	(pop-category 2)
 	(population 298800)
 	(title "Bern"))
 
@@ -675,6 +744,7 @@
 	(country "Canada")
 	(latitude 46.802074)
 	(longitude -71.244934)
+	(pop-category 2)
 	(population 603267)
 	(title "Quebec"))
 
@@ -684,6 +754,7 @@
 	(country "Ukraine")
 	(latitude 46.5722)
 	(longitude 30.683937)
+	(pop-category 3)
 	(population 1185000)
 	(title "Odessa"))
 
@@ -693,6 +764,7 @@
 	(country "China")
 	(latitude 45.75522)
 	(longitude 126.622635)
+	(pop-category 3)
 	(population 2670000)
 	(title "Harbin"))
 
@@ -702,6 +774,7 @@
 	(country "France")
 	(latitude 45.74708)
 	(longitude 4.8554006)
+	(pop-category 3)
 	(population 1275000)
 	(title "Lyon"))
 
@@ -711,6 +784,7 @@
 	(country "Canada")
 	(latitude 45.541016)
 	(longitude -73.653534)
+	(pop-category 3)
 	(population 2921357)
 	(title "Montreal"))
 
@@ -720,6 +794,7 @@
 	(country "Italy")
 	(latitude 45.47338)
 	(longitude 9.190464)
+	(pop-category 3)
 	(population 3750000)
 	(title "Milano"))
 
@@ -729,6 +804,7 @@
 	(country "Italy")
 	(latitude 45.424774)
 	(longitude 12.37072)
+	(pop-category 2)
 	(population 420000)
 	(title "Venezia"))
 
@@ -738,6 +814,7 @@
 	(country "Canada")
 	(latitude 45.374218)
 	(longitude -75.65075)
+	(pop-category 2)
 	(population 819263)
 	(title "Ottawa"))
 
@@ -747,6 +824,7 @@
 	(country "Italy")
 	(latitude 45.074875)
 	(longitude 7.666426)
+	(pop-category 3)
 	(population 1550000)
 	(title "Torino"))
 
@@ -756,6 +834,7 @@
 	(country "US")
 	(latitude 44.924187)
 	(longitude -93.30779)
+	(pop-category 3)
 	(population 2012400)
 	(title "Minneapolis"))
 
@@ -765,6 +844,7 @@
 	(country "France")
 	(latitude 44.841473)
 	(longitude -0.59949875)
+	(pop-category 2)
 	(population 640012)
 	(title "Bordeaux"))
 
@@ -774,6 +854,7 @@
 	(country "Serbia")
 	(latitude 44.799683)
 	(longitude 20.412556)
+	(pop-category 3)
 	(population 1400000)
 	(title "Beograd"))
 
@@ -783,6 +864,7 @@
 	(country "Romania")
 	(latitude 44.430485)
 	(longitude 26.122976)
+	(pop-category 3)
 	(population 2250000)
 	(title "Bucuresti"))
 
@@ -792,6 +874,7 @@
 	(country "China")
 	(latitude 43.881317)
 	(longitude 125.31265)
+	(pop-category 3)
 	(population 1740000)
 	(title "Changchung"))
 
@@ -801,6 +884,7 @@
 	(country "China")
 	(latitude 43.850216)
 	(longitude 126.56706)
+	(pop-category 3)
 	(population 1170000)
 	(title "Jilin"))
 
@@ -810,6 +894,7 @@
 	(country "China")
 	(latitude 43.782665)
 	(longitude 87.58652)
+	(pop-category 3)
 	(population 1040000)
 	(title "Urumqi"))
 
@@ -819,6 +904,7 @@
 	(country "Italy")
 	(latitude 43.781574)
 	(longitude 11.207746)
+	(pop-category 2)
 	(population 640000)
 	(title "Firenze"))
 
@@ -828,6 +914,7 @@
 	(country "Canada")
 	(latitude 43.720768)
 	(longitude -79.412636)
+	(pop-category 3)
 	(population 3427168)
 	(title "Toronto"))
 
@@ -837,6 +924,7 @@
 	(country "France")
 	(latitude 43.59996)
 	(longitude 1.437983)
+	(pop-category 2)
 	(population 541271)
 	(title "Toulouse"))
 
@@ -846,6 +934,7 @@
 	(country "Spain")
 	(latitude 43.282158)
 	(longitude -2.9737833)
+	(pop-category 2)
 	(population 985000)
 	(title "Bilbao"))
 
@@ -855,6 +944,7 @@
 	(country "Kazakhstan")
 	(latitude 43.255062)
 	(longitude 76.91263)
+	(pop-category 3)
 	(population 1190000)
 	(title "Almaty"))
 
@@ -864,6 +954,7 @@
 	(country "US")
 	(latitude 43.210464)
 	(longitude -77.63561)
+	(pop-category 2)
 	(population 816200)
 	(title "Rochester"))
 
@@ -873,6 +964,7 @@
 	(country "US")
 	(latitude 43.067947)
 	(longitude -87.99074)
+	(pop-category 3)
 	(population 1374700)
 	(title "Milwaukee"))
 
@@ -882,6 +974,7 @@
 	(country "Japan")
 	(latitude 43.055252)
 	(longitude 141.34547)
+	(pop-category 3)
 	(population 1900000)
 	(title "Sapporo"))
 
@@ -891,6 +984,7 @@
 	(country "US")
 	(latitude 42.898663)
 	(longitude -78.848434)
+	(pop-category 3)
 	(population 1483000)
 	(title "Buffalo"))
 
@@ -900,6 +994,7 @@
 	(country "Bulgaria")
 	(latitude 42.707264)
 	(longitude 23.331871)
+	(pop-category 3)
 	(population 1205000)
 	(title "Sofiya"))
 
@@ -909,6 +1004,7 @@
 	(country "US")
 	(latitude 42.394314)
 	(longitude -83.078926)
+	(pop-category 3)
 	(population 4691900)
 	(title "Detroit"))
 
@@ -918,6 +1014,7 @@
 	(country "US")
 	(latitude 42.375298)
 	(longitude -71.102585)
+	(pop-category 3)
 	(population 3971700)
 	(title "Boston"))
 
@@ -927,6 +1024,7 @@
 	(country "China")
 	(latitude 41.859158)
 	(longitude 123.90557)
+	(pop-category 3)
 	(population 1270000)
 	(title "Fushun"))
 
@@ -936,6 +1034,7 @@
 	(country "US")
 	(latitude 41.826546)
 	(longitude -87.641304)
+	(pop-category 4)
 	(population 7717100)
 	(title "Chicago"))
 
@@ -945,6 +1044,7 @@
 	(country "China")
 	(latitude 41.802162)
 	(longitude 123.38306)
+	(pop-category 3)
 	(population 3840000)
 	(title "Shenyang"))
 
@@ -954,6 +1054,7 @@
 	(country "Georgia")
 	(latitude 41.72181)
 	(longitude 44.783127)
+	(pop-category 3)
 	(population 1460000)
 	(title "T'Bilisi"))
 
@@ -963,6 +1064,7 @@
 	(country "Spain")
 	(latitude 41.651264)
 	(longitude -0.87820506)
+	(pop-category 2)
 	(population 575317)
 	(title "Zaragoza"))
 
@@ -972,6 +1074,7 @@
 	(country "US")
 	(latitude 41.390717)
 	(longitude -81.72751)
+	(pop-category 3)
 	(population 2218400)
 	(title "Cleveland"))
 
@@ -981,6 +1084,7 @@
 	(country "Albania")
 	(latitude 41.331654)
 	(longitude 19.831804)
+	(pop-category 2)
 	(population 210800)
 	(title "Tirane"))
 
@@ -990,6 +1094,7 @@
 	(country "China")
 	(latitude 41.115246)
 	(longitude 122.97701)
+	(pop-category 3)
 	(population 1300000)
 	(title "Anshan"))
 
@@ -999,6 +1104,7 @@
 	(country "Turkey")
 	(latitude 41.065956)
 	(longitude 29.00607)
+	(pop-category 4)
 	(population 5750000)
 	(title "Istanbul"))
 
@@ -1008,6 +1114,7 @@
 	(country "US")
 	(latitude 40.69392)
 	(longitude -111.89217)
+	(pop-category 2)
 	(population 682400)
 	(title "Salt Lake City"))
 
@@ -1017,6 +1124,7 @@
 	(country "US")
 	(latitude 40.497204)
 	(longitude -79.997086)
+	(pop-category 3)
 	(population 2218800)
 	(title "Pittsburgh"))
 
@@ -1026,6 +1134,7 @@
 	(country "Spain")
 	(latitude 40.44222)
 	(longitude -3.6909695)
+	(pop-category 3)
 	(population 4650000)
 	(title "Madrid"))
 
@@ -1035,6 +1144,7 @@
 	(country "Azerbaijan")
 	(latitude 40.3243)
 	(longitude 49.81624)
+	(pop-category 3)
 	(population 2020000)
 	(title "Baku"))
 
@@ -1044,6 +1154,7 @@
 	(country "Armenia")
 	(latitude 40.208023)
 	(longitude 44.53267)
+	(pop-category 3)
 	(population 1315000)
 	(title "Yerevan"))
 
@@ -1053,6 +1164,7 @@
 	(country "US")
 	(latitude 40.044643)
 	(longitude -82.99271)
+	(pop-category 2)
 	(population 963600)
 	(title "Columbus"))
 
@@ -1062,6 +1174,7 @@
 	(country "Turkey")
 	(latitude 39.92933)
 	(longitude 32.85327)
+	(pop-category 3)
 	(population 2400000)
 	(title "Ankara"))
 
@@ -1071,6 +1184,7 @@
 	(country "US")
 	(latitude 39.92755)
 	(longitude -75.21822)
+	(pop-category 4)
 	(population 5208600)
 	(title "Philadelphia"))
 
@@ -1080,6 +1194,7 @@
 	(country "China")
 	(latitude 39.906193)
 	(longitude 116.38804)
+	(pop-category 4)
 	(population 6450000)
 	(title "Beijing"))
 
@@ -1089,6 +1204,7 @@
 	(country "Turkey")
 	(latitude 39.904453)
 	(longitude 41.291824)
+	(pop-category 2)
 	(population 246053)
 	(title "Erzurum"))
 
@@ -1098,6 +1214,7 @@
 	(country "Uzbekistan")
 	(latitude 39.65758)
 	(longitude 66.9476)
+	(pop-category 2)
 	(population 366000)
 	(title "Samarkand"))
 
@@ -1107,6 +1224,7 @@
 	(country "China")
 	(latitude 39.615444)
 	(longitude 118.180214)
+	(pop-category 3)
 	(population 1060000)
 	(title "Tangshan"))
 
@@ -1116,6 +1234,7 @@
 	(country "Spain")
 	(latitude 39.470917)
 	(longitude -0.36740094)
+	(pop-category 3)
 	(population 1270000)
 	(title "Valencia"))
 
@@ -1125,6 +1244,7 @@
 	(country "US")
 	(latitude 39.321884)
 	(longitude -76.61838)
+	(pop-category 3)
 	(population 1960400)
 	(title "Baltimore"))
 
@@ -1134,6 +1254,7 @@
 	(country "Italy")
 	(latitude 39.225143)
 	(longitude 9.10891)
+	(pop-category 2)
 	(population 305000)
 	(title "Cagliari"))
 
@@ -1143,6 +1264,7 @@
 	(country "US")
 	(latitude 39.14801)
 	(longitude -84.47702)
+	(pop-category 3)
 	(population 1480100)
 	(title "Cincinnati"))
 
@@ -1152,6 +1274,7 @@
 	(country "China")
 	(latitude 39.128414)
 	(longitude 117.18523)
+	(pop-category 3)
 	(population 4880000)
 	(title "Tianjin"))
 
@@ -1161,6 +1284,7 @@
 	(country "Korea D P Rp")
 	(latitude 39.028515)
 	(longitude 125.757515)
+	(pop-category 3)
 	(population 1600000)
 	(title "Pyongyang"))
 
@@ -1170,6 +1294,7 @@
 	(country "US")
 	(latitude 38.994118)
 	(longitude -94.626564)
+	(pop-category 3)
 	(population 1272400)
 	(title "Kansas City"))
 
@@ -1179,6 +1304,7 @@
 	(country "US")
 	(latitude 38.89091)
 	(longitude -76.953835)
+	(pop-category 3)
 	(population 3221400)
 	(title "Washington D.C."))
 
@@ -1188,6 +1314,7 @@
 	(country "US")
 	(latitude 38.638885)
 	(longitude -90.34198)
+	(pop-category 3)
 	(population 2203000)
 	(title "St. Louis"))
 
@@ -1197,6 +1324,7 @@
 	(country "US")
 	(latitude 38.567017)
 	(longitude -121.42271)
+	(pop-category 2)
 	(population 866400)
 	(title "Sacramento"))
 
@@ -1206,6 +1334,7 @@
 	(country "Iran")
 	(latitude 38.08098)
 	(longitude 46.29012)
+	(pop-category 2)
 	(population 971482)
 	(title "Tabriz"))
 
@@ -1215,6 +1344,7 @@
 	(country "China")
 	(latitude 38.077095)
 	(longitude 114.55971)
+	(pop-category 3)
 	(population 1190000)
 	(title "Shijiazhuang"))
 
@@ -1224,6 +1354,7 @@
 	(country "Turkmenistan")
 	(latitude 37.95042)
 	(longitude 58.390133)
+	(pop-category 2)
 	(population 398000)
 	(title "Ashkhabad"))
 
@@ -1233,6 +1364,7 @@
 	(country "China")
 	(latitude 37.893055)
 	(longitude 112.551704)
+	(pop-category 3)
 	(population 1660000)
 	(title "Taiyuan"))
 
@@ -1242,6 +1374,7 @@
 	(country "Korea Rep")
 	(latitude 37.54235)
 	(longitude 126.93525)
+	(pop-category 6)
 	(population 15850000)
 	(title "Seoul"))
 
@@ -1251,6 +1384,7 @@
 	(country "Spain")
 	(latitude 37.372646)
 	(longitude -5.970832)
+	(pop-category 2)
 	(population 945000)
 	(title "Sevilla"))
 
@@ -1260,6 +1394,7 @@
 	(country "Turkey")
 	(latitude 36.99998)
 	(longitude 35.324364)
+	(pop-category 2)
 	(population 777554)
 	(title "Adana"))
 
@@ -1269,6 +1404,7 @@
 	(country "US")
 	(latitude 36.87929)
 	(longitude -76.26857)
+	(pop-category 2)
 	(population 795600)
 	(title "Norfolk"))
 
@@ -1278,6 +1414,7 @@
 	(country "Tunisia")
 	(latitude 36.818813)
 	(longitude 10.16596)
+	(pop-category 3)
 	(population 1225000)
 	(title "Tunis"))
 
@@ -1287,6 +1424,7 @@
 	(country "China")
 	(latitude 36.791496)
 	(longitude 118.06204)
+	(pop-category 2)
 	(population 830000)
 	(title "Zibo"))
 
@@ -1296,6 +1434,7 @@
 	(country "China")
 	(latitude 36.655537)
 	(longitude 116.96706)
+	(pop-category 3)
 	(population 1460000)
 	(title "Jinan"))
 
@@ -1305,6 +1444,7 @@
 	(country "Iraq")
 	(latitude 36.335567)
 	(longitude 43.137127)
+	(pop-category 2)
 	(population 570926)
 	(title "Mosul"))
 
@@ -1314,6 +1454,7 @@
 	(country "Iran")
 	(latitude 36.29007)
 	(longitude 59.59685)
+	(pop-category 3)
 	(population 1463508)
 	(title "Mashhad"))
 
@@ -1323,6 +1464,7 @@
 	(country "Syria")
 	(latitude 36.215546)
 	(longitude 37.159283)
+	(pop-category 3)
 	(population 1216000)
 	(title "Aleppo"))
 
@@ -1332,6 +1474,7 @@
 	(country "China")
 	(latitude 36.11343)
 	(longitude 103.599594)
+	(pop-category 3)
 	(population 1270000)
 	(title "Lanzhou"))
 
@@ -1341,6 +1484,7 @@
 	(country "Korea Rep")
 	(latitude 35.863537)
 	(longitude 128.59138)
+	(pop-category 3)
 	(population 2206000)
 	(title "Taegu"))
 
@@ -1350,6 +1494,7 @@
 	(country "Iran")
 	(latitude 35.774475)
 	(longitude 51.44765)
+	(pop-category 4)
 	(population 6400000)
 	(title "Tehran"))
 
@@ -1359,6 +1504,7 @@
 	(country "Japan")
 	(latitude 35.683056)
 	(longitude 139.80919)
+	(pop-category 7)
 	(population 23620000)
 	(title "Tokyo"))
 
@@ -1368,6 +1514,7 @@
 	(country "Japan")
 	(latitude 35.50457)
 	(longitude 139.72722)
+	(pop-category 3)
 	(population 1088624)
 	(title "Kawasaki"))
 
@@ -1377,6 +1524,7 @@
 	(country "US")
 	(latitude 35.48959)
 	(longitude -97.5303)
+	(pop-category 2)
 	(population 742000)
 	(title "Oklahoma City"))
 
@@ -1386,6 +1534,7 @@
 	(country "Japan")
 	(latitude 35.437386)
 	(longitude 139.61966)
+	(pop-category 3)
 	(population 2992926)
 	(title "Yokohama"))
 
@@ -1395,6 +1544,7 @@
 	(country "US")
 	(latitude 35.205814)
 	(longitude -80.835686)
+	(pop-category 2)
 	(population 479200)
 	(title "Charlotte"))
 
@@ -1404,6 +1554,7 @@
 	(country "Korea Rep")
 	(latitude 35.157867)
 	(longitude 129.05469)
+	(pop-category 3)
 	(population 3800000)
 	(title "Pusan"))
 
@@ -1413,6 +1564,7 @@
 	(country "Japan")
 	(latitude 35.154922)
 	(longitude 136.9206)
+	(pop-category 3)
 	(population 4800000)
 	(title "Nagoya"))
 
@@ -1422,6 +1574,7 @@
 	(country "US")
 	(latitude 35.114727)
 	(longitude -90.00033)
+	(pop-category 2)
 	(population 852900)
 	(title "Memphis"))
 
@@ -1431,6 +1584,7 @@
 	(country "Japan")
 	(latitude 35.00913)
 	(longitude 135.75482)
+	(pop-category 3)
 	(population 1479218)
 	(title "Kyoto"))
 
@@ -1440,6 +1594,7 @@
 	(country "China")
 	(latitude 34.757683)
 	(longitude 113.64178)
+	(pop-category 3)
 	(population 1170000)
 	(title "Zhengzhou"))
 
@@ -1449,6 +1604,7 @@
 	(country "Syria")
 	(latitude 34.733875)
 	(longitude 36.718174)
+	(pop-category 2)
 	(population 431000)
 	(title "Homs"))
 
@@ -1458,6 +1614,7 @@
 	(country "China")
 	(latitude 34.67135)
 	(longitude 112.36124)
+	(pop-category 2)
 	(population 740000)
 	(title "Luoyang"))
 
@@ -1467,6 +1624,7 @@
 	(country "Japan")
 	(latitude 34.63553)
 	(longitude 135.51912)
+	(pop-category 6)
 	(population 15040000)
 	(title "Osaka"))
 
@@ -1476,6 +1634,7 @@
 	(country "Afghanistan")
 	(latitude 34.530907)
 	(longitude 69.13676)
+	(pop-category 3)
 	(population 1179000)
 	(title "Kabul"))
 
@@ -1485,6 +1644,7 @@
 	(country "Japan")
 	(latitude 34.377556)
 	(longitude 132.44478)
+	(pop-category 3)
 	(population 1575000)
 	(title "Hiroshima"))
 
@@ -1494,6 +1654,7 @@
 	(country "China")
 	(latitude 34.265697)
 	(longitude 108.88336)
+	(pop-category 3)
 	(population 2050000)
 	(title "Xian"))
 
@@ -1503,6 +1664,7 @@
 	(country "Morocco")
 	(latitude 34.043568)
 	(longitude -4.995548)
+	(pop-category 2)
 	(population 535000)
 	(title "Fes"))
 
@@ -1512,6 +1674,7 @@
 	(country "US")
 	(latitude 33.7957)
 	(longitude -84.34923)
+	(pop-category 3)
 	(population 1962500)
 	(title "Atlanta"))
 
@@ -1521,6 +1684,7 @@
 	(country "Pakistan")
 	(latitude 33.71815)
 	(longitude 73.06055)
+	(pop-category 2)
 	(population 204364)
 	(title "Islamabad"))
 
@@ -1530,6 +1694,7 @@
 	(country "Pakistan")
 	(latitude 33.605804)
 	(longitude 73.04375)
+	(pop-category 2)
 	(population 836000)
 	(title "Rawalpindi"))
 
@@ -1539,6 +1704,7 @@
 	(country "Syria")
 	(latitude 33.519302)
 	(longitude 36.313454)
+	(pop-category 3)
 	(population 1850000)
 	(title "Damascus"))
 
@@ -1548,6 +1714,7 @@
 	(country "US")
 	(latitude 33.50902)
 	(longitude -112.11026)
+	(pop-category 3)
 	(population 1482400)
 	(title "Phoenix"))
 
@@ -1557,6 +1724,7 @@
 	(country "Iraq")
 	(latitude 33.334038)
 	(longitude 44.397835)
+	(pop-category 3)
 	(population 3841268)
 	(title "Baghdad"))
 
@@ -1566,6 +1734,7 @@
 	(country "US")
 	(latitude 32.76373)
 	(longitude -96.66369)
+	(pop-category 3)
 	(population 2727300)
 	(title "Dallas"))
 
@@ -1575,6 +1744,7 @@
 	(country "Iran")
 	(latitude 32.65139)
 	(longitude 51.679188)
+	(pop-category 2)
 	(population 986753)
 	(title "Esfahan"))
 
@@ -1584,6 +1754,7 @@
 	(country "China")
 	(latitude 32.048367)
 	(longitude 118.768906)
+	(pop-category 3)
 	(population 2290000)
 	(title "Nanjing"))
 
@@ -1593,6 +1764,7 @@
 	(country "Jordan")
 	(latitude 31.949383)
 	(longitude 35.932907)
+	(pop-category 3)
 	(population 1250000)
 	(title "Amman"))
 
@@ -1602,6 +1774,7 @@
 	(country "India")
 	(latitude 31.63089)
 	(longitude 74.87155)
+	(pop-category 2)
 	(population 594844)
 	(title "Amritsar"))
 
@@ -1611,6 +1784,7 @@
 	(country "Pakistan")
 	(latitude 31.545053)
 	(longitude 74.340675)
+	(pop-category 3)
 	(population 3025000)
 	(title "Lahore"))
 
@@ -1620,6 +1794,7 @@
 	(country "Pakistan")
 	(latitude 31.40895)
 	(longitude 73.08346)
+	(pop-category 3)
 	(population 1104209)
 	(title "Faisalabad"))
 
@@ -1629,6 +1804,7 @@
 	(country "China")
 	(latitude 31.24787)
 	(longitude 121.47266)
+	(pop-category 4)
 	(population 9300000)
 	(title "Shanghai"))
 
@@ -1638,6 +1814,7 @@
 	(country "China")
 	(latitude 30.670069)
 	(longitude 104.07127)
+	(pop-category 3)
 	(population 1810000)
 	(title "Chengdu"))
 
@@ -1647,6 +1824,7 @@
 	(country "China")
 	(latitude 30.572498)
 	(longitude 114.27922)
+	(pop-category 3)
 	(population 3490000)
 	(title "Wuhan"))
 
@@ -1656,6 +1834,7 @@
 	(country "Iraq")
 	(latitude 30.50349)
 	(longitude 47.760864)
+	(pop-category 2)
 	(population 616700)
 	(title "Al Basra"))
 
@@ -1665,6 +1844,7 @@
 	(country "China")
 	(latitude 30.252625)
 	(longitude 120.16508)
+	(pop-category 3)
 	(population 1270000)
 	(title "Hangzhou"))
 
@@ -1674,6 +1854,7 @@
 	(country "Egypt")
 	(latitude 30.077911)
 	(longitude 31.250797)
+	(pop-category 4)
 	(population 9300000)
 	(title "Cairo"))
 
@@ -1683,6 +1864,7 @@
 	(country "US")
 	(latitude 29.956379)
 	(longitude -90.09869)
+	(pop-category 3)
 	(population 1185000)
 	(title "New Orleans"))
 
@@ -1692,6 +1874,7 @@
 	(country "US")
 	(latitude 29.77183)
 	(longitude -95.40711)
+	(pop-category 3)
 	(population 2755100)
 	(title "Houston"))
 
@@ -1701,6 +1884,7 @@
 	(country "China")
 	(latitude 29.650703)
 	(longitude 91.13209)
+	(pop-category 1)
 	(population 84400)
 	(title "Lhasa"))
 
@@ -1710,6 +1894,7 @@
 	(country "China")
 	(latitude 29.544104)
 	(longitude 106.52269)
+	(pop-category 3)
 	(population 2450000)
 	(title "Chongqing"))
 
@@ -1719,6 +1904,7 @@
 	(country "US")
 	(latitude 29.429922)
 	(longitude -98.524574)
+	(pop-category 2)
 	(population 968200)
 	(title "San Antonio"))
 
@@ -1728,6 +1914,7 @@
 	(country "China")
 	(latitude 28.67124)
 	(longitude 115.88941)
+	(pop-category 3)
 	(population 1030000)
 	(title "Nanchang"))
 
@@ -1737,6 +1924,7 @@
 	(country "India")
 	(latitude 28.568726)
 	(longitude 77.21675)
+	(pop-category 2)
 	(population 273036)
 	(title "New Delhi"))
 
@@ -1746,6 +1934,7 @@
 	(country "India")
 	(latitude 28.526459)
 	(longitude 77.22437)
+	(pop-category 4)
 	(population 7200000)
 	(title "Delhi"))
 
@@ -1755,6 +1944,7 @@
 	(country "China")
 	(latitude 28.197641)
 	(longitude 112.96848)
+	(pop-category 3)
 	(population 1190000)
 	(title "Changsha"))
 
@@ -1764,6 +1954,7 @@
 	(country "Nepal")
 	(latitude 27.712017)
 	(longitude 85.31295)
+	(pop-category 2)
 	(population 320000)
 	(title "Kathmandu"))
 
@@ -1773,6 +1964,7 @@
 	(country "Bhutan")
 	(latitude 27.442606)
 	(longitude 89.66733)
+	(pop-category 1)
 	(population 12000)
 	(title "Thimbu"))
 
@@ -1782,6 +1974,7 @@
 	(country "India")
 	(latitude 26.905113)
 	(longitude 75.80128)
+	(pop-category 3)
 	(population 1025000)
 	(title "Jaipur"))
 
@@ -1791,6 +1984,7 @@
 	(country "India")
 	(latitude 26.849428)
 	(longitude 80.91972)
+	(pop-category 3)
 	(population 1060000)
 	(title "Lucknow"))
 
@@ -1800,6 +1994,7 @@
 	(country "China")
 	(latitude 26.571941)
 	(longitude 106.7003)
+	(pop-category 3)
 	(population 1010000)
 	(title "Guiyang"))
 
@@ -1809,6 +2004,7 @@
 	(country "India")
 	(latitude 26.45783)
 	(longitude 80.31786)
+	(pop-category 3)
 	(population 1875000)
 	(title "Kanpur"))
 
@@ -1818,6 +2014,7 @@
 	(country "China")
 	(latitude 26.071016)
 	(longitude 119.30352)
+	(pop-category 2)
 	(population 890000)
 	(title "Fuzhou"))
 
@@ -1827,6 +2024,7 @@
 	(country "US")
 	(latitude 25.83213)
 	(longitude -80.27022)
+	(pop-category 3)
 	(population 2827300)
 	(title "Miami"))
 
@@ -1836,6 +2034,7 @@
 	(country "Mexico")
 	(latitude 25.677353)
 	(longitude -100.317085)
+	(pop-category 3)
 	(population 2015000)
 	(title "Monterrey"))
 
@@ -1845,6 +2044,7 @@
 	(country "India")
 	(latitude 25.613897)
 	(longitude 85.135345)
+	(pop-category 3)
 	(population 1025000)
 	(title "Patna"))
 
@@ -1854,6 +2054,7 @@
 	(country "Pakistan")
 	(latitude 25.380186)
 	(longitude 68.36647)
+	(pop-category 2)
 	(population 800000)
 	(title "Hyderabad"))
 
@@ -1863,6 +2064,7 @@
 	(country "India")
 	(latitude 25.282011)
 	(longitude 82.95634)
+	(pop-category 2)
 	(population 925000)
 	(title "Benares"))
 
@@ -1872,6 +2074,7 @@
 	(country "Qatar")
 	(latitude 25.203642)
 	(longitude 51.497234)
+	(pop-category 2)
 	(population 310000)
 	(title "Doha"))
 
@@ -1881,6 +2084,7 @@
 	(country "China")
 	(latitude 25.051033)
 	(longitude 102.702126)
+	(pop-category 3)
 	(population 1280000)
 	(title "Kunming"))
 
@@ -1890,6 +2094,7 @@
 	(country "Taiwan")
 	(latitude 25.035091)
 	(longitude 121.50673)
+	(pop-category 4)
 	(population 6130000)
 	(title "Taipei"))
 
@@ -1899,6 +2104,7 @@
 	(country "Taiwan")
 	(latitude 24.143642)
 	(longitude 120.67028)
+	(pop-category 2)
 	(population 715107)
 	(title "T`ai-chung"))
 
@@ -1908,6 +2114,7 @@
 	(country "Bangladesh")
 	(latitude 23.709919)
 	(longitude 90.40714)
+	(pop-category 3)
 	(population 3430312)
 	(title "Dhaka"))
 
@@ -1917,6 +2124,7 @@
 	(country "China")
 	(latitude 23.096195)
 	(longitude 113.29361)
+	(pop-category 3)
 	(population 3050000)
 	(title "Guangzhou"))
 
@@ -1926,6 +2134,7 @@
 	(country "India")
 	(latitude 23.039791)
 	(longitude 72.566864)
+	(pop-category 3)
 	(population 2400000)
 	(title "Ahmadabad"))
 
@@ -1935,6 +2144,7 @@
 	(country "Bangladesh")
 	(latitude 22.842648)
 	(longitude 89.55824)
+	(pop-category 2)
 	(population 648359)
 	(title "Khulna"))
 
@@ -1944,6 +2154,7 @@
 	(country "India")
 	(latitude 22.543537)
 	(longitude 88.33422)
+	(pop-category 5)
 	(population 11100000)
 	(title "Calcutta"))
 
@@ -1953,6 +2164,7 @@
 	(country "Mexico")
 	(latitude 22.243235)
 	(longitude -97.84263)
+	(pop-category 2)
 	(population 435000)
 	(title "Tampico"))
 
@@ -1962,6 +2174,7 @@
 	(country "Burma")
 	(latitude 21.975945)
 	(longitude 96.08415)
+	(pop-category 2)
 	(population 532895)
 	(title "Mandalay"))
 
@@ -1971,6 +2184,7 @@
 	(country "Saudi Arabia")
 	(latitude 21.427382)
 	(longitude 39.81484)
+	(pop-category 2)
 	(population 550000)
 	(title "Mecca"))
 
@@ -1980,6 +2194,7 @@
 	(country "India")
 	(latitude 21.155758)
 	(longitude 79.08911)
+	(pop-category 3)
 	(population 1302066)
 	(title "Nagpur"))
 
@@ -1989,6 +2204,7 @@
 	(country "Vietnam")
 	(latitude 21.031948)
 	(longitude 105.81991)
+	(pop-category 3)
 	(population 1500000)
 	(title "Hanoi"))
 
@@ -1998,6 +2214,7 @@
 	(country "Vietnam")
 	(latitude 20.861359)
 	(longitude 106.679794)
+	(pop-category 2)
 	(population 385210)
 	(title "Haiphong"))
 
@@ -2007,6 +2224,7 @@
 	(country "Mexico")
 	(latitude 20.821869)
 	(longitude -89.552864)
+	(pop-category 2)
 	(population 400142)
 	(title "Merida"))
 
@@ -2016,6 +2234,7 @@
 	(country "Mexico")
 	(latitude 20.673592)
 	(longitude -103.343796)
+	(pop-category 3)
 	(population 2325000)
 	(title "Guadalajara"))
 
@@ -2025,6 +2244,7 @@
 	(country "Sudan")
 	(latitude 19.615713)
 	(longitude 37.21969)
+	(pop-category 2)
 	(population 206727)
 	(title "Bur Sudan"))
 
@@ -2034,6 +2254,7 @@
 	(country "Mexico")
 	(latitude 19.427046)
 	(longitude -99.12757)
+	(pop-category 5)
 	(population 14100000)
 	(title "Mexico City"))
 
@@ -2043,6 +2264,7 @@
 	(country "Mexico")
 	(latitude 19.048632)
 	(longitude -98.19295)
+	(pop-category 3)
 	(population 1055000)
 	(title "Puebla de Zaragoza"))
 
@@ -2052,6 +2274,7 @@
 	(country "India")
 	(latitude 18.535748)
 	(longitude 73.85227)
+	(pop-category 3)
 	(population 1775000)
 	(title "Pune"))
 
@@ -2061,6 +2284,7 @@
 	(country "Haiti")
 	(latitude 18.526617)
 	(longitude -72.34311)
+	(pop-category 2)
 	(population 880000)
 	(title "Port-au-Prince"))
 
@@ -2070,6 +2294,7 @@
 	(country "Puerto Rico")
 	(latitude 18.400616)
 	(longitude -66.08176)
+	(pop-category 3)
 	(population 1775260)
 	(title "San Juan"))
 
@@ -2079,6 +2304,7 @@
 	(country "Jamaica")
 	(latitude 18.015713)
 	(longitude -76.7973)
+	(pop-category 2)
 	(population 770000)
 	(title "Kingston"))
 
@@ -2088,6 +2314,7 @@
 	(country "India")
 	(latitude 17.394547)
 	(longitude 78.48503)
+	(pop-category 3)
 	(population 2750000)
 	(title "Hyderabad"))
 
@@ -2097,6 +2324,7 @@
 	(country "Burma")
 	(latitude 16.872223)
 	(longitude 96.12489)
+	(pop-category 3)
 	(population 2800000)
 	(title "Rangoon"))
 
@@ -2106,6 +2334,7 @@
 	(country "Yemen")
 	(latitude 15.361444)
 	(longitude 44.209503)
+	(pop-category 2)
 	(population 427150)
 	(title "Sanaa"))
 
@@ -2115,6 +2344,7 @@
 	(country "Guatemala")
 	(latitude 14.618008)
 	(longitude -90.5249)
+	(pop-category 3)
 	(population 1400000)
 	(title "Guatemala"))
 
@@ -2124,6 +2354,7 @@
 	(country "Honduras")
 	(latitude 14.0990505)
 	(longitude -87.203094)
+	(pop-category 2)
 	(population 551606)
 	(title "Tegucigalpa"))
 
@@ -2133,6 +2364,7 @@
 	(country "Thailand")
 	(latitude 13.745571)
 	(longitude 100.552666)
+	(pop-category 4)
 	(population 6450000)
 	(title "Bangkok"))
 
@@ -2142,6 +2374,7 @@
 	(country "El Salvador")
 	(latitude 13.701412)
 	(longitude -89.20023)
+	(pop-category 2)
 	(population 920000)
 	(title "San Salvador"))
 
@@ -2151,6 +2384,7 @@
 	(country "Niger")
 	(latitude 13.604544)
 	(longitude 2.0834498)
+	(pop-category 2)
 	(population 398265)
 	(title "Niamey"))
 
@@ -2160,6 +2394,7 @@
 	(country "India")
 	(latitude 13.061503)
 	(longitude 80.247826)
+	(pop-category 3)
 	(population 4475000)
 	(title "Madras"))
 
@@ -2169,6 +2404,7 @@
 	(country "India")
 	(latitude 12.9747505)
 	(longitude 77.58773)
+	(pop-category 3)
 	(population 2950000)
 	(title "Bangalore"))
 
@@ -2178,6 +2414,7 @@
 	(country "Mali")
 	(latitude 12.65295)
 	(longitude -7.9864817)
+	(pop-category 2)
 	(population 646163)
 	(title "Bamako"))
 
@@ -2187,6 +2424,7 @@
 	(country "Nicaragua")
 	(latitude 12.151473)
 	(longitude -86.27303)
+	(pop-category 2)
 	(population 682000)
 	(title "Managua"))
 
@@ -2196,6 +2434,7 @@
 	(country "Cambodia")
 	(latitude 11.564736)
 	(longitude 104.91319)
+	(pop-category 2)
 	(population 700000)
 	(title "Phnom Penh"))
 
@@ -2205,6 +2444,7 @@
 	(country "Vietnam")
 	(latitude 10.759182)
 	(longitude 106.66245)
+	(pop-category 3)
 	(population 3100000)
 	(title "Ho Chi Minh City"))
 
@@ -2214,6 +2454,7 @@
 	(country "Venezuela")
 	(latitude 10.645043)
 	(longitude -71.637146)
+	(pop-category 2)
 	(population 890643)
 	(title "Maracaibo"))
 
@@ -2223,6 +2464,7 @@
 	(country "Venezuela")
 	(latitude 10.496049)
 	(longitude -66.898285)
+	(pop-category 3)
 	(population 3600000)
 	(title "Caracas"))
 
@@ -2232,6 +2474,7 @@
 	(country "Venezuela")
 	(latitude 10.065665)
 	(longitude -69.339195)
+	(pop-category 2)
 	(population 497635)
 	(title "Barquisimeto"))
 
@@ -2241,6 +2484,7 @@
 	(country "Costa Rica")
 	(latitude 9.930476)
 	(longitude -84.07861)
+	(pop-category 2)
 	(population 670000)
 	(title "San Jose"))
 
@@ -2250,6 +2494,7 @@
 	(country "India")
 	(latitude 9.913986)
 	(longitude 78.12173)
+	(pop-category 2)
 	(population 960000)
 	(title "Madurai"))
 
@@ -2259,6 +2504,7 @@
 	(country "Nigeria")
 	(latitude 7.3788404)
 	(longitude 3.8952785)
+	(pop-category 3)
 	(population 1144000)
 	(title "Ibadan"))
 
@@ -2268,6 +2514,7 @@
 	(country "Philippines")
 	(latitude 7.08008)
 	(longitude 125.61368)
+	(pop-category 2)
 	(population 408775)
 	(title "Davao"))
 
@@ -2277,6 +2524,7 @@
 	(country "Nigeria")
 	(latitude 6.4505386)
 	(longitude 7.49208)
+	(pop-category 2)
 	(population 252500)
 	(title "Enugu"))
 
@@ -2286,6 +2534,7 @@
 	(country "Colombia")
 	(latitude 6.2411466)
 	(longitude -75.59203)
+	(pop-category 3)
 	(population 2095000)
 	(title "Medellin"))
 
@@ -2295,6 +2544,7 @@
 	(country "Ghana")
 	(latitude 5.5585628)
 	(longitude -0.20092364)
+	(pop-category 3)
 	(population 1250000)
 	(title "Accra"))
 
@@ -2304,6 +2554,7 @@
 	(country "Ivory Coast")
 	(latitude 5.324857)
 	(longitude -4.021887)
+	(pop-category 3)
 	(population 1950000)
 	(title "Abidjan"))
 
@@ -2313,6 +2564,7 @@
 	(country "Colombia")
 	(latitude 4.63022)
 	(longitude -74.08051)
+	(pop-category 3)
 	(population 4260000)
 	(title "Bogota"))
 
@@ -2322,6 +2574,7 @@
 	(country "Cent Af Rep")
 	(latitude 4.365856)
 	(longitude 18.562342)
+	(pop-category 2)
 	(population 473817)
 	(title "Bangui"))
 
@@ -2331,6 +2584,7 @@
 	(country "Cameroon")
 	(latitude 3.865123)
 	(longitude 11.513641)
+	(pop-category 2)
 	(population 653670)
 	(title "Yaounde"))
 
@@ -2340,6 +2594,7 @@
 	(country "Indonesia")
 	(latitude 3.585242)
 	(longitude 98.6756)
+	(pop-category 3)
 	(population 1373747)
 	(title "Medan"))
 
@@ -2349,6 +2604,7 @@
 	(country "Colombia")
 	(latitude 3.4568553)
 	(longitude -76.52244)
+	(pop-category 3)
 	(population 1400000)
 	(title "Cali"))
 
@@ -2358,6 +2614,7 @@
 	(country "Malaysia")
 	(latitude 3.1502104)
 	(longitude 101.70767)
+	(pop-category 3)
 	(population 1475000)
 	(title "Kuala Lumpur"))
 
@@ -2367,6 +2624,7 @@
 	(country "Somalia")
 	(latitude 2.0411775)
 	(longitude 45.344143)
+	(pop-category 2)
 	(population 600000)
 	(title "Muqdisho"))
 
@@ -2376,6 +2634,7 @@
 	(country "Zaire")
 	(latitude 0.5192849)
 	(longitude 25.196148)
+	(pop-category 2)
 	(population 282650)
 	(title "Kisangani"))
 
@@ -2385,6 +2644,7 @@
 	(country "Ecuador")
 	(latitude -0.22949813)
 	(longitude -78.524284)
+	(pop-category 3)
 	(population 1050000)
 	(title "Quito"))
 
@@ -2394,6 +2654,7 @@
 	(country "Peru")
 	(latitude -3.7528954)
 	(longitude -73.19149)
+	(pop-category 2)
 	(population 178738)
 	(title "Iquitos"))
 
@@ -2403,6 +2664,7 @@
 	(country "Brazil")
 	(latitude -3.7833219)
 	(longitude -38.5889)
+	(pop-category 3)
 	(population 1825000)
 	(title "Fortaleza"))
 
@@ -2412,6 +2674,7 @@
 	(country "Congo")
 	(latitude -4.285187)
 	(longitude 15.285149)
+	(pop-category 2)
 	(population 585812)
 	(title "Brazzaville"))
 
@@ -2421,6 +2684,7 @@
 	(country "Zaire")
 	(latitude -5.892211)
 	(longitude 22.402779)
+	(pop-category 2)
 	(population 290898)
 	(title "Kananga"))
 
@@ -2430,6 +2694,7 @@
 	(country "Tanzania")
 	(latitude -6.817359)
 	(longitude 39.25335)
+	(pop-category 3)
 	(population 1300000)
 	(title "Dar es Salaam"))
 
@@ -2439,6 +2704,7 @@
 	(country "Indonesia")
 	(latitude -6.9124303)
 	(longitude 107.6069)
+	(pop-category 3)
 	(population 1800000)
 	(title "Bandung"))
 
@@ -2448,6 +2714,7 @@
 	(country "Brazil")
 	(latitude -8.085168)
 	(longitude -34.91464)
+	(pop-category 3)
 	(population 2625000)
 	(title "Recife"))
 
@@ -2457,6 +2724,7 @@
 	(country "Angola")
 	(latitude -12.717735)
 	(longitude 13.46488)
+	(pop-category 2)
 	(population 155000)
 	(title "Benguela"))
 
@@ -2466,6 +2734,7 @@
 	(country "Brazil")
 	(latitude -15.7921095)
 	(longitude -47.897747)
+	(pop-category 3)
 	(population 1567709)
 	(title "Brasilia"))
 
@@ -2475,6 +2744,7 @@
 	(country "Peru")
 	(latitude -16.39754)
 	(longitude -71.52274)
+	(pop-category 2)
 	(population 446942)
 	(title "Arequipa"))
 
@@ -2484,6 +2754,7 @@
 	(country "Bolivia")
 	(latitude -16.499006)
 	(longitude -68.14625)
+	(pop-category 2)
 	(population 992592)
 	(title "La Paz"))
 
@@ -2493,6 +2764,7 @@
 	(country "Brazil")
 	(latitude -16.7267)
 	(longitude -49.25481)
+	(pop-category 2)
 	(population 990000)
 	(title "Goiania"))
 
@@ -2502,6 +2774,7 @@
 	(country "Bolivia")
 	(latitude -17.788792)
 	(longitude -63.19742)
+	(pop-category 2)
 	(population 441717)
 	(title "Santa Cruz de La Sierra"))
 
@@ -2511,6 +2784,7 @@
 	(country "Bolivia")
 	(latitude -19.042135)
 	(longitude -65.25588)
+	(pop-category 1)
 	(population 86609)
 	(title "Sucre"))
 
@@ -2520,6 +2794,7 @@
 	(country "Brazil")
 	(latitude -19.85172)
 	(longitude -43.90907)
+	(pop-category 3)
 	(population 2950000)
 	(title "Belo Horizonte"))
 
@@ -2529,6 +2804,7 @@
 	(country "Brazil")
 	(latitude -22.721573)
 	(longitude -43.455177)
+	(pop-category 5)
 	(population 10150000)
 	(title "Rio de Janeiro"))
 
@@ -2538,6 +2814,7 @@
 	(country "Brazil")
 	(latitude -23.581305)
 	(longitude -46.6229)
+	(pop-category 6)
 	(population 15175000)
 	(title "Sao Paulo"))
 
@@ -2547,6 +2824,7 @@
 	(country "Brazil")
 	(latitude -23.9547)
 	(longitude -46.309494)
+	(pop-category 3)
 	(population 1065000)
 	(title "Santos"))
 
@@ -2556,6 +2834,7 @@
 	(country "Botswana")
 	(latitude -24.661442)
 	(longitude 25.794802)
+	(pop-category 1)
 	(population 95163)
 	(title "Gaborone"))
 
@@ -2565,6 +2844,7 @@
 	(country "Brazil")
 	(latitude -25.43048)
 	(longitude -49.284508)
+	(pop-category 3)
 	(population 1700000)
 	(title "Curitiba"))
 
@@ -2574,6 +2854,7 @@
 	(country "South Africa")
 	(latitude -25.731346)
 	(longitude 28.218372)
+	(pop-category 2)
 	(population 960000)
 	(title "Pretoria"))
 
@@ -2583,6 +2864,7 @@
 	(country "Mozambique")
 	(latitude -25.962154)
 	(longitude 32.573692)
+	(pop-category 3)
 	(population 1069727)
 	(title "Maputo"))
 
@@ -2592,6 +2874,7 @@
 	(country "South Africa")
 	(latitude -26.178957)
 	(longitude 28.004309)
+	(pop-category 3)
 	(population 3650000)
 	(title "Johannesburg"))
 
@@ -2601,6 +2884,7 @@
 	(country "Australia")
 	(latitude -27.453913)
 	(longitude 153.02649)
+	(pop-category 3)
 	(population 1149401)
 	(title "Brisbane"))
 
@@ -2610,6 +2894,7 @@
 	(country "South Africa")
 	(latitude -29.836372)
 	(longitude 30.942188)
+	(pop-category 3)
 	(population 1550000)
 	(title "Durban"))
 
@@ -2619,6 +2904,7 @@
 	(country "Brazil")
 	(latitude -30.039534)
 	(longitude -51.20799)
+	(pop-category 3)
 	(population 2600000)
 	(title "Porto Alegre"))
 
@@ -2628,6 +2914,7 @@
 	(country "Argentina")
 	(latitude -31.316278)
 	(longitude -64.179855)
+	(pop-category 3)
 	(population 1070000)
 	(title "Cordoba"))
 
@@ -2637,6 +2924,7 @@
 	(country "Argentina")
 	(latitude -31.616898)
 	(longitude -60.69784)
+	(pop-category 2)
 	(population 292165)
 	(title "Santa Fe"))
 
@@ -2646,6 +2934,7 @@
 	(country "Argentina")
 	(latitude -32.897438)
 	(longitude -68.829735)
+	(pop-category 2)
 	(population 650000)
 	(title "Mendoza"))
 
@@ -2655,6 +2944,7 @@
 	(country "Argentina")
 	(latitude -32.937737)
 	(longitude -60.66394)
+	(pop-category 3)
 	(population 1045000)
 	(title "Rosario"))
 
@@ -2664,6 +2954,7 @@
 	(country "Chile")
 	(latitude -33.475025)
 	(longitude -70.647514)
+	(pop-category 3)
 	(population 4100000)
 	(title "Santiago"))
 
@@ -2673,6 +2964,7 @@
 	(country "South Africa")
 	(latitude -33.881577)
 	(longitude 25.484299)
+	(pop-category 2)
 	(population 690000)
 	(title "Port Elizabeth"))
 
@@ -2682,6 +2974,7 @@
 	(country "Australia")
 	(latitude -33.889774)
 	(longitude 151.0282)
+	(pop-category 3)
 	(population 3364858)
 	(title "Sydney"))
 
@@ -2691,6 +2984,7 @@
 	(country "Argentina")
 	(latitude -34.6654)
 	(longitude -58.40959)
+	(pop-category 5)
 	(population 10750000)
 	(title "Buenos Aires"))
 
@@ -2700,6 +2994,7 @@
 	(country "Australia")
 	(latitude -35.349926)
 	(longitude 149.04163)
+	(pop-category 2)
 	(population 271362)
 	(title "Canberra"))
 
@@ -2709,6 +3004,7 @@
 	(country "New Zealand")
 	(latitude -36.893253)
 	(longitude 174.80106)
+	(pop-category 2)
 	(population 850000)
 	(title "Auckland"))
 
@@ -2718,6 +3014,7 @@
 	(country "Australia")
 	(latitude -37.85296)
 	(longitude 145.0751)
+	(pop-category 3)
 	(population 2832893)
 	(title "Melbourne"))
 
@@ -2727,6 +3024,7 @@
 	(country "Argentina")
 	(latitude -38.725273)
 	(longitude -62.274067)
+	(pop-category 2)
 	(population 223818)
 	(title "Bahia Blanca"))
 
@@ -2736,6 +3034,7 @@
 	(country "New Zealand")
 	(latitude -43.548916)
 	(longitude 172.68365)
+	(pop-category 2)
 	(population 320000)
 	(title "Christchurch"))
 
@@ -2745,6 +3044,7 @@
 	(country "Finland")
 	(latitude 60.196423)
 	(longitude 24.9767)
+	(pop-category 2)
 	(population 900000)
 	(title "Helsinki"))
 
@@ -2754,6 +3054,7 @@
 	(country "Tunisia")
 	(latitude 34.74523)
 	(longitude 10.759258)
+	(pop-category 2)
 	(population 310000)
 	(title "Sfax"))
 
@@ -2763,6 +3064,7 @@
 	(country "Japan")
 	(latitude 34.66384)
 	(longitude 135.18184)
+	(pop-category 3)
 	(population 1410834)
 	(title "Kobe"))
 
@@ -2772,6 +3074,7 @@
 	(country "Israel")
 	(latitude 31.773746)
 	(longitude 35.22522)
+	(pop-category 2)
 	(population 490000)
 	(title "Jerusalem"))
 
@@ -2781,6 +3084,7 @@
 	(country "Venezuela")
 	(latitude 10.178221)
 	(longitude -68.00311)
+	(pop-category 2)
 	(population 616224)
 	(title "Valencia"))
 
@@ -2790,6 +3094,7 @@
 	(country "Ecuador")
 	(latitude -2.2038162)
 	(longitude -79.90939)
+	(pop-category 3)
 	(population 1255000)
 	(title "Guayaquil"))
 
@@ -2799,6 +3104,7 @@
 	(country "US")
 	(latitude 37.727512)
 	(longitude -122.308815)
+	(pop-category 3)
 	(population 4053800)
 	(title "San Francisco"))
 
@@ -2808,6 +3114,7 @@
 	(country "UK")
 	(latitude 55.87525)
 	(longitude -3.2987833)
+	(pop-category 2)
 	(population 630000)
 	(title "Edinburgh"))
 
@@ -2817,6 +3124,7 @@
 	(country "Italy")
 	(latitude 45.700283)
 	(longitude 13.9328375)
+	(pop-category 2)
 	(population 239031)
 	(title "Trieste"))
 
@@ -2826,6 +3134,7 @@
 	(country "Japan")
 	(latitude 33.309906)
 	(longitude 130.31718)
+	(pop-category 3)
 	(population 1750000)
 	(title "Fukuoka"))
 
@@ -2835,6 +3144,7 @@
 	(country "Japan")
 	(latitude 33.681866)
 	(longitude 130.79745)
+	(pop-category 3)
 	(population 1525000)
 	(title "Kita Kyushu"))
 
@@ -2844,6 +3154,7 @@
 	(country "Chad")
 	(latitude 12.104139)
 	(longitude 15.240824)
+	(pop-category 2)
 	(population 303000)
 	(title "N'Djamena"))
 
@@ -2853,6 +3164,7 @@
 	(country "Libya")
 	(latitude 32.751617)
 	(longitude 13.2118225)
+	(pop-category 2)
 	(population 990697)
 	(title "Tripoli"))
 
@@ -2862,6 +3174,7 @@
 	(country "Turkey")
 	(latitude 38.43892)
 	(longitude 27.205769)
+	(pop-category 3)
 	(population 1550000)
 	(title "Izmir"))
 
@@ -2871,6 +3184,7 @@
 	(country "Zaire")
 	(latitude -4.3886747)
 	(longitude 15.469294)
+	(pop-category 3)
 	(population 3000000)
 	(title "Kinshasa"))
 
@@ -2880,6 +3194,7 @@
 	(country "Australia")
 	(latitude -34.918537)
 	(longitude 138.87068)
+	(pop-category 2)
 	(population 977721)
 	(title "Adelaide"))
 
@@ -2889,6 +3204,7 @@
 	(country "Indonesia")
 	(latitude -6.2939043)
 	(longitude 106.76247)
+	(pop-category 4)
 	(population 8600000)
 	(title "Jakarta"))
 
@@ -2898,6 +3214,7 @@
 	(country "Indonesia")
 	(latitude -7.0278444)
 	(longitude 110.44426)
+	(pop-category 3)
 	(population 1024940)
 	(title "Semarang"))
 
@@ -2907,6 +3224,7 @@
 	(country "Peru")
 	(latitude -12.04354)
 	(longitude -76.83563)
+	(pop-category 2)
 	(population 264133)
 	(title "Callao"))
 
@@ -2916,6 +3234,7 @@
 	(country "Brazil")
 	(latitude -1.605329)
 	(longitude -48.316277)
+	(pop-category 3)
 	(population 1200000)
 	(title "Belem"))
 
@@ -2925,6 +3244,7 @@
 	(country "China")
 	(latitude 36.148354)
 	(longitude 120.43413)
+	(pop-category 3)
 	(population 1270000)
 	(title "Qingdao"))
 
@@ -2934,6 +3254,7 @@
 	(country "Laos")
 	(latitude 18.001732)
 	(longitude 102.68024)
+	(pop-category 2)
 	(population 377409)
 	(title "Vientiane"))
 
@@ -2943,6 +3264,7 @@
 	(country "Austria")
 	(latitude 47.80117)
 	(longitude 13.0908985)
+	(pop-category 2)
 	(population 220000)
 	(title "Salzburg"))
 
@@ -2952,6 +3274,7 @@
 	(country "Croatia")
 	(latitude 45.807076)
 	(longitude 15.964386)
+	(pop-category 2)
 	(population 697925)
 	(title "Zagreb"))
 
@@ -2961,6 +3284,7 @@
 	(country "Burundi")
 	(latitude -3.2690837)
 	(longitude 29.533587)
+	(pop-category 2)
 	(population 273000)
 	(title "Bujumbura"))
 
@@ -2970,6 +3294,7 @@
 	(country "Cyprus")
 	(latitude 35.16507)
 	(longitude 33.385162)
+	(pop-category 2)
 	(population 185000)
 	(title "Nicosia"))
 
@@ -2979,6 +3304,7 @@
 	(country "Rwanda")
 	(latitude -2.1179352)
 	(longitude 29.991486)
+	(pop-category 2)
 	(population 181600)
 	(title "Kigali"))
 
@@ -2988,6 +3314,7 @@
 	(country "Slovenia")
 	(latitude 46.068302)
 	(longitude 14.639612)
+	(pop-category 2)
 	(population 233200)
 	(title "Ljubljana"))
 
@@ -2997,6 +3324,7 @@
 	(country "Lesotho")
 	(latitude -29.25671)
 	(longitude 27.890388)
+	(pop-category 2)
 	(population 109382)
 	(title "Maseru"))
 
@@ -3006,6 +3334,7 @@
 	(country "Luxembourg")
 	(latitude 49.740406)
 	(longitude 6.273256)
+	(pop-category 2)
 	(population 133000)
 	(title "Luxembourg"))
 
@@ -3015,6 +3344,7 @@
 	(country "Netherlands")
 	(latitude 51.90362)
 	(longitude 4.3006244)
+	(pop-category 2)
 	(population 770000)
 	(title "The Hague"))
 
@@ -3024,6 +3354,7 @@
 	(country "Slovakia")
 	(latitude 48.27451)
 	(longitude 17.269806)
+	(pop-category 2)
 	(population 435499)
 	(title "Bratislava"))
 
@@ -3033,6 +3364,7 @@
 	(country "Canada")
 	(latitude 52.11)
 	(longitude -106.63)
+	(pop-category 2)
 	(population 200665)
 	(title "Saskatoon"))
 
@@ -3042,6 +3374,7 @@
 	(country "Canada")
 	(latitude 50.41)
 	(longitude -104.65)
+	(pop-category 2)
 	(population 186521)
 	(title "Regina"))
 
@@ -3051,6 +3384,7 @@
 	(country "US")
 	(latitude 31.78)
 	(longitude -106.45)
+	(pop-category 3)
 	(population 1037700)
 	(title "El Paso"))
 
@@ -3060,6 +3394,7 @@
 	(country "US")
 	(latitude 30.33)
 	(longitude -81.66)
+	(pop-category 2)
 	(population 635900)
 	(title "Jacksonville"))
 
@@ -3069,6 +3404,7 @@
 	(country "Canada")
 	(latitude 51.33)
 	(longitude -80.73)
+	(pop-category 0)
 	(population -99)
 	(title "Moosonee"))
 
@@ -3078,6 +3414,7 @@
 	(country "Canada")
 	(latitude 54.86)
 	(longitude -67.01)
+	(pop-category 0)
 	(population 1997)
 	(title "Schefferville"))
 
@@ -3087,6 +3424,7 @@
 	(country "Canada")
 	(latitude 53.31)
 	(longitude -60.55)
+	(pop-category 0)
 	(population -99)
 	(title "Goose Bay"))
 
@@ -3096,6 +3434,7 @@
 	(country "Brazil")
 	(latitude -8.75)
 	(longitude -63.9)
+	(pop-category 2)
 	(population 202011)
 	(title "Porto Velho"))
 
@@ -3105,6 +3444,7 @@
 	(country "Peru")
 	(latitude -13.6)
 	(longitude -71.86)
+	(pop-category 2)
 	(population 184550)
 	(title "Cuzco"))
 
@@ -3114,6 +3454,7 @@
 	(country "Brazil")
 	(latitude -15.55)
 	(longitude -56.05)
+	(pop-category 2)
 	(population 279651)
 	(title "Cuiaba"))
 
@@ -3123,6 +3464,7 @@
 	(country "Argentina")
 	(latitude -27.4)
 	(longitude -58.9)
+	(pop-category 2)
 	(population 220104)
 	(title "Resistencia"))
 
@@ -3132,6 +3474,7 @@
 	(country "Mali")
 	(latitude 16.76)
 	(longitude -3.01)
+	(pop-category 1)
 	(population 31925)
 	(title "Tombouctoo"))
 
@@ -3141,6 +3484,7 @@
 	(country "Niger")
 	(latitude 11.88)
 	(longitude 13.26)
+	(pop-category 2)
 	(population 255100)
 	(title "Maiduguri"))
 
@@ -3150,6 +3494,7 @@
 	(country "Zaire")
 	(latitude -5.81)
 	(longitude 13.45)
+	(pop-category 2)
 	(population 144742)
 	(title "Matadi"))
 
@@ -3159,6 +3504,7 @@
 	(country "Angola")
 	(latitude -12.73)
 	(longitude 15.78)
+	(pop-category 2)
 	(population 203000)
 	(title "Huambo"))
 
@@ -3168,6 +3514,7 @@
 	(country "South Africa")
 	(latitude -28.66)
 	(longitude 24.83)
+	(pop-category 2)
 	(population 145000)
 	(title "Kimberley"))
 
@@ -3177,6 +3524,7 @@
 	(country "South Africa")
 	(latitude -33.03)
 	(longitude 27.9)
+	(pop-category 2)
 	(population 320000)
 	(title "East London"))
 
@@ -3186,6 +3534,7 @@
 	(country "Zaire")
 	(latitude -7.33)
 	(longitude 19.0)
+	(pop-category 0)
 	(population -99)
 	(title "Kahemba"))
 
@@ -3195,6 +3544,7 @@
 	(country "Tanzania")
 	(latitude -6.18)
 	(longitude 35.75)
+	(pop-category 1)
 	(population 54000)
 	(title "Dodoma"))
 
@@ -3204,6 +3554,7 @@
 	(country "Norway")
 	(latitude 68.35)
 	(longitude 17.3)
+	(pop-category 1)
 	(population 19080)
 	(title "Narvik"))
 
@@ -3213,6 +3564,7 @@
 	(country "Afghanistan")
 	(latitude 34.46)
 	(longitude 62.21)
+	(pop-category 2)
 	(population 160000)
 	(title "Herat"))
 
@@ -3222,6 +3574,7 @@
 	(country "Russia")
 	(latitude 55.88)
 	(longitude 37.75)
+	(pop-category 0)
 	(population -99)
 	(title "Druzba"))
 
@@ -3231,6 +3584,7 @@
 	(country "China")
 	(latitude 39.48)
 	(longitude 76.0)
+	(pop-category 2)
 	(population 146300)
 	(title "Kashi"))
 
@@ -3240,6 +3594,7 @@
 	(country "Taiwan")
 	(latitude 24.98)
 	(longitude 121.53)
+	(pop-category 0)
 	(population -99)
 	(title "Chingmei"))
 
@@ -3249,6 +3604,7 @@
 	(country "Vietnam")
 	(latitude 16.46)
 	(longitude 107.7)
+	(pop-category 2)
 	(population 165710)
 	(title "Hue"))
 
@@ -3258,6 +3614,7 @@
 	(country "Malaysia")
 	(latitude 1.5)
 	(longitude 110.43)
+	(pop-category 1)
 	(population 72555)
 	(title "Kuching"))
 
@@ -3267,6 +3624,7 @@
 	(country "Indonesia")
 	(latitude -1.21)
 	(longitude 116.86)
+	(pop-category 2)
 	(population 208040)
 	(title "Balikpapan"))
 
@@ -3276,6 +3634,7 @@
 	(country "Russia")
 	(latitude 50.33)
 	(longitude 110.75)
+	(pop-category 0)
 	(population -99)
 	(title "Chatanga"))
 
@@ -3285,6 +3644,7 @@
 	(country "Russia")
 	(latitude 52.05)
 	(longitude 113.58)
+	(pop-category 0)
 	(population -99)
 	(title "Chita"))
 
@@ -3294,6 +3654,7 @@
 	(country "Russia")
 	(latitude 67.58)
 	(longitude 133.41)
+	(pop-category 0)
 	(population -99)
 	(title "Verkhoyvensk"))
 
@@ -3303,6 +3664,7 @@
 	(country "Russia")
 	(latitude 62.01)
 	(longitude 129.83)
+	(pop-category 2)
 	(population 187000)
 	(title "Yakutsk"))
 
@@ -3312,6 +3674,7 @@
 	(country "Russia")
 	(latitude 59.33)
 	(longitude 143.25)
+	(pop-category 0)
 	(population -99)
 	(title "Okhotsk"))
 
@@ -3321,6 +3684,7 @@
 	(country "Russia")
 	(latitude 50.08)
 	(longitude 45.53)
+	(pop-category 0)
 	(population -99)
 	(title "Nikolayevsk"))
 
@@ -3330,6 +3694,7 @@
 	(country "Russia")
 	(latitude 46.96)
 	(longitude 142.75)
+	(pop-category 0)
 	(population -99)
 	(title "Yuzhno-Sakhalinsk"))
 
@@ -3339,6 +3704,7 @@
 	(country "Australia")
 	(latitude -23.63)
 	(longitude 133.93)
+	(pop-category 0)
 	(population -99)
 	(title "Alice Springs"))
 
@@ -3348,6 +3714,7 @@
 	(country "Australia")
 	(latitude -16.85)
 	(longitude 145.71)
+	(pop-category 1)
 	(population 39096)
 	(title "Cairns"))
 
@@ -3357,6 +3724,7 @@
 	(country "Australia")
 	(latitude -19.3)
 	(longitude 146.83)
+	(pop-category 2)
 	(population 106416)
 	(title "Townsville"))
 
@@ -3366,6 +3734,7 @@
 	(country "Australia")
 	(latitude -23.43)
 	(longitude 150.48)
+	(pop-category 1)
 	(population 59056)
 	(title "Rockhampton"))
 
@@ -3375,6 +3744,7 @@
 	(country "Australia")
 	(latitude -33.0)
 	(longitude 151.91)
+	(pop-category 2)
 	(population 405089)
 	(title "Newcastle"))
 
@@ -3384,6 +3754,7 @@
 	(country "Australia")
 	(latitude -43.0)
 	(longitude 147.5)
+	(pop-category 2)
 	(population 175082)
 	(title "Hobart"))
 
@@ -3393,6 +3764,7 @@
 	(country "New Zealand")
 	(latitude -45.86)
 	(longitude 170.5)
+	(pop-category 2)
 	(population 109000)
 	(title "Dunedin"))
 
@@ -3402,6 +3774,7 @@
 	(country "Canada")
 	(latitude 48.654568)
 	(longitude -123.56911)
+	(pop-category 2)
 	(population 255547)
 	(title "Victoria"))
 
@@ -3411,6 +3784,7 @@
 	(country "Benin")
 	(latitude 6.601096)
 	(longitude 2.6325028)
+	(pop-category 2)
 	(population 164000)
 	(title "Porto Novo"))
 
@@ -3420,6 +3794,7 @@
 	(country "Cameroon")
 	(latitude 4.13665)
 	(longitude 9.706374)
+	(pop-category 3)
 	(population 1029731)
 	(title "Douala"))
 
@@ -3429,6 +3804,7 @@
 	(country "Indonesia")
 	(latitude -5.19043)
 	(longitude 119.72279)
+	(pop-category 2)
 	(population 708465)
 	(title "Vjuag Padang"))
 
@@ -3438,6 +3814,7 @@
 	(country "Indonesia")
 	(latitude -3.3865533)
 	(longitude 129.31293)
+	(pop-category 2)
 	(population 111914)
 	(title "Ambon"))
 
@@ -3447,6 +3824,7 @@
 	(country "Korea Rep")
 	(latitude 37.58945)
 	(longitude 126.76744)
+	(pop-category 3)
 	(population 1604000)
 	(title "Inch`on"))
 
@@ -3456,6 +3834,7 @@
 	(country "China")
 	(latitude 39.031715)
 	(longitude 121.5982)
+	(pop-category 3)
 	(population 1680000)
 	(title "Dalian"))
 
@@ -3465,6 +3844,7 @@
 	(country "US")
 	(latitude 45.44213)
 	(longitude -122.64168)
+	(pop-category 3)
 	(population 1227200)
 	(title "Portland"))
 
@@ -3474,6 +3854,7 @@
 	(country "Brazil")
 	(latitude -3.122305)
 	(longitude -60.014618)
+	(pop-category 2)
 	(population 809914)
 	(title "Manaus"))
 
@@ -3483,6 +3864,7 @@
 	(country "Brazil")
 	(latitude -2.46)
 	(longitude -54.61)
+	(pop-category 2)
 	(population 226618)
 	(title "Santarem"))
 
@@ -3492,6 +3874,7 @@
 	(country "New Zealand")
 	(latitude -46.41)
 	(longitude 168.45)
+	(pop-category 1)
 	(population 52807)
 	(title "Invercargill"))
 
@@ -3501,6 +3884,7 @@
 	(country "Tanzania")
 	(latitude -10.26)
 	(longitude 40.18)
+	(pop-category 1)
 	(population 48510)
 	(title "Mtwara"))
 
@@ -3510,6 +3894,7 @@
 	(country "Madagascar")
 	(latitude -18.23)
 	(longitude 49.41)
+	(pop-category 2)
 	(population 100000)
 	(title "Toamasina"))
 
@@ -3519,6 +3904,7 @@
 	(country "South Africa")
 	(latitude -29.15)
 	(longitude 26.26)
+	(pop-category 2)
 	(population 235000)
 	(title "Bloemfontein"))
 
@@ -3528,6 +3914,7 @@
 	(country "Zimbabwe")
 	(latitude -20.2)
 	(longitude 28.71)
+	(pop-category 2)
 	(population 413814)
 	(title "Bulawayo"))
 
@@ -3537,6 +3924,7 @@
 	(country "Zambia")
 	(latitude -17.83)
 	(longitude 25.88)
+	(pop-category 1)
 	(population 61296)
 	(title "Livingstone"))
 
@@ -3546,6 +3934,7 @@
 	(country "Saudi Arabia")
 	(latitude 24.43)
 	(longitude 39.7)
+	(pop-category 2)
 	(population 290000)
 	(title "Al Madinah"))
 
@@ -3555,6 +3944,7 @@
 	(country "Sudan")
 	(latitude 21.76)
 	(longitude 31.28)
+	(pop-category 0)
 	(population -99)
 	(title "Wadi Halfa"))
 
@@ -3564,6 +3954,7 @@
 	(country "Egypt")
 	(latitude 24.08)
 	(longitude 32.95)
+	(pop-category 2)
 	(population 191461)
 	(title "Aswan"))
 
@@ -3573,6 +3964,7 @@
 	(country "Libya")
 	(latitude 25.91)
 	(longitude 13.91)
+	(pop-category 0)
 	(population -99)
 	(title "Murzuq"))
 
@@ -3582,6 +3974,7 @@
 	(country "Algeria")
 	(latitude 27.7)
 	(longitude -8.16)
+	(pop-category 0)
 	(population -99)
 	(title "Tindouf"))
 
@@ -3591,6 +3984,7 @@
 	(country "Niger")
 	(latitude 16.96)
 	(longitude 7.98)
+	(pop-category 1)
 	(population 50164)
 	(title "Agadez"))
 
@@ -3600,6 +3994,7 @@
 	(country "Sudan")
 	(latitude 13.18)
 	(longitude 30.16)
+	(pop-category 2)
 	(population 140000)
 	(title "El Obeid"))
 
@@ -3609,6 +4004,7 @@
 	(country "Zaire")
 	(latitude 0.05)
 	(longitude 18.46)
+	(pop-category 2)
 	(population 125263)
 	(title "Mbandaka"))
 
@@ -3618,6 +4014,7 @@
 	(country "Canada")
 	(latitude 60.65)
 	(longitude -135.01)
+	(pop-category 1)
 	(population 15199)
 	(title "Whitehorse"))
 
@@ -3627,6 +4024,7 @@
 	(country "Chile")
 	(latitude -53.15)
 	(longitude -70.8)
+	(pop-category 1)
 	(population 95332)
 	(title "Punte Arenas"))
 
@@ -3636,6 +4034,7 @@
 	(country "Chile")
 	(latitude -41.48)
 	(longitude -73.0)
+	(pop-category 1)
 	(population 84410)
 	(title "Puerto Montt"))
 
@@ -3645,6 +4044,7 @@
 	(country "Argentina")
 	(latitude -51.71)
 	(longitude -69.41)
+	(pop-category 0)
 	(population -99)
 	(title "Rio Gallegos"))
 
@@ -3654,6 +4054,7 @@
 	(country "Argentina")
 	(latitude -45.83)
 	(longitude -67.5)
+	(pop-category 1)
 	(population 96817)
 	(title "Comodoro Rivadavia"))
 
@@ -3663,6 +4064,7 @@
 	(country "Egypt")
 	(latitude 29.96)
 	(longitude 32.56)
+	(pop-category 2)
 	(population 326820)
 	(title "Suez"))
 
@@ -3672,6 +4074,7 @@
 	(country "Egypt")
 	(latitude 31.074604)
 	(longitude 29.97781)
+	(pop-category 3)
 	(population 3350000)
 	(title "Alexandria"))
 
@@ -3681,6 +4084,7 @@
 	(country "Mozambique")
 	(latitude -15.05)
 	(longitude 40.7)
+	(pop-category 0)
 	(population -99)
 	(title "Mocambique"))
 
@@ -3690,6 +4094,7 @@
 	(country "India")
 	(latitude 19.045347)
 	(longitude 73.17235)
+	(pop-category 4)
 	(population 9950000)
 	(title "Bombay"))
 
@@ -3699,6 +4104,7 @@
 	(country "Algeria")
 	(latitude 36.596493)
 	(longitude 2.993693)
+	(pop-category 3)
 	(population 2547983)
 	(title "Algiers"))
 
@@ -3708,6 +4114,7 @@
 	(country "Ukraine")
 	(latitude 49.989674)
 	(longitude 36.208313)
+	(pop-category 3)
 	(population 1940000)
 	(title "Kharkov"))
 
@@ -3717,6 +4124,7 @@
 	(country "Ukraine")
 	(latitude 48.42289)
 	(longitude 35.137894)
+	(pop-category 3)
 	(population 1600000)
 	(title "Dnepropetrovsk"))
 
@@ -3726,6 +4134,7 @@
 	(country "Estonia")
 	(latitude 59.277573)
 	(longitude 24.752056)
+	(pop-category 2)
 	(population 482000)
 	(title "Tallinn"))
 
@@ -3735,6 +4144,7 @@
 	(country "Mongolia")
 	(latitude 47.81)
 	(longitude 97.0)
+	(pop-category 0)
 	(population -99)
 	(title "Uliastay"))
 
@@ -3744,6 +4154,7 @@
 	(country "Dominican Rp")
 	(latitude 18.49973)
 	(longitude -69.91049)
+	(pop-category 3)
 	(population 1313172)
 	(title "Santo Domingo"))
 
@@ -3753,6 +4164,7 @@
 	(country "Brunei")
 	(latitude 4.933)
 	(longitude 114.967)
+	(pop-category 1)
 	(population 64000)
 	(title "Bandar Seri Begawan"))
 
@@ -3762,6 +4174,7 @@
 	(country "Gambia")
 	(latitude 13.445272)
 	(longitude -16.494616)
+	(pop-category 1)
 	(population 95000)
 	(title "Banjul"))
 
@@ -3771,6 +4184,7 @@
 	(country "Trinidad")
 	(latitude 10.639734)
 	(longitude -61.490063)
+	(pop-category 2)
 	(population 370000)
 	(title "Port of Spain"))
 
@@ -3780,6 +4194,7 @@
 	(country "Mexico")
 	(latitude 16.974386)
 	(longitude -99.931496)
+	(pop-category 2)
 	(population 301902)
 	(title "Acapulco"))
 
@@ -3789,6 +4204,7 @@
 	(country "Russia")
 	(latitude 64.40016)
 	(longitude 177.13019)
+	(pop-category 0)
 	(population -99)
 	(title "Anadyr"))
 
@@ -3798,6 +4214,7 @@
 	(country "Greenland")
 	(latitude 65.67)
 	(longitude -37.311867)
+	(pop-category 0)
 	(population 2618)
 	(title "Angmagssalik"))
 
@@ -3807,6 +4224,7 @@
 	(country "Chile")
 	(latitude -23.832537)
 	(longitude -70.22545)
+	(pop-category 2)
 	(population 185486)
 	(title "Antofagasta"))
 
@@ -3816,6 +4234,7 @@
 	(country "Japan")
 	(latitude 40.75)
 	(longitude 140.67)
+	(pop-category 2)
 	(population 294045)
 	(title "Aomori"))
 
@@ -3825,6 +4244,7 @@
 	(country "Libya")
 	(latitude 32.043053)
 	(longitude 20.308676)
+	(pop-category 2)
 	(population 435886)
 	(title "Banghazi"))
 
@@ -3834,6 +4254,7 @@
 	(country "Australia")
 	(latitude -15.75)
 	(longitude 133.22)
+	(pop-category 0)
 	(population -99)
 	(title "Birdum"))
 
@@ -3843,6 +4264,7 @@
 	(country "Brazil")
 	(latitude 2.75)
 	(longitude -60.5)
+	(pop-category 0)
 	(population -99)
 	(title "Boa Vista"))
 
@@ -3852,6 +4274,7 @@
 	(country "Peru")
 	(latitude -6.62)
 	(longitude -79.83)
+	(pop-category 2)
 	(population 279527)
 	(title "Chiclayo"))
 
@@ -3861,6 +4284,7 @@
 	(country "Peru")
 	(latitude -8.9301)
 	(longitude -78.45315)
+	(pop-category 2)
 	(population 223341)
 	(title "Chimbote"))
 
@@ -3870,6 +4294,7 @@
 	(country "Canada")
 	(latitude 58.710766)
 	(longitude -94.18)
+	(pop-category 0)
 	(population 1304)
 	(title "Churchill"))
 
@@ -3879,6 +4304,7 @@
 	(country "India")
 	(latitude 9.987988)
 	(longitude 76.52178)
+	(pop-category 2)
 	(population 685836)
 	(title "Cochin"))
 
@@ -3888,6 +4314,7 @@
 	(country "Chile")
 	(latitude -36.883297)
 	(longitude -72.85164)
+	(pop-category 2)
 	(population 675000)
 	(title "Concepcion"))
 
@@ -3897,6 +4324,7 @@
 	(country "Chile")
 	(latitude -31.0)
 	(longitude -71.02)
+	(pop-category 1)
 	(population 62186)
 	(title "Coquimbo"))
 
@@ -3906,6 +4334,7 @@
 	(country "Australia")
 	(latitude -12.7015)
 	(longitude 130.99455)
+	(pop-category 1)
 	(population 72937)
 	(title "Darwin"))
 
@@ -3915,6 +4344,7 @@
 	(country "Djibouti")
 	(latitude 11.5)
 	(longitude 43.1)
+	(pop-category 2)
 	(population 120000)
 	(title "Djibouti"))
 
@@ -3924,6 +4354,7 @@
 	(country "Australia")
 	(latitude -32.044167)
 	(longitude 115.93457)
+	(pop-category 1)
 	(population 22484)
 	(title "Fremantle"))
 
@@ -3933,6 +4364,7 @@
 	(country "Malaysia")
 	(latitude 5.35)
 	(longitude 100.54714)
+	(pop-category 2)
 	(population 495000)
 	(title "George Town"))
 
@@ -3942,6 +4374,7 @@
 	(country "Greenland")
 	(latitude 69.38314)
 	(longitude -53.63)
+	(pop-category 0)
 	(population 1012)
 	(title "Godhavn"))
 
@@ -3951,6 +4384,7 @@
 	(country "Greenland")
 	(latitude 64.27119)
 	(longitude -51.58)
+	(pop-category 1)
 	(population 12426)
 	(title "Godthab"))
 
@@ -3960,6 +4394,7 @@
 	(country "Canada")
 	(latitude 44.63)
 	(longitude -63.58)
+	(pop-category 2)
 	(population 295990)
 	(title "Halifax"))
 
@@ -3969,6 +4404,7 @@
 	(country "Norway")
 	(latitude 70.39133)
 	(longitude 23.906342)
+	(pop-category 0)
 	(population 7208)
 	(title "Hammerfest"))
 
@@ -3978,6 +4414,7 @@
 	(country "Russia")
 	(latitude 67.35)
 	(longitude 86.55)
+	(pop-category 0)
 	(population -99)
 	(title "Igarka"))
 
@@ -3987,6 +4424,7 @@
 	(country "Algeria")
 	(latitude 27.2)
 	(longitude 2.53)
+	(pop-category 1)
 	(population 18800)
 	(title "In Salah"))
 
@@ -3996,6 +4434,7 @@
 	(country "Canada")
 	(latitude 68.27)
 	(longitude -133.67)
+	(pop-category 0)
 	(population -99)
 	(title "Inuvik"))
 
@@ -4005,6 +4444,7 @@
 	(country "Tanzania")
 	(latitude -4.95)
 	(longitude 30.0)
+	(pop-category 1)
 	(population 50044)
 	(title "Kigoma"))
 
@@ -4014,6 +4454,7 @@
 	(country "Russia")
 	(latitude 61.15)
 	(longitude 47.0)
+	(pop-category 1)
 	(population 69000)
 	(title "Kotlas"))
 
@@ -4023,6 +4464,7 @@
 	(country "W Sahara")
 	(latitude 27.0)
 	(longitude -13.18)
+	(pop-category 1)
 	(population 93875)
 	(title "Laayoune"))
 
@@ -4032,6 +4474,7 @@
 	(country "Indonesia")
 	(latitude 1.4200861)
 	(longitude 124.88424)
+	(pop-category 2)
 	(population 217091)
 	(title "Manado"))
 
@@ -4041,6 +4484,7 @@
 	(country "India")
 	(latitude 12.95)
 	(longitude 75.16088)
+	(pop-category 2)
 	(population 306078)
 	(title "Mangalore"))
 
@@ -4050,6 +4494,7 @@
 	(country "Morocco")
 	(latitude 31.15)
 	(longitude -8.0)
+	(pop-category 2)
 	(population 535000)
 	(title "Marrakech"))
 
@@ -4059,6 +4504,7 @@
 	(country "Swaziland")
 	(latitude -26.303381)
 	(longitude 31.191298)
+	(pop-category 1)
 	(population 38290)
 	(title "Mbabne"))
 
@@ -4068,6 +4514,7 @@
 	(country "Japan")
 	(latitude 32.882748)
 	(longitude 129.85747)
+	(pop-category 2)
 	(population 449382)
 	(title "Nagasaki"))
 
@@ -4077,6 +4524,7 @@
 	(country "Brazil")
 	(latitude -5.78)
 	(longitude -35.25)
+	(pop-category 2)
 	(population 510106)
 	(title "Natal"))
 
@@ -4086,6 +4534,7 @@
 	(country "New Zealand")
 	(latitude -41.3)
 	(longitude 173.27)
+	(pop-category 1)
 	(population 33304)
 	(title "Nelson"))
 
@@ -4095,6 +4544,7 @@
 	(country "US")
 	(latitude 64.58628)
 	(longitude -165.27)
+	(pop-category 0)
 	(population 3500)
 	(title "Nome"))
 
@@ -4104,6 +4554,7 @@
 	(country "Russia")
 	(latitude 69.33)
 	(longitude 88.1)
+	(pop-category 2)
 	(population 174000)
 	(title "Noril`sk"))
 
@@ -4113,6 +4564,7 @@
 	(country "Mauritania")
 	(latitude 20.9)
 	(longitude -16.825647)
+	(pop-category 1)
 	(population 21961)
 	(title "Nouadnibou"))
 
@@ -4122,6 +4574,7 @@
 	(country "Russia")
 	(latitude 53.7)
 	(longitude 87.17)
+	(pop-category 2)
 	(population 600000)
 	(title "Novokuznetsk"))
 
@@ -4131,6 +4584,7 @@
 	(country "US")
 	(latitude 46.92)
 	(longitude -122.88)
+	(pop-category 1)
 	(population 97400)
 	(title "Olympia"))
 
@@ -4140,6 +4594,7 @@
 	(country "Indonesia")
 	(latitude -0.9175788)
 	(longitude 100.47506)
+	(pop-category 2)
 	(population 296675)
 	(title "Padang"))
 
@@ -4149,6 +4604,7 @@
 	(country "Indonesia")
 	(latitude -3.0)
 	(longitude 104.83)
+	(pop-category 2)
 	(population 786607)
 	(title "Palembang"))
 
@@ -4158,6 +4614,7 @@
 	(country "Greece")
 	(latitude 38.14124)
 	(longitude 21.88317)
+	(pop-category 2)
 	(population 154596)
 	(title "Patrai"))
 
@@ -4167,6 +4624,7 @@
 	(country "Russia")
 	(latitude 53.2)
 	(longitude 158.72)
+	(pop-category 2)
 	(population 269000)
 	(title "Petropavloski-Kamchatskiy"))
 
@@ -4176,6 +4634,7 @@
 	(country "Montenegro")
 	(latitude 42.5)
 	(longitude 19.4)
+	(pop-category 1)
 	(population 82500)
 	(title "Podgorica"))
 
@@ -4185,6 +4644,7 @@
 	(country "Congo")
 	(latitude -4.638708)
 	(longitude 12.058093)
+	(pop-category 2)
 	(population 294203)
 	(title "Pointe Noire"))
 
@@ -4194,6 +4654,7 @@
 	(country "Gabon")
 	(latitude -0.82)
 	(longitude 9.153344)
+	(pop-category 2)
 	(population 124400)
 	(title "Port Gentil"))
 
@@ -4203,6 +4664,7 @@
 	(country "Canada")
 	(latitude 54.42028)
 	(longitude -130.04808)
+	(pop-category 1)
 	(population 16197)
 	(title "Prince Rupert"))
 
@@ -4212,6 +4674,7 @@
 	(country "Canada")
 	(latitude 45.338135)
 	(longitude -65.64995)
+	(pop-category 2)
 	(population 121265)
 	(title "Saint John"))
 
@@ -4221,6 +4684,7 @@
 	(country "Senegal")
 	(latitude 15.95121)
 	(longitude -16.297838)
+	(pop-category 1)
 	(population 91485)
 	(title "Saint Louis"))
 
@@ -4230,6 +4694,7 @@
 	(country "Russia")
 	(latitude 66.57)
 	(longitude 66.58)
+	(pop-category 0)
 	(population -99)
 	(title "Salekhard"))
 
@@ -4239,6 +4704,7 @@
 	(country "Turkey")
 	(latitude 41.32)
 	(longitude 36.37)
+	(pop-category 2)
 	(population 240674)
 	(title "Samsun"))
 
@@ -4248,6 +4714,7 @@
 	(country "Brazil")
 	(latitude -2.5)
 	(longitude -44.430058)
+	(pop-category 2)
 	(population 600000)
 	(title "Sao Luis"))
 
@@ -4257,6 +4724,7 @@
 	(country "Bosnia/Herz")
 	(latitude 43.87)
 	(longitude 18.43)
+	(pop-category 2)
 	(population 341200)
 	(title "Sarajevo"))
 
@@ -4266,6 +4734,7 @@
 	(country "Greenland")
 	(latitude 70.52857)
 	(longitude -22.996323)
+	(pop-category 0)
 	(population -99)
 	(title "Scoresbyund"))
 
@@ -4275,6 +4744,7 @@
 	(country "Canada")
 	(latitude 50.282547)
 	(longitude -66.40254)
+	(pop-category 1)
 	(population 29262)
 	(title "Sept-Iles"))
 
@@ -4284,6 +4754,7 @@
 	(country "US")
 	(latitude 60.12)
 	(longitude -149.45)
+	(pop-category 0)
 	(population 2699)
 	(title "Seward"))
 
@@ -4293,6 +4764,7 @@
 	(country "Macedonia")
 	(latitude 42.0)
 	(longitude 21.53)
+	(pop-category 2)
 	(population 444900)
 	(title "Skopje"))
 
@@ -4302,6 +4774,7 @@
 	(country "Algeria")
 	(latitude 22.83)
 	(longitude 5.55)
+	(pop-category 0)
 	(population -99)
 	(title "Tamanrasset"))
 
@@ -4311,6 +4784,7 @@
 	(country "Greenland")
 	(latitude 77.67)
 	(longitude -69.0)
+	(pop-category 0)
 	(population -99)
 	(title "Thule"))
 
@@ -4320,6 +4794,7 @@
 	(country "Russia")
 	(latitude 71.7)
 	(longitude 128.75)
+	(pop-category 0)
 	(population -99)
 	(title "Tiksi"))
 
@@ -4329,6 +4804,7 @@
 	(country "Madagascar")
 	(latitude -23.290155)
 	(longitude 44.019093)
+	(pop-category 1)
 	(population 55000)
 	(title "Toliara"))
 
@@ -4338,6 +4814,7 @@
 	(country "Peru")
 	(latitude -7.93)
 	(longitude -79.0)
+	(pop-category 2)
 	(population 354301)
 	(title "Trujillo"))
 
@@ -4347,6 +4824,7 @@
 	(country "India")
 	(latitude 17.75)
 	(longitude 83.33)
+	(pop-category 2)
 	(population 603630)
 	(title "Vishakhapatnam"))
 
@@ -4356,6 +4834,7 @@
 	(country "Russia")
 	(latitude 67.8)
 	(longitude 64.33)
+	(pop-category 2)
 	(population 116000)
 	(title "Vorkuta"))
 
@@ -4365,6 +4844,7 @@
 	(country "Iran")
 	(latitude 31.97)
 	(longitude 54.45)
+	(pop-category 2)
 	(population 230483)
 	(title "Yazd"))
 
@@ -4374,6 +4854,7 @@
 	(country "Iran")
 	(latitude 29.6)
 	(longitude 60.83)
+	(pop-category 2)
 	(population 281923)
 	(title "Zahedan"))
 
@@ -4383,6 +4864,7 @@
 	(country "Yemen")
 	(latitude 12.861159)
 	(longitude 45.18)
+	(pop-category 2)
 	(population 318000)
 	(title "Aden"))
 
@@ -4392,6 +4874,7 @@
 	(country "Ethiopia")
 	(latitude 9.03)
 	(longitude 38.7)
+	(pop-category 3)
 	(population 1500000)
 	(title "Adis Abeba"))
 
@@ -4401,6 +4884,7 @@
 	(country "Kuwait")
 	(latitude 29.19499)
 	(longitude 48.002777)
+	(pop-category 3)
 	(population 1375000)
 	(title "Al Kuwayt"))
 
@@ -4410,6 +4894,7 @@
 	(country "Madagascar")
 	(latitude -18.87)
 	(longitude 47.5)
+	(pop-category 2)
 	(population 663000)
 	(title "Antananarivo"))
 
@@ -4419,6 +4904,7 @@
 	(country "Saudi Arabia")
 	(latitude 24.65)
 	(longitude 46.77)
+	(pop-category 3)
 	(population 1250000)
 	(title "Ar Riyad"))
 
@@ -4428,6 +4914,7 @@
 	(country "Eritrea")
 	(latitude 15.33)
 	(longitude 38.97)
+	(pop-category 2)
 	(population 275385)
 	(title "Asmara"))
 
@@ -4437,6 +4924,7 @@
 	(country "Paraguay")
 	(latitude -25.22)
 	(longitude -57.67)
+	(pop-category 2)
 	(population 700000)
 	(title "Asuncion"))
 
@@ -4446,6 +4934,7 @@
 	(country "Greece")
 	(latitude 38.1216)
 	(longitude 23.654863)
+	(pop-category 3)
 	(population 3027331)
 	(title "Athinai"))
 
@@ -4455,6 +4944,7 @@
 	(country "China")
 	(latitude 40.65)
 	(longitude 109.98)
+	(pop-category 3)
 	(population 1120000)
 	(title "Baotou"))
 
@@ -4464,6 +4954,7 @@
 	(country "Spain")
 	(latitude 41.53)
 	(longitude 2.17)
+	(pop-category 3)
 	(population 4040000)
 	(title "Barcelona"))
 
@@ -4473,6 +4964,7 @@
 	(country "Colombia")
 	(latitude 11.014295)
 	(longitude -74.68)
+	(pop-category 3)
 	(population 1140000)
 	(title "Barranquilla"))
 
@@ -4482,6 +4974,7 @@
 	(country "Mozambique")
 	(latitude -19.769283)
 	(longitude 35.02317)
+	(pop-category 2)
 	(population 291604)
 	(title "Beira"))
 
@@ -4491,6 +4984,7 @@
 	(country "Lebanon")
 	(latitude 33.78)
 	(longitude 35.657944)
+	(pop-category 3)
 	(population 1675000)
 	(title "Beirut"))
 
@@ -4500,6 +4994,7 @@
 	(country "Belize")
 	(latitude 17.12)
 	(longitude -88.8)
+	(pop-category 0)
 	(population 4500)
 	(title "Belmopan"))
 
@@ -4509,6 +5004,7 @@
 	(country "Norway")
 	(latitude 60.35)
 	(longitude 5.4906783)
+	(pop-category 2)
 	(population 239000)
 	(title "Bergen"))
 
@@ -4518,6 +5014,7 @@
 	(country "GuineaBissau")
 	(latitude 11.91099)
 	(longitude -15.65)
+	(pop-category 2)
 	(population 109486)
 	(title "Bissau"))
 
@@ -4527,6 +5024,7 @@
 	(country "South Africa")
 	(latitude -33.80401)
 	(longitude 18.690432)
+	(pop-category 3)
 	(population 1790000)
 	(title "Cape Town"))
 
@@ -4536,6 +5034,7 @@
 	(country "UK")
 	(latitude 51.5)
 	(longitude -3.15)
+	(pop-category 2)
 	(population 625000)
 	(title "Cardiff"))
 
@@ -4545,6 +5044,7 @@
 	(country "Morocco")
 	(latitude 33.54441)
 	(longitude -7.534092)
+	(pop-category 3)
 	(population 2475000)
 	(title "Casablanca"))
 
@@ -4554,6 +5054,7 @@
 	(country "Fr Guiana")
 	(latitude 4.92)
 	(longitude -52.4)
+	(pop-category 1)
 	(population 38091)
 	(title "Cayenne"))
 
@@ -4563,6 +5064,7 @@
 	(country "Bangladesh")
 	(latitude 22.48)
 	(longitude 91.832794)
+	(pop-category 3)
 	(population 1391877)
 	(title "Chittagong"))
 
@@ -4572,6 +5074,7 @@
 	(country "Sri Lanka")
 	(latitude 7.02)
 	(longitude 80.08833)
+	(pop-category 3)
 	(population 2050000)
 	(title "Colombo"))
 
@@ -4581,6 +5084,7 @@
 	(country "Guinea")
 	(latitude 9.52)
 	(longitude -12.8)
+	(pop-category 2)
 	(population 800000)
 	(title "Conakry"))
 
@@ -4590,6 +5094,7 @@
 	(country "Senegal")
 	(latitude 14.63)
 	(longitude -16.848095)
+	(pop-category 3)
 	(population 1428084)
 	(title "Dakar"))
 
@@ -4599,6 +5104,7 @@
 	(country "US")
 	(latitude 39.75)
 	(longitude -105.07)
+	(pop-category 3)
 	(population 1405300)
 	(title "Denver"))
 
@@ -4608,6 +5114,7 @@
 	(country "Tajikistan")
 	(latitude 38.63)
 	(longitude 68.9)
+	(pop-category 2)
 	(population 595000)
 	(title "Dushanfe"))
 
@@ -4617,6 +5124,7 @@
 	(country "Canada")
 	(latitude 53.57)
 	(longitude -113.27)
+	(pop-category 2)
 	(population 785465)
 	(title "Edmonton"))
 
@@ -4626,6 +5134,7 @@
 	(country "Egypt")
 	(latitude 30.47)
 	(longitude 30.85)
+	(pop-category 3)
 	(population 1870508)
 	(title "El-Giza"))
 
@@ -4635,6 +5144,7 @@
 	(country "Sierra Leone")
 	(latitude 8.382771)
 	(longitude -12.910276)
+	(pop-category 2)
 	(population 525000)
 	(title "Freetown"))
 
@@ -4644,6 +5154,7 @@
 	(country "Kyrgyzstan")
 	(latitude 42.88)
 	(longitude 74.77)
+	(pop-category 2)
 	(population 616000)
 	(title "Frunze"))
 
@@ -4653,6 +5164,7 @@
 	(country "Italy")
 	(latitude 44.45509)
 	(longitude 8.922296)
+	(pop-category 2)
 	(population 805000)
 	(title "Genova"))
 
@@ -4662,6 +5174,7 @@
 	(country "Guyana")
 	(latitude 6.77)
 	(longitude -58.17)
+	(pop-category 2)
 	(population 188000)
 	(title "Georgetown"))
 
@@ -4671,6 +5184,7 @@
 	(country "Sweden")
 	(latitude 57.75)
 	(longitude 12.0)
+	(pop-category 2)
 	(population 710894)
 	(title "Goteborg"))
 
@@ -4680,6 +5194,7 @@
 	(country "Zimbabwe")
 	(latitude -17.83)
 	(longitude 31.02)
+	(pop-category 2)
 	(population 890000)
 	(title "Harare"))
 
@@ -4689,6 +5204,7 @@
 	(country "Cuba")
 	(latitude 23.048952)
 	(longitude -82.41645)
+	(pop-category 3)
 	(population 2125000)
 	(title "Havana"))
 
@@ -4698,6 +5214,7 @@
 	(country "Saudi Arabia")
 	(latitude 21.62)
 	(longitude 39.373306)
+	(pop-category 3)
 	(population 1300000)
 	(title "Jiddah"))
 
@@ -4707,6 +5224,7 @@
 	(country "Uganda")
 	(latitude 0.32)
 	(longitude 32.58)
+	(pop-category 2)
 	(population 460000)
 	(title "Kampala"))
 
@@ -4716,6 +5234,7 @@
 	(country "Nigeria")
 	(latitude 11.92)
 	(longitude 8.52)
+	(pop-category 2)
 	(population 538300)
 	(title "Kano"))
 
@@ -4725,6 +5244,7 @@
 	(country "Taiwan")
 	(latitude 22.673416)
 	(longitude 120.341484)
+	(pop-category 3)
 	(population 1845000)
 	(title "Kao-Hsiung"))
 
@@ -4734,6 +5254,7 @@
 	(country "Pakistan")
 	(latitude 24.85)
 	(longitude 67.03)
+	(pop-category 4)
 	(population 5300000)
 	(title "Karachi"))
 
@@ -4743,6 +5264,7 @@
 	(country "Russia")
 	(latitude 48.53)
 	(longitude 135.07)
+	(pop-category 2)
 	(population 601000)
 	(title "Khabarovsk"))
 
@@ -4752,6 +5274,7 @@
 	(country "Sudan")
 	(latitude 15.55)
 	(longitude 32.53)
+	(pop-category 2)
 	(population 924000)
 	(title "Khartoum"))
 
@@ -4761,6 +5284,7 @@
 	(country "Moldova")
 	(latitude 47.0)
 	(longitude 28.83)
+	(pop-category 2)
 	(population 665000)
 	(title "Kishinev"))
 
@@ -4770,6 +5294,7 @@
 	(country "Denmark")
 	(latitude 55.72)
 	(longitude 12.55)
+	(pop-category 3)
 	(population 1685000)
 	(title "Kobenhavn"))
 
@@ -4779,6 +5304,7 @@
 	(country "Nigeria")
 	(latitude 6.45)
 	(longitude 3.3)
+	(pop-category 3)
 	(population 3800000)
 	(title "Lagos"))
 
@@ -4788,6 +5314,7 @@
 	(country "France")
 	(latitude 49.32402)
 	(longitude 0.22)
+	(pop-category 2)
 	(population 254595)
 	(title "Le Havre"))
 
@@ -4797,6 +5324,7 @@
 	(country "Gabon")
 	(latitude -0.50414455)
 	(longitude 9.490457)
+	(pop-category 2)
 	(population 235700)
 	(title "Libreville"))
 
@@ -4806,6 +5334,7 @@
 	(country "Malawi")
 	(latitude -13.92)
 	(longitude 33.82)
+	(pop-category 2)
 	(population 233973)
 	(title "Lilongwe"))
 
@@ -4815,6 +5344,7 @@
 	(country "Peru")
 	(latitude -12.067996)
 	(longitude -76.823555)
+	(pop-category 3)
 	(population 4344000)
 	(title "Lima"))
 
@@ -4824,6 +5354,7 @@
 	(country "Portugal")
 	(latitude 38.73)
 	(longitude -9.13)
+	(pop-category 3)
 	(population 2250000)
 	(title "Lisboa"))
 
@@ -4833,6 +5364,7 @@
 	(country "UK")
 	(latitude 53.422688)
 	(longitude -2.7668364)
+	(pop-category 3)
 	(population 1525000)
 	(title "Liverpool"))
 
@@ -4842,6 +5374,7 @@
 	(country "Togo")
 	(latitude 6.28)
 	(longitude 1.35)
+	(pop-category 2)
 	(population 400000)
 	(title "Lome"))
 
@@ -4851,6 +5384,7 @@
 	(country "US")
 	(latitude 34.0)
 	(longitude -118.25)
+	(pop-category 4)
 	(population 9763600)
 	(title "Los Angeles"))
 
@@ -4860,6 +5394,7 @@
 	(country "Angola")
 	(latitude -9.0)
 	(longitude 13.461779)
+	(pop-category 3)
 	(population 1459900)
 	(title "Luanda"))
 
@@ -4869,6 +5404,7 @@
 	(country "Zaire")
 	(latitude -11.68)
 	(longitude 27.55)
+	(pop-category 2)
 	(population 543268)
 	(title "Lumumbashi"))
 
@@ -4878,6 +5414,7 @@
 	(country "Zambia")
 	(latitude -15.43)
 	(longitude 28.17)
+	(pop-category 2)
 	(population 535830)
 	(title "Lusaka"))
 
@@ -4887,6 +5424,7 @@
 	(country "Eq Guinea")
 	(latitude 3.6446848)
 	(longitude 8.82)
+	(pop-category 1)
 	(population 30710)
 	(title "Malabo"))
 
@@ -4896,6 +5434,7 @@
 	(country "Philippines")
 	(latitude 14.55)
 	(longitude 121.17341)
+	(pop-category 4)
 	(population 5474000)
 	(title "Manila"))
 
@@ -4905,6 +5444,7 @@
 	(country "France")
 	(latitude 43.3)
 	(longitude 5.38)
+	(pop-category 3)
 	(population 1225000)
 	(title "Marseille"))
 
@@ -4914,6 +5454,7 @@
 	(country "Oman")
 	(latitude 23.51664)
 	(longitude 58.62748)
+	(pop-category 1)
 	(population 50000)
 	(title "Masqat"))
 
@@ -4923,6 +5464,7 @@
 	(country "Mexico")
 	(latitude 23.361511)
 	(longitude -106.27)
+	(pop-category 2)
 	(population 199830)
 	(title "Mazatlan"))
 
@@ -4932,6 +5474,7 @@
 	(country "Kenya")
 	(latitude -4.02)
 	(longitude 39.67)
+	(pop-category 2)
 	(population 442369)
 	(title "Mombasa"))
 
@@ -4941,6 +5484,7 @@
 	(country "Liberia")
 	(latitude 6.5174394)
 	(longitude -10.77)
+	(pop-category 2)
 	(population 465000)
 	(title "Monrovia"))
 
@@ -4950,6 +5494,7 @@
 	(country "Uruguay")
 	(latitude -34.92)
 	(longitude -56.17)
+	(pop-category 3)
 	(population 1550000)
 	(title "Montevideo"))
 
@@ -4959,6 +5504,7 @@
 	(country "Russia")
 	(latitude 55.75)
 	(longitude 37.7)
+	(pop-category 5)
 	(population 13100000)
 	(title "Moskva"))
 
@@ -4968,6 +5514,7 @@
 	(country "Kenya")
 	(latitude -1.17)
 	(longitude 36.83)
+	(pop-category 3)
 	(population 1286200)
 	(title "Nairobi"))
 
@@ -4977,6 +5524,7 @@
 	(country "Italy")
 	(latitude 40.83)
 	(longitude 14.27)
+	(pop-category 3)
 	(population 2875000)
 	(title "Napoli"))
 
@@ -4986,6 +5534,7 @@
 	(country "US")
 	(latitude 40.75)
 	(longitude -74.1)
+	(pop-category 6)
 	(population 16472000)
 	(title "New York"))
 
@@ -4995,6 +5544,7 @@
 	(country "US")
 	(latitude 40.72)
 	(longitude -74.2)
+	(pop-category 2)
 	(population 329248)
 	(title "Newark"))
 
@@ -5004,6 +5554,7 @@
 	(country "Mauritania")
 	(latitude 18.03)
 	(longitude -15.782861)
+	(pop-category 2)
 	(population 285000)
 	(title "Nouakchott"))
 
@@ -5013,6 +5564,7 @@
 	(country "Denmark")
 	(latitude 55.574535)
 	(longitude 9.902999)
+	(pop-category 2)
 	(population 138400)
 	(title "Odense"))
 
@@ -5022,6 +5574,7 @@
 	(country "Sudan")
 	(latitude 15.62)
 	(longitude 32.48)
+	(pop-category 2)
 	(population 526287)
 	(title "Omdurman"))
 
@@ -5031,6 +5584,7 @@
 	(country "Algeria")
 	(latitude 35.75)
 	(longitude -0.52)
+	(pop-category 2)
 	(population 628558)
 	(title "Oran"))
 
@@ -5040,6 +5594,7 @@
 	(country "Norway")
 	(latitude 59.93)
 	(longitude 10.72)
+	(pop-category 2)
 	(population 720000)
 	(title "Oslo"))
 
@@ -5049,6 +5604,7 @@
 	(country "Burkina Faso")
 	(latitude 12.48)
 	(longitude -1.67)
+	(pop-category 2)
 	(population 441514)
 	(title "Ouagadouou"))
 
@@ -5058,6 +5614,7 @@
 	(country "Italy")
 	(latitude 38.13)
 	(longitude 13.4)
+	(pop-category 2)
 	(population 723732)
 	(title "Palermo"))
 
@@ -5067,6 +5624,7 @@
 	(country "Panama")
 	(latitude 8.95)
 	(longitude -79.4)
+	(pop-category 2)
 	(population 625000)
 	(title "Panama"))
 
@@ -5076,6 +5634,7 @@
 	(country "Suriname")
 	(latitude 5.93)
 	(longitude -55.23)
+	(pop-category 2)
 	(population 241000)
 	(title "Paramaribo"))
 
@@ -5085,6 +5644,7 @@
 	(country "Australia")
 	(latitude -31.975864)
 	(longitude 115.92337)
+	(pop-category 2)
 	(population 994472)
 	(title "Perth"))
 
@@ -5094,6 +5654,7 @@
 	(country "Papua N Guin")
 	(latitude -9.55)
 	(longitude 147.41452)
+	(pop-category 2)
 	(population 152100)
 	(title "Port Moresby"))
 
@@ -5103,6 +5664,7 @@
 	(country "Portugal")
 	(latitude 41.15)
 	(longitude -8.487948)
+	(pop-category 3)
 	(population 1225000)
 	(title "Porto"))
 
@@ -5112,6 +5674,7 @@
 	(country "Afghanistan")
 	(latitude 31.6)
 	(longitude 65.5)
+	(pop-category 2)
 	(population 203000)
 	(title "Qandahar"))
 
@@ -5121,6 +5684,7 @@
 	(country "Philippines")
 	(latitude 14.65)
 	(longitude 121.03)
+	(pop-category 3)
 	(population 1326035)
 	(title "Quezon City"))
 
@@ -5130,6 +5694,7 @@
 	(country "Morocco")
 	(latitude 33.920197)
 	(longitude -6.7480407)
+	(pop-category 2)
 	(population 980000)
 	(title "Rabat"))
 
@@ -5139,6 +5704,7 @@
 	(country "Iceland")
 	(latitude 64.31326)
 	(longitude -21.33682)
+	(pop-category 2)
 	(population 137941)
 	(title "Reykjavik"))
 
@@ -5148,6 +5714,7 @@
 	(country "Latvia")
 	(latitude 56.88)
 	(longitude 24.05)
+	(pop-category 3)
 	(population 1005000)
 	(title "Riga"))
 
@@ -5157,6 +5724,7 @@
 	(country "Italy")
 	(latitude 41.88)
 	(longitude 12.52)
+	(pop-category 3)
 	(population 3175000)
 	(title "Roma"))
 
@@ -5166,6 +5734,7 @@
 	(country "Brazil")
 	(latitude -12.600257)
 	(longitude -38.48)
+	(pop-category 3)
 	(population 2050000)
 	(title "Salvador"))
 
@@ -5175,6 +5744,7 @@
 	(country "Iran")
 	(latitude 29.63)
 	(longitude 52.57)
+	(pop-category 2)
 	(population 848289)
 	(title "Shiraz"))
 
@@ -5184,6 +5754,7 @@
 	(country "Sweden")
 	(latitude 59.244633)
 	(longitude 18.084269)
+	(pop-category 3)
 	(population 1449972)
 	(title "Stockholm"))
 
@@ -5193,6 +5764,7 @@
 	(country "Indonesia")
 	(latitude -7.4)
 	(longitude 112.68437)
+	(pop-category 3)
 	(population 2027913)
 	(title "Surabaja"))
 
@@ -5202,6 +5774,7 @@
 	(country "Taiwan")
 	(latitude 23.17)
 	(longitude 120.23)
+	(pop-category 2)
 	(population 656927)
 	(title "T`ai-nan"))
 
@@ -5211,6 +5784,7 @@
 	(country "US")
 	(latitude 27.997358)
 	(longitude -82.593025)
+	(pop-category 2)
 	(population 594500)
 	(title "Tampa"))
 
@@ -5220,6 +5794,7 @@
 	(country "Israel")
 	(latitude 31.917198)
 	(longitude 34.856834)
+	(pop-category 3)
 	(population 1670000)
 	(title "Tel Aviv-Yafo"))
 
@@ -5229,6 +5804,7 @@
 	(country "Greece")
 	(latitude 40.63)
 	(longitude 22.8)
+	(pop-category 2)
 	(population 706180)
 	(title "Thessaloniki"))
 
@@ -5238,6 +5814,7 @@
 	(country "Uzbekistan")
 	(latitude 41.247932)
 	(longitude 69.34987)
+	(pop-category 3)
 	(population 2325000)
 	(title "Toshkent"))
 
@@ -5247,6 +5824,7 @@
 	(country "Lebanon")
 	(latitude 34.343758)
 	(longitude 36.00707)
+	(pop-category 2)
 	(population 198000)
 	(title "Tripoli"))
 
@@ -5256,6 +5834,7 @@
 	(country "Chile")
 	(latitude -32.9)
 	(longitude -71.29934)
+	(pop-category 2)
 	(population 675000)
 	(title "Valparaiso"))
 
@@ -5265,6 +5844,7 @@
 	(country "Canada")
 	(latitude 49.2743)
 	(longitude -122.963066)
+	(pop-category 3)
 	(population 1380729)
 	(title "Vancouver"))
 
@@ -5274,6 +5854,7 @@
 	(country "Russia")
 	(latitude 43.13)
 	(longitude 131.96043)
+	(pop-category 2)
 	(population 648000)
 	(title "Vladivostok"))
 
@@ -5283,6 +5864,7 @@
 	(country "South Africa")
 	(latitude -23.101868)
 	(longitude 14.617105)
+	(pop-category 1)
 	(population 16607)
 	(title "Walvis Bay"))
 
@@ -5292,6 +5874,7 @@
 	(country "Namibia")
 	(latitude -22.57)
 	(longitude 17.1)
+	(pop-category 2)
 	(population 114500)
 	(title "Windhoek"))
 
@@ -5301,6 +5884,7 @@
 	(country "New Zealand")
 	(latitude -41.210396)
 	(longitude 175.14494)
+	(pop-category 2)
 	(population 350000)
 	(title "Wellington"))
 
@@ -5310,6 +5894,7 @@
 	(country "US")
 	(latitude 47.588554)
 	(longitude -122.31665)
+	(pop-category 3)
 	(population 2077100)
 	(title "Seattle"))
 
@@ -5319,6 +5904,7 @@
 	(country "US")
 	(latitude 32.76146)
 	(longitude -117.125496)
+	(pop-category 3)
 	(population 2098500)
 	(title "San Diego"))
 
@@ -5328,6 +5914,7 @@
 	(country "Chile")
 	(latitude -20.26)
 	(longitude -69.91326)
+	(pop-category 2)
 	(population 110153)
 	(title "Iquique"))
 
@@ -5337,6 +5924,7 @@
 	(country "Untd Arab Em")
 	(latitude 24.236008)
 	(longitude 54.61927)
+	(pop-category 2)
 	(population 242975)
 	(title "Abu Zaby"))
 
@@ -5346,6 +5934,7 @@
 	(country "Venezuela")
 	(latitude 7.576601)
 	(longitude -72.005455)
+	(pop-category 2)
 	(population 198793)
 	(title "San Cristobal"))
 
@@ -5355,6 +5944,7 @@
 	(country "Russia")
 	(latitude 46.25)
 	(longitude 48.0)
+	(pop-category 2)
 	(population 509000)
 	(title "Astrakhan"))
 
@@ -5364,6 +5954,7 @@
 	(country "Libya")
 	(latitude 30.138603)
 	(longitude 9.818351)
+	(pop-category 0)
 	(population -99)
 	(title "Ghadamis"))
 
@@ -5373,6 +5964,7 @@
 	(country "Uruguay")
 	(latitude -31.305153)
 	(longitude -57.708775)
+	(pop-category 1)
 	(population 77400)
 	(title "Salto"))
 
@@ -5382,6 +5974,7 @@
 	(country "Canada")
 	(latitude 62.520615)
 	(longitude -114.06136)
+	(pop-category 1)
 	(population 11753)
 	(title "Yellowknife"))
 
@@ -5391,6 +5984,7 @@
 	(country "US")
 	(latitude 19.714815)
 	(longitude -155.06729)
+	(pop-category 1)
 	(population 43200)
 	(title "Hilo"))
 
@@ -5400,6 +5994,7 @@
 	(country "US")
 	(latitude 21.321177)
 	(longitude -157.80618)
+	(pop-category 2)
 	(population 762600)
 	(title "Honolulu"))
 
@@ -5409,6 +6004,7 @@
 	(country "US")
 	(latitude 61.18865)
 	(longitude -149.17297)
+	(pop-category 2)
 	(population 184300)
 	(title "Anchorage"))
 
@@ -5418,6 +6014,7 @@
 	(country "US")
 	(latitude 64.838745)
 	(longitude -147.65118)
+	(pop-category 1)
 	(population 39900)
 	(title "Fairbanks"))
 
@@ -5427,6 +6024,7 @@
 	(country "US")
 	(latitude 58.391006)
 	(longitude -134.13248)
+	(pop-category 1)
 	(population 19528)
 	(title "Juneau"))
 
@@ -5436,6 +6034,7 @@
 	(country "US")
 	(latitude 37.308105)
 	(longitude -121.84746)
+	(pop-category 2)
 	(population 629400)
 	(title "San Jose"))
 
@@ -5445,6 +6044,7 @@
 	(country "Mexico")
 	(latitude 28.55814)
 	(longitude -105.96664)
+	(pop-category 2)
 	(population 385603)
 	(title "Chihuaha"))
 
@@ -5454,6 +6054,7 @@
 	(country "Mexico")
 	(latitude 19.009676)
 	(longitude -96.08406)
+	(pop-category 2)
 	(population 385000)
 	(title "Veracruz"))
 
@@ -5463,6 +6064,7 @@
 	(country "Mexico")
 	(latitude 16.920906)
 	(longitude -96.94204)
+	(pop-category 2)
 	(population 154223)
 	(title "Oaxaca"))
 
@@ -5472,6 +6074,7 @@
 	(country "Norway")
 	(latitude 78.2)
 	(longitude 15.66)
+	(pop-category 0)
 	(population -99)
 	(title "Longyearbyen"))
 
@@ -5481,6 +6084,7 @@
 	(country "UK")
 	(latitude 22.428406)
 	(longitude 114.145706)
+	(pop-category 4)
 	(population 5395997)
 	(title "Hong Kong"))
 
@@ -5490,6 +6094,7 @@
 	(country "UK")
 	(latitude 22.379896)
 	(longitude 114.23012)
+	(pop-category 2)
 	(population 774781)
 	(title "Kowloon"))
 
@@ -5499,6 +6104,7 @@
 	(country "Singapore")
 	(latitude 1.2297935)
 	(longitude 104.17712)
+	(pop-category 3)
 	(population 3025000)
 	(title "Singapore"))
 
@@ -5555,9 +6161,11 @@
 ([Heatmap_Class40000] of  CloProgram
 
 	(cloFunctions
+		[Heatmap_Class60010]
 		[Heatmap_Class50002]
 		[Heatmap_Class50003]
-		[Heatmap_Class60000])
+		[Heatmap_Class60000]
+		[Heatmap_Class60002])
 	(cloNamespace [Heatmap_Class40001])
 	(cloVars
 		[Heatmap_Class40007]
@@ -5567,7 +6175,7 @@
 
 ([Heatmap_Class40001] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all])")
+	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all]\n  [czml.generator :as cz])")
 	(title "cesium.heat.server"))
 
 ([Heatmap_Class40002] of  CloVar
@@ -5592,13 +6200,21 @@
 
 ([Heatmap_Class40007] of  CloVar
 
-	(source "{:west 0\n  :east 100\n  :south 0\n  :north 70}")
+	(source "{:west 27.6\n  :east 37.8\n  :south 53.9\n  :north 60.0}")
 	(title "BOUNDS"))
 
 ([Heatmap_Class40008] of  CloVar
 
-	(source "{:radius 20\n  :maxOpacity 0.8\n  :scaleRadius true\n  :blur 1.0\n  :useLocalExtrema false}")
+	(source "{:radius 20\n  :maxOpacity 0.8\n  :scaleRadius true\n  :blur 0.1\n  :useLocalExtrema false}")
 	(title "OPTIONS"))
+
+([Heatmap_Class50000] of  CloFuncall
+
+	(source "(cesium.heat.server/send-heatmap-init BOUNDS OPTIONS)"))
+
+([Heatmap_Class50001] of  CloFuncall
+
+	(source "(in-ns 'cesium.heat.server)"))
 
 ([Heatmap_Class50002] of  CloFunction
 
@@ -5615,26 +6231,80 @@
 	(source "(let [data (map #(vector (sv % x-slot) (sv % y-slot) (sv % value-slot)) inss)\n       vals (map #(nth % 2) data)\n       valmin (apply min vals)\n       valmax (apply max vals)]\n  [valmin valmax (vec data)])")
 	(title "heatmap-data [x-slot y-slot value-slot inss]"))
 
+([Heatmap_Class60002] of  CloFunction
+
+	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") (sv i \"longitude\")))]\n  (send-czml (cz/add-points pts 100 \"RELATIVE_TO_GROUND\" [255 255 0 255] 4)))")
+	(title "send-city-points [inss]"))
+
+([Heatmap_Class60003] of  CloFuncall
+
+	(source "(send-city-points (cls-instances \"City\"))"))
+
+([Heatmap_Class60010] of  CloFunction
+
+	(source "(if (number? pois)\n  (int (condp > pois\n          10000 0\n          100000 1\n          1000000 2\n          5000000 3\n          10000000 4\n          15000000 5\n          20000000 6\n          7))\n  (for [poi pois] (ssv poi \"pop-category\" (pop-category (sv poi \"population\")))))")
+	(title "pop-category [pois]"))
+
 ([Heatmap_Class70000] of  CloFuncall
 
-	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (take 10 (cls-instances \"City\"))))"))
+	(source "*ns*"))
 
 ([Heatmap_Class70001] of  CloFuncall
 
-	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (drop 400 (cls-instances \"City\"))))"))
+	(source "clojure.core/*ns*"))
 
-([Heatmap_Class80003] of  CloFuncall
+([Heatmap_Class70002] of  CloFuncall
 
-	(source "(send-heatmap-data 0 (second data) (nth data 2))"))
+	(source "(in-ns 'protege.core)"))
 
-([Heatmap_Class80004] of  CloFuncall
+([Heatmap_Class70003] of  CloFuncall
 
-	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (drop 300 (cls-instances \"City\"))))"))
+	(source "data"))
+
+([Heatmap_Class70004] of  CloFuncall
+
+	(source "(heatmap-init BOUNDS OPTIONS)"))
 
 ([Heatmap_Class80005] of  CloFuncall
 
-	(source "(def data (heatmap-data \"longitude\" \"latitude\" \"population\" (cls-instances \"City\")))"))
+	(source "(send-heatmap-init BOUNDS OPTIONS)"))
+
+([Heatmap_Class80006] of  CloFuncall
+
+	(source "(send-heatmap-data 0 (second data) (nth 2  DATA))"))
 
 ([Heatmap_Class80007] of  CloFuncall
 
-	(source "(count (nth data 2))"))
+	(source "(send-heatmap-data 0 (second data) (nth 2  data))"))
+
+([Heatmap_Class80008] of  CloFuncall
+
+	(source "(nth 2 data)"))
+
+([Heatmap_Class80009] of  CloFuncall
+
+	(source "(first data)"))
+
+([Heatmap_Class80010] of  CloFuncall
+
+	(source "(second data)"))
+
+([Heatmap_Class80011] of  CloFuncall
+
+	(source "(nth 1 data)"))
+
+([Heatmap_Class80012] of  CloFuncall
+
+	(source "(rest data)"))
+
+([Heatmap_Class80013] of  CloFuncall
+
+	(source "(rest (rest data))"))
+
+([Heatmap_Class80014] of  CloFuncall
+
+	(source "(first (rest (rest data)))"))
+
+([Heatmap_Class80015] of  CloFuncall
+
+	(source "(send-heatmap-data 0 (second data) (first (rest (rest data))))"))

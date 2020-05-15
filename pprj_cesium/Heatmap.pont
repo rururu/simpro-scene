@@ -1,4 +1,4 @@
-; Thu May 14 22:14:33 MSK 2020
+; Fri May 15 21:44:00 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,6 +8,10 @@
 	(is-a USER)
 	(role abstract)
 	(single-slot population
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pop-category
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -51,6 +55,10 @@
 		(create-accessor read-write))
 	(single-slot longitude
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pop-category
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude

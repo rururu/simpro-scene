@@ -1,4 +1,4 @@
-; Thu May 14 18:47:25 MSK 2020
+; Fri May 15 17:37:59 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -323,18 +323,18 @@
 
 ([CesiumWorshop_Class10006] of  CloVar
 
-	(source "4442")
-	(title "PORT"))
+	(source "(defonce PORT 4442)")
+	(title "defoncePORT"))
 
 ([CesiumWorshop_Class10007] of  CloVar
 
-	(source "(str (System/getProperty \"user.dir\") \"/resources/public/\")")
-	(title "ROOT"))
+	(source "(defonce ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\"))")
+	(title "defonceROOT"))
 
 ([CesiumWorshop_Class10008] of  CloVar
 
-	(source "\"test.html\"")
-	(title "PAGE"))
+	(source "(defonce PAGE \"test.html\")")
+	(title "defoncePAGE"))
 
 ([CesiumWorshop_Class10009] of  CloVar
 
