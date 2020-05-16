@@ -1,4 +1,4 @@
-; Fri May 15 21:44:00 MSK 2020
+; Sat May 16 21:41:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [Heatmap_ProjectKB_Class30610]))
+	(properties [Population_ProjectKB_Class617]))
 
 ([CLSES_TAB] of  Widget
 
@@ -66,11 +66,6 @@
 
 ([Heatmap_ProjectKB_Class20610] of  Property_List
 )
-
-([Heatmap_ProjectKB_Class30610] of  String
-
-	(name "City")
-	(string_value "title"))
 
 ([Heatmap_ProjectKB_Class37] of  String
 
@@ -238,28 +233,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_627228_Class605] of  Map
+([KB_916401_Class605] of  Map
 
 	(entries
-		[KB_627228_Class606]
-		[KB_627228_Class607]
-		[KB_627228_Class608]))
+		[KB_916401_Class606]
+		[KB_916401_Class607]
+		[KB_916401_Class608]))
 
-([KB_627228_Class606] of  Map_Entry
+([KB_916401_Class606] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_627228_Class607] of  Map_Entry
+([KB_916401_Class607] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_627228_Class608] of  Map_Entry
+([KB_916401_Class608] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -359,12 +354,12 @@
 ([KB_978313_Class35] of  String
 
 	(name "classes_file_name")
-	(string_value "Heatmap.pont"))
+	(string_value "Population.pont"))
 
 ([KB_978313_Class36] of  String
 
 	(name "instances_file_name")
-	(string_value "Heatmap.pins"))
+	(string_value "Population.pins"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -444,6 +439,11 @@
 	(width 275)
 	(x 0)
 	(y 60))
+
+([Population_ProjectKB_Class617] of  String
+
+	(name "City")
+	(string_value "title"))
 
 ([PROJECT] of  Project
 

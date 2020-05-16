@@ -1,4 +1,4 @@
-; Fri May 15 21:44:00 MSK 2020
+; Sat May 16 21:41:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6108,203 +6108,45 @@
 	(population 3025000)
 	(title "Singapore"))
 
-([Heatmap_Class20606] of  ClsMain
-
-	(asset-path "js/heat")
-	(butt-build "Build/cljs.compile/build")
-	(cloFunctions
-		[Heatmap_Class40003]
-		[Heatmap_Class40004]
-		[Heatmap_Class20608])
-	(cloNamespace [Heatmap_Class20607])
-	(cloVars
-		[Heatmap_Class30000]
-		[Heatmap_Class40002])
-	(compiler-options "{:verbose false}")
-	(css [CesiumBase_Class10012])
-	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-heat))")
-	(html [Heatmap_Class20609])
-	(output-dir "resources/public/js/heat")
-	(output-to "resources/public/js/heat.js")
-	(required [CesiumBase_Class0])
-	(store-in "src/cljs/")
-	(title "Heatmap Client"))
-
-([Heatmap_Class20607] of  CloNamespace
-
-	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA]])")
-	(title "cesium.heat.client"))
-
-([Heatmap_Class20608] of  CloFunction
-
-	(source "(add-terrain nil VIEWER)\n;;(camera-home CAMERA MY-HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
-	(title "init-heat []"))
-
-([Heatmap_Class20609] of  HTML
-
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Heatmap</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <!-- The Heatmap plugin. -->\n        <script src=\"js/CesiumHeatmap.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/heat.js\"></script>\n    </body>\n</html>")
-	(store-in "resources/public")
-	(title "heat"))
-
-([Heatmap_Class20610] of  CesiumServer
-
-	(butt-start-cs-server "Start/cesium.server/start-server")
-	(butt-stop-cs-server "Stop/cesium.server/stop-server")
-	(page "heat.html")
-	(port 4448))
-
-([Heatmap_Class30000] of  CloVar
-
-	(source "{:latitude 60.0\n  :longitude 30.15\n  :height 2000\n  :heading 130\n  :pitch -15\n  :roll 0}")
-	(title "MY-HOME-VIEW"))
-
 ([Heatmap_Class40000] of  CloProgram
 
 	(cloFunctions
 		[Heatmap_Class60010]
-		[Heatmap_Class50002]
-		[Heatmap_Class50003]
-		[Heatmap_Class60000]
-		[Heatmap_Class60002])
+		[Heatmap_Class60002]
+		[Heatmap_Class90010])
 	(cloNamespace [Heatmap_Class40001])
-	(cloVars
-		[Heatmap_Class40007]
-		[Heatmap_Class40008]
-		[Heatmap_Class40006])
-	(title "Heatmap Server"))
+	(cloVars [Heatmap_Class90009])
+	(title "Population Server"))
 
 ([Heatmap_Class40001] of  CloNamespace
 
 	(source "(:use protege.core)\n(:require\n  [cesium.server :refer :all]\n  [czml.generator :as cz])")
-	(title "cesium.heat.server"))
-
-([Heatmap_Class40002] of  CloVar
-
-	(source "nil")
-	(title "HEATMAP"))
-
-([Heatmap_Class40003] of  CloFunction
-
-	(source "(def HEATMAP (js/CesiumHeatmap.create VIEWER bounds options))")
-	(title "heatmap-init [bounds options]"))
-
-([Heatmap_Class40004] of  CloFunction
-
-	(source "(let [data (for [[x y v] data] {\"x\" x \"y\" y \"value\" v})\n        data (clj->js data)]\n  (.setWGS84Data HEATMAP valmin valmax data))")
-	(title "heatmap-data [valmin valmax data]"))
-
-([Heatmap_Class40006] of  CloVar
-
-	(source "[[30.278 59.971 5]\n [30.395 59.956 7]\n [30.252 59.917 8]\n [30.343 59.919 6]]")
-	(title "DATA"))
-
-([Heatmap_Class40007] of  CloVar
-
-	(source "{:west 27.6\n  :east 37.8\n  :south 53.9\n  :north 60.0}")
-	(title "BOUNDS"))
-
-([Heatmap_Class40008] of  CloVar
-
-	(source "{:radius 20\n  :maxOpacity 0.8\n  :scaleRadius true\n  :blur 0.1\n  :useLocalExtrema false}")
-	(title "OPTIONS"))
-
-([Heatmap_Class50000] of  CloFuncall
-
-	(source "(cesium.heat.server/send-heatmap-init BOUNDS OPTIONS)"))
-
-([Heatmap_Class50001] of  CloFuncall
-
-	(source "(in-ns 'cesium.heat.server)"))
-
-([Heatmap_Class50002] of  CloFunction
-
-	(source "(send-clj-funcall `(cesium.heat.client/heatmap-init ~bounds ~options))")
-	(title "send-heatmap-init [bounds options]"))
-
-([Heatmap_Class50003] of  CloFunction
-
-	(source "(send-clj-funcall `(cesium.heat.client/heatmap-data ~valmin ~valmax ~data))")
-	(title "send-heatmap-data [valmin valmax data]"))
-
-([Heatmap_Class60000] of  CloFunction
-
-	(source "(let [data (map #(vector (sv % x-slot) (sv % y-slot) (sv % value-slot)) inss)\n       vals (map #(nth % 2) data)\n       valmin (apply min vals)\n       valmax (apply max vals)]\n  [valmin valmax (vec data)])")
-	(title "heatmap-data [x-slot y-slot value-slot inss]"))
+	(title "cesium.pop.server"))
 
 ([Heatmap_Class60002] of  CloFunction
 
 	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") (sv i \"longitude\")))]\n  (send-czml (cz/add-points pts 100 \"RELATIVE_TO_GROUND\" [255 255 0 255] 4)))")
 	(title "send-city-points [inss]"))
 
-([Heatmap_Class60003] of  CloFuncall
-
-	(source "(send-city-points (cls-instances \"City\"))"))
-
 ([Heatmap_Class60010] of  CloFunction
 
 	(source "(if (number? pois)\n  (int (condp > pois\n          10000 0\n          100000 1\n          1000000 2\n          5000000 3\n          10000000 4\n          15000000 5\n          20000000 6\n          7))\n  (for [poi pois] (ssv poi \"pop-category\" (pop-category (sv poi \"population\")))))")
 	(title "pop-category [pois]"))
 
-([Heatmap_Class70000] of  CloFuncall
+([Heatmap_Class90009] of  CloVar
 
-	(source "*ns*"))
+	(source "{:latitude 57.0\n  :longitude 30.0\n  :height 400000\n  :heading 0\n  :pitch -60\n  :roll 0}")
+	(title "POP-VIEW"))
 
-([Heatmap_Class70001] of  CloFuncall
+([Heatmap_Class90010] of  CloFunction
 
-	(source "clojure.core/*ns*"))
+	(source "(let [{:keys [longitude latitude height heading pitch roll]} view]\n  (send-clj-funcall `(cesium.client/camera-fly ~'cesium.client.CAMERA ~longitude ~latitude ~height ~heading ~pitch ~roll)))")
+	(title "fly-to [view]"))
 
-([Heatmap_Class70002] of  CloFuncall
+([Population_Class0] of  CloFuncall
 
-	(source "(in-ns 'protege.core)"))
+	(source "(in-ns 'cesium.pop.server)"))
 
-([Heatmap_Class70003] of  CloFuncall
+([Population_Class1] of  CloFuncall
 
-	(source "data"))
-
-([Heatmap_Class70004] of  CloFuncall
-
-	(source "(heatmap-init BOUNDS OPTIONS)"))
-
-([Heatmap_Class80005] of  CloFuncall
-
-	(source "(send-heatmap-init BOUNDS OPTIONS)"))
-
-([Heatmap_Class80006] of  CloFuncall
-
-	(source "(send-heatmap-data 0 (second data) (nth 2  DATA))"))
-
-([Heatmap_Class80007] of  CloFuncall
-
-	(source "(send-heatmap-data 0 (second data) (nth 2  data))"))
-
-([Heatmap_Class80008] of  CloFuncall
-
-	(source "(nth 2 data)"))
-
-([Heatmap_Class80009] of  CloFuncall
-
-	(source "(first data)"))
-
-([Heatmap_Class80010] of  CloFuncall
-
-	(source "(second data)"))
-
-([Heatmap_Class80011] of  CloFuncall
-
-	(source "(nth 1 data)"))
-
-([Heatmap_Class80012] of  CloFuncall
-
-	(source "(rest data)"))
-
-([Heatmap_Class80013] of  CloFuncall
-
-	(source "(rest (rest data))"))
-
-([Heatmap_Class80014] of  CloFuncall
-
-	(source "(first (rest (rest data)))"))
-
-([Heatmap_Class80015] of  CloFuncall
-
-	(source "(send-heatmap-data 0 (second data) (first (rest (rest data))))"))
+	(source "(fly-to POP-VIEW)"))
