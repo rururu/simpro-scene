@@ -1,4 +1,4 @@
-; Sat May 16 21:41:25 MSK 2020
+; Sun May 17 17:59:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [Population_ProjectKB_Class617]))
+	(properties [Population_ProjectKB_Class615]))
 
 ([CLSES_TAB] of  Widget
 
@@ -233,28 +233,28 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_916401_Class605] of  Map
+([KB_836562_Class605] of  Map
 
 	(entries
-		[KB_916401_Class606]
-		[KB_916401_Class607]
-		[KB_916401_Class608]))
+		[KB_836562_Class606]
+		[KB_836562_Class607]
+		[KB_836562_Class608]))
 
-([KB_916401_Class606] of  Map_Entry
+([KB_836562_Class606] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_916401_Class607] of  Map_Entry
+([KB_836562_Class607] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_916401_Class608] of  Map_Entry
+([KB_836562_Class608] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -440,7 +440,7 @@
 	(x 0)
 	(y 60))
 
-([Population_ProjectKB_Class617] of  String
+([Population_ProjectKB_Class615] of  String
 
 	(name "City")
 	(string_value "title"))

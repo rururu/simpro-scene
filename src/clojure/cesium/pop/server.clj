@@ -22,9 +22,27 @@
           7))
   (for [poi pois] (ssv poi "pop-category" (pop-category (sv poi "population"))))))
 
+(defn category->color [cat]
+  (condp = cat
+  7 [255 0 0 255]     ;; RED
+  6 [255 0 255 255] ;; FUCSIA	
+  5 [255 165 0 255] ;; ORANGE
+  4 [255 255 0 255] ;; YELLOW
+  3 [0 255 0 255]     ;; LIME
+  2 [0 255 255 255] ;; AQUA
+  1 [0 153 255 255]
+  0 [0 0 255 255]     ;; BLUE
+  [0 0 0 255]))
+
+(defn category->size [cat]
+  (+ 4 (* cat 4)))
+
 (defn send-city-points [inss]
-  (let [pts (for [i inss] (vector (sv i "latitude") (sv i "longitude")))]
-  (send-czml (cz/add-points pts 100 "RELATIVE_TO_GROUND" [255 255 0 255] 4))))
+  (let [pts (for [i inss] (vector (sv i "latitude") 
+                                           (sv i "longitude")
+                                           (category->color (sv i "pop-category"))
+                                           (category->size (sv i "pop-category"))))]
+  (send-czml (cz/add-points pts 4000))))
 
 (defn fly-to [view]
   (let [{:keys [longitude latitude height heading pitch roll]} view]

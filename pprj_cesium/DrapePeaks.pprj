@@ -1,4 +1,4 @@
-; Tue May 05 10:42:47 MSK 2020
+; Sun May 17 18:14:34 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,11 +20,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[DrapePeaks_ProjectKB_Class60493]
-		[DrapePeaks_ProjectKB_Class60494]
-		[DrapePeaks_ProjectKB_Class60495]
-		[DrapePeaks_ProjectKB_Class60496]
-		[DrapePeaks_ProjectKB_Class60497]))
+		[DrapePeaks_ProjectKB_Class30476]
+		[DrapePeaks_ProjectKB_Class30477]
+		[DrapePeaks_ProjectKB_Class40478]
+		[DrapePeaks_ProjectKB_Class40479]
+		[DrapePeaks_ProjectKB_Class50480]))
 
 ([CLSES_TAB] of  Widget
 
@@ -340,6 +340,16 @@
 ([DrapePeaks_ProjectKB_Class20500] of  Property_List
 )
 
+([DrapePeaks_ProjectKB_Class30476] of  String
+
+	(name "Tour")
+	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class30477] of  String
+
+	(name "Place")
+	(string_value "title"))
+
 ([DrapePeaks_ProjectKB_Class30478] of  Boolean
 
 	(boolean_value FALSE)
@@ -353,6 +363,16 @@
 ([DrapePeaks_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
+
+([DrapePeaks_ProjectKB_Class40478] of  String
+
+	(name "Selector")
+	(string_value "{Peak+selector}"))
+
+([DrapePeaks_ProjectKB_Class40479] of  String
+
+	(name "Peak")
+	(string_value "title"))
 
 ([DrapePeaks_ProjectKB_Class40480] of  Widget
 
@@ -443,6 +463,11 @@
 ([DrapePeaks_ProjectKB_Class485] of  Property_List
 )
 
+([DrapePeaks_ProjectKB_Class50480] of  String
+
+	(name "Flag")
+	(string_value "country"))
+
 ([DrapePeaks_ProjectKB_Class50484] of  Property_List
 )
 
@@ -474,31 +499,6 @@
 ([DrapePeaks_ProjectKB_Class50488] of  Property_List
 )
 
-([DrapePeaks_ProjectKB_Class60493] of  String
-
-	(name "Tour")
-	(string_value "title"))
-
-([DrapePeaks_ProjectKB_Class60494] of  String
-
-	(name "Place")
-	(string_value "title"))
-
-([DrapePeaks_ProjectKB_Class60495] of  String
-
-	(name "Selector")
-	(string_value "{Peak+selector}"))
-
-([DrapePeaks_ProjectKB_Class60496] of  String
-
-	(name "Peak")
-	(string_value "title"))
-
-([DrapePeaks_ProjectKB_Class60497] of  String
-
-	(name "Flag")
-	(string_value "country"))
-
 ([FORMS_TAB] of  Widget
 
 	(is_hidden FALSE)
@@ -527,34 +527,6 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_124257_Class472] of  Map
-
-	(entries
-		[KB_124257_Class473]
-		[KB_124257_Class474]
-		[KB_124257_Class475]))
-
-([KB_124257_Class473] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_124257_Class474] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_124257_Class475] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_305706_Class0] of  String
 
@@ -656,6 +628,34 @@
 	(name "instances_file_name")
 	(string_value "DrapePeaks.pins"))
 
+([KB_696377_Class472] of  Map
+
+	(entries
+		[KB_696377_Class473]
+		[KB_696377_Class474]
+		[KB_696377_Class475]))
+
+([KB_696377_Class473] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_696377_Class474] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_696377_Class475] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -746,8 +746,8 @@
 		[DrapePeaks_ProjectKB_Class10485]
 		[DrapePeaks_ProjectKB_Class10476]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[PAL_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET])
+		[STANDARD_FACET_FORM_WIDGET]
+		[PAL_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")

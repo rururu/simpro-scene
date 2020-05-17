@@ -1,4 +1,4 @@
-; Sat May 16 21:41:25 MSK 2020
+; Sun May 17 17:59:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6112,6 +6112,8 @@
 
 	(cloFunctions
 		[Heatmap_Class60010]
+		[Population_Class10000]
+		[Population_Class10001]
 		[Heatmap_Class60002]
 		[Heatmap_Class90010])
 	(cloNamespace [Heatmap_Class40001])
@@ -6125,7 +6127,7 @@
 
 ([Heatmap_Class60002] of  CloFunction
 
-	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") (sv i \"longitude\")))]\n  (send-czml (cz/add-points pts 100 \"RELATIVE_TO_GROUND\" [255 255 0 255] 4)))")
+	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") \n                                           (sv i \"longitude\")\n                                           (category->color (sv i \"pop-category\"))\n                                           (category->size (sv i \"pop-category\"))))]\n  (send-czml (cz/add-points pts 4000)))")
 	(title "send-city-points [inss]"))
 
 ([Heatmap_Class60010] of  CloFunction
@@ -6150,3 +6152,21 @@
 ([Population_Class1] of  CloFuncall
 
 	(source "(fly-to POP-VIEW)"))
+
+([Population_Class10000] of  CloFunction
+
+	(source "(condp = cat\n  7 [255 0 0 255]     ;; RED\n  6 [255 0 255 255] ;; FUCSIA	\n  5 [255 165 0 255] ;; ORANGE\n  4 [255 255 0 255] ;; YELLOW\n  3 [0 255 0 255]     ;; LIME\n  2 [0 255 255 255] ;; AQUA\n  1 [0 153 255 255]\n  0 [0 0 255 255]     ;; BLUE\n  [0 0 0 255])")
+	(title "category->color [cat]"))
+
+([Population_Class10001] of  CloFunction
+
+	(source "(+ 4 (* cat 4))")
+	(title "category->size [cat]"))
+
+([Population_Class10002] of  CloFuncall
+
+	(source "(send-city-points (cls-instances \"City\"))"))
+
+([Population_Class10004] of  CloFuncall
+
+	(source "(send-js \"cesium.client.EVENT_DEBUG=true\")"))

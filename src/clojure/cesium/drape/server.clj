@@ -17,8 +17,7 @@
   (let [mp (into {} hm)
        peak (mp "peak")
        flag (mp "flag")
-       trans (mp "transparency")
-       trans (int (* 225 trans))]
+       trans (mp "transparency")]
     (add-image "flag"
       (sv flag "source")
       (calculate-wsen 
@@ -69,8 +68,7 @@
   (let [mp (into {} hm)]
   (if-let [place (first (selection mp "places"))]
     (if-let [flag (first (selection mp "flags"))]
-      (let [trans (or (mp "transparency") 0.5)
-             trans (int (* 225 trans))]
+      (let [trans (or (mp "transparency") 0.5)]
         (def FLAG-COUNT (inc FLAG-COUNT))
         (send-czml
           (add-image FLAG-COUNT
@@ -98,8 +96,7 @@
   (let [mp (into {} hm)]
   (if-let [place (first (selection mp "places"))]
     (if-let [flag (first (selection mp "flags"))]
-      (let [trans (or (mp "transparency") 0.5)
-             trans (int (* 225 trans))]
+      (let [trans (or (mp "transparency") 0.5)]
         (send-czml
           (add-image 0
             (sv flag "source")

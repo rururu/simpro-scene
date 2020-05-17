@@ -1,4 +1,4 @@
-; Tue May 05 10:42:47 MSK 2020
+; Sun May 17 18:14:34 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -150,7 +150,7 @@
 ([DrapePeaks_Class40011] of  Peak
 
 	(height 5895)
-	(latitude "[3 4 33]")
+	(latitude "[-3 -4 -33]")
 	(longitude "[37 21 12]")
 	(title "Kilimanjaro"))
 
@@ -220,7 +220,7 @@
 
 ([DrapePeaks_Class40028] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       peak (mp \"peak\")\n       flag (mp \"flag\")\n       trans (mp \"transparency\")\n       trans (int (* 225 trans))]\n    (add-image \"flag\"\n      (sv flag \"source\")\n      (calculate-wsen \n        [(read-string (sv peak \"latitude\"))\n         (read-string (sv peak \"longitude\"))]\n        0.01) \n      trans))")
+	(source "(let [mp (into {} hm)\n       peak (mp \"peak\")\n       flag (mp \"flag\")\n       trans (mp \"transparency\")]\n    (add-image \"flag\"\n      (sv flag \"source\")\n      (calculate-wsen \n        [(read-string (sv peak \"latitude\"))\n         (read-string (sv peak \"longitude\"))]\n        0.01) \n      trans))")
 	(title "drape-peak [hm inst]"))
 
 ([DrapePeaks_Class40033] of  Flag
@@ -264,7 +264,7 @@
 
 ([DrapePeaks_Class70002] of  CloFunction
 
-	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)\n             trans (int (* 225 trans))]\n        (def FLAG-COUNT (inc FLAG-COUNT))\n        (send-czml\n          (add-image FLAG-COUNT\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)]\n        (def FLAG-COUNT (inc FLAG-COUNT))\n        (send-czml\n          (add-image FLAG-COUNT\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
 	(title "tour-add-flag [hm inst]"))
 
 ([DrapePeaks_Class70003] of  CloFunction
@@ -274,7 +274,7 @@
 
 ([DrapePeaks_Class70004] of  CloFunction
 
-	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)\n             trans (int (* 225 trans))]\n        (send-czml\n          (add-image 0\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (if-let [flag (first (selection mp \"flags\"))]\n      (let [trans (or (mp \"transparency\") 0.5)]\n        (send-czml\n          (add-image 0\n            (sv flag \"source\")\n            (calculate-wsen \n              [(read-string (sv place \"latitude\"))\n               (read-string (sv place \"longitude\"))]\n              0.01) \n            trans))))))")
 	(title "tour-drape-place [hm inst]"))
 
 ([DrapePeaks_Class80001] of  Place
