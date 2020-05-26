@@ -42,7 +42,7 @@
                                            (sv i "longitude")
                                            (category->color (sv i "pop-category"))
                                            (category->size (sv i "pop-category"))))]
-  (send-czml (cz/add-points pts 4000))))
+  (send-czml (cz/add-points nil pts 4000))))
 
 (defn fly-to [view]
   (let [{:keys [longitude latitude height heading pitch roll]} view]

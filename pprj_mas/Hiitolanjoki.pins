@@ -1,4 +1,4 @@
-; Thu Mar 26 11:48:00 MSK 2020
+; Tue May 26 21:39:22 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -730,13 +730,15 @@
 		[Hiitolanjoki_Class220000]
 		[Hiitolanjoki_Class200005]
 		[Hiitolanjoki_Class180011]
-		[Hiitolanjoki_Class180002])
+		[Hiitolanjoki_Class180002]
+		[Hiitolanjoki_Class370005])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class140000]
 		[Hiitolanjoki_Class40000]
 		[Hiitolanjoki_Class20002]
 		[Hiitolanjoki_Class150003]
+		[Hiitolanjoki_Class360000]
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
@@ -770,6 +772,7 @@
 		[Hiitolanjoki_Class120000]
 		[Hiitolanjoki_Class160000]
 		[Hiitolanjoki_Class250001]
+		[Hiitolanjoki_Class360003]
 		[Hiitolanjoki_Class40002])
 	(documentation [Hiitolanjoki_Class50011])
 	(title "Hiitolanjoki"))
@@ -1317,7 +1320,7 @@
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater young-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater adult-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world) (Shooter.))")
+	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater young-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater adult-salmons)\n  Integer/MAX_VALUE \n  1.0)\n;;(.scheduleRepeating (.schedule world) (Shooter.))\n(.scheduleRepeating (.schedule world) (Cesiumer.))")
 	(title "start [this world]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
@@ -1416,6 +1419,59 @@
 
 	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://ntb.oogis.ru/\"))"))
 
+([Hiitolanjoki_Class360000] of  CloType
+
+	(cloProtocols [Hiitolanjoki_Class360001])
+	(title "Cesiumer"))
+
+([Hiitolanjoki_Class360001] of  CloImplementation
+
+	(cloFunctions [Hiitolanjoki_Class360002])
+	(title "sim.engine.Steppable"))
+
+([Hiitolanjoki_Class360002] of  CloFunction
+
+	(source "nil")
+	(title "step [this world]"))
+
+([Hiitolanjoki_Class360003] of  CloVar
+
+	(source "{:update-interval 100\n  :point-sets [[child-salmons ]\n                     [young-salmons]\n                     [adult-salmons]]}")
+	(title "CZ-POINTS"))
+
+([Hiitolanjoki_Class370000] of  CloFuncall
+
+	(source "(.getGeometries mas.world.hiitolanjoki/young-salmons)"))
+
+([Hiitolanjoki_Class370001] of  CloFuncall
+
+	(source "(seq (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
+
+([Hiitolanjoki_Class370002] of  CloFuncall
+
+	(source "(map #(.getGeometry %) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
+
+([Hiitolanjoki_Class370003] of  CloFuncall
+
+	(source "(map #(.getX (.getGeometry %)) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
+
+([Hiitolanjoki_Class370004] of  CloFuncall
+
+	(source "(map #(.getY (.getGeometry %)) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
+
+([Hiitolanjoki_Class370005] of  CloFunction
+
+	(source "(map #(let [g (.getGeometry %)] [(.getY g) (.getX g)]) (.getGeometries gv-field))")
+	(title "get-lalo-points [gv-field]"))
+
+([Hiitolanjoki_Class370006] of  CloFuncall
+
+	(source "(mas.world.hiitolanjoki/get-lalo-points mas.world.hiitolanjoki/young-salmons)"))
+
+([Hiitolanjoki_Class370007] of  CloFuncall
+
+	(source "(str nil \"mama\")"))
+
 ([Hiitolanjoki_Class40000] of  CloType
 
 	(cloProtocols [Hiitolanjoki_Class20003])
@@ -1477,7 +1533,7 @@
 
 ([Hiitolanjoki_Class50011] of  CloDocumentation
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br>Shooter.step <a href=\"internalLink\">@'Hiitolanjoki_Class150005'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br>Shooter.step <a href=\"internalLink\">@'Hiitolanjoki_Class150005'</a><br>Cesiumer.step <a href=\"internalLink\">@'Hiitolanjoki_Class360002'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
 
 ([Hiitolanjoki_Class60000] of  ShareOnto

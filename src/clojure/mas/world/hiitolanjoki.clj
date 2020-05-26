@@ -75,6 +75,8 @@
 (def NUM-SPAWN 8)
 (def ESTUARY (Coordinate. 29.886 61.18))
 (def ADULT-LIFE 24000)
+(def CZ-POINTS {:update-interval 100
+  :point-sets nil})
 (def declare-before (declare
   process
   relay-process
@@ -134,6 +136,10 @@
     (snapshot)
     (update-shape (:path AGENT-LAYERS) (map first (:layers AGENT-LAYERS))))))
 )
+(deftype Cesiumer []
+	sim.engine.Steppable
+	(step [this world] nil)
+)
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
 	(initialise [this] (load "mas/world/hiitolanjoki")
@@ -167,7 +173,8 @@
   (.scheduleSpatialIndexUpdater adult-salmons)
   Integer/MAX_VALUE 
   1.0)
-(.scheduleRepeating (.schedule world) (Shooter.)))
+;;(.scheduleRepeating (.schedule world) (Shooter.))
+(.scheduleRepeating (.schedule world) (Cesiumer.)))
 	(finish [this world] (snapshot))
 )
 (deftype JokiPorts []
@@ -366,4 +373,7 @@
 (save-points-lola (cls-instances "KIVIJARVI_ROUTES") KIVIJARVI-ROUTES-FILE)
 (println "Write" LADOGA-ROUTES-FILE)
 (save-points-lola (cls-instances "LADOGA_ROUTES") LADOGA-ROUTES-FILE))
+
+(defn get-lalo-points [gv-field]
+  (map #(let [g (.getGeometry %)] [(.getY g) (.getX g)]) (.getGeometries gv-field)))
 

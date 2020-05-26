@@ -1,4 +1,4 @@
-; Sun May 17 17:59:25 MSK 2020
+; Tue May 26 21:58:56 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6127,7 +6127,7 @@
 
 ([Heatmap_Class60002] of  CloFunction
 
-	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") \n                                           (sv i \"longitude\")\n                                           (category->color (sv i \"pop-category\"))\n                                           (category->size (sv i \"pop-category\"))))]\n  (send-czml (cz/add-points pts 4000)))")
+	(source "(let [pts (for [i inss] (vector (sv i \"latitude\") \n                                           (sv i \"longitude\")\n                                           (category->color (sv i \"pop-category\"))\n                                           (category->size (sv i \"pop-category\"))))]\n  (send-czml (cz/add-points nil pts 4000)))")
 	(title "send-city-points [inss]"))
 
 ([Heatmap_Class60010] of  CloFunction
