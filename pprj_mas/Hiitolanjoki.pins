@@ -1,4 +1,4 @@
-; Tue May 26 21:39:22 MSK 2020
+; Fri May 29 17:52:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -683,10 +683,6 @@
 	(source "(if (string? y)\n  (let [[da ma do mo] (.split y \" \")]\n    [(MapOb/getDeg (str da \" \" ma))\n     (MapOb/getDeg (str do \" \" mo))])\n  (vec (map latlon y)))")
 	(title "latlon [y]"))
 
-([Hiitolanjoki_Class180021] of  CloFuncall
-
-	(source "(compile 'mas.world.hiitolanjoki)"))
-
 ([Hiitolanjoki_Class19] of  MLayer
 
 	(pointer 5)
@@ -694,7 +690,7 @@
 
 ([Hiitolanjoki_Class190000] of  CloFuncall
 
-	(source "(mas.world.hiitolanjoki/agent-state mas.world.hiitolanjoki/child-salmons 0)"))
+	(source "(compile 'mas.world.hiitolanjoki)"))
 
 ([Hiitolanjoki_Class190001] of  CloFunction
 
@@ -730,15 +726,13 @@
 		[Hiitolanjoki_Class220000]
 		[Hiitolanjoki_Class200005]
 		[Hiitolanjoki_Class180011]
-		[Hiitolanjoki_Class180002]
-		[Hiitolanjoki_Class370005])
+		[Hiitolanjoki_Class180002])
 	(cloNamespace [Hiitolanjoki_Class20001])
 	(cloTypes
 		[Hiitolanjoki_Class140000]
 		[Hiitolanjoki_Class40000]
 		[Hiitolanjoki_Class20002]
 		[Hiitolanjoki_Class150003]
-		[Hiitolanjoki_Class360000]
 		[Hiitolanjoki_Class20005]
 		[Hiitolanjoki_Class50000])
 	(cloVars
@@ -795,7 +789,7 @@
 
 ([Hiitolanjoki_Class20001] of  CloNamespace
 
-	(source "(:use\n  protege.core)\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex\n  edu.stanford.smi.protege.model.Instance)")
+	(source "(:use\n  protege.core)\n(:require\n  [cesium.server :as cs]\n  [czml.generator :as cg])\n(:import\n  java.net.URL\n  java.awt.Color\n  sim.util.Bag\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.io.geo.ShapeFileExporter\n  sim.util.geo.GeomPlanarGraph\n  sim.util.geo.MasonGeometry\n  sim.util.geo.PointMoveTo\n  sim.util.geo.AttributeValue\n  sim.util.distribution.Normal\n  sim.display.Display2D\n  sim.portrayal.geo.GeomPortrayal\n  sim.portrayal.geo.GeomVectorFieldPortrayal\n  sim.portrayal.simple.OvalPortrayal2D\n  com.vividsolutions.jts.geom.Envelope\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory\n  com.vividsolutions.jts.linearref.LengthIndexedLine\n  ec.util.MersenneTwisterFast\n  ru.igis.sim.util.LineFollower\n  ru.igis.sim.util.NetworkFollower\n  ru.igis.sim.util.AttributesFollower\n  ru.igis.sim.util.RandomWalker\n  ru.igis.sim.util.Arriver\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.layer.shape.SpatialIndex\n  com.bbn.openmap.proj.GreatCircle\n  edu.stanford.smi.protege.model.Instance)")
 	(title "mas.world.hiitolanjoki"))
 
 ([Hiitolanjoki_Class20002] of  CloType
@@ -951,6 +945,11 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Salmon Life Model<br><br></b>This multiagent model simulates the life of Ladoga salmon after dismantling dams that impede its migration to spawning sites.<br><b><br>Agents</b><br><br>Agents in this projects are Ladoga lake salmons on the differen phases of their life.<br><b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\">Orange points represent some number of child salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\">Green points represent some number of young salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\">Brown points represent some number of adult salmons.<br><br>It takes 2-3 years for the Ladoga child salmon fry to get to the river, after which they migrate to feed in Ladoga.<br>After the lake phase (1-5 years), mature salmon rise up the river for spawning.<br><br>In this model, each group of adult individuals reaching one of the spawning sites produces a certain number of fry and dies. Fry are born from caviar and begin movement to the river source.<br><br><b>Custamizable options:</b><br><br>Initial number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class30007'</a>&#160; (12)<br>Repeatable number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class120000'</a>&#160; (8)<br>Lifetime of salmon in steps <a href=\"internalLink\">@'Hiitolanjoki_Class250001'</a>&#160; (12000)<br>Propagation rate of child salmon <a href=\"internalLink\">@'Hiitolanjoki_Class140005'</a>&#160; (0.0001)<br>Propagation rate of young salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90002'</a>&#160; (0.0002)<br>Propagation rate of adult salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90003'</a>&#160; (0.0003)<br>Migration routes in Kivijarvi lake <a href=\"internalLink\">@'Hiitolanjoki_Class260000'</a>&#160;,..<br>Migration routes in Ladoga lake <a href=\"internalLink\">@'Hiitolanjoki_Class170002'</a>&#160;,..<br><br></body>\n</html>")
 	(title "Salmon Life Model"))
 
+([Hiitolanjoki_Class230003] of  CloFunction
+
+	(source "(apply concat\n  (for [[a v] avals]\n    (let [mg (.getGeometry gv-field a (AttributeValue. v))\n           ls (.geometry mg)\n           crd (.getCoordinates ls)]\n      (map #(vector (.x %) (.y %) height) crd))))")
+	(title "lolahs-by-attributes [gv-field avals height]"))
+
 ([Hiitolanjoki_Class240000] of  ImageDoc
 
 	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectFin.png")
@@ -1051,18 +1050,6 @@
 		[igis_Class10]
 		[igis_Class11]
 		[Hiitolanjoki_Class280000]))
-
-([Hiitolanjoki_Class290000] of  CloFuncall
-
-	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"\")"))
-
-([Hiitolanjoki_Class290001] of  CloFuncall
-
-	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"https://hiitolanjoki.fi\")"))
-
-([Hiitolanjoki_Class290002] of  CloFuncall
-
-	(source "(edu.stanford.smi.protege.util.BrowserLauncher/openURL \"http://hiitolanjoki.fi\")"))
 
 ([Hiitolanjoki_Class3] of  OMTPoly
 
@@ -1320,7 +1307,7 @@
 
 ([Hiitolanjoki_Class30008] of  CloFunction
 
-	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater young-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater adult-salmons)\n  Integer/MAX_VALUE \n  1.0)\n;;(.scheduleRepeating (.schedule world) (Shooter.))\n(.scheduleRepeating (.schedule world) (Cesiumer.))")
+	(source "(.clear child-salmons)\n(.clear young-salmons)\n(.clear adult-salmons)\n(spawn KIVIJARVI-WAYS world INIT-NUM-SPAWN)\n(.setMBR child-salmons (.getMBR rivers))\n(.setMBR young-salmons (.getMBR rivers))\n(.setMBR adult-salmons (.getMBR rivers))\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater child-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater young-salmons)\n  Integer/MAX_VALUE \n  1.0)\n(.scheduleRepeating (.schedule world)\n  (.scheduleSpatialIndexUpdater adult-salmons)\n  Integer/MAX_VALUE \n  1.0)\n;;(.scheduleRepeating (.schedule world) (Cesiumer.))\n(.scheduleRepeating (.schedule world) (Shooter.))")
 	(title "start [this world]"))
 
 ([Hiitolanjoki_Class30011] of  CloVar
@@ -1353,22 +1340,6 @@
 	(source "(GeometryFactory.)")
 	(title "factory"))
 
-([Hiitolanjoki_Class310000] of  CloFuncall
-
-	(source "(ru.igis.omtab.FXBrowser. \"Hii\" \"https://\""))
-
-([Hiitolanjoki_Class310001] of  CloFuncall
-
-	(source "(ru.igis.omtab.FXBrowser. \"Hii\" \"https://hiitolanjoki.fi\")"))
-
-([Hiitolanjoki_Class320000] of  CloFuncall
-
-	(source "(clojure.java.browse/browse-url \"https://hiitolanjoki.fi\")"))
-
-([Hiitolanjoki_Class320001] of  CloFuncall
-
-	(source "(clojure.java.browse-ui/open-url-in-swing \"https://hiitolanjoki.fi\")"))
-
 ([Hiitolanjoki_Class330000] of  ImageDoc
 
 	(source "file:data/mas/hiitolanjoki/LadogaSalmon.png")
@@ -1395,30 +1366,6 @@
 	(source "https://github.com/rururu/simpro-scene")
 	(text "Simpro-scene Project"))
 
-([Hiitolanjoki_Class350000] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) \"oogis.ru\")"))
-
-([Hiitolanjoki_Class350001] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) (java.io.URI/create \"oogis.ru\"))"))
-
-([Hiitolanjoki_Class350002] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"oogis.ru\"))"))
-
-([Hiitolanjoki_Class350003] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://oogis.ru\"))"))
-
-([Hiitolanjoki_Class350004] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://www.oogis.ru\"))"))
-
-([Hiitolanjoki_Class350005] of  CloFuncall
-
-	(source "(.browse (java.awt.Desktop/getDesktop) (java.net.URI/create \"http://ntb.oogis.ru/\"))"))
-
 ([Hiitolanjoki_Class360000] of  CloType
 
 	(cloProtocols [Hiitolanjoki_Class360001])
@@ -1431,46 +1378,18 @@
 
 ([Hiitolanjoki_Class360002] of  CloFunction
 
-	(source "nil")
+	(source "(let [interval (:update-interval CZ-POINTS)\n       hgt (:height CZ-POINTS)\n       hrf \"RELATIVE_TO_GROUND\"\n       pss (:point-sets CZ-POINTS)\n       ss (steps world)]\n  (when (= (mod ss interval) 0)\n    (println :steps ss)\n    (doseq [[pfx gvf col siz] pss]\n      (cs/send-czml (cg/add-points pfx (get-lalo-points gvf) hgt hrf col siz)))))")
 	(title "step [this world]"))
 
 ([Hiitolanjoki_Class360003] of  CloVar
 
-	(source "{:update-interval 100\n  :point-sets [[child-salmons ]\n                     [young-salmons]\n                     [adult-salmons]]}")
+	(source "{:update-interval 400\n  :height 10\n  :point-sets [[\"c\" child-salmons [255 255 0 255] 4]\n                     [\"y\" young-salmons [0 255 0 255] 8]\n                     [\"a\" adult-salmons [255 0 0 255] 12]]}")
 	(title "CZ-POINTS"))
-
-([Hiitolanjoki_Class370000] of  CloFuncall
-
-	(source "(.getGeometries mas.world.hiitolanjoki/young-salmons)"))
-
-([Hiitolanjoki_Class370001] of  CloFuncall
-
-	(source "(seq (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
-
-([Hiitolanjoki_Class370002] of  CloFuncall
-
-	(source "(map #(.getGeometry %) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
-
-([Hiitolanjoki_Class370003] of  CloFuncall
-
-	(source "(map #(.getX (.getGeometry %)) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
-
-([Hiitolanjoki_Class370004] of  CloFuncall
-
-	(source "(map #(.getY (.getGeometry %)) (.getGeometries mas.world.hiitolanjoki/young-salmons))"))
 
 ([Hiitolanjoki_Class370005] of  CloFunction
 
 	(source "(map #(let [g (.getGeometry %)] [(.getY g) (.getX g)]) (.getGeometries gv-field))")
 	(title "get-lalo-points [gv-field]"))
-
-([Hiitolanjoki_Class370006] of  CloFuncall
-
-	(source "(mas.world.hiitolanjoki/get-lalo-points mas.world.hiitolanjoki/young-salmons)"))
-
-([Hiitolanjoki_Class370007] of  CloFuncall
-
-	(source "(str nil \"mama\")"))
 
 ([Hiitolanjoki_Class40000] of  CloType
 
@@ -1480,7 +1399,7 @@
 
 ([Hiitolanjoki_Class40002] of  CloVar
 
-	(source "(declare\n  process\n  relay-process\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn\n  snapshot\n  update-shape\n  steps)")
+	(source "(declare\n  process\n  relay-process\n  create-asalmon-astate\n  create-csalmon-astate\n  start-ysalmon\n  start-asalmon\n  spawn\n  snapshot\n  update-shape\n  steps\n  get-lalo-points)")
 	(title "declare-before"))
 
 ([Hiitolanjoki_Class50000] of  CloType
@@ -1533,7 +1452,7 @@
 
 ([Hiitolanjoki_Class50011] of  CloDocumentation
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br>Shooter.step <a href=\"internalLink\">@'Hiitolanjoki_Class150005'</a><br>Cesiumer.step <a href=\"internalLink\">@'Hiitolanjoki_Class360002'</a>&#160;<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Agents</b><br><br>AdultSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class60002'</a>&#160;<br>YoungSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class20004'</a>&#160;<br>ChildSalmon.step <a href=\"internalLink\">@'Hiitolanjoki_Class140002'</a>&#160;<br>Shooter.step @'Hiitolanjoki_Class150005'<br><br><b>JokiWorld</b><br><br>initialise <a href=\"internalLink\">@'Hiitolanjoki_Class20007'</a>&#160;<br>start <a href=\"internalLink\">@'Hiitolanjoki_Class30008'</a>&#160;<br>finish <a href=\"internalLink\">@'Hiitolanjoki_Class30013'</a>&#160;<br><br><b>JokiPorts</b><br><br>createDisplay <a href=\"internalLink\">@'Hiitolanjoki_Class50002'</a>&#160;<br>setup <a href=\"internalLink\">@'Hiitolanjoki_Class50007'</a>&#160;<br>info <a href=\"internalLink\">@'Hiitolanjoki_Class50008'</a>&#160;<br><br></body>\n</html>")
 	(title "Hiitolanjoki Implementation"))
 
 ([Hiitolanjoki_Class60000] of  ShareOnto

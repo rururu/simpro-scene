@@ -1,5 +1,23 @@
 (ns czml.generator
-)
+(:import java.util.Calendar))
+(defn iso8601futt [sec]
+  (let [cld (Calendar/getInstance)
+       mil (.getTimeInMillis cld)
+       _ (.setTimeInMillis cld (+ mil (* sec 1000)))
+        yar (.get cld Calendar/YEAR )
+        mon (inc (.get cld Calendar/MONTH))
+        dat (.get cld Calendar/DATE)
+        hor (.get cld Calendar/HOUR_OF_DAY)
+        min (.get cld Calendar/MINUTE)
+        sec (.get cld Calendar/SECOND)]
+    (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
+
+(defn sphericalDistance ^double [^double phi1 ^double lambda0 ^double phi ^double lambda]
+  (let [pdiff (Math/sin (/ (- phi phi1) 2.0))
+       ldiff (Math/sin (/ (- lambda lambda0) 2.0))
+       rval (Math/sqrt (+ (* pdiff pdiff) (* (Math/cos phi1) (Math/cos phi) (* ldiff ldiff))))]
+  (* 2.0 (Math/asin rval))))
+
 (defn delete [id]
   (str "[{\"id\":\"document\",\"version\":\"1.0\"},{\"id\":\"" id "\",\"delete\":true}]"))
 
@@ -55,4 +73,35 @@
 
 (defn add-image [id uri [w s e n] trans]
   (str "[{\"id\":\"document\",\"version\":\"1.0\"},{\"id\":\"" id "\",\"rectangle\":{\"coordinates\":{\"wsenDegrees\":[" w "," s "," e "," n "]},\"material\":{\"image\":{\"image\":{\"uri\":\"" uri "\"},\"color\":{\"rgba\":[255,255,255," (int (* trans 255)) "]}}}}}]"))
+
+(defn lolah->slolah [lolahs knots]
+  (loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]
+  (if (some? h2)
+    (let [rsec (Math/toRadians (/ knots 60 3600))
+           dist (sphericalDistance
+                    (Math/toRadians la1)
+                    (Math/toRadians lo1)
+                    (Math/toRadians la2)
+                    (Math/toRadians lo2))
+           time (int (/ dist rsec))
+           elt (+ elt time)]
+      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))
+    slolahs)))
+
+(defn add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size]
+  (let [coord (lolah->slolah lolah-points knots)
+       coord (flatten coord)
+       coord (interpose "," coord)
+       coord (apply str coord)
+       rgba (str "[" iR "," iG "," iB "," iA "]")
+       epoch (iso8601futt sec)
+       s (str "[{\"id\":\"document\",\"version\":\"1.0\"},"
+                "{\"id\":\""
+                id
+                "\",\"position\":{\"cartographicDegrees\":[" 
+                coord
+                "],\"interpolationAlgorithm\":\"LAGRANGE\",\"interpolationDegree\":1,\"epoch\":\""
+                epoch
+                "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
+  s))
 

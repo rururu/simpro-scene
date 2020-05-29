@@ -1,4 +1,4 @@
-; Tue May 26 21:57:30 MSK 2020
+; Fri May 29 16:40:41 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,6 +42,16 @@
 
 	(source "(letfn[(fly-one [cam next]\n            (let [orient (js/Cesium.HeadingPitchRoll. (nth (@ORBIT :headings) next) (.-pitch cam) (.-roll cam))]\n              (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)\n                                       :orientation #js{:heading (.-heading orient)\n                                                               :pitch (.-pitch orient)\n                                                               :roll (.-roll orient)}\n                                       :duration (@ORBIT :step-sec)\n                                       :easingFunction js/Cesium.EasingFunction.LINEAR_NONE\n                                       :complete #(fly-next cam (inc next))\n                                       :cancel #(fly-cancel cam next)})))\n          (fly-next [cam next]\n            (if (< next (count (@ORBIT :ring)))\n              (fly-one cam next)\n              (fly-one cam 0)))\n          (fly-cancel [cam next]\n             (vswap! ORBIT assoc :next next))\n          (next [az azs]\n            (let [N (count azs)\n                   n (+ (/ N 2) (count (filter #(< % az) azs)))]\n              (if (> n (dec N)) (- n N) n)))]\n            \n  (let [obut (.createElement js/document \"button\")]\n    (set! (.-innerHTML obut) \"Toggle orbit\")\n    (.add (.-classList obut) \"cesium-button\")\n    (.prepend (.querySelector js/document \".cesium-viewer-toolbar\") obut)\n    (set! (.-onclick obut)\n      (fn []\n        (condp = (@ORBIT :status)\n          :init\n          (vswap! ORBIT assoc :status :stop)\n          :stop\n          (let [steps (@ORBIT :steps)\n                 radm (@ORBIT :radius-m)\n                 radr (* (/ radm 1852 60 180) js/Math.PI)\n                 [lam phi hgt :as look] (look-at camera radm)\n                 [azs pts] (azimuths&points [lam phi] radr hgt steps)\n                 ring (vec (map #(js/Cesium.Cartesian3.fromRadians (first %) (second %) (nth % 2)) pts))\n                 headings (vec (map #(normaz (+ % js/Math.PI)) azs))\n                 begin (next (.-heading camera) azs)]\n            (vswap! ORBIT assoc :ring ring\n                                             :headings headings\n                                             :center (js/Cesium.Cartesian3.fromRadians lam phi hgt)\n                                             :next begin\n                                             :status :run)\n            (fly-one camera begin))\n          :run\n          (do (.cancelFlight camera)\n            (vswap! ORBIT assoc :status :stop)))))))")
 	(title "add-orbit-button [camera]"))
+
+([CesiumBase_Class100001] of  CloFunction
+
+	(source "(let [coord (lolah->slolah lolah-points knots)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601futt sec)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  s)")
+	(title "add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size]"))
+
+([CesiumBase_Class100004] of  CloFunction
+
+	(source "(let [cld (Calendar/getInstance)\n       mil (.getTimeInMillis cld)\n       _ (.setTimeInMillis cld (+ mil (* sec 1000)))\n        yar (.get cld Calendar/YEAR )\n        mon (inc (.get cld Calendar/MONTH))\n        dat (.get cld Calendar/DATE)\n        hor (.get cld Calendar/HOUR_OF_DAY)\n        min (.get cld Calendar/MINUTE)\n        sec (.get cld Calendar/SECOND)]\n    (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601futt [sec]"))
 
 ([CesiumBase_Class10001] of  CloFunction
 
@@ -169,15 +179,20 @@
 ([CesiumBase_Class30004] of  CloProgram
 
 	(cloFunctions
+		[CesiumBase_Class100004]
+		[CesiumBase_Class90001]
 		[CesiumBase_Class30008]
 		[CesiumBase_Class30006]
 		[CesiumBase_Class30007]
-		[CesiumBase_Class30009])
+		[CesiumBase_Class30009]
+		[CesiumBase_Class90000]
+		[CesiumBase_Class100001])
 	(cloNamespace [CesiumBase_Class30005])
 	(title "CZML Generator"))
 
 ([CesiumBase_Class30005] of  CloNamespace
 
+	(source "(:import java.util.Calendar)")
 	(title "czml.generator"))
 
 ([CesiumBase_Class30006] of  CloFunction
@@ -261,6 +276,16 @@
 
 	(source "(let [js (clj-funcall->js-str fcl)\n       evt (str \"event: js\\ndata: \" js \"\\n\\n\")]\n  (put! EVT-CHAN evt))")
 	(title "send-clj-funcall [fcl]"))
+
+([CesiumBase_Class90000] of  CloFunction
+
+	(source "(loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]\n  (if (some? h2)\n    (let [rsec (Math/toRadians (/ knots 60 3600))\n           dist (sphericalDistance\n                    (Math/toRadians la1)\n                    (Math/toRadians lo1)\n                    (Math/toRadians la2)\n                    (Math/toRadians lo2))\n           time (int (/ dist rsec))\n           elt (+ elt time)]\n      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))\n    slolahs))")
+	(title "lolah->slolah [lolahs knots]"))
+
+([CesiumBase_Class90001] of  CloFunction
+
+	(source "(let [pdiff (Math/sin (/ (- phi phi1) 2.0))\n       ldiff (Math/sin (/ (- lambda lambda0) 2.0))\n       rval (Math/sqrt (+ (* pdiff pdiff) (* (Math/cos phi1) (Math/cos phi) (* ldiff ldiff))))]\n  (* 2.0 (Math/asin rval)))")
+	(title "sphericalDistance ^double [^double phi1 ^double lambda0 ^double phi ^double lambda]"))
 
 ([CesiumServer_Class10001] of  CloFunction
 

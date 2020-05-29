@@ -1,6 +1,9 @@
 (ns mas.world.hiitolanjoki
 (:use
   protege.core)
+(:require
+  [cesium.server :as cs]
+  [czml.generator :as cg])
 (:import
   java.net.URL
   java.awt.Color
@@ -11,6 +14,7 @@
   sim.util.geo.GeomPlanarGraph
   sim.util.geo.MasonGeometry
   sim.util.geo.PointMoveTo
+  sim.util.geo.AttributeValue
   sim.util.distribution.Normal
   sim.display.Display2D
   sim.portrayal.geo.GeomPortrayal
@@ -28,6 +32,7 @@
   ru.igis.sim.util.Arriver
   ru.igis.omtab.OpenMapTab
   com.bbn.openmap.layer.shape.SpatialIndex
+  com.bbn.openmap.proj.GreatCircle
   edu.stanford.smi.protege.model.Instance))
 (def normal-distro (Normal. 0.0 0.0 (MersenneTwisterFast.)))
 (def INIT-NUM-SPAWN 12)
@@ -75,8 +80,11 @@
 (def NUM-SPAWN 8)
 (def ESTUARY (Coordinate. 29.886 61.18))
 (def ADULT-LIFE 24000)
-(def CZ-POINTS {:update-interval 100
-  :point-sets nil})
+(def CZ-POINTS {:update-interval 400
+  :height 10
+  :point-sets [["c" child-salmons [255 255 0 255] 4]
+                     ["y" young-salmons [0 255 0 255] 8]
+                     ["a" adult-salmons [255 0 0 255] 12]]})
 (def declare-before (declare
   process
   relay-process
@@ -87,7 +95,8 @@
   spawn
   snapshot
   update-shape
-  steps))
+  steps
+  get-lalo-points))
 (deftype ChildSalmon [cstate ]
 	sim.engine.Steppable
 	(step [this world] (let [cst @cstate
@@ -136,10 +145,6 @@
     (snapshot)
     (update-shape (:path AGENT-LAYERS) (map first (:layers AGENT-LAYERS))))))
 )
-(deftype Cesiumer []
-	sim.engine.Steppable
-	(step [this world] nil)
-)
 (deftype JokiWorld []
 	ru.igis.sim.IWorld
 	(initialise [this] (load "mas/world/hiitolanjoki")
@@ -173,8 +178,8 @@
   (.scheduleSpatialIndexUpdater adult-salmons)
   Integer/MAX_VALUE 
   1.0)
-;;(.scheduleRepeating (.schedule world) (Shooter.))
-(.scheduleRepeating (.schedule world) (Cesiumer.)))
+;;(.scheduleRepeating (.schedule world) (Cesiumer.))
+(.scheduleRepeating (.schedule world) (Shooter.)))
 	(finish [this world] (snapshot))
 )
 (deftype JokiPorts []
@@ -373,7 +378,4 @@
 (save-points-lola (cls-instances "KIVIJARVI_ROUTES") KIVIJARVI-ROUTES-FILE)
 (println "Write" LADOGA-ROUTES-FILE)
 (save-points-lola (cls-instances "LADOGA_ROUTES") LADOGA-ROUTES-FILE))
-
-(defn get-lalo-points [gv-field]
-  (map #(let [g (.getGeometry %)] [(.getY g) (.getX g)]) (.getGeometries gv-field)))
 

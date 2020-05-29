@@ -1,4 +1,4 @@
-; Tue May 26 21:39:22 MSK 2020
+; Fri May 29 17:52:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,8 +21,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Hiitolanjoki_ProjectKB_Class2114]
-		[Hiitolanjoki_ProjectKB_Class2115]))
+		[Hiitolanjoki_ProjectKB_Class2102]
+		[Hiitolanjoki_ProjectKB_Class2103]))
 
 ([CLSES_TAB] of  Widget
 
@@ -190,41 +190,41 @@
 ([Hiitolanjoki_ProjectKB_Class1919] of  Property_List
 )
 
-([Hiitolanjoki_ProjectKB_Class2114] of  String
+([Hiitolanjoki_ProjectKB_Class2102] of  String
 
 	(name "Region")
 	(string_value "poly"))
 
-([Hiitolanjoki_ProjectKB_Class2115] of  String
+([Hiitolanjoki_ProjectKB_Class2103] of  String
 
 	(name "Route")
 	(string_value "poly"))
 
-([Hiitolanjoki_ProjectKB_Class2116] of  Map
+([Hiitolanjoki_ProjectKB_Class2104] of  Map
 
 	(entries
-		[Hiitolanjoki_ProjectKB_Class2117]
-		[Hiitolanjoki_ProjectKB_Class2118]))
+		[Hiitolanjoki_ProjectKB_Class2105]
+		[Hiitolanjoki_ProjectKB_Class2106]))
 
-([Hiitolanjoki_ProjectKB_Class2117] of  Map_Entry
+([Hiitolanjoki_ProjectKB_Class2105] of  Map_Entry
 
 	(key "Hiitolanjoki_Class200002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 402 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Hiitolanjoki_ProjectKB_Class2118] of  Map_Entry
+([Hiitolanjoki_ProjectKB_Class2106] of  Map_Entry
 
 	(key "VuoksiLohi_Class2")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "5 697 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Hiitolanjoki_ProjectKB_Class2119] of  Map_Entry
+([Hiitolanjoki_ProjectKB_Class2107] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Hiitolanjoki_ProjectKB_Class2116")
+	(value "Hiitolanjoki_ProjectKB_Class2104")
 	(value_class "java.util.Map"))
 
 ([INSTANCE_ANNOTATION_FORM_WIDGET] of  Widget
@@ -252,688 +252,688 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_246525_Class2009] of  Map
+([KB_322347_Class2009] of  Map
 
 	(entries
-		[KB_246525_Class2010]
-		[KB_246525_Class2014]
-		[KB_246525_Class2015]
-		[KB_246525_Class2054]
-		[KB_246525_Class2055]
-		[KB_246525_Class2095])
+		[KB_322347_Class2010]
+		[KB_322347_Class2014]
+		[KB_322347_Class2015]
+		[KB_322347_Class2054]
+		[KB_322347_Class2055]
+		[KB_322347_Class2095])
 	(referenced_maps
-		[KB_246525_Class2011]
-		[KB_246525_Class2056]
-		[KB_246525_Class2016]))
+		[KB_322347_Class2016]
+		[KB_322347_Class2011]
+		[KB_322347_Class2056]))
 
-([KB_246525_Class2010] of  Map_Entry
+([KB_322347_Class2010] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_246525_Class2011] of  Map
+([KB_322347_Class2011] of  Map
 
 	(entries
-		[KB_246525_Class2012]
-		[KB_246525_Class2013]))
+		[KB_322347_Class2012]
+		[KB_322347_Class2013]))
 
-([KB_246525_Class2012] of  Map_Entry
+([KB_322347_Class2012] of  Map_Entry
 
 	(key "Functional_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "-4 471 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2013] of  Map_Entry
+([KB_322347_Class2013] of  Map_Entry
 
 	(key "Functional_Class0")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "25 25 224 146")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2014] of  Map_Entry
+([KB_322347_Class2014] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "KB_246525_Class2011")
+	(value "KB_322347_Class2011")
 	(value_class "java.util.Map"))
 
-([KB_246525_Class2015] of  Map_Entry
+([KB_322347_Class2015] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_246525_Class2016] of  Map
+([KB_322347_Class2016] of  Map
 
 	(entries
-		[KB_246525_Class2017]
-		[KB_246525_Class2018]
-		[KB_246525_Class2019]
-		[KB_246525_Class2020]
-		[KB_246525_Class2021]
-		[KB_246525_Class2022]
-		[KB_246525_Class2023]
-		[KB_246525_Class2024]
-		[KB_246525_Class2025]
-		[KB_246525_Class2026]
-		[KB_246525_Class2027]
-		[KB_246525_Class2028]
-		[KB_246525_Class2029]
-		[KB_246525_Class2030]
-		[KB_246525_Class2031]
-		[KB_246525_Class2032]
-		[KB_246525_Class2033]
-		[KB_246525_Class2034]
-		[KB_246525_Class2035]
-		[KB_246525_Class2036]
-		[KB_246525_Class2037]
-		[KB_246525_Class2038]
-		[KB_246525_Class2039]
-		[KB_246525_Class2040]
-		[KB_246525_Class2041]
-		[KB_246525_Class2042]
-		[KB_246525_Class2043]
-		[KB_246525_Class2044]
-		[KB_246525_Class2045]
-		[KB_246525_Class2046]
-		[KB_246525_Class2047]
-		[KB_246525_Class2048]
-		[KB_246525_Class2049]
-		[KB_246525_Class2050]
-		[KB_246525_Class2051]
-		[KB_246525_Class2052]
-		[KB_246525_Class2053]))
+		[KB_322347_Class2017]
+		[KB_322347_Class2018]
+		[KB_322347_Class2019]
+		[KB_322347_Class2020]
+		[KB_322347_Class2021]
+		[KB_322347_Class2022]
+		[KB_322347_Class2023]
+		[KB_322347_Class2024]
+		[KB_322347_Class2025]
+		[KB_322347_Class2026]
+		[KB_322347_Class2027]
+		[KB_322347_Class2028]
+		[KB_322347_Class2029]
+		[KB_322347_Class2030]
+		[KB_322347_Class2031]
+		[KB_322347_Class2032]
+		[KB_322347_Class2033]
+		[KB_322347_Class2034]
+		[KB_322347_Class2035]
+		[KB_322347_Class2036]
+		[KB_322347_Class2037]
+		[KB_322347_Class2038]
+		[KB_322347_Class2039]
+		[KB_322347_Class2040]
+		[KB_322347_Class2041]
+		[KB_322347_Class2042]
+		[KB_322347_Class2043]
+		[KB_322347_Class2044]
+		[KB_322347_Class2045]
+		[KB_322347_Class2046]
+		[KB_322347_Class2047]
+		[KB_322347_Class2048]
+		[KB_322347_Class2049]
+		[KB_322347_Class2050]
+		[KB_322347_Class2051]
+		[KB_322347_Class2052]
+		[KB_322347_Class2053]))
 
-([KB_246525_Class2017] of  Map_Entry
+([KB_322347_Class2017] of  Map_Entry
 
 	(key "Functional_Class10168")
 	(key_class "java.lang.String")
 	(value "70 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2018] of  Map_Entry
+([KB_322347_Class2018] of  Map_Entry
 
 	(key "Functional_Class10146")
 	(key_class "java.lang.String")
 	(value "70 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2019] of  Map_Entry
+([KB_322347_Class2019] of  Map_Entry
 
 	(key "Functional_Class10147")
 	(key_class "java.lang.String")
 	(value "520 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2020] of  Map_Entry
+([KB_322347_Class2020] of  Map_Entry
 
 	(key "Functional_Class10149")
 	(key_class "java.lang.String")
 	(value "670 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2021] of  Map_Entry
+([KB_322347_Class2021] of  Map_Entry
 
 	(key "Functional_Class10129")
 	(key_class "java.lang.String")
 	(value "220 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2022] of  Map_Entry
+([KB_322347_Class2022] of  Map_Entry
 
 	(key "Functional_Class10160")
 	(key_class "java.lang.String")
 	(value "370 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2023] of  Map_Entry
+([KB_322347_Class2023] of  Map_Entry
 
 	(key "Functional_Class10161")
 	(key_class "java.lang.String")
 	(value "370 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2024] of  Map_Entry
+([KB_322347_Class2024] of  Map_Entry
 
 	(key "Functional_Class10162")
 	(key_class "java.lang.String")
 	(value "370 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2025] of  Map_Entry
+([KB_322347_Class2025] of  Map_Entry
 
 	(key "Functional_Class10163")
 	(key_class "java.lang.String")
 	(value "220 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2026] of  Map_Entry
+([KB_322347_Class2026] of  Map_Entry
 
 	(key "Functional_Class10164")
 	(key_class "java.lang.String")
 	(value "220 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2027] of  Map_Entry
+([KB_322347_Class2027] of  Map_Entry
 
 	(key "Functional_Class10120")
 	(key_class "java.lang.String")
 	(value "520 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2028] of  Map_Entry
+([KB_322347_Class2028] of  Map_Entry
 
 	(key "Functional_Class10165")
 	(key_class "java.lang.String")
 	(value "220 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2029] of  Map_Entry
+([KB_322347_Class2029] of  Map_Entry
 
 	(key "Functional_Class10166")
 	(key_class "java.lang.String")
 	(value "70 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2030] of  Map_Entry
+([KB_322347_Class2030] of  Map_Entry
 
 	(key "Functional_Class10122")
 	(key_class "java.lang.String")
 	(value "670 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2031] of  Map_Entry
+([KB_322347_Class2031] of  Map_Entry
 
 	(key "Functional_Class10145")
 	(key_class "java.lang.String")
 	(value "70 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2032] of  Map_Entry
+([KB_322347_Class2032] of  Map_Entry
 
 	(key "Functional_Class10167")
 	(key_class "java.lang.String")
 	(value "70 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2033] of  Map_Entry
+([KB_322347_Class2033] of  Map_Entry
 
 	(key "Functional_Class10123")
 	(key_class "java.lang.String")
 	(value "670 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2034] of  Map_Entry
+([KB_322347_Class2034] of  Map_Entry
 
 	(key "Functional_Class10157")
 	(key_class "java.lang.String")
 	(value "520 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2035] of  Map_Entry
+([KB_322347_Class2035] of  Map_Entry
 
 	(key "Functional_Class10158")
 	(key_class "java.lang.String")
 	(value "520 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2036] of  Map_Entry
+([KB_322347_Class2036] of  Map_Entry
 
 	(key "Functional_Class10159")
 	(key_class "java.lang.String")
 	(value "520 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2037] of  Map_Entry
+([KB_322347_Class2037] of  Map_Entry
 
 	(key "Functional_Class10118")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2038] of  Map_Entry
+([KB_322347_Class2038] of  Map_Entry
 
 	(key "Functional_Class10119")
 	(key_class "java.lang.String")
 	(value "70 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2039] of  Map_Entry
+([KB_322347_Class2039] of  Map_Entry
 
 	(key "Functional_Class10150")
 	(key_class "java.lang.String")
 	(value "670 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2040] of  Map_Entry
+([KB_322347_Class2040] of  Map_Entry
 
 	(key "Functional_Class10051")
 	(key_class "java.lang.String")
 	(value "220 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2041] of  Map_Entry
+([KB_322347_Class2041] of  Map_Entry
 
 	(key "Functional_Class10096")
 	(key_class "java.lang.String")
 	(value "370 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2042] of  Map_Entry
+([KB_322347_Class2042] of  Map_Entry
 
 	(key "Functional_Class10151")
 	(key_class "java.lang.String")
 	(value "520 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2043] of  Map_Entry
+([KB_322347_Class2043] of  Map_Entry
 
 	(key "Functional_Class10052")
 	(key_class "java.lang.String")
 	(value "220 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2044] of  Map_Entry
+([KB_322347_Class2044] of  Map_Entry
 
 	(key "Functional_Class10097")
 	(key_class "java.lang.String")
 	(value "370 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2045] of  Map_Entry
+([KB_322347_Class2045] of  Map_Entry
 
 	(key "Functional_Class10152")
 	(key_class "java.lang.String")
 	(value "520 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2046] of  Map_Entry
+([KB_322347_Class2046] of  Map_Entry
 
 	(key "Functional_Class10130")
 	(key_class "java.lang.String")
 	(value "220 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2047] of  Map_Entry
+([KB_322347_Class2047] of  Map_Entry
 
 	(key "Functional_Class10131")
 	(key_class "java.lang.String")
 	(value "370 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2048] of  Map_Entry
+([KB_322347_Class2048] of  Map_Entry
 
 	(key "Functional_Class10076")
 	(key_class "java.lang.String")
 	(value "820 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2049] of  Map_Entry
+([KB_322347_Class2049] of  Map_Entry
 
 	(key "Functional_Class10132")
 	(key_class "java.lang.String")
 	(value "370 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2050] of  Map_Entry
+([KB_322347_Class2050] of  Map_Entry
 
 	(key "Functional_Class10154")
 	(key_class "java.lang.String")
 	(value "670 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2051] of  Map_Entry
+([KB_322347_Class2051] of  Map_Entry
 
 	(key "Functional_Class10077")
 	(key_class "java.lang.String")
 	(value "820 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2052] of  Map_Entry
+([KB_322347_Class2052] of  Map_Entry
 
 	(key "Functional_Class10155")
 	(key_class "java.lang.String")
 	(value "670 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2053] of  Map_Entry
+([KB_322347_Class2053] of  Map_Entry
 
 	(key "Functional_Class10156")
 	(key_class "java.lang.String")
 	(value "670 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2054] of  Map_Entry
+([KB_322347_Class2054] of  Map_Entry
 
 	(key "InstanceGraphWidget.Functional_Class40005.task_scheme")
 	(key_class "java.lang.String")
-	(value "KB_246525_Class2016")
+	(value "KB_322347_Class2016")
 	(value_class "java.util.Map"))
 
-([KB_246525_Class2055] of  Map_Entry
+([KB_322347_Class2055] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_246525_Class2056] of  Map
+([KB_322347_Class2056] of  Map
 
 	(entries
-		[KB_246525_Class2057]
-		[KB_246525_Class2058]
-		[KB_246525_Class2059]
-		[KB_246525_Class2060]
-		[KB_246525_Class2061]
-		[KB_246525_Class2062]
-		[KB_246525_Class2063]
-		[KB_246525_Class2064]
-		[KB_246525_Class2065]
-		[KB_246525_Class2066]
-		[KB_246525_Class2067]
-		[KB_246525_Class2068]
-		[KB_246525_Class2069]
-		[KB_246525_Class2070]
-		[KB_246525_Class2071]
-		[KB_246525_Class2072]
-		[KB_246525_Class2073]
-		[KB_246525_Class2074]
-		[KB_246525_Class2075]
-		[KB_246525_Class2076]
-		[KB_246525_Class2077]
-		[KB_246525_Class2078]
-		[KB_246525_Class2079]
-		[KB_246525_Class2080]
-		[KB_246525_Class2081]
-		[KB_246525_Class2082]
-		[KB_246525_Class2083]
-		[KB_246525_Class2084]
-		[KB_246525_Class2085]
-		[KB_246525_Class2086]
-		[KB_246525_Class2087]
-		[KB_246525_Class2088]
-		[KB_246525_Class2089]
-		[KB_246525_Class2090]
-		[KB_246525_Class2091]
-		[KB_246525_Class2092]
-		[KB_246525_Class2093]
-		[KB_246525_Class2094]))
+		[KB_322347_Class2057]
+		[KB_322347_Class2058]
+		[KB_322347_Class2059]
+		[KB_322347_Class2060]
+		[KB_322347_Class2061]
+		[KB_322347_Class2062]
+		[KB_322347_Class2063]
+		[KB_322347_Class2064]
+		[KB_322347_Class2065]
+		[KB_322347_Class2066]
+		[KB_322347_Class2067]
+		[KB_322347_Class2068]
+		[KB_322347_Class2069]
+		[KB_322347_Class2070]
+		[KB_322347_Class2071]
+		[KB_322347_Class2072]
+		[KB_322347_Class2073]
+		[KB_322347_Class2074]
+		[KB_322347_Class2075]
+		[KB_322347_Class2076]
+		[KB_322347_Class2077]
+		[KB_322347_Class2078]
+		[KB_322347_Class2079]
+		[KB_322347_Class2080]
+		[KB_322347_Class2081]
+		[KB_322347_Class2082]
+		[KB_322347_Class2083]
+		[KB_322347_Class2084]
+		[KB_322347_Class2085]
+		[KB_322347_Class2086]
+		[KB_322347_Class2087]
+		[KB_322347_Class2088]
+		[KB_322347_Class2089]
+		[KB_322347_Class2090]
+		[KB_322347_Class2091]
+		[KB_322347_Class2092]
+		[KB_322347_Class2093]
+		[KB_322347_Class2094]))
 
-([KB_246525_Class2057] of  Map_Entry
+([KB_322347_Class2057] of  Map_Entry
 
 	(key "Functional_Class10168")
 	(key_class "java.lang.String")
 	(value "70 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2058] of  Map_Entry
+([KB_322347_Class2058] of  Map_Entry
 
 	(key "Functional_Class10146")
 	(key_class "java.lang.String")
 	(value "70 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2059] of  Map_Entry
+([KB_322347_Class2059] of  Map_Entry
 
 	(key "Functional_Class10169")
 	(key_class "java.lang.String")
 	(value "470 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2060] of  Map_Entry
+([KB_322347_Class2060] of  Map_Entry
 
 	(key "Functional_Class10147")
 	(key_class "java.lang.String")
 	(value "520 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2061] of  Map_Entry
+([KB_322347_Class2061] of  Map_Entry
 
 	(key "Functional_Class10149")
 	(key_class "java.lang.String")
 	(value "670 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2062] of  Map_Entry
+([KB_322347_Class2062] of  Map_Entry
 
 	(key "Functional_Class10129")
 	(key_class "java.lang.String")
 	(value "220 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2063] of  Map_Entry
+([KB_322347_Class2063] of  Map_Entry
 
 	(key "Functional_Class10160")
 	(key_class "java.lang.String")
 	(value "370 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2064] of  Map_Entry
+([KB_322347_Class2064] of  Map_Entry
 
 	(key "Functional_Class10161")
 	(key_class "java.lang.String")
 	(value "370 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2065] of  Map_Entry
+([KB_322347_Class2065] of  Map_Entry
 
 	(key "Functional_Class10162")
 	(key_class "java.lang.String")
 	(value "370 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2066] of  Map_Entry
+([KB_322347_Class2066] of  Map_Entry
 
 	(key "Functional_Class10163")
 	(key_class "java.lang.String")
 	(value "220 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2067] of  Map_Entry
+([KB_322347_Class2067] of  Map_Entry
 
 	(key "Functional_Class10164")
 	(key_class "java.lang.String")
 	(value "220 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2068] of  Map_Entry
+([KB_322347_Class2068] of  Map_Entry
 
 	(key "Functional_Class10120")
 	(key_class "java.lang.String")
 	(value "520 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2069] of  Map_Entry
+([KB_322347_Class2069] of  Map_Entry
 
 	(key "Functional_Class10165")
 	(key_class "java.lang.String")
 	(value "220 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2070] of  Map_Entry
+([KB_322347_Class2070] of  Map_Entry
 
 	(key "Functional_Class10166")
 	(key_class "java.lang.String")
 	(value "70 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2071] of  Map_Entry
+([KB_322347_Class2071] of  Map_Entry
 
 	(key "Functional_Class10122")
 	(key_class "java.lang.String")
 	(value "670 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2072] of  Map_Entry
+([KB_322347_Class2072] of  Map_Entry
 
 	(key "Functional_Class10145")
 	(key_class "java.lang.String")
 	(value "70 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2073] of  Map_Entry
+([KB_322347_Class2073] of  Map_Entry
 
 	(key "Functional_Class10167")
 	(key_class "java.lang.String")
 	(value "70 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2074] of  Map_Entry
+([KB_322347_Class2074] of  Map_Entry
 
 	(key "Functional_Class10123")
 	(key_class "java.lang.String")
 	(value "670 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2075] of  Map_Entry
+([KB_322347_Class2075] of  Map_Entry
 
 	(key "Functional_Class10157")
 	(key_class "java.lang.String")
 	(value "520 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2076] of  Map_Entry
+([KB_322347_Class2076] of  Map_Entry
 
 	(key "Functional_Class10158")
 	(key_class "java.lang.String")
 	(value "520 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2077] of  Map_Entry
+([KB_322347_Class2077] of  Map_Entry
 
 	(key "Functional_Class10159")
 	(key_class "java.lang.String")
 	(value "520 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2078] of  Map_Entry
+([KB_322347_Class2078] of  Map_Entry
 
 	(key "Functional_Class10118")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2079] of  Map_Entry
+([KB_322347_Class2079] of  Map_Entry
 
 	(key "Functional_Class10119")
 	(key_class "java.lang.String")
 	(value "70 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2080] of  Map_Entry
+([KB_322347_Class2080] of  Map_Entry
 
 	(key "Functional_Class10150")
 	(key_class "java.lang.String")
 	(value "670 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2081] of  Map_Entry
+([KB_322347_Class2081] of  Map_Entry
 
 	(key "Functional_Class10051")
 	(key_class "java.lang.String")
 	(value "220 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2082] of  Map_Entry
+([KB_322347_Class2082] of  Map_Entry
 
 	(key "Functional_Class10096")
 	(key_class "java.lang.String")
 	(value "370 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2083] of  Map_Entry
+([KB_322347_Class2083] of  Map_Entry
 
 	(key "Functional_Class10151")
 	(key_class "java.lang.String")
 	(value "520 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2084] of  Map_Entry
+([KB_322347_Class2084] of  Map_Entry
 
 	(key "Functional_Class10052")
 	(key_class "java.lang.String")
 	(value "220 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2085] of  Map_Entry
+([KB_322347_Class2085] of  Map_Entry
 
 	(key "Functional_Class10097")
 	(key_class "java.lang.String")
 	(value "370 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2086] of  Map_Entry
+([KB_322347_Class2086] of  Map_Entry
 
 	(key "Functional_Class10152")
 	(key_class "java.lang.String")
 	(value "520 820 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2087] of  Map_Entry
+([KB_322347_Class2087] of  Map_Entry
 
 	(key "Functional_Class10130")
 	(key_class "java.lang.String")
 	(value "220 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2088] of  Map_Entry
+([KB_322347_Class2088] of  Map_Entry
 
 	(key "Functional_Class10131")
 	(key_class "java.lang.String")
 	(value "370 970 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2089] of  Map_Entry
+([KB_322347_Class2089] of  Map_Entry
 
 	(key "Functional_Class10076")
 	(key_class "java.lang.String")
 	(value "820 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2090] of  Map_Entry
+([KB_322347_Class2090] of  Map_Entry
 
 	(key "Functional_Class10132")
 	(key_class "java.lang.String")
 	(value "370 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2091] of  Map_Entry
+([KB_322347_Class2091] of  Map_Entry
 
 	(key "Functional_Class10154")
 	(key_class "java.lang.String")
 	(value "670 1120 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2092] of  Map_Entry
+([KB_322347_Class2092] of  Map_Entry
 
 	(key "Functional_Class10077")
 	(key_class "java.lang.String")
 	(value "820 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2093] of  Map_Entry
+([KB_322347_Class2093] of  Map_Entry
 
 	(key "Functional_Class10155")
 	(key_class "java.lang.String")
 	(value "670 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2094] of  Map_Entry
+([KB_322347_Class2094] of  Map_Entry
 
 	(key "Functional_Class10156")
 	(key_class "java.lang.String")
 	(value "670 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([KB_246525_Class2095] of  Map_Entry
+([KB_322347_Class2095] of  Map_Entry
 
 	(key "InstanceGraphWidget.Functional_Class10153.task_scheme")
 	(key_class "java.lang.String")
-	(value "KB_246525_Class2056")
+	(value "KB_322347_Class2056")
 	(value_class "java.util.Map"))
 
 ([KB_352175_Class1780] of  Widget
@@ -1127,8 +1127,8 @@
 
 ([KB_574097_Class1] of  Map
 
-	(entries [Hiitolanjoki_ProjectKB_Class2119])
-	(referenced_maps [Hiitolanjoki_ProjectKB_Class2116]))
+	(entries [Hiitolanjoki_ProjectKB_Class2107])
+	(referenced_maps [Hiitolanjoki_ProjectKB_Class2104]))
 
 ([KB_574097_Class13] of  Property_List
 
