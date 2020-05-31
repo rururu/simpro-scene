@@ -1,4 +1,4 @@
-; Fri May 29 16:40:41 MSK 2020
+; Sun May 31 12:57:43 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -45,8 +45,8 @@
 
 ([CesiumBase_Class100001] of  CloFunction
 
-	(source "(let [coord (lolah->slolah lolah-points knots)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601futt sec)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  s)")
-	(title "add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size]"))
+	(source "(let [coord (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601futt sec)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  s)")
+	(title "add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]"))
 
 ([CesiumBase_Class100004] of  CloFunction
 
@@ -279,8 +279,8 @@
 
 ([CesiumBase_Class90000] of  CloFunction
 
-	(source "(loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]\n  (if (some? h2)\n    (let [rsec (Math/toRadians (/ knots 60 3600))\n           dist (sphericalDistance\n                    (Math/toRadians la1)\n                    (Math/toRadians lo1)\n                    (Math/toRadians la2)\n                    (Math/toRadians lo2))\n           time (int (/ dist rsec))\n           elt (+ elt time)]\n      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))\n    slolahs))")
-	(title "lolah->slolah [lolahs knots]"))
+	(source "(loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]\n  (if (some? h2)\n    (let [rsec (Math/toRadians (/ knots 60 3600))\n           dist (func-spherical-distance\n                    (Math/toRadians la1)\n                    (Math/toRadians lo1)\n                    (Math/toRadians la2)\n                    (Math/toRadians lo2))\n           time (int (/ dist rsec))\n           elt (+ elt time)]\n      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))\n    slolahs))")
+	(title "lolah->slolah [lolahs knots func-spherical-distance]"))
 
 ([CesiumBase_Class90001] of  CloFunction
 

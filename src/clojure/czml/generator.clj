@@ -74,11 +74,11 @@
 (defn add-image [id uri [w s e n] trans]
   (str "[{\"id\":\"document\",\"version\":\"1.0\"},{\"id\":\"" id "\",\"rectangle\":{\"coordinates\":{\"wsenDegrees\":[" w "," s "," e "," n "]},\"material\":{\"image\":{\"image\":{\"uri\":\"" uri "\"},\"color\":{\"rgba\":[255,255,255," (int (* trans 255)) "]}}}}}]"))
 
-(defn lolah->slolah [lolahs knots]
+(defn lolah->slolah [lolahs knots func-spherical-distance]
   (loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]
   (if (some? h2)
     (let [rsec (Math/toRadians (/ knots 60 3600))
-           dist (sphericalDistance
+           dist (func-spherical-distance
                     (Math/toRadians la1)
                     (Math/toRadians lo1)
                     (Math/toRadians la2)
@@ -88,8 +88,8 @@
       (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))
     slolahs)))
 
-(defn add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size]
-  (let [coord (lolah->slolah lolah-points knots)
+(defn add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]
+  (let [coord (lolah->slolah lolah-points knots func-spherical-distance)
        coord (flatten coord)
        coord (interpose "," coord)
        coord (apply str coord)
