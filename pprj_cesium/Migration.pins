@@ -1,4 +1,4 @@
-; Sun May 31 22:51:02 MSK 2020
+; Mon Jun 01 18:11:46 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -144,20 +144,25 @@
 
 ([HiitolanjokiRCZ_Class20002] of  CloProgram
 
-	(cloFunctions [HiitolanjokiRCZ_Class20004])
+	(cloFunctions
+		[Migration_Class40016]
+		[HiitolanjokiRCZ_Class20004]
+		[Migration_Class40000]
+		[Migration_Class40003]
+		[Migration_Class40024])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars [Migration_Class20000])
 	(title "Cesium Migration"))
 
 ([HiitolanjokiRCZ_Class20003] of  CloNamespace
 
-	(source "(:import\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.omGraphics.OMGraphicList\n  com.bbn.openmap.proj.GreatCircle)")
+	(source "(:require\n  [cesium.server :as cs]\n  [czml.generator :as cg])\n(:import\n  ru.igis.omtab.OpenMapTab\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.omGraphics.OMGraphicList\n  com.bbn.openmap.proj.GreatCircle)")
 	(title "cesium.mig"))
 
 ([HiitolanjokiRCZ_Class20004] of  CloFunction
 
 	(source "(let [mb (OpenMapTab/getMapBean)\n       start (map #(Math/toRadians %) start)\n       cms (.getComponents mb)]\n  (if-let [slr (first (filter #(= (.getName %) layer) cms))]\n    (let [dbh (.getDbf (.getSpatialIndex slr))\n           dbf (.getDbf dbh)\n           lst (.getList slr)\n           rad (loop [[[col val] & cvrst] col-vals path [start]]\n                   (if (some? col)\n                     (let [idx (.getColumnIndexForName dbf col)]\n                       (if-let [epl (first (filter #(and (not (instance? OMGraphicList %))\n                                                             (= (nth (.getRecordDataForOMGraphic dbh %) idx) val)) lst))]\n                         (let [lla (.getRawllpts epl)\n                                pa2 (partition 2 lla)\n                                [p1 l1] (last path)\n                                [p2 l2] (first pa2)\n                                [p3 l3] (last pa2)\n                                d1 (GreatCircle/sphericalDistance p1 l1 p2 l2)\n                                d2 (GreatCircle/sphericalDistance p1 l1 p3 l3)\n                                nxt (if (< d2 d1)\n                                        (reverse pa2)\n                                        pa2)] \n                           (recur cvrst (concat path nxt)))))\n                     path))]\n      (map #(let [[phi lam] %] [(Math/toDegrees lam) (Math/toDegrees phi) height]) rad))))")
-	(title "from-shape-by-attributes [layer height col-vals start]"))
+	(title "from-shape-by-attributes [layer col-vals start height]"))
 
 ([HiitolanjokiRCZ_Class3] of  ShapeLayer
 
@@ -237,20 +242,12 @@
 
 ([Migration_Class20000] of  CloVar
 
-	(source "[[\"NAME\" \"Hiitolanjoki\"]\n [\"NAME\" \"Kokkolanjoki2\"]\n [\"NAME\" \"Kokkolanjoki1\"]\n [\"NAME\" \"Veijalanjarvi\"]\n [\"NAME\" \"Asilanjoki\"]]")
-	(title "HJ"))
+	(source "{:layer \"Hiitolanjoki Rivers\"\n  :head [61.444 29.346]\n  :path [[\"NAME\" \"Hiitolanjoki\"]\n             [\"NAME\" \"Kokkolanjoki2\"]\n             [\"NAME\" \"Kokkolanjoki1\"]\n             [\"NAME\" \"Veijalanjarvi\"]\n             [\"NAME\" \"Asilanjoki\"]]\n  :estuary [61.18 29.885]\n  :speed 2}")
+	(title "H-JOKI"))
 
 ([Migration_Class20014] of  CloFuncall
 
 	(source "(def czml (czml.generator/add-point-flight \"f1\" pts 22 20 \"RELATIVE_TO_GROUND\" [255 0 0 255] 10 #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)))"))
-
-([Migration_Class20015] of  CloFuncall
-
-	(source "(cesium.server/send-czml czml)"))
-
-([Migration_Class20017] of  CloFuncall
-
-	(source "(def pts (cesium.mig/from-shape-by-attributes \"Hiitolanjoki Rivers\" 10 cesium.mig/HJ))"))
 
 ([Migration_Class3] of  WorkingPrograms
 
@@ -270,20 +267,112 @@
 		[HiitolanjokiRCZ_Class20002])
 	(title "Migration Programs"))
 
-([Migration_Class30000] of  CloFuncall
-
-	(source "czml"))
-
-([Migration_Class30001] of  CloFuncall
-
-	(source "(cesium.server/send-czml (czml.generate/delete \"f1\"))"))
-
-([Migration_Class30002] of  CloFuncall
-
-	(source "(cesium.server/send-czml (czml.generator/delete \"f1\"))"))
-
 ([Migration_Class4] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [Migration_Class3])
 	(%3ACREATION-TIMESTAMP "2020.05.31 13:08:14.109 MSK")
 	(%3ACREATOR "ru"))
+
+([Migration_Class40000] of  CloFunction
+
+	(source "(let [pts (from-shape-by-attributes layer attrs start height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       czml (cg/add-point-flight id pts knots 2 \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml))")
+	(title "go-shape-attributes [id color size knots height start layer attrs]"))
+
+([Migration_Class40001] of  CloFuncall
+
+	(source "(cesium.mig/go-shape-attributes \"f1\" pts 22 20 \"RELATIVE_TO_GROUND\" [255 0 0 255] 10 #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)))"))
+
+([Migration_Class40002] of  CloFuncall
+
+	(source "(cesium.mig/go-shape-attributes \"f1\" [29.37 61.45] 22 20 [0 255 0 255] 10 cesium.mig/"))
+
+([Migration_Class40003] of  CloFunction
+
+	(source "(let [[lah loh] (river :head)\n        [lae loe] (river :estuary)\n        w (min lah lae)\n        s (min loh loe)\n        e (max loh loe)\n        n (max lah lae)]\n  (set-wsen-view w s e n)\n  (go-shape-attributes id color size\n    (condp = direction\n      :down (+ knots (river :speed))\n      :up (- knots (river :speed)))\n    (or height 16)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (river :layer)\n    (condp = direction\n      :down (river :path)\n      :up (reverse (river :path)))))")
+	(title "go-river [id color size knots height river direction]"))
+
+([Migration_Class40004] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" [0 255 0 255] 10 0 nil cesium.mig/H-JOKI :down)"))
+
+([Migration_Class40005] of  CloFuncall
+
+	(source "(cesium.server/send-js \"cesium.client.EVENT_DEBUG=true\")"))
+
+([Migration_Class40006] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" [0 255 0 255] 10 0 nil cesium.mig/H-JOKI :up)"))
+
+([Migration_Class40007] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/delete \"s1\"))"))
+
+([Migration_Class40008] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" [0 255 0 255] 10 10 nil cesium.mig/H-JOKI :up)"))
+
+([Migration_Class40009] of  CloFuncall
+
+	(source "(ru.igis.omtab.OpenMapTab/getMapBean)"))
+
+([Migration_Class40010] of  CloFuncall
+
+	(source "(def mb (ru.igis.omtab.OpenMapTab/getMapBean))"))
+
+([Migration_Class40011] of  CloFuncall
+
+	(source "(.getScale mb)"))
+
+([Migration_Class40012] of  CloFuncall
+
+	(source "(.setScale mb 300000)"))
+
+([Migration_Class40013] of  CloFuncall
+
+	(source "(def prj (.getProjection mb))"))
+
+([Migration_Class40014] of  CloFuncall
+
+	(source "(.getUpperLeft prj)"))
+
+([Migration_Class40015] of  CloFuncall
+
+	(source "(.getLowerRight prj)"))
+
+([Migration_Class40016] of  CloFunction
+
+	(source "(let [mb (OpenMapTab/getMapBean)\n       prj (.getProjection mb)\n       scl (.getScale mb)\n       ul (.getUpperLeft prj)\n       lr (.getLowerRight prj)\n       [cw cs ce cn] [(.getX ul) (.getY lr) (.getX lr) (.getY ul)]]\n (if (or (> cw w) (> cs s) (> e ce) (> n cn))\n   (let [celat (/ (+ s n) 2)\n          celon (/ (+ w e) 2)]\n     (.setCenter mb celat celon)\n     (.setScale mb (* 1.2 scl))     \n     (if (< (.getScale mb) 50000000)\n       (set-wsen-view w s e n)))))")
+	(title "set-wsen-view [w s e n]"))
+
+([Migration_Class40017] of  CloFuncall
+
+	(source "(.getX (.getUpperLeft prj))"))
+
+([Migration_Class40018] of  CloFuncall
+
+	(source "(cesium.mig/set-wsen-view)"))
+
+([Migration_Class40019] of  CloFuncall
+
+	(source "(cesium.mig/set-wsen-view [[29.1 61.1 30.1 61.4]])"))
+
+([Migration_Class40020] of  CloFuncall
+
+	(source "(cesium.mig/set-wsen-view [29.1 61.1 30.1 61.4])"))
+
+([Migration_Class40021] of  CloFuncall
+
+	(source "(cesium.mig/set-wsen-view 29.1 61.1 30.1 61.4)"))
+
+([Migration_Class40022] of  CloFuncall
+
+	(source "(cesium.mig/set-wsen-view -73.1 44.1 -74.1 46.4)"))
+
+([Migration_Class40023] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" [0 255 0 255] 10 40 nil cesium.mig/H-JOKI :up)"))
+
+([Migration_Class40024] of  CloFunction
+
+	(source "{\"id\":\"document\",\n	\"name\":\"SampleFlight\",\n	\"version\":\"1.0\",\n	\"clock\":{\"interval\":\"20170711T16Z/20170711T1620Z\",\n		\"currentTime\":\"20170711T16Z\",\n		\"multiplier\":2,\n		\"range\":\"LOOP_STOP\",\n		\"step\":\"SYSTEM_CLOCK_MULTIPLIER\"}},")
+	(title "adjust-clock []"))

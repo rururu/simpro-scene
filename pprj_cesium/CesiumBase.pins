@@ -1,4 +1,4 @@
-; Sun May 31 12:57:43 MSK 2020
+; Mon Jun 01 22:23:48 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -43,6 +43,11 @@
 	(source "(letfn[(fly-one [cam next]\n            (let [orient (js/Cesium.HeadingPitchRoll. (nth (@ORBIT :headings) next) (.-pitch cam) (.-roll cam))]\n              (.flyTo cam #js{:destination (nth (@ORBIT :ring) next)\n                                       :orientation #js{:heading (.-heading orient)\n                                                               :pitch (.-pitch orient)\n                                                               :roll (.-roll orient)}\n                                       :duration (@ORBIT :step-sec)\n                                       :easingFunction js/Cesium.EasingFunction.LINEAR_NONE\n                                       :complete #(fly-next cam (inc next))\n                                       :cancel #(fly-cancel cam next)})))\n          (fly-next [cam next]\n            (if (< next (count (@ORBIT :ring)))\n              (fly-one cam next)\n              (fly-one cam 0)))\n          (fly-cancel [cam next]\n             (vswap! ORBIT assoc :next next))\n          (next [az azs]\n            (let [N (count azs)\n                   n (+ (/ N 2) (count (filter #(< % az) azs)))]\n              (if (> n (dec N)) (- n N) n)))]\n            \n  (let [obut (.createElement js/document \"button\")]\n    (set! (.-innerHTML obut) \"Toggle orbit\")\n    (.add (.-classList obut) \"cesium-button\")\n    (.prepend (.querySelector js/document \".cesium-viewer-toolbar\") obut)\n    (set! (.-onclick obut)\n      (fn []\n        (condp = (@ORBIT :status)\n          :init\n          (vswap! ORBIT assoc :status :stop)\n          :stop\n          (let [steps (@ORBIT :steps)\n                 radm (@ORBIT :radius-m)\n                 radr (* (/ radm 1852 60 180) js/Math.PI)\n                 [lam phi hgt :as look] (look-at camera radm)\n                 [azs pts] (azimuths&points [lam phi] radr hgt steps)\n                 ring (vec (map #(js/Cesium.Cartesian3.fromRadians (first %) (second %) (nth % 2)) pts))\n                 headings (vec (map #(normaz (+ % js/Math.PI)) azs))\n                 begin (next (.-heading camera) azs)]\n            (vswap! ORBIT assoc :ring ring\n                                             :headings headings\n                                             :center (js/Cesium.Cartesian3.fromRadians lam phi hgt)\n                                             :next begin\n                                             :status :run)\n            (fly-one camera begin))\n          :run\n          (do (.cancelFlight camera)\n            (vswap! ORBIT assoc :status :stop)))))))")
 	(title "add-orbit-button [camera]"))
 
+([CesiumBase_Class100000] of  CloFunction
+
+	(source "(let [curt (iso8601futt 0)\n       futt (iso8601futt interval) \n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\"\n                \"\\\"clock\\\":{\\\"currentTime\\\":\\\"\"\n                curt\n                \"\\\",\\\"interval\\\":\\\"\"\n                curt \"/\" futt\n                \"\\\",\\\"multiplier\\\":\"\n                mult\n                \",\\\"range\\\":\\\"UNBOUNDED\\\",\\\"step\\\":\\\"SYSTEM_CLOCK_MULTIPLIER\\\"}}]\")]\n s)")
+	(title "adjust-clock [interval mult]"))
+
 ([CesiumBase_Class100001] of  CloFunction
 
 	(source "(let [coord (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601futt sec)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  s)")
@@ -85,8 +90,8 @@
 
 ([CesiumBase_Class10007] of  CloFunction
 
-	(source "(let [{:keys [animate start stop current mult]} settings]\n  (set! (.-shouldAnimate clock) animate)\n  (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clock) mult)\n  (set! (.-clockStep clock) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)\n  (set! (.-clockRange clock) js/Cesium.ClockRange.LOOP_STOP)\n  (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock)))")
-	(title "clock-settings [clock settings viewer]"))
+	(source "([clock settings viewer]\n  (let [{:keys [animate start stop current mult]} settings]\n    (clock-settings clock animate start stop current mult viewer)))\n([clock animate start stop current mult viewer]\n  (set! (.-shouldAnimate clock) animate)\n  (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clock) mult)\n  (set! (.-clockStep clock) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)\n  (set! (.-clockRange clock) js/Cesium.ClockRange.LOOP_STOP)\n  (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock)))")
+	(title "clock-settings"))
 
 ([CesiumBase_Class10008] of  CloVar
 
@@ -125,6 +130,11 @@
 	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}")
 	(store-in "resources/public/css")
 	(title "test"))
+
+([CesiumBase_Class110007] of  CloFunction
+
+	(source "(send-clj-funcall \n  `(cesium.client/clock-settings \n     ~'cesium.client.CLOCK \n     ~(cs :animate)\n     ~(cs :start)\n     ~(cs :stop)\n     ~(cs :current)\n     ~(cs :mult)\n     ~'cesium.client.VIEWER))")
+	(title "send-clock [cs]"))
 
 ([CesiumBase_Class20000] of  CloFunction
 
@@ -179,14 +189,15 @@
 ([CesiumBase_Class30004] of  CloProgram
 
 	(cloFunctions
-		[CesiumBase_Class100004]
 		[CesiumBase_Class90001]
+		[CesiumBase_Class100004]
 		[CesiumBase_Class30008]
 		[CesiumBase_Class30006]
 		[CesiumBase_Class30007]
 		[CesiumBase_Class30009]
 		[CesiumBase_Class90000]
-		[CesiumBase_Class100001])
+		[CesiumBase_Class100001]
+		[CesiumBase_Class100000])
 	(cloNamespace [CesiumBase_Class30005])
 	(title "CZML Generator"))
 
@@ -321,6 +332,7 @@
 		[CesiumBase_Class60005]
 		[CesiumBase_Class60000]
 		[CesiumBase_Class80000]
+		[CesiumBase_Class110007]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
 		[CesiumWorshop_Class10005]

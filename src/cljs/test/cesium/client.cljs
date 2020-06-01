@@ -61,8 +61,11 @@
       (.flyTo camera HOME-VIEW)))
   (.flyTo camera HOME-VIEW)))
 
-(defn clock-settings [clock settings viewer]
+(defn clock-settings
+  ([clock settings viewer]
   (let [{:keys [animate start stop current mult]} settings]
+    (clock-settings clock animate start stop current mult viewer)))
+([clock animate start stop current mult viewer]
   (set! (.-shouldAnimate clock) animate)
   (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))
   (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))

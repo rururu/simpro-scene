@@ -1,5 +1,11 @@
 (ns czml.generator
 (:import java.util.Calendar))
+(defn sphericalDistance ^double [^double phi1 ^double lambda0 ^double phi ^double lambda]
+  (let [pdiff (Math/sin (/ (- phi phi1) 2.0))
+       ldiff (Math/sin (/ (- lambda lambda0) 2.0))
+       rval (Math/sqrt (+ (* pdiff pdiff) (* (Math/cos phi1) (Math/cos phi) (* ldiff ldiff))))]
+  (* 2.0 (Math/asin rval))))
+
 (defn iso8601futt [sec]
   (let [cld (Calendar/getInstance)
        mil (.getTimeInMillis cld)
@@ -11,12 +17,6 @@
         min (.get cld Calendar/MINUTE)
         sec (.get cld Calendar/SECOND)]
     (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
-
-(defn sphericalDistance ^double [^double phi1 ^double lambda0 ^double phi ^double lambda]
-  (let [pdiff (Math/sin (/ (- phi phi1) 2.0))
-       ldiff (Math/sin (/ (- lambda lambda0) 2.0))
-       rval (Math/sqrt (+ (* pdiff pdiff) (* (Math/cos phi1) (Math/cos phi) (* ldiff ldiff))))]
-  (* 2.0 (Math/asin rval))))
 
 (defn delete [id]
   (str "[{\"id\":\"document\",\"version\":\"1.0\"},{\"id\":\"" id "\",\"delete\":true}]"))
@@ -104,4 +104,17 @@
                 epoch
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
   s))
+
+(defn adjust-clock [interval mult]
+  (let [curt (iso8601futt 0)
+       futt (iso8601futt interval) 
+       s (str "[{\"id\":\"document\",\"version\":\"1.0\","
+                "\"clock\":{\"currentTime\":\""
+                curt
+                "\",\"interval\":\""
+                curt "/" futt
+                "\",\"multiplier\":"
+                mult
+                ",\"range\":\"UNBOUNDED\",\"step\":\"SYSTEM_CLOCK_MULTIPLIER\"}}]")]
+ s))
 
