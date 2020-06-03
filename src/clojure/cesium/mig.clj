@@ -85,3 +85,14 @@
       :down (river :path)
       :up (reverse (river :path))))))
 
+(defn adjust-clock [mult]
+  (let [s (cg/iso8601futt 0)
+       cs {:animate true
+              :start s
+              :stop (cg/iso8601futt 3600)
+              :current s
+              :mult mult
+              :step "SYSTEM_CLOCK_MULTIPLIER"
+              :range "UNBOUND"}]
+  (cs/send-clock cs)))
+

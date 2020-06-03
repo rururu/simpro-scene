@@ -12,11 +12,6 @@
 (def SERV nil)
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
-(def CS {:animate true
-  :start "2020-06-01T16:00:00Z"
-  :stop "2020-06-01T16:20:00Z"
-  :current "2020-06-01T16:00:00Z"
-  :mult 1})
 (defn clj->js-str [obj]
   (cond
   (nil? obj)
@@ -69,6 +64,8 @@
      ~(cs :stop)
      ~(cs :current)
      ~(cs :mult)
+     ~(cs :step)
+     ~(cs :range)
      ~'cesium.client.VIEWER)))
 
 (defn pump-out-events []

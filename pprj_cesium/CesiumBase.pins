@@ -1,4 +1,4 @@
-; Mon Jun 01 22:23:48 MSK 2020
+; Wed Jun 03 19:43:48 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -45,8 +45,8 @@
 
 ([CesiumBase_Class100000] of  CloFunction
 
-	(source "(let [curt (iso8601futt 0)\n       futt (iso8601futt interval) \n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\",\"\n                \"\\\"clock\\\":{\\\"currentTime\\\":\\\"\"\n                curt\n                \"\\\",\\\"interval\\\":\\\"\"\n                curt \"/\" futt\n                \"\\\",\\\"multiplier\\\":\"\n                mult\n                \",\\\"range\\\":\\\"UNBOUNDED\\\",\\\"step\\\":\\\"SYSTEM_CLOCK_MULTIPLIER\\\"}}]\")]\n s)")
-	(title "adjust-clock [interval mult]"))
+	(source "(let [cld (Calendar/getInstance)\n       _ (.setTimeInMillis cld mills)\n        yar (.get cld Calendar/YEAR )\n        mon (inc (.get cld Calendar/MONTH))\n        dat (.get cld Calendar/DATE)\n        hor (.get cld Calendar/HOUR_OF_DAY)\n        min (.get cld Calendar/MINUTE)\n        sec (.get cld Calendar/SECOND)]\n    (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601abs [mills]"))
 
 ([CesiumBase_Class100001] of  CloFunction
 
@@ -90,12 +90,12 @@
 
 ([CesiumBase_Class10007] of  CloFunction
 
-	(source "([clock settings viewer]\n  (let [{:keys [animate start stop current mult]} settings]\n    (clock-settings clock animate start stop current mult viewer)))\n([clock animate start stop current mult viewer]\n  (set! (.-shouldAnimate clock) animate)\n  (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clock) mult)\n  (set! (.-clockStep clock) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)\n  (set! (.-clockRange clock) js/Cesium.ClockRange.LOOP_STOP)\n  (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock)))")
+	(source "([clock settings viewer]\n  (let [{:keys [animate start stop current mult step range]} settings]\n    (clock-settings clock animate start stop current mult step range viewer)))\n([clock animate start stop current mult step range viewer]\n  (set! (.-shouldAnimate clock) animate)\n  (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))\n  (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))\n  (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))\n  (set! (.-multiplier clock) mult)\n  (set! (.-clockStep clock) \n             (condp = step\n               \"TICK_DEPENDENT\" js/Cesium.ClockStep.TICK_DEPENDENT	\n               \"SYSTEM_CLOCK_MULTIPLIER\" js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER\n               \"SYSTEM_CLOCK\" js/Cesium.ClockStep.SYSTEM_CLOCK))\n  (set! (.-clockRange clock) \n             (condp = range\n               \"UNBOUNDED\" js/Cesium.ClockRange.UNBOUNDED\n               \"CLAMPED\" js/Cesium.ClockRange.CLAMPED\n               \"LOOP_STOP\" js/Cesium.ClockRange.LOOP_STOP))\n  (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock)))")
 	(title "clock-settings"))
 
 ([CesiumBase_Class10008] of  CloVar
 
-	(source "{:animate true\n  :start \"2020-08-08T16:00:00Z\"\n  :stop \"2020-08-08T16:20:00Z\"\n  :current \"2020-08-08T16:00:00Z\"\n  :mult 4}")
+	(source "{:animate true\n  :start \"2020-08-08T16:00:00Z\"\n  :stop \"2020-08-08T16:20:00Z\"\n  :current \"2020-08-08T16:00:00Z\"\n  :mult 4\n  :step \"SYSTEM_CLOCK_MULTIPLIER\"\n  :range \"LOOP_STOP\"}")
 	(title "CLOCK-SET"))
 
 ([CesiumBase_Class10009] of  ClsMain
@@ -133,7 +133,7 @@
 
 ([CesiumBase_Class110007] of  CloFunction
 
-	(source "(send-clj-funcall \n  `(cesium.client/clock-settings \n     ~'cesium.client.CLOCK \n     ~(cs :animate)\n     ~(cs :start)\n     ~(cs :stop)\n     ~(cs :current)\n     ~(cs :mult)\n     ~'cesium.client.VIEWER))")
+	(source "(send-clj-funcall \n  `(cesium.client/clock-settings \n     ~'cesium.client.CLOCK \n     ~(cs :animate)\n     ~(cs :start)\n     ~(cs :stop)\n     ~(cs :current)\n     ~(cs :mult)\n     ~(cs :step)\n     ~(cs :range)\n     ~'cesium.client.VIEWER))")
 	(title "send-clock [cs]"))
 
 ([CesiumBase_Class20000] of  CloFunction
@@ -191,13 +191,13 @@
 	(cloFunctions
 		[CesiumBase_Class90001]
 		[CesiumBase_Class100004]
+		[CesiumBase_Class100000]
 		[CesiumBase_Class30008]
 		[CesiumBase_Class30006]
 		[CesiumBase_Class30007]
 		[CesiumBase_Class30009]
 		[CesiumBase_Class90000]
-		[CesiumBase_Class100001]
-		[CesiumBase_Class100000])
+		[CesiumBase_Class100001])
 	(cloNamespace [CesiumBase_Class30005])
 	(title "CZML Generator"))
 

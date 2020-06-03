@@ -13,13 +13,14 @@
     ByteArrayOutputStream
     ByteArrayInputStream]
   clojuretab.ClojureTab))
-(def defoceSYS (def SYS 
+(def defonceSYS (defonce SYS 
   (volatile! 
    {:SERVER nil
      :APP nil
      :ROOT (str (System/getProperty "user.dir") "/resources/public/")
      :NAMESPACE nil
      :CHAN (asp/mk-chan)
+     :MAPICK-CHAN (asp/mk-chan)
      :BUSY nil})))
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
@@ -67,6 +68,12 @@
   "          </form><br>\n"
   "          <h4>" footer "</h4>\n")))
 
+(defn to-vec-param [p]
+  (cond
+  (vector? p) p
+  (some? p) [p]
+  true []))
+
 (defn sidebar
   ([side-bar]
   (sidebar (sv side-bar "wiside") (svs side-bar "witasks")))
@@ -103,9 +110,9 @@
              sbs (apply str (map sidebar (svs cli "wisidebars")))
              tit (str "  <title>" (sv cli "wiheader") "</title>\n")
              hdr (str "   <div id=\"header\" style=\"background:" (sv cli "wicolor") ";text-align:center;\">" (sv cli "wiheader") "</div>\n")
+             src (.replace src "<TITLE>" tit)
              src (.replace src "<SIDEBARS>" sbs)
              src (.replace src "<HEADER>" hdr)
-             src (.replace src "<TITLE>" tit)
              spg (sv inst "wistart-page")]
           (spit spg src))))))
 
@@ -133,6 +140,11 @@
 (defn map-controls [mapi]
   (vec (map keyword (svs mapi "wicontrols"))))
 
+(defn response-snapshots []
+  (let [sns (deref (future (asp/pump-out (@SYS :MAPICK-CHAN))))]
+  ;; (println :SNS sns)
+  (write-transit sns)))
+
 (defn response-events []
   (let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]
   ;; (println :EVT evt)
@@ -155,6 +167,7 @@
   (POST "/" [& params] (request params))
   (GET "/map" [] (response-map))
   (GET "/events" [] (response-events))
+  (GET "/snapshots" [] (response-snapshots))
   (route/files "/" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))
   (route/resources "/")
   (route/not-found "Not Found"))
@@ -181,4 +194,40 @@
   (vswap! SYS assoc :SERVER nil)
   (vswap! SYS assoc :APP nil)
   (println "WebServer stopped.")))
+
+(defn par-ops-gen [hm inst]
+  (let [mp (into {} hm)
+       ops (vec (map #(sv % (mp "wislot")) (mp "wilist")))
+       pins (crin "WiOptionParameter")]
+  (ssvs inst "wiparam-options" ops)
+  (ssvs pins "wiparam-options" ops)
+  (ssv pins "title" (mp "title"))
+  (ssv pins "width" (mp "width"))
+  (ssv pins "size" (mp "size"))
+  (ssv pins "multiple" (mp "multiple"))))
+
+(defn check [val validator messager default]
+  (try
+  (let [v (validator val)]
+    (if (nil? v)
+      (throw Exception)
+      v))
+  (catch Exception e
+    (asp/pump-in (@SYS :CHAN)
+      {:event :popup
+        :html (messager val)})
+     default)))
+
+(defn ch [t val messer dft]
+  (let [vld (condp = t
+               :i #(int (read-string %))
+               :f #(float (read-string %))
+               :d #(double (read-string %))
+               :b #(let [v (read-string %)]
+                        (condp = v
+                          true v
+                          false v
+                          nil))
+               (read-string))]
+  (check val vld messer dft)))
 

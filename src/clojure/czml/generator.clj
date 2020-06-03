@@ -105,16 +105,14 @@
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
   s))
 
-(defn adjust-clock [interval mult]
-  (let [curt (iso8601futt 0)
-       futt (iso8601futt interval) 
-       s (str "[{\"id\":\"document\",\"version\":\"1.0\","
-                "\"clock\":{\"currentTime\":\""
-                curt
-                "\",\"interval\":\""
-                curt "/" futt
-                "\",\"multiplier\":"
-                mult
-                ",\"range\":\"UNBOUNDED\",\"step\":\"SYSTEM_CLOCK_MULTIPLIER\"}}]")]
- s))
+(defn iso8601abs [mills]
+  (let [cld (Calendar/getInstance)
+       _ (.setTimeInMillis cld mills)
+        yar (.get cld Calendar/YEAR )
+        mon (inc (.get cld Calendar/MONTH))
+        dat (.get cld Calendar/DATE)
+        hor (.get cld Calendar/HOUR_OF_DAY)
+        min (.get cld Calendar/MINUTE)
+        sec (.get cld Calendar/SECOND)]
+    (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
 

@@ -15,7 +15,9 @@
   :start "2020-08-08T16:00:00Z"
   :stop "2020-08-08T16:20:00Z"
   :current "2020-08-08T16:00:00Z"
-  :mult 4})
+  :mult 4
+  :step "SYSTEM_CLOCK_MULTIPLIER"
+  :range "LOOP_STOP"})
 (def CZML-DS (js/Cesium.CzmlDataSource.))
 (def KML-DS (js/Cesium.KmlDataSource. 
   #js{:camera CAMERA
@@ -63,16 +65,24 @@
 
 (defn clock-settings
   ([clock settings viewer]
-  (let [{:keys [animate start stop current mult]} settings]
-    (clock-settings clock animate start stop current mult viewer)))
-([clock animate start stop current mult viewer]
+  (let [{:keys [animate start stop current mult step range]} settings]
+    (clock-settings clock animate start stop current mult step range viewer)))
+([clock animate start stop current mult step range viewer]
   (set! (.-shouldAnimate clock) animate)
   (set! (.-startTime clock) (js/Cesium.JulianDate.fromIso8601 start))
   (set! (.-stopTime clock) (js/Cesium.JulianDate.fromIso8601 stop))
   (set! (.-currentTime clock) (js/Cesium.JulianDate.fromIso8601 current))
   (set! (.-multiplier clock) mult)
-  (set! (.-clockStep clock) js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER)
-  (set! (.-clockRange clock) js/Cesium.ClockRange.LOOP_STOP)
+  (set! (.-clockStep clock) 
+             (condp = step
+               "TICK_DEPENDENT" js/Cesium.ClockStep.TICK_DEPENDENT	
+               "SYSTEM_CLOCK_MULTIPLIER" js/Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
+               "SYSTEM_CLOCK" js/Cesium.ClockStep.SYSTEM_CLOCK))
+  (set! (.-clockRange clock) 
+             (condp = range
+               "UNBOUNDED" js/Cesium.ClockRange.UNBOUNDED
+               "CLAMPED" js/Cesium.ClockRange.CLAMPED
+               "LOOP_STOP" js/Cesium.ClockRange.LOOP_STOP))
   (.zoomTo (.-timeline viewer) (.-startTime clock) (.-stopTime clock))))
 
 (defn load-data [format source options viewer processor]

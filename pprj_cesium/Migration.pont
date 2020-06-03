@@ -1,4 +1,4 @@
-; Mon Jun 01 18:11:46 MSK 2020
+; Wed Jun 03 19:38:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,3 +7,23 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract))
+
+(defclass MigrationOnto
+	(is-a USER)
+	(role abstract))
+
+(defclass Cesium
+	(is-a MigrationOnto)
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
