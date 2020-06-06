@@ -1,4 +1,4 @@
-; Sat Feb 02 13:42:29 MSK 2019
+; Sat Jun 06 14:07:59 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -175,6 +175,12 @@
 
 	(source "(- (/ Math/PI 8))")
 	(title "MPI8"))
+
+([FranceRoads_Class130000] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "FR CW"))
 
 ([FranceRoads_Class130007] of  CloFunction
 

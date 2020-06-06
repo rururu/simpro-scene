@@ -1,4 +1,4 @@
-; Thu Jun 13 16:02:03 MSK 2019
+; Sat Jun 06 14:14:13 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6655,6 +6655,12 @@
 		[OSMRoads_Class37])
 	(from1 "Carnoles")
 	(to1 "Menton"))
+
+([OSMRoads_Class140000] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "OSMRoads CW"))
 
 ([OSMRoads_Class2] of  OMTPoly
 

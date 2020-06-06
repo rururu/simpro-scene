@@ -8,7 +8,6 @@
   ru.igis.omtab.OMTPoly
   ru.igis.omtab.gui.RuMapMouseAdapter
   edu.stanford.smi.protege.ui.DisplayUtilities))
-
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")

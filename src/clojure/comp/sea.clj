@@ -3,4 +3,3 @@
 (:import
   ru.igis.omtab.OMT
   ru.igis.omtab.MapOb))
-

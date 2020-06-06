@@ -1,4 +1,4 @@
-; Tue Jun 11 18:49:55 MSK 2019
+; Sat Jun 06 14:19:16 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -271,6 +271,12 @@
 ([Tsunami_Class30001] of  CloFuncall
 
 	(source "(compile 'ra.tsunami)"))
+
+([Tsunami_Class40000] of  CloProgram
+
+	(cloFunctions [RuleEngine_Class220000])
+	(cloNamespace [Clojure_Class300001])
+	(title "Tsu CW"))
 
 ([Tsunami_Class6] of  CloFunction
 

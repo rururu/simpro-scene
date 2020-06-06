@@ -1,7 +1,6 @@
 (ns csv.imp.cities
 (:use protege.core
   csv.imp))
-
 (defn load-cities [hm inst]
   (let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))
        degmin (fn [x] (ru.igis.omtab.MapOb/getDegMin (read-string x)))]

@@ -1,4 +1,4 @@
-; Sun Jun 10 13:13:11 MSK 2018
+; Sat Jun 06 14:16:54 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5528,6 +5528,12 @@
 		[Scenario_Class340000])
 	(steps 1)
 	(title "SERun"))
+
+([ShuffleEurope_Class20000] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "SE CW"))
 
 ([ShuffleEurope_Class3] of  %3AINSTANCE-ANNOTATION
 

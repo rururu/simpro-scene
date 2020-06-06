@@ -3,7 +3,6 @@
 (:import 
   clojuretab.ClojureTab
   ru.igis.omtab.OMT))
-
 (defn manage-graphics []
   (doseq [pg (ru.igis.omtab.OMT/getPlaygrounds)]
   (.manageGraphics pg)))

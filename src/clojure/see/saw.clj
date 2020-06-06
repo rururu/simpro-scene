@@ -4,7 +4,6 @@
   rete.core)
 (:require
   [seesaw.core :as s]))
-
 (defn center! [frame]
   (.setLocationRelativeTo frame nil))
 

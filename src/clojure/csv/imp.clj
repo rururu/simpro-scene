@@ -10,26 +10,25 @@
   edu.stanford.smi.protege.model.Instance))
 (def DATA (volatile! []))
 (def CLS :Class)
-(def LAB :CITY_NAME)
+(def LAB :Label)
 (def TIT :Title)
 (def IMAP (volatile! {}))
-(def DEFAULT-CLS "CITY")
 (defn read-csv [pth]
   (sc/slurp-csv pth))
 
-(defn file-chooserCSV [s]
+(defn file-chooser [s]
   (let [fc (JFileChooser. s)]
   (.setMultiSelectionEnabled fc true)
   (if-let [rv (.showOpenDialog fc nil)]
     (map #(.getPath %) (.getSelectedFiles fc)))))
 
 (defn read-files [hm inst]
-  (let [pths (file-chooserCSV (.getPath (.getProjectDirectoryFile *prj*)))]
+  (let [pths (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))]
   (when (seq pths)
     (doseq [pth pths]
-      (def CSV (read-csv pth))
-      (let [csv (filter #(or (not (empty? (LAB %)))
-	              (not (empty? (TIT %)))) CSV)]
+      (let [csv (read-csv pth)
+             csv (filter #(or (not (empty? (LAB %)))
+	              (not (empty? (TIT %)))) csv)]
         (println (str "In file: " pth " " (count csv) " objects"))
         (vswap! DATA concat csv))))))
 
@@ -40,7 +39,7 @@
     (if-let [[clz nam ins] (create-bare-instances m)]
       (vswap! IMAP assoc-in [clz nam] ins))))
 ([m]
-  (let [clz (or (CLS m) DEFAULT-CLS)]
+  (let [clz (CLS m)]
     (if-let [ins (crin clz)]
       (if-let [lab (get m LAB)]
         (do (ssv ins "label" lab) [clz lab ins])

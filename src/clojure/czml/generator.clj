@@ -18,6 +18,17 @@
         sec (.get cld Calendar/SECOND)]
     (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
 
+(defn iso8601abs [mills]
+  (let [cld (Calendar/getInstance)
+       _ (.setTimeInMillis cld mills)
+        yar (.get cld Calendar/YEAR )
+        mon (inc (.get cld Calendar/MONTH))
+        dat (.get cld Calendar/DATE)
+        hor (.get cld Calendar/HOUR_OF_DAY)
+        min (.get cld Calendar/MINUTE)
+        sec (.get cld Calendar/SECOND)]
+    (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
+
 (defn delete [id]
   (str "[{\"id\":\"document\",\"version\":\"1.0\"},{\"id\":\"" id "\",\"delete\":true}]"))
 
@@ -104,15 +115,4 @@
                 epoch
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
   s))
-
-(defn iso8601abs [mills]
-  (let [cld (Calendar/getInstance)
-       _ (.setTimeInMillis cld mills)
-        yar (.get cld Calendar/YEAR )
-        mon (inc (.get cld Calendar/MONTH))
-        dat (.get cld Calendar/DATE)
-        hor (.get cld Calendar/HOUR_OF_DAY)
-        min (.get cld Calendar/MINUTE)
-        sec (.get cld Calendar/SECOND)]
-    (format "%04d-%02d-%02dT%02d:%02d:%02dZ" yar mon dat hor min sec)))
 

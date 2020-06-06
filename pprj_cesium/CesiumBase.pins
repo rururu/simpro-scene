@@ -1,4 +1,4 @@
-; Wed Jun 03 19:43:48 MSK 2020
+; Sat Jun 06 11:40:10 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -375,8 +375,8 @@
 
 ([CesiumWorshop_Class10009] of  CloVar
 
-	(source "nil")
-	(title "SERV"))
+	(source "(defonce SERV nil)")
+	(title "defonceSERV"))
 
 ([CesiumWorshop_Class10010] of  CloFunction
 

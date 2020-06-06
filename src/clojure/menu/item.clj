@@ -18,5 +18,11 @@
 (ClojureTab/invoke "sim" "start-sim")
 (println "4. Mission Button Support.")
 (ClojureTab/invoke "s" "mission-button-support")
-(println "EXPERT SYSTEM INITIALIZED"))
+(println "EXPERT SYSTEM INITIALIZED")
+(println "5. Starting Cesium.")
+(if-let [csi (ClojureTab/findAnnotated (cls-instances "CesiumServer") nil)]
+  (do (ClojureTab/invoke "cesium.server" "start-server" (sv csi "port"))
+    (clojure.java.browse/browse-url (str "http://localhost:" (sv csi "port")))
+    (println "Cesium started.."))
+  (println "Annotated instance of CesiumServer not found!")))
 

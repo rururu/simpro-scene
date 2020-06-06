@@ -1,4 +1,4 @@
-; Wed Jun 03 19:38:25 MSK 2020
+; Sat Jun 06 21:38:05 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,14 +6,46 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot heading
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
-(defclass MigrationOnto
+(defclass CesiumCamera
+	(is-a Action)
+	(role concrete)
+	(single-slot Latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pitch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot roll
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heading
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Migration+Onto
 	(is-a USER)
 	(role abstract))
 
 (defclass Cesium
-	(is-a MigrationOnto)
+	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot status
 		(type STRING)
@@ -23,7 +55,8 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot delay
-		(type STRING)
-;+		(cardinality 0 1)
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))

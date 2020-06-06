@@ -1,7 +1,6 @@
 (ns rr
 (:use 
   protege.core))
-
 (defn dif-lon [tgt]
   (let [ext (vec (.getExtents tgt))]
   (- (last ext) (second ext))))

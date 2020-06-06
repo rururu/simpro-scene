@@ -1,6 +1,5 @@
 (ns c
 (:use protege.core))
-
 (defn linint [x [x1 y1] [x2 y2]]
   (float (+ y1 (/ (* (- y2 y1) (- x x1)) (- x2 x1)))))
 

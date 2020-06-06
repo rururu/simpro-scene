@@ -9,7 +9,7 @@
 (def defoncePORT (defonce PORT 4442))
 (def defonceROOT (defonce ROOT (str (System/getProperty "user.dir") "/resources/public/")))
 (def defoncePAGE (defonce PAGE "test.html"))
-(def SERV nil)
+(def defonceSERV (defonce SERV nil))
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
 (defn clj->js-str [obj]

@@ -4,6 +4,8 @@
   [czml.generator :as cg])
 (:import
   ru.igis.omtab.OpenMapTab
+  ru.igis.omtab.Clock
+  ru.igis.omtab.OMT
   com.bbn.openmap.omGraphics.OMGraphic
   com.bbn.openmap.omGraphics.OMGraphicList
   com.bbn.openmap.proj.GreatCircle))
@@ -85,12 +87,19 @@
       :down (river :path)
       :up (reverse (river :path))))))
 
-(defn adjust-clock [mult]
-  (let [s (cg/iso8601futt 0)
+(defn model-clock []
+  (let [run (OMT/isRunning)
+       scl (Clock/getTimeScale)
+       str (Clock/getClock)
+       stp (+ str 3600000)
+       start (cg/iso8601abs str)
+       stop (cg/iso8601abs stp)
+       sec (Clock/getSecond)
+       mult (if run (int scl) 0)
        cs {:animate true
-              :start s
-              :stop (cg/iso8601futt 3600)
-              :current s
+              :start start
+              :stop stop
+              :current start
               :mult mult
               :step "SYSTEM_CLOCK_MULTIPLIER"
               :range "UNBOUND"}]
