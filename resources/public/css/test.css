@@ -7,3 +7,11 @@ html, body, #cesiumContainer {
     font-family: sans-serif;
     background: #000;
 }
+#mouse-pos {
+  position: absolute;
+  left: 0;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  color:yellow
+}

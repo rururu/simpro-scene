@@ -97,15 +97,15 @@
            time (int (/ dist rsec))
            elt (+ elt time)]
       (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))
-    slolahs)))
+    [slolahs elt])))
 
 (defn add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]
-  (let [coord (lolah->slolah lolah-points knots func-spherical-distance)
+  (let [[coord elt] (lolah->slolah lolah-points knots func-spherical-distance)
        coord (flatten coord)
        coord (interpose "," coord)
        coord (apply str coord)
        rgba (str "[" iR "," iG "," iB "," iA "]")
-       epoch (iso8601futt sec)
+       epoch (iso8601abs (* sec 1000))
        s (str "[{\"id\":\"document\",\"version\":\"1.0\"},"
                 "{\"id\":\""
                 id
@@ -114,5 +114,5 @@
                 "],\"interpolationAlgorithm\":\"LAGRANGE\",\"interpolationDegree\":1,\"epoch\":\""
                 epoch
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
-  s))
+  [s elt]))
 

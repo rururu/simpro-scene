@@ -1,4 +1,4 @@
-; Sat Jun 06 11:40:10 MSK 2020
+; Sun Jun 07 21:16:52 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,6 +6,7 @@
 ([CesiumBase_Class0] of  ClsRequired
 
 	(cloFunctions
+		[CesiumBase_Class110003]
 		[CesiumBase_Class20005]
 		[CesiumBase_Class20006]
 		[CesiumBase_Class70019]
@@ -17,7 +18,8 @@
 		[CesiumBase_Class50000]
 		[CesiumBase_Class40001]
 		[CesiumBase_Class40000]
-		[CesiumBase_Class10000])
+		[CesiumBase_Class10000]
+		[CesiumBase_Class110002])
 	(cloNamespace [CesiumBase_Class1])
 	(cloVars
 		[CesiumBase_Class10002]
@@ -31,7 +33,8 @@
 		[CesiumBase_Class60001]
 		[CesiumBase_Class30002]
 		[CesiumBase_Class30003]
-		[CesiumBase_Class40002])
+		[CesiumBase_Class40002]
+		[CesiumBase_Class110001])
 	(title "Cesium Client"))
 
 ([CesiumBase_Class1] of  CloNamespace
@@ -50,7 +53,7 @@
 
 ([CesiumBase_Class100001] of  CloFunction
 
-	(source "(let [coord (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601futt sec)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  s)")
+	(source "(let [[coord elt] (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601abs (* sec 1000))\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  [s elt])")
 	(title "add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]"))
 
 ([CesiumBase_Class100004] of  CloFunction
@@ -116,20 +119,40 @@
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     EVENT-DEBUG]])")
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     mouse-move\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     EVENT-DEBUG]])")
 	(title "cesium.testclient"))
 
 ([CesiumBase_Class10011] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Cesium</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Cesium</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <div id=\"mouse-pos\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
 	(store-in "resources/public")
 	(title "test"))
 
 ([CesiumBase_Class10012] of  CSS
 
-	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}")
+	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n#mouse-pos {\n  position: absolute;\n  left: 0;\n  top: 5%;\n  width: 100%;\n  text-align: center;\n  color:yellow\n}")
 	(store-in "resources/public/css")
 	(title "test"))
+
+([CesiumBase_Class110000] of  CloFunction
+
+	(source "(send-clj-funcall \n  `(cesium.client/camera-fly \n     ~'cesium.client.CAMERA\n     ~longitude \n     ~latitude\n     ~height\n     ~heading\n     ~pitch\n     ~roll))")
+	(title "send-camera [longitude latitude height heading pitch roll]"))
+
+([CesiumBase_Class110001] of  CloVar
+
+	(source "(js/Cesium.ScreenSpaceEventHandler. (.-canvas SCENE))")
+	(title "HANDLER"))
+
+([CesiumBase_Class110002] of  CloFunction
+
+	(source "(.setInputAction HANDLER \n  (fn [mov] (if-let [crt (.pickEllipsoid (.-camera VIEWER) (.-endPosition mov) (.-ellipsoid (.-globe SCENE)))]\n                   (let [crg (js/Cesium.Cartographic.fromCartesian crt)\n                          lon (.toFixed (js/Cesium.Math.toDegrees (.-longitude crg)) 3)\n                          lat (.toFixed (js/Cesium.Math.toDegrees (.-latitude crg)) 3)]\n                      (set-html! \"mouse-pos\" (str \"[\" lon \" \" lat \"]\")))))\n  js/Cesium.ScreenSpaceEventType.MOUSE_MOVE)")
+	(title "mouse-move []"))
+
+([CesiumBase_Class110003] of  CloFunction
+
+	(source "(set! (.-innerHTML (.getElementById js/document id)) msg)")
+	(title "set-html! [id msg]"))
 
 ([CesiumBase_Class110007] of  CloFunction
 
@@ -153,7 +176,7 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)\n(mouse-move)")
 	(title "init-client []"))
 
 ([CesiumBase_Class20005] of  CloFunction
@@ -290,7 +313,7 @@
 
 ([CesiumBase_Class90000] of  CloFunction
 
-	(source "(loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]\n  (if (some? h2)\n    (let [rsec (Math/toRadians (/ knots 60 3600))\n           dist (func-spherical-distance\n                    (Math/toRadians la1)\n                    (Math/toRadians lo1)\n                    (Math/toRadians la2)\n                    (Math/toRadians lo2))\n           time (int (/ dist rsec))\n           elt (+ elt time)]\n      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))\n    slolahs))")
+	(source "(loop [[[lo1 la1 h1][lo2 la2 h2] :as lst] lolahs elt 0 slolahs [[0 lo1 la1 h1]]]\n  (if (some? h2)\n    (let [rsec (Math/toRadians (/ knots 60 3600))\n           dist (func-spherical-distance\n                    (Math/toRadians la1)\n                    (Math/toRadians lo1)\n                    (Math/toRadians la2)\n                    (Math/toRadians lo2))\n           time (int (/ dist rsec))\n           elt (+ elt time)]\n      (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))\n    [slolahs elt]))")
 	(title "lolah->slolah [lolahs knots func-spherical-distance]"))
 
 ([CesiumBase_Class90001] of  CloFunction
@@ -333,6 +356,7 @@
 		[CesiumBase_Class60000]
 		[CesiumBase_Class80000]
 		[CesiumBase_Class110007]
+		[CesiumBase_Class110000]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
 		[CesiumWorshop_Class10005]

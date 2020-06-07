@@ -1,4 +1,4 @@
-; Sat Jun 06 21:38:05 MSK 2020
+; Sun Jun 07 21:28:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,18 +7,53 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot river
+		(type INSTANCE)
+;+		(allowed-classes River Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot river-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values down up)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot estuary
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot attrs
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot heading
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoRiverInCesium
+	(is-a Go)
+	(role concrete)
+	(single-slot river
+		(type INSTANCE)
+;+		(allowed-classes River Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass CesiumCamera
 	(is-a Action)
 	(role concrete)
-	(single-slot Latitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot pitch
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -31,11 +66,15 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Longitude
+	(single-slot longitude
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot heading
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot latitude
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -59,4 +98,35 @@
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass River
+	(is-a Migration+Onto)
+	(role concrete)
+	(multislot attrs
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot river-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot estuary
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

@@ -68,6 +68,17 @@
      ~(cs :range)
      ~'cesium.client.VIEWER)))
 
+(defn send-camera [longitude latitude height heading pitch roll]
+  (send-clj-funcall 
+  `(cesium.client/camera-fly 
+     ~'cesium.client.CAMERA
+     ~longitude 
+     ~latitude
+     ~height
+     ~heading
+     ~pitch
+     ~roll)))
+
 (defn pump-out-events []
   (loop [[bit ch] (alts!! [EVT-CHAN] :default :none) bits []]
   (if (= bit :none)

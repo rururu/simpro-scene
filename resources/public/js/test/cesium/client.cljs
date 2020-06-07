@@ -33,6 +33,10 @@
     :center nil
     :radius-m 4000
     :step-sec 2}))
+(def HANDLER (js/Cesium.ScreenSpaceEventHandler. (.-canvas SCENE)))
+(defn set-html! [id msg]
+  (set! (.-innerHTML (.getElementById js/document id)) msg))
+
 (defn add-imagery-by-asset-id [id viewer]
   (let [ilays (.-imageryLayers viewer)]
   (.remove ilays (.get ilays 0))
@@ -197,4 +201,13 @@
           :run
           (do (.cancelFlight camera)
             (vswap! ORBIT assoc :status :stop))))))))
+
+(defn mouse-move []
+  (.setInputAction HANDLER 
+  (fn [mov] (if-let [crt (.pickEllipsoid (.-camera VIEWER) (.-endPosition mov) (.-ellipsoid (.-globe SCENE)))]
+                   (let [crg (js/Cesium.Cartographic.fromCartesian crt)
+                          lon (.toFixed (js/Cesium.Math.toDegrees (.-longitude crg)) 3)
+                          lat (.toFixed (js/Cesium.Math.toDegrees (.-latitude crg)) 3)]
+                      (set-html! "mouse-pos" (str "[" lon " " lat "]")))))
+  js/Cesium.ScreenSpaceEventType.MOUSE_MOVE))
 

@@ -63,7 +63,8 @@
 (defn go-shape-attributes [id color size knots height start layer attrs]
   (let [pts (from-shape-by-attributes layer attrs start height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       czml (cg/add-point-flight id pts knots 2 "RELATIVE_TO_GROUND" color size func-dist)]
+       [czml elt] (cg/add-point-flight id pts knots 2 "RELATIVE_TO_GROUND" color size func-dist)]
+  (println elt)
   (cs/send-czml czml)))
 
 (defn go-river [id color size knots height river direction]
@@ -102,6 +103,6 @@
               :current start
               :mult mult
               :step "SYSTEM_CLOCK_MULTIPLIER"
-              :range "UNBOUND"}]
+              :range "UNBOUNDED"}]
   (cs/send-clock cs)))
 

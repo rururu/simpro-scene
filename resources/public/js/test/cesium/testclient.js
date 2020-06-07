@@ -9,7 +9,9 @@ cesium.client.camera_home.call(null,cesium.client.CAMERA,cesium.client.HOME_VIEW
 
 cesium.client.start_event_processing.call(null,cesium.client.VIEWER);
 
-return cesium.client.add_orbit_button.call(null,cesium.client.CAMERA);
+cesium.client.add_orbit_button.call(null,cesium.client.CAMERA);
+
+return cesium.client.mouse_move.call(null);
 });
 cljs.core.enable_console_print_BANG_.call(null);
 window.onload = cesium.testclient.init_client.call(null);

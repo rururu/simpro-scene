@@ -9,6 +9,7 @@
      start-event-processing
      look-at
      add-orbit-button
+     mouse-move
      VIEWER
      CLOCK
      SCENE
@@ -22,7 +23,8 @@
   (add-terrain nil VIEWER)
 (camera-home CAMERA HOME-VIEW)
 (start-event-processing VIEWER)
-(add-orbit-button CAMERA))
+(add-orbit-button CAMERA)
+(mouse-move))
 
 
 (enable-console-print!)
