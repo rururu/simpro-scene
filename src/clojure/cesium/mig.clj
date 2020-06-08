@@ -1,4 +1,5 @@
 (ns cesium.mig
+(:use protege.core)
 (:require
   [cesium.server :as cs]
   [czml.generator :as cg])
@@ -8,7 +9,10 @@
   ru.igis.omtab.OMT
   com.bbn.openmap.omGraphics.OMGraphic
   com.bbn.openmap.omGraphics.OMGraphicList
-  com.bbn.openmap.proj.GreatCircle))
+  com.bbn.openmap.proj.GreatCircle
+  java.net.URL
+  sim.field.geo.GeomVectorField
+  sim.io.geo.ShapeFileImporter))
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
   :head [61.444 29.346]
   :path [["NAME" "Hiitolanjoki"]
@@ -18,6 +22,11 @@
              ["NAME" "Asilanjoki"]]
   :estuary [61.18 29.885]
   :speed 2})
+(def LAKES (let [shp "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
+       dbf "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"
+       lakes (GeomVectorField.)]
+  (ShapeFileImporter/read (URL. shp) (URL. dbf) lakes)
+  lakes))
 (defn set-wsen-view [w s e n]
   (let [mb (OpenMapTab/getMapBean)
        prj (.getProjection mb)
@@ -61,17 +70,19 @@
       (map #(let [[phi lam] %] [(Math/toDegrees lam) (Math/toDegrees phi) height]) rad)))))
 
 (defn go-shape-attributes [id color size knots height start layer attrs]
-  (let [pts (from-shape-by-attributes layer attrs start height)
+  ;; returns time of going in sec
+(let [pts (from-shape-by-attributes layer attrs start height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        [czml elt] (cg/add-point-flight id pts knots 2 "RELATIVE_TO_GROUND" color size func-dist)]
-  (println elt)
-  (cs/send-czml czml)))
+  (cs/send-czml czml)
+  elt))
 
 (defn go-river [id color size knots height river direction]
-  (let [[lah loh] (river :head)
+  ;; returns time of going in sec
+(let [[lah loh] (river :head)
         [lae loe] (river :estuary)
-        w (min lah lae)
-        s (min loh loe)
+        w (min loh loe)
+        s (min lah lae)
         e (max loh loe)
         n (max lah lae)]
   (set-wsen-view w s e n)
@@ -105,4 +116,11 @@
               :step "SYSTEM_CLOCK_MULTIPLIER"
               :range "UNBOUNDED"}]
   (cs/send-clock cs)))
+
+(defn river-map [rinst]
+  {:layer (sv (sv rinst "layer") "prettyName")
+  :head (read-string (sv rinst "head"))
+  :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
+  :estuary (read-string (sv rinst "estuary"))
+  :speed (sv rinst "river-speed")})
 
