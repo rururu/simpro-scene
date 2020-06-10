@@ -1,4 +1,4 @@
-; Mon Jun 08 22:08:21 MSK 2020
+; Wed Jun 10 20:00:11 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -50,6 +50,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot gv-field
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -154,6 +158,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot gv-field
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

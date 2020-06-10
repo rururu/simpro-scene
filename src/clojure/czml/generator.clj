@@ -99,13 +99,13 @@
       (recur (rest lst) elt (conj slolahs [elt lo2 la2 h2])))
     [slolahs elt])))
 
-(defn add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]
+(defn add-point-flight [id lolah-points knots mils height-ref [iR iG iB iA] size func-spherical-distance]
   (let [[coord elt] (lolah->slolah lolah-points knots func-spherical-distance)
        coord (flatten coord)
        coord (interpose "," coord)
        coord (apply str coord)
        rgba (str "[" iR "," iG "," iB "," iA "]")
-       epoch (iso8601abs (* sec 1000))
+       epoch (iso8601abs mils)
        s (str "[{\"id\":\"document\",\"version\":\"1.0\"},"
                 "{\"id\":\""
                 id

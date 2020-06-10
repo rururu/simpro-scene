@@ -1,4 +1,4 @@
-; Sun Jun 07 21:16:52 MSK 2020
+; Wed Jun 10 12:48:06 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -53,8 +53,8 @@
 
 ([CesiumBase_Class100001] of  CloFunction
 
-	(source "(let [[coord elt] (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601abs (* sec 1000))\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  [s elt])")
-	(title "add-point-flight [id lolah-points knots sec height-ref [iR iG iB iA] size func-spherical-distance]"))
+	(source "(let [[coord elt] (lolah->slolah lolah-points knots func-spherical-distance)\n       coord (flatten coord)\n       coord (interpose \",\" coord)\n       coord (apply str coord)\n       rgba (str \"[\" iR \",\" iG \",\" iB \",\" iA \"]\")\n       epoch (iso8601abs mils)\n       s (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\"\n                \"{\\\"id\\\":\\\"\"\n                id\n                \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\" \n                coord\n                \"],\\\"interpolationAlgorithm\\\":\\\"LAGRANGE\\\",\\\"interpolationDegree\\\":1,\\\"epoch\\\":\\\"\"\n                epoch\n                \"\\\"},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":\" rgba \"},\\\"pixelSize\\\":\" size \",\\\"heightReference\\\":\\\"\" height-ref \"\\\"}}]\")]\n  [s elt])")
+	(title "add-point-flight [id lolah-points knots mils height-ref [iR iG iB iA] size func-spherical-distance]"))
 
 ([CesiumBase_Class100004] of  CloFunction
 

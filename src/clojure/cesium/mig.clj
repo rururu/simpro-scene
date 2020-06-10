@@ -7,26 +7,29 @@
   ru.igis.omtab.OpenMapTab
   ru.igis.omtab.Clock
   ru.igis.omtab.OMT
+  ru.igis.omtab.MapOb
   com.bbn.openmap.omGraphics.OMGraphic
   com.bbn.openmap.omGraphics.OMGraphicList
   com.bbn.openmap.proj.GreatCircle
   java.net.URL
   sim.field.geo.GeomVectorField
-  sim.io.geo.ShapeFileImporter))
+  sim.io.geo.ShapeFileImporter
+  sim.util.geo.AttributeValue
+  com.vividsolutions.jts.geom.Coordinate))
+(def LAKES ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
+ "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"])
+(def RIVERS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
+ "file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.dbf"])
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
-  :head [61.444 29.346]
+  :head [29.346 61.444]
   :path [["NAME" "Hiitolanjoki"]
              ["NAME" "Kokkolanjoki2"]
              ["NAME" "Kokkolanjoki1"]
              ["NAME" "Veijalanjarvi"]
              ["NAME" "Asilanjoki"]]
-  :estuary [61.18 29.885]
-  :speed 2})
-(def LAKES (let [shp "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
-       dbf "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"
-       lakes (GeomVectorField.)]
-  (ShapeFileImporter/read (URL. shp) (URL. dbf) lakes)
-  lakes))
+  :estuary [29.885 61.18]
+  :speed 2
+  :gv-field RIVERS})
 (defn set-wsen-view [w s e n]
   (let [mb (OpenMapTab/getMapBean)
        prj (.getProjection mb)
@@ -42,38 +45,35 @@
      (if (< (.getScale mb) 50000000)
        (set-wsen-view w s e n))))))
 
-(defn from-shape-by-attributes [layer col-vals start height]
-  (let [mb (OpenMapTab/getMapBean)
-       start (map #(Math/toRadians %) start)
-       cms (.getComponents mb)]
-  (if-let [slr (first (filter #(= (.getName %) layer) cms))]
-    (let [dbh (.getDbf (.getSpatialIndex slr))
-           dbf (.getDbf dbh)
-           lst (.getList slr)
-           rad (loop [[[col val] & cvrst] col-vals path [start]]
-                   (if (some? col)
-                     (let [idx (.getColumnIndexForName dbf col)]
-                       (if-let [epl (first (filter #(and (not (instance? OMGraphicList %))
-                                                             (= (nth (.getRecordDataForOMGraphic dbh %) idx) val)) lst))]
-                         (let [lla (.getRawllpts epl)
-                                pa2 (partition 2 lla)
-                                [p1 l1] (last path)
-                                [p2 l2] (first pa2)
-                                [p3 l3] (last pa2)
-                                d1 (GreatCircle/sphericalDistance p1 l1 p2 l2)
-                                d2 (GreatCircle/sphericalDistance p1 l1 p3 l3)
-                                nxt (if (< d2 d1)
-                                        (reverse pa2)
-                                        pa2)] 
-                           (recur cvrst (concat path nxt)))))
-                     path))]
-      (map #(let [[phi lam] %] [(Math/toDegrees lam) (Math/toDegrees phi) height]) rad)))))
+(defn gv-field-from-shape [shp dbf]
+  (let [gvf (GeomVectorField.)]
+  (ShapeFileImporter/read (URL. shp) (URL. dbf) gvf)
+  gvf))
 
-(defn go-shape-attributes [id color size knots height start layer attrs]
+(defn simple-dist [[lo1 la1 & _] [lo2 la2 & _]]
+  (+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2))))
+
+(defn from-gv-field-by-attributes [gv-field col-vals start height]
+  (loop [[[col val] & cvrst] col-vals path [(conj start height)]]
+  (if (some? col)
+    (let [ps (map #(list (.x %) (.y %) height) (.getCoordinates (.geometry (.getGeometry gv-field col (AttributeValue. val)))))
+           p1 (last path)
+           p2 (first ps)
+           p3 (last ps)
+           d1 (simple-dist p1 p2)
+           d2 (simple-dist p1 p3)
+           nxt (if (< d2 d1)
+                   (reverse ps)
+                   ps)] 
+      (recur cvrst (concat path nxt)))
+    path)))
+
+(defn go-gv-field-attributes [id color size knots height start gv-field attrs]
   ;; returns time of going in sec
-(let [pts (from-shape-by-attributes layer attrs start height)
+(let [pts (from-gv-field-by-attributes gv-field attrs start height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       [czml elt] (cg/add-point-flight id pts knots 2 "RELATIVE_TO_GROUND" color size func-dist)]
+       mils (+ (Clock/getClock) 2000)
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
   (cs/send-czml czml)
   elt))
 
@@ -81,12 +81,8 @@
   ;; returns time of going in sec
 (let [[lah loh] (river :head)
         [lae loe] (river :estuary)
-        w (min loh loe)
-        s (min lah lae)
-        e (max loh loe)
-        n (max lah lae)]
-  (set-wsen-view w s e n)
-  (go-shape-attributes id color size
+        gvf (river :gv-field)]
+  (go-gv-field-attributes id color size
     (condp = direction
       :down (+ knots (river :speed))
       :up (- knots (river :speed)))
@@ -94,7 +90,9 @@
     (condp = direction
       :down (river :head)
       :up (river :estuary))
-    (river :layer)
+    (cond
+      (instance? GeomVectorField gvf) gvf
+      (vector? gvf) (gv-field-from-shape (first gvf) (second gvf)))
     (condp = direction
       :down (river :path)
       :up (reverse (river :path))))))
@@ -123,4 +121,47 @@
   :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
   :estuary (read-string (sv rinst "estuary"))
   :speed (sv rinst "river-speed")})
+
+(defn rand-step [s]
+  (- (* 2 s (Math/random)) s))
+
+(defn next-covered
+  ([lon lat slon step gv-field]
+  (loop [i 4 sl slon st step]
+    (if (> i 0)
+      (if-let [ncvd (next-covered lon lat sl st 10 gv-field)]
+        ncvd
+        (recur (dec i) (* sl 2) (* st 2)))
+      [lon lat])))
+([lon lat slon step n gv-field]
+  (loop [j n]
+    (if (> j 0)
+      (let [lon1 (+ lon (rand-step slon))
+             lat1 (+ lat (rand-step step))]
+        (if (.isCovered gv-field (Coordinate. lon1 lat1))
+          [lon1 lat1]
+          (recur (dec j))))))))
+
+(defn random-walk [start steps step height gv-field]
+  (let [phi (Math/toRadians (second start))
+       slon (/ step (Math/cos phi))]
+  (println slon step)
+  (loop [n steps [lon lat] start path [(conj start height)]]
+    (if (> n 0)
+      (let [nxt (next-covered lon lat slon step gv-field)]
+        (recur (dec n) nxt (conj path (conj nxt height))))
+      path))))
+
+(defn set-points [pts inst]
+  (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
+  (ssvs inst "points" pts)))
+
+(defn go-random-walk [id color size knots height start steps step gv-field]
+  ;; returns time of going in sec
+(let [pts (random-walk start steps step height gv-field)
+       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+       mils (+ (Clock/getClock) 2000)
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (cs/send-czml czml)
+  elt))
 
