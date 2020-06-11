@@ -1,19 +1,7 @@
-; Wed Jun 10 20:00:11 MSK 2020
+; Thu Jun 11 21:16:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
-
-([CesiumCamera] of  ActionClass
-
-	(functions [CesiumBase_Class110000])
-	(rules [Migration_Class90000]))
-
-([GoRiverInCesium] of  ActionClass
-
-	(functions [Migration_Class120008])
-	(rules
-		[Migration_Class120006]
-		[Migration_Class120007]))
 
 ([HiitolanjokiRCZ_Class0] of  Openmap
 
@@ -161,14 +149,16 @@
 		[Migration_Class110000]
 		[Migration_Class130012]
 		[Migration_Class130011]
-		[Migration_Class130013]
-		[Migration_Class130014]
-		[Migration_Class40024]
-		[Migration_Class120008]
 		[Migration_Class50006]
 		[Migration_Class60014]
 		[Migration_Class50005]
-		[Migration_Class70014])
+		[Migration_Class130013]
+		[Migration_Class70014]
+		[Migration_Class130014]
+		[Migration_Class120001]
+		[Migration_Class40024]
+		[Migration_Class120008]
+		[Migration_Class120002])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
 		[Migration_Class30000]
@@ -246,10 +236,6 @@
 	(mode run)
 	(rule-sets
 		[Migration_Class50008]
-		[Scenario_Class100006]
-		[Scenario_Class250011]
-		[Scenario_Class17]
-		[Scenario_Class340000]
 		[Migration_Class100000])
 	(steps 1)
 	(title "MigRun"))
@@ -260,9 +246,7 @@
 	(direct down)
 	(height "40")
 	(river [Migration_Class110007])
-	(spd "2")
-	(status "START")
-	(title "test"))
+	(spd "2"))
 
 ([Migration_Class100000] of  RuleSet
 
@@ -282,9 +266,7 @@
 	(latitude "61.33")
 	(longitude "29.42")
 	(pitch "-60")
-	(roll "0")
-	(status "START")
-	(title "Camera To Hiitolanjoki"))
+	(roll "0"))
 
 ([Migration_Class10001] of  Creature
 
@@ -333,11 +315,11 @@
 		"NAME"
 		"NAME"
 		"NAME")
-	(estuary "[61.18 29.885]")
-	(head "[61.444 29.346]")
+	(estuary "[29.885 61.18]")
+	(head "[29.346 61.444]")
 	(layer [HiitolanjokiRCZ_Class3])
 	(river-speed 2.0)
-	(title "Hitolanjoki")
+	(title "Hiitolanjoki")
 	(values
 		"Hiitolanjoki"
 		"Kokkolanjoki2"
@@ -345,24 +327,50 @@
 		"Veijalanjarvi"
 		"Asilanjoki"))
 
+([Migration_Class120000] of  CloFuncall
+
+	(source "cesium.mig/RIVERS"))
+
+([Migration_Class120001] of  CloFunction
+
+	(source "([inst knots height start steps step lakes]\n  (let [id (protege.core/sv inst \"id\")\n         color (read-string (protege.core/sv inst \"color\"))\n         size (protege.core/sv inst \"size\")]\n    (go-lakes-random id color size knots height start steps step lakes)))\n([id color size knots height start steps step lakes]\n  (go-random-walk id color size knots height start steps step (lakes :gv-field)))")
+	(title "go-lakes-random"))
+
+([Migration_Class120002] of  CloFunction
+
+	(source "(let [name (sv linst \"title\")]\n  (or (@LAKES name)\n    (let [lay (sv linst \"layer\")\n           mp {:layer (sv lay \"prettyName\")\n                   :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n      (vswap! LAKES assoc name mp)\n      mp)))")
+	(title "lakes-map [linst]"))
+
+([Migration_Class120004] of  Basin
+
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Hiitolanjoki Lakes"))
+
 ([Migration_Class120006] of  Rule
 
-	(lhs "?gric (GoRiverInCesium status \"START\"\n	creature ?cre\n	river ?riv\n	direct ?dir\n	spd ?spd\n	height ?hgt\n	run ?run)\n(Clock time ?t)")
-	(rhs "(let [cre (a/vv ?cre ?run)\n       riv (a/vv ?riv ?run)\n       dir (a/vv ?dir ?run)\n       spd (a/vv ?spd ?run)\n       hgt (a/vv ?hgt ?run)\n       id (protege.core/sv cre \"id\")\n       clr (protege.core/sv cre \"color\")\n       siz (protege.core/sv cre \"size\")\n       clr (read-string clr)\n       spd (read-string spd)\n       hgt (read-string hgt)\n       dir (keyword dir)\n       riv (cesium.mig/river-map riv)\n       elt (cesium.mig/go-river id clr siz spd hgt riv dir)]\n  (println :RIV riv :ELT elt [id clr siz spd hgt dir])\n  (modify ?gric status \"REPEAT\"\n	N (+ ?t elt)))")
+	(lhs "?gric (GoRiverInCesium status \"START\"\n	id ?id\n	river ?riv\n	direct ?dir\n	spd ?spd\n	height ?hgt\n	run ?run)\n?cre (Creature id ?id\n	color ?clr\n	size ?siz)	\n(Clock time ?t)")
+	(rhs "(let [cre (a/vv ?cre ?run)\n       riv (a/vv ?riv ?run)\n       dir (a/vv ?dir ?run)\n       spd (a/vv ?spd ?run)\n       hgt (a/vv ?hgt ?run)\n       spd (read-string spd)\n       hgt (read-string hgt)\n       dir (keyword dir)\n       riv (cesium.mig/river-map riv)\n       elt (cesium.mig/go-river ?id ?clr ?siz spd hgt riv dir)]\n  (modify ?gric status \"REPEAT\n	location (condp = dir \n	                :down (riv :estuary)\n	                :up (riv :head))\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "a:GoRiverInCesiumStart"))
 
 ([Migration_Class120007] of  Rule
 
-	(lhs "?gric (GoRiverInCesium status \"REPEAT\" \n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
-	(rhs "(retract ?gric)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(lhs "?gric (GoRiverInCesium status \"REPEAT\"\n	creature ?cre\n	N ?n\n	location ?loc\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(protege.core/ssv (a/vv ?cre ?run) \"location\" (str ?loc))\n(retract ?gric)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "a:GoRiverInCesiumRepeat"))
 
 ([Migration_Class120008] of  CloFunction
 
-	(source "(let [name (if (string? noi) noi (sv noi \"title\"))]\n  (or (@RIVERS name)\n    (let [lay (sv rinst \"layer\")\n           mp {:layer (sv lay \"prettyName\")\n                   :head (read-string (sv rinst \"head\"))\n                   :path (vec (map #(vector %1 %2) (svs rinst \"attrs\") (svs rinst \"values\")))\n                   :estuary (read-string (sv rinst \"estuary\"))\n                   :speed (sv rinst \"river-speed\")\n                   :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n      (vswap! RIVERS assoc name mp)\n      mp)))")
-	(title "river-map [noi]"))
+	(source "(let [name (sv rinst \"title\")]\n  (or (@RIVERS name)\n    (let [lay (sv rinst \"layer\")\n           mp {:layer (sv lay \"prettyName\")\n                   :head (read-string (sv rinst \"head\"))\n                   :path (vec (map #(vector %1 %2) (svs rinst \"attrs\") (svs rinst \"values\")))\n                   :estuary (read-string (sv rinst \"estuary\"))\n                   :speed (sv rinst \"river-speed\")\n                   :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n      (vswap! RIVERS assoc name mp)\n      mp)))")
+	(title "river-map [rinst]"))
+
+([Migration_Class130003] of  Rule
+
+	(lhs "?glic (GoLakesInCesium status \"START\"\n	creature ?cre\n	basin ?bas\n	walk ?wlk\n	spd ?spd\n	height ?hgt\n	location ?loc\n	run ?run)\n(Clock time ?t)")
+	(rhs "(let [cre (a/vv ?cre ?run)\n       bas (a/vv ?bas ?run)\n       wlk (a/vv ?wlk ?run)\n       spd (a/vv ?spd ?run)\n       hgt (a/vv ?hgt ?run)\n       loc (a/vv ?loc ?run)\n       spd (read-string spd)\n       hgt (read-string hgt)\n       wlk (keyword wlk)\n       bas (cesium.mig/lakes-map bas)\n       elt (cesium.mig/go-lakes-random cre spd hgt riv dir)]\n  (modify ?gric status \"REPEAT\"\n	N (+ ?t elt)))")
+	(salience 0)
+	(title "a:GoLakesInCesium"))
 
 ([Migration_Class130007] of  CloFuncall
 
@@ -397,8 +405,8 @@
 
 ([Migration_Class130014] of  CloFunction
 
-	(source ";; returns time of going in sec\n(let [[lah loh] (river :head)\n        [lae loe] (river :estuary)\n        gvf (river :gv-field)]\n  (go-gv-field-attributes id color size\n    (condp = direction\n      :down (+ knots (river :speed))\n      :up (- knots (river :speed)))\n    (or height 16)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (river :gv-field)\n    (condp = direction\n      :down (river :path)\n      :up (reverse (river :path)))))")
-	(title "go-river [id color size knots height river direction]"))
+	(source ";; returns time of going in sec\n([inst knots height river direction]\n  (let [id (protege.core/sv inst \"id\")\n         color (read-string (protege.core/sv inst \"color\"))\n         size (protege.core/sv inst \"size\")]\n    (go-river id color size knots height river direction)))\n([id color size knots height river direction]\n  (let [[lah loh] (river :head)\n          [lae loe] (river :estuary)\n          gvf (river :gv-field)]\n    (go-gv-field-attributes id color size\n      (condp = direction\n        :down (+ knots (river :speed))\n        :up (- knots (river :speed)))\n      (or height 16)\n      (condp = direction\n        :down (river :head)\n        :up (river :estuary))\n      (river :gv-field)\n      (condp = direction\n        :down (river :path)\n        :up (reverse (river :path))))))")
+	(title "go-river"))
 
 ([Migration_Class130015] of  CloFuncall
 
@@ -437,13 +445,6 @@
 	(cloPrograms
 		[Clojure_Class10000]
 		[RuleEngine_Class30000]
-		[ScenarioN_Class550020]
-		[Scenario_Class3]
-		[Algorithm_Class10000]
-		[Scenario_Class120024]
-		[Scenario_Class220003]
-		[Scenario_Class250008]
-		[ScenarioN_Class510000]
 		[CesiumBase_Class30004]
 		[CesiumWorshop_Class10003]
 		[HiitolanjokiRCZ_Class20002])
@@ -521,13 +522,9 @@
 ([Migration_Class50008] of  RuleSet
 
 	(rules
-		[ScenarioN_Class550031]
-		[ScenarioN_Class550033]
 		[Migration_Class50009]
 		[Migration_Class50010])
 	(templates
-		[Clock]
-		[MapObEvent]
 		[Cesium])
 	(title "MigSimulator"))
 

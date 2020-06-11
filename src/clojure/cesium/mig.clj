@@ -18,8 +18,7 @@
   com.vividsolutions.jts.geom.Coordinate))
 (def LAKES ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
  "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"])
-(def RIVERS ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp"
- "file:data/mas/hiitolanjoki/shape/hiitolanjoki_l.dbf"])
+(def RIVERS (volatile! {}))
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
   :head [29.346 61.444]
   :path [["NAME" "Hiitolanjoki"]
@@ -30,25 +29,18 @@
   :estuary [29.885 61.18]
   :speed 2
   :gv-field RIVERS})
-(defn set-wsen-view [w s e n]
-  (let [mb (OpenMapTab/getMapBean)
-       prj (.getProjection mb)
-       scl (.getScale mb)
-       ul (.getUpperLeft prj)
-       lr (.getLowerRight prj)
-       [cw cs ce cn] [(.getX ul) (.getY lr) (.getX lr) (.getY ul)]]
- (if (or (> cw w) (> cs s) (> e ce) (> n cn))
-   (let [celat (/ (+ s n) 2)
-          celon (/ (+ w e) 2)]
-     (.setCenter mb celat celon)
-     (.setScale mb (* 1.2 scl))     
-     (if (< (.getScale mb) 50000000)
-       (set-wsen-view w s e n))))))
+(defn set-points [pts inst]
+  (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
+  (ssvs inst "points" pts)))
 
-(defn gv-field-from-shape [shp dbf]
+(defn gv-field-from-shape
+  ([shp]
+  (let [dbf (str (.substring shp 0 (- (count shp) 4)) ".dbf")]
+    (gv-field-from-shape (str "file:" shp) (str "file:" dbf))))
+([shp dbf]
   (let [gvf (GeomVectorField.)]
-  (ShapeFileImporter/read (URL. shp) (URL. dbf) gvf)
-  gvf))
+    (ShapeFileImporter/read (URL. shp) (URL. dbf) gvf)
+    gvf)))
 
 (defn simple-dist [[lo1 la1 & _] [lo2 la2 & _]]
   (+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2))))
@@ -67,60 +59,6 @@
                    ps)] 
       (recur cvrst (concat path nxt)))
     path)))
-
-(defn go-gv-field-attributes [id color size knots height start gv-field attrs]
-  ;; returns time of going in sec
-(let [pts (from-gv-field-by-attributes gv-field attrs start height)
-       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       mils (+ (Clock/getClock) 2000)
-       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (cs/send-czml czml)
-  elt))
-
-(defn go-river [id color size knots height river direction]
-  ;; returns time of going in sec
-(let [[lah loh] (river :head)
-        [lae loe] (river :estuary)
-        gvf (river :gv-field)]
-  (go-gv-field-attributes id color size
-    (condp = direction
-      :down (+ knots (river :speed))
-      :up (- knots (river :speed)))
-    (or height 16)
-    (condp = direction
-      :down (river :head)
-      :up (river :estuary))
-    (cond
-      (instance? GeomVectorField gvf) gvf
-      (vector? gvf) (gv-field-from-shape (first gvf) (second gvf)))
-    (condp = direction
-      :down (river :path)
-      :up (reverse (river :path))))))
-
-(defn model-clock []
-  (let [run (OMT/isRunning)
-       scl (Clock/getTimeScale)
-       str (Clock/getClock)
-       stp (+ str 3600000)
-       start (cg/iso8601abs str)
-       stop (cg/iso8601abs stp)
-       sec (Clock/getSecond)
-       mult (if run (int scl) 0)
-       cs {:animate true
-              :start start
-              :stop stop
-              :current start
-              :mult mult
-              :step "SYSTEM_CLOCK_MULTIPLIER"
-              :range "UNBOUNDED"}]
-  (cs/send-clock cs)))
-
-(defn river-map [rinst]
-  {:layer (sv (sv rinst "layer") "prettyName")
-  :head (read-string (sv rinst "head"))
-  :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
-  :estuary (read-string (sv rinst "estuary"))
-  :speed (sv rinst "river-speed")})
 
 (defn rand-step [s]
   (- (* 2 s (Math/random)) s))
@@ -152,9 +90,14 @@
         (recur (dec n) nxt (conj path (conj nxt height))))
       path))))
 
-(defn set-points [pts inst]
-  (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
-  (ssvs inst "points" pts)))
+(defn go-gv-field-attributes [id color size knots height start gv-field attrs]
+  ;; returns time of going in sec
+(let [pts (from-gv-field-by-attributes gv-field attrs start height)
+       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+       mils (+ (Clock/getClock) 2000)
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (cs/send-czml czml)
+  elt))
 
 (defn go-random-walk [id color size knots height start steps step gv-field]
   ;; returns time of going in sec
@@ -164,4 +107,77 @@
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
   (cs/send-czml czml)
   elt))
+
+(defn go-river
+  ;; returns time of going in sec
+([inst knots height river direction]
+  (let [id (protege.core/sv inst "id")
+         color (read-string (protege.core/sv inst "color"))
+         size (protege.core/sv inst "size")]
+    (go-river id color size knots height river direction)))
+([id color size knots height river direction]
+  (let [[lah loh] (river :head)
+          [lae loe] (river :estuary)
+          gvf (river :gv-field)]
+    (go-gv-field-attributes id color size
+      (condp = direction
+        :down (+ knots (river :speed))
+        :up (- knots (river :speed)))
+      (or height 16)
+      (condp = direction
+        :down (river :head)
+        :up (river :estuary))
+      (river :gv-field)
+      (condp = direction
+        :down (river :path)
+        :up (reverse (river :path)))))))
+
+(defn go-lakes-random
+  ([inst knots height start steps step lakes]
+  (let [id (protege.core/sv inst "id")
+         color (read-string (protege.core/sv inst "color"))
+         size (protege.core/sv inst "size")]
+    (go-lakes-random id color size knots height start steps step lakes)))
+([id color size knots height start steps step lakes]
+  (go-random-walk id color size knots height start steps step (lakes :gv-field))))
+
+(defn model-clock []
+  (let [run (OMT/isRunning)
+       scl (Clock/getTimeScale)
+       str (Clock/getClock)
+       stp (+ str 3600000)
+       start (cg/iso8601abs str)
+       stop (cg/iso8601abs stp)
+       sec (Clock/getSecond)
+       mult (if run (int scl) 0)
+       cs {:animate true
+              :start start
+              :stop stop
+              :current start
+              :mult mult
+              :step "SYSTEM_CLOCK_MULTIPLIER"
+              :range "UNBOUNDED"}]
+  (cs/send-clock cs)))
+
+(defn river-map [rinst]
+  (let [name (sv rinst "title")]
+  (or (@RIVERS name)
+    (let [lay (sv rinst "layer")
+           mp {:layer (sv lay "prettyName")
+                   :head (read-string (sv rinst "head"))
+                   :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
+                   :estuary (read-string (sv rinst "estuary"))
+                   :speed (sv rinst "river-speed")
+                   :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
+      (vswap! RIVERS assoc name mp)
+      mp))))
+
+(defn lakes-map [linst]
+  (let [name (sv linst "title")]
+  (or (@LAKES name)
+    (let [lay (sv linst "layer")
+           mp {:layer (sv lay "prettyName")
+                   :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
+      (vswap! LAKES assoc name mp)
+      mp))))
 

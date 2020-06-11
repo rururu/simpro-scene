@@ -1,4 +1,4 @@
-; Wed Jun 10 20:00:11 MSK 2020
+; Thu Jun 11 21:16:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,7 +13,7 @@
 		(create-accessor read-write))
 	(single-slot river
 		(type INSTANCE)
-;+		(allowed-classes River Variable)
+;+		(allowed-classes River)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot river-speed
@@ -27,7 +27,7 @@
 		(create-accessor read-write))
 	(single-slot creature
 		(type INSTANCE)
-;+		(allowed-classes Creature Variable)
+;+		(allowed-classes Creature)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
@@ -45,11 +45,25 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot walk
+		(type SYMBOL)
+		(allowed-values random tendency)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot basin
+		(type INSTANCE)
+;+		(allowed-classes Basin)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot color
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot location
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -62,39 +76,100 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass GoRiverInCesium
-	(is-a Go)
+(defclass Migration+Onto
+	(is-a USER)
+	(role abstract))
+
+(defclass Cesium
+	(is-a Migration+Onto)
 	(role concrete)
-	(single-slot spd
+	(single-slot status
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot river
-		(type INSTANCE)
-;+		(allowed-classes River Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direct
-		(type SYMBOL)
-		(allowed-values down up)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot creature
-		(type INSTANCE)
-;+		(allowed-classes Creature Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot height
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Creature
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot location
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot life
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot color
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot size
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Basin
+	(is-a Migration+Onto)
+	(role concrete)
+	(multislot attrs
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot gv-field
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass River
+	(is-a Basin)
+	(role concrete)
+	(single-slot river-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot estuary
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass CesiumCamera
-	(is-a Action)
+	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot pitch
 		(type STRING)
@@ -121,86 +196,60 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Migration+Onto
-	(is-a USER)
-	(role abstract))
-
-(defclass Cesium
+(defclass GoLakesInCesium
 	(is-a Migration+Onto)
 	(role concrete)
-	(single-slot status
+	(single-slot spd
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot basin
+		(type INSTANCE)
+;+		(allowed-classes Basin)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk
+		(type SYMBOL)
+		(allowed-values random tendency)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot creature
+		(type INSTANCE)
+;+		(allowed-classes Creature)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoRiverInCesium
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot river
+		(type INSTANCE)
+;+		(allowed-classes River)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values down up)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot creature
+		(type INSTANCE)
+;+		(allowed-classes Creature)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot time1
-		(type INTEGER)
-		(default 0)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass River
-	(is-a Migration+Onto)
-	(role concrete)
-	(multislot attrs
+	(single-slot height
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot river-speed
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot layer
-		(type INSTANCE)
-;+		(allowed-classes Layer Variable)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot gv-field
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot values
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot head
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot estuary
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Creature
-	(is-a Migration+Onto)
-	(role concrete)
-	(single-slot life
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot age
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot color
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot size
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
