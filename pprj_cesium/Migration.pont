@@ -1,4 +1,4 @@
-; Thu Jun 11 21:16:44 MSK 2020
+; Fri Jun 12 19:39:30 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,6 +11,14 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot color
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot head
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot river
 		(type INSTANCE)
 ;+		(allowed-classes River)
@@ -20,14 +28,43 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot location
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot roll
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot gv-field
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot direct
 		(type SYMBOL)
 		(allowed-values down up)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot creature
 		(type INSTANCE)
 ;+		(allowed-classes Creature)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot life
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
@@ -38,41 +75,41 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot pitch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot attrs
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot heading
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot walk
 		(type SYMBOL)
 		(allowed-values random tendency)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot basin
 		(type INSTANCE)
 ;+		(allowed-classes Basin)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot color
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot head
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot location
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot gv-field
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot life
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -87,14 +124,14 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time1
+	(single-slot time
 		(type INTEGER)
 		(default 0)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Creature
@@ -252,4 +289,13 @@
 	(single-slot height
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Clock
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot time
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Thu Jun 11 21:16:44 MSK 2020
+; Fri Jun 12 19:39:30 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -233,7 +233,7 @@
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
 	(facts [Migration_Class60001])
-	(mode run)
+	(mode trace)
 	(rule-sets
 		[Migration_Class50008]
 		[Migration_Class100000])
@@ -256,8 +256,9 @@
 		[Migration_Class120007])
 	(templates
 		[CesiumCamera]
-		[GoRiverInCesium])
-	(title "MigActionExecutor"))
+		[GoRiverInCesium]
+		[Creature])
+	(title "Migration"))
 
 ([Migration_Class100001] of  CesiumCamera
 
@@ -349,7 +350,7 @@
 ([Migration_Class120006] of  Rule
 
 	(lhs "?gric (GoRiverInCesium status \"START\"\n	id ?id\n	river ?riv\n	direct ?dir\n	spd ?spd\n	height ?hgt\n	run ?run)\n?cre (Creature id ?id\n	color ?clr\n	size ?siz)	\n(Clock time ?t)")
-	(rhs "(let [cre (a/vv ?cre ?run)\n       riv (a/vv ?riv ?run)\n       dir (a/vv ?dir ?run)\n       spd (a/vv ?spd ?run)\n       hgt (a/vv ?hgt ?run)\n       spd (read-string spd)\n       hgt (read-string hgt)\n       dir (keyword dir)\n       riv (cesium.mig/river-map riv)\n       elt (cesium.mig/go-river ?id ?clr ?siz spd hgt riv dir)]\n  (modify ?gric status \"REPEAT\n	location (condp = dir \n	                :down (riv :estuary)\n	                :up (riv :head))\n	N (+ ?t elt)))")
+	(rhs "(let [cre (a/vv ?cre ?run)\n       riv (a/vv ?riv ?run)\n       dir (a/vv ?dir ?run)\n       spd (a/vv ?spd ?run)\n       hgt (a/vv ?hgt ?run)\n       spd (read-string spd)\n       hgt (read-string hgt)\n       dir (keyword dir)\n       riv (cesium.mig/river-map riv)\n       elt (cesium.mig/go-river ?id ?clr ?siz spd hgt riv dir)]\n  (modify ?gric status \"REPEAT\"\n	location (condp = dir \n	                :down (riv :estuary)\n	                :up (riv :head))\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "a:GoRiverInCesiumStart"))
 
@@ -364,6 +365,25 @@
 
 	(source "(let [name (sv rinst \"title\")]\n  (or (@RIVERS name)\n    (let [lay (sv rinst \"layer\")\n           mp {:layer (sv lay \"prettyName\")\n                   :head (read-string (sv rinst \"head\"))\n                   :path (vec (map #(vector %1 %2) (svs rinst \"attrs\") (svs rinst \"values\")))\n                   :estuary (read-string (sv rinst \"estuary\"))\n                   :speed (sv rinst \"river-speed\")\n                   :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n      (vswap! RIVERS assoc name mp)\n      mp)))")
 	(title "river-map [rinst]"))
+
+([Migration_Class130001] of  Rule
+
+	(lhs "?c1 (Clock time ?t1)\n?c2 (Clock time ?t2\n	(< ?t2 ?t1))")
+	(rhs "(retract ?c2)")
+	(salience 10)
+	(title "sim:RetractSecondClock"))
+
+([Migration_Class130002] of  CloProgram
+
+	(cloFunctions
+		[Migration_Class140004]
+		[Migration_Class140005]
+		[Migration_Class140006]
+		[Migration_Class140007]
+		[Migration_Class140008])
+	(cloNamespace [Migration_Class140003])
+	(cloVars [Migration_Class140009])
+	(title "Mig Simulator"))
 
 ([Migration_Class130003] of  Rule
 
@@ -427,6 +447,41 @@
 ([Migration_Class130020] of  CloFuncall
 
 	(source "(.substring \"aa/ss/dd.shp\" 0 (- (count \"aa/ss/dd.shp\") 4))"))
+
+([Migration_Class140003] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  rete.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock)")
+	(title "sim"))
+
+([Migration_Class140004] of  CloFunction
+
+	(source "(if (and (some? ES-TIMER) (OMT/isRunning))\n  (let [sec (int (/ (Clock/getClock) 1000))]\n    (assert-frame ['Clock 'time sec])\n    (fire)))")
+	(title "work-sim []"))
+
+([Migration_Class140005] of  CloFunction
+
+	(source "(when (some? ES-TIMER)\n  (.cancel ES-TIMER)\n  (def ES-TIMER nil)\n  (println \"Simulation Stoped...\"))")
+	(title "stop-sim []"))
+
+([Migration_Class140006] of  CloFunction
+
+	(source "(if (some? ES-TIMER)\n  (stop-sim))\n(def ES-TIMER (java.util.Timer.))\n(.schedule \n  ES-TIMER \n  (proxy [java.util.TimerTask] [] (run [] (work-sim)))\n  (long 0) \n  (long 1000))\n(println \"Simulation Started...\")")
+	(title "start-sim []"))
+
+([Migration_Class140007] of  CloFunction
+
+	(source "(stop-sim)\n(start-sim)")
+	(title "restart-sim []"))
+
+([Migration_Class140008] of  CloFunction
+
+	(source "(Clock/setClock 0)")
+	(title "reset-time []"))
+
+([Migration_Class140009] of  CloVar
+
+	(source "nil")
+	(title "ES-TIMER"))
 
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
 
@@ -522,23 +577,25 @@
 ([Migration_Class50008] of  RuleSet
 
 	(rules
+		[Migration_Class130001]
 		[Migration_Class50009]
 		[Migration_Class50010])
 	(templates
-		[Cesium])
+		[Cesium]
+		[Clock])
 	(title "MigSimulator"))
 
 ([Migration_Class50009] of  Rule
 
-	(lhs "?acc (Cesium status \"START\"\n	time1 ?t1)\n(Clock time ?t)")
-	(rhs "(if (some? cesium.server/SERV)\n  (modify ?acc status \"REPEAT\"\n	N (+ ?t ?t1)))")
+	(lhs "?acc (Cesium status \"START\"\n	time ?t1)\n(Clock time ?t2)")
+	(rhs "(when  (some? cesium.server/SERV)\n  (cesium.mig/model-clock)\n  (modify ?acc status \"REPEAT\"\n	N (+ ?t2 ?t1)))")
 	(salience 0)
 	(title "sim:AdjustCZClockStart"))
 
 ([Migration_Class50010] of  Rule
 
-	(lhs "?acc (Cesium status \"REPEAT\"\n	time1 ?t1\n	N ?n)\n(Clock time ?t (> ?t ?n))")
-	(rhs "(when (some? cesium.server/SERV)\n  (cesium.mig/model-clock)\n  (modify ?acc N ?t))")
+	(lhs "?acc (Cesium status \"REPEAT\"\n	time ?t1\n	N ?n)\n(Clock time ?t2 (> ?t2 ?n))")
+	(rhs "(when (some? cesium.server/SERV)\n  (cesium.mig/model-clock)\n  (modify ?acc N (+ ?t2 ?t1)))")
 	(salience 0)
 	(title "sim:AdjustCZClockRepeat"))
 
@@ -549,7 +606,7 @@
 ([Migration_Class60001] of  Cesium
 
 	(status "START")
-	(time1 4))
+	(time 4))
 
 ([Migration_Class60008] of  CloFuncall
 
@@ -1045,7 +1102,7 @@
 
 ([Migration_Class90000] of  Rule
 
-	(lhs "?aa (CesiumCamera status \"START\" \n	title ?tit \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(println \"Action started:\" ?tit \"PutOnMap\")\n(if (some? cesium.server/SERV)\n  (cesium.server/send-camera\n    (a/vv ?lon ?run)\n    (a/vv ?lat ?run)\n    (a/vv ?hgt ?run)\n    (a/vv ?hdg ?run)\n    (a/vv ?ptc ?run)\n    (a/vv ?rol ?run)))\n(retract ?aa)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(lhs "?cc (CesiumCamera status \"START\" \n	title ?tit \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
+	(rhs "(when (some? cesium.server/SERV)\n  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)\n  (modify ?cc status \"WORK\"))")
 	(salience 0)
 	(title "a:CesiumCamera"))
