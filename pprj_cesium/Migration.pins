@@ -1,4 +1,4 @@
-; Fri Jun 12 19:39:30 MSK 2020
+; Sat Jun 13 21:27:11 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -150,6 +150,7 @@
 		[Migration_Class130012]
 		[Migration_Class130011]
 		[Migration_Class50006]
+		[Migration_Class150001]
 		[Migration_Class60014]
 		[Migration_Class50005]
 		[Migration_Class130013]
@@ -158,7 +159,9 @@
 		[Migration_Class120001]
 		[Migration_Class40024]
 		[Migration_Class120008]
-		[Migration_Class120002])
+		[Migration_Class120002]
+		[Migration_Class160005]
+		[Migration_Class160006])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
 		[Migration_Class30000]
@@ -232,11 +235,12 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(facts [Migration_Class60001])
-	(mode trace)
-	(rule-sets
-		[Migration_Class50008]
-		[Migration_Class100000])
+	(facts
+		[Migration_Class150010]
+		[Migration_Class10001]
+		[Migration_Class140000])
+	(mode run)
+	(rule-sets [Migration_Class100000])
 	(steps 1)
 	(title "MigRun"))
 
@@ -251,13 +255,13 @@
 ([Migration_Class100000] of  RuleSet
 
 	(rules
-		[Migration_Class90000]
-		[Migration_Class120006]
-		[Migration_Class120007])
+		[Migration_Class130000]
+		[Migration_Class150007])
 	(templates
 		[CesiumCamera]
 		[GoRiverInCesium]
-		[Creature])
+		[Creature]
+		[Migration])
 	(title "Migration"))
 
 ([Migration_Class100001] of  CesiumCamera
@@ -275,7 +279,9 @@
 	(color "[0 255 0 255]")
 	(id "s1")
 	(life 300000000)
+	(phase "Birth")
 	(size 10)
+	(status "END")
 	(title "Salmon"))
 
 ([Migration_Class110000] of  CloFunction
@@ -366,6 +372,13 @@
 	(source "(let [name (sv rinst \"title\")]\n  (or (@RIVERS name)\n    (let [lay (sv rinst \"layer\")\n           mp {:layer (sv lay \"prettyName\")\n                   :head (read-string (sv rinst \"head\"))\n                   :path (vec (map #(vector %1 %2) (svs rinst \"attrs\") (svs rinst \"values\")))\n                   :estuary (read-string (sv rinst \"estuary\"))\n                   :speed (sv rinst \"river-speed\")\n                   :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n      (vswap! RIVERS assoc name mp)\n      mp)))")
 	(title "river-map [rinst]"))
 
+([Migration_Class130000] of  Rule
+
+	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	phase ?phe\n	(some? ?phe))")
+	(rhs "(modify ?cre status \"BEGIN\"\n	phase (loop [[cp np :as ps] ?phs]\n                                   (if (and cp np)\n                                     (if (= ?phe cp) \n                                       np\n                                       (recur (rest ps))))))")
+	(salience 0)
+	(title "Migration"))
+
 ([Migration_Class130001] of  Rule
 
 	(lhs "?c1 (Clock time ?t1)\n?c2 (Clock time ?t2\n	(< ?t2 ?t1))")
@@ -448,6 +461,21 @@
 
 	(source "(.substring \"aa/ss/dd.shp\" 0 (- (count \"aa/ss/dd.shp\") 4))"))
 
+([Migration_Class140000] of  Creature
+
+	(age 0)
+	(color "[0 255 0 255]")
+	(id "s2")
+	(life 300000000)
+	(phase "Birth")
+	(size 10)
+	(status "END")
+	(title "Salmon"))
+
+([Migration_Class140002] of  CloFuncall
+
+	(source "(cesium.mig/next-phase :a [:a :b :c :d])"))
+
 ([Migration_Class140003] of  CloNamespace
 
 	(source "(:use \n  protege.core\n  rete.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock)")
@@ -482,6 +510,69 @@
 
 	(source "nil")
 	(title "ES-TIMER"))
+
+([Migration_Class150001] of  CloFunction
+
+	(source "(let [d (Math/abs (- src tgt))\n       s (* (Math/random) step)]\n  (cond\n    (< d s) tgt\n    (< src tgt) (+ src s)\n    true (- src s)))")
+	(title "rand-step-closer [step src tgt]"))
+
+([Migration_Class150002] of  CloFuncall
+
+	(source "(cesium.mig/rand-step-closer 20 0 100)"))
+
+([Migration_Class150003] of  CloFuncall
+
+	(source "(cesium.mig/next-phase :b [:a :b :c :d])"))
+
+([Migration_Class150004] of  CloFuncall
+
+	(source "(cesium.mig/next-phase :c [:a :b :c :d])"))
+
+([Migration_Class150005] of  CloFuncall
+
+	(source "(cesium.mig/next-phase :d [:a :b :c :d])"))
+
+([Migration_Class150007] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	phase ?phe)")
+	(rhs "(println ?id  ?phe)\n(modify ?cre status \"END\")")
+	(salience 0)
+	(title "Phase"))
+
+([Migration_Class150010] of  Migration
+
+	(phases
+		"Birth"
+		"Walk in lake Kivijarvi"
+		"Going to river Hiitolanjoki"
+		"Going down river Hiitolanjoki"
+		"Walk in Ladoga lake"
+		"Return to river Hiitolanjoki"
+		"Going up river Hiitolanjoki"
+		"Last walk in Kivijarvi"
+		"Spawn"))
+
+([Migration_Class150011] of  CloFuncall
+
+	(source "(ru.rules/sp :all)"))
+
+([Migration_Class160003] of  CloFuncall
+
+	(source "(cesium.mig/rand-step-closer 20 25 10)"))
+
+([Migration_Class160004] of  CloFuncall
+
+	(source "(cesium.mig/rand-step-closer 20 25 -10)"))
+
+([Migration_Class160005] of  CloFunction
+
+	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (if (.isCovered gv-field (Coordinate. lo3 la3))\n    [lo3 la3]\n    (next-covered lo1 la1 slon step gv-field)))")
+	(title "next-covered-closer [lo1 la1 lo2 la2 slon step gv-field]"))
+
+([Migration_Class160006] of  CloFunction
+
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lon2 lat2] target]\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered-closer lon lat lon2 lat2 slon step gv-field)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
+	(title "random-walk-closer [start target steps step height gv-field]"))
 
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
 
@@ -562,7 +653,7 @@
 
 ([Migration_Class50005] of  CloFunction
 
-	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (println slon step)\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step gv-field)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step gv-field)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
 	(title "random-walk [start steps step height gv-field]"))
 
 ([Migration_Class50006] of  CloFunction
@@ -641,22 +732,10 @@
 
 	(source "(random-walk [30.24 61.496] 10 0.011 8 LAKES)"))
 
-([Migration_Class70003] of  CloFuncall
-
-	(source "(random-walk [29.481 61.496] 10 0.011 8 LAKES)"))
-
-([Migration_Class70004] of  CloFuncall
-
-	(source "(def rw (random-walk [29.481 61.496] 10 0.011 8 LAKES))"))
-
 ([Migration_Class70005] of  CloFunction
 
 	(source "(let [pts (map #(str (MapOb/getDegMin (second %)) \" \" (MapOb/getDegMin (first %))) pts)]\n  (ssvs inst \"points\" pts))")
 	(title "set-points [pts inst]"))
-
-([Migration_Class70006] of  CloFuncall
-
-	(source "(set-points rw nil)"))
 
 ([Migration_Class70007] of  OMTPoly
 
@@ -1068,14 +1147,6 @@
 		"61 14.04 29 58.34"
 		"61 14.03 29 58.27")
 	(relative FALSE))
-
-([Migration_Class70008] of  CloFuncall
-
-	(source "(set-points rw (fifos \"OMT))"))
-
-([Migration_Class70009] of  CloFuncall
-
-	(source "(set-points rw (fifos \"OMTPoly\" \"title\" \"RW\"))"))
 
 ([Migration_Class70014] of  CloFunction
 

@@ -63,6 +63,14 @@
 (defn rand-step [s]
   (- (* 2 s (Math/random)) s))
 
+(defn rand-step-closer [step src tgt]
+  (let [d (Math/abs (- src tgt))
+       s (* (Math/random) step)]
+  (cond
+    (< d s) tgt
+    (< src tgt) (+ src s)
+    true (- src s))))
+
 (defn next-covered
   ([lon lat slon step gv-field]
   (loop [i 4 sl slon st step]
@@ -83,7 +91,6 @@
 (defn random-walk [start steps step height gv-field]
   (let [phi (Math/toRadians (second start))
        slon (/ step (Math/cos phi))]
-  (println slon step)
   (loop [n steps [lon lat] start path [(conj start height)]]
     (if (> n 0)
       (let [nxt (next-covered lon lat slon step gv-field)]
@@ -180,4 +187,21 @@
                    :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
       (vswap! LAKES assoc name mp)
       mp))))
+
+(defn next-covered-closer [lo1 la1 lo2 la2 slon step gv-field]
+  (let [lo3 (rand-step-closer slon lo1 lo2)
+       la3 (rand-step-closer step la1 la2)]
+  (if (.isCovered gv-field (Coordinate. lo3 la3))
+    [lo3 la3]
+    (next-covered lo1 la1 slon step gv-field))))
+
+(defn random-walk-closer [start target steps step height gv-field]
+  (let [phi (Math/toRadians (second start))
+       slon (/ step (Math/cos phi))
+       [lon2 lat2] target]
+  (loop [n steps [lon lat] start path [(conj start height)]]
+    (if (> n 0)
+      (let [nxt (next-covered-closer lon lat lon2 lat2 slon step gv-field)]
+        (recur (dec n) nxt (conj path (conj nxt height))))
+      path))))
 
