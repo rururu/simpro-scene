@@ -63,13 +63,13 @@
 (defn rand-step [s]
   (- (* 2 s (Math/random)) s))
 
-(defn rand-step-closer [step src tgt]
-  (let [d (Math/abs (- src tgt))
+(defn rand-step-closer [step start finish]
+  (let [d (Math/abs (- start finish))
        s (* (Math/random) step)]
   (cond
-    (< d s) tgt
-    (< src tgt) (+ src s)
-    true (- src s))))
+    (< d s) finish
+    (< start finish) (+ start s)
+    true (- start s))))
 
 (defn next-covered
   ([lon lat slon step gv-field]
@@ -88,6 +88,13 @@
           [lon1 lat1]
           (recur (dec j))))))))
 
+(defn next-covered-closer [lo1 la1 lo2 la2 slon step gv-field]
+  (let [lo3 (rand-step-closer slon lo1 lo2)
+       la3 (rand-step-closer step la1 la2)]
+  (if (.isCovered gv-field (Coordinate. lo3 la3))
+    [lo3 la3]
+    (next-covered lo1 la1 slon step gv-field))))
+
 (defn random-walk [start steps step height gv-field]
   (let [phi (Math/toRadians (second start))
        slon (/ step (Math/cos phi))]
@@ -96,6 +103,36 @@
       (let [nxt (next-covered lon lat slon step gv-field)]
         (recur (dec n) nxt (conj path (conj nxt height))))
       path))))
+
+(defn random-walk-closer [start finish steps step height gv-field]
+  (let [phi (Math/toRadians (second start))
+       slon (/ step (Math/cos phi))
+       [lof laf] finish]
+  (loop [n steps [los las] start path [(conj start height)]]
+    (if (> n 0)
+      (let [[lor lar] (next-covered los las slon step gv-field)
+             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step gv-field)
+             newp (conj path (conj nxt height))]
+        (if (and (== lon lof) (== lan laf))
+          newp
+          (recur (dec n) nxt newp)))
+      path))))
+
+(defn random-by-waypoints [wps limstp steps step height gv-field]
+  (loop [[s f & r :as ws] wps path []]
+  (cond
+    (> (count path) limstp)
+      path
+    (and s f)
+      (let [rwc1 (random-walk-closer s f steps step height gv-field)]
+        (if (< (count rwc1) steps)
+          (recur (rest ws) (concat path rwc1))
+          (let [rwc2 (random-walk-closer f s steps step height gv-field)]
+            (if (< (count rwc2) steps)
+              (recur (rest ws) (concat path (reverse rwc2)))
+              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))
+    true
+      path)))
 
 (defn go-gv-field-attributes [id color size knots height start gv-field attrs]
   ;; returns time of going in sec
@@ -111,9 +148,11 @@
 (let [pts (random-walk start steps step height gv-field)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
-       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
+       k (max 2 (int (/ (count pts) 5)))
+       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]
   (cs/send-czml czml)
-  elt))
+  [elt wps]))
 
 (defn go-river
   ;; returns time of going in sec
@@ -187,21 +226,4 @@
                    :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
       (vswap! LAKES assoc name mp)
       mp))))
-
-(defn next-covered-closer [lo1 la1 lo2 la2 slon step gv-field]
-  (let [lo3 (rand-step-closer slon lo1 lo2)
-       la3 (rand-step-closer step la1 la2)]
-  (if (.isCovered gv-field (Coordinate. lo3 la3))
-    [lo3 la3]
-    (next-covered lo1 la1 slon step gv-field))))
-
-(defn random-walk-closer [start target steps step height gv-field]
-  (let [phi (Math/toRadians (second start))
-       slon (/ step (Math/cos phi))
-       [lon2 lat2] target]
-  (loop [n steps [lon lat] start path [(conj start height)]]
-    (if (> n 0)
-      (let [nxt (next-covered-closer lon lat lon2 lat2 slon step gv-field)]
-        (recur (dec n) nxt (conj path (conj nxt height))))
-      path))))
 

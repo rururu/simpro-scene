@@ -1,4 +1,4 @@
-; Sat Jun 13 21:27:11 MSK 2020
+; Sun Jun 14 22:07:34 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,10 +21,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Migration_ProjectKB_Class21927]
-		[Migration_ProjectKB_Class21928]
-		[Migration_ProjectKB_Class21929]
-		[Migration_ProjectKB_Class21930]))
+		[Migration_ProjectKB_Class21883]
+		[Migration_ProjectKB_Class21884]
+		[Migration_ProjectKB_Class21885]
+		[Migration_ProjectKB_Class21886]))
 
 ([CLSES_TAB] of  Widget
 
@@ -87,8 +87,8 @@
 
 ([KB_209499_Class1] of  Map
 
-	(entries [Migration_ProjectKB_Class21937])
-	(referenced_maps [Migration_ProjectKB_Class21931]))
+	(entries [Migration_ProjectKB_Class21893])
+	(referenced_maps [Migration_ProjectKB_Class21887]))
 
 ([KB_209499_Class10] of  Property_List
 )
@@ -227,28 +227,28 @@
 	(property_list [KB_209499_Class10])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([KB_491734_Class1846] of  Map
+([KB_976053_Class1846] of  Map
 
 	(entries
-		[KB_491734_Class1847]
-		[KB_491734_Class1848]
-		[KB_491734_Class1849]))
+		[KB_976053_Class1847]
+		[KB_976053_Class1848]
+		[KB_976053_Class1849]))
 
-([KB_491734_Class1847] of  Map_Entry
+([KB_976053_Class1847] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_491734_Class1848] of  Map_Entry
+([KB_976053_Class1848] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_491734_Class1849] of  Map_Entry
+([KB_976053_Class1849] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -523,75 +523,75 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([Migration_ProjectKB_Class21927] of  String
+([Migration_ProjectKB_Class21883] of  String
 
 	(name "Cesium")
 	(string_value "{Cesium+}status{+}time"))
 
-([Migration_ProjectKB_Class21928] of  String
+([Migration_ProjectKB_Class21884] of  String
 
 	(name "Basin")
 	(string_value "title"))
 
-([Migration_ProjectKB_Class21929] of  String
+([Migration_ProjectKB_Class21885] of  String
 
 	(name "Creature")
 	(string_value "title{+}id"))
 
-([Migration_ProjectKB_Class21930] of  String
+([Migration_ProjectKB_Class21886] of  String
 
 	(name "Migration")
 	(string_value "{Salmon+migration}"))
 
-([Migration_ProjectKB_Class21931] of  Map
+([Migration_ProjectKB_Class21887] of  Map
 
 	(entries
-		[Migration_ProjectKB_Class21932]
-		[Migration_ProjectKB_Class21933]
-		[Migration_ProjectKB_Class21934]
-		[Migration_ProjectKB_Class21935]
-		[Migration_ProjectKB_Class21936]))
+		[Migration_ProjectKB_Class21888]
+		[Migration_ProjectKB_Class21889]
+		[Migration_ProjectKB_Class21890]
+		[Migration_ProjectKB_Class21891]
+		[Migration_ProjectKB_Class21892]))
 
-([Migration_ProjectKB_Class21932] of  Map_Entry
+([Migration_ProjectKB_Class21888] of  Map_Entry
 
 	(key "Migration_Class2")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "16 595 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21933] of  Map_Entry
+([Migration_ProjectKB_Class21889] of  Map_Entry
 
 	(key "Migration_Class4")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "18 503 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21934] of  Map_Entry
+([Migration_ProjectKB_Class21890] of  Map_Entry
 
 	(key "Migration_Class0")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "8 501 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21935] of  Map_Entry
+([Migration_ProjectKB_Class21891] of  Map_Entry
 
 	(key "HiitolanjokiRCZ_Class14")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "14 699 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21936] of  Map_Entry
+([Migration_ProjectKB_Class21892] of  Map_Entry
 
 	(key "Migration_Class80002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 288 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21937] of  Map_Entry
+([Migration_ProjectKB_Class21893] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Migration_ProjectKB_Class21931")
+	(value "Migration_ProjectKB_Class21887")
 	(value_class "java.util.Map"))
 
 ([Migration_ProjectKB_Class29258] of  Widget
