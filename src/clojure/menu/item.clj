@@ -16,10 +16,8 @@
   (println "  Annotated instance of Run not found!"))
 (println "3. Starting Simulation.")
 (ClojureTab/invoke "sim" "start-sim")
-(println "4. Mission Button Support.")
-(ClojureTab/invoke "s" "mission-button-support")
 (println "EXPERT SYSTEM INITIALIZED")
-(println "5. Starting Cesium.")
+(println "4. Starting Cesium.")
 (if-let [csi (ClojureTab/findAnnotated (cls-instances "CesiumServer") nil)]
   (do (ClojureTab/invoke "cesium.server" "start-server" (sv csi "port"))
     (clojure.java.browse/browse-url (str "http://localhost:" (sv csi "port")))

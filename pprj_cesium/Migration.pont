@@ -1,4 +1,4 @@
-; Sun Jun 14 22:07:34 MSK 2020
+; Mon Jun 15 19:49:18 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot color
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time-scale
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -58,13 +62,29 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot waypoints
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot creature
 		(type INSTANCE)
 ;+		(allowed-classes Creature)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot walk-steps
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk-step
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot life
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time-status
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
@@ -101,11 +121,6 @@
 	(multislot values
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot walk
-		(type SYMBOL)
-		(allowed-values random tendency)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot spd
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -138,6 +153,14 @@
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time-status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time-scale
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -248,7 +271,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass GoLakesInCesium
+(defclass WalkLakesInCesium
 	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot spd
@@ -260,9 +283,12 @@
 ;+		(allowed-classes Basin)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot walk
-		(type SYMBOL)
-		(allowed-values random tendency)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot waypoints
+;+		(type ANY)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot creature
@@ -318,6 +344,14 @@
 (defclass Migration
 	(is-a Migration+Onto)
 	(role concrete)
+	(single-slot walk-step
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot phases
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot walk-steps
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

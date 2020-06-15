@@ -29,6 +29,12 @@
   :estuary [29.885 61.18]
   :speed 2
   :gv-field RIVERS})
+(def WPS [[29.919 61.161]
+ [29.912 61.170]
+ [29.918 61.174]
+ [29.909 61.176]
+ [29.912 61.180]
+ [29.888 61.179]])
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -144,7 +150,7 @@
   elt))
 
 (defn go-random-walk [id color size knots height start steps step gv-field]
-  ;; returns time of going in sec
+  ;; returns time of going in sec and 6 waypoints
 (let [pts (random-walk start steps step height gv-field)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
@@ -178,14 +184,29 @@
         :down (river :path)
         :up (reverse (river :path)))))))
 
-(defn go-lakes-random
+(defn go-lakes-walk
   ([inst knots height start steps step lakes]
   (let [id (protege.core/sv inst "id")
          color (read-string (protege.core/sv inst "color"))
          size (protege.core/sv inst "size")]
-    (go-lakes-random id color size knots height start steps step lakes)))
+    (go-lakes-walk id color size knots height start steps step lakes)))
 ([id color size knots height start steps step lakes]
   (go-random-walk id color size knots height start steps step (lakes :gv-field))))
+
+(defn go-lakes-by-waypoints
+  ;; returns time of going in sec
+([inst knots height wps limstp steps step lakes]
+  (let [id (protege.core/sv inst "id")
+         color (read-string (protege.core/sv inst "color"))
+         size (protege.core/sv inst "size")]
+    (go-lakes-by-waypoints id color size knots height wps limstp steps step height (lakes :gv-field))))
+([id color size knots height wps limstp steps step gv-field]
+  (let [wps (random-by-waypoints wps limstp steps step height gv-field)
+         func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+         mils (+ (Clock/getClock) 2000)
+         [czml elt] (cg/add-point-flight id wps knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+    (cs/send-czml czml)
+   elt)))
 
 (defn model-clock []
   (let [run (OMT/isRunning)
