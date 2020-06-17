@@ -15,9 +15,9 @@
   sim.field.geo.GeomVectorField
   sim.io.geo.ShapeFileImporter
   sim.util.geo.AttributeValue
-  com.vividsolutions.jts.geom.Coordinate))
-(def LAKES ["file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp"
- "file:data/mas/hiitolanjoki/shape/hiitolanjoki_a.dbf"])
+  com.vividsolutions.jts.geom.Coordinate
+  com.vividsolutions.jts.geom.GeometryFactory))
+(def LAKES (volatile! {}))
 (def RIVERS (volatile! {}))
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
   :head [29.346 61.444]
@@ -35,6 +35,7 @@
  [29.909 61.176]
  [29.912 61.180]
  [29.888 61.179]])
+(def GeomFACTORY (GeometryFactory.))
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -160,63 +161,38 @@
   (cs/send-czml czml)
   [elt wps]))
 
-(defn go-river
+(defn go-river [id color size knots height river direction]
   ;; returns time of going in sec
-([inst knots height river direction]
-  (let [id (protege.core/sv inst "id")
-         color (read-string (protege.core/sv inst "color"))
-         size (protege.core/sv inst "size")]
-    (go-river id color size knots height river direction)))
-([id color size knots height river direction]
-  (let [[lah loh] (river :head)
-          [lae loe] (river :estuary)
-          gvf (river :gv-field)]
-    (go-gv-field-attributes id color size
-      (condp = direction
-        :down (+ knots (river :speed))
-        :up (- knots (river :speed)))
-      (or height 16)
-      (condp = direction
-        :down (river :head)
-        :up (river :estuary))
-      (river :gv-field)
-      (condp = direction
-        :down (river :path)
-        :up (reverse (river :path)))))))
+(let [[lah loh] (river :head)
+        [lae loe] (river :estuary)
+        gvf (river :gv-field)]
+  (go-gv-field-attributes id color size
+    (condp = direction
+      :down (+ knots (river :flow-speed))
+      :up knots)
+    (or height 16)
+    (condp = direction
+      :down (river :head)
+      :up (river :estuary))
+    (river :gv-field)
+    (condp = direction
+      :down (river :path)
+      :up (reverse (river :path))))))
 
-(defn go-lakes-walk
-  ([inst knots height start steps step lakes]
-  (let [id (protege.core/sv inst "id")
-         color (read-string (protege.core/sv inst "color"))
-         size (protege.core/sv inst "size")]
-    (go-lakes-walk id color size knots height start steps step lakes)))
-([id color size knots height start steps step lakes]
-  (go-random-walk id color size knots height start steps step (lakes :gv-field))))
-
-(defn go-lakes-by-waypoints
+(defn go-random-by-waypoints [id color size knots height wps limstp steps step gv-field]
   ;; returns time of going in sec
-([inst knots height wps limstp steps step lakes]
-  (let [id (protege.core/sv inst "id")
-         color (read-string (protege.core/sv inst "color"))
-         size (protege.core/sv inst "size")]
-    (go-lakes-by-waypoints id color size knots height wps limstp steps step height (lakes :gv-field))))
-([id color size knots height wps limstp steps step gv-field]
-  (let [wps (random-by-waypoints wps limstp steps step height gv-field)
-         func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-         mils (+ (Clock/getClock) 2000)
-         [czml elt] (cg/add-point-flight id wps knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-    (cs/send-czml czml)
-   elt)))
+(let [wps (random-by-waypoints wps limstp steps step height gv-field)
+       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+       mils (+ (Clock/getClock) 2000)
+       [czml elt] (cg/add-point-flight id wps knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (cs/send-czml czml)
+  elt))
 
-(defn model-clock []
-  (let [run (OMT/isRunning)
-       scl (Clock/getTimeScale)
-       str (Clock/getClock)
-       stp (+ str 3600000)
-       start (cg/iso8601abs str)
+(defn model-clock [clk scl]
+  (let [stp (+ clk 3600000)
+       start (cg/iso8601abs clk)
        stop (cg/iso8601abs stp)
-       sec (Clock/getSecond)
-       mult (if run (int scl) 0)
+       mult (int scl)
        cs {:animate true
               :start start
               :stop stop
@@ -226,25 +202,32 @@
               :range "UNBOUNDED"}]
   (cs/send-clock cs)))
 
-(defn river-map [rinst]
-  (let [name (sv rinst "title")]
+(defn river-map [name]
   (or (@RIVERS name)
-    (let [lay (sv rinst "layer")
-           mp {:layer (sv lay "prettyName")
-                   :head (read-string (sv rinst "head"))
-                   :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
-                   :estuary (read-string (sv rinst "estuary"))
-                   :speed (sv rinst "river-speed")
-                   :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
-      (vswap! RIVERS assoc name mp)
-      mp))))
+  (let [rinst (fifos "River" "title" name)
+         lay (sv rinst "layer")
+         mp {:layer (sv lay "prettyName")
+                 :head (read-string (sv rinst "head"))
+                 :path (vec (map #(vector %1 %2) (svs rinst "attrs") (svs rinst "values")))
+                 :estuary (read-string (sv rinst "estuary"))
+                 :flow-speed (sv rinst "flow-speed")
+                 :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
+    (vswap! RIVERS assoc name mp)
+    mp)))
 
-(defn lakes-map [linst]
-  (let [name (sv linst "title")]
+(defn lake-map [name]
   (or (@LAKES name)
-    (let [lay (sv linst "layer")
-           mp {:layer (sv lay "prettyName")
-                   :gv-field (gv-field-from-shape (sv lay "shapeFile"))}]
-      (vswap! LAKES assoc name mp)
-      mp))))
+  (let [linst (fifos "Lake" "title" name)
+         lay (sv linst "layer")
+         atr (sv linst "attrs")
+         val (sv linst "values")
+         gvf (gv-field-from-shape (sv lay "shapeFile"))
+         mp {:layer (sv lay "prettyName")
+                 :gv-field gvf
+                 :polygon (.geometry (.getGeometry gvf atr (AttributeValue. val)))}]
+    (vswap! LAKES assoc name mp)
+    mp)))
+
+(defn clock-scale []
+  [(Clock/getClock) (Clock/getTimeScale)])
 

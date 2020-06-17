@@ -1,4 +1,4 @@
-; Mon Jun 15 19:49:18 MSK 2020
+; Wed Jun 17 20:49:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,13 +7,16 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot flow-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot size
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot color
-		(type STRING)
-;+		(cardinality 0 1)
+	(multislot color
+		(type INTEGER)
 		(create-accessor read-write))
 	(single-slot time-scale
 		(type STRING)
@@ -28,12 +31,8 @@
 ;+		(allowed-classes River)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot river-speed
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot height
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot location
@@ -71,10 +70,6 @@
 ;+		(allowed-classes Creature)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot walk-steps
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot walk-step
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -83,12 +78,16 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot time-status
-		(type STRING)
+	(single-slot max-steps
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot polygon
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot estuary
@@ -106,6 +105,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot up-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot heading
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -120,6 +123,10 @@
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot down-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spd
 		(type STRING)
@@ -155,10 +162,6 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot time-status
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot time-scale
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -167,6 +170,29 @@
 (defclass Creature
 	(is-a Migration+Onto)
 	(role concrete)
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot up-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot color
+		(type INTEGER)
+		(create-accessor read-write))
+	(single-slot down-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot location
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -175,24 +201,24 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot life
-		(type INTEGER)
+	(single-slot walk-step
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
+	(single-slot life
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot age
+	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot color
-		(type STRING)
+	(single-slot max-steps
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot size
@@ -230,15 +256,23 @@
 (defclass River
 	(is-a Basin)
 	(role concrete)
-	(single-slot river-speed
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot head
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot flow-speed
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot estuary
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Lake
+	(is-a Basin)
+	(role concrete)
+	(single-slot polygon
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -255,7 +289,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot height
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot longitude
@@ -267,67 +301,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass WalkLakesInCesium
-	(is-a Migration+Onto)
-	(role concrete)
-	(single-slot spd
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot basin
-		(type INSTANCE)
-;+		(allowed-classes Basin)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot status
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot waypoints
-;+		(type ANY)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot creature
-		(type INSTANCE)
-;+		(allowed-classes Creature)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot height
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass GoRiverInCesium
-	(is-a Migration+Onto)
-	(role concrete)
-	(single-slot spd
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot river
-		(type INSTANCE)
-;+		(allowed-classes River)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direct
-		(type SYMBOL)
-		(allowed-values down up)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot creature
-		(type INSTANCE)
-;+		(allowed-classes Creature)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot height
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -344,14 +317,6 @@
 (defclass Migration
 	(is-a Migration+Onto)
 	(role concrete)
-	(single-slot walk-step
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot phases
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot walk-steps
-		(type INTEGER)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Mon Jun 15 19:49:18 MSK 2020
+; Wed Jun 17 20:49:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,10 +21,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Migration_ProjectKB_Class21865]
-		[Migration_ProjectKB_Class21866]
-		[Migration_ProjectKB_Class21867]
-		[Migration_ProjectKB_Class21868]))
+		[Migration_ProjectKB_Class21915]
+		[Migration_ProjectKB_Class21916]
+		[Migration_ProjectKB_Class21917]
+		[Migration_ProjectKB_Class21918]))
 
 ([CLSES_TAB] of  Widget
 
@@ -87,8 +87,8 @@
 
 ([KB_209499_Class1] of  Map
 
-	(entries [Migration_ProjectKB_Class21875])
-	(referenced_maps [Migration_ProjectKB_Class21869]))
+	(entries [Migration_ProjectKB_Class21925])
+	(referenced_maps [Migration_ProjectKB_Class21919]))
 
 ([KB_209499_Class10] of  Property_List
 )
@@ -227,28 +227,28 @@
 	(property_list [KB_209499_Class10])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([KB_507361_Class1846] of  Map
+([KB_670614_Class1846] of  Map
 
 	(entries
-		[KB_507361_Class1847]
-		[KB_507361_Class1848]
-		[KB_507361_Class1849]))
+		[KB_670614_Class1847]
+		[KB_670614_Class1848]
+		[KB_670614_Class1849]))
 
-([KB_507361_Class1847] of  Map_Entry
+([KB_670614_Class1847] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_507361_Class1848] of  Map_Entry
+([KB_670614_Class1848] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_507361_Class1849] of  Map_Entry
+([KB_670614_Class1849] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -259,6 +259,40 @@
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
+
+([Migration_ProjectKB_Class11850] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "walk-step")
+	(property_list [Migration_ProjectKB_Class11851])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 100)
+	(x 0)
+	(y 300))
+
+([Migration_ProjectKB_Class11851] of  Property_List
+)
+
+([Migration_ProjectKB_Class11852] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "max-steps")
+	(property_list [Migration_ProjectKB_Class11853])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
+	(width 100)
+	(x 100)
+	(y 300))
+
+([Migration_ProjectKB_Class11853] of  Property_List
+)
+
+([Migration_ProjectKB_Class11860] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class31861]
+		[Migration_ProjectKB_Class31862]))
 
 ([Migration_ProjectKB_Class11861] of  Widget
 
@@ -297,9 +331,7 @@
 
 	(properties
 		[Migration_ProjectKB_Class11872]
-		[Migration_ProjectKB_Class11873]
-		[Migration_ProjectKB_Class21861]
-		[Migration_ProjectKB_Class21863]))
+		[Migration_ProjectKB_Class11873]))
 
 ([Migration_ProjectKB_Class11872] of  Property_List
 
@@ -327,8 +359,8 @@
 	(property_list [Migration_ProjectKB_Class11876])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 0)
-	(y 360))
+	(x 200)
+	(y 60))
 
 ([Migration_ProjectKB_Class11876] of  Property_List
 )
@@ -341,11 +373,73 @@
 	(property_list [Migration_ProjectKB_Class11878])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 0)
-	(y 300))
+	(x 200)
+	(y 120))
 
 ([Migration_ProjectKB_Class11878] of  Property_List
 )
+
+([Migration_ProjectKB_Class1850] of  Widget
+
+	(is_hidden FALSE)
+	(name "River")
+	(property_list [Migration_ProjectKB_Class1853])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([Migration_ProjectKB_Class1853] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class1854]
+		[Migration_ProjectKB_Class1857]
+		[Migration_ProjectKB_Class1859]
+		[Migration_ProjectKB_Class31863]
+		[Migration_ProjectKB_Class31865]
+		[Migration_ProjectKB_Class31867]
+		[Migration_ProjectKB_Class31869]
+		[Migration_ProjectKB_Class31871]
+		[Migration_ProjectKB_Class51873]))
+
+([Migration_ProjectKB_Class1854] of  Property_List
+
+	(name "layout properties")
+	(properties
+		[Migration_ProjectKB_Class1855]
+		[Migration_ProjectKB_Class1856]))
+
+([Migration_ProjectKB_Class1855] of  String
+
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([Migration_ProjectKB_Class1856] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([Migration_ProjectKB_Class1857] of  Widget
+
+	(height 140)
+	(is_hidden FALSE)
+	(name "attrs")
+	(property_list [Migration_ProjectKB_Class1858])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 0)
+	(y 120))
+
+([Migration_ProjectKB_Class1858] of  Property_List
+)
+
+([Migration_ProjectKB_Class1859] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "layer")
+	(property_list [Migration_ProjectKB_Class11860])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
 
 ([Migration_ProjectKB_Class1860] of  Widget
 
@@ -551,103 +645,205 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([Migration_ProjectKB_Class21861] of  Widget
+([Migration_ProjectKB_Class21872] of  Widget
 
-	(height 60)
 	(is_hidden FALSE)
-	(name "walk-step")
-	(property_list [Migration_ProjectKB_Class21862])
-	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
-	(width 100)
-	(x 100)
-	(y 270))
+	(name "Lake")
+	(property_list [Migration_ProjectKB_Class21875])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
-([Migration_ProjectKB_Class21862] of  Property_List
-)
+([Migration_ProjectKB_Class21875] of  Property_List
 
-([Migration_ProjectKB_Class21863] of  Widget
+	(properties
+		[Migration_ProjectKB_Class21876]
+		[Migration_ProjectKB_Class21879]
+		[Migration_ProjectKB_Class21881]
+		[Migration_ProjectKB_Class21885]
+		[Migration_ProjectKB_Class21887]
+		[Migration_ProjectKB_Class21889]
+		[Migration_ProjectKB_Class21891]))
 
-	(height 60)
+([Migration_ProjectKB_Class21876] of  Property_List
+
+	(name "layout properties")
+	(properties
+		[Migration_ProjectKB_Class21877]
+		[Migration_ProjectKB_Class21878]))
+
+([Migration_ProjectKB_Class21877] of  String
+
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([Migration_ProjectKB_Class21878] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([Migration_ProjectKB_Class21879] of  Widget
+
+	(height 120)
 	(is_hidden FALSE)
-	(name "walk-steps")
-	(property_list [Migration_ProjectKB_Class21864])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
+	(name "attrs")
+	(property_list [Migration_ProjectKB_Class21880])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
 	(x 0)
-	(y 270))
+	(y 120))
 
-([Migration_ProjectKB_Class21864] of  Property_List
+([Migration_ProjectKB_Class21880] of  Property_List
 )
 
-([Migration_ProjectKB_Class21865] of  String
+([Migration_ProjectKB_Class21881] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "layer")
+	(property_list [Migration_ProjectKB_Class21882])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([Migration_ProjectKB_Class21882] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class21883]
+		[Migration_ProjectKB_Class21884]))
+
+([Migration_ProjectKB_Class21883] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Migration_ProjectKB_Class21884] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Migration_ProjectKB_Class21885] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [Migration_ProjectKB_Class21886])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class21886] of  Property_List
+)
+
+([Migration_ProjectKB_Class21887] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "gv-field")
+	(property_list [Migration_ProjectKB_Class21888])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class21888] of  Property_List
+)
+
+([Migration_ProjectKB_Class21889] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "values")
+	(property_list [Migration_ProjectKB_Class21890])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 200)
+	(y 120))
+
+([Migration_ProjectKB_Class21890] of  Property_List
+)
+
+([Migration_ProjectKB_Class21891] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "polygon")
+	(property_list [Migration_ProjectKB_Class21892])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class21892] of  Property_List
+)
+
+([Migration_ProjectKB_Class21915] of  String
 
 	(name "Cesium")
 	(string_value "{Cesium+}status{+}time"))
 
-([Migration_ProjectKB_Class21866] of  String
+([Migration_ProjectKB_Class21916] of  String
 
 	(name "Basin")
 	(string_value "title"))
 
-([Migration_ProjectKB_Class21867] of  String
+([Migration_ProjectKB_Class21917] of  String
 
 	(name "Creature")
 	(string_value "title{+}id"))
 
-([Migration_ProjectKB_Class21868] of  String
+([Migration_ProjectKB_Class21918] of  String
 
 	(name "Migration")
 	(string_value "{Salmon+migration}"))
 
-([Migration_ProjectKB_Class21869] of  Map
+([Migration_ProjectKB_Class21919] of  Map
 
 	(entries
-		[Migration_ProjectKB_Class21870]
-		[Migration_ProjectKB_Class21871]
-		[Migration_ProjectKB_Class21872]
-		[Migration_ProjectKB_Class21873]
-		[Migration_ProjectKB_Class21874]))
+		[Migration_ProjectKB_Class21920]
+		[Migration_ProjectKB_Class21921]
+		[Migration_ProjectKB_Class21922]
+		[Migration_ProjectKB_Class21923]
+		[Migration_ProjectKB_Class21924]))
 
-([Migration_ProjectKB_Class21870] of  Map_Entry
+([Migration_ProjectKB_Class21920] of  Map_Entry
 
 	(key "Migration_Class2")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "16 595 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21871] of  Map_Entry
+([Migration_ProjectKB_Class21921] of  Map_Entry
 
 	(key "Migration_Class4")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "18 503 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21872] of  Map_Entry
+([Migration_ProjectKB_Class21922] of  Map_Entry
 
 	(key "Migration_Class0")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "8 501 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21873] of  Map_Entry
+([Migration_ProjectKB_Class21923] of  Map_Entry
 
 	(key "HiitolanjokiRCZ_Class14")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "14 699 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21874] of  Map_Entry
+([Migration_ProjectKB_Class21924] of  Map_Entry
 
 	(key "Migration_Class80002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 288 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([Migration_ProjectKB_Class21875] of  Map_Entry
+([Migration_ProjectKB_Class21925] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "Migration_ProjectKB_Class21869")
+	(value "Migration_ProjectKB_Class21919")
 	(value_class "java.util.Map"))
 
 ([Migration_ProjectKB_Class29258] of  Widget
@@ -665,15 +861,24 @@
 		[Migration_ProjectKB_Class29263]
 		[Migration_ProjectKB_Class29265]
 		[Migration_ProjectKB_Class39267]
-		[Migration_ProjectKB_Class49269]
 		[Migration_ProjectKB_Class49271]
 		[Migration_ProjectKB_Class79384]
 		[Migration_ProjectKB_Class11875]
-		[Migration_ProjectKB_Class11877]))
+		[Migration_ProjectKB_Class11877]
+		[Migration_ProjectKB_Class31872]
+		[Migration_ProjectKB_Class41930]
+		[Migration_ProjectKB_Class41932]
+		[Migration_ProjectKB_Class51886]
+		[Migration_ProjectKB_Class51888]
+		[Migration_ProjectKB_Class11850]
+		[Migration_ProjectKB_Class11852]))
 
 ([Migration_ProjectKB_Class29260] of  Property_List
 
-	(name "layout properties"))
+	(name "layout properties")
+	(properties
+		[Migration_ProjectKB_Class41936]
+		[Migration_ProjectKB_Class41937]))
 
 ([Migration_ProjectKB_Class29261] of  Widget
 
@@ -682,9 +887,9 @@
 	(name "life")
 	(property_list [Migration_ProjectKB_Class29262])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 200)
-	(x 0)
-	(y 120))
+	(width 100)
+	(x 200)
+	(y 240))
 
 ([Migration_ProjectKB_Class29262] of  Property_List
 )
@@ -745,6 +950,95 @@
 ([Migration_ProjectKB_Class29279] of  Property_List
 )
 
+([Migration_ProjectKB_Class31861] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Migration_ProjectKB_Class31862] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Migration_ProjectKB_Class31863] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "title")
+	(property_list [Migration_ProjectKB_Class31864])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class31864] of  Property_List
+)
+
+([Migration_ProjectKB_Class31865] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "gv-field")
+	(property_list [Migration_ProjectKB_Class31866])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class31866] of  Property_List
+)
+
+([Migration_ProjectKB_Class31867] of  Widget
+
+	(height 140)
+	(is_hidden FALSE)
+	(name "values")
+	(property_list [Migration_ProjectKB_Class31868])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 200)
+	(x 200)
+	(y 120))
+
+([Migration_ProjectKB_Class31868] of  Property_List
+)
+
+([Migration_ProjectKB_Class31869] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "head")
+	(property_list [Migration_ProjectKB_Class31870])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 260))
+
+([Migration_ProjectKB_Class31870] of  Property_List
+)
+
+([Migration_ProjectKB_Class31871] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "flow-speed")
+	(property_list [Migration_ProjectKB_Class51872])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 100)
+	(x 0)
+	(y 320))
+
+([Migration_ProjectKB_Class31872] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "N")
+	(property_list [Migration_ProjectKB_Class31873])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class31873] of  Property_List
+)
+
 ([Migration_ProjectKB_Class39267] of  Widget
 
 	(height 60)
@@ -753,185 +1047,48 @@
 	(property_list [Migration_ProjectKB_Class49268])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
 	(width 100)
-	(x 200)
+	(x 300)
+	(y 240))
+
+([Migration_ProjectKB_Class41930] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "height")
+	(property_list [Migration_ProjectKB_Class41931])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
+	(width 100)
+	(x 100)
+	(y 180))
+
+([Migration_ProjectKB_Class41931] of  Property_List
+)
+
+([Migration_ProjectKB_Class41932] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "color")
+	(property_list [Migration_ProjectKB_Class41933])
+	(widget_class_name "edu.stanford.smi.protege.widget.IntegerListWidget")
+	(width 100)
+	(x 0)
 	(y 120))
 
-([Migration_ProjectKB_Class39327] of  Widget
+([Migration_ProjectKB_Class41933] of  Property_List
+)
 
-	(is_hidden FALSE)
-	(name "GoRiverInCesium")
-	(property_list [Migration_ProjectKB_Class39330])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Migration_ProjectKB_Class39330] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class39331]
-		[Migration_ProjectKB_Class39334]
-		[Migration_ProjectKB_Class39336]
-		[Migration_ProjectKB_Class39338]
-		[Migration_ProjectKB_Class39340]
-		[Migration_ProjectKB_Class39342]
-		[Migration_ProjectKB_Class39344]
-		[Migration_ProjectKB_Class39348]
-		[Migration_ProjectKB_Class49283]
-		[Migration_ProjectKB_Class49285]
-		[Migration_ProjectKB_Class49287]
-		[Migration_ProjectKB_Class49321]
-		[Migration_ProjectKB_Class49333]))
-
-([Migration_ProjectKB_Class39331] of  Property_List
-
-	(name "layout properties")
-	(properties
-		[Migration_ProjectKB_Class39332]
-		[Migration_ProjectKB_Class39333]))
-
-([Migration_ProjectKB_Class39332] of  String
+([Migration_ProjectKB_Class41936] of  String
 
 	(name "horizontal_stretcher")
 	(string_value "<<all>>"))
 
-([Migration_ProjectKB_Class39333] of  String
+([Migration_ProjectKB_Class41937] of  String
 
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
 
-([Migration_ProjectKB_Class39334] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "run")
-	(property_list [Migration_ProjectKB_Class39335])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class39335] of  Property_List
-)
-
-([Migration_ProjectKB_Class39336] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "status")
-	(property_list [Migration_ProjectKB_Class39337])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class39337] of  Property_List
-)
-
-([Migration_ProjectKB_Class39338] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "title")
-	(property_list [Migration_ProjectKB_Class39339])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class39339] of  Property_List
-)
-
-([Migration_ProjectKB_Class39340] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "parent")
-	(property_list [Migration_ProjectKB_Class39341])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class39341] of  Property_List
-)
-
-([Migration_ProjectKB_Class39342] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "id")
-	(property_list [Migration_ProjectKB_Class39343])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class39343] of  Property_List
-)
-
-([Migration_ProjectKB_Class39344] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "river")
-	(property_list [Migration_ProjectKB_Class39345])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 120))
-
-([Migration_ProjectKB_Class39345] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class39346]
-		[Migration_ProjectKB_Class39347]))
-
-([Migration_ProjectKB_Class39346] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class39347] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Migration_ProjectKB_Class39348] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "next_actions")
-	(property_list [Migration_ProjectKB_Class39349])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 200)
-	(y 60))
-
-([Migration_ProjectKB_Class39349] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class39350]
-		[Migration_ProjectKB_Class39351]))
-
-([Migration_ProjectKB_Class39350] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class39351] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
 ([Migration_ProjectKB_Class49268] of  Property_List
-)
-
-([Migration_ProjectKB_Class49269] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "color")
-	(property_list [Migration_ProjectKB_Class49270])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([Migration_ProjectKB_Class49270] of  Property_List
 )
 
 ([Migration_ProjectKB_Class49271] of  Widget
@@ -942,294 +1099,56 @@
 	(property_list [Migration_ProjectKB_Class49272])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
 	(width 100)
-	(x 200)
-	(y 180))
+	(x 100)
+	(y 120))
 
 ([Migration_ProjectKB_Class49272] of  Property_List
 )
 
-([Migration_ProjectKB_Class49283] of  Widget
+([Migration_ProjectKB_Class51872] of  Property_List
+)
+
+([Migration_ProjectKB_Class51873] of  Widget
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "spd")
-	(property_list [Migration_ProjectKB_Class49284])
+	(name "estuary")
+	(property_list [Migration_ProjectKB_Class51874])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 200)
-	(y 180))
+	(y 260))
 
-([Migration_ProjectKB_Class49284] of  Property_List
+([Migration_ProjectKB_Class51874] of  Property_List
 )
 
-([Migration_ProjectKB_Class49285] of  Widget
+([Migration_ProjectKB_Class51886] of  Widget
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "direct")
-	(property_list [Migration_ProjectKB_Class49286])
-	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
-	(width 200)
-	(x 0)
-	(y 180))
+	(name "up-speed")
+	(property_list [Migration_ProjectKB_Class51887])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 100)
+	(x 100)
+	(y 240))
 
-([Migration_ProjectKB_Class49286] of  Property_List
+([Migration_ProjectKB_Class51887] of  Property_List
 )
 
-([Migration_ProjectKB_Class49287] of  Widget
+([Migration_ProjectKB_Class51888] of  Widget
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "creature")
-	(property_list [Migration_ProjectKB_Class49288])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([Migration_ProjectKB_Class49288] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class49289]
-		[Migration_ProjectKB_Class49290]))
-
-([Migration_ProjectKB_Class49289] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class49290] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Migration_ProjectKB_Class49321] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "height")
-	(property_list [Migration_ProjectKB_Class49322])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
+	(name "down-speed")
+	(property_list [Migration_ProjectKB_Class51889])
+	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
+	(width 100)
 	(x 0)
 	(y 240))
 
-([Migration_ProjectKB_Class49322] of  Property_List
+([Migration_ProjectKB_Class51889] of  Property_List
 )
-
-([Migration_ProjectKB_Class49333] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "N")
-	(property_list [Migration_ProjectKB_Class49334])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class49334] of  Property_List
-)
-
-([Migration_ProjectKB_Class59269] of  Widget
-
-	(is_hidden FALSE)
-	(name "WalkLakesInCesium")
-	(property_list [Migration_ProjectKB_Class59272])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Migration_ProjectKB_Class59272] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class59273]
-		[Migration_ProjectKB_Class59276]
-		[Migration_ProjectKB_Class59278]
-		[Migration_ProjectKB_Class59280]
-		[Migration_ProjectKB_Class59282]
-		[Migration_ProjectKB_Class59284]
-		[Migration_ProjectKB_Class59286]
-		[Migration_ProjectKB_Class59290]
-		[Migration_ProjectKB_Class59292]
-		[Migration_ProjectKB_Class59296]
-		[Migration_ProjectKB_Class79369]
-		[Migration_ProjectKB_Class79371]))
-
-([Migration_ProjectKB_Class59273] of  Property_List
-
-	(name "layout properties")
-	(properties
-		[Migration_ProjectKB_Class59274]
-		[Migration_ProjectKB_Class59275]))
-
-([Migration_ProjectKB_Class59274] of  String
-
-	(name "horizontal_stretcher")
-	(string_value "<<all>>"))
-
-([Migration_ProjectKB_Class59275] of  String
-
-	(name "vertical_stretcher")
-	(string_value "<<none>>"))
-
-([Migration_ProjectKB_Class59276] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "run")
-	(property_list [Migration_ProjectKB_Class59277])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class59277] of  Property_List
-)
-
-([Migration_ProjectKB_Class59278] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "status")
-	(property_list [Migration_ProjectKB_Class59279])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class59279] of  Property_List
-)
-
-([Migration_ProjectKB_Class59280] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "title")
-	(property_list [Migration_ProjectKB_Class59281])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class59281] of  Property_List
-)
-
-([Migration_ProjectKB_Class59282] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "parent")
-	(property_list [Migration_ProjectKB_Class59283])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class59283] of  Property_List
-)
-
-([Migration_ProjectKB_Class59284] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "id")
-	(property_list [Migration_ProjectKB_Class59285])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([Migration_ProjectKB_Class59285] of  Property_List
-)
-
-([Migration_ProjectKB_Class59286] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "basin")
-	(property_list [Migration_ProjectKB_Class59287])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 120))
-
-([Migration_ProjectKB_Class59287] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class59288]
-		[Migration_ProjectKB_Class59289]))
-
-([Migration_ProjectKB_Class59288] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class59289] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Migration_ProjectKB_Class59290] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "walk")
-	(property_list [Migration_ProjectKB_Class59291])
-	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([Migration_ProjectKB_Class59291] of  Property_List
-)
-
-([Migration_ProjectKB_Class59292] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "next_actions")
-	(property_list [Migration_ProjectKB_Class59293])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 200)
-	(y 60))
-
-([Migration_ProjectKB_Class59293] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class59294]
-		[Migration_ProjectKB_Class59295]))
-
-([Migration_ProjectKB_Class59294] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class59295] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([Migration_ProjectKB_Class59296] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "creature")
-	(property_list [Migration_ProjectKB_Class59297])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([Migration_ProjectKB_Class59297] of  Property_List
-
-	(properties
-		[Migration_ProjectKB_Class59298]
-		[Migration_ProjectKB_Class59299]))
-
-([Migration_ProjectKB_Class59298] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([Migration_ProjectKB_Class59299] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([Migration_ProjectKB_Class69346] of  Widget
 
@@ -1347,34 +1266,6 @@
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
 
-([Migration_ProjectKB_Class79369] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "height")
-	(property_list [Migration_ProjectKB_Class79370])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 240))
-
-([Migration_ProjectKB_Class79370] of  Property_List
-)
-
-([Migration_ProjectKB_Class79371] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "spd")
-	(property_list [Migration_ProjectKB_Class79372])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 200)
-	(y 180))
-
-([Migration_ProjectKB_Class79372] of  Property_List
-)
-
 ([Migration_ProjectKB_Class79384] of  Widget
 
 	(height 60)
@@ -1383,8 +1274,8 @@
 	(property_list [Migration_ProjectKB_Class79385])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 0)
-	(y 240))
+	(x 200)
+	(y 180))
 
 ([Migration_ProjectKB_Class79385] of  Property_List
 )
@@ -1534,12 +1425,12 @@
 		[Migration_ProjectKB_Class69346]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
+		[Migration_ProjectKB_Class1850]
 		[STANDARD_FACET_FORM_WIDGET]
 		[Migration_ProjectKB_Class19267]
 		[Migration_ProjectKB_Class29258]
 		[Migration_ProjectKB_Class11870]
-		[Migration_ProjectKB_Class39327]
-		[Migration_ProjectKB_Class59269])
+		[Migration_ProjectKB_Class21872])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
