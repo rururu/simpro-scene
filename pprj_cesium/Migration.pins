@@ -1,4 +1,4 @@
-; Wed Jun 17 20:49:20 MSK 2020
+; Thu Jun 18 18:55:21 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -146,11 +146,15 @@
 
 	(cloFunctions
 		[Migration_Class70005]
-		[Migration_Class110000]
 		[Migration_Class130012]
+		[Migration_Class110000]
+		[Migration_Class10000]
 		[Migration_Class130011]
+		[Migration_Class120008]
+		[Migration_Class120002]
 		[Migration_Class50006]
 		[Migration_Class150001]
+		[Migration_Class20002]
 		[Migration_Class60014]
 		[Migration_Class160005]
 		[Migration_Class50005]
@@ -161,8 +165,6 @@
 		[Migration_Class130014]
 		[Migration_Class50000]
 		[Migration_Class40024]
-		[Migration_Class120008]
-		[Migration_Class120002]
 		[Migration_Class140001])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
@@ -252,6 +254,11 @@
 	(steps 1)
 	(title "MigRun"))
 
+([Migration_Class10000] of  CloFunction
+
+	(source "(map #(.geometry (.getGeometry gv-field %1 (AttributeValue. %2))) attrs vals)")
+	(title "geoms-by-attrs [attrs vals gv-field]"))
+
 ([Migration_Class100000] of  RuleSet
 
 	(rules
@@ -262,7 +269,8 @@
 		[Migration_Class90001]
 		[Migration_Class90002]
 		[Migration_Class90003]
-		[Migration_Class90005])
+		[Migration_Class90005]
+		[Migration_Class30013])
 	(templates
 		[Creature]
 		[Migration]
@@ -325,7 +333,7 @@
 
 ([Migration_Class120002] of  CloFunction
 
-	(source "(or (@LAKES name)\n  (let [linst (fifos \"Lake\" \"title\" name)\n         lay (sv linst \"layer\")\n         atr (sv linst \"attrs\")\n         val (sv linst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :polygon (.geometry (.getGeometry gvf atr (AttributeValue. val)))}]\n    (vswap! LAKES assoc name mp)\n    mp))")
+	(source "(or (@LAKES name)\n  (let [linst (fifos \"Lake\" \"title\" name)\n         lay (sv linst \"layer\")\n         ats (svs linst \"attrs\")\n         vls (svs linst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls gvf)}]\n    (vswap! LAKES assoc name mp)\n    mp))")
 	(title "lake-map [name]"))
 
 ([Migration_Class120004] of  Basin
@@ -335,7 +343,7 @@
 
 ([Migration_Class120008] of  CloFunction
 
-	(source "(or (@RIVERS name)\n  (let [rinst (fifos \"River\" \"title\" name)\n         lay (sv rinst \"layer\")\n         mp {:layer (sv lay \"prettyName\")\n                 :head (read-string (sv rinst \"head\"))\n                 :path (vec (map #(vector %1 %2) (svs rinst \"attrs\") (svs rinst \"values\")))\n                 :estuary (read-string (sv rinst \"estuary\"))\n                 :flow-speed (sv rinst \"flow-speed\")\n                 :gv-field (gv-field-from-shape (sv lay \"shapeFile\"))}]\n    (vswap! RIVERS assoc name mp)\n    mp))")
+	(source "(or (@RIVERS name)\n  (let [rinst (fifos \"River\" \"title\" name)\n         lay (sv rinst \"layer\")\n         ats (svs rinst \"attrs\")\n         vls (svs rinst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls)\n                 :head (read-string (sv rinst \"head\"))\n                 :estuary (read-string (sv rinst \"estuary\"))\n                 :flow-speed (sv rinst \"flow-speed\")}]\n    (vswap! RIVERS assoc name mp)\n    mp))")
 	(title "river-map [name]"))
 
 ([Migration_Class130000] of  Rule
@@ -366,8 +374,8 @@
 
 ([Migration_Class130011] of  CloFunction
 
-	(source "(loop [[[col val] & cvrst] col-vals path [(conj start height)]]\n  (if (some? col)\n    (let [ps (map #(list (.x %) (.y %) height) (.getCoordinates (.geometry (.getGeometry gv-field col (AttributeValue. val)))))\n           p1 (last path)\n           p2 (first ps)\n           p3 (last ps)\n           d1 (simple-dist p1 p2)\n           d2 (simple-dist p1 p3)\n           nxt (if (< d2 d1)\n                   (reverse ps)\n                   ps)] \n      (recur cvrst (concat path nxt)))\n    path))")
-	(title "from-gv-field-by-attributes [gv-field col-vals start height]"))
+	(source "(let [lss (map #(.getCoordinates %) geoms)\n       lss (map #(list (.x %) (.y %) height) lss)]\n  (loop [[ps & rss] lss path [(conj start height)]]\n    (if (some? ps)\n      (let [p1 (last path)\n             p2 (first ps)\n             p3 (last ps)\n             d1 (simple-dist p1 p2)\n             d2 (simple-dist p1 p3)\n             nxt (if (< d2 d1)\n                     (reverse ps)\n                     ps)] \n        (recur rss (concat path nxt)))\n      path)))")
+	(title "geoms-to-path [geoms start height]"))
 
 ([Migration_Class130012] of  CloFunction
 
@@ -376,12 +384,12 @@
 
 ([Migration_Class130013] of  CloFunction
 
-	(source ";; returns time of going in sec\n(let [pts (from-gv-field-by-attributes gv-field attrs start height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  elt)")
-	(title "go-gv-field-attributes [id color size knots height start gv-field attrs]"))
+	(source ";; returns time of going in sec and waypoints\n(let [pts (geoms-to-path geoms start height)\n       wps [(first pts) (last pts)]\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-geoms-path [id color size knots height start geoms]"))
 
 ([Migration_Class130014] of  CloFunction
 
-	(source ";; returns time of going in sec\n(let [[lah loh] (river :head)\n        [lae loe] (river :estuary)\n        gvf (river :gv-field)]\n  (go-gv-field-attributes id color size\n    (condp = direction\n      :down (+ knots (river :flow-speed))\n      :up knots)\n    (or height 16)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (river :gv-field)\n    (condp = direction\n      :down (river :path)\n      :up (reverse (river :path)))))")
+	(source ";; returns time of going in sec and waypoints\n(let [[lah loh] (river :head)\n        [lae loe] (river :estuary)\n        gvf (river :gv-field)]\n  (go-geoms-path id color size\n    (condp = direction\n      :down (+ knots (river :flow-speed))\n      :up knots)\n    (or height 16)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (condp = direction\n      :down (river :geoms)\n      :up (reverse (river :geoms)))))")
 	(title "go-river [id color size knots height river direction]"))
 
 ([Migration_Class140000] of  Creature
@@ -447,38 +455,38 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	max-steps ?mss\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Walk in lake Kivijarvi\")\n	 (= ?phe \"Walk in Ladoga lake\")\n                       (= ?phe \"Last walk in Kivijarvi\")])\n(Clock time ?t)")
-	(rhs "(let [n 14]\n  (println ?id  ?phe :REPEAT n)\n  (modify ?cre N (+ n ?t)\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Walk in upper lakes\")\n                       (= ?phe \"Last walk in upper lakes\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) ?mss ?wst (lak :geoms))]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
-	(title "mig:WalkInLakes"))
+	(title "mig:WalkInUpperLakes"))
 
 ([Migration_Class150010] of  Migration
 
 	(phases
 		"Birth"
-		"Walk in lake Kivijarvi"
+		"Walk in upper lakes"
 		"Going to river Hiitolanjoki"
 		"Going down river Hiitolanjoki"
 		"Walk in Ladoga lake"
 		"Return to river Hiitolanjoki"
 		"Going up river Hiitolanjoki"
-		"Last walk in Kivijarvi"
+		"Last walk in upper lakes"
 		"Spawn"))
 
 ([Migration_Class160005] of  CloFunction
 
-	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (if (.isCovered gv-field (Coordinate. lo3 la3))\n    [lo3 la3]\n    (next-covered lo1 la1 slon step gv-field)))")
-	(title "next-covered-closer [lo1 la1 lo2 la2 slon step gv-field]"))
+	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (if (covered-by lo3 la3 geoms)\n    [lo3 la3]\n    (next-covered lo1 la1 slon step geoms)))")
+	(title "next-covered-closer [lo1 la1 lo2 la2 slon step geoms]"))
 
 ([Migration_Class160006] of  CloFunction
 
-	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [(conj start height)]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step gv-field)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step gv-field)\n             newp (conj path (conj nxt height))]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
-	(title "random-walk-closer [start finish steps step height gv-field]"))
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [(conj start height)]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path (conj nxt height))]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
+	(title "random-walk-closer [start finish steps step height geoms]"))
 
 ([Migration_Class170017] of  CloFunction
 
-	(source "(loop [[s f & r :as ws] wps path []]\n  (cond\n    (> (count path) limstp)\n      path\n    (and s f)\n      (let [rwc1 (random-walk-closer s f steps step height gv-field)]\n        (if (< (count rwc1) steps)\n          (recur (rest ws) (concat path rwc1))\n          (let [rwc2 (random-walk-closer f s steps step height gv-field)]\n            (if (< (count rwc2) steps)\n              (recur (rest ws) (concat path (reverse rwc2)))\n              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n    true\n      path))")
-	(title "random-by-waypoints [wps limstp steps step height gv-field]"))
+	(source "(loop [[s f & r :as ws] wps path []]\n  (cond\n    (> (count path) limstp)\n      path\n    (and s f)\n      (let [rwc1 (random-walk-closer s f steps step height geoms)]\n        (if (< (count rwc1) steps)\n          (recur (rest ws) (concat path rwc1))\n          (let [rwc2 (random-walk-closer f s steps step height geoms)]\n            (if (< (count rwc2) steps)\n              (recur (rest ws) (concat path (reverse rwc2)))\n              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n    true\n      path))")
+	(title "random-by-waypoints [wps limstp steps step height geoms]"))
 
 ([Migration_Class170051] of  OMTPoly
 
@@ -628,6 +636,30 @@
 	(source "{:layer \"Hiitolanjoki Rivers\"\n  :head [29.346 61.444]\n  :path [[\"NAME\" \"Hiitolanjoki\"]\n             [\"NAME\" \"Kokkolanjoki2\"]\n             [\"NAME\" \"Kokkolanjoki1\"]\n             [\"NAME\" \"Veijalanjarvi\"]\n             [\"NAME\" \"Asilanjoki\"]]\n  :estuary [29.885 61.18]\n  :speed 2\n  :gv-field RIVERS}")
 	(title "H-JOKI"))
 
+([Migration_Class20002] of  CloFunction
+
+	(source "(let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]\n  (some #(.coveredBy pnt %) geoms))")
+	(title "covered-by [lon lat geoms]"))
+
+([Migration_Class20003] of  Lake
+
+	(attrs
+		"name"
+		"name")
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Kivijarvi ja Simpelejarvi")
+	(values
+		"Kivijärvi"
+		"Simpelejärvi"))
+
+([Migration_Class20004] of  CloFuncall
+
+	(source "(in-ns 'cesium.mig)"))
+
+([Migration_Class20005] of  CloFuncall
+
+	(source "(lake-map \"Kivijarvi ja Simpelejarvi\")"))
+
 ([Migration_Class20006] of  CloVar
 
 	(source "(GeometryFactory.)")
@@ -761,6 +793,41 @@
 	(source "(volatile! {})")
 	(title "LAKES"))
 
+([Migration_Class30006] of  CloFuncall
+
+	(source "(def KS (lake-map \"Kivijarvi ja Simpelejarvi\"))"))
+
+([Migration_Class30007] of  CloFuncall
+
+	(source "(covered-by "))
+
+([Migration_Class30008] of  CloFuncall
+
+	(source "(covered-by 29.37 61.446 KS)"))
+
+([Migration_Class30009] of  CloFuncall
+
+	(source "(covered-by 29.37 61.446 (:geoms KS))"))
+
+([Migration_Class30010] of  CloFuncall
+
+	(source "(covered-by 29.37 61.45 (:geoms KS))"))
+
+([Migration_Class30011] of  CloFuncall
+
+	(source "(covered-by 29.394 61.461 (:geoms KS))"))
+
+([Migration_Class30012] of  CloFuncall
+
+	(source "(covered-by 29.4 61.461 (:geoms KS))"))
+
+([Migration_Class30013] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	height ?hgt	\n	phase \"Walk in Ladoga lake\")\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map \"Ладожское озеро\")\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) ?mss ?wst (lak :geoms))]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:WalkInLadoga"))
+
 ([Migration_Class4] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [Migration_Class3])
@@ -789,8 +856,8 @@
 
 ([Migration_Class50000] of  CloFunction
 
-	(source ";; returns time of going in sec\n(let [wps (random-by-waypoints wps limstp steps step height gv-field)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id wps knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  elt)")
-	(title "go-random-by-waypoints [id color size knots height wps limstp steps step gv-field]"))
+	(source ";; returns time of going in sec\n(let [wps (random-by-waypoints wps limstp steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id wps knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  elt)")
+	(title "go-random-by-waypoints [id color size knots height wps limstp steps step geoms]"))
 
 ([Migration_Class50001] of  CloVar
 
@@ -799,8 +866,8 @@
 
 ([Migration_Class50005] of  CloFunction
 
-	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step gv-field)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
-	(title "random-walk [start steps step height gv-field]"))
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
+	(title "random-walk [start steps step height geoms]"))
 
 ([Migration_Class50006] of  CloFunction
 
@@ -839,7 +906,7 @@
 
 ([Migration_Class60014] of  CloFunction
 
-	(source "([lon lat slon step gv-field]\n  (loop [i 4 sl slon st step]\n    (if (> i 0)\n      (if-let [ncvd (next-covered lon lat sl st 10 gv-field)]\n        ncvd\n        (recur (dec i) (* sl 2) (* st 2)))\n      [lon lat])))\n([lon lat slon step n gv-field]\n  (loop [j n]\n    (if (> j 0)\n      (let [lon1 (+ lon (rand-step slon))\n             lat1 (+ lat (rand-step step))]\n        (if (.isCovered gv-field (Coordinate. lon1 lat1))\n          [lon1 lat1]\n          (recur (dec j)))))))")
+	(source "([lon lat slon step geoms]\n  (loop [i 4 sl slon st step]\n    (if (> i 0)\n      (if-let [ncvd (next-covered lon lat sl st 10 geoms)]\n        ncvd\n        (recur (dec i) (* sl 2) (* st 2)))\n      [lon lat])))\n([lon lat slon step n geoms]\n  (loop [j n]\n    (if (> j 0)\n      (let [lon1 (+ lon (rand-step slon))\n             lat1 (+ lat (rand-step step))]\n        (if (covered-by lon1 lat1 geoms)\n          [lon1 lat1]\n          (recur (dec j)))))))")
 	(title "next-covered"))
 
 ([Migration_Class70000] of  Rule
@@ -911,8 +978,8 @@
 
 ([Migration_Class70014] of  CloFunction
 
-	(source ";; returns time of going in sec and 6 waypoints\n(let [pts (random-walk start steps step height gv-field)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  (cs/send-czml czml)\n  [elt wps])")
-	(title "go-random-walk [id color size knots height start steps step gv-field]"))
+	(source ";; returns time of going in sec and 6 waypoints\n(let [pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-random-walk [id color size knots height start steps step geoms]"))
 
 ([Migration_Class80000] of  CloFunction
 
@@ -949,14 +1016,14 @@
 ([Migration_Class90002] of  Rule
 
 	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	down-speed ?spd\n	height ?hgt	\n	phase \"Going down river Hiitolanjoki\")\n(Clock time ?t)")
-	(rhs "(let [riv (cesium.mig/river-map \"Hiitolanjoki\")\n       elt (cesium.mig/go-river ?id ?clr ?siz ?spd ?hgt riv :down)]\n  (println ?id  \"Going down river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	status \"REPEAT\"))")
+	(rhs "(let [riv (cesium.mig/river-map \"Hiitolanjoki\")\n       [elt lloc] (cesium.mig/go-river ?id ?clr ?siz ?spd ?hgt riv :down)]\n  (println ?id  \"Going down river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	location lloc\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:GoingDownRiver"))
 
 ([Migration_Class90003] of  Rule
 
 	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	up-speed ?spd	\n	height ?hgt\n	phase \"Going up river Hiitolanjoki\")\n(Clock time ?t)")
-	(rhs "(let [riv (cesium.mig/river-map \"Hiitolanjoki\")\n       elt (cesium.mig/go-river ?id ?clr ?siz ?spd ?hgt riv :up)]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	status \"REPEAT\"))")
+	(rhs "(let [riv (cesium.mig/river-map \"Hiitolanjoki\")\n       [elt lloc] (cesium.mig/go-river ?id ?clr ?siz ?spd ?hgt riv :up)]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	location lloc\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:GoingUpRiver"))
 

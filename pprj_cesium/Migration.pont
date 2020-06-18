@@ -1,4 +1,4 @@
-; Wed Jun 17 20:49:20 MSK 2020
+; Thu Jun 18 18:55:21 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -170,6 +170,10 @@
 (defclass Creature
 	(is-a Migration+Onto)
 	(role concrete)
+	(single-slot waypoints
+;+		(type ANY)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot id
 		(type STRING)
 ;+		(cardinality 0 1)
