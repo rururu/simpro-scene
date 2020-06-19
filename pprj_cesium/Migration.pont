@@ -1,4 +1,4 @@
-; Thu Jun 18 18:55:21 MSK 2020
+; Fri Jun 19 20:38:29 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -35,16 +35,13 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot location
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot roll
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot gv-field
-		(type STRING)
+	(single-slot to
+		(type SYMBOL)
+		(allowed-values River_Hiitolanjoki)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot direct
@@ -62,7 +59,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot waypoints
-;+		(type ANY)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot creature
@@ -86,8 +83,8 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot polygon
-		(type STRING)
+	(single-slot spawn
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot estuary
@@ -113,16 +110,27 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot action
+		(type SYMBOL)
+		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot layer
 		(type INSTANCE)
 ;+		(allowed-classes Layer)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot phases
-		(type STRING)
+		(type INSTANCE)
+;+		(allowed-classes Phase)
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot where
+		(type SYMBOL)
+		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot down-speed
 		(type FLOAT)
@@ -135,10 +143,6 @@
 	(single-slot basin
 		(type INSTANCE)
 ;+		(allowed-classes Basin)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot phase
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -171,11 +175,16 @@
 	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot waypoints
-;+		(type ANY)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot id
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot to
+		(type SYMBOL)
+		(allowed-values River_Hiitolanjoki)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
@@ -193,12 +202,22 @@
 	(multislot color
 		(type INTEGER)
 		(create-accessor read-write))
+	(single-slot where
+		(type SYMBOL)
+		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spawn
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot down-speed
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot location
-		(type STRING)
+	(single-slot action
+		(type SYMBOL)
+		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot status
@@ -228,10 +247,6 @@
 	(single-slot size
 		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot phase
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Basin
@@ -246,10 +261,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot gv-field
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -275,11 +286,7 @@
 
 (defclass Lake
 	(is-a Basin)
-	(role concrete)
-	(single-slot polygon
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role concrete))
 
 (defclass CesiumCamera
 	(is-a Migration+Onto)
@@ -322,5 +329,25 @@
 	(is-a Migration+Onto)
 	(role concrete)
 	(multislot phases
-		(type STRING)
+		(type INSTANCE)
+;+		(allowed-classes Phase)
+		(create-accessor read-write)))
+
+(defclass Phase
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot to
+		(type SYMBOL)
+		(allowed-values River_Hiitolanjoki)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot where
+		(type SYMBOL)
+		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot action
+		(type SYMBOL)
+		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

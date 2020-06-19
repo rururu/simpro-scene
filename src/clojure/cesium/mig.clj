@@ -80,7 +80,7 @@
          gvf (gv-field-from-shape (sv lay "shapeFile"))
          mp {:layer (sv lay "prettyName")
                  :gv-field gvf
-                 :geoms (geoms-by-attrs ats vls)
+                 :geoms (geoms-by-attrs ats vls gvf)
                  :head (read-string (sv rinst "head"))
                  :estuary (read-string (sv rinst "estuary"))
                  :flow-speed (sv rinst "flow-speed")}]
@@ -179,17 +179,18 @@
       path)))
 
 (defn go-geoms-path [id color size knots height start geoms]
-  ;; returns time of going in sec
+  ;; returns time of going in sec and waypoints
 (let [pts (geoms-to-path geoms start height)
+       wps [(first pts) (last pts)]
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
   (cs/send-czml czml)
-  elt))
+  [elt wps]))
 
-(defn go-random-walk [id color size knots height start steps step gv-field]
+(defn go-random-walk [id color size knots height start steps step geoms]
   ;; returns time of going in sec and 6 waypoints
-(let [pts (random-walk start steps step height gv-field)
+(let [pts (random-walk start steps step height geoms)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
@@ -199,7 +200,7 @@
   [elt wps]))
 
 (defn go-river [id color size knots height river direction]
-  ;; returns time of going in sec
+  ;; returns time of going in sec and waypoints
 (let [[lah loh] (river :head)
         [lae loe] (river :estuary)
         gvf (river :gv-field)]

@@ -1,4 +1,4 @@
-; Thu Jun 18 18:55:21 MSK 2020
+; Fri Jun 19 20:38:29 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -241,16 +241,10 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(facts
-		[Migration_Class150010]
-		[Migration_Class60001])
-	(instances
-		[Migration_Class10001]
-		[Migration_Class140000])
+	(facts [Migration_Class150010])
+	(instances [Migration_Class10001])
 	(mode run)
-	(rule-sets
-		[Migration_Class100000]
-		[Migration_Class50008])
+	(rule-sets [Migration_Class100000])
 	(steps 1)
 	(title "MigRun"))
 
@@ -262,15 +256,8 @@
 ([Migration_Class100000] of  RuleSet
 
 	(rules
-		[Migration_Class130000]
-		[Migration_Class90004]
-		[Migration_Class70000]
-		[Migration_Class150007]
-		[Migration_Class90001]
-		[Migration_Class90002]
-		[Migration_Class90003]
-		[Migration_Class90005]
-		[Migration_Class30013])
+		[Migration_Class160017]
+		[Migration_Class130000])
 	(templates
 		[Creature]
 		[Migration]
@@ -287,19 +274,21 @@
 
 ([Migration_Class10001] of  Creature
 
+	(action Birth)
 	(age 0)
 	(color 255 0 0 255)
 	(down-speed 3.0)
-	(id "1")
+	(id "r")
 	(life 300000000)
 	(max-steps 1000)
 	(N 0)
-	(phase "Birth")
 	(size 10)
-	(status "BEGIN")
+	(spawn 3)
+	(status "END")
 	(title "Salmon")
 	(up-speed 2.0)
-	(walk-step 0.01))
+	(walk-step 0.01)
+	(waypoints "[[29.365 61.450]]"))
 
 ([Migration_Class110000] of  CloFunction
 
@@ -343,13 +332,13 @@
 
 ([Migration_Class120008] of  CloFunction
 
-	(source "(or (@RIVERS name)\n  (let [rinst (fifos \"River\" \"title\" name)\n         lay (sv rinst \"layer\")\n         ats (svs rinst \"attrs\")\n         vls (svs rinst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls)\n                 :head (read-string (sv rinst \"head\"))\n                 :estuary (read-string (sv rinst \"estuary\"))\n                 :flow-speed (sv rinst \"flow-speed\")}]\n    (vswap! RIVERS assoc name mp)\n    mp))")
+	(source "(or (@RIVERS name)\n  (let [rinst (fifos \"River\" \"title\" name)\n         lay (sv rinst \"layer\")\n         ats (svs rinst \"attrs\")\n         vls (svs rinst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls gvf)\n                 :head (read-string (sv rinst \"head\"))\n                 :estuary (read-string (sv rinst \"estuary\"))\n                 :flow-speed (sv rinst \"flow-speed\")}]\n    (vswap! RIVERS assoc name mp)\n    mp))")
 	(title "river-map [name]"))
 
 ([Migration_Class130000] of  Rule
 
-	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	phase ?phe\n	(some? ?phe))")
-	(rhs "(modify ?cre status \"BEGIN\"\n	phase (loop [[cp np :as ps] ?phs]\n                                   (if (and cp np)\n                                     (if (= ?phe cp) \n                                       np\n                                       (recur (rest ps))))))")
+	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	where ?whe\n	to ?to)")
+	(rhs "(let [[a w t :as next] (loop [[cp np :as ps] ?phs]\n                                   (println :CP cp)\n                                   (if (and cp np)\n                                     (if (= [?act ?whe ?to] cp) \n                                       np\n                                       (recur (rest ps)))\n                                     [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action a\n	where w\n	to t))")
 	(salience 0)
 	(title "mig:Migration"))
 
@@ -394,19 +383,21 @@
 
 ([Migration_Class140000] of  Creature
 
+	(action Birth)
 	(age 0)
 	(color 0 255 0 255)
 	(down-speed 3.0)
 	(height 20)
-	(id "2")
+	(id "g")
 	(life 300000000)
 	(max-steps 1000)
-	(phase "Birth")
 	(size 10)
+	(spawn 3)
 	(status "BEGIN")
 	(title "Salmon")
 	(up-speed 2.0)
-	(walk-step 0.01))
+	(walk-step 0.01)
+	(waypoints "[[29.366 61.443]]"))
 
 ([Migration_Class140001] of  CloFunction
 
@@ -455,23 +446,23 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Walk in upper lakes\")\n                       (= ?phe \"Last walk in upper lakes\")])\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) ?mss ?wst (lak :geoms))]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Walk in upper lakes\")\n                       (= ?phe \"Last walk in upper lakes\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) steps ?wst (lak :geoms))]\n  (println ?id  ?phe :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:WalkInUpperLakes"))
 
 ([Migration_Class150010] of  Migration
 
 	(phases
-		"Birth"
-		"Walk in upper lakes"
-		"Going to river Hiitolanjoki"
-		"Going down river Hiitolanjoki"
-		"Walk in Ladoga lake"
-		"Return to river Hiitolanjoki"
-		"Going up river Hiitolanjoki"
-		"Last walk in upper lakes"
-		"Spawn"))
+		[Migration_Class160008]
+		[Migration_Class160009]
+		[Migration_Class160010]
+		[Migration_Class160011]
+		[Migration_Class160012]
+		[Migration_Class160013]
+		[Migration_Class160014]
+		[Migration_Class160015]
+		[Migration_Class160016]))
 
 ([Migration_Class160005] of  CloFunction
 
@@ -482,6 +473,98 @@
 
 	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [(conj start height)]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path (conj nxt height))]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
 	(title "random-walk-closer [start finish steps step height geoms]"))
+
+([Migration_Class160008] of  Phase
+
+	(action Birth))
+
+([Migration_Class160009] of  Phase
+
+	(action Walk_in)
+	(where Upper_Lakes))
+
+([Migration_Class160010] of  Phase
+
+	(action Go)
+	(to River_Hiitolanjoki)
+	(where Upper_Lakes))
+
+([Migration_Class160011] of  Phase
+
+	(action Go_down)
+	(where River_Hiitolanjoki))
+
+([Migration_Class160012] of  Phase
+
+	(action Walk_in)
+	(where Ladoga_Lake))
+
+([Migration_Class160013] of  Phase
+
+	(action Go)
+	(to River_Hiitolanjoki)
+	(where Ladoga_Lake))
+
+([Migration_Class160014] of  Phase
+
+	(action Go_up)
+	(where River_Hiitolanjoki))
+
+([Migration_Class160015] of  Phase
+
+	(action Walk_in)
+	(where Upper_Lakes))
+
+([Migration_Class160016] of  Phase
+
+	(action Spawn))
+
+([Migration_Class160017] of  Rule
+
+	(lhs "?mig (Migration phases ?phs\n	(not (vector? (first ?phs))))")
+	(rhs "(modify ?mig phases\n  (vec (map #(vector (if-let[x (protege.core/sv % \"action\")] (symbol x))\n                                 (if-let[x (protege.core/sv % \"where\")] (symbol x))\n                                 (if-let[x (protege.core/sv % \"to\")] (symbol x)))\n                   ?phs)))")
+	(salience 1)
+	(title "mig:InitMigration"))
+
+([Migration_Class160018] of  CloFuncall
+
+	(source "(= [\"Birth\" nil nil nil] [\"Birth\" nil nil nil])"))
+
+([Migration_Class160019] of  CloFuncall
+
+	(source "(symbol nil)"))
+
+([Migration_Class160020] of  CloFuncall
+
+	(source "(cls-instances \"Migration\")"))
+
+([Migration_Class160021] of  CloFuncall
+
+	(source "(first (cls-instances \"Migration\"))"))
+
+([Migration_Class160022] of  CloFuncall
+
+	(source "(sv (first (cls-instances \"Migration\")) \"action)"))
+
+([Migration_Class160023] of  CloFuncall
+
+	(source "(sv (first (cls-instances \"Migration\")) \"action\")"))
+
+([Migration_Class160024] of  CloFuncall
+
+	(source "(sv (first (cls-instances \"Migration\")) \"phases\")"))
+
+([Migration_Class160025] of  CloFuncall
+
+	(source "(sv (sv (first (cls-instances \"Migration\")) \"phases\") \"action\")"))
+
+([Migration_Class160026] of  CloFuncall
+
+	(source "(type (sv (sv (first (cls-instances \"Migration\")) \"phases\") \"action\"))"))
+
+([Migration_Class160027] of  CloFuncall
+
+	(source "(name nil)"))
 
 ([Migration_Class170017] of  CloFunction
 
@@ -656,62 +739,10 @@
 
 	(source "(in-ns 'cesium.mig)"))
 
-([Migration_Class20005] of  CloFuncall
-
-	(source "(lake-map \"Kivijarvi ja Simpelejarvi\")"))
-
 ([Migration_Class20006] of  CloVar
 
 	(source "(GeometryFactory.)")
 	(title "GeomFACTORY"))
-
-([Migration_Class20010] of  CloFuncall
-
-	(source "LO1"))
-
-([Migration_Class20011] of  CloFuncall
-
-	(source "(covers LO1 pnt)"))
-
-([Migration_Class20012] of  CloFuncall
-
-	(source "(.covers LO1 pnt)"))
-
-([Migration_Class20013] of  CloFuncall
-
-	(source "(def pnt (.createPoint GeomFACTORY (Coordinate. 30.13 60.)))"))
-
-([Migration_Class20014] of  CloFuncall
-
-	(source "(def pnt (.createPoint GeomFACTORY (Coordinate. 30.13 60.21)))"))
-
-([Migration_Class20015] of  CloFuncall
-
-	(source "(.coveredBy pnt LO1)"))
-
-([Migration_Class20016] of  CloFuncall
-
-	(source "(def pnt (.createPoint GeomFACTORY (Coordinate. 30.13 61.21)))"))
-
-([Migration_Class20019] of  CloFuncall
-
-	(source "(def riv (fifos \"River\" \"title\" \"Hiitolanjoki\"))"))
-
-([Migration_Class20020] of  CloFuncall
-
-	(source "riv"))
-
-([Migration_Class20021] of  CloFuncall
-
-	(source "(sv riv \"attrs\")"))
-
-([Migration_Class20022] of  CloFuncall
-
-	(source "(sv riv \"vals\")"))
-
-([Migration_Class20023] of  CloFuncall
-
-	(source "(sv riv \"values\")"))
 
 ([Migration_Class20024] of  Lake
 
@@ -719,62 +750,6 @@
 	(layer [HiitolanjokiRCZ_Class2])
 	(title "Ladoga")
 	(values "Ладожское озеро"))
-
-([Migration_Class20025] of  CloFuncall
-
-	(source "(lake-map \"Ladoga\")"))
-
-([Migration_Class20026] of  CloFuncall
-
-	(source "LAKES"))
-
-([Migration_Class20027] of  CloFuncall
-
-	(source "(:layer (@LAKES \"Ladoga\"))"))
-
-([Migration_Class20028] of  CloFuncall
-
-	(source "(:gv-field (@LAKES \"Ladoga\"))"))
-
-([Migration_Class20029] of  CloFuncall
-
-	(source "(type (:polygon (@LAKES \"Ladoga\")))"))
-
-([Migration_Class20030] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) pnt)"))
-
-([Migration_Class20031] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 30. 60.)))"))
-
-([Migration_Class20032] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.934 60.)))"))
-
-([Migration_Class20033] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.934 61.159)))"))
-
-([Migration_Class20034] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.934 61.158)))"))
-
-([Migration_Class20035] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.934 61.16)))"))
-
-([Migration_Class20036] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.935 61.159)))"))
-
-([Migration_Class20037] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.936 61.159)))"))
-
-([Migration_Class20038] of  CloFuncall
-
-	(source "(.covers (:polygon (@LAKES \"Ladoga\")) (.createPoint GeomFACTORY (Coordinate. 29.933 61.159)))"))
 
 ([Migration_Class3] of  WorkingPrograms
 
@@ -793,38 +768,10 @@
 	(source "(volatile! {})")
 	(title "LAKES"))
 
-([Migration_Class30006] of  CloFuncall
-
-	(source "(def KS (lake-map \"Kivijarvi ja Simpelejarvi\"))"))
-
-([Migration_Class30007] of  CloFuncall
-
-	(source "(covered-by "))
-
-([Migration_Class30008] of  CloFuncall
-
-	(source "(covered-by 29.37 61.446 KS)"))
-
-([Migration_Class30009] of  CloFuncall
-
-	(source "(covered-by 29.37 61.446 (:geoms KS))"))
-
-([Migration_Class30010] of  CloFuncall
-
-	(source "(covered-by 29.37 61.45 (:geoms KS))"))
-
-([Migration_Class30011] of  CloFuncall
-
-	(source "(covered-by 29.394 61.461 (:geoms KS))"))
-
-([Migration_Class30012] of  CloFuncall
-
-	(source "(covered-by 29.4 61.461 (:geoms KS))"))
-
 ([Migration_Class30013] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	height ?hgt	\n	phase \"Walk in Ladoga lake\")\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map \"Ладожское озеро\")\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) ?mss ?wst (lak :geoms))]\n  (println ?id  \"Going up river Hiitolanjoki\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt	\n	phase \"Walk in Ladoga lake\")\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map \"Ладожское озеро\")\n       steps 120\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) steps ?wst (lak :geoms))]\n  (println ?id  \"Walk in Ladoga lake\" :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:WalkInLadoga"))
 
@@ -899,6 +846,10 @@
 	(salience 0)
 	(title "sim:AdjustCZClockRepeat"))
 
+([Migration_Class60000] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
+
 ([Migration_Class60001] of  Cesium
 
 	(status "START")
@@ -915,6 +866,16 @@
 	(rhs "(modify ?cre status \"END\")")
 	(salience 0)
 	(title "mig:Repeat"))
+
+([Migration_Class70003] of  Command
+
+	(label "Restart Simulation")
+	(scenario "clojuretab.ClojureTab invoke sim restart-sim"))
+
+([Migration_Class70004] of  Command
+
+	(label "Save BNET Plan")
+	(scenario "clojuretab.ClojureTab invoke ru.rules save-bnet-plan"))
 
 ([Migration_Class70005] of  CloFunction
 
@@ -1008,8 +969,8 @@
 
 ([Migration_Class90001] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	phase ?phe\n	[(= ?phe \"Going to river Hiitolanjoki\")\n	 (= ?phe \"Return to river Hiitolanjoki\")])\n(Clock time ?t)")
-	(rhs "(let [n 7]\n  (println ?id  ?phe :REPEAT n)\n  (modify ?cre N (+ n ?t)\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Going to river Hiitolanjoki\")\n	 (= ?phe \"Return to river Hiitolanjoki\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) steps ?wst (lak :geoms))]\n  (println ?id  ?phe :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:WalkToRiver"))
 
@@ -1029,8 +990,8 @@
 
 ([Migration_Class90004] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	phase \"Birth\")\n(Clock time ?t)")
-	(rhs "(let [n 5]\n  (println ?id  \"Birth\" :REPEAT n)\n  (modify ?cre N (+ n ?t)\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	spawn ?spw\n	action \"Birth\")\n(Clock time ?t)")
+	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints wps\n	spawn ?spw\n	action \"Birth\"\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
 	(salience 0)
 	(title "mig:Birth"))
 
