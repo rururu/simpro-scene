@@ -36,6 +36,7 @@
  [29.912 61.180]
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
+(def POINTS (volatile! {}))
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -115,22 +116,14 @@
   (let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]
   (some #(.coveredBy pnt %) geoms)))
 
-(defn next-covered
-  ([lon lat slon step geoms]
-  (loop [i 4 sl slon st step]
-    (if (> i 0)
-      (if-let [ncvd (next-covered lon lat sl st 10 geoms)]
-        ncvd
-        (recur (dec i) (* sl 2) (* st 2)))
-      [lon lat])))
-([lon lat slon step n geoms]
-  (loop [j n]
-    (if (> j 0)
-      (let [lon1 (+ lon (rand-step slon))
-             lat1 (+ lat (rand-step step))]
-        (if (covered-by lon1 lat1 geoms)
-          [lon1 lat1]
-          (recur (dec j))))))))
+(defn next-covered [lon lat slon step geoms]
+  (loop [j 40]
+  (if (> j 0)
+    (let [lon1 (+ lon (rand-step slon))
+           lat1 (+ lat (rand-step step))]
+      (if (covered-by lon1 lat1 geoms)
+        [lon1 lat1]
+        (recur (dec j)))))))
 
 (defn next-covered-closer [lo1 la1 lo2 la2 slon step geoms]
   (let [lo3 (rand-step-closer slon lo1 lo2)
@@ -196,6 +189,7 @@
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
        k (max 2 (int (/ (count pts) 5)))
        wps (concat [(first pts)] (take-nth k pts) [(last pts)])]
+  (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 

@@ -1,4 +1,4 @@
-; Fri Jun 19 20:38:29 MSK 2020
+; Sat Jun 20 23:37:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -36,12 +36,11 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot roll
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot to
-		(type SYMBOL)
-		(allowed-values River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot direct
@@ -92,7 +91,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot pitch
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot attrs
@@ -111,8 +110,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot action
-		(type SYMBOL)
-		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot layer
@@ -128,8 +126,7 @@
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot where
-		(type SYMBOL)
-		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot down-speed
@@ -143,6 +140,10 @@
 	(single-slot basin
 		(type INSTANCE)
 ;+		(allowed-classes Basin)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk-speed
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -183,8 +184,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot to
-		(type SYMBOL)
-		(allowed-values River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
@@ -203,8 +203,7 @@
 		(type INTEGER)
 		(create-accessor read-write))
 	(single-slot where
-		(type SYMBOL)
-		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spawn
@@ -216,8 +215,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot action
-		(type SYMBOL)
-		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot status
@@ -225,6 +223,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot walk-step
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk-speed
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -292,11 +294,15 @@
 	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot pitch
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot status
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot roll
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot height
@@ -337,17 +343,14 @@
 	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot to
-		(type SYMBOL)
-		(allowed-values River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot where
-		(type SYMBOL)
-		(allowed-values Upper_Lakes Ladoga_Lake River_Hiitolanjoki)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot action
-		(type SYMBOL)
-		(allowed-values Birth Walk_in Go Spawn Go_up Go_down)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

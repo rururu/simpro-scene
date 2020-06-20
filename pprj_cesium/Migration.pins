@@ -1,4 +1,4 @@
-; Fri Jun 19 20:38:29 MSK 2020
+; Sat Jun 20 23:37:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -172,7 +172,8 @@
 		[Migration_Class110001]
 		[Migration_Class20000]
 		[Migration_Class50001]
-		[Migration_Class20006])
+		[Migration_Class20006]
+		[Migration_Class120000])
 	(title "Cesium Migration"))
 
 ([HiitolanjokiRCZ_Class20003] of  CloNamespace
@@ -241,10 +242,15 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(facts [Migration_Class150010])
+	(facts
+		[Migration_Class150010]
+		[Migration_Class60001]
+		[Migration_Class100001])
 	(instances [Migration_Class10001])
 	(mode run)
-	(rule-sets [Migration_Class100000])
+	(rule-sets
+		[Migration_Class100000]
+		[Migration_Class50008])
 	(steps 1)
 	(title "MigRun"))
 
@@ -256,39 +262,48 @@
 ([Migration_Class100000] of  RuleSet
 
 	(rules
+		[Migration_Class90000]
 		[Migration_Class160017]
-		[Migration_Class130000])
+		[Migration_Class130000]
+		[Migration_Class90004]
+		[Migration_Class150007]
+		[Migration_Class70000])
 	(templates
 		[Creature]
 		[Migration]
-		[Clock])
+		[Clock]
+		[CesiumCamera])
 	(title "Migration"))
 
 ([Migration_Class100001] of  CesiumCamera
 
 	(heading "340")
+	(height 20000)
 	(latitude "61.33")
-	(longitude "29.42")
-	(pitch "-60")
-	(roll "0"))
+	(longitude "29.45")
+	(pitch -60)
+	(roll 0)
+	(status "START"))
 
 ([Migration_Class10001] of  Creature
 
-	(action Birth)
+	(action "Birth")
 	(age 0)
 	(color 255 0 0 255)
 	(down-speed 3.0)
+	(height 20)
 	(id "r")
 	(life 300000000)
 	(max-steps 1000)
 	(N 0)
 	(size 10)
 	(spawn 3)
-	(status "END")
+	(status "BEGIN")
 	(title "Salmon")
 	(up-speed 2.0)
-	(walk-step 0.01)
-	(waypoints "[[29.365 61.450]]"))
+	(walk-speed 2.0)
+	(walk-step 0.002)
+	(waypoints "[[29.373 61.446]]"))
 
 ([Migration_Class110000] of  CloFunction
 
@@ -320,6 +335,11 @@
 		"Veijalanjarvi"
 		"Asilanjoki"))
 
+([Migration_Class120000] of  CloVar
+
+	(source "(volatile! {})")
+	(title "POINTS"))
+
 ([Migration_Class120002] of  CloFunction
 
 	(source "(or (@LAKES name)\n  (let [linst (fifos \"Lake\" \"title\" name)\n         lay (sv linst \"layer\")\n         ats (svs linst \"attrs\")\n         vls (svs linst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls gvf)}]\n    (vswap! LAKES assoc name mp)\n    mp))")
@@ -338,7 +358,7 @@
 ([Migration_Class130000] of  Rule
 
 	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	where ?whe\n	to ?to)")
-	(rhs "(let [[a w t :as next] (loop [[cp np :as ps] ?phs]\n                                   (println :CP cp)\n                                   (if (and cp np)\n                                     (if (= [?act ?whe ?to] cp) \n                                       np\n                                       (recur (rest ps)))\n                                     [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action a\n	where w\n	to t))")
+	(rhs "(let [[a w t :as next] (loop [[cp np :as ps] ?phs]\n                                   (if (and cp np)\n                                     (if (= [?act ?whe ?to] cp) \n                                       np\n                                       (recur (rest ps)))\n                                     [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action a\n	where w\n	to t))")
 	(salience 0)
 	(title "mig:Migration"))
 
@@ -383,7 +403,7 @@
 
 ([Migration_Class140000] of  Creature
 
-	(action Birth)
+	(action "Birth")
 	(age 0)
 	(color 0 255 0 255)
 	(down-speed 3.0)
@@ -396,7 +416,8 @@
 	(status "BEGIN")
 	(title "Salmon")
 	(up-speed 2.0)
-	(walk-step 0.01)
+	(walk-speed 2.0)
+	(walk-step 0.002)
 	(waypoints "[[29.366 61.443]]"))
 
 ([Migration_Class140001] of  CloFunction
@@ -446,10 +467,10 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Walk in upper lakes\")\n                       (= ?phe \"Last walk in upper lakes\")])\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) steps ?wst (lak :geoms))]\n  (println ?id  ?phe :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-speed ?wsp\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt\n	where ?whe	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map ?whe)\n       wps (if (string? ?wps) (read-string ?wps) ?wps)\n       start (last wps)\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?wsp ?hgt start steps ?wst (lak :geoms))]\n  (println ?id [?act ?whe] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
-	(title "mig:WalkInUpperLakes"))
+	(title "mig:Walk In"))
 
 ([Migration_Class150010] of  Migration
 
@@ -476,95 +497,55 @@
 
 ([Migration_Class160008] of  Phase
 
-	(action Birth))
+	(action "Birth"))
 
 ([Migration_Class160009] of  Phase
 
-	(action Walk_in)
-	(where Upper_Lakes))
+	(action "Walk in")
+	(where "Upper Lakes"))
 
 ([Migration_Class160010] of  Phase
 
-	(action Go)
-	(to River_Hiitolanjoki)
-	(where Upper_Lakes))
+	(action "Go")
+	(to "River Hiitolanjoki")
+	(where "Upper Lakes"))
 
 ([Migration_Class160011] of  Phase
 
-	(action Go_down)
-	(where River_Hiitolanjoki))
+	(action "Go down")
+	(where "River Hiitolanjoki"))
 
 ([Migration_Class160012] of  Phase
 
-	(action Walk_in)
-	(where Ladoga_Lake))
+	(action "Walk in")
+	(where "Ladoga Lake"))
 
 ([Migration_Class160013] of  Phase
 
-	(action Go)
-	(to River_Hiitolanjoki)
-	(where Ladoga_Lake))
+	(action "Go")
+	(to "River Hiitolanjoki")
+	(where "Ladoga Lake"))
 
 ([Migration_Class160014] of  Phase
 
-	(action Go_up)
-	(where River_Hiitolanjoki))
+	(action "Go up")
+	(where "River Hiitolanjoki"))
 
 ([Migration_Class160015] of  Phase
 
-	(action Walk_in)
-	(where Upper_Lakes))
+	(action "Last walk in")
+	(where "Upper Lakes"))
 
 ([Migration_Class160016] of  Phase
 
-	(action Spawn))
+	(action "Spawn"))
 
 ([Migration_Class160017] of  Rule
 
 	(lhs "?mig (Migration phases ?phs\n	(not (vector? (first ?phs))))")
-	(rhs "(modify ?mig phases\n  (vec (map #(vector (if-let[x (protege.core/sv % \"action\")] (symbol x))\n                                 (if-let[x (protege.core/sv % \"where\")] (symbol x))\n                                 (if-let[x (protege.core/sv % \"to\")] (symbol x)))\n                   ?phs)))")
+	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"where\")\n                                 (protege.core/sv % \"to\"))\n                   ?phs)))")
 	(salience 1)
 	(title "mig:InitMigration"))
-
-([Migration_Class160018] of  CloFuncall
-
-	(source "(= [\"Birth\" nil nil nil] [\"Birth\" nil nil nil])"))
-
-([Migration_Class160019] of  CloFuncall
-
-	(source "(symbol nil)"))
-
-([Migration_Class160020] of  CloFuncall
-
-	(source "(cls-instances \"Migration\")"))
-
-([Migration_Class160021] of  CloFuncall
-
-	(source "(first (cls-instances \"Migration\"))"))
-
-([Migration_Class160022] of  CloFuncall
-
-	(source "(sv (first (cls-instances \"Migration\")) \"action)"))
-
-([Migration_Class160023] of  CloFuncall
-
-	(source "(sv (first (cls-instances \"Migration\")) \"action\")"))
-
-([Migration_Class160024] of  CloFuncall
-
-	(source "(sv (first (cls-instances \"Migration\")) \"phases\")"))
-
-([Migration_Class160025] of  CloFuncall
-
-	(source "(sv (sv (first (cls-instances \"Migration\")) \"phases\") \"action\")"))
-
-([Migration_Class160026] of  CloFuncall
-
-	(source "(type (sv (sv (first (cls-instances \"Migration\")) \"phases\") \"action\"))"))
-
-([Migration_Class160027] of  CloFuncall
-
-	(source "(name nil)"))
 
 ([Migration_Class170017] of  CloFunction
 
@@ -573,139 +554,184 @@
 
 ([Migration_Class170051] of  OMTPoly
 
-	(label "RW")
+	(label "p1")
 	(latitude "0 0")
 	(lineColor "FFFF0000")
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 10.8 29 53.1"
-		"61 10.81 29 53.09"
-		"61 10.84 29 53.11"
-		"61 10.85 29 53.17"
-		"61 10.84 29 53.16"
-		"61 10.82 29 53.19"
-		"61 10.81 29 53.15"
-		"61 10.79 29 53.2"
-		"61 10.78 29 53.23"
-		"61 10.78 29 53.24"
-		"61 10.79 29 53.26"
-		"61 10.81 29 53.28"
-		"61 10.81 29 53.25"
-		"61 10.82 29 53.19"
-		"61 10.8 29 53.23"
-		"61 10.8 29 53.25"
-		"61 10.81 29 53.21"
-		"61 10.8 29 53.16"
-		"61 10.82 29 53.18"
-		"61 10.84 29 53.23"
-		"61 10.82 29 53.19"
-		"61 10.84 29 53.21"
-		"61 10.84 29 53.15"
-		"61 10.81 29 53.15"
-		"61 10.83 29 53.13"
-		"61 10.8 29 53.18"
-		"61 10.79 29 53.17"
-		"61 10.81 29 53.22"
-		"61 10.83 29 53.21"
-		"61 10.82 29 53.17"
-		"61 10.84 29 53.15"
-		"61 10.82 29 53.1"
-		"61 10.83 29 53.12"
-		"61 10.81 29 53.16"
-		"61 10.82 29 53.13"
-		"61 10.83 29 53.07"
-		"61 10.82 29 53.08"
-		"61 10.82 29 53.12"
-		"61 10.81 29 53.1"
-		"61 10.8 29 53.14"
-		"61 10.79 29 53.15"
-		"61 10.79 29 53.12"
-		"61 10.81 29 53.12"
-		"61 10.8 29 53.17"
-		"61 10.82 29 53.19"
-		"61 10.81 29 53.19"
-		"61 10.79 29 53.22"
-		"61 10.77 29 53.26"
-		"61 10.76 29 53.23"
-		"61 10.75 29 53.21"
-		"61 10.72 29 53.21"
-		"61 10.75 29 53.2"
-		"61 10.74 29 53.23"
-		"61 10.71 29 53.26"
-		"61 10.7 29 53.27"
-		"61 10.69 29 53.27"
-		"61 10.7 29 53.31"
-		"61 10.71 29 53.35"
-		"61 10.73 29 53.41"
-		"61 10.71 29 53.43"
-		"61 10.69 29 53.44"
-		"61 10.71 29 53.45"
-		"61 10.71 29 53.47"
-		"61 10.72 29 53.42"
-		"61 10.73 29 53.48"
-		"61 10.74 29 53.44"
-		"61 10.75 29 53.47"
-		"61 10.72 29 53.42"
-		"61 10.73 29 53.48"
-		"61 10.73 29 53.45"
-		"61 10.73 29 53.48"
-		"61 10.73 29 53.44"
-		"61 10.74 29 53.39"
-		"61 10.73 29 53.34"
-		"61 10.71 29 53.4"
-		"61 10.69 29 53.44"
-		"61 10.69 29 53.43"
-		"61 10.7 29 53.39"
-		"61 10.71 29 53.42"
-		"61 10.7 29 53.36"
-		"61 10.68 29 53.4"
-		"61 10.69 29 53.37"
-		"61 10.67 29 53.36"
-		"61 10.66 29 53.34"
-		"61 10.65 29 53.31"
-		"61 10.66 29 53.37"
-		"61 10.69 29 53.35"
-		"61 10.7 29 53.36"
-		"61 10.68 29 53.37"
-		"61 10.7 29 53.38"
-		"61 10.73 29 53.36"
-		"61 10.74 29 53.4"
-		"61 10.76 29 53.42"
-		"61 10.78 29 53.46"
-		"61 10.76 29 53.45"
-		"61 10.77 29 53.4"
-		"61 10.78 29 53.46"
-		"61 10.76 29 53.4"
-		"61 10.75 29 53.43"
-		"61 10.74 29 53.49"
-		"61 10.75 29 53.46"
-		"61 10.75 29 53.49"
-		"61 10.77 29 53.49"
-		"61 10.77 29 53.45"
-		"61 10.77 29 53.42"
-		"61 10.78 29 53.46"
-		"61 10.77 29 53.45"
-		"61 10.75 29 53.45"
-		"61 10.73 29 53.5"
-		"61 10.74 29 53.46"
-		"61 10.72 29 53.47")
+		"61 26.76 29 22.38"
+		"61 27.01 29 22.98"
+		"61 26.6 29 22.29"
+		"61 26.8 29 22.84"
+		"61 26.51 29 22.26"
+		"61 26.8 29 22.36"
+		"61 26.96 29 21.84"
+		"61 26.98 29 22.46"
+		"61 27.24 29 23.02"
+		"61 26.8 29 22.31"
+		"61 27.37 29 23.12"
+		"61 26.89 29 21.91"
+		"61 26.76 29 22.46"
+		"61 26.88 29 21.93"
+		"61 26.87 29 22.68"
+		"61 26.81 29 22.62"
+		"61 26.96 29 21.96"
+		"61 26.77 29 20.96"
+		"61 26.66 29 21.79"
+		"61 26.71 29 22.56"
+		"61 26.68 29 21.69"
+		"61 27.05 29 21.81"
+		"61 26.78 29 22.12"
+		"61 26.84 29 21.87"
+		"61 26.63 29 22.48"
+		"61 26.61 29 22.54"
+		"61 26.59 29 22.55"
+		"61 26.93 29 22.88"
+		"61 26.93 29 22.14"
+		"61 27.05 29 21.91"
+		"61 26.91 29 22.61"
+		"61 26.7 29 22.49"
+		"61 26.7 29 22.12"
+		"61 27.29 29 23.09"
+		"61 27.6 29 23.61"
+		"61 27.68 29 22.82"
+		"61 27.79 29 22.94"
+		"61 28.04 29 22.65"
+		"61 27.63 29 23.34"
+		"61 27.85 29 23.62"
+		"61 28.1 29 23.24"
+		"61 28.69 29 22.9"
+		"61 28.82 29 23.23"
+		"61 28.37 29 22.09"
+		"61 28.81 29 22.78"
+		"61 28.75 29 22.65"
+		"61 28.23 29 22.56"
+		"61 28.74 29 23.41"
+		"61 29.21 29 23.74"
+		"61 29.57 29 24.69"
+		"61 29.16 29 24.19"
+		"61 28.72 29 23.84"
+		"61 28.77 29 25.03"
+		"61 28.84 29 26.28"
+		"61 28.41 29 25.77"
+		"61 28.93 29 25.22"
+		"61 28.86 29 25.86"
+		"61 28.36 29 25.76"
+		"61 28.57 29 25.93"
+		"61 29.15 29 24.75"
+		"61 29.12 29 25.62"
+		"61 29.69 29 25.92"
+		"61 29.65 29 25.5"
+		"61 29.98 29 25.24"
+		"61 29.85 29 25.35"
+		"61 30.19 29 26.14"
+		"61 30.65 29 25.76"
+		"61 31.13 29 25.07"
+		"61 31.36 29 24.16"
+		"61 31.81 29 25.37"
+		"61 31.94 29 25.74"
+		"61 31.93 29 24.59"
+		"61 32.09 29 25.27"
+		"61 31.74 29 24.25"
+		"61 31.53 29 24.03"
+		"61 31.14 29 24.66"
+		"61 30.7 29 25.6"
+		"61 30.3 29 24.59"
+		"61 30.77 29 25.15"
+		"61 30.71 29 26.31"
+		"61 31.16 29 27.21")
 	(relative FALSE))
 
 ([Migration_Class170052] of  OMTPoly
 
-	(label "WPS")
+	(label "p2")
 	(latitude "0 0")
 	(lineColor "FF000000")
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 10.8 29 53.1"
-		"61 10.84 29 53.15"
-		"61 10.82 29 53.19"
-		"61 10.75 29 53.47"
-		"61 10.68 29 53.37"
-		"61 10.72 29 53.47")
+		"61 26.76 29 22.38"
+		"61 26.67 29 22.84"
+		"61 26.59 29 21.76"
+		"61 26.72 29 22.55"
+		"61 27.04 29 21.68"
+		"61 26.8 29 21.93"
+		"61 26.9 29 21.72"
+		"61 26.72 29 21.18"
+		"61 26.82 29 22.35"
+		"61 26.99 29 21.95"
+		"61 26.78 29 22.12"
+		"61 26.62 29 22.61"
+		"61 26.71 29 21.74"
+		"61 26.75 29 21.79"
+		"61 26.7 29 21.76"
+		"61 26.94 29 22.76"
+		"61 26.63 29 21.78"
+		"61 26.58 29 22.68"
+		"61 26.83 29 22.03"
+		"61 26.64 29 21.28"
+		"61 27 29 21.98"
+		"61 27.52 29 22.88"
+		"61 27.68 29 23.15"
+		"61 27.94 29 22.98"
+		"61 28.32 29 22.72"
+		"61 28.28 29 23"
+		"61 27.91 29 23.16"
+		"61 28.28 29 21.99"
+		"61 27.84 29 22.67"
+		"61 28.15 29 22.75"
+		"61 27.89 29 23.27"
+		"61 27.97 29 22.64"
+		"61 27.94 29 23.19"
+		"61 28.07 29 23.06"
+		"61 28.57 29 23.44"
+		"61 28.69 29 23.39"
+		"61 28.22 29 22.89"
+		"61 28.69 29 21.67"
+		"61 28.73 29 22.3"
+		"61 28.68 29 21.95"
+		"61 28.86 29 22.03"
+		"61 29.37 29 21.58"
+		"61 29.83 29 22.09"
+		"61 30.01 29 22.89"
+		"61 30.49 29 22.45"
+		"61 30.12 29 23.07"
+		"61 30.63 29 24.19"
+		"61 30.36 29 24.3"
+		"61 30.94 29 25.42"
+		"61 31.4 29 26.37"
+		"61 31.06 29 27.14"
+		"61 30.69 29 27.26"
+		"61 30.3 29 27.18"
+		"61 30.39 29 26.59"
+		"61 30.11 29 26.83"
+		"61 30.46 29 27.63"
+		"61 30.13 29 27.94"
+		"61 30.32 29 27.04"
+		"61 30.14 29 26.14"
+		"61 30.44 29 27.04"
+		"61 30.09 29 27.3"
+		"61 30.17 29 27.55"
+		"61 30.49 29 26.57"
+		"61 30.39 29 26.93"
+		"61 30.69 29 27.47"
+		"61 30.53 29 27.2"
+		"61 30.25 29 26.65"
+		"61 29.94 29 26.1"
+		"61 30.12 29 26.11"
+		"61 30.31 29 25.26"
+		"61 29.78 29 25.83"
+		"61 29.94 29 24.59"
+		"61 29.7 29 25.5"
+		"61 30.15 29 25.56"
+		"61 29.59 29 24.74"
+		"61 29.37 29 25.96"
+		"61 29.53 29 26.25"
+		"61 29.39 29 26.09"
+		"61 29.54 29 25.15"
+		"61 29.83 29 25.4"
+		"61 29.85 29 26.38")
 	(relative FALSE))
 
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
@@ -730,7 +756,7 @@
 		"name"
 		"name")
 	(layer [HiitolanjokiRCZ_Class2])
-	(title "Kivijarvi ja Simpelejarvi")
+	(title "Upper Lakes")
 	(values
 		"Kivijärvi"
 		"Simpelejärvi"))
@@ -846,10 +872,6 @@
 	(salience 0)
 	(title "sim:AdjustCZClockRepeat"))
 
-([Migration_Class60000] of  CloFuncall
-
-	(source "(ru.rules/pp :all)"))
-
 ([Migration_Class60001] of  Cesium
 
 	(status "START")
@@ -857,8 +879,8 @@
 
 ([Migration_Class60014] of  CloFunction
 
-	(source "([lon lat slon step geoms]\n  (loop [i 4 sl slon st step]\n    (if (> i 0)\n      (if-let [ncvd (next-covered lon lat sl st 10 geoms)]\n        ncvd\n        (recur (dec i) (* sl 2) (* st 2)))\n      [lon lat])))\n([lon lat slon step n geoms]\n  (loop [j n]\n    (if (> j 0)\n      (let [lon1 (+ lon (rand-step slon))\n             lat1 (+ lat (rand-step step))]\n        (if (covered-by lon1 lat1 geoms)\n          [lon1 lat1]\n          (recur (dec j)))))))")
-	(title "next-covered"))
+	(source "(loop [j 40]\n  (if (> j 0)\n    (let [lon1 (+ lon (rand-step slon))\n           lat1 (+ lat (rand-step step))]\n      (if (covered-by lon1 lat1 geoms)\n        [lon1 lat1]\n        (recur (dec j))))))")
+	(title "next-covered [lon lat slon step geoms]"))
 
 ([Migration_Class70000] of  Rule
 
@@ -884,62 +906,98 @@
 
 ([Migration_Class70007] of  OMTPoly
 
-	(label "BK")
+	(label "p0")
 	(latitude "0 0")
 	(lineColor "FF0000FF")
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 10.8 29 53.1"
-		"61 10.81 29 53.1"
-		"61 10.8 29 53.1"
-		"61 10.8 29 53.1"
-		"61 10.82 29 53.11"
-		"61 10.84 29 53.15"
-		"61 10.84 29 53.15"
-		"61 10.85 29 53.13"
-		"61 10.84 29 53.15"
-		"61 10.84 29 53.15"
-		"61 10.86 29 53.19"
-		"61 10.85 29 53.19"
-		"61 10.84 29 53.19"
-		"61 10.82 29 53.25"
-		"61 10.8 29 53.19"
-		"61 10.82 29 53.16"
-		"61 10.81 29 53.19"
-		"61 10.79 29 53.2"
-		"61 10.82 29 53.19"
-		"61 10.82 29 53.19"
-		"61 10.79 29 53.28"
-		"61 10.8 29 53.34"
-		"61 10.79 29 53.35"
-		"61 10.76 29 53.43"
-		"61 10.75 29 53.47"
-		"61 10.75 29 53.47"
-		"61 10.73 29 53.44"
-		"61 10.73 29 53.37"
-		"61 10.69 29 53.34"
-		"61 10.7 29 53.32"
-		"61 10.71 29 53.34"
-		"61 10.7 29 53.34"
-		"61 10.71 29 53.37"
-		"61 10.69 29 53.37"
-		"61 10.68 29 53.36"
-		"61 10.68 29 53.37"
-		"61 10.68 29 53.37"
-		"61 10.72 29 53.43"
-		"61 10.72 29 53.44"
-		"61 10.73 29 53.45"
-		"61 10.72 29 53.47"
-		"61 10.72 29 53.47"
-		"61 10.72 29 53.47"
-		"61 10.72 29 53.5"
-		"61 10.72 29 53.47")
+		"61 26.76 29 22.38"
+		"61 26.85 29 21.5"
+		"61 26.73 29 20.99"
+		"61 27.01 29 21.92"
+		"61 26.88 29 22.56"
+		"61 27.05 29 21.68"
+		"61 26.56 29 22.06"
+		"61 26.78 29 22.91"
+		"61 27.18 29 23.13"
+		"61 26.78 29 22.31"
+		"61 26.72 29 21.85"
+		"61 26.73 29 22.33"
+		"61 26.72 29 21.64"
+		"61 26.89 29 22.49"
+		"61 26.53 29 22.02"
+		"61 26.76 29 22.71"
+		"61 26.98 29 21.86"
+		"61 26.75 29 22.27"
+		"61 27.19 29 23.1"
+		"61 27.71 29 23.53"
+		"61 27.82 29 23"
+		"61 28.09 29 23.43"
+		"61 27.74 29 22.73"
+		"61 27.8 29 23.58"
+		"61 28.02 29 23.08"
+		"61 27.86 29 22.94"
+		"61 28.02 29 23.43"
+		"61 27.99 29 22.91"
+		"61 28.41 29 22.98"
+		"61 28.65 29 24.07"
+		"61 28.52 29 25.21"
+		"61 29.11 29 26.07"
+		"61 29 29 26.02"
+		"61 29.06 29 25.72"
+		"61 29.52 29 25.67"
+		"61 29.12 29 25.02"
+		"61 28.56 29 26.04"
+		"61 28.98 29 24.99"
+		"61 29.16 29 25.08"
+		"61 28.85 29 24.25"
+		"61 28.7 29 24.46"
+		"61 28.6 29 25.39"
+		"61 28.3 29 25.33"
+		"61 27.99 29 25.94"
+		"61 28 29 25.65"
+		"61 28.22 29 25.09"
+		"61 28.57 29 25.52"
+		"61 28.56 29 25.56"
+		"61 28.92 29 26.19"
+		"61 28.73 29 24.94"
+		"61 29.01 29 24.92"
+		"61 29 29 25.09"
+		"61 28.63 29 24.22"
+		"61 28.59 29 23.76"
+		"61 29.09 29 23.54"
+		"61 28.84 29 23.01"
+		"61 29.16 29 22.89"
+		"61 29.56 29 23.67"
+		"61 29.56 29 24.79"
+		"61 29.55 29 25.89"
+		"61 30.11 29 26.98"
+		"61 29.99 29 26.21"
+		"61 30.01 29 26.81"
+		"61 30.24 29 25.97"
+		"61 29.71 29 26"
+		"61 29.37 29 26.63"
+		"61 29.62 29 25.42"
+		"61 29.83 29 25.97"
+		"61 30.37 29 25.47"
+		"61 29.86 29 26.32"
+		"61 29.76 29 26.3"
+		"61 29.3 29 26.6"
+		"61 28.74 29 26.32"
+		"61 28.85 29 26.74"
+		"61 28.29 29 26.05"
+		"61 28.48 29 25.77"
+		"61 28.72 29 26.52"
+		"61 28.36 29 25.45"
+		"61 28.73 29 25.43"
+		"61 28.74 29 25.14"
+		"61 28.29 29 25.7")
 	(relative FALSE))
 
 ([Migration_Class70014] of  CloFunction
 
-	(source ";; returns time of going in sec and 6 waypoints\n(let [pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  (cs/send-czml czml)\n  [elt wps])")
+	(source ";; returns time of going in sec and 6 waypoints\n(let [pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
 	(title "go-random-walk [id color size knots height start steps step geoms]"))
 
 ([Migration_Class80000] of  CloFunction
@@ -962,10 +1020,10 @@
 
 ([Migration_Class90000] of  Rule
 
-	(lhs "?cc (CesiumCamera status \"START\" \n	title ?tit \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
-	(rhs "(when (some? cesium.server/SERV)\n  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)\n  (modify ?cc status \"WORK\"))")
+	(lhs "?cc (CesiumCamera status \"START\" \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
+	(rhs "(when (some? cesium.server/SERV)\n  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)\n  (modify ?cc status \"DONE\"))")
 	(salience 0)
-	(title "CesiumCameraPosition"))
+	(title "sim:CesiumCameraPosition"))
 
 ([Migration_Class90001] of  Rule
 
@@ -990,8 +1048,8 @@
 
 ([Migration_Class90004] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	spawn ?spw\n	action \"Birth\")\n(Clock time ?t)")
-	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints wps\n	spawn ?spw\n	action \"Birth\"\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	spawn ?spw\n	action \"Birth\")\n(Clock time ?t)")
+	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints wps\n	spawn ?spw\n	action \"Birth\"\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
 	(salience 0)
 	(title "mig:Birth"))
 
