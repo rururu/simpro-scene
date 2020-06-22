@@ -1,4 +1,4 @@
-; Sat Jun 20 23:37:31 MSK 2020
+; Mon Jun 22 22:24:39 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -242,10 +242,11 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
+	(fact-classes [Walk])
 	(facts
-		[Migration_Class150010]
 		[Migration_Class60001]
-		[Migration_Class100001])
+		[Migration_Class100001]
+		[Migration_Class150010])
 	(instances [Migration_Class10001])
 	(mode run)
 	(rule-sets
@@ -267,12 +268,14 @@
 		[Migration_Class130000]
 		[Migration_Class90004]
 		[Migration_Class150007]
+		[Migration_Class90001]
 		[Migration_Class70000])
 	(templates
 		[Creature]
 		[Migration]
 		[Clock]
-		[CesiumCamera])
+		[CesiumCamera]
+		[Walk])
 	(title "Migration"))
 
 ([Migration_Class100001] of  CesiumCamera
@@ -287,14 +290,14 @@
 
 ([Migration_Class10001] of  Creature
 
-	(action "Birth")
+	(action "Birth in")
 	(age 0)
+	(area "Lake Kivijarvi")
 	(color 255 0 0 255)
 	(down-speed 3.0)
 	(height 20)
 	(id "r")
 	(life 300000000)
-	(max-steps 1000)
 	(N 0)
 	(size 10)
 	(spawn 3)
@@ -302,7 +305,6 @@
 	(title "Salmon")
 	(up-speed 2.0)
 	(walk-speed 2.0)
-	(walk-step 0.002)
 	(waypoints "[[29.373 61.446]]"))
 
 ([Migration_Class110000] of  CloFunction
@@ -357,8 +359,8 @@
 
 ([Migration_Class130000] of  Rule
 
-	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	where ?whe\n	to ?to)")
-	(rhs "(let [[a w t :as next] (loop [[cp np :as ps] ?phs]\n                                   (if (and cp np)\n                                     (if (= [?act ?whe ?to] cp) \n                                       np\n                                       (recur (rest ps)))\n                                     [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action a\n	where w\n	to t))")
+	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	area ?are)")
+	(rhs "(let [[act are :as next] (loop [[cp np :as ps] ?phs]\n                                      (if (and cp np)\n                                        (if (= [?act ?are] cp) \n                                          np\n                                          (recur (rest ps)))\n                                        [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action act\n	area are))")
 	(salience 0)
 	(title "mig:Migration"))
 
@@ -403,21 +405,20 @@
 
 ([Migration_Class140000] of  Creature
 
-	(action "Birth")
+	(action "Birth in")
 	(age 0)
+	(area "Lake Kivijarvi")
 	(color 0 255 0 255)
 	(down-speed 3.0)
 	(height 20)
 	(id "g")
 	(life 300000000)
-	(max-steps 1000)
 	(size 10)
 	(spawn 3)
 	(status "BEGIN")
 	(title "Salmon")
 	(up-speed 2.0)
 	(walk-speed 2.0)
-	(walk-step 0.002)
 	(waypoints "[[29.366 61.443]]"))
 
 ([Migration_Class140001] of  CloFunction
@@ -467,8 +468,8 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-speed ?wsp\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt\n	where ?whe	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map ?whe)\n       wps (if (string? ?wps) (read-string ?wps) ?wps)\n       start (last wps)\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?wsp ?hgt start steps ?wst (lak :geoms))]\n  (println ?id [?act ?whe] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-speed ?wsp\n	waypoints ?wps\n	height ?hgt\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps (if (string? ?wps) (read-string ?wps) ?wps)\n       start (last wps)\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?wsp ?hgt start ?wss ?wst gms)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Walk In"))
 
@@ -497,53 +498,53 @@
 
 ([Migration_Class160008] of  Phase
 
-	(action "Birth"))
+	(action "Birth in")
+	(area "Lake Kivijarvi"))
 
 ([Migration_Class160009] of  Phase
 
 	(action "Walk in")
-	(where "Upper Lakes"))
+	(area "Upper Lakes"))
 
 ([Migration_Class160010] of  Phase
 
-	(action "Go")
-	(to "River Hiitolanjoki")
-	(where "Upper Lakes"))
+	(action "Walk backward")
+	(area "Upper Lakes"))
 
 ([Migration_Class160011] of  Phase
 
 	(action "Go down")
-	(where "River Hiitolanjoki"))
+	(area "River Hitolanjoki"))
 
 ([Migration_Class160012] of  Phase
 
 	(action "Walk in")
-	(where "Ladoga Lake"))
+	(area "Ladoga Lake"))
 
 ([Migration_Class160013] of  Phase
 
-	(action "Go")
-	(to "River Hiitolanjoki")
-	(where "Ladoga Lake"))
+	(action "Walk backward")
+	(area "Ladoga Lake"))
 
 ([Migration_Class160014] of  Phase
 
 	(action "Go up")
-	(where "River Hiitolanjoki"))
+	(area "River Hiitolanjoki"))
 
 ([Migration_Class160015] of  Phase
 
 	(action "Last walk in")
-	(where "Upper Lakes"))
+	(area "Lake Kivijarvi"))
 
 ([Migration_Class160016] of  Phase
 
-	(action "Spawn"))
+	(action "Spawn in")
+	(area "Lake Kivijarvi"))
 
 ([Migration_Class160017] of  Rule
 
 	(lhs "?mig (Migration phases ?phs\n	(not (vector? (first ?phs))))")
-	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"where\")\n                                 (protege.core/sv % \"to\"))\n                   ?phs)))")
+	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"area\"))\n                   ?phs)))")
 	(salience 1)
 	(title "mig:InitMigration"))
 
@@ -889,6 +890,20 @@
 	(salience 0)
 	(title "mig:Repeat"))
 
+([Migration_Class70001] of  Walk
+
+	(action "Walk in")
+	(area "Upper Lakes")
+	(walk-step 0.002)
+	(walk-steps 20))
+
+([Migration_Class70002] of  Walk
+
+	(action "Walk backward")
+	(area "Upper Lakes")
+	(walk-step 0.002)
+	(walk-steps 100))
+
 ([Migration_Class70003] of  Command
 
 	(label "Restart Simulation")
@@ -1002,7 +1017,7 @@
 
 ([Migration_Class80000] of  CloFunction
 
-	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"3. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"EXPERT SYSTEM INITIALIZED\")\n(println \"4. Starting Cesium.\")\n(if-let [csi (ClojureTab/findAnnotated (cls-instances \"CesiumServer\") nil)]\n  (do (ClojureTab/invoke \"cesium.server\" \"start-server\" (sv csi \"port\"))\n    (clojure.java.browse/browse-url (str \"http://localhost:\" (sv csi \"port\")))\n    (println \"Cesium started..\"))\n  (println \"Annotated instance of CesiumServer not found!\"))")
+	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Cesium.\")\n(if-let [csi (ClojureTab/findAnnotated (cls-instances \"CesiumServer\") nil)]\n  (do (ClojureTab/invoke \"cesium.server\" \"start-server\" (sv csi \"port\"))\n    (clojure.java.browse/browse-url (str \"http://localhost:\" (sv csi \"port\")))\n    (println \"Cesium started..\"))\n  (println \"Annotated instance of CesiumServer not found!\"))\n(println \"3. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"4. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"EXPERT SYSTEM INITIALIZED\")")
 	(title "clojure-work []"))
 
 ([Migration_Class80001] of  CesiumServer
@@ -1018,6 +1033,31 @@
 	(%3ACREATION-TIMESTAMP "2020.06.06 17:32:13.284 MSK")
 	(%3ACREATOR "ru"))
 
+([Migration_Class80003] of  Walk
+
+	(action "Walk in")
+	(area "Ladoga Lake")
+	(walk-step 0.002)
+	(walk-steps 80))
+
+([Migration_Class80004] of  Walk
+
+	(action "Walk backward")
+	(area "Ladoga Lake")
+	(walk-step 0.002)
+	(walk-steps 200))
+
+([Migration_Class80005] of  Walk
+
+	(action "Last walk in")
+	(area "Lake Kivijarvi")
+	(walk-step 0.002)
+	(walk-steps 6))
+
+([Migration_Class80006] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
+
 ([Migration_Class90000] of  Rule
 
 	(lhs "?cc (CesiumCamera status \"START\" \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
@@ -1027,10 +1067,10 @@
 
 ([Migration_Class90001] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-step ?wst\n	waypoints ?wps\n	height ?hgt	\n	phase ?phe\n	[(= ?phe \"Going to river Hiitolanjoki\")\n	 (= ?phe \"Return to river Hiitolanjoki\")])\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map \"Kivijarvi ja Simpelejarvi\")\n       steps 80\n       [elt wps] (cesium.mig/go-random-walk ?id ?clr ?siz ?spd ?hgt (last ?wps) steps ?wst (lak :geoms))]\n  (println ?id  ?phe :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	color ?clr\n	size ?siz\n	walk-speed ?wsp\n	waypoints ?wps\n	height ?hgt\n	area ?are	\n	action ?act\n	(= ?act \"Walk backward\"))\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       elt (cesium.mig/go-random-by-waypoints ?id ?clr ?siz ?wsp ?hgt ?wps ?wss (/ ?wss 4) ?wst gms)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
-	(title "mig:WalkToRiver"))
+	(title "mig:Walk backward"))
 
 ([Migration_Class90002] of  Rule
 
@@ -1048,8 +1088,8 @@
 
 ([Migration_Class90004] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints ?wps\n	spawn ?spw\n	action \"Birth\")\n(Clock time ?t)")
-	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	walk-step ?wst\n	max-steps ?mss\n	waypoints wps\n	spawn ?spw\n	action \"Birth\"\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints ?wps\n	spawn ?spw\n	area ?are \n	action ?act\n                      (= ?act \"Birth in\"))\n(Clock time ?t)")
+	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	color ?clr\n	size ?siz\n	height ?hgt\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints wps\n	spawn ?spw\n	area ?are\n	action ?act\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
 	(salience 0)
 	(title "mig:Birth"))
 

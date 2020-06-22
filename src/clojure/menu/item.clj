@@ -10,17 +10,17 @@
       (println (str " 1." i " " (sv (first pins) "title") " = " (ClojureTab/loadProgram (first pins)) ))
       (recur (inc i) (rest pins)) ) )
   (println "  Annotated instance of WorkingPrograms not found!"))
-(println "2. Starting Expert System.")
-(if-let [run (ClojureTab/findAnnotated (cls-instances "Run") nil)]
-  (ClojureTab/invoke "ru.rules" "run-engine" run)
-  (println "  Annotated instance of Run not found!"))
-(println "3. Starting Simulation.")
-(ClojureTab/invoke "sim" "start-sim")
-(println "EXPERT SYSTEM INITIALIZED")
-(println "4. Starting Cesium.")
+(println "2. Starting Cesium.")
 (if-let [csi (ClojureTab/findAnnotated (cls-instances "CesiumServer") nil)]
   (do (ClojureTab/invoke "cesium.server" "start-server" (sv csi "port"))
     (clojure.java.browse/browse-url (str "http://localhost:" (sv csi "port")))
     (println "Cesium started.."))
-  (println "Annotated instance of CesiumServer not found!")))
+  (println "Annotated instance of CesiumServer not found!"))
+(println "3. Starting Expert System.")
+(if-let [run (ClojureTab/findAnnotated (cls-instances "Run") nil)]
+  (ClojureTab/invoke "ru.rules" "run-engine" run)
+  (println "  Annotated instance of Run not found!"))
+(println "4. Starting Simulation.")
+(ClojureTab/invoke "sim" "start-sim")
+(println "EXPERT SYSTEM INITIALIZED"))
 

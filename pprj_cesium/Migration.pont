@@ -1,4 +1,4 @@
-; Sat Jun 20 23:37:31 MSK 2020
+; Mon Jun 22 22:24:39 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -39,10 +39,6 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot to
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot direct
 		(type SYMBOL)
 		(allowed-values down up)
@@ -66,15 +62,15 @@
 ;+		(allowed-classes Creature)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot walk-steps
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot walk-step
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot life
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot max-steps
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -124,10 +120,6 @@
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot where
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot down-speed
 		(type FLOAT)
@@ -183,10 +175,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot to
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot age
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -202,10 +190,6 @@
 	(multislot color
 		(type INTEGER)
 		(create-accessor read-write))
-	(single-slot where
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot spawn
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -220,10 +204,6 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot walk-step
-		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot walk-speed
@@ -242,8 +222,8 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot max-steps
-		(type INTEGER)
+	(single-slot area
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot size
@@ -342,12 +322,28 @@
 (defclass Phase
 	(is-a Migration+Onto)
 	(role concrete)
-	(single-slot to
+	(single-slot area
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot where
+	(single-slot action
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Walk
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot walk-step
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot area
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk-steps
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot action
