@@ -1,4 +1,4 @@
-; Mon Jun 22 22:24:39 MSK 2020
+; Tue Jun 23 22:43:49 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,13 +10,6 @@
 	(single-slot flow-speed
 		(type FLOAT)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot size
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot color
-		(type INTEGER)
 		(create-accessor read-write))
 	(single-slot time-scale
 		(type STRING)
@@ -70,6 +63,10 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot look
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot life
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -120,6 +117,10 @@
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot addition
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot down-speed
 		(type FLOAT)
@@ -175,20 +176,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot age
-		(type INTEGER)
+	(single-slot addition
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot height
+	(single-slot age
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot up-speed
 		(type FLOAT)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot color
-		(type INTEGER)
 		(create-accessor read-write))
 	(single-slot spawn
 		(type INTEGER)
@@ -226,8 +224,8 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot size
-		(type INTEGER)
+	(single-slot look
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -322,6 +320,10 @@
 (defclass Phase
 	(is-a Migration+Onto)
 	(role concrete)
+	(single-slot addition
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot area
 		(type STRING)
 ;+		(cardinality 0 1)

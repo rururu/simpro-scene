@@ -58,7 +58,7 @@
 
 (defn geoms-to-path [geoms start height]
   (let [lss (map #(.getCoordinates %) geoms)
-       lss (map #(list (.x %) (.y %) height) lss)]
+       lss (map (fn [z] (map #(list (.x %) (.y %) height) z)) lss)]
   (loop [[ps & rss] lss path [(conj start height)]]
     (if (some? ps)
       (let [p1 (last path)
@@ -171,9 +171,12 @@
     true
       path)))
 
-(defn go-geoms-path [id color size knots height start geoms]
+(defn go-geoms-path [id look knots start geoms]
   ;; returns time of going in sec and waypoints
-(let [pts (geoms-to-path geoms start height)
+(let [color (look :color)
+       size (look :size)
+       height (look :height)
+       pts (geoms-to-path geoms start height)
        wps [(first pts) (last pts)]
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
@@ -181,9 +184,12 @@
   (cs/send-czml czml)
   [elt wps]))
 
-(defn go-random-walk [id color size knots height start steps step geoms]
+(defn go-random-walk [id look knots start steps step geoms]
   ;; returns time of going in sec and 6 waypoints
-(let [pts (random-walk start steps step height geoms)
+(let [color (look :color)
+       size (look :size)
+       height (look :height)
+       pts (random-walk start steps step height geoms)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
@@ -193,16 +199,18 @@
   (cs/send-czml czml)
   [elt wps]))
 
-(defn go-river [id color size knots height river direction]
+(defn go-river [id look knots river direction]
   ;; returns time of going in sec and waypoints
-(let [[lah loh] (river :head)
-        [lae loe] (river :estuary)
-        gvf (river :gv-field)]
-  (go-geoms-path id color size
+(let [color (look :color)
+       size (look :size)
+       height (look :height)
+       [lah loh] (river :head)
+       [lae loe] (river :estuary)
+       gvf (river :gv-field)]
+  (go-geoms-path id look
     (condp = direction
       :down (+ knots (river :flow-speed))
       :up knots)
-    (or height 16)
     (condp = direction
       :down (river :head)
       :up (river :estuary))
@@ -210,9 +218,12 @@
       :down (river :geoms)
       :up (reverse (river :geoms))))))
 
-(defn go-random-by-waypoints [id color size knots height wps limstp steps step geoms]
+(defn go-random-by-waypoints [id look knots wps limstp steps step geoms]
   ;; returns time of going in sec
-(let [wps (random-by-waypoints wps limstp steps step height geoms)
+(let [color (look :color)
+       size (look :size)
+       height (look :height)
+       wps (random-by-waypoints wps limstp steps step height geoms)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id wps knots mils "RELATIVE_TO_GROUND" color size func-dist)]
