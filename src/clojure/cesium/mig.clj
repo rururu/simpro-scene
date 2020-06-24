@@ -133,9 +133,10 @@
     (next-covered lo1 la1 slon step geoms))))
 
 (defn random-walk [start steps step height geoms]
-  (let [phi (Math/toRadians (second start))
+  (let [[lo la _] start
+       phi (Math/toRadians la)
        slon (/ step (Math/cos phi))]
-  (loop [n steps [lon lat] start path [(conj start height)]]
+  (loop [n steps [lon lat] start path [[lo la height]]]
     (if (> n 0)
       (let [nxt (next-covered lon lat slon step geoms)]
         (recur (dec n) nxt (conj path (conj nxt height))))

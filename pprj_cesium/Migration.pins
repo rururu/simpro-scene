@@ -1,4 +1,4 @@
-; Tue Jun 23 22:43:50 MSK 2020
+; Wed Jun 24 23:47:57 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -172,8 +172,7 @@
 		[Migration_Class110001]
 		[Migration_Class20000]
 		[Migration_Class50001]
-		[Migration_Class20006]
-		[Migration_Class120000])
+		[Migration_Class20006])
 	(title "Cesium Migration"))
 
 ([HiitolanjokiRCZ_Class20003] of  CloNamespace
@@ -484,10 +483,6 @@
 	(salience 0)
 	(title "mig:Go to river"))
 
-([Migration_Class150005] of  CloFuncall
-
-	(source "cesium.mig/RIVERS"))
-
 ([Migration_Class150006] of  Lake
 
 	(attrs
@@ -530,10 +525,6 @@
 
 	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [(conj start height)]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path (conj nxt height))]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
 	(title "random-walk-closer [start finish steps step height geoms]"))
-
-([Migration_Class160007] of  CloFuncall
-
-	(source "(:head (@cesium.mig/RIVERS \"River Hiitolanjoki\"))"))
 
 ([Migration_Class160008] of  Phase
 
@@ -587,42 +578,6 @@
 	(salience 1)
 	(title "mig:Init Migration"))
 
-([Migration_Class170008] of  CloFuncall
-
-	(source "(def riv (@RIVERS \"River Hiitolanjoki\"))"))
-
-([Migration_Class170009] of  CloFuncall
-
-	(source "(def geoms (riv :geoms))"))
-
-([Migration_Class170010] of  CloFuncall
-
-	(source "geoms"))
-
-([Migration_Class170011] of  CloFuncall
-
-	(source "(def lss (map #(.getCoordinates %) geoms))"))
-
-([Migration_Class170012] of  CloFuncall
-
-	(source "lss"))
-
-([Migration_Class170013] of  CloFuncall
-
-	(source "(count lss)"))
-
-([Migration_Class170014] of  CloFuncall
-
-	(source "(def lss (mapcat #(.getCoordinates %) geoms))"))
-
-([Migration_Class170015] of  CloFuncall
-
-	(source "(first lss)"))
-
-([Migration_Class170016] of  CloFuncall
-
-	(source "(def rss (map #(list (.x %) (.y %)) lss))"))
-
 ([Migration_Class170017] of  CloFunction
 
 	(source "(loop [[s f & r :as ws] wps path []]\n  (cond\n    (> (count path) limstp)\n      path\n    (and s f)\n      (let [rwc1 (random-walk-closer s f steps step height geoms)]\n        (if (< (count rwc1) steps)\n          (recur (rest ws) (concat path rwc1))\n          (let [rwc2 (random-walk-closer f s steps step height geoms)]\n            (if (< (count rwc2) steps)\n              (recur (rest ws) (concat path (reverse rwc2)))\n              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n    true\n      path))")
@@ -636,87 +591,87 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 26.76 29 22.38"
-		"61 27.01 29 22.98"
-		"61 26.6 29 22.29"
-		"61 26.8 29 22.84"
-		"61 26.51 29 22.26"
-		"61 26.8 29 22.36"
-		"61 26.96 29 21.84"
-		"61 26.98 29 22.46"
-		"61 27.24 29 23.02"
-		"61 26.8 29 22.31"
-		"61 27.37 29 23.12"
-		"61 26.89 29 21.91"
-		"61 26.76 29 22.46"
-		"61 26.88 29 21.93"
-		"61 26.87 29 22.68"
-		"61 26.81 29 22.62"
-		"61 26.96 29 21.96"
-		"61 26.77 29 20.96"
-		"61 26.66 29 21.79"
-		"61 26.71 29 22.56"
-		"61 26.68 29 21.69"
-		"61 27.05 29 21.81"
-		"61 26.78 29 22.12"
-		"61 26.84 29 21.87"
-		"61 26.63 29 22.48"
-		"61 26.61 29 22.54"
-		"61 26.59 29 22.55"
-		"61 26.93 29 22.88"
-		"61 26.93 29 22.14"
-		"61 27.05 29 21.91"
-		"61 26.91 29 22.61"
-		"61 26.7 29 22.49"
-		"61 26.7 29 22.12"
-		"61 27.29 29 23.09"
-		"61 27.6 29 23.61"
-		"61 27.68 29 22.82"
-		"61 27.79 29 22.94"
-		"61 28.04 29 22.65"
-		"61 27.63 29 23.34"
-		"61 27.85 29 23.62"
-		"61 28.1 29 23.24"
-		"61 28.69 29 22.9"
-		"61 28.82 29 23.23"
-		"61 28.37 29 22.09"
-		"61 28.81 29 22.78"
-		"61 28.75 29 22.65"
-		"61 28.23 29 22.56"
-		"61 28.74 29 23.41"
-		"61 29.21 29 23.74"
-		"61 29.57 29 24.69"
-		"61 29.16 29 24.19"
-		"61 28.72 29 23.84"
-		"61 28.77 29 25.03"
-		"61 28.84 29 26.28"
-		"61 28.41 29 25.77"
-		"61 28.93 29 25.22"
-		"61 28.86 29 25.86"
-		"61 28.36 29 25.76"
-		"61 28.57 29 25.93"
-		"61 29.15 29 24.75"
-		"61 29.12 29 25.62"
-		"61 29.69 29 25.92"
-		"61 29.65 29 25.5"
-		"61 29.98 29 25.24"
-		"61 29.85 29 25.35"
-		"61 30.19 29 26.14"
-		"61 30.65 29 25.76"
-		"61 31.13 29 25.07"
-		"61 31.36 29 24.16"
-		"61 31.81 29 25.37"
-		"61 31.94 29 25.74"
-		"61 31.93 29 24.59"
-		"61 32.09 29 25.27"
-		"61 31.74 29 24.25"
-		"61 31.53 29 24.03"
-		"61 31.14 29 24.66"
-		"61 30.7 29 25.6"
-		"61 30.3 29 24.59"
-		"61 30.77 29 25.15"
-		"61 30.71 29 26.31"
-		"61 31.16 29 27.21")
+		"61 10.82 29 53.02"
+		"61 10.83 29 52.99"
+		"61 10.93 29 53.19"
+		"61 10.82 29 53.17"
+		"61 10.83 29 53.23"
+		"61 10.91 29 53.15"
+		"61 10.98 29 53.22"
+		"61 10.99 29 53.47"
+		"61 11.11 29 53.5"
+		"61 11.15 29 53.69"
+		"61 11.25 29 53.59"
+		"61 11.16 29 53.79"
+		"61 11.16 29 53.66"
+		"61 11.14 29 53.5"
+		"61 11.25 29 53.53"
+		"61 11.3 29 53.56"
+		"61 11.24 29 53.78"
+		"61 11.32 29 53.96"
+		"61 11.32 29 53.91"
+		"61 11.21 29 53.85"
+		"61 11.14 29 53.67"
+		"61 11.05 29 53.53"
+		"61 11 29 53.44"
+		"61 11.04 29 53.34"
+		"61 11.09 29 53.51"
+		"61 11 29 53.64"
+		"61 11.12 29 53.4"
+		"61 11 29 53.53"
+		"61 10.88 29 53.57"
+		"61 10.85 29 53.5"
+		"61 10.84 29 53.74"
+		"61 10.73 29 53.97"
+		"61 10.82 29 53.77"
+		"61 10.83 29 53.61"
+		"61 10.73 29 53.38"
+		"61 10.79 29 53.26"
+		"61 10.85 29 53.13"
+		"61 10.81 29 53.26"
+		"61 10.82 29 53.03"
+		"61 10.78 29 53.21"
+		"61 10.68 29 53.11"
+		"61 10.74 29 53.09"
+		"61 10.78 29 53.18"
+		"61 10.85 29 53.37"
+		"61 10.89 29 53.21"
+		"61 10.8 29 53.11"
+		"61 10.68 29 53.16"
+		"61 10.66 29 53.16"
+		"61 10.72 29 53.41"
+		"61 10.61 29 53.23"
+		"61 10.7 29 53.18"
+		"61 10.67 29 53.17"
+		"61 10.62 29 52.94"
+		"61 10.61 29 53.11"
+		"61 10.55 29 52.93"
+		"61 10.59 29 53.03"
+		"61 10.71 29 53.19"
+		"61 10.68 29 53.36"
+		"61 10.72 29 53.11"
+		"61 10.67 29 53.14"
+		"61 10.78 29 53.09"
+		"61 10.89 29 53.21"
+		"61 10.9 29 53.33"
+		"61 10.86 29 53.41"
+		"61 10.88 29 53.19"
+		"61 10.97 29 53.14"
+		"61 10.87 29 53.15"
+		"61 10.93 29 53.16"
+		"61 11.01 29 53.22"
+		"61 11.09 29 53.26"
+		"61 11.08 29 53.38"
+		"61 11.16 29 53.22"
+		"61 11.13 29 53.38"
+		"61 11.19 29 53.22"
+		"61 11.21 29 53.34"
+		"61 11.24 29 53.1"
+		"61 11.35 29 52.91"
+		"61 11.43 29 53.01"
+		"61 11.43 29 53.21"
+		"61 11.43 29 53.33"
+		"61 11.53 29 53.18")
 	(relative FALSE))
 
 ([Migration_Class170052] of  OMTPoly
@@ -809,42 +764,6 @@
 		"61 29.83 29 25.4"
 		"61 29.85 29 26.38")
 	(relative FALSE))
-
-([Migration_Class180017] of  CloFuncall
-
-	(source "(count rss)"))
-
-([Migration_Class180018] of  CloFuncall
-
-	(source "(first rss)"))
-
-([Migration_Class180019] of  CloFuncall
-
-	(source "(def rss (map (fn [z] (map #(list (.x %) (.y %) height) z) lss))"))
-
-([Migration_Class180020] of  CloFuncall
-
-	(source "(def rss (map (fn [z] (map #(list (.x %) (.y %) height) z)) lss))"))
-
-([Migration_Class180021] of  CloFuncall
-
-	(source "(def rss (map (fn [z] (map #(list (.x %) (.y %) 22) z)) lss))"))
-
-([Migration_Class180022] of  CloFuncall
-
-	(source "(ffirst rss)"))
-
-([Migration_Class180023] of  CloFuncall
-
-	(source "POINTS"))
-
-([Migration_Class180024] of  CloFuncall
-
-	(source "(fifos \"OMTPoly\" \"label\" \"p0\")"))
-
-([Migration_Class180025] of  CloFuncall
-
-	(source "(set-points (@POINTS \"r0\") (fifos \"OMTPoly\" \"label\" \"p0\"))"))
 
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
 
@@ -940,7 +859,7 @@
 
 ([Migration_Class50005] of  CloFunction
 
-	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [(conj start height)]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
+	(source "(let [[lo la _] start\n       phi (Math/toRadians la)\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [[lo la height]]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
 	(title "random-walk [start steps step height geoms]"))
 
 ([Migration_Class50006] of  CloFunction
@@ -1112,7 +1031,7 @@
 
 ([Migration_Class70014] of  CloFunction
 
-	(source ";; returns time of going in sec and 6 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(source ";; returns time of going in sec and 6 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  ;; (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
 	(title "go-random-walk [id look knots start steps step geoms]"))
 
 ([Migration_Class80000] of  CloFunction
