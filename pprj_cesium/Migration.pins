@@ -1,4 +1,4 @@
-; Wed Jun 24 23:47:57 MSK 2020
+; Thu Jun 25 20:05:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -165,7 +165,8 @@
 		[Migration_Class130014]
 		[Migration_Class50000]
 		[Migration_Class40024]
-		[Migration_Class140001])
+		[Migration_Class140001]
+		[Migration_Class150000])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
 		[Migration_Class30000]
@@ -271,7 +272,8 @@
 		[Migration_Class150004]
 		[Migration_Class90002]
 		[Migration_Class90003]
-		[Migration_Class70000])
+		[Migration_Class70000]
+		[Migration_Class90005])
 	(templates
 		[Creature]
 		[Migration]
@@ -293,12 +295,12 @@
 ([Migration_Class10001] of  Creature
 
 	(action "Birth in")
-	(age 0)
+	(age "child")
 	(area "Lake Kivijarvi")
+	(birthtime 300000000)
 	(down-speed 3.0)
-	(id "r")
-	(life 300000000)
-	(look "{:color [255 255 0 255]\n  :size 8\n  :height 20}")
+	(id "s")
+	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
 	(N 0)
 	(spawn 1)
 	(status "BEGIN")
@@ -346,6 +348,7 @@
 
 	(action "Go to river")
 	(addition "River Hiitolanjoki")
+	(age "young")
 	(area "Upper Lakes"))
 
 ([Migration_Class120002] of  CloFunction
@@ -365,8 +368,8 @@
 
 ([Migration_Class130000] of  Rule
 
-	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	area ?are\n	addition ?add)")
-	(rhs "(let [[act are add :as next] \n          (loop [[cp np :as ps] ?phs]\n            (if (and cp np)\n              (if (= [?act ?are ?add] cp) \n                np\n                (recur (rest ps)))\n              [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action act\n	area are\n	addition add))")
+	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	area ?are\n	addition ?add\n	age ?age)")
+	(rhs "(let [[act are add ag] \n          (loop [[cp np :as ps] ?phs]\n            (if (and cp np)\n              (if (= [?act ?are ?add ?age] cp) \n                np\n                (recur (rest ps)))\n              [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action act\n	area are\n	addition add\n	age ag))")
 	(salience 0)
 	(title "mig:Migration"))
 
@@ -409,22 +412,6 @@
 	(source ";; returns time of going in sec and waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       [lah loh] (river :head)\n       [lae loe] (river :estuary)\n       gvf (river :gv-field)]\n  (go-geoms-path id look\n    (condp = direction\n      :down (+ knots (river :flow-speed))\n      :up knots)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (condp = direction\n      :down (river :geoms)\n      :up (reverse (river :geoms)))))")
 	(title "go-river [id look knots river direction]"))
 
-([Migration_Class140000] of  Creature
-
-	(action "Birth in")
-	(age 0)
-	(area "Lake Kivijarvi")
-	(down-speed 3.0)
-	(id "g")
-	(life 300000000)
-	(look "{:color [0 255 0 255]\n  :size 8\n  :height 20}")
-	(spawn 3)
-	(status "BEGIN")
-	(title "Salmon")
-	(up-speed 2.0)
-	(walk-speed 2.0)
-	(waypoints "[[29.366 61.443]]"))
-
 ([Migration_Class140001] of  CloFunction
 
 	(source "[(Clock/getClock) (Clock/getTimeScale)]")
@@ -434,6 +421,7 @@
 
 	(action "Go to river")
 	(addition "River Hiitolanjoki")
+	(age "adult")
 	(area "Ladoga Lake"))
 
 ([Migration_Class140003] of  CloNamespace
@@ -471,6 +459,11 @@
 	(source "nil")
 	(title "ES-TIMER"))
 
+([Migration_Class150000] of  CloFunction
+
+	(source "(let [[c s] (condp = age\n                 \"child\" [[0 255 0 255] 4]\n                 \"young\" [[255 255 0 255] 6]\n                 \"adult\" [[255 94 1 255] 8]\n                 \"old\" [[255 0 64 255] 10])]\n  (assoc look :color c :size s))")
+	(title "look [age look]"))
+
 ([Migration_Class150001] of  CloFunction
 
 	(source "(let [d (Math/abs (- start finish))\n       s (* (Math/random) step)]\n  (cond\n    (< d s) finish\n    (< start finish) (+ start s)\n    true (- start s)))")
@@ -478,8 +471,8 @@
 
 ([Migration_Class150004] of  Rule
 
-	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	addition ?add\n	area ?are	\n	action \"Go to river\")\n(Clock time ?t)")
-	(rhs "(let [riv (cesium.mig/river-map ?add)\n       head (riv :head)\n       estuary (riv :estuary)\n       from (last ?wps)\n       to (if (< (cesium.mig/simple-dist from head) (cesium.mig/simple-dist from estuary))\n             head\n             estuary)\n       lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps [from to]\n       elt (cesium.mig/go-random-by-waypoints ?id ?loo ?wsp wps ?wss (/ ?wss 4) ?wst gms)]\n  (println ?id [\"Go to river\" ?are ?add] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	age ?age\n	addition ?add\n	area ?are	\n	action \"Go to river\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?add)\n       head (riv :head)\n       estuary (riv :estuary)\n       from (last ?wps)\n       to (if (< (cesium.mig/simple-dist from head) (cesium.mig/simple-dist from estuary))\n             head\n             estuary)\n       lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps [from to]\n       loo (cesium.mig/look ?age ?loo)\n       elt (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps ?wss (/ ?wss 4) ?wst gms)]\n  (println ?id [\"Go to river\" ?are ?add] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Go to river"))
 
@@ -496,8 +489,8 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps (if (string? ?wps) (read-string ?wps) ?wps)\n       start (last wps)\n       [elt wps] (cesium.mig/go-random-walk ?id ?loo ?wsp start ?wss ?wst gms)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	age ?age\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps (if (string? ?wps) (read-string ?wps) ?wps)\n       start (last wps)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-random-walk ?id loo ?wsp start ?wss ?wst gms)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Walk In"))
 
@@ -529,52 +522,61 @@
 ([Migration_Class160008] of  Phase
 
 	(action "Birth in")
+	(age "child")
 	(area "Lake Kivijarvi"))
 
 ([Migration_Class160009] of  Phase
 
 	(action "Walk in")
+	(age "child")
 	(area "Upper Lakes"))
 
 ([Migration_Class160010] of  Phase
 
 	(action "Walk backward")
+	(age "child")
 	(area "Upper Lakes"))
 
 ([Migration_Class160011] of  Phase
 
 	(action "Go down")
+	(age "young")
 	(area "River Hiitolanjoki"))
 
 ([Migration_Class160012] of  Phase
 
 	(action "Walk in")
+	(age "young")
 	(area "Ladoga Lake"))
 
 ([Migration_Class160013] of  Phase
 
 	(action "Walk backward")
+	(age "adult")
 	(area "Ladoga Lake"))
 
 ([Migration_Class160014] of  Phase
 
 	(action "Go up")
+	(age "adult")
 	(area "River Hiitolanjoki"))
 
 ([Migration_Class160015] of  Phase
 
 	(action "Last walk in")
+	(age "old")
 	(area "Lake Kivijarvi"))
 
 ([Migration_Class160016] of  Phase
 
 	(action "Spawn in")
+	(age "old")
 	(area "Lake Kivijarvi"))
 
 ([Migration_Class160017] of  Rule
 
 	(lhs "?mig (Migration phases ?phs\n	(not (vector? (first ?phs))))")
-	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"area\")\n                                 (protege.core/sv % \"addition\"))\n                   ?phs)))")
+	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"area\")\n                                 (protege.core/sv % \"addition\")\n                                 (protege.core/sv % \"age\"))\n                   ?phs)))")
 	(salience 1)
 	(title "mig:Init Migration"))
 
@@ -1086,35 +1088,35 @@
 
 ([Migration_Class90001] of  Rule
 
-	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	area ?are	\n	action \"Walk backward\")\n(Clock time ?t)")
-	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps (reverse ?wps)\n       elt (cesium.mig/go-random-by-waypoints ?id ?loo ?wsp wps ?wss (/ ?wss 4) ?wst gms)]\n  (println ?id [\"Walk backward\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	age ?age\n	area ?are	\n	action \"Walk backward\")\n(Clock time ?t)")
+	(rhs "(let [lak (cesium.mig/lake-map ?are)\n       gms (lak :geoms)\n       wps (reverse ?wps)\n       loo (cesium.mig/look ?age ?loo)\n       elt (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps ?wss (/ ?wss 4) ?wst gms)]\n  (println ?id [\"Walk backward\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Walk backward"))
 
 ([Migration_Class90002] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	down-speed ?spd\n	area ?are\n	action \"Go down\")\n(Clock time ?t)")
-	(rhs "(let [riv (cesium.mig/river-map ?are)\n       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :down)]\n  (println ?id  [\"Going down\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	down-speed ?spd\n	age ?age\n	area ?are\n	action \"Go down\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?are)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :down)]\n  (println ?id  [\"Going down\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Go down river"))
 
 ([Migration_Class90003] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	up-speed ?spd\n	area ?are\n	action \"Go up\")\n(Clock time ?t)")
-	(rhs "(let [riv (cesium.mig/river-map ?are)\n       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :up)]\n  (println ?id  [\"Going up\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	waypoints wps\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	up-speed ?spd\n	age ?age\n	area ?are\n	action \"Go up\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?are)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-river ?id loo ?spd riv :up)]\n  (println ?id  [\"Going up\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Go up river"))
 
 ([Migration_Class90004] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	age ?age\n	life ?lif\n	look ?loo\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints ?wps\n	spawn ?spw\n	addition ?add\n	area ?are \n	action ?act\n                      (= ?act \"Birth in\"))\n(Clock time ?t)")
-	(rhs "(println ?id  \"Birth\" 3 :REPEAT 4)\n(dotimes [i ?spw]\n  (let [nid (str ?id i)\n         wps (if (string? ?wps) (read-string ?wps) ?wps)\n         loo (read-string ?loo)\n         elt 4]\n    (asser Creature N (+ ?t elt)\n	id nid\n	age ?age\n	life ?lif\n	look loo\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints wps\n	spawn ?spw\n	addition ?add\n	area ?are\n	action ?act\n	status \"REPEAT\")))\n(modify ?cre status \"DONE\")")
-	(salience 0)
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	age ?age\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints ?wps\n	spawn ?spw\n	addition ?add\n	area ?are \n	action ?act\n                      (= ?act \"Birth in\"))\n(Clock time ?t)")
+	(rhs "(println ?id  \"Birth\" ?spw :REPEAT 4)\n(retract ?cre)\n(dotimes [i ?spw]\n  (asser Creature N (+ ?t 4)\n	id (gensym ?id)\n	birthtime ?t\n	age ?age\n	look (read-string ?loo)\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints (if (string? ?wps) (read-string ?wps) ?wps)\n	spawn ?spw\n	addition ?add\n	area ?are\n	action ?act\n	status \"REPEAT\")))")
+	(salience 1)
 	(title "mig:Birth"))
 
 ([Migration_Class90005] of  Rule
 
-	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	phase \"Spawn\")\n(Clock time ?t)")
-	(rhs "(let [n 8]\n  (println ?id  \"Spawn\" :REPEAT n)\n  (modify ?cre N (+ n ?t)\n	status \"REPEAT\"))")
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	waypoints ?wps\n	action \"Spawn in\")\n(Clock time ?t)")
+	(rhs "(println ?id \"Spawn in\")\n(when-let [cri (protege.core/fifos \"Creature\" \"id\" (first ?id))]\n  (protege.core/ssv cri \"waypoints\" [(last ?wps)])\n  (println ?id  \"Spawn\" ?id)\n  (ru.rules/assert-instances [cri])\n  (retract ?cre))")
 	(salience 0)
 	(title "mig:Spawn"))

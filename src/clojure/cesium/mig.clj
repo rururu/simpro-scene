@@ -36,7 +36,6 @@
  [29.912 61.180]
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
-(def POINTS (volatile! {}))
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -196,7 +195,7 @@
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
        k (max 2 (int (/ (count pts) 5)))
        wps (concat [(first pts)] (take-nth k pts) [(last pts)])]
-  (vswap! POINTS assoc id pts)
+  ;; (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 
@@ -247,4 +246,12 @@
 
 (defn clock-scale []
   [(Clock/getClock) (Clock/getTimeScale)])
+
+(defn look [age look]
+  (let [[c s] (condp = age
+                 "child" [[0 255 0 255] 4]
+                 "young" [[255 255 0 255] 5]
+                 "adult" [[255 94 1 255] 6]
+                 "old" [[255 0 0 255] 7])]
+  (assoc look :color c :size s)))
 

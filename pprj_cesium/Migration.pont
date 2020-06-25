@@ -1,4 +1,4 @@
-; Wed Jun 24 23:47:57 MSK 2020
+; Thu Jun 25 20:05:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -67,12 +67,8 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot life
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot age
-		(type INTEGER)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spawn
@@ -117,6 +113,10 @@
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot birthtime
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot addition
 		(type STRING)
@@ -168,6 +168,10 @@
 (defclass Creature
 	(is-a Migration+Onto)
 	(role concrete)
+	(single-slot birthtime
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot waypoints
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -181,7 +185,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot age
-		(type INTEGER)
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot up-speed
@@ -206,10 +210,6 @@
 		(create-accessor read-write))
 	(single-slot walk-speed
 		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot life
-		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
@@ -321,6 +321,10 @@
 	(is-a Migration+Onto)
 	(role concrete)
 	(single-slot addition
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot age
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

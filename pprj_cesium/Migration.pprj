@@ -1,4 +1,4 @@
-; Wed Jun 24 23:47:58 MSK 2020
+; Thu Jun 25 20:05:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,13 +21,13 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Migration_ProjectKB_Class61897]
-		[Migration_ProjectKB_Class61898]
-		[Migration_ProjectKB_Class61899]
-		[Migration_ProjectKB_Class61900]
-		[Migration_ProjectKB_Class61901]
-		[Migration_ProjectKB_Class61902]
-		[Migration_ProjectKB_Class61903]))
+		[Migration_ProjectKB_Class91967]
+		[Migration_ProjectKB_Class91968]
+		[Migration_ProjectKB_Class91969]
+		[Migration_ProjectKB_Class91970]
+		[Migration_ProjectKB_Class91971]
+		[Migration_ProjectKB_Class91972]
+		[Migration_ProjectKB_Class91973]))
 
 ([CLSES_TAB] of  Widget
 
@@ -90,8 +90,8 @@
 
 ([KB_209499_Class1] of  Map
 
-	(entries [Migration_ProjectKB_Class61910])
-	(referenced_maps [Migration_ProjectKB_Class61904]))
+	(entries [Migration_ProjectKB_Class91980])
+	(referenced_maps [Migration_ProjectKB_Class91974]))
 
 ([KB_209499_Class10] of  Property_List
 )
@@ -230,28 +230,28 @@
 	(property_list [KB_209499_Class10])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([KB_554379_Class1846] of  Map
+([KB_393756_Class1846] of  Map
 
 	(entries
-		[KB_554379_Class1847]
-		[KB_554379_Class1848]
-		[KB_554379_Class1849]))
+		[KB_393756_Class1847]
+		[KB_393756_Class1848]
+		[KB_393756_Class1849]))
 
-([KB_554379_Class1847] of  Map_Entry
+([KB_393756_Class1847] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_554379_Class1848] of  Map_Entry
+([KB_393756_Class1848] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_554379_Class1849] of  Map_Entry
+([KB_393756_Class1849] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -800,7 +800,6 @@
 		[Migration_ProjectKB_Class29261]
 		[Migration_ProjectKB_Class29263]
 		[Migration_ProjectKB_Class29265]
-		[Migration_ProjectKB_Class39267]
 		[Migration_ProjectKB_Class11875]
 		[Migration_ProjectKB_Class31872]
 		[Migration_ProjectKB_Class51886]
@@ -811,7 +810,8 @@
 		[Migration_ProjectKB_Class61912]
 		[Migration_ProjectKB_Class71963]
 		[Migration_ProjectKB_Class82103]
-		[Migration_ProjectKB_Class82147]))
+		[Migration_ProjectKB_Class82147]
+		[Migration_ProjectKB_Class31850]))
 
 ([Migration_ProjectKB_Class29260] of  Property_List
 
@@ -822,14 +822,13 @@
 
 ([Migration_ProjectKB_Class29261] of  Widget
 
-	(height 60)
+	(height 0)
 	(is_hidden FALSE)
-	(name "life")
+	(name "birthtime")
 	(property_list [Migration_ProjectKB_Class29262])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 200)
+	(width 0)
 	(x 0)
-	(y 300))
+	(y 0))
 
 ([Migration_ProjectKB_Class29262] of  Property_List
 )
@@ -888,6 +887,20 @@
 	(y 0))
 
 ([Migration_ProjectKB_Class29279] of  Property_List
+)
+
+([Migration_ProjectKB_Class31850] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "age")
+	(property_list [Migration_ProjectKB_Class31851])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 140)
+	(x 420)
+	(y 300))
+
+([Migration_ProjectKB_Class31851] of  Property_List
 )
 
 ([Migration_ProjectKB_Class31861] of  Boolean
@@ -966,17 +979,6 @@
 ([Migration_ProjectKB_Class31873] of  Property_List
 )
 
-([Migration_ProjectKB_Class39267] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "age")
-	(property_list [Migration_ProjectKB_Class49268])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
-	(x 200)
-	(y 300))
-
 ([Migration_ProjectKB_Class41878] of  Widget
 
 	(height 60)
@@ -1000,7 +1002,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 140)
 	(x 0)
-	(y 360))
+	(y 300))
 
 ([Migration_ProjectKB_Class41888] of  Property_List
 )
@@ -1013,7 +1015,7 @@
 	(name "phases")
 	(property_list [Migration_ProjectKB_Class41901])
 	(widget_class_name "edu.stanford.smi.protegex.widget.instancetable.InstanceTableWidget")
-	(width 440)
+	(width 520)
 	(x 0)
 	(y 0))
 
@@ -1056,10 +1058,14 @@
 		[Migration_ProjectKB_Class81953]
 		[Migration_ProjectKB_Class81954]
 		[Migration_ProjectKB_Class81955]
-		[Migration_ProjectKB_Class82068]
-		[Migration_ProjectKB_Class82072]
-		[Migration_ProjectKB_Class82073]
-		[Migration_ProjectKB_Class82074]))
+		[Migration_ProjectKB_Class51882]
+		[Migration_ProjectKB_Class51883]
+		[Migration_ProjectKB_Class51884]
+		[Migration_ProjectKB_Class71946]
+		[Migration_ProjectKB_Class71951]
+		[Migration_ProjectKB_Class71952]
+		[Migration_ProjectKB_Class71953]
+		[Migration_ProjectKB_Class71954]))
 
 ([Migration_ProjectKB_Class41907] of  Widget
 
@@ -1085,9 +1091,6 @@
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
 
-([Migration_ProjectKB_Class49268] of  Property_List
-)
-
 ([Migration_ProjectKB_Class51872] of  Property_List
 )
 
@@ -1104,6 +1107,35 @@
 
 ([Migration_ProjectKB_Class51874] of  Property_List
 )
+
+([Migration_ProjectKB_Class51878] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "age")
+	(property_list [Migration_ProjectKB_Class51879])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 600)
+	(y 0))
+
+([Migration_ProjectKB_Class51879] of  Property_List
+)
+
+([Migration_ProjectKB_Class51882] of  String
+
+	(name ":COLUMN:NAME:DESCRIPTORage")
+	(string_value "age"))
+
+([Migration_ProjectKB_Class51883] of  Integer
+
+	(integer_value -16777216)
+	(name ":COLOR:RGB:DESCRIPTORage"))
+
+([Migration_ProjectKB_Class51884] of  Integer
+
+	(integer_value 94)
+	(name ":PREFERRED:SIZE:DESCRIPTORage"))
 
 ([Migration_ProjectKB_Class51886] of  Widget
 
@@ -1147,92 +1179,6 @@
 ([Migration_ProjectKB_Class51939] of  Property_List
 )
 
-([Migration_ProjectKB_Class61897] of  String
-
-	(name "Cesium")
-	(string_value "{Cesium+}status{+}time"))
-
-([Migration_ProjectKB_Class61898] of  String
-
-	(name "CesiumCamera")
-	(string_value "{CesiumCamera+}status{+}height{+}heading{+}pitch{+}roll"))
-
-([Migration_ProjectKB_Class61899] of  String
-
-	(name "Basin")
-	(string_value "title"))
-
-([Migration_ProjectKB_Class61900] of  String
-
-	(name "Creature")
-	(string_value "title{+}id"))
-
-([Migration_ProjectKB_Class61901] of  String
-
-	(name "Phase")
-	(string_value "action{+}area{+}addition"))
-
-([Migration_ProjectKB_Class61902] of  String
-
-	(name "Migration")
-	(string_value "{Salmon+migration}"))
-
-([Migration_ProjectKB_Class61903] of  String
-
-	(name "Walk")
-	(string_value "action{+}area"))
-
-([Migration_ProjectKB_Class61904] of  Map
-
-	(entries
-		[Migration_ProjectKB_Class61905]
-		[Migration_ProjectKB_Class61906]
-		[Migration_ProjectKB_Class61907]
-		[Migration_ProjectKB_Class61908]
-		[Migration_ProjectKB_Class61909]))
-
-([Migration_ProjectKB_Class61905] of  Map_Entry
-
-	(key "Migration_Class2")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "16 595 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class61906] of  Map_Entry
-
-	(key "Migration_Class4")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "18 503 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class61907] of  Map_Entry
-
-	(key "Migration_Class0")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "8 501 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class61908] of  Map_Entry
-
-	(key "HiitolanjokiRCZ_Class14")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "14 699 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class61909] of  Map_Entry
-
-	(key "Migration_Class80002")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "7 288 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class61910] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "Migration_ProjectKB_Class61904")
-	(value_class "java.util.Map"))
-
 ([Migration_ProjectKB_Class61912] of  Widget
 
 	(height 60)
@@ -1260,7 +1206,8 @@
 		[Migration_ProjectKB_Class62009]
 		[Migration_ProjectKB_Class41878]
 		[Migration_ProjectKB_Class21850]
-		[Migration_ProjectKB_Class11850]))
+		[Migration_ProjectKB_Class11850]
+		[Migration_ProjectKB_Class51878]))
 
 ([Migration_ProjectKB_Class62009] of  Property_List
 
@@ -1382,6 +1329,55 @@
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
 
+([Migration_ProjectKB_Class71946] of  Property_List
+
+	(name ":Visible:Slot:List")
+	(properties
+		[Migration_ProjectKB_Class71947]
+		[Migration_ProjectKB_Class71948]
+		[Migration_ProjectKB_Class71949]
+		[Migration_ProjectKB_Class71950]))
+
+([Migration_ProjectKB_Class71947] of  String
+
+	(name "addition")
+	(string_value "addition"))
+
+([Migration_ProjectKB_Class71948] of  String
+
+	(name "age")
+	(string_value "age"))
+
+([Migration_ProjectKB_Class71949] of  String
+
+	(name "area")
+	(string_value "area"))
+
+([Migration_ProjectKB_Class71950] of  String
+
+	(name "action")
+	(string_value "action"))
+
+([Migration_ProjectKB_Class71951] of  String
+
+	(name ":Visible:Slot:Index0")
+	(string_value "action"))
+
+([Migration_ProjectKB_Class71952] of  String
+
+	(name ":Visible:Slot:Index1")
+	(string_value "area"))
+
+([Migration_ProjectKB_Class71953] of  String
+
+	(name ":Visible:Slot:Index2")
+	(string_value "addition"))
+
+([Migration_ProjectKB_Class71954] of  String
+
+	(name ":Visible:Slot:Index3")
+	(string_value "age"))
+
 ([Migration_ProjectKB_Class71963] of  Widget
 
 	(height 60)
@@ -1389,9 +1385,9 @@
 	(name "area")
 	(property_list [Migration_ProjectKB_Class71964])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 130)
+	(width 140)
 	(x 140)
-	(y 360))
+	(y 300))
 
 ([Migration_ProjectKB_Class71964] of  Property_List
 )
@@ -1488,7 +1484,7 @@
 
 ([Migration_ProjectKB_Class81917] of  Integer
 
-	(integer_value 112)
+	(integer_value 89)
 	(name ":PREFERRED:SIZE:DESCRIPTORaddition"))
 
 ([Migration_ProjectKB_Class81919] of  String
@@ -1503,7 +1499,7 @@
 
 ([Migration_ProjectKB_Class81921] of  Integer
 
-	(integer_value 107)
+	(integer_value 97)
 	(name ":PREFERRED:SIZE:DESCRIPTORarea"))
 
 ([Migration_ProjectKB_Class81923] of  String
@@ -1518,12 +1514,12 @@
 
 ([Migration_ProjectKB_Class81925] of  Integer
 
-	(integer_value 103)
+	(integer_value 96)
 	(name ":PREFERRED:SIZE:DESCRIPTORaction"))
 
 ([Migration_ProjectKB_Class81927] of  Integer
 
-	(integer_value 3)
+	(integer_value 4)
 	(name ":Number:Of:Visible:Slots"))
 
 ([Migration_ProjectKB_Class81931] of  Boolean
@@ -1651,44 +1647,6 @@
 	(name ":Add:Instance:Dialog:Title")
 	(string_value "Select an already existing instance"))
 
-([Migration_ProjectKB_Class82068] of  Property_List
-
-	(name ":Visible:Slot:List")
-	(properties
-		[Migration_ProjectKB_Class82069]
-		[Migration_ProjectKB_Class82070]
-		[Migration_ProjectKB_Class82071]))
-
-([Migration_ProjectKB_Class82069] of  String
-
-	(name "addition")
-	(string_value "addition"))
-
-([Migration_ProjectKB_Class82070] of  String
-
-	(name "area")
-	(string_value "area"))
-
-([Migration_ProjectKB_Class82071] of  String
-
-	(name "action")
-	(string_value "action"))
-
-([Migration_ProjectKB_Class82072] of  String
-
-	(name ":Visible:Slot:Index0")
-	(string_value "action"))
-
-([Migration_ProjectKB_Class82073] of  String
-
-	(name ":Visible:Slot:Index1")
-	(string_value "area"))
-
-([Migration_ProjectKB_Class82074] of  String
-
-	(name ":Visible:Slot:Index2")
-	(string_value "addition"))
-
 ([Migration_ProjectKB_Class82103] of  Widget
 
 	(height 60)
@@ -1696,9 +1654,9 @@
 	(name "addition")
 	(property_list [Migration_ProjectKB_Class82104])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 130)
-	(x 270)
-	(y 360))
+	(width 140)
+	(x 280)
+	(y 300))
 
 ([Migration_ProjectKB_Class82104] of  Property_List
 )
@@ -1716,6 +1674,92 @@
 
 ([Migration_ProjectKB_Class82148] of  Property_List
 )
+
+([Migration_ProjectKB_Class91967] of  String
+
+	(name "Cesium")
+	(string_value "{Cesium+}status{+}time"))
+
+([Migration_ProjectKB_Class91968] of  String
+
+	(name "CesiumCamera")
+	(string_value "{CesiumCamera+}status{+}height{+}heading{+}pitch{+}roll"))
+
+([Migration_ProjectKB_Class91969] of  String
+
+	(name "Basin")
+	(string_value "title"))
+
+([Migration_ProjectKB_Class91970] of  String
+
+	(name "Creature")
+	(string_value "title{+}id"))
+
+([Migration_ProjectKB_Class91971] of  String
+
+	(name "Phase")
+	(string_value "action{+}area{+}addition"))
+
+([Migration_ProjectKB_Class91972] of  String
+
+	(name "Migration")
+	(string_value "{Salmon+migration}"))
+
+([Migration_ProjectKB_Class91973] of  String
+
+	(name "Walk")
+	(string_value "action{+}area"))
+
+([Migration_ProjectKB_Class91974] of  Map
+
+	(entries
+		[Migration_ProjectKB_Class91975]
+		[Migration_ProjectKB_Class91976]
+		[Migration_ProjectKB_Class91977]
+		[Migration_ProjectKB_Class91978]
+		[Migration_ProjectKB_Class91979]))
+
+([Migration_ProjectKB_Class91975] of  Map_Entry
+
+	(key "Migration_Class2")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "16 595 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class91976] of  Map_Entry
+
+	(key "Migration_Class4")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "18 503 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class91977] of  Map_Entry
+
+	(key "Migration_Class0")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "8 501 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class91978] of  Map_Entry
+
+	(key "HiitolanjokiRCZ_Class14")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "14 699 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class91979] of  Map_Entry
+
+	(key "Migration_Class80002")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "7 288 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class91980] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "Migration_ProjectKB_Class91974")
+	(value_class "java.util.Map"))
 
 ([Migration_ProjectKB_Class9256] of  Widget
 
