@@ -1,4 +1,4 @@
-; Thu Jun 25 20:05:44 MSK 2020
+; Mon Jun 29 22:23:44 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -150,6 +150,7 @@
 		[Migration_Class110000]
 		[Migration_Class10000]
 		[Migration_Class130011]
+		[Migration_Class140000]
 		[Migration_Class120008]
 		[Migration_Class120002]
 		[Migration_Class50006]
@@ -173,7 +174,8 @@
 		[Migration_Class110001]
 		[Migration_Class20000]
 		[Migration_Class50001]
-		[Migration_Class20006])
+		[Migration_Class20006]
+		[Migration_Class120000])
 	(title "Cesium Migration"))
 
 ([HiitolanjokiRCZ_Class20003] of  CloNamespace
@@ -302,12 +304,12 @@
 	(id "s")
 	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
 	(N 0)
-	(spawn 1)
+	(spawn 5)
 	(status "BEGIN")
 	(title "Salmon")
 	(up-speed 2.0)
 	(walk-speed 2.0)
-	(waypoints "[[29.373 61.446]]"))
+	(waypoints "[[29.353847762188938 61.44634037029569]]"))
 
 ([Migration_Class110000] of  CloFunction
 
@@ -327,9 +329,9 @@
 		"NAME"
 		"NAME"
 		"NAME")
-	(estuary "[29.885 61.18]")
+	(estuary "[29.888 61.179]")
 	(flow-speed 2.0)
-	(head "[29.346 61.444]")
+	(head "[29.352 61.446]")
 	(layer [HiitolanjokiRCZ_Class3])
 	(title "River Hiitolanjoki")
 	(values
@@ -394,23 +396,28 @@
 
 ([Migration_Class130011] of  CloFunction
 
-	(source "(let [lss (map #(.getCoordinates %) geoms)\n       lss (map (fn [z] (map #(list (.x %) (.y %) height) z)) lss)]\n  (loop [[ps & rss] lss path [(conj start height)]]\n    (if (some? ps)\n      (let [p1 (last path)\n             p2 (first ps)\n             p3 (last ps)\n             d1 (simple-dist p1 p2)\n             d2 (simple-dist p1 p3)\n             nxt (if (< d2 d1)\n                     (reverse ps)\n                     ps)] \n        (recur rss (concat path nxt)))\n      path)))")
-	(title "geoms-to-path [geoms start height]"))
+	(source ";; if finish, both start and finish added to path, else bare path\n([geoms start finish]\n  (concat [start] (geoms-to-path geoms start) [finish])) \n([geoms start]\n  (let [lss (map #(.getCoordinates %) geoms)\n         lss (map (fn[z] (map #(list (.x %) (.y %)) z)) lss)]\n    (loop [[ps & rss] lss path [start]]\n      (if (some? ps)\n        (let [p1 (last path)\n               p2 (first ps)\n               p3 (last ps)\n               d1 (simple-dist p1 p2)\n               d2 (simple-dist p1 p3)\n               nxt (if (< d2 d1)\n                       (reverse ps)\n                       ps)] \n          (recur rss (concat path nxt)))\n        (rest path)))))")
+	(title "geoms-to-path"))
 
 ([Migration_Class130012] of  CloFunction
 
 	(source "(+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2)))")
-	(title "simple-dist [[lo1 la1 & _] [lo2 la2 & _]]"))
+	(title "simple-dist [[lo1 la1] [lo2 la2]]"))
 
 ([Migration_Class130013] of  CloFunction
 
-	(source ";; returns time of going in sec and waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pts (geoms-to-path geoms start height)\n       wps [(first pts) (last pts)]\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  [elt wps])")
-	(title "go-geoms-path [id look knots start geoms]"))
+	(source ";; returns time of going in sec and waypoints\n;; if finish = nil, only bare path included in czml, else with added start and finish\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (if finish \n               (geoms-to-path geoms start finish)\n               (geoms-to-path geoms start))\n       wps [(first pth) (last pth)]\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-geoms-path [id look knots geoms start finish]"))
 
 ([Migration_Class130014] of  CloFunction
 
-	(source ";; returns time of going in sec and waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       [lah loh] (river :head)\n       [lae loe] (river :estuary)\n       gvf (river :gv-field)]\n  (go-geoms-path id look\n    (condp = direction\n      :down (+ knots (river :flow-speed))\n      :up knots)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (condp = direction\n      :down (river :geoms)\n      :up (reverse (river :geoms)))))")
+	(source ";; returns time of going in sec and waypoints\n(go-geoms-path id look\n  (condp = direction\n    :down (+ knots (river :flow-speed))\n    :up knots)\n  (condp = direction\n    :down (river :geoms)\n    :up (reverse (river :geoms)))\n  (condp = direction\n    :down (river :head)\n    :up (river :estuary))\n  (condp = direction\n    :down (river :estuary)\n    :up (river :head)))")
 	(title "go-river [id look knots river direction]"))
+
+([Migration_Class140000] of  CloFunction
+
+	(source "(map #(list (first %) (second %) height) path)")
+	(title "insert-height [path height]"))
 
 ([Migration_Class140001] of  CloFunction
 
@@ -461,7 +468,7 @@
 
 ([Migration_Class150000] of  CloFunction
 
-	(source "(let [[c s] (condp = age\n                 \"child\" [[0 255 0 255] 4]\n                 \"young\" [[255 255 0 255] 6]\n                 \"adult\" [[255 94 1 255] 8]\n                 \"old\" [[255 0 64 255] 10])]\n  (assoc look :color c :size s))")
+	(source "(let [[c s] (condp = age\n                 \"child\" [[0 255 0 255] 5]\n                 \"young\" [[255 255 0 255] 7]\n                 \"adult\" [[255 94 1 255] 9]\n                 \"old\" [[220 20 60 255] 11])]\n  (assoc look :color c :size s))")
 	(title "look [age look]"))
 
 ([Migration_Class150001] of  CloFunction
@@ -509,6 +516,26 @@
 		[Migration_Class160015]
 		[Migration_Class160016]))
 
+([Migration_Class160000] of  CloFuncall
+
+	(source "(@POINTS keys)"))
+
+([Migration_Class160001] of  CloFuncall
+
+	(source "(type (name (gensym \"s\")))"))
+
+([Migration_Class160002] of  CloFuncall
+
+	(source "(rete.core/facts 'Creature)"))
+
+([Migration_Class160003] of  CloFuncall
+
+	(source "(rete.core/fact-list 'Creature)"))
+
+([Migration_Class160004] of  CloFuncall
+
+	(source "(first (rete.core/fact-list 'Creature))"))
+
 ([Migration_Class160005] of  CloFunction
 
 	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (if (covered-by lo3 la3 geoms)\n    [lo3 la3]\n    (next-covered lo1 la1 slon step geoms)))")
@@ -516,8 +543,8 @@
 
 ([Migration_Class160006] of  CloFunction
 
-	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [(conj start height)]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path (conj nxt height))]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
-	(title "random-walk-closer [start finish steps step height geoms]"))
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [start]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path nxt)]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
+	(title "random-walk-closer [start finish steps step geoms]"))
 
 ([Migration_Class160008] of  Phase
 
@@ -580,10 +607,54 @@
 	(salience 1)
 	(title "mig:Init Migration"))
 
+([Migration_Class170001] of  CloFuncall
+
+	(source "(count (rete.core/fact-list))"))
+
+([Migration_Class170002] of  CloFuncall
+
+	(source "(rete.core/fact-list 'Cesium)"))
+
+([Migration_Class170003] of  CloFuncall
+
+	(source "(count (rete.core/facts-list 'Creature))"))
+
+([Migration_Class170004] of  CloFuncall
+
+	(source "(count (rete.core/fact-list 'Creature))"))
+
+([Migration_Class170005] of  CloFuncall
+
+	(source "(nth (first (rete.core/fact-list 'Creature)) 10)"))
+
+([Migration_Class170006] of  CloFuncall
+
+	(source "(nth (first (rete.core/fact-list 'Creature)) 20)"))
+
+([Migration_Class170007] of  CloFuncall
+
+	(source "(nth (first (rete.core/fact-list 'Creature)) 25)"))
+
+([Migration_Class170008] of  CloFuncall
+
+	(source "(first (nth (first (rete.core/fact-list 'Creature)) 25))"))
+
+([Migration_Class170009] of  CloFuncall
+
+	(source "(protege.core/fifos \"Creature\" \"id\" (first (nth (first (rete.core/fact-list 'Creature)) 25))"))
+
+([Migration_Class170010] of  CloFuncall
+
+	(source "(protege.core/fifos \"Creature\" \"id\" (first (nth (first (rete.core/fact-list 'Creature)) 25)))"))
+
+([Migration_Class170011] of  CloFuncall
+
+	(source "(protege.core/fifos \"Creature\" \"id\" (str (first (nth (first (rete.core/fact-list 'Creature)) 25))))"))
+
 ([Migration_Class170017] of  CloFunction
 
-	(source "(loop [[s f & r :as ws] wps path []]\n  (cond\n    (> (count path) limstp)\n      path\n    (and s f)\n      (let [rwc1 (random-walk-closer s f steps step height geoms)]\n        (if (< (count rwc1) steps)\n          (recur (rest ws) (concat path rwc1))\n          (let [rwc2 (random-walk-closer f s steps step height geoms)]\n            (if (< (count rwc2) steps)\n              (recur (rest ws) (concat path (reverse rwc2)))\n              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n    true\n      path))")
-	(title "random-by-waypoints [wps limstp steps step height geoms]"))
+	(source "(loop [[s f & r :as ws] wps path []]\n  (cond\n    (> (count path) limstp)\n      path\n    (and s f)\n      (let [rwc1 (random-walk-closer s f steps step geoms)]\n        (if (< (count rwc1) steps)\n          (recur (rest ws) (concat path rwc1))\n          (let [rwc2 (random-walk-closer f s steps step geoms)]\n            (if (< (count rwc2) steps)\n              (recur (rest ws) (concat path (reverse rwc2)))\n              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n    true\n      path))")
+	(title "random-by-waypoints [wps limstp steps step geoms]"))
 
 ([Migration_Class170051] of  OMTPoly
 
@@ -767,6 +838,10 @@
 		"61 29.85 29 26.38")
 	(relative FALSE))
 
+([Migration_Class180005] of  CloFuncall
+
+	(source "(ru.rules/pp 'Clock)"))
+
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [Migration_Class1])
@@ -851,7 +926,7 @@
 
 ([Migration_Class50000] of  CloFunction
 
-	(source ";; returns time of going in sec\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       wps (random-by-waypoints wps limstp steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id wps knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  elt)")
+	(source ";; returns time of going in sec\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-by-waypoints wps limstp steps step geoms)\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  elt)")
 	(title "go-random-by-waypoints [id look knots wps limstp steps step geoms]"))
 
 ([Migration_Class50001] of  CloVar
@@ -861,8 +936,8 @@
 
 ([Migration_Class50005] of  CloFunction
 
-	(source "(let [[lo la _] start\n       phi (Math/toRadians la)\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [[lo la height]]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path (conj nxt height))))\n      path)))")
-	(title "random-walk [start steps step height geoms]"))
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [start]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path nxt)))\n      path)))")
+	(title "random-walk [start steps step geoms]"))
 
 ([Migration_Class50006] of  CloFunction
 
@@ -894,6 +969,10 @@
 	(salience 0)
 	(title "sim:AdjustCZClockRepeat"))
 
+([Migration_Class60000] of  CloFuncall
+
+	(source "(name (gensym \"s\"))"))
+
 ([Migration_Class60001] of  Cesium
 
 	(status "START")
@@ -915,15 +994,15 @@
 
 	(action "Walk in")
 	(area "Upper Lakes")
-	(walk-step 0.002)
-	(walk-steps 8))
+	(walk-step 0.001)
+	(walk-steps 20))
 
 ([Migration_Class70002] of  Walk
 
 	(action "Walk backward")
 	(area "Upper Lakes")
-	(walk-step 0.002)
-	(walk-steps 16))
+	(walk-step 0.001)
+	(walk-steps 40))
 
 ([Migration_Class70003] of  Command
 
@@ -1033,7 +1112,7 @@
 
 ([Migration_Class70014] of  CloFunction
 
-	(source ";; returns time of going in sec and 6 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pts (random-walk start steps step height geoms)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)\n       k (max 2 (int (/ (count pts) 5)))\n       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]\n  ;; (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(source ";; returns time of going in sec and 8 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-walk start steps step geoms)\n       k (max 2 (int (/ (count pth) 5)))\n       wps (concat [(first pth)] (take-nth k pth) [(last pth)])\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
 	(title "go-random-walk [id look knots start steps step geoms]"))
 
 ([Migration_Class80000] of  CloFunction
@@ -1058,22 +1137,22 @@
 
 	(action "Walk in")
 	(area "Ladoga Lake")
-	(walk-step 0.002)
-	(walk-steps 80))
+	(walk-step 0.001)
+	(walk-steps 200))
 
 ([Migration_Class80004] of  Walk
 
 	(action "Walk backward")
 	(area "Ladoga Lake")
-	(walk-step 0.002)
-	(walk-steps 200))
+	(walk-step 0.001)
+	(walk-steps 400))
 
 ([Migration_Class80005] of  Walk
 
 	(action "Last walk in")
 	(area "Lake Kivijarvi")
-	(walk-step 0.002)
-	(walk-steps 6))
+	(walk-step 0.001)
+	(walk-steps 10))
 
 ([Migration_Class80006] of  CloFuncall
 
@@ -1110,13 +1189,13 @@
 ([Migration_Class90004] of  Rule
 
 	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	age ?age\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints ?wps\n	spawn ?spw\n	addition ?add\n	area ?are \n	action ?act\n                      (= ?act \"Birth in\"))\n(Clock time ?t)")
-	(rhs "(println ?id  \"Birth\" ?spw :REPEAT 4)\n(retract ?cre)\n(dotimes [i ?spw]\n  (asser Creature N (+ ?t 4)\n	id (gensym ?id)\n	birthtime ?t\n	age ?age\n	look (read-string ?loo)\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints (if (string? ?wps) (read-string ?wps) ?wps)\n	spawn ?spw\n	addition ?add\n	area ?are\n	action ?act\n	status \"REPEAT\")))")
+	(rhs "(println ?id  \"Birth\" ?spw :REPEAT 4)\n(retract ?cre)\n(dotimes [i ?spw]\n  (asser Creature N (+ ?t 4)\n	id (name (gensym ?id))\n	birthtime ?t\n	age ?age\n	look (read-string ?loo)\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints (if (string? ?wps) (read-string ?wps) ?wps)\n	spawn ?spw\n	addition ?add\n	area ?are\n	action ?act\n	status \"REPEAT\")))")
 	(salience 1)
 	(title "mig:Birth"))
 
 ([Migration_Class90005] of  Rule
 
 	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	waypoints ?wps\n	action \"Spawn in\")\n(Clock time ?t)")
-	(rhs "(println ?id \"Spawn in\")\n(when-let [cri (protege.core/fifos \"Creature\" \"id\" (first ?id))]\n  (protege.core/ssv cri \"waypoints\" [(last ?wps)])\n  (println ?id  \"Spawn\" ?id)\n  (ru.rules/assert-instances [cri])\n  (retract ?cre))")
+	(rhs "(println ?id \"Spawn in\")\n(when-let [cri (protege.core/fifos \"Creature\" \"id\" (str (first ?id)))]\n  (protege.core/ssv cri \"waypoints\" (str[(vec (last ?wps))]))\n  (println ?id  \"Spawn\" ?id)\n  (ru.rules/assert-instances [cri])\n  (retract ?cre))")
 	(salience 0)
 	(title "mig:Spawn"))

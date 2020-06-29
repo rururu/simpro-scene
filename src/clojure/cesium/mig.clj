@@ -36,11 +36,12 @@
  [29.912 61.180]
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
+(def POINTS (volatile! {}))
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
 
-(defn simple-dist [[lo1 la1 & _] [lo2 la2 & _]]
+(defn simple-dist [[lo1 la1] [lo2 la2]]
   (+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2))))
 
 (defn gv-field-from-shape
@@ -55,21 +56,28 @@
 (defn geoms-by-attrs [attrs vals gv-field]
   (map #(.geometry (.getGeometry gv-field %1 (AttributeValue. %2))) attrs vals))
 
-(defn geoms-to-path [geoms start height]
+(defn geoms-to-path
+  ;; if finish, both start and finish added to path, else bare path
+([geoms start finish]
+  (concat [start] (geoms-to-path geoms start) [finish])) 
+([geoms start]
   (let [lss (map #(.getCoordinates %) geoms)
-       lss (map (fn [z] (map #(list (.x %) (.y %) height) z)) lss)]
-  (loop [[ps & rss] lss path [(conj start height)]]
-    (if (some? ps)
-      (let [p1 (last path)
-             p2 (first ps)
-             p3 (last ps)
-             d1 (simple-dist p1 p2)
-             d2 (simple-dist p1 p3)
-             nxt (if (< d2 d1)
-                     (reverse ps)
-                     ps)] 
-        (recur rss (concat path nxt)))
-      path))))
+         lss (map (fn[z] (map #(list (.x %) (.y %)) z)) lss)]
+    (loop [[ps & rss] lss path [start]]
+      (if (some? ps)
+        (let [p1 (last path)
+               p2 (first ps)
+               p3 (last ps)
+               d1 (simple-dist p1 p2)
+               d2 (simple-dist p1 p3)
+               nxt (if (< d2 d1)
+                       (reverse ps)
+                       ps)] 
+          (recur rss (concat path nxt)))
+        (rest path))))))
+
+(defn insert-height [path height]
+  (map #(list (first %) (second %) height) path))
 
 (defn river-map [name]
   (or (@RIVERS name)
@@ -131,102 +139,106 @@
     [lo3 la3]
     (next-covered lo1 la1 slon step geoms))))
 
-(defn random-walk [start steps step height geoms]
-  (let [[lo la _] start
-       phi (Math/toRadians la)
+(defn random-walk [start steps step geoms]
+  (let [phi (Math/toRadians (second start))
        slon (/ step (Math/cos phi))]
-  (loop [n steps [lon lat] start path [[lo la height]]]
+  (loop [n steps [lon lat] start path [start]]
     (if (> n 0)
       (let [nxt (next-covered lon lat slon step geoms)]
-        (recur (dec n) nxt (conj path (conj nxt height))))
+        (recur (dec n) nxt (conj path nxt)))
       path))))
 
-(defn random-walk-closer [start finish steps step height geoms]
+(defn random-walk-closer [start finish steps step geoms]
   (let [phi (Math/toRadians (second start))
        slon (/ step (Math/cos phi))
        [lof laf] finish]
-  (loop [n steps [los las] start path [(conj start height)]]
+  (loop [n steps [los las] start path [start]]
     (if (> n 0)
       (let [[lor lar] (next-covered los las slon step geoms)
              [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)
-             newp (conj path (conj nxt height))]
+             newp (conj path nxt)]
         (if (and (== lon lof) (== lan laf))
           newp
           (recur (dec n) nxt newp)))
       path))))
 
-(defn random-by-waypoints [wps limstp steps step height geoms]
+(defn random-by-waypoints [wps limstp steps step geoms]
   (loop [[s f & r :as ws] wps path []]
   (cond
     (> (count path) limstp)
       path
     (and s f)
-      (let [rwc1 (random-walk-closer s f steps step height geoms)]
+      (let [rwc1 (random-walk-closer s f steps step geoms)]
         (if (< (count rwc1) steps)
           (recur (rest ws) (concat path rwc1))
-          (let [rwc2 (random-walk-closer f s steps step height geoms)]
+          (let [rwc2 (random-walk-closer f s steps step geoms)]
             (if (< (count rwc2) steps)
               (recur (rest ws) (concat path (reverse rwc2)))
               (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))
     true
       path)))
 
-(defn go-geoms-path [id look knots start geoms]
+(defn go-geoms-path [id look knots geoms start finish]
   ;; returns time of going in sec and waypoints
+;; if finish = nil, only bare path included in czml, else with added start and finish
 (let [color (look :color)
        size (look :size)
        height (look :height)
-       pts (geoms-to-path geoms start height)
-       wps [(first pts) (last pts)]
+       pth (if finish 
+               (geoms-to-path geoms start finish)
+               (geoms-to-path geoms start))
+       wps [(first pth) (last pth)]
+       pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 
 (defn go-random-walk [id look knots start steps step geoms]
-  ;; returns time of going in sec and 6 waypoints
+  ;; returns time of going in sec and 8 waypoints
 (let [color (look :color)
        size (look :size)
        height (look :height)
-       pts (random-walk start steps step height geoms)
+       pth (random-walk start steps step geoms)
+       k (max 2 (int (/ (count pth) 5)))
+       wps (concat [(first pth)] (take-nth k pth) [(last pth)])
+       pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
-       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)
-       k (max 2 (int (/ (count pts) 5)))
-       wps (concat [(first pts)] (take-nth k pts) [(last pts)])]
-  ;; (vswap! POINTS assoc id pts)
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 
 (defn go-river [id look knots river direction]
   ;; returns time of going in sec and waypoints
-(let [color (look :color)
-       size (look :size)
-       height (look :height)
-       [lah loh] (river :head)
-       [lae loe] (river :estuary)
-       gvf (river :gv-field)]
-  (go-geoms-path id look
-    (condp = direction
-      :down (+ knots (river :flow-speed))
-      :up knots)
-    (condp = direction
-      :down (river :head)
-      :up (river :estuary))
-    (condp = direction
-      :down (river :geoms)
-      :up (reverse (river :geoms))))))
+(go-geoms-path id look
+  (condp = direction
+    :down (+ knots (river :flow-speed))
+    :up knots)
+  (condp = direction
+    :down (river :geoms)
+    :up (reverse (river :geoms)))
+  (condp = direction
+    :down (river :head)
+    :up (river :estuary))
+  (condp = direction
+    :down (river :estuary)
+    :up (river :head))))
 
 (defn go-random-by-waypoints [id look knots wps limstp steps step geoms]
   ;; returns time of going in sec
 (let [color (look :color)
        size (look :size)
        height (look :height)
-       wps (random-by-waypoints wps limstp steps step height geoms)
+       pth (random-by-waypoints wps limstp steps step geoms)
+       pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
-       [czml elt] (cg/add-point-flight id wps knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   elt))
 
@@ -249,9 +261,9 @@
 
 (defn look [age look]
   (let [[c s] (condp = age
-                 "child" [[0 255 0 255] 4]
-                 "young" [[255 255 0 255] 5]
-                 "adult" [[255 94 1 255] 6]
-                 "old" [[255 0 0 255] 7])]
+                 "child" [[0 255 0 255] 5]
+                 "young" [[255 255 0 255] 7]
+                 "adult" [[255 94 1 255] 9]
+                 "old" [[220 20 60 255] 11])]
   (assoc look :color c :size s)))
 
