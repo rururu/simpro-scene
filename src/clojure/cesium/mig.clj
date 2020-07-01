@@ -37,6 +37,22 @@
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
 (def POINTS (volatile! {}))
+(def DTREE [[:N [:W :S] [:E :S]]
+ [:S [:W :N] [:E :N]]
+ [:W [:N :E] [:S :E]]
+ [:E [:N :W] [:S :W]]
+ [:NE [:NW :SW] [:SE :SW]]
+ [:SW [:NW :NE] [:SE :NE]]
+ [:NW [:SW :SE] [:NE :SE]]
+ [:SE [:SW :NW] [:NE :NW]]])
+(def SMAP {:N [0 1]
+ :S [0 -1]
+ :W [-1 0]
+ :E [1 0]
+ :NW [-1 1]
+ :NE [1 1]
+ :SW [-1 -1]
+ :SE [1 -1]})
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -266,4 +282,13 @@
                  "adult" [[255 94 1 255] 9]
                  "old" [[220 20 60 255] 11])]
   (assoc look :color c :size s)))
+
+(defn rand-pos [lon lat slon step geoms]
+  (let [p (nth DTREE (rand 8))
+       s (SMAP (first p))
+       [lon1 lat1] [(+ lon (* slon (first s))) (+ lat (* step (second s)))]]
+  (if (covered-by lon1 lat1 geoms)
+    [lon1 lat1]
+    (let [p (rest p)]
+      p))))
 

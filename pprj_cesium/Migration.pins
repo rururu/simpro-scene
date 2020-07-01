@@ -1,4 +1,4 @@
-; Mon Jun 29 22:23:44 MSK 2020
+; Wed Jul 01 20:14:26 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -167,7 +167,8 @@
 		[Migration_Class50000]
 		[Migration_Class40024]
 		[Migration_Class140001]
-		[Migration_Class150000])
+		[Migration_Class150000]
+		[Migration_Class190005])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
 		[Migration_Class30000]
@@ -175,7 +176,9 @@
 		[Migration_Class20000]
 		[Migration_Class50001]
 		[Migration_Class20006]
-		[Migration_Class120000])
+		[Migration_Class120000]
+		[Migration_Class180004]
+		[Migration_Class190007])
 	(title "Cesium Migration"))
 
 ([HiitolanjokiRCZ_Class20003] of  CloNamespace
@@ -516,10 +519,6 @@
 		[Migration_Class160015]
 		[Migration_Class160016]))
 
-([Migration_Class160000] of  CloFuncall
-
-	(source "(@POINTS keys)"))
-
 ([Migration_Class160001] of  CloFuncall
 
 	(source "(type (name (gensym \"s\")))"))
@@ -606,6 +605,10 @@
 	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"area\")\n                                 (protege.core/sv % \"addition\")\n                                 (protege.core/sv % \"age\"))\n                   ?phs)))")
 	(salience 1)
 	(title "mig:Init Migration"))
+
+([Migration_Class170000] of  CloFuncall
+
+	(source "(int 7.0)"))
 
 ([Migration_Class170001] of  CloFuncall
 
@@ -838,9 +841,84 @@
 		"61 29.85 29 26.38")
 	(relative FALSE))
 
+([Migration_Class180000] of  CloFuncall
+
+	(source "(do (def gms (lake-map \"Ladoga Lake\")) 0)"))
+
+([Migration_Class180001] of  CloFuncall
+
+	(source "(int 6.999999999)"))
+
+([Migration_Class180002] of  CloFuncall
+
+	(source "(nth [1 2 3 4 5 6 7] (rand 7))"))
+
+([Migration_Class180003] of  CloFuncall
+
+	(source "(dotimes [i 100] (println (nth [1 2 3 4 5 6 7] (rand 7))))"))
+
+([Migration_Class180004] of  CloVar
+
+	(source "[[:N [:W :S] [:E :S]]\n [:S [:W :N] [:E :N]]\n [:W [:N :E] [:S :E]]\n [:E [:N :W] [:S :W]]\n [:NE [:NW :SW] [:SE :SW]]\n [:SW [:NW :NE] [:SE :NE]]\n [:NW [:SW :SE] [:NE :SE]]\n [:SE [:SW :NW] [:NE :NW]]]")
+	(title "DTREE"))
+
 ([Migration_Class180005] of  CloFuncall
 
 	(source "(ru.rules/pp 'Clock)"))
+
+([Migration_Class190001] of  CloFuncall
+
+	(source "(do (def gms (:geoms gms)) 2)"))
+
+([Migration_Class190002] of  CloFuncall
+
+	(source "(rand-pos 30.2 61.2 0.5 0.1 gms)"))
+
+([Migration_Class190003] of  CloFuncall
+
+	(source "(for [i (range 10)] (rand-pos 30.2 61.2 0.5 0.1 gms))"))
+
+([Migration_Class190004] of  CloFuncall
+
+	(source "(for [i (range 100)] (rand-pos 30.2 61.2 0.5 0.1 gms))"))
+
+([Migration_Class190005] of  CloFunction
+
+	(source "(let [p (nth DTREE (rand 8))\n       s (SMAP (first p))\n       [lon1 lat1] [(+ lon (* slon (first s))) (+ lat (* step (second s)))]]\n  (if (covered-by lon1 lat1 geoms)\n    [lon1 lat1]\n    (let [p (rest p)]\n      p)))")
+	(title "rand-pos [lon lat slon step geoms]"))
+
+([Migration_Class190006] of  CloFuncall
+
+	(source "(dotimes [i 100] (println (nth [1 2 3 4 5 6 7 8] (rand 8))))"))
+
+([Migration_Class190007] of  CloVar
+
+	(source "{:N [0 1]\n :S [0 -1]\n :W [-1 0]\n :E [1 0]\n :NW [-1 1]\n :NE [1 1]\n :SW [-1 -1]\n :SE [1 -1]}")
+	(title "SMAP"))
+
+([Migration_Class190008] of  CloFuncall
+
+	(source "(rand-pos)"))
+
+([Migration_Class190009] of  CloFuncall
+
+	(source "(rand-pos 30 60 0.5 0.1)"))
+
+([Migration_Class190010] of  CloFuncall
+
+	(source "(lake-map \"Ladoga Lake\")"))
+
+([Migration_Class190011] of  CloFuncall
+
+	(source "(def gms (:geoms (lake-map \"Ladoga Lake\")))"))
+
+([Migration_Class190012] of  CloFuncall
+
+	(source "(rand-pos 30 60 0.5 0.1 gms)"))
+
+([Migration_Class190013] of  CloFuncall
+
+	(source "(rand-pos 30.158 61.201 0.5 0.1 gms)"))
 
 ([Migration_Class2] of  %3AINSTANCE-ANNOTATION
 
