@@ -8,6 +8,7 @@
   ru.igis.omtab.Clock
   ru.igis.omtab.OMT
   ru.igis.omtab.MapOb
+  ru.igis.omtab.gui.RuMapMouseAdapter
   com.bbn.openmap.omGraphics.OMGraphic
   com.bbn.openmap.omGraphics.OMGraphicList
   com.bbn.openmap.proj.GreatCircle
@@ -135,64 +136,46 @@
     (< start finish) (+ start s)
     true (- start s))))
 
-(defn covered-by [lon lat geoms]
-  (let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]
-  (some #(.coveredBy pnt %) geoms)))
-
-(defn next-covered [lon lat slon step geoms]
-  (loop [j 40]
-  (if (> j 0)
-    (let [lon1 (+ lon (rand-step slon))
-           lat1 (+ lat (rand-step step))]
-      (if (covered-by lon1 lat1 geoms)
-        [lon1 lat1]
-        (recur (dec j)))))))
-
-(defn next-covered-closer [lo1 la1 lo2 la2 slon step geoms]
+(defn next-closer [lo1 la1 lo2 la2 slon step]
   (let [lo3 (rand-step-closer slon lo1 lo2)
        la3 (rand-step-closer step la1 la2)]
-  (if (covered-by lo3 la3 geoms)
-    [lo3 la3]
-    (next-covered lo1 la1 slon step geoms))))
+  (cond
+    (and (= lo3 lo2) (= la3 la2)) [lo3 la3]
+    (and (not= lo3 lo2) (not= la3 la2)) [lo3 la3]
+    (= lo3 lo2) [(+ lo3 (rand-step slon)) la3]
+    (= la3 la2) [lo3 (+ la3 (rand-step step))])))
 
-(defn random-walk [start steps step geoms]
-  (let [phi (Math/toRadians (second start))
-       slon (/ step (Math/cos phi))]
-  (loop [n steps [lon lat] start path [start]]
-    (if (> n 0)
-      (let [nxt (next-covered lon lat slon step geoms)]
-        (recur (dec n) nxt (conj path nxt)))
-      path))))
-
-(defn random-walk-closer [start finish steps step geoms]
+(defn random-walk-closer [start finish steps step]
   (let [phi (Math/toRadians (second start))
        slon (/ step (Math/cos phi))
        [lof laf] finish]
   (loop [n steps [los las] start path [start]]
     (if (> n 0)
-      (let [[lor lar] (next-covered los las slon step geoms)
-             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)
+      (let [[lon lan :as nxt] (next-closer los las lof laf slon step)
              newp (conj path nxt)]
         (if (and (== lon lof) (== lan laf))
           newp
           (recur (dec n) nxt newp)))
       path))))
 
-(defn random-by-waypoints [wps limstp steps step geoms]
-  (loop [[s f & r :as ws] wps path []]
-  (cond
-    (> (count path) limstp)
-      path
-    (and s f)
-      (let [rwc1 (random-walk-closer s f steps step geoms)]
-        (if (< (count rwc1) steps)
-          (recur (rest ws) (concat path rwc1))
-          (let [rwc2 (random-walk-closer f s steps step geoms)]
-            (if (< (count rwc2) steps)
-              (recur (rest ws) (concat path (reverse rwc2)))
-              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))
-    true
-      path)))
+(defn random-by-waypoints [wps limstp steps step]
+  (let [rvs (< (rand) 0.5)
+       wps (if rvs (reverse wps) wps)
+       pth (loop [[s f & r :as ws] wps path []]
+	  (cond
+	    (> (count path) limstp)
+	      path
+	    (and s f)
+	      (let [rwc1 (random-walk-closer s f steps step)]
+	        (if (< (count rwc1) steps)
+	          (recur (rest ws) (concat path rwc1))
+	          (let [rwc2 (random-walk-closer f s steps step)]
+	            (if (< (count rwc2) steps)
+	              (recur (rest ws) (concat path (reverse rwc2)))
+	              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))
+	    true
+	      path))]
+  (if rvs (reverse pth) pth)))
 
 (defn go-geoms-path [id look knots geoms start finish]
   ;; returns time of going in sec and waypoints
@@ -204,22 +187,6 @@
                (geoms-to-path geoms start finish)
                (geoms-to-path geoms start))
        wps [(first pth) (last pth)]
-       pts (insert-height pth height)
-       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       mils (+ (Clock/getClock) 2000)
-       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! POINTS assoc id pts)
-  (cs/send-czml czml)
-  [elt wps]))
-
-(defn go-random-walk [id look knots start steps step geoms]
-  ;; returns time of going in sec and 8 waypoints
-(let [color (look :color)
-       size (look :size)
-       height (look :height)
-       pth (random-walk start steps step geoms)
-       k (max 2 (int (/ (count pth) 5)))
-       wps (concat [(first pth)] (take-nth k pth) [(last pth)])
        pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
@@ -244,19 +211,25 @@
     :down (river :estuary)
     :up (river :head))))
 
-(defn go-random-by-waypoints [id look knots wps limstp steps step geoms]
-  ;; returns time of going in sec
+(defn go-random-by-waypoints [id look knots wps limstp steps step]
+  ;; returns time of going in sec and Nwps - 2 waypoints
 (let [color (look :color)
        size (look :size)
        height (look :height)
-       pth (random-by-waypoints wps limstp steps step geoms)
+       pth (random-by-waypoints wps limstp steps step)
+       wpn (count wps)
+       wps (take-nth wpn pth)
+       wps (cond
+                (< (count wps) 3) pth
+                (= (last wps) (last pth)) wps
+                true (concat wps [(last pth)]))
        pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! POINTS assoc id pts)
+  (vswap! POINTS assoc id pth)
   (cs/send-czml czml)
-  elt))
+  [elt wps]))
 
 (defn model-clock [clk scl]
   (let [stp (+ clk 3600000)
@@ -283,12 +256,53 @@
                  "old" [[220 20 60 255] 11])]
   (assoc look :color c :size s)))
 
-(defn rand-pos [lon lat slon step geoms]
-  (let [p (nth DTREE (rand 8))
-       s (SMAP (first p))
-       [lon1 lat1] [(+ lon (* slon (first s))) (+ lat (* step (second s)))]]
-  (if (covered-by lon1 lat1 geoms)
-    [lon1 lat1]
-    (let [p (rest p)]
-      p))))
+(defn dms [x]
+  (if (number? x)
+  (MapOb/getDegMin x)
+  (str (MapOb/getDegMin (first x))
+        " "
+        (MapOb/getDegMin (second x)))))
+
+(defn make-region [pi mo [lat lon]]
+  (if-let [p (OMT/getMapOb pi)]
+  (OMT/removeMapOb p false))
+(let [pp (svs pi "points")]
+  (when (empty? pp)
+    (ssv pi "latitude" (dms lat))
+    (ssv pi "longitude" (dms lon)))
+  (ssvs pi "points"
+    (concat pp [(dms [lat lon])]))
+  (OMT/getOrAdd pi)))
+
+(defn set-onclick [fun]
+  (let [pg0 (first (OMT/getPlaygrounds))
+       rumma (proxy [RuMapMouseAdapter] []
+                     (mouseLeftButtonClickedOn [mo llp runa]
+                       (fun mo (seq llp))
+                       (.manageGraphics pg0)
+                       true))]
+  (.setRuMapMouseAdapter pg0 rumma)))
+
+(defn build-route [hm inst]
+  (let [mp (into {} hm)]
+  (set-onclick (partial make-region (mp "poly")))))
+
+(defn walk-route-waypoints [wri]
+  (let [poli (if (string? wri) 
+               (fifos "OMTPoly" "label" wri)
+               (sv wri "poly"))]
+  (map #(let [[lag lam log lom] (.split % " ")]
+                    [(MapOb/getDeg (str log " " lom))
+                     (MapOb/getDeg (str lag " " lam))])
+    (svs poli "points"))))
+
+(defn rwrw []
+  (def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p0"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p1"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p2"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p3")))
 

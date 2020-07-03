@@ -1,4 +1,4 @@
-; Wed Jul 01 20:14:26 MSK 2020
+; Fri Jul 03 19:53:01 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,13 +21,14 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Migration_ProjectKB_Class41855]
-		[Migration_ProjectKB_Class41856]
-		[Migration_ProjectKB_Class41857]
-		[Migration_ProjectKB_Class41858]
-		[Migration_ProjectKB_Class41859]
-		[Migration_ProjectKB_Class41860]
-		[Migration_ProjectKB_Class41861]))
+		[Migration_ProjectKB_Class102065]
+		[Migration_ProjectKB_Class102066]
+		[Migration_ProjectKB_Class102067]
+		[Migration_ProjectKB_Class102068]
+		[Migration_ProjectKB_Class102069]
+		[Migration_ProjectKB_Class102070]
+		[Migration_ProjectKB_Class102071]
+		[Migration_ProjectKB_Class102072]))
 
 ([CLSES_TAB] of  Widget
 
@@ -90,8 +91,8 @@
 
 ([KB_209499_Class1] of  Map
 
-	(entries [Migration_ProjectKB_Class41868])
-	(referenced_maps [Migration_ProjectKB_Class41862]))
+	(entries [Migration_ProjectKB_Class102079])
+	(referenced_maps [Migration_ProjectKB_Class102073]))
 
 ([KB_209499_Class10] of  Property_List
 )
@@ -229,6 +230,34 @@
 	(is_hidden TRUE)
 	(property_list [KB_209499_Class10])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
+([KB_596225_Class1846] of  Map
+
+	(entries
+		[KB_596225_Class1847]
+		[KB_596225_Class1848]
+		[KB_596225_Class1849]))
+
+([KB_596225_Class1847] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_596225_Class1848] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_596225_Class1849] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_901300_Class1776] of  Widget
 
@@ -379,38 +408,101 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
-([KB_914916_Class1846] of  Map
-
-	(entries
-		[KB_914916_Class1847]
-		[KB_914916_Class1848]
-		[KB_914916_Class1849]))
-
-([KB_914916_Class1847] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_914916_Class1848] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_914916_Class1849] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
+
+([Migration_ProjectKB_Class102065] of  String
+
+	(name "Cesium")
+	(string_value "{Cesium+}status{+}time"))
+
+([Migration_ProjectKB_Class102066] of  String
+
+	(name "CesiumCamera")
+	(string_value "{CesiumCamera+}status{+}height{+}heading{+}pitch{+}roll"))
+
+([Migration_ProjectKB_Class102067] of  String
+
+	(name "WalkRoute")
+	(string_value "poly"))
+
+([Migration_ProjectKB_Class102068] of  String
+
+	(name "Basin")
+	(string_value "title"))
+
+([Migration_ProjectKB_Class102069] of  String
+
+	(name "Creature")
+	(string_value "title{+}id"))
+
+([Migration_ProjectKB_Class102070] of  String
+
+	(name "Phase")
+	(string_value "action{+}area{+}addition"))
+
+([Migration_ProjectKB_Class102071] of  String
+
+	(name "Migration")
+	(string_value "{Salmon+migration}"))
+
+([Migration_ProjectKB_Class102072] of  String
+
+	(name "Walk")
+	(string_value "action{+}area"))
+
+([Migration_ProjectKB_Class102073] of  Map
+
+	(entries
+		[Migration_ProjectKB_Class102074]
+		[Migration_ProjectKB_Class102075]
+		[Migration_ProjectKB_Class102076]
+		[Migration_ProjectKB_Class102077]
+		[Migration_ProjectKB_Class102078]))
+
+([Migration_ProjectKB_Class102074] of  Map_Entry
+
+	(key "Migration_Class2")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "16 595 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class102075] of  Map_Entry
+
+	(key "Migration_Class4")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "18 503 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class102076] of  Map_Entry
+
+	(key "Migration_Class0")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "8 501 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class102077] of  Map_Entry
+
+	(key "HiitolanjokiRCZ_Class14")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "14 699 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class102078] of  Map_Entry
+
+	(key "Migration_Class80002")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "7 288 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([Migration_ProjectKB_Class102079] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "Migration_ProjectKB_Class102073")
+	(value_class "java.util.Map"))
 
 ([Migration_ProjectKB_Class11850] of  Widget
 
@@ -979,92 +1071,6 @@
 ([Migration_ProjectKB_Class31873] of  Property_List
 )
 
-([Migration_ProjectKB_Class41855] of  String
-
-	(name "Cesium")
-	(string_value "{Cesium+}status{+}time"))
-
-([Migration_ProjectKB_Class41856] of  String
-
-	(name "CesiumCamera")
-	(string_value "{CesiumCamera+}status{+}height{+}heading{+}pitch{+}roll"))
-
-([Migration_ProjectKB_Class41857] of  String
-
-	(name "Basin")
-	(string_value "title"))
-
-([Migration_ProjectKB_Class41858] of  String
-
-	(name "Creature")
-	(string_value "title{+}id"))
-
-([Migration_ProjectKB_Class41859] of  String
-
-	(name "Phase")
-	(string_value "action{+}area{+}addition"))
-
-([Migration_ProjectKB_Class41860] of  String
-
-	(name "Migration")
-	(string_value "{Salmon+migration}"))
-
-([Migration_ProjectKB_Class41861] of  String
-
-	(name "Walk")
-	(string_value "action{+}area"))
-
-([Migration_ProjectKB_Class41862] of  Map
-
-	(entries
-		[Migration_ProjectKB_Class41863]
-		[Migration_ProjectKB_Class41864]
-		[Migration_ProjectKB_Class41865]
-		[Migration_ProjectKB_Class41866]
-		[Migration_ProjectKB_Class41867]))
-
-([Migration_ProjectKB_Class41863] of  Map_Entry
-
-	(key "Migration_Class2")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "16 595 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class41864] of  Map_Entry
-
-	(key "Migration_Class4")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "18 503 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class41865] of  Map_Entry
-
-	(key "Migration_Class0")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "8 501 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class41866] of  Map_Entry
-
-	(key "HiitolanjokiRCZ_Class14")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "14 699 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class41867] of  Map_Entry
-
-	(key "Migration_Class80002")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "7 288 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([Migration_ProjectKB_Class41868] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "Migration_ProjectKB_Class41862")
-	(value_class "java.util.Map"))
-
 ([Migration_ProjectKB_Class41878] of  Widget
 
 	(height 60)
@@ -1415,6 +1421,23 @@
 	(name "vertical_stretcher")
 	(string_value "<<none>>"))
 
+([Migration_ProjectKB_Class71944] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "walk-routes")
+	(property_list [Migration_ProjectKB_Class71945])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 200)
+	(y 60))
+
+([Migration_ProjectKB_Class71945] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class91946]
+		[Migration_ProjectKB_Class91947]))
+
 ([Migration_ProjectKB_Class71946] of  Property_List
 
 	(name ":Visible:Slot:List")
@@ -1492,7 +1515,8 @@
 		[Migration_ProjectKB_Class71968]
 		[Migration_ProjectKB_Class71970]
 		[Migration_ProjectKB_Class71972]
-		[Migration_ProjectKB_Class71974]))
+		[Migration_ProjectKB_Class71974]
+		[Migration_ProjectKB_Class71944]))
 
 ([Migration_ProjectKB_Class71967] of  Property_List
 
@@ -1761,6 +1785,75 @@
 ([Migration_ProjectKB_Class82148] of  Property_List
 )
 
+([Migration_ProjectKB_Class91946] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Migration_ProjectKB_Class91947] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Migration_ProjectKB_Class91948] of  Widget
+
+	(is_hidden FALSE)
+	(name "WalkRoute")
+	(property_list [Migration_ProjectKB_Class91949])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([Migration_ProjectKB_Class91949] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class91950]
+		[Migration_ProjectKB_Class91951]
+		[Migration_ProjectKB_Class91955]))
+
+([Migration_ProjectKB_Class91950] of  Property_List
+
+	(name "layout properties"))
+
+([Migration_ProjectKB_Class91951] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "poly")
+	(property_list [Migration_ProjectKB_Class91952])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([Migration_ProjectKB_Class91952] of  Property_List
+
+	(properties
+		[Migration_ProjectKB_Class91953]
+		[Migration_ProjectKB_Class91954]))
+
+([Migration_ProjectKB_Class91953] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([Migration_ProjectKB_Class91954] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([Migration_ProjectKB_Class91955] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-build-route")
+	(property_list [Migration_ProjectKB_Class91956])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([Migration_ProjectKB_Class91956] of  Property_List
+)
+
 ([Migration_ProjectKB_Class9256] of  Widget
 
 	(is_hidden FALSE)
@@ -1903,6 +1996,7 @@
 		[STANDARD_CLASS_FORM_WIDGET]
 		[Migration_ProjectKB_Class9256]
 		[STANDARD_SLOT_FORM_WIDGET]
+		[Migration_ProjectKB_Class91948]
 		[Migration_ProjectKB_Class69346]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[PAL_FORM_WIDGET]

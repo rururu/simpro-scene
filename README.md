@@ -73,6 +73,7 @@ See examples.
 27. [Cesium Lesson 1. Cesium Workshop](https://www.youtube.com/watch?v=FOlSx6Mg-V0)
 28. [Cesium Lesson 2. Drape Peaks](https://youtu.be/G4-4ByOJpSE)
 28. [Cesium Lesson 3. Geography and History](https://youtu.be/dGWTxHik4U4)
+28. [Cesium Lesson 4. Ladoga Salmon Migration](https://www.youtube.com/watch?v=cFA5VbI_1HI)
 
 TO BE CONTINUED
 

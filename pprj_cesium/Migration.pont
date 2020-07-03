@@ -1,4 +1,4 @@
-; Wed Jul 01 20:14:26 MSK 2020
+; Fri Jul 03 19:53:01 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -24,9 +24,18 @@
 ;+		(allowed-classes River)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-build-route
+		(type STRING)
+		(default "Build Route/cesium.mig/build-route")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot height
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot walk-routes
+		(type INSTANCE)
+;+		(allowed-classes WalkRoute)
 		(create-accessor read-write))
 	(single-slot roll
 		(type INTEGER)
@@ -348,11 +357,29 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot walk-routes
+		(type INSTANCE)
+;+		(allowed-classes WalkRoute)
+		(create-accessor read-write))
 	(single-slot walk-steps
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot action
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WalkRoute
+	(is-a Migration+Onto)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-build-route
+		(type STRING)
+		(default "Build Route/cesium.mig/build-route")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
