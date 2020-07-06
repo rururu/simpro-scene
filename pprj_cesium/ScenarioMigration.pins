@@ -1,0 +1,1423 @@
+; Mon Jul 06 20:51:59 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([GoRandom] of  ActionClass
+
+	(rules
+		[ScenarioMigration_Class7]
+		[ScenarioMigration_Class8]))
+
+([HiitolanjokiRCZ_Class0] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class90000]
+		[igis_Class21]
+		[igis_Class22]
+		[igis_Class23]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30]
+		[HiitolanjokiRCZ_Class12]
+		[HiitolanjokiRCZ_Class4]
+		[HiitolanjokiRCZ_Class5]
+		[HiitolanjokiRCZ_Class6]
+		[HiitolanjokiRCZ_Class7]
+		[HiitolanjokiRCZ_Class8]
+		[HiitolanjokiRCZ_Class10]
+		[HiitolanjokiRCZ_Class11])
+	(Debug "FINE")
+	(label "Hiitolanjoki Map")
+	(Latitude "61.29")
+	(layers
+		[igis_Class40012]
+		[HiitolanjokiRCZ_Class3]
+		[HiitolanjokiRCZ_Class2]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "29.63")
+	(Scale "500000")
+	(startUpLayers
+		[igis_Class40012]
+		[HiitolanjokiRCZ_Class3]
+		[HiitolanjokiRCZ_Class2]
+		[igis_Class1]
+		[igis_Class40011]))
+
+([HiitolanjokiRCZ_Class1] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(Hiitolanjoki)"))
+
+([HiitolanjokiRCZ_Class10] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "hiiHelp7")
+	(source "https://github.com/rururu/simpro-scene")
+	(text "Simpro-scene Project"))
+
+([HiitolanjokiRCZ_Class10000] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectFin.png")
+	(title "Hiitolanjoki Hanke"))
+
+([HiitolanjokiRCZ_Class10001] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectEng.png")
+	(title "Hiitolanjoki Project"))
+
+([HiitolanjokiRCZ_Class10002] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/LadogaSalmon.png")
+	(title "Ladoga Salmon"))
+
+([HiitolanjokiRCZ_Class10003] of  ImageDoc
+
+	(source "file:data/mas/hiitolanjoki/HiitolanjokiProjectRus.png")
+	(title "Проект Хиитоланёки"))
+
+([HiitolanjokiRCZ_Class10004] of  InternalDoc
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Salmon Life Model<br><br></b>This multiagent model simulates the life of Ladoga salmon after dismantling dams that impede its migration to spawning sites.<br><b><br>Agents</b><br><br>Agents in this projects are Ladoga lake salmons on the differen phases of their life.<br><b><br></b><img src=\"file:data/mas/hiitolanjoki/ChildSalmons.png\">Orange points represent some number of child salmons.<br><img src=\"file:data/mas/hiitolanjoki/YoungSalmons.png\">Green points represent some number of young salmons.<br><img src=\"file:data/mas/hiitolanjoki/AdultSalmons.png\">Brown points represent some number of adult salmons.<br><br>It takes 2-3 years for the Ladoga child salmon fry to get to the river, after which they migrate to feed in Ladoga.<br>After the lake phase (1-5 years), mature salmon rise up the river for spawning.<br><br>In this model, each group of adult individuals reaching one of the spawning sites produces a certain number of fry and dies. Fry are born from caviar and begin movement to the river source.<br><br><b>Custamizable options:</b><br><br>Initial number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class30007'</a>&#160; (12)<br>Repeatable number of spawn <a href=\"internalLink\">@'Hiitolanjoki_Class120000'</a>&#160; (8)<br>Lifetime of salmon in steps <a href=\"internalLink\">@'Hiitolanjoki_Class250001'</a>&#160; (12000)<br>Propagation rate of child salmon <a href=\"internalLink\">@'Hiitolanjoki_Class140005'</a>&#160; (0.0001)<br>Propagation rate of young salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90002'</a>&#160; (0.0002)<br>Propagation rate of adult salmon <a href=\"internalLink\">@'Hiitolanjoki_Class90003'</a>&#160; (0.0003)<br>Migration routes in Kivijarvi lake <a href=\"internalLink\">@'Hiitolanjoki_Class260000'</a>&#160;,..<br>Migration routes in Ladoga lake <a href=\"internalLink\">@'Hiitolanjoki_Class170002'</a>&#160;,..<br><br></body>\n</html>")
+	(title "Salmon Life Model"))
+
+([HiitolanjokiRCZ_Class11] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp8")
+	(source "HiitolanjokiRCZ_Class10002")
+	(text "Ladoga Salmon"))
+
+([HiitolanjokiRCZ_Class12] of  MenuList
+
+	(class "com.bbn.openmap.gui.menu.MenuList")
+	(label "hiiMenuList")
+	(menus
+		[igis_Class5]
+		[igis_Class6]
+		[igis_Class7]
+		[igis_Class9]
+		[igis_Class10]
+		[igis_Class11]
+		[HiitolanjokiRCZ_Class13]))
+
+([HiitolanjokiRCZ_Class13] of  HelpMenu
+
+	(class "com.bbn.openmap.gui.DefaultHelpMenu")
+	(items "hiiHelp1 hiiHelp2 hiiHelp3 hiiHelp4 hiiHelp5 hiiHelp7 hiiHelp8")
+	(label "hiiHelpMenu"))
+
+([HiitolanjokiRCZ_Class14] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [HiitolanjokiRCZ_Class0])
+	(%3ACREATION-TIMESTAMP "2020.05.30 21:57:21.493 MSK")
+	(%3ACREATOR "ru"))
+
+([HiitolanjokiRCZ_Class2] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "200000FF")
+	(label "HiiLakes")
+	(lineColor "ff0000ff")
+	(prettyName "Hiitolanjoki Lakes")
+	(shapeFile "data/mas/hiitolanjoki/shape/hiitolanjoki_a.shp")
+	(spatialIndex "data/mas/hiitolanjoki/shape/hiitolanjoki_a.shx"))
+
+([HiitolanjokiRCZ_Class20001] of  CloProgram
+
+	(cloFunctions [Migration_Class80000])
+	(cloNamespace [Clojure_Class300001])
+	(title "SMig CW"))
+
+([HiitolanjokiRCZ_Class20002] of  CloProgram
+
+	(cloFunctions
+		[Migration_Class70005]
+		[Migration_Class130012]
+		[Migration_Class110000]
+		[Migration_Class10000]
+		[Migration_Class130011]
+		[Migration_Class140000]
+		[Migration_Class120008]
+		[Migration_Class120002]
+		[Migration_Class50006]
+		[Migration_Class150001]
+		[Migration_Class200009]
+		[Migration_Class200010]
+		[Migration_Class170017]
+		[Migration_Class130013]
+		[Migration_Class130014]
+		[Migration_Class50000]
+		[Migration_Class40024]
+		[Migration_Class140001]
+		[Migration_Class150000]
+		[Migration_Class200018]
+		[Migration_Class200020]
+		[Migration_Class200019]
+		[Migration_Class200017]
+		[Migration_Class200035]
+		[Migration_Class20002]
+		[ScenarioMigration_Class10])
+	(cloNamespace [HiitolanjokiRCZ_Class20003])
+	(cloVars
+		[Migration_Class30000]
+		[Migration_Class110001]
+		[Migration_Class20000]
+		[Migration_Class50001]
+		[Migration_Class20006]
+		[Migration_Class120000]
+		[Migration_Class180004]
+		[Migration_Class190007])
+	(title "Cesium Migration"))
+
+([HiitolanjokiRCZ_Class20003] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [cesium.server :as cs]\n  [czml.generator :as cg])\n(:import\n  ru.igis.omtab.OpenMapTab\n  ru.igis.omtab.Clock\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.omGraphics.OMGraphicList\n  com.bbn.openmap.proj.GreatCircle\n  java.net.URL\n  sim.field.geo.GeomVectorField\n  sim.io.geo.ShapeFileImporter\n  sim.util.geo.AttributeValue\n  com.vividsolutions.jts.geom.Coordinate\n  com.vividsolutions.jts.geom.GeometryFactory)")
+	(title "cesium.mig"))
+
+([HiitolanjokiRCZ_Class20004] of  CloFunction
+
+	(source "(let [mb (OpenMapTab/getMapBean)\n       start (map #(Math/toRadians %) start)\n       cms (.getComponents mb)]\n  (if-let [slr (first (filter #(= (.getName %) layer) cms))]\n    (let [dbh (.getDbf (.getSpatialIndex slr))\n           dbf (.getDbf dbh)\n           lst (.getList slr)\n           rad (loop [[[col val] & cvrst] col-vals path [start]]\n                   (if (some? col)\n                     (let [idx (.getColumnIndexForName dbf col)]\n                       (if-let [epl (first (filter #(and (not (instance? OMGraphicList %))\n                                                             (= (nth (.getRecordDataForOMGraphic dbh %) idx) val)) lst))]\n                         (let [lla (.getRawllpts epl)\n                                pa2 (partition 2 lla)\n                                [p1 l1] (last path)\n                                [p2 l2] (first pa2)\n                                [p3 l3] (last pa2)\n                                d1 (GreatCircle/sphericalDistance p1 l1 p2 l2)\n                                d2 (GreatCircle/sphericalDistance p1 l1 p3 l3)\n                                nxt (if (< d2 d1)\n                                        (reverse pa2)\n                                        pa2)] \n                           (recur cvrst (concat path nxt)))))\n                     path))]\n      (map #(let [[phi lam] %] [(Math/toDegrees lam) (Math/toDegrees phi) height]) rad))))")
+	(title "from-shape-by-attributes [layer col-vals start height]"))
+
+([HiitolanjokiRCZ_Class3] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "200000FF")
+	(label "HiiRivers")
+	(lineColor "ff0000ff")
+	(prettyName "Hiitolanjoki Rivers")
+	(shapeFile "data/mas/hiitolanjoki/shape/hiitolanjoki_l.shp")
+	(spatialIndex "data/mas/hiitolanjoki/shape/hiitolanjoki_l.shx"))
+
+([HiitolanjokiRCZ_Class4] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp1")
+	(source "HiitolanjokiRCZ_Class10003")
+	(text "О Проект Хиитоланёки"))
+
+([HiitolanjokiRCZ_Class5] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp2")
+	(source "HiitolanjokiRCZ_Class10000")
+	(text "Noin Hiitolanjoki Hanke"))
+
+([HiitolanjokiRCZ_Class6] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp3")
+	(source "HiitolanjokiRCZ_Class10001")
+	(text "About Hiitolanjoki Project"))
+
+([HiitolanjokiRCZ_Class7] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.InstanceHelpMenuItem")
+	(label "hiiHelp4")
+	(source "HiitolanjokiRCZ_Class10004")
+	(text "Salmon Life Model"))
+
+([HiitolanjokiRCZ_Class8] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "hiiHelp5")
+	(source "https://hiitolanjoki.fi")
+	(text "Hiitolanjoki Project"))
+
+([Migration_Class0] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2020.05.31 13:03:03.157 MSK")
+	(%3ACREATOR "ru"))
+
+([Migration_Class1] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(fact-classes [Walk])
+	(facts [Migration_Class100001])
+	(mode run)
+	(rule-sets
+		[Migration_Class50008]
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class340000]
+		[Scenario_Class17]
+		[ScenarioMigration_Class9])
+	(steps 1)
+	(title "SMigRun"))
+
+([Migration_Class10000] of  CloFunction
+
+	(source "(map #(.geometry (.getGeometry gv-field %1 (AttributeValue. %2))) attrs vals)")
+	(title "geoms-by-attrs [attrs vals gv-field]"))
+
+([Migration_Class100000] of  RuleSet
+
+	(rules
+		[Migration_Class160017]
+		[Migration_Class130000]
+		[Migration_Class90004]
+		[Migration_Class150007]
+		[Migration_Class90001]
+		[Migration_Class150004]
+		[Migration_Class90002]
+		[Migration_Class90003]
+		[Migration_Class70000]
+		[Migration_Class90005])
+	(templates
+		[Creature]
+		[Migration]
+		[Clock]
+		[CesiumCamera]
+		[Walk])
+	(title "Migration"))
+
+([Migration_Class100001] of  CesiumCamera
+
+	(heading "340")
+	(height 20000)
+	(latitude "61.05")
+	(longitude "30.1")
+	(pitch -60)
+	(roll 0)
+	(status "START"))
+
+([Migration_Class10001] of  Creature
+
+	(action "Birth in")
+	(age "child")
+	(area "Lake Kivijarvi")
+	(birthtime 300000000)
+	(down-speed 3.0)
+	(id "s")
+	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
+	(N 0)
+	(spawn 5)
+	(status "BEGIN")
+	(title "Salmon")
+	(up-speed 2.0)
+	(walk-speed 2.0)
+	(waypoints "[[29.37150001525879 61.44633334477742]]"))
+
+([Migration_Class110000] of  CloFunction
+
+	(source "([shp]\n  (let [dbf (str (.substring shp 0 (- (count shp) 4)) \".dbf\")]\n    (gv-field-from-shape (str \"file:\" shp) (str \"file:\" dbf))))\n([shp dbf]\n  (let [gvf (GeomVectorField.)]\n    (ShapeFileImporter/read (URL. shp) (URL. dbf) gvf)\n    gvf))")
+	(title "gv-field-from-shape"))
+
+([Migration_Class110001] of  CloVar
+
+	(source "(volatile! {})")
+	(title "RIVERS"))
+
+([Migration_Class110007] of  River
+
+	(attrs
+		"NAME"
+		"NAME"
+		"NAME"
+		"NAME"
+		"NAME")
+	(estuary "[29.888 61.179]")
+	(flow-speed 2.0)
+	(head "[29.352 61.446]")
+	(layer [HiitolanjokiRCZ_Class3])
+	(title "River Hiitolanjoki")
+	(values
+		"Hiitolanjoki"
+		"Kokkolanjoki2"
+		"Kokkolanjoki1"
+		"Veijalanjarvi"
+		"Asilanjoki"))
+
+([Migration_Class120000] of  CloVar
+
+	(source "(volatile! {})")
+	(title "POINTS"))
+
+([Migration_Class120001] of  Phase
+
+	(action "Go to river")
+	(addition "River Hiitolanjoki")
+	(age "young")
+	(area "Upper Lakes"))
+
+([Migration_Class120002] of  CloFunction
+
+	(source "(or (@LAKES name)\n  (let [linst (fifos \"Lake\" \"title\" name)\n         lay (sv linst \"layer\")\n         ats (svs linst \"attrs\")\n         vls (svs linst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls gvf)}]\n    (vswap! LAKES assoc name mp)\n    mp))")
+	(title "lake-map [name]"))
+
+([Migration_Class120004] of  Basin
+
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Hiitolanjoki Lakes"))
+
+([Migration_Class120008] of  CloFunction
+
+	(source "(or (@RIVERS name)\n  (let [rinst (fifos \"River\" \"title\" name)\n         lay (sv rinst \"layer\")\n         ats (svs rinst \"attrs\")\n         vls (svs rinst \"values\")\n         gvf (gv-field-from-shape (sv lay \"shapeFile\"))\n         mp {:layer (sv lay \"prettyName\")\n                 :gv-field gvf\n                 :geoms (geoms-by-attrs ats vls gvf)\n                 :head (read-string (sv rinst \"head\"))\n                 :estuary (read-string (sv rinst \"estuary\"))\n                 :flow-speed (sv rinst \"flow-speed\")}]\n    (vswap! RIVERS assoc name mp)\n    mp))")
+	(title "river-map [name]"))
+
+([Migration_Class130000] of  Rule
+
+	(lhs "(Migration phases ?phs)\n?cre (Creature status \"END\"\n	action ?act\n	area ?are\n	addition ?add\n	age ?age)")
+	(rhs "(let [[act are add ag] \n          (loop [[cp np :as ps] ?phs]\n            (if (and cp np)\n              (if (= [?act ?are ?add ?age] cp) \n                np\n                (recur (rest ps)))\n              [\"DONE\"]))]\n  (modify ?cre status \"BEGIN\"\n	action act\n	area are\n	addition add\n	age ag))")
+	(salience 0)
+	(title "mig:Migration"))
+
+([Migration_Class130011] of  CloFunction
+
+	(source ";; if finish, both start and finish added to path, else bare path\n([geoms start finish]\n  (concat [start] (geoms-to-path geoms start) [finish])) \n([geoms start]\n  (let [lss (map #(.getCoordinates %) geoms)\n         lss (map (fn[z] (map #(list (.x %) (.y %)) z)) lss)]\n    (loop [[ps & rss] lss path [start]]\n      (if (some? ps)\n        (let [p1 (last path)\n               p2 (first ps)\n               p3 (last ps)\n               d1 (simple-dist p1 p2)\n               d2 (simple-dist p1 p3)\n               nxt (if (< d2 d1)\n                       (reverse ps)\n                       ps)] \n          (recur rss (concat path nxt)))\n        (rest path)))))")
+	(title "geoms-to-path"))
+
+([Migration_Class130012] of  CloFunction
+
+	(source "(+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2)))")
+	(title "simple-dist [[lo1 la1] [lo2 la2]]"))
+
+([Migration_Class130013] of  CloFunction
+
+	(source ";; returns time of going in sec and waypoints\n;; if finish = nil, only bare path included in czml, else with added start and finish\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (if finish \n               (geoms-to-path geoms start finish)\n               (geoms-to-path geoms start))\n       wps [(first pth) (last pth)]\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-geoms-path [id look knots geoms start finish]"))
+
+([Migration_Class130014] of  CloFunction
+
+	(source ";; returns time of going in sec and waypoints\n(go-geoms-path id look\n  (condp = direction\n    :down (+ knots (river :flow-speed))\n    :up knots)\n  (condp = direction\n    :down (river :geoms)\n    :up (reverse (river :geoms)))\n  (condp = direction\n    :down (river :head)\n    :up (river :estuary))\n  (condp = direction\n    :down (river :estuary)\n    :up (river :head)))")
+	(title "go-river [id look knots river direction]"))
+
+([Migration_Class140000] of  CloFunction
+
+	(source "(map #(list (first %) (second %) height) path)")
+	(title "insert-height [path height]"))
+
+([Migration_Class140001] of  CloFunction
+
+	(source "[(Clock/getClock) (Clock/getTimeScale)]")
+	(title "clock-scale []"))
+
+([Migration_Class140002] of  Phase
+
+	(action "Go to river")
+	(addition "River Hiitolanjoki")
+	(age "adult")
+	(area "Ladoga Lake"))
+
+([Migration_Class140003] of  CloNamespace
+
+	(source "(:use \n  protege.core\n  rete.core)\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.Clock)")
+	(title "sim"))
+
+([Migration_Class150000] of  CloFunction
+
+	(source "(let [[c s] (condp = age\n                 \"child\" [[0 255 0 255] 5]\n                 \"young\" [[255 255 0 255] 7]\n                 \"adult\" [[255 94 1 255] 9]\n                 \"old\" [[220 20 60 255] 11])]\n  (assoc look :color c :size s))")
+	(title "look [age look]"))
+
+([Migration_Class150001] of  CloFunction
+
+	(source "(let [d (Math/abs (- start finish))\n       s (* (Math/random) step)]\n  (cond\n    (< d s) finish\n    (< start finish) (+ start s)\n    true (- start s)))")
+	(title "rand-step-closer [step start finish]"))
+
+([Migration_Class150004] of  Rule
+
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	age ?age\n	addition ?add\n	area ?are	\n	action \"Go to river\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?add)\n       head (riv :head)\n       estuary (riv :estuary)\n       from (last ?wps)\n       to (if (< (cesium.mig/simple-dist from head) (cesium.mig/simple-dist from estuary))\n             head\n             estuary)\n       wps [from to]\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]\n  (println ?id [\"Go to river\" ?are ?add] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:Go to river"))
+
+([Migration_Class150006] of  Lake
+
+	(attrs
+		"name"
+		"name")
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Upper Lakes")
+	(values
+		"Kivijärvi"
+		"Simpelejärvi"))
+
+([Migration_Class150007] of  Rule
+
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	age ?age\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
+	(rhs "(let [wri (rand-nth ?wrs)\n       wps (cesium.mig/walk-route-waypoints wri)\n       start (last wps)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:Walk In"))
+
+([Migration_Class150010] of  Migration
+
+	(phases
+		[Migration_Class160008]
+		[Migration_Class160009]
+		[Migration_Class160010]
+		[Migration_Class120001]
+		[Migration_Class160011]
+		[Migration_Class160012]
+		[Migration_Class160013]
+		[Migration_Class140002]
+		[Migration_Class160014]
+		[Migration_Class160015]
+		[Migration_Class160016]))
+
+([Migration_Class160005] of  CloFunction
+
+	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (if (covered-by lo3 la3 geoms)\n    [lo3 la3]\n    (next-covered lo1 la1 slon step geoms)))")
+	(title "next-covered-closer [lo1 la1 lo2 la2 slon step geoms]"))
+
+([Migration_Class160006] of  CloFunction
+
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [start]]\n    (if (> n 0)\n      (let [[lor lar] (next-covered los las slon step geoms)\n             [lon lan :as nxt] (next-covered-closer lor lar lof laf slon step geoms)\n             newp (conj path nxt)]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
+	(title "random-walk-covered-closer [start finish steps step geoms]"))
+
+([Migration_Class160008] of  Phase
+
+	(action "Birth in")
+	(age "child")
+	(area "Lake Kivijarvi"))
+
+([Migration_Class160009] of  Phase
+
+	(action "Walk in")
+	(age "child")
+	(area "Upper Lakes"))
+
+([Migration_Class160010] of  Phase
+
+	(action "Walk backward")
+	(age "child")
+	(area "Upper Lakes"))
+
+([Migration_Class160011] of  Phase
+
+	(action "Go down")
+	(age "young")
+	(area "River Hiitolanjoki"))
+
+([Migration_Class160012] of  Phase
+
+	(action "Walk in")
+	(age "young")
+	(area "Ladoga Lake"))
+
+([Migration_Class160013] of  Phase
+
+	(action "Walk backward")
+	(age "adult")
+	(area "Ladoga Lake"))
+
+([Migration_Class160014] of  Phase
+
+	(action "Go up")
+	(age "adult")
+	(area "River Hiitolanjoki"))
+
+([Migration_Class160015] of  Phase
+
+	(action "Last walk in")
+	(age "old")
+	(area "Lake Kivijarvi"))
+
+([Migration_Class160016] of  Phase
+
+	(action "Spawn in")
+	(age "old")
+	(area "Lake Kivijarvi"))
+
+([Migration_Class160017] of  Rule
+
+	(lhs "?mig (Migration phases ?phs\n	(not (vector? (first ?phs))))")
+	(rhs "(modify ?mig phases\n  (vec (map #(vector (protege.core/sv % \"action\")\n                                 (protege.core/sv % \"area\")\n                                 (protege.core/sv % \"addition\")\n                                 (protege.core/sv % \"age\"))\n                   ?phs)))")
+	(salience 1)
+	(title "mig:Init Migration"))
+
+([Migration_Class170007] of  OMTPoly
+
+	(label "p2")
+	(latitude "0 0")
+	(lineColor "FF000000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 30.09 29 23.33"
+		"61 30.05 29 23.3"
+		"61 30.02 29 23.29"
+		"61 30 29 23.16"
+		"61 29.96 29 23.21"
+		"61 29.89 29 23.36"
+		"61 29.82 29 23.39"
+		"61 29.77 29 23.5"
+		"61 29.75 29 23.48"
+		"61 29.68 29 23.31"
+		"61 29.57 29 23.33"
+		"61 29.49 29 23.23"
+		"61 29.47 29 23.2"
+		"61 29.47 29 23.44"
+		"61 29.36 29 23.31"
+		"61 29.3 29 23.2"
+		"61 29.2 29 23.18"
+		"61 29.14 29 23.17"
+		"61 29.13 29 23.39"
+		"61 29.1 29 23.54"
+		"61 29.07 29 23.67"
+		"61 28.96 29 23.9"
+		"61 28.87 29 23.95"
+		"61 28.87 29 23.95"
+		"61 28.94 29 23.8"
+		"61 28.97 29 23.57"
+		"61 28.87 29 23.32"
+		"61 28.8 29 23.23"
+		"61 28.95 29 23.12"
+		"61 28.98 29 22.98"
+		"61 28.86 29 22.94"
+		"61 28.82 29 22.69"
+		"61 28.73 29 22.68"
+		"61 28.69 29 22.46"
+		"61 28.66 29 22.35"
+		"61 28.62 29 22.29"
+		"61 28.62 29 22.29"
+		"61 28.6 29 22.37"
+		"61 28.59 29 22.39"
+		"61 28.54 29 22.47"
+		"61 28.44 29 22.52"
+		"61 28.36 29 22.24"
+		"61 28.24 29 22.14"
+		"61 28.14 29 22.42"
+		"61 28.13 29 22.46"
+		"61 28.05 29 22.35"
+		"61 28.04 29 22.57"
+		"61 28.02 29 22.68"
+		"61 27.97 29 22.9"
+		"61 27.86 29 23.07"
+		"61 27.86 29 23.07"
+		"61 27.86 29 23.14"
+		"61 27.83 29 23.15"
+		"61 27.78 29 23.04"
+		"61 27.7 29 23.05"
+		"61 27.63 29 22.85"
+		"61 27.61 29 23.19"
+		"61 27.56 29 23.02"
+		"61 27.52 29 22.93"
+		"61 27.46 29 22.92"
+		"61 27.4 29 22.89"
+		"61 27.3 29 22.98"
+		"61 27.26 29 23.17"
+		"61 27.14 29 23.17"
+		"61 27.14 29 23.17"
+		"61 27.19 29 23.11"
+		"61 27.17 29 22.9"
+		"61 27.17 29 22.83"
+		"61 27.16 29 22.82"
+		"61 27.18 29 22.78"
+		"61 27.21 29 22.75"
+		"61 27.1 29 22.62"
+		"61 26.98 29 22.41"
+		"61 26.89 29 22.4"
+		"61 26.8 29 22.19")
+	(relative FALSE))
+
+([Migration_Class170015] of  CloFunction
+
+	(source "(def pts (random-by-waypoints (reverse (walk-route-waypoints \"Sempelejarvi\")) 1000 200 0.002))\n(set-points pts (fifos \"OMTPoly\" \"label\" \"p0\"))\n(def pts (random-by-waypoints (reverse (walk-route-waypoints \"Sempelejarvi\")) 1000 200 0.002))\n(set-points pts (fifos \"OMTPoly\" \"label\" \"p1\"))\n(def pts (random-by-waypoints (reverse (walk-route-waypoints \"Sempelejarvi\")) 1000 200 0.002))\n(set-points pts (fifos \"OMTPoly\" \"label\" \"p2\"))\n(def pts (random-by-waypoints (reverse (walk-route-waypoints \"Sempelejarvi\")) 1000 200 0.002))\n(set-points pts (fifos \"OMTPoly\" \"label\" \"p3\"))")
+	(title "rwrw []"))
+
+([Migration_Class170017] of  CloFunction
+
+	(source "(let [rvs (< (rand) 0.5)\n       wps (if rvs (reverse wps) wps)\n       pth (loop [[s f & r :as ws] wps path []]\n	  (cond\n	    (> (count path) limstp)\n	      path\n	    (and s f)\n	      (let [rwc1 (random-walk-closer s f steps step)]\n	        (if (< (count rwc1) steps)\n	          (recur (rest ws) (concat path rwc1))\n	          (let [rwc2 (random-walk-closer f s steps step)]\n	            (if (< (count rwc2) steps)\n	              (recur (rest ws) (concat path (reverse rwc2)))\n	              (recur (cons (last rwc1) (rest ws)) (concat path rwc1))))))\n	    true\n	      path))]\n  (if rvs (reverse pth) pth))")
+	(title "random-by-waypoints [wps limstp steps step]"))
+
+([Migration_Class170051] of  OMTPoly
+
+	(label "p1")
+	(latitude "0 0")
+	(lineColor "FFFF0000")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 30.09 29 23.33"
+		"61 30.09 29 23.39"
+		"61 30.06 29 23.42"
+		"61 30 29 23.46"
+		"61 29.92 29 23.56"
+		"61 29.85 29 23.73"
+		"61 29.81 29 23.78"
+		"61 29.74 29 23.79"
+		"61 29.71 29 23.9"
+		"61 29.64 29 23.92"
+		"61 29.59 29 24.14"
+		"61 29.56 29 24.02"
+		"61 29.49 29 24.15"
+		"61 29.48 29 24.1"
+		"61 29.42 29 24.08"
+		"61 29.33 29 23.81"
+		"61 29.3 29 23.84"
+		"61 29.29 29 23.85"
+		"61 29.26 29 24.15"
+		"61 29.24 29 24.05"
+		"61 29.18 29 23.98"
+		"61 29.14 29 23.85"
+		"61 29.05 29 23.89"
+		"61 28.96 29 23.91"
+		"61 28.91 29 23.83"
+		"61 28.9 29 23.93"
+		"61 28.87 29 23.95"
+		"61 28.87 29 23.95"
+		"61 28.83 29 23.79"
+		"61 28.75 29 23.55"
+		"61 28.67 29 23.42"
+		"61 28.55 29 23.18"
+		"61 28.54 29 23.04"
+		"61 28.57 29 22.9"
+		"61 28.64 29 22.66"
+		"61 28.55 29 22.61"
+		"61 28.56 29 22.47"
+		"61 28.66 29 22.29"
+		"61 28.65 29 22.31"
+		"61 28.62 29 22.29"
+		"61 28.62 29 22.29"
+		"61 28.5 29 22.41"
+		"61 28.5 29 22.5"
+		"61 28.44 29 22.59"
+		"61 28.33 29 22.74"
+		"61 28.32 29 22.89"
+		"61 28.27 29 22.91"
+		"61 28.18 29 23"
+		"61 28.14 29 23.06"
+		"61 28.04 29 22.97"
+		"61 28.03 29 23.04"
+		"61 27.95 29 23.04"
+		"61 27.86 29 23.07"
+		"61 27.86 29 23.07"
+		"61 27.85 29 23.14"
+		"61 27.73 29 23.27"
+		"61 27.66 29 23.35"
+		"61 27.62 29 23.2"
+		"61 27.6 29 23.13"
+		"61 27.52 29 23.15"
+		"61 27.44 29 23.19"
+		"61 27.4 29 23.18"
+		"61 27.31 29 23.04"
+		"61 27.29 29 22.93"
+		"61 27.17 29 23.17"
+		"61 27.15 29 23.14"
+		"61 27.14 29 23.17"
+		"61 27.14 29 23.17"
+		"61 27.02 29 23.12"
+		"61 26.93 29 22.92"
+		"61 26.9 29 22.83"
+		"61 26.8 29 22.65"
+		"61 26.68 29 22.4"
+		"61 26.79 29 22.36"
+		"61 26.73 29 22.36"
+		"61 26.79 29 22.34"
+		"61 26.82 29 22.32"
+		"61 26.75 29 22.24"
+		"61 26.8 29 22.19")
+	(relative FALSE))
+
+([Migration_Class170052] of  OMTPoly
+
+	(label "p3")
+	(latitude "0 0")
+	(lineColor "FFFFFF00")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 30.09 29 23.33"
+		"61 30.08 29 23.45"
+		"61 30.02 29 23.34"
+		"61 30.03 29 23.35"
+		"61 29.99 29 23.36"
+		"61 30.02 29 23.57"
+		"61 29.98 29 23.32"
+		"61 29.97 29 23.31"
+		"61 29.94 29 23.29"
+		"61 29.92 29 23.11"
+		"61 29.82 29 23.33"
+		"61 29.76 29 23.3"
+		"61 29.69 29 23.15"
+		"61 29.69 29 23.15"
+		"61 29.58 29 23.38"
+		"61 29.47 29 23.32"
+		"61 29.37 29 23.36"
+		"61 29.25 29 23.42"
+		"61 29.14 29 23.42"
+		"61 29.13 29 23.59"
+		"61 29.03 29 23.71"
+		"61 28.93 29 23.74"
+		"61 28.92 29 23.84"
+		"61 28.87 29 23.95"
+		"61 28.87 29 23.95"
+		"61 28.89 29 23.88"
+		"61 28.93 29 23.65"
+		"61 28.94 29 23.43"
+		"61 28.89 29 23.21"
+		"61 28.94 29 23.12"
+		"61 28.98 29 23.02"
+		"61 28.9 29 22.83"
+		"61 28.97 29 22.7"
+		"61 28.84 29 22.54"
+		"61 28.72 29 22.38"
+		"61 28.62 29 22.29"
+		"61 28.62 29 22.29"
+		"61 28.66 29 22.34"
+		"61 28.7 29 22.29"
+		"61 28.71 29 22.29"
+		"61 28.57 29 22.31"
+		"61 28.55 29 22.31"
+		"61 28.48 29 22.32"
+		"61 28.44 29 22.43"
+		"61 28.34 29 22.31"
+		"61 28.33 29 22.18"
+		"61 28.27 29 22.14"
+		"61 28.16 29 22.15"
+		"61 28.09 29 22.34"
+		"61 28 29 22.55"
+		"61 27.96 29 22.79"
+		"61 27.93 29 22.92"
+		"61 27.86 29 23.07"
+		"61 27.86 29 23.07"
+		"61 27.79 29 22.91"
+		"61 27.77 29 23.09"
+		"61 27.85 29 23.18"
+		"61 27.77 29 23"
+		"61 27.69 29 22.87"
+		"61 27.68 29 23.01"
+		"61 27.56 29 23.22"
+		"61 27.54 29 23.03"
+		"61 27.48 29 23.02"
+		"61 27.48 29 22.92"
+		"61 27.47 29 23.03"
+		"61 27.41 29 22.89"
+		"61 27.34 29 22.84"
+		"61 27.29 29 22.82"
+		"61 27.23 29 23.11"
+		"61 27.14 29 23.17"
+		"61 27.14 29 23.17"
+		"61 27.15 29 23.15"
+		"61 27.18 29 23.12"
+		"61 27.11 29 23.06"
+		"61 27.11 29 22.89"
+		"61 27.11 29 22.86"
+		"61 27.06 29 22.73"
+		"61 27 29 22.57"
+		"61 26.97 29 22.46"
+		"61 26.92 29 22.42"
+		"61 26.8 29 22.19")
+	(relative FALSE))
+
+([Migration_Class180004] of  CloVar
+
+	(source "[[:N [:W :S] [:E :S]]\n [:S [:W :N] [:E :N]]\n [:W [:N :E] [:S :E]]\n [:E [:N :W] [:S :W]]\n [:NE [:NW :SW] [:SE :SW]]\n [:SW [:NW :NE] [:SE :NE]]\n [:NW [:SW :SE] [:NE :SE]]\n [:SE [:SW :NW] [:NE :NW]]]")
+	(title "DTREE"))
+
+([Migration_Class190005] of  CloFunction
+
+	(source "(let [p (nth DTREE (rand 8))\n       s (SMAP (first p))\n       [lon1 lat1] [(+ lon (* slon (first s))) (+ lat (* step (second s)))]]\n  (if (covered-by lon1 lat1 geoms)\n    [lon1 lat1]\n    (let [p (rest p)]\n      p)))")
+	(title "rand-pos [lon lat slon step geoms]"))
+
+([Migration_Class190007] of  CloVar
+
+	(source "{:N [0 1]\n :S [0 -1]\n :W [-1 0]\n :E [1 0]\n :NW [-1 1]\n :NE [1 1]\n :SW [-1 -1]\n :SE [1 -1]}")
+	(title "SMAP"))
+
+([Migration_Class2] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Migration_Class1])
+	(%3ACREATION-TIMESTAMP "2020.05.31 13:04:01.940 MSK")
+	(%3ACREATOR "ru"))
+
+([Migration_Class20000] of  CloVar
+
+	(source "{:layer \"Hiitolanjoki Rivers\"\n  :head [29.346 61.444]\n  :path [[\"NAME\" \"Hiitolanjoki\"]\n             [\"NAME\" \"Kokkolanjoki2\"]\n             [\"NAME\" \"Kokkolanjoki1\"]\n             [\"NAME\" \"Veijalanjarvi\"]\n             [\"NAME\" \"Asilanjoki\"]]\n  :estuary [29.885 61.18]\n  :speed 2\n  :gv-field RIVERS}")
+	(title "H-JOKI"))
+
+([Migration_Class200009] of  CloFunction
+
+	(source "(let [lo3 (rand-step-closer slon lo1 lo2)\n       la3 (rand-step-closer step la1 la2)]\n  (cond\n    (and (= lo3 lo2) (= la3 la2)) [lo3 la3]\n    (and (not= lo3 lo2) (not= la3 la2)) [lo3 la3]\n    (= lo3 lo2) [(+ lo3 (rand-step slon)) la3]\n    (= la3 la2) [lo3 (+ la3 (rand-step step))]))")
+	(title "next-closer [lo1 la1 lo2 la2 slon step]"))
+
+([Migration_Class200010] of  CloFunction
+
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))\n       [lof laf] finish]\n  (loop [n steps [los las] start path [start]]\n    (if (> n 0)\n      (let [[lon lan :as nxt] (next-closer los las lof laf slon step)\n             newp (conj path nxt)]\n        (if (and (== lon lof) (== lan laf))\n          newp\n          (recur (dec n) nxt newp)))\n      path)))")
+	(title "random-walk-closer [start finish steps step]"))
+
+([Migration_Class200017] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (set-onclick (partial make-region (mp \"poly\"))))")
+	(title "build-route [hm inst]"))
+
+([Migration_Class200018] of  CloFunction
+
+	(source "(if (number? x)\n  (MapOb/getDegMin x)\n  (str (MapOb/getDegMin (first x))\n        \" \"\n        (MapOb/getDegMin (second x))))")
+	(title "dms [x]"))
+
+([Migration_Class200019] of  CloFunction
+
+	(source "(let [pg0 (first (OMT/getPlaygrounds))\n       rumma (proxy [RuMapMouseAdapter] []\n                     (mouseLeftButtonClickedOn [mo llp runa]\n                       (fun mo (seq llp))\n                       (.manageGraphics pg0)\n                       true))]\n  (.setRuMapMouseAdapter pg0 rumma))")
+	(title "set-onclick [fun]"))
+
+([Migration_Class20002] of  CloFunction
+
+	(source "(let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]\n  (some #(.coveredBy pnt %) geoms))")
+	(title "covered-by [lon lat geoms]"))
+
+([Migration_Class200020] of  CloFunction
+
+	(source "(if-let [p (OMT/getMapOb pi)]\n  (OMT/removeMapOb p false))\n(let [pp (svs pi \"points\")]\n  (when (empty? pp)\n    (ssv pi \"latitude\" (dms lat))\n    (ssv pi \"longitude\" (dms lon)))\n  (ssvs pi \"points\"\n    (concat pp [(dms [lat lon])]))\n  (OMT/getOrAdd pi))")
+	(title "make-region [pi mo [lat lon]]"))
+
+([Migration_Class200021] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200022]))
+
+([Migration_Class200022] of  OMTPoly
+
+	(label "Lehmalahti")
+	(latitude "61 8.55")
+	(lineColor "FF00FF00")
+	(longitude "29 59.32")
+	(playground-index 0)
+	(points
+		"61 10.79 29 53.27"
+		"61 10.73 29 54.57"
+		"61 10.18 29 54.76"
+		"61 10.03 29 55.88"
+		"61 9.47 29 56.41"
+		"61 9.14 29 57.69"
+		"61 8.79 29 57.92"
+		"61 8.92 29 58.94"
+		"61 8.37 29 59.58"
+		"61 8.36 30 1.17"
+		"61 8.87 30 1.94"
+		"61 8.84 30 3.62")
+	(relative FALSE))
+
+([Migration_Class200023] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200024]))
+
+([Migration_Class200024] of  OMTPoly
+
+	(label "Rasinselka")
+	(latitude "61 11.81")
+	(lineColor "FF00FF00")
+	(longitude "29 51.78")
+	(playground-index 0)
+	(points
+		"61 10.78 29 53.31"
+		"61 11.23 29 53.21"
+		"61 11.64 29 52.55"
+		"61 11.82 29 51.23"
+		"61 12.34 29 50.02"
+		"61 12.62 29 50.45")
+	(relative FALSE))
+
+([Migration_Class200025] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200026]))
+
+([Migration_Class200026] of  OMTPoly
+
+	(label "Ulaskanselka")
+	(latitude "61 12.13")
+	(lineColor "FF00FF00")
+	(longitude "29 53.7")
+	(playground-index 0)
+	(points
+		"61 10.78 29 53.31"
+		"61 10.82 29 54.76"
+		"61 11.2 29 53.95"
+		"61 11.29 29 54.97"
+		"61 11.57 29 55.48"
+		"61 11.94 29 54.44"
+		"61 12.24 29 54.23"
+		"61 12.14 29 53.65"
+		"61 12.34 29 53.14")
+	(relative FALSE))
+
+([Migration_Class200027] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200028]))
+
+([Migration_Class200028] of  OMTPoly
+
+	(label "Karhusalmi")
+	(latitude "61 8.32")
+	(lineColor "FF00FF00")
+	(longitude "29 56.22")
+	(playground-index 0)
+	(points
+		"61 10.79 29 53.34"
+		"61 10.74 29 54.63"
+		"61 10.22 29 54.8"
+		"61 9.7 29 54.57"
+		"61 9.6 29 55.2"
+		"61 9.24 29 55.35"
+		"61 9.01 29 56.03"
+		"61 8.84 29 55.12"
+		"61 9.02 29 54.27"
+		"61 8.79 29 54.54"
+		"61 8.67 29 55.44"
+		"61 8.47 29 55.97"
+		"61 8.26 29 57.03"
+		"61 7.94 29 59.07"
+		"61 7.42 30 0.09"
+		"61 7.13 30 2.28")
+	(relative FALSE))
+
+([Migration_Class200029] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200030]))
+
+([Migration_Class20003] of  Lake
+
+	(attrs "name")
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Lake Kivijarvi")
+	(values "Kivijärvi"))
+
+([Migration_Class200030] of  OMTPoly
+
+	(label "Koivulahti")
+	(latitude "61 10.08")
+	(lineColor "FF00FF00")
+	(longitude "29 52.14")
+	(playground-index 0)
+	(points
+		"61 10.79 29 53.23"
+		"61 10.77 29 54.63"
+		"61 10.11 29 54.71"
+		"61 9.76 29 54.2"
+		"61 9.79 29 53.14"
+		"61 10.08 29 52.14")
+	(relative FALSE))
+
+([Migration_Class200031] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200032]))
+
+([Migration_Class200032] of  OMTPoly
+
+	(label "Kivijarvi")
+	(latitude "61 27.11")
+	(lineColor "FF00FF00")
+	(longitude "29 21.73")
+	(playground-index 0)
+	(points
+		"61 26.78 29 21.18"
+		"61 26.81 29 22.26"
+		"61 27.05 29 21.8"
+		"61 26.69 29 22.61"
+		"61 26.78 29 22.29")
+	(relative FALSE))
+
+([Migration_Class200033] of  WalkRoute
+
+	(but-build-route "Build Route/cesium.mig/build-route")
+	(poly [Migration_Class200034]))
+
+([Migration_Class200034] of  OMTPoly
+
+	(label "Sempelejarvi")
+	(latitude "61 30.2")
+	(lineColor "FF00FF00")
+	(longitude "29 25.81")
+	(playground-index 0)
+	(points
+		"61 26.8 29 22.19"
+		"61 27.14 29 23.17"
+		"61 27.86 29 23.07"
+		"61 28.62 29 22.29"
+		"61 28.87 29 23.95"
+		"61 30.09 29 23.33")
+	(relative FALSE))
+
+([Migration_Class200035] of  CloFunction
+
+	(source "(let [poli (if (string? wri) \n               (fifos \"OMTPoly\" \"label\" wri)\n               (sv wri \"poly\"))]\n  (map #(let [[lag lam log lom] (.split % \" \")]\n                    [(MapOb/getDeg (str log \" \" lom))\n                     (MapOb/getDeg (str lag \" \" lam))])\n    (svs poli \"points\")))")
+	(title "walk-route-waypoints [wri]"))
+
+([Migration_Class20006] of  CloVar
+
+	(source "(GeometryFactory.)")
+	(title "GeomFACTORY"))
+
+([Migration_Class20024] of  Lake
+
+	(attrs "name")
+	(layer [HiitolanjokiRCZ_Class2])
+	(title "Ladoga Lake")
+	(values "Ладожское озеро"))
+
+([Migration_Class3] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[RuleEngine_Class30000]
+		[ScenarioN_Class550020]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[CesiumBase_Class30004]
+		[CesiumWorshop_Class10003]
+		[HiitolanjokiRCZ_Class20002])
+	(title "Scenario Migration Programs"))
+
+([Migration_Class30000] of  CloVar
+
+	(source "(volatile! {})")
+	(title "LAKES"))
+
+([Migration_Class4] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Migration_Class3])
+	(%3ACREATION-TIMESTAMP "2020.05.31 13:08:14.109 MSK")
+	(%3ACREATOR "ru"))
+
+([Migration_Class40000] of  CloFunction
+
+	(source ";; returns time of going in sec\n(let [pts (from-shape-by-attributes layer attrs start height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  elt)")
+	(title "go-shape-attributes [id color size knots height start layer attrs]"))
+
+([Migration_Class40003] of  CloFunction
+
+	(source ";; returns time of going in sec\n(let [[lah loh] (river :head)\n        [lae loe] (river :estuary)\n        w (min loh loe)\n        s (min lah lae)\n        e (max loh loe)\n        n (max lah lae)]\n  (set-wsen-view w s e n)\n  (go-shape-attributes id color size\n    (condp = direction\n      :down (+ knots (river :speed))\n      :up (- knots (river :speed)))\n    (or height 16)\n    (condp = direction\n      :down (river :head)\n      :up (river :estuary))\n    (river :layer)\n    (condp = direction\n      :down (river :path)\n      :up (reverse (river :path)))))")
+	(title "go-river [id color size knots height river direction]"))
+
+([Migration_Class40016] of  CloFunction
+
+	(source "(let [mb (OpenMapTab/getMapBean)\n       prj (.getProjection mb)\n       scl (.getScale mb)\n       ul (.getUpperLeft prj)\n       lr (.getLowerRight prj)\n       [cw cs ce cn] [(.getX ul) (.getY lr) (.getX lr) (.getY ul)]]\n (if (or (> cw w) (> cs s) (> e ce) (> n cn))\n   (let [celat (/ (+ s n) 2)\n          celon (/ (+ w e) 2)]\n     (.setCenter mb celat celon)\n     (.setScale mb (* 1.2 scl))     \n     (if (< (.getScale mb) 50000000)\n       (set-wsen-view w s e n)))))")
+	(title "set-wsen-view [w s e n]"))
+
+([Migration_Class40024] of  CloFunction
+
+	(source "(let [stp (+ clk 3600000)\n       start (cg/iso8601abs clk)\n       stop (cg/iso8601abs stp)\n       mult (int scl)\n       cs {:animate true\n              :start start\n              :stop stop\n              :current start\n              :mult mult\n              :step \"SYSTEM_CLOCK_MULTIPLIER\"\n              :range \"UNBOUNDED\"}]\n  (cs/send-clock cs))")
+	(title "model-clock [clk scl]"))
+
+([Migration_Class50000] of  CloFunction
+
+	(source ";; returns time of going in sec and Nwps - 2 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-by-waypoints wps limstp steps step)\n       wpn (count wps)\n       wps (take-nth wpn pth)\n       wps (cond\n                (< (count wps) 3) pth\n                (= (last wps) (last pth)) wps\n                true (concat wps [(last pth)]))\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pth)\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-random-by-waypoints [id look knots wps limstp steps step]"))
+
+([Migration_Class50001] of  CloVar
+
+	(source "[[29.919 61.161]\n [29.912 61.170]\n [29.918 61.174]\n [29.909 61.176]\n [29.912 61.180]\n [29.888 61.179]]")
+	(title "WPS"))
+
+([Migration_Class50005] of  CloFunction
+
+	(source "(let [phi (Math/toRadians (second start))\n       slon (/ step (Math/cos phi))]\n  (loop [n steps [lon lat] start path [start]]\n    (if (> n 0)\n      (let [nxt (next-covered lon lat slon step geoms)]\n        (recur (dec n) nxt (conj path nxt)))\n      path)))")
+	(title "random-covered-walk [start steps step geoms]"))
+
+([Migration_Class50006] of  CloFunction
+
+	(source "(- (* 2 s (Math/random)) s)")
+	(title "rand-step [s]"))
+
+([Migration_Class50008] of  RuleSet
+
+	(rules
+		[ScenarioN_Class550031]
+		[Migration_Class50010]
+		[Migration_Class50009]
+		[Migration_Class90000])
+	(templates
+		[Clock]
+		[Cesium]
+		[CesiumCamera]
+		[MapObEvent])
+	(title "SMigSimulator"))
+
+([Migration_Class50009] of  Rule
+
+	(lhs "?acc (Cesium status \"START\"\n	time ?t1)\n(Clock time ?t2)")
+	(rhs "(when  (some? cesium.server/SERV)\n  (modify ?acc status \"REPEAT\"\n	N (+ ?t2 ?t1)))")
+	(salience 0)
+	(title "sim:AdjustCZClockStart"))
+
+([Migration_Class50010] of  Rule
+
+	(lhs "?acc (Cesium status \"REPEAT\"\n	time-scale ?scl\n	time ?t1\n	N ?n)\n(Clock time ?t2 (> ?t2 ?n))")
+	(rhs "(when (some? cesium.server/SERV)\n  (let [[clk scl] (cesium.mig/clock-scale)]\n    (if (not= ?scl scl)\n      (do (cesium.mig/model-clock clk scl)\n        (modify ?acc time-scale scl\n	N (+ ?t2 ?t1)))\n      (modify ?acc N (+ ?t2 ?t1)))))")
+	(salience 0)
+	(title "sim:AdjustCZClockRepeat"))
+
+([Migration_Class60001] of  Cesium
+
+	(status "START")
+	(time 2))
+
+([Migration_Class60014] of  CloFunction
+
+	(source "(loop [j 40]\n  (if (> j 0)\n    (let [lon1 (+ lon (rand-step slon))\n           lat1 (+ lat (rand-step step))]\n      (if (covered-by lon1 lat1 geoms)\n        [lon1 lat1]\n        (recur (dec j))))))")
+	(title "next-covered [lon lat slon step geoms]"))
+
+([Migration_Class70000] of  Rule
+
+	(lhs "?cre (Creature status \"REPEAT\"\n	N ?n)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(modify ?cre status \"END\")")
+	(salience 0)
+	(title "mig:Repeat"))
+
+([Migration_Class70001] of  Walk
+
+	(action "Walk in")
+	(area "Upper Lakes")
+	(walk-routes
+		[Migration_Class200031]
+		[Migration_Class200033])
+	(walk-step 0.005)
+	(walk-steps 100))
+
+([Migration_Class70002] of  Walk
+
+	(action "Walk backward")
+	(area "Upper Lakes")
+	(walk-step 0.005)
+	(walk-steps 100))
+
+([Migration_Class70003] of  Command
+
+	(label "Restart Simulation")
+	(scenario "clojuretab.ClojureTab invoke sim restart-sim"))
+
+([Migration_Class70004] of  Command
+
+	(label "Save BNET Plan")
+	(scenario "clojuretab.ClojureTab invoke ru.rules save-bnet-plan"))
+
+([Migration_Class70005] of  CloFunction
+
+	(source "(let [pts (map #(str (MapOb/getDegMin (second %)) \" \" (MapOb/getDegMin (first %))) pts)]\n  (ssvs inst \"points\" pts))")
+	(title "set-points [pts inst]"))
+
+([Migration_Class70007] of  OMTPoly
+
+	(label "p0")
+	(latitude "0 0")
+	(lineColor "FF0000FF")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"61 30.09 29 23.33"
+		"61 30.06 29 23.34"
+		"61 30.01 29 23.37"
+		"61 29.91 29 23.62"
+		"61 29.84 29 23.74"
+		"61 29.8 29 23.9"
+		"61 29.73 29 23.71"
+		"61 29.72 29 23.78"
+		"61 29.63 29 23.84"
+		"61 29.52 29 23.89"
+		"61 29.5 29 23.79"
+		"61 29.49 29 23.98"
+		"61 29.41 29 24.07"
+		"61 29.34 29 23.85"
+		"61 29.26 29 23.73"
+		"61 29.25 29 23.8"
+		"61 29.14 29 23.88"
+		"61 29.09 29 24.03"
+		"61 28.97 29 24.17"
+		"61 28.95 29 24.13"
+		"61 28.9 29 23.96"
+		"61 28.87 29 23.95"
+		"61 28.87 29 23.95"
+		"61 28.79 29 23.82"
+		"61 28.75 29 23.81"
+		"61 28.63 29 23.75"
+		"61 28.7 29 23.59"
+		"61 28.64 29 23.47"
+		"61 28.6 29 23.41"
+		"61 28.63 29 23.26"
+		"61 28.63 29 23.02"
+		"61 28.54 29 22.88"
+		"61 28.59 29 22.7"
+		"61 28.61 29 22.51"
+		"61 28.7 29 22.49"
+		"61 28.65 29 22.39"
+		"61 28.62 29 22.29"
+		"61 28.62 29 22.29"
+		"61 28.58 29 22.39"
+		"61 28.46 29 22.54"
+		"61 28.37 29 22.74"
+		"61 28.36 29 22.92"
+		"61 28.25 29 23.02"
+		"61 28.18 29 23.03"
+		"61 28.18 29 22.94"
+		"61 28.15 29 23.11"
+		"61 28.04 29 22.89"
+		"61 28.02 29 22.97"
+		"61 27.99 29 23.01"
+		"61 27.98 29 23.29"
+		"61 27.92 29 23.16"
+		"61 27.86 29 23.07"
+		"61 27.86 29 23.07"
+		"61 27.84 29 23.13"
+		"61 27.73 29 22.97"
+		"61 27.68 29 23.07"
+		"61 27.62 29 23.32"
+		"61 27.56 29 23.3"
+		"61 27.47 29 22.99"
+		"61 27.38 29 23.14"
+		"61 27.35 29 23.14"
+		"61 27.32 29 23.38"
+		"61 27.23 29 23.31"
+		"61 27.15 29 23.28"
+		"61 27.14 29 23.17"
+		"61 27.14 29 23.17"
+		"61 27.04 29 23.1"
+		"61 27.02 29 22.96"
+		"61 27.02 29 22.8"
+		"61 26.92 29 22.64"
+		"61 26.85 29 22.49"
+		"61 26.77 29 22.27"
+		"61 26.8 29 22.19")
+	(relative FALSE))
+
+([Migration_Class70014] of  CloFunction
+
+	(source ";; returns time of going in sec and 8 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-covered-walk start steps step geoms)\n       k (max 2 (int (/ (count pth) 5)))\n       wps (concat [(first pth)] (take-nth k pth) [(last pth)])\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(title "go-random-covered-walk [id look knots start steps step geoms]"))
+
+([Migration_Class80000] of  CloFunction
+
+	(source "(println \"INITIALIZING EXPERT SYSTEM\")\n(println \"1. Loading Clojure Programs...\")\n(if-let [wps (ClojureTab/findAnnotated (cls-instances \"WorkingPrograms\") nil)]\n  (loop [i 1 pins (svs wps \"cloPrograms\")]\n    (when (seq pins)\n      (println (str \" 1.\" i \" \" (sv (first pins) \"title\") \" = \" (ClojureTab/loadProgram (first pins)) ))\n      (recur (inc i) (rest pins)) ) )\n  (println \"  Annotated instance of WorkingPrograms not found!\"))\n(println \"2. Starting Cesium.\")\n(if-let [csi (ClojureTab/findAnnotated (cls-instances \"CesiumServer\") nil)]\n  (do (ClojureTab/invoke \"cesium.server\" \"start-server\" (sv csi \"port\"))\n    (clojure.java.browse/browse-url (str \"http://localhost:\" (sv csi \"port\")))\n    (println \"Cesium started..\"))\n  (println \"Annotated instance of CesiumServer not found!\"))\n(println \"3. Starting Expert System.\")\n(if-let [run (ClojureTab/findAnnotated (cls-instances \"Run\") nil)]\n  (ClojureTab/invoke \"ru.rules\" \"run-engine\" run)\n  (println \"  Annotated instance of Run not found!\"))\n(println \"4. Starting Simulation.\")\n(ClojureTab/invoke \"sim\" \"start-sim\")\n(println \"EXPERT SYSTEM INITIALIZED\")")
+	(title "clojure-work []"))
+
+([Migration_Class80001] of  CesiumServer
+
+	(butt-start-cs-server "Start/cesium.server/start-server")
+	(butt-stop-cs-server "Stop/cesium.server/stop-server")
+	(page "test.html")
+	(port 4448))
+
+([Migration_Class80002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [Migration_Class80001])
+	(%3ACREATION-TIMESTAMP "2020.06.06 17:32:13.284 MSK")
+	(%3ACREATOR "ru"))
+
+([Migration_Class80003] of  Walk
+
+	(action "Walk in")
+	(area "Ladoga Lake")
+	(walk-routes
+		[Migration_Class200027]
+		[Migration_Class200029]
+		[Migration_Class200021]
+		[Migration_Class200023]
+		[Migration_Class200025])
+	(walk-step 0.005)
+	(walk-steps 200))
+
+([Migration_Class80004] of  Walk
+
+	(action "Walk backward")
+	(area "Ladoga Lake")
+	(walk-step 0.005)
+	(walk-steps 200))
+
+([Migration_Class80005] of  Walk
+
+	(action "Last walk in")
+	(area "Lake Kivijarvi")
+	(walk-routes [Migration_Class200031])
+	(walk-step 0.001)
+	(walk-steps 40))
+
+([Migration_Class90000] of  Rule
+
+	(lhs "?cc (CesiumCamera status \"START\" \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
+	(rhs "(when (some? cesium.server/SERV)\n  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)\n  (modify ?cc status \"DONE\"))")
+	(salience 0)
+	(title "sim:CesiumCameraPosition"))
+
+([Migration_Class90001] of  Rule
+
+	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	waypoints ?wps\n	age ?age\n	area ?are	\n	action \"Walk backward\")\n(Clock time ?t)")
+	(rhs "(let [wps (reverse ?wps)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]\n  (println ?id [\"Walk backward\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints [(last wps)]\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:Walk backward"))
+
+([Migration_Class90002] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	down-speed ?spd\n	age ?age\n	area ?are\n	action \"Go down\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?are)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :down)]\n  (println ?id  [\"Going down\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:Go down river"))
+
+([Migration_Class90003] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	up-speed ?spd\n	age ?age\n	area ?are\n	action \"Go up\")\n(Clock time ?t)")
+	(rhs "(let [riv (cesium.mig/river-map ?are)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-river ?id loo ?spd riv :up)]\n  (println ?id  [\"Going up\" ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
+	(salience 0)
+	(title "mig:Go up river"))
+
+([Migration_Class90004] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	age ?age\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints ?wps\n	spawn ?spw\n	addition ?add\n	area ?are \n	action ?act\n                      (= ?act \"Birth in\"))\n(Clock time ?t)")
+	(rhs "(println ?id  \"Birth\" ?spw :REPEAT 4)\n(retract ?cre)\n(dotimes [i ?spw]\n  (asser Creature N (+ ?t 4)\n	id (name (gensym ?id))\n	birthtime ?t\n	age ?age\n	look (read-string ?loo)\n	down-speed ?dsp\n	up-speed ?usp\n	walk-speed ?wsp\n	waypoints (if (string? ?wps) (read-string ?wps) ?wps)\n	spawn ?spw\n	addition ?add\n	area ?are\n	action ?act\n	status \"REPEAT\")))")
+	(salience 1)
+	(title "mig:Birth"))
+
+([Migration_Class90005] of  Rule
+
+	(lhs "?cre (Creature status \"BEGIN\"\n	id ?id\n	waypoints ?wps\n	action \"Spawn in\")\n(Clock time ?t)")
+	(rhs "(println ?id \"Spawn in\")\n(when-let [cri (protege.core/fifos \"Creature\" \"id\" (str (first ?id)))]\n  (protege.core/ssv cri \"waypoints\" (str[(vec (last ?wps))]))\n  (println ?id  \"Spawn\" ?id)\n  (ru.rules/assert-instances [cri])\n  (retract ?cre))")
+	(salience 0)
+	(title "mig:Spawn"))
+
+([ScenarioMigration_Class10] of  CloFunction
+
+	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       [lat2 lon2] (next-random-point lat lon distro direct step geoms)\n       pts [[lon lat height] [lon2 lat2 height]]\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pth)\n  (cs/send-czml czml)\n  [[lat2 lon2] elt])")
+	(title "next-random-tack [[lat lon] distro direct step knots geoms look]"))
+
+([ScenarioMigration_Class7] of  Rule
+
+	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	object ?obj\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	distribution ?dst\n	area ?ara\n	limit ?lim\n	look ?lok\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let[rdr (map #(Math/toRadians %) (read-string (a/vv ?rdr ?run)))\n         rst (map #(Math/toRadians (/ % 60)) (read-string (a/vv ?rst ?run)))\n         rsp (map #(Math/toRadians (/ % 60)) (read-string (a/vv ?rsp ?run)))\n         lok (read-string (a/vv ?lok ?run))\n         ara (cesium.mig/init-area (a/vv ?ara ?run))\n         lim (a/to-be ?t (a/vv ?lim ?run))\n         opl [(.getLatitude mo) (.getLongitude mo)]\n         [nrpl sec] (cesium.mig/next-random-tack opl ?dst rdr rst rsp ara lok)]\n    (modify ?gor satatus \"REPEAT\"\n	object mo\n	random-place nrpl\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	look lok\n	N (+ ?t sec)))\n  (modify ?gor satatus \"FAILED\"))")
+	(salience 0)
+	(title "smi:GoRandomStart"))
+
+([ScenarioMigration_Class8] of  Rule
+
+	(lhs "?gor (GoRandom status \"REPEAT\"\n	object ?obj\n	random-place ?rpl\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	distribution ?dst\n	area ?ara\n	limit ?lim\n	look ?lok\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(if (< ?t ?lim)\n  (let [[nrpl sec] (cesium.mig/next-random-tack ?rpl ?dst ?rdr ?rst ?rsp ?ara ?lok)]\n    (.setLatitude (first ?rpl))\n    (.setLongitude (second ?rpl))\n    (modify ?gor random-place nrpl\n	N (+ ?t sec)))\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(salience 0)
+	(title "smi:GoRandomRepeat"))
+
+([ScenarioMigration_Class9] of  RuleSet
+
+	(rules
+		[ScenarioMigration_Class8]
+		[ScenarioMigration_Class7])
+	(templates [GoRandom])
+	(title "SMigration"))
