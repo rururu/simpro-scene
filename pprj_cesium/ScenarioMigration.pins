@@ -1,4 +1,4 @@
-; Mon Jul 06 20:51:59 MSK 2020
+; Tue Jul 07 20:54:32 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -175,8 +175,12 @@
 		[Migration_Class200019]
 		[Migration_Class200017]
 		[Migration_Class200035]
+		[ScenarioMigration_Class10007]
 		[Migration_Class20002]
-		[ScenarioMigration_Class10])
+		[ScenarioMigration_Class6]
+		[ScenarioMigration_Class0]
+		[ScenarioMigration_Class10]
+		[ScenarioMigration_Class10008])
 	(cloNamespace [HiitolanjokiRCZ_Class20003])
 	(cloVars
 		[Migration_Class30000]
@@ -184,7 +188,6 @@
 		[Migration_Class20000]
 		[Migration_Class50001]
 		[Migration_Class20006]
-		[Migration_Class120000]
 		[Migration_Class180004]
 		[Migration_Class190007])
 	(title "Cesium Migration"))
@@ -256,7 +259,9 @@
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
 	(fact-classes [Walk])
-	(facts [Migration_Class100001])
+	(facts
+		[Migration_Class100001]
+		[Migration_Class60001])
 	(mode run)
 	(rule-sets
 		[Migration_Class50008]
@@ -1204,16 +1209,6 @@
 	(walk-step 0.005)
 	(walk-steps 100))
 
-([Migration_Class70003] of  Command
-
-	(label "Restart Simulation")
-	(scenario "clojuretab.ClojureTab invoke sim restart-sim"))
-
-([Migration_Class70004] of  Command
-
-	(label "Save BNET Plan")
-	(scenario "clojuretab.ClojureTab invoke ru.rules save-bnet-plan"))
-
 ([Migration_Class70005] of  CloFunction
 
 	(source "(let [pts (map #(str (MapOb/getDegMin (second %)) \" \" (MapOb/getDegMin (first %))) pts)]\n  (ssvs inst \"points\" pts))")
@@ -1395,22 +1390,183 @@
 	(salience 0)
 	(title "mig:Spawn"))
 
+([ScenarioMigration_Class0] of  CloFunction
+
+	(source "(condp = distro\n  'LIST (loop [i 0]\n            (if (< i 10)\n              (let [dir (rand-nth direct)\n                     stp (rand-nth step)\n                     [lat2 lon2] (next-point lat lon stp dir)]\n                (if (covered-by lon2 lat2 geoms)\n                  [lat2 lon2]\n                  (recur (inc i))))\n              [lat lon])))")
+	(title "next-covered-point [lat lon distro direct step geoms]"))
+
+([ScenarioMigration_Class1] of  CloFuncall
+
+	(source "(vec (com.bbn.openmap.proj.GreatCircle/sphericalBetween 0.77 0.34 0.001 1.57 0))"))
+
 ([ScenarioMigration_Class10] of  CloFunction
 
-	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       [lat2 lon2] (next-random-point lat lon distro direct step geoms)\n       pts [[lon lat height] [lon2 lat2 height]]\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pth)\n  (cs/send-czml czml)\n  [[lat2 lon2] elt])")
-	(title "next-random-tack [[lat lon] distro direct step knots geoms look]"))
+	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       [lat2 lon2] (next-covered-point lat lon distro r-direct r-step geoms)\n       pts [[lon lat height] [lon2 lat2 height]]\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       knots (rand-knots distro r-knots)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (cs/send-czml czml)\n  [[lat2 lon2] elt])")
+	(title "next-random-tack [id look [lat lon] distro r-direct r-step r-knots geoms]"))
+
+([ScenarioMigration_Class10007] of  CloFunction
+
+	(source "(condp = distro\n  'LIST (rand-nth r-knots))")
+	(title "rand-knots [distro r-knots]"))
+
+([ScenarioMigration_Class10008] of  CloFunction
+
+	(source "(:geoms (lake-map are))")
+	(title "init-area [are]"))
+
+([ScenarioMigration_Class10009] of  CloFuncall
+
+	(source "(in-ns 'cesium.mig)"))
+
+([ScenarioMigration_Class10010] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 90.0 180.0 270.0] [0.1 0.2] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10011] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 90.0 180.0 270.0] [0.01 0.02] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10012] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 45.0 90.0 135.0 180.0 270.0] [0.01 0.02] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10013] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 0 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 45.0 90.0 135.0 180.0 270.0] [0.01 0.02] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10014] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 0 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 45.0 90.0 135.0 180.0 270.0] [1.0 2.0] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10015] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 0 0 255] :size 10 :height 20} [61.14 30.0] 'LIST [0.0 45.0 90.0 135.0 180.0 270.0] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10016] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [0 255 0 255] :size 10 :height 200} [61.14 30.0] 'LIST [0.0 45.0 90.0 135.0 180.0 270.0] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10017] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [0 255 0 255] :size 10 :height 200} [61.14 30.0] 'LIST [0. 45. 90.0 135.0 180.0 270.0] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10018] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [0 0 255 255] :size 10 :height 200} [61.14 30.0] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ .1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10019] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [0 0 255 255] :size 10 :height 200} [61.14 30.0] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10020] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 0 0 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10021] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [0 255 255 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 0.1 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10022] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 0.01 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10023] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 0.001 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10024] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 1.0 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10025] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.15 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 2.0 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10026] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.168 30.1] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 2.0 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10027] of  CloFuncall
+
+	(source "(next-random-tack \"s1\" {:color [255 255 0 255] :size 10 :height 200} [61.168 30.111] 'LIST [0. 45. 90. 135. 180. 225. 270. 315.] [(/ 2.0 60)] [4.0 10.0] (init-area \"Ladoga Lake\"))"))
+
+([ScenarioMigration_Class10028] of  GoRandom
+
+	(area "Ladoga Lake")
+	(distribution LIST)
+	(limit "10 hrs")
+	(look "{:color [255 255 0 255] \n  :size 10 \n  :height 200}")
+	(object [ScenarioMigration_Class10029])
+	(random-direction "[0. 45. 90. 135. 180. 225. 270. 315.]")
+	(random-speed "[4. 6. 8. 10.]")
+	(random-step "[0.1 0.2 0.5 0.8]")
+	(status "START")
+	(title "test"))
+
+([ScenarioMigration_Class10029] of  NavOb
+
+	(altitude 0)
+	(course 90)
+	(label "s1")
+	(latitude "61 9")
+	(longitude "30 5")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/fish.gif")
+	(verticalSpeed 0.0))
+
+([ScenarioMigration_Class10030] of  CloFuncall
+
+	(source "(ru.rules/f 52)"))
+
+([ScenarioMigration_Class10031] of  CloFuncall
+
+	(source "(rete.core/facts-for-slot-value 'GoRandom 'title = \"START\")"))
+
+([ScenarioMigration_Class10032] of  CloFuncall
+
+	(source "(rete.core/facts-with-slot-value 'GoRandom 'title = \"START\")"))
+
+([ScenarioMigration_Class10033] of  CloFuncall
+
+	(source "(ru.rules/pp 'Clock)"))
+
+([ScenarioMigration_Class10034] of  CloFuncall
+
+	(source "(ru.rules/pp 'GoRandom)"))
+
+([ScenarioMigration_Class2] of  CloFuncall
+
+	(source "(vec (com.bbn.openmap.proj.GreatCircle/sphericalBetween (double 0.77) (double 0.34) (double 0.001) (double 1.57) (int 0)))"))
+
+([ScenarioMigration_Class3] of  CloFuncall
+
+	(source "(vec (com.bbn.openmap.proj.GreatCircle/sphericalBetween (double 0.77) (double 0.34) (double 0.001) (double 1.57) (int 1)))"))
+
+([ScenarioMigration_Class4] of  CloFuncall
+
+	(source "(let [[a b c d] [0.77 0.34 0.001 1.57]] (vec (com.bbn.openmap.proj.GreatCircle/sphericalBetween  a b c d 1))"))
+
+([ScenarioMigration_Class5] of  CloFuncall
+
+	(source "(let [[a b c d] [0.77 0.34 0.001 1.57]] (vec (com.bbn.openmap.proj.GreatCircle/sphericalBetween  a b c d 1)))"))
+
+([ScenarioMigration_Class6] of  CloFunction
+
+	(source "(let [llp (GreatCircle/sphericalBetween (Math/toRadians lat) (Math/toRadians lon) (Math/toRadians dis) (Math/toRadians dir))]\n  [(.getLatitude llp) (.getLongitude llp)])")
+	(title "next-point [^double lat ^double lon ^double dis ^double dir]"))
 
 ([ScenarioMigration_Class7] of  Rule
 
 	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	object ?obj\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	distribution ?dst\n	area ?ara\n	limit ?lim\n	look ?lok\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRoad\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let[rdr (map #(Math/toRadians %) (read-string (a/vv ?rdr ?run)))\n         rst (map #(Math/toRadians (/ % 60)) (read-string (a/vv ?rst ?run)))\n         rsp (map #(Math/toRadians (/ % 60)) (read-string (a/vv ?rsp ?run)))\n         lok (read-string (a/vv ?lok ?run))\n         ara (cesium.mig/init-area (a/vv ?ara ?run))\n         lim (a/to-be ?t (a/vv ?lim ?run))\n         opl [(.getLatitude mo) (.getLongitude mo)]\n         [nrpl sec] (cesium.mig/next-random-tack opl ?dst rdr rst rsp ara lok)]\n    (modify ?gor satatus \"REPEAT\"\n	object mo\n	random-place nrpl\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	look lok\n	N (+ ?t sec)))\n  (modify ?gor satatus \"FAILED\"))")
+	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let[rdr (read-string (a/vv ?rdr ?run))\n         rst (map #(/ % 60) (read-string (a/vv ?rst ?run)))\n         rsp (read-string (a/vv ?rsp ?run))\n         lok (read-string (a/vv ?lok ?run))\n         ara (cesium.mig/init-area (a/vv ?ara ?run))\n         lim (a/to-be ?t (a/vv ?lim ?run))\n         opl [(.getLatitude mo) (.getLongitude mo)]\n         id (.getName mo)\n         [nrpl sec] (cesium.mig/next-random-tack id lok opl ?dst rdr rst rsp ara)]\n    (modify ?gor satatus \"REPEAT\"\n	object mo\n	random-place nrpl\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	look lok\n	N (+ ?t sec)))\n  (modify ?gor satatus \"FAILED\"))")
 	(salience 0)
 	(title "smi:GoRandomStart"))
 
 ([ScenarioMigration_Class8] of  Rule
 
 	(lhs "?gor (GoRandom status \"REPEAT\"\n	object ?obj\n	random-place ?rpl\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	distribution ?dst\n	area ?ara\n	limit ?lim\n	look ?lok\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
-	(rhs "(if (< ?t ?lim)\n  (let [[nrpl sec] (cesium.mig/next-random-tack ?rpl ?dst ?rdr ?rst ?rsp ?ara ?lok)]\n    (.setLatitude (first ?rpl))\n    (.setLongitude (second ?rpl))\n    (modify ?gor random-place nrpl\n	N (+ ?t sec)))\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(rhs "(if (< ?t ?lim)\n  (let [id (.getName ?obj)\n         [nrpl sec] (cesium.mig/next-random-tack id ?lok ?rpl ?dst ?rdr ?rst ?rsp ?ara)]\n    (.setLatitude ?obj (double (first ?rpl)))\n    (.setLongitude ?obj (double (second ?rpl)))\n    (modify ?gor random-place nrpl\n	N (+ ?t sec)))\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
 	(salience 0)
 	(title "smi:GoRandomRepeat"))
 

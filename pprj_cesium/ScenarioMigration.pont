@@ -1,4 +1,4 @@
-; Mon Jul 06 20:51:59 MSK 2020
+; Tue Jul 07 20:54:32 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -114,18 +114,18 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot distribution
+		(type SYMBOL)
+		(allowed-values NORMAL UNIFORM LIST)
+		(default LIST)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot phases
 		(type INSTANCE)
 ;+		(allowed-classes Phase)
 		(create-accessor read-write))
 	(single-slot birthtime
 		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot distibution
-		(type SYMBOL)
-		(allowed-values NORMAL UNIFORM)
-		(default UNIFORM)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -134,6 +134,12 @@
 	(role concrete)
 	(single-slot limit
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot distribution
+		(type SYMBOL)
+		(allowed-values NORMAL UNIFORM LIST)
+		(default LIST)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
@@ -167,12 +173,6 @@
 		(create-accessor read-write))
 	(single-slot random-speed
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot distibution
-		(type SYMBOL)
-		(allowed-values NORMAL UNIFORM)
-		(default UNIFORM)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

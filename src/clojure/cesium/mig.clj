@@ -37,7 +37,6 @@
  [29.912 61.180]
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
-(def POINTS (volatile! {}))
 (def DTREE [[:N [:W :S] [:E :S]]
  [:S [:W :N] [:E :N]]
  [:W [:N :E] [:S :E]]
@@ -296,13 +295,43 @@
                      (MapOb/getDeg (str lag " " lam))])
     (svs poli "points"))))
 
-(defn rwrw []
-  (def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
-(set-points pts (fifos "OMTPoly" "label" "p0"))
-(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
-(set-points pts (fifos "OMTPoly" "label" "p1"))
-(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
-(set-points pts (fifos "OMTPoly" "label" "p2"))
-(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
-(set-points pts (fifos "OMTPoly" "label" "p3")))
+(defn rand-knots [distro r-knots]
+  (condp = distro
+  'LIST (rand-nth r-knots)))
+
+(defn covered-by [lon lat geoms]
+  (let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]
+  (some #(.coveredBy pnt %) geoms)))
+
+(defn next-point [^double lat ^double lon ^double dis ^double dir]
+  (let [llp (GreatCircle/sphericalBetween (Math/toRadians lat) (Math/toRadians lon) (Math/toRadians dis) (Math/toRadians dir))]
+  [(.getLatitude llp) (.getLongitude llp)]))
+
+(defn next-covered-point [lat lon distro direct step geoms]
+  (condp = distro
+  'LIST (loop [i 0]
+            (if (< i 10)
+              (let [dir (rand-nth direct)
+                     stp (rand-nth step)
+                     [lat2 lon2] (next-point lat lon stp dir)]
+                (if (covered-by lon2 lat2 geoms)
+                  [lat2 lon2]
+                  (recur (inc i))))
+              [lat lon]))))
+
+(defn next-random-tack [id look [lat lon] distro r-direct r-step r-knots geoms]
+  (let [color (look :color)
+       size (look :size)
+       height (look :height)
+       [lat2 lon2] (next-covered-point lat lon distro r-direct r-step geoms)
+       pts [[lon lat height] [lon2 lat2 height]]
+       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+       mils (+ (Clock/getClock) 2000)
+       knots (rand-knots distro r-knots)
+       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (cs/send-czml czml)
+  [[lat2 lon2] elt]))
+
+(defn init-area [are]
+  (:geoms (lake-map are)))
 
