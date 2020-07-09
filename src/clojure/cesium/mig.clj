@@ -17,7 +17,13 @@
   sim.io.geo.ShapeFileImporter
   sim.util.geo.AttributeValue
   com.vividsolutions.jts.geom.Coordinate
-  com.vividsolutions.jts.geom.GeometryFactory))
+  com.vividsolutions.jts.geom.GeometryFactory
+  ec.util.MersenneTwisterFast
+  sim.util.distribution.Normal
+  sim.util.distribution.Uniform))
+(def MTF (MersenneTwisterFast.))
+(def NORMAL (Normal. 0.0 0.0 MTF))
+(def UNIFORM (Uniform. MTF))
 (def LAKES (volatile! {}))
 (def RIVERS (volatile! {}))
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
@@ -53,6 +59,7 @@
  :NE [1 1]
  :SW [-1 -1]
  :SE [1 -1]})
+(def POINTS (volatile! {}))
 (defn set-points [pts inst]
   (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
   (ssvs inst "points" pts)))
@@ -295,42 +302,53 @@
                      (MapOb/getDeg (str lag " " lam))])
     (svs poli "points"))))
 
-(defn rand-knots [distro r-knots]
-  (condp = distro
-  'LIST (rand-nth r-knots)))
+(defn rand-double [distro]
+  (condp = (first distro)
+  :L (rand-nth (rest distro))
+  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))
+  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro)))))
 
 (defn covered-by [lon lat geoms]
   (let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]
   (some #(.coveredBy pnt %) geoms)))
 
-(defn next-point [^double lat ^double lon ^double dis ^double dir]
+(defn next-point [^double lon ^double lat ^double dis ^double dir]
   (let [llp (GreatCircle/sphericalBetween (Math/toRadians lat) (Math/toRadians lon) (Math/toRadians dis) (Math/toRadians dir))]
-  [(.getLatitude llp) (.getLongitude llp)]))
+  [(.getLongitude llp) (.getLatitude llp)]))
 
-(defn next-covered-point [lat lon distro direct step geoms]
-  (condp = distro
-  'LIST (loop [i 0]
-            (if (< i 10)
-              (let [dir (rand-nth direct)
-                     stp (rand-nth step)
-                     [lat2 lon2] (next-point lat lon stp dir)]
-                (if (covered-by lon2 lat2 geoms)
-                  [lat2 lon2]
-                  (recur (inc i))))
-              [lat lon]))))
+(defn next-covered-point [[lon lat] r-direct r-step geoms]
+  (loop [i 0]
+  (if (< i 10)
+    (let [dir (rand-double r-direct)
+           stp (rand-double r-step)
+           [lon2 lat2] (next-point lon lat stp dir)]
+      (if (covered-by lon2 lat2 geoms)
+        [lon2 lat2]
+        (recur (inc i))))
+    [lon lat])))
 
-(defn next-random-tack [id look [lat lon] distro r-direct r-step r-knots geoms]
+(defn next-covered-points [lon lat r-direct r-step geoms n]
+  (loop [i n pts [[lon lat]]]
+  (if (> i 0)
+    (recur (dec i) 
+      (conj pts (next-covered-point (last pts) r-direct r-step geoms)))
+    pts)))
+
+(defn next-random-way [id look [lon lat] r-direct r-step r-knots geoms n sec]
   (let [color (look :color)
        size (look :size)
        height (look :height)
-       [lat2 lon2] (next-covered-point lat lon distro r-direct r-step geoms)
-       pts [[lon lat height] [lon2 lat2 height]]
+       pth (next-covered-points lon lat r-direct r-step geoms n)
+       _ (vswap! POINTS assoc (gensym id) pth)
+       pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       mils (+ (Clock/getClock) 2000)
-       knots (rand-knots distro r-knots)
+       mils (* sec 1000)
+       knots (rand-double r-knots)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (cs/send-czml czml)
-  [[lat2 lon2] elt]))
+  {:start (first pth)
+    :finish (last pth)
+    :czml czml
+    :time elt}))
 
 (defn init-area [are]
   (:geoms (lake-map are)))

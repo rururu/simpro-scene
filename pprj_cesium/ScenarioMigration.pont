@@ -1,4 +1,4 @@
-; Tue Jul 07 20:54:32 MSK 2020
+; Thu Jul 09 20:45:56 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -94,11 +94,11 @@
 		(default "Build Route/cesium.mig/build-route")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot random-place
+	(single-slot waypoints
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot waypoints
+	(single-slot factor
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -114,15 +114,13 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot distribution
-		(type SYMBOL)
-		(allowed-values NORMAL UNIFORM LIST)
-		(default LIST)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot phases
 		(type INSTANCE)
 ;+		(allowed-classes Phase)
+		(create-accessor read-write))
+	(single-slot next-random-way
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot birthtime
 		(type INTEGER)
@@ -132,30 +130,27 @@
 (defclass GoRandom
 	(is-a Go)
 	(role concrete)
-	(single-slot limit
+	(single-slot next-random-way
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot distribution
-		(type SYMBOL)
-		(allowed-values NORMAL UNIFORM LIST)
-		(default LIST)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot limit
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot object
-		(type INSTANCE)
-;+		(allowed-classes %3ATHING MapOb NavOb)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot random-place
+	(single-slot area
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot area
+	(single-slot factor
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
