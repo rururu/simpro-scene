@@ -1,4 +1,4 @@
-; Thu Jul 09 20:45:56 MSK 2020
+; Fri Jul 10 21:30:17 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -591,126 +591,211 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 10 30 9.51"
-		"61 9.62 30 8.55"
-		"61 9.44 30 10.04"
-		"61 9.6 30 11.33"
-		"61 9.26 30 10.3"
-		"61 9.36 30 8.14"
-		"61 9.19 30 9.16"
-		"61 9.49 30 8.43"
-		"61 9.76 30 9.25"
-		"61 9.1 30 8.73"
-		"61 10.49 30 10.08"
-		"61 9.99 30 9.35"
-		"61 9.95 30 7.91"
-		"61 10.04 30 6.52"
-		"61 9.39 30 5.91"
-		"61 9.62 30 8.99"
-		"61 8.98 30 9.28"
-		"61 9.32 30 7.97"
-		"61 10 30 8.27"
-		"61 9.35 30 8.49"
-		"61 9.35 30 8.49"
-		"61 9.78 30 9.12"
-		"61 10.05 30 8.47"
-		"61 9.7 30 9.61"
-		"61 9.36 30 8.14"
-		"61 9.26 30 10.3"
-		"61 8.78 30 10.83"
-		"61 9.1 30 10"
-		"61 9.06 30 11.05"
-		"61 8.39 30 11.2"
-		"61 8.79 30 12.32"
-		"61 8.37 30 12.17"
-		"61 8.15 30 13.08"
-		"61 8.22 30 14.2"
-		"61 7.48 30 14.31"
-		"61 9.97 30 7.3"
-		"61 10.4 30 8.36"
-		"61 10.72 30 8.99"
-		"61 10.02 30 9.37"
-		"61 9.62 30 8.99"
-		"61 7.75 30 12.99"
-		"61 7.95 30 12.11"
-		"61 7.43 30 12.2"
-		"61 8.07 30 11.86"
-		"61 8.79 30 12.32"
-		"61 9.33 30 5.96"
-		"61 9.86 30 6.09"
-		"61 9.9 30 4.59"
-		"61 9.6 30 3.94"
-		"61 9.03 30 4.97"
-		"61 9 30 4.8"
-		"61 8.64 30 3.99"
-		"61 7.96 30 4.3"
-		"61 8.49 30 4.03"
-		"61 8.9 30 3.78"
-		"61 7.53 30 11.54"
-		"61 7.47 30 13.01"
-		"61 7.53 30 14.43"
-		"61 7.21 30 13.28"
-		"61 7.75 30 12.99"
-		"61 9.02 30 6.73"
-		"61 9.12 30 8.02"
-		"61 9.67 30 8.2"
-		"61 9.36 30 8.83"
-		"61 8.83 30 9.64"
-		"61 7.48 30 14.31"
-		"61 7.69 30 13.24"
-		"61 8 30 14.44"
-		"61 8.7 30 14.35"
-		"61 8.3 30 13.56"
-		"61 8.3 30 13.56"
-		"61 8.01 30 12.66"
-		"61 8.17 30 11.12"
-		"61 8.31 30 12.26"
-		"61 8.6 30 10.79"
-		"61 9.03 30 4.97"
-		"61 8.62 30 4.42"
-		"61 8.34 30 5.2"
-		"61 8.46 30 3.74"
-		"61 8.84 30 2.65"
-		"61 8.39 30 11.2"
-		"61 7.81 30 11.27"
-		"61 8.31 30 11.4"
-		"61 8.02 30 12.11"
-		"61 7.53 30 11.54"
-		"61 9.39 30 5.91"
-		"61 9.42 30 4.93"
-		"61 8.83 30 4.18"
-		"61 9.45 30 4.07"
-		"61 9.01 30 4.09"
-		"61 8.83 30 9.64"
-		"61 8.69 30 8.52"
-		"61 9.01 30 7.36"
-		"61 9.51 30 7.78"
-		"61 9.97 30 7.3"
-		"61 9.01 30 4.09"
-		"61 8.76 30 5.54"
-		"61 9.13 30 6.54"
-		"61 9.85 30 5.92"
-		"61 9.33 30 5.96"
-		"61 8.74 30 6.51"
-		"61 9.39 30 6.7"
-		"61 9.65 30 8.01"
-		"61 9.77 30 6.92"
-		"61 9.02 30 6.73"
-		"61 8.6 30 10.79"
-		"61 8.91 30 9.63"
-		"61 9.41 30 10.07"
-		"61 9.9 30 10.49"
-		"61 10.49 30 10.08"
-		"61 8.9 30 3.78"
-		"61 8.78 30 4.83"
-		"61 8.38 30 3.95"
-		"61 8.65 30 5.17"
-		"61 8.74 30 6.51"
-		"61 9.1 30 8.73"
-		"61 9.51 30 8.14"
-		"61 9.99 30 8.44"
-		"61 10.59 30 9.43"
-		"61 10 30 9.51")
+		"61 8.67 29 57.39"
+		"61 8.77 29 57.34"
+		"61 8.81 29 57.5"
+		"61 8.78 29 57.66"
+		"61 8.87 29 57.81"
+		"61 8.78 29 57.3"
+		"61 8.72 29 57.11"
+		"61 8.72 29 57.26"
+		"61 8.79 29 57.42"
+		"61 8.8 29 57.18"
+		"61 8.86 29 57.12"
+		"61 8.94 29 57.31"
+		"61 8.88 29 57.1"
+		"61 8.81 29 57.27"
+		"61 8.75 29 57.1"
+		"61 8.88 29 57.32"
+		"61 8.95 29 57.14"
+		"61 8.86 29 57.04"
+		"61 8.75 29 57.05"
+		"61 8.82 29 57.21"
+		"61 9.78 29 56.35"
+		"61 9.87 29 56.22"
+		"61 9.85 29 56"
+		"61 9.86 29 55.8"
+		"61 9.82 29 56.01"
+		"61 8.93 29 57.01"
+		"61 8.93 29 57.21"
+		"61 8.86 29 57.16"
+		"61 8.76 29 57.1"
+		"61 8.78 29 57.3"
+		"61 9.6 29 56.14"
+		"61 9.56 29 55.95"
+		"61 9.57 29 55.72"
+		"61 9.62 29 55.55"
+		"61 9.57 29 55.74"
+		"61 9.23 29 57.81"
+		"61 9.33 29 57.89"
+		"61 9.3 29 57.73"
+		"61 9.36 29 57.58"
+		"61 9.29 29 57.42"
+		"61 8.8 29 57.18"
+		"61 8.88 29 57.02"
+		"61 8.97 29 56.9"
+		"61 9.01 29 57.07"
+		"61 8.97 29 57.28"
+		"61 8.72 29 57.15"
+		"61 8.82 29 57.11"
+		"61 8.74 29 57.1"
+		"61 8.74 29 57.29"
+		"61 8.75 29 57.49"
+		"61 9.27 29 57.75"
+		"61 9.35 29 57.77"
+		"61 9.28 29 57.66"
+		"61 9.32 29 57.85"
+		"61 9.22 29 57.81"
+		"61 9.68 29 56.56"
+		"61 9.57 29 56.47"
+		"61 9.65 29 56.67"
+		"61 9.71 29 56.47"
+		"61 9.7 29 56.27"
+		"61 9.7 29 56.27"
+		"61 9.64 29 56.44"
+		"61 9.68 29 56.64"
+		"61 9.69 29 56.42"
+		"61 9.78 29 56.35"
+		"61 8.97 29 56.96"
+		"61 8.88 29 56.97"
+		"61 8.96 29 57"
+		"61 8.88 29 57.06"
+		"61 8.99 29 57.05"
+		"61 8.75 29 57.1"
+		"61 8.8 29 57.25"
+		"61 8.79 29 57.05"
+		"61 8.89 29 56.98"
+		"61 8.97 29 56.8"
+		"61 8.87 29 57.81"
+		"61 8.98 29 57.71"
+		"61 9.03 29 57.51"
+		"61 8.92 29 57.48"
+		"61 8.88 29 57.32"
+		"61 9.44 29 57.06"
+		"61 9.36 29 56.98"
+		"61 9.45 29 56.89"
+		"61 9.52 29 56.71"
+		"61 9.51 29 56.51"
+		"61 9.17 29 57.15"
+		"61 9.08 29 57.27"
+		"61 8.98 29 57.32"
+		"61 9.01 29 57.11"
+		"61 8.97 29 56.96"
+		"61 8.75 29 57.49"
+		"61 8.75 29 57.24"
+		"61 8.76 29 57.03"
+		"61 8.76 29 57.23"
+		"61 8.83 29 57.07"
+		"61 9.29 29 57.42"
+		"61 9.34 29 57.22"
+		"61 9.28 29 57.34"
+		"61 9.35 29 57.16"
+		"61 9.33 29 57.35"
+		"61 8.97 29 56.8"
+		"61 8.9 29 57"
+		"61 8.79 29 57.02"
+		"61 8.73 29 57.1"
+		"61 8.79 29 57"
+		"61 8.97 29 57.28"
+		"61 8.99 29 57.47"
+		"61 9.07 29 57.32"
+		"61 9.13 29 57.52"
+		"61 9.19 29 57.66"
+		"61 9.59 29 56.58"
+		"61 9.67 29 56.7"
+		"61 9.6 29 56.49"
+		"61 9.67 29 56.37"
+		"61 9.68 29 56.56"
+		"61 9.33 29 57.58"
+		"61 9.35 29 57.78"
+		"61 9.26 29 57.71"
+		"61 9.32 29 57.82"
+		"61 9.23 29 57.81"
+		"61 8.82 29 57.21"
+		"61 8.77 29 57.09"
+		"61 8.87 29 57.08"
+		"61 8.96 29 57.19"
+		"61 8.86 29 57.12"
+		"61 9.82 29 56.01"
+		"61 9.93 29 56.06"
+		"61 10.02 29 56.03"
+		"61 9.97 29 55.85"
+		"61 9.88 29 55.85"
+		"61 8.99 29 57.05"
+		"61 8.96 29 56.84"
+		"61 8.99 29 56.61"
+		"61 8.96 29 56.8"
+		"61 8.88 29 56.97"
+		"61 9.53 29 56.7"
+		"61 9.5 29 56.52"
+		"61 9.61 29 56.5"
+		"61 9.7 29 56.54"
+		"61 9.59 29 56.58"
+		"61 9.18 29 57.54"
+		"61 9.18 29 57.33"
+		"61 9.18 29 57.13"
+		"61 9.26 29 57.25"
+		"61 9.17 29 57.15"
+		"61 8.87 29 57.14"
+		"61 8.78 29 57.04"
+		"61 8.7 29 57.13"
+		"61 8.8 29 57.01"
+		"61 8.72 29 57.15"
+		"61 9.22 29 57.81"
+		"61 9.23 29 57.58"
+		"61 9.34 29 57.57"
+		"61 9.37 29 57.39"
+		"61 9.33 29 57.58"
+		"61 8.88 29 56.97"
+		"61 8.97 29 57.04"
+		"61 8.87 29 57.05"
+		"61 8.79 29 57.23"
+		"61 8.87 29 57.14"
+		"61 8.83 29 57.07"
+		"61 8.74 29 57.05"
+		"61 8.71 29 57.26"
+		"61 8.75 29 57.52"
+		"61 8.67 29 57.39"
+		"61 9.61 29 56.07"
+		"61 9.68 29 56.24"
+		"61 9.58 29 56.33"
+		"61 9.58 29 56.54"
+		"61 9.53 29 56.7"
+		"61 8.79 29 57"
+		"61 8.84 29 57.15"
+		"61 8.87 29 56.97"
+		"61 8.84 29 57.15"
+		"61 8.93 29 57.01"
+		"61 9.19 29 57.66"
+		"61 9.28 29 57.6"
+		"61 9.26 29 57.83"
+		"61 9.35 29 57.75"
+		"61 9.4 29 57.55"
+		"61 9.57 29 55.74"
+		"61 9.64 29 55.93"
+		"61 9.6 29 56.06"
+		"61 9.7 29 56.05"
+		"61 9.61 29 56.07"
+		"61 9.33 29 57.35"
+		"61 9.23 29 57.41"
+		"61 9.19 29 57.16"
+		"61 9.26 29 57.2"
+		"61 9.35 29 57.12"
+		"61 9.35 29 57.12"
+		"61 9.34 29 57.31"
+		"61 9.37 29 57.45"
+		"61 9.4 29 57.26"
+		"61 9.44 29 57.06"
+		"61 9.51 29 56.51"
+		"61 9.44 29 56.33"
+		"61 9.38 29 56.15"
+		"61 9.48 29 56.1"
+		"61 9.6 29 56.14"
+		"61 9.4 29 57.55"
+		"61 9.38 29 57.73"
+		"61 9.27 29 57.76"
+		"61 9.2 29 57.92"
+		"61 9.27 29 57.75")
 	(relative FALSE))
 
 ([Migration_Class170052] of  OMTPoly
@@ -1377,6 +1462,14 @@
 	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (next-covered-points lon lat r-direct r-step geoms n)\n       _ (vswap! POINTS assoc (gensym id) pth)\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (* sec 1000)\n       knots (rand-double r-knots)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  {:start (first pth)\n    :finish (last pth)\n    :czml czml\n    :time elt})")
 	(title "next-random-way [id look [lon lat] r-direct r-step r-knots geoms n sec]"))
 
+([ScenarioMigration_Class10000] of  CloFuncall
+
+	(source "(in-ns 'cesium.mig)"))
+
+([ScenarioMigration_Class10001] of  CloFuncall
+
+	(source "(keys @POINTS)"))
+
 ([ScenarioMigration_Class10002] of  CloFunction
 
 	(source "(loop [i 0]\n  (if (< i 10)\n    (let [dir (rand-double r-direct)\n           stp (rand-double r-step)\n           [lon2 lat2] (next-point lon lat stp dir)]\n      (if (covered-by lon2 lat2 geoms)\n        [lon2 lat2]\n        (recur (inc i))))\n    [lon lat]))")
@@ -1392,12 +1485,14 @@
 	(area "Ladoga Lake")
 	(factor "4")
 	(label "s1")
+	(latitude "61.153")
 	(limit "10 hrs")
+	(longitude "29.959")
 	(look "{:color [255 255 0 255] \n  :size 10 \n  :height 200}")
 	(next-random-way "{:start [30.08 61.15]}")
 	(random-direction "[:U 0. 359.99]")
-	(random-speed "[:L 4. 5. 6.]")
-	(random-step "[:N 0.4 0.1]")
+	(random-speed "[:L 1. 2. 3.]")
+	(random-step "[:N 0.1 0.01]")
 	(status "START")
 	(title "test"))
 
@@ -1428,10 +1523,42 @@
 	(source "(Uniform. MTF)")
 	(title "UNIFORM"))
 
+([ScenarioMigration_Class30002] of  CloFuncall
+
+	(source "(count (keys @POINTS))"))
+
+([ScenarioMigration_Class30003] of  CloFuncall
+
+	(source "(def pts (apply concat (vals @POINTS)))"))
+
+([ScenarioMigration_Class30004] of  CloFuncall
+
+	(source "(count pts)"))
+
+([ScenarioMigration_Class30005] of  CloFuncall
+
+	(source "("))
+
+([ScenarioMigration_Class30006] of  CloFuncall
+
+	(source "(set-points pts (fifos \"OMTPoly\" \"label\" \"p1\"))"))
+
 ([ScenarioMigration_Class30007] of  CloFunction
 
 	(source "(condp = (first distro)\n  :L (rand-nth (rest distro))\n  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))\n  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro))))")
 	(title "rand-double [distro]"))
+
+([ScenarioMigration_Class40007] of  CloFuncall
+
+	(source "(random-double [:N 0.1 0.01])"))
+
+([ScenarioMigration_Class40008] of  CloFuncall
+
+	(source "(rand-double [:N 0.1 0.01])"))
+
+([ScenarioMigration_Class40009] of  CloFuncall
+
+	(source "(* (Math/toDegrees (Math/toRadians (/ (rand-double [:N 0.1 0.01]) 60))) 60)"))
 
 ([ScenarioMigration_Class6] of  CloFunction
 
@@ -1440,8 +1567,8 @@
 
 ([ScenarioMigration_Class7] of  Rule
 
-	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	label ?lab\n	next-random-way ?nrw\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	area ?ara\n	limit ?lim\n	look ?lok\n	factor ?fac\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lab (read-string (a/vv ?lab ?run))\n        nrw (read-string (a/vv ?nrw ?run))\n        rdr (read-string (a/vv ?rdr ?run))\n        rst (read-string (a/vv ?rst ?run))\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        fac (read-string (a/vv ?fac ?run))\n        ara (cesium.mig/init-area (a/vv ?ara ?run))\n        lim (a/to-be ?t (a/vv ?lim ?run))\n        rst (cons (first rst) (map #(/ % 60) (rest rst)))\n        nrw (assoc nrw :finish (:start nrw) :time 0)]\n  (modify ?gor satatus \"REPEAT\"\n	label lab\n	next-random-way nrw\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	factor fac\n	look lok\n	N ?t))")
+	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	label ?lab\n	latitude ?lat\n	longitude ?lon\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	area ?ara\n	limit ?lim\n	look ?lok\n	factor ?fac\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lab (read-string (a/vv ?lab ?run))\n        lat (read-string (a/vv ?lat ?run))\n        lon (read-string (a/vv ?lon ?run))\n        rdr (read-string (a/vv ?rdr ?run))\n        rst (read-string (a/vv ?rst ?run))\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        fac (read-string (a/vv ?fac ?run))\n        ara (cesium.mig/init-area (a/vv ?ara ?run))\n        lim (a/to-be ?t (a/vv ?lim ?run))\n        rst (cons (first rst) (map #(/ % 60) (rest rst)))\n        nrw {:finish [lon lat] :start [lon lat] :time 0}]\n  (modify ?gor satatus \"REPEAT\"\n	label lab\n	next-random-way nrw\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	factor fac\n	look lok\n	N ?t))")
 	(salience 0)
 	(title "smi:GoRandomStart"))
 

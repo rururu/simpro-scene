@@ -1,4 +1,4 @@
-; Thu Jul 09 20:45:56 MSK 2020
+; Fri Jul 10 21:30:17 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -130,15 +130,31 @@
 (defclass GoRandom
 	(is-a Go)
 	(role concrete)
-	(single-slot next-random-way
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot label
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot limit
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot factor
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot random-step
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot random-speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot next-random-way
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -150,15 +166,7 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot factor
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot look
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot random-step
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -166,7 +174,7 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot random-speed
+	(single-slot latitude
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
