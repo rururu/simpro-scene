@@ -2248,83 +2248,367 @@
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
 
-(a:GoRiverInCesiumStart 0
-?gric (GoRiverInCesium status "START"
-	creature ?cre
-	river ?riv
-	direct ?dir
-	spd ?spd
-	height ?hgt
-	run ?run)
+(mig:Migration 0
+(Migration phases ?phs)
+?cre (Creature status "END"
+	action ?act
+	area ?are
+	addition ?add
+	age ?age)
+=>
+(let [[act are add ag] 
+          (loop [[cp np :as ps] ?phs]
+            (if (and cp np)
+              (if (= [?act ?are ?add ?age] cp) 
+                np
+                (recur (rest ps)))
+              ["DONE"]))]
+  (modify ?cre status "BEGIN"
+	action act
+	area are
+	addition add
+	age ag)))
+
+(mig:Go to river 0
+(Walk action ?act area ?are
+	walk-step ?wst
+	walk-steps ?wss)
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	walk-speed ?wsp
+	waypoints ?wps
+	age ?age
+	addition ?add
+	area ?are	
+	action "Go to river")
 (Clock time ?t)
 =>
-(let [cre (a/vv ?cre ?run)
-       riv (a/vv ?riv ?run)
-       dir (a/vv ?dir ?run)
-       spd (a/vv ?spd ?run)
-       hgt (a/vv ?hgt ?run)
-       spd (read-string spd)
-       hgt (read-string hgt)
-       dir (keyword dir)
-       riv (cesium.mig/river-map riv)
-       elt (cesium.mig/go-river cre spd hgt riv dir)]
-  (modify ?gric status "REPEAT"
-	N (+ ?t elt))))
+(let [riv (cesium.mig/river-map ?add)
+       head (riv :head)
+       estuary (riv :estuary)
+       from (last ?wps)
+       to (if (< (cesium.mig/simple-dist from head) (cesium.mig/simple-dist from estuary))
+             head
+             estuary)
+       wps [from to]
+       loo (cesium.mig/look ?age ?loo)
+       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
+  (println ?id ["Go to river" ?are ?add] :REPEAT elt)
+  (modify ?cre N (+ ?t elt)
+	look loo
+	waypoints [(last wps)]
+	status "REPEAT")))
 
-(a:GoRiverInCesiumRepeat 0
-?gric (GoRiverInCesium status "REPEAT" 
-	N ?n 
-	parent ?pid
-	instance ?ain
-	run ?run
-	next_actions ?nacts)
-(Clock time ?t (> ?t ?n))
+(mig:Walk In 0
+(Walk action ?act area ?are
+	walk-step ?wst
+	walk-steps ?wss
+	walk-routes ?wrs)
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	walk-speed ?wsp
+	age ?age
+	area ?are	
+	action ?act
+	[(= ?act "Walk in")
+                       (= ?act "Last walk in")])
+(Clock time ?t)
 =>
-(retract ?gric)
-(s/start-next ?nacts ?pid ?ain ?run))
+(let [wri (rand-nth ?wrs)
+       wps (cesium.mig/walk-route-waypoints wri)
+       start (last wps)
+       loo (cesium.mig/look ?age ?loo)
+       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
+  (println ?id [?act ?are] :REPEAT elt)
+  (modify ?cre N (+ ?t elt)
+	look loo
+	waypoints wps
+	status "REPEAT")))
+
+(mig:Init Migration 1
+?mig (Migration phases ?phs
+	(not (vector? (first ?phs))))
+=>
+(modify ?mig phases
+  (vec (map #(vector (protege.core/sv % "action")
+                                 (protege.core/sv % "area")
+                                 (protege.core/sv % "addition")
+                                 (protege.core/sv % "age"))
+                   ?phs))))
 
 (sim:AdjustCZClockStart 0
 ?acc (Cesium status "START"
-	time1 ?t1)
-(Clock time ?t)
+	time ?t1)
+(Clock time ?t2)
 =>
-(if (some? cesium.server/SERV)
+(when  (some? cesium.server/SERV)
   (modify ?acc status "REPEAT"
-	N (+ ?t ?t1))))
+	N (+ ?t2 ?t1))))
 
 (sim:AdjustCZClockRepeat 0
 ?acc (Cesium status "REPEAT"
-	time1 ?t1
+	time-scale ?scl
+	time ?t1
+	N ?n)
+(Clock time ?t2 (> ?t2 ?n))
+=>
+(when (some? cesium.server/SERV)
+  (let [[clk scl] (cesium.mig/clock-scale)]
+    (if (not= ?scl scl)
+      (do (cesium.mig/model-clock clk scl)
+        (modify ?acc time-scale scl
+	N (+ ?t2 ?t1)))
+      (modify ?acc N (+ ?t2 ?t1))))))
+
+(mig:Repeat 0
+?cre (Creature status "REPEAT"
 	N ?n)
 (Clock time ?t (> ?t ?n))
 =>
-(when (some? cesium.server/SERV)
-  (cesium.mig/model-clock)
-  (modify ?acc N ?t)))
+(modify ?cre status "END"))
 
-(a:CesiumCamera 0
-?aa (CesiumCamera status "START" 
-	title ?tit 
+(sim:CesiumCameraPosition 0
+?cc (CesiumCamera status "START" 
 	latitude ?lat 
 	longitude ?lon 
 	height ?hgt 
 	heading ?hdg
 	pitch ?ptc
-	roll ?rol
+	roll ?rol)
+=>
+(when (some? cesium.server/SERV)
+  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)
+  (modify ?cc status "DONE")))
+
+(mig:Walk backward 0
+(Walk action ?act area ?are
+	walk-step ?wst
+	walk-steps ?wss)
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	walk-speed ?wsp
+	waypoints ?wps
+	age ?age
+	area ?are	
+	action "Walk backward")
+(Clock time ?t)
+=>
+(let [wps (reverse ?wps)
+       loo (cesium.mig/look ?age ?loo)
+       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
+  (println ?id ["Walk backward" ?are] :REPEAT elt)
+  (modify ?cre N (+ ?t elt)
+	look loo
+	waypoints [(last wps)]
+	status "REPEAT")))
+
+(mig:Go down river 0
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	down-speed ?spd
+	age ?age
+	area ?are
+	action "Go down")
+(Clock time ?t)
+=>
+(let [riv (cesium.mig/river-map ?are)
+       loo (cesium.mig/look ?age ?loo)
+       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :down)]
+  (println ?id  ["Going down" ?are] :REPEAT elt)
+  (modify ?cre N (+ ?t elt)
+	look loo
+	waypoints wps
+	status "REPEAT")))
+
+(mig:Go up river 0
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	up-speed ?spd
+	age ?age
+	area ?are
+	action "Go up")
+(Clock time ?t)
+=>
+(let [riv (cesium.mig/river-map ?are)
+       loo (cesium.mig/look ?age ?loo)
+       [elt wps] (cesium.mig/go-river ?id loo ?spd riv :up)]
+  (println ?id  ["Going up" ?are] :REPEAT elt)
+  (modify ?cre N (+ ?t elt)
+	look loo
+	waypoints wps
+	status "REPEAT")))
+
+(mig:Birth 1
+?cre (Creature status "BEGIN"
+	id ?id
+	look ?loo
+	age ?age
+	down-speed ?dsp
+	up-speed ?usp
+	walk-speed ?wsp
+	waypoints ?wps
+	spawn ?spw
+	addition ?add
+	area ?are 
+	action ?act
+                      (= ?act "Birth in"))
+(Clock time ?t)
+=>
+(println ?id  "Birth" ?spw :REPEAT 4)
+(retract ?cre)
+(dotimes [i ?spw]
+  (asser Creature N (+ ?t 4)
+	id (name (gensym ?id))
+	birthtime ?t
+	age ?age
+	look (read-string ?loo)
+	down-speed ?dsp
+	up-speed ?usp
+	walk-speed ?wsp
+	waypoints (if (string? ?wps) (read-string ?wps) ?wps)
+	spawn ?spw
+	addition ?add
+	area ?are
+	action ?act
+	status "REPEAT"))))
+
+(mig:Spawn 0
+?cre (Creature status "BEGIN"
+	id ?id
+	waypoints ?wps
+	action "Spawn in")
+(Clock time ?t)
+=>
+(println ?id "Spawn in")
+(when-let [cri (protege.core/fifos "Creature" "id" (str (first ?id)))]
+  (protege.core/ssv cri "waypoints" (str[(vec (last ?wps))]))
+  (println ?id  "Spawn" ?id)
+  (ru.rules/assert-instances [cri])
+  (retract ?cre)))
+
+(smi:GoRandomStart 0
+?gor (GoRandom status "START"
+	title ?tit
+	label ?lab
+	latitude ?lat
+	longitude ?lon
+	random-direction ?rdr
+	random-step ?rst
+	random-speed ?rsp
+	area ?ara
+	limit ?lim
+	look ?lok
+	factor ?fac
+	run ?run)
+(Clock time ?t)
+=>
+(println "Action started:" ?tit "GoRandom")
+(let [lab (a/vv ?lab ?run)
+        lat (read-string (a/vv ?lat ?run))
+        lon (read-string (a/vv ?lon ?run))
+        rdr (read-string (a/vv ?rdr ?run))
+        rst (read-string (a/vv ?rst ?run))
+        rsp (read-string (a/vv ?rsp ?run))
+        lok (read-string (a/vv ?lok ?run))
+        fac (read-string (a/vv ?fac ?run))
+        ara (cesium.mig/init-area (a/vv ?ara ?run))
+        lim (a/to-be ?t (a/vv ?lim ?run))
+        rst (cons (first rst) (map #(/ % 60) (rest rst)))
+        nrw {:finish [lon lat] :start [lon lat] :time 0}]
+  (vswap! cesium.mig/TRACES assoc lab [])
+  (modify ?gor satatus "REPEAT"
+	label lab
+	next-random-way nrw
+	random-direction rdr
+	random-step rst
+	random-speed rsp
+	area ara
+	limit lim
+	factor fac
+	look lok
+	N ?t)))
+
+(smi:GoRandomRepeat 0
+?gor (GoRandom status "REPEAT"
+	label ?lab
+	next-random-way ?nrw
+	random-direction ?rdr
+	random-step ?rst
+	random-speed ?rsp
+	area ?ara
+	limit ?lim
+	look ?lok
+	factor ?fac
+	N ?n
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
+(Clock time ?t (> ?t ?n))
 =>
-(println "Action started:" ?tit "PutOnMap")
-(if (some? cesium.server/SERV)
-  (cesium.server/send-camera
-    (a/vv ?lon ?run)
-    (a/vv ?lat ?run)
-    (a/vv ?hgt ?run)
-    (a/vv ?hdg ?run)
-    (a/vv ?ptc ?run)
-    (a/vv ?rol ?run)))
-(retract ?aa)
+(if (< ?t ?lim)
+  (let [nxt (+ ?t (:time ?nrw))
+         nrw (cesium.mig/next-random-way ?lab ?lok (:finish ?nrw) ?rdr ?rst ?rsp ?ara ?fac nxt)]
+    (if-let [czml (:czml ?nrw)]
+          (cesium.server/send-czml czml))
+    (modify ?gor next-random-way nrw
+	N nxt))
+  (do (retract ?gor)
+    (s/start-next ?nacts ?pid ?ain ?run))))
+
+(smi:GoWaypointsStart 0
+?gow (GoWaypoints status "START"
+	title ?tit
+	label ?lab
+	random-speed ?rsp
+	waypoints ?wps
+	look ?lok
+	number ?num
+	run ?run)
+(Clock time ?t)
+=>
+(println "Action started:" ?tit "GoWaypoints")
+(let [lab (a/vv ?lab ?run)
+        rsp (read-string (a/vv ?rsp ?run))
+        lok (read-string (a/vv ?lok ?run))
+        num (read-string (a/vv ?num ?run))
+        wsp (a/vv ?wsp ?run)
+        wsp (cond
+                 (= wsp "BACKWARD") (@cesium.mig/TRACES lab)
+                 (string? wsp) (read-string wsp)
+                 true wsp)
+        wsp (if (number? num)
+                 (conj (take-nth num wsp) (last wsp))
+                 wsp)
+        wsp (if (= (last wsp) (last (butlast wsp))
+                 (butlast wsp)
+                 wsp)
+        color (lok :color)
+        size (lok :size)
+        height (lok :height)
+        pts (cesium.mig/insert-height wsp height)
+        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
+        mils (* sec 1000)
+        knots (cesium.mig/rand-double rsp)
+        [czml elt] (czml.generator/add-point-flight lab pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+    (cesium.server/send-czml czml)
+    (modify ?gow status "REPEAT"
+	N (+ ?t elt))))
+
+(smi:GoWaypointsRepeat 0
+?gow (GoWaypoints status "REPEAT"
+	N ?n
+	parent ?pid
+	instance ?ain
+	run ?run
+	next_actions ?nacts)
+(Clock time ?t (> ?t ?n))
+=>
+(retract ?gow)
 (s/start-next ?nacts ?pid ?ain ?run))
 

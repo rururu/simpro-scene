@@ -1,4 +1,4 @@
-; Fri Jul 10 21:30:17 MSK 2020
+; Tue Jul 14 20:50:36 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,6 +8,12 @@
 	(rules
 		[ScenarioMigration_Class7]
 		[ScenarioMigration_Class8]))
+
+([GoWaypoints] of  ActionClass
+
+	(rules
+		[ScenarioMigration_Class30002]
+		[ScenarioMigration_Class30006]))
 
 ([HiitolanjokiRCZ_Class0] of  Openmap
 
@@ -364,7 +370,7 @@
 ([Migration_Class120000] of  CloVar
 
 	(source "(volatile! {})")
-	(title "POINTS"))
+	(title "TRACES"))
 
 ([Migration_Class120001] of  Phase
 
@@ -407,7 +413,7 @@
 
 ([Migration_Class130013] of  CloFunction
 
-	(source ";; returns time of going in sec and waypoints\n;; if finish = nil, only bare path included in czml, else with added start and finish\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (if finish \n               (geoms-to-path geoms start finish)\n               (geoms-to-path geoms start))\n       wps [(first pth) (last pth)]\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
+	(source ";; returns time of going in sec and waypoints\n;; if finish = nil, only bare path included in czml, else with added start and finish\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (if finish \n               (geoms-to-path geoms start finish)\n               (geoms-to-path geoms start))\n       wps [(first pth) (last pth)]\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! TRACES assoc id pts)\n  (cs/send-czml czml)\n  [elt wps])")
 	(title "go-geoms-path [id look knots geoms start finish]"))
 
 ([Migration_Class130014] of  CloFunction
@@ -566,11 +572,11 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 9.02 30 10.24"
-		"61 9.02 30 10.03"
-		"61 9.02 30 10.24"
-		"61 8.95 30 10.09"
-		"61 8.6 30 10.83")
+		"61 7.56 30 4.38"
+		"61 7.67 30 4.48"
+		"61 7.69 30 4.7"
+		"61 7.77 30 4.78"
+		"61 7.87 30 4.76")
 	(relative FALSE))
 
 ([Migration_Class170015] of  CloFunction
@@ -591,211 +597,376 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 8.67 29 57.39"
-		"61 8.77 29 57.34"
-		"61 8.81 29 57.5"
-		"61 8.78 29 57.66"
-		"61 8.87 29 57.81"
-		"61 8.78 29 57.3"
-		"61 8.72 29 57.11"
-		"61 8.72 29 57.26"
-		"61 8.79 29 57.42"
-		"61 8.8 29 57.18"
-		"61 8.86 29 57.12"
-		"61 8.94 29 57.31"
-		"61 8.88 29 57.1"
-		"61 8.81 29 57.27"
-		"61 8.75 29 57.1"
-		"61 8.88 29 57.32"
-		"61 8.95 29 57.14"
-		"61 8.86 29 57.04"
-		"61 8.75 29 57.05"
-		"61 8.82 29 57.21"
-		"61 9.78 29 56.35"
-		"61 9.87 29 56.22"
-		"61 9.85 29 56"
-		"61 9.86 29 55.8"
-		"61 9.82 29 56.01"
-		"61 8.93 29 57.01"
-		"61 8.93 29 57.21"
-		"61 8.86 29 57.16"
-		"61 8.76 29 57.1"
-		"61 8.78 29 57.3"
-		"61 9.6 29 56.14"
-		"61 9.56 29 55.95"
-		"61 9.57 29 55.72"
-		"61 9.62 29 55.55"
-		"61 9.57 29 55.74"
-		"61 9.23 29 57.81"
-		"61 9.33 29 57.89"
-		"61 9.3 29 57.73"
-		"61 9.36 29 57.58"
-		"61 9.29 29 57.42"
-		"61 8.8 29 57.18"
-		"61 8.88 29 57.02"
-		"61 8.97 29 56.9"
-		"61 9.01 29 57.07"
-		"61 8.97 29 57.28"
-		"61 8.72 29 57.15"
-		"61 8.82 29 57.11"
-		"61 8.74 29 57.1"
-		"61 8.74 29 57.29"
-		"61 8.75 29 57.49"
-		"61 9.27 29 57.75"
-		"61 9.35 29 57.77"
-		"61 9.28 29 57.66"
-		"61 9.32 29 57.85"
-		"61 9.22 29 57.81"
-		"61 9.68 29 56.56"
-		"61 9.57 29 56.47"
-		"61 9.65 29 56.67"
-		"61 9.71 29 56.47"
-		"61 9.7 29 56.27"
-		"61 9.7 29 56.27"
-		"61 9.64 29 56.44"
-		"61 9.68 29 56.64"
-		"61 9.69 29 56.42"
-		"61 9.78 29 56.35"
-		"61 8.97 29 56.96"
-		"61 8.88 29 56.97"
-		"61 8.96 29 57"
-		"61 8.88 29 57.06"
-		"61 8.99 29 57.05"
-		"61 8.75 29 57.1"
-		"61 8.8 29 57.25"
-		"61 8.79 29 57.05"
-		"61 8.89 29 56.98"
-		"61 8.97 29 56.8"
-		"61 8.87 29 57.81"
-		"61 8.98 29 57.71"
-		"61 9.03 29 57.51"
-		"61 8.92 29 57.48"
-		"61 8.88 29 57.32"
-		"61 9.44 29 57.06"
-		"61 9.36 29 56.98"
-		"61 9.45 29 56.89"
-		"61 9.52 29 56.71"
-		"61 9.51 29 56.51"
-		"61 9.17 29 57.15"
-		"61 9.08 29 57.27"
-		"61 8.98 29 57.32"
-		"61 9.01 29 57.11"
-		"61 8.97 29 56.96"
-		"61 8.75 29 57.49"
-		"61 8.75 29 57.24"
-		"61 8.76 29 57.03"
-		"61 8.76 29 57.23"
-		"61 8.83 29 57.07"
-		"61 9.29 29 57.42"
-		"61 9.34 29 57.22"
-		"61 9.28 29 57.34"
-		"61 9.35 29 57.16"
-		"61 9.33 29 57.35"
-		"61 8.97 29 56.8"
-		"61 8.9 29 57"
-		"61 8.79 29 57.02"
-		"61 8.73 29 57.1"
-		"61 8.79 29 57"
-		"61 8.97 29 57.28"
-		"61 8.99 29 57.47"
-		"61 9.07 29 57.32"
-		"61 9.13 29 57.52"
-		"61 9.19 29 57.66"
-		"61 9.59 29 56.58"
-		"61 9.67 29 56.7"
-		"61 9.6 29 56.49"
-		"61 9.67 29 56.37"
-		"61 9.68 29 56.56"
-		"61 9.33 29 57.58"
-		"61 9.35 29 57.78"
-		"61 9.26 29 57.71"
-		"61 9.32 29 57.82"
-		"61 9.23 29 57.81"
-		"61 8.82 29 57.21"
-		"61 8.77 29 57.09"
-		"61 8.87 29 57.08"
-		"61 8.96 29 57.19"
-		"61 8.86 29 57.12"
-		"61 9.82 29 56.01"
-		"61 9.93 29 56.06"
-		"61 10.02 29 56.03"
-		"61 9.97 29 55.85"
-		"61 9.88 29 55.85"
-		"61 8.99 29 57.05"
-		"61 8.96 29 56.84"
-		"61 8.99 29 56.61"
-		"61 8.96 29 56.8"
-		"61 8.88 29 56.97"
-		"61 9.53 29 56.7"
-		"61 9.5 29 56.52"
-		"61 9.61 29 56.5"
-		"61 9.7 29 56.54"
-		"61 9.59 29 56.58"
 		"61 9.18 29 57.54"
-		"61 9.18 29 57.33"
-		"61 9.18 29 57.13"
-		"61 9.26 29 57.25"
-		"61 9.17 29 57.15"
-		"61 8.87 29 57.14"
-		"61 8.78 29 57.04"
-		"61 8.7 29 57.13"
-		"61 8.8 29 57.01"
-		"61 8.72 29 57.15"
-		"61 9.22 29 57.81"
-		"61 9.23 29 57.58"
-		"61 9.34 29 57.57"
-		"61 9.37 29 57.39"
-		"61 9.33 29 57.58"
-		"61 8.88 29 56.97"
-		"61 8.97 29 57.04"
-		"61 8.87 29 57.05"
-		"61 8.79 29 57.23"
-		"61 8.87 29 57.14"
-		"61 8.83 29 57.07"
-		"61 8.74 29 57.05"
-		"61 8.71 29 57.26"
-		"61 8.75 29 57.52"
-		"61 8.67 29 57.39"
-		"61 9.61 29 56.07"
-		"61 9.68 29 56.24"
-		"61 9.58 29 56.33"
-		"61 9.58 29 56.54"
-		"61 9.53 29 56.7"
-		"61 8.79 29 57"
-		"61 8.84 29 57.15"
-		"61 8.87 29 56.97"
-		"61 8.84 29 57.15"
-		"61 8.93 29 57.01"
-		"61 9.19 29 57.66"
-		"61 9.28 29 57.6"
-		"61 9.26 29 57.83"
-		"61 9.35 29 57.75"
-		"61 9.4 29 57.55"
-		"61 9.57 29 55.74"
-		"61 9.64 29 55.93"
-		"61 9.6 29 56.06"
-		"61 9.7 29 56.05"
-		"61 9.61 29 56.07"
-		"61 9.33 29 57.35"
-		"61 9.23 29 57.41"
-		"61 9.19 29 57.16"
-		"61 9.26 29 57.2"
-		"61 9.35 29 57.12"
-		"61 9.35 29 57.12"
-		"61 9.34 29 57.31"
-		"61 9.37 29 57.45"
-		"61 9.4 29 57.26"
-		"61 9.44 29 57.06"
-		"61 9.51 29 56.51"
-		"61 9.44 29 56.33"
-		"61 9.38 29 56.15"
-		"61 9.48 29 56.1"
-		"61 9.6 29 56.14"
-		"61 9.4 29 57.55"
-		"61 9.38 29 57.73"
-		"61 9.27 29 57.76"
-		"61 9.2 29 57.92"
-		"61 9.27 29 57.75")
+		"61 9.18 29 57.64"
+		"61 9.15 29 57.58"
+		"61 9.19 29 57.62"
+		"61 9.24 29 57.69"
+		"61 9.24 29 57.69"
+		"61 9.23 29 57.6"
+		"61 9.18 29 57.61"
+		"61 9.14 29 57.54"
+		"61 9.13 29 57.44"
+		"61 9.13 29 57.44"
+		"61 9.11 29 57.36"
+		"61 9.1 29 57.28"
+		"61 9.09 29 57.18"
+		"61 9.13 29 57.25"
+		"61 9.13 29 57.25"
+		"61 9.1 29 57.19"
+		"61 9.11 29 57.28"
+		"61 9.14 29 57.25"
+		"61 9.19 29 57.35"
+		"61 9.19 29 57.35"
+		"61 9.24 29 57.43"
+		"61 9.27 29 57.42"
+		"61 9.22 29 57.47"
+		"61 9.26 29 57.44"
+		"61 9.26 29 57.44"
+		"61 9.3 29 57.51"
+		"61 9.32 29 57.61"
+		"61 9.29 29 57.7"
+		"61 9.36 29 57.71"
+		"61 9.36 29 57.71"
+		"61 9.34 29 57.62"
+		"61 9.3 29 57.61"
+		"61 9.36 29 57.59"
+		"61 9.36 29 57.69"
+		"61 9.36 29 57.69"
+		"61 9.33 29 57.79"
+		"61 9.3 29 57.74"
+		"61 9.25 29 57.74"
+		"61 9.23 29 57.64"
+		"61 9.23 29 57.64"
+		"61 9.26 29 57.6"
+		"61 9.27 29 57.67"
+		"61 9.3 29 57.76"
+		"61 9.3 29 57.88"
+		"61 9.3 29 57.88"
+		"61 9.23 29 57.85"
+		"61 9.2 29 57.86"
+		"61 9.24 29 57.9"
+		"61 9.2 29 57.89"
+		"61 9.2 29 57.89"
+		"61 9.16 29 57.96"
+		"61 9.16 29 58.04"
+		"61 9.14 29 58.12"
+		"61 9.15 29 58.22"
+		"61 9.15 29 58.22"
+		"61 9.15 29 58.37"
+		"61 9.21 29 58.32"
+		"61 9.15 29 58.37"
+		"61 9.13 29 58.44"
+		"61 9.13 29 58.44"
+		"61 9.1 29 58.34"
+		"61 9.13 29 58.45"
+		"61 9.18 29 58.47"
+		"61 9.15 29 58.55"
+		"61 9.15 29 58.55"
+		"61 9.18 29 58.5"
+		"61 9.14 29 58.52"
+		"61 9.18 29 58.52"
+		"61 9.13 29 58.58"
+		"61 9.13 29 58.58"
+		"61 9.09 29 58.58"
+		"61 9.14 29 58.53"
+		"61 9.08 29 58.53"
+		"61 9.08 29 58.42"
+		"61 9.08 29 58.42"
+		"61 9.07 29 58.33"
+		"61 9.03 29 58.21"
+		"61 9.01 29 58.12"
+		"61 9.04 29 58.01"
+		"61 9.04 29 58.01"
+		"61 8.98 29 58.01"
+		"61 9 29 57.98"
+		"61 8.98 29 57.92"
+		"61 8.99 29 58"
+		"61 8.99 29 58"
+		"61 8.98 29 57.91"
+		"61 8.96 29 57.84"
+		"61 9 29 57.88"
+		"61 9.02 29 57.92"
+		"61 9.02 29 57.92"
+		"61 9.08 29 57.97"
+		"61 9.03 29 57.97"
+		"61 9 29 58.07"
+		"61 8.96 29 58.02"
+		"61 8.96 29 58.02"
+		"61 9.01 29 57.99"
+		"61 8.96 29 57.96"
+		"61 9 29 58"
+		"61 9.05 29 57.98"
+		"61 9.05 29 57.98"
+		"61 9.05 29 57.93"
+		"61 9 29 57.9"
+		"61 8.95 29 57.91"
+		"61 8.9 29 57.85"
+		"61 8.9 29 57.85"
+		"61 8.89 29 57.94"
+		"61 8.88 29 57.84"
+		"61 8.87 29 57.74"
+		"61 8.91 29 57.66"
+		"61 8.91 29 57.66"
+		"61 8.86 29 57.62"
+		"61 8.85 29 57.71"
+		"61 8.87 29 57.76"
+		"61 8.85 29 57.69"
+		"61 8.85 29 57.69"
+		"61 8.85 29 57.77"
+		"61 8.82 29 57.81"
+		"61 8.77 29 57.87"
+		"61 8.73 29 57.94"
+		"61 8.73 29 57.94"
+		"61 8.67 29 57.94"
+		"61 8.71 29 58.01"
+		"61 8.71 29 57.94"
+		"61 8.71 29 58.01"
+		"61 8.71 29 58.01"
+		"61 8.65 29 58"
+		"61 8.62 29 57.9"
+		"61 8.65 29 57.84"
+		"61 8.67 29 57.75"
+		"61 8.67 29 57.75"
+		"61 8.69 29 57.63"
+		"61 8.68 29 57.54"
+		"61 8.66 29 57.47"
+		"61 8.62 29 57.57"
+		"61 8.62 29 57.57"
+		"61 8.59 29 57.69"
+		"61 8.64 29 57.62"
+		"61 8.59 29 57.66"
+		"61 8.55 29 57.59"
+		"61 8.55 29 57.59"
+		"61 8.51 29 57.53"
+		"61 8.52 29 57.68"
+		"61 8.5 29 57.58"
+		"61 8.51 29 57.65"
+		"61 8.51 29 57.65"
+		"61 8.55 29 57.73"
+		"61 8.57 29 57.81"
+		"61 8.56 29 57.74"
+		"61 8.55 29 57.62"
+		"61 8.55 29 57.62"
+		"61 8.58 29 57.75"
+		"61 8.56 29 57.64"
+		"61 8.55 29 57.51"
+		"61 8.5 29 57.48"
+		"61 8.5 29 57.48"
+		"61 8.52 29 57.56"
+		"61 8.57 29 57.56"
+		"61 8.55 29 57.63"
+		"61 8.6 29 57.61"
+		"61 8.6 29 57.61"
+		"61 8.62 29 57.68"
+		"61 8.63 29 57.61"
+		"61 8.64 29 57.68"
+		"61 8.7 29 57.72"
+		"61 8.7 29 57.72"
+		"61 8.73 29 57.79"
+		"61 8.69 29 57.76"
+		"61 8.63 29 57.72"
+		"61 8.66 29 57.67"
+		"61 8.66 29 57.67"
+		"61 8.69 29 57.74"
+		"61 8.72 29 57.81"
+		"61 8.76 29 57.85"
+		"61 8.81 29 57.78"
+		"61 8.81 29 57.78"
+		"61 8.82 29 57.66"
+		"61 8.84 29 57.69"
+		"61 8.84 29 57.76"
+		"61 8.84 29 57.86"
+		"61 8.84 29 57.86"
+		"61 8.79 29 57.83"
+		"61 8.76 29 57.89"
+		"61 8.73 29 57.97"
+		"61 8.76 29 57.87"
+		"61 8.76 29 57.87"
+		"61 8.72 29 57.85"
+		"61 8.72 29 57.95"
+		"61 8.73 29 58.01"
+		"61 8.74 29 57.92"
+		"61 8.74 29 57.92"
+		"61 8.77 29 58.01"
+		"61 8.82 29 58"
+		"61 8.78 29 57.98"
+		"61 8.72 29 57.95"
+		"61 8.72 29 57.95"
+		"61 8.73 29 57.82"
+		"61 8.71 29 57.93"
+		"61 8.74 29 58"
+		"61 8.69 29 58.04"
+		"61 8.69 29 58.04"
+		"61 8.7 29 58.13"
+		"61 8.69 29 58.23"
+		"61 8.73 29 58.18"
+		"61 8.7 29 58.09"
+		"61 8.7 29 58.09"
+		"61 8.74 29 58.04"
+		"61 8.68 29 57.99"
+		"61 8.73 29 57.9"
+		"61 8.71 29 57.8"
+		"61 8.71 29 57.8"
+		"61 8.77 29 57.82"
+		"61 8.79 29 57.91"
+		"61 8.81 29 57.9"
+		"61 8.75 29 57.88"
+		"61 8.75 29 57.88"
+		"61 8.7 29 57.93"
+		"61 8.72 29 57.86"
+		"61 8.72 29 57.93"
+		"61 8.72 29 57.85"
+		"61 8.72 29 57.85"
+		"61 8.69 29 57.94"
+		"61 8.63 29 57.95"
+		"61 8.69 29 57.95"
+		"61 8.64 29 58.05"
+		"61 8.64 29 58.05"
+		"61 8.6 29 58.03"
+		"61 8.59 29 58.1"
+		"61 8.63 29 58.11"
+		"61 8.67 29 58.05"
+		"61 8.67 29 58.05"
+		"61 8.69 29 58.13"
+		"61 8.67 29 58.08"
+		"61 8.63 29 58.12"
+		"61 8.58 29 58.15"
+		"61 8.58 29 58.15"
+		"61 8.59 29 58.27"
+		"61 8.62 29 58.18"
+		"61 8.57 29 58.22"
+		"61 8.58 29 58.3"
+		"61 8.58 29 58.3"
+		"61 8.6 29 58.14"
+		"61 8.57 29 58.14"
+		"61 8.54 29 58.25"
+		"61 8.57 29 58.33"
+		"61 8.57 29 58.33"
+		"61 8.57 29 58.45"
+		"61 8.53 29 58.52"
+		"61 8.47 29 58.53"
+		"61 8.51 29 58.54"
+		"61 8.51 29 58.54"
+		"61 8.53 29 58.56"
+		"61 8.59 29 58.52"
+		"61 8.57 29 58.6"
+		"61 8.6 29 58.67"
+		"61 8.6 29 58.67"
+		"61 8.63 29 58.65"
+		"61 8.61 29 58.59"
+		"61 8.64 29 58.65"
+		"61 8.69 29 58.6"
+		"61 8.69 29 58.6"
+		"61 8.7 29 58.49"
+		"61 8.72 29 58.55"
+		"61 8.69 29 58.65"
+		"61 8.75 29 58.73"
+		"61 8.75 29 58.73"
+		"61 8.7 29 58.64"
+		"61 8.67 29 58.54"
+		"61 8.73 29 58.54"
+		"61 8.76 29 58.52"
+		"61 8.76 29 58.52"
+		"61 8.8 29 58.43"
+		"61 8.75 29 58.39"
+		"61 8.79 29 58.48"
+		"61 8.82 29 58.55"
+		"61 8.82 29 58.55"
+		"61 8.82 29 58.46"
+		"61 8.84 29 58.38"
+		"61 8.86 29 58.48"
+		"61 8.84 29 58.55"
+		"61 8.84 29 58.55"
+		"61 8.79 29 58.53"
+		"61 8.84 29 58.57"
+		"61 8.79 29 58.49"
+		"61 8.77 29 58.57"
+		"61 8.77 29 58.57"
+		"61 8.76 29 58.46"
+		"61 8.7 29 58.54"
+		"61 8.73 29 58.62"
+		"61 8.68 29 58.65"
+		"61 8.68 29 58.65"
+		"61 8.73 29 58.6"
+		"61 8.75 29 58.49"
+		"61 8.78 29 58.56"
+		"61 8.79 29 58.66"
+		"61 8.79 29 58.66"
+		"61 8.82 29 58.76"
+		"61 8.87 29 58.81"
+		"61 8.93 29 58.79"
+		"61 8.95 29 58.87"
+		"61 8.95 29 58.87"
+		"61 8.99 29 58.9"
+		"61 9.04 29 58.94"
+		"61 9.07 29 58.85"
+		"61 9.07 29 58.96"
+		"61 9.07 29 58.96"
+		"61 9.03 29 59.01"
+		"61 8.98 29 58.94"
+		"61 8.97 29 58.83"
+		"61 9.01 29 58.75"
+		"61 9.01 29 58.75"
+		"61 8.99 29 58.68"
+		"61 9 29 58.8"
+		"61 9.01 29 58.69"
+		"61 8.97 29 58.74"
+		"61 8.97 29 58.74"
+		"61 8.93 29 58.82"
+		"61 8.89 29 58.82"
+		"61 8.85 29 58.78"
+		"61 8.87 29 58.88"
+		"61 8.87 29 58.88"
+		"61 8.89 29 58.79"
+		"61 8.9 29 58.69"
+		"61 8.88 29 58.66"
+		"61 8.87 29 58.72"
+		"61 8.87 29 58.72"
+		"61 8.83 29 58.69"
+		"61 8.85 29 58.74"
+		"61 8.88 29 58.68"
+		"61 8.85 29 58.74"
+		"61 8.85 29 58.74"
+		"61 8.86 29 58.68"
+		"61 8.89 29 58.68"
+		"61 8.95 29 58.78"
+		"61 8.91 29 58.67"
+		"61 8.91 29 58.67"
+		"61 8.94 29 58.75"
+		"61 8.94 29 58.67"
+		"61 8.88 29 58.74"
+		"61 8.83 29 58.74"
+		"61 8.83 29 58.74"
+		"61 8.79 29 58.81"
+		"61 8.73 29 58.81"
+		"61 8.7 29 58.84"
+		"61 8.67 29 58.77"
+		"61 8.67 29 58.77"
+		"61 8.67 29 58.9"
+		"61 8.7 29 58.84"
+		"61 8.67 29 58.84"
+		"61 8.62 29 58.86"
+		"61 8.62 29 58.86"
+		"61 8.62 29 58.76"
+		"61 8.59 29 58.85"
+		"61 8.6 29 58.76"
+		"61 8.58 29 58.65"
+		"61 8.58 29 58.65"
+		"61 8.63 29 58.69"
+		"61 8.57 29 58.73"
+		"61 8.56 29 58.62"
+		"61 8.57 29 58.5"
+		"61 8.57 29 58.5"
+		"61 8.57 29 58.6"
+		"61 8.61 29 58.59"
+		"61 8.6 29 58.68"
+		"61 8.57 29 58.57"
+		"61 8.57 29 58.57"
+		"61 8.61 29 58.59"
+		"61 8.54 29 58.66"
+		"61 8.49 29 58.75"
+		"61 8.52 29 58.79")
 	(relative FALSE))
 
 ([Migration_Class170052] of  OMTPoly
@@ -806,11 +977,11 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 8.6 30 10.83"
-		"61 8.53 30 10.68"
-		"61 8.43 30 10.68"
-		"61 8.43 30 10.47"
-		"61 8.53 30 10.47")
+		"61 7.56 30 4.38"
+		"61 7.47 30 4.48"
+		"61 7.42 30 4.68"
+		"61 7.33 30 4.78"
+		"61 7.23 30 4.82")
 	(relative FALSE))
 
 ([Migration_Class180004] of  CloVar
@@ -1114,7 +1285,7 @@
 
 ([Migration_Class50000] of  CloFunction
 
-	(source ";; returns time of going in sec and Nwps - 2 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-by-waypoints wps limstp steps step)\n       wpn (count wps)\n       wps (take-nth wpn pth)\n       wps (cond\n                (< (count wps) 3) pth\n                (= (last wps) (last pth)) wps\n                true (concat wps [(last pth)]))\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! POINTS assoc id pth)\n  (cs/send-czml czml)\n  [elt wps])")
+	(source ";; returns time of going in sec and Nwps - 2 waypoints\n(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (random-by-waypoints wps limstp steps step)\n       wpn (count wps)\n       wps (take-nth wpn pth)\n       wps (cond\n                (< (count wps) 3) pth\n                (= (last wps) (last pth)) wps\n                true (concat wps [(last pth)]))\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (+ (Clock/getClock) 2000)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! TRACES assoc id pth)\n  (cs/send-czml czml)\n  [elt wps])")
 	(title "go-random-by-waypoints [id look knots wps limstp steps step]"))
 
 ([Migration_Class50001] of  CloVar
@@ -1196,8 +1367,8 @@
 
 ([Migration_Class70005] of  CloFunction
 
-	(source "(let [pts (map #(str (MapOb/getDegMin (second %)) \" \" (MapOb/getDegMin (first %))) pts)]\n  (ssvs inst \"points\" pts))")
-	(title "set-points [pts inst]"))
+	(source "([pts label]\n  (show-points pts label nil))\n([pts label color]\n  (let [pts2 (map #(str (MapOb/getDegMin (second %)) \" \" (MapOb/getDegMin (first %))) pts)\n         lins (fifos \"OMTPoly\" \"label\" label)]\n    (if color\n      (ssv lins \"lineColor\" color))\n    (ssvs lins \"points\" pts2)\n    (dotimes [i (count pts)]\n      (let [pins (foc \"OMTPoint\" \"label\" (str label i))]\n        (ssv pins \"latitude\" (MapOb/getDegMin (second (nth pts i))))\n        (ssv pins \"longitude\" (MapOb/getDegMin (first (nth pts i))))\n        (ssv pins \"lineColor\" color)\n        (if-let [mo (OMT/getMapOb pins)]\n          (OMT/removeMapOb mo false))\n        (OMT/getOrAdd pins)))\n   (if-let [mo (OMT/getMapOb lins)]\n     (OMT/removeMapOb mo false))\n    (OMT/getOrAdd lins)))")
+	(title "show-points"))
 
 ([Migration_Class70007] of  OMTPoly
 
@@ -1207,156 +1378,11 @@
 	(longitude "0 0")
 	(playground-index 0)
 	(points
-		"61 9 30 4.8"
-		"61 9.32 30 5.14"
-		"61 9.63 30 5.55"
-		"61 9.47 30 6.37"
-		"61 9.71 30 6.2"
-		"61 12.07 30 10.43"
-		"61 12.04 30 11.11"
-		"61 11.82 30 10.59"
-		"61 11.88 30 10.13"
-		"61 12.34 30 10.48"
-		"61 9.71 30 6.2"
-		"61 9.82 30 7.02"
-		"61 10.2 30 7.28"
-		"61 10.65 30 7.89"
-		"61 10.68 30 7.46"
-		"61 11.13 30 7.23"
-		"61 11.37 30 6.72"
-		"61 11.25 30 7.09"
-		"61 11.27 30 6.47"
-		"61 11.57 30 6.84"
-		"61 11.7 30 6.04"
-		"61 11.52 30 6.92"
-		"61 11.68 30 7.73"
-		"61 11.34 30 8.34"
-		"61 11.06 30 8.92"
-		"61 10.12 30 6.88"
-		"61 9.96 30 5.95"
-		"61 9.63 30 5.88"
-		"61 9.31 30 6.15"
-		"61 8.93 30 5.43"
-		"61 12.97 30 9.16"
-		"61 12.95 30 9.55"
-		"61 12.61 30 9.11"
-		"61 12.72 30 8.16"
-		"61 12.3 30 8.51"
-		"61 10.57 30 7.13"
-		"61 10.87 30 7.49"
-		"61 10.57 30 8.26"
-		"61 10.45 30 7.51"
-		"61 10.12 30 6.88"
-		"61 11.46 30 7.49"
-		"61 11.18 30 7.59"
-		"61 11.18 30 7.05"
-		"61 10.75 30 7.16"
-		"61 11.13 30 7.23"
-		"61 12.28 30 11.86"
-		"61 12.61 30 12.13"
-		"61 12.42 30 11.63"
-		"61 12.47 30 10.99"
-		"61 12.76 30 10.4"
-		"61 11.52 30 6.81"
-		"61 11.46 30 5.98"
-		"61 11.78 30 5.76"
-		"61 11.69 30 6.7"
-		"61 11.68 30 7.04"
-		"61 10.52 30 9.24"
-		"61 10.65 30 8.44"
-		"61 10.85 30 9.13"
-		"61 11.28 30 8.36"
-		"61 11.46 30 7.49"
-		"61 11.57 30 6.84"
-		"61 11.9 30 7.37"
-		"61 11.79 30 6.21"
-		"61 11.78 30 6.58"
-		"61 11.7 30 7.48"
-		"61 11.68 30 7.04"
-		"61 11.66 30 6.08"
-		"61 11.98 30 5.27"
-		"61 11.89 30 5.45"
-		"61 12.2 30 4.3"
-		"61 10.68 30 7.46"
-		"61 10.92 30 7.98"
-		"61 10.62 30 7.4"
-		"61 10.65 30 7.87"
-		"61 10.57 30 7.13"
-		"61 9.62 30 7.94"
-		"61 10.1 30 7.31"
-		"61 9.89 30 8.38"
-		"61 10.02 30 9.01"
-		"61 10.52 30 9.24"
-		"61 12.34 30 10.48"
-		"61 11.97 30 11.15"
-		"61 12.17 30 11.85"
-		"61 11.84 30 12.32"
-		"61 11.91 30 11.49"
-		"61 13.14 30 7.45"
-		"61 13.24 30 8.34"
-		"61 12.85 30 8.3"
-		"61 13.06 30 8.92"
-		"61 12.74 30 9.55"
-		"61 8.93 30 5.43"
-		"61 8.82 30 4.5"
-		"61 9.09 30 5.22"
-		"61 9.65 30 5.11"
-		"61 9.93 30 4.85"
-		"61 11.06 30 8.92"
-		"61 11.29 30 9.71"
-		"61 11.38 30 10.53"
-		"61 11.75 30 10.3"
-		"61 12.07 30 10.43"
-		"61 12.2 30 4.3"
-		"61 12.06 30 3.57"
-		"61 11.96 30 2.72"
-		"61 12.24 30 3.14"
-		"61 11.94 30 2.06"
-		"61 11.91 30 11.49"
-		"61 11.86 30 12.41"
-		"61 11.52 30 13.08"
-		"61 11.88 30 12.25"
-		"61 12.28 30 11.86"
-		"61 12.3 30 8.51"
-		"61 12.58 30 7.91"
-		"61 12.26 30 7.44"
-		"61 12.1 30 6.77"
-		"61 11.52 30 6.81"
-		"61 12.73 30 7.85"
-		"61 13.25 30 7.93"
-		"61 13.65 30 8.45"
-		"61 13.23 30 8.01"
-		"61 13.14 30 7.45"
-		"61 12.74 30 9.55"
-		"61 12.71 30 8.07"
-		"61 12.05 30 7.9"
-		"61 12.52 30 7.74"
-		"61 12.73 30 8.85"
-		"61 11.7 30 7.48"
-		"61 11.37 30 6.97"
-		"61 11.76 30 6.45"
-		"61 11.5 30 5.81"
-		"61 11.7 30 6.04"
-		"61 12.73 30 8.85"
-		"61 13.16 30 9.96"
-		"61 13.4 30 9.39"
-		"61 13.15 30 8.75"
-		"61 12.97 30 9.16"
-		"61 12.76 30 10.4"
-		"61 12.54 30 9.72"
-		"61 12.38 30 10.35"
-		"61 12.56 30 10.91"
-		"61 12.86 30 10.02"
-		"61 12.86 30 10.02"
-		"61 12.47 30 9.98"
-		"61 12.5 30 9.09"
-		"61 12.74 30 8.4"
-		"61 12.73 30 7.85"
-		"61 9.93 30 4.85"
-		"61 10.01 30 5.65"
-		"61 9.91 30 6.69"
-		"61 9.89 30 7.65"
-		"61 9.62 30 7.94")
+		"61 7.56 30 4.38"
+		"61 7.5 30 4.22"
+		"61 7.53 30 4.04"
+		"61 7.57 30 3.85"
+		"61 7.61 30 3.68")
 	(relative FALSE))
 
 ([Migration_Class70014] of  CloFunction
@@ -1459,16 +1485,22 @@
 
 ([ScenarioMigration_Class10] of  CloFunction
 
-	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (next-covered-points lon lat r-direct r-step geoms n)\n       _ (vswap! POINTS assoc (gensym id) pth)\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (* sec 1000)\n       knots (rand-double r-knots)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  {:start (first pth)\n    :finish (last pth)\n    :czml czml\n    :time elt})")
+	(source "(let [color (look :color)\n       size (look :size)\n       height (look :height)\n       pth (next-covered-points lon lat r-direct r-step geoms n)\n       pts (insert-height pth height)\n       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n       mils (* sec 1000)\n       knots (rand-double r-knots)\n       [czml elt] (cg/add-point-flight id pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n  (vswap! TRACES assoc id (concat (@TRACES id) pth))\n  {:start (first pth)\n    :finish (last pth)\n    :czml czml\n    :time elt})")
 	(title "next-random-way [id look [lon lat] r-direct r-step r-knots geoms n sec]"))
 
 ([ScenarioMigration_Class10000] of  CloFuncall
 
-	(source "(in-ns 'cesium.mig)"))
+	(source "(conj [1 2 3 4 ] 5)"))
 
-([ScenarioMigration_Class10001] of  CloFuncall
+([ScenarioMigration_Class10001] of  GoWaypoints
 
-	(source "(keys @POINTS)"))
+	(label "s1")
+	(look "{:color [0 255 255 255] \n  :size 10 \n  :height 200}")
+	(number "6")
+	(random-speed "[:L 1. 2. 3.]")
+	(status "START")
+	(title "test2")
+	(waypoints "BACKWARD"))
 
 ([ScenarioMigration_Class10002] of  CloFunction
 
@@ -1486,13 +1518,14 @@
 	(factor "4")
 	(label "s1")
 	(latitude "61.153")
-	(limit "10 hrs")
+	(limit "1 hrs")
 	(longitude "29.959")
 	(look "{:color [255 255 0 255] \n  :size 10 \n  :height 200}")
 	(next-random-way "{:start [30.08 61.15]}")
+	(next_actions [ScenarioMigration_Class10001])
 	(random-direction "[:U 0. 359.99]")
 	(random-speed "[:L 1. 2. 3.]")
-	(random-step "[:N 0.1 0.01]")
+	(random-step "[:N 0.05 0.01]")
 	(status "START")
 	(title "test"))
 
@@ -1523,25 +1556,35 @@
 	(source "(Uniform. MTF)")
 	(title "UNIFORM"))
 
-([ScenarioMigration_Class30002] of  CloFuncall
+([ScenarioMigration_Class30001] of  CloFuncall
 
-	(source "(count (keys @POINTS))"))
+	(source "(conj '(1 2 3 4) 5)"))
+
+([ScenarioMigration_Class30002] of  Rule
+
+	(lhs "?gow (GoWaypoints status \"START\"\n	title ?tit\n	label ?lab\n	random-speed ?rsp\n	waypoints ?wps\n	look ?lok\n	number ?num\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoWaypoints\")\n(let [lab (a/vv ?lab ?run)\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        num (read-string (a/vv ?num ?run))\n        wps (a/vv ?wps ?run)\n        wps (cond\n                 (= wps \"BACKWARD\") (reverse (@cesium.mig/TRACES lab))\n                 (string? wps) (read-string wps)\n                 true wps)\n        wps (if (number? num)\n                 (concat (take-nth num wps) [(last wps)])\n                 wps)\n        wps (if (= (last wps) (last (butlast wps)))\n                 (butlast wps)\n                 wps)\n        color (lok :color)\n        size (lok :size)\n        height (lok :height)\n        pts (cesium.mig/insert-height wps height)\n        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)\n        mils (* ?t 1000)\n        knots (cesium.mig/rand-double rsp)\n        [czml elt] (czml.generator/add-point-flight lab pts knots mils \"RELATIVE_TO_GROUND\" color size func-dist)]\n    (cesium.server/send-czml czml)\n    (modify ?gow status \"REPEAT\"\n	N (+ ?t elt)))")
+	(salience 0)
+	(title "smi:GoWaypointsStart"))
 
 ([ScenarioMigration_Class30003] of  CloFuncall
 
-	(source "(def pts (apply concat (vals @POINTS)))"))
+	(source "(read-string nil)"))
 
 ([ScenarioMigration_Class30004] of  CloFuncall
 
-	(source "(count pts)"))
+	(source "(if \"\" 1 2)"))
 
 ([ScenarioMigration_Class30005] of  CloFuncall
 
-	(source "("))
+	(source "(take-nth 1 [1 2 3 4 5 6])"))
 
-([ScenarioMigration_Class30006] of  CloFuncall
+([ScenarioMigration_Class30006] of  Rule
 
-	(source "(set-points pts (fifos \"OMTPoly\" \"label\" \"p1\"))"))
+	(lhs "?gow (GoWaypoints status \"REPEAT\"\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(retract ?gow)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "smi:GoWaypointsRepeat"))
 
 ([ScenarioMigration_Class30007] of  CloFunction
 
@@ -1550,15 +1593,4509 @@
 
 ([ScenarioMigration_Class40007] of  CloFuncall
 
-	(source "(random-double [:N 0.1 0.01])"))
+	(source "(in-ns 'cesium.mig)"))
 
 ([ScenarioMigration_Class40008] of  CloFuncall
 
-	(source "(rand-double [:N 0.1 0.01])"))
+	(source "TRACES"))
 
-([ScenarioMigration_Class40009] of  CloFuncall
+([ScenarioMigration_Class50014] of  OMTPoly
 
-	(source "(* (Math/toDegrees (Math/toRadians (/ (rand-double [:N 0.1 0.01]) 60))) 60)"))
+	(label "g1")
+	(lineColor "FF00AAAA")
+	(playground-index 0)
+	(points
+		"61 7.56 30 4.38"
+		"61 7.46 30 4.3"
+		"61 7.53 30 4.15"
+		"61 7.44 30 4.08"
+		"61 7.35 30 4.19")
+	(relative FALSE))
+
+([ScenarioMigration_Class50015] of  OMTPoint
+
+	(label "g10")
+	(latitude "61 7.56")
+	(lineColor "FF00AAAA")
+	(longitude "30 4.38")
+	(playground-index 0))
+
+([ScenarioMigration_Class50016] of  OMTPoint
+
+	(label "g11")
+	(latitude "61 7.46")
+	(lineColor "FF00AAAA")
+	(longitude "30 4.3")
+	(playground-index 0))
+
+([ScenarioMigration_Class50017] of  OMTPoint
+
+	(label "g12")
+	(latitude "61 7.53")
+	(lineColor "FF00AAAA")
+	(longitude "30 4.15")
+	(playground-index 0))
+
+([ScenarioMigration_Class50018] of  OMTPoint
+
+	(label "g13")
+	(latitude "61 7.44")
+	(lineColor "FF00AAAA")
+	(longitude "30 4.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50019] of  OMTPoint
+
+	(label "g14")
+	(latitude "61 7.35")
+	(lineColor "FF00AAAA")
+	(longitude "30 4.19")
+	(playground-index 0))
+
+([ScenarioMigration_Class50021] of  OMTPoint
+
+	(label "p10")
+	(latitude "61 9.18")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50022] of  OMTPoint
+
+	(label "p11")
+	(latitude "61 9.18")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50023] of  OMTPoint
+
+	(label "p12")
+	(latitude "61 9.15")
+	(longitude "29 57.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50024] of  OMTPoint
+
+	(label "p13")
+	(latitude "61 9.19")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50025] of  OMTPoint
+
+	(label "p14")
+	(latitude "61 9.24")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50034] of  OMTPoint
+
+	(label "p15")
+	(latitude "61 9.24")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50035] of  OMTPoint
+
+	(label "p16")
+	(latitude "61 9.23")
+	(longitude "29 57.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50036] of  OMTPoint
+
+	(label "p17")
+	(latitude "61 9.18")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50037] of  OMTPoint
+
+	(label "p18")
+	(latitude "61 9.14")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50038] of  OMTPoint
+
+	(label "p19")
+	(latitude "61 9.13")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50039] of  OMTPoint
+
+	(label "p110")
+	(latitude "61 9.13")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50040] of  OMTPoint
+
+	(label "p111")
+	(latitude "61 9.11")
+	(longitude "29 57.36")
+	(playground-index 0))
+
+([ScenarioMigration_Class50041] of  OMTPoint
+
+	(label "p112")
+	(latitude "61 9.1")
+	(longitude "29 57.28")
+	(playground-index 0))
+
+([ScenarioMigration_Class50042] of  OMTPoint
+
+	(label "p113")
+	(latitude "61 9.09")
+	(longitude "29 57.18")
+	(playground-index 0))
+
+([ScenarioMigration_Class50043] of  OMTPoint
+
+	(label "p114")
+	(latitude "61 9.13")
+	(longitude "29 57.25")
+	(playground-index 0))
+
+([ScenarioMigration_Class50044] of  OMTPoint
+
+	(label "p115")
+	(latitude "61 9.13")
+	(longitude "29 57.25")
+	(playground-index 0))
+
+([ScenarioMigration_Class50045] of  OMTPoint
+
+	(label "p116")
+	(latitude "61 9.1")
+	(longitude "29 57.19")
+	(playground-index 0))
+
+([ScenarioMigration_Class50046] of  OMTPoint
+
+	(label "p117")
+	(latitude "61 9.11")
+	(longitude "29 57.28")
+	(playground-index 0))
+
+([ScenarioMigration_Class50047] of  OMTPoint
+
+	(label "p118")
+	(latitude "61 9.14")
+	(longitude "29 57.25")
+	(playground-index 0))
+
+([ScenarioMigration_Class50048] of  OMTPoint
+
+	(label "p119")
+	(latitude "61 9.19")
+	(longitude "29 57.35")
+	(playground-index 0))
+
+([ScenarioMigration_Class50049] of  OMTPoint
+
+	(label "p120")
+	(latitude "61 9.19")
+	(longitude "29 57.35")
+	(playground-index 0))
+
+([ScenarioMigration_Class50050] of  OMTPoint
+
+	(label "p121")
+	(latitude "61 9.24")
+	(longitude "29 57.43")
+	(playground-index 0))
+
+([ScenarioMigration_Class50051] of  OMTPoint
+
+	(label "p122")
+	(latitude "61 9.27")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50052] of  OMTPoint
+
+	(label "p123")
+	(latitude "61 9.22")
+	(longitude "29 57.47")
+	(playground-index 0))
+
+([ScenarioMigration_Class50053] of  OMTPoint
+
+	(label "p124")
+	(latitude "61 9.26")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50054] of  OMTPoint
+
+	(label "p125")
+	(latitude "61 9.26")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50055] of  OMTPoint
+
+	(label "p126")
+	(latitude "61 9.3")
+	(longitude "29 57.51")
+	(playground-index 0))
+
+([ScenarioMigration_Class50056] of  OMTPoint
+
+	(label "p127")
+	(latitude "61 9.32")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50057] of  OMTPoint
+
+	(label "p128")
+	(latitude "61 9.29")
+	(longitude "29 57.7")
+	(playground-index 0))
+
+([ScenarioMigration_Class50058] of  OMTPoint
+
+	(label "p129")
+	(latitude "61 9.36")
+	(longitude "29 57.71")
+	(playground-index 0))
+
+([ScenarioMigration_Class50059] of  OMTPoint
+
+	(label "p130")
+	(latitude "61 9.36")
+	(longitude "29 57.71")
+	(playground-index 0))
+
+([ScenarioMigration_Class50060] of  OMTPoint
+
+	(label "p131")
+	(latitude "61 9.34")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50061] of  OMTPoint
+
+	(label "p132")
+	(latitude "61 9.3")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50062] of  OMTPoint
+
+	(label "p133")
+	(latitude "61 9.36")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50063] of  OMTPoint
+
+	(label "p134")
+	(latitude "61 9.36")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50064] of  OMTPoint
+
+	(label "p135")
+	(latitude "61 9.36")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50065] of  OMTPoint
+
+	(label "p136")
+	(latitude "61 9.33")
+	(longitude "29 57.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50066] of  OMTPoint
+
+	(label "p137")
+	(latitude "61 9.3")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50067] of  OMTPoint
+
+	(label "p138")
+	(latitude "61 9.25")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50068] of  OMTPoint
+
+	(label "p139")
+	(latitude "61 9.23")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50069] of  OMTPoint
+
+	(label "p140")
+	(latitude "61 9.23")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50070] of  OMTPoint
+
+	(label "p141")
+	(latitude "61 9.26")
+	(longitude "29 57.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50071] of  OMTPoint
+
+	(label "p142")
+	(latitude "61 9.27")
+	(longitude "29 57.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50072] of  OMTPoint
+
+	(label "p143")
+	(latitude "61 9.3")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50073] of  OMTPoint
+
+	(label "p144")
+	(latitude "61 9.3")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50074] of  OMTPoint
+
+	(label "p145")
+	(latitude "61 9.3")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50075] of  OMTPoint
+
+	(label "p146")
+	(latitude "61 9.23")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50076] of  OMTPoint
+
+	(label "p147")
+	(latitude "61 9.2")
+	(longitude "29 57.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50077] of  OMTPoint
+
+	(label "p148")
+	(latitude "61 9.24")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50078] of  OMTPoint
+
+	(label "p149")
+	(latitude "61 9.2")
+	(longitude "29 57.89")
+	(playground-index 0))
+
+([ScenarioMigration_Class50079] of  OMTPoint
+
+	(label "p150")
+	(latitude "61 9.2")
+	(longitude "29 57.89")
+	(playground-index 0))
+
+([ScenarioMigration_Class50080] of  OMTPoint
+
+	(label "p151")
+	(latitude "61 9.16")
+	(longitude "29 57.96")
+	(playground-index 0))
+
+([ScenarioMigration_Class50081] of  OMTPoint
+
+	(label "p152")
+	(latitude "61 9.16")
+	(longitude "29 58.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50082] of  OMTPoint
+
+	(label "p153")
+	(latitude "61 9.14")
+	(longitude "29 58.12")
+	(playground-index 0))
+
+([ScenarioMigration_Class50083] of  OMTPoint
+
+	(label "p154")
+	(latitude "61 9.15")
+	(longitude "29 58.22")
+	(playground-index 0))
+
+([ScenarioMigration_Class50084] of  OMTPoint
+
+	(label "p155")
+	(latitude "61 9.15")
+	(longitude "29 58.22")
+	(playground-index 0))
+
+([ScenarioMigration_Class50085] of  OMTPoint
+
+	(label "p156")
+	(latitude "61 9.15")
+	(longitude "29 58.37")
+	(playground-index 0))
+
+([ScenarioMigration_Class50086] of  OMTPoint
+
+	(label "p157")
+	(latitude "61 9.21")
+	(longitude "29 58.32")
+	(playground-index 0))
+
+([ScenarioMigration_Class50087] of  OMTPoint
+
+	(label "p158")
+	(latitude "61 9.15")
+	(longitude "29 58.37")
+	(playground-index 0))
+
+([ScenarioMigration_Class50088] of  OMTPoint
+
+	(label "p159")
+	(latitude "61 9.13")
+	(longitude "29 58.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50089] of  OMTPoint
+
+	(label "p160")
+	(latitude "61 9.13")
+	(longitude "29 58.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50090] of  OMTPoint
+
+	(label "p161")
+	(latitude "61 9.1")
+	(longitude "29 58.34")
+	(playground-index 0))
+
+([ScenarioMigration_Class50091] of  OMTPoint
+
+	(label "p162")
+	(latitude "61 9.13")
+	(longitude "29 58.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50092] of  OMTPoint
+
+	(label "p163")
+	(latitude "61 9.18")
+	(longitude "29 58.47")
+	(playground-index 0))
+
+([ScenarioMigration_Class50093] of  OMTPoint
+
+	(label "p164")
+	(latitude "61 9.15")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50094] of  OMTPoint
+
+	(label "p165")
+	(latitude "61 9.15")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50095] of  OMTPoint
+
+	(label "p166")
+	(latitude "61 9.18")
+	(longitude "29 58.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50096] of  OMTPoint
+
+	(label "p167")
+	(latitude "61 9.14")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50097] of  OMTPoint
+
+	(label "p168")
+	(latitude "61 9.18")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50098] of  OMTPoint
+
+	(label "p169")
+	(latitude "61 9.13")
+	(longitude "29 58.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50099] of  OMTPoint
+
+	(label "p170")
+	(latitude "61 9.13")
+	(longitude "29 58.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50100] of  OMTPoint
+
+	(label "p171")
+	(latitude "61 9.09")
+	(longitude "29 58.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50101] of  OMTPoint
+
+	(label "p172")
+	(latitude "61 9.14")
+	(longitude "29 58.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50102] of  OMTPoint
+
+	(label "p173")
+	(latitude "61 9.08")
+	(longitude "29 58.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50103] of  OMTPoint
+
+	(label "p174")
+	(latitude "61 9.08")
+	(longitude "29 58.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50104] of  OMTPoint
+
+	(label "p175")
+	(latitude "61 9.08")
+	(longitude "29 58.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50105] of  OMTPoint
+
+	(label "p176")
+	(latitude "61 9.07")
+	(longitude "29 58.33")
+	(playground-index 0))
+
+([ScenarioMigration_Class50106] of  OMTPoint
+
+	(label "p177")
+	(latitude "61 9.03")
+	(longitude "29 58.21")
+	(playground-index 0))
+
+([ScenarioMigration_Class50107] of  OMTPoint
+
+	(label "p178")
+	(latitude "61 9.01")
+	(longitude "29 58.12")
+	(playground-index 0))
+
+([ScenarioMigration_Class50108] of  OMTPoint
+
+	(label "p179")
+	(latitude "61 9.04")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50109] of  OMTPoint
+
+	(label "p180")
+	(latitude "61 9.04")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50110] of  OMTPoint
+
+	(label "p181")
+	(latitude "61 8.98")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50111] of  OMTPoint
+
+	(label "p182")
+	(latitude "61 9")
+	(longitude "29 57.98")
+	(playground-index 0))
+
+([ScenarioMigration_Class50112] of  OMTPoint
+
+	(label "p183")
+	(latitude "61 8.98")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50113] of  OMTPoint
+
+	(label "p184")
+	(latitude "61 8.99")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50114] of  OMTPoint
+
+	(label "p185")
+	(latitude "61 8.99")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50115] of  OMTPoint
+
+	(label "p186")
+	(latitude "61 8.98")
+	(longitude "29 57.91")
+	(playground-index 0))
+
+([ScenarioMigration_Class50116] of  OMTPoint
+
+	(label "p187")
+	(latitude "61 8.96")
+	(longitude "29 57.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50117] of  OMTPoint
+
+	(label "p188")
+	(latitude "61 9")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50118] of  OMTPoint
+
+	(label "p189")
+	(latitude "61 9.02")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50119] of  OMTPoint
+
+	(label "p190")
+	(latitude "61 9.02")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50120] of  OMTPoint
+
+	(label "p191")
+	(latitude "61 9.08")
+	(longitude "29 57.97")
+	(playground-index 0))
+
+([ScenarioMigration_Class50121] of  OMTPoint
+
+	(label "p192")
+	(latitude "61 9.03")
+	(longitude "29 57.97")
+	(playground-index 0))
+
+([ScenarioMigration_Class50122] of  OMTPoint
+
+	(label "p193")
+	(latitude "61 9")
+	(longitude "29 58.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50123] of  OMTPoint
+
+	(label "p194")
+	(latitude "61 8.96")
+	(longitude "29 58.02")
+	(playground-index 0))
+
+([ScenarioMigration_Class50124] of  OMTPoint
+
+	(label "p195")
+	(latitude "61 8.96")
+	(longitude "29 58.02")
+	(playground-index 0))
+
+([ScenarioMigration_Class50125] of  OMTPoint
+
+	(label "p196")
+	(latitude "61 9.01")
+	(longitude "29 57.99")
+	(playground-index 0))
+
+([ScenarioMigration_Class50126] of  OMTPoint
+
+	(label "p197")
+	(latitude "61 8.96")
+	(longitude "29 57.96")
+	(playground-index 0))
+
+([ScenarioMigration_Class50127] of  OMTPoint
+
+	(label "p198")
+	(latitude "61 9")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50128] of  OMTPoint
+
+	(label "p199")
+	(latitude "61 9.05")
+	(longitude "29 57.98")
+	(playground-index 0))
+
+([ScenarioMigration_Class50129] of  OMTPoint
+
+	(label "p1100")
+	(latitude "61 9.05")
+	(longitude "29 57.98")
+	(playground-index 0))
+
+([ScenarioMigration_Class50130] of  OMTPoint
+
+	(label "p1101")
+	(latitude "61 9.05")
+	(longitude "29 57.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50131] of  OMTPoint
+
+	(label "p1102")
+	(latitude "61 9")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50132] of  OMTPoint
+
+	(label "p1103")
+	(latitude "61 8.95")
+	(longitude "29 57.91")
+	(playground-index 0))
+
+([ScenarioMigration_Class50133] of  OMTPoint
+
+	(label "p1104")
+	(latitude "61 8.9")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50134] of  OMTPoint
+
+	(label "p1105")
+	(latitude "61 8.9")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50135] of  OMTPoint
+
+	(label "p1106")
+	(latitude "61 8.89")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50136] of  OMTPoint
+
+	(label "p1107")
+	(latitude "61 8.88")
+	(longitude "29 57.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50137] of  OMTPoint
+
+	(label "p1108")
+	(latitude "61 8.87")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50138] of  OMTPoint
+
+	(label "p1109")
+	(latitude "61 8.91")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50139] of  OMTPoint
+
+	(label "p1110")
+	(latitude "61 8.91")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50140] of  OMTPoint
+
+	(label "p1111")
+	(latitude "61 8.86")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50141] of  OMTPoint
+
+	(label "p1112")
+	(latitude "61 8.85")
+	(longitude "29 57.71")
+	(playground-index 0))
+
+([ScenarioMigration_Class50142] of  OMTPoint
+
+	(label "p1113")
+	(latitude "61 8.87")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50143] of  OMTPoint
+
+	(label "p1114")
+	(latitude "61 8.85")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50144] of  OMTPoint
+
+	(label "p1115")
+	(latitude "61 8.85")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50145] of  OMTPoint
+
+	(label "p1116")
+	(latitude "61 8.85")
+	(longitude "29 57.77")
+	(playground-index 0))
+
+([ScenarioMigration_Class50146] of  OMTPoint
+
+	(label "p1117")
+	(latitude "61 8.82")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50147] of  OMTPoint
+
+	(label "p1118")
+	(latitude "61 8.77")
+	(longitude "29 57.87")
+	(playground-index 0))
+
+([ScenarioMigration_Class50148] of  OMTPoint
+
+	(label "p1119")
+	(latitude "61 8.73")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50149] of  OMTPoint
+
+	(label "p1120")
+	(latitude "61 8.73")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50150] of  OMTPoint
+
+	(label "p1121")
+	(latitude "61 8.67")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50151] of  OMTPoint
+
+	(label "p1122")
+	(latitude "61 8.71")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50152] of  OMTPoint
+
+	(label "p1123")
+	(latitude "61 8.71")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50153] of  OMTPoint
+
+	(label "p1124")
+	(latitude "61 8.71")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50154] of  OMTPoint
+
+	(label "p1125")
+	(latitude "61 8.71")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50155] of  OMTPoint
+
+	(label "p1126")
+	(latitude "61 8.65")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50156] of  OMTPoint
+
+	(label "p1127")
+	(latitude "61 8.62")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50157] of  OMTPoint
+
+	(label "p1128")
+	(latitude "61 8.65")
+	(longitude "29 57.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50158] of  OMTPoint
+
+	(label "p1129")
+	(latitude "61 8.67")
+	(longitude "29 57.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50159] of  OMTPoint
+
+	(label "p1130")
+	(latitude "61 8.67")
+	(longitude "29 57.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50160] of  OMTPoint
+
+	(label "p1131")
+	(latitude "61 8.69")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50161] of  OMTPoint
+
+	(label "p1132")
+	(latitude "61 8.68")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50162] of  OMTPoint
+
+	(label "p1133")
+	(latitude "61 8.66")
+	(longitude "29 57.47")
+	(playground-index 0))
+
+([ScenarioMigration_Class50163] of  OMTPoint
+
+	(label "p1134")
+	(latitude "61 8.62")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50164] of  OMTPoint
+
+	(label "p1135")
+	(latitude "61 8.62")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50165] of  OMTPoint
+
+	(label "p1136")
+	(latitude "61 8.59")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50166] of  OMTPoint
+
+	(label "p1137")
+	(latitude "61 8.64")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50167] of  OMTPoint
+
+	(label "p1138")
+	(latitude "61 8.59")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50168] of  OMTPoint
+
+	(label "p1139")
+	(latitude "61 8.55")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50169] of  OMTPoint
+
+	(label "p1140")
+	(latitude "61 8.55")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50170] of  OMTPoint
+
+	(label "p1141")
+	(latitude "61 8.51")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50171] of  OMTPoint
+
+	(label "p1142")
+	(latitude "61 8.52")
+	(longitude "29 57.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50172] of  OMTPoint
+
+	(label "p1143")
+	(latitude "61 8.5")
+	(longitude "29 57.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50173] of  OMTPoint
+
+	(label "p1144")
+	(latitude "61 8.51")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50174] of  OMTPoint
+
+	(label "p1145")
+	(latitude "61 8.51")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50175] of  OMTPoint
+
+	(label "p1146")
+	(latitude "61 8.55")
+	(longitude "29 57.73")
+	(playground-index 0))
+
+([ScenarioMigration_Class50176] of  OMTPoint
+
+	(label "p1147")
+	(latitude "61 8.57")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50177] of  OMTPoint
+
+	(label "p1148")
+	(latitude "61 8.56")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50178] of  OMTPoint
+
+	(label "p1149")
+	(latitude "61 8.55")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50179] of  OMTPoint
+
+	(label "p1150")
+	(latitude "61 8.55")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50180] of  OMTPoint
+
+	(label "p1151")
+	(latitude "61 8.58")
+	(longitude "29 57.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50181] of  OMTPoint
+
+	(label "p1152")
+	(latitude "61 8.56")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50182] of  OMTPoint
+
+	(label "p1153")
+	(latitude "61 8.55")
+	(longitude "29 57.51")
+	(playground-index 0))
+
+([ScenarioMigration_Class50183] of  OMTPoint
+
+	(label "p1154")
+	(latitude "61 8.5")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50184] of  OMTPoint
+
+	(label "p1155")
+	(latitude "61 8.5")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50185] of  OMTPoint
+
+	(label "p1156")
+	(latitude "61 8.52")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50186] of  OMTPoint
+
+	(label "p1157")
+	(latitude "61 8.57")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50187] of  OMTPoint
+
+	(label "p1158")
+	(latitude "61 8.55")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50188] of  OMTPoint
+
+	(label "p1159")
+	(latitude "61 8.6")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50189] of  OMTPoint
+
+	(label "p1160")
+	(latitude "61 8.6")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50190] of  OMTPoint
+
+	(label "p1161")
+	(latitude "61 8.62")
+	(longitude "29 57.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50191] of  OMTPoint
+
+	(label "p1162")
+	(latitude "61 8.63")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50192] of  OMTPoint
+
+	(label "p1163")
+	(latitude "61 8.64")
+	(longitude "29 57.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50193] of  OMTPoint
+
+	(label "p1164")
+	(latitude "61 8.7")
+	(longitude "29 57.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50194] of  OMTPoint
+
+	(label "p1165")
+	(latitude "61 8.7")
+	(longitude "29 57.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50195] of  OMTPoint
+
+	(label "p1166")
+	(latitude "61 8.73")
+	(longitude "29 57.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50196] of  OMTPoint
+
+	(label "p1167")
+	(latitude "61 8.69")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50197] of  OMTPoint
+
+	(label "p1168")
+	(latitude "61 8.63")
+	(longitude "29 57.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50198] of  OMTPoint
+
+	(label "p1169")
+	(latitude "61 8.66")
+	(longitude "29 57.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50199] of  OMTPoint
+
+	(label "p1170")
+	(latitude "61 8.66")
+	(longitude "29 57.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50200] of  OMTPoint
+
+	(label "p1171")
+	(latitude "61 8.69")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50201] of  OMTPoint
+
+	(label "p1172")
+	(latitude "61 8.72")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50202] of  OMTPoint
+
+	(label "p1173")
+	(latitude "61 8.76")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50203] of  OMTPoint
+
+	(label "p1174")
+	(latitude "61 8.81")
+	(longitude "29 57.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50204] of  OMTPoint
+
+	(label "p1175")
+	(latitude "61 8.81")
+	(longitude "29 57.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50205] of  OMTPoint
+
+	(label "p1176")
+	(latitude "61 8.82")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50206] of  OMTPoint
+
+	(label "p1177")
+	(latitude "61 8.84")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50207] of  OMTPoint
+
+	(label "p1178")
+	(latitude "61 8.84")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50208] of  OMTPoint
+
+	(label "p1179")
+	(latitude "61 8.84")
+	(longitude "29 57.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50209] of  OMTPoint
+
+	(label "p1180")
+	(latitude "61 8.84")
+	(longitude "29 57.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50210] of  OMTPoint
+
+	(label "p1181")
+	(latitude "61 8.79")
+	(longitude "29 57.83")
+	(playground-index 0))
+
+([ScenarioMigration_Class50211] of  OMTPoint
+
+	(label "p1182")
+	(latitude "61 8.76")
+	(longitude "29 57.89")
+	(playground-index 0))
+
+([ScenarioMigration_Class50212] of  OMTPoint
+
+	(label "p1183")
+	(latitude "61 8.73")
+	(longitude "29 57.97")
+	(playground-index 0))
+
+([ScenarioMigration_Class50213] of  OMTPoint
+
+	(label "p1184")
+	(latitude "61 8.76")
+	(longitude "29 57.87")
+	(playground-index 0))
+
+([ScenarioMigration_Class50214] of  OMTPoint
+
+	(label "p1185")
+	(latitude "61 8.76")
+	(longitude "29 57.87")
+	(playground-index 0))
+
+([ScenarioMigration_Class50215] of  OMTPoint
+
+	(label "p1186")
+	(latitude "61 8.72")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50216] of  OMTPoint
+
+	(label "p1187")
+	(latitude "61 8.72")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50217] of  OMTPoint
+
+	(label "p1188")
+	(latitude "61 8.73")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50218] of  OMTPoint
+
+	(label "p1189")
+	(latitude "61 8.74")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50219] of  OMTPoint
+
+	(label "p1190")
+	(latitude "61 8.74")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50220] of  OMTPoint
+
+	(label "p1191")
+	(latitude "61 8.77")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50221] of  OMTPoint
+
+	(label "p1192")
+	(latitude "61 8.82")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50222] of  OMTPoint
+
+	(label "p1193")
+	(latitude "61 8.78")
+	(longitude "29 57.98")
+	(playground-index 0))
+
+([ScenarioMigration_Class50223] of  OMTPoint
+
+	(label "p1194")
+	(latitude "61 8.72")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50224] of  OMTPoint
+
+	(label "p1195")
+	(latitude "61 8.72")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50225] of  OMTPoint
+
+	(label "p1196")
+	(latitude "61 8.73")
+	(longitude "29 57.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50226] of  OMTPoint
+
+	(label "p1197")
+	(latitude "61 8.71")
+	(longitude "29 57.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50227] of  OMTPoint
+
+	(label "p1198")
+	(latitude "61 8.74")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50228] of  OMTPoint
+
+	(label "p1199")
+	(latitude "61 8.69")
+	(longitude "29 58.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50229] of  OMTPoint
+
+	(label "p1200")
+	(latitude "61 8.69")
+	(longitude "29 58.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50230] of  OMTPoint
+
+	(label "p1201")
+	(latitude "61 8.7")
+	(longitude "29 58.13")
+	(playground-index 0))
+
+([ScenarioMigration_Class50231] of  OMTPoint
+
+	(label "p1202")
+	(latitude "61 8.69")
+	(longitude "29 58.23")
+	(playground-index 0))
+
+([ScenarioMigration_Class50232] of  OMTPoint
+
+	(label "p1203")
+	(latitude "61 8.73")
+	(longitude "29 58.18")
+	(playground-index 0))
+
+([ScenarioMigration_Class50233] of  OMTPoint
+
+	(label "p1204")
+	(latitude "61 8.7")
+	(longitude "29 58.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50234] of  OMTPoint
+
+	(label "p1205")
+	(latitude "61 8.7")
+	(longitude "29 58.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50235] of  OMTPoint
+
+	(label "p1206")
+	(latitude "61 8.74")
+	(longitude "29 58.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50236] of  OMTPoint
+
+	(label "p1207")
+	(latitude "61 8.68")
+	(longitude "29 57.99")
+	(playground-index 0))
+
+([ScenarioMigration_Class50237] of  OMTPoint
+
+	(label "p1208")
+	(latitude "61 8.73")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50238] of  OMTPoint
+
+	(label "p1209")
+	(latitude "61 8.71")
+	(longitude "29 57.8")
+	(playground-index 0))
+
+([ScenarioMigration_Class50243] of  OMTPoint
+
+	(label "p1210")
+	(latitude "61 8.71")
+	(longitude "29 57.8")
+	(playground-index 0))
+
+([ScenarioMigration_Class50244] of  OMTPoint
+
+	(label "p1211")
+	(latitude "61 8.77")
+	(longitude "29 57.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50245] of  OMTPoint
+
+	(label "p1212")
+	(latitude "61 8.79")
+	(longitude "29 57.91")
+	(playground-index 0))
+
+([ScenarioMigration_Class50246] of  OMTPoint
+
+	(label "p1213")
+	(latitude "61 8.81")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50247] of  OMTPoint
+
+	(label "p1214")
+	(latitude "61 8.75")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50248] of  OMTPoint
+
+	(label "p1215")
+	(latitude "61 8.75")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50249] of  OMTPoint
+
+	(label "p1216")
+	(latitude "61 8.7")
+	(longitude "29 57.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50250] of  OMTPoint
+
+	(label "p1217")
+	(latitude "61 8.72")
+	(longitude "29 57.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50251] of  OMTPoint
+
+	(label "p1218")
+	(latitude "61 8.72")
+	(longitude "29 57.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50252] of  OMTPoint
+
+	(label "p1219")
+	(latitude "61 8.72")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50253] of  OMTPoint
+
+	(label "p1220")
+	(latitude "61 8.72")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50254] of  OMTPoint
+
+	(label "p1221")
+	(latitude "61 8.69")
+	(longitude "29 57.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50255] of  OMTPoint
+
+	(label "p1222")
+	(latitude "61 8.63")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50256] of  OMTPoint
+
+	(label "p1223")
+	(latitude "61 8.69")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50257] of  OMTPoint
+
+	(label "p1224")
+	(latitude "61 8.64")
+	(longitude "29 58.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50258] of  OMTPoint
+
+	(label "p1225")
+	(latitude "61 8.64")
+	(longitude "29 58.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50259] of  OMTPoint
+
+	(label "p1226")
+	(latitude "61 8.6")
+	(longitude "29 58.03")
+	(playground-index 0))
+
+([ScenarioMigration_Class50260] of  OMTPoint
+
+	(label "p1227")
+	(latitude "61 8.59")
+	(longitude "29 58.1")
+	(playground-index 0))
+
+([ScenarioMigration_Class50261] of  OMTPoint
+
+	(label "p1228")
+	(latitude "61 8.63")
+	(longitude "29 58.11")
+	(playground-index 0))
+
+([ScenarioMigration_Class50262] of  OMTPoint
+
+	(label "p1229")
+	(latitude "61 8.67")
+	(longitude "29 58.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50263] of  OMTPoint
+
+	(label "p1230")
+	(latitude "61 8.67")
+	(longitude "29 58.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50264] of  OMTPoint
+
+	(label "p1231")
+	(latitude "61 8.69")
+	(longitude "29 58.13")
+	(playground-index 0))
+
+([ScenarioMigration_Class50265] of  OMTPoint
+
+	(label "p1232")
+	(latitude "61 8.67")
+	(longitude "29 58.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50266] of  OMTPoint
+
+	(label "p1233")
+	(latitude "61 8.63")
+	(longitude "29 58.12")
+	(playground-index 0))
+
+([ScenarioMigration_Class50267] of  OMTPoint
+
+	(label "p1234")
+	(latitude "61 8.58")
+	(longitude "29 58.15")
+	(playground-index 0))
+
+([ScenarioMigration_Class50268] of  OMTPoint
+
+	(label "p1235")
+	(latitude "61 8.58")
+	(longitude "29 58.15")
+	(playground-index 0))
+
+([ScenarioMigration_Class50269] of  OMTPoint
+
+	(label "p1236")
+	(latitude "61 8.59")
+	(longitude "29 58.27")
+	(playground-index 0))
+
+([ScenarioMigration_Class50270] of  OMTPoint
+
+	(label "p1237")
+	(latitude "61 8.62")
+	(longitude "29 58.18")
+	(playground-index 0))
+
+([ScenarioMigration_Class50271] of  OMTPoint
+
+	(label "p1238")
+	(latitude "61 8.57")
+	(longitude "29 58.22")
+	(playground-index 0))
+
+([ScenarioMigration_Class50272] of  OMTPoint
+
+	(label "p1239")
+	(latitude "61 8.58")
+	(longitude "29 58.3")
+	(playground-index 0))
+
+([ScenarioMigration_Class50273] of  OMTPoint
+
+	(label "p1240")
+	(latitude "61 8.58")
+	(longitude "29 58.3")
+	(playground-index 0))
+
+([ScenarioMigration_Class50274] of  OMTPoint
+
+	(label "p1241")
+	(latitude "61 8.6")
+	(longitude "29 58.14")
+	(playground-index 0))
+
+([ScenarioMigration_Class50275] of  OMTPoint
+
+	(label "p1242")
+	(latitude "61 8.57")
+	(longitude "29 58.14")
+	(playground-index 0))
+
+([ScenarioMigration_Class50276] of  OMTPoint
+
+	(label "p1243")
+	(latitude "61 8.54")
+	(longitude "29 58.25")
+	(playground-index 0))
+
+([ScenarioMigration_Class50277] of  OMTPoint
+
+	(label "p1244")
+	(latitude "61 8.57")
+	(longitude "29 58.33")
+	(playground-index 0))
+
+([ScenarioMigration_Class50278] of  OMTPoint
+
+	(label "p1245")
+	(latitude "61 8.57")
+	(longitude "29 58.33")
+	(playground-index 0))
+
+([ScenarioMigration_Class50279] of  OMTPoint
+
+	(label "p1246")
+	(latitude "61 8.57")
+	(longitude "29 58.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50280] of  OMTPoint
+
+	(label "p1247")
+	(latitude "61 8.53")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50281] of  OMTPoint
+
+	(label "p1248")
+	(latitude "61 8.47")
+	(longitude "29 58.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50282] of  OMTPoint
+
+	(label "p1249")
+	(latitude "61 8.51")
+	(longitude "29 58.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50283] of  OMTPoint
+
+	(label "p1250")
+	(latitude "61 8.51")
+	(longitude "29 58.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50284] of  OMTPoint
+
+	(label "p1251")
+	(latitude "61 8.53")
+	(longitude "29 58.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50285] of  OMTPoint
+
+	(label "p1252")
+	(latitude "61 8.59")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50286] of  OMTPoint
+
+	(label "p1253")
+	(latitude "61 8.57")
+	(longitude "29 58.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50287] of  OMTPoint
+
+	(label "p1254")
+	(latitude "61 8.6")
+	(longitude "29 58.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50288] of  OMTPoint
+
+	(label "p1255")
+	(latitude "61 8.6")
+	(longitude "29 58.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50289] of  OMTPoint
+
+	(label "p1256")
+	(latitude "61 8.63")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50290] of  OMTPoint
+
+	(label "p1257")
+	(latitude "61 8.61")
+	(longitude "29 58.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50291] of  OMTPoint
+
+	(label "p1258")
+	(latitude "61 8.64")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50292] of  OMTPoint
+
+	(label "p1259")
+	(latitude "61 8.69")
+	(longitude "29 58.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50293] of  OMTPoint
+
+	(label "p1260")
+	(latitude "61 8.69")
+	(longitude "29 58.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50294] of  OMTPoint
+
+	(label "p1261")
+	(latitude "61 8.7")
+	(longitude "29 58.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50295] of  OMTPoint
+
+	(label "p1262")
+	(latitude "61 8.72")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50296] of  OMTPoint
+
+	(label "p1263")
+	(latitude "61 8.69")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50297] of  OMTPoint
+
+	(label "p1264")
+	(latitude "61 8.75")
+	(longitude "29 58.73")
+	(playground-index 0))
+
+([ScenarioMigration_Class50298] of  OMTPoint
+
+	(label "p1265")
+	(latitude "61 8.75")
+	(longitude "29 58.73")
+	(playground-index 0))
+
+([ScenarioMigration_Class50299] of  OMTPoint
+
+	(label "p1266")
+	(latitude "61 8.7")
+	(longitude "29 58.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50300] of  OMTPoint
+
+	(label "p1267")
+	(latitude "61 8.67")
+	(longitude "29 58.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50301] of  OMTPoint
+
+	(label "p1268")
+	(latitude "61 8.73")
+	(longitude "29 58.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50302] of  OMTPoint
+
+	(label "p1269")
+	(latitude "61 8.76")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50303] of  OMTPoint
+
+	(label "p1270")
+	(latitude "61 8.76")
+	(longitude "29 58.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50304] of  OMTPoint
+
+	(label "p1271")
+	(latitude "61 8.8")
+	(longitude "29 58.43")
+	(playground-index 0))
+
+([ScenarioMigration_Class50305] of  OMTPoint
+
+	(label "p1272")
+	(latitude "61 8.75")
+	(longitude "29 58.39")
+	(playground-index 0))
+
+([ScenarioMigration_Class50306] of  OMTPoint
+
+	(label "p1273")
+	(latitude "61 8.79")
+	(longitude "29 58.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50307] of  OMTPoint
+
+	(label "p1274")
+	(latitude "61 8.82")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50308] of  OMTPoint
+
+	(label "p1275")
+	(latitude "61 8.82")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50309] of  OMTPoint
+
+	(label "p1276")
+	(latitude "61 8.82")
+	(longitude "29 58.46")
+	(playground-index 0))
+
+([ScenarioMigration_Class50310] of  OMTPoint
+
+	(label "p1277")
+	(latitude "61 8.84")
+	(longitude "29 58.38")
+	(playground-index 0))
+
+([ScenarioMigration_Class50311] of  OMTPoint
+
+	(label "p1278")
+	(latitude "61 8.86")
+	(longitude "29 58.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50312] of  OMTPoint
+
+	(label "p1279")
+	(latitude "61 8.84")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50313] of  OMTPoint
+
+	(label "p1280")
+	(latitude "61 8.84")
+	(longitude "29 58.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50314] of  OMTPoint
+
+	(label "p1281")
+	(latitude "61 8.79")
+	(longitude "29 58.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50315] of  OMTPoint
+
+	(label "p1282")
+	(latitude "61 8.84")
+	(longitude "29 58.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50316] of  OMTPoint
+
+	(label "p1283")
+	(latitude "61 8.79")
+	(longitude "29 58.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50317] of  OMTPoint
+
+	(label "p1284")
+	(latitude "61 8.77")
+	(longitude "29 58.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50318] of  OMTPoint
+
+	(label "p1285")
+	(latitude "61 8.77")
+	(longitude "29 58.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50319] of  OMTPoint
+
+	(label "p1286")
+	(latitude "61 8.76")
+	(longitude "29 58.46")
+	(playground-index 0))
+
+([ScenarioMigration_Class50320] of  OMTPoint
+
+	(label "p1287")
+	(latitude "61 8.7")
+	(longitude "29 58.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50321] of  OMTPoint
+
+	(label "p1288")
+	(latitude "61 8.73")
+	(longitude "29 58.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50322] of  OMTPoint
+
+	(label "p1289")
+	(latitude "61 8.68")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50323] of  OMTPoint
+
+	(label "p1290")
+	(latitude "61 8.68")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50324] of  OMTPoint
+
+	(label "p1291")
+	(latitude "61 8.73")
+	(longitude "29 58.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50325] of  OMTPoint
+
+	(label "p1292")
+	(latitude "61 8.75")
+	(longitude "29 58.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50326] of  OMTPoint
+
+	(label "p1293")
+	(latitude "61 8.78")
+	(longitude "29 58.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50327] of  OMTPoint
+
+	(label "p1294")
+	(latitude "61 8.79")
+	(longitude "29 58.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50328] of  OMTPoint
+
+	(label "p1295")
+	(latitude "61 8.79")
+	(longitude "29 58.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50329] of  OMTPoint
+
+	(label "p1296")
+	(latitude "61 8.82")
+	(longitude "29 58.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50330] of  OMTPoint
+
+	(label "p1297")
+	(latitude "61 8.87")
+	(longitude "29 58.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50331] of  OMTPoint
+
+	(label "p1298")
+	(latitude "61 8.93")
+	(longitude "29 58.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50332] of  OMTPoint
+
+	(label "p1299")
+	(latitude "61 8.95")
+	(longitude "29 58.87")
+	(playground-index 0))
+
+([ScenarioMigration_Class50333] of  OMTPoint
+
+	(label "p1300")
+	(latitude "61 8.95")
+	(longitude "29 58.87")
+	(playground-index 0))
+
+([ScenarioMigration_Class50334] of  OMTPoint
+
+	(label "p1301")
+	(latitude "61 8.99")
+	(longitude "29 58.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50335] of  OMTPoint
+
+	(label "p1302")
+	(latitude "61 9.04")
+	(longitude "29 58.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50336] of  OMTPoint
+
+	(label "p1303")
+	(latitude "61 9.07")
+	(longitude "29 58.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50337] of  OMTPoint
+
+	(label "p1304")
+	(latitude "61 9.07")
+	(longitude "29 58.96")
+	(playground-index 0))
+
+([ScenarioMigration_Class50338] of  OMTPoint
+
+	(label "p1305")
+	(latitude "61 9.07")
+	(longitude "29 58.96")
+	(playground-index 0))
+
+([ScenarioMigration_Class50339] of  OMTPoint
+
+	(label "p1306")
+	(latitude "61 9.03")
+	(longitude "29 59.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50340] of  OMTPoint
+
+	(label "p1307")
+	(latitude "61 8.98")
+	(longitude "29 58.94")
+	(playground-index 0))
+
+([ScenarioMigration_Class50341] of  OMTPoint
+
+	(label "p1308")
+	(latitude "61 8.97")
+	(longitude "29 58.83")
+	(playground-index 0))
+
+([ScenarioMigration_Class50342] of  OMTPoint
+
+	(label "p1309")
+	(latitude "61 9.01")
+	(longitude "29 58.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50343] of  OMTPoint
+
+	(label "p1310")
+	(latitude "61 9.01")
+	(longitude "29 58.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50344] of  OMTPoint
+
+	(label "p1311")
+	(latitude "61 8.99")
+	(longitude "29 58.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50345] of  OMTPoint
+
+	(label "p1312")
+	(latitude "61 9")
+	(longitude "29 58.8")
+	(playground-index 0))
+
+([ScenarioMigration_Class50346] of  OMTPoint
+
+	(label "p1313")
+	(latitude "61 9.01")
+	(longitude "29 58.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50347] of  OMTPoint
+
+	(label "p1314")
+	(latitude "61 8.97")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50348] of  OMTPoint
+
+	(label "p1315")
+	(latitude "61 8.97")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50349] of  OMTPoint
+
+	(label "p1316")
+	(latitude "61 8.93")
+	(longitude "29 58.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50350] of  OMTPoint
+
+	(label "p1317")
+	(latitude "61 8.89")
+	(longitude "29 58.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50351] of  OMTPoint
+
+	(label "p1318")
+	(latitude "61 8.85")
+	(longitude "29 58.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50352] of  OMTPoint
+
+	(label "p1319")
+	(latitude "61 8.87")
+	(longitude "29 58.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50353] of  OMTPoint
+
+	(label "p1320")
+	(latitude "61 8.87")
+	(longitude "29 58.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50354] of  OMTPoint
+
+	(label "p1321")
+	(latitude "61 8.89")
+	(longitude "29 58.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50355] of  OMTPoint
+
+	(label "p1322")
+	(latitude "61 8.9")
+	(longitude "29 58.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50356] of  OMTPoint
+
+	(label "p1323")
+	(latitude "61 8.88")
+	(longitude "29 58.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50357] of  OMTPoint
+
+	(label "p1324")
+	(latitude "61 8.87")
+	(longitude "29 58.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50358] of  OMTPoint
+
+	(label "p1325")
+	(latitude "61 8.87")
+	(longitude "29 58.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50359] of  OMTPoint
+
+	(label "p1326")
+	(latitude "61 8.83")
+	(longitude "29 58.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50360] of  OMTPoint
+
+	(label "p1327")
+	(latitude "61 8.85")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50361] of  OMTPoint
+
+	(label "p1328")
+	(latitude "61 8.88")
+	(longitude "29 58.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50362] of  OMTPoint
+
+	(label "p1329")
+	(latitude "61 8.85")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50363] of  OMTPoint
+
+	(label "p1330")
+	(latitude "61 8.85")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50364] of  OMTPoint
+
+	(label "p1331")
+	(latitude "61 8.86")
+	(longitude "29 58.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50365] of  OMTPoint
+
+	(label "p1332")
+	(latitude "61 8.89")
+	(longitude "29 58.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50366] of  OMTPoint
+
+	(label "p1333")
+	(latitude "61 8.95")
+	(longitude "29 58.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50367] of  OMTPoint
+
+	(label "p1334")
+	(latitude "61 8.91")
+	(longitude "29 58.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50368] of  OMTPoint
+
+	(label "p1335")
+	(latitude "61 8.91")
+	(longitude "29 58.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50369] of  OMTPoint
+
+	(label "p1336")
+	(latitude "61 8.94")
+	(longitude "29 58.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50370] of  OMTPoint
+
+	(label "p1337")
+	(latitude "61 8.94")
+	(longitude "29 58.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50371] of  OMTPoint
+
+	(label "p1338")
+	(latitude "61 8.88")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50372] of  OMTPoint
+
+	(label "p1339")
+	(latitude "61 8.83")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50373] of  OMTPoint
+
+	(label "p1340")
+	(latitude "61 8.83")
+	(longitude "29 58.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50374] of  OMTPoint
+
+	(label "p1341")
+	(latitude "61 8.79")
+	(longitude "29 58.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50375] of  OMTPoint
+
+	(label "p1342")
+	(latitude "61 8.73")
+	(longitude "29 58.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50376] of  OMTPoint
+
+	(label "p1343")
+	(latitude "61 8.7")
+	(longitude "29 58.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50377] of  OMTPoint
+
+	(label "p1344")
+	(latitude "61 8.67")
+	(longitude "29 58.77")
+	(playground-index 0))
+
+([ScenarioMigration_Class50378] of  OMTPoint
+
+	(label "p1345")
+	(latitude "61 8.67")
+	(longitude "29 58.77")
+	(playground-index 0))
+
+([ScenarioMigration_Class50379] of  OMTPoint
+
+	(label "p1346")
+	(latitude "61 8.67")
+	(longitude "29 58.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50380] of  OMTPoint
+
+	(label "p1347")
+	(latitude "61 8.7")
+	(longitude "29 58.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50381] of  OMTPoint
+
+	(label "p1348")
+	(latitude "61 8.67")
+	(longitude "29 58.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50382] of  OMTPoint
+
+	(label "p1349")
+	(latitude "61 8.62")
+	(longitude "29 58.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50383] of  OMTPoint
+
+	(label "p1350")
+	(latitude "61 8.62")
+	(longitude "29 58.86")
+	(playground-index 0))
+
+([ScenarioMigration_Class50384] of  OMTPoint
+
+	(label "p1351")
+	(latitude "61 8.62")
+	(longitude "29 58.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50385] of  OMTPoint
+
+	(label "p1352")
+	(latitude "61 8.59")
+	(longitude "29 58.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50386] of  OMTPoint
+
+	(label "p1353")
+	(latitude "61 8.6")
+	(longitude "29 58.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50387] of  OMTPoint
+
+	(label "p1354")
+	(latitude "61 8.58")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50388] of  OMTPoint
+
+	(label "p1355")
+	(latitude "61 8.58")
+	(longitude "29 58.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50389] of  OMTPoint
+
+	(label "p1356")
+	(latitude "61 8.63")
+	(longitude "29 58.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50390] of  OMTPoint
+
+	(label "p1357")
+	(latitude "61 8.57")
+	(longitude "29 58.73")
+	(playground-index 0))
+
+([ScenarioMigration_Class50391] of  OMTPoint
+
+	(label "p1358")
+	(latitude "61 8.56")
+	(longitude "29 58.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50392] of  OMTPoint
+
+	(label "p1359")
+	(latitude "61 8.57")
+	(longitude "29 58.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50393] of  OMTPoint
+
+	(label "p1360")
+	(latitude "61 8.57")
+	(longitude "29 58.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50394] of  OMTPoint
+
+	(label "p1361")
+	(latitude "61 8.57")
+	(longitude "29 58.6")
+	(playground-index 0))
+
+([ScenarioMigration_Class50395] of  OMTPoint
+
+	(label "p1362")
+	(latitude "61 8.61")
+	(longitude "29 58.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50396] of  OMTPoint
+
+	(label "p1363")
+	(latitude "61 8.6")
+	(longitude "29 58.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50397] of  OMTPoint
+
+	(label "p1364")
+	(latitude "61 8.57")
+	(longitude "29 58.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50398] of  OMTPoint
+
+	(label "p1365")
+	(latitude "61 8.57")
+	(longitude "29 58.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50399] of  OMTPoint
+
+	(label "p1366")
+	(latitude "61 8.61")
+	(longitude "29 58.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50400] of  OMTPoint
+
+	(label "p1367")
+	(latitude "61 8.54")
+	(longitude "29 58.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50401] of  OMTPoint
+
+	(label "p1368")
+	(latitude "61 8.49")
+	(longitude "29 58.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50402] of  OMTPoint
+
+	(label "p1369")
+	(latitude "61 8.52")
+	(longitude "29 58.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50403] of  OMTPoint
+
+	(label "p1370")
+	(latitude "61 8.83")
+	(longitude "29 56.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50404] of  OMTPoint
+
+	(label "p1371")
+	(latitude "61 8.86")
+	(longitude "29 57.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50405] of  OMTPoint
+
+	(label "p1372")
+	(latitude "61 8.9")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50406] of  OMTPoint
+
+	(label "p1373")
+	(latitude "61 8.89")
+	(longitude "29 57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50407] of  OMTPoint
+
+	(label "p1374")
+	(latitude "61 8.93")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50408] of  OMTPoint
+
+	(label "p1375")
+	(latitude "61 8.93")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50409] of  OMTPoint
+
+	(label "p1376")
+	(latitude "61 8.92")
+	(longitude "29 57.18")
+	(playground-index 0))
+
+([ScenarioMigration_Class50410] of  OMTPoint
+
+	(label "p1377")
+	(latitude "61 8.94")
+	(longitude "29 57.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50411] of  OMTPoint
+
+	(label "p1378")
+	(latitude "61 8.94")
+	(longitude "29 56.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50412] of  OMTPoint
+
+	(label "p1379")
+	(latitude "61 8.93")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50413] of  OMTPoint
+
+	(label "p1380")
+	(latitude "61 8.93")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50414] of  OMTPoint
+
+	(label "p1381")
+	(latitude "61 8.87")
+	(longitude "29 57.03")
+	(playground-index 0))
+
+([ScenarioMigration_Class50415] of  OMTPoint
+
+	(label "p1382")
+	(latitude "61 8.85")
+	(longitude "29 57.1")
+	(playground-index 0))
+
+([ScenarioMigration_Class50416] of  OMTPoint
+
+	(label "p1383")
+	(latitude "61 8.81")
+	(longitude "29 57.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50417] of  OMTPoint
+
+	(label "p1384")
+	(latitude "61 8.79")
+	(longitude "29 56.97")
+	(playground-index 0))
+
+([ScenarioMigration_Class50418] of  OMTPoint
+
+	(label "p1385")
+	(latitude "61 8.79")
+	(longitude "29 56.97")
+	(playground-index 0))
+
+([ScenarioMigration_Class50419] of  OMTPoint
+
+	(label "p1386")
+	(latitude "61 8.81")
+	(longitude "29 57.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50420] of  OMTPoint
+
+	(label "p1387")
+	(latitude "61 8.75")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50421] of  OMTPoint
+
+	(label "p1388")
+	(latitude "61 8.77")
+	(longitude "29 56.99")
+	(playground-index 0))
+
+([ScenarioMigration_Class50422] of  OMTPoint
+
+	(label "p1389")
+	(latitude "61 8.76")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50423] of  OMTPoint
+
+	(label "p1390")
+	(latitude "61 8.76")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50424] of  OMTPoint
+
+	(label "p1391")
+	(latitude "61 8.74")
+	(longitude "29 57.18")
+	(playground-index 0))
+
+([ScenarioMigration_Class50425] of  OMTPoint
+
+	(label "p1392")
+	(latitude "61 8.72")
+	(longitude "29 57.24")
+	(playground-index 0))
+
+([ScenarioMigration_Class50426] of  OMTPoint
+
+	(label "p1393")
+	(latitude "61 8.75")
+	(longitude "29 57.17")
+	(playground-index 0))
+
+([ScenarioMigration_Class50427] of  OMTPoint
+
+	(label "p1394")
+	(latitude "61 8.8")
+	(longitude "29 57.17")
+	(playground-index 0))
+
+([ScenarioMigration_Class50428] of  OMTPoint
+
+	(label "p1395")
+	(latitude "61 8.8")
+	(longitude "29 57.17")
+	(playground-index 0))
+
+([ScenarioMigration_Class50429] of  OMTPoint
+
+	(label "p1396")
+	(latitude "61 8.83")
+	(longitude "29 57.24")
+	(playground-index 0))
+
+([ScenarioMigration_Class50430] of  OMTPoint
+
+	(label "p1397")
+	(latitude "61 8.84")
+	(longitude "29 57.17")
+	(playground-index 0))
+
+([ScenarioMigration_Class50431] of  OMTPoint
+
+	(label "p1398")
+	(latitude "61 8.78")
+	(longitude "29 57.16")
+	(playground-index 0))
+
+([ScenarioMigration_Class50432] of  OMTPoint
+
+	(label "p1399")
+	(latitude "61 8.79")
+	(longitude "29 57.26")
+	(playground-index 0))
+
+([ScenarioMigration_Class50433] of  OMTPoint
+
+	(label "p1400")
+	(latitude "61 8.79")
+	(longitude "29 57.26")
+	(playground-index 0))
+
+([ScenarioMigration_Class50434] of  OMTPoint
+
+	(label "p1401")
+	(latitude "61 8.76")
+	(longitude "29 57.21")
+	(playground-index 0))
+
+([ScenarioMigration_Class50435] of  OMTPoint
+
+	(label "p1402")
+	(latitude "61 8.79")
+	(longitude "29 57.23")
+	(playground-index 0))
+
+([ScenarioMigration_Class50436] of  OMTPoint
+
+	(label "p1403")
+	(latitude "61 8.8")
+	(longitude "29 57.14")
+	(playground-index 0))
+
+([ScenarioMigration_Class50437] of  OMTPoint
+
+	(label "p1404")
+	(latitude "61 8.76")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50438] of  OMTPoint
+
+	(label "p1405")
+	(latitude "61 8.76")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50439] of  OMTPoint
+
+	(label "p1406")
+	(latitude "61 8.79")
+	(longitude "29 57.15")
+	(playground-index 0))
+
+([ScenarioMigration_Class50440] of  OMTPoint
+
+	(label "p1407")
+	(latitude "61 8.78")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50441] of  OMTPoint
+
+	(label "p1408")
+	(latitude "61 8.82")
+	(longitude "29 57.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50442] of  OMTPoint
+
+	(label "p1409")
+	(latitude "61 8.84")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50443] of  OMTPoint
+
+	(label "p1410")
+	(latitude "61 8.84")
+	(longitude "29 57.06")
+	(playground-index 0))
+
+([ScenarioMigration_Class50444] of  OMTPoint
+
+	(label "p1411")
+	(latitude "61 8.89")
+	(longitude "29 57.03")
+	(playground-index 0))
+
+([ScenarioMigration_Class50445] of  OMTPoint
+
+	(label "p1412")
+	(latitude "61 8.83")
+	(longitude "29 56.98")
+	(playground-index 0))
+
+([ScenarioMigration_Class50446] of  OMTPoint
+
+	(label "p1413")
+	(latitude "61 8.78")
+	(longitude "29 57.05")
+	(playground-index 0))
+
+([ScenarioMigration_Class50447] of  OMTPoint
+
+	(label "p1414")
+	(latitude "61 8.83")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50448] of  OMTPoint
+
+	(label "p1415")
+	(latitude "61 8.83")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50449] of  OMTPoint
+
+	(label "p1416")
+	(latitude "61 8.8")
+	(longitude "29 57.12")
+	(playground-index 0))
+
+([ScenarioMigration_Class50450] of  OMTPoint
+
+	(label "p1417")
+	(latitude "61 8.81")
+	(longitude "29 57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50451] of  OMTPoint
+
+	(label "p1418")
+	(latitude "61 8.85")
+	(longitude "29 57.09")
+	(playground-index 0))
+
+([ScenarioMigration_Class50452] of  OMTPoint
+
+	(label "p1419")
+	(latitude "61 8.9")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50453] of  OMTPoint
+
+	(label "p1420")
+	(latitude "61 8.9")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50454] of  OMTPoint
+
+	(label "p1421")
+	(latitude "61 8.95")
+	(longitude "29 57.1")
+	(playground-index 0))
+
+([ScenarioMigration_Class50455] of  OMTPoint
+
+	(label "p1422")
+	(latitude "61 8.97")
+	(longitude "29 57.13")
+	(playground-index 0))
+
+([ScenarioMigration_Class50456] of  OMTPoint
+
+	(label "p1423")
+	(latitude "61 8.94")
+	(longitude "29 57.02")
+	(playground-index 0))
+
+([ScenarioMigration_Class50457] of  OMTPoint
+
+	(label "p1424")
+	(latitude "61 8.88")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50458] of  OMTPoint
+
+	(label "p1425")
+	(latitude "61 8.88")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50459] of  OMTPoint
+
+	(label "p1426")
+	(latitude "61 8.91")
+	(longitude "29 56.99")
+	(playground-index 0))
+
+([ScenarioMigration_Class50460] of  OMTPoint
+
+	(label "p1427")
+	(latitude "61 8.88")
+	(longitude "29 57.08")
+	(playground-index 0))
+
+([ScenarioMigration_Class50461] of  OMTPoint
+
+	(label "p1428")
+	(latitude "61 8.83")
+	(longitude "29 57.12")
+	(playground-index 0))
+
+([ScenarioMigration_Class50462] of  OMTPoint
+
+	(label "p1429")
+	(latitude "61 8.85")
+	(longitude "29 57.21")
+	(playground-index 0))
+
+([ScenarioMigration_Class50463] of  OMTPoint
+
+	(label "p1430")
+	(latitude "61 8.85")
+	(longitude "29 57.21")
+	(playground-index 0))
+
+([ScenarioMigration_Class50464] of  OMTPoint
+
+	(label "p1431")
+	(latitude "61 8.81")
+	(longitude "29 57.2")
+	(playground-index 0))
+
+([ScenarioMigration_Class50465] of  OMTPoint
+
+	(label "p1432")
+	(latitude "61 8.79")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50466] of  OMTPoint
+
+	(label "p1433")
+	(latitude "61 8.82")
+	(longitude "29 57.11")
+	(playground-index 0))
+
+([ScenarioMigration_Class50467] of  OMTPoint
+
+	(label "p1434")
+	(latitude "61 8.87")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50468] of  OMTPoint
+
+	(label "p1435")
+	(latitude "61 8.87")
+	(longitude "29 57.07")
+	(playground-index 0))
+
+([ScenarioMigration_Class50469] of  OMTPoint
+
+	(label "p1436")
+	(latitude "61 8.82")
+	(longitude "29 57.03")
+	(playground-index 0))
+
+([ScenarioMigration_Class50470] of  OMTPoint
+
+	(label "p1437")
+	(latitude "61 8.81")
+	(longitude "29 57.11")
+	(playground-index 0))
+
+([ScenarioMigration_Class50471] of  OMTPoint
+
+	(label "p1438")
+	(latitude "61 8.8")
+	(longitude "29 57.19")
+	(playground-index 0))
+
+([ScenarioMigration_Class50472] of  OMTPoint
+
+	(label "p1439")
+	(latitude "61 8.82")
+	(longitude "29 57.28")
+	(playground-index 0))
+
+([ScenarioMigration_Class50473] of  OMTPoint
+
+	(label "p1440")
+	(latitude "61 8.82")
+	(longitude "29 57.28")
+	(playground-index 0))
+
+([ScenarioMigration_Class50474] of  OMTPoint
+
+	(label "p1441")
+	(latitude "61 8.83")
+	(longitude "29 57.4")
+	(playground-index 0))
+
+([ScenarioMigration_Class50475] of  OMTPoint
+
+	(label "p1442")
+	(latitude "61 8.85")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50476] of  OMTPoint
+
+	(label "p1443")
+	(latitude "61 8.83")
+	(longitude "29 57.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50477] of  OMTPoint
+
+	(label "p1444")
+	(latitude "61 8.77")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50478] of  OMTPoint
+
+	(label "p1445")
+	(latitude "61 8.77")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50479] of  OMTPoint
+
+	(label "p1446")
+	(latitude "61 8.82")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50480] of  OMTPoint
+
+	(label "p1447")
+	(latitude "61 8.78")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50481] of  OMTPoint
+
+	(label "p1448")
+	(latitude "61 8.83")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50482] of  OMTPoint
+
+	(label "p1449")
+	(latitude "61 8.77")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50483] of  OMTPoint
+
+	(label "p1450")
+	(latitude "61 8.77")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50484] of  OMTPoint
+
+	(label "p1451")
+	(latitude "61 8.8")
+	(longitude "29 57.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50485] of  OMTPoint
+
+	(label "p1452")
+	(latitude "61 8.83")
+	(longitude "29 57.38")
+	(playground-index 0))
+
+([ScenarioMigration_Class50486] of  OMTPoint
+
+	(label "p1453")
+	(latitude "61 8.86")
+	(longitude "29 57.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50487] of  OMTPoint
+
+	(label "p1454")
+	(latitude "61 8.87")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50488] of  OMTPoint
+
+	(label "p1455")
+	(latitude "61 8.87")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50489] of  OMTPoint
+
+	(label "p1456")
+	(latitude "61 8.87")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50490] of  OMTPoint
+
+	(label "p1457")
+	(latitude "61 8.92")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50491] of  OMTPoint
+
+	(label "p1458")
+	(latitude "61 8.89")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50492] of  OMTPoint
+
+	(label "p1459")
+	(latitude "61 8.95")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50493] of  OMTPoint
+
+	(label "p1460")
+	(latitude "61 8.95")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50494] of  OMTPoint
+
+	(label "p1461")
+	(latitude "61 8.98")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50495] of  OMTPoint
+
+	(label "p1462")
+	(latitude "61 8.92")
+	(longitude "29 57.58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50496] of  OMTPoint
+
+	(label "p1463")
+	(latitude "61 8.95")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50497] of  OMTPoint
+
+	(label "p1464")
+	(latitude "61 8.97")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50498] of  OMTPoint
+
+	(label "p1465")
+	(latitude "61 8.97")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50499] of  OMTPoint
+
+	(label "p1466")
+	(latitude "61 8.94")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50500] of  OMTPoint
+
+	(label "p1467")
+	(latitude "61 8.95")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50501] of  OMTPoint
+
+	(label "p1468")
+	(latitude "61 8.92")
+	(longitude "29 57.46")
+	(playground-index 0))
+
+([ScenarioMigration_Class50502] of  OMTPoint
+
+	(label "p1469")
+	(latitude "61 8.89")
+	(longitude "29 57.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50503] of  OMTPoint
+
+	(label "p1470")
+	(latitude "61 8.89")
+	(longitude "29 57.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50504] of  OMTPoint
+
+	(label "p1471")
+	(latitude "61 8.84")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50505] of  OMTPoint
+
+	(label "p1472")
+	(latitude "61 8.89")
+	(longitude "29 57.47")
+	(playground-index 0))
+
+([ScenarioMigration_Class50506] of  OMTPoint
+
+	(label "p1473")
+	(latitude "61 8.87")
+	(longitude "29 57.36")
+	(playground-index 0))
+
+([ScenarioMigration_Class50507] of  OMTPoint
+
+	(label "p1474")
+	(latitude "61 8.82")
+	(longitude "29 57.41")
+	(playground-index 0))
+
+([ScenarioMigration_Class50508] of  OMTPoint
+
+	(label "p1475")
+	(latitude "61 8.82")
+	(longitude "29 57.41")
+	(playground-index 0))
+
+([ScenarioMigration_Class50509] of  OMTPoint
+
+	(label "p1476")
+	(latitude "61 8.78")
+	(longitude "29 57.33")
+	(playground-index 0))
+
+([ScenarioMigration_Class50510] of  OMTPoint
+
+	(label "p1477")
+	(latitude "61 8.78")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50511] of  OMTPoint
+
+	(label "p1478")
+	(latitude "61 8.81")
+	(longitude "29 57.39")
+	(playground-index 0))
+
+([ScenarioMigration_Class50512] of  OMTPoint
+
+	(label "p1479")
+	(latitude "61 8.85")
+	(longitude "29 57.31")
+	(playground-index 0))
+
+([ScenarioMigration_Class50513] of  OMTPoint
+
+	(label "p1480")
+	(latitude "61 8.85")
+	(longitude "29 57.31")
+	(playground-index 0))
+
+([ScenarioMigration_Class50514] of  OMTPoint
+
+	(label "p1481")
+	(latitude "61 8.84")
+	(longitude "29 57.24")
+	(playground-index 0))
+
+([ScenarioMigration_Class50515] of  OMTPoint
+
+	(label "p1482")
+	(latitude "61 8.82")
+	(longitude "29 57.34")
+	(playground-index 0))
+
+([ScenarioMigration_Class50516] of  OMTPoint
+
+	(label "p1483")
+	(latitude "61 8.79")
+	(longitude "29 57.37")
+	(playground-index 0))
+
+([ScenarioMigration_Class50517] of  OMTPoint
+
+	(label "p1484")
+	(latitude "61 8.83")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50518] of  OMTPoint
+
+	(label "p1485")
+	(latitude "61 8.83")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50519] of  OMTPoint
+
+	(label "p1486")
+	(latitude "61 8.86")
+	(longitude "29 57.52")
+	(playground-index 0))
+
+([ScenarioMigration_Class50520] of  OMTPoint
+
+	(label "p1487")
+	(latitude "61 8.94")
+	(longitude "29 57.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50521] of  OMTPoint
+
+	(label "p1488")
+	(latitude "61 8.94")
+	(longitude "29 57.33")
+	(playground-index 0))
+
+([ScenarioMigration_Class50522] of  OMTPoint
+
+	(label "p1489")
+	(latitude "61 8.94")
+	(longitude "29 57.2")
+	(playground-index 0))
+
+([ScenarioMigration_Class50523] of  OMTPoint
+
+	(label "p1490")
+	(latitude "61 8.94")
+	(longitude "29 57.2")
+	(playground-index 0))
+
+([ScenarioMigration_Class50524] of  OMTPoint
+
+	(label "p1491")
+	(latitude "61 8.97")
+	(longitude "29 57.28")
+	(playground-index 0))
+
+([ScenarioMigration_Class50525] of  OMTPoint
+
+	(label "p1492")
+	(latitude "61 8.98")
+	(longitude "29 57.14")
+	(playground-index 0))
+
+([ScenarioMigration_Class50526] of  OMTPoint
+
+	(label "p1493")
+	(latitude "61 8.93")
+	(longitude "29 57.2")
+	(playground-index 0))
+
+([ScenarioMigration_Class50527] of  OMTPoint
+
+	(label "p1494")
+	(latitude "61 8.92")
+	(longitude "29 57.3")
+	(playground-index 0))
+
+([ScenarioMigration_Class50528] of  OMTPoint
+
+	(label "p1495")
+	(latitude "61 8.92")
+	(longitude "29 57.3")
+	(playground-index 0))
+
+([ScenarioMigration_Class50529] of  OMTPoint
+
+	(label "p1496")
+	(latitude "61 8.93")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50530] of  OMTPoint
+
+	(label "p1497")
+	(latitude "61 8.96")
+	(longitude "29 57.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50531] of  OMTPoint
+
+	(label "p1498")
+	(latitude "61 8.88")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50532] of  OMTPoint
+
+	(label "p1499")
+	(latitude "61 8.83")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50533] of  OMTPoint
+
+	(label "p1500")
+	(latitude "61 8.83")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50534] of  OMTPoint
+
+	(label "p1501")
+	(latitude "61 8.88")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50535] of  OMTPoint
+
+	(label "p1502")
+	(latitude "61 8.84")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50536] of  OMTPoint
+
+	(label "p1503")
+	(latitude "61 8.85")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50537] of  OMTPoint
+
+	(label "p1504")
+	(latitude "61 8.82")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50538] of  OMTPoint
+
+	(label "p1505")
+	(latitude "61 8.82")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50539] of  OMTPoint
+
+	(label "p1506")
+	(latitude "61 8.87")
+	(longitude "29 57.39")
+	(playground-index 0))
+
+([ScenarioMigration_Class50540] of  OMTPoint
+
+	(label "p1507")
+	(latitude "61 8.84")
+	(longitude "29 57.31")
+	(playground-index 0))
+
+([ScenarioMigration_Class50541] of  OMTPoint
+
+	(label "p1508")
+	(latitude "61 8.8")
+	(longitude "29 57.34")
+	(playground-index 0))
+
+([ScenarioMigration_Class50542] of  OMTPoint
+
+	(label "p1509")
+	(latitude "61 8.83")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50543] of  OMTPoint
+
+	(label "p1510")
+	(latitude "61 8.83")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50544] of  OMTPoint
+
+	(label "p1511")
+	(latitude "61 8.88")
+	(longitude "29 57.45")
+	(playground-index 0))
+
+([ScenarioMigration_Class50545] of  OMTPoint
+
+	(label "p1512")
+	(latitude "61 8.93")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50546] of  OMTPoint
+
+	(label "p1513")
+	(latitude "61 8.94")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50547] of  OMTPoint
+
+	(label "p1514")
+	(latitude "61 8.89")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50548] of  OMTPoint
+
+	(label "p1515")
+	(latitude "61 8.89")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50549] of  OMTPoint
+
+	(label "p1516")
+	(latitude "61 8.87")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50550] of  OMTPoint
+
+	(label "p1517")
+	(latitude "61 8.81")
+	(longitude "29 57.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50551] of  OMTPoint
+
+	(label "p1518")
+	(latitude "61 8.86")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50552] of  OMTPoint
+
+	(label "p1519")
+	(latitude "61 8.9")
+	(longitude "29 57.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50553] of  OMTPoint
+
+	(label "p1520")
+	(latitude "61 8.9")
+	(longitude "29 57.75")
+	(playground-index 0))
+
+([ScenarioMigration_Class50554] of  OMTPoint
+
+	(label "p1521")
+	(latitude "61 8.87")
+	(longitude "29 57.7")
+	(playground-index 0))
+
+([ScenarioMigration_Class50555] of  OMTPoint
+
+	(label "p1522")
+	(latitude "61 8.89")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50556] of  OMTPoint
+
+	(label "p1523")
+	(latitude "61 8.86")
+	(longitude "29 57.79")
+	(playground-index 0))
+
+([ScenarioMigration_Class50557] of  OMTPoint
+
+	(label "p1524")
+	(latitude "61 8.85")
+	(longitude "29 57.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50558] of  OMTPoint
+
+	(label "p1525")
+	(latitude "61 8.85")
+	(longitude "29 57.72")
+	(playground-index 0))
+
+([ScenarioMigration_Class50559] of  OMTPoint
+
+	(label "p1526")
+	(latitude "61 8.82")
+	(longitude "29 57.68")
+	(playground-index 0))
+
+([ScenarioMigration_Class50560] of  OMTPoint
+
+	(label "p1527")
+	(latitude "61 8.86")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50561] of  OMTPoint
+
+	(label "p1528")
+	(latitude "61 8.81")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50562] of  OMTPoint
+
+	(label "p1529")
+	(latitude "61 8.8")
+	(longitude "29 57.51")
+	(playground-index 0))
+
+([ScenarioMigration_Class50563] of  OMTPoint
+
+	(label "p1530")
+	(latitude "61 8.8")
+	(longitude "29 57.51")
+	(playground-index 0))
+
+([ScenarioMigration_Class50564] of  OMTPoint
+
+	(label "p1531")
+	(latitude "61 8.77")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50565] of  OMTPoint
+
+	(label "p1532")
+	(latitude "61 8.8")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50566] of  OMTPoint
+
+	(label "p1533")
+	(latitude "61 8.82")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50567] of  OMTPoint
+
+	(label "p1534")
+	(latitude "61 8.87")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50568] of  OMTPoint
+
+	(label "p1535")
+	(latitude "61 8.87")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50569] of  OMTPoint
+
+	(label "p1536")
+	(latitude "61 8.84")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50570] of  OMTPoint
+
+	(label "p1537")
+	(latitude "61 8.89")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50571] of  OMTPoint
+
+	(label "p1538")
+	(latitude "61 8.86")
+	(longitude "29 57.42")
+	(playground-index 0))
+
+([ScenarioMigration_Class50572] of  OMTPoint
+
+	(label "p1539")
+	(latitude "61 8.84")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50573] of  OMTPoint
+
+	(label "p1540")
+	(latitude "61 8.84")
+	(longitude "29 57.48")
+	(playground-index 0))
+
+([ScenarioMigration_Class50574] of  OMTPoint
+
+	(label "p1541")
+	(latitude "61 8.88")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50575] of  OMTPoint
+
+	(label "p1542")
+	(latitude "61 8.85")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50576] of  OMTPoint
+
+	(label "p1543")
+	(latitude "61 8.82")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50577] of  OMTPoint
+
+	(label "p1544")
+	(latitude "61 8.85")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50578] of  OMTPoint
+
+	(label "p1545")
+	(latitude "61 8.85")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50579] of  OMTPoint
+
+	(label "p1546")
+	(latitude "61 8.82")
+	(longitude "29 57.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50580] of  OMTPoint
+
+	(label "p1547")
+	(latitude "61 8.84")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50581] of  OMTPoint
+
+	(label "p1548")
+	(latitude "61 8.87")
+	(longitude "29 57.65")
+	(playground-index 0))
+
+([ScenarioMigration_Class50582] of  OMTPoint
+
+	(label "p1549")
+	(latitude "61 8.83")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50583] of  OMTPoint
+
+	(label "p1550")
+	(latitude "61 8.83")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50584] of  OMTPoint
+
+	(label "p1551")
+	(latitude "61 8.88")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50585] of  OMTPoint
+
+	(label "p1552")
+	(latitude "61 8.82")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50586] of  OMTPoint
+
+	(label "p1553")
+	(latitude "61 8.77")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50587] of  OMTPoint
+
+	(label "p1554")
+	(latitude "61 8.8")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50588] of  OMTPoint
+
+	(label "p1555")
+	(latitude "61 8.8")
+	(longitude "29 57.53")
+	(playground-index 0))
+
+([ScenarioMigration_Class50589] of  OMTPoint
+
+	(label "p1556")
+	(latitude "61 8.83")
+	(longitude "29 57.43")
+	(playground-index 0))
+
+([ScenarioMigration_Class50590] of  OMTPoint
+
+	(label "p1557")
+	(latitude "61 8.81")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50591] of  OMTPoint
+
+	(label "p1558")
+	(latitude "61 8.83")
+	(longitude "29 57.64")
+	(playground-index 0))
+
+([ScenarioMigration_Class50592] of  OMTPoint
+
+	(label "p1559")
+	(latitude "61 8.85")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50593] of  OMTPoint
+
+	(label "p1560")
+	(latitude "61 8.85")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50594] of  OMTPoint
+
+	(label "p1561")
+	(latitude "61 8.89")
+	(longitude "29 57.57")
+	(playground-index 0))
+
+([ScenarioMigration_Class50595] of  OMTPoint
+
+	(label "p1562")
+	(latitude "61 8.85")
+	(longitude "29 57.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50596] of  OMTPoint
+
+	(label "p1563")
+	(latitude "61 8.9")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50597] of  OMTPoint
+
+	(label "p1564")
+	(latitude "61 8.92")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50598] of  OMTPoint
+
+	(label "p1565")
+	(latitude "61 8.92")
+	(longitude "29 57.76")
+	(playground-index 0))
+
+([ScenarioMigration_Class50599] of  OMTPoint
+
+	(label "p1566")
+	(latitude "61 8.88")
+	(longitude "29 57.8")
+	(playground-index 0))
+
+([ScenarioMigration_Class50600] of  OMTPoint
+
+	(label "p1567")
+	(latitude "61 8.88")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50601] of  OMTPoint
+
+	(label "p1568")
+	(latitude "61 8.91")
+	(longitude "29 57.93")
+	(playground-index 0))
+
+([ScenarioMigration_Class50602] of  OMTPoint
+
+	(label "p1569")
+	(latitude "61 8.95")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50603] of  OMTPoint
+
+	(label "p1570")
+	(latitude "61 8.95")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50604] of  OMTPoint
+
+	(label "p1571")
+	(latitude "61 8.89")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50605] of  OMTPoint
+
+	(label "p1572")
+	(latitude "61 8.94")
+	(longitude "29 57.91")
+	(playground-index 0))
+
+([ScenarioMigration_Class50606] of  OMTPoint
+
+	(label "p1573")
+	(latitude "61 8.97")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50607] of  OMTPoint
+
+	(label "p1574")
+	(latitude "61 8.95")
+	(longitude "29 58.1")
+	(playground-index 0))
+
+([ScenarioMigration_Class50608] of  OMTPoint
+
+	(label "p1575")
+	(latitude "61 8.95")
+	(longitude "29 58.1")
+	(playground-index 0))
+
+([ScenarioMigration_Class50609] of  OMTPoint
+
+	(label "p1576")
+	(latitude "61 8.97")
+	(longitude "29 58.02")
+	(playground-index 0))
+
+([ScenarioMigration_Class50610] of  OMTPoint
+
+	(label "p1577")
+	(latitude "61 9.02")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50611] of  OMTPoint
+
+	(label "p1578")
+	(latitude "61 9.05")
+	(longitude "29 57.92")
+	(playground-index 0))
+
+([ScenarioMigration_Class50612] of  OMTPoint
+
+	(label "p1579")
+	(latitude "61 9.04")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50613] of  OMTPoint
+
+	(label "p1580")
+	(latitude "61 9.04")
+	(longitude "29 58.01")
+	(playground-index 0))
+
+([ScenarioMigration_Class50614] of  OMTPoint
+
+	(label "p1581")
+	(latitude "61 9.02")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50615] of  OMTPoint
+
+	(label "p1582")
+	(latitude "61 8.98")
+	(longitude "29 57.8")
+	(playground-index 0))
+
+([ScenarioMigration_Class50616] of  OMTPoint
+
+	(label "p1583")
+	(latitude "61 8.94")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50617] of  OMTPoint
+
+	(label "p1584")
+	(latitude "61 8.97")
+	(longitude "29 57.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50618] of  OMTPoint
+
+	(label "p1585")
+	(latitude "61 8.97")
+	(longitude "29 57.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50619] of  OMTPoint
+
+	(label "p1586")
+	(latitude "61 8.97")
+	(longitude "29 57.9")
+	(playground-index 0))
+
+([ScenarioMigration_Class50620] of  OMTPoint
+
+	(label "p1587")
+	(latitude "61 9.01")
+	(longitude "29 57.88")
+	(playground-index 0))
+
+([ScenarioMigration_Class50621] of  OMTPoint
+
+	(label "p1588")
+	(latitude "61 9.05")
+	(longitude "29 57.89")
+	(playground-index 0))
+
+([ScenarioMigration_Class50622] of  OMTPoint
+
+	(label "p1589")
+	(latitude "61 9.05")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50623] of  OMTPoint
+
+	(label "p1590")
+	(latitude "61 9.05")
+	(longitude "29 58")
+	(playground-index 0))
+
+([ScenarioMigration_Class50624] of  OMTPoint
+
+	(label "p1591")
+	(latitude "61 9")
+	(longitude "29 57.96")
+	(playground-index 0))
+
+([ScenarioMigration_Class50625] of  OMTPoint
+
+	(label "p1592")
+	(latitude "61 8.99")
+	(longitude "29 57.84")
+	(playground-index 0))
+
+([ScenarioMigration_Class50626] of  OMTPoint
+
+	(label "p1593")
+	(latitude "61 8.95")
+	(longitude "29 57.85")
+	(playground-index 0))
+
+([ScenarioMigration_Class50627] of  OMTPoint
+
+	(label "p1594")
+	(latitude "61 8.97")
+	(longitude "29 57.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50628] of  OMTPoint
+
+	(label "p1595")
+	(latitude "61 8.97")
+	(longitude "29 57.78")
+	(playground-index 0))
+
+([ScenarioMigration_Class50629] of  OMTPoint
+
+	(label "p1596")
+	(latitude "61 9")
+	(longitude "29 57.7")
+	(playground-index 0))
+
+([ScenarioMigration_Class50630] of  OMTPoint
+
+	(label "p1597")
+	(latitude "61 8.98")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50631] of  OMTPoint
+
+	(label "p1598")
+	(latitude "61 8.92")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50632] of  OMTPoint
+
+	(label "p1599")
+	(latitude "61 8.86")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50633] of  OMTPoint
+
+	(label "p1600")
+	(latitude "61 8.86")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50634] of  OMTPoint
+
+	(label "p1601")
+	(latitude "61 8.83")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50635] of  OMTPoint
+
+	(label "p1602")
+	(latitude "61 8.81")
+	(longitude "29 57.67")
+	(playground-index 0))
+
+([ScenarioMigration_Class50636] of  OMTPoint
+
+	(label "p1603")
+	(latitude "61 8.77")
+	(longitude "29 57.59")
+	(playground-index 0))
+
+([ScenarioMigration_Class50637] of  OMTPoint
+
+	(label "p1604")
+	(latitude "61 8.72")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50638] of  OMTPoint
+
+	(label "p1605")
+	(latitude "61 8.72")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50639] of  OMTPoint
+
+	(label "p1606")
+	(latitude "61 8.68")
+	(longitude "29 57.69")
+	(playground-index 0))
+
+([ScenarioMigration_Class50640] of  OMTPoint
+
+	(label "p1607")
+	(latitude "61 8.67")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50641] of  OMTPoint
+
+	(label "p1608")
+	(latitude "61 8.69")
+	(longitude "29 57.66")
+	(playground-index 0))
+
+([ScenarioMigration_Class50642] of  OMTPoint
+
+	(label "p1609")
+	(latitude "61 8.74")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50643] of  OMTPoint
+
+	(label "p1610")
+	(latitude "61 8.74")
+	(longitude "29 57.61")
+	(playground-index 0))
+
+([ScenarioMigration_Class50644] of  OMTPoint
+
+	(label "p1611")
+	(latitude "61 8.73")
+	(longitude "29 57.55")
+	(playground-index 0))
+
+([ScenarioMigration_Class50645] of  OMTPoint
+
+	(label "p1612")
+	(latitude "61 8.67")
+	(longitude "29 57.62")
+	(playground-index 0))
+
+([ScenarioMigration_Class50646] of  OMTPoint
+
+	(label "p1613")
+	(latitude "61 8.7")
+	(longitude "29 57.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50647] of  OMTPoint
+
+	(label "p1614")
+	(latitude "61 8.74")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50648] of  OMTPoint
+
+	(label "p1615")
+	(latitude "61 8.74")
+	(longitude "29 57.56")
+	(playground-index 0))
+
+([ScenarioMigration_Class50649] of  OMTPoint
+
+	(label "p1616")
+	(latitude "61 8.71")
+	(longitude "29 57.5")
+	(playground-index 0))
+
+([ScenarioMigration_Class50650] of  OMTPoint
+
+	(label "p1617")
+	(latitude "61 8.65")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50651] of  OMTPoint
+
+	(label "p1618")
+	(latitude "61 8.69")
+	(longitude "29 57.49")
+	(playground-index 0))
+
+([ScenarioMigration_Class50652] of  OMTPoint
+
+	(label "p1619")
+	(latitude "61 8.73")
+	(longitude "29 57.46")
+	(playground-index 0))
+
+([ScenarioMigration_Class50653] of  OMTPoint
+
+	(label "p1620")
+	(latitude "61 8.73")
+	(longitude "29 57.46")
+	(playground-index 0))
+
+([ScenarioMigration_Class50654] of  OMTPoint
+
+	(label "p1621")
+	(latitude "61 8.67")
+	(longitude "29 57.44")
+	(playground-index 0))
+
+([ScenarioMigration_Class50655] of  OMTPoint
+
+	(label "p1622")
+	(latitude "61 8.64")
+	(longitude "29 57.51")
+	(playground-index 0))
+
+([ScenarioMigration_Class50656] of  OMTPoint
+
+	(label "p1623")
+	(latitude "61 8.6")
+	(longitude "29 57.54")
+	(playground-index 0))
+
+([ScenarioMigration_Class50657] of  OMTPoint
+
+	(label "p1624")
+	(latitude "61 8.61")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50658] of  OMTPoint
+
+	(label "p1625")
+	(latitude "61 8.61")
+	(longitude "29 57.63")
+	(playground-index 0))
+
+([ScenarioMigration_Class50659] of  OMTPoint
+
+	(label "p1626")
+	(latitude "61 8.63")
+	(longitude "29 57.71")
+	(playground-index 0))
+
+([ScenarioMigration_Class50660] of  OMTPoint
+
+	(label "p1627")
+	(latitude "61 8.64")
+	(longitude "29 57.82")
+	(playground-index 0))
+
+([ScenarioMigration_Class50661] of  OMTPoint
+
+	(label "p1628")
+	(latitude "61 8.6")
+	(longitude "29 57.74")
+	(playground-index 0))
+
+([ScenarioMigration_Class50662] of  OMTPoint
+
+	(label "p1629")
+	(latitude "61 8.56")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50663] of  OMTPoint
+
+	(label "p1630")
+	(latitude "61 8.56")
+	(longitude "29 57.81")
+	(playground-index 0))
+
+([ScenarioMigration_Class50664] of  OMTPoint
+
+	(label "p1631")
+	(latitude "61 8.61")
+	(longitude "29 57.83")
+	(playground-index 0))
+
+([ScenarioMigration_Class50665] of  OMTPoint
+
+	(label "p1632")
+	(latitude "61 8.59")
+	(longitude "29 57.95")
+	(playground-index 0))
+
+([ScenarioMigration_Class50666] of  OMTPoint
+
+	(label "p1633")
+	(latitude "61 8.59")
+	(longitude "29 58.04")
+	(playground-index 0))
+
+([ScenarioMigration_Class50667] of  OMTPoint
+
+	(label "p1634")
+	(latitude "61 8.63")
+	(longitude "29 58.01")
+	(playground-index 0))
 
 ([ScenarioMigration_Class6] of  CloFunction
 
@@ -1568,7 +6105,7 @@
 ([ScenarioMigration_Class7] of  Rule
 
 	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	label ?lab\n	latitude ?lat\n	longitude ?lon\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	area ?ara\n	limit ?lim\n	look ?lok\n	factor ?fac\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lab (read-string (a/vv ?lab ?run))\n        lat (read-string (a/vv ?lat ?run))\n        lon (read-string (a/vv ?lon ?run))\n        rdr (read-string (a/vv ?rdr ?run))\n        rst (read-string (a/vv ?rst ?run))\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        fac (read-string (a/vv ?fac ?run))\n        ara (cesium.mig/init-area (a/vv ?ara ?run))\n        lim (a/to-be ?t (a/vv ?lim ?run))\n        rst (cons (first rst) (map #(/ % 60) (rest rst)))\n        nrw {:finish [lon lat] :start [lon lat] :time 0}]\n  (modify ?gor satatus \"REPEAT\"\n	label lab\n	next-random-way nrw\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	factor fac\n	look lok\n	N ?t))")
+	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lab (a/vv ?lab ?run)\n        lat (read-string (a/vv ?lat ?run))\n        lon (read-string (a/vv ?lon ?run))\n        rdr (read-string (a/vv ?rdr ?run))\n        rst (read-string (a/vv ?rst ?run))\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        fac (read-string (a/vv ?fac ?run))\n        ara (cesium.mig/init-area (a/vv ?ara ?run))\n        lim (a/to-be ?t (a/vv ?lim ?run))\n        rst (cons (first rst) (map #(/ % 60) (rest rst)))\n        nrw {:finish [lon lat] :start [lon lat] :time 0}]\n  (vswap! cesium.mig/TRACES assoc lab [])\n  (modify ?gor satatus \"REPEAT\"\n	label lab\n	next-random-way nrw\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	factor fac\n	look lok\n	N ?t))")
 	(salience 0)
 	(title "smi:GoRandomStart"))
 
@@ -1583,6 +6120,10 @@
 
 	(rules
 		[ScenarioMigration_Class7]
-		[ScenarioMigration_Class8])
-	(templates [GoRandom])
+		[ScenarioMigration_Class8]
+		[ScenarioMigration_Class30002]
+		[ScenarioMigration_Class30006])
+	(templates
+		[GoRandom]
+		[GoWaypoints])
 	(title "SMigration"))

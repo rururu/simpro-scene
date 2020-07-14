@@ -59,10 +59,27 @@
  :NE [1 1]
  :SW [-1 -1]
  :SE [1 -1]})
-(def POINTS (volatile! {}))
-(defn set-points [pts inst]
-  (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
-  (ssvs inst "points" pts)))
+(def TRACES (volatile! {}))
+(defn show-points
+  ([pts label]
+  (show-points pts label nil))
+([pts label color]
+  (let [pts2 (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)
+         lins (fifos "OMTPoly" "label" label)]
+    (if color
+      (ssv lins "lineColor" color))
+    (ssvs lins "points" pts2)
+    (dotimes [i (count pts)]
+      (let [pins (foc "OMTPoint" "label" (str label i))]
+        (ssv pins "latitude" (MapOb/getDegMin (second (nth pts i))))
+        (ssv pins "longitude" (MapOb/getDegMin (first (nth pts i))))
+        (ssv pins "lineColor" color)
+        (if-let [mo (OMT/getMapOb pins)]
+          (OMT/removeMapOb mo false))
+        (OMT/getOrAdd pins)))
+   (if-let [mo (OMT/getMapOb lins)]
+     (OMT/removeMapOb mo false))
+    (OMT/getOrAdd lins))))
 
 (defn simple-dist [[lo1 la1] [lo2 la2]]
   (+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2))))
@@ -197,7 +214,7 @@
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! POINTS assoc id pts)
+  (vswap! TRACES assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 
@@ -233,7 +250,7 @@
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! POINTS assoc id pth)
+  (vswap! TRACES assoc id pth)
   (cs/send-czml czml)
   [elt wps]))
 
@@ -339,12 +356,12 @@
        size (look :size)
        height (look :height)
        pth (next-covered-points lon lat r-direct r-step geoms n)
-       _ (vswap! POINTS assoc (gensym id) pth)
        pts (insert-height pth height)
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (* sec 1000)
        knots (rand-double r-knots)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
+  (vswap! TRACES assoc id (concat (@TRACES id) pth))
   {:start (first pth)
     :finish (last pth)
     :czml czml

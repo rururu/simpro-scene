@@ -1,4 +1,4 @@
-; Fri Jul 10 21:30:17 MSK 2020
+; Tue Jul 14 20:50:36 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -175,6 +175,34 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoWaypoints
+	(is-a Go)
+	(role concrete)
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot waypoints
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot look
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot random-speed
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
