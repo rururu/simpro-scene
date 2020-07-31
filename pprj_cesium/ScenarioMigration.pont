@@ -1,4 +1,4 @@
-; Tue Jul 14 20:50:36 MSK 2020
+; Fri Jul 31 21:30:48 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -199,6 +199,35 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot number
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot random-speed
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoRiver
+	(is-a Go)
+	(role concrete)
+	(single-slot river
+		(type INSTANCE)
+;+		(allowed-classes River)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot label
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot look
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))

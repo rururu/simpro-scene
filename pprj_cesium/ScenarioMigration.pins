@@ -1,4 +1,4 @@
-; Tue Jul 14 20:50:36 MSK 2020
+; Fri Jul 31 21:30:48 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,6 +8,12 @@
 	(rules
 		[ScenarioMigration_Class7]
 		[ScenarioMigration_Class8]))
+
+([GoRiver] of  ActionClass
+
+	(rules
+		[ScenarioMigration_Class40002]
+		[ScenarioMigration_Class40003]))
 
 ([GoWaypoints] of  ActionClass
 
@@ -1527,7 +1533,7 @@
 	(random-speed "[:L 1. 2. 3.]")
 	(random-step "[:N 0.05 0.01]")
 	(status "START")
-	(title "test"))
+	(title "test1"))
 
 ([ScenarioMigration_Class10029] of  NavOb
 
@@ -1590,6 +1596,29 @@
 
 	(source "(condp = (first distro)\n  :L (rand-nth (rest distro))\n  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))\n  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro))))")
 	(title "rand-double [distro]"))
+
+([ScenarioMigration_Class40002] of  Rule
+
+	(lhs "?gor (GoRiver status \"START\"\n	title ?tit\n	label ?lab\n                      river ?riv\n	random-speed ?rsp\n	direction ?dir\n	look ?lok\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoRiver\")\n(let [lab (a/vv ?lab ?run)\n       riv (a/vv ?riv ?run)\n       dir (read-string (a/vv ?dir ?run))\n       rsp (read-string (a/vv ?rsp ?run))\n       lok (read-string (a/vv ?lok ?run))\n       riv (rotege.core/sv riv \"title\")\n       riv (cesium.mig/river-map riv)\n       knots (cesium.mig/rand-double rsp)\n       [czml elt] (cesium.mig/go-river ab lok knots riv dir)\n    (cesium.server/send-czml czml)\n    (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
+	(salience 0)
+	(title "sim:GoRiverStart"))
+
+([ScenarioMigration_Class40003] of  Rule
+
+	(lhs "?gor (GoRiver status \"REPEAT\"\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(retract ?gor)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "sim:GoRiverRepeat"))
+
+([ScenarioMigration_Class40004] of  GoRiver
+
+	(direction ":down")
+	(label "s1")
+	(look "{:color [0 255 255 255] \n  :size 10 \n  :height 200}")
+	(random-speed "[:L 1. 2. 3.]")
+	(river [Migration_Class110007])
+	(title "test"))
 
 ([ScenarioMigration_Class40007] of  CloFuncall
 
@@ -6122,8 +6151,11 @@
 		[ScenarioMigration_Class7]
 		[ScenarioMigration_Class8]
 		[ScenarioMigration_Class30002]
-		[ScenarioMigration_Class30006])
+		[ScenarioMigration_Class30006]
+		[ScenarioMigration_Class40002]
+		[ScenarioMigration_Class40003])
 	(templates
 		[GoRandom]
-		[GoWaypoints])
+		[GoWaypoints]
+		[GoRiver])
 	(title "SMigration"))
