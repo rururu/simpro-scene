@@ -1,4 +1,4 @@
-; Fri Jul 31 21:30:48 MSK 2020
+; Tue Sep 08 20:12:16 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -114,6 +114,10 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot creature-id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot phases
 		(type INSTANCE)
 ;+		(allowed-classes Phase)
@@ -130,31 +134,7 @@
 (defclass GoRandom
 	(is-a Go)
 	(role concrete)
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot limit
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot factor
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot random-step
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot random-speed
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot next-random-way
+	(single-slot creature-id
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -170,11 +150,7 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot random-direction
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot latitude
+	(single-slot random-speed
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

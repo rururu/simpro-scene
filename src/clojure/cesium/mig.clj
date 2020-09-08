@@ -272,7 +272,8 @@
   [(Clock/getClock) (Clock/getTimeScale)])
 
 (defn look [age look]
-  (let [[c s] (condp = age
+  (let [look (if (string? look) (read-string look) look)
+       [c s] (condp = age
                  "child" [[0 255 0 255] 5]
                  "young" [[255 255 0 255] 7]
                  "adult" [[255 94 1 255] 9]

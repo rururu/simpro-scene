@@ -1,4 +1,4 @@
-; Fri Jul 31 21:30:48 MSK 2020
+; Tue Sep 08 20:12:16 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -37,7 +37,7 @@
 		[igis_Class90000]
 		[igis_Class21]
 		[igis_Class22]
-		[igis_Class23]
+		[Scenario_Class60001]
 		[igis_Class25]
 		[igis_Class26]
 		[igis_Class27]
@@ -156,7 +156,7 @@
 
 ([HiitolanjokiRCZ_Class20001] of  CloProgram
 
-	(cloFunctions [Migration_Class80000])
+	(cloFunctions [Scenario_Class21])
 	(cloNamespace [Clojure_Class300001])
 	(title "SMig CW"))
 
@@ -275,10 +275,13 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(fact-classes [Walk])
 	(facts
+		[ScenarioMigration_Class60001]
 		[Migration_Class100001]
-		[Migration_Class60001])
+		[Migration_Class60001]
+		[Migration_Class10001]
+		[ScenarioMigration_Class100002])
+	(instances [ScenarioMigration_Class100002])
 	(mode run)
 	(rule-sets
 		[Migration_Class50008]
@@ -319,7 +322,7 @@
 ([Migration_Class100001] of  CesiumCamera
 
 	(heading "340")
-	(height 20000)
+	(height 60000)
 	(latitude "61.05")
 	(longitude "30.1")
 	(pitch -60)
@@ -451,7 +454,7 @@
 
 ([Migration_Class150000] of  CloFunction
 
-	(source "(let [[c s] (condp = age\n                 \"child\" [[0 255 0 255] 5]\n                 \"young\" [[255 255 0 255] 7]\n                 \"adult\" [[255 94 1 255] 9]\n                 \"old\" [[220 20 60 255] 11])]\n  (assoc look :color c :size s))")
+	(source "(let [look (if (string? look) (read-string look) look)\n       [c s] (condp = age\n                 \"child\" [[0 255 0 255] 5]\n                 \"young\" [[255 255 0 255] 7]\n                 \"adult\" [[255 94 1 255] 9]\n                 \"old\" [[220 20 60 255] 11])]\n  (assoc look :color c :size s))")
 	(title "look [age look]"))
 
 ([Migration_Class150001] of  CloFunction
@@ -479,7 +482,7 @@
 
 ([Migration_Class150007] of  Rule
 
-	(lhs "(Walk action ?act area ?are\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	age ?age\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")])\n(Clock time ?t)")
+	(lhs "(Walk action ?act \n	area ?are\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature status \"BEGIN\"\n	id ?id\n	look ?loo\n	walk-speed ?wsp\n	age ?age\n	area ?are	\n	action ?act\n	[(= ?act \"Walk in\")\n                       (= ?act \"Last walk in\")\n                       (= ?act \"SCENARIO\")])\n(Clock time ?t)")
 	(rhs "(let [wri (rand-nth ?wrs)\n       wps (cesium.mig/walk-route-waypoints wri)\n       start (last wps)\n       loo (cesium.mig/look ?age ?loo)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]\n  (println ?id [?act ?are] :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps\n	status \"REPEAT\"))")
 	(salience 0)
 	(title "mig:Walk In"))
@@ -1315,12 +1318,14 @@
 		[ScenarioN_Class550031]
 		[Migration_Class50010]
 		[Migration_Class50009]
-		[Migration_Class90000])
+		[Migration_Class90000]
+		[ScenarioN_Class550032])
 	(templates
 		[Clock]
 		[Cesium]
 		[CesiumCamera]
-		[MapObEvent])
+		[MapObEvent]
+		[Directive])
 	(title "SMigSimulator"))
 
 ([Migration_Class50009] of  Rule
@@ -1434,14 +1439,6 @@
 	(walk-step 0.005)
 	(walk-steps 200))
 
-([Migration_Class80005] of  Walk
-
-	(action "Last walk in")
-	(area "Lake Kivijarvi")
-	(walk-routes [Migration_Class200031])
-	(walk-step 0.001)
-	(walk-steps 40))
-
 ([Migration_Class90000] of  Rule
 
 	(lhs "?cc (CesiumCamera status \"START\" \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
@@ -1498,14 +1495,27 @@
 
 	(source "(conj [1 2 3 4 ] 5)"))
 
+([ScenarioMigration_Class100000] of  CloFuncall
+
+	(source "(ru.rules/f 18)"))
+
+([ScenarioMigration_Class100002] of  Walk
+
+	(action "Last walk in")
+	(area "Lake Kivijarvi")
+	(walk-routes [Migration_Class200031])
+	(walk-step 0.001)
+	(walk-steps 40))
+
 ([ScenarioMigration_Class10001] of  GoWaypoints
 
 	(label "s1")
-	(look "{:color [0 255 255 255] \n  :size 10 \n  :height 200}")
+	(look "{:color [0 255 0 255] \n  :size 10 \n  :height 100}")
+	(next_actions [ScenarioMigration_Class60000])
 	(number "6")
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
-	(title "test2")
+	(title "Backward to River Hiitolanjoki")
 	(waypoints "BACKWARD"))
 
 ([ScenarioMigration_Class10002] of  CloFunction
@@ -1520,20 +1530,12 @@
 
 ([ScenarioMigration_Class10028] of  GoRandom
 
-	(area "Ladoga Lake")
-	(factor "4")
-	(label "s1")
-	(latitude "61.153")
-	(limit "1 hrs")
-	(longitude "29.959")
-	(look "{:color [255 255 0 255] \n  :size 10 \n  :height 200}")
-	(next-random-way "{:start [30.08 61.15]}")
-	(next_actions [ScenarioMigration_Class10001])
-	(random-direction "[:U 0. 359.99]")
+	(area "Lake Kivijarvi")
+	(creature-id "s")
+	(look "{:color [255 0 0 255]\n  :size 6\n  :height 20}")
 	(random-speed "[:L 1. 2. 3.]")
-	(random-step "[:N 0.05 0.01]")
 	(status "START")
-	(title "test1"))
+	(title "Walk in Lake Kivijarvi"))
 
 ([ScenarioMigration_Class10029] of  NavOb
 
@@ -1546,6 +1548,30 @@
 	(speed 0.0)
 	(url "file:resources/public/img/fish.gif")
 	(verticalSpeed 0.0))
+
+([ScenarioMigration_Class110000] of  CloFuncall
+
+	(source "(ru.rules/pp 'Creature)"))
+
+([ScenarioMigration_Class110001] of  CloFuncall
+
+	(source "(ru.rules/f 577)"))
+
+([ScenarioMigration_Class110002] of  CloFuncall
+
+	(source "(ru.rules/pp 'Clock)"))
+
+([ScenarioMigration_Class110003] of  CloFuncall
+
+	(source "cesium.mig/TRACES"))
+
+([ScenarioMigration_Class120000] of  CloFuncall
+
+	(source "(ru.rules/f 38)"))
+
+([ScenarioMigration_Class130000] of  CloFuncall
+
+	(source "(ru.rules/f 16)"))
 
 ([ScenarioMigration_Class20000] of  CloVar
 
@@ -1561,6 +1587,10 @@
 
 	(source "(Uniform. MTF)")
 	(title "UNIFORM"))
+
+([ScenarioMigration_Class30000] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" {:color [0 255 255 255]    :size 10    :height 200}  riv dir)"))
 
 ([ScenarioMigration_Class30001] of  CloFuncall
 
@@ -1597,10 +1627,18 @@
 	(source "(condp = (first distro)\n  :L (rand-nth (rest distro))\n  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))\n  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro))))")
 	(title "rand-double [distro]"))
 
+([ScenarioMigration_Class40000] of  CloFuncall
+
+	(source "(ru.rules/f 7)"))
+
+([ScenarioMigration_Class40001] of  CloFuncall
+
+	(source "(do (def riv (cesium.mig/RIVERS \"River Hiitolanjoki\")) (println (riv :estuary))) "))
+
 ([ScenarioMigration_Class40002] of  Rule
 
 	(lhs "?gor (GoRiver status \"START\"\n	title ?tit\n	label ?lab\n                      river ?riv\n	random-speed ?rsp\n	direction ?dir\n	look ?lok\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRiver\")\n(let [lab (a/vv ?lab ?run)\n       riv (a/vv ?riv ?run)\n       dir (read-string (a/vv ?dir ?run))\n       rsp (read-string (a/vv ?rsp ?run))\n       lok (read-string (a/vv ?lok ?run))\n       riv (rotege.core/sv riv \"title\")\n       riv (cesium.mig/river-map riv)\n       knots (cesium.mig/rand-double rsp)\n       [czml elt] (cesium.mig/go-river ab lok knots riv dir)\n    (cesium.server/send-czml czml)\n    (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
+	(rhs "(println \"Action started:\" ?tit \"GoRiver\")\n(let [lab (a/vv ?lab ?run)\n       riv (a/vv ?riv ?run)\n       dir (read-string (a/vv ?dir ?run))\n       rsp (read-string (a/vv ?rsp ?run))\n       lok (read-string (a/vv ?lok ?run))\n       riv (protege.core/sv riv \"title\")\n       riv (cesium.mig/river-map riv)\n       knots (cesium.mig/rand-double rsp)\n       [elt _] (cesium.mig/go-river lab lok knots riv dir)]\n    (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "sim:GoRiverStart"))
 
@@ -1615,10 +1653,12 @@
 
 	(direction ":down")
 	(label "s1")
-	(look "{:color [0 255 255 255] \n  :size 10 \n  :height 200}")
+	(look "{:color [0 255 255 255] \n  :size 10 \n  :height 100}")
+	(next_actions [ScenarioMigration_Class60000])
 	(random-speed "[:L 1. 2. 3.]")
 	(river [Migration_Class110007])
-	(title "test"))
+	(status "START")
+	(title "Down River Hiitolanjoki"))
 
 ([ScenarioMigration_Class40007] of  CloFuncall
 
@@ -1627,6 +1667,54 @@
 ([ScenarioMigration_Class40008] of  CloFuncall
 
 	(source "TRACES"))
+
+([ScenarioMigration_Class50000] of  Scenario
+
+	(final_tasks [ScenarioMigration_Class50001])
+	(finish_type AND)
+	(initial_tasks [ScenarioMigration_Class50001])
+	(scenario_scheme [ScenarioMigration_Class50001])
+	(title "Ladoga Salmon Migration"))
+
+([ScenarioMigration_Class50001] of  Task
+
+	(final_actions [ScenarioMigration_Class10028])
+	(finish_type AND)
+	(initial_actions [ScenarioMigration_Class10028])
+	(task_scheme
+		[ScenarioMigration_Class40004]
+		[ScenarioMigration_Class10028]
+		[ScenarioMigration_Class10001]
+		[ScenarioMigration_Class60000])
+	(title "Salmon in Hiitolanjoki"))
+
+([ScenarioMigration_Class50002] of  CloFuncall
+
+	(source "riv"))
+
+([ScenarioMigration_Class50003] of  CloFuncall
+
+	(source "cesium.mig/RIVERS"))
+
+([ScenarioMigration_Class50004] of  CloFuncall
+
+	(source "(cesium.mig/RIVERS \"River Hiitolanjoki\")"))
+
+([ScenarioMigration_Class50005] of  CloFuncall
+
+	(source "(do (def riv (@cesium.mig/RIVERS \"River Hiitolanjoki\")) (println (riv :estuary))) "))
+
+([ScenarioMigration_Class50006] of  CloFuncall
+
+	(source "(@cesium.mig/RIVERS \"River Hiitolanjoki\")"))
+
+([ScenarioMigration_Class50007] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" {:color [0 255 255 255]    :size 10    :height 200}  riv :down)"))
+
+([ScenarioMigration_Class50008] of  CloFuncall
+
+	(source "(cesium.mig/go-river \"s1\" {:color [0 255 255 255]    :size 10    :height 200} 3.0  riv :down)"))
 
 ([ScenarioMigration_Class50014] of  OMTPoly
 
@@ -6131,19 +6219,64 @@
 	(source "(let [llp (GreatCircle/sphericalBetween (Math/toRadians lat) (Math/toRadians lon) (Math/toRadians dis) (Math/toRadians dir))]\n  [(.getLongitude llp) (.getLatitude llp)])")
 	(title "next-point [^double lon ^double lat ^double dis ^double dir]"))
 
+([ScenarioMigration_Class60000] of  GoRiver
+
+	(direction ":up")
+	(label "s1")
+	(look "{:color [255 255 0 255] \n  :size 10 \n  :height 100}")
+	(random-speed "[:L 1. 2. 3.]")
+	(river [Migration_Class110007])
+	(status "START")
+	(title "Up River Hiitolanjoki"))
+
+([ScenarioMigration_Class60001] of  Directive
+
+	(source "(cesium.server/start-server 4448)\n(clojure.java.browse/browse-url \"http://localhost:4448\")")
+	(title "Start Cesium Server"))
+
+([ScenarioMigration_Class60002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [ScenarioMigration_Class50000])
+	(%3ACREATION-TIMESTAMP "2020.09.05 21:01:45.996 MSK")
+	(%3ACREATOR "ru"))
+
 ([ScenarioMigration_Class7] of  Rule
 
-	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n	label ?lab\n	latitude ?lat\n	longitude ?lon\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	area ?ara\n	limit ?lim\n	look ?lok\n	factor ?fac\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lab (a/vv ?lab ?run)\n        lat (read-string (a/vv ?lat ?run))\n        lon (read-string (a/vv ?lon ?run))\n        rdr (read-string (a/vv ?rdr ?run))\n        rst (read-string (a/vv ?rst ?run))\n        rsp (read-string (a/vv ?rsp ?run))\n        lok (read-string (a/vv ?lok ?run))\n        fac (read-string (a/vv ?fac ?run))\n        ara (cesium.mig/init-area (a/vv ?ara ?run))\n        lim (a/to-be ?t (a/vv ?lim ?run))\n        rst (cons (first rst) (map #(/ % 60) (rest rst)))\n        nrw {:finish [lon lat] :start [lon lat] :time 0}]\n  (vswap! cesium.mig/TRACES assoc lab [])\n  (modify ?gor satatus \"REPEAT\"\n	label lab\n	next-random-way nrw\n	random-direction rdr\n	random-step rst\n	random-speed rsp\n	area ara\n	limit lim\n	factor fac\n	look lok\n	N ?t))")
+	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n                      creature-id ?id\n	area ?are\n	look ?lk1\n	random-speed ?rsp\n	run ?run)\n(Walk area ?are\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature id ?id\n	look ?lk2\n	walk-speed ?wsp\n	area ?are)	\n(Clock time ?t)")
+	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [are (a/vv ?are ?run)\n       lk1 (a/vv ?lk1 ?run)\n       rsp (a/vv ?rsp ?run)\n       wri (rand-nth ?wrs)\n       wps (cesium.mig/walk-route-waypoints wri)\n       start (last wps)\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       wsp (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo wsp wps 1000 ?wss ?wst)]\n  (println \"Creature\" ?id ?are :REPEAT elt)\n  (modify ?cre N (+ ?t elt)\n	look loo\n	waypoints wps)\n  (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "smi:GoRandomStart"))
 
+([ScenarioMigration_Class70000] of  CloFuncall
+
+	(source "(ru.rules/f 0)"))
+
+([ScenarioMigration_Class70001] of  CloFuncall
+
+	(source "(ru.rules/f 1)"))
+
+([ScenarioMigration_Class70002] of  CloFuncall
+
+	(source "(ru.rules/f 5)"))
+
 ([ScenarioMigration_Class8] of  Rule
 
-	(lhs "?gor (GoRandom status \"REPEAT\"\n	label ?lab\n	next-random-way ?nrw\n	random-direction ?rdr\n	random-step ?rst\n	random-speed ?rsp\n	area ?ara\n	limit ?lim\n	look ?lok\n	factor ?fac\n	N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
-	(rhs "(if (< ?t ?lim)\n  (let [nxt (+ ?t (:time ?nrw))\n         nrw (cesium.mig/next-random-way ?lab ?lok (:finish ?nrw) ?rdr ?rst ?rsp ?ara ?fac nxt)]\n    (if-let [czml (:czml ?nrw)]\n          (cesium.server/send-czml czml))\n    (modify ?gor next-random-way nrw\n	N nxt))\n  (do (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(lhs "?gor (GoRandom status \"REPEAT\"\n                      N ?n\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t (> ?t ?n))")
+	(rhs "(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "smi:GoRandomRepeat"))
+
+([ScenarioMigration_Class80000] of  CloFuncall
+
+	(source "(ru.rules/f 4)"))
+
+([ScenarioMigration_Class80002] of  CloFuncall
+
+	(source "(ru.rules/f 23)"))
+
+([ScenarioMigration_Class80003] of  CloFuncall
+
+	(source "(ru.rules/f 24)"))
 
 ([ScenarioMigration_Class9] of  RuleSet
 
@@ -6157,5 +6290,11 @@
 	(templates
 		[GoRandom]
 		[GoWaypoints]
-		[GoRiver])
+		[GoRiver]
+		[Walk]
+		[Creature])
 	(title "SMigration"))
+
+([ScenarioMigration_Class90000] of  CloFuncall
+
+	(source "(ru.rules/f 19)"))
