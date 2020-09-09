@@ -1,4 +1,4 @@
-; Tue Sep 08 20:12:16 MSK 2020
+; Wed Sep 09 20:20:33 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -26,7 +26,7 @@
 		(create-accessor read-write))
 	(single-slot creature
 		(type INSTANCE)
-;+		(allowed-classes Creature)
+;+		(allowed-classes Creature Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot walk-steps
@@ -58,6 +58,11 @@
 		(create-accessor read-write))
 	(single-slot random-direction
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot walk
+		(type INSTANCE)
+;+		(allowed-classes Walk Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot addition
@@ -134,16 +139,18 @@
 (defclass GoRandom
 	(is-a Go)
 	(role concrete)
-	(single-slot creature-id
-		(type STRING)
+	(single-slot walk
+		(type INSTANCE)
+;+		(allowed-classes Walk Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot area
-		(type STRING)
+	(single-slot creature
+		(type INSTANCE)
+;+		(allowed-classes Creature Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot look
@@ -158,23 +165,25 @@
 (defclass GoWaypoints
 	(is-a Go)
 	(role concrete)
-	(single-slot label
+	(single-slot waypoints
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot waypoints
-		(type STRING)
+	(single-slot walk
+		(type INSTANCE)
+;+		(allowed-classes Walk Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot look
-		(type STRING)
+	(single-slot creature
+		(type INSTANCE)
+;+		(allowed-classes Creature Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot number
+	(single-slot look
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -191,12 +200,13 @@
 ;+		(allowed-classes River)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot label
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot creature
+		(type INSTANCE)
+;+		(allowed-classes Creature Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot direction
@@ -238,7 +248,7 @@
 		(create-accessor read-write)))
 
 (defclass Creature
-	(is-a Migration+Onto)
+	(is-a Migration+Onto MapOb)
 	(role concrete)
 	(single-slot birthtime
 		(type INTEGER)

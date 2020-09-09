@@ -74,6 +74,7 @@ See examples.
 28. [Cesium Lesson 2. Drape Peaks](https://youtu.be/G4-4ByOJpSE)
 28. [Cesium Lesson 3. Geography and History](https://youtu.be/dGWTxHik4U4)
 28. [Cesium Lesson 4. Ladoga Salmon Migration](https://www.youtube.com/watch?v=cFA5VbI_1HI)
+29. [Cesium Lesson 5. Ladoga Salmon Migration Scenario](https://youtu.be/UBdTVGteGE4)
 
 TO BE CONTINUED
 
