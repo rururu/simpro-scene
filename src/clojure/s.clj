@@ -12,6 +12,7 @@
   edu.stanford.smi.protege.ui.DisplayUtilities
   edu.stanford.smi.protege.util.ModalDialog
   clojuretab.ClojureTab))
+(def TRACE false)
 (defn qm [x]
   (or 
   (nil? x)
@@ -153,4 +154,7 @@
        fids (map first acts)]
   (doseq [fid fids]
      (rete.core/retract-fact fid))))
+
+(defn trace [bool]
+  (def TRACE bool))
 

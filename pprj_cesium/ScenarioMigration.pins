@@ -1,4 +1,4 @@
-; Wed Sep 09 20:20:33 MSK 2020
+; Tue Sep 15 18:10:15 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -275,7 +275,6 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(fact-classes [Creature])
 	(facts
 		[ScenarioMigration_Class60001]
 		[Migration_Class100001]
@@ -329,15 +328,6 @@
 	(pitch -90)
 	(roll 0)
 	(status "START"))
-
-([Migration_Class10001] of  Creature
-
-	(birthtime 300000000)
-	(id "s1")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
 
 ([Migration_Class110000] of  CloFunction
 
@@ -1495,7 +1485,7 @@
 ([ScenarioMigration_Class10001] of  GoWaypoints
 
 	(creature [ScenarioMigration_Class150000])
-	(look "{:color [255 255 0 255] \n  :size 7\n  :height 100}")
+	(look "{:color [255 255 0 255] \n  :size 6\n  :height 100}")
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
 	(title "Backward to head River Hiitolanjoki")
@@ -1515,7 +1505,7 @@
 ([ScenarioMigration_Class10028] of  GoRandom
 
 	(creature [ScenarioMigration_Class150000])
-	(look "{:color [255 0 0 255]\n  :size 6\n  :height 20}")
+	(look "{:color [255 165 0 255]\n  :size 5\n  :height 20}")
 	(next_actions [ScenarioMigration_Class10001])
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
@@ -1574,7 +1564,7 @@
 ([ScenarioMigration_Class140004] of  GoRandom
 
 	(creature [ScenarioMigration_Class150000])
-	(look "{:color [0 0 255 255]\n  :size 9\n  :height 20}")
+	(look "{:color [66 165 245 255]\n  :size 8\n  :height 20}")
 	(next_actions [ScenarioMigration_Class140005])
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
@@ -1584,7 +1574,7 @@
 ([ScenarioMigration_Class140005] of  GoWaypoints
 
 	(creature [ScenarioMigration_Class150000])
-	(look "{:color [0 255 255 255] \n  :size 10\n  :height 100}")
+	(look "{:color [0 255 255 255] \n  :size 9\n  :height 100}")
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
 	(title "Backward to estuary River Hiitolanjoki")
@@ -1594,7 +1584,7 @@
 ([ScenarioMigration_Class140006] of  GoRandom
 
 	(creature [ScenarioMigration_Class150000])
-	(look "{:color [255 0 0 255]\n  :size 12\n  :height 20}")
+	(look "{:color [255 0 0 255]\n  :size 11\n  :height 20}")
 	(random-speed "[:L 1. 2. 3.]")
 	(status "START")
 	(title "Walk in Lake Kivijarvi")
@@ -1628,93 +1618,12 @@
 
 ([ScenarioMigration_Class150002] of  ObjectPair
 
-	(object [Migration_Class10001])
 	(title "p1")
 	(variable [ScenarioMigration_Class150000]))
 
-([ScenarioMigration_Class170000] of  Creature
-
-	(birthtime 300000000)
-	(id "s2")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170001] of  Creature
-
-	(birthtime 300000000)
-	(id "s3")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170002] of  Creature
-
-	(birthtime 300000000)
-	(id "s4")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170003] of  Creature
-
-	(birthtime 300000000)
-	(id "s5")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170004] of  Creature
-
-	(birthtime 300000000)
-	(id "s6")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170005] of  Creature
-
-	(birthtime 300000000)
-	(id "s7")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170006] of  Creature
-
-	(birthtime 300000000)
-	(id "s8")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170007] of  Creature
-
-	(birthtime 300000000)
-	(id "s9")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class170008] of  Creature
-
-	(birthtime 300000000)
-	(id "s10")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
 ([ScenarioMigration_Class180000] of  Scenario
 
+	(context [ScenarioMigration_Class30000])
 	(final_tasks [ScenarioMigration_Class180001])
 	(finish_type AND)
 	(initial_tasks [ScenarioMigration_Class180001])
@@ -1733,34 +1642,20 @@
 		[ScenarioMigration_Class190007]
 		[ScenarioMigration_Class190009]
 		[ScenarioMigration_Class190010]
-		[ScenarioMigration_Class200001])
+		[ScenarioMigration_Class200001]
+		[ScenarioMigration_Class50012]
+		[ScenarioMigration_Class61000])
 	(title "Migration Start"))
 
 ([ScenarioMigration_Class190000] of  LoadResource
 
-	(mapob
-		[ScenarioMigration_Class170000]
-		[ScenarioMigration_Class170001]
-		[ScenarioMigration_Class170002]
-		[ScenarioMigration_Class170003]
-		[ScenarioMigration_Class170004]
-		[ScenarioMigration_Class170005]
-		[ScenarioMigration_Class170006]
-		[ScenarioMigration_Class170007]
-		[ScenarioMigration_Class170008]
-		[ScenarioMigration_Class90000]
-		[ScenarioMigration_Class90001]
-		[ScenarioMigration_Class90002]
-		[ScenarioMigration_Class90003]
-		[ScenarioMigration_Class90004]
-		[ScenarioMigration_Class90005]
-		[ScenarioMigration_Class90006]
-		[ScenarioMigration_Class90007]
-		[ScenarioMigration_Class90008]
-		[ScenarioMigration_Class90009])
 	(next_actions [ScenarioMigration_Class190003])
+	(number "?number")
 	(object [ScenarioMigration_Class190002])
+	(rename TRUE)
+	(rename-slot [id])
 	(resource [ScenarioMigration_Class190001])
+	(seed [ScenarioMigration_Class140010])
 	(title "Load School Resource"))
 
 ([ScenarioMigration_Class190001] of  Attribute
@@ -1781,7 +1676,7 @@
 
 ([ScenarioMigration_Class190003] of  UseResource
 
-	(next_actions [ScenarioMigration_Class190004])
+	(next_actions [ScenarioMigration_Class50012])
 	(object [ScenarioMigration_Class190002])
 	(resource [ScenarioMigration_Class190001])
 	(title "Take Next Salmon")
@@ -1790,7 +1685,7 @@
 ([ScenarioMigration_Class190004] of  Subscenario
 
 	(context [ScenarioMigration_Class190005])
-	(next_actions [ScenarioMigration_Class190007])
+	(next_actions [ScenarioMigration_Class61000])
 	(sub_scenario [ScenarioMigration_Class50000])
 	(title "Start Salmon Migration")
 	(wait_subscenario FALSE))
@@ -1830,7 +1725,7 @@
 
 	(delay "15 min")
 	(next_actions [ScenarioMigration_Class190003])
-	(title "Delay in Spawn of Salmon"))
+	(title "Delay Spawn of Salmon"))
 
 ([ScenarioMigration_Class190011] of  %3AINSTANCE-ANNOTATION
 
@@ -1863,10 +1758,15 @@
 	(source "(Uniform. MTF)")
 	(title "UNIFORM"))
 
+([ScenarioMigration_Class30000] of  Context
+
+	(pairs [ScenarioMigration_Class40001])
+	(title "SSM Context"))
+
 ([ScenarioMigration_Class30002] of  Rule
 
 	(lhs "?gow (GoWaypoints status \"START\"\n	title ?tit\n                      creature ?cre\n	walk ?wlk\n	look ?lk1\n	random-speed ?rsp\n	waypoints ?wps1\n	run ?run)\n(Walk instance ?wlk\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature instance ?icre\n	id ?id\n	look ?lk2\n	walk-speed ?wsp\n	waypoints ?wps2\n	(= ?icre (a/vv ?cre ?run)))\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoWaypoints\")\n(let [lk1 (a/vv ?lk1 ?run)\n       rsp (a/vv ?rsp ?run)\n       wps1 (a/vv ?wps1 ?run)\n       wps (if (= wps1 \"BACKWARD\")\n                (reverse ?wps2)\n                (cesium.mig/walk-route-waypoints wps1))\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       wsp (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo wsp wps 1000 ?wss ?wst)]\n  ;;(println \"Creature\" ?id ?are :REPEAT elt)\n  (modify ?cre look loo\n	waypoints wps)\n  (modify ?gow status \"REPEAT\"\n	N (+ ?t elt)))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoWaypoints\"))\n(let [lk1 (a/vv ?lk1 ?run)\n       rsp (a/vv ?rsp ?run)\n       wps1 (a/vv ?wps1 ?run)\n       wps (if (= wps1 \"BACKWARD\")\n                (reverse ?wps2)\n                (cesium.mig/walk-route-waypoints wps1))\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       wsp (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo wsp wps 1000 ?wss ?wst)]\n  ;;(println \"Creature\" ?id ?are :REPEAT elt)\n  (modify ?cre look loo\n	waypoints wps)\n  (modify ?gow status \"REPEAT\"\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "smi:GoWaypointsStart"))
 
@@ -1882,10 +1782,16 @@
 	(source "(condp = (first distro)\n  :L (rand-nth (rest distro))\n  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))\n  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro))))")
 	(title "rand-double [distro]"))
 
+([ScenarioMigration_Class40001] of  ValuePair
+
+	(title "p")
+	(value "10")
+	(variable [ScenarioMigration_Class70002]))
+
 ([ScenarioMigration_Class40002] of  Rule
 
 	(lhs "?gor (GoRiver status \"START\"\n	title ?tit\n	creature ?cre\n                      river ?riv\n	direction ?dir\n	look ?lk1\n	random-speed ?rsp\n	run ?run)\n?cre (Creature instance ?icre\n	id ?id\n	look ?lk2\n	walk-speed ?wsp\n	(= ?icre (a/vv ?cre ?run)))\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRiver\")\n(let [riv (a/vv ?riv ?run)\n       lk1 (a/vv ?lk1 ?run)\n       dir (a/vv ?dir ?run)\n       rsp (a/vv ?rsp ?run)\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       riv (protege.core/sv riv \"title\")\n       riv (cesium.mig/river-map riv)\n       knots (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       dir (read-string dir)\n       [elt _] (cesium.mig/go-river ?id loo knots riv dir)]\n  (modify ?cre look loo)\n  (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoRiver\"))\n(let [riv (a/vv ?riv ?run)\n       lk1 (a/vv ?lk1 ?run)\n       dir (a/vv ?dir ?run)\n       rsp (a/vv ?rsp ?run)\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       riv (protege.core/sv riv \"title\")\n       riv (cesium.mig/river-map riv)\n       knots (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       dir (read-string dir)\n       [elt _] (cesium.mig/go-river ?id loo knots riv dir)]\n  (modify ?cre look loo)\n  (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "sim:GoRiverStart"))
 
@@ -1900,7 +1806,7 @@
 
 	(creature [ScenarioMigration_Class150000])
 	(direction ":down")
-	(look "{:color [0 255 0 255] \n  :size 8\n  :height 20}")
+	(look "{:color [0 255 0 255] \n  :size 7\n  :height 20}")
 	(random-speed "[:L 1. 2. 3.]")
 	(river [Migration_Class110007])
 	(status "START")
@@ -1930,6 +1836,20 @@
 		[ScenarioMigration_Class10028]
 		[ScenarioMigration_Class10001])
 	(title "Birth and Walk in Upper Lakes"))
+
+([ScenarioMigration_Class50010] of  CloFuncall
+
+	(source "(ru.rules/sp :all)"))
+
+([ScenarioMigration_Class50011] of  CloFuncall
+
+	(source "(ru.rules/f 0)"))
+
+([ScenarioMigration_Class50012] of  AssertObjects
+
+	(next_actions [ScenarioMigration_Class190004])
+	(object [ScenarioMigration_Class190013])
+	(title "Assert Salmon into Expert System Memory"))
 
 ([ScenarioMigration_Class50014] of  OMTPoly
 
@@ -6438,7 +6358,7 @@
 
 	(creature [ScenarioMigration_Class150000])
 	(direction ":up")
-	(look "{:color [255 0 255 255] \n  :size 11\n  :height 100}")
+	(look "{:color [255 0 255 255] \n  :size 10\n  :height 100}")
 	(random-speed "[:L 1. 2. 3.]")
 	(river [Migration_Class110007])
 	(status "START")
@@ -6455,12 +6375,22 @@
 	(%3ACREATION-TIMESTAMP "2020.09.05 21:01:45.996 MSK")
 	(%3ACREATOR "ru"))
 
+([ScenarioMigration_Class61000] of  RetractObjects
+
+	(next_actions [ScenarioMigration_Class190007])
+	(object [ScenarioMigration_Class190013])
+	(title "Retract Salmon from Expert System Memory"))
+
 ([ScenarioMigration_Class7] of  Rule
 
 	(lhs "?gor (GoRandom status \"START\"\n	title ?tit\n                      creature ?cre\n	walk ?wlk\n	look ?lk1\n	random-speed ?rsp\n	run ?run)\n(Walk instance ?wlk\n	walk-step ?wst\n	walk-steps ?wss\n	walk-routes ?wrs)\n?cre (Creature instance ?icre\n	id ?id\n	look ?lk2\n	walk-speed ?wsp\n	(= ?icre (a/vv ?cre ?run)))\n(Clock time ?t)")
-	(rhs "(println \"Action started:\" ?tit \"GoRandom\")\n(let [lk1 (a/vv ?lk1 ?run)\n       rsp (a/vv ?rsp ?run)\n       wri (rand-nth ?wrs)\n       wps (cesium.mig/walk-route-waypoints wri)\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       wsp (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo wsp wps 1000 ?wss ?wst)]\n  ;;(println \"Creature\" ?id ?are :REPEAT elt)\n  (modify ?cre look loo\n	waypoints wps)\n  (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoRandom\"))\n(let [lk1 (a/vv ?lk1 ?run)\n       rsp (a/vv ?rsp ?run)\n       wri (rand-nth ?wrs)\n       wps (cesium.mig/walk-route-waypoints wri)\n       loo (if (a/worth? lk1) lk1 ?lk2)\n       loo (if (string? loo) (read-string loo) loo)\n       wsp (if (a/worth? rsp) (cesium.mig/rand-double (read-string rsp)) ?wsp)\n       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo wsp wps 1000 ?wss ?wst)]\n  ;;(println \"Creature\" ?id ?are :REPEAT elt)\n  (modify ?cre look loo\n	waypoints wps)\n  (modify ?gor status \"REPEAT\"\n	N (+ ?t elt)))")
 	(salience 0)
 	(title "smi:GoRandomStart"))
+
+([ScenarioMigration_Class70002] of  Variable
+
+	(title "?number"))
 
 ([ScenarioMigration_Class8] of  Rule
 
@@ -6468,6 +6398,10 @@
 	(rhs "(retract ?gor)\n(s/start-next ?nacts ?pid ?ain ?run)")
 	(salience 0)
 	(title "smi:GoRandomRepeat"))
+
+([ScenarioMigration_Class80300] of  CloFuncall
+
+	(source "(cesium.server/send-js \"alert(\\\"QQ\\\");\")"))
 
 ([ScenarioMigration_Class9] of  RuleSet
 
@@ -6485,93 +6419,3 @@
 		[Walk]
 		[Creature])
 	(title "SMigration"))
-
-([ScenarioMigration_Class90000] of  Creature
-
-	(birthtime 300000000)
-	(id "s11")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90001] of  Creature
-
-	(birthtime 300000000)
-	(id "s12")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90002] of  Creature
-
-	(birthtime 300000000)
-	(id "s13")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90003] of  Creature
-
-	(birthtime 300000000)
-	(id "s14")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90004] of  Creature
-
-	(birthtime 300000000)
-	(id "s15")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90005] of  Creature
-
-	(birthtime 300000000)
-	(id "s16")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90006] of  Creature
-
-	(birthtime 300000000)
-	(id "s17")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90007] of  Creature
-
-	(birthtime 300000000)
-	(id "s18")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90008] of  Creature
-
-	(birthtime 300000000)
-	(id "s19")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))
-
-([ScenarioMigration_Class90009] of  Creature
-
-	(birthtime 300000000)
-	(id "s20")
-	(look "{:color [0 255 0 255]\n  :size 2\n  :height 20}")
-	(N 0)
-	(title "Salmon")
-	(walk-speed 2.0))

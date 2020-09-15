@@ -1,4 +1,4 @@
-; Sun Sep 06 18:10:20 MSK 2020
+; Tue Sep 15 18:11:26 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -562,6 +562,11 @@
 		(create-accessor read-write))
 	(single-slot %3Flon
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rename-slot
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-SLOT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot exit_lane
@@ -2113,6 +2118,11 @@
 		(create-accessor read-write))
 	(single-slot number
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rename-slot
+		(type INSTANCE)
+;+		(allowed-classes %3ASTANDARD-SLOT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot seed
