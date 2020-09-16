@@ -1,4 +1,4 @@
-; Tue Sep 15 20:51:46 MSK 2020
+; Wed Sep 16 22:34:12 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,11 +7,58 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot pathway
+		(type INSTANCE)
+;+		(allowed-classes Pathway Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot time-scale
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot finish
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot heading
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot look
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoPathway
+	(is-a Go)
+	(role concrete)
+	(single-slot spd
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pathway
+		(type INSTANCE)
+;+		(allowed-classes Pathway Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot look
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -27,13 +74,14 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot time
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time1
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot time-scale
 		(type STRING)
@@ -68,6 +116,42 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot latitude
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Shape
+	(is-a TravelDot+Onto)
+	(role abstract)
+	(single-slot layer
+		(type INSTANCE)
+;+		(allowed-classes Layer Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(multislot attributes
+		(type INSTANCE)
+;+		(allowed-classes Attribute)
+		(create-accessor read-write)))
+
+(defclass Region
+	(is-a Shape)
+	(role concrete))
+
+(defclass Pathway
+	(is-a Shape)
+	(role concrete)
+	(single-slot finish
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

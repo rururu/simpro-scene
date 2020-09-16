@@ -1,4 +1,4 @@
-; Tue Sep 15 18:11:26 MSK 2020
+; Wed Sep 16 14:28:01 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -111,10 +111,6 @@
 		(create-accessor read-write))
 	(multislot y
 		(type FLOAT)
-		(create-accessor read-write))
-	(single-slot finish
-;+		(type ANY)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot butt-server
 ;+		(type ANY)
