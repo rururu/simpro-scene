@@ -1,0 +1,257 @@
+; Sat Sep 19 21:04:34 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([PyongyangSPb_Class0] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[130.55 42.42]")
+	(layer [TravelDot_Class2])
+	(start "[129.21 40.69]")
+	(title "Chonjin-Tumangang")
+	(value-type INTEGER)
+	(values
+		"98074"
+		"98029"
+		"97658"
+		"94797"
+		"94366"))
+
+([PyongyangSPb_Class1] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[129.21 40.69]")
+	(layer [TravelDot_Class2])
+	(start "[127.54 39.9]")
+	(title "Hamhung-Kimchaek")
+	(value-type INTEGER)
+	(values
+		"111337"
+		"111386"
+		"109253"
+		"109087"
+		"109178"
+		"107394"
+		"107198"
+		"105811"))
+
+([PyongyangSPb_Class10000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [CesiumBase_Class30010])
+	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:23.765 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class10001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [TravelDot_Class20019])
+	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:37.942 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class10002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [TravelDot_Class0])
+	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:58.302 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class10003] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [TravelDot_Class20010])
+	(%3ACREATION-TIMESTAMP "2020.09.19 14:52:22.404 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class10004] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [TravelDot_Class40001])
+	(%3ACREATION-TIMESTAMP "2020.09.19 14:52:50.667 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class2] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[129.74 41.76]")
+	(layer [TravelDot_Class2])
+	(start "[129.21 40.69]")
+	(title "Kimchaek-Chonjin")
+	(value-type INTEGER)
+	(values
+		"105752"
+		"103724"
+		"103317"
+		"102657"))
+
+([PyongyangSPb_Class20000] of  MissionScenario
+
+	(context [PyongyangSPb_Class20002])
+	(final_tasks [PyongyangSPb_Class20001])
+	(finish_type AND)
+	(initial_tasks [PyongyangSPb_Class20001])
+	(protagonist [PyongyangSPb_Class20013])
+	(scenario_scheme [PyongyangSPb_Class20001])
+	(title "Pyongyang - Saint-Petersburg"))
+
+([PyongyangSPb_Class20001] of  Task
+
+	(final_actions [PyongyangSPb_Class20012])
+	(finish_type AND)
+	(initial_actions [PyongyangSPb_Class20005])
+	(task_scheme
+		[PyongyangSPb_Class20012]
+		[PyongyangSPb_Class20010]
+		[PyongyangSPb_Class20011]
+		[PyongyangSPb_Class20005])
+	(title "Through the North Korea"))
+
+([PyongyangSPb_Class20002] of  Context
+
+	(pairs
+		[PyongyangSPb_Class20003]
+		[PyongyangSPb_Class20006]
+		[PyongyangSPb_Class20008])
+	(title "C"))
+
+([PyongyangSPb_Class20003] of  ValuePair
+
+	(title "p")
+	(value "32")
+	(variable [PyongyangSPb_Class20004]))
+
+([PyongyangSPb_Class20004] of  Variable
+
+	(title "?speed"))
+
+([PyongyangSPb_Class20005] of  GoPathway
+
+	(direction ":forward")
+	(height "?height")
+	(inCesium TRUE)
+	(inOpenMap TRUE)
+	(look "?look")
+	(next_actions [PyongyangSPb_Class20010])
+	(object [ScenarioN_Class570000])
+	(pathway [TravelDot_Class10000])
+	(spd "?speed")
+	(title "Pyongyang-Hamhung"))
+
+([PyongyangSPb_Class20006] of  ValuePair
+
+	(title "p")
+	(value "100")
+	(variable [PyongyangSPb_Class20007]))
+
+([PyongyangSPb_Class20007] of  Variable
+
+	(title "?height"))
+
+([PyongyangSPb_Class20008] of  ValuePair
+
+	(title "p")
+	(value "{:color [255 0 0 255] :size 8}")
+	(variable [PyongyangSPb_Class20009]))
+
+([PyongyangSPb_Class20009] of  Variable
+
+	(title "?look"))
+
+([PyongyangSPb_Class20010] of  GoPathway
+
+	(direction ":forward")
+	(height "?height")
+	(inCesium TRUE)
+	(inOpenMap TRUE)
+	(look "?look")
+	(next_actions [PyongyangSPb_Class20011])
+	(object [ScenarioN_Class570000])
+	(pathway [PyongyangSPb_Class1])
+	(spd "?speed")
+	(title "Hamhung-Kimchaek"))
+
+([PyongyangSPb_Class20011] of  GoPathway
+
+	(direction ":forward")
+	(height "?height")
+	(inCesium TRUE)
+	(inOpenMap TRUE)
+	(look "?look")
+	(next_actions [PyongyangSPb_Class20012])
+	(object [ScenarioN_Class570000])
+	(pathway [PyongyangSPb_Class2])
+	(spd "?speed")
+	(title "Kimchaek-Chonjin"))
+
+([PyongyangSPb_Class20012] of  GoPathway
+
+	(direction ":forward")
+	(height "?height")
+	(inCesium TRUE)
+	(inOpenMap TRUE)
+	(look "?look")
+	(object [ScenarioN_Class570000])
+	(pathway [PyongyangSPb_Class0])
+	(spd "?speed")
+	(title "Chonjin-Tumangang"))
+
+([PyongyangSPb_Class20013] of  NavOb
+
+	(altitude 0)
+	(course 270)
+	(label "t2")
+	(latitude "38 57.7")
+	(longitude "125 46")
+	(playground-index 0)
+	(speed 0.0)
+	(type [PyongyangSPb_Class20014])
+	(url "file:resources/public/img/bluball.png")
+	(verticalSpeed 0.0))
+
+([PyongyangSPb_Class20014] of  Type
+
+	(label "Trains")
+	(missions [PyongyangSPb_Class20015]))
+
+([PyongyangSPb_Class20015] of  ObjectMission
+
+	(label "Pyongyang - Saint-Petersburg"))
+
+([PyongyangSPb_Class3] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[127.54 39.9]")
+	(layer [TravelDot_Class2])
+	(start "[125.77 38.96]")
+	(title "Pyongyang-Hamhung")
+	(value-type INTEGER)
+	(values
+		"116323"
+		"116333"
+		"116332"
+		"114699"
+		"114579"
+		"114222"
+		"114199"
+		"111111"))

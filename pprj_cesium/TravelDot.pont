@@ -1,4 +1,4 @@
-; Wed Sep 16 22:34:12 MSK 2020
+; Sat Sep 19 20:59:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,6 +20,12 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot value-type
+		(type SYMBOL)
+		(allowed-values STRING DOUBLE INTEGER)
+		(default STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot heading
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -28,8 +34,20 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot inCesium
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot look
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot inOpenMap
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -45,6 +63,12 @@
 ;+		(allowed-classes Pathway Variable)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot inOpenMap
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot N
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -58,8 +82,18 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot look
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot inCesium
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -134,6 +168,12 @@
 		(create-accessor read-write))
 	(multislot values
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot value-type
+		(type SYMBOL)
+		(allowed-values STRING DOUBLE INTEGER)
+		(default STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot attributes
 		(type INSTANCE)
