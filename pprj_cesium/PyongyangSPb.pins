@@ -1,4 +1,4 @@
-; Sat Sep 19 21:04:34 MSK 2020
+; Sun Sep 20 19:22:22 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -255,3 +255,133 @@
 		"114222"
 		"114199"
 		"111111"))
+
+([PyongyangSPb_Class30000] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[131.98 43.81]")
+	(layer [TravelDot_Class3])
+	(start "[130.65 42.41]")
+	(title "Hasan-Ussuriysk")
+	(value-type STRING)
+	(values
+		"94369"
+		"92780"
+		"92264"
+		"91461"
+		"85827"))
+
+([PyongyangSPb_Class30001] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[135.1 48.52]")
+	(layer [TravelDot_Class3])
+	(start "[131.98 43.81]")
+	(title "Ussuriysk-Khabarovsk")
+	(value-type STRING)
+	(values
+		"85730"
+		"85286"
+		"85036"
+		"84002"
+		"83755"
+		"74366"
+		"74043"
+		"67251"
+		"64171"
+		"63233"
+		"63072"
+		"61805"
+		"59792"
+		"59214"))
+
+([PyongyangSPb_Class30002] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[132.9 48.8]")
+	(layer [TravelDot_Class3])
+	(start "[135.1 48.52]")
+	(title "Khabarovsk-Birobidzhan")
+	(value-type STRING)
+	(values
+		"57602"
+		"57605"
+		"57454"
+		"55591"))
+
+([PyongyangSPb_Class30004] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[128.47 50.9]")
+	(layer [TravelDot_Class3])
+	(start "[132.9 48.8]")
+	(title "Birobidzhan-Belogorsk")
+	(value-type STRING)
+	(values
+		"54097"
+		"54118"
+		"52924"
+		"48600"
+		"48554"
+		"40159"))
+
+([PyongyangSPb_Class30005] of  Pathway
+
+	(attributes
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001]
+		[TravelDot_Class10001])
+	(finish "[123.92 53.98]")
+	(layer [TravelDot_Class3])
+	(start "[128.47 50.9]")
+	(title "Belogorsk-Skovorodino")
+	(value-type STRING)
+	(values
+		"38589"
+		"35958"
+		"30210"
+		"28816"
+		"26293"
+		"25451"
+		"22395"
+		"22303"
+		"21685"
+		"21686"
+		"18557"))
