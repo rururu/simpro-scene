@@ -1,4 +1,4 @@
-; Sat Jun 06 14:14:13 MSK 2020
+; Mon Sep 21 14:05:39 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2747,7 +2747,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                          ;;(println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class4] of  Openmap
@@ -6661,6 +6661,18 @@
 	(cloFunctions [Scenario_Class21])
 	(cloNamespace [Clojure_Class300001])
 	(title "OSMRoads CW"))
+
+([OSMRoads_Class150000] of  CloFuncall
+
+	(source "OSM-DATA"))
+
+([OSMRoads_Class150001] of  CloFuncall
+
+	(source "(get-way-data [43.773 7.493] 0.01 [\"railway\" \"rail\"])"))
+
+([OSMRoads_Class150002] of  CloFuncall
+
+	(source "(get-way-data [43.773 7.493] 0.01 \"railway\")"))
 
 ([OSMRoads_Class2] of  OMTPoly
 

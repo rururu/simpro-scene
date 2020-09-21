@@ -1,212 +1,214 @@
-; Sun Sep 20 19:22:22 MSK 2020
+; Mon Sep 21 22:57:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([PyongyangSPb_Class0] of  Pathway
+([PyongyangSPb_Class0] of  Openmap
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[130.55 42.42]")
-	(layer [TravelDot_Class2])
-	(start "[129.21 40.69]")
-	(title "Chonjin-Tumangang")
-	(value-type INTEGER)
-	(values
-		"98074"
-		"98029"
-		"97658"
-		"94797"
-		"94366"))
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "PyongyangSPb Map")
+	(Latitude "48.496")
+	(layers
+		[igis_Class40012]
+		[PyongyangSPb_Class2]
+		[PyongyangSPb_Class3]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "135.096")
+	(Scale "100000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]
+		[PyongyangSPb_Class2]
+		[PyongyangSPb_Class3]))
 
-([PyongyangSPb_Class1] of  Pathway
+([PyongyangSPb_Class1] of  %3AINSTANCE-ANNOTATION
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[129.21 40.69]")
-	(layer [TravelDot_Class2])
-	(start "[127.54 39.9]")
-	(title "Hamhung-Kimchaek")
-	(value-type INTEGER)
-	(values
-		"111337"
-		"111386"
-		"109253"
-		"109087"
-		"109178"
-		"107394"
-		"107198"
-		"105811"))
+	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class0])
+	(%3ACREATION-TIMESTAMP "2020.09.21 18:45:29.999 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class10] of  Tagvalue
+
+	(value "[\"raiway\" \"way\"]"))
 
 ([PyongyangSPb_Class10000] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [CesiumBase_Class30010])
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:23.765 MSK")
 	(%3ACREATOR "ru"))
 
 ([PyongyangSPb_Class10001] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [TravelDot_Class20019])
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:37.942 MSK")
 	(%3ACREATOR "ru"))
 
 ([PyongyangSPb_Class10002] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [TravelDot_Class0])
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:58.302 MSK")
 	(%3ACREATOR "ru"))
 
 ([PyongyangSPb_Class10003] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [TravelDot_Class20010])
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:52:22.404 MSK")
 	(%3ACREATOR "ru"))
 
 ([PyongyangSPb_Class10004] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [TravelDot_Class40001])
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:52:50.667 MSK")
 	(%3ACREATOR "ru"))
 
-([PyongyangSPb_Class2] of  Pathway
+([PyongyangSPb_Class11] of  CloFuncall
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[129.74 41.76]")
-	(layer [TravelDot_Class2])
-	(start "[129.21 40.69]")
-	(title "Kimchaek-Chonjin")
-	(value-type INTEGER)
-	(values
-		"105752"
-		"103724"
-		"103317"
-		"102657"))
+	(source "(get-way-data [43.774 7.501] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20000] of  MissionScenario
+([PyongyangSPb_Class12] of  CloFuncall
 
-	(context [PyongyangSPb_Class20002])
-	(final_tasks [PyongyangSPb_Class20001])
-	(finish_type AND)
-	(initial_tasks [PyongyangSPb_Class20001])
-	(protagonist [PyongyangSPb_Class20013])
-	(scenario_scheme [PyongyangSPb_Class20001])
-	(title "Pyongyang - Saint-Petersburg"))
+	(source "(get-way-data [43.774 7.494] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20001] of  Task
+([PyongyangSPb_Class13] of  CloFuncall
 
-	(final_actions [PyongyangSPb_Class20012])
-	(finish_type AND)
-	(initial_actions [PyongyangSPb_Class20005])
-	(task_scheme
-		[PyongyangSPb_Class20012]
-		[PyongyangSPb_Class20010]
-		[PyongyangSPb_Class20011]
-		[PyongyangSPb_Class20005])
-	(title "Through the North Korea"))
+	(source "(get-way-data [798 138] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20002] of  Context
+([PyongyangSPb_Class14] of  CloFuncall
 
-	(pairs
-		[PyongyangSPb_Class20003]
-		[PyongyangSPb_Class20006]
-		[PyongyangSPb_Class20008])
-	(title "C"))
+	(source "(get-way-data [43.] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20003] of  ValuePair
+([PyongyangSPb_Class15] of  CloFuncall
 
-	(title "p")
-	(value "32")
-	(variable [PyongyangSPb_Class20004]))
+	(source "(get-way-data [43.776 135.081] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20004] of  Variable
+([PyongyangSPb_Class16] of  CloFuncall
 
-	(title "?speed"))
+	(source "(get-way-data [43.776 7.497] 0.01 \"railway\")"))
 
-([PyongyangSPb_Class20005] of  GoPathway
+([PyongyangSPb_Class17] of  CloFuncall
 
-	(direction ":forward")
-	(height "?height")
-	(inCesium TRUE)
-	(inOpenMap TRUE)
-	(look "?look")
-	(next_actions [PyongyangSPb_Class20010])
-	(object [ScenarioN_Class570000])
-	(pathway [TravelDot_Class10000])
-	(spd "?speed")
-	(title "Pyongyang-Hamhung"))
+	(source "(get-way-data [43.776 7.497] 0.1 \"railway\")"))
 
-([PyongyangSPb_Class20006] of  ValuePair
+([PyongyangSPb_Class18] of  CloFuncall
 
-	(title "p")
-	(value "100")
-	(variable [PyongyangSPb_Class20007]))
+	(source "WAY-TYPE"))
 
-([PyongyangSPb_Class20007] of  Variable
+([PyongyangSPb_Class19] of  CloFuncall
 
-	(title "?height"))
+	(source "WAY-SUBTYPE"))
 
-([PyongyangSPb_Class20008] of  ValuePair
+([PyongyangSPb_Class2] of  ShapeLayer
 
-	(title "p")
-	(value "{:color [255 0 0 255] :size 8}")
-	(variable [PyongyangSPb_Class20009]))
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "FFFFCC99")
+	(label "prkrails")
+	(lineColor "ff000000")
+	(prettyName "North Korea Railroads")
+	(shapeFile "data/shape/PRK_rrd/PRK_rails.shp")
+	(spatialIndex "data/shape/PRK_rrd/PRK_rails.shx"))
 
-([PyongyangSPb_Class20009] of  Variable
+([PyongyangSPb_Class20] of  CloFuncall
 
-	(title "?look"))
+	(source "(filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)"))
 
-([PyongyangSPb_Class20010] of  GoPathway
+([PyongyangSPb_Class20000] of  Line
 
-	(direction ":forward")
-	(height "?height")
-	(inCesium TRUE)
-	(inOpenMap TRUE)
-	(look "?look")
-	(next_actions [PyongyangSPb_Class20011])
-	(object [ScenarioN_Class570000])
-	(pathway [PyongyangSPb_Class1])
-	(spd "?speed")
-	(title "Hamhung-Kimchaek"))
+	(capDecoration BUTT)
+	(jointDecoration BEVEL)
+	(label "L3")
+	(lineType STRAIGHT)
+	(lineWidth "3"))
 
-([PyongyangSPb_Class20011] of  GoPathway
+([PyongyangSPb_Class20008] of  OMTPoly
 
-	(direction ":forward")
-	(height "?height")
-	(inCesium TRUE)
-	(inOpenMap TRUE)
-	(look "?look")
-	(next_actions [PyongyangSPb_Class20012])
-	(object [ScenarioN_Class570000])
-	(pathway [PyongyangSPb_Class2])
-	(spd "?speed")
-	(title "Kimchaek-Chonjin"))
+	(description "85565646")
+	(label "85565646")
+	(latitude "48 29.73")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 5.62")
+	(playground-index 0)
+	(points
+		"48 29.73 135 5.62"
+		"48 29.76 135 5.45")
+	(relative FALSE))
 
-([PyongyangSPb_Class20012] of  GoPathway
+([PyongyangSPb_Class20009] of  OMTPoly
 
-	(direction ":forward")
-	(height "?height")
-	(inCesium TRUE)
-	(inOpenMap TRUE)
-	(look "?look")
-	(object [ScenarioN_Class570000])
-	(pathway [PyongyangSPb_Class0])
-	(spd "?speed")
-	(title "Chonjin-Tumangang"))
+	(description "25423066")
+	(label "25423066")
+	(latitude "48 24.34")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 8.04")
+	(playground-index 0)
+	(points
+		"48 24.34 135 8.04"
+		"48 29.73 135 5.62")
+	(relative FALSE))
+
+([PyongyangSPb_Class20010] of  OMTPoly
+
+	(description "129838420")
+	(label "129838420")
+	(latitude "48 22.43")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6.75")
+	(playground-index 0)
+	(points
+		"48 22.43 135 6.75"
+		"48 24.34 135 8.04")
+	(relative FALSE))
+
+([PyongyangSPb_Class20011] of  OMTPoly
+
+	(description "319522456")
+	(label "319522456")
+	(latitude "48 21.96")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6")
+	(playground-index 0)
+	(points
+		"48 21.96 135 6"
+		"48 22.43 135 6.74")
+	(relative FALSE))
+
+([PyongyangSPb_Class20012] of  OMTPoly
+
+	(description "343173853")
+	(label "343173853")
+	(latitude "48 21.56")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 5.69")
+	(playground-index 0)
+	(points
+		"48 21.56 135 5.69"
+		"48 21.95 135 6")
+	(relative FALSE))
 
 ([PyongyangSPb_Class20013] of  NavOb
 
@@ -230,158 +232,473 @@
 
 	(label "Pyongyang - Saint-Petersburg"))
 
-([PyongyangSPb_Class3] of  Pathway
+([PyongyangSPb_Class3] of  ShapeLayer
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[127.54 39.9]")
-	(layer [TravelDot_Class2])
-	(start "[125.77 38.96]")
-	(title "Pyongyang-Hamhung")
-	(value-type INTEGER)
-	(values
-		"116323"
-		"116333"
-		"116332"
-		"114699"
-		"114579"
-		"114222"
-		"114199"
-		"111111"))
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "FFFFCC99")
+	(label "rusrails")
+	(lineColor "ff000000")
+	(prettyName "Russian Railroads")
+	(shapeFile "data/shape/RUS_rrd/RUS_rails.shp")
+	(spatialIndex "data/shape/RUS_rrd/RUS_rails.shx"))
 
-([PyongyangSPb_Class30000] of  Pathway
+([PyongyangSPb_Class30013] of  OMTPoly
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[131.98 43.81]")
-	(layer [TravelDot_Class3])
-	(start "[130.65 42.41]")
-	(title "Hasan-Ussuriysk")
-	(value-type STRING)
-	(values
-		"94369"
-		"92780"
-		"92264"
-		"91461"
-		"85827"))
+	(description "343173864")
+	(label "343173864")
+	(latitude "48 20.96")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 5.1")
+	(playground-index 0)
+	(points
+		"48 20.96 135 5.1"
+		"48 21.56 135 5.69")
+	(relative FALSE))
 
-([PyongyangSPb_Class30001] of  Pathway
+([PyongyangSPb_Class30014] of  OMTPoly
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[135.1 48.52]")
-	(layer [TravelDot_Class3])
-	(start "[131.98 43.81]")
-	(title "Ussuriysk-Khabarovsk")
-	(value-type STRING)
-	(values
-		"85730"
-		"85286"
-		"85036"
-		"84002"
-		"83755"
-		"74366"
-		"74043"
-		"67251"
-		"64171"
-		"63233"
-		"63072"
-		"61805"
-		"59792"
-		"59214"))
+	(description "319522504")
+	(label "319522504")
+	(latitude "48 19.19")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 7.16")
+	(playground-index 0)
+	(points
+		"48 19.19 135 7.16"
+		"48 20.96 135 5.1")
+	(relative FALSE))
 
-([PyongyangSPb_Class30002] of  Pathway
+([PyongyangSPb_Class30015] of  OMTPoly
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[132.9 48.8]")
-	(layer [TravelDot_Class3])
-	(start "[135.1 48.52]")
-	(title "Khabarovsk-Birobidzhan")
-	(value-type STRING)
-	(values
-		"57602"
-		"57605"
-		"57454"
-		"55591"))
+	(description "319522465")
+	(label "319522465")
+	(latitude "48 17.84")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6.64")
+	(playground-index 0)
+	(points
+		"48 17.84 135 6.64"
+		"48 19.17 135 7.17")
+	(relative FALSE))
 
-([PyongyangSPb_Class30004] of  Pathway
+([PyongyangSPb_Class30016] of  OMTPoly
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[128.47 50.9]")
-	(layer [TravelDot_Class3])
-	(start "[132.9 48.8]")
-	(title "Birobidzhan-Belogorsk")
-	(value-type STRING)
-	(values
-		"54097"
-		"54118"
-		"52924"
-		"48600"
-		"48554"
-		"40159"))
+	(description "273453913")
+	(label "273453913")
+	(latitude "48 17.83")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6.6")
+	(playground-index 0)
+	(points
+		"48 17.83 135 6.6"
+		"48 16.25 135 3.65")
+	(relative FALSE))
 
-([PyongyangSPb_Class30005] of  Pathway
+([PyongyangSPb_Class30017] of  OMTPoly
 
-	(attributes
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001]
-		[TravelDot_Class10001])
-	(finish "[123.92 53.98]")
-	(layer [TravelDot_Class3])
-	(start "[128.47 50.9]")
-	(title "Belogorsk-Skovorodino")
-	(value-type STRING)
-	(values
-		"38589"
-		"35958"
-		"30210"
-		"28816"
-		"26293"
-		"25451"
-		"22395"
-		"22303"
-		"21685"
-		"21686"
-		"18557"))
+	(description "319522454")
+	(label "319522454")
+	(latitude "48 16.23")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 3.65")
+	(playground-index 0)
+	(points
+		"48 16.23 135 3.65"
+		"48 15.88 135 3.84")
+	(relative FALSE))
+
+([PyongyangSPb_Class30018] of  OMTPoly
+
+	(description "319522461")
+	(label "319522461")
+	(latitude "48 15.87")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 3.86")
+	(playground-index 0)
+	(points
+		"48 15.87 135 3.86"
+		"48 14.86 135 4.38")
+	(relative FALSE))
+
+([PyongyangSPb_Class30019] of  OMTPoly
+
+	(description "319522523")
+	(label "319522523")
+	(latitude "48 14.84")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 4.38")
+	(playground-index 0)
+	(points
+		"48 14.84 135 4.38"
+		"48 13.08 135 4.84")
+	(relative FALSE))
+
+([PyongyangSPb_Class30020] of  OMTPoly
+
+	(description "319522462")
+	(label "319522462")
+	(latitude "48 13.07")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 4.84")
+	(playground-index 0)
+	(points
+		"48 13.07 135 4.84"
+		"48 11.69 135 5.2")
+	(relative FALSE))
+
+([PyongyangSPb_Class30021] of  OMTPoly
+
+	(description "345880447")
+	(label "345880447")
+	(latitude "48 11.67")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 5.2")
+	(playground-index 0)
+	(points
+		"48 11.67 135 5.2"
+		"48 8.86 135 7.68")
+	(relative FALSE))
+
+([PyongyangSPb_Class30022] of  OMTPoly
+
+	(description "345880465")
+	(label "345880465")
+	(latitude "48 8.83")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 7.7")
+	(playground-index 0)
+	(points
+		"48 8.83 135 7.7"
+		"48 7.25 135 7.26")
+	(relative FALSE))
+
+([PyongyangSPb_Class30023] of  OMTPoly
+
+	(description "345880616")
+	(label "345880616")
+	(latitude "48 5.9")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6.81")
+	(playground-index 0)
+	(points
+		"48 5.9 135 6.81"
+		"48 6.43 135 6.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class30024] of  OMTPoly
+
+	(description "249356007")
+	(label "249356007")
+	(latitude "48 7.24")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 7.25")
+	(playground-index 0)
+	(points
+		"48 7.24 135 7.25"
+		"48 4.42 135 6.29")
+	(relative FALSE))
+
+([PyongyangSPb_Class30025] of  OMTPoly
+
+	(description "249356003")
+	(label "249356003")
+	(latitude "48 4.4")
+	(line [PyongyangSPb_Class20000])
+	(lineColor "FFFF0000")
+	(longitude "135 6.29")
+	(playground-index 0)
+	(points
+		"48 4.4 135 6.29"
+		"48 1.76 135 5.4")
+	(relative FALSE))
+
+([PyongyangSPb_Class30039] of  Railroad
+
+	(dirways
+		[PyongyangSPb_Class30060]
+		[PyongyangSPb_Class30058]
+		[PyongyangSPb_Class30062]
+		[PyongyangSPb_Class30070]
+		[PyongyangSPb_Class30068]
+		[PyongyangSPb_Class30064]
+		[PyongyangSPb_Class30066]
+		[PyongyangSPb_Class30086]
+		[PyongyangSPb_Class30056]
+		[PyongyangSPb_Class30090]
+		[PyongyangSPb_Class30088]
+		[PyongyangSPb_Class30072]
+		[PyongyangSPb_Class30074]
+		[PyongyangSPb_Class30076]
+		[PyongyangSPb_Class30080]
+		[PyongyangSPb_Class30078]
+		[PyongyangSPb_Class30082]
+		[PyongyangSPb_Class30084])
+	(from1 "Khabarovsk")
+	(to1 "Ussuriisk"))
+
+([PyongyangSPb_Class30056] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30057]))
+
+([PyongyangSPb_Class30057] of  Way
+
+	(id "85565646")
+	(poly [PyongyangSPb_Class20008])
+	(source "[[48.4954958 135.0936235] [48.4957996 135.0922165] [48.4959332 135.0915105] [48.4960093 135.0908045]]"))
+
+([PyongyangSPb_Class30058] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30059]))
+
+([PyongyangSPb_Class30059] of  Way
+
+	(id "25423066")
+	(poly [PyongyangSPb_Class20009])
+	(source "[[48.4057278 135.133934] [48.407917 135.1334361] [48.411283 135.1326813] [48.4201143 135.1306663] [48.4228845 135.1300607] [48.4242119 135.1297567] [48.4279167 135.1289691] [48.4326082 135.1276436] [48.4362201 135.1266105] [48.4366341 135.1264785] [48.4371442 135.1264166] [48.4376003 135.1263519] [48.4377651 135.1263099] [48.438322 135.1262021] [48.4384356 135.1261725] [48.4389676 135.1260133] [48.4400893 135.1257049] [48.4403632 135.1256349] [48.4406729 135.1255662] [48.4414145 135.1254595] [48.4418618 135.1254873] [48.4422385 135.1255721] [48.4432083 135.1259423] [48.4437415 135.1261213] [48.444263 135.1262106] [48.4448847 135.1262256] [48.4452674 135.1261659] [48.4463625 135.1259185] [48.4470423 135.1257318] [48.4526091 135.1241341] [48.4537345 135.1238111] [48.4542831 135.1236411] [48.4546779 135.123474] [48.4549931 135.1233096] [48.4552466 135.12312] [48.4554882 135.1228945] [48.4557668 135.1225999] [48.456011 135.1222523] [48.456403 135.1216205] [48.4572807 135.12015] [48.4576895 135.1196197] [48.4580168 135.1192516] [48.4583764 135.1189814] [48.4587787 135.118731] [48.4591576 135.118608] [48.4599459 135.118445] [48.4609196 135.1183206] [48.4619225 135.1182118] [48.4656636 135.1177898] [48.4668263 135.1176528] [48.4724627 135.1169829] [48.4730425 135.1168524] [48.4735177 135.1166884] [48.4739817 135.1164267] [48.4744046 135.1161393] [48.4748118 135.1158074] [48.4754264 135.1151661] [48.4759691 135.1144514] [48.4783814 135.111232] [48.4794347 135.1098454] [48.4805068 135.1084802] [48.4808514 135.107987] [48.4813031 135.1074632] [48.4818467 135.1069702] [48.4928885 135.0983273] [48.4933732 135.0979186] [48.4938252 135.0974412] [48.494186 135.0969654] [48.4944958 135.0964968] [48.4948306 135.0958346] [48.4950658 135.0952252] [48.4952533 135.0946451] [48.4954302 135.093978] [48.4954958 135.0936235]]"))
+
+([PyongyangSPb_Class30060] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30061]))
+
+([PyongyangSPb_Class30061] of  Way
+
+	(id "129838420")
+	(poly [PyongyangSPb_Class20010])
+	(source "[[48.3737939 135.1125322] [48.3741781 135.1144485] [48.3744906 135.1160086] [48.3748016 135.1175424] [48.3748097 135.1175822] [48.3748833 135.1182354] [48.3755135 135.1210544] [48.375696 135.1219165] [48.3759282 135.1227287] [48.3761457 135.1233391] [48.376399 135.1239198] [48.3765541 135.1242506] [48.3770383 135.1249516] [48.3780126 135.1260042] [48.3870129 135.1346349] [48.3880358 135.1352666] [48.3911057 135.1362329] [48.3918366 135.1364324] [48.3918852 135.1364333] [48.3924491 135.1365552] [48.3931038 135.1365846] [48.3937894 135.1365727] [48.3944077 135.1364567] [48.3960606 135.1361022] [48.4017445 135.1348219] [48.4040296 135.134308] [48.4057278 135.133934]]"))
+
+([PyongyangSPb_Class30062] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30063]))
+
+([PyongyangSPb_Class30063] of  Way
+
+	(id "319522456")
+	(poly [PyongyangSPb_Class20011])
+	(source "[[48.36601 135.10004] [48.369757 135.1030025] [48.370198 135.1033126] [48.3706533 135.1037279] [48.3710842 135.1042038] [48.3716363 135.1049649] [48.3721243 135.1058345] [48.3724162 135.1065275] [48.372668 135.1072422] [48.3729476 135.1083957] [48.3737559 135.1123379]]"))
+
+([PyongyangSPb_Class30064] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30065]))
+
+([PyongyangSPb_Class30065] of  Way
+
+	(id "343173853")
+	(poly [PyongyangSPb_Class20012])
+	(source "[[48.3593804 135.094841] [48.3608754 135.0960166] [48.3641501 135.0985917] [48.3658829 135.0999429]]"))
+
+([PyongyangSPb_Class30066] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30067]))
+
+([PyongyangSPb_Class30067] of  Way
+
+	(id "343173864")
+	(poly [PyongyangSPb_Class30013])
+	(source "[[48.3493073 135.0849309] [48.3497332 135.0853616] [48.3528741 135.0885618] [48.3532475 135.0889265] [48.35802 135.0937402] [48.3588651 135.0944277] [48.3591658 135.0946723] [48.3593804 135.094841]]"))
+
+([PyongyangSPb_Class30068] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30069]))
+
+([PyongyangSPb_Class30069] of  Way
+
+	(id "319522504")
+	(poly [PyongyangSPb_Class30014])
+	(source "[[48.3198255 135.1193438] [48.3202639 135.119217] [48.3207588 135.1190191] [48.3212529 135.1187096] [48.3218339 135.1181414] [48.3223438 135.1173706] [48.3258534 135.1113445] [48.329962 135.1053826] [48.3305444 135.1044411] [48.3309591 135.1035982] [48.3320961 135.1008246] [48.3328898 135.0992181] [48.3345193 135.096749] [48.3357091 135.0950644] [48.3368122 135.0933527] [48.3373177 135.0923697] [48.3377504 135.0913503] [48.3381796 135.0901268] [48.3396917 135.0850979] [48.3400394 135.0842105] [48.3405161 135.0833526] [48.3410488 135.0826335] [48.3415097 135.0821608] [48.3419795 135.0818223] [48.342448 135.0815602] [48.3429035 135.081378] [48.3435237 135.0812442] [48.3440239 135.0811842] [48.3445892 135.0812674] [48.34507 135.0813928] [48.3454997 135.0815681] [48.3459504 135.0818023] [48.3463501 135.0820789] [48.346775 135.0824172] [48.3472215 135.0828217] [48.3476852 135.0832906] [48.3493073 135.0849309]]"))
+
+([PyongyangSPb_Class30070] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30071]))
+
+([PyongyangSPb_Class30071] of  Way
+
+	(id "319522465")
+	(poly [PyongyangSPb_Class30015])
+	(source "[[48.2973879 135.1106264] [48.2978192 135.1111571] [48.2983247 135.1116353] [48.2988424 135.1120097] [48.2996372 135.1124035] [48.3008677 135.1127155] [48.3038693 135.1134421] [48.30675 135.1140925] [48.3086747 135.1145837] [48.3094557 135.1148283] [48.3102111 135.1152573] [48.3154752 135.1182275] [48.3168653 135.1190657] [48.3173821 135.1193443] [48.3177742 135.119498] [48.3181742 135.1195984] [48.3186262 135.1196169] [48.3189576 135.1195738] [48.3195723 135.1194178]]"))
+
+([PyongyangSPb_Class30072] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30073]))
+
+([PyongyangSPb_Class30073] of  Way
+
+	(id "273453913")
+	(poly [PyongyangSPb_Class30016])
+	(source "[[48.2972244 135.1100496] [48.2966856 135.1091145] [48.2963314 135.1083672] [48.2959473 135.1072173] [48.2957003 135.106206] [48.2955599 135.1053396] [48.2954859 135.1044386] [48.2953639 135.1026041] [48.2952627 135.1016644] [48.2950364 135.1003892] [48.2947626 135.0993287] [48.2944262 135.0982369] [48.2939975 135.0971094] [48.2936194 135.0962413] [48.2931699 135.0951316] [48.2929198 135.0944336] [48.2926727 135.0935297] [48.2924529 135.0926579] [48.2922947 135.0918697] [48.2921802 135.0911058] [48.2920282 135.0896861] [48.2918789 135.0880997] [48.2917186 135.0869746] [48.2914685 135.0857038] [48.2912393 135.0848805] [48.2909565 135.0839632] [48.2906468 135.0831175] [48.2902777 135.0822942] [48.289846 135.0814396] [48.2894887 135.0808266] [48.2891285 135.0802762] [48.2883395 135.0792426] [48.2824144 135.0726964] [48.2737777 135.0631869] [48.2724449 135.0618489] [48.2718698 135.0614151] [48.2712462 135.061067] [48.2707789 135.0609088]]"))
+
+([PyongyangSPb_Class30074] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30075]))
+
+([PyongyangSPb_Class30075] of  Way
+
+	(id "319522454")
+	(poly [PyongyangSPb_Class30017])
+	(source "[[48.2704799 135.0608139] [48.2698017 135.060719] [48.2691952 135.0607127] [48.2685004 135.0608631] [48.2680874 135.0609974] [48.2675693 135.0612252] [48.2670301 135.0615733] [48.2664152 135.0621238] [48.2660023 135.0625667] [48.2647357 135.0640679]]"))
+
+([PyongyangSPb_Class30076] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30077]))
+
+([PyongyangSPb_Class30077] of  Way
+
+	(id "319522461")
+	(poly [PyongyangSPb_Class30018])
+	(source "[[48.264551 135.0642782] [48.2586023 135.0711377] [48.2582239 135.0714956] [48.2577205 135.0718894] [48.2570949 135.0722652] [48.2565646 135.072489] [48.256076 135.0726187] [48.2554087 135.0726903] [48.2548903 135.072659] [48.254506 135.0725919] [48.2530684 135.0721313] [48.2524005 135.0719899] [48.2517664 135.0719573] [48.2511244 135.0720204] [48.2501875 135.0722588] [48.2476017 135.0729243]]"))
+
+([PyongyangSPb_Class30078] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30079]))
+
+([PyongyangSPb_Class30079] of  Way
+
+	(id "319522523")
+	(poly [PyongyangSPb_Class30019])
+	(source "[[48.2472829 135.0730048] [48.235659 135.075987] [48.2333316 135.0766126] [48.231365 135.0771261] [48.2254384 135.0786653] [48.221928 135.0796005] [48.2191353 135.0803294] [48.2179526 135.0806287]]"))
+
+([PyongyangSPb_Class30080] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30081]))
+
+([PyongyangSPb_Class30081] of  Way
+
+	(id "319522462")
+	(poly [PyongyangSPb_Class30020])
+	(source "[[48.217824 135.0806603] [48.2074462 135.083351] [48.1947938 135.0866461]]"))
+
+([PyongyangSPb_Class30082] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30083]))
+
+([PyongyangSPb_Class30083] of  Way
+
+	(id "345880447")
+	(poly [PyongyangSPb_Class30021])
+	(source "[[48.1945635 135.0867142] [48.1938873 135.0868985] [48.1932381 135.0872281] [48.1924905 135.087728] [48.1919894 135.0882117] [48.1678182 135.1168481] [48.1658503 135.119156] [48.1638472 135.121532] [48.1629314 135.1224834] [48.1622198 135.1229382] [48.1611577 135.1234039] [48.1529306 135.1263264] [48.1505181 135.1271833] [48.1476973 135.1280752]]"))
+
+([PyongyangSPb_Class30084] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30085]))
+
+([PyongyangSPb_Class30085] of  Way
+
+	(id "345880465")
+	(poly [PyongyangSPb_Class30022])
+	(source "[[48.1471834 135.1282547] [48.1457529 135.1287558] [48.1452164 135.1289208] [48.1446305 135.12903] [48.1440609 135.1290482] [48.1435089 135.1289811] [48.120803 135.1209438]]"))
+
+([PyongyangSPb_Class30086] of  Dirway
+
+	(direction "BACKWARD")
+	(way [PyongyangSPb_Class30087]))
+
+([PyongyangSPb_Class30087] of  Way
+
+	(id "345880616")
+	(poly [PyongyangSPb_Class30023])
+	(source "[[48.0984048 135.113547] [48.0990315 135.1138308] [48.1029398 135.1151715] [48.105531 135.1160634] [48.1061788 135.1162082] [48.1066429 135.1162922] [48.1070876 135.1163617]]"))
+
+([PyongyangSPb_Class30088] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30089]))
+
+([PyongyangSPb_Class30089] of  Way
+
+	(id "249356007")
+	(poly [PyongyangSPb_Class30024])
+	(source "[[48.1206291 135.1208824] [48.1100455 135.1172176] [48.1081098 135.1165474] [48.107819 135.1164467] [48.1074493 135.1163208] [48.1071619 135.116223] [48.1029939 135.1148042] [48.0979443 135.1130328] [48.097452 135.1128601] [48.0968781 135.1126588] [48.0950831 135.1120573] [48.0736775 135.1048858]]"))
+
+([PyongyangSPb_Class30090] of  Dirway
+
+	(direction "FORWARD")
+	(way [PyongyangSPb_Class30091]))
+
+([PyongyangSPb_Class30091] of  Way
+
+	(id "249356003")
+	(poly [PyongyangSPb_Class30025])
+	(source "[[48.0733866 135.104781] [48.0555873 135.0989446] [48.0442521 135.0951799] [48.0321927 135.0910757] [48.0293474 135.0900774]]"))
+
+([PyongyangSPb_Class4] of  ShareOnto
+
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "Duplicate definition of class Clock was ignoredDuplicate definition of class MapObEvent was ignored"))
+
+([PyongyangSPb_Class40007] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2020.09.21 11:57:35.170 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class5] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-hide-roads "Hide Roads/osm.data/hide-roads")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(from1 "Хабаровск")
+	(radius 0.01)
+	(road-subclass Railroad)
+	(status "MODE CREATE, in PATH 26 ways.")
+	(tagvalue
+		[PyongyangSPb_Class10]
+		[BrigBern_Class80016]
+		[OSMRoads_Class40001]
+		[BrigBern_Class80017]
+		[BrigBern_Class90003]
+		[OSMRoads_Class10001]
+		[OSMRoads_Class20142]
+		[OSMRoads_Class60003]
+		[OSMRoads_Class70000]
+		[OSMRoads_Class100006])
+	(title "Roads Control")
+	(to1 "Уссурийск"))
+
+([PyongyangSPb_Class6] of  CloFuncall
+
+	(source "(get-way-data ["))
+
+([PyongyangSPb_Class7] of  CloFuncall
+
+	(source "(get-way-data [48.515 "))
+
+([PyongyangSPb_Class8] of  CloFuncall
+
+	(source "(get-way-data [48.515 135.081] 0.01 \"railway\")"))
+
+([PyongyangSPb_Class9] of  CloFuncall
+
+	(source "(get-way-data [48.515 135.081] 0.1 \"railway\")"))

@@ -173,7 +173,7 @@
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                          ;;(println MODE mo llp runa)
+                        (println MODE mo llp runa)
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)

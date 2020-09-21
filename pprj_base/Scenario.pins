@@ -1,4 +1,4 @@
-; Wed Sep 16 14:28:01 MSK 2020
+; Mon Sep 21 12:34:50 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2624,7 +2624,7 @@
 ([ScenarioN_Class550033] of  Rule
 
 	(lhs "?moe (MapObEvent status ?sts)")
-	(rhs "(if s/TRACE (println :MapObEvent ?sts))\n(retract ?moe)")
+	(rhs "(retract ?moe)")
 	(salience -10)
 	(title "sim:RetractMapObEvent"))
 

@@ -1,4 +1,4 @@
-; Mon Sep 21 14:05:39 MSK 2020
+; Mon Sep 21 20:58:37 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,6 +22,9 @@
 		(default "Mode Add/osm.data/mode-add")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot but-start-serv
+;+		(type ANY)
+		(create-accessor read-write))
 	(multislot tagvalue
 		(type INSTANCE)
 ;+		(allowed-classes Tagvalue)
@@ -36,6 +39,9 @@
 		(default "Hide Roads/osm.data/hide-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot but-onboard
+;+		(type ANY)
+		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
 		(default "Clear/osm.data/clear-path")
@@ -46,6 +52,9 @@
 		(default "Create Road/osm.data/create-road")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot but-stop-serv
+;+		(type ANY)
+		(create-accessor read-write))
 	(multislot ways
 ;+		(type ANY)
 		(create-accessor read-write)))
@@ -55,8 +64,24 @@
 	(role abstract))
 
 (defclass Railroad
-	(is-a OSM+Onto Road)
-	(role concrete))
+	(is-a OSM+Onto)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass RoadControl
 	(is-a OSM+Onto)
@@ -130,9 +155,41 @@
 		(create-accessor read-write)))
 
 (defclass Cycleroad
-	(is-a Road OSM+Onto)
-	(role concrete))
+	(is-a OSM+Onto)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Motoroad
-	(is-a Road OSM+Onto)
-	(role concrete))
+	(is-a OSM+Onto)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

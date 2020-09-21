@@ -1,4 +1,4 @@
-; Sun Sep 20 19:22:22 MSK 2020
+; Mon Sep 21 22:57:27 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,25 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(multislot pathway
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot finish
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot value-type
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot start
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot inCesium
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot look
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot inOpenMap
+;+		(type ANY)
+		(create-accessor read-write)))
