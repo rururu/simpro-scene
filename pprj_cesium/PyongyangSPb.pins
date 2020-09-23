@@ -1,4 +1,4 @@
-; Tue Sep 22 20:53:46 MSK 2020
+; Wed Sep 23 22:38:02 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -201,6 +201,11 @@
 	(prettyName "Russian Railroads")
 	(shapeFile "data/shape/RUS_rrd/RUS_rails.shp")
 	(spatialIndex "data/shape/RUS_rrd/RUS_rails.shx"))
+
+([PyongyangSPb_Class30000] of  ImageDoc
+
+	(source "file:doc/images/FromGoal.jpg")
+	(title "Graph2"))
 
 ([PyongyangSPb_Class30001] of  Goal
 
@@ -776,6 +781,10 @@
 		[OSMRoads_Class100006])
 	(title "Roads Control")
 	(to1 "Уссурийск"))
+
+([PyongyangSPb_Class50001] of  Document
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/FromGoal.jpg\"></body>\n</html>"))
 
 ([PyongyangSPb_Class50002] of  CloVar
 
