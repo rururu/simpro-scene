@@ -1,20 +1,10 @@
-; Mon Sep 21 20:58:37 MSK 2020
+; Tue Sep 29 20:00:23 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([BrigBern_Class0] of  WorkingPrograms
-
-	(butt-load-progs "Load Programs/protege.core/ldns")
-	(cloPrograms
-		[Clojure_Class10000]
-		[RuleEngine_Class30000]
-		[BrigBern_Class7])
-	(title "OSMRoads Programs"))
-
 ([BrigBern_Class1] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [BrigBern_Class0])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:17:43.977 MSK")
 	(%3ACREATOR "ta"))
 
@@ -83,16 +73,6 @@
 	(source "(let [sta (for [t (tags @OSM-DATA)]\n	(let [fl (filter-kk t @OSM-DATA)]\n	  [t (count fl)]))\n        sta  (filter #(> (second %) 0) sta)]\n  (sort second sta))")
 	(title "tag-stat []"))
 
-([BrigBern_Class2] of  Run
-
-	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
-	(butt-fire "Fire/ru.rules/fire-all-rules")
-	(butt-run "Run/ru.rules/run-engine")
-	(butt-step "Step/ru.rules/step-engine")
-	(mode run)
-	(steps 1)
-	(title "OSMRoadsRun"))
-
 ([BrigBern_Class20] of  CloVar
 
 	(source "(volatile! [])")
@@ -125,7 +105,6 @@
 
 ([BrigBern_Class3] of  %3AINSTANCE-ANNOTATION
 
-	(%3AANNOTATED-INSTANCE [BrigBern_Class2])
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:18:35.062 MSK")
 	(%3ACREATOR "ta"))
 
@@ -285,10 +264,6 @@
 
 	(value "[\"highway\" \"primary\"]"))
 
-([OSMRoads_Class10000] of  CloFuncall
-
-	(source "osm.data/PATH"))
-
 ([OSMRoads_Class100006] of  Tagvalue
 
 	(value "[\"highway\" \"service\"]"))
@@ -302,60 +277,15 @@
 	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (-> (sv dw \"way\")\n         (sv \"poly\")\n         OMT/getOrAdd))))")
 	(title "show-roads [hm inst]"))
 
-([OSMRoads_Class10004] of  RoadControl
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-clear "Clear/osm.data/clear-path")
-	(but-cre "Create Road/osm.data/create-road")
-	(but-hide-roads "Hide Roads/osm.data/hide-roads")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(but-show-roads "Show Existing Roads/osm.data/show-roads")
-	(from1 "Aboyne")
-	(radius 0.01)
-	(road-subclass Motoroad)
-	(status "MODE CREATE, in PATH 65 ways.")
-	(tagvalue
-		[BrigBern_Class80016]
-		[OSMRoads_Class40001]
-		[BrigBern_Class80017]
-		[BrigBern_Class90003]
-		[OSMRoads_Class10001]
-		[OSMRoads_Class20142]
-		[OSMRoads_Class60003]
-		[OSMRoads_Class70000]
-		[OSMRoads_Class100006])
-	(title "Roads Control")
-	(to1 "Aberdeen Harbour"))
-
 ([OSMRoads_Class10005] of  CloFunction
 
 	(source "(if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls \"Road\")]))]\n  (doseq [rd sel]\n    (doseq [dw (svs rd \"dirways\")]\n       (OMT/removeMapOb \n         (-> (sv dw \"way\")\n           (sv \"poly\"))\n         false))))")
 	(title "hide-roads [hm inst]"))
 
-([OSMRoads_Class120000] of  CloFuncall
-
-	(source "(in-ns 'osm.data)"))
-
-([OSMRoads_Class120001] of  CloFuncall
-
-	(source "(get-way-data [43.755 7.448] 02 \"railway\")"))
-
 ([OSMRoads_Class120008] of  %3AINSTANCE-ANNOTATION
 
 	(%3ACREATION-TIMESTAMP "2018.04.05 21:36:41.369 MSK")
 	(%3ACREATOR "ru"))
-
-([OSMRoads_Class150000] of  CloFuncall
-
-	(source "OSM-DATA"))
-
-([OSMRoads_Class150001] of  CloFuncall
-
-	(source "(get-way-data [43.773 7.493] 0.01 [\"railway\" \"rail\"])"))
-
-([OSMRoads_Class150002] of  CloFuncall
-
-	(source "(get-way-data [43.773 7.493] 0.01 \"railway\")"))
 
 ([OSMRoads_Class20021] of  Tagvalue
 
@@ -370,30 +300,6 @@
 	(%3ACREATION-TIMESTAMP "2018.02.11 18:18:16.208 MSK")
 	(%3ACREATOR "ru"))
 
-([OSMRoads_Class30005] of  Table2
-
-	(column1
-		"object"
-		"run"
-		"parent"
-		"instance"
-		"scale"
-		"next_actions"
-		"title"
-		"status"
-		"id")
-	(column2
-		"SimpleInstance(BrigBern_Class100001 of [Cls(NavOb)])"
-		"{}"
-		"Tsk24747"
-		"SimpleInstance(OSMRoads_Class30003 of [Cls(FlightView)])"
-		"100000"
-		"[#object[edu.stanford.smi.protege.model.DefaultSimpleInstance 0x5d00e1c6 \"SimpleInstance(OSMRoads_Class20160 of [Cls(GoRoad)])\"]]"
-		"Follow Car"
-		"FAILED"
-		":?")
-	(title "FlightView 12"))
-
 ([OSMRoads_Class40001] of  Tagvalue
 
 	(value "[\"railway\" \"narrow_gauge\"]"))
@@ -402,10 +308,6 @@
 
 	(%3ACREATION-TIMESTAMP "2018.02.05 20:57:54.978 MSK")
 	(%3ACREATOR "ru"))
-
-([OSMRoads_Class50002] of  CloFuncall
-
-	(source "osm.data/OSM-DATA"))
 
 ([OSMRoads_Class60003] of  Tagvalue
 

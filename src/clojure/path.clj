@@ -1,4 +1,4 @@
-(ns graph
+(ns path
 (:require
   [rete.core :as rete]))
 (def E 0.1)
@@ -16,7 +16,8 @@
   [5 5]{"M" [3 6] "J" [4 4]}
   [3 6]{"N" [2 5] "K" [5 5]}
   [2 8]{"P" [1 7] "R" [4 7]}
-  [2 5]{"P" [1 7] "M" [3 6]}})
+  [2 5]{"P" [1 7] "M" [3 6]}
+  [1 7]{"N" [2 5] "L" [2 8]}})
 (defn near [v1 v2]
   ;;(or (= v1 v2)
 ;;  (and (< (Math/abs (- (first v1) (first v2))) E)

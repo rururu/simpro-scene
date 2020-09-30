@@ -1,4 +1,4 @@
-; Wed Sep 23 22:38:02 MSK 2020
+; Wed Sep 30 20:15:16 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,18 +10,19 @@
 	(multislot pathway
 ;+		(type ANY)
 		(create-accessor read-write))
-	(single-slot b
-		(type INSTANCE)
-;+		(allowed-classes Vertex)
+	(single-slot a
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot e
-		(type INSTANCE)
-;+		(allowed-classes Vertex)
+	(single-slot b
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot finish
 ;+		(type ANY)
+		(create-accessor read-write))
+	(multislot segments
+		(type STRING)
 		(create-accessor read-write))
 	(multislot value-type
 ;+		(type ANY)
@@ -37,13 +38,9 @@
 		(create-accessor read-write))
 	(multislot inOpenMap
 ;+		(type ANY)
-		(create-accessor read-write))
-	(multislot edges
-		(type INSTANCE)
-;+		(allowed-classes Edge)
 		(create-accessor read-write)))
 
-(defclass Graph+Onto
+(defclass Path+Onto
 	(is-a USER)
 	(role abstract)
 	(single-slot id
@@ -51,48 +48,33 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Vertex
-	(is-a Graph+Onto)
-	(role concrete)
-	(single-slot lon
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot lat
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Edge
-	(is-a Graph+Onto)
-	(role concrete)
-	(single-slot b
-		(type INSTANCE)
-;+		(allowed-classes Vertex)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot e
-		(type INSTANCE)
-;+		(allowed-classes Vertex)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Path
-	(is-a Edge)
+	(is-a Path+Onto)
 	(role abstract)
-	(multislot edges
-		(type INSTANCE)
-;+		(allowed-classes Edge)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot segments
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot a
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot b
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
-
-(defclass Goal
-	(is-a Path)
-	(role concrete))
 
 (defclass Path0
 	(is-a Path)
 	(role concrete))
 
 (defclass Path1
+	(is-a Path)
+	(role concrete))
+
+(defclass Goal
 	(is-a Path)
 	(role concrete))
