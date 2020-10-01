@@ -1,4 +1,4 @@
-; Wed Sep 30 20:15:16 MSK 2020
+; Thu Oct 01 22:05:43 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,9 +21,6 @@
 	(multislot finish
 ;+		(type ANY)
 		(create-accessor read-write))
-	(multislot segments
-		(type STRING)
-		(create-accessor read-write))
 	(multislot value-type
 ;+		(type ANY)
 		(create-accessor read-write))
@@ -42,20 +39,12 @@
 
 (defclass Path+Onto
 	(is-a USER)
-	(role abstract)
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role abstract))
 
 (defclass Path
 	(is-a Path+Onto)
 	(role abstract)
-	(single-slot status
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot segments
+	(multislot points
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot a
@@ -77,4 +66,8 @@
 
 (defclass Goal
 	(is-a Path)
-	(role concrete))
+	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

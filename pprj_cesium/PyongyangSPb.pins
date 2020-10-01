@@ -1,4 +1,4 @@
-; Wed Sep 30 20:15:16 MSK 2020
+; Thu Oct 01 22:05:43 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -62,26 +62,6 @@
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:23.765 MSK")
 	(%3ACREATOR "ru"))
 
-([PyongyangSPb_Class100000] of  CloFuncall
-
-	(source "(path/asser-path 'Goal \"g1\" [9 3] [1 7] [] \"START\")"))
-
-([PyongyangSPb_Class100001] of  CloFuncall
-
-	(source "(rete,core/frame-by-id 8)"))
-
-([PyongyangSPb_Class100002] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 8)"))
-
-([PyongyangSPb_Class100003] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 18)"))
-
-([PyongyangSPb_Class100004] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 25)"))
-
 ([PyongyangSPb_Class10001] of  %3AINSTANCE-ANNOTATION
 
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:37.942 MSK")
@@ -101,6 +81,19 @@
 
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:52:50.667 MSK")
 	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class110000] of  CloFunction
+
+	(source "(println pts)")
+	(title "display-path [pts]"))
+
+([PyongyangSPb_Class120002] of  CloFuncall
+
+	(source "(path/asser-goal [\"A\" [3 1]] [\"C\" [1 3]])"))
+
+([PyongyangSPb_Class130001] of  CloFuncall
+
+	(source "(path/asser-goal [\"E\" [9 3]] [\"P\" [1 7]])"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -228,15 +221,7 @@
 	(title "Graph2"))
 
 ([PyongyangSPb_Class30001] of  Goal
-
-	(id "G1"))
-
-([PyongyangSPb_Class30002] of  Rule
-
-	(lhs "?gol (Goal b ?b e ?e\n	edges ?es1\n	(empty? ?es1))\n?pat (Path b ?b e ?e\n	edges ?es2)")
-	(rhs "(modify ?gol edges ?es2)\n(retract ?pat)")
-	(salience 0)
-	(title "g:Goal Reached"))
+)
 
 ([PyongyangSPb_Class30013] of  OMTPoly
 
@@ -657,33 +642,10 @@
 	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/PathExtension.jpg\"></body>\n</html>"))
 
 ([PyongyangSPb_Class40001] of  Goal
-
-	(id "G3"))
+)
 
 ([PyongyangSPb_Class40002] of  Goal
-
-	(id "G2"))
-
-([PyongyangSPb_Class40004] of  Rule
-
-	(lhs "(Path b ?b1 e ?e1\n	edges ?eds)\n(Edge id ?id b ?b2 e ?e2\n	((not (some #{?id} ?eds))\n	 (graph/near ?b1 ?b2)))")
-	(rhs "(asser Path id (gensym \"p\")\n	b ?e1\n	e ?e2\n	edges (vec (cons ?id ?eds)))")
-	(salience 0)
-	(title "g:Path Expansion 1"))
-
-([PyongyangSPb_Class40005] of  Rule
-
-	(lhs "(Path b ?b1 e ?e1\n	edges ?eds)\n(Edge id ?id b ?b2 e ?e2\n	((not (some #{?id} ?eds))\n	 (graph/near ?b1 ?e2)))")
-	(rhs "(asser Path id (gensym \"p\")\n	b ?b2\n	e ?e1\n	edges (vec (cons ?id ?eds)))")
-	(salience 0)
-	(title "g:Path Expansion 2"))
-
-([PyongyangSPb_Class40006] of  Rule
-
-	(lhs "(Path b ?b1 e ?e1\n	edges ?eds)\n(Edge id ?id b ?b2 e ?e2\n	((not (some #{?id} ?eds))\n	 (graph/near ?e1 ?b2)))")
-	(rhs "(asser Path id (gensym \"p\")\n	b ?b1\n	e ?e2\n	edges (vec (cons ?id ?eds)))")
-	(salience 0)
-	(title "g:Path Expansion 3"))
+)
 
 ([PyongyangSPb_Class40007] of  %3AINSTANCE-ANNOTATION
 
@@ -702,13 +664,6 @@
 		[Path1]
 		[Goal])
 	(title "Path Set"))
-
-([PyongyangSPb_Class40017] of  Rule
-
-	(lhs "(Edge id ?id b ?b e ?e)")
-	(rhs "(asser Path id (gensym \"p\")\n	b ?b\n	e ?e\n	edges [?id])")
-	(salience 0)
-	(title "g:Path Generation"))
 
 ([PyongyangSPb_Class40018] of  Run
 
@@ -750,8 +705,8 @@
 
 ([PyongyangSPb_Class50000] of  Rule
 
-	(lhs "?pth (Path0 id ?id\n	a ?a\n	b ?b\n	segments ?sgs\n	status ?s)")
-	(rhs "(let [sgs (path/find-segments ?b)]\n  (doseq [[id p] sgs]\n    (if (not (some #{p} ?sgs))\n      (asser Path1 id (str ?id \"-\" id)\n	a ?a\n	b (path/self p)\n	segments (conj ?sgs p)\n	status ?s)))\n  (retract ?pth))")
+	(lhs "?p (Path0 a ?a b ?b\n	points ?pts)")
+	(rhs "(let [sgs (path/find-segments ?b)]\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
 	(salience 0)
 	(title "g:Path0 Expansion"))
 
@@ -764,20 +719,11 @@
 	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}}")
 	(title "SEGMENTS"))
 
-([PyongyangSPb_Class50007] of  Rule
-
-	(lhs "(Path b ?b1 e ?e1\n	edges ?eds)\n(Edge id ?id b ?b2 e ?e2\n	((not (some #{?id} ?eds))\n	 (graph/near ?e1 ?e2)))")
-	(rhs "(asser Path id (gensym \"p\")\n	b ?b1\n	e ?b2\n	edges (vec (cons ?id ?eds)))")
-	(salience 0)
-	(title "g:Path Expansion 4"))
-
 ([PyongyangSPb_Class50008] of  Goal
-
-	(id "G5"))
+)
 
 ([PyongyangSPb_Class50009] of  Goal
-
-	(id "G4"))
+)
 
 ([PyongyangSPb_Class50010] of  CloProgram
 
@@ -785,7 +731,8 @@
 		[PyongyangSPb_Class50012]
 		[PyongyangSPb_Class50014]
 		[PyongyangSPb_Class50015]
-		[PyongyangSPb_Class70000])
+		[PyongyangSPb_Class70000]
+		[PyongyangSPb_Class110000])
 	(cloNamespace [PyongyangSPb_Class50011])
 	(cloVars
 		[PyongyangSPb_Class50013]
@@ -814,19 +761,8 @@
 
 ([PyongyangSPb_Class50015] of  CloFunction
 
-	(source "(rete/assert-frame [tp 'id id 'a a 'b b 'segments sgs 'status sts])")
-	(title "asser-path [tp id a b sgs sts]"))
-
-([PyongyangSPb_Class50017] of  Rule
-
-	(lhs "?g1 (Goal edges ?eds1\n	(vector?  ?eds1))\n(Goal edges ?eds2\n	((vector?  ?eds2)\n 	(= (set ?eds1) (set ?eds2))))")
-	(rhs "(retract ?g1)")
-	(salience 0)
-	(title "g:Identify Goals"))
-
-([PyongyangSPb_Class60000] of  CloFuncall
-
-	(source "(in-ns 'path)"))
+	(source "(rete/assert-frame ['Goal 'a a 'b b 'status \"START\"])")
+	(title "asser-goal [a b]"))
 
 ([PyongyangSPb_Class60001] of  CloProgram
 
@@ -867,51 +803,27 @@
 	(source "x")
 	(title "self [x]"))
 
-([PyongyangSPb_Class70001] of  CloFuncall
-
-	(source "(asser-path 'Goal \"g1\" [3 1] [1 3] [] \"START\")"))
-
 ([PyongyangSPb_Class70002] of  CloFuncall
 
 	(source "(ru.rules/pp :all)"))
 
-([PyongyangSPb_Class80000] of  CloFuncall
-
-	(source "(find-segments [3 1])"))
-
-([PyongyangSPb_Class80001] of  CloFuncall
-
-	(source "(asser-path 'Goal \"g1\" [9 3] [1 7] [] \"START\")"))
-
 ([PyongyangSPb_Class80003] of  Rule
 
 	(lhs "?g (Goal status \"START\"\n	a ?a\n	b ?b)")
-	(rhs "(asser Path0 id \"a\"\n	a ?a\n	b ?a\n	segments [?a])\n(asser Path0 id \"b\"\n	a ?b\n	b ?b\n	segments [?b])\n(modify ?g status \"RUN\")")
+	(rhs "(let [[a1 a2] ?a\n       [b1 b2] ?b]\n  (asser Path0 a a2\n	b a2\n	points [a1])\n  (asser Path0 a b2\n	b b2\n	points [b1])\n  (modify ?g status \"RUN\"\n	a a2\n	b b2))")
 	(salience 0)
 	(title "g:Goal Start"))
 
-([PyongyangSPb_Class90000] of  CloFuncall
-
-	(source "(rete/fact-id 8)"))
-
-([PyongyangSPb_Class90001] of  CloFuncall
-
-	(source "(rete/frame-by-id 8)"))
-
-([PyongyangSPb_Class90002] of  CloFuncall
-
-	(source "(rete/frame-by-id 9)"))
-
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "?g (Goal id ?id status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 id ?id1 a ?a\n	b ?b1\n	segments ?sgs1)\n?p2 (Path1 id ?id2 a ?b\n	b ?b2\n	segments ?sgs2\n	(path/near ?b1 ?b2))")
-	(rhs "(asser Goal id ?id\n	status \"REACH\"\n	segments (concat ?sgs1 (rest (reverse ?sgs2))))\n(retract ?p1 ?p2)")
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/near ?b1 ?b2))")
+	(rhs "(let [pts (concat ?pts1 (rest (reverse ?pts2)))]\n  (path/display-path pts)\n  (asser Goal status \"REACH\"\n	points pts))\n(retract ?p1 ?p2)")
 	(salience 0)
 	(title "g:Path1 Check"))
 
 ([PyongyangSPb_Class90004] of  Rule
 
-	(lhs "?p (Path1 id ?id a ?a\n	b ?b\n	segments ?sgs)")
-	(rhs "(retract ?p)\n(asser Path0 id ?id a ?a\n	b ?b\n	segments ?sgs)")
+	(lhs "?p (Path1 a ?a b ?b\n	points ?pts)")
+	(rhs "(retract ?p)\n(asser Path0 a ?a\n	b ?b\n	points ?pts)")
 	(salience -1)
 	(title "g:Path1 Continue"))

@@ -27,9 +27,12 @@
 (defn find-segments [p1]
   (SEGMENTS p1))
 
-(defn asser-path [tp id a b sgs sts]
-  (rete/assert-frame [tp 'id id 'a a 'b b 'segments sgs 'status sts]))
+(defn asser-goal [a b]
+  (rete/assert-frame ['Goal 'a a 'b b 'status "START"]))
 
 (defn self [x]
   x)
+
+(defn display-path [pts]
+  (println pts))
 
