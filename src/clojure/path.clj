@@ -18,6 +18,8 @@
   [2 8]{"P" [1 7] "R" [4 7]}
   [2 5]{"P" [1 7] "M" [3 6]}
   [1 7]{"N" [2 5] "L" [2 8]}})
+(def F-find-segments nil)
+(def F-near nil)
 (defn near [v1 v2]
   ;;(or (= v1 v2)
 ;;  (and (< (Math/abs (- (first v1) (first v2))) E)
@@ -35,4 +37,8 @@
 
 (defn display-path [pts]
   (println pts))
+
+(defn set-functions [find-seg near]
+  (def F-find-segments find-seg)
+(def F-near near))
 

@@ -1,4 +1,4 @@
-; Thu Oct 01 22:05:43 MSK 2020
+; Fri Oct 02 20:52:32 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -61,6 +61,14 @@
 
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:23.765 MSK")
 	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class100003] of  CloFuncall
+
+	(source "(asser-goal [\"E\" [9 3]] [\"P\" [1 7]])"))
+
+([PyongyangSPb_Class100004] of  CloFuncall
+
+	(source "(path/set-functions path/find-segments path/near)"))
 
 ([PyongyangSPb_Class10001] of  %3AINSTANCE-ANNOTATION
 
@@ -706,7 +714,7 @@
 ([PyongyangSPb_Class50000] of  Rule
 
 	(lhs "?p (Path0 a ?a b ?b\n	points ?pts)")
-	(rhs "(let [sgs (path/find-segments ?b)]\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
+	(rhs "(let [sgs (path/F-find-segments ?b)]\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
 	(salience 0)
 	(title "g:Path0 Expansion"))
 
@@ -732,11 +740,14 @@
 		[PyongyangSPb_Class50014]
 		[PyongyangSPb_Class50015]
 		[PyongyangSPb_Class70000]
-		[PyongyangSPb_Class110000])
+		[PyongyangSPb_Class110000]
+		[PyongyangSPb_Class80002])
 	(cloNamespace [PyongyangSPb_Class50011])
 	(cloVars
 		[PyongyangSPb_Class50013]
-		[PyongyangSPb_Class50002])
+		[PyongyangSPb_Class50002]
+		[PyongyangSPb_Class60000]
+		[PyongyangSPb_Class70001])
 	(title "Path"))
 
 ([PyongyangSPb_Class50011] of  CloNamespace
@@ -763,6 +774,11 @@
 
 	(source "(rete/assert-frame ['Goal 'a a 'b b 'status \"START\"])")
 	(title "asser-goal [a b]"))
+
+([PyongyangSPb_Class60000] of  CloVar
+
+	(source "nil")
+	(title "F-find-segments"))
 
 ([PyongyangSPb_Class60001] of  CloProgram
 
@@ -803,9 +819,27 @@
 	(source "x")
 	(title "self [x]"))
 
+([PyongyangSPb_Class70001] of  CloVar
+
+	(source "nil")
+	(title "F-near"))
+
 ([PyongyangSPb_Class70002] of  CloFuncall
 
 	(source "(ru.rules/pp :all)"))
+
+([PyongyangSPb_Class80000] of  CloFuncall
+
+	(source "(path/set-functions #path/find-segments #path/near)"))
+
+([PyongyangSPb_Class80001] of  CloFuncall
+
+	(source "(in-ns 'path)"))
+
+([PyongyangSPb_Class80002] of  CloFunction
+
+	(source "(def F-find-segments find-seg)\n(def F-near near)")
+	(title "set-functions [find-seg near]"))
 
 ([PyongyangSPb_Class80003] of  Rule
 
@@ -814,9 +848,13 @@
 	(salience 0)
 	(title "g:Goal Start"))
 
+([PyongyangSPb_Class90002] of  CloFuncall
+
+	(source "(set-functions find-segments near)"))
+
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/near ?b1 ?b2))")
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
 	(rhs "(let [pts (concat ?pts1 (rest (reverse ?pts2)))]\n  (path/display-path pts)\n  (asser Goal status \"REACH\"\n	points pts))\n(retract ?p1 ?p2)")
 	(salience 0)
 	(title "g:Path1 Check"))
