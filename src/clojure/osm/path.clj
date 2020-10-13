@@ -1,10 +1,14 @@
 (ns osm.path
+(:use protege.core)
 (:require
-  [osm.data :as od]))
+  [osm.data :as od])
+(:import
+  ru.igis.omtab.OMT
+  ru.igis.omtab.MapOb))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RADIUS 0.01)
-(def BRANCHES 4)
+(def RADIUS 0.005)
+(def BRANCHES 2)
 (defn simple-dist [[y1 x1] [y2 x2]]
   (+ (Math/abs (- x1 x2)) (Math/abs (- y1 y2))))
 
@@ -42,12 +46,16 @@
   (letfn [(id-beg-end [s]
              [(first s) (first (second s)) (last (second s))])
            (min-dist [p b e]
-             (min (simple-dist p b) (simple-dist p e)))
+             (let [bd (simple-dist p b)
+                    ed (simple-dist p e)]
+               (if (< bd ed)
+                 [bd e]
+                 [ed b])))
            (seg-desc [s]
              (let [[id b e] (id-beg-end s)]
                [(min-dist p b e) s]))
            (sort-fn [x y]
-             (< (first x) (first y)))]
+             (< (ffirst x) (ffirst y)))]
   (sort sort-fn (map seg-desc segs))))
 
 (defn find-branches
@@ -61,5 +69,40 @@
   (let [sgs (find-segments p wtype wsubtype)
          sss (sort-segments p sgs)
          tss (take n sss)]
-    (map second tss))))
+    (map #(let [[[mind farp] [id s]] %]
+                  (vswap! SEGMENTS assoc id s) 
+                  [id farp]) tss))))
+
+(defn near [v1 v2]
+  (or (= v1 v2)
+  (and (< (Math/abs (- (first v1) (first v2))) RADIUS)
+          (< (Math/abs (- (second v1) (second v2))) RADIUS))))
+
+(defn display-path [pts]
+  (println pts))
+
+(defn display-detailed
+  ([]
+  (let [ids (map #(butlast (rest %)) @path/PATHS)]
+    (map display-detailed ids)))
+([id]
+  (if (number? id) 
+    (if-let [pts (@SEGMENTS id)]
+      (let [id (str id)
+            [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
+            [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
+            [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
+            poi (foc "OMTPoly" "label" id)
+            tsf (fn [[y x]]
+                   (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))] 
+         (ssv poi "description" id)
+         (ssv poi "latitude" lat1)
+         (ssv poi "longitude" lon1)
+         (ssv poi "lineColor" "FFFF6600")
+         (ssv poi "line" (fifos "Line" "label" "L2"))
+         (ssvs poi "points" (map tsf pts))
+         (OMT/getOrAdd poi)
+         poi))
+    (doseq [i id]
+      (display-detailed i)))))
 

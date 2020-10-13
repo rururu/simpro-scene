@@ -1,8 +1,7 @@
 (ns path
 (:require
   [rete.core :as rete]))
-(def E 0.1)
-(def SEGMENTS {[3 1]{"B" [2 2] "D" [1 1]}
+(def SEQUELS {[3 1]{"B" [2 2] "D" [1 1]}
   [2 2]{"A" [3 1] "C" [1 3]}
   [1 3]{"B" [2 2] "D" [1 1]}
   [1 1]{"A" [3 1] "C" [1 3]}
@@ -18,16 +17,16 @@
   [2 8]{"P" [1 7] "R" [4 7]}
   [2 5]{"P" [1 7] "M" [3 6]}
   [1 7]{"N" [2 5] "L" [2 8]}})
-(def F-find-segments nil)
+(def F-find-sequels nil)
 (def F-near nil)
+(def F-display-path nil)
+(def MAX-PATHS 2)
+(def PATHS (volatile! []))
 (defn near [v1 v2]
-  ;;(or (= v1 v2)
-;;  (and (< (Math/abs (- (first v1) (first v2))) E)
-;;          (< (Math/abs (- (second v1) (second v2))) E)))
-(= v1 v2))
+  (= v1 v2))
 
-(defn find-segments [p1]
-  (SEGMENTS p1))
+(defn find-sequels [p1]
+  (SEQUELS p1))
 
 (defn asser-goal [a b]
   (rete/assert-frame ['Goal 'a a 'b b 'status "START"]))
@@ -38,7 +37,14 @@
 (defn display-path [pts]
   (println pts))
 
-(defn set-functions [find-seg near]
-  (def F-find-segments find-seg)
-(def F-near near))
+(defn set-functions [find-seq near disp]
+  (def F-find-sequels find-seq)
+(def F-near near)
+(def F-display-path disp))
+
+(defn set-max-paths [m]
+  (def MAX-PATHS m))
+
+(defn clear-paths []
+  (def PATHS (volatile! [])))
 
