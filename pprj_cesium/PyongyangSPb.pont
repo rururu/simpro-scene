@@ -1,4 +1,4 @@
-; Tue Oct 13 18:14:13 MSK 2020
+; Thu Oct 15 14:46:12 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -68,6 +68,10 @@
 	(is-a Path)
 	(role concrete)
 	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

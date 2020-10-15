@@ -10,7 +10,9 @@
 (def RADIUS 0.005)
 (def BRANCHES 2)
 (defn simple-dist [[y1 x1] [y2 x2]]
-  (+ (Math/abs (- x1 x2)) (Math/abs (- y1 y2))))
+  (let [sx (Math/abs (- x1 x2))
+       sy (Math/abs (- y1 y2))]
+  (Math/sqrt (+ (* sx sx) (* sy sy)))))
 
 (defn find-segments
   ([[lat lon]]
@@ -83,12 +85,16 @@
 
 (defn display-detailed
   ([]
-  (let [ids (map #(butlast (rest %)) @path/PATHS)]
-    (map display-detailed ids)))
-([id]
-  (if (number? id) 
-    (if-let [pts (@SEGMENTS id)]
-      (let [id (str id)
+  (map display-detailed 
+    (range (min 6 (count @path/PATHS)))
+    ["FFFFFF00" "FFFF6000" "FFFF0000" "FF7B3F00" "FF008000" "FF0000FF"]))
+([n clr]
+  (if-let [ids (butlast (rest (nth @path/PATHS n)))]
+    (display-detailed [ids clr])))
+([[ids clr]]
+  (if (number? ids) 
+    (if-let [pts (@SEGMENTS ids)]
+      (let [id (str ids)
             [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
             [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
             [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]
@@ -98,11 +104,19 @@
          (ssv poi "description" id)
          (ssv poi "latitude" lat1)
          (ssv poi "longitude" lon1)
-         (ssv poi "lineColor" "FFFF6600")
+         (ssv poi "lineColor" clr)
          (ssv poi "line" (fifos "Line" "label" "L2"))
          (ssvs poi "points" (map tsf pts))
          (OMT/getOrAdd poi)
          poi))
-    (doseq [i id]
-      (display-detailed i)))))
+    (doseq [id ids]
+      (display-detailed [id clr])))))
+
+(defn distance [pts]
+  (if (and (seq pts) (vector? (first pts))) ;; list points
+  (if (empty? (rest pts))
+    0
+    (+ (simple-dist (first pts) (second pts))
+      (distance (rest pts))))
+  (apply + (map #(distance (@SEGMENTS %))  pts))))
 

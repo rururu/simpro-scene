@@ -29,7 +29,7 @@
   (SEQUELS p1))
 
 (defn asser-goal [a b]
-  (rete/assert-frame ['Goal 'a a 'b b 'status "START"]))
+  (rete/assert-frame ['Goal 'a (str a) 'b (str b) 'status "START"]))
 
 (defn self [x]
   x)
