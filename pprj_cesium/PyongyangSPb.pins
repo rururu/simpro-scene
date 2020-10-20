@@ -1,4 +1,4 @@
-; Thu Oct 15 14:46:12 MSK 2020
+; Tue Oct 20 18:46:39 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,15 +71,16 @@
 		[PyongyangSPb_Class110019]
 		[PyongyangSPb_Class110025]
 		[PyongyangSPb_Class110013]
-		[PyongyangSPb_Class110003]
+		[PyongyangSPb_Class160001]
 		[PyongyangSPb_Class150037]
-		[PyongyangSPb_Class160001])
+		[PyongyangSPb_Class110003])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[PyongyangSPb_Class120003]
 		[PyongyangSPb_Class120004]
 		[PyongyangSPb_Class120005]
-		[PyongyangSPb_Class110023])
+		[PyongyangSPb_Class110023]
+		[PyongyangSPb_Class110014])
 	(title "OSM Path"))
 
 ([PyongyangSPb_Class100001] of  CloNamespace
@@ -89,8 +90,12 @@
 
 ([PyongyangSPb_Class100002] of  Directive
 
-	(source "(path/set-functions \n  osm.path/find-branches \n  osm.path/near \n  osm.path/display-path)\n(path/clear-paths)\n(path/set-max-paths 2)")
+	(source "(path/set-functions \n  osm.path/find-branches \n  osm.path/near\n  osm.path/distance\n  osm.path/display-path)\n(path/clear-paths)\n(path/set-max-paths 2)")
 	(title "Set OSMPath Functions and Goal"))
+
+([PyongyangSPb_Class100003] of  CloFuncall
+
+	(source "(count (conj [] [:a :b]))"))
 
 ([PyongyangSPb_Class100007] of  CloVar
 
@@ -132,6 +137,10 @@
 	(source "(println pts)")
 	(title "display-path [pts]"))
 
+([PyongyangSPb_Class110001] of  CloFuncall
+
+	(source "(ru.rules/f 17)"))
+
 ([PyongyangSPb_Class110002] of  CloFunction
 
 	(source "([[lat lon]]\n  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]\n    (if (< (count ss) 1)\n      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)\n      ss)))\n([[lat lon] rad wtype wsubtype]\n  (let [d (/ rad 60)\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)]\n    (od/filter-data wda wtype wsubtype)))")
@@ -139,8 +148,8 @@
 
 ([PyongyangSPb_Class110003] of  CloFunction
 
-	(source "(println pts)")
-	(title "display-path [pts]"))
+	(source "(println b pts e)\n(display-detailed [pts \"FFFF6000\"])")
+	(title "display-path [b pts e]"))
 
 ([PyongyangSPb_Class110013] of  CloFunction
 
@@ -169,15 +178,10 @@
 
 ([PyongyangSPb_Class120000] of  Rule
 
-	(lhs "(Goal status \"REACH\" points ?pts)")
-	(rhs "(vswap! path/PATHS conj ?pts)\n(when (= (count @path/PATHS) path/MAX-PATHS)\n  (rete.core/problem-solved)\n  (println :PATHS (count @path/PATHS)))")
+	(lhs "(Goal status \"REACH\")\n(not Goal status \"RUN\")")
+	(rhs "(println :ALL-GOALS-REACHED)\n(asser Work status \"OPTIMIZATION\")")
 	(salience 0)
-	(title "p:Goal Reach"))
-
-([PyongyangSPb_Class120001] of  CloVar
-
-	(source "(volatile! [])")
-	(title "PATHS"))
+	(title "p:All Goals Reach"))
 
 ([PyongyangSPb_Class120002] of  CloVar
 
@@ -199,41 +203,13 @@
 	(source "0.005")
 	(title "RADIUS"))
 
-([PyongyangSPb_Class130004] of  CloFunction
-
-	(source "(def MAX-PATHS m)")
-	(title "set-max-paths [m]"))
-
-([PyongyangSPb_Class130005] of  CloFunction
-
-	(source "(def PATHS (volatile! []))")
-	(title "clear-paths []"))
-
-([PyongyangSPb_Class150037] of  CloFunction
-
-	(source "([]\n  (map display-detailed \n    (range (min 6 (count @path/PATHS)))\n    [\"FFFFFF00\" \"FFFF6000\" \"FFFF0000\" \"FF7B3F00\" \"FF008000\" \"FF0000FF\"]))\n([n clr]\n  (if-let [ids (butlast (rest (nth @path/PATHS n)))]\n    (display-detailed [ids clr])))\n([[ids clr]]\n  (if (number? ids) \n    (if-let [pts (@SEGMENTS ids)]\n      (let [id (str ids)\n            [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n            [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n            [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n            poi (foc \"OMTPoly\" \"label\" id)\n            tsf (fn [[y x]]\n                   (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))] \n         (ssv poi \"description\" id)\n         (ssv poi \"latitude\" lat1)\n         (ssv poi \"longitude\" lon1)\n         (ssv poi \"lineColor\" clr)\n         (ssv poi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n         (ssvs poi \"points\" (map tsf pts))\n         (OMT/getOrAdd poi)\n         poi))\n    (doseq [id ids]\n      (display-detailed [id clr]))))")
-	(title "display-detailed"))
-
-([PyongyangSPb_Class150038] of  Line
-
-	(capDecoration BUTT)
-	(jointDecoration BEVEL)
-	(label "L3")
-	(lineType STRAIGHT)
-	(lineWidth "3"))
-
-([PyongyangSPb_Class160001] of  CloFunction
-
-	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
-	(title "distance [pts]"))
-
-([PyongyangSPb_Class160005] of  OMTPoly
+([PyongyangSPb_Class130000] of  OMTPoly
 
 	(description "134383367")
 	(label "134383367")
 	(latitude "48 29.75")
 	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFFFF00")
+	(lineColor "FFFF6000")
 	(longitude "135 4.64")
 	(playground-index 0)
 	(points
@@ -255,13 +231,31 @@
 		"48 29.49 135 5.1")
 	(relative FALSE))
 
-([PyongyangSPb_Class160006] of  OMTPoly
+([PyongyangSPb_Class130002] of  CloFuncall
+
+	(source "(in-ns 'osm.path)"))
+
+([PyongyangSPb_Class130003] of  CloFuncall
+
+	(source "SEGMENTS"))
+
+([PyongyangSPb_Class130004] of  CloFunction
+
+	(source "(def MAX-PATHS m)")
+	(title "set-max-paths [m]"))
+
+([PyongyangSPb_Class130005] of  CloFunction
+
+	(source "(def PATHS (volatile! []))")
+	(title "clear-paths []"))
+
+([PyongyangSPb_Class140000] of  OMTPoly
 
 	(description "256139105")
 	(label "256139105")
 	(latitude "48 29.49")
 	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFFFF00")
+	(lineColor "FFFF6000")
 	(longitude "135 5.1")
 	(playground-index 0)
 	(points
@@ -283,13 +277,13 @@
 		"48 29.71 135 5.61")
 	(relative FALSE))
 
-([PyongyangSPb_Class170007] of  OMTPoly
+([PyongyangSPb_Class140001] of  OMTPoly
 
 	(description "25423066")
 	(label "25423066")
 	(latitude "48 24.34")
 	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFFFF00")
+	(lineColor "FFFF6000")
 	(longitude "135 8.04")
 	(playground-index 0)
 	(points
@@ -369,200 +363,46 @@
 		"48 29.73 135 5.62")
 	(relative FALSE))
 
-([PyongyangSPb_Class170008] of  OMTPoly
+([PyongyangSPb_Class140005] of  Rule
 
-	(description "320646559")
-	(label "320646559")
-	(latitude "48 29.69")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.82")
-	(playground-index 0)
-	(points
-		"48 29.69 135 4.82"
-		"48 29.71 135 4.78"
-		"48 29.72 135 4.76"
-		"48 29.73 135 4.75"
-		"48 29.73 135 4.73")
-	(relative FALSE))
+	(lhs "(Work status \"OPTIMIZATION\")\n(Goal status \"OPTI\")\n(not Goal status \"REACH\")")
+	(rhs "(rete.core/problem-solved)\n(println :ALL-GOALS-OPTIMIZED)")
+	(salience 0)
+	(title "p:All Goals Optimized"))
 
-([PyongyangSPb_Class170009] of  OMTPoly
+([PyongyangSPb_Class140006] of  Rule
 
-	(description "654043233")
-	(label "654043233")
-	(latitude "48 29.74")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.72")
-	(playground-index 0)
-	(points
-		"48 29.74 135 4.72"
-		"48 29.74 135 4.73"
-		"48 29.72 135 4.79"
-		"48 29.69 135 4.92")
-	(relative FALSE))
+	(lhs "(Work status \"OPTIMIZATION\")\n?g (Goal status \"REACH\"\n	paths ?phs)")
+	(rhs "(let [phs (map #(butlast (rest %)) ?phs)\n      b (ffirst ?phs)\n      e (last (first ?phs))\n      pth1 (first phs)\n      spt (loop [phs (rest phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path b spt e))")
+	(salience 0)
+	(title "p:Goal Optimization"))
 
-([PyongyangSPb_Class170010] of  OMTPoly
+([PyongyangSPb_Class140007] of  CloFuncall
 
-	(description "319522455")
-	(label "319522455")
-	(latitude "48 29.69")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.92")
-	(playground-index 0)
-	(points
-		"48 29.69 135 4.92"
-		"48 29.68 135 4.96"
-		"48 29.68 135 5"
-		"48 29.68 135 5.04"
-		"48 29.68 135 5.09"
-		"48 29.68 135 5.13"
-		"48 29.68 135 5.18"
-		"48 29.69 135 5.23"
-		"48 29.72 135 5.35"
-		"48 29.73 135 5.39"
-		"48 29.73 135 5.43"
-		"48 29.73 135 5.45"
-		"48 29.74 135 5.49"
-		"48 29.74 135 5.52"
-		"48 29.73 135 5.56"
-		"48 29.73 135 5.6"
-		"48 29.72 135 5.64"
-		"48 29.71 135 5.68"
-		"48 29.7 135 5.71"
-		"48 29.69 135 5.75"
-		"48 29.67 135 5.79"
-		"48 29.65 135 5.81"
-		"48 29.63 135 5.84"
-		"48 29.6 135 5.87"
-		"48 29.57 135 5.9"
-		"48 28.91 135 6.41"
-		"48 28.88 135 6.44"
-		"48 28.85 135 6.48"
-		"48 28.83 135 6.5"
-		"48 28.76 135 6.59"
-		"48 28.7 135 6.67"
-		"48 28.56 135 6.86"
-		"48 28.52 135 6.91"
-		"48 28.49 135 6.94"
-		"48 28.46 135 6.96"
-		"48 28.44 135 6.98"
-		"48 28.41 135 7"
-		"48 28.38 135 7.01"
-		"48 28.35 135 7.01"
-		"48 28.01 135 7.05"
-		"48 27.94 135 7.06"
-		"48 27.72 135 7.09"
-		"48 27.65 135 7.1"
-		"48 27.59 135 7.1"
-		"48 27.52 135 7.11"
-		"48 27.46 135 7.12"
-		"48 27.28 135 7.14"
-		"48 27.25 135 7.15"
-		"48 26.59 135 7.33"
-		"48 26.57 135 7.33"
-		"48 26.56 135 7.34"
-		"48 26.52 135 7.34"
-		"48 26.48 135 7.33"
-		"48 26.45 135 7.33"
-		"48 26.42 135 7.33"
-		"48 26.4 135 7.33"
-		"48 26.37 135 7.34"
-		"48 26.24 135 7.37"
-		"48 25.88 135 7.47"
-		"48 25.84 135 7.49"
-		"48 25.81 135 7.5"
-		"48 25.75 135 7.54"
-		"48 25.7 135 7.58"
-		"48 25.66 135 7.6"
-		"48 25.64 135 7.62"
-		"48 25.6 135 7.64"
-		"48 25.57 135 7.65"
-		"48 25.53 135 7.67"
-		"48 25.49 135 7.68"
-		"48 25.42 135 7.71"
-		"48 25.31 135 7.74"
-		"48 25.28 135 7.75"
-		"48 25.24 135 7.76"
-		"48 25.21 135 7.77"
-		"48 25.15 135 7.78"
-		"48 25.1 135 7.8"
-		"48 24.9 135 7.86"
-		"48 24.87 135 7.87"
-		"48 24.76 135 7.89"
-		"48 24.74 135 7.9"
-		"48 24.7 135 7.91"
-		"48 24.67 135 7.92"
-		"48 24.57 135 7.96"
-		"48 24.51 135 7.98"
-		"48 24.46 135 7.99"
-		"48 24.34 135 8.03"
-		"48 24.3 135 8.04"
-		"48 24.28 135 8.04"
-		"48 24.24 135 8.06"
-		"48 24.1 135 8.09"
-		"48 23.76 135 8.16"
-		"48 23.66 135 8.18"
-		"48 23.63 135 8.19"
-		"48 23.59 135 8.19"
-		"48 23.55 135 8.19"
-		"48 23.51 135 8.18"
-		"48 23.47 135 8.17"
-		"48 23.28 135 8.11"
-		"48 23.22 135 8.07"
-		"48 22.68 135 7.56"
-		"48 22.62 135 7.49"
-		"48 22.59 135 7.43"
-		"48 22.57 135 7.4"
-		"48 22.56 135 7.36"
-		"48 22.54 135 7.31"
-		"48 22.53 135 7.26"
-		"48 22.49 135 7.05"
-		"48 22.49 135 7.05"
-		"48 22.47 135 6.96"
-		"48 22.45 135 6.87"
-		"48 22.43 135 6.75")
-	(relative FALSE))
+	(source "(ru.rules/f 19)"))
 
-([PyongyangSPb_Class170011] of  OMTPoly
+([PyongyangSPb_Class150000] of  CloFunction
 
-	(description "129838420")
-	(label "129838420")
-	(latitude "48 22.43")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6.75")
-	(playground-index 0)
-	(points
-		"48 22.43 135 6.75"
-		"48 22.45 135 6.87"
-		"48 22.47 135 6.96"
-		"48 22.49 135 7.05"
-		"48 22.49 135 7.05"
-		"48 22.49 135 7.09"
-		"48 22.53 135 7.26"
-		"48 22.54 135 7.31"
-		"48 22.56 135 7.36"
-		"48 22.57 135 7.4"
-		"48 22.58 135 7.44"
-		"48 22.59 135 7.46"
-		"48 22.62 135 7.5"
-		"48 22.68 135 7.56"
-		"48 23.22 135 8.08"
-		"48 23.28 135 8.12"
-		"48 23.47 135 8.17"
-		"48 23.51 135 8.19"
-		"48 23.51 135 8.19"
-		"48 23.55 135 8.19"
-		"48 23.59 135 8.2"
-		"48 23.63 135 8.19"
-		"48 23.66 135 8.19"
-		"48 23.76 135 8.17"
-		"48 24.1 135 8.09"
-		"48 24.24 135 8.06"
-		"48 24.34 135 8.04")
-	(relative FALSE))
+	(source "(count pts)")
+	(title "distance [pts]"))
+
+([PyongyangSPb_Class150037] of  CloFunction
+
+	(source "([]\n  (map display-detailed \n    (range (min 6 (count @path/PATHS)))\n    [\"FFFFFF00\" \"FFFF6000\" \"FFFF0000\" \"FF7B3F00\" \"FF008000\" \"FF0000FF\"]))\n([n clr]\n  (if-let [ids (butlast (rest (nth @path/PATHS n)))]\n    (display-detailed [ids clr])))\n([[ids clr]]\n  (if (number? ids) \n    (if-let [pts (@SEGMENTS ids)]\n      (let [id (str ids)\n            [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n            [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n            [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n            poi (foc \"OMTPoly\" \"label\" id)\n            tsf (fn [[y x]]\n                   (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))] \n         (ssv poi \"description\" id)\n         (ssv poi \"latitude\" lat1)\n         (ssv poi \"longitude\" lon1)\n         (ssv poi \"lineColor\" clr)\n         (ssv poi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n         (ssvs poi \"points\" (map tsf pts))\n         (OMT/getOrAdd poi)\n         poi))\n    (doseq [id ids]\n      (display-detailed [id clr]))))")
+	(title "display-detailed"))
+
+([PyongyangSPb_Class150038] of  Line
+
+	(capDecoration BUTT)
+	(jointDecoration BEVEL)
+	(label "L3")
+	(lineType STRAIGHT)
+	(lineWidth "3"))
+
+([PyongyangSPb_Class160001] of  CloFunction
+
+	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
+	(title "distance [pts]"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -872,12 +712,15 @@
 		[PyongyangSPb_Class50000]
 		[PyongyangSPb_Class90003]
 		[PyongyangSPb_Class90004]
-		[PyongyangSPb_Class120000])
+		[PyongyangSPb_Class120000]
+		[PyongyangSPb_Class140005]
+		[PyongyangSPb_Class140006])
 	(templates
 		[Directive]
 		[Goal]
 		[Path0]
-		[Path1])
+		[Path1]
+		[Work])
 	(title "Path Set"))
 
 ([PyongyangSPb_Class40018] of  Run
@@ -948,15 +791,15 @@
 		[PyongyangSPb_Class110000]
 		[PyongyangSPb_Class80002]
 		[PyongyangSPb_Class130004]
-		[PyongyangSPb_Class130005])
+		[PyongyangSPb_Class130005]
+		[PyongyangSPb_Class150000])
 	(cloNamespace [PyongyangSPb_Class50011])
 	(cloVars
 		[PyongyangSPb_Class50002]
 		[PyongyangSPb_Class60000]
 		[PyongyangSPb_Class70001]
 		[PyongyangSPb_Class100007]
-		[PyongyangSPb_Class120002]
-		[PyongyangSPb_Class120001])
+		[PyongyangSPb_Class120002])
 	(title "Path"))
 
 ([PyongyangSPb_Class50011] of  CloNamespace
@@ -1030,21 +873,29 @@
 	(source "nil")
 	(title "F-near"))
 
+([PyongyangSPb_Class80000] of  CloFuncall
+
+	(source "(ru.rules/pp 17)"))
+
+([PyongyangSPb_Class80001] of  CloFuncall
+
+	(source "(ru.rules/f 12)"))
+
 ([PyongyangSPb_Class80002] of  CloFunction
 
-	(source "(def F-find-sequels find-seq)\n(def F-near near)\n(def F-display-path disp)")
-	(title "set-functions [find-seq near disp]"))
+	(source "(def F-find-sequels find-seq)\n(def F-near near)\n(def F-distance dist)\n(def F-display-path disp)")
+	(title "set-functions [find-seq near dist disp]"))
 
 ([PyongyangSPb_Class80003] of  Rule
 
 	(lhs "?g (Goal status \"START\"\n	a ?a\n	b ?b)")
-	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n	points [ia])\n  (asser Path0 a pb\n	b pb\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb))")
+	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n	points [ia])\n  (asser Path0 a pb\n	b pb\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n                          paths []))")
 	(salience 0)
 	(title "p:Goal Start"))
 
 ([PyongyangSPb_Class90000] of  Directive
 
-	(source "(path/set-functions \n  path/find-sequels \n  path/near \n  path/display-path)\n(path/clear-paths)\n(path/set-max-paths 5)")
+	(source "(path/set-functions \n  path/find-sequels \n  path/near\n  path/distance\n  path/display-path)\n(path/clear-paths)\n(path/set-max-paths 5)")
 	(title "Set Path Functions and Goals"))
 
 ([PyongyangSPb_Class90001] of  Run
@@ -1062,10 +913,14 @@
 	(steps 1)
 	(title "OSMPathRun"))
 
+([PyongyangSPb_Class90002] of  CloFuncall
+
+	(source "(conj [] [:a :b])"))
+
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
-	(rhs "(let [pts (concat ?pts1 (reverse ?pts2))]\n  (path/F-display-path pts)\n  (asser Goal status \"REACH\"\n	points pts))\n(retract ?p1 ?p2)")
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n                          paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
+	(rhs "(let [pts (concat ?pts1 (reverse ?pts2))\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
 	(salience 0)
 	(title "p:Path1 Check"))
 

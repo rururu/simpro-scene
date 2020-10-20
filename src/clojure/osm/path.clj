@@ -9,6 +9,7 @@
 (def WAY-SUBTYPE "rail")
 (def RADIUS 0.005)
 (def BRANCHES 2)
+(def SEGMENTS (volatile! {}))
 (defn simple-dist [[y1 x1] [y2 x2]]
   (let [sx (Math/abs (- x1 x2))
        sy (Math/abs (- y1 y2))]
@@ -80,8 +81,13 @@
   (and (< (Math/abs (- (first v1) (first v2))) RADIUS)
           (< (Math/abs (- (second v1) (second v2))) RADIUS))))
 
-(defn display-path [pts]
-  (println pts))
+(defn distance [pts]
+  (if (and (seq pts) (vector? (first pts))) ;; list points
+  (if (empty? (rest pts))
+    0
+    (+ (simple-dist (first pts) (second pts))
+      (distance (rest pts))))
+  (apply + (map #(distance (@SEGMENTS %))  pts))))
 
 (defn display-detailed
   ([]
@@ -112,11 +118,7 @@
     (doseq [id ids]
       (display-detailed [id clr])))))
 
-(defn distance [pts]
-  (if (and (seq pts) (vector? (first pts))) ;; list points
-  (if (empty? (rest pts))
-    0
-    (+ (simple-dist (first pts) (second pts))
-      (distance (rest pts))))
-  (apply + (map #(distance (@SEGMENTS %))  pts))))
+(defn display-path [b pts e]
+  (println b pts e)
+(display-detailed [pts "FFFF6000"]))
 

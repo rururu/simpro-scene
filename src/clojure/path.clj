@@ -21,7 +21,6 @@
 (def F-near nil)
 (def F-display-path nil)
 (def MAX-PATHS 2)
-(def PATHS (volatile! []))
 (defn near [v1 v2]
   (= v1 v2))
 
@@ -37,9 +36,10 @@
 (defn display-path [pts]
   (println pts))
 
-(defn set-functions [find-seq near disp]
+(defn set-functions [find-seq near dist disp]
   (def F-find-sequels find-seq)
 (def F-near near)
+(def F-distance dist)
 (def F-display-path disp))
 
 (defn set-max-paths [m]
@@ -47,4 +47,7 @@
 
 (defn clear-paths []
   (def PATHS (volatile! [])))
+
+(defn distance [pts]
+  (count pts))
 
