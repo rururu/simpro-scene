@@ -1,4 +1,4 @@
-; Tue Oct 20 18:46:39 MSK 2020
+; Fri Oct 23 14:44:50 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -38,6 +38,14 @@
 		(create-accessor read-write))
 	(multislot paths
 		(type STRING)
+		(create-accessor read-write)))
+
+(defclass NamedDoc
+	(is-a Document)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Path+Onto

@@ -1,4 +1,4 @@
-; Tue Oct 20 18:46:39 MSK 2020
+; Fri Oct 23 14:44:50 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -373,7 +373,7 @@
 ([PyongyangSPb_Class140006] of  Rule
 
 	(lhs "(Work status \"OPTIMIZATION\")\n?g (Goal status \"REACH\"\n	paths ?phs)")
-	(rhs "(let [phs (map #(butlast (rest %)) ?phs)\n      b (ffirst ?phs)\n      e (last (first ?phs))\n      pth1 (first phs)\n      spt (loop [phs (rest phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path b spt e))")
+	(rhs "(let [pth1 (first ?phs)\n      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path spt))")
 	(salience 0)
 	(title "p:Goal Optimization"))
 
@@ -399,10 +399,40 @@
 	(lineType STRAIGHT)
 	(lineWidth "3"))
 
+([PyongyangSPb_Class160000] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
+
 ([PyongyangSPb_Class160001] of  CloFunction
 
 	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
 	(title "distance [pts]"))
+
+([PyongyangSPb_Class170000] of  Goal
+
+	(a "[\"A\" 3 1]")
+	(b "[\"Z\" 5 2]")
+	(status "START")
+	(title "A-Z"))
+
+([PyongyangSPb_Class170001] of  Rule
+
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs\n	(not (empty? ?phs)))\n(not Path1 a ?a)\n(not Path1 a ?b)")
+	(rhs "(modify ?g status \"REACH\")")
+	(salience -2)
+	(title "p:Goal Not Paths"))
+
+([PyongyangSPb_Class170002] of  NamedDoc
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/Subgoals.jpg\"></body>\n</html>")
+	(title "Subgoals"))
+
+([PyongyangSPb_Class190000] of  Rule
+
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts\n	(path/F-near ?b1 ?b))")
+	(rhs "(modify ?g paths [?pts])\n(retract ?p1)")
+	(salience 1)
+	(title "p:Goal Direct Check"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -422,6 +452,13 @@
 	(label "L2")
 	(lineType STRAIGHT)
 	(lineWidth "2"))
+
+([PyongyangSPb_Class200000] of  Goal
+
+	(a "[\"A\" 3 1]")
+	(b "[\"A1\" 4 2]")
+	(status "START")
+	(title "A-A1"))
 
 ([PyongyangSPb_Class20013] of  NavOb
 
@@ -444,6 +481,32 @@
 ([PyongyangSPb_Class20015] of  ObjectMission
 
 	(label "Pyongyang - Saint-Petersburg"))
+
+([PyongyangSPb_Class210000] of  Goal
+
+	(a "[\"A\" 3 1]")
+	(b "[\"B\" 2 2]")
+	(status "START")
+	(title "A-B"))
+
+([PyongyangSPb_Class210001] of  CloFuncall
+
+	(source "(conj [] [1 2 3])"))
+
+([PyongyangSPb_Class210002] of  CloFuncall
+
+	(source "(ru.rules/dr)"))
+
+([PyongyangSPb_Class220000] of  Goal
+
+	(a "[\"C1\" 2 4]")
+	(b "[\"C\" 1 3]")
+	(status "START")
+	(title "C1-C"))
+
+([PyongyangSPb_Class220001] of  Goal
+
+	(title "X-E"))
 
 ([PyongyangSPb_Class3] of  ShapeLayer
 
@@ -681,9 +744,10 @@
 	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
 	(source-project "Duplicate definition of class Clock was ignoredDuplicate definition of class MapObEvent was ignored"))
 
-([PyongyangSPb_Class40000] of  Document
+([PyongyangSPb_Class40000] of  NamedDoc
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/PathExtension.jpg\"></body>\n</html>"))
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/PathExtension.jpg\"></body>\n</html>")
+	(title "Path Extensions"))
 
 ([PyongyangSPb_Class40001] of  Goal
 
@@ -710,11 +774,13 @@
 		[ScenarioN_Class550032]
 		[PyongyangSPb_Class80003]
 		[PyongyangSPb_Class50000]
+		[PyongyangSPb_Class190000]
 		[PyongyangSPb_Class90003]
-		[PyongyangSPb_Class90004]
 		[PyongyangSPb_Class120000]
+		[PyongyangSPb_Class140006]
 		[PyongyangSPb_Class140005]
-		[PyongyangSPb_Class140006])
+		[PyongyangSPb_Class90004]
+		[PyongyangSPb_Class170001])
 	(templates
 		[Directive]
 		[Goal]
@@ -730,10 +796,16 @@
 	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
+	(document [PyongyangSPb_Class50001])
 	(facts
 		[PyongyangSPb_Class90000]
+		[PyongyangSPb_Class210000]
+		[PyongyangSPb_Class200000]
 		[PyongyangSPb_Class30001]
-		[PyongyangSPb_Class40001])
+		[PyongyangSPb_Class170000]
+		[PyongyangSPb_Class220000]
+		[PyongyangSPb_Class40001]
+		[PyongyangSPb_Class220001])
 	(mode run)
 	(rule-sets [PyongyangSPb_Class40016])
 	(steps 1)
@@ -768,17 +840,18 @@
 ([PyongyangSPb_Class50000] of  Rule
 
 	(lhs "?p (Path0 a ?a b ?b\n	points ?pts)")
-	(rhs "(let [sgs (path/F-find-sequels ?b)]\n  (println :FOUND (count sgs))\n  (doseq [[id p] sgs]\n    (when (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
+	(rhs "(let [sgs (path/F-find-sequels ?b)]\n  (println :FOUND (count sgs) ?pts (keys sgs))\n  (doseq [[id p] sgs]\n    (when (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
 	(salience 1)
 	(title "p:Path0 Expansion"))
 
-([PyongyangSPb_Class50001] of  Document
+([PyongyangSPb_Class50001] of  NamedDoc
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/FromGoal.jpg\"></body>\n</html>"))
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/FromGoal.jpg\"><br><img src=\"file:doc/images/Subgoals.jpg\"></body>\n</html>")
+	(title "From Goal"))
 
 ([PyongyangSPb_Class50002] of  CloVar
 
-	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}}")
+	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1] \"A1\" [4 2] \"A2\" [3.5 3]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1] \"C1\" [2 4] \"C2\" [1 4.5]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}\n  [4 2]{\"A\" [3 1] \"Z\" [5 2]}\n  [3.5 3]{\"A\" [3 1]}\n  [2 4]{\"C\" [1 3]}\n  [1 4.5]{\"C\" [1 3]}\n  [5 2] {\"A1\" [4 2]}}")
 	(title "SEQUELS"))
 
 ([PyongyangSPb_Class50010] of  CloProgram
@@ -889,7 +962,7 @@
 ([PyongyangSPb_Class80003] of  Rule
 
 	(lhs "?g (Goal status \"START\"\n	a ?a\n	b ?b)")
-	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n	points [ia])\n  (asser Path0 a pb\n	b pb\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n                          paths []))")
+	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n	points [ia])\n  (asser Path0 a pb\n	b pb\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n	paths []))")
 	(salience 0)
 	(title "p:Goal Start"))
 
@@ -919,10 +992,10 @@
 
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n                          paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
-	(rhs "(let [pts (concat ?pts1 (reverse ?pts2))\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
+	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
+	(rhs "(let [rv2 (reverse ?pts2)\n       rv2 (if (= (first rv2) (last ?pts1))\n               (rest rv2)\n               rv2)\n       pts (concat ?pts1 rv2)\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
 	(salience 0)
-	(title "p:Path1 Check"))
+	(title "p:Goal Check"))
 
 ([PyongyangSPb_Class90004] of  Rule
 

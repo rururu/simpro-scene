@@ -11,7 +11,7 @@
 	((s/include? ?facts ?ain)
 	 (not (empty? ?facts))))
 =>
-(println "Task (OR type) DONE:" ?tit)
+(if s/TRACE (println "Task (OR type) DONE:" ?tit))
 (modify ?t status "DONE")
 (retract ?a))
 
@@ -41,7 +41,7 @@
 	((s/include? ?facts ?ain)
 	 (= (count ?facts) 1)))
 =>
-(println "Task (AND type) DONE:" ?tit)
+(if s/TRACE (println "Task (AND type) DONE:" ?tit))
 (modify ?t status "DONE")
 (retract ?a))
 
@@ -72,7 +72,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "PutOnMap")
+(if s/TRACE (println "Action started:" ?tit "PutOnMap"))
 (let [obj (a/vv ?obj ?run)]
   (if (not (a/null? obj))
     (if-let [mo (ru.igis.omtab.OMT/getOrAdd obj)]
@@ -96,7 +96,7 @@
 	spd ?spd2
 	run ?run)
 =>
-(println "Action started:" ?tit "Arrive")
+(if s/TRACE (println "Action started:" ?tit "Arrive"))
 (if-let [mo (a/mapob-vv ?obj ?run)]
   (let [[lt ln] (if-let [obs (a/mapob-vv ?obs ?run)]
 	[(.getLatitude obs)
@@ -139,7 +139,7 @@
 	wait_subscenario ?wai
 	run ?run)
 =>
-(println "Action started:" ?tit "Subscenario")
+(if s/TRACE (println "Action started:" ?tit "Subscenario"))
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)]
   (if (not (a/null? sub))
@@ -184,7 +184,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "TimeMessage")
+(if s/TRACE (println "Action started:" ?tit "TimeMessage"))
 (a/time-message ?txt ?cat ?cls ?run)
 (retract ?tm)
 (s/start-next ?nacts ?pid ?ain ?run))
@@ -200,7 +200,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "PutOffMap")
+(if s/TRACE (println "Action started:" ?tit "PutOffMap"))
 (if-let [mo (a/mapob-vv ?obj ?run)]
   (ru.igis.omtab.OMT/removeMapOb mo (protege.core/is? ?del)))
 (if (seq ?mos)
@@ -218,7 +218,7 @@
 	run ?run
 	parent ?par)
 =>
-(println "Action started:" ?tit "GoRoute")
+(if s/TRACE (println "Action started:" ?tit "GoRoute"))
 (let [rou (a/vv ?rou ?run)
        mo (a/mapob-vv ?obj ?run)
        sps (a/vv ?spd ?run)]
@@ -257,7 +257,7 @@
 	((s/include? ?ftasks ?tin)
 	 (= (count ?ftasks) 1)))
 =>
-(println "Scenario DONE:" ?tit)
+(if s/TRACE (println "Scenario DONE:" ?tit))
 (modify ?s status "DONE")
 (retract ?t))
 
@@ -267,7 +267,7 @@
 	event ?evt
 	run ?run)
 =>
-(println "Action started:" ?tit "WaitEvent")
+(if s/TRACE (println "Action started:" ?tit "WaitEvent"))
 (if-let [evt (a/vv ?evt ?run)]
   (let [wid (gensym "Wte")]
     (-> (ru.rules/mk-frame evt)
@@ -320,7 +320,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "Calculus")
+(if s/TRACE (println "Action started:" ?tit "Calculus"))
 (let [bnd0 (d/embed-ctx-vars ?run)
        bnd1 (mapcat #(d/input-var-val % ?run) ?ida)
        bnd2 (d/parse-let-body (d/uncomment  ?src))
@@ -342,7 +342,7 @@
 	parent ?pid
 	run ?run)
 =>
-(println "Decision:" ?tit "EventDecision")
+(if s/TRACE (println "Decision:" ?tit "EventDecision"))
 (s/start-tasks-actions (d/event-decision ?evs ?vrs ?run) ?pid ?run)
 (retract ?ed))
 
@@ -359,7 +359,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println (str "Action started: " ?tit " LinkOnOff"))
+(if s/TRACE (println "Action started: " ?tit " LinkOnOff"))
 (let [obj (a/mapob-vv ?obj ?run)
        obs (a/mapob-vv ?obs ?run)
        col (a/vv ?col ?run)
@@ -382,7 +382,7 @@
 	run ?run
 	variants ?vrs)
 =>
-(println "Decision:" ?tit "UserDecision")
+(if s/TRACE (println "Decision:" ?tit "UserDecision"))
 (s/start-tasks-actions (d/user-decision ?vrs) ?pid ?run)
 (retract ?ud))
 
@@ -397,7 +397,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "RepeatActionOnOff")
+(if s/TRACE (println "Action started:" ?tit "RepeatActionOnOff"))
 (a/repeat-action-onoff ?ra ?col ?flg ?run)
 (retract ?rao)
 (s/start-next ?nacts ?pid ?ain ?run))
@@ -451,7 +451,7 @@
 	parent ?pid
 	run ?run)
 =>
-(println "Decision:" ?tit "GeneralDecision")
+(if s/TRACE (println "Decision:" ?tit "GeneralDecision"))
 (s/start-tasks-actions (d/general-decision ?ida ?cds ?vrs ?run) ?pid ?run)
 (retract ?gd))
 
@@ -470,7 +470,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit " Position")
+(if s/TRACE (println "Action started:" ?tit " Position"))
 (let [mob (a/mapob-vv ?obj ?run)
        mos (a/mapob-vv ?obs ?run)
        posa (a/vv ?posa ?run)
@@ -504,7 +504,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "PutOnPlace")
+(if s/TRACE (println "Action started:" ?tit "PutOnPlace"))
 (let [obj (a/vv ?obj ?run)
        obs (a/vv ?obs ?run)
        sts (if (or (a/null? obs) (and (a/null? obj) (empty? ?mos)))
@@ -551,7 +551,7 @@
 	url ?url
 	run ?run)
 =>
-(println "Action started:" ?tit "ObjectMessage")
+(if s/TRACE (println "Action started:" ?tit "ObjectMessage"))
 (modify ?om status (a/object-message ?tit ?obj ?txt ?url ?cat ?cls ?run)))
 
 (a:ObjectMessageDone 0
@@ -602,7 +602,7 @@
 	next_actions ?nacts
 	(= (protege.core/typ (a/vv ?act ?run)) "Task"))
 =>
-(println "Action started:" ?tit "Break")
+(if s/TRACE (println "Action started:" ?tit "Break"))
 (if-let [act (a/vv ?act ?run)]
   (do (a/break-task act ?run)
     (retract ?brk)
@@ -622,7 +622,7 @@
 	    (not= (protege.core/typ act) "Scenario")
 	    (not= (protege.core/typ act) "MissionScenario"))))
 =>
-(println "Action started:" ?tit "Break")
+(if s/TRACE (println "Action started:" ?tit "Break"))
 (if-let [act (a/vv ?act ?run)]
   (do (a/break-action  act ?run)
     (retract ?brk)
@@ -647,7 +647,7 @@
 	((= (.hashCode ?run) ?obs)
 	 (= (.hashCode ?run2) ?obj)))
 =>
-(println "Action started:" ?tit "Break")
+(if s/TRACE (println "Action started:" ?tit "Break"))
 (if-let [act (a/vv ?act ?run)]
   (do 
     (a/break-scenario act ?run2)
@@ -667,7 +667,7 @@
 	  (or (= (protege.core/typ act) "Scenario")
 	    (= (protege.core/typ act) "MissionScenario"))))
 =>
-(println "Action started:" ?tit "Break")
+(if s/TRACE (println "Action started:" ?tit "Break"))
 (if-let [act (a/vv ?act ?run)]
   (do 
     (a/break-scenario act ?run)
@@ -706,7 +706,7 @@
 	run ?run)
 (Clock time ?t)
 =>
-(println "Action started:" ?tit "Search")
+(if s/TRACE (println "Action started:" ?tit "Search"))
 (modify ?sea status "OUTSIDE" 
 	N (a/to-be ?t (a/vv ?tim ?run))))
 
@@ -785,7 +785,7 @@
 	values ?vals
 	run ?run)
 =>
-(println "Action started:" ?tit "PutObAttributes")
+(if s/TRACE (println "Action started:" ?tit "PutObAttributes"))
 (modify ?poa status (a/put-ob-attributes ?obj ?atrs ?vals ?run)))
 
 (a:PutObAttributesDone 0
@@ -812,7 +812,7 @@
 	((s/include? ?ftasks ?tin)
 	 (not (empty? ?ftasks))))
 =>
-(println "Scenario DONE:" ?tit)
+(if s/TRACE (println "Scenario DONE:" ?tit))
 (modify ?s status "DONE")
 (retract ?t))
 
@@ -849,7 +849,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "SetCenter")
+(if s/TRACE (println "Action started:" ?tit "SetCenter"))
 (let [lat (a/vv ?lat ?run)
        lon (a/vv ?lon ?run)]
   (if (and (a/worth? lat) (a/worth? lon))
@@ -873,7 +873,7 @@
 	run ?run
 	parent ?par)
 =>
-(println "Action started:" ?tit "GoLayerRoute")
+(if s/TRACE (println "Action started:" ?tit "GoLayerRoute"))
 (let [mo (a/mapob-vv ?obj ?run)
        lay (a/vv ?lay ?run)
        num (a/vv ?num ?run)
@@ -911,7 +911,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "AttributeMessage")
+(if s/TRACE (println "Action started:" ?tit "AttributeMessage"))
 (a/attribute-message ?txt ?obj ?atr ?cat ?cls ?run)
 (retract ?am)
 (s/start-next ?nacts ?pid ?ain ?run))
@@ -947,7 +947,7 @@
 	label ?lab
 	run ?run)
 =>
-(println "Action started:" ?tit "Show")
+(if s/TRACE (println "Action started:" ?tit "Show"))
 (modify ?dis status (a/show ?tit ?thi ?txt ?lab ?run)))
 
 (a:ComputeStart 0
@@ -956,7 +956,7 @@
 	computation ?com 
 	run ?run)
 =>
-(println "Action started:" ?tit "Compute")
+(if s/TRACE (println "Action started:" ?tit "Compute"))
 (modify ?cmp status (a/compute ?com ?run)))
 
 (a:ComputeDone 0
@@ -975,7 +975,7 @@
 	run ?run
 	initial_actions ?iacts)
 =>
-(println "Task started:" ?tit)
+(if s/TRACE (println "Task started:" ?tit))
 (let [tid (gensym "Tsk")]
   (modify ?t id tid
 	status "DOING")
@@ -992,7 +992,7 @@
 	new_altitude ?alt
 	run ?run)
 =>
-(println "Action started:" ?tit "PutObProperties")
+(if s/TRACE (println "Action started:" ?tit "PutObProperties"))
 (modify ?pop status (a/put-ob-properties ?obj ?lat ?lon ?crs ?spd ?alt ?run)))
 
 (s:StartScenario 0
@@ -1002,7 +1002,7 @@
 	run ?run
 	initial_tasks ?itasks)
 =>
-(println "Scenario started:" ?tit)
+(if s/TRACE (println "Scenario started:" ?tit))
 (modify ?s status "DOING")
 (s/start-tasks-actions ?itasks ?sid ?run))
 
@@ -1016,7 +1016,7 @@
 	run ?run
 	parent ?par)
 =>
-(println "Action started:" ?tit "GoRoad")
+(if s/TRACE (println "Action started:" ?tit "GoRoad"))
 (let [mo (a/mapob-vv ?obj ?run)
        roa (a/vv ?road ?run)
        dir (a/vv ?dir ?run)
@@ -1057,7 +1057,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "AddResource")
+(if s/TRACE (println "Action started:" ?tit "AddResource"))
 (let [mo (a/mapob-vv ?obj ?run)
        thi (a/vv ?thi ?run)
        col (concat ?col (if (not (a/null? thi)) [thi]))]
@@ -1090,7 +1090,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "CreateByModel")
+(if s/TRACE (println "Action started:" ?tit "CreateByModel"))
 (a/create-by-model ?mod ?obj ?run)
 (retract ?cbm)
 (s/start-next ?nacts ?pid ?pid ?run))
@@ -1177,7 +1177,7 @@
 	next_tasks ?ntasks
 	(empty? ?jtasks))
 =>
-(println "Join DONE:" ?tit)
+(if s/TRACE (println "Join DONE:" ?tit))
 (retract ?j)
 (s/start-tasks-actions ?ntasks ?pid ?run))
 
@@ -1190,7 +1190,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "SetScale")
+(if s/TRACE (println "Action started:" ?tit "SetScale"))
 (let [scl (a/vv ?scl ?run)]
   (if (a/worth? scl)
     (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)
@@ -1207,7 +1207,7 @@
 	run ?run)
 (not FlightView)
 =>
-(println "Action started:" ?tit "FlightView")
+(if s/TRACE (println "Action started:" ?tit "FlightView"))
 (let [mo (a/mapob-vv ?obj ?run)
        scl (a/vv ?scl ?run)]
   (if (and (some? mo) (a/worth? scl))
@@ -1257,7 +1257,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "Camera")
+(if s/TRACE (println "Action started:" ?tit "Camera"))
 (if-let [mo (a/mapob-vv ?obj ?run)]
   (let [vie (a/vv ?vie ?run)
          pit (a/vv ?pit ?run)
@@ -1282,7 +1282,7 @@
 	signal ?sig
 	run ?run)
 =>
-(println (str "Action started: " ?tit " SendSignal"))
+(if s/TRACE (println "Action started: " ?tit " SendSignal"))
 (let [frm (a/mapob-vv ?frm ?run)
        to (a/mapob-vv ?to ?run)
        sig (a/vv ?sig ?run)]
@@ -1312,7 +1312,7 @@
 	((= (a/mapob-vv ?fr1 ?pro1 ?run1) ?fr2)
 	 (= (a/mapob-vv ?to1 ?pro1 ?run1) ?to2)))
 =>
-(println (str "Decision: " ?tit " SignalControl"))
+(if s/TRACE (println "Decision: " ?tit " SignalControl"))
 (loop [sts ?sts vrs ?vrs]
   (if (seq sts)
       (if (= (first sts) ?sig)
@@ -1345,7 +1345,7 @@
 	task_scheme ?tsc
 	(empty? ?tsc))
 =>
-(println "Empty Task DONE:" ?tit)
+(if s/TRACE (println "Empty Task DONE:" ?tit))
 (modify ?ts status "DONE"))
 
 (a:DeleteResource 0
@@ -1358,7 +1358,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "DeleteResource")
+(if s/TRACE (println "Action started:" ?tit "DeleteResource"))
 (let [mo (a/mapob-vv ?obj ?run)
        atr (protege.core/sv ?res "title")
        rr (.getAttribute mo atr)]
@@ -1378,7 +1378,7 @@
 	run ?run)
 (Clock time ?t)
 =>
-(println "Action started:" ?tit  "Delay")
+(if s/TRACE (println "Action started:" ?tit  "Delay"))
 (if-let [del (a/vv ?del ?run)]
   (modify ?d status "REPEAT" 
 	N (a/to-be ?t del))
@@ -1394,7 +1394,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "AssertObjects")
+(if s/TRACE (println "Action started:" ?tit "AssertObjects"))
 (let [obj (a/vv ?obj ?run)
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (a/assert-objects inss ?run))
@@ -1412,7 +1412,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "AttributesToVariables")
+(if s/TRACE (println "Action started:" ?tit "AttributesToVariables"))
 (loop [oo ?obs aa ?ats vv ?vrs]
   (if (and (seq oo) (seq aa) (seq vv))
     (if-let [mo (a/mapob-vv (first oo) ?run)]
@@ -1428,7 +1428,7 @@
 	time ?tim
 	run ?run)
 =>
-(println "Action started:" ?tit "WaitModelClock")
+(if s/TRACE (println "Action started:" ?tit "WaitModelClock"))
 (if-let [tim (a/vv ?tim ?run)]
   (modify ?wms status "REPEAT" 
 	N (a/op-time-sec tim))
@@ -1443,7 +1443,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "SetModelClock")
+(if s/TRACE (println "Action started:" ?tit "SetModelClock"))
 (let [tim (a/vv ?tim ?run)
       sec (a/op-time-sec tim)]
     (ru.igis.omtab.Clock/setClock (long (* 1000 sec))))
@@ -1459,25 +1459,30 @@
 	seed ?sed
                       number ?num
 	rename ?ren
+	rename-slot ?rns
 	parent ?pid
 	instance ?ain
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "LoadResource")
+(if s/TRACE (println "Action started:" ?tit "LoadResource"))
 (let [mo (a/mapob-vv ?obj ?run)
        sed (a/vv ?sed ?run)
        num (a/vv ?num ?run)
        rr (and mo
             (or (seq ?mos) 
-               (and sed num
-                 (let [nms (if (protege.core/sv sed "label") "label" "title")
+               (and sed num (a/worth? ?rns)
+                 (let [nms (.getName ?rns)
                         nam (protege.core/sv sed nms)
+                        stp (protege.core/typ sed)
                         rng (range 1 (inc (read-string num)))]
-                   (for [i rng] (let [c (.shallowCopy sed nil nil)]
-	              (if (protege.core/is? ?ren)
-	                (protege.core/ssv c nms (str nam i))) 
-                                      c))))))]
+                   (for [i rng] 
+                     (let [nsv (str nam i)
+                            c (or (protege.core/fifos stp nms nsv)
+                                 (.shallowCopy sed nil nil))]
+                       (if (protege.core/is? ?ren)
+	   (protege.core/ssv c nms nsv)) 
+                       c))))))]
   (if (seq rr)
     (do (.putAttribute mo (protege.core/sv ?res "title") (vec (cons 0 rr)))
       (retract ?lr)
@@ -1494,7 +1499,7 @@
 	parent ?pid
 	run ?run)
 =>
-(println "Decision:" ?tit "ODecision")
+(if s/TRACE (println "Decision:" ?tit "ODecision"))
 (s/start-tasks-actions (d/o-decision ?ida ?bef ?chs ?vrs ?run) ?pid ?run)
 (retract ?od))
 
@@ -1520,7 +1525,7 @@
 	run ?run
 	variants ?vrs)
 =>
-(println "Decision:" ?tit "IfActivityStatus")
+(if s/TRACE (println "Decision:" ?tit "IfActivityStatus"))
 (s/start-tasks-actions (d/if-activity-status ?ats ?sts ?vrs ?run) ?pid ?run)
 (retract ?ias))
 
@@ -1534,7 +1539,7 @@
 	url ?url
 	run ?run)
 =>
-(println "Action started:" ?tit "MovingObjectMessage")
+(if s/TRACE (println "Action started:" ?tit "MovingObjectMessage"))
 (modify ?mom status (a/moving-object-message ?tit ?obj ?txt ?url ?cat ?cls ?run)))
 
 (a:PositionObserverManeuver -1
@@ -1568,7 +1573,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "UseResource")
+(if s/TRACE (println "Action started:" ?tit "UseResource"))
 (let [mo (a/mapob-vv ?obj ?run)
        atr (protege.core/sv ?res "title")
        [idx & rr] (.getAttribute mo atr)]
@@ -1602,7 +1607,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "ArriveIntoPolygon")
+(if s/TRACE (println "Action started:" ?tit "ArriveIntoPolygon"))
 (if-let [pol (a/vv ?pol ?run)]
   (let [lat (protege.core/sv pol "latitude")
         lon (protege.core/sv pol "longitude")
@@ -1632,7 +1637,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "StartScenarios")
+(if s/TRACE (println "Action started:" ?tit "StartScenarios"))
 (loop [ss ?scs dd ?dfs]
   (when (seq ss)
     (s/start-scenario (first ss) (if (= (first dd) true) {}))
@@ -1702,7 +1707,7 @@
 	run ?run)
 (Clock time ?t)
 =>
-(println "Action started:" ?tit "VerticalControl")
+(if s/TRACE (println "Action started:" ?tit "VerticalControl"))
 (if-let [mo (a/mapob-vv ?obj ?run)]
   (do (.putAttribute mo "VC_TYPE" ?vct)
     (condp = ?vct
@@ -1735,7 +1740,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "SetTimeScale")
+(if s/TRACE (println "Action started:" ?tit "SetTimeScale"))
 (if-let [scl (a/vv ?scl ?run)]
   (ru.igis.omtab.OMT/setTimeScale scl))
 (retract ?sts)
@@ -1753,7 +1758,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "ConfirmPosition")
+(if s/TRACE (println "Action started:" ?tit "ConfirmPosition"))
 (let [obj (a/vv ?obj ?run)
        lat (a/degmin-to-deg ?lat ?run)
        lon (a/degmin-to-deg ?lon ?run)
@@ -1802,7 +1807,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "CircleScan")
+(if s/TRACE (println "Action started:" ?tit "CircleScan"))
 (let [obj (a/vv ?obj ?run)
        det (a/vv ?det ?run)
        cli (a/vv ?cli ?run)
@@ -1857,7 +1862,7 @@
 	((some #{?sta} ?sts)
 	 (some #{?obj} ?obs)))
 =>
-(println "Decision:" ?tit "CatchException status WAIT")
+(if s/TRACE (println "Decision:" ?tit "CatchException status WAIT"))
 (loop [oo ?obs ss ?sts vv ?vrs]
   (if (seq oo)
     (if (and (= (first oo) ?obj) (= (first ss) ?sta))
@@ -1875,7 +1880,7 @@
 	run ?run
 	next_actions ?nacts)
 =>
-(println "Action started:" ?tit "RetractObjects")
+(if s/TRACE (println "Action started:" ?tit "RetractObjects"))
 (let [obj (a/vv ?obj ?run)
       inss (if (a/null? obj) ?col (cons obj ?col))]
   (ru.rules/retract-instances inss))
@@ -1912,7 +1917,7 @@
 	run ?run)
 (Clock time ?t)
 =>
-(println "Action started:" ?tit "PolyMoving")
+(if s/TRACE (println "Action started:" ?tit "PolyMoving"))
 (let [mob (a/mapob-vv ?obj ?run)
        obs (a/vv ?obs ?run)
        tim (a/vv ?tim ?run)]
@@ -1931,7 +1936,7 @@
 	run ?run)
 (Clock time ?t)
 =>
-(println "Action started:" ?tit "PolyMovingN")
+(if s/TRACE (println "Action started:" ?tit "PolyMovingN"))
 (let [tim (a/vv ?tim ?run)]
   (if (or (empty? ?mpb)
             (a/null? tim)
@@ -1970,7 +1975,7 @@
 =>
 (retract ?c2))
 
-(sim:ExecuteDirective 0
+(sim:ExecuteDirective 100
 ?dr (Directive source ?src)
 =>
 (load-string ?src)
@@ -1979,7 +1984,6 @@
 (sim:RetractMapObEvent -10
 ?moe (MapObEvent status ?sts)
 =>
-;;(println :MapObEvent ?sts)
 (retract ?moe))
 
 (a:MovingTraceRepeat 0
@@ -2035,7 +2039,7 @@
 	next_actions ?nacts
 	run ?run)
 =>
-(println "Action started:" ?tit "MovingTrace")
+(if s/TRACE (println "Action started:" ?tit "MovingTrace"))
 (let [mo (a/mapob-vv ?obj ?run)
       pol (a/vv ?pol ?run)]
   (if (and (some? mo) (not (a/null? pol)))
@@ -2067,7 +2071,7 @@
 	parent ?pid
 	run ?run)
 =>
-(println "Decision:" ?tit "TDecision")
+(if s/TRACE (println "Decision:" ?tit "TDecision"))
 (s/start-tasks-actions (d/t-decision ?scr ?vrs ?run) ?pid ?run)
 (retract ?td))
 
@@ -2079,7 +2083,7 @@
 	run ?run
 	variants ?vrs)
 =>
-(println "Decision:" ?tit "Hard")
+(if s/TRACE (println "Decision:" ?tit "Hard"))
 (s/start-tasks-actions [((vec ?vrs) (read-string (a/vv ?num ?run)))] ?pid ?run)
 (retract ?hd))
 
@@ -2095,7 +2099,7 @@
 	route ?rte
 	run ?run)
 =>
-(println "Action started:" ?tit "Comb")
+(if s/TRACE (println "Action started:" ?tit "Comb"))
 (let [obj (a/mapob-vv ?obj ?run)
        pol (a/mapob-vv ?pol ?run)
        alg (a/vv ?alg ?run)
@@ -2107,13 +2111,13 @@
   (if (every? some? [obj pol alg  rng spd tim rte])
     (let [hrs (/ (a/to-be tim) 3600)]
       (algo.exe/do-algorithm alg
-	{"район" (.getInstance pol)
-	 "объект" (.getInstance obj)
-	 "Наше-место" [(.getLatitude obj) (.getLongitude obj)]
-	 "маршрут" rte
-	 "Добн" (read-string rng)
-	 "Скорость" (read-string spd)
-	 "Время" hrs})
+	{"polygon" (.getInstance pol)
+	 "object" (.getInstance obj)
+	 "coordinates" [(.getLatitude obj) (.getLongitude obj)]
+	 "route" rte
+	 "detection-distance" (read-string rng)
+	 "speed" (read-string spd)
+	 "time" hrs})
       (modify ?cb status "REPEAT"))
     (modify ?cb status "FAILED"))))
 
@@ -2165,7 +2169,7 @@
 	wait_subscenario ?wai
 	run ?run)
 =>
-(println "Action started:" ?tit "Mission")
+(if s/TRACE (println "Action started:" ?tit "Mission"))
 (let [sub (a/vv ?sub ?run)
        ctx (a/vv ?ctx ?run)
        pla (a/vv ?pla ?run)
@@ -2219,7 +2223,7 @@
 ?woa (WaitObAttributes status "START"
 	title ?tit)
 =>
-(println "Action started:" ?tit "WaitObAttributes")
+(if s/TRACE (println "Action started:" ?tit "WaitObAttributes"))
 (modify ?woa status "REPEAT"))
 
 (a:WaitObAttributesRepeat 0
@@ -2248,367 +2252,294 @@
       (if (= ?cnv 'AND)
         (modify ?woa status "DONE")) ) )))
 
-(mig:Migration 0
-(Migration phases ?phs)
-?cre (Creature status "END"
-	action ?act
-	area ?are
-	addition ?add
-	age ?age)
+(sim:RetractMapObEvent -10
+?moe (MapObEvent status ?sts
+	object ?obj)
 =>
-(let [[act are add ag] 
-          (loop [[cp np :as ps] ?phs]
-            (if (and cp np)
-              (if (= [?act ?are ?add ?age] cp) 
-                np
-                (recur (rest ps)))
-              ["DONE"]))]
-  (modify ?cre status "BEGIN"
-	action act
-	area are
-	addition add
-	age ag)))
+;;(println :MapObEvent ?sts ?obj)
+(retract ?moe))
 
-(mig:Go to river 0
-(Walk action ?act area ?are
-	walk-step ?wst
-	walk-steps ?wss)
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	walk-speed ?wsp
-	waypoints ?wps
-	age ?age
-	addition ?add
-	area ?are	
-	action "Go to river")
-(Clock time ?t)
+(sim:RetractSecondClock 10
+?c1 (Clock time ?t1)
+?c2 (Clock time ?t2
+	(< ?t2 ?t1))
 =>
-(let [riv (cesium.mig/river-map ?add)
-       head (riv :head)
-       estuary (riv :estuary)
-       from (last ?wps)
-       to (if (< (cesium.mig/simple-dist from head) (cesium.mig/simple-dist from estuary))
-             head
-             estuary)
-       wps [from to]
-       loo (cesium.mig/look ?age ?loo)
-       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
-  (println ?id ["Go to river" ?are ?add] :REPEAT elt)
-  (modify ?cre N (+ ?t elt)
-	look loo
-	waypoints [(last wps)]
-	status "REPEAT")))
+(retract ?c2))
 
-(mig:Walk In 0
-(Walk action ?act area ?are
-	walk-step ?wst
-	walk-steps ?wss
-	walk-routes ?wrs)
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	walk-speed ?wsp
-	age ?age
-	area ?are	
-	action ?act
-	[(= ?act "Walk in")
-                       (= ?act "Last walk in")])
-(Clock time ?t)
+(sim:Start Simulation 0
+(CZMLGenerator)
+(not Clock)
 =>
-(let [wri (rand-nth ?wrs)
-       wps (cesium.mig/walk-route-waypoints wri)
-       start (last wps)
-       loo (cesium.mig/look ?age ?loo)
-       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
-  (println ?id [?act ?are] :REPEAT elt)
-  (modify ?cre N (+ ?t elt)
-	look loo
-	waypoints wps
-	status "REPEAT")))
+(sim/start-sim))
 
-(mig:Init Migration 1
-?mig (Migration phases ?phs
-	(not (vector? (first ?phs))))
+(czm:CZML Navob Leg Generation 1
+(CZMLGenerator delay ?del
+	visibility ?vis)
+(Onboard label ?onb)
+?cs (CZMLSpan time ?tim
+	object ?obj
+	options ?ops)
+(Clock time ?t ((number? ?tim) (> ?t ?tim)))
 =>
-(modify ?mig phases
-  (vec (map #(vector (protege.core/sv % "action")
-                                 (protege.core/sv % "area")
-                                 (protege.core/sv % "addition")
-                                 (protege.core/sv % "age"))
-                   ?phs))))
+(if-let [omo (ru.igis.omtab.OMT/getMapOb ?onb)]
+  (if-let [nmo (ru.igis.omtab.OMT/getMapOb ?obj)]
+    (let [dis (.distanceNM omo nmo)]
+      (if (< dis ?vis)
+        (cesium.core/navob-leg 
+	nmo
+	dis
+	(+ ?del 2)
+	?ops))
+      (modify ?cs time (+ ?t ?del))))))
 
-(sim:AdjustCZClockStart 0
-?acc (Cesium status "START"
-	time ?t1)
-(Clock time ?t2)
+(czm:CZMLSpan Init 0
+?cs (CZMLSpan time ?tim
+	object ?obj
+	options ?ops
+	(string? ?ops))
 =>
-(when  (some? cesium.server/SERV)
-  (modify ?acc status "REPEAT"
-	N (+ ?t2 ?t1))))
+(modify ?cs object (protege.core/sv ?obj "label")
+	options (read-string ?ops)
+	time (read-string ?tim)))
 
-(sim:AdjustCZClockRepeat 0
-?acc (Cesium status "REPEAT"
-	time-scale ?scl
-	time ?t1
-	N ?n)
-(Clock time ?t2 (> ?t2 ?n))
+(czm:Onboard Init 0
+?onb (Onboard time ?tim
+	(string? ?tim))
 =>
-(when (some? cesium.server/SERV)
-  (let [[clk scl] (cesium.mig/clock-scale)]
-    (if (not= ?scl scl)
-      (do (cesium.mig/model-clock clk scl)
-        (modify ?acc time-scale scl
-	N (+ ?t2 ?t1)))
-      (modify ?acc N (+ ?t2 ?t1))))))
+(modify ?onb time (read-string ?tim)))
 
-(mig:Repeat 0
-?cre (Creature status "REPEAT"
-	N ?n)
-(Clock time ?t (> ?t ?n))
+(czm:Check Onboard 0
+(CZMLGenerator delay ?del)
+?onb (Onboard label ?lab
+	time ?tim
+	(number? ?tim))
+(Clock time ?t (> ?t ?tim))
 =>
-(modify ?cre status "END"))
+(let [onb (deref pro.server/ONBOARD)
+       fut (+ ?t ?del)]
+  (if (not= onb ?lab)
+    (modify ?onb time fut label onb)
+    (modify ?onb time fut))))
 
-(sim:CesiumCameraPosition 0
-?cc (CesiumCamera status "START" 
-	latitude ?lat 
-	longitude ?lon 
-	height ?hgt 
-	heading ?hdg
-	pitch ?ptc
-	roll ?rol)
+(p:All Goals Reach 0
+(Goal status "REACH")
+(not Goal status "RUN")
+(not Subgoal status "RUN")
 =>
-(when (some? cesium.server/SERV)
-  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)
-  (modify ?cc status "DONE")))
+(println :ALL-GOALS-REACHED)
+(asser Work status "OPTIMIZATION"))
 
-(mig:Walk backward 0
-(Walk action ?act area ?are
-	walk-step ?wst
-	walk-steps ?wss)
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	walk-speed ?wsp
-	waypoints ?wps
-	age ?age
-	area ?are	
-	action "Walk backward")
-(Clock time ?t)
+(p:All Goals Optimized 0
+(Work status "OPTIMIZATION")
+(Goal status "OPTI")
+(not Goal status "REACH")
+(not Subgoal status "REACH")
 =>
-(let [wps (reverse ?wps)
-       loo (cesium.mig/look ?age ?loo)
-       [elt wps] (cesium.mig/go-random-by-waypoints ?id loo ?wsp wps 1000 ?wss ?wst)]
-  (println ?id ["Walk backward" ?are] :REPEAT elt)
-  (modify ?cre N (+ ?t elt)
-	look loo
-	waypoints [(last wps)]
-	status "REPEAT")))
+(rete.core/problem-solved)
+(println :ALL-GOALS-OPTIMIZED))
 
-(mig:Go down river 0
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	down-speed ?spd
-	age ?age
-	area ?are
-	action "Go down")
-(Clock time ?t)
+(p:Goal Optimization 0
+(Work status "OPTIMIZATION")
+?g (Goal status "REACH"
+	paths ?phs)
 =>
-(let [riv (cesium.mig/river-map ?are)
-       loo (cesium.mig/look ?age ?loo)
-       [elt wps] (cesium.mig/go-river ?id ?loo ?spd riv :down)]
-  (println ?id  ["Going down" ?are] :REPEAT elt)
-  (modify ?cre N (+ ?t elt)
-	look loo
-	waypoints wps
-	status "REPEAT")))
+(println :O :PHS ?phs)
+(let [pth1 (first ?phs)
+      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]
+                (if (empty? phs)
+                  pth
+                  (let [dist (path/F-distance (first phs))]
+                    (if (< dist mind)
+                      (recur (rest phs) dist (first phs))
+                      (recur (rest phs) mind pth)))))]
+  (modify ?g status "OPTI"
+	paths [spt])
+  (path/F-display-path spt)))
 
-(mig:Go up river 0
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	up-speed ?spd
-	age ?age
-	area ?are
-	action "Go up")
-(Clock time ?t)
+(p:Goal Not Paths -2
+?g (Goal status "RUN"
+	a ?a
+	b ?b
+	paths ?phs
+	(not (empty? ?phs)))
+(not Path1 a ?a)
+(not Path1 a ?b)
 =>
-(let [riv (cesium.mig/river-map ?are)
-       loo (cesium.mig/look ?age ?loo)
-       [elt wps] (cesium.mig/go-river ?id loo ?spd riv :up)]
-  (println ?id  ["Going up" ?are] :REPEAT elt)
-  (modify ?cre N (+ ?t elt)
-	look loo
-	waypoints wps
-	status "REPEAT")))
+(println :GNP :PHS ?phs)
+(modify ?g status "REACH"))
 
-(mig:Birth 1
-?cre (Creature status "BEGIN"
-	id ?id
-	look ?loo
-	age ?age
-	down-speed ?dsp
-	up-speed ?usp
-	walk-speed ?wsp
-	waypoints ?wps
-	spawn ?spw
-	addition ?add
-	area ?are 
-	action ?act
-                      (= ?act "Birth in"))
-(Clock time ?t)
+(p:Subgoal Start 0
+?sg (Subgoal status "START"
+	a ?a
+	b ?b)
 =>
-(println ?id  "Birth" ?spw :REPEAT 4)
-(retract ?cre)
-(dotimes [i ?spw]
-  (asser Creature N (+ ?t 4)
-	id (name (gensym ?id))
-	birthtime ?t
-	age ?age
-	look (read-string ?loo)
-	down-speed ?dsp
-	up-speed ?usp
-	walk-speed ?wsp
-	waypoints (if (string? ?wps) (read-string ?wps) ?wps)
-	spawn ?spw
-	addition ?add
-	area ?are
-	action ?act
-	status "REPEAT"))))
+(let [[ia & pa] (read-string ?a)
+       [ib & pb] (read-string ?b)]
+  (asser Path0 a pb
+	b pb
+	points [ib])
+  (modify ?sg status "RUN"
+	a pa
+	b pb
+	paths [])))
 
-(mig:Spawn 0
-?cre (Creature status "BEGIN"
-	id ?id
-	waypoints ?wps
-	action "Spawn in")
-(Clock time ?t)
+(p:Subgoal Check 0
+?sg (Subgoal status "RUN"
+	a ?a
+	b ?b
+	paths ?phs)
+?p1 (Path1 a ?a
+	b ?b1
+	points ?pts1)
+?p2 (Path1 a ?b
+	b ?b2
+	points ?pts2
+	(path/F-near ?b1 ?b2))
 =>
-(println ?id "Spawn in")
-(when-let [cri (protege.core/fifos "Creature" "id" (str (first ?id)))]
-  (protege.core/ssv cri "waypoints" (str[(vec (last ?wps))]))
-  (println ?id  "Spawn" ?id)
-  (ru.rules/assert-instances [cri])
-  (retract ?cre)))
+(println :SC :PTS1 ?pts1 :PTS2 ?pts2 :B1 ?b1 :B2 ?b2)
+(let [pts (concat ?pts1 (reverse ?pts2))
+       phs (conj ?phs pts)
+       sts (if (= (count phs) path/MAX-PATHS)
+                                         (do (println phs) "REACH")
+                                         "RUN")]
+  (modify ?sg status sts
+	paths phs))
+(retract ?p1 ?p2))
 
-(smi:GoRandomStart 0
-?gor (GoRandom status "START"
-	title ?tit
-	label ?lab
-	latitude ?lat
-	longitude ?lon
-	random-direction ?rdr
-	random-step ?rst
-	random-speed ?rsp
-	area ?ara
-	limit ?lim
-	look ?lok
-	factor ?fac
-	run ?run)
-(Clock time ?t)
+(p:Subgoal Optimization 0
+(Work status "OPTIMIZATION")
+?sg (Subgoal status "REACH"
+	paths ?phs)
 =>
-(println "Action started:" ?tit "GoRandom")
-(let [lab (a/vv ?lab ?run)
-        lat (read-string (a/vv ?lat ?run))
-        lon (read-string (a/vv ?lon ?run))
-        rdr (read-string (a/vv ?rdr ?run))
-        rst (read-string (a/vv ?rst ?run))
-        rsp (read-string (a/vv ?rsp ?run))
-        lok (read-string (a/vv ?lok ?run))
-        fac (read-string (a/vv ?fac ?run))
-        ara (cesium.mig/init-area (a/vv ?ara ?run))
-        lim (a/to-be ?t (a/vv ?lim ?run))
-        rst (cons (first rst) (map #(/ % 60) (rest rst)))
-        nrw {:finish [lon lat] :start [lon lat] :time 0}]
-  (vswap! cesium.mig/TRACES assoc lab [])
-  (modify ?gor satatus "REPEAT"
-	label lab
-	next-random-way nrw
-	random-direction rdr
-	random-step rst
-	random-speed rsp
-	area ara
-	limit lim
-	factor fac
-	look lok
-	N ?t)))
+(let [pth1 (first ?phs)
+      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]
+                (if (empty? phs)
+                  pth
+                  (let [dist (path/F-distance (first phs))]
+                    (if (< dist mind)
+                      (recur (rest phs) dist (first phs))
+                      (recur (rest phs) mind pth)))))]
+  (modify ?sg status "OPTI"
+	paths [spt])
+  (path/F-display-path spt)))
 
-(smi:GoRandomRepeat 0
-?gor (GoRandom status "REPEAT"
-	label ?lab
-	next-random-way ?nrw
-	random-direction ?rdr
-	random-step ?rst
-	random-speed ?rsp
-	area ?ara
-	limit ?lim
-	look ?lok
-	factor ?fac
-	N ?n
-	parent ?pid
-	instance ?ain
-	run ?run
-	next_actions ?nacts)
-(Clock time ?t (> ?t ?n))
+(p:Subgoal Not Paths -2
+?sg (Subgoal status "RUN"
+	a ?a
+	b ?b
+	paths ?phs
+	(not (empty? ?phs)))
+(not Path1 a ?a)
+(not Path1 a ?b)
 =>
-(if (< ?t ?lim)
-  (let [nxt (+ ?t (:time ?nrw))
-         nrw (cesium.mig/next-random-way ?lab ?lok (:finish ?nrw) ?rdr ?rst ?rsp ?ara ?fac nxt)]
-    (if-let [czml (:czml ?nrw)]
-          (cesium.server/send-czml czml))
-    (modify ?gor next-random-way nrw
-	N nxt))
-  (do (retract ?gor)
-    (s/start-next ?nacts ?pid ?ain ?run))))
+(modify ?sg status "REACH"))
 
-(smi:GoWaypointsStart 0
-?gow (GoWaypoints status "START"
-	title ?tit
-	label ?lab
-	random-speed ?rsp
-	waypoints ?wps
-	look ?lok
-	number ?num
-	run ?run)
-(Clock time ?t)
+(p:All Subgoals Reach 0
+(Subgoal status "REACH")
+(not Subgoal status "RUN")
+(not Goal status "RUN")
 =>
-(println "Action started:" ?tit "GoWaypoints")
-(let [lab (a/vv ?lab ?run)
-        rsp (read-string (a/vv ?rsp ?run))
-        lok (read-string (a/vv ?lok ?run))
-        num (read-string (a/vv ?num ?run))
-        wsp (a/vv ?wsp ?run)
-        wsp (cond
-                 (= wsp "BACKWARD") (@cesium.mig/TRACES lab)
-                 (string? wsp) (read-string wsp)
-                 true wsp)
-        wsp (if (number? num)
-                 (conj (take-nth num wsp) (last wsp))
-                 wsp)
-        wsp (if (= (last wsp) (last (butlast wsp))
-                 (butlast wsp)
-                 wsp)
-        color (lok :color)
-        size (lok :size)
-        height (lok :height)
-        pts (cesium.mig/insert-height wsp height)
-        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-        mils (* sec 1000)
-        knots (cesium.mig/rand-double rsp)
-        [czml elt] (czml.generator/add-point-flight lab pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-    (cesium.server/send-czml czml)
-    (modify ?gow status "REPEAT"
-	N (+ ?t elt))))
+(println :ALL-SUBGOALS-REACHED)
+(asser Work status "OPTIMIZATION"))
 
-(smi:GoWaypointsRepeat 0
-?gow (GoWaypoints status "REPEAT"
-	N ?n
-	parent ?pid
-	instance ?ain
-	run ?run
-	next_actions ?nacts)
-(Clock time ?t (> ?t ?n))
+(p:All Subgoals Optimized 0
+(Work status "OPTIMIZATION")
+(Subgoal status "OPTI")
+(not Subgoal status "REACH")
+(not Goal status "REACH")
 =>
-(retract ?gow)
-(s/start-next ?nacts ?pid ?ain ?run))
+(rete.core/problem-solved)
+(println :ALL-SUBGOALS-OPTIMIZED))
+
+(p:Goal Direct Check 1
+?g (Goal status "RUN"
+	a ?a
+	b ?b)
+?p1 (Path1 a ?a
+	b ?b1
+	points ?pts1)
+?p2 (Path1 a ?b
+	points ?pts2
+	(path/F-near ?b1 ?b))
+=>
+(modify ?g paths (conj ?pts1 ?pts2))
+(retract ?p1 ?p2))
+
+(p:Subgoal Direct Check 0
+?sg (Subgoal status "RUN"
+	a ?a
+	b ?b)
+?p1 (Path1 a ?a
+	b ?b1
+	points ?pts1)
+?p2 (Path1 a ?b
+	points ?pts2
+	(path/F-near ?b1 ?b))
+=>
+(modify ?sg paths (conj ?pts1 ?pts2))
+(retract ?p1 ?p2))
+
+(p:Path0 Expansion 1
+?p (Path0 a ?a b ?b
+	points ?pts)
+=>
+(let [sgs (path/F-find-sequels ?b)]
+  (println :FOUND (count sgs) ?pts (keys sgs))
+  (doseq [[id p] sgs]
+    (when (not (some #{id} ?pts))
+      (asser Path1 a ?a
+	b (path/self p)
+	points (conj ?pts id))))
+  (retract ?p)))
+
+(p:Goal Start 0
+?g (Goal status "START"
+	a ?a
+	b ?b)
+=>
+(let [[ia & pa] (read-string ?a)
+       [ib & pb] (read-string ?b)]
+  (asser Path0 a pa
+	b pa
+	points [ia])
+  (asser Path0 a pb
+	b pb
+	points [ib])
+  (modify ?g status "RUN"
+	a pa
+	b pb
+	paths [])))
+
+(p:Goal Check 0
+?g (Goal status "RUN"
+	a ?a
+	b ?b
+	paths ?phs)
+?p1 (Path1 a ?a
+	b ?b1
+	points ?pts1)
+?p2 (Path1 a ?b
+	b ?b2
+	points ?pts2
+	(path/F-near ?b1 ?b2))
+=>
+(println :GC :PHS ?phs)
+(let [pts (concat ?pts1 (reverse ?pts2))
+       phs (conj ?phs pts)
+       sts (if (= (count phs) path/MAX-PATHS)
+                                         (do (println phs) "REACH")
+                                         "RUN")]
+  (println :PTS pts :PHS phs)
+  (modify ?g status sts
+	paths phs))
+(retract ?p1 ?p2))
+
+(p:Path1 Continue -1
+?p (Path1 a ?a b ?b
+	points ?pts)
+=>
+(retract ?p)
+(asser Path0 a ?a
+	b ?b
+	points ?pts))
 
