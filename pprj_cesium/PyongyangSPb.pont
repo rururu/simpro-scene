@@ -1,4 +1,4 @@
-; Fri Oct 23 14:44:50 MSK 2020
+; Tue Oct 27 20:48:30 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -47,6 +47,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass Railroad_
+	(is-a Road Railroad)
+	(role concrete))
 
 (defclass Path+Onto
 	(is-a USER)

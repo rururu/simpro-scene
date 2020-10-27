@@ -98,7 +98,8 @@
   (if-let [ids (butlast (rest (nth @path/PATHS n)))]
     (display-detailed [ids clr])))
 ([[ids clr]]
-  (if (number? ids) 
+  (cond
+    (number? ids) 
     (if-let [pts (@SEGMENTS ids)]
       (let [id (str ids)
             [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
@@ -115,10 +116,13 @@
          (ssvs poi "points" (map tsf pts))
          (OMT/getOrAdd poi)
          poi))
+    (string? ids)
+    nil
+    true
     (doseq [id ids]
       (display-detailed [id clr])))))
 
-(defn display-path [b pts e]
-  (println b pts e)
+(defn display-path [pts]
+  (println pts)
 (display-detailed [pts "FFFF6000"]))
 
