@@ -1,4 +1,4 @@
-; Tue Oct 27 20:48:30 MSK 2020
+; Fri Oct 30 22:55:42 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -72,6 +72,7 @@
 		[PyongyangSPb_Class110025]
 		[PyongyangSPb_Class110013]
 		[PyongyangSPb_Class160001]
+		[PyongyangSPb_Class120092]
 		[PyongyangSPb_Class150037]
 		[PyongyangSPb_Class110003])
 	(cloNamespace [PyongyangSPb_Class100001])
@@ -80,7 +81,8 @@
 		[PyongyangSPb_Class120004]
 		[PyongyangSPb_Class120005]
 		[PyongyangSPb_Class110023]
-		[PyongyangSPb_Class110014])
+		[PyongyangSPb_Class110014]
+		[PyongyangSPb_Class300000])
 	(title "OSM Path"))
 
 ([PyongyangSPb_Class100001] of  CloNamespace
@@ -92,10 +94,6 @@
 
 	(source "(path/set-functions \n  osm.path/find-branches \n  osm.path/near\n  osm.path/distance\n  osm.path/display-path)\n(path/clear-paths)\n(path/set-max-paths 2)")
 	(title "Set OSMPath Functions and Goal"))
-
-([PyongyangSPb_Class100003] of  CloFuncall
-
-	(source "(count (conj [] [:a :b]))"))
 
 ([PyongyangSPb_Class100007] of  CloVar
 
@@ -137,10 +135,6 @@
 	(source "(println pts)")
 	(title "display-path [pts]"))
 
-([PyongyangSPb_Class110001] of  CloFuncall
-
-	(source "(ru.rules/f 17)"))
-
 ([PyongyangSPb_Class110002] of  CloFunction
 
 	(source "([[lat lon]]\n  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]\n    (if (< (count ss) 1)\n      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)\n      ss)))\n([[lat lon] rad wtype wsubtype]\n  (let [d (/ rad 60)\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)]\n    (od/filter-data wda wtype wsubtype)))")
@@ -178,8 +172,8 @@
 
 ([PyongyangSPb_Class120000] of  Rule
 
-	(lhs "(Goal status \"REACH\")\n(not Goal status \"RUN\")")
-	(rhs "(println :ALL-GOALS-REACHED)\n(asser Work status \"OPTIMIZATION\")")
+	(lhs "?w (Work)\n(Goal status \"REACH\")\n(not Goal status \"RUN\")")
+	(rhs "(println :ALL-GOALS-REACHED)\n(modify ?w status \"OPTIMIZATION\")")
 	(salience 0)
 	(title "p:All Goals Reach"))
 
@@ -200,44 +194,36 @@
 
 ([PyongyangSPb_Class120005] of  CloVar
 
-	(source "0.005")
+	(source "0.05")
 	(title "RADIUS"))
 
-([PyongyangSPb_Class130000] of  OMTPoly
+([PyongyangSPb_Class120089] of  CloFuncall
 
-	(description "134383367")
-	(label "134383367")
-	(latitude "48 29.75")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.64")
-	(playground-index 0)
-	(points
-		"48 29.75 135 4.64"
-		"48 29.74 135 4.67"
-		"48 29.73 135 4.73"
-		"48 29.73 135 4.75"
-		"48 29.71 135 4.77"
-		"48 29.7 135 4.8"
-		"48 29.69 135 4.81"
-		"48 29.68 135 4.83"
-		"48 29.66 135 4.85"
-		"48 29.61 135 4.89"
-		"48 29.57 135 4.94"
-		"48 29.54 135 4.97"
-		"48 29.52 135 5"
-		"48 29.5 135 5.05"
-		"48 29.5 135 5.08"
-		"48 29.49 135 5.1")
-	(relative FALSE))
+	(source "(ru.rules/pp :all)"))
+
+([PyongyangSPb_Class120092] of  CloFunction
+
+	(source "(let [[lat1 lon1] p1\n        [lat2 lon2] p2]\n  (MapOb/bearingsDeg lat1 lon1 lat2 lon2))")
+	(title "direction [p1 p2]"))
+
+([PyongyangSPb_Class130000] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n?p (Path0 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts\n	((> (count ?pts) 8)\n                           (< ?dirf 0)))")
+	(rhs "(retract ?p)")
+	(salience 1)
+	(title "p:Negative Direction"))
+
+([PyongyangSPb_Class130001] of  CloFuncall
+
+	(source "(osm.path/find-segments [[48.09 135.11]])"))
 
 ([PyongyangSPb_Class130002] of  CloFuncall
 
-	(source "(in-ns 'osm.path)"))
+	(source "(osm.path/find-segments [48.09 135.11] osm.path/RADIUS osm.path/WAT-TYPE osm.path/WAY-SUBTYPE)"))
 
 ([PyongyangSPb_Class130003] of  CloFuncall
 
-	(source "SEGMENTS"))
+	(source "(osm.path/find-segments [48.09 135.11] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
 
 ([PyongyangSPb_Class130004] of  CloFunction
 
@@ -249,119 +235,9 @@
 	(source "(def PATHS (volatile! []))")
 	(title "clear-paths []"))
 
-([PyongyangSPb_Class140000] of  OMTPoly
+([PyongyangSPb_Class140004] of  CloFuncall
 
-	(description "256139105")
-	(label "256139105")
-	(latitude "48 29.49")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 5.1")
-	(playground-index 0)
-	(points
-		"48 29.49 135 5.1"
-		"48 29.49 135 5.13"
-		"48 29.49 135 5.14"
-		"48 29.49 135 5.17"
-		"48 29.49 135 5.2"
-		"48 29.49 135 5.22"
-		"48 29.5 135 5.25"
-		"48 29.5 135 5.27"
-		"48 29.51 135 5.3"
-		"48 29.53 135 5.33"
-		"48 29.56 135 5.37"
-		"48 29.65 135 5.52"
-		"48 29.66 135 5.54"
-		"48 29.69 135 5.58"
-		"48 29.7 135 5.6"
-		"48 29.71 135 5.61")
-	(relative FALSE))
-
-([PyongyangSPb_Class140001] of  OMTPoly
-
-	(description "25423066")
-	(label "25423066")
-	(latitude "48 24.34")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 8.04")
-	(playground-index 0)
-	(points
-		"48 24.34 135 8.04"
-		"48 24.48 135 8.01"
-		"48 24.68 135 7.96"
-		"48 25.21 135 7.84"
-		"48 25.37 135 7.8"
-		"48 25.45 135 7.79"
-		"48 25.68 135 7.74"
-		"48 25.96 135 7.66"
-		"48 26.17 135 7.6"
-		"48 26.2 135 7.59"
-		"48 26.23 135 7.58"
-		"48 26.26 135 7.58"
-		"48 26.27 135 7.58"
-		"48 26.3 135 7.57"
-		"48 26.31 135 7.57"
-		"48 26.34 135 7.56"
-		"48 26.41 135 7.54"
-		"48 26.42 135 7.54"
-		"48 26.44 135 7.53"
-		"48 26.48 135 7.53"
-		"48 26.51 135 7.53"
-		"48 26.53 135 7.53"
-		"48 26.59 135 7.56"
-		"48 26.62 135 7.57"
-		"48 26.66 135 7.57"
-		"48 26.69 135 7.57"
-		"48 26.72 135 7.57"
-		"48 26.78 135 7.56"
-		"48 26.82 135 7.54"
-		"48 27.16 135 7.45"
-		"48 27.22 135 7.43"
-		"48 27.26 135 7.42"
-		"48 27.28 135 7.41"
-		"48 27.3 135 7.4"
-		"48 27.31 135 7.39"
-		"48 27.33 135 7.37"
-		"48 27.35 135 7.36"
-		"48 27.36 135 7.34"
-		"48 27.38 135 7.3"
-		"48 27.44 135 7.21"
-		"48 27.46 135 7.18"
-		"48 27.48 135 7.16"
-		"48 27.5 135 7.14"
-		"48 27.53 135 7.12"
-		"48 27.55 135 7.12"
-		"48 27.6 135 7.11"
-		"48 27.66 135 7.1"
-		"48 27.72 135 7.09"
-		"48 27.94 135 7.07"
-		"48 28.01 135 7.06"
-		"48 28.35 135 7.02"
-		"48 28.38 135 7.01"
-		"48 28.41 135 7"
-		"48 28.44 135 6.99"
-		"48 28.46 135 6.97"
-		"48 28.49 135 6.95"
-		"48 28.53 135 6.91"
-		"48 28.56 135 6.87"
-		"48 28.7 135 6.67"
-		"48 28.77 135 6.59"
-		"48 28.83 135 6.51"
-		"48 28.85 135 6.48"
-		"48 28.88 135 6.45"
-		"48 28.91 135 6.42"
-		"48 29.57 135 5.9"
-		"48 29.6 135 5.88"
-		"48 29.63 135 5.85"
-		"48 29.65 135 5.82"
-		"48 29.67 135 5.79"
-		"48 29.69 135 5.75"
-		"48 29.7 135 5.71"
-		"48 29.72 135 5.68"
-		"48 29.73 135 5.64"
-		"48 29.73 135 5.62")
-	(relative FALSE))
+	(source "[osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE]"))
 
 ([PyongyangSPb_Class140005] of  Rule
 
@@ -373,18 +249,54 @@
 ([PyongyangSPb_Class140006] of  Rule
 
 	(lhs "(Work status \"OPTIMIZATION\")\n?g (Goal status \"REACH\"\n	paths ?phs)")
-	(rhs "(let [pth1 (first ?phs)\n      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path spt))")
+	(rhs "(println :OPTI-FROM (count ?phs))\n(let [pth1 (first ?phs)\n      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path spt))")
 	(salience 0)
 	(title "p:Goal Optimization"))
-
-([PyongyangSPb_Class140007] of  CloFuncall
-
-	(source "(ru.rules/f 19)"))
 
 ([PyongyangSPb_Class150000] of  CloFunction
 
 	(source "(count pts)")
 	(title "distance [pts]"))
+
+([PyongyangSPb_Class150005] of  CloFuncall
+
+	(source "(keys @osm.path/SEGMENTS)"))
+
+([PyongyangSPb_Class150006] of  CloFuncall
+
+	(source "(osm.path/find-segments [48.09 135.11] 0.5 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class150007] of  CloFuncall
+
+	(source "(osm.path/find-branches [48.09 135.11] osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class150008] of  CloFuncall
+
+	(source "(osm.path/find-branches [48.074 135.105] osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class150009] of  CloFuncall
+
+	(source "(osm.path/find-segments [48.074 135.105] 0.05 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class150010] of  CloFuncall
+
+	(source "(def ss (osm.path/find-segments [48.074 135.105] 0.05 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
+
+([PyongyangSPb_Class150011] of  CloFuncall
+
+	(source "(osm.path/find-segments [48.074 135.105] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class150012] of  CloFuncall
+
+	(source "(def ss (osm.path/find-segments [48.074 135.105] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
+
+([PyongyangSPb_Class150013] of  CloFuncall
+
+	(source "ss"))
+
+([PyongyangSPb_Class150014] of  CloFuncall
+
+	(source "(keys ss)"))
 
 ([PyongyangSPb_Class150037] of  CloFunction
 
@@ -399,27 +311,16 @@
 	(lineType STRAIGHT)
 	(lineWidth "3"))
 
-([PyongyangSPb_Class160000] of  CloFuncall
-
-	(source "(ru.rules/pp :all)"))
-
 ([PyongyangSPb_Class160001] of  CloFunction
 
 	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
 	(title "distance [pts]"))
 
-([PyongyangSPb_Class170000] of  Goal
-
-	(a "[\"A\" 3 1]")
-	(b "[\"Z\" 5 2]")
-	(status "START")
-	(title "A-Z"))
-
 ([PyongyangSPb_Class170001] of  Rule
 
 	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs\n	(not (empty? ?phs)))\n(not Path1 a ?a)\n(not Path1 a ?b)")
 	(rhs "(modify ?g status \"REACH\")")
-	(salience -2)
+	(salience -1)
 	(title "p:Goal Not Paths"))
 
 ([PyongyangSPb_Class170002] of  NamedDoc
@@ -429,16 +330,23 @@
 
 ([PyongyangSPb_Class180000] of  Goal
 
-	(a "[\"B\" 48.406 135.134]")
+	(a "[\"Хабаровск\" 48.495 135.08]")
 	(b "[\"Владимировка\" 48.09 135.11]")
 	(status "START")
-	(title "OSM B-Владимировка"))
+	(title "OSM Хабаровск-Владимировка"))
+
+([PyongyangSPb_Class180001] of  Goal
+
+	(a "[\"Владимировка\" 48.09 135.11]")
+	(b "[\"Лермонтовка\" 47.149 134.315]")
+	(status "START")
+	(title "Владимировка-Лермонтовка"))
 
 ([PyongyangSPb_Class190000] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts\n	(path/F-near ?b1 ?b))")
-	(rhs "(modify ?g paths [?pts])\n(retract ?p1)")
-	(salience 1)
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts\n	(path/F-near ?b1 ?b))")
+	(rhs "(if (empty? ?phs)\n  (modify ?g paths [?pts]))\n(retract ?p1)")
+	(salience 2)
 	(title "p:Goal Direct Check"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
@@ -496,14 +404,6 @@
 	(status "START")
 	(title "A-B"))
 
-([PyongyangSPb_Class210001] of  CloFuncall
-
-	(source "(conj [] [1 2 3])"))
-
-([PyongyangSPb_Class210002] of  CloFuncall
-
-	(source "(ru.rules/dr)"))
-
 ([PyongyangSPb_Class220000] of  Goal
 
 	(a "[\"C1\" 2 4]")
@@ -517,544 +417,6 @@
 	(b "[\"P\" 1 7]")
 	(status "START")
 	(title "X-P"))
-
-([PyongyangSPb_Class230000] of  CloFuncall
-
-	(source "(seqable? [])"))
-
-([PyongyangSPb_Class230001] of  CloFuncall
-
-	(source "(seqable? ())"))
-
-([PyongyangSPb_Class230002] of  CloFuncall
-
-	(source "(seqable? \"A\")"))
-
-([PyongyangSPb_Class240000] of  OMTPoly
-
-	(description "129838420")
-	(label "129838420")
-	(latitude "48 22.43")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6.75")
-	(playground-index 0)
-	(points
-		"48 22.43 135 6.75"
-		"48 22.45 135 6.87"
-		"48 22.47 135 6.96"
-		"48 22.49 135 7.05"
-		"48 22.49 135 7.05"
-		"48 22.49 135 7.09"
-		"48 22.53 135 7.26"
-		"48 22.54 135 7.31"
-		"48 22.56 135 7.36"
-		"48 22.57 135 7.4"
-		"48 22.58 135 7.44"
-		"48 22.59 135 7.46"
-		"48 22.62 135 7.5"
-		"48 22.68 135 7.56"
-		"48 23.22 135 8.08"
-		"48 23.28 135 8.12"
-		"48 23.47 135 8.17"
-		"48 23.51 135 8.19"
-		"48 23.51 135 8.19"
-		"48 23.55 135 8.19"
-		"48 23.59 135 8.2"
-		"48 23.63 135 8.19"
-		"48 23.66 135 8.19"
-		"48 23.76 135 8.17"
-		"48 24.1 135 8.09"
-		"48 24.24 135 8.06"
-		"48 24.34 135 8.04")
-	(relative FALSE))
-
-([PyongyangSPb_Class240001] of  OMTPoly
-
-	(description "319522496")
-	(label "319522496")
-	(latitude "48 22.43")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6.74")
-	(playground-index 0)
-	(points
-		"48 22.43 135 6.74"
-		"48 22.43 135 6.75")
-	(relative FALSE))
-
-([PyongyangSPb_Class240002] of  OMTPoly
-
-	(description "319522456")
-	(label "319522456")
-	(latitude "48 21.96")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6")
-	(playground-index 0)
-	(points
-		"48 21.96 135 6"
-		"48 22.19 135 6.18"
-		"48 22.21 135 6.2"
-		"48 22.24 135 6.22"
-		"48 22.27 135 6.25"
-		"48 22.3 135 6.3"
-		"48 22.33 135 6.35"
-		"48 22.34 135 6.39"
-		"48 22.36 135 6.43"
-		"48 22.38 135 6.5"
-		"48 22.43 135 6.74")
-	(relative FALSE))
-
-([PyongyangSPb_Class240003] of  OMTPoly
-
-	(description "319522482")
-	(label "319522482")
-	(latitude "48 21.95")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6")
-	(playground-index 0)
-	(points
-		"48 21.95 135 6"
-		"48 21.96 135 6")
-	(relative FALSE))
-
-([PyongyangSPb_Class240004] of  OMTPoly
-
-	(description "343173853")
-	(label "343173853")
-	(latitude "48 21.56")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 5.69")
-	(playground-index 0)
-	(points
-		"48 21.56 135 5.69"
-		"48 21.65 135 5.76"
-		"48 21.85 135 5.92"
-		"48 21.95 135 6")
-	(relative FALSE))
-
-([PyongyangSPb_Class240005] of  OMTPoly
-
-	(description "343173864")
-	(label "343173864")
-	(latitude "48 20.96")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 5.1")
-	(playground-index 0)
-	(points
-		"48 20.96 135 5.1"
-		"48 20.98 135 5.12"
-		"48 21.17 135 5.31"
-		"48 21.19 135 5.34"
-		"48 21.48 135 5.62"
-		"48 21.53 135 5.67"
-		"48 21.55 135 5.68"
-		"48 21.56 135 5.69")
-	(relative FALSE))
-
-([PyongyangSPb_Class240006] of  OMTPoly
-
-	(description "319522504")
-	(label "319522504")
-	(latitude "48 19.19")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.16")
-	(playground-index 0)
-	(points
-		"48 19.19 135 7.16"
-		"48 19.22 135 7.15"
-		"48 19.25 135 7.14"
-		"48 19.28 135 7.12"
-		"48 19.31 135 7.09"
-		"48 19.34 135 7.04"
-		"48 19.55 135 6.68"
-		"48 19.8 135 6.32"
-		"48 19.83 135 6.27"
-		"48 19.86 135 6.22"
-		"48 19.93 135 6.05"
-		"48 19.97 135 5.95"
-		"48 20.07 135 5.8"
-		"48 20.14 135 5.7"
-		"48 20.21 135 5.6"
-		"48 20.24 135 5.54"
-		"48 20.27 135 5.48"
-		"48 20.29 135 5.41"
-		"48 20.38 135 5.11"
-		"48 20.4 135 5.05"
-		"48 20.43 135 5"
-		"48 20.46 135 4.96"
-		"48 20.49 135 4.93"
-		"48 20.52 135 4.91"
-		"48 20.55 135 4.89"
-		"48 20.57 135 4.88"
-		"48 20.61 135 4.87"
-		"48 20.64 135 4.87"
-		"48 20.68 135 4.88"
-		"48 20.7 135 4.88"
-		"48 20.73 135 4.89"
-		"48 20.76 135 4.91"
-		"48 20.78 135 4.92"
-		"48 20.81 135 4.95"
-		"48 20.83 135 4.97"
-		"48 20.86 135 5"
-		"48 20.96 135 5.1")
-	(relative FALSE))
-
-([PyongyangSPb_Class240007] of  OMTPoly
-
-	(description "319522487")
-	(label "319522487")
-	(latitude "48 19.17")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.17")
-	(playground-index 0)
-	(points
-		"48 19.17 135 7.17"
-		"48 19.19 135 7.16")
-	(relative FALSE))
-
-([PyongyangSPb_Class240008] of  OMTPoly
-
-	(description "319522465")
-	(label "319522465")
-	(latitude "48 17.84")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6.64")
-	(playground-index 0)
-	(points
-		"48 17.84 135 6.64"
-		"48 17.87 135 6.67"
-		"48 17.9 135 6.7"
-		"48 17.93 135 6.72"
-		"48 17.98 135 6.74"
-		"48 18.05 135 6.76"
-		"48 18.23 135 6.81"
-		"48 18.41 135 6.85"
-		"48 18.52 135 6.88"
-		"48 18.57 135 6.89"
-		"48 18.61 135 6.92"
-		"48 18.93 135 7.09"
-		"48 19.01 135 7.14"
-		"48 19.04 135 7.16"
-		"48 19.07 135 7.17"
-		"48 19.09 135 7.18"
-		"48 19.12 135 7.18"
-		"48 19.14 135 7.17"
-		"48 19.17 135 7.17")
-	(relative FALSE))
-
-([PyongyangSPb_Class240009] of  OMTPoly
-
-	(description "319522481")
-	(label "319522481")
-	(latitude "48 17.83")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 6.61")
-	(playground-index 0)
-	(points
-		"48 17.83 135 6.61"
-		"48 17.84 135 6.64")
-	(relative FALSE))
-
-([PyongyangSPb_Class240010] of  OMTPoly
-
-	(description "319522502")
-	(label "319522502")
-	(latitude "48 16.25")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 3.66")
-	(playground-index 0)
-	(points
-		"48 16.25 135 3.66"
-		"48 16.27 135 3.67"
-		"48 16.31 135 3.69"
-		"48 16.35 135 3.72"
-		"48 16.42 135 3.79"
-		"48 16.94 135 4.37"
-		"48 17.3 135 4.76"
-		"48 17.35 135 4.82"
-		"48 17.37 135 4.85"
-		"48 17.39 135 4.89"
-		"48 17.41 135 4.94"
-		"48 17.44 135 4.99"
-		"48 17.45 135 5.04"
-		"48 17.47 135 5.09"
-		"48 17.49 135 5.14"
-		"48 17.5 135 5.22"
-		"48 17.51 135 5.29"
-		"48 17.52 135 5.38"
-		"48 17.53 135 5.47"
-		"48 17.53 135 5.51"
-		"48 17.54 135 5.56"
-		"48 17.56 135 5.61"
-		"48 17.57 135 5.67"
-		"48 17.59 135 5.71"
-		"48 17.61 135 5.78"
-		"48 17.64 135 5.83"
-		"48 17.66 135 5.9"
-		"48 17.68 135 5.96"
-		"48 17.7 135 6.02"
-		"48 17.71 135 6.1"
-		"48 17.72 135 6.16"
-		"48 17.72 135 6.27"
-		"48 17.73 135 6.32"
-		"48 17.74 135 6.37"
-		"48 17.75 135 6.44"
-		"48 17.77 135 6.51"
-		"48 17.8 135 6.55"
-		"48 17.83 135 6.61")
-	(relative FALSE))
-
-([PyongyangSPb_Class240011] of  OMTPoly
-
-	(description "319522468")
-	(label "319522468")
-	(latitude "48 16.23")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 3.66")
-	(playground-index 0)
-	(points
-		"48 16.23 135 3.66"
-		"48 16.25 135 3.66")
-	(relative FALSE))
-
-([PyongyangSPb_Class240012] of  OMTPoly
-
-	(description "319522458")
-	(label "319522458")
-	(latitude "48 15.89")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 3.85")
-	(playground-index 0)
-	(points
-		"48 15.89 135 3.85"
-		"48 15.96 135 3.76"
-		"48 15.99 135 3.73"
-		"48 16.02 135 3.7"
-		"48 16.06 135 3.68"
-		"48 16.09 135 3.66"
-		"48 16.11 135 3.66"
-		"48 16.13 135 3.65"
-		"48 16.15 135 3.65"
-		"48 16.19 135 3.65"
-		"48 16.23 135 3.66")
-	(relative FALSE))
-
-([PyongyangSPb_Class240013] of  OMTPoly
-
-	(description "319522471")
-	(label "319522471")
-	(latitude "48 15.88")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 3.86")
-	(playground-index 0)
-	(points
-		"48 15.88 135 3.86"
-		"48 15.89 135 3.85")
-	(relative FALSE))
-
-([PyongyangSPb_Class240014] of  OMTPoly
-
-	(description "319522464")
-	(label "319522464")
-	(latitude "48 14.86")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.38")
-	(playground-index 0)
-	(points
-		"48 14.86 135 4.38"
-		"48 15.01 135 4.34"
-		"48 15.07 135 4.33"
-		"48 15.11 135 4.32"
-		"48 15.14 135 4.32"
-		"48 15.18 135 4.33"
-		"48 15.21 135 4.34"
-		"48 15.27 135 4.36"
-		"48 15.29 135 4.36"
-		"48 15.32 135 4.37"
-		"48 15.36 135 4.36"
-		"48 15.39 135 4.35"
-		"48 15.43 135 4.34"
-		"48 15.46 135 4.32"
-		"48 15.49 135 4.29"
-		"48 15.52 135 4.27"
-		"48 15.76 135 3.99"
-		"48 15.88 135 3.86")
-	(relative FALSE))
-
-([PyongyangSPb_Class240015] of  OMTPoly
-
-	(description "319522466")
-	(label "319522466")
-	(latitude "48 14.84")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.39")
-	(playground-index 0)
-	(points
-		"48 14.84 135 4.39"
-		"48 14.86 135 4.38")
-	(relative FALSE))
-
-([PyongyangSPb_Class240016] of  OMTPoly
-
-	(description "319522524")
-	(label "319522524")
-	(latitude "48 13.08")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.84")
-	(playground-index 0)
-	(points
-		"48 13.08 135 4.84"
-		"48 13.11 135 4.83"
-		"48 13.15 135 4.82"
-		"48 13.32 135 4.78"
-		"48 13.53 135 4.73"
-		"48 13.88 135 4.63"
-		"48 14 135 4.6"
-		"48 14.14 135 4.56"
-		"48 14.84 135 4.39")
-	(relative FALSE))
-
-([PyongyangSPb_Class240017] of  OMTPoly
-
-	(description "319522494")
-	(label "319522494")
-	(latitude "48 13.07")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 4.84")
-	(playground-index 0)
-	(points
-		"48 13.07 135 4.84"
-		"48 13.08 135 4.84")
-	(relative FALSE))
-
-([PyongyangSPb_Class240018] of  OMTPoly
-
-	(description "345880460")
-	(label "345880460")
-	(latitude "48 11.69")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 5.21")
-	(playground-index 0)
-	(points
-		"48 11.69 135 5.21"
-		"48 12.45 135 5.01"
-		"48 13.07 135 4.84")
-	(relative FALSE))
-
-([PyongyangSPb_Class240019] of  OMTPoly
-
-	(description "345880455")
-	(label "345880455")
-	(latitude "48 11.67")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 5.21")
-	(playground-index 0)
-	(points
-		"48 11.67 135 5.21"
-		"48 11.69 135 5.21")
-	(relative FALSE))
-
-([PyongyangSPb_Class240020] of  OMTPoly
-
-	(description "345880449")
-	(label "345880449")
-	(latitude "48 8.86")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.7")
-	(playground-index 0)
-	(points
-		"48 8.86 135 7.7"
-		"48 8.93 135 7.67"
-		"48 9.03 135 7.64"
-		"48 9.67 135 7.41"
-		"48 9.73 135 7.38"
-		"48 9.78 135 7.35"
-		"48 9.83 135 7.3"
-		"48 9.95 135 7.15"
-		"48 10.07 135 7.01"
-		"48 11.52 135 5.3"
-		"48 11.55 135 5.27"
-		"48 11.6 135 5.24"
-		"48 11.64 135 5.22"
-		"48 11.67 135 5.21")
-	(relative FALSE))
-
-([PyongyangSPb_Class240021] of  OMTPoly
-
-	(description "345880453")
-	(label "345880453")
-	(latitude "48 8.83")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.71")
-	(playground-index 0)
-	(points
-		"48 8.83 135 7.71"
-		"48 8.86 135 7.7")
-	(relative FALSE))
-
-([PyongyangSPb_Class240022] of  OMTPoly
-
-	(description "319522463")
-	(label "319522463")
-	(latitude "48 7.25")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.26")
-	(playground-index 0)
-	(points
-		"48 7.25 135 7.26"
-		"48 8.61 135 7.74"
-		"48 8.65 135 7.75"
-		"48 8.68 135 7.75"
-		"48 8.72 135 7.75"
-		"48 8.75 135 7.74"
-		"48 8.83 135 7.71")
-	(relative FALSE))
-
-([PyongyangSPb_Class240023] of  OMTPoly
-
-	(description "249356007")
-	(label "249356007")
-	(latitude "48 7.24")
-	(line [PyongyangSPb_Class20000])
-	(lineColor "FFFF6000")
-	(longitude "135 7.25")
-	(playground-index 0)
-	(points
-		"48 7.24 135 7.25"
-		"48 6.6 135 7.03"
-		"48 6.49 135 6.99"
-		"48 6.47 135 6.99"
-		"48 6.45 135 6.98"
-		"48 6.43 135 6.97"
-		"48 6.18 135 6.89"
-		"48 5.88 135 6.78"
-		"48 5.85 135 6.77"
-		"48 5.81 135 6.76"
-		"48 5.7 135 6.72"
-		"48 4.42 135 6.29")
-	(relative FALSE))
 
 ([PyongyangSPb_Class250000] of  Scenario
 
@@ -1108,6 +470,24 @@
 	(title "Влад-Хабар")
 	(to1 "Хабаровск"))
 
+([PyongyangSPb_Class280000] of  Rule
+
+	(lhs "?w (Work status \"CHECK\")\n(Path0)\n(not Path1)")
+	(rhs "(modify ?w status \"EXTENSION\")")
+	(salience 0)
+	(title "p:Work Extension"))
+
+([PyongyangSPb_Class280001] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(Path1)\n(not Path0)")
+	(rhs "(modify ?w status \"CHECK\")")
+	(salience 0)
+	(title "p:Work Check"))
+
+([PyongyangSPb_Class290000] of  Work
+
+	(status "CHECK"))
+
 ([PyongyangSPb_Class3] of  ShapeLayer
 
 	(class "com.bbn.openmap.layer.shape.ShapeLayer")
@@ -1123,12 +503,31 @@
 	(source "file:doc/images/FromGoal.jpg")
 	(title "Graph2"))
 
+([PyongyangSPb_Class300000] of  CloVar
+
+	(source "(volatile! 0)")
+	(title "CYCLES"))
+
 ([PyongyangSPb_Class30001] of  Goal
 
 	(a "[\"A\" 3 1]")
 	(b "[\"C\" 1 3]")
 	(status "START")
 	(title "A-C"))
+
+([PyongyangSPb_Class300098] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	paths ?phs\n                      (not (empty? ?phs)))\n?p (Path1 a ?a\n	points ?pts\n                      (some #(> (count ?pts) (count %)) ?phs))")
+	(rhs "(retract ?p)")
+	(salience 0)
+	(title "p:Long Path1 A Check"))
+
+([PyongyangSPb_Class300099] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	b ?b\n	paths ?phs\n                      (not (empty? ?phs)))\n?p (Path1 b ?b\n	points ?pts\n                      (some #(> (count ?pts) (count %)) ?phs))")
+	(rhs "(retract ?p)")
+	(salience 0)
+	(title "p:Long Path1 B Check"))
 
 ([PyongyangSPb_Class30039] of  Railroad
 
@@ -1379,8 +778,12 @@
 		[PyongyangSPb_Class120000]
 		[PyongyangSPb_Class140006]
 		[PyongyangSPb_Class140005]
+		[PyongyangSPb_Class170001]
 		[PyongyangSPb_Class90004]
-		[PyongyangSPb_Class170001])
+		[PyongyangSPb_Class280000]
+		[PyongyangSPb_Class280001]
+		[PyongyangSPb_Class300098]
+		[PyongyangSPb_Class300099])
 	(templates
 		[Directive]
 		[Goal]
@@ -1399,16 +802,11 @@
 	(document [PyongyangSPb_Class50001])
 	(facts
 		[PyongyangSPb_Class90000]
-		[PyongyangSPb_Class210000]
-		[PyongyangSPb_Class200000]
-		[PyongyangSPb_Class30001]
-		[PyongyangSPb_Class170000]
-		[PyongyangSPb_Class220000]
-		[PyongyangSPb_Class40001]
+		[PyongyangSPb_Class290000]
 		[PyongyangSPb_Class220001])
 	(mode run)
 	(rule-sets [PyongyangSPb_Class40016])
-	(steps 1)
+	(steps 20)
 	(title "PathRun"))
 
 ([PyongyangSPb_Class5] of  RoadControl
@@ -1439,19 +837,19 @@
 
 ([PyongyangSPb_Class50000] of  Rule
 
-	(lhs "?p (Path0 a ?a b ?b\n	points ?pts)")
-	(rhs "(let [sgs (path/F-find-sequels ?b)]\n  (println :FOUND (count sgs) ?pts (map first (seq sgs)))\n  (doseq [[id p] sgs]\n    (when (not (some #{id} ?pts))\n      (asser Path1 a ?a\n	b (path/self p)\n	points (conj ?pts id))))\n  (retract ?p))")
-	(salience 1)
-	(title "p:Path0 Expansion"))
+	(lhs "(Work status \"EXTENSION\")\n?p (Path0 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(rhs "(let [sgs (path/F-find-sequels ?b)\n       yes (= (mod @osm.path/CYCLES 10) 0)]\n  (doseq [id (map first sgs)]\n    (println :ID id)\n    (osm.data/create-line [id (@osm.path/SEGMENTS id)]))\n  (vswap! osm.path/CYCLES inc)\n  (if yes\n    (print :FROM (first ?pts) :TO (last ?pts) (count ?pts) :EXT (map first (seq sgs)) :GDIR (int ?gdir) :DIRFS))\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (let [cdir (osm.path/direction ?a p)\n              dirf (if (< (Math/abs (- ?gdir cdir)) 90)\n                      (inc ?dirf) \n                      (dec ?dirf))]\n        (if yes\n          (print \" \" dirf \" \" (/ dirf (float (inc (count ?pts))))))\n        (asser Path1 a ?a\n	b (path/self p)\n	general-dir ?gdir\n	dir-factor dirf\n	points (conj ?pts id)))))\n  (if yes\n    (println))\n  (retract ?p))")
+	(salience 0)
+	(title "p:Path0 Extension"))
 
 ([PyongyangSPb_Class50001] of  NamedDoc
 
-	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <img src=\"file:doc/images/FromGoal.jpg\"><br><img src=\"file:doc/images/Subgoals.jpg\"></body>\n</html>")
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Shortest path on the graph</b><br><br>This algorithm finds the shortest path on the graph in terms of the number of edges on the path. If there are several such paths, then he chooses the shortest, using the distance function.<br><br><img src=\"file:doc/images/FromGoal.jpg\"><br><br>Graph example:<br><img src=\"file:doc/images/Subgoals.jpg\"><br></body>\n</html>")
 	(title "From Goal"))
 
 ([PyongyangSPb_Class50002] of  CloVar
 
-	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1] \"A1\" [4 2] \"A2\" [3.5 3]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1] \"C1\" [2 4] \"C2\" [1 4.5]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4] \"U\" [11 4] \"V\" [10 6]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}\n  [4 2]{\"A\" [3 1] \"Z\" [5 2]}\n  [3.5 3]{\"A\" [3 1]}\n  [2 4]{\"C\" [1 3]}\n  [1 4.5]{\"C\" [1 3]}\n  [5 2] {\"A1\" [4 2]}\n  [11 4] {\"E\" [9 3] \"Y\" [13 4] \"Z\" [12 5]}\n  [10 6] {\"E\" [9 3] \"W\" [11 7]}\n  [13 4] {\"U\" [11 4] \"X\" [14 6]}\n  [12 5] {\"U\" [11 4] \"X\" [14 6]}\n  [11 7] {\"V\" [10 6] \"X\" [14 6]}\n  [14 6] {\"Y\" [13 4] \"Z\" [12 5] \"W\" [11 7]}}")
+	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1] \"A1\" [4 2] \"A2\" [3.5 3]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1] \"C1\" [2 4] \"C2\" [1 4.5]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4] \"U\" [11 4] \"V\" [10 6]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}\n  [4 2]{\"A\" [3 1] \"Z\" [5 2]}\n  [3.5 3]{\"A\" [3 1]}\n  [2 4]{\"C\" [1 3]}\n  [1 4.5]{\"C\" [1 3]}\n  [11 4] {\"E\" [9 3] \"Y\" [13 4] \"Z\" [12 5]}\n  [10 6] {\"E\" [9 3] \"W\" [11 7]}\n  [13 4] {\"U\" [11 4] \"X\" [14 6]}\n  [12 5] {\"U\" [11 4] \"X\" [14 6]}\n  [11 7] {\"V\" [10 6] \"X\" [14 6]}\n  [14 6] {\"Y\" [13 4] \"Z\" [12 5] \"W\" [11 7]}}")
 	(title "SEQUELS"))
 
 ([PyongyangSPb_Class50010] of  CloProgram
@@ -1546,14 +944,6 @@
 	(source "nil")
 	(title "F-near"))
 
-([PyongyangSPb_Class80000] of  CloFuncall
-
-	(source "(ru.rules/pp 17)"))
-
-([PyongyangSPb_Class80001] of  CloFuncall
-
-	(source "(ru.rules/f 12)"))
-
 ([PyongyangSPb_Class80002] of  CloFunction
 
 	(source "(def F-find-sequels find-seq)\n(def F-near near)\n(def F-distance dist)\n(def F-display-path disp)")
@@ -1561,9 +951,9 @@
 
 ([PyongyangSPb_Class80003] of  Rule
 
-	(lhs "?g (Goal status \"START\"\n	a ?a\n	b ?b)")
-	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n	points [ia])\n  (asser Path0 a pb\n	b pb\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n	paths []))")
-	(salience 0)
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a\n	b ?b)")
+	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n                          general-dir (osm.path/direction pa pb)\n	dir-factor 0\n	points [ia])\n  (asser Path0 a pb\n	b pb\n                          general-dir (osm.path/direction pb pa)\n	dir-factor 0\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n	paths []))")
+	(salience 1)
 	(title "p:Goal Start"))
 
 ([PyongyangSPb_Class90000] of  Directive
@@ -1580,26 +970,23 @@
 	(butt-step "Step/ru.rules/step-engine")
 	(facts
 		[PyongyangSPb_Class100002]
-		[PyongyangSPb_Class180000])
-	(mode run)
+		[PyongyangSPb_Class290000]
+		[PyongyangSPb_Class180001])
+	(mode step)
 	(rule-sets [PyongyangSPb_Class40016])
-	(steps 1)
+	(steps 10)
 	(title "OSMPathRun"))
-
-([PyongyangSPb_Class90002] of  CloFuncall
-
-	(source "(conj [] [:a :b])"))
 
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
-	(rhs "(let [rv2 (reverse ?pts2)\n       rv2 (if (= (first rv2) (last ?pts1))\n               (rest rv2)\n               rv2)\n       pts (concat ?pts1 rv2)\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
-	(salience 0)
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
+	(rhs "(let [rv2 (reverse ?pts2)\n       rv2 (if (= (first rv2) (last ?pts1))\n               (rest rv2)\n               rv2)\n       pts (concat ?pts1 rv2)\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (println :NEAR ?b1 ?b2 :PATHS (map #(list (first %) (count %) (last %)) phs))\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
+	(salience 1)
 	(title "p:Goal Check"))
 
 ([PyongyangSPb_Class90004] of  Rule
 
-	(lhs "?p (Path1 a ?a b ?b\n	points ?pts)")
-	(rhs "(retract ?p)\n(asser Path0 a ?a\n	b ?b\n	points ?pts)")
-	(salience -1)
-	(title "p:Path1 Continue"))
+	(lhs "(Work status \"CHECK\")\n?p (Path1 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(rhs "(retract ?p)\n(asser Path0 a ?a\n	b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(salience 0)
+	(title "p:Path1 to Path0"))

@@ -126,8 +126,7 @@
 
 (defn create-dirway [[dir [id pts] lin]]
   (let [dw (crin "Dirway")
-       way (crin "Way")]
-  (ssv way "id" (str id))
+       way (foc "Way" "id" id)]
   (ssv way "poly" lin)
   (ssv way "source" (str (vec pts)))
   (ssv dw "direction" dir)

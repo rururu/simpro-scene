@@ -1,4 +1,4 @@
-; Tue Oct 27 20:48:30 MSK 2020
+; Fri Oct 30 22:55:42 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -23,6 +23,14 @@
 		(create-accessor read-write))
 	(multislot value-type
 ;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot dir-factor
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot general-dir
+		(type FLOAT)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot start
 ;+		(type ANY)
@@ -73,10 +81,18 @@
 
 (defclass Path0
 	(is-a Path)
-	(role concrete))
+	(role concrete)
+	(single-slot general-dir
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot dir-factor
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Path1
-	(is-a Path)
+	(is-a Path0)
 	(role concrete))
 
 (defclass Goal

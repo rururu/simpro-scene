@@ -1,4 +1,4 @@
-; Tue Sep 29 20:00:23 MSK 2020
+; Wed Oct 28 11:02:03 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -115,7 +115,7 @@
 
 ([BrigBern_Class40000] of  CloFunction
 
-	(source "(let [dw (crin \"Dirway\")\n       way (crin \"Way\")]\n  (ssv way \"id\" (str id))\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
+	(source "(let [dw (crin \"Dirway\")\n       way (foc \"Way\" \"id\" id)]\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
 	(title "create-dirway [[dir [id pts] lin]]"))
 
 ([BrigBern_Class40001] of  CloVar

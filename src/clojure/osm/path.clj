@@ -7,9 +7,10 @@
   ru.igis.omtab.MapOb))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RADIUS 0.005)
+(def RADIUS 0.05)
 (def BRANCHES 2)
 (def SEGMENTS (volatile! {}))
+(def CYCLES (volatile! 0))
 (defn simple-dist [[y1 x1] [y2 x2]]
   (let [sx (Math/abs (- x1 x2))
        sy (Math/abs (- y1 y2))]
@@ -88,6 +89,11 @@
     (+ (simple-dist (first pts) (second pts))
       (distance (rest pts))))
   (apply + (map #(distance (@SEGMENTS %))  pts))))
+
+(defn direction [p1 p2]
+  (let [[lat1 lon1] p1
+        [lat2 lon2] p2]
+  (MapOb/bearingsDeg lat1 lon1 lat2 lon2)))
 
 (defn display-detailed
   ([]
