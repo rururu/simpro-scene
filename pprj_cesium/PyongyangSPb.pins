@@ -1,4 +1,4 @@
-; Fri Oct 30 22:55:42 MSK 2020
+; Sat Oct 31 21:41:10 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -74,7 +74,9 @@
 		[PyongyangSPb_Class160001]
 		[PyongyangSPb_Class120092]
 		[PyongyangSPb_Class150037]
-		[PyongyangSPb_Class110003])
+		[PyongyangSPb_Class110003]
+		[PyongyangSPb_Class100003]
+		[PyongyangSPb_Class130557])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[PyongyangSPb_Class120003]
@@ -94,6 +96,19 @@
 
 	(source "(path/set-functions \n  osm.path/find-branches \n  osm.path/near\n  osm.path/distance\n  osm.path/display-path)\n(path/clear-paths)\n(path/set-max-paths 2)")
 	(title "Set OSMPath Functions and Goal"))
+
+([PyongyangSPb_Class100003] of  CloFunction
+
+	(source "(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi)")
+	(title "create-bbx [id [w s e n]]"))
+
+([PyongyangSPb_Class100005] of  CloFuncall
+
+	(source "(osm.path/create-bbx \"bbx1\" [135.0 48.5 135.1 48.6"))
+
+([PyongyangSPb_Class100006] of  CloFuncall
+
+	(source "(osm.path/create-bbx \"bbx1\" [135.0 48.5 135.1 48.6])"))
 
 ([PyongyangSPb_Class100007] of  CloVar
 
@@ -137,13 +152,17 @@
 
 ([PyongyangSPb_Class110002] of  CloFunction
 
-	(source "([[lat lon]]\n  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]\n    (if (< (count ss) 1)\n      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)\n      ss)))\n([[lat lon] rad wtype wsubtype]\n  (let [d (/ rad 60)\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)]\n    (od/filter-data wda wtype wsubtype)))")
+	(source "([[lat lon]]\n  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]\n    (if (< (count ss) 1)\n      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)\n      ss)))\n([[lat lon] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)]\n    (create-bbx (gensym) bbx)\n    (od/filter-data wda wtype wsubtype)))")
 	(title "find-segments"))
 
 ([PyongyangSPb_Class110003] of  CloFunction
 
 	(source "(println pts)\n(display-detailed [pts \"FFFF6000\"])")
 	(title "display-path [pts]"))
+
+([PyongyangSPb_Class110008] of  CloFuncall
+
+	(source "(osm.path/create-bbx \"bbx1\" [135.01 48.5 135.1 48.52])"))
 
 ([PyongyangSPb_Class110013] of  CloFunction
 
@@ -162,7 +181,7 @@
 
 ([PyongyangSPb_Class110023] of  CloVar
 
-	(source "2")
+	(source "4")
 	(title "BRANCHES"))
 
 ([PyongyangSPb_Class110025] of  CloFunction
@@ -194,12 +213,8 @@
 
 ([PyongyangSPb_Class120005] of  CloVar
 
-	(source "0.05")
+	(source "0.005")
 	(title "RADIUS"))
-
-([PyongyangSPb_Class120089] of  CloFuncall
-
-	(source "(ru.rules/pp :all)"))
 
 ([PyongyangSPb_Class120092] of  CloFunction
 
@@ -213,18 +228,6 @@
 	(salience 1)
 	(title "p:Negative Direction"))
 
-([PyongyangSPb_Class130001] of  CloFuncall
-
-	(source "(osm.path/find-segments [[48.09 135.11]])"))
-
-([PyongyangSPb_Class130002] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.09 135.11] osm.path/RADIUS osm.path/WAT-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class130003] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.09 135.11] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
 ([PyongyangSPb_Class130004] of  CloFunction
 
 	(source "(def MAX-PATHS m)")
@@ -235,9 +238,122 @@
 	(source "(def PATHS (volatile! []))")
 	(title "clear-paths []"))
 
-([PyongyangSPb_Class140004] of  CloFuncall
+([PyongyangSPb_Class130530] of  CloFuncall
 
-	(source "[osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE]"))
+	(source "[1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]"))
+
+([PyongyangSPb_Class130531] of  CloFuncall
+
+	(source "(rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"\""))
+
+([PyongyangSPb_Class130532] of  CloFuncall
+
+	(source "(rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Владимировка\")"))
+
+([PyongyangSPb_Class130533] of  CloFuncall
+
+	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Владимировка\"))"))
+
+([PyongyangSPb_Class130534] of  CloFuncall
+
+	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Лермогтовка\"))"))
+
+([PyongyangSPb_Class130535] of  CloFuncall
+
+	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Лермонтовка\"))"))
+
+([PyongyangSPb_Class130536] of  CloFuncall
+
+	(source "(count (rete.core/facts-with-slot-value 'Path1 'points #(= (first %1) %2) \"Лермонтовка\"))"))
+
+([PyongyangSPb_Class130537] of  CloFuncall
+
+	(source "(osm.path/find-segments [[]])"))
+
+([PyongyangSPb_Class130538] of  CloFuncall
+
+	(source "(osm.path/find-segments [[48.514 135.041]])"))
+
+([PyongyangSPb_Class130539] of  CloFuncall
+
+	(source "(osm.path/find-segments [48.514 135.041] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
+
+([PyongyangSPb_Class130541] of  CloFuncall
+
+	(source "(def ss (osm.path/find-segments [48.514 135.041] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
+
+([PyongyangSPb_Class130543] of  CloFuncall
+
+	(source "(ss"))
+
+([PyongyangSPb_Class130544] of  CloFuncall
+
+	(source "(map osm.data/create-line (seq ss))"))
+
+([PyongyangSPb_Class130552] of  CloFuncall
+
+	(source "(def ss2 (osm.path/find-segments [48.481 135.107] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
+
+([PyongyangSPb_Class130554] of  CloFuncall
+
+	(source "(map osm.data/create-line (seq ss2))"))
+
+([PyongyangSPb_Class130557] of  CloFunction
+
+	(source "(map od/create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
+	(title "observe [p rad]"))
+
+([PyongyangSPb_Class130558] of  CloFuncall
+
+	(source "(osm.data/observe [])"))
+
+([PyongyangSPb_Class130559] of  CloFuncall
+
+	(source "(osm.data/observe [48.495 ])"))
+
+([PyongyangSPb_Class130560] of  CloFuncall
+
+	(source "(osm.data/observe [48.495 135.081])"))
+
+([PyongyangSPb_Class130561] of  CloFuncall
+
+	(source "(osm.path/observe [48.495 135.081])"))
+
+([PyongyangSPb_Class130562] of  CloFuncall
+
+	(source "(osm.path/observe [48.495 135.081] 0.005)"))
+
+([PyongyangSPb_Class130605] of  CloFuncall
+
+	(source "(osm.path/observe [48.502 135.07] 0.00005)"))
+
+([PyongyangSPb_Class130627] of  CloFuncall
+
+	(source "(osm.path/observe [48.49 135.066] 0.00005)"))
+
+([PyongyangSPb_Class130629] of  CloFuncall
+
+	(source "(osm.path/observe [48.49 135.067] 0.0005)"))
+
+([PyongyangSPb_Class130631] of  CloFuncall
+
+	(source "(osm.path/observe [48.514 135.041] 0.005)"))
+
+([PyongyangSPb_Class130633] of  CloFuncall
+
+	(source "(osm.path/observe [48.139 135.066] 0.005)"))
+
+([PyongyangSPb_Class130635] of  CloFuncall
+
+	(source "(osm.path/observe [48.139 135.066] 0.05)"))
+
+([PyongyangSPb_Class130641] of  CloFuncall
+
+	(source "(osm.path/observe [48.499 135.066] 0.005)"))
+
+([PyongyangSPb_Class130651] of  CloFuncall
+
+	(source "(osm.path/observe [48.484 135.071] 0.0005)"))
 
 ([PyongyangSPb_Class140005] of  Rule
 
@@ -257,46 +373,6 @@
 
 	(source "(count pts)")
 	(title "distance [pts]"))
-
-([PyongyangSPb_Class150005] of  CloFuncall
-
-	(source "(keys @osm.path/SEGMENTS)"))
-
-([PyongyangSPb_Class150006] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.09 135.11] 0.5 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class150007] of  CloFuncall
-
-	(source "(osm.path/find-branches [48.09 135.11] osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class150008] of  CloFuncall
-
-	(source "(osm.path/find-branches [48.074 135.105] osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class150009] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.074 135.105] 0.05 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class150010] of  CloFuncall
-
-	(source "(def ss (osm.path/find-segments [48.074 135.105] 0.05 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
-
-([PyongyangSPb_Class150011] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.074 135.105] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class150012] of  CloFuncall
-
-	(source "(def ss (osm.path/find-segments [48.074 135.105] osm.path/RADIUS osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
-
-([PyongyangSPb_Class150013] of  CloFuncall
-
-	(source "ss"))
-
-([PyongyangSPb_Class150014] of  CloFuncall
-
-	(source "(keys ss)"))
 
 ([PyongyangSPb_Class150037] of  CloFunction
 
@@ -783,7 +859,8 @@
 		[PyongyangSPb_Class280000]
 		[PyongyangSPb_Class280001]
 		[PyongyangSPb_Class300098]
-		[PyongyangSPb_Class300099])
+		[PyongyangSPb_Class300099]
+		[PyongyangSPb_Class130000])
 	(templates
 		[Directive]
 		[Goal]

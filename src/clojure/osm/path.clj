@@ -7,8 +7,8 @@
   ru.igis.omtab.MapOb))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RADIUS 0.05)
-(def BRANCHES 2)
+(def RADIUS 0.005)
+(def BRANCHES 4)
 (def SEGMENTS (volatile! {}))
 (def CYCLES (volatile! 0))
 (defn simple-dist [[y1 x1] [y2 x2]]
@@ -25,9 +25,10 @@
       (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)
       ss)))
 ([[lat lon] rad wtype wsubtype]
-  (let [d (/ rad 60)
+  (let [d rad
          bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]
          wda (od/way-data bbx wtype)]
+    (create-bbx (gensym) bbx)
     (od/filter-data wda wtype wsubtype))))
 
 (defn nearest-segment [p segs]
@@ -131,4 +132,24 @@
 (defn display-path [pts]
   (println pts)
 (display-detailed [pts "FFFF6000"]))
+
+(defn create-bbx [id [w s e n]]
+  (let [tsf (fn [[y x]]
+               (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))
+       id (str id)
+       clat (MapOb/getDegMin (/ (+ s n) 2))
+       clon (MapOb/getDegMin (/ (+ w e) 2))
+       pts [[n w] [n e] [s e] [s w] [n w]]
+       pts (map tsf pts)
+       poi (foc "OMTPoly" "label" id)]
+    (ssv poi "latitude" clat)
+    (ssv poi "longitude" clon)
+    (ssv poi "lineColor" "FF0000FF")
+    ;; (ssv poi "line" (fifos "Line" "label" "L3"))
+    (ssvs poi "points" pts)
+    (OMT/getOrAdd poi)
+    poi))
+
+(defn observe [p rad]
+  (map od/create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE)))
 
