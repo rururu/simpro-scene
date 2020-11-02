@@ -7,76 +7,86 @@
   ru.igis.omtab.MapOb))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RADIUS 0.005)
+(def SEARCH-RAD 0.005)
+(def JOINT-RAD 0.0005)
 (def BRANCHES 4)
 (def SEGMENTS (volatile! {}))
 (def CYCLES (volatile! 0))
 (defn simple-dist [[y1 x1] [y2 x2]]
-  (let [sx (Math/abs (- x1 x2))
-       sy (Math/abs (- y1 y2))]
-  (Math/sqrt (+ (* sx sx) (* sy sy)))))
+  ;;(let [sx (Math/abs (- x1 x2))
+;;       sy (Math/abs (- y1 y2))]
+;;  (Math/sqrt (+ (* sx sx) (* sy sy))))
+(MapOb/distanceNM y1 x1 y2 x2))
+
+(defn create-bbx
+  ([id [clat clon] rad]
+  (create-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))
+([id [w s e n]]
+(let [tsf (fn [[y x]]
+               (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))
+       id (str id)
+       clat (MapOb/getDegMin (/ (+ s n) 2))
+       clon (MapOb/getDegMin (/ (+ w e) 2))
+       pts [[n w] [n e] [s e] [s w] [n w]]
+       pts (map tsf pts)
+       poi (foc "OMTPoly" "label" id)]
+    (ssv poi "latitude" clat)
+    (ssv poi "longitude" clon)
+    (ssv poi "lineColor" "FF0000FF")
+    ;; (ssv poi "line" (fifos "Line" "label" "L3"))
+    (ssvs poi "points" pts)
+    (OMT/getOrAdd poi)
+    poi)))
 
 (defn find-segments
   ([[lat lon]]
-  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))
+  (find-segments [lat lon] SEARCH-RAD WAY-TYPE WAY-SUBTYPE))
 ([[lat lon] wtype wsubtype]
-  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]
-    (if (< (count ss) 1)
-      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)
-      ss)))
+  (if-let [ss (seq (find-segments [lat lon] SEARCH-RAD wtype wsubtype))]
+    ss
+    (if-let [ss (seq (find-segments [lat lon] (* 2 SEARCH-RAD) wtype wsubtype))]
+      ss
+      (if-let [ss (seq (find-segments [lat lon] (* 4 SEARCH-RAD) wtype wsubtype))]
+        ss
+        (find-segments [lat lon] (* 8 SEARCH-RAD) wtype wsubtype)))))
 ([[lat lon] rad wtype wsubtype]
   (let [d rad
          bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]
-         wda (od/way-data bbx wtype)]
+         wda (od/way-data bbx wtype)
+         fda (od/filter-data wda wtype wsubtype)]
     (create-bbx (gensym) bbx)
-    (od/filter-data wda wtype wsubtype))))
+    ;; transform segment format into: [id p1 p2 ...]
+    (map #(cons (first %) (second %)) fda))))
 
-(defn nearest-segment [p segs]
-  (letfn [(id-beg-end [s]
-             [(first s) (first (second s)) (last (second s))])]
-  (let [[id b e :as ibe1] (id-beg-end (first segs))
-         mid1 (min (simple-dist p b) (simple-dist p e))
-         nsg1 (first segs)] 
-    (loop [ibe ibe1 r (rest segs) mid mid1 nsg nsg1]
-      (if (empty? r) 
-        nsg
-        (let [[id b e :as ibe2] (id-beg-end (first r))
-               mid2 (min (simple-dist p b) (simple-dist p e))
-               nsg2 (first r)]
-          (if (< mid2 mid)
-            (recur ibe2 (rest r) mid2 nsg2)
-            (recur ibe (rest r) mid nsg))))))))
-
-(defn sort-segments [p segs]
-  (letfn [(id-beg-end [s]
-             [(first s) (first (second s)) (last (second s))])
-           (min-dist [p b e]
-             (let [bd (simple-dist p b)
-                    ed (simple-dist p e)]
+(defn sort-and-if-reverse-segments [p segs]
+  (letfn [(mindist-id-ifrevseg [p s]
+             (let [[id b e] [(first s) (second s) (last s)]
+                     bd (simple-dist p b)
+                     ed (simple-dist p e)]
                (if (< bd ed)
-                 [bd e]
-                 [ed b])))
-           (seg-desc [s]
-             (let [[id b e] (id-beg-end s)]
-               [(min-dist p b e) s]))
+                 (cons bd (cons id (rest s)))
+                 (cons ed (cons id (reverse (rest s)))))))
            (sort-fn [x y]
-             (< (ffirst x) (ffirst y)))]
-  (sort sort-fn (map seg-desc segs))))
+             (< (first x) (first y)))]
+  (map rest (sort sort-fn (map #(mindist-id-ifrevseg p %) segs)))))
 
 (defn find-branches
-  ([p]
+  ([p w]
   (find-branches p WAY-TYPE WAY-SUBTYPE BRANCHES))
-([p n]
+([p n w]
   (find-branches p WAY-TYPE WAY-SUBTYPE n))
-([p wtype wsubtype]
+([p wtype wsubtype w]
   (find-branches p wtype wsubtype BRANCHES))
-([p wtype wsubtype n]
-  (let [sgs (find-segments p wtype wsubtype)
-         sss (sort-segments p sgs)
+([p wtype wsubtype n w]
+  (let [inside-joint-rad #(< (simple-dist (second %) p) JOINT-RAD)
+         sgs (find-segments p wtype wsubtype)
+         sss (sort-and-if-reverse-segments p sgs)
+         sss (if (= w :inside-joint)
+                 (filter inside-joint-rad sss)
+                 sss)
          tss (take n sss)]
-    (map #(let [[[mind farp] [id s]] %]
-                  (vswap! SEGMENTS assoc id s) 
-                  [id farp]) tss))))
+    (doall (map #(vswap! SEGMENTS assoc (first %) (rest %)) tss))
+    tss)))
 
 (defn near [v1 v2]
   (or (= v1 v2)
@@ -133,23 +143,9 @@
   (println pts)
 (display-detailed [pts "FFFF6000"]))
 
-(defn create-bbx [id [w s e n]]
-  (let [tsf (fn [[y x]]
-               (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))
-       id (str id)
-       clat (MapOb/getDegMin (/ (+ s n) 2))
-       clon (MapOb/getDegMin (/ (+ w e) 2))
-       pts [[n w] [n e] [s e] [s w] [n w]]
-       pts (map tsf pts)
-       poi (foc "OMTPoly" "label" id)]
-    (ssv poi "latitude" clat)
-    (ssv poi "longitude" clon)
-    (ssv poi "lineColor" "FF0000FF")
-    ;; (ssv poi "line" (fifos "Line" "label" "L3"))
-    (ssvs poi "points" pts)
-    (OMT/getOrAdd poi)
-    poi))
+(defn create-line [[id & pts]]
+  (od/create-line [id pts]))
 
 (defn observe [p rad]
-  (map od/create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE)))
+  (map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE)))
 

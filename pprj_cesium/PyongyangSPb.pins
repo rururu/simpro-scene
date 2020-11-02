@@ -1,4 +1,4 @@
-; Sat Oct 31 21:41:10 MSK 2020
+; Mon Nov 02 21:38:28 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -66,8 +66,8 @@
 
 	(cloFunctions
 		[PyongyangSPb_Class100012]
+		[PyongyangSPb_Class100003]
 		[PyongyangSPb_Class110002]
-		[PyongyangSPb_Class100014]
 		[PyongyangSPb_Class110019]
 		[PyongyangSPb_Class110025]
 		[PyongyangSPb_Class110013]
@@ -75,13 +75,14 @@
 		[PyongyangSPb_Class120092]
 		[PyongyangSPb_Class150037]
 		[PyongyangSPb_Class110003]
-		[PyongyangSPb_Class100003]
+		[PyongyangSPb_Class160118]
 		[PyongyangSPb_Class130557])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[PyongyangSPb_Class120003]
 		[PyongyangSPb_Class120004]
 		[PyongyangSPb_Class120005]
+		[PyongyangSPb_Class80001]
 		[PyongyangSPb_Class110023]
 		[PyongyangSPb_Class110014]
 		[PyongyangSPb_Class300000])
@@ -99,16 +100,8 @@
 
 ([PyongyangSPb_Class100003] of  CloFunction
 
-	(source "(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi)")
-	(title "create-bbx [id [w s e n]]"))
-
-([PyongyangSPb_Class100005] of  CloFuncall
-
-	(source "(osm.path/create-bbx \"bbx1\" [135.0 48.5 135.1 48.6"))
-
-([PyongyangSPb_Class100006] of  CloFuncall
-
-	(source "(osm.path/create-bbx \"bbx1\" [135.0 48.5 135.1 48.6])"))
+	(source "([id [clat clon] rad]\n  (create-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
+	(title "create-bbx"))
 
 ([PyongyangSPb_Class100007] of  CloVar
 
@@ -122,7 +115,7 @@
 
 ([PyongyangSPb_Class100012] of  CloFunction
 
-	(source "(let [sx (Math/abs (- x1 x2))\n       sy (Math/abs (- y1 y2))]\n  (Math/sqrt (+ (* sx sx) (* sy sy))))")
+	(source ";;(let [sx (Math/abs (- x1 x2))\n;;       sy (Math/abs (- y1 y2))]\n;;  (Math/sqrt (+ (* sx sx) (* sy sy))))\n(MapOb/distanceNM y1 x1 y2 x2)")
 	(title "simple-dist [[y1 x1] [y2 x2]]"))
 
 ([PyongyangSPb_Class100014] of  CloFunction
@@ -152,17 +145,13 @@
 
 ([PyongyangSPb_Class110002] of  CloFunction
 
-	(source "([[lat lon]]\n  (find-segments [lat lon] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (let [ss (find-segments [lat lon] RADIUS wtype wsubtype)]\n    (if (< (count ss) 1)\n      (find-segments [lat lon] (* 10 RADIUS) wtype wsubtype)\n      ss)))\n([[lat lon] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)]\n    (create-bbx (gensym) bbx)\n    (od/filter-data wda wtype wsubtype)))")
+	(source "([[lat lon]]\n  (find-segments [lat lon] SEARCH-RAD WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (if-let [ss (seq (find-segments [lat lon] SEARCH-RAD wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-segments [lat lon] (* 2 SEARCH-RAD) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-segments [lat lon] (* 4 SEARCH-RAD) wtype wsubtype))]\n        ss\n        (find-segments [lat lon] (* 8 SEARCH-RAD) wtype wsubtype)))))\n([[lat lon] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)\n         fda (od/filter-data wda wtype wsubtype)]\n    (create-bbx (gensym) bbx)\n    ;; transform segment format into: [id p1 p2 ...]\n    (map #(cons (first %) (second %)) fda)))")
 	(title "find-segments"))
 
 ([PyongyangSPb_Class110003] of  CloFunction
 
 	(source "(println pts)\n(display-detailed [pts \"FFFF6000\"])")
 	(title "display-path [pts]"))
-
-([PyongyangSPb_Class110008] of  CloFuncall
-
-	(source "(osm.path/create-bbx \"bbx1\" [135.01 48.5 135.1 48.52])"))
 
 ([PyongyangSPb_Class110013] of  CloFunction
 
@@ -176,8 +165,8 @@
 
 ([PyongyangSPb_Class110019] of  CloFunction
 
-	(source "(letfn [(id-beg-end [s]\n             [(first s) (first (second s)) (last (second s))])\n           (min-dist [p b e]\n             (let [bd (simple-dist p b)\n                    ed (simple-dist p e)]\n               (if (< bd ed)\n                 [bd e]\n                 [ed b])))\n           (seg-desc [s]\n             (let [[id b e] (id-beg-end s)]\n               [(min-dist p b e) s]))\n           (sort-fn [x y]\n             (< (ffirst x) (ffirst y)))]\n  (sort sort-fn (map seg-desc segs)))")
-	(title "sort-segments [p segs]"))
+	(source "(letfn [(mindist-id-ifrevseg [p s]\n             (let [[id b e] [(first s) (second s) (last s)]\n                     bd (simple-dist p b)\n                     ed (simple-dist p e)]\n               (if (< bd ed)\n                 (cons bd (cons id (rest s)))\n                 (cons ed (cons id (reverse (rest s)))))))\n           (sort-fn [x y]\n             (< (first x) (first y)))]\n  (map rest (sort sort-fn (map #(mindist-id-ifrevseg p %) segs))))")
+	(title "sort-and-if-reverse-segments [p segs]"))
 
 ([PyongyangSPb_Class110023] of  CloVar
 
@@ -186,7 +175,7 @@
 
 ([PyongyangSPb_Class110025] of  CloFunction
 
-	(source "([p]\n  (find-branches p WAY-TYPE WAY-SUBTYPE BRANCHES))\n([p n]\n  (find-branches p WAY-TYPE WAY-SUBTYPE n))\n([p wtype wsubtype]\n  (find-branches p wtype wsubtype BRANCHES))\n([p wtype wsubtype n]\n  (let [sgs (find-segments p wtype wsubtype)\n         sss (sort-segments p sgs)\n         tss (take n sss)]\n    (map #(let [[[mind farp] [id s]] %]\n                  (vswap! SEGMENTS assoc id s) \n                  [id farp]) tss)))")
+	(source "([p w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE BRANCHES))\n([p n w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE n))\n([p wtype wsubtype w]\n  (find-branches p wtype wsubtype BRANCHES))\n([p wtype wsubtype n w]\n  (let [inside-joint-rad #(< (simple-dist (second %) p) JOINT-RAD)\n         sgs (find-segments p wtype wsubtype)\n         sss (sort-and-if-reverse-segments p sgs)\n         sss (if (= w :inside-joint)\n                 (filter inside-joint-rad sss)\n                 sss)\n         tss (take n sss)]\n    (doall (map #(vswap! SEGMENTS assoc (first %) (rest %)) tss))\n    tss))")
 	(title "find-branches"))
 
 ([PyongyangSPb_Class120000] of  Rule
@@ -214,7 +203,7 @@
 ([PyongyangSPb_Class120005] of  CloVar
 
 	(source "0.005")
-	(title "RADIUS"))
+	(title "SEARCH-RAD"))
 
 ([PyongyangSPb_Class120092] of  CloFunction
 
@@ -238,122 +227,10 @@
 	(source "(def PATHS (volatile! []))")
 	(title "clear-paths []"))
 
-([PyongyangSPb_Class130530] of  CloFuncall
-
-	(source "[1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111]"))
-
-([PyongyangSPb_Class130531] of  CloFuncall
-
-	(source "(rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"\""))
-
-([PyongyangSPb_Class130532] of  CloFuncall
-
-	(source "(rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Владимировка\")"))
-
-([PyongyangSPb_Class130533] of  CloFuncall
-
-	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Владимировка\"))"))
-
-([PyongyangSPb_Class130534] of  CloFuncall
-
-	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Лермогтовка\"))"))
-
-([PyongyangSPb_Class130535] of  CloFuncall
-
-	(source "(count (rete.core/facts-with-slot-value 'Path0 'points #(= (first %1) %2) \"Лермонтовка\"))"))
-
-([PyongyangSPb_Class130536] of  CloFuncall
-
-	(source "(count (rete.core/facts-with-slot-value 'Path1 'points #(= (first %1) %2) \"Лермонтовка\"))"))
-
-([PyongyangSPb_Class130537] of  CloFuncall
-
-	(source "(osm.path/find-segments [[]])"))
-
-([PyongyangSPb_Class130538] of  CloFuncall
-
-	(source "(osm.path/find-segments [[48.514 135.041]])"))
-
-([PyongyangSPb_Class130539] of  CloFuncall
-
-	(source "(osm.path/find-segments [48.514 135.041] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE)"))
-
-([PyongyangSPb_Class130541] of  CloFuncall
-
-	(source "(def ss (osm.path/find-segments [48.514 135.041] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
-
-([PyongyangSPb_Class130543] of  CloFuncall
-
-	(source "(ss"))
-
-([PyongyangSPb_Class130544] of  CloFuncall
-
-	(source "(map osm.data/create-line (seq ss))"))
-
-([PyongyangSPb_Class130552] of  CloFuncall
-
-	(source "(def ss2 (osm.path/find-segments [48.481 135.107] 0.005 osm.path/WAY-TYPE osm.path/WAY-SUBTYPE))"))
-
-([PyongyangSPb_Class130554] of  CloFuncall
-
-	(source "(map osm.data/create-line (seq ss2))"))
-
 ([PyongyangSPb_Class130557] of  CloFunction
 
-	(source "(map od/create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
+	(source "(map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
 	(title "observe [p rad]"))
-
-([PyongyangSPb_Class130558] of  CloFuncall
-
-	(source "(osm.data/observe [])"))
-
-([PyongyangSPb_Class130559] of  CloFuncall
-
-	(source "(osm.data/observe [48.495 ])"))
-
-([PyongyangSPb_Class130560] of  CloFuncall
-
-	(source "(osm.data/observe [48.495 135.081])"))
-
-([PyongyangSPb_Class130561] of  CloFuncall
-
-	(source "(osm.path/observe [48.495 135.081])"))
-
-([PyongyangSPb_Class130562] of  CloFuncall
-
-	(source "(osm.path/observe [48.495 135.081] 0.005)"))
-
-([PyongyangSPb_Class130605] of  CloFuncall
-
-	(source "(osm.path/observe [48.502 135.07] 0.00005)"))
-
-([PyongyangSPb_Class130627] of  CloFuncall
-
-	(source "(osm.path/observe [48.49 135.066] 0.00005)"))
-
-([PyongyangSPb_Class130629] of  CloFuncall
-
-	(source "(osm.path/observe [48.49 135.067] 0.0005)"))
-
-([PyongyangSPb_Class130631] of  CloFuncall
-
-	(source "(osm.path/observe [48.514 135.041] 0.005)"))
-
-([PyongyangSPb_Class130633] of  CloFuncall
-
-	(source "(osm.path/observe [48.139 135.066] 0.005)"))
-
-([PyongyangSPb_Class130635] of  CloFuncall
-
-	(source "(osm.path/observe [48.139 135.066] 0.05)"))
-
-([PyongyangSPb_Class130641] of  CloFuncall
-
-	(source "(osm.path/observe [48.499 135.066] 0.005)"))
-
-([PyongyangSPb_Class130651] of  CloFuncall
-
-	(source "(osm.path/observe [48.484 135.071] 0.0005)"))
 
 ([PyongyangSPb_Class140005] of  Rule
 
@@ -374,6 +251,284 @@
 	(source "(count pts)")
 	(title "distance [pts]"))
 
+([PyongyangSPb_Class150006] of  OMTPoly
+
+	(label "G__1499")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150007] of  OMTPoly
+
+	(description "27263845")
+	(label "27263845")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150008] of  OMTPoly
+
+	(description "87984128")
+	(label "87984128")
+	(latitude "48 30.82")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 30.82 135 2.46"
+		"48 30.84 135 2.47")
+	(relative FALSE))
+
+([PyongyangSPb_Class150009] of  OMTPoly
+
+	(description "87984150")
+	(label "87984150")
+	(latitude "48 30.84")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.47")
+	(playground-index 0)
+	(points
+		"48 30.84 135 2.47"
+		"48 32.07 135 1.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class150010] of  OMTPoly
+
+	(description "88367888")
+	(label "88367888")
+	(latitude "48 31.56")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 1.88")
+	(playground-index 0)
+	(points
+		"48 31.56 135 1.88"
+		"48 30.59 135 3.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150011] of  OMTPoly
+
+	(description "319522473")
+	(label "319522473")
+	(latitude "48 30.84")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.47")
+	(playground-index 0)
+	(points
+		"48 30.84 135 2.47"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150012] of  OMTPoly
+
+	(description "319522506")
+	(label "319522506")
+	(latitude "48 32.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 1.91")
+	(playground-index 0)
+	(points
+		"48 32.06 135 1.91"
+		"48 30.84 135 2.47")
+	(relative FALSE))
+
+([PyongyangSPb_Class150013] of  OMTPoly
+
+	(description "319522521")
+	(label "319522521")
+	(latitude "48 30.59")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.46")
+	(playground-index 0)
+	(points
+		"48 30.59 135 3.46"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150016] of  OMTPoly
+
+	(label "G__2020")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150017] of  OMTPoly
+
+	(label "G__2152")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150018] of  OMTPoly
+
+	(label "G__2346")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150020] of  OMTPoly
+
+	(label "G__2534")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150029] of  OMTPoly
+
+	(label "G__3011")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150030] of  OMTPoly
+
+	(label "G__3137")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150031] of  OMTPoly
+
+	(label "G__3263")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150032] of  OMTPoly
+
+	(label "G__3518")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150033] of  OMTPoly
+
+	(label "G__3931")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150034] of  OMTPoly
+
+	(label "G__4184")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150035] of  OMTPoly
+
+	(label "G__4308")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
 ([PyongyangSPb_Class150037] of  CloFunction
 
 	(source "([]\n  (map display-detailed \n    (range (min 6 (count @path/PATHS)))\n    [\"FFFFFF00\" \"FFFF6000\" \"FFFF0000\" \"FF7B3F00\" \"FF008000\" \"FF0000FF\"]))\n([n clr]\n  (if-let [ids (butlast (rest (nth @path/PATHS n)))]\n    (display-detailed [ids clr])))\n([[ids clr]]\n  (cond\n    (number? ids) \n    (if-let [pts (@SEGMENTS ids)]\n      (let [id (str ids)\n            [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n            [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n            [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n            poi (foc \"OMTPoly\" \"label\" id)\n            tsf (fn [[y x]]\n                   (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))] \n         (ssv poi \"description\" id)\n         (ssv poi \"latitude\" lat1)\n         (ssv poi \"longitude\" lon1)\n         (ssv poi \"lineColor\" clr)\n         (ssv poi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n         (ssvs poi \"points\" (map tsf pts))\n         (OMT/getOrAdd poi)\n         poi))\n    (string? ids)\n    nil\n    true\n    (doseq [id ids]\n      (display-detailed [id clr]))))")
@@ -391,6 +546,924 @@
 
 	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
 	(title "distance [pts]"))
+
+([PyongyangSPb_Class160046] of  OMTPoly
+
+	(label "G__4589")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160047] of  OMTPoly
+
+	(label "G__5029")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160050] of  OMTPoly
+
+	(label "G__5206")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160051] of  CloFuncall
+
+	(source "(find-branches [48.499 135.066])"))
+
+([PyongyangSPb_Class160052] of  OMTPoly
+
+	(label "G__5209")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160053] of  OMTPoly
+
+	(label "G__5336")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160054] of  OMTPoly
+
+	(label "G__5593")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160055] of  CloFuncall
+
+	(source "(observe [48.499 135.066])"))
+
+([PyongyangSPb_Class160056] of  CloFuncall
+
+	(source "(observe [48.499 135.066] 0.005)"))
+
+([PyongyangSPb_Class160057] of  OMTPoly
+
+	(label "G__5598")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160058] of  OMTPoly
+
+	(description "654040951")
+	(label "654040951")
+	(latitude "48 29.96")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.81")
+	(playground-index 0)
+	(points
+		"48 29.96 135 3.81"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160059] of  OMTPoly
+
+	(description "319522540")
+	(label "319522540")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.01")
+	(playground-index 0)
+	(points
+		"48 29.92 135 4.01"
+		"48 29.72 135 4.82")
+	(relative FALSE))
+
+([PyongyangSPb_Class160060] of  OMTPoly
+
+	(description "129838418")
+	(label "129838418")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.93 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160061] of  OMTPoly
+
+	(description "654040946")
+	(label "654040946")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.92 135 3.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class160062] of  OMTPoly
+
+	(description "129838406")
+	(label "129838406")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.74 135 4.72")
+	(relative FALSE))
+
+([PyongyangSPb_Class160063] of  OMTPoly
+
+	(description "319522586")
+	(label "319522586")
+	(latitude "48 29.78")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.61")
+	(playground-index 0)
+	(points
+		"48 29.78 135 4.61"
+		"48 29.9 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160064] of  OMTPoly
+
+	(description "319522499")
+	(label "319522499")
+	(latitude "48 29.88")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.11")
+	(playground-index 0)
+	(points
+		"48 29.88 135 4.11"
+		"48 29.82 135 4.37")
+	(relative FALSE))
+
+([PyongyangSPb_Class160065] of  OMTPoly
+
+	(description "248819671")
+	(label "248819671")
+	(latitude "48 30.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.63")
+	(playground-index 0)
+	(points
+		"48 30.06 135 3.63"
+		"48 29.93 135 3.95")
+	(relative FALSE))
+
+([PyongyangSPb_Class160066] of  OMTPoly
+
+	(description "27242828")
+	(label "27242828")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.98"
+		"48 29.92 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160067] of  OMTPoly
+
+	(description "654040947")
+	(label "654040947")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.93")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.93"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160068] of  OMTPoly
+
+	(description "129838410")
+	(label "129838410")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.95")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.95"
+		"48 29.92 135 3.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class160069] of  OMTPoly
+
+	(description "654036785")
+	(label "654036785")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.91")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.91"
+		"48 30.59 135 3.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class160070] of  OMTPoly
+
+	(description "319522542")
+	(label "319522542")
+	(latitude "48 29.69")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.95")
+	(playground-index 0)
+	(points
+		"48 29.69 135 4.95"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160071] of  OMTPoly
+
+	(description "68312481")
+	(label "68312481")
+	(latitude "48 29.98")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.5")
+	(playground-index 0)
+	(points
+		"48 29.98 135 2.5"
+		"48 29.96 135 3.77")
+	(relative FALSE))
+
+([PyongyangSPb_Class160072] of  OMTPoly
+
+	(description "319522583")
+	(label "319522583")
+	(latitude "48 29.89")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.06")
+	(playground-index 0)
+	(points
+		"48 29.89 135 4.06"
+		"48 29.75 135 4.67")
+	(relative FALSE))
+
+([PyongyangSPb_Class160073] of  OMTPoly
+
+	(description "129838409")
+	(label "129838409")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.98"
+		"48 29.93 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160074] of  OMTPoly
+
+	(description "134383366")
+	(label "134383366")
+	(latitude "48 29.71")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 5.36")
+	(playground-index 0)
+	(points
+		"48 29.71 135 5.36"
+		"48 29.89 135 4.06")
+	(relative FALSE))
+
+([PyongyangSPb_Class160075] of  OMTPoly
+
+	(description "248819670")
+	(label "248819670")
+	(latitude "48 30.05")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.6")
+	(playground-index 0)
+	(points
+		"48 30.05 135 3.6"
+		"48 29.98 135 3.73")
+	(relative FALSE))
+
+([PyongyangSPb_Class160076] of  OMTPoly
+
+	(description "248819669")
+	(label "248819669")
+	(latitude "48 30.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.64")
+	(playground-index 0)
+	(points
+		"48 30.06 135 3.64"
+		"48 29.96 135 3.82")
+	(relative FALSE))
+
+([PyongyangSPb_Class160077] of  OMTPoly
+
+	(description "129838411")
+	(label "129838411")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160078] of  OMTPoly
+
+	(description "319522588")
+	(label "319522588")
+	(latitude "48 29.75")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.7")
+	(playground-index 0)
+	(points
+		"48 29.75 135 4.7"
+		"48 29.9 135 4.14")
+	(relative FALSE))
+
+([PyongyangSPb_Class160079] of  OMTPoly
+
+	(description "654040949")
+	(label "654040949")
+	(latitude "48 29.95")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.83")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.83"
+		"48 29.93 135 3.89")
+	(relative FALSE))
+
+([PyongyangSPb_Class160080] of  OMTPoly
+
+	(description "129838408")
+	(label "129838408")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.98"
+		"48 29.93 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160081] of  OMTPoly
+
+	(description "129838421")
+	(label "129838421")
+	(latitude "48 29.8")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.59")
+	(playground-index 0)
+	(points
+		"48 29.8 135 4.59"
+		"48 29.91 135 4.04")
+	(relative FALSE))
+
+([PyongyangSPb_Class160082] of  OMTPoly
+
+	(description "319522564")
+	(label "319522564")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.98"
+		"48 29.9 135 4.02")
+	(relative FALSE))
+
+([PyongyangSPb_Class160083] of  OMTPoly
+
+	(description "129838424")
+	(label "129838424")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.99"
+		"48 29.75 135 4.68")
+	(relative FALSE))
+
+([PyongyangSPb_Class160084] of  OMTPoly
+
+	(description "25423676")
+	(label "25423676")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.88 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160085] of  OMTPoly
+
+	(description "319522587")
+	(label "319522587")
+	(latitude "48 29.78")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.62")
+	(playground-index 0)
+	(points
+		"48 29.78 135 4.62"
+		"48 29.91 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160086] of  OMTPoly
+
+	(description "128366776")
+	(label "128366776")
+	(latitude "48 30.26")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.65")
+	(playground-index 0)
+	(points
+		"48 30.26 135 3.65"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160087] of  OMTPoly
+
+	(description "654040950")
+	(label "654040950")
+	(latitude "48 29.95")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.83")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.83"
+		"48 29.96 135 3.78")
+	(relative FALSE))
+
+([PyongyangSPb_Class160088] of  OMTPoly
+
+	(description "654043244")
+	(label "654043244")
+	(latitude "48 29.97")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.7")
+	(playground-index 0)
+	(points
+		"48 29.97 135 3.7"
+		"48 29.92 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160089] of  OMTPoly
+
+	(description "654040948")
+	(label "654040948")
+	(latitude "48 29.94")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.86")
+	(playground-index 0)
+	(points
+		"48 29.94 135 3.86"
+		"48 29.93 135 3.92")
+	(relative FALSE))
+
+([PyongyangSPb_Class160090] of  OMTPoly
+
+	(description "129838422")
+	(label "129838422")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.15")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.15"
+		"48 29.74 135 4.73")
+	(relative FALSE))
+
+([PyongyangSPb_Class160091] of  OMTPoly
+
+	(description "319522548")
+	(label "319522548")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 29.91 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160092] of  OMTPoly
+
+	(description "654040944")
+	(label "654040944")
+	(latitude "48 29.77")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.62")
+	(playground-index 0)
+	(points
+		"48 29.77 135 4.62"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160093] of  OMTPoly
+
+	(description "319522541")
+	(label "319522541")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.08")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.08"
+		"48 29.71 135 4.88")
+	(relative FALSE))
+
+([PyongyangSPb_Class160094] of  OMTPoly
+
+	(description "654043238")
+	(label "654043238")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.91 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160095] of  OMTPoly
+
+	(description "654040945")
+	(label "654040945")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.91")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.91"
+		"48 29.92 135 3.96")
+	(relative FALSE))
+
+([PyongyangSPb_Class160096] of  OMTPoly
+
+	(description "319522551")
+	(label "319522551")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.02")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.02"
+		"48 29.91 135 4.06")
+	(relative FALSE))
+
+([PyongyangSPb_Class160097] of  OMTPoly
+
+	(description "131476300")
+	(label "131476300")
+	(latitude "48 30.07")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.48")
+	(playground-index 0)
+	(points
+		"48 30.07 135 3.48"
+		"48 29.96 135 3.69")
+	(relative FALSE))
+
+([PyongyangSPb_Class160098] of  OMTPoly
+
+	(description "319522581")
+	(label "319522581")
+	(latitude "48 29.76")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.6")
+	(playground-index 0)
+	(points
+		"48 29.76 135 4.6"
+		"48 29.88 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160099] of  OMTPoly
+
+	(description "319522570")
+	(label "319522570")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 29.93 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160100] of  CloFuncall
+
+	(source "(create-bbx [135.0655 48.4985 135.0665 48.4995])"))
+
+([PyongyangSPb_Class160101] of  CloFuncall
+
+	(source "(create-bbx \"A\" [135.0655 48.4985 135.0665 48.4995])"))
+
+([PyongyangSPb_Class160102] of  OMTPoly
+
+	(label "A")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.91"
+		"48 29.95 135 3.97"
+		"48 29.89 135 3.97"
+		"48 29.89 135 3.91"
+		"48 29.95 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160103] of  OMTPoly
+
+	(label "G__5603")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160105] of  OMTPoly
+
+	(label "G__5604")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160106] of  CloFuncall
+
+	(source "(observe [48.514 135.041] )"))
+
+([PyongyangSPb_Class160108] of  OMTPoly
+
+	(label "G__5607")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160109] of  CloFuncall
+
+	(source "sgs"))
+
+([PyongyangSPb_Class160110] of  CloFuncall
+
+	(source "(map last sgs)"))
+
+([PyongyangSPb_Class160112] of  CloFuncall
+
+	(source "(create-bbx \"A\" [48.4987299 135.0656825] 0.0005)"))
+
+([PyongyangSPb_Class160113] of  CloFuncall
+
+	(source "(find-branches [48.4987299 135.0656825])"))
+
+([PyongyangSPb_Class160114] of  OMTPoly
+
+	(label "G__5878")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 30.22 135 3.64"
+		"48 30.22 135 4.24"
+		"48 29.62 135 4.24"
+		"48 29.62 135 3.64"
+		"48 30.22 135 3.64")
+	(relative FALSE))
+
+([PyongyangSPb_Class160115] of  CloFuncall
+
+	(source "(def bb (find-branches [48.4987299 135.0656825]))"))
+
+([PyongyangSPb_Class160116] of  OMTPoly
+
+	(label "G__5879")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 30.22 135 3.64"
+		"48 30.22 135 4.24"
+		"48 29.62 135 4.24"
+		"48 29.62 135 3.64"
+		"48 30.22 135 3.64")
+	(relative FALSE))
+
+([PyongyangSPb_Class160117] of  CloFuncall
+
+	(source "(count bb)"))
+
+([PyongyangSPb_Class160118] of  CloFunction
+
+	(source "(od/create-line [id pts])")
+	(title "create-line [[id & pts]]"))
+
+([PyongyangSPb_Class160119] of  CloFuncall
+
+	(source "bb"))
+
+([PyongyangSPb_Class160120] of  CloFuncall
+
+	(source "(map create-line bb)"))
+
+([PyongyangSPb_Class160121] of  CloFuncall
+
+	(source "(first bb)"))
+
+([PyongyangSPb_Class160122] of  CloFuncall
+
+	(source "(second bb)"))
+
+([PyongyangSPb_Class160123] of  CloFuncall
+
+	(source "(nth bb 2)"))
+
+([PyongyangSPb_Class160124] of  CloFuncall
+
+	(source "(def bb2 (find-branches [48.4985751 135.0663615]))"))
+
+([PyongyangSPb_Class160125] of  OMTPoly
+
+	(label "G__6020")
+	(latitude "48 29.91")
+	(lineColor "FF0000FF")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 30.21 135 3.68"
+		"48 30.21 135 4.28"
+		"48 29.61 135 4.28"
+		"48 29.61 135 3.68"
+		"48 30.21 135 3.68")
+	(relative FALSE))
+
+([PyongyangSPb_Class160126] of  CloFuncall
+
+	(source "(count bb2)"))
+
+([PyongyangSPb_Class160127] of  CloFuncall
+
+	(source "(map create-line bb2)"))
+
+([PyongyangSPb_Class160128] of  CloFuncall
+
+	(source "(first bb2)"))
+
+([PyongyangSPb_Class160129] of  CloFuncall
+
+	(source "(second bb2)"))
+
+([PyongyangSPb_Class160130] of  CloFuncall
+
+	(source "(def bb3 (find-branches [48.498558 135.0664415]))"))
+
+([PyongyangSPb_Class160131] of  OMTPoly
+
+	(label "G__6029")
+	(latitude "48 29.91")
+	(lineColor "FF0000FF")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 30.21 135 3.69"
+		"48 30.21 135 4.29"
+		"48 29.61 135 4.29"
+		"48 29.61 135 3.69"
+		"48 30.21 135 3.69")
+	(relative FALSE))
+
+([PyongyangSPb_Class160132] of  CloFuncall
+
+	(source "(count bb3)"))
+
+([PyongyangSPb_Class160133] of  CloFuncall
+
+	(source "(map create-line bb3)"))
 
 ([PyongyangSPb_Class170001] of  Rule
 
@@ -1020,6 +2093,11 @@
 
 	(source "nil")
 	(title "F-near"))
+
+([PyongyangSPb_Class80001] of  CloVar
+
+	(source "0.0005")
+	(title "JOINT-RAD"))
 
 ([PyongyangSPb_Class80002] of  CloFunction
 
