@@ -1,4 +1,4 @@
-; Mon Nov 02 21:38:28 MSK 2020
+; Tue Nov 03 20:27:22 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -43,9 +43,6 @@
 		(create-accessor read-write))
 	(multislot inOpenMap
 ;+		(type ANY)
-		(create-accessor read-write))
-	(multislot paths
-		(type STRING)
 		(create-accessor read-write)))
 
 (defclass NamedDoc
@@ -62,14 +59,15 @@
 
 (defclass Path+Onto
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Path
 	(is-a Path+Onto)
 	(role abstract)
-	(multislot points
-		(type STRING)
-		(create-accessor read-write))
 	(single-slot a
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -82,6 +80,9 @@
 (defclass Path0
 	(is-a Path)
 	(role concrete)
+	(multislot points
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot general-dir
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -98,13 +99,6 @@
 (defclass Goal
 	(is-a Path)
 	(role concrete)
-	(multislot paths
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot status
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -112,8 +106,12 @@
 
 (defclass Work
 	(is-a Path+Onto)
+	(role concrete))
+
+(defclass Solution
+	(is-a Path+Onto)
 	(role concrete)
-	(single-slot status
+	(single-slot path
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

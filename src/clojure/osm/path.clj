@@ -90,8 +90,8 @@
 
 (defn near [v1 v2]
   (or (= v1 v2)
-  (and (< (Math/abs (- (first v1) (first v2))) RADIUS)
-          (< (Math/abs (- (second v1) (second v2))) RADIUS))))
+  (and (< (Math/abs (- (first v1) (first v2))) JOINT-RAD)
+          (< (Math/abs (- (second v1) (second v2))) JOINT-RAD))))
 
 (defn distance [pts]
   (if (and (seq pts) (vector? (first pts))) ;; list points

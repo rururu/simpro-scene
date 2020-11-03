@@ -2321,225 +2321,142 @@
     (modify ?onb time fut label onb)
     (modify ?onb time fut))))
 
-(p:All Goals Reach 0
-(Goal status "REACH")
-(not Goal status "RUN")
-(not Subgoal status "RUN")
-=>
-(println :ALL-GOALS-REACHED)
-(asser Work status "OPTIMIZATION"))
-
-(p:All Goals Optimized 0
-(Work status "OPTIMIZATION")
-(Goal status "OPTI")
-(not Goal status "REACH")
-(not Subgoal status "REACH")
-=>
-(rete.core/problem-solved)
-(println :ALL-GOALS-OPTIMIZED))
-
-(p:Goal Optimization 0
-(Work status "OPTIMIZATION")
-?g (Goal status "REACH"
-	paths ?phs)
-=>
-(println :O :PHS ?phs)
-(let [pth1 (first ?phs)
-      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]
-                (if (empty? phs)
-                  pth
-                  (let [dist (path/F-distance (first phs))]
-                    (if (< dist mind)
-                      (recur (rest phs) dist (first phs))
-                      (recur (rest phs) mind pth)))))]
-  (modify ?g status "OPTI"
-	paths [spt])
-  (path/F-display-path spt)))
-
-(p:Goal Not Paths -2
-?g (Goal status "RUN"
-	a ?a
-	b ?b
-	paths ?phs
-	(not (empty? ?phs)))
-(not Path1 a ?a)
-(not Path1 a ?b)
-=>
-(println :GNP :PHS ?phs)
-(modify ?g status "REACH"))
-
-(p:Subgoal Start 0
-?sg (Subgoal status "START"
-	a ?a
-	b ?b)
-=>
-(let [[ia & pa] (read-string ?a)
-       [ib & pb] (read-string ?b)]
-  (asser Path0 a pb
-	b pb
-	points [ib])
-  (modify ?sg status "RUN"
-	a pa
-	b pb
-	paths [])))
-
-(p:Subgoal Check 0
-?sg (Subgoal status "RUN"
-	a ?a
-	b ?b
-	paths ?phs)
-?p1 (Path1 a ?a
-	b ?b1
-	points ?pts1)
-?p2 (Path1 a ?b
-	b ?b2
-	points ?pts2
-	(path/F-near ?b1 ?b2))
-=>
-(println :SC :PTS1 ?pts1 :PTS2 ?pts2 :B1 ?b1 :B2 ?b2)
-(let [pts (concat ?pts1 (reverse ?pts2))
-       phs (conj ?phs pts)
-       sts (if (= (count phs) path/MAX-PATHS)
-                                         (do (println phs) "REACH")
-                                         "RUN")]
-  (modify ?sg status sts
-	paths phs))
-(retract ?p1 ?p2))
-
-(p:Subgoal Optimization 0
-(Work status "OPTIMIZATION")
-?sg (Subgoal status "REACH"
-	paths ?phs)
-=>
-(let [pth1 (first ?phs)
-      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]
-                (if (empty? phs)
-                  pth
-                  (let [dist (path/F-distance (first phs))]
-                    (if (< dist mind)
-                      (recur (rest phs) dist (first phs))
-                      (recur (rest phs) mind pth)))))]
-  (modify ?sg status "OPTI"
-	paths [spt])
-  (path/F-display-path spt)))
-
-(p:Subgoal Not Paths -2
-?sg (Subgoal status "RUN"
-	a ?a
-	b ?b
-	paths ?phs
-	(not (empty? ?phs)))
-(not Path1 a ?a)
-(not Path1 a ?b)
-=>
-(modify ?sg status "REACH"))
-
-(p:All Subgoals Reach 0
-(Subgoal status "REACH")
-(not Subgoal status "RUN")
-(not Goal status "RUN")
-=>
-(println :ALL-SUBGOALS-REACHED)
-(asser Work status "OPTIMIZATION"))
-
-(p:All Subgoals Optimized 0
-(Work status "OPTIMIZATION")
-(Subgoal status "OPTI")
-(not Subgoal status "REACH")
-(not Goal status "REACH")
-=>
-(rete.core/problem-solved)
-(println :ALL-SUBGOALS-OPTIMIZED))
-
-(p:Goal Direct Check 1
-?g (Goal status "RUN"
-	a ?a
-	b ?b)
-?p1 (Path1 a ?a
-	b ?b1
-	points ?pts1)
-?p2 (Path1 a ?b
-	points ?pts2
-	(path/F-near ?b1 ?b))
-=>
-(modify ?g paths (conj ?pts1 ?pts2))
-(retract ?p1 ?p2))
-
-(p:Subgoal Direct Check 0
-?sg (Subgoal status "RUN"
-	a ?a
-	b ?b)
-?p1 (Path1 a ?a
-	b ?b1
-	points ?pts1)
-?p2 (Path1 a ?b
-	points ?pts2
-	(path/F-near ?b1 ?b))
-=>
-(modify ?sg paths (conj ?pts1 ?pts2))
-(retract ?p1 ?p2))
-
-(p:Path0 Expansion 1
+(p:Negative Direction 1
+(Work status "EXTENSION")
 ?p (Path0 a ?a b ?b
+	general-dir ?gdir
+	dir-factor ?dirf
+	points ?pts
+	((> (count ?pts) 8)
+                           (< ?dirf 0)))
+=>
+(retract ?p))
+
+(p:Solutions Optimized 0
+(Work status "OPTIMIZATION")
+(Solution)
+(not Solution
+=>
+(rete.core/problem-solved)
+(println :OPTIMIZED))
+
+(p:Solutions Optimization 0
+(Work status "OPTIMIZATION")
+?s1 (Solution path ?pth1
+	a ?a 
+	b ?b)
+?s2 (Solution path ?pth2
+	a ?a 
+	b ?b)
+=>
+(println :OPTI-FROM ?pth1 ?pth2)
+(if (< (path/F-distance ?pth1) (path/F-distance ?pth2))
+  (retract ?s2)
+  (retract ?s1)))
+
+(p:Work Optimization -1
+?w (Work status "EXTENSION")
+(not Path1)
+=>
+(println :OPTIMIZATION)
+(modify ?w status "OPTIMIZATION"))
+
+(p:Work Extension -1
+?w (Work status "CHECK")
+(not Path1)
+=>
+(println :EXTENSION)
+(modify ?w status "EXTENSION"))
+
+(p:Work Check -1
+?w (Work status "EXTENSION")
+(Path1)
+=>
+(println :CHECK)
+(modify ?w status "CHECK"))
+
+(p:Long Path1 Check 0
+(Work status "CHECK")
+(Solution path ?pth)
+?p (Path1 points ?pts
+	(> (count ?pts) (count ?pth)))
+=>
+(retract ?p))
+
+(p:Path0 Extension 0
+(Work status "EXTENSION")
+?p (Path0 a ?a b ?b
+	general-dir ?gdir
+	dir-factor ?dirf
 	points ?pts)
 =>
 (let [sgs (path/F-find-sequels ?b)]
-  (println :FOUND (count sgs) ?pts (keys sgs))
+;;       yes (= (mod @osm.path/CYCLES 1) 0)]
+;;  (doseq [id (map first sgs)]
+;;    (println :ID id)
+;;    (osm.data/create-line [id (@osm.path/SEGMENTS id)]))
+;;  (vswap! osm.path/CYCLES inc)
+;;  (if yes
+    (println :FROM ?pts                         ;; (first ?pts) :TO (last ?pts) (count ?pts) 
+                :EXT (map first (seq sgs))) ;; :GDIR (int ?gdir) :DIRFS))
   (doseq [[id p] sgs]
-    (when (not (some #{id} ?pts))
-      (asser Path1 a ?a
+    (if (not (some #{id} ?pts))
+      (let [cdir (osm.path/direction ?a p)
+              dirf (if (< (Math/abs (- ?gdir cdir)) 90)
+                      (inc ?dirf) 
+                      (dec ?dirf))]
+;;        (if yes
+;;          (print " " dirf " " (/ dirf (float (inc (count ?pts))))))
+        (asser Path1 a ?a
 	b (path/self p)
-	points (conj ?pts id))))
-  (retract ?p)))
+	general-dir ?gdir
+	dir-factor dirf
+	points (conj ?pts id)))))
+;;  (if yes
+;;    (println))
+  ))
 
 (p:Goal Start 0
-?g (Goal status "START"
-	a ?a
+(Work status "CHECK")
+?g (Goal status a ?a
 	b ?b)
 =>
 (let [[ia & pa] (read-string ?a)
        [ib & pb] (read-string ?b)]
   (asser Path0 a pa
 	b pa
+                          general-dir (osm.path/direction pa pb)
+	dir-factor 0
 	points [ia])
   (asser Path0 a pb
 	b pb
-	points [ib])
-  (modify ?g status "RUN"
-	a pa
-	b pb
-	paths [])))
+                          general-dir (osm.path/direction pb pa)
+	dir-factor 0
+	points [ib])))
 
 (p:Goal Check 0
-?g (Goal status "RUN"
-	a ?a
-	b ?b
-	paths ?phs)
-?p1 (Path1 a ?a
-	b ?b1
-	points ?pts1)
-?p2 (Path1 a ?b
-	b ?b2
-	points ?pts2
-	(path/F-near ?b1 ?b2))
+(Work status "CHECK")
+?g (Goal a ?a b ?b)
+?p1 (Path1 a ?a points ?pts1)
+?p2 (Path1 a ?b points ?pts2
+	(= (last ?pts1) (last ?pts2)))
 =>
-(println :GC :PHS ?phs)
-(let [pts (concat ?pts1 (reverse ?pts2))
-       phs (conj ?phs pts)
-       sts (if (= (count phs) path/MAX-PATHS)
-                                         (do (println phs) "REACH")
-                                         "RUN")]
-  (println :PTS pts :PHS phs)
-  (modify ?g status sts
-	paths phs))
-(retract ?p1 ?p2))
+(println :SOLUTION (concat ?pts1 (rest (reverse ?pts2))))
+(asser Solution a ?a
+	b ?b
+	path (concat ?pts1 (rest (reverse ?pts2)))))
 
-(p:Path1 Continue -1
+(p:Path1 to Path0 -1
+(Work status "CHECK")
 ?p (Path1 a ?a b ?b
+	general-dir ?gdir
+	dir-factor ?dirf
 	points ?pts)
 =>
 (retract ?p)
 (asser Path0 a ?a
 	b ?b
+	general-dir ?gdir
+	dir-factor ?dirf
 	points ?pts))
 

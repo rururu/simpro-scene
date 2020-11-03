@@ -1,4 +1,4 @@
-; Mon Nov 02 21:38:28 MSK 2020
+; Tue Nov 03 20:27:22 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -155,7 +155,7 @@
 
 ([PyongyangSPb_Class110013] of  CloFunction
 
-	(source "(or (= v1 v2)\n  (and (< (Math/abs (- (first v1) (first v2))) RADIUS)\n          (< (Math/abs (- (second v1) (second v2))) RADIUS)))")
+	(source "(or (= v1 v2)\n  (and (< (Math/abs (- (first v1) (first v2))) JOINT-RAD)\n          (< (Math/abs (- (second v1) (second v2))) JOINT-RAD)))")
 	(title "near [v1 v2]"))
 
 ([PyongyangSPb_Class110014] of  CloVar
@@ -178,12 +178,9 @@
 	(source "([p w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE BRANCHES))\n([p n w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE n))\n([p wtype wsubtype w]\n  (find-branches p wtype wsubtype BRANCHES))\n([p wtype wsubtype n w]\n  (let [inside-joint-rad #(< (simple-dist (second %) p) JOINT-RAD)\n         sgs (find-segments p wtype wsubtype)\n         sss (sort-and-if-reverse-segments p sgs)\n         sss (if (= w :inside-joint)\n                 (filter inside-joint-rad sss)\n                 sss)\n         tss (take n sss)]\n    (doall (map #(vswap! SEGMENTS assoc (first %) (rest %)) tss))\n    tss))")
 	(title "find-branches"))
 
-([PyongyangSPb_Class120000] of  Rule
+([PyongyangSPb_Class120000] of  CloFuncall
 
-	(lhs "?w (Work)\n(Goal status \"REACH\")\n(not Goal status \"RUN\")")
-	(rhs "(println :ALL-GOALS-REACHED)\n(modify ?w status \"OPTIMIZATION\")")
-	(salience 0)
-	(title "p:All Goals Reach"))
+	(source "(ru.rules/pp :all)"))
 
 ([PyongyangSPb_Class120002] of  CloVar
 
@@ -232,19 +229,30 @@
 	(source "(map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
 	(title "observe [p rad]"))
 
+([PyongyangSPb_Class140000] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?p (Path1 status \"USED\"\n	a ?a \n	b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(rhs "(retract ?p)")
+	(salience -1)
+	(title "p:Used Path1 Retract"))
+
+([PyongyangSPb_Class140001] of  CloFuncall
+
+	(source "(ru.rules/pp 'Solution)"))
+
 ([PyongyangSPb_Class140005] of  Rule
 
-	(lhs "(Work status \"OPTIMIZATION\")\n(Goal status \"OPTI\")\n(not Goal status \"REACH\")")
-	(rhs "(rete.core/problem-solved)\n(println :ALL-GOALS-OPTIMIZED)")
+	(lhs "(Work status \"OPTIMIZATION\")\n(Solution)\n(not Solution)")
+	(rhs "(rete.core/problem-solved)\n(println :OPTIMIZED)")
 	(salience 0)
-	(title "p:All Goals Optimized"))
+	(title "p:Solutions Optimized"))
 
 ([PyongyangSPb_Class140006] of  Rule
 
-	(lhs "(Work status \"OPTIMIZATION\")\n?g (Goal status \"REACH\"\n	paths ?phs)")
-	(rhs "(println :OPTI-FROM (count ?phs))\n(let [pth1 (first ?phs)\n      spt (loop [phs (rest ?phs) mind (path/F-distance pth1) pth pth1]\n                (if (empty? phs)\n                  pth\n                  (let [dist (path/F-distance (first phs))]\n                    (if (< dist mind)\n                      (recur (rest phs) dist (first phs))\n                      (recur (rest phs) mind pth)))))]\n  (modify ?g status \"OPTI\"\n	paths [spt])\n  (path/F-display-path spt))")
+	(lhs "(Work status \"OPTIMIZATION\")\n?s1 (Solution path ?pth1\n	a ?a \n	b ?b)\n?s2 (Solution path ?pth2\n	a ?a \n	b ?b)")
+	(rhs "(println :OPTI-FROM ?pth1 ?pth2)\n(if (< (path/F-distance ?pth1) (path/F-distance ?pth2))\n  (retract ?s2)\n  (retract ?s1))")
 	(salience 0)
-	(title "p:Goal Optimization"))
+	(title "p:Solutions Optimization"))
 
 ([PyongyangSPb_Class150000] of  CloFunction
 
@@ -1467,10 +1475,10 @@
 
 ([PyongyangSPb_Class170001] of  Rule
 
-	(lhs "?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs\n	(not (empty? ?phs)))\n(not Path1 a ?a)\n(not Path1 a ?b)")
-	(rhs "(modify ?g status \"REACH\")")
+	(lhs "?w (Work status \"EXTENSION\")\n(not Path1)")
+	(rhs "(println :OPTIMIZATION)\n(modify ?w status \"OPTIMIZATION\")")
 	(salience -1)
-	(title "p:Goal Not Paths"))
+	(title "p:Work Optimization"))
 
 ([PyongyangSPb_Class170002] of  NamedDoc
 
@@ -1490,13 +1498,6 @@
 	(b "[\"Лермонтовка\" 47.149 134.315]")
 	(status "START")
 	(title "Владимировка-Лермонтовка"))
-
-([PyongyangSPb_Class190000] of  Rule
-
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts\n	(path/F-near ?b1 ?b))")
-	(rhs "(if (empty? ?phs)\n  (modify ?g paths [?pts]))\n(retract ?p1)")
-	(salience 2)
-	(title "p:Goal Direct Check"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -1621,16 +1622,16 @@
 
 ([PyongyangSPb_Class280000] of  Rule
 
-	(lhs "?w (Work status \"CHECK\")\n(Path0)\n(not Path1)")
-	(rhs "(modify ?w status \"EXTENSION\")")
-	(salience 0)
+	(lhs "?w (Work status \"CHECK\")\n(not Path1)")
+	(rhs "(println :EXTENSION)\n(modify ?w status \"EXTENSION\")")
+	(salience -1)
 	(title "p:Work Extension"))
 
 ([PyongyangSPb_Class280001] of  Rule
 
-	(lhs "?w (Work status \"EXTENSION\")\n(Path1)\n(not Path0)")
-	(rhs "(modify ?w status \"CHECK\")")
-	(salience 0)
+	(lhs "?w (Work status \"EXTENSION\")\n(Path1)")
+	(rhs "(println :CHECK)\n(modify ?w status \"CHECK\")")
+	(salience -1)
 	(title "p:Work Check"))
 
 ([PyongyangSPb_Class290000] of  Work
@@ -1666,17 +1667,10 @@
 
 ([PyongyangSPb_Class300098] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	paths ?phs\n                      (not (empty? ?phs)))\n?p (Path1 a ?a\n	points ?pts\n                      (some #(> (count ?pts) (count %)) ?phs))")
+	(lhs "(Work status \"CHECK\")\n(Solution path ?pth)\n?p (Path1 points ?pts\n	(> (count ?pts) (count ?pth)))")
 	(rhs "(retract ?p)")
 	(salience 0)
-	(title "p:Long Path1 A Check"))
-
-([PyongyangSPb_Class300099] of  Rule
-
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	b ?b\n	paths ?phs\n                      (not (empty? ?phs)))\n?p (Path1 b ?b\n	points ?pts\n                      (some #(> (count ?pts) (count %)) ?phs))")
-	(rhs "(retract ?p)")
-	(salience 0)
-	(title "p:Long Path1 B Check"))
+	(title "p:Long Path1 Check"))
 
 ([PyongyangSPb_Class30039] of  Railroad
 
@@ -1922,24 +1916,22 @@
 		[ScenarioN_Class550032]
 		[PyongyangSPb_Class80003]
 		[PyongyangSPb_Class50000]
-		[PyongyangSPb_Class190000]
 		[PyongyangSPb_Class90003]
-		[PyongyangSPb_Class120000]
+		[PyongyangSPb_Class300098]
 		[PyongyangSPb_Class140006]
 		[PyongyangSPb_Class140005]
 		[PyongyangSPb_Class170001]
 		[PyongyangSPb_Class90004]
+		[PyongyangSPb_Class140000]
 		[PyongyangSPb_Class280000]
-		[PyongyangSPb_Class280001]
-		[PyongyangSPb_Class300098]
-		[PyongyangSPb_Class300099]
-		[PyongyangSPb_Class130000])
+		[PyongyangSPb_Class280001])
 	(templates
 		[Directive]
 		[Goal]
 		[Path0]
 		[Path1]
-		[Work])
+		[Work]
+		[Solution])
 	(title "Path Set"))
 
 ([PyongyangSPb_Class40018] of  Run
@@ -1952,11 +1944,11 @@
 	(document [PyongyangSPb_Class50001])
 	(facts
 		[PyongyangSPb_Class90000]
-		[PyongyangSPb_Class290000]
-		[PyongyangSPb_Class220001])
-	(mode run)
+		[PyongyangSPb_Class30001]
+		[PyongyangSPb_Class290000])
+	(mode step)
 	(rule-sets [PyongyangSPb_Class40016])
-	(steps 20)
+	(steps 100)
 	(title "PathRun"))
 
 ([PyongyangSPb_Class5] of  RoadControl
@@ -1987,8 +1979,8 @@
 
 ([PyongyangSPb_Class50000] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n?p (Path0 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
-	(rhs "(let [sgs (path/F-find-sequels ?b)\n       yes (= (mod @osm.path/CYCLES 10) 0)]\n  (doseq [id (map first sgs)]\n    (println :ID id)\n    (osm.data/create-line [id (@osm.path/SEGMENTS id)]))\n  (vswap! osm.path/CYCLES inc)\n  (if yes\n    (print :FROM (first ?pts) :TO (last ?pts) (count ?pts) :EXT (map first (seq sgs)) :GDIR (int ?gdir) :DIRFS))\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (let [cdir (osm.path/direction ?a p)\n              dirf (if (< (Math/abs (- ?gdir cdir)) 90)\n                      (inc ?dirf) \n                      (dec ?dirf))]\n        (if yes\n          (print \" \" dirf \" \" (/ dirf (float (inc (count ?pts))))))\n        (asser Path1 a ?a\n	b (path/self p)\n	general-dir ?gdir\n	dir-factor dirf\n	points (conj ?pts id)))))\n  (if yes\n    (println))\n  (retract ?p))")
+	(lhs "(Work status \"EXTENSION\")\n?p (Path0 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	status ?sts\n	points ?pts)")
+	(rhs "(let [sgs (path/F-find-sequels ?b)]\n;;       yes (= (mod @osm.path/CYCLES 1) 0)]\n;;  (doseq [id (map first sgs)]\n;;    (println :ID id)\n;;    (osm.data/create-line [id (@osm.path/SEGMENTS id)]))\n;;  (vswap! osm.path/CYCLES inc)\n;;  (if yes\n    (println :FROM ?pts                         ;; (first ?pts) :TO (last ?pts) (count ?pts) \n                :EXT (map first (seq sgs))) ;; :GDIR (int ?gdir) :DIRFS))\n  (doseq [[id p] sgs]\n    (if (not (some #{id} ?pts))\n      (let [cdir (osm.path/direction ?a p)\n              dirf (if (< (Math/abs (- ?gdir cdir)) 90)\n                      (inc ?dirf) \n                      (dec ?dirf))]\n;;        (if yes\n;;          (print \" \" dirf \" \" (/ dirf (float (inc (count ?pts))))))\n        (println :PATH0 ?a p (conj ?pts id))\n        (asser Path1 a ?a\n	b (path/self p)\n	general-dir ?gdir\n	dir-factor dirf\n	status ?sts\n	points (conj ?pts id)))))\n;;  (if yes\n;;    (println))\n  )")
 	(salience 0)
 	(title "p:Path0 Extension"))
 
@@ -2094,6 +2086,10 @@
 	(source "nil")
 	(title "F-near"))
 
+([PyongyangSPb_Class80000] of  CloFuncall
+
+	(source "(ru.rules/dr)"))
+
 ([PyongyangSPb_Class80001] of  CloVar
 
 	(source "0.0005")
@@ -2106,14 +2102,14 @@
 
 ([PyongyangSPb_Class80003] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a\n	b ?b)")
-	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n                          general-dir (osm.path/direction pa pb)\n	dir-factor 0\n	points [ia])\n  (asser Path0 a pb\n	b pb\n                          general-dir (osm.path/direction pb pa)\n	dir-factor 0\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa\n	b pb\n	paths []))")
-	(salience 1)
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a \n	b ?b)")
+	(rhs "(let [[ia & pa] (read-string ?a)\n       [ib & pb] (read-string ?b)]\n  (asser Path0 a pa\n	b pa\n                          general-dir (osm.path/direction pa pb)\n	dir-factor 0\n	status \"FREE\"\n	points [ia])\n  (asser Path0 a pb\n	b pb\n                          general-dir (osm.path/direction pb pa)\n	dir-factor 0\n	status \"FREE\"\n	points [ib])\n  (modify ?g status \"RUN\"\n	a pa \n	b pb))")
+	(salience 0)
 	(title "p:Goal Start"))
 
 ([PyongyangSPb_Class90000] of  Directive
 
-	(source "(path/set-functions \n  path/find-sequels \n  path/near\n  path/distance\n  path/display-path)\n(path/clear-paths)\n(path/set-max-paths 5)")
+	(source "(path/set-functions \n  path/find-sequels \n  path/near\n  path/distance\n  path/display-path)\n(path/clear-paths)\n(path/set-max-paths 10)")
 	(title "Set Path Functions and Goals"))
 
 ([PyongyangSPb_Class90001] of  Run
@@ -2134,14 +2130,14 @@
 
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b\n	paths ?phs)\n?p1 (Path1 a ?a\n	b ?b1\n	points ?pts1)\n?p2 (Path1 a ?b\n	b ?b2\n	points ?pts2\n	(path/F-near ?b1 ?b2))")
-	(rhs "(let [rv2 (reverse ?pts2)\n       rv2 (if (= (first rv2) (last ?pts1))\n               (rest rv2)\n               rv2)\n       pts (concat ?pts1 rv2)\n       phs (conj ?phs pts)\n       sts (if (= (count phs) path/MAX-PATHS)\n                                         (do (println phs) \"REACH\")\n                                         \"RUN\")]\n  (println :NEAR ?b1 ?b2 :PATHS (map #(list (first %) (count %) (last %)) phs))\n  (modify ?g status sts\n	paths phs))\n(retract ?p1 ?p2)")
-	(salience 1)
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a \n	b ?b)\n?p1 (Path1 status \"FREE\"\n	a ?a \n	points ?pts1)\n?p2 (Path1 status \"FREE\"\n	 a ?b \n	points ?pts2\n	(= (last ?pts1) (last ?pts2)))")
+	(rhs "(println :SOLUTION (concat ?pts1 (rest (reverse ?pts2))))\n(asser Solution path (concat ?pts1 (rest (reverse ?pts2))))\n(modify ?p1 status \"USED\")\n(modify ?p2 status \"USED\")")
+	(salience 0)
 	(title "p:Goal Check"))
 
 ([PyongyangSPb_Class90004] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?p (Path1 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
-	(rhs "(retract ?p)\n(asser Path0 a ?a\n	b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
-	(salience 0)
-	(title "p:Path1 to Path0"))
+	(lhs "(Work status \"CHECK\")\n?p (Path1 status \"FREE\"\n	a ?a \n	b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(rhs "(retract ?p)\n(asser Path0 status \"FREE\"\n	a ?a\n	b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts)")
+	(salience -1)
+	(title "p:Free Path1 to Path0"))
