@@ -13,7 +13,7 @@
 (def INSS-MAPPING (atom {}))
 (def ERROR nil)
 (def copy-instance nil)
-(def REPLACE-SLOT-VAL {:class "NavOb"
+(def REPL-SLOT-VAL {:class "NavOb"
  :slot "url"
  :func (fn [v] (.replace v "data/images" 
                                      "resources/public/img"))})
@@ -49,7 +49,8 @@
     v2))
 
 (defn check-n-gen [tn sn val]
-  (if-let [old (fifos tn sn val)]
+  (println :C-N-G tn sn val)
+(if-let [old (fifos tn sn val)]
   (str val "." (java.util.Date.))
   val))
 
@@ -89,19 +90,32 @@
           (def ERROR true)
           nil))))))
 
-(defn load-src-prj [hm inst]
+(defn load-src-prj
+  ([hm inst]
   (if-let [pth (file-chooser (.getPath (.getProjectDirectoryFile *prj*)))]
+    (let [err (java.util.ArrayList.)]
+      (if PRJ2
+        (.dispose PRJ2))
+      (def PRJ2 (Project. pth err))
+      (if (> (.size err) 0)
+        (ssv inst "source-project" (apply str (seq err)))
+        (do
+          (def KB1 *kb*)
+          (def KB2 (.getKnowledgeBase PRJ2))
+          (def INSS-MAPPING (atom {}))
+          (ssv inst "source-project" (str KB2))) ) )))
+([path]
   (let [err (java.util.ArrayList.)]
     (if PRJ2
       (.dispose PRJ2))
-    (def PRJ2 (Project. pth err))
+    (def PRJ2 (Project. path err))
     (if (> (.size err) 0)
-      (ssv inst "source-project" (apply str (seq err)))
+      (apply println (seq err))
       (do
         (def KB1 *kb*)
         (def KB2 (.getKnowledgeBase PRJ2))
         (def INSS-MAPPING (atom {}))
-        (ssv inst "source-project" (str KB2))) ))))
+        (println "Second project:" KB2 "from" path)) ) )))
 
 (defn delete-unref [hm inst]
   (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls ":THING")])]
@@ -157,9 +171,9 @@
         (delin e))))))
 
 (defn replace-slot-value []
-  (let [clz  (REPLACE-SLOT-VAL :class)
-       slt   (REPLACE-SLOT-VAL :slot)
-       fun  (REPLACE-SLOT-VAL :func)]
+  (let [clz  (REPL-SLOT-VAL :class)
+       slt   (REPL-SLOT-VAL :slot)
+       fun  (REPL-SLOT-VAL :func)]
   (doseq [ins (cls-instances clz)]
     (ssv ins slt (fun (sv ins slt))))))
 

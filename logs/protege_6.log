@@ -1,0 +1,7 @@
+2020.11.11 10:39:12.140 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2020.11.11 10:39:12.150 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.9+11-Ubuntu-0ubuntu1.20.04, memory=2071M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2020.11.11 10:39:12.167 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2020.11.11 10:39:12.574 MSK WARNING: missing bundle: standard_extensions_text -- BundleHelper.<init>()
+2020.11.11 10:39:12.576 MSK WARNING: no resource bundle: tab.queries -- BundleHelper.internalGetText()
+2020.11.11 10:39:12.960 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2020.11.11 10:39:19.124 MSK INFO: Load time for file:/home/ru/clojure/simpro-scene/pprj_mas/MASCampus2.pprj = 0 sec (project) + 0 sec (ui) -- ProjectManager$3.run()

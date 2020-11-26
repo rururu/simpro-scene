@@ -1,12 +1,12 @@
 Directive:
  :?: {:? {:? 0}}
 Work:
- :?: {"CHECK" 1, "EXTENSION" 3, "OPTIMIZATION" 9}
+ :?: {"CHECK" 1, "EXTENSION" 3, "OPTIMIZATION" 8, "OPEN" 9}
 Goal:
  :?: {:? {:? {"START" {:? 2}, "RUN" {:? 5}}}}
 Path0:
- :?: {:? {:? {:? {:? {:? {:? 4}}}}}}
+ :?: {:? {:? {:? {:? 4}}}}
 Path1:
- :?: {:? {:? {:? {:? {:? {"FREE" 6, :? 8, "USED" 10}}}}}}
+ :?: {:? {:? {:? {:? 6, "FREE" 10}}}}
 Solution:
  :?: {:? {:? 7}}
