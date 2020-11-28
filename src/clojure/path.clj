@@ -9,10 +9,8 @@
   "C1" ["C"]
   "C2" ["C"]
   "D" ["A" "C"]})
-(def F-find-sequels nil)
-(def F-near nil)
-(def F-display-path nil)
 (def MAX-PATHS 2)
+(def TRACE false)
 (defn equal [e1 e2]
   (or (= e1 e2)
   (= e1 (reverse e2))))
@@ -20,27 +18,27 @@
 (defn find-sequels [p1]
   (map #(vector p1 %) (SEQUELS p1)))
 
-(defn asser-goal [a b]
-  (rete/assert-frame ['Goal 'a (str a) 'b (str b) 'status "START"]))
-
-(defn self [x]
+(defn quote [x]
   x)
 
-(defn display-path [pts]
-  (println pts))
+(defn distance [pth]
+  (count pth))
 
-(defn set-functions [find-seq eq dist disp]
-  (def F-find-sequels find-seq)
-(def F-equal equal)
-(def F-distance dist)
-(def F-display-path disp))
+(defn display-segments [pfx sgs]
+  (if TRACE
+  (println pfx sgs))
+sgs)
+
+(defn set-functions [ini-pnt fin-seq eql dst dis-seg]
+  (def F-init-point ini-pnt)
+(def F-find-sequels fin-seq)
+(def F-equal eql)
+(def F-distance dst)
+(def F-display-segments dis-seg))
 
 (defn set-max-paths [m]
   (def MAX-PATHS m))
 
-(defn clear-paths []
-  (def PATHS (volatile! [])))
-
-(defn distance [pth]
-  (count pth))
+(defn trace [bool]
+  (def TRACE bool))
 

@@ -1,4 +1,4 @@
-; Thu Nov 26 19:54:01 MSK 2020
+; Sat Nov 28 20:27:41 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -103,11 +103,6 @@
 	(source "([id [clat clon] rad]\n  (create-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
 	(title "create-bbx"))
 
-([PyongyangSPb_Class100007] of  CloVar
-
-	(source "nil")
-	(title "F-display-path"))
-
 ([PyongyangSPb_Class10001] of  %3AINSTANCE-ANNOTATION
 
 	(%3ACREATION-TIMESTAMP "2020.09.19 14:51:37.942 MSK")
@@ -140,8 +135,12 @@
 
 ([PyongyangSPb_Class110000] of  CloFunction
 
-	(source "(println pts)")
-	(title "display-path [pts]"))
+	(source "(if TRACE\n  (println pfx sgs))\nsgs")
+	(title "display-segments [pfx sgs]"))
+
+([PyongyangSPb_Class110001] of  CloFuncall
+
+	(source "(read-string \"A\")"))
 
 ([PyongyangSPb_Class110002] of  CloFunction
 
@@ -214,43 +213,58 @@
 	(salience 1)
 	(title "p:Negative Direction"))
 
+([PyongyangSPb_Class130002] of  CloFuncall
+
+	(source "(type (read-string \"A\"))"))
+
+([PyongyangSPb_Class130003] of  CloFuncall
+
+	(source "(type (path/self \"A\"))"))
+
 ([PyongyangSPb_Class130004] of  CloFunction
 
 	(source "(def MAX-PATHS m)")
 	(title "set-max-paths [m]"))
-
-([PyongyangSPb_Class130005] of  CloFunction
-
-	(source "(def PATHS (volatile! []))")
-	(title "clear-paths []"))
 
 ([PyongyangSPb_Class130557] of  CloFunction
 
 	(source "(map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
 	(title "observe [p rad]"))
 
+([PyongyangSPb_Class140000] of  CloFuncall
+
+	(source "(ru.rules/sp 'Solution)"))
+
 ([PyongyangSPb_Class140001] of  CloFuncall
 
 	(source "(ru.rules/pp 'Solution)"))
 
+([PyongyangSPb_Class140004] of  CloFuncall
+
+	(source "(path/self \"A\")"))
+
 ([PyongyangSPb_Class140005] of  Rule
 
 	(lhs "(Work status \"OPTIMIZATION\")\n(Solution)\n(not Solution)")
-	(rhs "(rete.core/problem-solved)\n(println :OPTIMIZED)")
+	(rhs "(rete.core/problem-solved)\n(if path/TRACE\n  (println :OPTIMIZED))")
 	(salience 0)
-	(title "p:Solutions Optimized"))
+	(title "p:Optimization: Solutions Optimized"))
 
 ([PyongyangSPb_Class140006] of  Rule
 
 	(lhs "(Work status \"OPTIMIZATION\")\n?s1 (Solution path ?pth1\n	a ?a \n	b ?b)\n?s2 (Solution path ?pth2\n	a ?a \n	b ?b)")
-	(rhs "(println :OPTI-FROM ?pth1 ?pth2)\n(if (< (path/F-distance ?pth1) (path/F-distance ?pth2))\n  (retract ?s2)\n  (retract ?s1))")
+	(rhs "(if path/TRACE\n  (path/F-display-segments \"Optimization between\" (str ?pth1 \" and \" ?pth2)))\n(if (< (path/F-distance ?pth1) (path/F-distance ?pth2))\n  (retract ?s2)\n  (retract ?s1))")
 	(salience 0)
-	(title "p:Solutions Optimization"))
+	(title "p:Optimization: Solutions Optimization"))
 
 ([PyongyangSPb_Class150000] of  CloFunction
 
 	(source "(count pth)")
 	(title "distance [pth]"))
+
+([PyongyangSPb_Class150005] of  CloFuncall
+
+	(source "(path/quote \"A\")"))
 
 ([PyongyangSPb_Class150006] of  OMTPoly
 
@@ -552,6 +566,32 @@
 
 	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
 	(title "distance [pts]"))
+
+([PyongyangSPb_Class160006] of  CloFuncall
+
+	(source "(type (path/quote \"A\"))"))
+
+([PyongyangSPb_Class160007] of  CloFuncall
+
+	(source "path/F-init-point"))
+
+([PyongyangSPb_Class160008] of  CloFuncall
+
+	(source "(path/F-init-point \"A\")"))
+
+([PyongyangSPb_Class160009] of  CloVar
+
+	(source "false")
+	(title "TRACE"))
+
+([PyongyangSPb_Class160010] of  CloFunction
+
+	(source "(def TRACE bool)")
+	(title "trace [bool]"))
+
+([PyongyangSPb_Class160011] of  CloFuncall
+
+	(source "(path/trace true)"))
 
 ([PyongyangSPb_Class160046] of  OMTPoly
 
@@ -1432,22 +1472,6 @@
 
 	(source "(count bb2)"))
 
-([PyongyangSPb_Class160127] of  CloFuncall
-
-	(source "(map create-line bb2)"))
-
-([PyongyangSPb_Class160128] of  CloFuncall
-
-	(source "(first bb2)"))
-
-([PyongyangSPb_Class160129] of  CloFuncall
-
-	(source "(second bb2)"))
-
-([PyongyangSPb_Class160130] of  CloFuncall
-
-	(source "(def bb3 (find-branches [48.498558 135.0664415]))"))
-
 ([PyongyangSPb_Class160131] of  OMTPoly
 
 	(label "G__6029")
@@ -1463,20 +1487,12 @@
 		"48 30.21 135 3.69")
 	(relative FALSE))
 
-([PyongyangSPb_Class160132] of  CloFuncall
-
-	(source "(count bb3)"))
-
-([PyongyangSPb_Class160133] of  CloFuncall
-
-	(source "(map create-line bb3)"))
-
 ([PyongyangSPb_Class170001] of  Rule
 
-	(lhs "?w (Work status \"EXTENSION\")\n(not Path1)")
-	(rhs "(println :OPTIMIZATION)\n(modify ?w status \"OPTIMIZATION\")")
+	(lhs "?w (Work status \"EXTENSION\")\n(not Path1 status \"OPEN\")")
+	(rhs "(if path/TRACE\n  (println :OPTIMIZATION))\n(modify ?w status \"OPTIMIZATION\")")
 	(salience -1)
-	(title "p:Work Optimization"))
+	(title "p:Extension -> Optimization"))
 
 ([PyongyangSPb_Class170002] of  NamedDoc
 
@@ -1496,46 +1512,6 @@
 	(b "[\"Лермонтовка\" 47.149 134.315]")
 	(status "START")
 	(title "Владимировка-Лермонтовка"))
-
-([PyongyangSPb_Class190001] of  CloFuncall
-
-	(source "(path/equal ['A 'B] ['A 'B])"))
-
-([PyongyangSPb_Class190002] of  CloFuncall
-
-	(source "(path/equal ['A 'B] ['B 'A])"))
-
-([PyongyangSPb_Class190003] of  CloFuncall
-
-	(source "(path/equal ['A 'B] ['B 'C])"))
-
-([PyongyangSPb_Class190004] of  CloFuncall
-
-	(source "(path/equal ['A 'B] ['A 'C])"))
-
-([PyongyangSPb_Class190005] of  CloFuncall
-
-	(source "(path/find-sequels 'A)"))
-
-([PyongyangSPb_Class190006] of  CloFuncall
-
-	(source "(path/find-sequels 'B)"))
-
-([PyongyangSPb_Class190007] of  CloFuncall
-
-	(source "(path/find-sequels 'C)"))
-
-([PyongyangSPb_Class190008] of  CloFuncall
-
-	(source "(path/find-sequels 'D)"))
-
-([PyongyangSPb_Class190009] of  CloFuncall
-
-	(source "(path/find-sequels 'A1)"))
-
-([PyongyangSPb_Class190010] of  CloFuncall
-
-	(source "(path/find-sequels 'A3)"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -1660,17 +1636,17 @@
 
 ([PyongyangSPb_Class280000] of  Rule
 
-	(lhs "?w (Work status \"CHECK\")\n(not Path1)")
-	(rhs "(println :EXTENSION)\n(modify ?w status \"EXTENSION\")")
+	(lhs "?w (Work status \"CHECK\")\n(not Path1 status ?sts\n	(.contains ?sts \"OPEN\"))")
+	(rhs "(if path/TRACE\n  (println :EXTENSION))\n(modify ?w status \"EXTENSION\")")
 	(salience -1)
-	(title "p:Not Path1 - Work Extension"))
+	(title "p:Check -> Extension"))
 
 ([PyongyangSPb_Class280001] of  Rule
 
-	(lhs "?w (Work status \"EXTENSION\")\n(Path1)")
-	(rhs "(println :CHECK)\n(modify ?w status \"CHECK\")")
+	(lhs "?w (Work status \"EXTENSION\")\n(Path1 status \"OPEN\")")
+	(rhs "(if path/TRACE\n  (println :CHECK))\n(modify ?w status \"CHECK\")")
 	(salience -1)
-	(title "p:Path1 Exsists - Work Check"))
+	(title "p:Extension -> Check"))
 
 ([PyongyangSPb_Class290000] of  Work
 
@@ -1708,7 +1684,7 @@
 	(lhs "(Work status \"CHECK\")\n(Solution path ?pth)\n?p (Path1 segments ?sgs\n	(> (count ?sgs) (count ?pth)))")
 	(rhs "(retract ?p)")
 	(salience 0)
-	(title "p:Long Path1 Retract"))
+	(title "p:Check: Long Path1 Retract"))
 
 ([PyongyangSPb_Class30039] of  Railroad
 
@@ -1983,7 +1959,7 @@
 		[PyongyangSPb_Class90000]
 		[PyongyangSPb_Class30001]
 		[PyongyangSPb_Class290000])
-	(mode step)
+	(mode run)
 	(rule-sets [PyongyangSPb_Class40016])
 	(steps 1)
 	(title "PathRun"))
@@ -2016,10 +1992,10 @@
 
 ([PyongyangSPb_Class50000] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n?p (Path0 status \"FREE\" \n	a ?a \n	b ?b\n	status ?sts\n	segments ?sgs)")
-	(rhs "(let [sgs (path/F-find-sequels ?b)]\n  (doseq [sg sgs]\n    (if (not (some #(path/F-equal sg %) ?sgs))\n      (asser Path1 a ?a\n	b (last sg)\n	status \"FREE\"\n	segments (let [ss (conj ?sgs sg)] (println ss) ss))))\n  (if (not (empty? ?sgs))\n    (asser Path1 a ?a b ?b\n	status (if (empty? sgs) \"CLOSED\" \"OPEN\") \n	segments ?sgs))\n  (retract ?p))")
+	(lhs "(Work status \"EXTENSION\")\n?p (Path0 status ?sts\n	a ?a \n	b ?b\n	segments ?sgs\n	(.contains ?sts \"OPEN\"))")
+	(rhs "(let [sgs (path/F-find-sequels ?b)]\n  (doseq [sg sgs]\n    (if (not (some #(path/F-equal sg %) ?sgs))\n      (asser Path1 a ?a\n	b (last sg)\n	status \"OPEN\"\n	segments (path/F-display-segments \"Path\" (conj ?sgs sg)))))\n  (if (and (not (empty? ?sgs)) (not (.contains ?sts \"USED\")))\n    (asser Path1 a ?a b ?b\n	status \"CLOSED\"\n	segments ?sgs))\n  (retract ?p))")
 	(salience 0)
-	(title "p:Path0 Extension"))
+	(title "p:Extension: Path0 Extension"))
 
 ([PyongyangSPb_Class50001] of  NamedDoc
 
@@ -2036,20 +2012,17 @@
 	(cloFunctions
 		[PyongyangSPb_Class50012]
 		[PyongyangSPb_Class50014]
-		[PyongyangSPb_Class50015]
 		[PyongyangSPb_Class70000]
+		[PyongyangSPb_Class150000]
 		[PyongyangSPb_Class110000]
 		[PyongyangSPb_Class80002]
 		[PyongyangSPb_Class130004]
-		[PyongyangSPb_Class130005]
-		[PyongyangSPb_Class150000])
+		[PyongyangSPb_Class160010])
 	(cloNamespace [PyongyangSPb_Class50011])
 	(cloVars
 		[PyongyangSPb_Class50002]
-		[PyongyangSPb_Class60000]
-		[PyongyangSPb_Class70001]
-		[PyongyangSPb_Class100007]
-		[PyongyangSPb_Class120002])
+		[PyongyangSPb_Class120002]
+		[PyongyangSPb_Class160009])
 	(title "Path"))
 
 ([PyongyangSPb_Class50011] of  CloNamespace
@@ -2066,16 +2039,6 @@
 
 	(source "(map #(vector p1 %) (SEQUELS p1))")
 	(title "find-sequels [p1]"))
-
-([PyongyangSPb_Class50015] of  CloFunction
-
-	(source "(rete/assert-frame ['Goal 'a (str a) 'b (str b) 'status \"START\"])")
-	(title "asser-goal [a b]"))
-
-([PyongyangSPb_Class60000] of  CloVar
-
-	(source "nil")
-	(title "F-find-sequels"))
 
 ([PyongyangSPb_Class60001] of  CloProgram
 
@@ -2116,16 +2079,11 @@
 ([PyongyangSPb_Class70000] of  CloFunction
 
 	(source "x")
-	(title "self [x]"))
-
-([PyongyangSPb_Class70001] of  CloVar
-
-	(source "nil")
-	(title "F-near"))
+	(title "quote [x]"))
 
 ([PyongyangSPb_Class80000] of  CloFuncall
 
-	(source "(ru.rules/dr)"))
+	(source "(ru.rules/f 47)"))
 
 ([PyongyangSPb_Class80001] of  CloVar
 
@@ -2134,19 +2092,19 @@
 
 ([PyongyangSPb_Class80002] of  CloFunction
 
-	(source "(def F-find-sequels find-seq)\n(def F-equal equal)\n(def F-distance dist)\n(def F-display-path disp)")
-	(title "set-functions [find-seq eq dist disp]"))
+	(source "(def F-init-point ini-pnt)\n(def F-find-sequels fin-seq)\n(def F-equal eql)\n(def F-distance dst)\n(def F-display-segments dis-seg)")
+	(title "set-functions [ini-pnt fin-seq eql dst dis-seg]"))
 
 ([PyongyangSPb_Class80003] of  Rule
 
 	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a \n	b ?b)")
-	(rhs "(asser Path0 a ?a\n	b ?b\n	status \"OPEN\"\n	segments [])\n(asser Path0 a ?b\n	b ?a\n	status \"OPEN\"\n	segments [])\n(modify ?g status \"RUN\")")
+	(rhs "(let [ia (path/F-init-point ?a)\n       ib (path/F-init-point ?b)]\n  (asser Path0 a ia\n	b ib\n	status \"OPEN\"\n	segments [])\n  (asser Path0 a ib\n	b ia\n	status \"OPEN\"\n	segments [])\n  (modify ?g status \"RUN\"))")
 	(salience 0)
-	(title "p:Goal Start"))
+	(title "p:Check: Goal Start"))
 
 ([PyongyangSPb_Class90000] of  Directive
 
-	(source "(path/set-functions \n  path/find-sequels \n  path/equal\n  path/distance\n  path/display-path)\n(path/clear-paths)\n(path/set-max-paths 10)")
+	(source "(path/set-functions\n path/quote \n path/find-sequels \n path/equal\n path/distance\n path/display-segments)")
 	(title "Set Path Functions and Goals"))
 
 ([PyongyangSPb_Class90001] of  Run
@@ -2167,14 +2125,14 @@
 
 ([PyongyangSPb_Class90003] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a \n	b ?b)\n?p1 (Path1 a ?a segments ?sgs1)\n?p2 (Path1 a ?b segments ?sgs2\n	(path/F-equal (last ?sgs1) (last ?sgs2)))")
-	(rhs "(println :SOLUTION (concat ?sgs1 (rest (reverse ?sgs2))))\n(asser Solution path (concat ?sgs1 (rest (reverse ?sgs2))))")
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a \n	b ?b)\n?p1 (Path1 a ?a segments ?sgs1\n	status ?sts1\n	(not (.contains ?sts1 \"USED\")))\n?p2 (Path1 a ?b segments ?sgs2\n	status ?sts2\n	((not (.contains ?sts1 \"USED\"))\n	 (path/F-equal (last ?sgs1) (last ?sgs2))))")
+	(rhs "(if path/TRACE\n  (path/F-display-segments \"Solution\" (concat ?sgs1 (rest (reverse ?sgs2)))))\n(asser Solution path (vec (concat ?sgs1 (rest (reverse ?sgs2)))))\n(modify ?p1 status (str \"USED-\" ?sts1))\n(modify ?p2 status (str \"USED-\" ?sts2))")
 	(salience 0)
-	(title "p:Path1s Connect"))
+	(title "p:Check: Two Path1 Connection"))
 
 ([PyongyangSPb_Class90004] of  Rule
 
-	(lhs "(Work status \"OPEN\")\n?p (Path1 status \"FREE\"\n	a ?a \n	b ?b\n	segments ?sgs)")
-	(rhs "(retract ?p)\n(asser Path0 status \"OPEN\"\n	a ?a\n	b ?b\n	segments ?sgs)")
+	(lhs "(Work status \"CHECK\")\n?p (Path1 status ?sts\n	a ?a \n	b ?b\n	segments ?sgs\n	(.contains ?sts \"OPEN\"))")
+	(rhs "(retract ?p)\n(asser Path0 status ?sts\n	a ?a\n	b ?b\n	segments ?sgs)")
 	(salience -1)
-	(title "p:Open Path1 to Path0"))
+	(title "p:Check: Path1 to Path0"))
