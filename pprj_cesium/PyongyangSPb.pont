@@ -1,4 +1,4 @@
-; Sat Nov 28 20:27:41 MSK 2020
+; Mon Nov 30 20:55:25 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31,6 +31,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot max-solutions
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot general-dir
 		(type FLOAT)
 ;+		(cardinality 0 1)
@@ -46,6 +50,10 @@
 		(create-accessor read-write))
 	(multislot inOpenMap
 ;+		(type ANY)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
 		(create-accessor read-write)))
 
 (defclass NamedDoc
@@ -97,6 +105,10 @@
 	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot max-solutions
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Work
@@ -117,4 +129,32 @@
 	(single-slot b
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Point
+	(is-a Path+Onto)
+	(role concrete)
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Graph
+	(is-a Path+Onto)
+	(role concrete)
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
 		(create-accessor read-write)))

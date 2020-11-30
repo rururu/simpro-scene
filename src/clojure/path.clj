@@ -8,12 +8,24 @@
   "C" ["C1" "C2" "B" "D"]
   "C1" ["C"]
   "C2" ["C"]
-  "D" ["A" "C"]})
-(def MAX-PATHS 2)
+  "D" ["A" "C"]
+  "X" ["Y" "Z" "W"]
+  "Y" ["X" "U" "S"]
+  "Z" ["X" "U"]
+  "W" ["X" "V" "P"]
+  "U" ["Y" "Z" "S"]
+  "V" ["W" "S" "R"]
+  "S" ["Y" "U" "V" "R" "Q"]
+  "R" ["V" "S" "P"]
+  "Q" ["S" "P"]
+  "P" ["W" "R" "Q"]})
 (def TRACE false)
-(defn equal [e1 e2]
-  (or (= e1 e2)
-  (= e1 (reverse e2))))
+(defn point-equal [p1 p2]
+  (= p1 p2))
+
+(defn segment-equal [s1 s2]
+  (or (= s1 s2)
+  (= s1 (reverse s2))))
 
 (defn find-sequels [p1]
   (map #(vector p1 %) (SEQUELS p1)))
@@ -29,15 +41,13 @@
   (println pfx sgs))
 sgs)
 
-(defn set-functions [ini-pnt fin-seq eql dst dis-seg]
+(defn set-functions [ini-pnt fin-seq pnt-eql seg-eql dst dis-seg]
   (def F-init-point ini-pnt)
 (def F-find-sequels fin-seq)
-(def F-equal eql)
+(def F-points-equal pnt-eql)
+(def F-segment-equal seg-eql)
 (def F-distance dst)
 (def F-display-segments dis-seg))
-
-(defn set-max-paths [m]
-  (def MAX-PATHS m))
 
 (defn trace [bool]
   (def TRACE bool))

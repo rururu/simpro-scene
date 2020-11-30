@@ -12,6 +12,7 @@
 (def BRANCHES 4)
 (def SEGMENTS (volatile! {}))
 (def CYCLES (volatile! 0))
+(def PATHS (volatile! []))
 (defn simple-dist [[y1 x1] [y2 x2]]
   ;;(let [sx (Math/abs (- x1 x2))
 ;;       sy (Math/abs (- y1 y2))]
@@ -109,10 +110,10 @@
 (defn display-detailed
   ([]
   (map display-detailed 
-    (range (min 6 (count @path/PATHS)))
+    (range (min 6 (count @PATHS)))
     ["FFFFFF00" "FFFF6000" "FFFF0000" "FF7B3F00" "FF008000" "FF0000FF"]))
 ([n clr]
-  (if-let [ids (butlast (rest (nth @path/PATHS n)))]
+  (if-let [ids (butlast (rest (nth @PATHS n)))]
     (display-detailed [ids clr])))
 ([[ids clr]]
   (cond
