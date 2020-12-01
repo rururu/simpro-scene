@@ -1,4 +1,5 @@
 (ns path
+(:use protege.core)
 (:require
   [rete.core :as rete]))
 (def SEQUELS {"A" ["A1" "A2" "B" "D"]
@@ -23,12 +24,8 @@
 (defn point-equal [p1 p2]
   (= p1 p2))
 
-(defn segment-equal [s1 s2]
-  (or (= s1 s2)
-  (= s1 (reverse s2))))
-
 (defn find-sequels [p1]
-  (map #(vector p1 %) (SEQUELS p1)))
+  (SEQUELS p1))
 
 (defn quote [x]
   x)
@@ -36,19 +33,38 @@
 (defn distance [pth]
   (count pth))
 
-(defn display-segments [pfx sgs]
+(defn display-points [pfx pts]
   (if TRACE
-  (println pfx sgs))
-sgs)
+  (println pfx pts))
+pts)
 
-(defn set-functions [ini-pnt fin-seq pnt-eql seg-eql dst dis-seg]
+(defn set-functions [ini-pnt fin-seq pnt-eql dst dis-pts]
   (def F-init-point ini-pnt)
 (def F-find-sequels fin-seq)
 (def F-points-equal pnt-eql)
-(def F-segment-equal seg-eql)
 (def F-distance dst)
-(def F-display-segments dis-seg))
+(def F-display-points dis-pts))
 
 (defn trace [bool]
   (def TRACE bool))
+
+(defn init-point-dir [x]
+  (let [[gid pid] (.split x ":")]
+  (if-let [gri (fifos "Graph" "id" gid)]
+    (or (fifos "Point" "id" pid)
+      (do (println "Point" pid "not found fot graph" gid "!") nil))
+    (do (println "Graph" gid "not found!")))))
+
+(defn find-sequels-dir [p1]
+  (svs p1 "points1"))
+
+(defn display-points-dir [pfx pts]
+  (letfn [(disp [p]
+             (cond
+               (string? p) p
+               (vector? p) (vec (map disp p))
+               true (sv p "id")))]
+  (if TRACE
+    (println pfx (map disp pts)))
+  pts))
 
