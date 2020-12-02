@@ -1,4 +1,4 @@
-; Tue Dec 01 18:39:12 MSK 2020
+; Wed Dec 02 20:39:00 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -138,10 +138,6 @@
 	(multislot points1
 		(type INSTANCE)
 ;+		(allowed-classes Point)
-		(create-accessor read-write))
-	(single-slot direction
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Graph

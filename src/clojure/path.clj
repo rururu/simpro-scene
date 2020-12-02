@@ -52,7 +52,7 @@ pts)
   (let [[gid pid] (.split x ":")]
   (if-let [gri (fifos "Graph" "id" gid)]
     (or (fifos "Point" "id" pid)
-      (do (println "Point" pid "not found fot graph" gid "!") nil))
+      (do (println "Point" pid "not found for graph" gid "!") nil))
     (do (println "Graph" gid "not found!")))))
 
 (defn find-sequels-dir [p1]
@@ -67,4 +67,32 @@ pts)
   (if TRACE
     (println pfx (map disp pts)))
   pts))
+
+(defn set-functions-dir [ini-pnt fin-seq pnt-eql dst dis-pts wro-dir]
+  (def F-init-point ini-pnt)
+(def F-find-sequels fin-seq)
+(def F-points-equal pnt-eql)
+(def F-distance dst)
+(def F-display-points dis-pts)
+(def F-wrong-direction wro-dir))
+
+(defn latitude [p]
+  (read-string (sv p "status")))
+
+(defn direction [[p1 p2]]
+  (if (> (latitude p1) (latitude p2))
+  :down
+  :up))
+
+(defn mk-segments [pts]
+  (let [[f s & r] pts]
+  (if (seq r)
+    (cons [f s] (mk-segments (rest pts)))
+    [[f s]])))
+
+(defn wrong-direction [start finish points]
+  (let [sgs (mk-segments points)
+       dirs (map direction sgs)
+       rdir (direction [start finish])]
+  (some #(not= % rdir) dirs)))
 

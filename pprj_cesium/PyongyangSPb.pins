@@ -1,4 +1,4 @@
-; Tue Dec 01 18:39:12 MSK 2020
+; Wed Dec 02 20:39:00 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -278,6 +278,13 @@
 	(source "(count pth)")
 	(title "distance [pth]"))
 
+([PyongyangSPb_Class150001] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?a\n	points ?pts\n                          (path/F-wrong-direction ?a ?b ?pts))")
+	(rhs "(retract ?p)")
+	(salience 1)
+	(title "p:Extension: Direction Assesment Forward"))
+
 ([PyongyangSPb_Class150002] of  Goal
 
 	(a "Directed Graph:A")
@@ -288,12 +295,12 @@
 
 ([PyongyangSPb_Class150003] of  Directive
 
-	(source "(path/set-functions\n path/init-point-dir\n path/find-sequels-dir\n path/point-equal\n path/distance\n path/display-points-dir)\n(path/trace true)")
+	(source "(path/set-functions-dir\n path/init-point-dir\n path/find-sequels-dir\n path/point-equal\n path/distance\n path/display-points-dir\n path/wrong-direction)\n(path/trace true)")
 	(title "Directed Path Init"))
 
 ([PyongyangSPb_Class150004] of  CloFunction
 
-	(source "(let [[gid pid] (.split x \":\")]\n  (if-let [gri (fifos \"Graph\" \"id\" gid)]\n    (or (fifos \"Point\" \"id\" pid)\n      (do (println \"Point\" pid \"not found fot graph\" gid \"!\") nil))\n    (do (println \"Graph\" gid \"not found!\"))))")
+	(source "(let [[gid pid] (.split x \":\")]\n  (if-let [gri (fifos \"Graph\" \"id\" gid)]\n    (or (fifos \"Point\" \"id\" pid)\n      (do (println \"Point\" pid \"not found for graph\" gid \"!\") nil))\n    (do (println \"Graph\" gid \"not found!\"))))")
 	(title "init-point-dir [x]"))
 
 ([PyongyangSPb_Class150005] of  CloFuncall
@@ -601,6 +608,21 @@
 	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
 	(title "distance [pts]"))
 
+([PyongyangSPb_Class160002] of  CloFuncall
+
+	(source "(ru.rules/pp 'Goal)"))
+
+([PyongyangSPb_Class160003] of  CloFuncall
+
+	(source "(ru.rules/f 196)"))
+
+([PyongyangSPb_Class160004] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?b\n	points ?pts\n                          (path/F-wrong-direction ?b ?a ?pts))")
+	(rhs "(retract ?p)")
+	(salience 1)
+	(title "p:Extension: Direction Assesment Backward"))
+
 ([PyongyangSPb_Class160005] of  CloFuncall
 
 	(source "(path/init-point-dir \"Directed Graph:A\")"))
@@ -676,10 +698,6 @@
 		"48 31.14 135 2.16")
 	(relative FALSE))
 
-([PyongyangSPb_Class160051] of  CloFuncall
-
-	(source "(find-branches [48.499 135.066])"))
-
 ([PyongyangSPb_Class160052] of  OMTPoly
 
 	(label "G__5209")
@@ -724,14 +742,6 @@
 		"48 29.64 135 3.66"
 		"48 30.24 135 3.66")
 	(relative FALSE))
-
-([PyongyangSPb_Class160055] of  CloFuncall
-
-	(source "(observe [48.499 135.066])"))
-
-([PyongyangSPb_Class160056] of  CloFuncall
-
-	(source "(observe [48.499 135.066] 0.005)"))
 
 ([PyongyangSPb_Class160057] of  OMTPoly
 
@@ -1336,14 +1346,6 @@
 		"48 29.93 135 3.91")
 	(relative FALSE))
 
-([PyongyangSPb_Class160100] of  CloFuncall
-
-	(source "(create-bbx [135.0655 48.4985 135.0665 48.4995])"))
-
-([PyongyangSPb_Class160101] of  CloFuncall
-
-	(source "(create-bbx \"A\" [135.0655 48.4985 135.0665 48.4995])"))
-
 ([PyongyangSPb_Class160102] of  OMTPoly
 
 	(label "A")
@@ -1389,10 +1391,6 @@
 		"48 31.14 135 2.16")
 	(relative FALSE))
 
-([PyongyangSPb_Class160106] of  CloFuncall
-
-	(source "(observe [48.514 135.041] )"))
-
 ([PyongyangSPb_Class160108] of  OMTPoly
 
 	(label "G__5607")
@@ -1407,22 +1405,6 @@
 		"48 30.54 135 2.16"
 		"48 31.14 135 2.16")
 	(relative FALSE))
-
-([PyongyangSPb_Class160109] of  CloFuncall
-
-	(source "sgs"))
-
-([PyongyangSPb_Class160110] of  CloFuncall
-
-	(source "(map last sgs)"))
-
-([PyongyangSPb_Class160112] of  CloFuncall
-
-	(source "(create-bbx \"A\" [48.4987299 135.0656825] 0.0005)"))
-
-([PyongyangSPb_Class160113] of  CloFuncall
-
-	(source "(find-branches [48.4987299 135.0656825])"))
 
 ([PyongyangSPb_Class160114] of  OMTPoly
 
@@ -1439,10 +1421,6 @@
 		"48 30.22 135 3.64")
 	(relative FALSE))
 
-([PyongyangSPb_Class160115] of  CloFuncall
-
-	(source "(def bb (find-branches [48.4987299 135.0656825]))"))
-
 ([PyongyangSPb_Class160116] of  OMTPoly
 
 	(label "G__5879")
@@ -1458,30 +1436,10 @@
 		"48 30.22 135 3.64")
 	(relative FALSE))
 
-([PyongyangSPb_Class160117] of  CloFuncall
-
-	(source "(count bb)"))
-
 ([PyongyangSPb_Class160118] of  CloFunction
 
 	(source "(od/create-line [id pts])")
 	(title "create-line [[id & pts]]"))
-
-([PyongyangSPb_Class160119] of  CloFuncall
-
-	(source "bb"))
-
-([PyongyangSPb_Class160120] of  CloFuncall
-
-	(source "(map create-line bb)"))
-
-([PyongyangSPb_Class160121] of  CloFuncall
-
-	(source "(first bb)"))
-
-([PyongyangSPb_Class160122] of  CloFuncall
-
-	(source "(second bb)"))
 
 ([PyongyangSPb_Class160125] of  OMTPoly
 
@@ -1528,6 +1486,95 @@
 	(salience -1)
 	(title "p:Extension -> Optimization"))
 
+([PyongyangSPb_Class170005] of  CloFunction
+
+	(source "(def F-init-point ini-pnt)\n(def F-find-sequels fin-seq)\n(def F-points-equal pnt-eql)\n(def F-distance dst)\n(def F-display-points dis-pts)\n(def F-wrong-direction wro-dir)")
+	(title "set-functions-dir [ini-pnt fin-seq pnt-eql dst dis-pts wro-dir]"))
+
+([PyongyangSPb_Class170006] of  CloFunction
+
+	(source "(read-string (sv p \"status\"))")
+	(title "latitude [p]"))
+
+([PyongyangSPb_Class170007] of  CloFunction
+
+	(source "(let [sgs (mk-segments points)\n       dirs (map direction sgs)\n       rdir (direction [start finish])]\n  (some #(not= % rdir) dirs))")
+	(title "wrong-direction [start finish points]"))
+
+([PyongyangSPb_Class170008] of  CloFunction
+
+	(source "(let [[f s & r] pts]\n  (if (seq r)\n    (cons [f s] (mk-segments (rest pts)))\n    [[f s]]))")
+	(title "mk-segments [pts]"))
+
+([PyongyangSPb_Class170009] of  CloFuncall
+
+	(source "(path/mk-segments [1 2 3 4 5 6])"))
+
+([PyongyangSPb_Class170010] of  CloFuncall
+
+	(source "(path/mk-segments [1 2 3 4 5])"))
+
+([PyongyangSPb_Class170011] of  CloFunction
+
+	(source "(if (> (latitude p1) (latitude p2))\n  :down\n  :up)")
+	(title "direction [[p1 p2]]"))
+
+([PyongyangSPb_Class170012] of  CloFuncall
+
+	(source "(in-ns 'path)"))
+
+([PyongyangSPb_Class170013] of  CloFuncall
+
+	(source "(map init-point-dir [\"\""))
+
+([PyongyangSPb_Class170014] of  CloFuncall
+
+	(source "(map (fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
+
+([PyongyangSPb_Class170015] of  CloFuncall
+
+	(source "(map #(fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
+
+([PyongyangSPb_Class170016] of  CloFuncall
+
+	(source "(map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"])"))
+
+([PyongyangSPb_Class170017] of  CloFuncall
+
+	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
+
+([PyongyangSPb_Class170018] of  CloFuncall
+
+	(source "(mk-segments pts)"))
+
+([PyongyangSPb_Class170019] of  CloFuncall
+
+	(source "(map direction (mk-segments pts))"))
+
+([PyongyangSPb_Class170020] of  CloFuncall
+
+	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"N4\" \"R3\" \"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
+
+([PyongyangSPb_Class170021] of  CloFuncall
+
+	(source "(def stt (fifos \"Point\" \"id\" \"M4\"))"))
+
+([PyongyangSPb_Class170022] of  CloFuncall
+
+	(source "(def fin (fifos \"Point\" \"id\" \"A8\"))"))
+
+([PyongyangSPb_Class170023] of  CloFuncall
+
+	(source "stt"))
+
+([PyongyangSPb_Class170024] of  CloFuncall
+
+	(source "fin"))
+
+([PyongyangSPb_Class170025] of  CloFuncall
+
+	(source "(wrong-direction stt fin pts)"))
+
 ([PyongyangSPb_Class180000] of  Goal
 
 	(a "[\"Хабаровск\" 48.495 135.08]")
@@ -1541,10 +1588,6 @@
 	(b "[\"Лермонтовка\" 47.149 134.315]")
 	(status "START")
 	(title "Владимировка-Лермонтовка"))
-
-([PyongyangSPb_Class190000] of  CloFuncall
-
-	(source "(path/init-point-dir \"Directed Graph:X\")"))
 
 ([PyongyangSPb_Class190001] of  Goal
 
@@ -1560,18 +1603,6 @@
 	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if path/TRACE\n    (println :OPTIMIZATION))\n  (modify ?w status \"OPTIMIZATION\"))")
 	(salience 1)
 	(title "p:Check:  Max Solutions"))
-
-([PyongyangSPb_Class190003] of  CloFuncall
-
-	(source "(count (rete.core/facts 'Path1))"))
-
-([PyongyangSPb_Class190004] of  CloFuncall
-
-	(source "(count (rete.core/fact-list 'Path1))"))
-
-([PyongyangSPb_Class190005] of  CloFuncall
-
-	(source "(count (rete.core/fact-list 'Solution))"))
 
 ([PyongyangSPb_Class190009] of  Graph
 
@@ -1604,193 +1635,217 @@
 
 ([PyongyangSPb_Class190011] of  Point
 
-	(id "A")
+	(id "A8")
 	(points1
 		[PyongyangSPb_Class190012]
-		[PyongyangSPb_Class190013]))
+		[PyongyangSPb_Class190013])
+	(status "8"))
 
 ([PyongyangSPb_Class190012] of  Point
 
-	(id "B")
+	(id "B7")
 	(points1
 		[PyongyangSPb_Class190014]
 		[PyongyangSPb_Class190015]
-		[PyongyangSPb_Class190011]))
+		[PyongyangSPb_Class190011])
+	(status "7"))
 
 ([PyongyangSPb_Class190013] of  Point
 
-	(id "C")
+	(id "C6")
 	(points1
 		[PyongyangSPb_Class190016]
 		[PyongyangSPb_Class190017]
-		[PyongyangSPb_Class190011]))
+		[PyongyangSPb_Class190011])
+	(status "6"))
 
 ([PyongyangSPb_Class190014] of  Point
 
-	(id "D")
+	(id "D6")
 	(points1
 		[PyongyangSPb_Class190018]
 		[PyongyangSPb_Class190019]
-		[PyongyangSPb_Class190012]))
+		[PyongyangSPb_Class190012])
+	(status "6"))
 
 ([PyongyangSPb_Class190015] of  Point
 
-	(id "E")
+	(id "E6")
 	(points1
 		[PyongyangSPb_Class190019]
 		[PyongyangSPb_Class190020]
-		[PyongyangSPb_Class190012]))
+		[PyongyangSPb_Class190012])
+	(status "6"))
 
 ([PyongyangSPb_Class190016] of  Point
 
-	(id "F")
+	(id "F5")
 	(points1
 		[PyongyangSPb_Class190021]
 		[PyongyangSPb_Class190022]
-		[PyongyangSPb_Class190013]))
+		[PyongyangSPb_Class190013])
+	(status "5"))
 
 ([PyongyangSPb_Class190017] of  Point
 
-	(id "G")
+	(id "G5")
 	(points1
 		[PyongyangSPb_Class190022]
 		[PyongyangSPb_Class190018]
-		[PyongyangSPb_Class190013]))
+		[PyongyangSPb_Class190013])
+	(status "5"))
 
 ([PyongyangSPb_Class190018] of  Point
 
-	(id "L")
+	(id "L4")
 	(points1
 		[PyongyangSPb_Class190027]
 		[PyongyangSPb_Class190028]
 		[PyongyangSPb_Class190014]
-		[PyongyangSPb_Class190017]))
+		[PyongyangSPb_Class190017])
+	(status "4"))
 
 ([PyongyangSPb_Class190019] of  Point
 
-	(id "H")
+	(id "H5")
 	(points1
 		[PyongyangSPb_Class190023]
 		[PyongyangSPb_Class190014]
-		[PyongyangSPb_Class190015]))
+		[PyongyangSPb_Class190015])
+	(status "5"))
 
 ([PyongyangSPb_Class190020] of  Point
 
-	(id "I")
+	(id "I5")
 	(points1
 		[PyongyangSPb_Class190024]
 		[PyongyangSPb_Class190025]
-		[PyongyangSPb_Class190015]))
+		[PyongyangSPb_Class190015])
+	(status "5"))
 
 ([PyongyangSPb_Class190021] of  Point
 
-	(id "J")
+	(id "J4")
 	(points1
 		[PyongyangSPb_Class190026]
-		[PyongyangSPb_Class190016]))
+		[PyongyangSPb_Class190016])
+	(status "4"))
 
 ([PyongyangSPb_Class190022] of  Point
 
-	(id "K")
+	(id "K4")
 	(points1
 		[PyongyangSPb_Class190026]
 		[PyongyangSPb_Class190016]
-		[PyongyangSPb_Class190017]))
+		[PyongyangSPb_Class190017])
+	(status "4"))
 
 ([PyongyangSPb_Class190023] of  Point
 
-	(id "M")
+	(id "M4")
 	(points1
 		[PyongyangSPb_Class190029]
 		[PyongyangSPb_Class190028]
-		[PyongyangSPb_Class190019]))
+		[PyongyangSPb_Class190019])
+	(status "4"))
 
 ([PyongyangSPb_Class190024] of  Point
 
-	(id "N")
+	(id "N4")
 	(points1
 		[PyongyangSPb_Class190029]
 		[PyongyangSPb_Class190030]
-		[PyongyangSPb_Class190020]))
+		[PyongyangSPb_Class190020])
+	(status "4"))
 
 ([PyongyangSPb_Class190025] of  Point
 
-	(id "O")
+	(id "O4")
 	(points1
 		[PyongyangSPb_Class190030]
-		[PyongyangSPb_Class190020]))
+		[PyongyangSPb_Class190020])
+	(status "4"))
 
 ([PyongyangSPb_Class190026] of  Point
 
-	(id "P")
+	(id "P3")
 	(points1
 		[PyongyangSPb_Class190021]
 		[PyongyangSPb_Class190022]
-		[PyongyangSPb_Class190027]))
+		[PyongyangSPb_Class190027])
+	(status "3"))
 
 ([PyongyangSPb_Class190027] of  Point
 
-	(id "T")
+	(id "T2")
 	(points1
 		[PyongyangSPb_Class190031]
 		[PyongyangSPb_Class190018]
-		[PyongyangSPb_Class190026]))
+		[PyongyangSPb_Class190026])
+	(status "2"))
 
 ([PyongyangSPb_Class190028] of  Point
 
-	(id "Q")
+	(id "Q3")
 	(points1
 		[PyongyangSPb_Class190032]
 		[PyongyangSPb_Class190018]
-		[PyongyangSPb_Class190023]))
+		[PyongyangSPb_Class190023])
+	(status "3"))
 
 ([PyongyangSPb_Class190029] of  Point
 
-	(id "R")
+	(id "R3")
 	(points1
 		[PyongyangSPb_Class190032]
 		[PyongyangSPb_Class190033]
 		[PyongyangSPb_Class190023]
-		[PyongyangSPb_Class190024]))
+		[PyongyangSPb_Class190024])
+	(status "3"))
 
 ([PyongyangSPb_Class190030] of  Point
 
-	(id "S")
+	(id "S3")
 	(points1
 		[PyongyangSPb_Class190033]
 		[PyongyangSPb_Class190024]
-		[PyongyangSPb_Class190025]))
+		[PyongyangSPb_Class190025])
+	(status "3"))
 
 ([PyongyangSPb_Class190031] of  Point
 
-	(id "W")
+	(id "W1")
 	(points1
 		[PyongyangSPb_Class190034]
 		[PyongyangSPb_Class190027]
-		[PyongyangSPb_Class190032]))
+		[PyongyangSPb_Class190032])
+	(status "1"))
 
 ([PyongyangSPb_Class190032] of  Point
 
-	(id "U")
+	(id "U2")
 	(points1
 		[PyongyangSPb_Class190028]
 		[PyongyangSPb_Class190029]
-		[PyongyangSPb_Class190031]))
+		[PyongyangSPb_Class190031])
+	(status "2"))
 
 ([PyongyangSPb_Class190033] of  Point
 
-	(id "V")
+	(id "V2")
 	(points1
 		[PyongyangSPb_Class190034]
 		[PyongyangSPb_Class190029]
-		[PyongyangSPb_Class190030]))
+		[PyongyangSPb_Class190030])
+	(status "2"))
 
 ([PyongyangSPb_Class190034] of  Point
 
-	(id "X")
+	(id "X0")
 	(points1
 		[PyongyangSPb_Class190033]
-		[PyongyangSPb_Class190031]))
+		[PyongyangSPb_Class190031])
+	(status "0"))
 
 ([PyongyangSPb_Class2] of  ShapeLayer
 
@@ -1810,10 +1865,6 @@
 	(label "L2")
 	(lineType STRAIGHT)
 	(lineWidth "2"))
-
-([PyongyangSPb_Class200001] of  CloFuncall
-
-	(source "(path/init-point-dir \"Directed Graph:Z\")"))
 
 ([PyongyangSPb_Class200003] of  %3AINSTANCE-ANNOTATION
 
@@ -1852,10 +1903,6 @@
 ([PyongyangSPb_Class20015] of  ObjectMission
 
 	(label "Pyongyang - Saint-Petersburg"))
-
-([PyongyangSPb_Class210001] of  CloFuncall
-
-	(source "(path/find-sequels \"Q\")"))
 
 ([PyongyangSPb_Class210002] of  Goal
 
@@ -2204,6 +2251,8 @@
 
 	(rules
 		[ScenarioN_Class550032]
+		[PyongyangSPb_Class150001]
+		[PyongyangSPb_Class160004]
 		[PyongyangSPb_Class190002]
 		[PyongyangSPb_Class80003]
 		[PyongyangSPb_Class50000]
@@ -2278,7 +2327,7 @@
 	(document [PyongyangSPb_Class50001])
 	(facts
 		[PyongyangSPb_Class150003]
-		[PyongyangSPb_Class210004]
+		[PyongyangSPb_Class80000]
 		[PyongyangSPb_Class290000])
 	(mode run)
 	(rule-sets [PyongyangSPb_Class40000])
@@ -2340,7 +2389,12 @@
 		[PyongyangSPb_Class160010]
 		[PyongyangSPb_Class150004]
 		[PyongyangSPb_Class200004]
-		[PyongyangSPb_Class200005])
+		[PyongyangSPb_Class200005]
+		[PyongyangSPb_Class170005]
+		[PyongyangSPb_Class170006]
+		[PyongyangSPb_Class170011]
+		[PyongyangSPb_Class170008]
+		[PyongyangSPb_Class170007])
 	(cloNamespace [PyongyangSPb_Class50011])
 	(cloVars
 		[PyongyangSPb_Class50002]
@@ -2410,6 +2464,14 @@
 	(status "START")
 	(title "X-P"))
 
+([PyongyangSPb_Class80000] of  Goal
+
+	(a "Directed Graph:A8")
+	(b "Directed Graph:M4")
+	(max-solutions 100)
+	(status "START")
+	(title "A8-M4 Directed"))
+
 ([PyongyangSPb_Class80001] of  CloVar
 
 	(source "0.0005")
@@ -2423,7 +2485,7 @@
 ([PyongyangSPb_Class80003] of  Rule
 
 	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a \n	b ?b)")
-	(rhs "(let [ia (path/F-init-point ?a)\n       ib (path/F-init-point ?b)]\n  (asser Path0 a ia\n	b ia\n	status \"OPEN\"\n	points [ia])\n  (asser Path0 a ib\n	b ib\n	status \"OPEN\"\n	points [ib])\n  (modify ?g a ia b ib\n	status \"RUN\"))")
+	(rhs "(let [ia (path/F-init-point ?a)\n       ib (path/F-init-point ?b)]\n  (asser Path0 a ia\n	b ia\n	status \"OPEN\"\n	points [ia])\n  (asser Path0 a ib\n	b ib\n	status \"OPEN\"\n	points [ib])\n  (modify ?g a ia b ib\n	status \"RUN\"))\n(if path/TRACE\n  (println \"Goal\" [?a ?b]))")
 	(salience 0)
 	(title "p:Check: Goal Start"))
 

@@ -1,0 +1,171 @@
+EXPERT SYSTEM INITIALIZED
+[:RUN DirectedPathRun]
+Mode: run
+Templates: 6
+Rules: 12
+Facts: 3
+Goal [Directed Graph:M Directed Graph:A]
+:EXTENSION
+Path (A B)
+Path (A C)
+Path (M R)
+Path (M Q)
+Path (M H)
+:CHECK
+:EXTENSION
+Path (A B D)
+Path (A B E)
+Path (A C F)
+Path (A C G)
+Path (M R U)
+Path (M R V)
+Path (M R N)
+Path (M Q U)
+Path (M Q L)
+Path (M H D)
+Path (M H E)
+:CHECK
+Solution (M H E B A)
+Solution (M H D B A)
+:EXTENSION
+Path (A C F J)
+Path (A C F K)
+Path (A C G K)
+Path (A C G L)
+Path (M R U Q)
+Path (M R U W)
+Path (M R V X)
+Path (M R V S)
+Path (M R N S)
+Path (M R N I)
+Path (M Q U R)
+Path (M Q U W)
+Path (M Q L T)
+Path (M Q L D)
+Path (M Q L G)
+:CHECK
+Solution (M Q L G C A)
+Solution (M Q L G C A)
+Solution (M Q L D B A)
+:EXTENSION
+Path (A C F J P)
+Path (A C F K P)
+Path (A C F K G)
+Path (A C G K P)
+Path (A C G K F)
+Path (M R U Q L)
+Path (M R U W X)
+Path (M R U W T)
+Path (M R V X W)
+Path (M R V S N)
+Path (M R V S O)
+Path (M R N S V)
+Path (M R N S O)
+Path (M R N I O)
+Path (M R N I E)
+Path (M Q U R V)
+Path (M Q U R N)
+Path (M Q U W X)
+Path (M Q U W T)
+Path (M Q L T W)
+Path (M Q L T P)
+:CHECK
+Solution (M Q L T P K G C A)
+Solution (M Q L T P K F C A)
+Solution (M Q L T P J F C A)
+Solution (M R U Q L G C A)
+Solution (M Q L G K F C A)
+Solution (M R N I E B A)
+:EXTENSION
+Path (A C G K F J)
+Path (M R U W X V)
+Path (M R U W T L)
+Path (M R U W T P)
+Path (M R V X W T)
+Path (M R V X W U)
+Path (M R V S N I)
+Path (M R V S O I)
+Path (M R N S V X)
+Path (M R N S O I)
+Path (M R N I O S)
+Path (M Q U R V X)
+Path (M Q U R V S)
+Path (M Q U R N S)
+Path (M Q U R N I)
+Path (M Q U W X V)
+Path (M Q U W T L)
+Path (M Q U W T P)
+Path (M Q L T W X)
+Path (M Q L T W U)
+:CHECK
+:EXTENSION
+:OPTIMIZATION
+Optimization between ([M Q L G K F C A] and [M R N I E B A])
+Optimization between ([M R U Q L G C A] and [M R N I E B A])
+Optimization between ([M R N I E B A] and [M Q L T P J F C A])
+Optimization between ([M Q L T P K F C A] and [M R N I E B A])
+Optimization between ([M Q L T P K G C A] and [M R N I E B A])
+Optimization between ([M Q L D B A] and [M R N I E B A])
+Optimization between ([M Q L G C A] and [M Q L D B A])
+Optimization between ([M Q L D B A] and [M H D B A])
+Optimization between ([M H E B A] and [M H D B A])
+:OPTIMIZED (M H D B A)
+"Elapsed time: 258.147026 msecs"
+
+[:RUN DirectedPathRun]
+Mode: run
+Templates: 6
+Rules: 14
+Facts: 3
+Goal [Directed Graph:M4 Directed Graph:A8]
+:EXTENSION
+Path (A8 B7)
+Path (A8 C6)
+Path (M4 R3)
+Path (M4 Q3)
+Path (M4 H5)
+:CHECK
+:EXTENSION
+Path (A8 B7 D6)
+Path (A8 B7 E6)
+Path (A8 C6 F5)
+Path (A8 C6 G5)
+Path (M4 H5 D6)
+Path (M4 H5 E6)
+:CHECK
+Solution (M4 H5 E6 B7 A8)
+Solution (M4 H5 D6 B7 A8)
+:EXTENSION
+Path (A8 C6 F5 J4)
+Path (A8 C6 F5 K4)
+Path (A8 C6 G5 K4)
+Path (A8 C6 G5 L4)
+:CHECK
+:EXTENSION
+Path (A8 C6 F5 J4 P3)
+Path (A8 C6 F5 K4 P3)
+Path (A8 C6 F5 K4 G5)
+Path (A8 C6 G5 K4 P3)
+Path (A8 C6 G5 K4 F5)
+Path (A8 C6 G5 L4 T2)
+Path (A8 C6 G5 L4 Q3)
+Path (A8 C6 G5 L4 D6)
+:CHECK
+:EXTENSION
+Path (A8 C6 F5 J4 P3 K4)
+Path (A8 C6 F5 J4 P3 T2)
+Path (A8 C6 F5 K4 P3 J4)
+Path (A8 C6 F5 K4 P3 T2)
+Path (A8 C6 G5 K4 P3 J4)
+Path (A8 C6 G5 K4 P3 T2)
+Path (A8 C6 G5 L4 T2 W1)
+Path (A8 C6 G5 L4 T2 P3)
+Path (A8 C6 G5 L4 Q3 U2)
+Path (A8 C6 G5 L4 Q3 M4)
+:CHECK
+:EXTENSION
+:OPTIMIZATION
+Optimization between ([M4 H5 E6 B7 A8] and [M4 H5 D6 B7 A8])
+:OPTIMIZED (M4 H5 D6 B7 A8)
+"Elapsed time: 82.405603 msecs"
+
