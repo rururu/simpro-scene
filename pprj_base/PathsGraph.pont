@@ -1,0 +1,368 @@
+; Thu Dec 03 17:03:49 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot dirways
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot label
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot general-dir
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot relative
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot start
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot final_actions
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot pathway
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot class
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot course
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot direction
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot description
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot components
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot way
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot Longitude
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot inCesium
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot startUpLayers
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot lineWidth
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-del-fil
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot from1
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot line
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot jointDecoration
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot inOpenMap
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot value
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-rem
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot fillColor
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-add
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot to1
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot value-type
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-show-roads
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot type
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot playground-index
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot points
+		(type STRING)
+		(create-accessor read-write))
+	(multislot task_scheme
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot object
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot final_tasks
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot initial_actions
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot path
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot road
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot missions
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-deep-copy
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot a
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot but-shal-copy
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot b
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot but-hide-roads
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot road-subclass
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot source-project
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot Scale
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot next_actions
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot spatialIndex
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot verticalSpeed
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot url
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot lineColor
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot lineType
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot shapeFile
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot initial_tasks
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot dir-factor
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot altitude
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot Debug
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot Latitude
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot finish
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot layers
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot dashPattern
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot latitude
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot capDecoration
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write))
+	(multislot finish_type
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot prettyName
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot spd
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot but-find-unref
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot scenario_scheme
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot max-solutions
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot longitude
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-del-unref
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-load-prj
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-clear
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot tagvalue
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot but-cre
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot speed
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot look
+;+		(type ANY)
+		(create-accessor read-write)))
+
+(defclass NamedDoc
+	(is-a Document)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Path+Onto
+	(is-a USER)
+	(role abstract)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Path
+	(is-a Path+Onto)
+	(role abstract)
+	(single-slot a
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot b
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Path0
+	(is-a Path)
+	(role concrete)
+	(multislot points
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Path1
+	(is-a Path0)
+	(role concrete))
+
+(defclass Goal
+	(is-a Path)
+	(role concrete)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot max-solutions
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Work
+	(is-a Path+Onto)
+	(role concrete))
+
+(defclass Solution
+	(is-a Path+Onto)
+	(role concrete)
+	(single-slot path
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot a
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot b
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Point
+	(is-a Path+Onto)
+	(role concrete)
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write)))
+
+(defclass Graph
+	(is-a Path+Onto)
+	(role concrete)
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot points1
+		(type INSTANCE)
+;+		(allowed-classes Point)
+		(create-accessor read-write)))
+
+(defclass Instruction
+	(is-a USER)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
