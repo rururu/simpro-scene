@@ -1,4 +1,4 @@
-; Thu Dec 03 17:03:49 MSK 2020
+; Mon Dec 07 10:25:07 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -220,10 +220,6 @@
 		(create-accessor read-write))
 	(multislot spd
 ;+		(type ANY)
-		(create-accessor read-write))
-	(single-slot status
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot but-find-unref
 ;+		(type ANY)

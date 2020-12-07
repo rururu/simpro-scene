@@ -1,7 +1,14 @@
-; Thu Dec 03 17:03:49 MSK 2020
+; Mon Dec 07 10:25:07 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([PathsGraph_Class0] of  Rule
+
+	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution)")
+	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if path/TRACE\n    (println :POSTPROCESSING))\n  (modify ?w status \"POSTPROCESSING\"))")
+	(salience 1)
+	(title "p:Check:  Max Solutions -> Postprocessing"))
 
 ([PathsGraph_Class1] of  Rule
 
@@ -9,6 +16,20 @@
 	(rhs "(load-string ?src)\n(retract ?ins)")
 	(salience 100)
 	(title "ExecuteInstruction"))
+
+([PathsGraph_Class10001] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(Solution)")
+	(rhs "(if path/TRACE\n  (println :POSTPROCESSING))\n(modify ?w status \"POSTPROCESSING\")")
+	(salience -1)
+	(title "p:Extension -> Postprocessing - Many Solutions"))
+
+([PathsGraph_Class10002] of  Rule
+
+	(lhs "?w (Work status \"OPTIMIZATION\")\n(Solution path ?pth)\n(not Solution)")
+	(rhs "(when path/TRACE\n  (path/F-display-points :OPTIMIZED ?pth)\n  (println :POSTPROCESSING))\n(modify ?w status \"POSTPROCESSING\")")
+	(salience -1)
+	(title "p:Optimization -> Postprocessing - One Solution"))
 
 ([PathsGraph_Class2] of  Instruction
 
@@ -86,7 +107,7 @@
 
 ([PyongyangSPb_Class140005] of  Rule
 
-	(lhs "(Work status \"OPTIMIZATION\")\n?s (Solution path ?pth)\n(not Solution)")
+	(lhs "(Work status \"OPTIMIZATION\")\n(Solution path ?pth)\n(not Solution)")
 	(rhs "(rete.core/problem-solved)\n(if path/TRACE\n  (path/F-display-points :OPTIMIZED ?pth))")
 	(salience 0)
 	(title "p:Optimization: Solutions Optimized"))
@@ -120,7 +141,7 @@
 
 ([PyongyangSPb_Class150004] of  CloFunction
 
-	(source "(let [[gid pid] (.split x \":\")]\n  (if-let [gri (fifos \"Graph\" \"id\" gid)]\n    (or (fifos \"Point\" \"id\" pid)\n      (do (println \"Point\" pid \"not found for graph\" gid \"!\") nil))\n    (do (println \"Graph\" gid \"not found!\"))))")
+	(source "(let [[gid pid] (.split x \":\")]\n  (if-let [gri (fifos \"Graph\" \"id\" gid)]\n    (or (fifos \"Point\" \"id\" pid)\n      (do (println \"Point\" pid \"not found for graph\" gid \"!\") nil))\n    (do (println \"Graph\" gid \"not found!\") nil)))")
 	(title "init-point-dir [x]"))
 
 ([PyongyangSPb_Class160004] of  Rule
@@ -207,7 +228,7 @@
 	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution)")
 	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if path/TRACE\n    (println :OPTIMIZATION))\n  (modify ?w status \"OPTIMIZATION\"))")
 	(salience 1)
-	(title "p:Check:  Max Solutions"))
+	(title "p:Check:  Max Solutions -> Optimization"))
 
 ([PyongyangSPb_Class190009] of  Graph
 

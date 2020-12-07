@@ -53,7 +53,7 @@ pts)
   (if-let [gri (fifos "Graph" "id" gid)]
     (or (fifos "Point" "id" pid)
       (do (println "Point" pid "not found for graph" gid "!") nil))
-    (do (println "Graph" gid "not found!")))))
+    (do (println "Graph" gid "not found!") nil))))
 
 (defn find-sequels-dir [p1]
   (svs p1 "points1"))

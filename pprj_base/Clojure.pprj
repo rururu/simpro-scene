@@ -1,4 +1,4 @@
-; Tue May 12 11:12:32 MSK 2020
+; Mon Dec 07 18:51:42 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -282,7 +282,7 @@
 
 ([Clojure_ProjectKB_Class110071] of  Widget
 
-	(height 380)
+	(height 400)
 	(is_hidden FALSE)
 	(name "cloFunctions")
 	(property_list [Clojure_ProjectKB_Class110072])
@@ -316,7 +316,7 @@
 
 ([Clojure_ProjectKB_Class110076] of  Widget
 
-	(height 500)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloVars")
 	(property_list [Clojure_ProjectKB_Class110077])
@@ -398,7 +398,7 @@
 
 ([Clojure_ProjectKB_Class110088] of  Widget
 
-	(height 100)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloProtocols")
 	(property_list [Clojure_ProjectKB_Class110089])
@@ -432,14 +432,14 @@
 
 ([Clojure_ProjectKB_Class110093] of  Widget
 
-	(height 100)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloTypes")
 	(property_list [Clojure_ProjectKB_Class110094])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
-	(x 320)
-	(y 420))
+	(x 210)
+	(y 440))
 
 ([Clojure_ProjectKB_Class110094] of  Property_List
 
@@ -466,14 +466,14 @@
 
 ([Clojure_ProjectKB_Class110098] of  Widget
 
-	(height 100)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloRecords")
 	(property_list [Clojure_ProjectKB_Class110099])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
-	(x 320)
-	(y 320))
+	(x 210)
+	(y 280))
 
 ([Clojure_ProjectKB_Class110099] of  Property_List
 
@@ -500,14 +500,14 @@
 
 ([Clojure_ProjectKB_Class110103] of  Widget
 
-	(height 100)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloExtendProtocols")
 	(property_list [Clojure_ProjectKB_Class110104])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
 	(x 320)
-	(y 220))
+	(y 280))
 
 ([Clojure_ProjectKB_Class110104] of  Property_List
 
@@ -534,14 +534,14 @@
 
 ([Clojure_ProjectKB_Class110108] of  Widget
 
-	(height 100)
+	(height 160)
 	(is_hidden FALSE)
 	(name "cloExtendTypes")
 	(property_list [Clojure_ProjectKB_Class110109])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
 	(x 320)
-	(y 520))
+	(y 440))
 
 ([Clojure_ProjectKB_Class110109] of  Property_List
 
@@ -609,7 +609,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 220)
 	(x 430)
-	(y 220))
+	(y 200))
 
 ([Clojure_ProjectKB_Class110119] of  Property_List
 )
@@ -623,21 +623,21 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 220)
 	(x 430)
-	(y 400))
+	(y 380))
 
 ([Clojure_ProjectKB_Class110121] of  Property_List
 )
 
 ([Clojure_ProjectKB_Class110122] of  Widget
 
-	(height 170)
+	(height 120)
 	(is_hidden FALSE)
 	(name "epilogue")
 	(property_list [Clojure_ProjectKB_Class110123])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
 	(width 210)
 	(x 0)
-	(y 620))
+	(y 640))
 
 ([Clojure_ProjectKB_Class110123] of  Property_List
 )
@@ -651,7 +651,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 220)
 	(x 430)
-	(y 280))
+	(y 260))
 
 ([Clojure_ProjectKB_Class110125] of  Property_List
 )
@@ -665,7 +665,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
 	(width 220)
 	(x 430)
-	(y 460))
+	(y 440))
 
 ([Clojure_ProjectKB_Class110127] of  Property_List
 )
@@ -708,7 +708,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 220)
 	(x 430)
-	(y 560))
+	(y 540))
 
 ([Clojure_ProjectKB_Class110133] of  Property_List
 )
@@ -722,7 +722,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 220)
 	(x 430)
-	(y 340))
+	(y 320))
 
 ([Clojure_ProjectKB_Class110135] of  Property_List
 )
@@ -851,14 +851,14 @@
 
 ([Clojure_ProjectKB_Class110192] of  Widget
 
-	(height 170)
+	(height 160)
 	(is_hidden FALSE)
 	(name "html")
 	(property_list [Clojure_ProjectKB_Class110193])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
 	(x 210)
-	(y 620))
+	(y 600))
 
 ([Clojure_ProjectKB_Class110193] of  Property_List
 
@@ -880,14 +880,14 @@
 
 ([Clojure_ProjectKB_Class110202] of  Widget
 
-	(height 170)
+	(height 160)
 	(is_hidden FALSE)
 	(name "css")
 	(property_list [Clojure_ProjectKB_Class110203])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
 	(width 110)
 	(x 320)
-	(y 620))
+	(y 600))
 
 ([Clojure_ProjectKB_Class110203] of  Property_List
 
@@ -2463,7 +2463,7 @@
 ([KB_127677_Class99] of  Property_List
 )
 
-([KB_301209_Class3] of  Map
+([KB_623401_Class3] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List

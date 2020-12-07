@@ -1,4 +1,4 @@
-; Tue May 12 11:12:31 MSK 2020
+; Mon Dec 07 18:51:42 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -56,7 +56,7 @@
 	(cloVars
 		[Clojure_Class10]
 		[Clojure_Class11])
-	(title "protege"))
+	(title "Protege"))
 
 ([Clojure_Class100000] of  CloFunction
 
@@ -284,10 +284,45 @@
 	(source "(.getName (.getDirectType instance))")
 	(title "typ [instance]"))
 
+([Clojure_Class340000] of  CloProgram
+
+	(cloFunctions
+		[Clojure_Class350002]
+		[Clojure_Class350003]
+		[Clojure_Class350004]
+		[Clojure_Class350005])
+	(cloNamespace [Clojure_Class350001])
+	(title "Protege Extensions"))
+
 ([Clojure_Class340001] of  CloFunction
 
 	(source "([ins]\n  (let [ns (if (instance? Instance ins) (sv ins \"title\") ins)\n         pth (.replace ns \".\" \"/\")]\n    (try\n      (load (str \"/\" pth))\n      true\n      (catch Exception e\n        false))))\n([hm inst]\n  (let [mp (into {} hm)\n        clw (mp \"clsWidget\")\n        pms (.getSelection (.getSlotWidget clw (slt \"cloPrograms\")))]\n    (println \"Loading programs:\")\n    (doseq [pm pms]\n      (println (str (if (ldns (sv pm \"cloNamespace\")) \" + \" \" - \") (sv pm \"title\"))))))")
 	(title "ldns"))
+
+([Clojure_Class350001] of  CloNamespace
+
+	(source "(:use protege.core)\n(:import\n ru.protege.extensions.QueriesTabHelper)")
+	(title "protege.extensions"))
+
+([Clojure_Class350002] of  CloFunction
+
+	(source "(QueriesTabHelper/getQueriesTab)")
+	(title "qt []"))
+
+([Clojure_Class350003] of  CloFunction
+
+	(source "(let [qtb (qt)]\n  (if qtb\n    (.search (first (.getWidgets qtb)))))")
+	(title "qt-search-results []"))
+
+([Clojure_Class350004] of  CloFunction
+
+	(source "(let [qtb (qt)]\n  (if qtb\n    (.getQueryWithName (.getModel qtb) name)))")
+	(title "qt-query [name]"))
+
+([Clojure_Class350005] of  CloFunction
+
+	(source "(let [qtb (qt)\n       q (qt-query qname)\n       args (map str args)]\n  (doall (map #(.replaceObject q %1 %2) args (range)))\n  (QueriesTabHelper/ruDoUpLoad qtb q)\n  (QueriesTabHelper/ruDoSearch qtb q))")
+	(title "qt-do-query [qname args]"))
 
 ([Clojure_Class40000] of  CloFunction
 
@@ -328,8 +363,8 @@
 
 ([Clojure_Class60002] of  CloFunction
 
-	(source "; Return new instance of class of name clname\n(.createInstance *kb* nil (.getCls *kb* clname))")
-	(title "crin [clname]"))
+	(source "; Return new instance of class cls\n(.createInstance *kb* nil (.getCls *kb* cls))")
+	(title "crin [cls]"))
 
 ([Clojure_Class60003] of  CloFunction
 

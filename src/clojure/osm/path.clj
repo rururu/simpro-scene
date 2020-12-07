@@ -1,5 +1,7 @@
 (ns osm.path
-(:use protege.core)
+(:use 
+ protege.core
+ protege.extensions)
 (:require
   [osm.data :as od])
 (:import
