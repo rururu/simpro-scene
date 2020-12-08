@@ -8,7 +8,6 @@
   ru.igis.omtab.Clock
   java.awt.event.ActionListener
   java.util.TimerTask))
-
 (def ES-TIMER nil)
 (def URLS {"Mark" "http://localhost:4444/img/buoy3.png"
  "Boat" "http://localhost:4444/img/yacht.png"})

@@ -1,17 +1,7 @@
-; Sun Mar 01 20:51:46 MSK 2020
+; Tue Dec 08 21:35:09 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
-
-([AircraftCarrier_Class0] of  ShareOnto
-
-	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
-	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
-	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
-	(but-find-unref "Find Unreferenced/share.onto/find-unref")
-	(but-load-prj "Load Source Project/share.onto/load-src-prj")
-	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
-	(source-project "DefaultKnowledgeBase(SailExpert)"))
 
 ([AircraftCarrier_Class10000] of  NavOb
 
@@ -24,6 +14,12 @@
 	(speed 0.0)
 	(url "file:resources/public/img/lnrR.gif")
 	(verticalSpeed 0.0))
+
+([AircraftCarrier_Class100000] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "CW"))
 
 ([AircraftCarrier_Class10001] of  NavOb
 
@@ -150,7 +146,7 @@
 	(cloPrograms
 		[Clojure_Class10000]
 		[RuleEngine_Class30000]
-		[CeziumEngine_Class110013]
+		[ScenarioN_Class550020]
 		[Scenario_Class3]
 		[Algorithm_Class10000]
 		[Scenario_Class120024]
@@ -182,7 +178,7 @@
 		[Scenario_Class250011]
 		[Scenario_Class17]
 		[Scenario_Class340000]
-		[CeziumEngine_Class110007])
+		[ScenarioN_Class550030])
 	(steps 1)
 	(title "AC Run"))
 
@@ -290,7 +286,7 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "i1"))
+	(onboard "h1"))
 
 ([AircraftCarrier_Class40000] of  Task
 

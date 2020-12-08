@@ -1,4 +1,4 @@
-; Wed Oct 28 10:57:15 MSK 2020
+; Tue Dec 08 20:26:56 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4691,7 +4691,7 @@
 
 	(latitude "0 0")
 	(longitude "0 0")
-	(next_actions [OSMRoads_Class41])
+	(next_actions [OSMRoads_Class160000])
 	(object [BrigBern_Class100000])
 	(title "Train on map"))
 
@@ -6639,7 +6639,8 @@
 
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server"))
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
+	(onboard "train"))
 
 ([OSMRoads_Class14] of  Railroad
 
@@ -6673,6 +6674,13 @@
 ([OSMRoads_Class150002] of  CloFuncall
 
 	(source "(get-way-data [43.773 7.493] 0.01 \"railway\")"))
+
+([OSMRoads_Class160000] of  PutObProperties
+
+	(new_altitude "10")
+	(next_actions [OSMRoads_Class41])
+	(object [BrigBern_Class100000])
+	(title "Set Train View Height"))
 
 ([OSMRoads_Class2] of  OMTPoly
 
@@ -8112,7 +8120,8 @@
 	(task_scheme
 		[OSMRoads_Class41]
 		[OSMRoads_Class42]
-		[OSMRoads_Class0])
+		[OSMRoads_Class0]
+		[OSMRoads_Class160000])
 	(title "Part 1"))
 
 ([OSMRoads_Class40000] of  Task

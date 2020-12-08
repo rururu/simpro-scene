@@ -1,4 +1,4 @@
-; Tue Dec 08 19:59:59 MSK 2020
+; Tue Dec 08 20:00:34 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -18,7 +18,11 @@
 	(y 0))
 
 ([BROWSER_SLOT_NAMES] of  Property_List
-)
+
+	(properties
+		[CeziumEngineLight_ProjectKB_Class1386]
+		[CeziumEngineLight_ProjectKB_Class1387]
+		[CeziumEngineLight_ProjectKB_Class1388]))
 
 ([Cezium_ProjectKB_Class1636] of  Widget
 
@@ -326,6 +330,21 @@
 ([CeziumEngine_ProjectKB_Class1691] of  Property_List
 )
 
+([CeziumEngineLight_ProjectKB_Class1386] of  String
+
+	(name "CZMLGenerator")
+	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
+
+([CeziumEngineLight_ProjectKB_Class1387] of  String
+
+	(name "Onboard")
+	(string_value "label"))
+
+([CeziumEngineLight_ProjectKB_Class1388] of  String
+
+	(name "CZMLSpan")
+	(string_value "object"))
+
 ([CLSES_TAB] of  Widget
 
 	(is_hidden FALSE)
@@ -461,12 +480,12 @@
 ([KB_377789_Class35] of  String
 
 	(name "classes_file_name")
-	(string_value "CeziumEngine.pont"))
+	(string_value "CeziumEngineLight.pont"))
 
 ([KB_377789_Class36] of  String
 
 	(name "instances_file_name")
-	(string_value "CeziumEngine.pins"))
+	(string_value "CeziumEngineLight.pins"))
 
 ([KB_684256_Class1343] of  Widget
 
@@ -514,28 +533,28 @@
 ([KB_684256_Class1349] of  Property_List
 )
 
-([KB_700849_Class1694] of  Map
+([KB_892609_Class1382] of  Map
 
 	(entries
-		[KB_700849_Class1695]
-		[KB_700849_Class1696]
-		[KB_700849_Class1697]))
+		[KB_892609_Class1383]
+		[KB_892609_Class1384]
+		[KB_892609_Class1385]))
 
-([KB_700849_Class1695] of  Map_Entry
+([KB_892609_Class1383] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_700849_Class1696] of  Map_Entry
+([KB_892609_Class1384] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_700849_Class1697] of  Map_Entry
+([KB_892609_Class1385] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -640,8 +659,8 @@
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
 	(included_projects
-		"RuleEngine.pprj"
-		"CeziumEngineLight.pprj")
+		"igis.pprj"
+		"Clojure.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
