@@ -1,4 +1,4 @@
-; Wed Oct 28 11:02:03 MSK 2020
+; Wed Dec 09 20:44:07 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -110,7 +110,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  (def RMMA true))")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class40000] of  CloFunction
@@ -140,7 +140,7 @@
 
 ([BrigBern_Class40008] of  CloVar
 
-	(source "false")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "RMMA"))
 
 ([BrigBern_Class40011] of  CloVar
@@ -160,7 +160,7 @@
 
 ([BrigBern_Class40015] of  CloVar
 
-	(source "0")
+	(source ";; 100 meters\n0.001")
 	(title "RADIUS"))
 
 ([BrigBern_Class40018] of  CloVar
@@ -172,10 +172,6 @@
 
 	(%3ACREATION-TIMESTAMP "2018.01.08 22:19:32.135 MSK")
 	(%3ACREATOR "ta"))
-
-([BrigBern_Class60002] of  Display
-
-	(source "<html>Select tagvalue for ways!<br>"))
 
 ([BrigBern_Class60118] of  CloFunction
 
@@ -212,7 +208,11 @@
 		[BrigBern_Class130319]
 		[BrigBern_Class130330]
 		[OSMRoads_Class10002]
-		[OSMRoads_Class10005])
+		[OSMRoads_Class10005]
+		[OSMData_Class10011]
+		[OSMData_Class10012]
+		[OSMData_Class10027]
+		[OSMData_Class10028])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[BrigBern_Class20]
@@ -263,6 +263,145 @@
 ([BrigBern_Class90003] of  Tagvalue
 
 	(value "[\"highway\" \"primary\"]"))
+
+([OSMData_Class0] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-hide-roads "Hide Roads/osm.data/hide-roads")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(from1 "Menton")
+	(radius 0.001)
+	(road-subclass Railroad)
+	(status "MODE ADD")
+	(tagvalue [BrigBern_Class80016])
+	(title "Road Control"))
+
+([OSMData_Class10000] of  CloFuncall
+
+	(source "osm.path/RMMA"))
+
+([OSMData_Class10001] of  CloFuncall
+
+	(source "osm.data/RMMA"))
+
+([OSMData_Class10002] of  CloFuncall
+
+	(source "(osm.data/set-mouse-adapter)"))
+
+([OSMData_Class10003] of  CloFuncall
+
+	(source "(in-ns 'osm.data)"))
+
+([OSMData_Class10004] of  CloFuncall
+
+	(source "(set-mouse-adapter)"))
+
+([OSMData_Class10005] of  CloFuncall
+
+	(source "(OMT/getPlaygrounds)"))
+
+([OSMData_Class10006] of  CloFuncall
+
+	(source "OSM-DATA"))
+
+([OSMData_Class10007] of  CloFuncall
+
+	(source "WAY-TYPE"))
+
+([OSMData_Class10008] of  CloFuncall
+
+	(source "RADIUS"))
+
+([OSMData_Class10009] of  OMTPoly
+
+	(description "156571055")
+	(label "156571055")
+	(latitude "43 46.36")
+	(lineColor "FFFF0000")
+	(longitude "7 29.49")
+	(playground-index 0)
+	(points
+		"43 46.36 7 29.49"
+		"43 46.54 7 29.69")
+	(relative FALSE))
+
+([OSMData_Class10010] of  OMTPoly
+
+	(description "235981956")
+	(label "235981956")
+	(latitude "43 46.54")
+	(lineColor "FFFF0000")
+	(longitude "7 29.69")
+	(playground-index 0)
+	(points
+		"43 46.54 7 29.69"
+		"43 46.36 7 29.49")
+	(relative FALSE))
+
+([OSMData_Class10011] of  CloFunction
+
+	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
+	(title "show-bbx"))
+
+([OSMData_Class10012] of  CloFunction
+
+	(source "([[x y]]\n  (find-segments [x y] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[x y] wtype wsubtype]\n  (if-let [ss (seq (find-segments [x y] RADIUS wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-segments [x y] (* 2 RADIUS) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-segments [x y] (* 4 RADIUS) wtype wsubtype))]\n        ss\n        (find-segments [x y] (* 8 RADIUS) wtype wsubtype)))))\n([[x y] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- x d) (- y d) (+ x d) (+ y d)]\n         wda (way-data bbx wtype)\n         fda (filter-data wda wtype wsubtype)]\n    ;;(show-bbx (gensym) bbx)\n    (map #(cons (first %) (map reverse (second %))) fda)))")
+	(title "find-segments"))
+
+([OSMData_Class10013] of  CloFuncall
+
+	(source "(find-segments ["))
+
+([OSMData_Class10014] of  CloFuncall
+
+	(source "(find-segments [43.776 7.5])"))
+
+([OSMData_Class10015] of  OMTPoly
+
+	(label "G__18142")
+	(latitude "43 46.56")
+	(lineColor "FF0000FF")
+	(longitude "7 30")
+	(playground-index 0)
+	(points
+		"43 46.62 7 29.94"
+		"43 46.62 7 30.06"
+		"43 46.5 7 30.06"
+		"43 46.5 7 29.94"
+		"43 46.62 7 29.94")
+	(relative FALSE))
+
+([OSMData_Class10016] of  CloFuncall
+
+	(source "(find-segments [7.494 43.775])"))
+
+([OSMData_Class10017] of  OMTPoly
+
+	(label "G__18639")
+	(latitude "43 46.5")
+	(lineColor "FF0000FF")
+	(longitude "7 29.64")
+	(playground-index 0)
+	(points
+		"43 46.56 7 29.58"
+		"43 46.56 7 29.7"
+		"43 46.44 7 29.7"
+		"43 46.44 7 29.58"
+		"43 46.56 7 29.58")
+	(relative FALSE))
+
+([OSMData_Class10027] of  CloFunction
+
+	(source "(OMT/getOrAdd inst)")
+	(title "show-mapob [hm inst]"))
+
+([OSMData_Class10028] of  CloFunction
+
+	(source "(if-let[moi (fifos \"MapOb\" \"label\" (sv inst \"label\"))]\n  (if-let [mo (OMT/getMapOb moi)]\n    (OMT/removeMapOb mo false)))")
+	(title "hide-mapob [hm inst]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

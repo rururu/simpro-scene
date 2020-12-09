@@ -11,9 +11,20 @@
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RMMA false)
+(def RMMA (let [rmma (proxy [RuMapMouseAdapter] []
+	(mouseLeftButtonAction [mo llp runa]
+                        (println MODE mo llp runa)
+	  (condp = MODE
+	    'ADD (add-way llp)
+	    'REMOVE (remove-way mo)
+	    (println (or (if mo (.getName mo)) (seq llp))))
+	  true))
+       pgs (seq (OMT/getPlaygrounds))]
+  (.setRuMapMouseAdapter (first pgs) rmma)
+  rmma))
 (def MODE nil)
-(def RADIUS 0)
+(def RADIUS ;; 100 meters
+0.001)
 (def W-COLOR "FFFF0000")
 (def F "FORWARD")
 (def B "BACKWARD")
@@ -180,7 +191,7 @@
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
   (.setRuMapMouseAdapter (first pgs) rmma)
-  (def RMMA true)))
+  rmma))
 
 (defn mode-add [hm inst]
   (if (not RMMA)
@@ -247,4 +258,51 @@
          (-> (sv dw "way")
            (sv "poly"))
          false)))))
+
+(defn show-bbx
+  ([id [clat clon] rad]
+  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))
+([id [w s e n]]
+(let [tsf (fn [[y x]]
+               (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))
+       id (str id)
+       clat (MapOb/getDegMin (/ (+ s n) 2))
+       clon (MapOb/getDegMin (/ (+ w e) 2))
+       pts [[n w] [n e] [s e] [s w] [n w]]
+       pts (map tsf pts)
+       poi (foc "OMTPoly" "label" id)]
+    (ssv poi "latitude" clat)
+    (ssv poi "longitude" clon)
+    (ssv poi "lineColor" "FF0000FF")
+    ;; (ssv poi "line" (fifos "Line" "label" "L3"))
+    (ssvs poi "points" pts)
+    (OMT/getOrAdd poi)
+    poi)))
+
+(defn find-segments
+  ([[x y]]
+  (find-segments [x y] RADIUS WAY-TYPE WAY-SUBTYPE))
+([[x y] wtype wsubtype]
+  (if-let [ss (seq (find-segments [x y] RADIUS wtype wsubtype))]
+    ss
+    (if-let [ss (seq (find-segments [x y] (* 2 RADIUS) wtype wsubtype))]
+      ss
+      (if-let [ss (seq (find-segments [x y] (* 4 RADIUS) wtype wsubtype))]
+        ss
+        (find-segments [x y] (* 8 RADIUS) wtype wsubtype)))))
+([[x y] rad wtype wsubtype]
+  (let [d rad
+         bbx [(- x d) (- y d) (+ x d) (+ y d)]
+         wda (way-data bbx wtype)
+         fda (filter-data wda wtype wsubtype)]
+    ;;(show-bbx (gensym) bbx)
+    (map #(cons (first %) (map reverse (second %))) fda))))
+
+(defn show-mapob [hm inst]
+  (OMT/getOrAdd inst))
+
+(defn hide-mapob [hm inst]
+  (if-let[moi (fifos "MapOb" "label" (sv inst "label"))]
+  (if-let [mo (OMT/getMapOb moi)]
+    (OMT/removeMapOb mo false))))
 
