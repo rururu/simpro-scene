@@ -1,4 +1,4 @@
-; Mon Dec 07 20:36:21 MSK 2020
+; Fri Dec 11 17:39:42 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,5 +9,5 @@
 	(role abstract))
 
 (defclass Railroad_
-	(is-a Road Railroad)
+	(is-a Railroad)
 	(role concrete))

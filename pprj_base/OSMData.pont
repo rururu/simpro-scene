@@ -1,4 +1,4 @@
-; Wed Dec 09 20:44:07 MSK 2020
+; Fri Dec 11 20:43:04 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -60,6 +60,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot x2
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
 		(default "Clear/osm.data/clear-path")
@@ -69,6 +73,13 @@
 		(type STRING)
 		(default "Create Road/osm.data/create-road")
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot y2
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot xx
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot value
 		(type STRING)
@@ -92,8 +103,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot yy
+		(type STRING)
+		(create-accessor read-write))
 	(multislot but-start-serv
 ;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot server
+		(type SYMBOL)
+		(allowed-values KUMI MAIN RUSSIAN FRENCH TAIWAN)
+		(default KUMI)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot but-stop-serv
 ;+		(type ANY)
@@ -104,6 +124,11 @@
 	(single-slot but-hide-edge
 		(type STRING)
 ;+		(value "Hide/osm.data/hide-mapob")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-nodes
+		(type STRING)
+;+		(value "Mode Nodes/osm.data/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot tagvalue
@@ -156,6 +181,12 @@
 		(default "Hide Roads/osm.data/hide-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot server
+		(type SYMBOL)
+		(allowed-values KUMI MAIN RUSSIAN FRENCH TAIWAN)
+		(default KUMI)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot road-subclass
 		(type SYMBOL)
 		(allowed-values Railroad Motoroad Cycleroad)
@@ -167,6 +198,11 @@
 		(create-accessor read-write))
 	(single-slot radius
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-nodes
+		(type STRING)
+;+		(value "Mode Nodes/osm.data/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot tagvalue
@@ -253,18 +289,28 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot y
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot but-show-edge
 		(type STRING)
 ;+		(value "Show/osm.data/show-mapob")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot source
-		(type STRING)
+	(single-slot y
+		(type FLOAT)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot y2
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot x2
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot xx
+		(type STRING)
+		(create-accessor read-write))
+	(multislot yy
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot but-hide-edge
 		(type STRING)

@@ -1,4 +1,4 @@
-; Wed Dec 09 20:44:07 MSK 2020
+; Fri Dec 11 20:43:04 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,7 +10,7 @@
 
 ([BrigBern_Class10000] of  CloFunction
 
-	(source "(let [[w s e n] bbx]\n  (str \"https://overpass.kumi.systems/api/interpreter?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(source "(let [[w s e n] bbx]\n  (str SERVER \"?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
 	(title "way-api-url [bbx way-type]"))
 
 ([BrigBern_Class10001] of  CloFunction
@@ -130,7 +130,7 @@
 
 ([BrigBern_Class40005] of  CloFunction
 
-	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for ways!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))]\n      (println :WAY-TYPE wt :WAY-SUBTYPE wst)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'ADD)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE ADD\"))))")
+	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for ways!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'ADD)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE ADD\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
 	(title "mode-add [hm inst]"))
 
 ([BrigBern_Class40006] of  CloFunction
@@ -140,7 +140,7 @@
 
 ([BrigBern_Class40008] of  CloVar
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(source "(do (declare add-way remove-way mk-node)\n  (let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                              'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n         pgs (seq (OMT/getPlaygrounds))]\n    (.setRuMapMouseAdapter (first pgs) rmma)\n    rmma))")
 	(title "RMMA"))
 
 ([BrigBern_Class40011] of  CloVar
@@ -160,7 +160,7 @@
 
 ([BrigBern_Class40015] of  CloVar
 
-	(source ";; 100 meters\n0.001")
+	(source ";; 50 meters\n0.0005")
 	(title "RADIUS"))
 
 ([BrigBern_Class40018] of  CloVar
@@ -182,6 +182,7 @@
 
 	(cloFunctions
 		[BrigBern_Class130008]
+		[OSMData_Class30004]
 		[BrigBern_Class10000]
 		[BrigBern_Class10006]
 		[BrigBern_Class10001]
@@ -210,16 +211,22 @@
 		[OSMRoads_Class10002]
 		[OSMRoads_Class10005]
 		[OSMData_Class10011]
+		[OSMData_Class30016]
 		[OSMData_Class10012]
 		[OSMData_Class10027]
-		[OSMData_Class10028])
+		[OSMData_Class10028]
+		[OSMData_Class20004]
+		[OSMData_Class20003]
+		[OSMData_Class30034])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
+		[OSMData_Class30005]
+		[OSMData_Class20000]
 		[BrigBern_Class20]
 		[BrigBern_Class80011]
 		[BrigBern_Class80012]
-		[BrigBern_Class40008]
 		[BrigBern_Class40011]
+		[BrigBern_Class40008]
 		[BrigBern_Class40015]
 		[BrigBern_Class40018]
 		[BrigBern_Class40001]
@@ -264,134 +271,15 @@
 
 	(value "[\"highway\" \"primary\"]"))
 
-([OSMData_Class0] of  RoadControl
-
-	(but-add "Mode Add/osm.data/mode-add")
-	(but-clear "Clear/osm.data/clear-path")
-	(but-cre "Create Road/osm.data/create-road")
-	(but-hide-roads "Hide Roads/osm.data/hide-roads")
-	(but-rem "Mode Remove/osm.data/mode-remove")
-	(but-show-roads "Show Existing Roads/osm.data/show-roads")
-	(from1 "Menton")
-	(radius 0.001)
-	(road-subclass Railroad)
-	(status "MODE ADD")
-	(tagvalue [BrigBern_Class80016])
-	(title "Road Control"))
-
-([OSMData_Class10000] of  CloFuncall
-
-	(source "osm.path/RMMA"))
-
-([OSMData_Class10001] of  CloFuncall
-
-	(source "osm.data/RMMA"))
-
-([OSMData_Class10002] of  CloFuncall
-
-	(source "(osm.data/set-mouse-adapter)"))
-
-([OSMData_Class10003] of  CloFuncall
-
-	(source "(in-ns 'osm.data)"))
-
-([OSMData_Class10004] of  CloFuncall
-
-	(source "(set-mouse-adapter)"))
-
-([OSMData_Class10005] of  CloFuncall
-
-	(source "(OMT/getPlaygrounds)"))
-
-([OSMData_Class10006] of  CloFuncall
-
-	(source "OSM-DATA"))
-
-([OSMData_Class10007] of  CloFuncall
-
-	(source "WAY-TYPE"))
-
-([OSMData_Class10008] of  CloFuncall
-
-	(source "RADIUS"))
-
-([OSMData_Class10009] of  OMTPoly
-
-	(description "156571055")
-	(label "156571055")
-	(latitude "43 46.36")
-	(lineColor "FFFF0000")
-	(longitude "7 29.49")
-	(playground-index 0)
-	(points
-		"43 46.36 7 29.49"
-		"43 46.54 7 29.69")
-	(relative FALSE))
-
-([OSMData_Class10010] of  OMTPoly
-
-	(description "235981956")
-	(label "235981956")
-	(latitude "43 46.54")
-	(lineColor "FFFF0000")
-	(longitude "7 29.69")
-	(playground-index 0)
-	(points
-		"43 46.54 7 29.69"
-		"43 46.36 7 29.49")
-	(relative FALSE))
-
 ([OSMData_Class10011] of  CloFunction
 
-	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
+	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF325928\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
 	(title "show-bbx"))
 
 ([OSMData_Class10012] of  CloFunction
 
-	(source "([[x y]]\n  (find-segments [x y] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[x y] wtype wsubtype]\n  (if-let [ss (seq (find-segments [x y] RADIUS wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-segments [x y] (* 2 RADIUS) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-segments [x y] (* 4 RADIUS) wtype wsubtype))]\n        ss\n        (find-segments [x y] (* 8 RADIUS) wtype wsubtype)))))\n([[x y] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- x d) (- y d) (+ x d) (+ y d)]\n         wda (way-data bbx wtype)\n         fda (filter-data wda wtype wsubtype)]\n    ;;(show-bbx (gensym) bbx)\n    (map #(cons (first %) (map reverse (second %))) fda)))")
-	(title "find-segments"))
-
-([OSMData_Class10013] of  CloFuncall
-
-	(source "(find-segments ["))
-
-([OSMData_Class10014] of  CloFuncall
-
-	(source "(find-segments [43.776 7.5])"))
-
-([OSMData_Class10015] of  OMTPoly
-
-	(label "G__18142")
-	(latitude "43 46.56")
-	(lineColor "FF0000FF")
-	(longitude "7 30")
-	(playground-index 0)
-	(points
-		"43 46.62 7 29.94"
-		"43 46.62 7 30.06"
-		"43 46.5 7 30.06"
-		"43 46.5 7 29.94"
-		"43 46.62 7 29.94")
-	(relative FALSE))
-
-([OSMData_Class10016] of  CloFuncall
-
-	(source "(find-segments [7.494 43.775])"))
-
-([OSMData_Class10017] of  OMTPoly
-
-	(label "G__18639")
-	(latitude "43 46.5")
-	(lineColor "FF0000FF")
-	(longitude "7 29.64")
-	(playground-index 0)
-	(points
-		"43 46.56 7 29.58"
-		"43 46.56 7 29.7"
-		"43 46.44 7 29.7"
-		"43 46.44 7 29.58"
-		"43 46.56 7 29.58")
-	(relative FALSE))
+	(source "([[x y]]\n  (find-elements-with-beg-or-end-in-bbx [x y] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[x y] wtype wsubtype]\n  (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] RADIUS wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 2 RADIUS) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 4 RADIUS) wtype wsubtype))]\n        ss\n        (find-elements-with-beg-or-end-in-bbx [x y] (* 8 RADIUS) wtype wsubtype)))))\n([[x y] rad wtype wsubtype]\n  (let [dy rad\n         dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))\n         bbx [(- x dx) (- y dy) (+ x dx) (+ y dy)]\n         wda (way-data bbx wtype)\n         fda (filter-data wda wtype wsubtype)\n         fbe (filter #(or (in-bbx (first (second %)) bbx) (in-bbx (last (second %)) bbx)) (seq fda))]\n    (show-bbx (gensym \"bbx\") bbx)\n    (map #(cons (first %) (map reverse (second %))) fbe)))")
+	(title "find-elements-with-beg-or-end-in-bbx"))
 
 ([OSMData_Class10027] of  CloFunction
 
@@ -402,6 +290,55 @@
 
 	(source "(if-let[moi (fifos \"MapOb\" \"label\" (sv inst \"label\"))]\n  (if-let [mo (OMT/getMapOb moi)]\n    (OMT/removeMapOb mo false)))")
 	(title "hide-mapob [hm inst]"))
+
+([OSMData_Class20000] of  CloVar
+
+	(source "\"https://overpass-api.de/api/interpreter\"")
+	(title "SERVER"))
+
+([OSMData_Class20002] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-hide-roads "Hide Roads/osm.data/hide-roads")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(radius 5.0E-4)
+	(server KUMI)
+	(status "MODE NODES")
+	(tagvalue [BrigBern_Class80016])
+	(title "Road Control"))
+
+([OSMData_Class20003] of  CloFunction
+
+	(source "(if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]\n  (let [egs (map mk-edge sgs)\n         noi (foc \"Node\" \"label\" (str \"N\" [x y]))]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FF00AA00\")\n    (ssv noi \"point-radius\" (int 6))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (OMT/getOrAdd noi)\n    (println \"Created Node from\" (count egs) \"edges.\")\n    noi))")
+	(title "mk-node [[x y]]"))
+
+([OSMData_Class20004] of  CloFunction
+
+	(source "(let [egi (foc \"Edge\" \"label\" (str (first s)))\n       crs (rest s)\n       tsf (fn [[x y]] (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))]\n  (ssv egi \"x\" (float (ffirst crs)))\n  (ssv egi \"y\" (float (second (first crs))))\n  (ssv egi \"x2\" (float (first (last crs))))\n  (ssv egi \"y2\" (float (second (last crs))))\n  (ssvs egi \"xx\" (map #(str (first %)) crs))\n  (ssvs egi \"yy\" (map #(str (second %)) crs))\n  (ssvs egi \"points\" (map tsf crs))\n  (ssv egi \"latitude\" \"0 0\")\n  (ssv egi \"longitude\" \"0 0\")\n  (ssv egi \"lineColor\" \"FFFF6800\")\n  (OMT/getOrAdd egi)\n  egi)")
+	(title "mk-edge [s]"))
+
+([OSMData_Class30004] of  CloFunction
+
+	(source "(def SERVER url)")
+	(title "set-server [url]"))
+
+([OSMData_Class30005] of  CloVar
+
+	(source "{\"KUMI\"\n  \"https://overpass.kumi.systems/api/interpreter\"\n  \"MAIN\"\n  \"https://overpass-api.de/api/interpreter\"\n  \"RUSSIAN\"\n  \"https://overpass.openstreetmap.ru/api/interpreter\"\n  \"FRENCH\"\n  \"https://overpass.openstreetmap.ru/api/interpreter\"\n  \"TAIWAN\"\n  \"https://overpass.nchc.org.tw/api/interpreter\"}")
+	(title "SRV-MAP"))
+
+([OSMData_Class30016] of  CloFunction
+
+	(source "(and (> x w) (> y s) (< x e) (< x n))")
+	(title "in-bbx [[y x] [w s e n]]"))
+
+([OSMData_Class30034] of  CloFunction
+
+	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for nodes!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'NODES)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE NODES\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
+	(title "mode-nodes [hm inst]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

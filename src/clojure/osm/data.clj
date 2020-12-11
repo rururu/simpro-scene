@@ -8,23 +8,36 @@
   ru.igis.omtab.OMTPoly
   ru.igis.omtab.gui.RuMapMouseAdapter
   edu.stanford.smi.protege.ui.DisplayUtilities))
+(def SRV-MAP {"KUMI"
+  "https://overpass.kumi.systems/api/interpreter"
+  "MAIN"
+  "https://overpass-api.de/api/interpreter"
+  "RUSSIAN"
+  "https://overpass.openstreetmap.ru/api/interpreter"
+  "FRENCH"
+  "https://overpass.openstreetmap.ru/api/interpreter"
+  "TAIWAN"
+  "https://overpass.nchc.org.tw/api/interpreter"})
+(def SERVER "https://overpass-api.de/api/interpreter")
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
-(def RMMA (let [rmma (proxy [RuMapMouseAdapter] []
+(def MODE nil)
+(def RMMA (do (declare add-way remove-way mk-node)
+  (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                        (println MODE mo llp runa)
+                            (println MODE mo (seq llp) (.getName runa))
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
+                              'NODES (mk-node (reverse llp))
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
-       pgs (seq (OMT/getPlaygrounds))]
-  (.setRuMapMouseAdapter (first pgs) rmma)
-  rmma))
-(def MODE nil)
-(def RADIUS ;; 100 meters
-0.001)
+         pgs (seq (OMT/getPlaygrounds))]
+    (.setRuMapMouseAdapter (first pgs) rmma)
+    rmma)))
+(def RADIUS ;; 50 meters
+0.0005)
 (def W-COLOR "FFFF0000")
 (def F "FORWARD")
 (def B "BACKWARD")
@@ -32,9 +45,12 @@
 (defn unref [inst]
   (< (count (.getReferences inst)) 2))
 
+(defn set-server [url]
+  (def SERVER url))
+
 (defn way-api-url [bbx way-type]
   (let [[w s e n] bbx]
-  (str "https://overpass.kumi.systems/api/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
+  (str SERVER "?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
 
 (defn way-data [bbx way-type]
   (try
@@ -200,13 +216,15 @@
        sel (seq (selection mp "tagvalue"))]
   (if (empty? sel)
     (ssv inst "status" "Select tagvalue for ways!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))]
-      (println :WAY-TYPE wt :WAY-SUBTYPE wst)
+    (let [[wt wst] (read-string (sv (first sel) "value"))
+          srv (SRV-MAP (sv inst "server"))]
+      (set-server srv)
       (def WAY-TYPE wt)
       (def WAY-SUBTYPE wst)
       (def MODE 'ADD)
       (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE ADD")))))
+      (ssv inst "status" "MODE ADD")
+      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
 
 (defn mode-remove [hm inst]
   (if (= MODE 'ADD)
@@ -273,30 +291,35 @@
        poi (foc "OMTPoly" "label" id)]
     (ssv poi "latitude" clat)
     (ssv poi "longitude" clon)
-    (ssv poi "lineColor" "FF0000FF")
+    (ssv poi "lineColor" "FF325928")
     ;; (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" pts)
     (OMT/getOrAdd poi)
     poi)))
 
-(defn find-segments
+(defn in-bbx [[y x] [w s e n]]
+  (and (> x w) (> y s) (< x e) (< x n)))
+
+(defn find-elements-with-beg-or-end-in-bbx
   ([[x y]]
-  (find-segments [x y] RADIUS WAY-TYPE WAY-SUBTYPE))
+  (find-elements-with-beg-or-end-in-bbx [x y] RADIUS WAY-TYPE WAY-SUBTYPE))
 ([[x y] wtype wsubtype]
-  (if-let [ss (seq (find-segments [x y] RADIUS wtype wsubtype))]
+  (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] RADIUS wtype wsubtype))]
     ss
-    (if-let [ss (seq (find-segments [x y] (* 2 RADIUS) wtype wsubtype))]
+    (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 2 RADIUS) wtype wsubtype))]
       ss
-      (if-let [ss (seq (find-segments [x y] (* 4 RADIUS) wtype wsubtype))]
+      (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 4 RADIUS) wtype wsubtype))]
         ss
-        (find-segments [x y] (* 8 RADIUS) wtype wsubtype)))))
+        (find-elements-with-beg-or-end-in-bbx [x y] (* 8 RADIUS) wtype wsubtype)))))
 ([[x y] rad wtype wsubtype]
-  (let [d rad
-         bbx [(- x d) (- y d) (+ x d) (+ y d)]
+  (let [dy rad
+         dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))
+         bbx [(- x dx) (- y dy) (+ x dx) (+ y dy)]
          wda (way-data bbx wtype)
-         fda (filter-data wda wtype wsubtype)]
-    ;;(show-bbx (gensym) bbx)
-    (map #(cons (first %) (map reverse (second %))) fda))))
+         fda (filter-data wda wtype wsubtype)
+         fbe (filter #(or (in-bbx (first (second %)) bbx) (in-bbx (last (second %)) bbx)) (seq fda))]
+    (show-bbx (gensym "bbx") bbx)
+    (map #(cons (first %) (map reverse (second %))) fbe))))
 
 (defn show-mapob [hm inst]
   (OMT/getOrAdd inst))
@@ -305,4 +328,54 @@
   (if-let[moi (fifos "MapOb" "label" (sv inst "label"))]
   (if-let [mo (OMT/getMapOb moi)]
     (OMT/removeMapOb mo false))))
+
+(defn mk-edge [s]
+  (let [egi (foc "Edge" "label" (str (first s)))
+       crs (rest s)
+       tsf (fn [[x y]] (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))]
+  (ssv egi "x" (float (ffirst crs)))
+  (ssv egi "y" (float (second (first crs))))
+  (ssv egi "x2" (float (first (last crs))))
+  (ssv egi "y2" (float (second (last crs))))
+  (ssvs egi "xx" (map #(str (first %)) crs))
+  (ssvs egi "yy" (map #(str (second %)) crs))
+  (ssvs egi "points" (map tsf crs))
+  (ssv egi "latitude" "0 0")
+  (ssv egi "longitude" "0 0")
+  (ssv egi "lineColor" "FFFF6800")
+  (OMT/getOrAdd egi)
+  egi))
+
+(defn mk-node [[x y]]
+  (if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]
+  (let [egs (map mk-edge sgs)
+         noi (foc "Node" "label" (str "N" [x y]))]
+    (ssv noi "x" (float x)) 
+    (ssv noi "y" (float y)) 
+    (ssv noi "latitude" (MapOb/getDegMin y))
+    (ssv noi "longitude" (MapOb/getDegMin x))
+    (ssv noi "lineColor" "FF00AA00")
+    (ssv noi "point-radius" (int 6))
+    (ssv noi "oval" true)
+    (ssvs noi "edges" egs)
+    (OMT/getOrAdd noi)
+    (println "Created Node from" (count egs) "edges.")
+    noi)))
+
+(defn mode-nodes [hm inst]
+  (if (not RMMA)
+  (set-mouse-adapter))
+(let [mp (into {} hm)
+       sel (seq (selection mp "tagvalue"))]
+  (if (empty? sel)
+    (ssv inst "status" "Select tagvalue for nodes!")
+    (let [[wt wst] (read-string (sv (first sel) "value"))
+          srv (SRV-MAP (sv inst "server"))]
+      (set-server srv)
+      (def WAY-TYPE wt)
+      (def WAY-SUBTYPE wst)
+      (def MODE 'NODES)
+      (def RADIUS (sv inst "radius"))
+      (ssv inst "status" "MODE NODES")
+      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
 
