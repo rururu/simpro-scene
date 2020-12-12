@@ -1,0 +1,4837 @@
+; Sat Dec 12 20:54:57 MSK 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([PyongyangSPb_Class0] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[igis_Class12]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[igis_Class23]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "NiceSPb Map")
+	(Latitude "43.705")
+	(layers
+		[igis_Class40012]
+		[PyongyangSPb_Class2]
+		[PyongyangSPb_Class3]
+		[igis_Class1]
+		[igis_Class40011])
+	(Longitude "7.262")
+	(Scale "4000")
+	(startUpLayers
+		[igis_Class40012]
+		[igis_Class1]
+		[igis_Class40011]
+		[PyongyangSPb_Class2]
+		[PyongyangSPb_Class3]))
+
+([PyongyangSPb_Class10] of  Tagvalue
+
+	(value "[\"railway\" \"way\"]"))
+
+([PyongyangSPb_Class100000] of  CloProgram
+
+	(cloFunctions
+		[PyongyangSPb_Class100012]
+		[PyongyangSPb_Class100003]
+		[PyongyangSPb_Class110002]
+		[PyongyangSPb_Class110019]
+		[PyongyangSPb_Class110025]
+		[PyongyangSPb_Class110013]
+		[PyongyangSPb_Class160001]
+		[PyongyangSPb_Class120092]
+		[PyongyangSPb_Class150037]
+		[PyongyangSPb_Class110003]
+		[PyongyangSPb_Class160118]
+		[PyongyangSPb_Class130557]
+		[PyongyangSPb_Class240132])
+	(cloNamespace [PyongyangSPb_Class100001])
+	(cloVars
+		[PyongyangSPb_Class120003]
+		[PyongyangSPb_Class120004]
+		[PyongyangSPb_Class120005]
+		[PyongyangSPb_Class80001]
+		[PyongyangSPb_Class110023]
+		[PyongyangSPb_Class110014]
+		[PyongyangSPb_Class300000]
+		[PyongyangSPb_Class60000])
+	(title "OSM Path"))
+
+([PyongyangSPb_Class100001] of  CloNamespace
+
+	(source "(:use \n protege.core\n protege.extensions)\n(:require\n  [osm.data :as od])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
+	(title "osm.path"))
+
+([PyongyangSPb_Class100003] of  CloFunction
+
+	(source "([id [clat clon] rad]\n  (create-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF0000FF\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
+	(title "create-bbx"))
+
+([PyongyangSPb_Class100012] of  CloFunction
+
+	(source ";;(let [sx (Math/abs (- x1 x2))\n;;       sy (Math/abs (- y1 y2))]\n;;  (Math/sqrt (+ (* sx sx) (* sy sy))))\n(MapOb/distanceNM y1 x1 y2 x2)")
+	(title "simple-dist [[y1 x1] [y2 x2]]"))
+
+([PyongyangSPb_Class110001] of  CloFuncall
+
+	(source "(read-string \"A\")"))
+
+([PyongyangSPb_Class110002] of  CloFunction
+
+	(source "([[lat lon]]\n  (find-segments [lat lon] SEARCH-RAD WAY-TYPE WAY-SUBTYPE))\n([[lat lon] wtype wsubtype]\n  (if-let [ss (seq (find-segments [lat lon] SEARCH-RAD wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-segments [lat lon] (* 2 SEARCH-RAD) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-segments [lat lon] (* 4 SEARCH-RAD) wtype wsubtype))]\n        ss\n        (find-segments [lat lon] (* 8 SEARCH-RAD) wtype wsubtype)))))\n([[lat lon] rad wtype wsubtype]\n  (let [d rad\n         bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]\n         wda (od/way-data bbx wtype)\n         fda (od/filter-data wda wtype wsubtype)]\n    (create-bbx (gensym) bbx)\n    ;; transform segment format into: [id p1 p2 ...]\n    (map #(cons (first %) (second %)) fda)))")
+	(title "find-segments"))
+
+([PyongyangSPb_Class110003] of  CloFunction
+
+	(source "(println pts)\n(display-detailed [pts \"FFFF6000\"])")
+	(title "display-path [pts]"))
+
+([PyongyangSPb_Class110013] of  CloFunction
+
+	(source "(or (= v1 v2)\n  (and (< (Math/abs (- (first v1) (first v2))) JOINT-RAD)\n          (< (Math/abs (- (second v1) (second v2))) JOINT-RAD)))")
+	(title "near [v1 v2]"))
+
+([PyongyangSPb_Class110014] of  CloVar
+
+	(source "(volatile! {})")
+	(title "SEGMENTS"))
+
+([PyongyangSPb_Class110019] of  CloFunction
+
+	(source "(letfn [(mindist-id-ifrevseg [p s]\n             (let [[id b e] [(first s) (second s) (last s)]\n                     bd (simple-dist p b)\n                     ed (simple-dist p e)]\n               (if (< bd ed)\n                 (cons bd (cons id (rest s)))\n                 (cons ed (cons id (reverse (rest s)))))))\n           (sort-fn [x y]\n             (< (first x) (first y)))]\n  (map rest (sort sort-fn (map #(mindist-id-ifrevseg p %) segs))))")
+	(title "sort-and-if-reverse-segments [p segs]"))
+
+([PyongyangSPb_Class110023] of  CloVar
+
+	(source "4")
+	(title "BRANCHES"))
+
+([PyongyangSPb_Class110025] of  CloFunction
+
+	(source "([p w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE BRANCHES))\n([p n w]\n  (find-branches p WAY-TYPE WAY-SUBTYPE n))\n([p wtype wsubtype w]\n  (find-branches p wtype wsubtype BRANCHES))\n([p wtype wsubtype n w]\n  (let [inside-joint-rad #(< (simple-dist (second %) p) JOINT-RAD)\n         sgs (find-segments p wtype wsubtype)\n         sss (sort-and-if-reverse-segments p sgs)\n         sss (if (= w :inside-joint)\n                 (filter inside-joint-rad sss)\n                 sss)\n         tss (take n sss)]\n    (doall (map #(vswap! SEGMENTS assoc (first %) (rest %)) tss))\n    tss))")
+	(title "find-branches"))
+
+([PyongyangSPb_Class120000] of  CloFuncall
+
+	(source "(ru.rules/pp :all)"))
+
+([PyongyangSPb_Class120001] of  CloFuncall
+
+	(source "(ru.rules/f 14)"))
+
+([PyongyangSPb_Class120003] of  CloVar
+
+	(source "\"railway\"")
+	(title "WAY-TYPE"))
+
+([PyongyangSPb_Class120004] of  CloVar
+
+	(source "\"rail\"")
+	(title "WAY-SUBTYPE"))
+
+([PyongyangSPb_Class120005] of  CloVar
+
+	(source "0.005")
+	(title "SEARCH-RAD"))
+
+([PyongyangSPb_Class120092] of  CloFunction
+
+	(source "(let [[lat1 lon1] p1\n        [lat2 lon2] p2]\n  (MapOb/bearingsDeg lat1 lon1 lat2 lon2))")
+	(title "direction [p1 p2]"))
+
+([PyongyangSPb_Class130002] of  CloFuncall
+
+	(source "(type (read-string \"A\"))"))
+
+([PyongyangSPb_Class130003] of  CloFuncall
+
+	(source "(type (path/self \"A\"))"))
+
+([PyongyangSPb_Class130557] of  CloFunction
+
+	(source "(map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE))")
+	(title "observe [p rad]"))
+
+([PyongyangSPb_Class140000] of  CloFuncall
+
+	(source "(ru.rules/sp 'Solution)"))
+
+([PyongyangSPb_Class140001] of  CloFuncall
+
+	(source "(ru.rules/pp 'Solution)"))
+
+([PyongyangSPb_Class140002] of  CloFuncall
+
+	(source "(ru.rules/f 45)"))
+
+([PyongyangSPb_Class140004] of  CloFuncall
+
+	(source "(path/self \"A\")"))
+
+([PyongyangSPb_Class150005] of  CloFuncall
+
+	(source "(path/quote \"A\")"))
+
+([PyongyangSPb_Class150006] of  OMTPoly
+
+	(label "G__1499")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150007] of  OMTPoly
+
+	(description "27263845")
+	(label "27263845")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150008] of  OMTPoly
+
+	(description "87984128")
+	(label "87984128")
+	(latitude "48 30.82")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 30.82 135 2.46"
+		"48 30.84 135 2.47")
+	(relative FALSE))
+
+([PyongyangSPb_Class150009] of  OMTPoly
+
+	(description "87984150")
+	(label "87984150")
+	(latitude "48 30.84")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.47")
+	(playground-index 0)
+	(points
+		"48 30.84 135 2.47"
+		"48 32.07 135 1.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class150010] of  OMTPoly
+
+	(description "88367888")
+	(label "88367888")
+	(latitude "48 31.56")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 1.88")
+	(playground-index 0)
+	(points
+		"48 31.56 135 1.88"
+		"48 30.59 135 3.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150011] of  OMTPoly
+
+	(description "319522473")
+	(label "319522473")
+	(latitude "48 30.84")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.47")
+	(playground-index 0)
+	(points
+		"48 30.84 135 2.47"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150012] of  OMTPoly
+
+	(description "319522506")
+	(label "319522506")
+	(latitude "48 32.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 1.91")
+	(playground-index 0)
+	(points
+		"48 32.06 135 1.91"
+		"48 30.84 135 2.47")
+	(relative FALSE))
+
+([PyongyangSPb_Class150013] of  OMTPoly
+
+	(description "319522521")
+	(label "319522521")
+	(latitude "48 30.59")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.46")
+	(playground-index 0)
+	(points
+		"48 30.59 135 3.46"
+		"48 30.82 135 2.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class150016] of  OMTPoly
+
+	(label "G__2020")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150017] of  OMTPoly
+
+	(label "G__2152")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150018] of  OMTPoly
+
+	(label "G__2346")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150020] of  OMTPoly
+
+	(label "G__2534")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150029] of  OMTPoly
+
+	(label "G__3011")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150030] of  OMTPoly
+
+	(label "G__3137")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150031] of  OMTPoly
+
+	(label "G__3263")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150032] of  OMTPoly
+
+	(label "G__3518")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150033] of  OMTPoly
+
+	(label "G__3931")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150034] of  OMTPoly
+
+	(label "G__4184")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150035] of  OMTPoly
+
+	(label "G__4308")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class150037] of  CloFunction
+
+	(source "([]\n  (map display-detailed \n    (range (min 6 (count @PATHS)))\n    [\"FFFFFF00\" \"FFFF6000\" \"FFFF0000\" \"FF7B3F00\" \"FF008000\" \"FF0000FF\"]))\n([n clr]\n  (if-let [ids (butlast (rest (nth @PATHS n)))]\n    (display-detailed [ids clr])))\n([[ids clr]]\n  (cond\n    (number? ids) \n    (if-let [pts (@SEGMENTS ids)]\n      (let [id (str ids)\n            [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n            [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n            [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n            poi (foc \"OMTPoly\" \"label\" id)\n            tsf (fn [[y x]]\n                   (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))] \n         (ssv poi \"description\" id)\n         (ssv poi \"latitude\" lat1)\n         (ssv poi \"longitude\" lon1)\n         (ssv poi \"lineColor\" clr)\n         (ssv poi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n         (ssvs poi \"points\" (map tsf pts))\n         (OMT/getOrAdd poi)\n         poi))\n    (string? ids)\n    nil\n    true\n    (doseq [id ids]\n      (display-detailed [id clr]))))")
+	(title "display-detailed"))
+
+([PyongyangSPb_Class150038] of  Line
+
+	(capDecoration BUTT)
+	(jointDecoration BEVEL)
+	(label "L3")
+	(lineType STRAIGHT)
+	(lineWidth "3"))
+
+([PyongyangSPb_Class160000] of  CloVar
+
+	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1] \"A1\" [4 2] \"A2\" [3.5 3]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1] \"C1\" [2 4] \"C2\" [1 4.5]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4] \"U\" [11 4] \"V\" [10 6]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}\n  [4 2]{\"A\" [3 1] \"Z\" [5 2]}\n  [3.5 3]{\"A\" [3 1]}\n  [2 4]{\"C\" [1 3]}\n  [1 4.5]{\"C\" [1 3]}\n  [11 4] {\"E\" [9 3] \"Y\" [13 4] \"Z\" [12 5]}\n  [10 6] {\"E\" [9 3] \"W\" [11 7]}\n  [13 4] {\"U\" [11 4] \"X\" [14 6]}\n  [12 5] {\"U\" [11 4] \"X\" [14 6]}\n  [11 7] {\"V\" [10 6] \"X\" [14 6]}\n  [14 6] {\"Y\" [13 4] \"Z\" [12 5] \"W\" [11 7]}}")
+	(title "SEQUELS0"))
+
+([PyongyangSPb_Class160001] of  CloFunction
+
+	(source "(if (and (seq pts) (vector? (first pts))) ;; list points\n  (if (empty? (rest pts))\n    0\n    (+ (simple-dist (first pts) (second pts))\n      (distance (rest pts))))\n  (apply + (map #(distance (@SEGMENTS %))  pts)))")
+	(title "distance [pts]"))
+
+([PyongyangSPb_Class160002] of  CloFuncall
+
+	(source "(ru.rules/pp 'Goal)"))
+
+([PyongyangSPb_Class160003] of  CloFuncall
+
+	(source "(ru.rules/f 196)"))
+
+([PyongyangSPb_Class160005] of  CloFuncall
+
+	(source "(path/init-point-dir \"Directed Graph:A\")"))
+
+([PyongyangSPb_Class160006] of  CloFuncall
+
+	(source "(type (path/quote \"A\"))"))
+
+([PyongyangSPb_Class160007] of  CloFuncall
+
+	(source "path/F-init-point"))
+
+([PyongyangSPb_Class160008] of  CloFuncall
+
+	(source "(path/F-init-point \"A\")"))
+
+([PyongyangSPb_Class160011] of  CloFuncall
+
+	(source "(path/trace true)"))
+
+([PyongyangSPb_Class160046] of  OMTPoly
+
+	(label "G__4589")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160047] of  OMTPoly
+
+	(label "G__5029")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160050] of  OMTPoly
+
+	(label "G__5206")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160052] of  OMTPoly
+
+	(label "G__5209")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160053] of  OMTPoly
+
+	(label "G__5336")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160054] of  OMTPoly
+
+	(label "G__5593")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160057] of  OMTPoly
+
+	(label "G__5598")
+	(latitude "48 29.94")
+	(lineColor "FF0000FF")
+	(longitude "135 3.96")
+	(playground-index 0)
+	(points
+		"48 30.24 135 3.66"
+		"48 30.24 135 4.26"
+		"48 29.64 135 4.26"
+		"48 29.64 135 3.66"
+		"48 30.24 135 3.66")
+	(relative FALSE))
+
+([PyongyangSPb_Class160058] of  OMTPoly
+
+	(description "654040951")
+	(label "654040951")
+	(latitude "48 29.96")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.81")
+	(playground-index 0)
+	(points
+		"48 29.96 135 3.81"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160059] of  OMTPoly
+
+	(description "319522540")
+	(label "319522540")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.01")
+	(playground-index 0)
+	(points
+		"48 29.92 135 4.01"
+		"48 29.72 135 4.82")
+	(relative FALSE))
+
+([PyongyangSPb_Class160060] of  OMTPoly
+
+	(description "129838418")
+	(label "129838418")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.93 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160061] of  OMTPoly
+
+	(description "654040946")
+	(label "654040946")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.92 135 3.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class160062] of  OMTPoly
+
+	(description "129838406")
+	(label "129838406")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.74 135 4.72")
+	(relative FALSE))
+
+([PyongyangSPb_Class160063] of  OMTPoly
+
+	(description "319522586")
+	(label "319522586")
+	(latitude "48 29.78")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.61")
+	(playground-index 0)
+	(points
+		"48 29.78 135 4.61"
+		"48 29.9 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160064] of  OMTPoly
+
+	(description "319522499")
+	(label "319522499")
+	(latitude "48 29.88")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.11")
+	(playground-index 0)
+	(points
+		"48 29.88 135 4.11"
+		"48 29.82 135 4.37")
+	(relative FALSE))
+
+([PyongyangSPb_Class160065] of  OMTPoly
+
+	(description "248819671")
+	(label "248819671")
+	(latitude "48 30.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.63")
+	(playground-index 0)
+	(points
+		"48 30.06 135 3.63"
+		"48 29.93 135 3.95")
+	(relative FALSE))
+
+([PyongyangSPb_Class160066] of  OMTPoly
+
+	(description "27242828")
+	(label "27242828")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.98"
+		"48 29.92 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160067] of  OMTPoly
+
+	(description "654040947")
+	(label "654040947")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.93")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.93"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160068] of  OMTPoly
+
+	(description "129838410")
+	(label "129838410")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.95")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.95"
+		"48 29.92 135 3.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class160069] of  OMTPoly
+
+	(description "654036785")
+	(label "654036785")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.91")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.91"
+		"48 30.59 135 3.46")
+	(relative FALSE))
+
+([PyongyangSPb_Class160070] of  OMTPoly
+
+	(description "319522542")
+	(label "319522542")
+	(latitude "48 29.69")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.95")
+	(playground-index 0)
+	(points
+		"48 29.69 135 4.95"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160071] of  OMTPoly
+
+	(description "68312481")
+	(label "68312481")
+	(latitude "48 29.98")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 2.5")
+	(playground-index 0)
+	(points
+		"48 29.98 135 2.5"
+		"48 29.96 135 3.77")
+	(relative FALSE))
+
+([PyongyangSPb_Class160072] of  OMTPoly
+
+	(description "319522583")
+	(label "319522583")
+	(latitude "48 29.89")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.06")
+	(playground-index 0)
+	(points
+		"48 29.89 135 4.06"
+		"48 29.75 135 4.67")
+	(relative FALSE))
+
+([PyongyangSPb_Class160073] of  OMTPoly
+
+	(description "129838409")
+	(label "129838409")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.98"
+		"48 29.93 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160074] of  OMTPoly
+
+	(description "134383366")
+	(label "134383366")
+	(latitude "48 29.71")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 5.36")
+	(playground-index 0)
+	(points
+		"48 29.71 135 5.36"
+		"48 29.89 135 4.06")
+	(relative FALSE))
+
+([PyongyangSPb_Class160075] of  OMTPoly
+
+	(description "248819670")
+	(label "248819670")
+	(latitude "48 30.05")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.6")
+	(playground-index 0)
+	(points
+		"48 30.05 135 3.6"
+		"48 29.98 135 3.73")
+	(relative FALSE))
+
+([PyongyangSPb_Class160076] of  OMTPoly
+
+	(description "248819669")
+	(label "248819669")
+	(latitude "48 30.06")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.64")
+	(playground-index 0)
+	(points
+		"48 30.06 135 3.64"
+		"48 29.96 135 3.82")
+	(relative FALSE))
+
+([PyongyangSPb_Class160077] of  OMTPoly
+
+	(description "129838411")
+	(label "129838411")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.94"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160078] of  OMTPoly
+
+	(description "319522588")
+	(label "319522588")
+	(latitude "48 29.75")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.7")
+	(playground-index 0)
+	(points
+		"48 29.75 135 4.7"
+		"48 29.9 135 4.14")
+	(relative FALSE))
+
+([PyongyangSPb_Class160079] of  OMTPoly
+
+	(description "654040949")
+	(label "654040949")
+	(latitude "48 29.95")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.83")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.83"
+		"48 29.93 135 3.89")
+	(relative FALSE))
+
+([PyongyangSPb_Class160080] of  OMTPoly
+
+	(description "129838408")
+	(label "129838408")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.98"
+		"48 29.93 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160081] of  OMTPoly
+
+	(description "129838421")
+	(label "129838421")
+	(latitude "48 29.8")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.59")
+	(playground-index 0)
+	(points
+		"48 29.8 135 4.59"
+		"48 29.91 135 4.04")
+	(relative FALSE))
+
+([PyongyangSPb_Class160082] of  OMTPoly
+
+	(description "319522564")
+	(label "319522564")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.98"
+		"48 29.9 135 4.02")
+	(relative FALSE))
+
+([PyongyangSPb_Class160083] of  OMTPoly
+
+	(description "129838424")
+	(label "129838424")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.99"
+		"48 29.75 135 4.68")
+	(relative FALSE))
+
+([PyongyangSPb_Class160084] of  OMTPoly
+
+	(description "25423676")
+	(label "25423676")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.88 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160085] of  OMTPoly
+
+	(description "319522587")
+	(label "319522587")
+	(latitude "48 29.78")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.62")
+	(playground-index 0)
+	(points
+		"48 29.78 135 4.62"
+		"48 29.91 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160086] of  OMTPoly
+
+	(description "128366776")
+	(label "128366776")
+	(latitude "48 30.26")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.65")
+	(playground-index 0)
+	(points
+		"48 30.26 135 3.65"
+		"48 29.97 135 3.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class160087] of  OMTPoly
+
+	(description "654040950")
+	(label "654040950")
+	(latitude "48 29.95")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.83")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.83"
+		"48 29.96 135 3.78")
+	(relative FALSE))
+
+([PyongyangSPb_Class160088] of  OMTPoly
+
+	(description "654043244")
+	(label "654043244")
+	(latitude "48 29.97")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.7")
+	(playground-index 0)
+	(points
+		"48 29.97 135 3.7"
+		"48 29.92 135 3.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class160089] of  OMTPoly
+
+	(description "654040948")
+	(label "654040948")
+	(latitude "48 29.94")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.86")
+	(playground-index 0)
+	(points
+		"48 29.94 135 3.86"
+		"48 29.93 135 3.92")
+	(relative FALSE))
+
+([PyongyangSPb_Class160090] of  OMTPoly
+
+	(description "129838422")
+	(label "129838422")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.15")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.15"
+		"48 29.74 135 4.73")
+	(relative FALSE))
+
+([PyongyangSPb_Class160091] of  OMTPoly
+
+	(description "319522548")
+	(label "319522548")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 29.91 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160092] of  OMTPoly
+
+	(description "654040944")
+	(label "654040944")
+	(latitude "48 29.77")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.62")
+	(playground-index 0)
+	(points
+		"48 29.77 135 4.62"
+		"48 29.92 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160093] of  OMTPoly
+
+	(description "319522541")
+	(label "319522541")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.08")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.08"
+		"48 29.71 135 4.88")
+	(relative FALSE))
+
+([PyongyangSPb_Class160094] of  OMTPoly
+
+	(description "654043238")
+	(label "654043238")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 29.91 135 3.99"
+		"48 29.91 135 3.98")
+	(relative FALSE))
+
+([PyongyangSPb_Class160095] of  OMTPoly
+
+	(description "654040945")
+	(label "654040945")
+	(latitude "48 29.93")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.91")
+	(playground-index 0)
+	(points
+		"48 29.93 135 3.91"
+		"48 29.92 135 3.96")
+	(relative FALSE))
+
+([PyongyangSPb_Class160096] of  OMTPoly
+
+	(description "319522551")
+	(label "319522551")
+	(latitude "48 29.91")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.02")
+	(playground-index 0)
+	(points
+		"48 29.91 135 4.02"
+		"48 29.91 135 4.06")
+	(relative FALSE))
+
+([PyongyangSPb_Class160097] of  OMTPoly
+
+	(description "131476300")
+	(label "131476300")
+	(latitude "48 30.07")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.48")
+	(playground-index 0)
+	(points
+		"48 30.07 135 3.48"
+		"48 29.96 135 3.69")
+	(relative FALSE))
+
+([PyongyangSPb_Class160098] of  OMTPoly
+
+	(description "319522581")
+	(label "319522581")
+	(latitude "48 29.76")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 4.6")
+	(playground-index 0)
+	(points
+		"48 29.76 135 4.6"
+		"48 29.88 135 4.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class160099] of  OMTPoly
+
+	(description "319522570")
+	(label "319522570")
+	(latitude "48 29.92")
+	(line [PyongyangSPb_Class150038])
+	(lineColor "FFFF0000")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.92 135 3.94"
+		"48 29.93 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160102] of  OMTPoly
+
+	(label "A")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 29.95 135 3.91"
+		"48 29.95 135 3.97"
+		"48 29.89 135 3.97"
+		"48 29.89 135 3.91"
+		"48 29.95 135 3.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class160103] of  OMTPoly
+
+	(label "G__5603")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160105] of  OMTPoly
+
+	(label "G__5604")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160108] of  OMTPoly
+
+	(label "G__5607")
+	(latitude "48 30.84")
+	(lineColor "FF0000FF")
+	(longitude "135 2.46")
+	(playground-index 0)
+	(points
+		"48 31.14 135 2.16"
+		"48 31.14 135 2.76"
+		"48 30.54 135 2.76"
+		"48 30.54 135 2.16"
+		"48 31.14 135 2.16")
+	(relative FALSE))
+
+([PyongyangSPb_Class160114] of  OMTPoly
+
+	(label "G__5878")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 30.22 135 3.64"
+		"48 30.22 135 4.24"
+		"48 29.62 135 4.24"
+		"48 29.62 135 3.64"
+		"48 30.22 135 3.64")
+	(relative FALSE))
+
+([PyongyangSPb_Class160116] of  OMTPoly
+
+	(label "G__5879")
+	(latitude "48 29.92")
+	(lineColor "FF0000FF")
+	(longitude "135 3.94")
+	(playground-index 0)
+	(points
+		"48 30.22 135 3.64"
+		"48 30.22 135 4.24"
+		"48 29.62 135 4.24"
+		"48 29.62 135 3.64"
+		"48 30.22 135 3.64")
+	(relative FALSE))
+
+([PyongyangSPb_Class160118] of  CloFunction
+
+	(source "(od/create-line [id pts])")
+	(title "create-line [[id & pts]]"))
+
+([PyongyangSPb_Class160125] of  OMTPoly
+
+	(label "G__6020")
+	(latitude "48 29.91")
+	(lineColor "FF0000FF")
+	(longitude "135 3.98")
+	(playground-index 0)
+	(points
+		"48 30.21 135 3.68"
+		"48 30.21 135 4.28"
+		"48 29.61 135 4.28"
+		"48 29.61 135 3.68"
+		"48 30.21 135 3.68")
+	(relative FALSE))
+
+([PyongyangSPb_Class160131] of  OMTPoly
+
+	(label "G__6029")
+	(latitude "48 29.91")
+	(lineColor "FF0000FF")
+	(longitude "135 3.99")
+	(playground-index 0)
+	(points
+		"48 30.21 135 3.69"
+		"48 30.21 135 4.29"
+		"48 29.61 135 4.29"
+		"48 29.61 135 3.69"
+		"48 30.21 135 3.69")
+	(relative FALSE))
+
+([PyongyangSPb_Class170009] of  CloFuncall
+
+	(source "(path/mk-segments [1 2 3 4 5 6])"))
+
+([PyongyangSPb_Class170010] of  CloFuncall
+
+	(source "(path/mk-segments [1 2 3 4 5])"))
+
+([PyongyangSPb_Class170012] of  CloFuncall
+
+	(source "(in-ns 'path)"))
+
+([PyongyangSPb_Class170013] of  CloFuncall
+
+	(source "(map init-point-dir [\"\""))
+
+([PyongyangSPb_Class170014] of  CloFuncall
+
+	(source "(map (fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
+
+([PyongyangSPb_Class170015] of  CloFuncall
+
+	(source "(map #(fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
+
+([PyongyangSPb_Class170016] of  CloFuncall
+
+	(source "(map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"])"))
+
+([PyongyangSPb_Class170017] of  CloFuncall
+
+	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
+
+([PyongyangSPb_Class170018] of  CloFuncall
+
+	(source "(mk-segments pts)"))
+
+([PyongyangSPb_Class170019] of  CloFuncall
+
+	(source "(map direction (mk-segments pts))"))
+
+([PyongyangSPb_Class170020] of  CloFuncall
+
+	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"N4\" \"R3\" \"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
+
+([PyongyangSPb_Class170021] of  CloFuncall
+
+	(source "(def stt (fifos \"Point\" \"id\" \"M4\"))"))
+
+([PyongyangSPb_Class170022] of  CloFuncall
+
+	(source "(def fin (fifos \"Point\" \"id\" \"A8\"))"))
+
+([PyongyangSPb_Class170023] of  CloFuncall
+
+	(source "stt"))
+
+([PyongyangSPb_Class170024] of  CloFuncall
+
+	(source "fin"))
+
+([PyongyangSPb_Class170025] of  CloFuncall
+
+	(source "(wrong-direction stt fin pts)"))
+
+([PyongyangSPb_Class190000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class60002])
+	(%3ACREATION-TIMESTAMP "2020.12.07 20:26:11.742 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class2] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "FFFFCC99")
+	(label "prkrails")
+	(lineColor "ff000000")
+	(prettyName "North Korea Railroads")
+	(shapeFile "data/shape/PRK_rrd/PRK_rails.shp")
+	(spatialIndex "data/shape/PRK_rrd/PRK_rails.shx"))
+
+([PyongyangSPb_Class20000] of  Line
+
+	(capDecoration BUTT)
+	(dashPattern "3 1")
+	(jointDecoration BEVEL)
+	(label "L2")
+	(lineType STRAIGHT)
+	(lineWidth "2"))
+
+([PyongyangSPb_Class200000] of  NamedDoc
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <span http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" align=\"start\" style=\"letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none\"><font color=\"rgb(0, 0, 0)\" face=\"Direct, Helvetica, Arial, sans-serif\" size=\"30px\"><b>&#1052;&#1072;&#1088;&#1096;&#1088;&#1091;&#1090; &#1087;&#1086;&#1077;&#1079;&#1076;&#1072; 017&#1041; &#1052;&#1086;&#1089;&#1082;&#1074;&#1072; &#1041;&#1077;&#1083;&#1086;&#1088;&#1091;&#1089;&#1089;&#1082;&#1072;&#1103;&#160;&#8212; &#1053;&#1080;&#1094;&#1094;&#1072;</b></font></span>&#0;<br><br><br><br><div http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" class=\"o33537\" align=\"start\" style=\"display: flex; margin-left: -10px; margin-right: -10px; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; background-color: rgb(255, 255, 255)\">  <div class=\"o3354 o33308 o33387 o33324 o33405\" style=\"width: 788.328px; padding-left: 10px; padding-right: 10px; margin-left: 71.6562px\">    <div>      <table class=\"table__table__9Dimv\" style=\"width: 768px; line-height: 20px\">        <tr>          <td class=\"table__tableHead__184bq\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1057;&#1090;&#1072;&#1085;&#1094;&#1080;&#1103;          </td>          <td class=\"table__columnWithLongText__1FTBL\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1055;&#1088;&#1080;&#1073;&#1099;&#1090;&#1080;&#1077;          </td>          <td class=\"table__columnWithLongText__1FTBL\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1057;&#1090;&#1086;&#1103;&#1085;&#1082;&#1072;          </td>          <td class=\"table__columnWithLongText__1FTBL\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;          </td>          <td class=\"table__secondaryColumn__2t4fk table__secondary__3FT2E\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1050;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__secondary__3FT2E\" style=\"padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px\">            &#1042; &#1087;&#1091;&#1090;&#1080;          </td>        </tr>        <tr class=\"table__tableBody__lKl2T\" data-ti=\"table\" style=\"line-height: 20px\">          <td colspan=\"6\">            <div class=\"o33592\" style=\"width: 766px; margin-top: 4px; margin-right: 0px; margin-bottom: 3px; margin-left: 0px; display: block; border-bottom-color: rgb(195, 207, 223); border-bottom-style: solid; border-bottom-width: 1px\">                          </div>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/2227758b50f254e4cc275c7472ed149a/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1056;&#1086;&#1089;&#1089;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW table__bold__aV6bc\" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2000006\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;             &#1041;&#1077;&#1083;&#1086;&#1088;&#1091;&#1089;&#1089;&#1082;&#1072;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">                      </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">                      </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            18:17          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            0<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">                      </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2000830\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1103;&#1079;&#1100;&#1084;&#1072;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            21:09          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            23<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            21:32          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            243<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;52<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2000170\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1057;&#1084;&#1086;&#1083;&#1077;&#1085;&#1089;&#1082;             &#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            23:10          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            5<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            23:15          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            419<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            4<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;53<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/aca067e4b0f84aba69d115eb5e469747/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1041;&#1077;&#1083;&#1086;&#1088;&#1091;&#1089;&#1089;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2100170\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1054;&#1088;&#1096;&#1072;-&#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1072;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            00:27          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            17<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            00:44          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            538<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            6<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;10<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2100001\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1052;&#1080;&#1085;&#1089;&#1082;-&#1055;&#1072;&#1089;&#1089;.</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            02:59          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            14<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            03:13          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            750<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            8<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;42<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2100020\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1072;&#1088;&#1072;&#1085;&#1086;&#1074;&#1080;&#1095;&#1080;-&#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            04:49          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            04:51          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            893<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;32<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=2100035\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1088;&#1077;&#1089;&#1090;-&#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            06:41          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            4<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:43          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1095<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            12<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;24<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/a86f541e24a2eeaad2bd834e44aae7c2/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1055;&#1086;&#1083;&#1100;&#1096;&#1072;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5100132\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1058;&#1077;&#1088;&#1077;&#1089;&#1087;&#1086;&#1083;&#1100;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            07:01          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            45<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            07:46          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1102<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            16<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;44<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5100138\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1072;&#1088;&#1096;&#1072;&#1074;&#1072;             &#1042;&#1089;&#1093;&#1086;&#1076;&#1085;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            09:48          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            36<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:24          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1311<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            19<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;31<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5100136\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1072;&#1088;&#1096;&#1072;&#1074;&#1072;             &#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1072;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:30          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            5<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:35          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1312<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            20<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;13<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5100139\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1072;&#1088;&#1096;&#1072;&#1074;&#1072;             &#1047;&#1072;&#1093;&#1086;&#1076;&#1085;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:40          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:42          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1316<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            20<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;23<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5100200\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1061;&#1072;&#1083;&#1091;&#1087;&#1082;&#1080;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:16          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:17          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1725<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;0<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;59<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/6feb91d84ac063f33eef6c8e540c0382/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1063;&#1077;&#1093;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5434124\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1086;&#1075;&#1091;&#1084;&#1080;&#1085;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:23          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            37<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            16:00          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1755<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;1<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;6<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=5433425\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1088;&#1078;&#1077;&#1094;&#1083;&#1072;&#1074;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            17:45          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            29<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            18:14          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1947<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;3<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;28<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/feb869fab6543fc502e5d95a460d8abe/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1040;&#1074;&#1089;&#1090;&#1088;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100100\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1077;&#1085;&#1072;             &#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081; &#1074;&#1086;&#1082;&#1079;&#1072;&#1083;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            19:17          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            3<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            19:20          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2042<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;5<span class=\"miniNbsp\">&#160;</span>&#1095;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100133\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1051;&#1080;&#1085;&#1094;             &#1062;&#1077;&#1085;&#1090;&#1088;&#1072;&#1083;&#1100;&#1085;&#1099;&#1081;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            21:00          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            28<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            21:28          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2117<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;6<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;43<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100308\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1080;&#1096;&#1086;&#1092;&#1089;&#1093;&#1086;&#1092;&#1077;&#1085;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            23:28          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            3<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            23:31          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2302<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;9<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;11<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100320\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1062;&#1077;&#1083;&#1083;&#1100;-&#1072;&#1084;-&#1047;&#1077;&#1077;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            00:17          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            3<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            00:20          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2399<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;10<span class=\"miniNbsp\">&#160;</span>&#1095;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100334\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1050;&#1080;&#1088;&#1093;&#1073;&#1077;&#1088;&#1075;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            01:10          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            3<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            01:13          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2402<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;10<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;53<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100509\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1049;&#1077;&#1085;&#1073;&#1072;&#1093;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            02:09          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            02:11          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2449<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;11<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;52<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8100522\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1048;&#1085;&#1089;&#1073;&#1088;&#1091;&#1082;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            02:37          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            20<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            02:57          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2459<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;12<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;20<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/11a6f796e01157f5a800c71c2256e6ce/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1048;&#1090;&#1072;&#1083;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300211\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1086;&#1083;&#1100;&#1094;&#1072;&#1085;&#1086;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            06:12          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            06:14          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2569<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;15<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;55<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300266\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1077;&#1088;&#1086;&#1085;&#1072;             &#1055;&#1086;&#1088;&#1090;&#1072; &#1053;&#1091;&#1086;&#1074;&#1072;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            08:20          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            20<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            08:40          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2619<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;18<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;3<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300157\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1052;&#1080;&#1083;&#1072;&#1085;             &#1056;&#1086;&#1075;&#1086;&#1088;&#1077;&#1076;&#1086;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:10          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            10:12          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2777<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;19<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;53<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300335\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1043;&#1077;&#1085;&#1091;&#1103;             &#1055;&#1088;&#1080;&#1085;&#1095;&#1080;&#1087;&#1077;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            11:53          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            26<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            12:19          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2797<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            1<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;21<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;36<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300388\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1057;&#1072;&#1085;-&#1056;&#1077;&#1084;&#1086;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            14:51          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            14:53          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2817<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;0<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;34<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300305\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1041;&#1086;&#1088;&#1076;&#1080;&#1075;&#1077;&#1088;&#1072;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:03          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:05          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2837<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;0<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;46<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8300322\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1042;&#1077;&#1085;&#1090;&#1080;&#1084;&#1080;&#1083;&#1100;&#1103;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:15          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            28<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:43          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2857<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;0<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;58<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/2148dc757964afdec9d20499757b4d7a/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1060;&#1088;&#1072;&#1085;&#1094;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8700295\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1052;&#1077;&#1085;&#1090;&#1086;&#1085;&#1072;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:57          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            15:59          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2892<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;1<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;40<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/e81bc247eab9084c97bbbfcb767f037b/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1052;&#1086;&#1085;&#1072;&#1082;&#1086;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW \" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8700427\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1052;&#1086;&#1085;&#1072;&#1082;&#1086;             &#1052;&#1086;&#1085;&#1090;&#1077;-&#1050;&#1072;&#1088;&#1083;&#1086;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            16:07          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            16:09          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2907<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;1<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;50<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>        <tr class=\"table__tableRow__2dxJW\">          <td>            <img src=\"https://cdn2.tu-tu.ru/image/main/1/2148dc757964afdec9d20499757b4d7a/\" class=\"table__image__17U9i\" data-ti=\"flag\" style=\"border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 11px; width: 16px; margin-right: 5px\">            <span>&#1060;&#1088;&#1072;&#1085;&#1094;&#1080;&#1103;</span>          </td>        </tr>        <tr class=\"table__tableRow__2dxJW table__bold__aV6bc\" data-ti=\"train_row\">          <td class=\"table__district__1H-Pj\" data-ti=\"station_name\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            <a class=\"o331 o332 table__stationName__1zQos o3329 o3319\" href=\"https://www.tutu.ru/poezda/station_d.php?nnst=8700400\" target=\"_blank\" style=\"font-variant: normal; line-height: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; display: block; border-top-style: none; border-top-width: 0px; border-right-style: none; border-right-width: 0px; border-bottom-style: none; border-bottom-width: 0px; border-left-style: none; border-left-width: 0px; white-space: nowrap\"><font size=\"15px\" face=\"BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif\" color=\"rgb(0, 115, 255)\">&#1053;&#1080;&#1094;&#1094;&#1072;</font></a>          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"arrival_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            16:30          </td>          <td class=\"table__district__1H-Pj\" data-ti=\"stopping_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">                      </td>          <td class=\"table__district__1H-Pj\" data-ti=\"departure_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">                      </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"milage\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2917<span class=\"miniNbsp\">&#160;</span>&#1082;&#1084;          </td>          <td class=\"table__secondaryColumn__2t4fk table__district__1H-Pj table__secondary__3FT2E\" data-ti=\"travel_time\" style=\"padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 0px\">            2<span class=\"miniNbsp\">&#160;</span>&#1076;&#160;2<span class=\"miniNbsp\">&#160;</span>&#1095;&#160;13<span class=\"miniNbsp\">&#160;</span>&#1084;          </td>        </tr>      </table>    </div>  </div></div><div class=\"o3352\" align=\"start\" style=\"width: 840px; height: 10px; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; background-color: rgb(255, 255, 255)\">  </div><div class=\"o3352\" align=\"start\" style=\"width: 840px; height: 10px; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; background-color: rgb(255, 255, 255)\">  </div><div class=\"o33537\" align=\"start\" style=\"display: flex; margin-left: -10px; margin-right: -10px; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; background-color: rgb(255, 255, 255)\">  <div class=\"o3354 o33300 o33380 o33332 o33412\" style=\"width: 286.656px; padding-left: 10px; padding-right: 10px; margin-left: 573.328px\">    <div class=\"styles__alignRight__1lAnG\" align=\"right\">          </div>  </div></div><br class=\"Apple-interchange-newline\">&#0;<br><br></body>\n</html>")
+	(title "Москва-Ницца. Поезд 017Б"))
+
+([PyongyangSPb_Class200001] of  CloFuncall
+
+	(source "(in-ns 'osm.path)"))
+
+([PyongyangSPb_Class200002] of  CloFuncall
+
+	(source "(qt-do"))
+
+([PyongyangSPb_Class200003] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class130001])
+	(%3ACREATION-TIMESTAMP "2020.12.01 11:40:59.894 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class20013] of  NavOb
+
+	(altitude 0)
+	(course 270)
+	(label "t2")
+	(latitude "38 57.7")
+	(longitude "125 46")
+	(playground-index 0)
+	(speed 0.0)
+	(type [PyongyangSPb_Class20014])
+	(url "file:resources/public/img/bluball.png")
+	(verticalSpeed 0.0))
+
+([PyongyangSPb_Class20014] of  Type
+
+	(label "Trains")
+	(missions [PyongyangSPb_Class20015]))
+
+([PyongyangSPb_Class20015] of  ObjectMission
+
+	(label "Pyongyang - Saint-Petersburg"))
+
+([PyongyangSPb_Class210000] of  OMTPoly
+
+	(label "bbx10849")
+	(latitude "43 42.3")
+	(lineColor "FF00AA00")
+	(longitude "7 15.74")
+	(playground-index 0)
+	(points
+		"43 42.33 7 15.7"
+		"43 42.33 7 15.78"
+		"43 42.27 7 15.78"
+		"43 42.27 7 15.7"
+		"43 42.33 7 15.7")
+	(relative FALSE))
+
+([PyongyangSPb_Class210001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class0])
+	(%3ACREATION-TIMESTAMP "2020.12.11 16:56:10.318 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class220001] of  CloFuncall
+
+	(source "osm.data/WAY-TYPE"))
+
+([PyongyangSPb_Class230001] of  OMTPoly
+
+	(label "bbx10850")
+	(latitude "43 42.3")
+	(lineColor "FF00AA00")
+	(longitude "7 15.74")
+	(playground-index 0)
+	(points
+		"43 42.33 7 15.7"
+		"43 42.33 7 15.78"
+		"43 42.27 7 15.78"
+		"43 42.27 7 15.7"
+		"43 42.33 7 15.7")
+	(relative FALSE))
+
+([PyongyangSPb_Class230002] of  OMTPoly
+
+	(label "bbx10851")
+	(latitude "43 42.3")
+	(lineColor "FF00AA00")
+	(longitude "7 15.74")
+	(playground-index 0)
+	(points
+		"43 42.33 7 15.7"
+		"43 42.33 7 15.78"
+		"43 42.27 7 15.78"
+		"43 42.27 7 15.7"
+		"43 42.33 7 15.7")
+	(relative FALSE))
+
+([PyongyangSPb_Class230003] of  OMTPoly
+
+	(label "bbx26752")
+	(latitude "48 5.38")
+	(lineColor "FF325928")
+	(longitude "135 6.61")
+	(playground-index 0)
+	(points
+		"48 5.41 135 6.57"
+		"48 5.41 135 6.66"
+		"48 5.35 135 6.66"
+		"48 5.35 135 6.57"
+		"48 5.41 135 6.57")
+	(relative FALSE))
+
+([PyongyangSPb_Class230004] of  OMTPoly
+
+	(label "bbx26753")
+	(latitude "48 5.28")
+	(lineColor "FF325928")
+	(longitude "135 6.69")
+	(playground-index 0)
+	(points
+		"48 5.31 135 6.65"
+		"48 5.31 135 6.74"
+		"48 5.25 135 6.74"
+		"48 5.25 135 6.65"
+		"48 5.31 135 6.65")
+	(relative FALSE))
+
+([PyongyangSPb_Class230005] of  OMTPoly
+
+	(label "bbx26754")
+	(latitude "48 5.35")
+	(lineColor "FF325928")
+	(longitude "135 6.44")
+	(playground-index 0)
+	(points
+		"48 5.38 135 6.4"
+		"48 5.38 135 6.49"
+		"48 5.32 135 6.49"
+		"48 5.32 135 6.4"
+		"48 5.38 135 6.4")
+	(relative FALSE))
+
+([PyongyangSPb_Class230006] of  OMTPoly
+
+	(label "bbx26755")
+	(latitude "48 5.51")
+	(lineColor "FF325928")
+	(longitude "135 6.79")
+	(playground-index 0)
+	(points
+		"48 5.54 135 6.74"
+		"48 5.54 135 6.83"
+		"48 5.48 135 6.83"
+		"48 5.48 135 6.74"
+		"48 5.54 135 6.74")
+	(relative FALSE))
+
+([PyongyangSPb_Class230007] of  OMTPoly
+
+	(label "bbx26756")
+	(latitude "48 5.38")
+	(lineColor "FF325928")
+	(longitude "135 6.61")
+	(playground-index 0)
+	(points
+		"48 5.41 135 6.57"
+		"48 5.41 135 6.66"
+		"48 5.35 135 6.66"
+		"48 5.35 135 6.57"
+		"48 5.41 135 6.57")
+	(relative FALSE))
+
+([PyongyangSPb_Class230008] of  OMTPoly
+
+	(label "bbx26757")
+	(latitude "48 5.38")
+	(lineColor "FF325928")
+	(longitude "135 6.62")
+	(playground-index 0)
+	(points
+		"48 5.41 135 6.58"
+		"48 5.41 135 6.67"
+		"48 5.35 135 6.67"
+		"48 5.35 135 6.58"
+		"48 5.41 135 6.58")
+	(relative FALSE))
+
+([PyongyangSPb_Class230009] of  OMTPoly
+
+	(label "bbx29943")
+	(latitude "48 5.37")
+	(lineColor "FF325928")
+	(longitude "135 6.62")
+	(playground-index 0)
+	(points
+		"48 5.4 135 6.58"
+		"48 5.4 135 6.67"
+		"48 5.34 135 6.67"
+		"48 5.34 135 6.58"
+		"48 5.4 135 6.58")
+	(relative FALSE))
+
+([PyongyangSPb_Class230010] of  OMTPoly
+
+	(label "bbx29944")
+	(latitude "48 5.37")
+	(lineColor "FF325928")
+	(longitude "135 6.62")
+	(playground-index 0)
+	(points
+		"48 5.4 135 6.58"
+		"48 5.4 135 6.67"
+		"48 5.34 135 6.67"
+		"48 5.34 135 6.58"
+		"48 5.4 135 6.58")
+	(relative FALSE))
+
+([PyongyangSPb_Class240001] of  OMTPoly
+
+	(label "bbx10265")
+	(latitude "48 5.34")
+	(lineColor "FF00AA00")
+	(longitude "135 6.6")
+	(playground-index 0)
+	(points
+		"48 5.34 135 6.59"
+		"48 5.34 135 6.61"
+		"48 5.33 135 6.61"
+		"48 5.33 135 6.59"
+		"48 5.34 135 6.59")
+	(relative FALSE))
+
+([PyongyangSPb_Class240002] of  OMTPoly
+
+	(label "bbx10266")
+	(latitude "48 6.04")
+	(lineColor "FF00AA00")
+	(longitude "135 6.8")
+	(playground-index 0)
+	(points
+		"48 6.05 135 6.79"
+		"48 6.05 135 6.81"
+		"48 6.04 135 6.81"
+		"48 6.04 135 6.79"
+		"48 6.05 135 6.79")
+	(relative FALSE))
+
+([PyongyangSPb_Class240003] of  OMTPoly
+
+	(label "bbx10267")
+	(latitude "48 6.11")
+	(lineColor "FF00AA00")
+	(longitude "135 6.78")
+	(playground-index 0)
+	(points
+		"48 6.12 135 6.77"
+		"48 6.12 135 6.79"
+		"48 6.1 135 6.79"
+		"48 6.1 135 6.77"
+		"48 6.12 135 6.77")
+	(relative FALSE))
+
+([PyongyangSPb_Class240004] of  OMTPoly
+
+	(label "bbx10268")
+	(latitude "48 5.3")
+	(lineColor "FF00AA00")
+	(longitude "135 6.59")
+	(playground-index 0)
+	(points
+		"48 5.3 135 6.58"
+		"48 5.3 135 6.6"
+		"48 5.29 135 6.6"
+		"48 5.29 135 6.58"
+		"48 5.3 135 6.58")
+	(relative FALSE))
+
+([PyongyangSPb_Class240005] of  OMTPoly
+
+	(label "bbx10269")
+	(latitude "48 5.29")
+	(lineColor "FF00AA00")
+	(longitude "135 6.61")
+	(playground-index 0)
+	(points
+		"48 5.3 135 6.6"
+		"48 5.3 135 6.62"
+		"48 5.28 135 6.62"
+		"48 5.28 135 6.6"
+		"48 5.3 135 6.6")
+	(relative FALSE))
+
+([PyongyangSPb_Class240006] of  OMTPoly
+
+	(label "bbx10270")
+	(latitude "48 5.29")
+	(lineColor "FF00AA00")
+	(longitude "135 6.61")
+	(playground-index 0)
+	(points
+		"48 5.3 135 6.6"
+		"48 5.3 135 6.62"
+		"48 5.29 135 6.62"
+		"48 5.29 135 6.6"
+		"48 5.3 135 6.6")
+	(relative FALSE))
+
+([PyongyangSPb_Class240007] of  OMTPoly
+
+	(label "bbx10271")
+	(latitude "43 0.98")
+	(lineColor "FF00AA00")
+	(longitude "7 1.12")
+	(playground-index 0)
+	(points
+		"43 0.98 7 1.11"
+		"43 0.98 7 1.13"
+		"43 0.97 7 1.13"
+		"43 0.97 7 1.11"
+		"43 0.98 7 1.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class240008] of  OMTPoly
+
+	(label "bbx15483")
+	(latitude "43 42.29")
+	(lineColor "FF00AA00")
+	(longitude "7 15.71")
+	(playground-index 0)
+	(points
+		"43 42.29 7 15.71"
+		"43 42.29 7 15.72"
+		"43 42.28 7 15.72"
+		"43 42.28 7 15.71"
+		"43 42.29 7 15.71")
+	(relative FALSE))
+
+([PyongyangSPb_Class240009] of  Node
+
+	(edges
+		[PyongyangSPb_Class240010]
+		[PyongyangSPb_Class240011]
+		[PyongyangSPb_Class240012]
+		[PyongyangSPb_Class240013])
+	(label "N[7.261908730298173 43.704798153569755]")
+	(latitude "43 42.29")
+	(lineColor "FFFF6800")
+	(longitude "7 15.71")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2619085)
+	(y 43.7048))
+
+([PyongyangSPb_Class240010] of  Edge
+
+	(label "444855914")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.31 7 15.77"
+		"43 42.28 7 15.71")
+	(relative FALSE)
+	(x 7.2627835)
+	(x2 7.261867)
+	(xx
+		"7.2627834"
+		"7.2618669")
+	(y 43.705147)
+	(y2 43.704746)
+	(yy
+		"43.7051486"
+		"43.7047479"))
+
+([PyongyangSPb_Class240011] of  Edge
+
+	(label "444855915")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.28 7 15.71"
+		"43 42.26 7 15.65")
+	(relative FALSE)
+	(x 7.261867)
+	(x2 7.2607646)
+	(xx
+		"7.2618669"
+		"7.2607644")
+	(y 43.704746)
+	(y2 43.704266)
+	(yy
+		"43.7047479"
+		"43.704266"))
+
+([PyongyangSPb_Class240012] of  Edge
+
+	(label "444855934")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.31 7 15.77"
+		"43 42.29 7 15.71")
+	(relative FALSE)
+	(x 7.262754)
+	(x2 7.261833)
+	(xx
+		"7.262754"
+		"7.2618331")
+	(y 43.705185)
+	(y2 43.70478)
+	(yy
+		"43.7051837"
+		"43.7047822"))
+
+([PyongyangSPb_Class240013] of  Edge
+
+	(label "444855937")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.29 7 15.71"
+		"43 42.26 7 15.64")
+	(relative FALSE)
+	(x 7.261833)
+	(x2 7.260734)
+	(xx
+		"7.2618331"
+		"7.2607341")
+	(y 43.70478)
+	(y2 43.704304)
+	(yy
+		"43.7047822"
+		"43.704303"))
+
+([PyongyangSPb_Class240014] of  CloFuncall
+
+	(source "osm.data/MODE"))
+
+([PyongyangSPb_Class240015] of  OMTPoly
+
+	(label "bbx17276")
+	(latitude "43 42.31")
+	(lineColor "FF00AA00")
+	(longitude "7 15.77")
+	(playground-index 0)
+	(points
+		"43 42.32 7 15.76"
+		"43 42.32 7 15.78"
+		"43 42.3 7 15.78"
+		"43 42.3 7 15.76"
+		"43 42.32 7 15.76")
+	(relative FALSE))
+
+([PyongyangSPb_Class240016] of  Node
+
+	(edges
+		[PyongyangSPb_Class240017]
+		[PyongyangSPb_Class240018]
+		[PyongyangSPb_Class240010]
+		[PyongyangSPb_Class240012])
+	(label "N[7.262834854567932 43.705161929116215]")
+	(latitude "43 42.31")
+	(lineColor "FFFF6800")
+	(longitude "7 15.77")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.262835)
+	(y 43.705162))
+
+([PyongyangSPb_Class240017] of  Edge
+
+	(label "235858178")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.34 7 15.86"
+		"43 42.34 7 15.84"
+		"43 42.33 7 15.82"
+		"43 42.32 7 15.8"
+		"43 42.31 7 15.78"
+		"43 42.31 7 15.77")
+	(relative FALSE)
+	(x 7.264349)
+	(x2 7.2627835)
+	(xx
+		"7.2643489"
+		"7.2640268"
+		"7.2637169"
+		"7.2633116"
+		"7.2629949"
+		"7.2627834")
+	(y 43.70575)
+	(y2 43.705147)
+	(yy
+		"43.7057478"
+		"43.7056168"
+		"43.7054953"
+		"43.7053569"
+		"43.705241"
+		"43.7051486"))
+
+([PyongyangSPb_Class240018] of  Edge
+
+	(label "332941122")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.87"
+		"43 42.34 7 15.84"
+		"43 42.33 7 15.83"
+		"43 42.32 7 15.8"
+		"43 42.32 7 15.78"
+		"43 42.31 7 15.77")
+	(relative FALSE)
+	(x 7.264546)
+	(x2 7.262754)
+	(xx
+		"7.2645461"
+		"7.2640553"
+		"7.2638367"
+		"7.2632828"
+		"7.2629735"
+		"7.262754")
+	(y 43.705856)
+	(y2 43.705185)
+	(yy
+		"43.7058577"
+		"43.7056632"
+		"43.7055761"
+		"43.7053897"
+		"43.7052794"
+		"43.7051837"))
+
+([PyongyangSPb_Class240019] of  OMTPoly
+
+	(label "bbx19965")
+	(latitude "43 42.35")
+	(lineColor "FF00AA00")
+	(longitude "7 15.87")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.86"
+		"43 42.36 7 15.88"
+		"43 42.34 7 15.88"
+		"43 42.34 7 15.86"
+		"43 42.36 7 15.86")
+	(relative FALSE))
+
+([PyongyangSPb_Class240020] of  Node
+
+	(edges
+		[PyongyangSPb_Class240021]
+		[PyongyangSPb_Class240022]
+		[PyongyangSPb_Class240023]
+		[PyongyangSPb_Class240024]
+		[PyongyangSPb_Class240018]
+		[PyongyangSPb_Class240025]
+		[PyongyangSPb_Class240026]
+		[PyongyangSPb_Class250027]
+		[PyongyangSPb_Class250028]
+		[PyongyangSPb_Class250029]
+		[PyongyangSPb_Class250030]
+		[PyongyangSPb_Class250031])
+	(label "N[7.264494383606228 43.705827555252]")
+	(latitude "43 42.35")
+	(lineColor "FFFF6800")
+	(longitude "7 15.87")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2644944)
+	(y 43.705826))
+
+([PyongyangSPb_Class240021] of  Edge
+
+	(label "257565916")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.87"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.2645144)
+	(x2 7.264752)
+	(xx
+		"7.2645143"
+		"7.264752")
+	(y 43.70591)
+	(y2 43.706)
+	(yy
+		"43.7059113"
+		"43.7059994"))
+
+([PyongyangSPb_Class240022] of  Edge
+
+	(label "332941125")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.32 7 15.76"
+		"43 42.32 7 15.77"
+		"43 42.33 7 15.78"
+		"43 42.33 7 15.8"
+		"43 42.34 7 15.83"
+		"43 42.35 7 15.85"
+		"43 42.35 7 15.86")
+	(relative FALSE)
+	(x 7.262654)
+	(x2 7.2644)
+	(xx
+		"7.262654"
+		"7.2628697"
+		"7.2630728"
+		"7.2632827"
+		"7.2637548"
+		"7.2640848"
+		"7.2643999")
+	(y 43.7053)
+	(y2 43.70587)
+	(yy
+		"43.7053003"
+		"43.7053859"
+		"43.7054487"
+		"43.7055089"
+		"43.7056487"
+		"43.7057539"
+		"43.7058709"))
+
+([PyongyangSPb_Class240023] of  Edge
+
+	(label "444687828")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.87"
+		"43 42.34 7 15.86")
+	(relative FALSE)
+	(x 7.264566)
+	(x2 7.264349)
+	(xx
+		"7.2645658"
+		"7.2643489")
+	(y 43.70584)
+	(y2 43.70575)
+	(yy
+		"43.7058409"
+		"43.7057478"))
+
+([PyongyangSPb_Class240024] of  Edge
+
+	(label "4978386")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.86"
+		"43 42.34 7 15.82")
+	(relative FALSE)
+	(x 7.2644)
+	(x2 7.263714)
+	(xx
+		"7.2643999"
+		"7.263714")
+	(y 43.70587)
+	(y2 43.70569)
+	(yy
+		"43.7058709"
+		"43.7056875"))
+
+([PyongyangSPb_Class240025] of  Edge
+
+	(label "257565926")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.87"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.2645316)
+	(x2 7.264762)
+	(xx
+		"7.2645315"
+		"7.2647617")
+	(y 43.70589)
+	(y2 43.70599)
+	(yy
+		"43.7058904"
+		"43.7059894"))
+
+([PyongyangSPb_Class240026] of  Edge
+
+	(label "315735163")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.87"
+		"43 42.35 7 15.86")
+	(relative FALSE)
+	(x 7.264487)
+	(x2 7.2643094)
+	(xx
+		"7.2644866"
+		"7.2643095")
+	(y 43.70595)
+	(y2 43.70589)
+	(yy
+		"43.7059517"
+		"43.705892"))
+
+([PyongyangSPb_Class240027] of  OMTPoly
+
+	(label "bbx10852")
+	(latitude "43 42.35")
+	(lineColor "FF00AA00")
+	(longitude "7 15.87")
+	(playground-index 0)
+	(points
+		"43 42.38 7 15.83"
+		"43 42.38 7 15.91"
+		"43 42.32 7 15.91"
+		"43 42.32 7 15.83"
+		"43 42.38 7 15.83")
+	(relative FALSE))
+
+([PyongyangSPb_Class240059] of  OMTPoly
+
+	(label "bbx12677")
+	(latitude "43 42.29")
+	(lineColor "FF00AA00")
+	(longitude "7 15.72")
+	(playground-index 0)
+	(points
+		"43 42.29 7 15.71"
+		"43 42.29 7 15.72"
+		"43 42.29 7 15.72"
+		"43 42.29 7 15.71"
+		"43 42.29 7 15.71")
+	(relative FALSE))
+
+([PyongyangSPb_Class240060] of  OMTPoly
+
+	(label "bbx12678")
+	(latitude "43 42.29")
+	(lineColor "FF00AA00")
+	(longitude "7 15.72")
+	(playground-index 0)
+	(points
+		"43 42.3 7 15.7"
+		"43 42.3 7 15.73"
+		"43 42.28 7 15.73"
+		"43 42.28 7 15.7"
+		"43 42.3 7 15.7")
+	(relative FALSE))
+
+([PyongyangSPb_Class240070] of  OMTPoly
+
+	(label "bbx22711")
+	(latitude "43 42.31")
+	(lineColor "FF00AA00")
+	(longitude "7 15.77")
+	(playground-index 0)
+	(points
+		"43 42.32 7 15.75"
+		"43 42.32 7 15.79"
+		"43 42.3 7 15.79"
+		"43 42.3 7 15.75"
+		"43 42.32 7 15.75")
+	(relative FALSE))
+
+([PyongyangSPb_Class240079] of  OMTPoly
+
+	(label "bbx30008")
+	(latitude "43 42.35")
+	(lineColor "FF00AA00")
+	(longitude "7 15.87")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.86"
+		"43 42.36 7 15.88"
+		"43 42.34 7 15.88"
+		"43 42.34 7 15.86"
+		"43 42.36 7 15.86")
+	(relative FALSE))
+
+([PyongyangSPb_Class240091] of  OMTPoly
+
+	(label "bbx31833")
+	(latitude "43 42.36")
+	(lineColor "FF00AA00")
+	(longitude "7 15.89")
+	(playground-index 0)
+	(points
+		"43 42.37 7 15.88"
+		"43 42.37 7 15.9"
+		"43 42.35 7 15.9"
+		"43 42.35 7 15.88"
+		"43 42.37 7 15.88")
+	(relative FALSE))
+
+([PyongyangSPb_Class240102] of  OMTPoly
+
+	(label "bbx34570")
+	(latitude "43 42.37")
+	(lineColor "FF00AA00")
+	(longitude "7 15.92")
+	(playground-index 0)
+	(points
+		"43 42.38 7 15.91"
+		"43 42.38 7 15.93"
+		"43 42.36 7 15.93"
+		"43 42.36 7 15.91"
+		"43 42.38 7 15.91")
+	(relative FALSE))
+
+([PyongyangSPb_Class240108] of  OMTPoly
+
+	(label "bbx37307")
+	(latitude "43 42.39")
+	(lineColor "FF00AA00")
+	(longitude "7 15.95")
+	(playground-index 0)
+	(points
+		"43 42.4 7 15.94"
+		"43 42.4 7 15.96"
+		"43 42.38 7 15.96"
+		"43 42.38 7 15.94"
+		"43 42.4 7 15.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class240120] of  OMTPoly
+
+	(label "bbx40956")
+	(latitude "43 42.41")
+	(lineColor "FF00AA00")
+	(longitude "7 16")
+	(playground-index 0)
+	(points
+		"43 42.42 7 15.99"
+		"43 42.42 7 16.01"
+		"43 42.4 7 16.01"
+		"43 42.4 7 15.99"
+		"43 42.42 7 15.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class240132] of  CloFunction
+
+	(source "(let [e1 (sv n1 \"edges\")\n       e2 (sv n2 \"edges\")\n       e3 (clojure.set/difference (set e1) (set e2))]\n  e3)")
+	(title "select-connecting-edges[n1 n2]"))
+
+([PyongyangSPb_Class250003] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "train")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(url "file:resources/public/img/trnB.gif")
+	(verticalSpeed 0.0))
+
+([PyongyangSPb_Class250027] of  Edge
+
+	(label "444687832")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.86"
+		"43 42.35 7 15.87")
+	(relative FALSE)
+	(x 7.2644)
+	(x2 7.2645144)
+	(xx
+		"7.2643999"
+		"7.2645143")
+	(y 43.70587)
+	(y2 43.70591)
+	(yy
+		"43.7058709"
+		"43.7059113"))
+
+([PyongyangSPb_Class250028] of  Edge
+
+	(label "80227546")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.34 7 15.82"
+		"43 42.34 7 15.85"
+		"43 42.35 7 15.87")
+	(relative FALSE)
+	(x 7.2637396)
+	(x2 7.2645316)
+	(xx
+		"7.2637395"
+		"7.2641006"
+		"7.2645315")
+	(y 43.705605)
+	(y2 43.70589)
+	(yy
+		"43.7056037"
+		"43.7057239"
+		"43.7058904"))
+
+([PyongyangSPb_Class250029] of  Edge
+
+	(label "257565918")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.89"
+		"43 42.35 7 15.87")
+	(relative FALSE)
+	(x 7.264775)
+	(x2 7.264546)
+	(xx
+		"7.2647749"
+		"7.2645461")
+	(y 43.70595)
+	(y2 43.705856)
+	(yy
+		"43.7059517"
+		"43.7058577"))
+
+([PyongyangSPb_Class250030] of  Edge
+
+	(label "235858182")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.35 7 15.87"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.264566)
+	(x2 7.2647815)
+	(xx
+		"7.2645658"
+		"7.2647815")
+	(y 43.70584)
+	(y2 43.705944)
+	(yy
+		"43.7058409"
+		"43.7059429"))
+
+([PyongyangSPb_Class250031] of  Edge
+
+	(label "444687840")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.34 7 15.82"
+		"43 42.34 7 15.84"
+		"43 42.35 7 15.86"
+		"43 42.35 7 15.87")
+	(relative FALSE)
+	(x 7.2637396)
+	(x2 7.264546)
+	(xx
+		"7.2637395"
+		"7.2639551"
+		"7.2643474"
+		"7.2645461")
+	(y 43.705605)
+	(y2 43.705856)
+	(yy
+		"43.7056037"
+		"43.7056677"
+		"43.7057879"
+		"43.7058577"))
+
+([PyongyangSPb_Class250032] of  CloFuncall
+
+	(source "osm.data/SERVER"))
+
+([PyongyangSPb_Class250033] of  OMTPoly
+
+	(label "bbx21758")
+	(latitude "43 42.36")
+	(lineColor "FF00AA00")
+	(longitude "7 15.89")
+	(playground-index 0)
+	(points
+		"43 42.37 7 15.88"
+		"43 42.37 7 15.9"
+		"43 42.35 7 15.9"
+		"43 42.35 7 15.88"
+		"43 42.37 7 15.88")
+	(relative FALSE))
+
+([PyongyangSPb_Class250034] of  Node
+
+	(edges
+		[PyongyangSPb_Class240021]
+		[PyongyangSPb_Class250035]
+		[PyongyangSPb_Class250036]
+		[PyongyangSPb_Class250037]
+		[PyongyangSPb_Class240025]
+		[PyongyangSPb_Class250038]
+		[PyongyangSPb_Class250039]
+		[PyongyangSPb_Class250040]
+		[PyongyangSPb_Class250041]
+		[PyongyangSPb_Class250042]
+		[PyongyangSPb_Class250043]
+		[PyongyangSPb_Class250029]
+		[PyongyangSPb_Class250030])
+	(label "N[7.2648477026918 43.70599396063109]")
+	(latitude "43 42.36")
+	(lineColor "FFFF6800")
+	(longitude "7 15.89")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2648478)
+	(y 43.705994))
+
+([PyongyangSPb_Class250035] of  Edge
+
+	(label "444855933")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.37 7 15.91"
+		"43 42.36 7 15.9")
+	(relative FALSE)
+	(x 7.265222)
+	(x2 7.2649775)
+	(xx
+		"7.2652222"
+		"7.2649775")
+	(y 43.70615)
+	(y2 43.70604)
+	(yy
+		"43.7061486"
+		"43.7060386"))
+
+([PyongyangSPb_Class250036] of  Edge
+
+	(label "315735051")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.95"
+		"43 42.38 7 15.94"
+		"43 42.38 7 15.92"
+		"43 42.36 7 15.88")
+	(relative FALSE)
+	(x 7.2658677)
+	(x2 7.264731)
+	(xx
+		"7.2658679"
+		"7.2656114"
+		"7.2652781"
+		"7.2647309")
+	(y 43.70651)
+	(y2 43.706036)
+	(yy
+		"43.7065091"
+		"43.7064013"
+		"43.7062612"
+		"43.7060358"))
+
+([PyongyangSPb_Class250037] of  Edge
+
+	(label "444855916")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.89"
+		"43 42.37 7 15.92")
+	(relative FALSE)
+	(x 7.264888)
+	(x2 7.265316)
+	(xx
+		"7.2648877"
+		"7.2653161")
+	(y 43.70605)
+	(y2 43.706226)
+	(yy
+		"43.7060496"
+		"43.7062254"))
+
+([PyongyangSPb_Class250038] of  Edge
+
+	(label "315735021")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.89"
+		"43 42.36 7 15.9")
+	(relative FALSE)
+	(x 7.2647815)
+	(x2 7.2649775)
+	(xx
+		"7.2647815"
+		"7.2649775")
+	(y 43.705944)
+	(y2 43.70604)
+	(yy
+		"43.7059429"
+		"43.7060386"))
+
+([PyongyangSPb_Class250039] of  Edge
+
+	(label "315735023")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.89"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.264762)
+	(x2 7.264888)
+	(xx
+		"7.2647617"
+		"7.2648877")
+	(y 43.70599)
+	(y2 43.70605)
+	(yy
+		"43.7059894"
+		"43.7060496"))
+
+([PyongyangSPb_Class250040] of  Edge
+
+	(label "235895153")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.87"
+		"43 42.36 7 15.88")
+	(relative FALSE)
+	(x 7.264487)
+	(x2 7.264731)
+	(xx
+		"7.2644866"
+		"7.2647309")
+	(y 43.70595)
+	(y2 43.706036)
+	(yy
+		"43.7059517"
+		"43.7060358"))
+
+([PyongyangSPb_Class250041] of  Edge
+
+	(label "315735020")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.89"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.264752)
+	(x2 7.264888)
+	(xx
+		"7.264752"
+		"7.2648877")
+	(y 43.706)
+	(y2 43.70605)
+	(yy
+		"43.7059994"
+		"43.7060496"))
+
+([PyongyangSPb_Class250042] of  Edge
+
+	(label "444855939")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.37 7 15.89"
+		"43 42.36 7 15.88")
+	(relative FALSE)
+	(x 7.264835)
+	(x2 7.264706)
+	(xx
+		"7.2648348"
+		"7.2647061")
+	(y 43.70612)
+	(y2 43.706066)
+	(yy
+		"43.7061182"
+		"43.7060678"))
+
+([PyongyangSPb_Class250043] of  Edge
+
+	(label "315735022")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.36 7 15.9"
+		"43 42.36 7 15.89")
+	(relative FALSE)
+	(x 7.2649775)
+	(x2 7.264775)
+	(xx
+		"7.2649775"
+		"7.2647749")
+	(y 43.70604)
+	(y2 43.70595)
+	(yy
+		"43.7060386"
+		"43.7059517"))
+
+([PyongyangSPb_Class250044] of  OMTPoly
+
+	(label "bbx21759")
+	(latitude "43 42.39")
+	(lineColor "FF00AA00")
+	(longitude "7 15.95")
+	(playground-index 0)
+	(points
+		"43 42.4 7 15.94"
+		"43 42.4 7 15.96"
+		"43 42.38 7 15.96"
+		"43 42.38 7 15.94"
+		"43 42.4 7 15.94")
+	(relative FALSE))
+
+([PyongyangSPb_Class250045] of  Node
+
+	(edges
+		[PyongyangSPb_Class250046]
+		[PyongyangSPb_Class250047]
+		[PyongyangSPb_Class250036]
+		[PyongyangSPb_Class250048]
+		[PyongyangSPb_Class250049]
+		[PyongyangSPb_Class250050]
+		[PyongyangSPb_Class250051]
+		[PyongyangSPb_Class250052]
+		[PyongyangSPb_Class250053]
+		[PyongyangSPb_Class250054]
+		[PyongyangSPb_Class250055])
+	(label "N[7.265843420114778 43.70649704385152]")
+	(latitude "43 42.39")
+	(lineColor "FFFF6800")
+	(longitude "7 15.95")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2658434)
+	(y 43.706497))
+
+([PyongyangSPb_Class250046] of  Edge
+
+	(label "315735164")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.4 7 15.97"
+		"43 42.4 7 15.96"
+		"43 42.39 7 15.95")
+	(relative FALSE)
+	(x 7.2661195)
+	(x2 7.2658677)
+	(xx
+		"7.2661194"
+		"7.2660136"
+		"7.2658679")
+	(y 43.706665)
+	(y2 43.70651)
+	(yy
+		"43.7066643"
+		"43.706599"
+		"43.7065091"))
+
+([PyongyangSPb_Class250047] of  Edge
+
+	(label "444826074")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.96"
+		"43 42.38 7 15.94")
+	(relative FALSE)
+	(x 7.2659197)
+	(x2 7.265663)
+	(xx
+		"7.2659199"
+		"7.2656632")
+	(y 43.70649)
+	(y2 43.706345)
+	(yy
+		"43.7064902"
+		"43.7063445"))
+
+([PyongyangSPb_Class250048] of  Edge
+
+	(label "446766962")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.95"
+		"43 42.4 7 15.97"
+		"43 42.41 7 16")
+	(relative FALSE)
+	(x 7.2658377)
+	(x2 7.2666135)
+	(xx
+		"7.2658376"
+		"7.2661194"
+		"7.2666133")
+	(y 43.706543)
+	(y2 43.706894)
+	(yy
+		"43.7065418"
+		"43.7066643"
+		"43.7068937"))
+
+([PyongyangSPb_Class250049] of  Edge
+
+	(label "444826076")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.96"
+		"43 42.41 7 16")
+	(relative FALSE)
+	(x 7.2659197)
+	(x2 7.2665834)
+	(xx
+		"7.2659199"
+		"7.2665835")
+	(y 43.70649)
+	(y2 43.706802)
+	(yy
+		"43.7064902"
+		"43.7068006"))
+
+([PyongyangSPb_Class250050] of  Edge
+
+	(label "444855932")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.4 7 15.97"
+		"43 42.39 7 15.95")
+	(relative FALSE)
+	(x 7.26615)
+	(x2 7.2658677)
+	(xx
+		"7.26615"
+		"7.2658679")
+	(y 43.706642)
+	(y2 43.70651)
+	(yy
+		"43.7066433"
+		"43.7065091"))
+
+([PyongyangSPb_Class250051] of  Edge
+
+	(label "444855931")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.95"
+		"43 42.38 7 15.94")
+	(relative FALSE)
+	(x 7.2658677)
+	(x2 7.2656455)
+	(xx
+		"7.2658679"
+		"7.2656457")
+	(y 43.70651)
+	(y2 43.706364)
+	(yy
+		"43.7065091"
+		"43.706362"))
+
+([PyongyangSPb_Class250052] of  Edge
+
+	(label "444826077")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.38 7 15.94"
+		"43 42.39 7 15.96")
+	(relative FALSE)
+	(x 7.2656455)
+	(x2 7.2659197)
+	(xx
+		"7.2656457"
+		"7.2659199")
+	(y 43.706364)
+	(y2 43.70649)
+	(yy
+		"43.706362"
+		"43.7064902"))
+
+([PyongyangSPb_Class250053] of  Edge
+
+	(label "315735052")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.95"
+		"43 42.39 7 15.94"
+		"43 42.38 7 15.92"
+		"43 42.37 7 15.9"
+		"43 42.37 7 15.89")
+	(relative FALSE)
+	(x 7.2658377)
+	(x2 7.264835)
+	(xx
+		"7.2658376"
+		"7.2655869"
+		"7.265256"
+		"7.2650012"
+		"7.2648348")
+	(y 43.706543)
+	(y2 43.70612)
+	(yy
+		"43.7065418"
+		"43.706434"
+		"43.7062923"
+		"43.7061834"
+		"43.7061182"))
+
+([PyongyangSPb_Class250054] of  Edge
+
+	(label "444826084")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.4 7 15.97"
+		"43 42.4 7 15.96"
+		"43 42.39 7 15.95")
+	(relative FALSE)
+	(x 7.26615)
+	(x2 7.2658377)
+	(xx
+		"7.26615"
+		"7.2660136"
+		"7.2658376")
+	(y 43.706642)
+	(y2 43.706543)
+	(yy
+		"43.7066433"
+		"43.706599"
+		"43.7065418"))
+
+([PyongyangSPb_Class250055] of  Edge
+
+	(label "444855941")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.95"
+		"43 42.39 7 15.93")
+	(relative FALSE)
+	(x 7.2658377)
+	(x2 7.265577)
+	(xx
+		"7.2658376"
+		"7.2655767")
+	(y 43.706543)
+	(y2 43.706467)
+	(yy
+		"43.7065418"
+		"43.7064662"))
+
+([PyongyangSPb_Class250056] of  OMTPoly
+
+	(label "bbx21760")
+	(latitude "43 42.41")
+	(lineColor "FF00AA00")
+	(longitude "7 16")
+	(playground-index 0)
+	(points
+		"43 42.42 7 15.99"
+		"43 42.42 7 16.01"
+		"43 42.4 7 16.01"
+		"43 42.4 7 15.99"
+		"43 42.42 7 15.99")
+	(relative FALSE))
+
+([PyongyangSPb_Class250057] of  Node
+
+	(edges
+		[PyongyangSPb_Class250058]
+		[PyongyangSPb_Class250059]
+		[PyongyangSPb_Class250060]
+		[PyongyangSPb_Class250061]
+		[PyongyangSPb_Class250062]
+		[PyongyangSPb_Class250048]
+		[PyongyangSPb_Class250049]
+		[PyongyangSPb_Class250063]
+		[PyongyangSPb_Class250064]
+		[PyongyangSPb_Class250065]
+		[PyongyangSPb_Class250066]
+		[PyongyangSPb_Class250067])
+	(label "N[7.266667831314447 43.70683372026382]")
+	(latitude "43 42.41")
+	(lineColor "FFFF6800")
+	(longitude "7 16")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.266668)
+	(y 43.706833))
+
+([PyongyangSPb_Class250058] of  Edge
+
+	(label "444855940")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16"
+		"43 42.4 7 15.98"
+		"43 42.4 7 15.97")
+	(relative FALSE)
+	(x 7.266638)
+	(x2 7.26615)
+	(xx
+		"7.2666379"
+		"7.2662846"
+		"7.26615")
+	(y 43.706863)
+	(y2 43.706642)
+	(yy
+		"43.7068632"
+		"43.7067052"
+		"43.7066433"))
+
+([PyongyangSPb_Class250059] of  Edge
+
+	(label "332941105")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16"
+		"43 42.41 7 16")
+	(relative FALSE)
+	(x 7.2665834)
+	(x2 7.2666607)
+	(xx
+		"7.2665835"
+		"7.2666608")
+	(y 43.706802)
+	(y2 43.706837)
+	(yy
+		"43.7068006"
+		"43.7068349"))
+
+([PyongyangSPb_Class250060] of  Edge
+
+	(label "332941107")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16"
+		"43 42.4 7 15.99"
+		"43 42.38 7 15.94")
+	(relative FALSE)
+	(x 7.266688)
+	(x2 7.265663)
+	(xx
+		"7.266688"
+		"7.2665524"
+		"7.2656632")
+	(y 43.706802)
+	(y2 43.706345)
+	(yy
+		"43.7068011"
+		"43.7067392"
+		"43.7063445"))
+
+([PyongyangSPb_Class250061] of  Edge
+
+	(label "315735047")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16.01"
+		"43 42.41 7 16")
+	(relative FALSE)
+	(x 7.266828)
+	(x2 7.266688)
+	(xx
+		"7.266828"
+		"7.266688")
+	(y 43.706863)
+	(y2 43.706802)
+	(yy
+		"43.7068639"
+		"43.7068011"))
+
+([PyongyangSPb_Class250062] of  Edge
+
+	(label "867524673")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.39 7 15.93"
+		"43 42.41 7 15.98"
+		"43 42.42 7 16")
+	(relative FALSE)
+	(x 7.265577)
+	(x2 7.2665873)
+	(xx
+		"7.2655767"
+		"7.2664105"
+		"7.2665874")
+	(y 43.706467)
+	(y2 43.706924)
+	(yy
+		"43.7064662"
+		"43.7068396"
+		"43.7069258"))
+
+([PyongyangSPb_Class250063] of  Edge
+
+	(label "315735050")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.42 7 16.01"
+		"43 42.41 7 16")
+	(relative FALSE)
+	(x 7.266781)
+	(x2 7.266638)
+	(xx
+		"7.2667808"
+		"7.2666379")
+	(y 43.706936)
+	(y2 43.706863)
+	(yy
+		"43.7069341"
+		"43.7068632"))
+
+([PyongyangSPb_Class250064] of  Edge
+
+	(label "315735053")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16"
+		"43 42.42 7 16.01")
+	(relative FALSE)
+	(x 7.2666135)
+	(x2 7.266762)
+	(xx
+		"7.2666133"
+		"7.2667618")
+	(y 43.706894)
+	(y2 43.706963)
+	(yy
+		"43.7068937"
+		"43.7069624"))
+
+([PyongyangSPb_Class250065] of  Edge
+
+	(label "444855913")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16.01"
+		"43 42.42 7 16.03")
+	(relative FALSE)
+	(x 7.2668033)
+	(x2 7.2671714)
+	(xx
+		"7.2668034"
+		"7.2671716")
+	(y 43.7069)
+	(y2 43.70706)
+	(yy
+		"43.7069005"
+		"43.7070619"))
+
+([PyongyangSPb_Class250066] of  Edge
+
+	(label "315735048")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.41 7 16"
+		"43 42.41 7 16.01")
+	(relative FALSE)
+	(x 7.2666607)
+	(x2 7.2668033)
+	(xx
+		"7.2666608"
+		"7.2668034")
+	(y 43.706837)
+	(y2 43.7069)
+	(yy
+		"43.7068349"
+		"43.7069005"))
+
+([PyongyangSPb_Class250067] of  Edge
+
+	(label "444826083")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.42 7 16"
+		"43 42.42 7 16")
+	(relative FALSE)
+	(x 7.2665873)
+	(x2 7.2667375)
+	(xx
+		"7.2665874"
+		"7.2667375")
+	(y 43.706924)
+	(y2 43.706997)
+	(yy
+		"43.7069258"
+		"43.7069985"))
+
+([PyongyangSPb_Class250068] of  OMTPoly
+
+	(label "bbx21761")
+	(latitude "43 42.42")
+	(lineColor "FF00AA00")
+	(longitude "7 16.03")
+	(playground-index 0)
+	(points
+		"43 42.43 7 16.02"
+		"43 42.43 7 16.04"
+		"43 42.41 7 16.04"
+		"43 42.41 7 16.02"
+		"43 42.43 7 16.02")
+	(relative FALSE))
+
+([PyongyangSPb_Class250069] of  Node
+
+	(edges
+		[PyongyangSPb_Class250070]
+		[PyongyangSPb_Class250065])
+	(label "N[7.267171043345415 43.70699238320485]")
+	(latitude "43 42.42")
+	(lineColor "FFFF6800")
+	(longitude "7 16.03")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.267171)
+	(y 43.706993))
+
+([PyongyangSPb_Class250070] of  Edge
+
+	(label "235895158")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.42 7 16.03"
+		"43 42.44 7 16.06"
+		"43 42.44 7 16.07")
+	(relative FALSE)
+	(x 7.2671714)
+	(x2 7.267893)
+	(xx
+		"7.2671716"
+		"7.2677293"
+		"7.267893")
+	(y 43.70706)
+	(y2 43.707336)
+	(yy
+		"43.7070619"
+		"43.7072827"
+		"43.7073375"))
+
+([PyongyangSPb_Class250071] of  OMTPoly
+
+	(label "bbx21762")
+	(latitude "43 42.44")
+	(lineColor "FF00AA00")
+	(longitude "7 16.07")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.06"
+		"43 42.45 7 16.08"
+		"43 42.43 7 16.08"
+		"43 42.43 7 16.06"
+		"43 42.45 7 16.06")
+	(relative FALSE))
+
+([PyongyangSPb_Class250072] of  Node
+
+	(edges
+		[PyongyangSPb_Class250073]
+		[PyongyangSPb_Class250074]
+		[PyongyangSPb_Class250075]
+		[PyongyangSPb_Class250076]
+		[PyongyangSPb_Class250070]
+		[PyongyangSPb_Class250077]
+		[PyongyangSPb_Class250078]
+		[PyongyangSPb_Class250079]
+		[PyongyangSPb_Class250080]
+		[PyongyangSPb_Class250081]
+		[PyongyangSPb_Class250082]
+		[PyongyangSPb_Class250083])
+	(label "N[7.26784556159969 43.70733292663584]")
+	(latitude "43 42.44")
+	(lineColor "FFFF6800")
+	(longitude "7 16.07")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2678456)
+	(y 43.707333))
+
+([PyongyangSPb_Class250073] of  Edge
+
+	(label "315735025")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.08"
+		"43 42.44 7 16.07")
+	(relative FALSE)
+	(x 7.2680426)
+	(x2 7.2678647)
+	(xx
+		"7.2680426"
+		"7.2678649")
+	(y 43.707428)
+	(y2 43.707367)
+	(yy
+		"43.7074266"
+		"43.7073663"))
+
+([PyongyangSPb_Class250074] of  Edge
+
+	(label "315735026")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.08"
+		"43 42.44 7 16.07")
+	(relative FALSE)
+	(x 7.2680597)
+	(x2 7.267881)
+	(xx
+		"7.2680596"
+		"7.267881")
+	(y 43.7074)
+	(y2 43.707355)
+	(yy
+		"43.7074002"
+		"43.7073544"))
+
+([PyongyangSPb_Class250075] of  Edge
+
+	(label "315735030")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.08"
+		"43 42.44 7 16.07")
+	(relative FALSE)
+	(x 7.268078)
+	(x2 7.26791)
+	(xx
+		"7.2680777"
+		"7.2679098")
+	(y 43.707367)
+	(y2 43.707306)
+	(yy
+		"43.7073661"
+		"43.7073075"))
+
+([PyongyangSPb_Class250076] of  Edge
+
+	(label "235893368")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.07"
+		"43 42.44 7 16.06"
+		"43 42.42 7 16.03"
+		"43 42.41 7 16.01")
+	(relative FALSE)
+	(x 7.26791)
+	(x2 7.266828)
+	(xx
+		"7.2679098"
+		"7.2677455"
+		"7.2672287"
+		"7.266828")
+	(y 43.707306)
+	(y2 43.706863)
+	(yy
+		"43.7073075"
+		"43.7072529"
+		"43.7070389"
+		"43.7068639"))
+
+([PyongyangSPb_Class250077] of  Edge
+
+	(label "315735032")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.07"
+		"43 42.44 7 16.05")
+	(relative FALSE)
+	(x 7.267881)
+	(x2 7.267537)
+	(xx
+		"7.267881"
+		"7.267537")
+	(y 43.707355)
+	(y2 43.70725)
+	(yy
+		"43.7073544"
+		"43.7072502"))
+
+([PyongyangSPb_Class250078] of  Edge
+
+	(label "315735031")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.07"
+		"43 42.44 7 16.08")
+	(relative FALSE)
+	(x 7.267893)
+	(x2 7.268064)
+	(xx
+		"7.267893"
+		"7.2680639")
+	(y 43.707336)
+	(y2 43.707394)
+	(yy
+		"43.7073375"
+		"43.7073948"))
+
+([PyongyangSPb_Class250079] of  Edge
+
+	(label "257565922")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.07"
+		"43 42.44 7 16.05")
+	(relative FALSE)
+	(x 7.2678647)
+	(x2 7.267537)
+	(xx
+		"7.2678649"
+		"7.267537")
+	(y 43.707367)
+	(y2 43.70725)
+	(yy
+		"43.7073663"
+		"43.7072502"))
+
+([PyongyangSPb_Class250080] of  Edge
+
+	(label "315735029")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.07"
+		"43 42.45 7 16.08")
+	(relative FALSE)
+	(x 7.267853)
+	(x2 7.268025)
+	(xx
+		"7.2678526"
+		"7.268025")
+	(y 43.707394)
+	(y2 43.707447)
+	(yy
+		"43.707392"
+		"43.7074484"))
+
+([PyongyangSPb_Class250081] of  Edge
+
+	(label "315735019")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.42 7 16"
+		"43 42.44 7 16.05"
+		"43 42.45 7 16.07")
+	(relative FALSE)
+	(x 7.2667375)
+	(x2 7.2678385)
+	(xx
+		"7.2667375"
+		"7.2674558"
+		"7.2678386")
+	(y 43.706997)
+	(y2 43.70742)
+	(yy
+		"43.7069985"
+		"43.7072843"
+		"43.7074212"))
+
+([PyongyangSPb_Class250082] of  Edge
+
+	(label "257565928")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.44 7 16.05"
+		"43 42.44 7 16.06"
+		"43 42.44 7 16.07")
+	(relative FALSE)
+	(x 7.26749)
+	(x2 7.267853)
+	(xx
+		"7.26749"
+		"7.2676933"
+		"7.2678526")
+	(y 43.707256)
+	(y2 43.707394)
+	(yy
+		"43.7072566"
+		"43.7073398"
+		"43.707392"))
+
+([PyongyangSPb_Class250083] of  Edge
+
+	(label "444826079")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.07"
+		"43 42.45 7 16.08")
+	(relative FALSE)
+	(x 7.2678385)
+	(x2 7.2680116)
+	(xx
+		"7.2678386"
+		"7.2680116")
+	(y 43.70742)
+	(y2 43.707474)
+	(yy
+		"43.7074212"
+		"43.7074755"))
+
+([PyongyangSPb_Class250084] of  OMTPoly
+
+	(label "bbx21763")
+	(latitude "43 42.45")
+	(lineColor "FF00AA00")
+	(longitude "7 16.08")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.07"
+		"43 42.46 7 16.09"
+		"43 42.44 7 16.09"
+		"43 42.44 7 16.07"
+		"43 42.46 7 16.07")
+	(relative FALSE))
+
+([PyongyangSPb_Class250085] of  Node
+
+	(edges
+		[PyongyangSPb_Class250086]
+		[PyongyangSPb_Class250073]
+		[PyongyangSPb_Class250080]
+		[PyongyangSPb_Class250087]
+		[PyongyangSPb_Class250083]
+		[PyongyangSPb_Class250088])
+	(label "N[7.268000807864563 43.707503197625826]")
+	(latitude "43 42.45")
+	(lineColor "FFFF6800")
+	(longitude "7 16.08")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2680006)
+	(y 43.707504))
+
+([PyongyangSPb_Class250086] of  Edge
+
+	(label "315735024")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.08"
+		"43 42.46 7 16.12")
+	(relative FALSE)
+	(x 7.268025)
+	(x2 7.2686067)
+	(xx
+		"7.268025"
+		"7.2686067")
+	(y 43.707447)
+	(y2 43.707645)
+	(yy
+		"43.7074484"
+		"43.7076444"))
+
+([PyongyangSPb_Class250087] of  Edge
+
+	(label "315735044")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.12"
+		"43 42.45 7 16.08")
+	(relative FALSE)
+	(x 7.2686305)
+	(x2 7.2680426)
+	(xx
+		"7.2686303"
+		"7.2680426")
+	(y 43.70762)
+	(y2 43.707428)
+	(yy
+		"43.7076193"
+		"43.7074266"))
+
+([PyongyangSPb_Class250088] of  Edge
+
+	(label "444826081")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.08"
+		"43 42.46 7 16.12")
+	(relative FALSE)
+	(x 7.2680116)
+	(x2 7.268591)
+	(xx
+		"7.2680116"
+		"7.268591")
+	(y 43.707474)
+	(y2 43.70767)
+	(yy
+		"43.7074755"
+		"43.7076666"))
+
+([PyongyangSPb_Class250089] of  OMTPoly
+
+	(label "bbx21764")
+	(latitude "43 42.46")
+	(lineColor "FF00AA00")
+	(longitude "7 16.12")
+	(playground-index 0)
+	(points
+		"43 42.47 7 16.11"
+		"43 42.47 7 16.13"
+		"43 42.45 7 16.13"
+		"43 42.45 7 16.11"
+		"43 42.47 7 16.11")
+	(relative FALSE))
+
+([PyongyangSPb_Class250090] of  Node
+
+	(edges
+		[PyongyangSPb_Class250091]
+		[PyongyangSPb_Class250092]
+		[PyongyangSPb_Class250086]
+		[PyongyangSPb_Class250093]
+		[PyongyangSPb_Class250094]
+		[PyongyangSPb_Class250095]
+		[PyongyangSPb_Class250096]
+		[PyongyangSPb_Class250097]
+		[PyongyangSPb_Class250098]
+		[PyongyangSPb_Class250087]
+		[PyongyangSPb_Class250088])
+	(label "N[7.268675326118838 43.70767346813212]")
+	(latitude "43 42.46")
+	(lineColor "FFFF6800")
+	(longitude "7 16.12")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2686753)
+	(y 43.707672))
+
+([PyongyangSPb_Class250091] of  Edge
+
+	(label "257565927")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.49 7 16.2"
+		"43 42.48 7 16.19"
+		"43 42.48 7 16.18"
+		"43 42.47 7 16.16"
+		"43 42.46 7 16.13")
+	(relative FALSE)
+	(x 7.2700305)
+	(x2 7.26879)
+	(xx
+		"7.2700304"
+		"7.2698732"
+		"7.269608"
+		"7.2693376"
+		"7.2687899")
+	(y 43.70816)
+	(y2 43.707672)
+	(yy
+		"43.7081598"
+		"43.7080705"
+		"43.7079576"
+		"43.7078591"
+		"43.7076718"))
+
+([PyongyangSPb_Class250092] of  Edge
+
+	(label "315735039")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.13"
+		"43 42.48 7 16.17"
+		"43 42.49 7 16.19"
+		"43 42.49 7 16.2")
+	(relative FALSE)
+	(x 7.2687707)
+	(x2 7.2700014)
+	(xx
+		"7.2687705"
+		"7.2694611"
+		"7.2698349"
+		"7.2700015")
+	(y 43.7077)
+	(y2 43.708183)
+	(yy
+		"43.7076989"
+		"43.7079382"
+		"43.7080909"
+		"43.7081816"))
+
+([PyongyangSPb_Class250093] of  Edge
+
+	(label "315735038")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.13"
+		"43 42.46 7 16.12")
+	(relative FALSE)
+	(x 7.26879)
+	(x2 7.2686305)
+	(xx
+		"7.2687899"
+		"7.2686303")
+	(y 43.707672)
+	(y2 43.70762)
+	(yy
+		"43.7076718"
+		"43.7076193"))
+
+([PyongyangSPb_Class250094] of  Edge
+
+	(label "444826080")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.12"
+		"43 42.46 7 16.13")
+	(relative FALSE)
+	(x 7.268591)
+	(x2 7.2687526)
+	(xx
+		"7.268591"
+		"7.2687526")
+	(y 43.70767)
+	(y2 43.70772)
+	(yy
+		"43.7076666"
+		"43.7077233"))
+
+([PyongyangSPb_Class250095] of  Edge
+
+	(label "444826086")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.13"
+		"43 42.48 7 16.17"
+		"43 42.49 7 16.19"
+		"43 42.49 7 16.2")
+	(relative FALSE)
+	(x 7.2687526)
+	(x2 7.269967)
+	(xx
+		"7.2687526"
+		"7.2694432"
+		"7.2698106"
+		"7.2699669")
+	(y 43.70772)
+	(y2 43.708202)
+	(yy
+		"43.7077233"
+		"43.7079674"
+		"43.7081221"
+		"43.7082026"))
+
+([PyongyangSPb_Class250096] of  Edge
+
+	(label "315735043")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.12"
+		"43 42.46 7 16.13")
+	(relative FALSE)
+	(x 7.2686553)
+	(x2 7.2688146)
+	(xx
+		"7.2686553"
+		"7.2688145")
+	(y 43.707592)
+	(y2 43.707645)
+	(yy
+		"43.7075925"
+		"43.7076457"))
+
+([PyongyangSPb_Class250097] of  Edge
+
+	(label "315735045")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.12"
+		"43 42.46 7 16.13")
+	(relative FALSE)
+	(x 7.2686067)
+	(x2 7.2687707)
+	(xx
+		"7.2686067"
+		"7.2687705")
+	(y 43.707645)
+	(y2 43.7077)
+	(yy
+		"43.7076444"
+		"43.7076989"))
+
+([PyongyangSPb_Class250098] of  Edge
+
+	(label "444826071")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.45 7 16.1"
+		"43 42.46 7 16.12")
+	(relative FALSE)
+	(x 7.26827)
+	(x2 7.2686553)
+	(xx
+		"7.2682702"
+		"7.2686553")
+	(y 43.707462)
+	(y2 43.707592)
+	(yy
+		"43.7074628"
+		"43.7075925"))
+
+([PyongyangSPb_Class250099] of  OMTPoly
+
+	(label "bbx21765")
+	(latitude "43 42.49")
+	(lineColor "FF00AA00")
+	(longitude "7 16.2")
+	(playground-index 0)
+	(points
+		"43 42.5 7 16.19"
+		"43 42.5 7 16.21"
+		"43 42.48 7 16.21"
+		"43 42.48 7 16.19"
+		"43 42.5 7 16.19")
+	(relative FALSE))
+
+([PyongyangSPb_Class250100] of  Node
+
+	(edges
+		[PyongyangSPb_Class250101]
+		[PyongyangSPb_Class250102]
+		[PyongyangSPb_Class250091]
+		[PyongyangSPb_Class250103]
+		[PyongyangSPb_Class250092]
+		[PyongyangSPb_Class250104]
+		[PyongyangSPb_Class250105]
+		[PyongyangSPb_Class250106]
+		[PyongyangSPb_Class250095]
+		[PyongyangSPb_Class250107]
+		[PyongyangSPb_Class250108])
+	(label "N[7.269997596029997 43.70817266751054]")
+	(latitude "43 42.49")
+	(lineColor "FFFF6800")
+	(longitude "7 16.2")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2699976)
+	(y 43.70817))
+
+([PyongyangSPb_Class250101] of  Edge
+
+	(label "363759396")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.47 7 16.17"
+		"43 42.48 7 16.19"
+		"43 42.49 7 16.21")
+	(relative FALSE)
+	(x 7.2694235)
+	(x2 7.2700977)
+	(xx
+		"7.2694236"
+		"7.2699089"
+		"7.2700976")
+	(y 43.70785)
+	(y2 43.708084)
+	(yy
+		"43.7078528"
+		"43.7080138"
+		"43.7080849"))
+
+([PyongyangSPb_Class250102] of  Edge
+
+	(label "257565933")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.49 7 16.2"
+		"43 42.51 7 16.24"
+		"43 42.55 7 16.33"
+		"43 42.58 7 16.43"
+		"43 42.62 7 16.59"
+		"43 42.63 7 16.62"
+		"43 42.64 7 16.65"
+		"43 42.67 7 16.7")
+	(relative FALSE)
+	(x 7.2700014)
+	(x2 7.278269)
+	(xx
+		"7.2700015"
+		"7.2707096"
+		"7.2722331"
+		"7.2738263"
+		"7.276479"
+		"7.2769994"
+		"7.2774875"
+		"7.2782688")
+	(y 43.708183)
+	(y2 43.71115)
+	(yy
+		"43.7081816"
+		"43.7085688"
+		"43.7090923"
+		"43.7096429"
+		"43.7103835"
+		"43.7105503"
+		"43.7107364"
+		"43.7111494"))
+
+([PyongyangSPb_Class250103] of  Edge
+
+	(label "23045952")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.49 7 16.2"
+		"43 42.51 7 16.25"
+		"43 42.56 7 16.38"
+		"43 42.61 7 16.59"
+		"43 42.62 7 16.68")
+	(relative FALSE)
+	(x 7.270066)
+	(x2 7.277936)
+	(xx
+		"7.2700659"
+		"7.2707568"
+		"7.2730742"
+		"7.2765802"
+		"7.2779358")
+	(y 43.708122)
+	(y2 43.710415)
+	(yy
+		"43.7081205"
+		"43.7084781"
+		"43.7092818"
+		"43.7102339"
+		"43.7104149"))
+
+([PyongyangSPb_Class250104] of  Edge
+
+	(label "315735041")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.48 7 16.21"
+		"43 42.48 7 16.2"
+		"43 42.47 7 16.18"
+		"43 42.47 7 16.17"
+		"43 42.46 7 16.13")
+	(relative FALSE)
+	(x 7.2701035)
+	(x2 7.2688384)
+	(xx
+		"7.2701033"
+		"7.2700088"
+		"7.2696561"
+		"7.2695193"
+		"7.2688382")
+	(y 43.70808)
+	(y2 43.707615)
+	(yy
+		"43.708079"
+		"43.7080331"
+		"43.7078952"
+		"43.7078426"
+		"43.7076162"))
+
+([PyongyangSPb_Class250105] of  Edge
+
+	(label "23045953")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.67 7 16.7"
+		"43 42.65 7 16.67"
+		"43 42.65 7 16.66"
+		"43 42.64 7 16.64"
+		"43 42.63 7 16.62"
+		"43 42.62 7 16.59"
+		"43 42.6 7 16.53"
+		"43 42.58 7 16.43"
+		"43 42.51 7 16.24"
+		"43 42.49 7 16.2")
+	(relative FALSE)
+	(x 7.2783)
+	(x2 7.2700305)
+	(xx
+		"7.2782998"
+		"7.2778791"
+		"7.27759"
+		"7.2773238"
+		"7.2769881"
+		"7.2764737"
+		"7.2754443"
+		"7.2738423"
+		"7.2707265"
+		"7.2700304")
+	(y 43.711132)
+	(y2 43.70816)
+	(yy
+		"43.7111303"
+		"43.7109112"
+		"43.7107526"
+		"43.7106378"
+		"43.7105132"
+		"43.7103486"
+		"43.7100631"
+		"43.7096072"
+		"43.7085265"
+		"43.7081598"))
+
+([PyongyangSPb_Class250106] of  Edge
+
+	(label "315735037")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.46 7 16.13"
+		"43 42.46 7 16.14"
+		"43 42.47 7 16.17"
+		"43 42.48 7 16.18"
+		"43 42.48 7 16.2"
+		"43 42.49 7 16.2")
+	(relative FALSE)
+	(x 7.2688146)
+	(x2 7.270066)
+	(xx
+		"7.2688145"
+		"7.2690551"
+		"7.2694236"
+		"7.2697158"
+		"7.2699693"
+		"7.2700659")
+	(y 43.707645)
+	(y2 43.708122)
+	(yy
+		"43.7076457"
+		"43.707726"
+		"43.7078528"
+		"43.7079619"
+		"43.7080708"
+		"43.7081205"))
+
+([PyongyangSPb_Class250107] of  Edge
+
+	(label "867524674")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.49 7 16.21"
+		"43 42.49 7 16.21")
+	(relative FALSE)
+	(x 7.2700977)
+	(x2 7.270178)
+	(xx
+		"7.2700976"
+		"7.270178")
+	(y 43.708084)
+	(y2 43.708115)
+	(yy
+		"43.7080849"
+		"43.7081152"))
+
+([PyongyangSPb_Class250108] of  Edge
+
+	(label "867524675")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.49 7 16.21"
+		"43 42.48 7 16.21")
+	(relative FALSE)
+	(x 7.270178)
+	(x2 7.2701035)
+	(xx
+		"7.270178"
+		"7.2701033")
+	(y 43.708115)
+	(y2 43.70808)
+	(yy
+		"43.7081152"
+		"43.708079"))
+
+([PyongyangSPb_Class250109] of  OMTPoly
+
+	(label "bbx21766")
+	(latitude "43 42.62")
+	(lineColor "FF00AA00")
+	(longitude "7 16.68")
+	(playground-index 0)
+	(points
+		"43 42.63 7 16.67"
+		"43 42.63 7 16.69"
+		"43 42.61 7 16.69"
+		"43 42.61 7 16.67"
+		"43 42.63 7 16.67")
+	(relative FALSE))
+
+([PyongyangSPb_Class250110] of  Node
+
+	(edges
+		[PyongyangSPb_Class250111]
+		[PyongyangSPb_Class250103]
+		[PyongyangSPb_Class250112]
+		[PyongyangSPb_Class250113])
+	(label "N[7.277995455330689 43.71032807756067]")
+	(latitude "43 42.62")
+	(lineColor "FFFF6800")
+	(longitude "7 16.68")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2779956)
+	(y 43.710327))
+
+([PyongyangSPb_Class250111] of  Edge
+
+	(label "4191934")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.62 7 16.68"
+		"43 42.63 7 16.69"
+		"43 42.63 7 16.71"
+		"43 42.63 7 16.73")
+	(relative FALSE)
+	(x 7.277936)
+	(x2 7.2788343)
+	(xx
+		"7.2779358"
+		"7.2782489"
+		"7.2785443"
+		"7.2788343")
+	(y 43.710415)
+	(y2 43.710453)
+	(yy
+		"43.7104149"
+		"43.7104424"
+		"43.7104557"
+		"43.7104529"))
+
+([PyongyangSPb_Class250112] of  Edge
+
+	(label "235858183")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.62 7 16.73"
+		"43 42.62 7 16.71"
+		"43 42.62 7 16.69"
+		"43 42.62 7 16.68")
+	(relative FALSE)
+	(x 7.2788305)
+	(x2 7.277951)
+	(xx
+		"7.2788307"
+		"7.2785256"
+		"7.2782372"
+		"7.277951")
+	(y 43.71038)
+	(y2 43.710335)
+	(yy
+		"43.7103815"
+		"43.710374"
+		"43.7103579"
+		"43.7103345"))
+
+([PyongyangSPb_Class250113] of  Edge
+
+	(label "235893369")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.62 7 16.68"
+		"43 42.61 7 16.6"
+		"43 42.55 7 16.39"
+		"43 42.51 7 16.25"
+		"43 42.49 7 16.21")
+	(relative FALSE)
+	(x 7.277951)
+	(x2 7.270178)
+	(xx
+		"7.277951"
+		"7.2765996"
+		"7.2731091"
+		"7.2707984"
+		"7.270178")
+	(y 43.710335)
+	(y2 43.708115)
+	(yy
+		"43.7103345"
+		"43.7101876"
+		"43.7092449"
+		"43.7084374"
+		"43.7081152"))
+
+([PyongyangSPb_Class250114] of  OMTPoly
+
+	(label "bbx21767")
+	(latitude "43 42.67")
+	(lineColor "FF00AA00")
+	(longitude "7 16.7")
+	(playground-index 0)
+	(points
+		"43 42.68 7 16.69"
+		"43 42.68 7 16.71"
+		"43 42.66 7 16.71"
+		"43 42.66 7 16.69"
+		"43 42.68 7 16.69")
+	(relative FALSE))
+
+([PyongyangSPb_Class250115] of  Node
+
+	(edges
+		[PyongyangSPb_Class250116]
+		[PyongyangSPb_Class250105]
+		[PyongyangSPb_Class250117]
+		[PyongyangSPb_Class250102])
+	(label "N[7.278316654499393 43.7111561678131]")
+	(latitude "43 42.67")
+	(lineColor "FFFF6800")
+	(longitude "7 16.7")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2783165)
+	(y 43.711155))
+
+([PyongyangSPb_Class250116] of  Edge
+
+	(label "4212588")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.7 7 16.73"
+		"43 42.69 7 16.72"
+		"43 42.68 7 16.72"
+		"43 42.68 7 16.71"
+		"43 42.67 7 16.7")
+	(relative FALSE)
+	(x 7.2788653)
+	(x2 7.2783)
+	(xx
+		"7.2788655"
+		"7.2786994"
+		"7.2785986"
+		"7.2784997"
+		"7.2782998")
+	(y 43.711613)
+	(y2 43.711132)
+	(yy
+		"43.7116132"
+		"43.7114549"
+		"43.711365"
+		"43.7112783"
+		"43.7111303"))
+
+([PyongyangSPb_Class250117] of  Edge
+
+	(label "235899948")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.67 7 16.7"
+		"43 42.68 7 16.71"
+		"43 42.68 7 16.71"
+		"43 42.69 7 16.72"
+		"43 42.7 7 16.73")
+	(relative FALSE)
+	(x 7.278269)
+	(x2 7.27883)
+	(xx
+		"7.2782688"
+		"7.2784675"
+		"7.2785718"
+		"7.2786777"
+		"7.2788301")
+	(y 43.71115)
+	(y2 43.711628)
+	(yy
+		"43.7111494"
+		"43.7112952"
+		"43.7113854"
+		"43.7114766"
+		"43.7116269"))
+
+([PyongyangSPb_Class250118] of  OMTPoly
+
+	(label "bbx21768")
+	(latitude "43 42.7")
+	(lineColor "FF00AA00")
+	(longitude "7 16.73")
+	(playground-index 0)
+	(points
+		"43 42.71 7 16.72"
+		"43 42.71 7 16.74"
+		"43 42.69 7 16.74"
+		"43 42.69 7 16.72"
+		"43 42.71 7 16.72")
+	(relative FALSE))
+
+([PyongyangSPb_Class250119] of  Node
+
+	(edges
+		[PyongyangSPb_Class250116]
+		[PyongyangSPb_Class250120]
+		[PyongyangSPb_Class250121]
+		[PyongyangSPb_Class250117])
+	(label "N[7.278835926488794 43.711659207707235]")
+	(latitude "43 42.7")
+	(lineColor "FFFF6800")
+	(longitude "7 16.73")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.278836)
+	(y 43.71166))
+
+([PyongyangSPb_Class250120] of  Edge
+
+	(label "140014425")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.71 7 16.75"
+		"43 42.7 7 16.73")
+	(relative FALSE)
+	(x 7.2790995)
+	(x2 7.2788653)
+	(xx
+		"7.2790993"
+		"7.2788655")
+	(y 43.711887)
+	(y2 43.711613)
+	(yy
+		"43.7118877"
+		"43.7116132"))
+
+([PyongyangSPb_Class250121] of  Edge
+
+	(label "235899941")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.7 7 16.73"
+		"43 42.71 7 16.74")
+	(relative FALSE)
+	(x 7.27883)
+	(x2 7.2790565)
+	(xx
+		"7.2788301"
+		"7.2790566")
+	(y 43.711628)
+	(y2 43.711906)
+	(yy
+		"43.7116269"
+		"43.7119056"))
+
+([PyongyangSPb_Class250122] of  OMTPoly
+
+	(label "bbx21769")
+	(latitude "43 42.63")
+	(lineColor "FF00AA00")
+	(longitude "7 16.73")
+	(playground-index 0)
+	(points
+		"43 42.64 7 16.72"
+		"43 42.64 7 16.74"
+		"43 42.62 7 16.74"
+		"43 42.62 7 16.72"
+		"43 42.64 7 16.72")
+	(relative FALSE))
+
+([PyongyangSPb_Class250123] of  Node
+
+	(edges
+		[PyongyangSPb_Class250111]
+		[PyongyangSPb_Class250124])
+	(label "N[7.278835926488794 43.71050607923449]")
+	(latitude "43 42.63")
+	(lineColor "FFFF6800")
+	(longitude "7 16.73")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.278836)
+	(y 43.710506))
+
+([PyongyangSPb_Class250124] of  Edge
+
+	(label "140014431")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.63 7 16.73"
+		"43 42.63 7 16.75")
+	(relative FALSE)
+	(x 7.2788343)
+	(x2 7.2791157)
+	(xx
+		"7.2788343"
+		"7.2791155")
+	(y 43.710453)
+	(y2 43.71044)
+	(yy
+		"43.7104529"
+		"43.7104434"))
+
+([PyongyangSPb_Class250125] of  OMTPoly
+
+	(label "bbx21770")
+	(latitude "43 42.71")
+	(lineColor "FF00AA00")
+	(longitude "7 16.75")
+	(playground-index 0)
+	(points
+		"43 42.72 7 16.74"
+		"43 42.72 7 16.76"
+		"43 42.7 7 16.76"
+		"43 42.7 7 16.74"
+		"43 42.72 7 16.74")
+	(relative FALSE))
+
+([PyongyangSPb_Class250126] of  Node
+
+	(edges
+		[PyongyangSPb_Class250120]
+		[PyongyangSPb_Class250127]
+		[PyongyangSPb_Class250121]
+		[PyongyangSPb_Class250128])
+	(label "N[7.2791624789769775 43.7118255968968]")
+	(latitude "43 42.71")
+	(lineColor "FFFF6800")
+	(longitude "7 16.75")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.2791624)
+	(y 43.711826))
+
+([PyongyangSPb_Class250127] of  Edge
+
+	(label "140014427")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.84 7 16.93"
+		"43 42.83 7 16.9"
+		"43 42.82 7 16.87"
+		"43 42.81 7 16.84"
+		"43 42.8 7 16.82"
+		"43 42.79 7 16.81"
+		"43 42.78 7 16.79"
+		"43 42.76 7 16.78"
+		"43 42.73 7 16.76"
+		"43 42.71 7 16.75")
+	(relative FALSE)
+	(x 7.282124)
+	(x2 7.2790995)
+	(xx
+		"7.2821242"
+		"7.2816554"
+		"7.2811167"
+		"7.2807125"
+		"7.280387"
+		"7.2800973"
+		"7.2798918"
+		"7.2796543"
+		"7.2793557"
+		"7.2790993")
+	(y 43.71403)
+	(y2 43.711887)
+	(yy
+		"43.7140298"
+		"43.7139054"
+		"43.7137406"
+		"43.7135487"
+		"43.7133579"
+		"43.7131419"
+		"43.7129569"
+		"43.712677"
+		"43.7122402"
+		"43.7118877"))
+
+([PyongyangSPb_Class250128] of  Edge
+
+	(label "235899946")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.71 7 16.74"
+		"43 42.74 7 16.76"
+		"43 42.76 7 16.78"
+		"43 42.78 7 16.79"
+		"43 42.79 7 16.8"
+		"43 42.8 7 16.82"
+		"43 42.81 7 16.84"
+		"43 42.83 7 16.87"
+		"43 42.84 7 16.9"
+		"43 42.84 7 16.93")
+	(relative FALSE)
+	(x 7.2790565)
+	(x2 7.2821035)
+	(xx
+		"7.2790566"
+		"7.2793053"
+		"7.2796074"
+		"7.2798461"
+		"7.2800611"
+		"7.2803569"
+		"7.2806857"
+		"7.2810924"
+		"7.2816301"
+		"7.2821035")
+	(y 43.711906)
+	(y2 43.714066)
+	(yy
+		"43.7119056"
+		"43.7122571"
+		"43.7126865"
+		"43.7129716"
+		"43.7131675"
+		"43.7133872"
+		"43.7135749"
+		"43.7137687"
+		"43.7139438"
+		"43.7140673"))
+
+([PyongyangSPb_Class250129] of  OMTPoly
+
+	(label "bbx21771")
+	(latitude "43 42.63")
+	(lineColor "FF00AA00")
+	(longitude "7 16.75")
+	(playground-index 0)
+	(points
+		"43 42.64 7 16.74"
+		"43 42.64 7 16.76"
+		"43 42.62 7 16.76"
+		"43 42.62 7 16.74"
+		"43 42.64 7 16.74")
+	(relative FALSE))
+
+([PyongyangSPb_Class250130] of  Node
+
+	(edges
+		[PyongyangSPb_Class250124]
+		[PyongyangSPb_Class250131])
+	(label "N[7.279183892254891 43.71049447044581]")
+	(latitude "43 42.63")
+	(lineColor "FFFF6800")
+	(longitude "7 16.75")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.279184)
+	(y 43.710495))
+
+([PyongyangSPb_Class250131] of  Edge
+
+	(label "140014432")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 42.63 7 16.75"
+		"43 42.63 7 16.76"
+		"43 42.62 7 16.78"
+		"43 42.62 7 16.82"
+		"43 42.61 7 16.86")
+	(relative FALSE)
+	(x 7.2791157)
+	(x2 7.2809896)
+	(xx
+		"7.2791155"
+		"7.2793959"
+		"7.2797098"
+		"7.280357"
+		"7.2809895")
+	(y 43.71044)
+	(y2 43.71019)
+	(yy
+		"43.7104434"
+		"43.7104223"
+		"43.7103895"
+		"43.710293"
+		"43.71019"))
+
+([PyongyangSPb_Class3] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "FFFFCC99")
+	(label "rusrails")
+	(lineColor "ff000000")
+	(prettyName "Russian Railroads")
+	(shapeFile "data/shape/RUS_rrd/RUS_rails.shp")
+	(spatialIndex "data/shape/RUS_rrd/RUS_rails.shx"))
+
+([PyongyangSPb_Class30000] of  ImageDoc
+
+	(source "file:doc/images/FromGoal.jpg")
+	(title "Graph2"))
+
+([PyongyangSPb_Class300000] of  CloVar
+
+	(source "(volatile! 0)")
+	(title "CYCLES"))
+
+([PyongyangSPb_Class30039] of  Railroad
+
+	(from1 "Khabarovsk")
+	(to1 "Ussuriisk"))
+
+([PyongyangSPb_Class5] of  RoadControl
+
+	(but-add "Mode Add/osm.data/mode-add")
+	(but-clear "Clear/osm.data/clear-path")
+	(but-cre "Create Road/osm.data/create-road")
+	(but-hide-roads "Hide Roads/osm.data/hide-roads")
+	(but-rem "Mode Remove/osm.data/mode-remove")
+	(but-show-roads "Show Existing Roads/osm.data/show-roads")
+	(radius 1.0E-4)
+	(road-subclass Railroad)
+	(server RUSSIAN)
+	(status "CLEAR")
+	(tagvalue
+		[PyongyangSPb_Class10]
+		[BrigBern_Class80016]
+		[OSMRoads_Class40001]
+		[BrigBern_Class80017]
+		[BrigBern_Class90003]
+		[OSMRoads_Class10001]
+		[OSMRoads_Class20142]
+		[OSMRoads_Class60003]
+		[OSMRoads_Class70000]
+		[OSMRoads_Class100006])
+	(title "Europe Roads Control"))
+
+([PyongyangSPb_Class60000] of  CloVar
+
+	(source "(volatile! [])")
+	(title "PATHS"))
+
+([PyongyangSPb_Class60001] of  CloProgram
+
+	(cloNamespace [Clojure_Class300001])
+	(title "CW"))
+
+([PyongyangSPb_Class60002] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[Clojure_Class340000]
+		[RuleEngine_Class30000]
+		[PyongyangSPb_Class50010]
+		[BrigBern_Class7]
+		[PyongyangSPb_Class100000])
+	(title "PyongyangSPb Programs"))
+
+([PyongyangSPb_Class80001] of  CloVar
+
+	(source "0.0005")
+	(title "JOINT-RAD"))
+
+([PyongyangSPb_Class90000] of  OMTPoly
+
+	(label "bbx10264")
+	(latitude "48 5.35")
+	(lineColor "FF00AA00")
+	(longitude "135 6.62")
+	(playground-index 0)
+	(points
+		"48 5.36 135 6.62"
+		"48 5.36 135 6.63"
+		"48 5.35 135 6.63"
+		"48 5.35 135 6.62"
+		"48 5.36 135 6.62")
+	(relative FALSE))
+
+([PyongyangSPb_Class90001] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(facts
+		[PyongyangSPb_Class180001]
+		[PyongyangSPb_Class290000])
+	(mode step)
+	(rule-sets [PyongyangSPb_Class40016])
+	(steps 10)
+	(title "OSMPathRun"))

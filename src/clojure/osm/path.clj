@@ -152,3 +152,9 @@
 (defn observe [p rad]
   (map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE)))
 
+(defn select-connecting-edges[n1 n2]
+  (let [e1 (svs n1 "edges")
+       e2 (svs n2 "edges")
+       e3 (clojure.set/difference (set e1) (set e2))]
+  e3))
+

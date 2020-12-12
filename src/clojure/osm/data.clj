@@ -23,19 +23,7 @@
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
 (def MODE nil)
-(def RMMA (do (declare add-way remove-way mk-node)
-  (let [rmma (proxy [RuMapMouseAdapter] []
-	(mouseLeftButtonAction [mo llp runa]
-                            (println MODE mo (seq llp) (.getName runa))
-	  (condp = MODE
-	    'ADD (add-way llp)
-	    'REMOVE (remove-way mo)
-                              'NODES (mk-node (reverse llp))
-	    (println (or (if mo (.getName mo)) (seq llp))))
-	  true))
-         pgs (seq (OMT/getPlaygrounds))]
-    (.setRuMapMouseAdapter (first pgs) rmma)
-    rmma)))
+(def RMMA nil)
 (def RADIUS ;; 50 meters
 0.0005)
 (def W-COLOR "FFFF0000")
@@ -196,78 +184,6 @@
         (def PATH (vec (filter #(not= (str (first (second %))) id) PATH)))
         (println "Removed from PATH way" id "," "remains" (count PATH)))))))
 
-(defn set-mouse-adapter []
-  (let [rmma (proxy [RuMapMouseAdapter] []
-	(mouseLeftButtonAction [mo llp runa]
-                        (println MODE mo llp runa)
-	  (condp = MODE
-	    'ADD (add-way llp)
-	    'REMOVE (remove-way mo)
-	    (println (or (if mo (.getName mo)) (seq llp))))
-	  true))
-       pgs (seq (OMT/getPlaygrounds))]
-  (.setRuMapMouseAdapter (first pgs) rmma)
-  rmma))
-
-(defn mode-add [hm inst]
-  (if (not RMMA)
-  (set-mouse-adapter))
-(let [mp (into {} hm)
-       sel (seq (selection mp "tagvalue"))]
-  (if (empty? sel)
-    (ssv inst "status" "Select tagvalue for ways!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))
-          srv (SRV-MAP (sv inst "server"))]
-      (set-server srv)
-      (def WAY-TYPE wt)
-      (def WAY-SUBTYPE wst)
-      (def MODE 'ADD)
-      (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE ADD")
-      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
-
-(defn mode-remove [hm inst]
-  (if (= MODE 'ADD)
-  (do (def MODE 'REMOVE)
-    (ssv inst "status" "MODE REMOVE"))
-  (ssv inst "status" "Add ways before")))
-
-(defn clear-path [hm inst]
-  (def PATH [])
-(ssv inst "status" "CLEAR"))
-
-(defn create-road [hm inst]
-  (if (not (empty? PATH))
-  (let [mp (into {} hm)
-         ri (crin (mp "road-subclass"))]
-    (ssv ri "from1" (mp "from1"))
-    (ssv ri "to1" (mp "to1"))
-    (ssvs ri "dirways" (map create-dirway PATH))
-    (.show *prj* ri)
-    (def MODE 'CREATE)
-    (ssv inst "status" (str "MODE CREATE, in PATH " (count PATH) " ways.")))
-  (ssv inst "status" "Add ways before!")))
-
-(defn delete-unref [cls]
-  (doseq [ins (cls-instances cls)]
-  (when (unref ins)
-    (delin ins)
-    (print ".")))
-(println))
-
-(defn find-unref [cls]
-  (doseq [ins (cls-instances cls)]
-  (if (unref ins)
-    (.show *prj* ins))))
-
-(defn show-roads [hm inst]
-  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
-  (doseq [rd sel]
-    (doseq [dw (svs rd "dirways")]
-       (-> (sv dw "way")
-         (sv "poly")
-         OMT/getOrAdd)))))
-
 (defn hide-roads [hm inst]
   (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
   (doseq [rd sel]
@@ -276,6 +192,9 @@
          (-> (sv dw "way")
            (sv "poly"))
          false)))))
+
+(defn in-bbx [[y x] [w s e n]]
+  (and (> x w) (> y s) (< x e) (< x n)))
 
 (defn show-bbx
   ([id [clat clon] rad]
@@ -291,14 +210,11 @@
        poi (foc "OMTPoly" "label" id)]
     (ssv poi "latitude" clat)
     (ssv poi "longitude" clon)
-    (ssv poi "lineColor" "FF325928")
+    (ssv poi "lineColor" "FF00AA00")
     ;; (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" pts)
     (OMT/getOrAdd poi)
     poi)))
-
-(defn in-bbx [[y x] [w s e n]]
-  (and (> x w) (> y s) (< x e) (< x n)))
 
 (defn find-elements-with-beg-or-end-in-bbx
   ([[x y]]
@@ -354,7 +270,7 @@
     (ssv noi "y" (float y)) 
     (ssv noi "latitude" (MapOb/getDegMin y))
     (ssv noi "longitude" (MapOb/getDegMin x))
-    (ssv noi "lineColor" "FF00AA00")
+    (ssv noi "lineColor" "FFFF6800")
     (ssv noi "point-radius" (int 6))
     (ssv noi "oval" true)
     (ssvs noi "edges" egs)
@@ -362,8 +278,22 @@
     (println "Created Node from" (count egs) "edges.")
     noi)))
 
+(defn set-mouse-adapter []
+  (let [rmma (proxy [RuMapMouseAdapter] []
+	(mouseLeftButtonAction [mo llp runa]
+                            (println MODE mo (seq llp) (.getName runa))
+	  (condp = MODE
+	    'ADD (add-way llp)
+	    'REMOVE (remove-way mo)
+                          'NODES (mk-node (reverse llp))
+	    (println (or (if mo (.getName mo)) (seq llp))))
+	  true))
+       pgs (seq (OMT/getPlaygrounds))]
+  (.setRuMapMouseAdapter (first pgs) rmma)
+  rmma))
+
 (defn mode-nodes [hm inst]
-  (if (not RMMA)
+  (if (nil? RMMA)
   (set-mouse-adapter))
 (let [mp (into {} hm)
        sel (seq (selection mp "tagvalue"))]
@@ -378,4 +308,63 @@
       (def RADIUS (sv inst "radius"))
       (ssv inst "status" "MODE NODES")
       (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+
+(defn mode-add [hm inst]
+  (if (nil? RMMA)
+  (set-mouse-adapter))
+(let [mp (into {} hm)
+       sel (seq (selection mp "tagvalue"))]
+  (if (empty? sel)
+    (ssv inst "status" "Select tagvalue for ways!")
+    (let [[wt wst] (read-string (sv (first sel) "value"))
+          srv (SRV-MAP (sv inst "server"))]
+      (set-server srv)
+      (def WAY-TYPE wt)
+      (def WAY-SUBTYPE wst)
+      (def MODE 'ADD)
+      (def RADIUS (sv inst "radius"))
+      (ssv inst "status" "MODE ADD")
+      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+
+(defn mode-remove [hm inst]
+  (if (= MODE 'ADD)
+  (do (def MODE 'REMOVE)
+    (ssv inst "status" "MODE REMOVE"))
+  (ssv inst "status" "Add ways before")))
+
+(defn clear-path [hm inst]
+  (def PATH [])
+(ssv inst "status" "CLEAR"))
+
+(defn show-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (-> (sv dw "way")
+         (sv "poly")
+         OMT/getOrAdd)))))
+
+(defn create-road [hm inst]
+  (if (not (empty? PATH))
+  (let [mp (into {} hm)
+         ri (crin (mp "road-subclass"))]
+    (ssv ri "from1" (mp "from1"))
+    (ssv ri "to1" (mp "to1"))
+    (ssvs ri "dirways" (map create-dirway PATH))
+    (.show *prj* ri)
+    (def MODE 'CREATE)
+    (ssv inst "status" (str "MODE CREATE, in PATH " (count PATH) " ways.")))
+  (ssv inst "status" "Add ways before!")))
+
+(defn delete-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (when (unref ins)
+    (delin ins)
+    (print ".")))
+(println))
+
+(defn find-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (if (unref ins)
+    (.show *prj* ins))))
 

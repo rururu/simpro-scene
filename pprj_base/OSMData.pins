@@ -1,4 +1,4 @@
-; Fri Dec 11 20:43:04 MSK 2020
+; Sat Dec 12 20:30:43 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -110,7 +110,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo llp runa)\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                          'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class40000] of  CloFunction
@@ -130,7 +130,7 @@
 
 ([BrigBern_Class40005] of  CloFunction
 
-	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for ways!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'ADD)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE ADD\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
+	(source "(if (nil? RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for ways!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'ADD)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE ADD\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
 	(title "mode-add [hm inst]"))
 
 ([BrigBern_Class40006] of  CloFunction
@@ -140,7 +140,7 @@
 
 ([BrigBern_Class40008] of  CloVar
 
-	(source "(do (declare add-way remove-way mk-node)\n  (let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                              'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n         pgs (seq (OMT/getPlaygrounds))]\n    (.setRuMapMouseAdapter (first pgs) rmma)\n    rmma))")
+	(source "nil")
 	(title "RMMA"))
 
 ([BrigBern_Class40011] of  CloVar
@@ -201,23 +201,23 @@
 		[BrigBern_Class40000]
 		[BrigBern_Class40012]
 		[BrigBern_Class40013]
-		[BrigBern_Class30000]
-		[BrigBern_Class40005]
-		[BrigBern_Class40006]
-		[BrigBern_Class130280]
-		[BrigBern_Class60118]
-		[BrigBern_Class130319]
-		[BrigBern_Class130330]
-		[OSMRoads_Class10002]
 		[OSMRoads_Class10005]
-		[OSMData_Class10011]
 		[OSMData_Class30016]
+		[OSMData_Class10011]
 		[OSMData_Class10012]
 		[OSMData_Class10027]
 		[OSMData_Class10028]
 		[OSMData_Class20004]
 		[OSMData_Class20003]
-		[OSMData_Class30034])
+		[BrigBern_Class30000]
+		[OSMData_Class30034]
+		[BrigBern_Class40005]
+		[BrigBern_Class40006]
+		[BrigBern_Class130280]
+		[OSMRoads_Class10002]
+		[BrigBern_Class60118]
+		[BrigBern_Class130319]
+		[BrigBern_Class130330])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
 		[OSMData_Class30005]
@@ -273,7 +273,7 @@
 
 ([OSMData_Class10011] of  CloFunction
 
-	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF325928\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
+	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF00AA00\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
 	(title "show-bbx"))
 
 ([OSMData_Class10012] of  CloFunction
@@ -312,7 +312,7 @@
 
 ([OSMData_Class20003] of  CloFunction
 
-	(source "(if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]\n  (let [egs (map mk-edge sgs)\n         noi (foc \"Node\" \"label\" (str \"N\" [x y]))]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FF00AA00\")\n    (ssv noi \"point-radius\" (int 6))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (OMT/getOrAdd noi)\n    (println \"Created Node from\" (count egs) \"edges.\")\n    noi))")
+	(source "(if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]\n  (let [egs (map mk-edge sgs)\n         noi (foc \"Node\" \"label\" (str \"N\" [x y]))]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FFFF6800\")\n    (ssv noi \"point-radius\" (int 6))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (OMT/getOrAdd noi)\n    (println \"Created Node from\" (count egs) \"edges.\")\n    noi))")
 	(title "mk-node [[x y]]"))
 
 ([OSMData_Class20004] of  CloFunction
@@ -337,7 +337,7 @@
 
 ([OSMData_Class30034] of  CloFunction
 
-	(source "(if (not RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for nodes!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'NODES)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE NODES\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
+	(source "(if (nil? RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for nodes!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'NODES)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE NODES\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
 	(title "mode-nodes [hm inst]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
