@@ -1,29 +1,37 @@
-(ns osm.data
+(ns osm.onto
 (:use protege.core) 
 (:require
-   [clojure.data.json :as json])
+  [osm.func :as f])
 (:import
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT
   ru.igis.omtab.OMTPoly
   ru.igis.omtab.gui.RuMapMouseAdapter
   edu.stanford.smi.protege.ui.DisplayUtilities))
-(def OSM-DATA (volatile! []))
-(def WAY-TYPE "railway")
-(def WAY-SUBTYPE "rail")
-(def MODE nil)
-(def RMMA nil)
+(def KIND "way")
+(def KIND-TYPE "railway")
+(def KIND-SUBTYPE "rail")
 (def RADIUS ;; 50 meters
 0.0005)
-(def W-COLOR "FFFF0000")
-(def F "FORWARD")
-(def B "BACKWARD")
-(def PATH [])
-(def SHOW true)
+(def defonceMODE (defonce MODE nil))
+(def defoncePATH (defonce PATH []))
+(def defonceRMMA (defonce RMMA nil))
 (defn unref [inst]
   (< (count (.getReferences inst)) 2))
 
-(defn create-line [[id pts]]
+(defn find-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (if (unref ins)
+    (.show *prj* ins))))
+
+(defn delete-unref [cls]
+  (doseq [ins (cls-instances cls)]
+  (when (unref ins)
+    (delin ins)
+    (print ".")))
+(println))
+
+(defn create-line [[id pts] clr]
   (let [id (str id)
        [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
        [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
@@ -32,7 +40,7 @@
     (ssv poi "description" id)
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
-    (ssv poi "lineColor" W-COLOR)
+    (ssv poi "lineColor" clr)
     (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
     (OMT/getOrAdd poi)
@@ -47,27 +55,57 @@
   (ssv dw "way" way)
   dw))
 
+(defn get-control-center []
+  (fainst "RoadControl" nil))
+
+(defn get-kind []
+  (or (sv (get-control-center) "kind") KIND))
+
+(defn get-kind-type []
+  (if-let [tvi (sv (get-control-center) "tagvalue")]
+  (first (read-string (sv tvi "value")))
+  KIND-TYPE))
+
+(defn get-kind-subtype []
+  (if-let [tvi (sv (get-control-center) "tagvalue")]
+  (second (read-string (sv tvi "value")))
+  KIND-SUBTYPE))
+
+(defn get-radius []
+  (or (sv (get-control-center) "radius") RADIUS))
+
+(defn get-server []
+  (if-let [srv (sv (get-control-center) "server")]
+  (f/SRV-MAP srv)
+  f/SERVER))
+
+(defn is-show? []
+  (is? (sv (get-control-center) "show")))
+
 (defn add-way [llp]
   (println :MODE MODE)
-(get-way-data (seq llp) RADIUS WAY-TYPE)
-(if (nil? @OSM-DATA)
-  (println :NO-DATA)
-  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]
-    (if (empty? ipss)
-      (println "Try in other location..")
-      (if (empty? PATH)
-        (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))
-          (println "Initial" (count PATH) "ways.."))
-        (let [[ldir lips llin] (last PATH)
-               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]
-          (if (nil? short)
-            (println "No continuation!")
-            (let [lin (create-line ips)]
-              (def PATH         
-                (if (= (count PATH) 1)
-                  [[ld lips llin] [nd ips lin]]
-                  (conj PATH [nd ips lin])))
-              (println "In PATH" (count PATH) "ways..")))) )))))
+(let [k (get-kind)
+       kt (get-kind-type)
+       kst (get-kind-subtype)
+       data (f/get-osm-data (seq llp) (get-radius) k kt)]
+  (if (nil? data)
+    (println :NO-DATA)
+    (let [ipss (f/filter-data data k kt kst)]
+      (if (empty? ipss)
+        (println "Try in other location..")
+        (if (empty? PATH)
+          (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))
+            (println "Initial" (count PATH) "ways.."))
+          (let [[ldir lips llin] (last PATH)
+                 [sdi [ld nd] ips :as short] (f/nearest-to lips ipss)]
+            (if (nil? short)
+              (println "No continuation!")
+              (let [lin (create-line ips)]
+                (def PATH         
+                  (if (= (count PATH) 1)
+                    [[ld lips llin] [nd ips lin]]
+                    (conj PATH [nd ips lin])))
+                (println "In PATH" (count PATH) "ways..")))) ) )))))
 
 (defn remove-way [mo]
   (println :MODE MODE)
@@ -124,12 +162,12 @@
   (ssv egi "latitude" "0 0")
   (ssv egi "longitude" "0 0")
   (ssv egi "lineColor" "FFFF6800")
-  (if SHOW
+  (if (is-show?)
     (OMT/getOrAdd egi))
   egi))
 
 (defn mk-node [[x y]]
-  (if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]
+  (if-let [sgs (f/lines-with-beg-or-end-in-bbx [x y]))]
   (let [egs (map mk-edge sgs)
          noi (foc "Node" "label" (str "N" [x y]))]
     (ssv noi "x" (float x)) 
@@ -140,7 +178,7 @@
     (ssv noi "point-radius" (int 6))
     (ssv noi "oval" true)
     (ssvs noi "edges" egs)
-    (when SHOW
+    (when (is-show?)
       (OMT/getOrAdd noi)
       (println "Created Node from" (count egs) "edges."))
     noi)))
@@ -148,11 +186,11 @@
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                        (println MODE mo (seq llp) (.getName runa))
+                            (println MODE mo (seq llp) (.getName runa))
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
-                          'NODES (mk-node (reverse llp))
+                              'NODES (mk-node (reverse llp))
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
@@ -161,37 +199,31 @@
 
 (defn mode-nodes [hm inst]
   (if (nil? RMMA)
-  (set-mouse-adapter))
-(let [mp (into {} hm)
-       sel (seq (selection mp "tagvalue"))]
-  (if (empty? sel)
-    (ssv inst "status" "Select tagvalue for nodes!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))
-          srv (SRV-MAP (sv inst "server"))]
-      (set-server srv)
-      (def WAY-TYPE wt)
-      (def WAY-SUBTYPE wst)
-      (def MODE 'NODES)
-      (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE NODES")
-      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+  (def RMMA (set-mouse-adapter)))
+(let [srv (get-server)]
+  (set-server srv)
+  (def MODE 'NODES)
+  (ssv inst "status" (str "MODE " MODE))
+  (println 
+    :MODE MODE 
+    :SERVER srv
+    :KIND (get-kind)
+    :TAGS (get-kind-type) (get-kind-subtype) 
+    :RADIUS (get-radius))))
 
 (defn mode-add [hm inst]
   (if (nil? RMMA)
-  (set-mouse-adapter))
-(let [mp (into {} hm)
-       sel (seq (selection mp "tagvalue"))]
-  (if (empty? sel)
-    (ssv inst "status" "Select tagvalue for ways!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))
-          srv (SRV-MAP (sv inst "server"))]
-      (set-server srv)
-      (def WAY-TYPE wt)
-      (def WAY-SUBTYPE wst)
-      (def MODE 'ADD)
-      (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE ADD")
-      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+  (def RMMA (set-mouse-adapter)))
+(let [srv (get-server)]
+  (set-server srv)
+  (def MODE 'ADD)
+  (ssv inst "status" (str "MODE " MODE))
+  (println 
+    :MODE MODE 
+    :SERVER srv
+    :KIND (get-kind)
+    :TAGS (get-kind-type) (get-kind-subtype) 
+    :RADIUS (get-radius))))
 
 (defn mode-remove [hm inst]
   (if (= MODE 'ADD)
@@ -223,32 +255,19 @@
     (ssv inst "status" (str "MODE CREATE, in PATH " (count PATH) " ways.")))
   (ssv inst "status" "Add ways before!")))
 
-(defn delete-unref [cls]
-  (doseq [ins (cls-instances cls)]
-  (when (unref ins)
-    (delin ins)
-    (print ".")))
-(println))
-
-(defn find-unref [cls]
-  (doseq [ins (cls-instances cls)]
-  (if (unref ins)
-    (.show *prj* ins))))
-
-(defn connected-nodes
-  ([hm inst]
-  (if-let [n1 (sv inst "node")]
-    (ssvs inst "nodes" (connected-nodes n1))
-    (println "Fill node slot!")))
-([n1]
+(defn star-points [noi]
   (letfn [(far-end [p1 e]
              (let [p [(sv e "x") (sv e "y")]
                     p2 [(sv e "x2") (sv e "y2")]]
                 (if (> (simple-dist p1 p) (simple-dist p1 p2))
                   p1
                   p2)))]
-    (let [p1 [(sv n1 "x") (sv n1 "y")]
-          egs (svs n1 "edges")
-          pts (map #(far-end p1 %) egs)]
-      (map mk-node pts)))))
+  (let [p1 [(sv noi "x") (sv noi "y")]
+         egs (svs noi "edges")]
+    (map #(far-end p1 %) egs))))
+
+(defn connected-nodes [hm inst]
+  (if-let [noi (sv inst "node")]
+  (ssvs inst "nodes" (map mk-node (star-points noi))
+  (println "Fill node slot!")))
 

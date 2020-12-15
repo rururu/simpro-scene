@@ -1,4 +1,4 @@
-; Sat Dec 12 20:30:43 MSK 2020
+; Tue Dec 15 20:05:08 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,7 +13,12 @@
 		(create-accessor read-write))
 	(single-slot but-show-node
 		(type STRING)
-;+		(value "Show/osm.data/show-mapob")
+;+		(value "Show/osm.data/show-node")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot node
+		(type INSTANCE)
+;+		(allowed-classes Node)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot from1
@@ -27,7 +32,7 @@
 		(create-accessor read-write))
 	(single-slot but-hide-node
 		(type STRING)
-;+		(value "Hide/osm.data/hide-mapob")
+;+		(value "Hide/osm.data/hide-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-hide-roads
@@ -42,6 +47,10 @@
 		(create-accessor read-write))
 	(multislot but-onboard
 ;+		(type ANY)
+		(create-accessor read-write))
+	(multislot nodes
+		(type INSTANCE)
+;+		(allowed-classes Node)
 		(create-accessor read-write))
 	(single-slot x
 		(type FLOAT)
@@ -76,6 +85,12 @@
 		(create-accessor read-write))
 	(single-slot y2
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot show
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot xx
@@ -115,6 +130,17 @@
 		(default KUMI)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot kind
+		(type SYMBOL)
+		(allowed-values way node rel)
+		(default way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-conn-nodes
+		(type STRING)
+;+		(value "Connected Nodes/osm.data/connected-nodes")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot but-stop-serv
 ;+		(type ANY)
 		(create-accessor read-write))
@@ -131,9 +157,10 @@
 ;+		(value "Mode Nodes/osm.data/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot tagvalue
+	(single-slot tagvalue
 		(type INSTANCE)
 ;+		(allowed-classes Tagvalue)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass OSM+Onto
@@ -181,10 +208,21 @@
 		(default "Hide Roads/osm.data/hide-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot kind
+		(type SYMBOL)
+		(allowed-values way node rel)
+		(default way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot server
 		(type SYMBOL)
 		(allowed-values KUMI MAIN RUSSIAN FRENCH TAIWAN)
 		(default KUMI)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-conn-nodes
+		(type STRING)
+;+		(value "Connected Nodes/osm.data/connected-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road-subclass
@@ -200,14 +238,21 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot show
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-nodes
 		(type STRING)
 ;+		(value "Mode Nodes/osm.data/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot tagvalue
+	(single-slot tagvalue
 		(type INSTANCE)
 ;+		(allowed-classes Tagvalue)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
@@ -223,6 +268,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot nodes
+		(type INSTANCE)
+;+		(allowed-classes Node)
+		(create-accessor read-write))
 	(single-slot but-rem
 		(type STRING)
 		(default "Mode Remove/osm.data/mode-remove")
@@ -231,6 +280,11 @@
 	(single-slot but-add
 		(type STRING)
 		(default "Mode Add/osm.data/mode-add")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot node
+		(type INSTANCE)
+;+		(allowed-classes Node)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -331,12 +385,12 @@
 		(create-accessor read-write))
 	(single-slot but-hide-node
 		(type STRING)
-;+		(value "Hide/osm.data/hide-mapob")
+;+		(value "Hide/osm.data/hide-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-show-node
 		(type STRING)
-;+		(value "Show/osm.data/show-mapob")
+;+		(value "Show/osm.data/show-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot edges

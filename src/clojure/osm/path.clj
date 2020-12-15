@@ -16,10 +16,10 @@
 (def CYCLES (volatile! 0))
 (def PATHS (volatile! []))
 (defn simple-dist [[y1 x1] [y2 x2]]
-  ;;(let [sx (Math/abs (- x1 x2))
-;;       sy (Math/abs (- y1 y2))]
-;;  (Math/sqrt (+ (* sx sx) (* sy sy))))
-(MapOb/distanceNM y1 x1 y2 x2))
+  ;;(MapOb/distanceNM y1 x1 y2 x2)
+(let [sx (Math/abs (- x1 x2))
+       sy (Math/abs (- y1 y2))]
+  (Math/sqrt (+ (* sx sx) (* sy sy)))))
 
 (defn create-bbx
   ([id [clat clon] rad]
@@ -153,8 +153,20 @@
   (map create-line (find-segments p rad WAY-TYPE WAY-SUBTYPE)))
 
 (defn select-connecting-edges[n1 n2]
-  (let [e1 (svs n1 "edges")
-       e2 (svs n2 "edges")
+  (let [e1 (sv n1 "edges")
+       e2 (sv n2 "edges")
        e3 (clojure.set/difference (set e1) (set e2))]
   e3))
+
+(defn find-sequels-osm [n1]
+  (letfn [(far-end [p1 e]
+             (let [p [(sv e "x") (sv e "y")]
+                    p2 [(sv e "x2") (sv e "y2")]]
+                (if (> (simple-dist p1 p) (simple-dist p1 p2))
+                  p1
+                  p2)))]
+  (let [p1 [(sv n1 "x") (sv n1 "y")]
+         egs (svs n1 "edges")
+         pts (map #(far-end p1 %) egs)]
+    (map od/mk-node pts))))
 

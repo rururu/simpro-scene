@@ -1,4 +1,4 @@
-; Sat Dec 12 20:30:43 MSK 2020
+; Tue Dec 15 20:05:08 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,18 +10,18 @@
 
 ([BrigBern_Class10000] of  CloFunction
 
-	(source "(let [[w s e n] bbx]\n  (str SERVER \"?data=[out:json];(way[\" way-type \"](\" s \",\" w \",\" n \",\" e \"););out%20body;%3E;out%20skel%20qt;\"))")
-	(title "way-api-url [bbx way-type]"))
+	(source "(let [[w s e n] bbx]\n  (str SERVER \n        \"?data=[out:json];(\" \n        kind \n        \"[\"\n        kind-type \n        \"](\" \n        s \n        \",\" \n        w\n        \",\"\n        n\n        \",\"\n        e \n        \"););out%20body;%3E;out%20skel%20qt;\"))")
+	(title "osm-api-url [bbx kind kind-type]"))
 
 ([BrigBern_Class10001] of  CloFunction
 
-	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (vreset! OSM-DATA (way-data bbx way-type)))")
-	(title "get-way-data [[lat lon] rad way-type]"))
+	(source "(let [d (/ rad 60)\n       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]\n  (osm-data bbx kind kind-type))")
+	(title "get-osm-data [[lat lon] rad kind kind-type]"))
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [url (way-api-url bbx way-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
-	(title "way-data [bbx way-type]"))
+	(source "(try\n  (let [url (osm-api-url bbx kind kind-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
+	(title "osm-data [bbx kind kind-type]"))
 
 ([BrigBern_Class13] of  CloFunction
 
@@ -30,8 +30,8 @@
 
 ([BrigBern_Class130000] of  CloVar
 
-	(source "[]")
-	(title "PATH"))
+	(source "(defonce PATH [])")
+	(title "defoncePATH"))
 
 ([BrigBern_Class130008] of  CloFunction
 
@@ -70,13 +70,13 @@
 
 ([BrigBern_Class19] of  CloFunction
 
-	(source "(let [sta (for [t (tags @OSM-DATA)]\n	(let [fl (filter-kk t @OSM-DATA)]\n	  [t (count fl)]))\n        sta  (filter #(> (second %) 0) sta)]\n  (sort second sta))")
-	(title "tag-stat []"))
+	(source "(let [sta (for [t (tags odata)]\n	(let [fl (filter-kk t odata)]\n	  [t (count fl)]))\n        sta  (filter #(> (second %) 0) sta)]\n  (sort second sta))")
+	(title "tag-stat [odata]"))
 
 ([BrigBern_Class20] of  CloVar
 
-	(source "(volatile! [])")
-	(title "OSM-DATA"))
+	(source "\"way\"")
+	(title "KIND"))
 
 ([BrigBern_Class20000] of  CloFunction
 
@@ -86,7 +86,7 @@
 ([BrigBern_Class20001] of  CloFunction
 
 	(source "(reduce #(assoc %1 \n	     (:id %2) \n	     (map (fn[x] (idp x)) (:nodes %2))) \n	{} ways)")
-	(title "id-way-points [idp ways]"))
+	(title "id-osm-points [idp ways]"))
 
 ([BrigBern_Class20002] of  CloFunction
 
@@ -95,13 +95,13 @@
 
 ([BrigBern_Class20003] of  CloFunction
 
-	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" W-COLOR)\n    (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/getOrAdd poi)\n    poi)")
-	(title "create-line [[id pts]]"))
+	(source "(let [id (str id)\n       [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]\n       [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]\n       [lat2 lon2] [(MapOb/getDegMin la2) (MapOb/getDegMin lo2)]\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"description\" id)\n    (ssv poi \"latitude\" lat1)\n    (ssv poi \"longitude\" lon1)\n    (ssv poi \"lineColor\" clr)\n    (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" [(str lat1 \" \" lon1) (str lat2 \" \" lon2)])\n    (OMT/getOrAdd poi)\n    poi)")
+	(title "create-line [[id pts] clr]"))
 
 ([BrigBern_Class20004] of  CloFunction
 
-	(source "(if-let [els (seq (:elements data))]\n  (let [idp (id-points (nodes data))]\n    (->> (filter-kkv [:type] \"way\" els)\n      (filter-kkv [:tags (keyword way-type)] way-subtype)\n      (id-way-points idp))))")
-	(title "filter-data [data way-type way-subtype]"))
+	(source "(if-let [els (seq (:elements data))]\n  (let [idp (id-points (nodes data))]\n    (->> (filter-kkv [:type] kind els)\n      (filter-kkv [:tags (keyword kind-type)] kind-subtype)\n      (id-osm-points idp))))")
+	(title "filter-data [data kind kind-type kind-subtype]"))
 
 ([BrigBern_Class3] of  %3AINSTANCE-ANNOTATION
 
@@ -110,7 +110,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                          'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                              'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class40000] of  CloFunction
@@ -118,19 +118,9 @@
 	(source "(let [dw (crin \"Dirway\")\n       way (foc \"Way\" \"id\" id)]\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
 	(title "create-dirway [[dir [id pts] lin]]"))
 
-([BrigBern_Class40001] of  CloVar
-
-	(source "\"FORWARD\"")
-	(title "F"))
-
-([BrigBern_Class40002] of  CloVar
-
-	(source "\"BACKWARD\"")
-	(title "B"))
-
 ([BrigBern_Class40005] of  CloFunction
 
-	(source "(if (nil? RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for ways!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'ADD)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE ADD\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
+	(source "(if (nil? RMMA)\n  (def RMMA (set-mouse-adapter)))\n(let [srv (get-server)]\n  (set-server srv)\n  (def MODE 'ADD)\n  (ssv inst \"status\" (str \"MODE \" MODE))\n  (println \n    :MODE MODE \n    :SERVER srv\n    :KIND (get-kind)\n    :TAGS (get-kind-type) (get-kind-subtype) \n    :RADIUS (get-radius)))")
 	(title "mode-add [hm inst]"))
 
 ([BrigBern_Class40006] of  CloFunction
@@ -140,17 +130,17 @@
 
 ([BrigBern_Class40008] of  CloVar
 
-	(source "nil")
-	(title "RMMA"))
+	(source "(defonce RMMA nil)")
+	(title "defonceRMMA"))
 
 ([BrigBern_Class40011] of  CloVar
 
-	(source "nil")
-	(title "MODE"))
+	(source "(defonce MODE nil)")
+	(title "defonceMODE"))
 
 ([BrigBern_Class40012] of  CloFunction
 
-	(source "(println :MODE MODE)\n(get-way-data (seq llp) RADIUS WAY-TYPE)\n(if (nil? @OSM-DATA)\n  (println :NO-DATA)\n  (let [ipss (filter-data @OSM-DATA WAY-TYPE WAY-SUBTYPE)]\n    (if (empty? ipss)\n      (println \"Try in other location..\")\n      (if (empty? PATH)\n        (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))\n          (println \"Initial\" (count PATH) \"ways..\"))\n        (let [[ldir lips llin] (last PATH)\n               [sdi [ld nd] ips :as short] (nearest-to lips ipss)]\n          (if (nil? short)\n            (println \"No continuation!\")\n            (let [lin (create-line ips)]\n              (def PATH         \n                (if (= (count PATH) 1)\n                  [[ld lips llin] [nd ips lin]]\n                  (conj PATH [nd ips lin])))\n              (println \"In PATH\" (count PATH) \"ways..\")))) ))))")
+	(source "(println :MODE MODE)\n(let [k (get-kind)\n       kt (get-kind-type)\n       kst (get-kind-subtype)\n       data (f/get-osm-data (seq llp) (get-radius) k kt)]\n  (if (nil? data)\n    (println :NO-DATA)\n    (let [ipss (f/filter-data data k kt kst)]\n      (if (empty? ipss)\n        (println \"Try in other location..\")\n        (if (empty? PATH)\n          (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))\n            (println \"Initial\" (count PATH) \"ways..\"))\n          (let [[ldir lips llin] (last PATH)\n                 [sdi [ld nd] ips :as short] (f/nearest-to lips ipss)]\n            (if (nil? short)\n              (println \"No continuation!\")\n              (let [lin (create-line ips)]\n                (def PATH         \n                  (if (= (count PATH) 1)\n                    [[ld lips llin] [nd ips lin]]\n                    (conj PATH [nd ips lin])))\n                (println \"In PATH\" (count PATH) \"ways..\")))) ) ))))")
 	(title "add-way [llp]"))
 
 ([BrigBern_Class40013] of  CloFunction
@@ -162,11 +152,6 @@
 
 	(source ";; 50 meters\n0.0005")
 	(title "RADIUS"))
-
-([BrigBern_Class40018] of  CloVar
-
-	(source "\"FFFF0000\"")
-	(title "W-COLOR"))
 
 ([BrigBern_Class5] of  %3AINSTANCE-ANNOTATION
 
@@ -182,31 +167,24 @@
 
 	(cloFunctions
 		[BrigBern_Class130008]
-		[OSMData_Class30004]
-		[BrigBern_Class10000]
-		[BrigBern_Class10006]
-		[BrigBern_Class10001]
-		[BrigBern_Class16]
-		[BrigBern_Class13]
-		[BrigBern_Class14]
-		[BrigBern_Class15]
-		[BrigBern_Class19]
-		[BrigBern_Class20002]
-		[BrigBern_Class20000]
-		[BrigBern_Class20001]
-		[BrigBern_Class20004]
+		[BrigBern_Class130330]
+		[BrigBern_Class130319]
 		[BrigBern_Class20003]
-		[BrigBern_Class70001]
-		[BrigBern_Class70000]
 		[BrigBern_Class40000]
+		[OSMData_Class50008]
+		[OSMData_Class40007]
+		[OSMData_Class50012]
+		[OSMData_Class50011]
+		[OSMData_Class50010]
+		[OSMData_Class50014]
+		[OSMData_Class50016]
 		[BrigBern_Class40012]
 		[BrigBern_Class40013]
 		[OSMRoads_Class10005]
-		[OSMData_Class30016]
-		[OSMData_Class10011]
-		[OSMData_Class10012]
 		[OSMData_Class10027]
+		[OSMData_Class0]
 		[OSMData_Class10028]
+		[OSMData_Class1]
 		[OSMData_Class20004]
 		[OSMData_Class20003]
 		[BrigBern_Class30000]
@@ -216,23 +194,18 @@
 		[BrigBern_Class130280]
 		[OSMRoads_Class10002]
 		[BrigBern_Class60118]
-		[BrigBern_Class130319]
-		[BrigBern_Class130330])
+		[OSMData_Class50013]
+		[OSMData_Class10003])
 	(cloNamespace [BrigBern_Class8])
 	(cloVars
-		[OSMData_Class30005]
-		[OSMData_Class20000]
 		[BrigBern_Class20]
 		[BrigBern_Class80011]
 		[BrigBern_Class80012]
-		[BrigBern_Class40011]
-		[BrigBern_Class40008]
 		[BrigBern_Class40015]
-		[BrigBern_Class40018]
-		[BrigBern_Class40001]
-		[BrigBern_Class40002]
-		[BrigBern_Class130000])
-	(title "OSM Data"))
+		[BrigBern_Class40011]
+		[BrigBern_Class130000]
+		[BrigBern_Class40008])
+	(title "OSM Ontogy"))
 
 ([BrigBern_Class70000] of  CloFunction
 
@@ -241,23 +214,23 @@
 
 ([BrigBern_Class70001] of  CloFunction
 
-	(source "(if (not= ips1 ips2)\n  (let [llp1 (second ips1)\n         llp2 (second ips2)\n         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]\n         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]\n         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2\n                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2\n                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2\n                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2\n        sdi (apply min (keys dis-var))\n        dir (dis-var sdi)]\n    [sdi dir ips2]))")
+	(source "(if (not= ips1 ips2)\n  (let [llp1 (second ips1)\n         llp2 (second ips2)\n         [f1 l1] [(first llp1) (last llp1)]\n         [f2 l2] [(first llp2) (last llp2)]\n         dis-var {(simple-dist f1 f2) [\"BACKWARD\" \"FORWARD\"]\n                       (simple-dist f1 l2) [\"BACKWARD\" \"BACKWARD\"]\n                       (simple-dist l1 f2) [\"FORWARD\" \"FORWARD\"]\n                       (simple-dist l1 l2) [\"FORWARD\" \"BACKWARD\"]}\n        sdi (apply min (keys dis-var))\n        dir (dis-var sdi)]\n    [sdi dir ips2]))")
 	(title "shortest-dist [ips1 ips2]"))
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:use protege.core) \n(:require\n   [clojure.data.json :as json])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
-	(title "osm.data"))
+	(source "(:use protege.core) \n(:require\n  [osm.func :as f])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(title "osm.onto"))
 
 ([BrigBern_Class80011] of  CloVar
 
 	(source "\"railway\"")
-	(title "WAY-TYPE"))
+	(title "KIND-TYPE"))
 
 ([BrigBern_Class80012] of  CloVar
 
 	(source "\"rail\"")
-	(title "WAY-SUBTYPE"))
+	(title "KIND-SUBTYPE"))
 
 ([BrigBern_Class80016] of  Tagvalue
 
@@ -271,6 +244,71 @@
 
 	(value "[\"highway\" \"primary\"]"))
 
+([OSMData_Class0] of  CloFunction
+
+	(source "(show-mapob nil inst)\n(doseq [egi (svs inst \"edges\")]\n (show-mapob nil egi))")
+	(title "show-node [hm inst]"))
+
+([OSMData_Class1] of  CloFunction
+
+	(source "(hide-mapob nil inst)\n(doseq [egi (svs inst \"edges\")]\n (hide-mapob nil egi))")
+	(title "hide-node [hm inst]"))
+
+([OSMData_Class10000] of  OMTPoly
+
+	(label "bbx12093")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.81")
+	(playground-index 0)
+	(points
+		"59 53.76 30 21.75"
+		"59 53.76 30 21.87"
+		"59 53.7 30 21.87"
+		"59 53.7 30 21.75"
+		"59 53.76 30 21.75")
+	(relative FALSE))
+
+([OSMData_Class10003] of  CloFunction
+
+	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map mk-node (star-points noi))\n  (println \"Fill node slot!\"))")
+	(title "connected-nodes [hm inst]"))
+
+([OSMData_Class10004] of  CloFunction
+
+	(source "(let [sx (- x1 x2)\n       sy (- y1 y2)]\n  (Math/sqrt (+ (* sx sx) (* sy sy))))")
+	(title "simple-dist [[x1 y1] [x2 y2]]"))
+
+([OSMData_Class10005] of  OMTPoly
+
+	(label "bbx12711")
+	(latitude "43 42.29")
+	(lineColor "FF00AA00")
+	(longitude "7 15.71")
+	(playground-index 0)
+	(points
+		"43 42.32 7 15.67"
+		"43 42.32 7 15.75"
+		"43 42.26 7 15.75"
+		"43 42.26 7 15.67"
+		"43 42.32 7 15.67")
+	(relative FALSE))
+
+([OSMData_Class10006] of  OMTPoly
+
+	(label "bbx12712")
+	(latitude "43 42.29")
+	(lineColor "FF00AA00")
+	(longitude "7 15.71")
+	(playground-index 0)
+	(points
+		"43 42.32 7 15.67"
+		"43 42.32 7 15.75"
+		"43 42.26 7 15.75"
+		"43 42.26 7 15.67"
+		"43 42.32 7 15.67")
+	(relative FALSE))
+
 ([OSMData_Class10011] of  CloFunction
 
 	(source "([id [clat clon] rad]\n  (show-bbx id [(- clon rad) (- clat rad) (+ clon rad) (+ clat rad)]))\n([id [w s e n]]\n(let [tsf (fn [[y x]]\n               (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))\n       id (str id)\n       clat (MapOb/getDegMin (/ (+ s n) 2))\n       clon (MapOb/getDegMin (/ (+ w e) 2))\n       pts [[n w] [n e] [s e] [s w] [n w]]\n       pts (map tsf pts)\n       poi (foc \"OMTPoly\" \"label\" id)]\n    (ssv poi \"latitude\" clat)\n    (ssv poi \"longitude\" clon)\n    (ssv poi \"lineColor\" \"FF00AA00\")\n    ;; (ssv poi \"line\" (fifos \"Line\" \"label\" \"L3\"))\n    (ssvs poi \"points\" pts)\n    (OMT/getOrAdd poi)\n    poi))")
@@ -278,8 +316,8 @@
 
 ([OSMData_Class10012] of  CloFunction
 
-	(source "([[x y]]\n  (find-elements-with-beg-or-end-in-bbx [x y] RADIUS WAY-TYPE WAY-SUBTYPE))\n([[x y] wtype wsubtype]\n  (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] RADIUS wtype wsubtype))]\n    ss\n    (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 2 RADIUS) wtype wsubtype))]\n      ss\n      (if-let [ss (seq (find-elements-with-beg-or-end-in-bbx [x y] (* 4 RADIUS) wtype wsubtype))]\n        ss\n        (find-elements-with-beg-or-end-in-bbx [x y] (* 8 RADIUS) wtype wsubtype)))))\n([[x y] rad wtype wsubtype]\n  (let [dy rad\n         dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))\n         bbx [(- x dx) (- y dy) (+ x dx) (+ y dy)]\n         wda (way-data bbx wtype)\n         fda (filter-data wda wtype wsubtype)\n         fbe (filter #(or (in-bbx (first (second %)) bbx) (in-bbx (last (second %)) bbx)) (seq fda))]\n    (show-bbx (gensym \"bbx\") bbx)\n    (map #(cons (first %) (map reverse (second %))) fbe)))")
-	(title "find-elements-with-beg-or-end-in-bbx"))
+	(source "(let [dy rad\n      dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))\n      bbx [(- x dx) (- y dy) (+ x dx) (+ y dy)]\n      oda (osm-data bbx kind kind-type)\n      fda (filter-data oda kind kind-type kind-subtype)\n      fbe (filter #(or (in-bbx (first (second %)) bbx) (in-bbx (last (second %)) bbx)) (seq fda))]\n  (map #(cons (first %) (map reverse (second %))) fbe))")
+	(title "lines-with-beg-or-end-in-bbx [[x y] rad kind kind-type kind-subtype]"))
 
 ([OSMData_Class10027] of  CloFunction
 
@@ -304,21 +342,53 @@
 	(but-hide-roads "Hide Roads/osm.data/hide-roads")
 	(but-rem "Mode Remove/osm.data/mode-remove")
 	(but-show-roads "Show Existing Roads/osm.data/show-roads")
-	(radius 5.0E-4)
+	(kind way)
+	(radius 1.0E-4)
 	(server KUMI)
+	(show TRUE)
 	(status "MODE NODES")
-	(tagvalue [BrigBern_Class80016])
 	(title "Road Control"))
 
 ([OSMData_Class20003] of  CloFunction
 
-	(source "(if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]\n  (let [egs (map mk-edge sgs)\n         noi (foc \"Node\" \"label\" (str \"N\" [x y]))]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FFFF6800\")\n    (ssv noi \"point-radius\" (int 6))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (OMT/getOrAdd noi)\n    (println \"Created Node from\" (count egs) \"edges.\")\n    noi))")
+	(source "(if-let [sgs (f/lines-with-beg-or-end-in-bbx \n                   [x y] (get-radius) (get-kind) (get-kind-type) (get-kind-subtype)))]\n  (let [egs (map mk-edge sgs)\n         noi (foc \"Node\" \"label\" (str \"N\" [x y]))]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FFFF6800\")\n    (ssv noi \"point-radius\" (int 6))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Created Node from\" (count egs) \"edges.\"))\n    noi))")
 	(title "mk-node [[x y]]"))
 
 ([OSMData_Class20004] of  CloFunction
 
-	(source "(let [egi (foc \"Edge\" \"label\" (str (first s)))\n       crs (rest s)\n       tsf (fn [[x y]] (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))]\n  (ssv egi \"x\" (float (ffirst crs)))\n  (ssv egi \"y\" (float (second (first crs))))\n  (ssv egi \"x2\" (float (first (last crs))))\n  (ssv egi \"y2\" (float (second (last crs))))\n  (ssvs egi \"xx\" (map #(str (first %)) crs))\n  (ssvs egi \"yy\" (map #(str (second %)) crs))\n  (ssvs egi \"points\" (map tsf crs))\n  (ssv egi \"latitude\" \"0 0\")\n  (ssv egi \"longitude\" \"0 0\")\n  (ssv egi \"lineColor\" \"FFFF6800\")\n  (OMT/getOrAdd egi)\n  egi)")
+	(source "(let [egi (foc \"Edge\" \"label\" (str (first s)))\n       crs (rest s)\n       tsf (fn [[x y]] (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))]\n  (ssv egi \"x\" (float (ffirst crs)))\n  (ssv egi \"y\" (float (second (first crs))))\n  (ssv egi \"x2\" (float (first (last crs))))\n  (ssv egi \"y2\" (float (second (last crs))))\n  (ssvs egi \"xx\" (map #(str (first %)) crs))\n  (ssvs egi \"yy\" (map #(str (second %)) crs))\n  (ssvs egi \"points\" (map tsf crs))\n  (ssv egi \"latitude\" \"0 0\")\n  (ssv egi \"longitude\" \"0 0\")\n  (ssv egi \"lineColor\" \"FFFF6800\")\n  (if (is-show?)\n    (OMT/getOrAdd egi))\n  egi)")
 	(title "mk-edge [s]"))
+
+([OSMData_Class20027] of  OMTPoly
+
+	(label "bbx13026")
+	(latitude "43 42.28")
+	(lineColor "FF00AA00")
+	(longitude "7 15.7")
+	(playground-index 0)
+	(points
+		"43 42.31 7 15.66"
+		"43 42.31 7 15.75"
+		"43 42.25 7 15.75"
+		"43 42.25 7 15.66"
+		"43 42.31 7 15.66")
+	(relative FALSE))
+
+([OSMData_Class30000] of  CloFuncall
+
+	(source "(osm.funcs/"))
+
+([OSMData_Class30001] of  CloFuncall
+
+	(source "(osm.funcs/lines-with-beg-or-end-in-bbx "))
+
+([OSMData_Class30002] of  CloFuncall
+
+	(source "(osm.funcs/lines-with-beg-or-end-in-bbx [30.367 "))
+
+([OSMData_Class30003] of  CloFuncall
+
+	(source "(osm.funcs/lines-with-beg-or-end-in-bbx [30.367 59.915] 0.005 \"way\""))
 
 ([OSMData_Class30004] of  CloFunction
 
@@ -327,7 +397,7 @@
 
 ([OSMData_Class30005] of  CloVar
 
-	(source "{\"KUMI\"\n  \"https://overpass.kumi.systems/api/interpreter\"\n  \"MAIN\"\n  \"https://overpass-api.de/api/interpreter\"\n  \"RUSSIAN\"\n  \"https://overpass.openstreetmap.ru/api/interpreter\"\n  \"FRENCH\"\n  \"https://overpass.openstreetmap.ru/api/interpreter\"\n  \"TAIWAN\"\n  \"https://overpass.nchc.org.tw/api/interpreter\"}")
+	(source "{\"KUMI\"\n  \"https://overpass.kumi.systems/api/interpreter\"\n  \"MAIN\"\n  \"https://overpass-api.de/api/interpreter\"\n  \"RUSSIAN\"\n  \"https://overpass.openstreetmap.ru/api/interpreter\"\n  \"FRENCH\"\n  \"https://overpass.openstreetmap.fr/api/interpreter\"\n  \"TAIWAN\"\n  \"https://overpass.nchc.org.tw/api/interpreter\"}")
 	(title "SRV-MAP"))
 
 ([OSMData_Class30016] of  CloFunction
@@ -337,8 +407,837 @@
 
 ([OSMData_Class30034] of  CloFunction
 
-	(source "(if (nil? RMMA)\n  (set-mouse-adapter))\n(let [mp (into {} hm)\n       sel (seq (selection mp \"tagvalue\"))]\n  (if (empty? sel)\n    (ssv inst \"status\" \"Select tagvalue for nodes!\")\n    (let [[wt wst] (read-string (sv (first sel) \"value\"))\n          srv (SRV-MAP (sv inst \"server\"))]\n      (set-server srv)\n      (def WAY-TYPE wt)\n      (def WAY-SUBTYPE wst)\n      (def MODE 'NODES)\n      (def RADIUS (sv inst \"radius\"))\n      (ssv inst \"status\" \"MODE NODES\")\n      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst))))")
+	(source "(if (nil? RMMA)\n  (def RMMA (set-mouse-adapter)))\n(let [srv (get-server)]\n  (set-server srv)\n  (def MODE 'NODES)\n  (ssv inst \"status\" (str \"MODE \" MODE))\n  (println \n    :MODE MODE \n    :SERVER srv\n    :KIND (get-kind)\n    :TAGS (get-kind-type) (get-kind-subtype) \n    :RADIUS (get-radius)))")
 	(title "mode-nodes [hm inst]"))
+
+([OSMData_Class40004] of  CloFuncall
+
+	(source "(osm.funcs/lines-with-beg-or-end-in-bbx [30.367 59.915] 0.005 \"way\" \"railway\" \"rail\")"))
+
+([OSMData_Class40005] of  CloFuncall
+
+	(source "(osm.func/lines-with-beg-or-end-in-bbx [30.367 59.915] 0.005 \"way\" \"railway\" \"rail\")"))
+
+([OSMData_Class40007] of  CloFunction
+
+	(source "(or (sv (get-control-center) \"kind\") KIND)")
+	(title "get-kind []"))
+
+([OSMData_Class40008] of  OMTPoly
+
+	(label "bbx12094")
+	(latitude "59 53.55")
+	(lineColor "FF00AA00")
+	(longitude "30 23.16")
+	(playground-index 0)
+	(points
+		"59 53.58 30 23.1"
+		"59 53.58 30 23.22"
+		"59 53.52 30 23.22"
+		"59 53.52 30 23.1"
+		"59 53.58 30 23.1")
+	(relative FALSE))
+
+([OSMData_Class40009] of  OMTPoly
+
+	(label "bbx12095")
+	(latitude "59 53.64")
+	(lineColor "FF00AA00")
+	(longitude "30 23.46")
+	(playground-index 0)
+	(points
+		"59 53.67 30 23.4"
+		"59 53.67 30 23.52"
+		"59 53.61 30 23.52"
+		"59 53.61 30 23.4"
+		"59 53.67 30 23.4")
+	(relative FALSE))
+
+([OSMData_Class40029] of  OMTPoly
+
+	(label "bbx38864")
+	(latitude "59 53.6")
+	(lineColor "FF00AA00")
+	(longitude "30 22.31")
+	(playground-index 0)
+	(points
+		"59 53.63 30 22.25"
+		"59 53.63 30 22.37"
+		"59 53.57 30 22.37"
+		"59 53.57 30 22.25"
+		"59 53.63 30 22.25")
+	(relative FALSE))
+
+([OSMData_Class40033] of  OMTPoly
+
+	(label "bbx38865")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.81")
+	(playground-index 0)
+	(points
+		"59 53.76 30 21.75"
+		"59 53.76 30 21.87"
+		"59 53.7 30 21.87"
+		"59 53.7 30 21.75"
+		"59 53.76 30 21.75")
+	(relative FALSE))
+
+([OSMData_Class40035] of  OMTPoly
+
+	(label "bbx38866")
+	(latitude "59 53.65")
+	(lineColor "FF00AA00")
+	(longitude "30 22.29")
+	(playground-index 0)
+	(points
+		"59 53.68 30 22.23"
+		"59 53.68 30 22.35"
+		"59 53.62 30 22.35"
+		"59 53.62 30 22.23"
+		"59 53.68 30 22.23")
+	(relative FALSE))
+
+([OSMData_Class40040] of  OMTPoly
+
+	(label "bbx38867")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.81")
+	(playground-index 0)
+	(points
+		"59 53.76 30 21.75"
+		"59 53.76 30 21.87"
+		"59 53.7 30 21.87"
+		"59 53.7 30 21.75"
+		"59 53.76 30 21.75")
+	(relative FALSE))
+
+([OSMData_Class40041] of  OMTPoly
+
+	(label "bbx38868")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.81")
+	(playground-index 0)
+	(points
+		"59 53.76 30 21.75"
+		"59 53.76 30 21.87"
+		"59 53.7 30 21.87"
+		"59 53.7 30 21.75"
+		"59 53.76 30 21.75")
+	(relative FALSE))
+
+([OSMData_Class40042] of  OMTPoly
+
+	(label "bbx38869")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.64")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.58"
+		"59 53.75 30 21.7"
+		"59 53.69 30 21.7"
+		"59 53.69 30 21.58"
+		"59 53.75 30 21.58")
+	(relative FALSE))
+
+([OSMData_Class40059] of  OMTPoly
+
+	(label "bbx51924")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.82"
+		"59 53.72 30 21.82"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40062] of  OMTPoly
+
+	(label "bbx52881")
+	(latitude "59 53.65")
+	(lineColor "FF00AA00")
+	(longitude "30 22.29")
+	(playground-index 0)
+	(points
+		"59 53.68 30 22.23"
+		"59 53.68 30 22.35"
+		"59 53.62 30 22.35"
+		"59 53.62 30 22.23"
+		"59 53.68 30 22.23")
+	(relative FALSE))
+
+([OSMData_Class40067] of  CloFuncall
+
+	(source "osm.data/RADIUS"))
+
+([OSMData_Class40068] of  CloFuncall
+
+	(source "osm.data/MODE"))
+
+([OSMData_Class40069] of  OMTPoly
+
+	(label "bbx55750")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.81"
+		"59 53.72 30 21.81"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40070] of  OMTPoly
+
+	(label "bbx55751")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.81"
+		"59 53.72 30 21.81"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40071] of  OMTPoly
+
+	(label "bbx55752")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.81"
+		"59 53.72 30 21.81"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40072] of  OMTPoly
+
+	(label "bbx55753")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.81"
+		"59 53.72 30 21.81"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40073] of  OMTPoly
+
+	(label "bbx55754")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.35"
+		"59 53.73 30 21.38"
+		"59 53.71 30 21.38"
+		"59 53.71 30 21.35"
+		"59 53.73 30 21.35")
+	(relative FALSE))
+
+([OSMData_Class40074] of  OMTPoly
+
+	(label "bbx55755")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.35"
+		"59 53.73 30 21.38"
+		"59 53.71 30 21.38"
+		"59 53.71 30 21.35"
+		"59 53.73 30 21.35")
+	(relative FALSE))
+
+([OSMData_Class40084] of  OMTPoly
+
+	(label "bbx58624")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.43")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.37"
+		"59 53.75 30 21.49"
+		"59 53.69 30 21.49"
+		"59 53.69 30 21.37"
+		"59 53.75 30 21.37")
+	(relative FALSE))
+
+([OSMData_Class40096] of  OMTPoly
+
+	(label "bbx58625")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.43")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.37"
+		"59 53.75 30 21.49"
+		"59 53.69 30 21.49"
+		"59 53.69 30 21.37"
+		"59 53.75 30 21.37")
+	(relative FALSE))
+
+([OSMData_Class40098] of  OMTPoly
+
+	(label "bbx58626")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.3"
+		"59 53.75 30 21.42"
+		"59 53.69 30 21.42"
+		"59 53.69 30 21.3"
+		"59 53.75 30 21.3")
+	(relative FALSE))
+
+([OSMData_Class40109] of  OMTPoly
+
+	(label "bbx58627")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.3"
+		"59 53.75 30 21.42"
+		"59 53.69 30 21.42"
+		"59 53.69 30 21.3"
+		"59 53.75 30 21.3")
+	(relative FALSE))
+
+([OSMData_Class40110] of  OMTPoly
+
+	(label "bbx58628")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.43")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.37"
+		"59 53.75 30 21.49"
+		"59 53.69 30 21.49"
+		"59 53.69 30 21.37"
+		"59 53.75 30 21.37")
+	(relative FALSE))
+
+([OSMData_Class40112] of  OMTPoly
+
+	(label "bbx58629")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.3"
+		"59 53.75 30 21.42"
+		"59 53.69 30 21.42"
+		"59 53.69 30 21.3"
+		"59 53.75 30 21.3")
+	(relative FALSE))
+
+([OSMData_Class40113] of  OMTPoly
+
+	(label "bbx58630")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.3"
+		"59 53.75 30 21.42"
+		"59 53.69 30 21.42"
+		"59 53.69 30 21.3"
+		"59 53.75 30 21.3")
+	(relative FALSE))
+
+([OSMData_Class40114] of  OMTPoly
+
+	(label "bbx58631")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.75 30 21.3"
+		"59 53.75 30 21.42"
+		"59 53.69 30 21.42"
+		"59 53.69 30 21.3"
+		"59 53.75 30 21.3")
+	(relative FALSE))
+
+([OSMData_Class40115] of  OMTPoly
+
+	(label "bbx61500")
+	(latitude "59 53.73")
+	(lineColor "FF00AA00")
+	(longitude "30 21.8")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.79"
+		"59 53.73 30 21.81"
+		"59 53.72 30 21.81"
+		"59 53.72 30 21.79"
+		"59 53.73 30 21.79")
+	(relative FALSE))
+
+([OSMData_Class40116] of  Node
+
+	(edges [OSMData_Class40117])
+	(label "N[30.363368044886926 59.895456591050426]")
+	(latitude "59 53.73")
+	(lineColor "FFFF6800")
+	(longitude "30 21.8")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 30.363369)
+	(y 59.89546))
+
+([OSMData_Class40117] of  Edge
+
+	(label "517436227")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.81"
+		"59 53.73 30 21.86"
+		"59 53.73 30 21.89"
+		"59 53.72 30 21.91"
+		"59 53.72 30 21.93"
+		"59 53.72 30 21.95"
+		"59 53.71 30 21.98"
+		"59 53.7 30 22.04"
+		"59 53.7 30 22.05"
+		"59 53.68 30 22.13"
+		"59 53.67 30 22.17"
+		"59 53.67 30 22.21"
+		"59 53.66 30 22.28"
+		"59 53.65 30 22.29")
+	(relative FALSE)
+	(x 30.363535)
+	(x2 30.371477)
+	(xx
+		"30.3635344"
+		"30.3642892"
+		"30.3648242"
+		"30.3651662"
+		"30.3655002"
+		"30.3657697"
+		"30.3663692"
+		"30.3673039"
+		"30.3675269"
+		"30.3688042"
+		"30.3695825"
+		"30.3701806"
+		"30.3712878"
+		"30.3714775")
+	(y 59.895493)
+	(y2 59.89423)
+	(yy
+		"59.8954911"
+		"59.8954577"
+		"59.8954281"
+		"59.8954006"
+		"59.8953656"
+		"59.8953171"
+		"59.8952001"
+		"59.8950099"
+		"59.8949648"
+		"59.8947062"
+		"59.894559"
+		"59.8944548"
+		"59.8942612"
+		"59.8942281"))
+
+([OSMData_Class40118] of  OMTPoly
+
+	(label "bbx62457")
+	(latitude "59 53.72")
+	(lineColor "FF00AA00")
+	(longitude "30 21.36")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.35"
+		"59 53.73 30 21.37"
+		"59 53.71 30 21.37"
+		"59 53.71 30 21.35"
+		"59 53.73 30 21.35")
+	(relative FALSE))
+
+([OSMData_Class40119] of  Node
+
+	(edges
+		[OSMData_Class40120]
+		[OSMData_Class40121]
+		[OSMData_Class40122]
+		[OSMData_Class40123]
+		[OSMData_Class40124]
+		[OSMData_Class40125]
+		[OSMData_Class40126]
+		[OSMData_Class40127]
+		[OSMData_Class40128]
+		[OSMData_Class40129])
+	(label "N[30.356037255564672 59.895334836772044]")
+	(latitude "59 53.72")
+	(lineColor "FFFF6800")
+	(longitude "30 21.36")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 30.356037)
+	(y 59.895336))
+
+([OSMData_Class40120] of  Edge
+
+	(label "132516413")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.43"
+		"59 53.73 30 21.36")
+	(relative FALSE)
+	(x 30.357153)
+	(x2 30.355968)
+	(xx
+		"30.3571537"
+		"30.355969")
+	(y 59.895447)
+	(y2 59.89543)
+	(yy
+		"59.8954466"
+		"59.8954305"))
+
+([OSMData_Class40121] of  Edge
+
+	(label "132516417")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.73 30 21.36"
+		"59 53.73 30 21.32")
+	(relative FALSE)
+	(x 30.355968)
+	(x2 30.35533)
+	(xx
+		"30.355969"
+		"30.3553304")
+	(y 59.89543)
+	(y2 59.895428)
+	(yy
+		"59.8954305"
+		"59.8954268"))
+
+([OSMData_Class40122] of  Edge
+
+	(label "23559030")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.36"
+		"59 53.72 30 21.37"
+		"59 53.72 30 21.38"
+		"59 53.72 30 21.42"
+		"59 53.72 30 21.43")
+	(relative FALSE)
+	(x 30.355988)
+	(x2 30.357182)
+	(xx
+		"30.3559876"
+		"30.3562311"
+		"30.356331"
+		"30.3570404"
+		"30.3571821")
+	(y 59.895382)
+	(y2 59.895397)
+	(yy
+		"59.8953808"
+		"59.8953851"
+		"59.8953862"
+		"59.8953958"
+		"59.8953954"))
+
+([OSMData_Class40123] of  Edge
+
+	(label "621423261")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.32"
+		"59 53.72 30 21.35"
+		"59 53.72 30 21.36")
+	(relative FALSE)
+	(x 30.355343)
+	(x2 30.356018)
+	(xx
+		"30.355343"
+		"30.355859"
+		"30.3560178")
+	(y 59.895325)
+	(y2 59.895332)
+	(yy
+		"59.8953266"
+		"59.8953333"
+		"59.895334"))
+
+([OSMData_Class40124] of  Edge
+
+	(label "132516422")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.32"
+		"59 53.72 30 21.34"
+		"59 53.72 30 21.37")
+	(relative FALSE)
+	(x 30.355341)
+	(x2 30.356232)
+	(xx
+		"30.3553404"
+		"30.355728"
+		"30.3562311")
+	(y 59.895348)
+	(y2 59.895386)
+	(yy
+		"59.8953477"
+		"59.8953672"
+		"59.8953851"))
+
+([OSMData_Class40125] of  Edge
+
+	(label "132516411")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.36"
+		"59 53.72 30 21.43")
+	(relative FALSE)
+	(x 30.356045)
+	(x2 30.357237)
+	(xx
+		"30.3560451"
+		"30.357236")
+	(y 59.89528)
+	(y2 59.8953)
+	(yy
+		"59.8952802"
+		"59.8953003"))
+
+([OSMData_Class40126] of  Edge
+
+	(label "23563219")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.32"
+		"59 53.72 30 21.33"
+		"59 53.72 30 21.36")
+	(relative FALSE)
+	(x 30.355337)
+	(x2 30.355988)
+	(xx
+		"30.3553371"
+		"30.3555832"
+		"30.3559876")
+	(y 59.895374)
+	(y2 59.895382)
+	(yy
+		"59.8953736"
+		"59.8953794"
+		"59.8953808"))
+
+([OSMData_Class40127] of  Edge
+
+	(label "132516423")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.32"
+		"59 53.72 30 21.35"
+		"59 53.72 30 21.36")
+	(relative FALSE)
+	(x 30.355352)
+	(x2 30.356045)
+	(xx
+		"30.3553527"
+		"30.3557841"
+		"30.3560451")
+	(y 59.89525)
+	(y2 59.89528)
+	(yy
+		"59.8952502"
+		"59.8952687"
+		"59.8952802"))
+
+([OSMData_Class40128] of  Edge
+
+	(label "23559031")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.36"
+		"59 53.72 30 21.37"
+		"59 53.72 30 21.43")
+	(relative FALSE)
+	(x 30.356018)
+	(x2 30.35721)
+	(xx
+		"30.3560178"
+		"30.3562231"
+		"30.3572095")
+	(y 59.895332)
+	(y2 59.895348)
+	(yy
+		"59.895334"
+		"59.8953353"
+		"59.8953475"))
+
+([OSMData_Class40129] of  Edge
+
+	(label "23563218")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"59 53.72 30 21.32"
+		"59 53.72 30 21.35"
+		"59 53.72 30 21.37")
+	(relative FALSE)
+	(x 30.355347)
+	(x2 30.356222)
+	(xx
+		"30.3553463"
+		"30.3559133"
+		"30.3562231")
+	(y 59.895298)
+	(y2 59.895336)
+	(yy
+		"59.8952962"
+		"59.8953269"
+		"59.8953353"))
+
+([OSMData_Class40130] of  CloFuncall
+
+	(source "osm.data/RMMA"))
+
+([OSMData_Class40131] of  CloProgram
+
+	(cloFunctions
+		[OSMData_Class30004]
+		[BrigBern_Class10000]
+		[BrigBern_Class10006]
+		[BrigBern_Class10001]
+		[BrigBern_Class16]
+		[BrigBern_Class13]
+		[BrigBern_Class14]
+		[BrigBern_Class15]
+		[BrigBern_Class19]
+		[BrigBern_Class20002]
+		[BrigBern_Class20000]
+		[BrigBern_Class20001]
+		[BrigBern_Class20004]
+		[OSMData_Class30016]
+		[OSMData_Class10012]
+		[OSMData_Class10004]
+		[BrigBern_Class70001]
+		[BrigBern_Class70000])
+	(cloNamespace [OSMData_Class40132])
+	(cloVars
+		[OSMData_Class30005]
+		[OSMData_Class20000])
+	(title "OSM Functions"))
+
+([OSMData_Class40132] of  CloNamespace
+
+	(source "(:require\n   [clojure.data.json :as json])")
+	(title "osm.func"))
+
+([OSMData_Class50008] of  CloFunction
+
+	(source "(fainst \"RoadControl\" nil)")
+	(title "get-control-center []"))
+
+([OSMData_Class50009] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [OSMData_Class20002])
+	(%3ACREATION-TIMESTAMP "2020.12.15 13:33:47.273 MSK")
+	(%3ACREATOR "ru"))
+
+([OSMData_Class50010] of  CloFunction
+
+	(source "(or (sv (get-control-center) \"radius\") RADIUS)")
+	(title "get-radius []"))
+
+([OSMData_Class50011] of  CloFunction
+
+	(source "(if-let [tvi (sv (get-control-center) \"tagvalue\")]\n  (second (read-string (sv tvi \"value\")))\n  KIND-SUBTYPE)")
+	(title "get-kind-subtype []"))
+
+([OSMData_Class50012] of  CloFunction
+
+	(source "(if-let [tvi (sv (get-control-center) \"tagvalue\")]\n  (first (read-string (sv tvi \"value\")))\n  KIND-TYPE)")
+	(title "get-kind-type []"))
+
+([OSMData_Class50013] of  CloFunction
+
+	(source "(letfn [(far-end [p1 e]\n             (let [p [(sv e \"x\") (sv e \"y\")]\n                    p2 [(sv e \"x2\") (sv e \"y2\")]]\n                (if (> (simple-dist p1 p) (simple-dist p1 p2))\n                  p1\n                  p2)))]\n  (let [p1 [(sv noi \"x\") (sv noi \"y\")]\n         egs (svs noi \"edges\")]\n    (map #(far-end p1 %) egs)))")
+	(title "star-points [noi]"))
+
+([OSMData_Class50014] of  CloFunction
+
+	(source "(if-let [srv (sv (get-control-center) \"server\")]\n  (f/SRV-MAP srv)\n  f/SERVER)")
+	(title "get-server []"))
+
+([OSMData_Class50016] of  CloFunction
+
+	(source "(is? (sv (get-control-center) \"show\"))")
+	(title "is-show? []"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

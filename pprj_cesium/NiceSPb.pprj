@@ -1,4 +1,4 @@
-; Sat Dec 12 20:54:58 MSK 2020
+; Mon Dec 14 19:52:54 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -197,6 +197,1291 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
+([KB_118828_Class2519] of  Map
+
+	(entries
+		[KB_118828_Class2538]
+		[KB_118828_Class2542]
+		[KB_118828_Class2545]
+		[KB_118828_Class2548]
+		[KB_118828_Class2551]
+		[KB_118828_Class2555]
+		[KB_118828_Class2559]
+		[KB_118828_Class2562]
+		[KB_118828_Class2566]
+		[KB_118828_Class2569]
+		[KB_118828_Class2573]
+		[KB_118828_Class2576]
+		[KB_118828_Class2580]
+		[KB_118828_Class2581]
+		[KB_118828_Class2584]
+		[KB_118828_Class2589]
+		[KB_118828_Class2592]
+		[KB_118828_Class2602]
+		[KB_118828_Class2607]
+		[KB_118828_Class2610]
+		[KB_118828_Class2618]
+		[KB_118828_Class2621]
+		[KB_118828_Class2624]
+		[KB_118828_Class2630]
+		[KB_118828_Class2638]
+		[KB_118828_Class2639]
+		[KB_118828_Class2644]
+		[KB_118828_Class2647]
+		[KB_118828_Class2650]
+		[KB_118828_Class2653]
+		[KB_118828_Class2654]
+		[KB_118828_Class2666]
+		[KB_118828_Class2692])
+	(referenced_maps
+		[KB_118828_Class2608]
+		[KB_118828_Class2560]
+		[KB_118828_Class2582]
+		[KB_118828_Class2563]
+		[KB_118828_Class2585]
+		[KB_118828_Class2640]
+		[KB_118828_Class2520]
+		[KB_118828_Class2543]
+		[KB_118828_Class2567]
+		[KB_118828_Class2622]
+		[KB_118828_Class2546]
+		[KB_118828_Class2645]
+		[KB_118828_Class2667]
+		[KB_118828_Class2603]
+		[KB_118828_Class2625]
+		[KB_118828_Class2549]
+		[KB_118828_Class2648]
+		[KB_118828_Class2539]
+		[KB_118828_Class2619]
+		[KB_118828_Class2590]
+		[KB_118828_Class2570]
+		[KB_118828_Class2593]
+		[KB_118828_Class2552]
+		[KB_118828_Class2574]
+		[KB_118828_Class2651]
+		[KB_118828_Class2631]
+		[KB_118828_Class2577]
+		[KB_118828_Class2556]
+		[KB_118828_Class2611]
+		[KB_118828_Class2655]))
+
+([KB_118828_Class2520] of  Map
+
+	(entries
+		[KB_118828_Class2521]
+		[KB_118828_Class2522]
+		[KB_118828_Class2523]
+		[KB_118828_Class2524]
+		[KB_118828_Class2525]
+		[KB_118828_Class2526]
+		[KB_118828_Class2527]
+		[KB_118828_Class2528]
+		[KB_118828_Class2529]
+		[KB_118828_Class2530]
+		[KB_118828_Class2531]
+		[KB_118828_Class2532]
+		[KB_118828_Class2533]
+		[KB_118828_Class2534]
+		[KB_118828_Class2535]
+		[KB_118828_Class2536]
+		[KB_118828_Class2537]))
+
+([KB_118828_Class2521] of  Map_Entry
+
+	(key "OSMRoads_Class80004")
+	(key_class "java.lang.String")
+	(value "45 217 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2522] of  Map_Entry
+
+	(key "OSMRoads_Class40000")
+	(key_class "java.lang.String")
+	(value "43 25 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2523] of  Map_Entry
+
+	(key "OSMRoads_Class80003")
+	(key_class "java.lang.String")
+	(value "390 161 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2524] of  Map_Entry
+
+	(key "OSMRoads_Class90012")
+	(key_class "java.lang.String")
+	(value "617 247 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2525] of  Map_Entry
+
+	(key "OSMRoads_Class90007")
+	(key_class "java.lang.String")
+	(value "476 240 82 77")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2526] of  Map_Entry
+
+	(key "OSMRoads_Class90018")
+	(key_class "java.lang.String")
+	(value "728 485 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2527] of  Map_Entry
+
+	(key "OSMRoads_Class90006")
+	(key_class "java.lang.String")
+	(value "293 239 73 75")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2528] of  Map_Entry
+
+	(key "OSMRoads_Class90017")
+	(key_class "java.lang.String")
+	(value "727 391 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2529] of  Map_Entry
+
+	(key "OSMRoads_Class90003")
+	(key_class "java.lang.String")
+	(value "48 316 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2530] of  Map_Entry
+
+	(key "OSMRoads_Class90014")
+	(key_class "java.lang.String")
+	(value "723 115 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2531] of  Map_Entry
+
+	(key "OSMRoads_Class90013")
+	(key_class "java.lang.String")
+	(value "720 27 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2532] of  Map_Entry
+
+	(key "OSMRoads_Class70002")
+	(key_class "java.lang.String")
+	(value "44 124 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2533] of  Map_Entry
+
+	(key "OSMRoads_Class90005")
+	(key_class "java.lang.String")
+	(value "51 500 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2534] of  Map_Entry
+
+	(key "OSMRoads_Class90016")
+	(key_class "java.lang.String")
+	(value "726 298 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2535] of  Map_Entry
+
+	(key "OSMRoads_Class50001")
+	(key_class "java.lang.String")
+	(value "176 245 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2536] of  Map_Entry
+
+	(key "OSMRoads_Class90004")
+	(key_class "java.lang.String")
+	(value "50 409 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2537] of  Map_Entry
+
+	(key "OSMRoads_Class90015")
+	(key_class "java.lang.String")
+	(value "725 205 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2538] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2520")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2539] of  Map
+
+	(entries
+		[KB_118828_Class2540]
+		[KB_118828_Class2541]))
+
+([KB_118828_Class2540] of  Map_Entry
+
+	(key "PyongyangSPb_Class40001")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2541] of  Map_Entry
+
+	(key "PyongyangSPb_Class40000")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2542] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class40006.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2539")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2543] of  Map
+
+	(entries [KB_118828_Class2544]))
+
+([KB_118828_Class2544] of  Map_Entry
+
+	(key "OSMRoads_Class40")
+	(key_class "java.lang.String")
+	(value "99 96 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2545] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2543")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2546] of  Map
+
+	(entries [KB_118828_Class2547]))
+
+([KB_118828_Class2547] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "60 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2548] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2546")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2549] of  Map
+
+	(entries [KB_118828_Class2550]))
+
+([KB_118828_Class2550] of  Map_Entry
+
+	(key "OSMRoads_Class90001")
+	(key_class "java.lang.String")
+	(value "107 116 125 145")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2551] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2549")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2552] of  Map
+
+	(entries
+		[KB_118828_Class2553]
+		[KB_118828_Class2554]))
+
+([KB_118828_Class2553] of  Map_Entry
+
+	(key "PyongyangSPb_Class40006")
+	(key_class "java.lang.String")
+	(value "200 40 100 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2554] of  Map_Entry
+
+	(key "PyongyangSPb_Class20001")
+	(key_class "java.lang.String")
+	(value "60 40 100 80")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2555] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class20000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2552")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2556] of  Map
+
+	(entries
+		[KB_118828_Class2557]
+		[KB_118828_Class2558]))
+
+([KB_118828_Class2557] of  Map_Entry
+
+	(key "OSMRoads_Class20001")
+	(key_class "java.lang.String")
+	(value "56 56 89 89")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2558] of  Map_Entry
+
+	(key "OSMRoads_Class30002")
+	(key_class "java.lang.String")
+	(value "57 206 86 89")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2559] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2556")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2560] of  Map
+
+	(entries [KB_118828_Class2561]))
+
+([KB_118828_Class2561] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2562] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2560")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2563] of  Map
+
+	(entries
+		[KB_118828_Class2564]
+		[KB_118828_Class2565]))
+
+([KB_118828_Class2564] of  Map_Entry
+
+	(key "OSMRoads_Class20159")
+	(key_class "java.lang.String")
+	(value "207 60 87 81")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2565] of  Map_Entry
+
+	(key "OSMRoads_Class20000")
+	(key_class "java.lang.String")
+	(value "56 58 89 85")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2566] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2563")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2567] of  Map
+
+	(entries [KB_118828_Class2568]))
+
+([KB_118828_Class2568] of  Map_Entry
+
+	(key "PyongyangSPb_Class250001")
+	(key_class "java.lang.String")
+	(value "121 89 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2569] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class250000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2567")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2570] of  Map
+
+	(entries
+		[KB_118828_Class2571]
+		[KB_118828_Class2572]))
+
+([KB_118828_Class2571] of  Map_Entry
+
+	(key "PyongyangSPb_Class250002")
+	(key_class "java.lang.String")
+	(value "177 74 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2572] of  Map_Entry
+
+	(key "PyongyangSPb_Class250004")
+	(key_class "java.lang.String")
+	(value "177 204 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2573] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class250001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2570")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2574] of  Map
+
+	(entries [KB_118828_Class2575]))
+
+([KB_118828_Class2575] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2576] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2574")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2577] of  Map
+
+	(entries
+		[KB_118828_Class2578]
+		[KB_118828_Class2579]))
+
+([KB_118828_Class2578] of  Map_Entry
+
+	(key "PyongyangSPb_Class40006")
+	(key_class "java.lang.String")
+	(value "209 60 71 70")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2579] of  Map_Entry
+
+	(key "PyongyangSPb_Class20001")
+	(key_class "java.lang.String")
+	(value "57 60 73 70")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2580] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class40005.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2577")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2581] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_118828_Class2582] of  Map
+
+	(entries [KB_118828_Class2583]))
+
+([KB_118828_Class2583] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2584] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2582")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2585] of  Map
+
+	(entries
+		[KB_118828_Class2586]
+		[KB_118828_Class2587]
+		[KB_118828_Class2588]))
+
+([KB_118828_Class2586] of  Map_Entry
+
+	(key "OSMRoads_Class90020")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2587] of  Map_Entry
+
+	(key "OSMRoads_Class90028")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2588] of  Map_Entry
+
+	(key "OSMRoads_Class90019")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2589] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2585")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2590] of  Map
+
+	(entries [KB_118828_Class2591]))
+
+([KB_118828_Class2591] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2592] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2590")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2593] of  Map
+
+	(entries
+		[KB_118828_Class2594]
+		[KB_118828_Class2595]
+		[KB_118828_Class2596]
+		[KB_118828_Class2597]
+		[KB_118828_Class2598]
+		[KB_118828_Class2599]
+		[KB_118828_Class2600]
+		[KB_118828_Class2601]))
+
+([KB_118828_Class2594] of  Map_Entry
+
+	(key "PyongyangSPb_Class40007")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "82 337 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2595] of  Map_Entry
+
+	(key "PyongyangSPb_Class10002")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "5 707 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2596] of  Map_Entry
+
+	(key "PyongyangSPb_Class60003")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "6 493 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2597] of  Map_Entry
+
+	(key "PyongyangSPb_Class10001")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "9 502 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2598] of  Map_Entry
+
+	(key "PyongyangSPb_Class10000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "7 291 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2599] of  Map_Entry
+
+	(key "PyongyangSPb_Class1")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "9 704 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2600] of  Map_Entry
+
+	(key "PyongyangSPb_Class10004")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "93 310 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2601] of  Map_Entry
+
+	(key "PyongyangSPb_Class10003")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "16 602 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2602] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2593")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2603] of  Map
+
+	(entries
+		[KB_118828_Class2604]
+		[KB_118828_Class2605]
+		[KB_118828_Class2606]))
+
+([KB_118828_Class2604] of  Map_Entry
+
+	(key "OSMRoads_Class50000")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2605] of  Map_Entry
+
+	(key "OSMRoads_Class70123")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2606] of  Map_Entry
+
+	(key "OSMRoads_Class90027")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2607] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2603")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2608] of  Map
+
+	(entries [KB_118828_Class2609]))
+
+([KB_118828_Class2609] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2610] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2608")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2611] of  Map
+
+	(entries
+		[KB_118828_Class2612]
+		[KB_118828_Class2613]
+		[KB_118828_Class2614]
+		[KB_118828_Class2615]
+		[KB_118828_Class2616]
+		[KB_118828_Class2617]))
+
+([KB_118828_Class2612] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "361 61 78 78")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2613] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "360 320 80 76")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2614] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "500 260 82 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2615] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "500 80 77 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2616] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "200 360 78 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2617] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "205 65 90 71")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2618] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2611")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2619] of  Map
+
+	(entries [KB_118828_Class2620]))
+
+([KB_118828_Class2620] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2621] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2619")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2622] of  Map
+
+	(entries [KB_118828_Class2623]))
+
+([KB_118828_Class2623] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2624] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2622")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2625] of  Map
+
+	(entries
+		[KB_118828_Class2626]
+		[KB_118828_Class2627]
+		[KB_118828_Class2628]
+		[KB_118828_Class2629]))
+
+([KB_118828_Class2626] of  Map_Entry
+
+	(key "PyongyangSPb_Class20005")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2627] of  Map_Entry
+
+	(key "PyongyangSPb_Class20010")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2628] of  Map_Entry
+
+	(key "PyongyangSPb_Class20012")
+	(key_class "java.lang.String")
+	(value "70 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2629] of  Map_Entry
+
+	(key "PyongyangSPb_Class20011")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2630] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class20001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2625")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2631] of  Map
+
+	(entries
+		[KB_118828_Class2632]
+		[KB_118828_Class2633]
+		[KB_118828_Class2634]
+		[KB_118828_Class2635]
+		[KB_118828_Class2636]
+		[KB_118828_Class2637]))
+
+([KB_118828_Class2632] of  Map_Entry
+
+	(key "OSMRoads_Class30003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2633] of  Map_Entry
+
+	(key "OSMRoads_Class30006")
+	(key_class "java.lang.String")
+	(value "212 659 77 82")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2634] of  Map_Entry
+
+	(key "OSMRoads_Class20160")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2635] of  Map_Entry
+
+	(key "OSMRoads_Class20161")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2636] of  Map_Entry
+
+	(key "OSMRoads_Class20162")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2637] of  Map_Entry
+
+	(key "OSMRoads_Class20163")
+	(key_class "java.lang.String")
+	(value "201 510 98 81")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2638] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2631")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2639] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_118828_Class2640] of  Map
+
+	(entries
+		[KB_118828_Class2641]
+		[KB_118828_Class2642]
+		[KB_118828_Class2643]))
+
+([KB_118828_Class2641] of  Map_Entry
+
+	(key "OSMRoads_Class41")
+	(key_class "java.lang.String")
+	(value "91 340 119 120")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2642] of  Map_Entry
+
+	(key "OSMRoads_Class42")
+	(key_class "java.lang.String")
+	(value "90 589 120 122")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2643] of  Map_Entry
+
+	(key "OSMRoads_Class0")
+	(key_class "java.lang.String")
+	(value "100 95 100 110")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2644] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2640")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2645] of  Map
+
+	(entries [KB_118828_Class2646]))
+
+([KB_118828_Class2646] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2647] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2645")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2648] of  Map
+
+	(entries [KB_118828_Class2649]))
+
+([KB_118828_Class2649] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2650] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2648")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2651] of  Map
+
+	(entries [KB_118828_Class2652]))
+
+([KB_118828_Class2652] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2653] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2651")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2654] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_118828_Class2655] of  Map
+
+	(entries
+		[KB_118828_Class2656]
+		[KB_118828_Class2657]
+		[KB_118828_Class2658]
+		[KB_118828_Class2659]
+		[KB_118828_Class2660]
+		[KB_118828_Class2661]
+		[KB_118828_Class2662]
+		[KB_118828_Class2663]
+		[KB_118828_Class2664]
+		[KB_118828_Class2665]))
+
+([KB_118828_Class2656] of  Map_Entry
+
+	(key "OSMRoads_Class120010")
+	(key_class "java.lang.String")
+	(value "273 437 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2657] of  Map_Entry
+
+	(key "OSMRoads_Class110003")
+	(key_class "java.lang.String")
+	(value "240 120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2658] of  Map_Entry
+
+	(key "OSMRoads_Class100000")
+	(key_class "java.lang.String")
+	(value "100 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2659] of  Map_Entry
+
+	(key "OSMRoads_Class110000")
+	(key_class "java.lang.String")
+	(value "40 540 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2660] of  Map_Entry
+
+	(key "OSMRoads_Class120007")
+	(key_class "java.lang.String")
+	(value "40 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2661] of  Map_Entry
+
+	(key "OSMRoads_Class120006")
+	(key_class "java.lang.String")
+	(value "240 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2662] of  Map_Entry
+
+	(key "OSMRoads_Class120005")
+	(key_class "java.lang.String")
+	(value "160 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2663] of  Map_Entry
+
+	(key "OSMRoads_Class120004")
+	(key_class "java.lang.String")
+	(value "100 160 76 87")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2664] of  Map_Entry
+
+	(key "OSMRoads_Class90002")
+	(key_class "java.lang.String")
+	(value "240 0 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2665] of  Map_Entry
+
+	(key "OSMRoads_Class120009")
+	(key_class "java.lang.String")
+	(value "80 300 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2666] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2655")
+	(value_class "java.util.Map"))
+
+([KB_118828_Class2667] of  Map
+
+	(entries
+		[KB_118828_Class2668]
+		[KB_118828_Class2669]
+		[KB_118828_Class2670]
+		[KB_118828_Class2671]
+		[KB_118828_Class2672]
+		[KB_118828_Class2673]
+		[KB_118828_Class2674]
+		[KB_118828_Class2675]
+		[KB_118828_Class2676]
+		[KB_118828_Class2677]
+		[KB_118828_Class2678]
+		[KB_118828_Class2679]
+		[KB_118828_Class2680]
+		[KB_118828_Class2681]
+		[KB_118828_Class2682]
+		[KB_118828_Class2683]
+		[KB_118828_Class2684]
+		[KB_118828_Class2685]
+		[KB_118828_Class2686]
+		[KB_118828_Class2687]
+		[KB_118828_Class2688]
+		[KB_118828_Class2689]
+		[KB_118828_Class2690]
+		[KB_118828_Class2691]))
+
+([KB_118828_Class2668] of  Map_Entry
+
+	(key "PyongyangSPb_Class190020")
+	(key_class "java.lang.String")
+	(value "960 280 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2669] of  Map_Entry
+
+	(key "PyongyangSPb_Class190031")
+	(key_class "java.lang.String")
+	(value "600 660 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2670] of  Map_Entry
+
+	(key "PyongyangSPb_Class190021")
+	(key_class "java.lang.String")
+	(value "360 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2671] of  Map_Entry
+
+	(key "PyongyangSPb_Class190032")
+	(key_class "java.lang.String")
+	(value "740 600 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2672] of  Map_Entry
+
+	(key "PyongyangSPb_Class190011")
+	(key_class "java.lang.String")
+	(value "660 20 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2673] of  Map_Entry
+
+	(key "PyongyangSPb_Class190022")
+	(key_class "java.lang.String")
+	(value "500 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2674] of  Map_Entry
+
+	(key "PyongyangSPb_Class190033")
+	(key_class "java.lang.String")
+	(value "880 600 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2675] of  Map_Entry
+
+	(key "PyongyangSPb_Class190012")
+	(key_class "java.lang.String")
+	(value "780 100 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2676] of  Map_Entry
+
+	(key "PyongyangSPb_Class190023")
+	(key_class "java.lang.String")
+	(value "760 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2677] of  Map_Entry
+
+	(key "PyongyangSPb_Class190034")
+	(key_class "java.lang.String")
+	(value "760 720 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2678] of  Map_Entry
+
+	(key "PyongyangSPb_Class190030")
+	(key_class "java.lang.String")
+	(value "940 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2679] of  Map_Entry
+
+	(key "PyongyangSPb_Class190017")
+	(key_class "java.lang.String")
+	(value "580 260 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2680] of  Map_Entry
+
+	(key "PyongyangSPb_Class190028")
+	(key_class "java.lang.String")
+	(value "700 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2681] of  Map_Entry
+
+	(key "PyongyangSPb_Class190018")
+	(key_class "java.lang.String")
+	(value "660 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2682] of  Map_Entry
+
+	(key "PyongyangSPb_Class190029")
+	(key_class "java.lang.String")
+	(value "820 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2683] of  Map_Entry
+
+	(key "PyongyangSPb_Class190019")
+	(key_class "java.lang.String")
+	(value "760 260 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2684] of  Map_Entry
+
+	(key "PyongyangSPb_Class190013")
+	(key_class "java.lang.String")
+	(value "540 140 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2685] of  Map_Entry
+
+	(key "PyongyangSPb_Class190024")
+	(key_class "java.lang.String")
+	(value "860 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2686] of  Map_Entry
+
+	(key "PyongyangSPb_Class190014")
+	(key_class "java.lang.String")
+	(value "660 180 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2687] of  Map_Entry
+
+	(key "PyongyangSPb_Class190025")
+	(key_class "java.lang.String")
+	(value "1040 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2688] of  Map_Entry
+
+	(key "PyongyangSPb_Class190015")
+	(key_class "java.lang.String")
+	(value "880 200 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2689] of  Map_Entry
+
+	(key "PyongyangSPb_Class190026")
+	(key_class "java.lang.String")
+	(value "440 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2690] of  Map_Entry
+
+	(key "PyongyangSPb_Class190016")
+	(key_class "java.lang.String")
+	(value "420 240 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2691] of  Map_Entry
+
+	(key "PyongyangSPb_Class190027")
+	(key_class "java.lang.String")
+	(value "560 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_118828_Class2692] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class190009.points1")
+	(key_class "java.lang.String")
+	(value "KB_118828_Class2667")
+	(value_class "java.util.Map"))
+
 ([KB_189120_Class0] of  String
 
 	(name "factory_class_name")
@@ -204,8 +1489,8 @@
 
 ([KB_189120_Class1] of  Map
 
-	(entries [NiceSPb_ProjectKB_Class2762])
-	(referenced_maps [NiceSPb_ProjectKB_Class2749]))
+	(entries [NiceSPb_ProjectKB_Class2720])
+	(referenced_maps [NiceSPb_ProjectKB_Class2707]))
 
 ([KB_189120_Class13] of  Property_List
 
@@ -299,1291 +1584,6 @@
 	(name "instances_file_name")
 	(string_value "NiceSPb.pins"))
 
-([KB_192238_Class2519] of  Map
-
-	(entries
-		[KB_192238_Class2538]
-		[KB_192238_Class2542]
-		[KB_192238_Class2545]
-		[KB_192238_Class2548]
-		[KB_192238_Class2551]
-		[KB_192238_Class2555]
-		[KB_192238_Class2559]
-		[KB_192238_Class2562]
-		[KB_192238_Class2566]
-		[KB_192238_Class2569]
-		[KB_192238_Class2573]
-		[KB_192238_Class2576]
-		[KB_192238_Class2580]
-		[KB_192238_Class2581]
-		[KB_192238_Class2584]
-		[KB_192238_Class2589]
-		[KB_192238_Class2592]
-		[KB_192238_Class2602]
-		[KB_192238_Class2607]
-		[KB_192238_Class2610]
-		[KB_192238_Class2618]
-		[KB_192238_Class2621]
-		[KB_192238_Class2624]
-		[KB_192238_Class2630]
-		[KB_192238_Class2638]
-		[KB_192238_Class2639]
-		[KB_192238_Class2644]
-		[KB_192238_Class2647]
-		[KB_192238_Class2650]
-		[KB_192238_Class2653]
-		[KB_192238_Class2654]
-		[KB_192238_Class2666]
-		[KB_192238_Class2692])
-	(referenced_maps
-		[KB_192238_Class2619]
-		[KB_192238_Class2631]
-		[KB_192238_Class2577]
-		[KB_192238_Class2556]
-		[KB_192238_Class2611]
-		[KB_192238_Class2655]
-		[KB_192238_Class2539]
-		[KB_192238_Class2590]
-		[KB_192238_Class2570]
-		[KB_192238_Class2593]
-		[KB_192238_Class2552]
-		[KB_192238_Class2574]
-		[KB_192238_Class2651]
-		[KB_192238_Class2608]
-		[KB_192238_Class2543]
-		[KB_192238_Class2567]
-		[KB_192238_Class2622]
-		[KB_192238_Class2546]
-		[KB_192238_Class2645]
-		[KB_192238_Class2667]
-		[KB_192238_Class2603]
-		[KB_192238_Class2625]
-		[KB_192238_Class2549]
-		[KB_192238_Class2648]
-		[KB_192238_Class2560]
-		[KB_192238_Class2582]
-		[KB_192238_Class2563]
-		[KB_192238_Class2585]
-		[KB_192238_Class2640]
-		[KB_192238_Class2520]))
-
-([KB_192238_Class2520] of  Map
-
-	(entries
-		[KB_192238_Class2521]
-		[KB_192238_Class2522]
-		[KB_192238_Class2523]
-		[KB_192238_Class2524]
-		[KB_192238_Class2525]
-		[KB_192238_Class2526]
-		[KB_192238_Class2527]
-		[KB_192238_Class2528]
-		[KB_192238_Class2529]
-		[KB_192238_Class2530]
-		[KB_192238_Class2531]
-		[KB_192238_Class2532]
-		[KB_192238_Class2533]
-		[KB_192238_Class2534]
-		[KB_192238_Class2535]
-		[KB_192238_Class2536]
-		[KB_192238_Class2537]))
-
-([KB_192238_Class2521] of  Map_Entry
-
-	(key "OSMRoads_Class80004")
-	(key_class "java.lang.String")
-	(value "45 217 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2522] of  Map_Entry
-
-	(key "OSMRoads_Class40000")
-	(key_class "java.lang.String")
-	(value "43 25 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2523] of  Map_Entry
-
-	(key "OSMRoads_Class80003")
-	(key_class "java.lang.String")
-	(value "390 161 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2524] of  Map_Entry
-
-	(key "OSMRoads_Class90012")
-	(key_class "java.lang.String")
-	(value "617 247 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2525] of  Map_Entry
-
-	(key "OSMRoads_Class90007")
-	(key_class "java.lang.String")
-	(value "476 240 82 77")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2526] of  Map_Entry
-
-	(key "OSMRoads_Class90018")
-	(key_class "java.lang.String")
-	(value "728 485 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2527] of  Map_Entry
-
-	(key "OSMRoads_Class90006")
-	(key_class "java.lang.String")
-	(value "293 239 73 75")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2528] of  Map_Entry
-
-	(key "OSMRoads_Class90017")
-	(key_class "java.lang.String")
-	(value "727 391 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2529] of  Map_Entry
-
-	(key "OSMRoads_Class90003")
-	(key_class "java.lang.String")
-	(value "48 316 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2530] of  Map_Entry
-
-	(key "OSMRoads_Class90014")
-	(key_class "java.lang.String")
-	(value "723 115 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2531] of  Map_Entry
-
-	(key "OSMRoads_Class90013")
-	(key_class "java.lang.String")
-	(value "720 27 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2532] of  Map_Entry
-
-	(key "OSMRoads_Class70002")
-	(key_class "java.lang.String")
-	(value "44 124 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2533] of  Map_Entry
-
-	(key "OSMRoads_Class90005")
-	(key_class "java.lang.String")
-	(value "51 500 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2534] of  Map_Entry
-
-	(key "OSMRoads_Class90016")
-	(key_class "java.lang.String")
-	(value "726 298 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2535] of  Map_Entry
-
-	(key "OSMRoads_Class50001")
-	(key_class "java.lang.String")
-	(value "176 245 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2536] of  Map_Entry
-
-	(key "OSMRoads_Class90004")
-	(key_class "java.lang.String")
-	(value "50 409 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2537] of  Map_Entry
-
-	(key "OSMRoads_Class90015")
-	(key_class "java.lang.String")
-	(value "725 205 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2538] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2520")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2539] of  Map
-
-	(entries
-		[KB_192238_Class2540]
-		[KB_192238_Class2541]))
-
-([KB_192238_Class2540] of  Map_Entry
-
-	(key "PyongyangSPb_Class40001")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2541] of  Map_Entry
-
-	(key "PyongyangSPb_Class40000")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2542] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class40006.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2539")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2543] of  Map
-
-	(entries [KB_192238_Class2544]))
-
-([KB_192238_Class2544] of  Map_Entry
-
-	(key "OSMRoads_Class40")
-	(key_class "java.lang.String")
-	(value "99 96 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2545] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2543")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2546] of  Map
-
-	(entries [KB_192238_Class2547]))
-
-([KB_192238_Class2547] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "60 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2548] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2546")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2549] of  Map
-
-	(entries [KB_192238_Class2550]))
-
-([KB_192238_Class2550] of  Map_Entry
-
-	(key "OSMRoads_Class90001")
-	(key_class "java.lang.String")
-	(value "107 116 125 145")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2551] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2549")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2552] of  Map
-
-	(entries
-		[KB_192238_Class2553]
-		[KB_192238_Class2554]))
-
-([KB_192238_Class2553] of  Map_Entry
-
-	(key "PyongyangSPb_Class40006")
-	(key_class "java.lang.String")
-	(value "200 40 100 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2554] of  Map_Entry
-
-	(key "PyongyangSPb_Class20001")
-	(key_class "java.lang.String")
-	(value "60 40 100 80")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2555] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class20000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2552")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2556] of  Map
-
-	(entries
-		[KB_192238_Class2557]
-		[KB_192238_Class2558]))
-
-([KB_192238_Class2557] of  Map_Entry
-
-	(key "OSMRoads_Class20001")
-	(key_class "java.lang.String")
-	(value "56 56 89 89")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2558] of  Map_Entry
-
-	(key "OSMRoads_Class30002")
-	(key_class "java.lang.String")
-	(value "57 206 86 89")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2559] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2556")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2560] of  Map
-
-	(entries [KB_192238_Class2561]))
-
-([KB_192238_Class2561] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2562] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2560")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2563] of  Map
-
-	(entries
-		[KB_192238_Class2564]
-		[KB_192238_Class2565]))
-
-([KB_192238_Class2564] of  Map_Entry
-
-	(key "OSMRoads_Class20159")
-	(key_class "java.lang.String")
-	(value "207 60 87 81")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2565] of  Map_Entry
-
-	(key "OSMRoads_Class20000")
-	(key_class "java.lang.String")
-	(value "56 58 89 85")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2566] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2563")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2567] of  Map
-
-	(entries [KB_192238_Class2568]))
-
-([KB_192238_Class2568] of  Map_Entry
-
-	(key "PyongyangSPb_Class250001")
-	(key_class "java.lang.String")
-	(value "121 89 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2569] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class250000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2567")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2570] of  Map
-
-	(entries
-		[KB_192238_Class2571]
-		[KB_192238_Class2572]))
-
-([KB_192238_Class2571] of  Map_Entry
-
-	(key "PyongyangSPb_Class250002")
-	(key_class "java.lang.String")
-	(value "177 74 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2572] of  Map_Entry
-
-	(key "PyongyangSPb_Class250004")
-	(key_class "java.lang.String")
-	(value "177 204 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2573] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class250001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2570")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2574] of  Map
-
-	(entries [KB_192238_Class2575]))
-
-([KB_192238_Class2575] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2576] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2574")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2577] of  Map
-
-	(entries
-		[KB_192238_Class2578]
-		[KB_192238_Class2579]))
-
-([KB_192238_Class2578] of  Map_Entry
-
-	(key "PyongyangSPb_Class40006")
-	(key_class "java.lang.String")
-	(value "209 60 71 70")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2579] of  Map_Entry
-
-	(key "PyongyangSPb_Class20001")
-	(key_class "java.lang.String")
-	(value "57 60 73 70")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2580] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class40005.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2577")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2581] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_192238_Class2582] of  Map
-
-	(entries [KB_192238_Class2583]))
-
-([KB_192238_Class2583] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2584] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2582")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2585] of  Map
-
-	(entries
-		[KB_192238_Class2586]
-		[KB_192238_Class2587]
-		[KB_192238_Class2588]))
-
-([KB_192238_Class2586] of  Map_Entry
-
-	(key "OSMRoads_Class90020")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2587] of  Map_Entry
-
-	(key "OSMRoads_Class90028")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2588] of  Map_Entry
-
-	(key "OSMRoads_Class90019")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2589] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2585")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2590] of  Map
-
-	(entries [KB_192238_Class2591]))
-
-([KB_192238_Class2591] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2592] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2590")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2593] of  Map
-
-	(entries
-		[KB_192238_Class2594]
-		[KB_192238_Class2595]
-		[KB_192238_Class2596]
-		[KB_192238_Class2597]
-		[KB_192238_Class2598]
-		[KB_192238_Class2599]
-		[KB_192238_Class2600]
-		[KB_192238_Class2601]))
-
-([KB_192238_Class2594] of  Map_Entry
-
-	(key "PyongyangSPb_Class40007")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "82 337 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2595] of  Map_Entry
-
-	(key "PyongyangSPb_Class10002")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "5 707 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2596] of  Map_Entry
-
-	(key "PyongyangSPb_Class60003")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "6 493 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2597] of  Map_Entry
-
-	(key "PyongyangSPb_Class10001")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "9 502 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2598] of  Map_Entry
-
-	(key "PyongyangSPb_Class10000")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "7 291 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2599] of  Map_Entry
-
-	(key "PyongyangSPb_Class1")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "9 704 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2600] of  Map_Entry
-
-	(key "PyongyangSPb_Class10004")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "93 310 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2601] of  Map_Entry
-
-	(key "PyongyangSPb_Class10003")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "16 602 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2602] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2593")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2603] of  Map
-
-	(entries
-		[KB_192238_Class2604]
-		[KB_192238_Class2605]
-		[KB_192238_Class2606]))
-
-([KB_192238_Class2604] of  Map_Entry
-
-	(key "OSMRoads_Class50000")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2605] of  Map_Entry
-
-	(key "OSMRoads_Class70123")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2606] of  Map_Entry
-
-	(key "OSMRoads_Class90027")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2607] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2603")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2608] of  Map
-
-	(entries [KB_192238_Class2609]))
-
-([KB_192238_Class2609] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2610] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2608")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2611] of  Map
-
-	(entries
-		[KB_192238_Class2612]
-		[KB_192238_Class2613]
-		[KB_192238_Class2614]
-		[KB_192238_Class2615]
-		[KB_192238_Class2616]
-		[KB_192238_Class2617]))
-
-([KB_192238_Class2612] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "361 61 78 78")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2613] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "360 320 80 76")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2614] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "500 260 82 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2615] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "500 80 77 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2616] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "200 360 78 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2617] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "205 65 90 71")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2618] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2611")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2619] of  Map
-
-	(entries [KB_192238_Class2620]))
-
-([KB_192238_Class2620] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2621] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2619")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2622] of  Map
-
-	(entries [KB_192238_Class2623]))
-
-([KB_192238_Class2623] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2624] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2622")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2625] of  Map
-
-	(entries
-		[KB_192238_Class2626]
-		[KB_192238_Class2627]
-		[KB_192238_Class2628]
-		[KB_192238_Class2629]))
-
-([KB_192238_Class2626] of  Map_Entry
-
-	(key "PyongyangSPb_Class20005")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2627] of  Map_Entry
-
-	(key "PyongyangSPb_Class20010")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2628] of  Map_Entry
-
-	(key "PyongyangSPb_Class20012")
-	(key_class "java.lang.String")
-	(value "70 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2629] of  Map_Entry
-
-	(key "PyongyangSPb_Class20011")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2630] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class20001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2625")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2631] of  Map
-
-	(entries
-		[KB_192238_Class2632]
-		[KB_192238_Class2633]
-		[KB_192238_Class2634]
-		[KB_192238_Class2635]
-		[KB_192238_Class2636]
-		[KB_192238_Class2637]))
-
-([KB_192238_Class2632] of  Map_Entry
-
-	(key "OSMRoads_Class30003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2633] of  Map_Entry
-
-	(key "OSMRoads_Class30006")
-	(key_class "java.lang.String")
-	(value "212 659 77 82")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2634] of  Map_Entry
-
-	(key "OSMRoads_Class20160")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2635] of  Map_Entry
-
-	(key "OSMRoads_Class20161")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2636] of  Map_Entry
-
-	(key "OSMRoads_Class20162")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2637] of  Map_Entry
-
-	(key "OSMRoads_Class20163")
-	(key_class "java.lang.String")
-	(value "201 510 98 81")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2638] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2631")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2639] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_192238_Class2640] of  Map
-
-	(entries
-		[KB_192238_Class2641]
-		[KB_192238_Class2642]
-		[KB_192238_Class2643]))
-
-([KB_192238_Class2641] of  Map_Entry
-
-	(key "OSMRoads_Class41")
-	(key_class "java.lang.String")
-	(value "91 340 119 120")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2642] of  Map_Entry
-
-	(key "OSMRoads_Class42")
-	(key_class "java.lang.String")
-	(value "90 589 120 122")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2643] of  Map_Entry
-
-	(key "OSMRoads_Class0")
-	(key_class "java.lang.String")
-	(value "100 95 100 110")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2644] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2640")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2645] of  Map
-
-	(entries [KB_192238_Class2646]))
-
-([KB_192238_Class2646] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2647] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2645")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2648] of  Map
-
-	(entries [KB_192238_Class2649]))
-
-([KB_192238_Class2649] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2650] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2648")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2651] of  Map
-
-	(entries [KB_192238_Class2652]))
-
-([KB_192238_Class2652] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2653] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2651")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2654] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_192238_Class2655] of  Map
-
-	(entries
-		[KB_192238_Class2656]
-		[KB_192238_Class2657]
-		[KB_192238_Class2658]
-		[KB_192238_Class2659]
-		[KB_192238_Class2660]
-		[KB_192238_Class2661]
-		[KB_192238_Class2662]
-		[KB_192238_Class2663]
-		[KB_192238_Class2664]
-		[KB_192238_Class2665]))
-
-([KB_192238_Class2656] of  Map_Entry
-
-	(key "OSMRoads_Class120010")
-	(key_class "java.lang.String")
-	(value "273 437 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2657] of  Map_Entry
-
-	(key "OSMRoads_Class110003")
-	(key_class "java.lang.String")
-	(value "240 120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2658] of  Map_Entry
-
-	(key "OSMRoads_Class100000")
-	(key_class "java.lang.String")
-	(value "100 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2659] of  Map_Entry
-
-	(key "OSMRoads_Class110000")
-	(key_class "java.lang.String")
-	(value "40 540 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2660] of  Map_Entry
-
-	(key "OSMRoads_Class120007")
-	(key_class "java.lang.String")
-	(value "40 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2661] of  Map_Entry
-
-	(key "OSMRoads_Class120006")
-	(key_class "java.lang.String")
-	(value "240 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2662] of  Map_Entry
-
-	(key "OSMRoads_Class120005")
-	(key_class "java.lang.String")
-	(value "160 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2663] of  Map_Entry
-
-	(key "OSMRoads_Class120004")
-	(key_class "java.lang.String")
-	(value "100 160 76 87")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2664] of  Map_Entry
-
-	(key "OSMRoads_Class90002")
-	(key_class "java.lang.String")
-	(value "240 0 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2665] of  Map_Entry
-
-	(key "OSMRoads_Class120009")
-	(key_class "java.lang.String")
-	(value "80 300 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2666] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2655")
-	(value_class "java.util.Map"))
-
-([KB_192238_Class2667] of  Map
-
-	(entries
-		[KB_192238_Class2668]
-		[KB_192238_Class2669]
-		[KB_192238_Class2670]
-		[KB_192238_Class2671]
-		[KB_192238_Class2672]
-		[KB_192238_Class2673]
-		[KB_192238_Class2674]
-		[KB_192238_Class2675]
-		[KB_192238_Class2676]
-		[KB_192238_Class2677]
-		[KB_192238_Class2678]
-		[KB_192238_Class2679]
-		[KB_192238_Class2680]
-		[KB_192238_Class2681]
-		[KB_192238_Class2682]
-		[KB_192238_Class2683]
-		[KB_192238_Class2684]
-		[KB_192238_Class2685]
-		[KB_192238_Class2686]
-		[KB_192238_Class2687]
-		[KB_192238_Class2688]
-		[KB_192238_Class2689]
-		[KB_192238_Class2690]
-		[KB_192238_Class2691]))
-
-([KB_192238_Class2668] of  Map_Entry
-
-	(key "PyongyangSPb_Class190020")
-	(key_class "java.lang.String")
-	(value "960 280 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2669] of  Map_Entry
-
-	(key "PyongyangSPb_Class190031")
-	(key_class "java.lang.String")
-	(value "600 660 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2670] of  Map_Entry
-
-	(key "PyongyangSPb_Class190021")
-	(key_class "java.lang.String")
-	(value "360 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2671] of  Map_Entry
-
-	(key "PyongyangSPb_Class190032")
-	(key_class "java.lang.String")
-	(value "740 600 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2672] of  Map_Entry
-
-	(key "PyongyangSPb_Class190011")
-	(key_class "java.lang.String")
-	(value "660 20 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2673] of  Map_Entry
-
-	(key "PyongyangSPb_Class190022")
-	(key_class "java.lang.String")
-	(value "500 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2674] of  Map_Entry
-
-	(key "PyongyangSPb_Class190033")
-	(key_class "java.lang.String")
-	(value "880 600 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2675] of  Map_Entry
-
-	(key "PyongyangSPb_Class190012")
-	(key_class "java.lang.String")
-	(value "780 100 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2676] of  Map_Entry
-
-	(key "PyongyangSPb_Class190023")
-	(key_class "java.lang.String")
-	(value "760 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2677] of  Map_Entry
-
-	(key "PyongyangSPb_Class190034")
-	(key_class "java.lang.String")
-	(value "760 720 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2678] of  Map_Entry
-
-	(key "PyongyangSPb_Class190030")
-	(key_class "java.lang.String")
-	(value "940 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2679] of  Map_Entry
-
-	(key "PyongyangSPb_Class190017")
-	(key_class "java.lang.String")
-	(value "580 260 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2680] of  Map_Entry
-
-	(key "PyongyangSPb_Class190028")
-	(key_class "java.lang.String")
-	(value "700 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2681] of  Map_Entry
-
-	(key "PyongyangSPb_Class190018")
-	(key_class "java.lang.String")
-	(value "660 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2682] of  Map_Entry
-
-	(key "PyongyangSPb_Class190029")
-	(key_class "java.lang.String")
-	(value "820 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2683] of  Map_Entry
-
-	(key "PyongyangSPb_Class190019")
-	(key_class "java.lang.String")
-	(value "760 260 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2684] of  Map_Entry
-
-	(key "PyongyangSPb_Class190013")
-	(key_class "java.lang.String")
-	(value "540 140 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2685] of  Map_Entry
-
-	(key "PyongyangSPb_Class190024")
-	(key_class "java.lang.String")
-	(value "860 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2686] of  Map_Entry
-
-	(key "PyongyangSPb_Class190014")
-	(key_class "java.lang.String")
-	(value "660 180 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2687] of  Map_Entry
-
-	(key "PyongyangSPb_Class190025")
-	(key_class "java.lang.String")
-	(value "1040 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2688] of  Map_Entry
-
-	(key "PyongyangSPb_Class190015")
-	(key_class "java.lang.String")
-	(value "880 200 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2689] of  Map_Entry
-
-	(key "PyongyangSPb_Class190026")
-	(key_class "java.lang.String")
-	(value "440 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2690] of  Map_Entry
-
-	(key "PyongyangSPb_Class190016")
-	(key_class "java.lang.String")
-	(value "420 240 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2691] of  Map_Entry
-
-	(key "PyongyangSPb_Class190027")
-	(key_class "java.lang.String")
-	(value "560 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_192238_Class2692] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class190009.points1")
-	(key_class "java.lang.String")
-	(value "KB_192238_Class2667")
-	(value_class "java.util.Map"))
-
 ([KB_236959_Class306] of  Widget
 
 	(is_hidden FALSE)
@@ -1666,111 +1666,111 @@
 	(name "layout properties")
 	(properties [VERTICAL_STRETCHER]))
 
-([NiceSPb_ProjectKB_Class2749] of  Map
+([NiceSPb_ProjectKB_Class2707] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class2750]
-		[NiceSPb_ProjectKB_Class2751]
-		[NiceSPb_ProjectKB_Class2752]
-		[NiceSPb_ProjectKB_Class2753]
-		[NiceSPb_ProjectKB_Class2754]
-		[NiceSPb_ProjectKB_Class2755]
-		[NiceSPb_ProjectKB_Class2756]
-		[NiceSPb_ProjectKB_Class2757]
-		[NiceSPb_ProjectKB_Class2758]
-		[NiceSPb_ProjectKB_Class2759]
-		[NiceSPb_ProjectKB_Class2760]
-		[NiceSPb_ProjectKB_Class2761]))
+		[NiceSPb_ProjectKB_Class2708]
+		[NiceSPb_ProjectKB_Class2709]
+		[NiceSPb_ProjectKB_Class2710]
+		[NiceSPb_ProjectKB_Class2711]
+		[NiceSPb_ProjectKB_Class2712]
+		[NiceSPb_ProjectKB_Class2713]
+		[NiceSPb_ProjectKB_Class2714]
+		[NiceSPb_ProjectKB_Class2715]
+		[NiceSPb_ProjectKB_Class2716]
+		[NiceSPb_ProjectKB_Class2717]
+		[NiceSPb_ProjectKB_Class2718]
+		[NiceSPb_ProjectKB_Class2719]))
 
-([NiceSPb_ProjectKB_Class2750] of  Map_Entry
+([NiceSPb_ProjectKB_Class2708] of  Map_Entry
 
 	(key "PyongyangSPb_Class210001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "4 695 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2751] of  Map_Entry
+([NiceSPb_ProjectKB_Class2709] of  Map_Entry
 
 	(key "PyongyangSPb_Class40007")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "82 337 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2752] of  Map_Entry
+([NiceSPb_ProjectKB_Class2710] of  Map_Entry
 
 	(key "PyongyangSPb_Class200003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "21 596 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2753] of  Map_Entry
+([NiceSPb_ProjectKB_Class2711] of  Map_Entry
 
 	(key "PyongyangSPb_Class10002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "5 707 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2754] of  Map_Entry
+([NiceSPb_ProjectKB_Class2712] of  Map_Entry
 
 	(key "PyongyangSPb_Class60003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "6 493 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2755] of  Map_Entry
+([NiceSPb_ProjectKB_Class2713] of  Map_Entry
 
 	(key "PyongyangSPb_Class190000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "11 497 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2756] of  Map_Entry
+([NiceSPb_ProjectKB_Class2714] of  Map_Entry
 
 	(key "PyongyangSPb_Class10001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 502 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2757] of  Map_Entry
+([NiceSPb_ProjectKB_Class2715] of  Map_Entry
 
 	(key "PyongyangSPb_Class10000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 291 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2758] of  Map_Entry
+([NiceSPb_ProjectKB_Class2716] of  Map_Entry
 
 	(key "PyongyangSPb_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 704 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2759] of  Map_Entry
+([NiceSPb_ProjectKB_Class2717] of  Map_Entry
 
 	(key "PyongyangSPb_Class10004")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "93 310 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2760] of  Map_Entry
+([NiceSPb_ProjectKB_Class2718] of  Map_Entry
 
 	(key "PyongyangSPb_Class10003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "16 602 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2761] of  Map_Entry
+([NiceSPb_ProjectKB_Class2719] of  Map_Entry
 
 	(key "BrigBern_Class3")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "44 180 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class2762] of  Map_Entry
+([NiceSPb_ProjectKB_Class2720] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class2749")
+	(value "NiceSPb_ProjectKB_Class2707")
 	(value_class "java.util.Map"))
 
 ([option_instance] of  Options
