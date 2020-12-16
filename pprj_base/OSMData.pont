@@ -1,4 +1,4 @@
-; Tue Dec 15 20:05:08 MSK 2020
+; Wed Dec 16 20:41:17 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,7 +13,7 @@
 		(create-accessor read-write))
 	(single-slot but-show-node
 		(type STRING)
-;+		(value "Show/osm.data/show-node")
+;+		(value "Show/osm.onto/show-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot node
@@ -27,26 +27,23 @@
 		(create-accessor read-write))
 	(single-slot but-show-roads
 		(type STRING)
-		(default "Show Existing Roads/osm.data/show-roads")
+;+		(value "Show Existing Roads/osm.onto/show-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-hide-node
 		(type STRING)
-;+		(value "Hide/osm.data/hide-node")
+;+		(value "Hide/osm.onto/hide-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-hide-roads
 		(type STRING)
-		(default "Hide Roads/osm.data/hide-roads")
+;+		(value "Hide Roads/osm.onto/hide-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road-subclass
 		(type SYMBOL)
 		(allowed-values Railroad Motoroad Cycleroad)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot but-onboard
-;+		(type ANY)
 		(create-accessor read-write))
 	(multislot nodes
 		(type INSTANCE)
@@ -62,7 +59,7 @@
 		(create-accessor read-write))
 	(single-slot but-show-edge
 		(type STRING)
-;+		(value "Show/osm.data/show-mapob")
+;+		(value "Show/osm.onto/show-mapob")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot status
@@ -75,22 +72,31 @@
 		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
-		(default "Clear/osm.data/clear-path")
+;+		(value "Clear/osm.onto/clear-path")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Road/osm.data/create-road")
+;+		(value "Create Road/osm.onto/create-road")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot y2
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot show
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot xx
@@ -102,12 +108,12 @@
 		(create-accessor read-write))
 	(single-slot but-rem
 		(type STRING)
-		(default "Mode Remove/osm.data/mode-remove")
+;+		(value "Mode Remove/osm.onto/mode-remove")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-add
 		(type STRING)
-		(default "Mode Add/osm.data/mode-add")
+;+		(value "Mode Add/osm.onto/mode-add")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot edges
@@ -118,11 +124,12 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot yy
 		(type STRING)
-		(create-accessor read-write))
-	(multislot but-start-serv
-;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot server
 		(type SYMBOL)
@@ -138,23 +145,20 @@
 		(create-accessor read-write))
 	(single-slot but-conn-nodes
 		(type STRING)
-;+		(value "Connected Nodes/osm.data/connected-nodes")
+;+		(value "Connected Nodes/osm.onto/connected-nodes")
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot but-stop-serv
-;+		(type ANY)
 		(create-accessor read-write))
 	(multislot ways
 ;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot but-hide-edge
 		(type STRING)
-;+		(value "Hide/osm.data/hide-mapob")
+;+		(value "Hide/osm.onto/hide-mapob")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-nodes
 		(type STRING)
-;+		(value "Mode Nodes/osm.data/mode-nodes")
+;+		(value "Mode Nodes/osm.onto/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tagvalue
@@ -166,26 +170,6 @@
 (defclass OSM+Onto
 	(is-a USER)
 	(role abstract))
-
-(defclass Railroad
-	(is-a OSM+Onto)
-	(role concrete)
-	(multislot dirways
-		(type INSTANCE)
-;+		(allowed-classes)
-		(create-accessor read-write))
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
 
 (defclass RoadControl
 	(is-a OSM+Onto)
@@ -200,12 +184,12 @@
 		(create-accessor read-write))
 	(single-slot but-show-roads
 		(type STRING)
-		(default "Show Existing Roads/osm.data/show-roads")
+;+		(value "Show Existing Roads/osm.onto/show-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-hide-roads
 		(type STRING)
-		(default "Hide Roads/osm.data/hide-roads")
+;+		(value "Hide Roads/osm.onto/hide-roads")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot kind
@@ -222,7 +206,7 @@
 		(create-accessor read-write))
 	(single-slot but-conn-nodes
 		(type STRING)
-;+		(value "Connected Nodes/osm.data/connected-nodes")
+;+		(value "Connected Nodes/osm.onto/connected-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot road-subclass
@@ -246,7 +230,7 @@
 		(create-accessor read-write))
 	(single-slot but-nodes
 		(type STRING)
-;+		(value "Mode Nodes/osm.data/mode-nodes")
+;+		(value "Mode Nodes/osm.onto/mode-nodes")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot tagvalue
@@ -256,12 +240,12 @@
 		(create-accessor read-write))
 	(single-slot but-clear
 		(type STRING)
-		(default "Clear/osm.data/clear-path")
+;+		(value "Clear/osm.onto/clear-path")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-cre
 		(type STRING)
-		(default "Create Road/osm.data/create-road")
+;+		(value "Create Road/osm.onto/create-road")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
@@ -274,12 +258,12 @@
 		(create-accessor read-write))
 	(single-slot but-rem
 		(type STRING)
-		(default "Mode Remove/osm.data/mode-remove")
+;+		(value "Mode Remove/osm.onto/mode-remove")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-add
 		(type STRING)
-		(default "Mode Add/osm.data/mode-add")
+;+		(value "Mode Add/osm.onto/mode-add")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot node
@@ -296,46 +280,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Cycleroad
-	(is-a OSM+Onto)
-	(role concrete)
-	(multislot dirways
-		(type INSTANCE)
-;+		(allowed-classes)
-		(create-accessor read-write))
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Motoroad
-	(is-a OSM+Onto)
-	(role concrete)
-	(multislot dirways
-		(type INSTANCE)
-;+		(allowed-classes)
-		(create-accessor read-write))
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Edge
 	(is-a OSM+Onto OMTPoly)
 	(role concrete)
@@ -345,7 +289,7 @@
 		(create-accessor read-write))
 	(single-slot but-show-edge
 		(type STRING)
-;+		(value "Show/osm.data/show-mapob")
+;+		(value "Show/osm.onto/show-mapob")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot y
@@ -368,7 +312,7 @@
 		(create-accessor read-write))
 	(single-slot but-hide-edge
 		(type STRING)
-;+		(value "Hide/osm.data/hide-mapob")
+;+		(value "Hide/osm.onto/hide-mapob")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -385,15 +329,109 @@
 		(create-accessor read-write))
 	(single-slot but-hide-node
 		(type STRING)
-;+		(value "Hide/osm.data/hide-node")
+;+		(value "Hide/osm.onto/hide-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot but-show-node
 		(type STRING)
-;+		(value "Show/osm.data/show-node")
+;+		(value "Show/osm.onto/show-node")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot edges
 		(type INSTANCE)
 ;+		(allowed-classes Edge)
+		(create-accessor read-write)))
+
+(defclass Dirway
+	(is-a OSM+Onto)
+	(role concrete)
+	(single-slot way
+		(type INSTANCE)
+;+		(allowed-classes Way)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Way
+	(is-a OSM+Onto)
+	(role concrete)
+	(single-slot poly
+		(type INSTANCE)
+;+		(allowed-classes OMTPoly)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass RoadSubclasses
+	(is-a OSM+Onto)
+	(role abstract))
+
+(defclass Cycleroad
+	(is-a RoadSubclasses)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Motoroad
+	(is-a RoadSubclasses)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Railroad
+	(is-a RoadSubclasses)
+	(role concrete)
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot to1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot from1
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

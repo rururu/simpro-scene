@@ -31,7 +31,7 @@
     (print ".")))
 (println))
 
-(defn create-line [[id pts] clr]
+(defn create-line [[id pts]]
   (let [id (str id)
        [[la1 lo1] [la2 lo2]] [(first pts) (last pts)]
        [lat1 lon1] [(MapOb/getDegMin la1) (MapOb/getDegMin lo1)]
@@ -40,7 +40,7 @@
     (ssv poi "description" id)
     (ssv poi "latitude" lat1)
     (ssv poi "longitude" lon1)
-    (ssv poi "lineColor" clr)
+    (ssv poi "lineColor" "FF009900")
     (ssv poi "line" (fifos "Line" "label" "L3"))
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
     (OMT/getOrAdd poi)
@@ -56,7 +56,7 @@
   dw))
 
 (defn get-control-center []
-  (fainst "RoadControl" nil))
+  (fainst (cls-instances "RoadControl") nil))
 
 (defn get-kind []
   (or (sv (get-control-center) "kind") KIND))
@@ -87,25 +87,45 @@
 (let [k (get-kind)
        kt (get-kind-type)
        kst (get-kind-subtype)
-       data (f/get-osm-data (seq llp) (get-radius) k kt)]
-  (if (nil? data)
-    (println :NO-DATA)
-    (let [ipss (f/filter-data data k kt kst)]
-      (if (empty? ipss)
-        (println "Try in other location..")
-        (if (empty? PATH)
-          (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))
-            (println "Initial" (count PATH) "ways.."))
-          (let [[ldir lips llin] (last PATH)
-                 [sdi [ld nd] ips :as short] (f/nearest-to lips ipss)]
-            (if (nil? short)
-              (println "No continuation!")
-              (let [lin (create-line ips)]
-                (def PATH         
-                  (if (= (count PATH) 1)
-                    [[ld lips llin] [nd ips lin]]
-                    (conj PATH [nd ips lin])))
-                (println "In PATH" (count PATH) "ways..")))) ) )))))
+       rad (get-radius)
+       box (f/bbx (reverse llp) rad)
+       oda (f/osm-data box k kt)
+       ipss (f/filter-data oda k kt kst)]
+  (if (empty? ipss)
+    (println "Try in other location..")
+    (if (empty? PATH)
+      (do (def PATH (vec (map #(vector nil % (create-line %)) ipss)))
+        (println "Initial" (count PATH) "ways.."))
+      (let [[ldir lips llin] (last PATH)
+             [sdi [ld nd] ips :as short] (f/nearest-to lips ipss)]
+        (if (nil? short)
+          (println "No continuation!")
+          (let [lin (create-line ips)]
+            (def PATH         
+              (if (= (count PATH) 1)
+                [[ld lips llin] [nd ips lin]]
+                (conj PATH [nd ips lin])))
+            (println "In PATH" (count PATH) "ways.."))) ) ))))
+
+(defn create-dirway [[dir [id pts] lin]]
+  (let [dw (crin "Dirway")
+       way (foc "Way" "id" (str id))]
+  (ssv way "poly" lin)
+  (ssv way "source" (str (vec pts)))
+  (ssv dw "direction" dir)
+  (ssv dw "way" way)
+  dw))
+
+(defn star-points [noi]
+  (letfn [(far-end [p1 e]
+             (let [p [(sv e "x") (sv e "y")]
+                    p2 [(sv e "x2") (sv e "y2")]]
+                (if (> (f/simple-dist p1 p) (f/simple-dist p1 p2))
+                  p1
+                  p2)))]
+  (let [p1 [(sv noi "x") (sv noi "y")]
+         egs (svs noi "edges")]
+    (map #(far-end p1 %) egs))))
 
 (defn remove-way [mo]
   (println :MODE MODE)
@@ -121,14 +141,47 @@
         (def PATH (vec (filter #(not= (str (first (second %))) id) PATH)))
         (println "Removed from PATH way" id "," "remains" (count PATH)))))))
 
-(defn hide-roads [hm inst]
-  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
-  (doseq [rd sel]
-    (doseq [dw (svs rd "dirways")]
-       (OMT/removeMapOb 
-         (-> (sv dw "way")
-           (sv "poly"))
-         false)))))
+(defn mk-edge [iLine]
+  (let [egi (foc "Edge" "label" (str (first iLine)))
+       ps (rest iLine)
+       tsf (fn [[x y]] (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))]
+  (ssv egi "x" (float (ffirst ps)))
+  (ssv egi "y" (float (second (first ps))))
+  (ssv egi "x2" (float (first (last ps))))
+  (ssv egi "y2" (float (second (last ps))))
+  (ssvs egi "xx" (map #(str (first %)) ps))
+  (ssvs egi "yy" (map #(str (second %)) ps))
+  (ssvs egi "points" (map tsf ps))
+  (ssv egi "latitude" "0 0")
+  (ssv egi "longitude" "0 0")
+  (ssv egi "lineColor" "FFFF6800")
+  (if (is-show?)
+    (OMT/getOrAdd egi))
+  egi))
+
+(defn mk-node [xy]
+  (if-let [ils (seq (f/iLines-with-beg-or-end-in-bbx 
+                           xy (get-radius) (get-kind) (get-kind-type) (get-kind-subtype)))]
+  (let [ils (f/sort-iLines xy ils)
+         egs (map mk-edge ils)
+         ned (f/nearest-end xy (first ils))
+         noi (foc "Node" "label" (str "N" ned))
+         [x y] ned]
+    (ssv noi "x" (float x)) 
+    (ssv noi "y" (float y)) 
+    (ssv noi "latitude" (MapOb/getDegMin y))
+    (ssv noi "longitude" (MapOb/getDegMin x))
+    (ssv noi "lineColor" "FFFF6800")
+    (ssv noi "point-radius" (int 6))
+    (ssv noi "oval" true)
+    (ssvs noi "edges" egs)
+    (when (is-show?)
+      (OMT/getOrAdd noi)
+      (println "Created Node from" (count egs) "edges."))
+    noi)
+  (when (is-show?)
+    (println "No edges")
+    nil)))
 
 (defn show-mapob [hm inst]
   (OMT/getOrAdd inst))
@@ -148,60 +201,11 @@
 (doseq [egi (svs inst "edges")]
  (hide-mapob nil egi)))
 
-(defn mk-edge [s]
-  (let [egi (foc "Edge" "label" (str (first s)))
-       crs (rest s)
-       tsf (fn [[x y]] (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))]
-  (ssv egi "x" (float (ffirst crs)))
-  (ssv egi "y" (float (second (first crs))))
-  (ssv egi "x2" (float (first (last crs))))
-  (ssv egi "y2" (float (second (last crs))))
-  (ssvs egi "xx" (map #(str (first %)) crs))
-  (ssvs egi "yy" (map #(str (second %)) crs))
-  (ssvs egi "points" (map tsf crs))
-  (ssv egi "latitude" "0 0")
-  (ssv egi "longitude" "0 0")
-  (ssv egi "lineColor" "FFFF6800")
-  (if (is-show?)
-    (OMT/getOrAdd egi))
-  egi))
-
-(defn mk-node [[x y]]
-  (if-let [sgs (f/lines-with-beg-or-end-in-bbx [x y]))]
-  (let [egs (map mk-edge sgs)
-         noi (foc "Node" "label" (str "N" [x y]))]
-    (ssv noi "x" (float x)) 
-    (ssv noi "y" (float y)) 
-    (ssv noi "latitude" (MapOb/getDegMin y))
-    (ssv noi "longitude" (MapOb/getDegMin x))
-    (ssv noi "lineColor" "FFFF6800")
-    (ssv noi "point-radius" (int 6))
-    (ssv noi "oval" true)
-    (ssvs noi "edges" egs)
-    (when (is-show?)
-      (OMT/getOrAdd noi)
-      (println "Created Node from" (count egs) "edges."))
-    noi)))
-
-(defn set-mouse-adapter []
-  (let [rmma (proxy [RuMapMouseAdapter] []
-	(mouseLeftButtonAction [mo llp runa]
-                            (println MODE mo (seq llp) (.getName runa))
-	  (condp = MODE
-	    'ADD (add-way llp)
-	    'REMOVE (remove-way mo)
-                              'NODES (mk-node (reverse llp))
-	    (println (or (if mo (.getName mo)) (seq llp))))
-	  true))
-       pgs (seq (OMT/getPlaygrounds))]
-  (.setRuMapMouseAdapter (first pgs) rmma)
-  rmma))
-
 (defn mode-nodes [hm inst]
   (if (nil? RMMA)
   (def RMMA (set-mouse-adapter)))
 (let [srv (get-server)]
-  (set-server srv)
+  (f/set-server srv)
   (def MODE 'NODES)
   (ssv inst "status" (str "MODE " MODE))
   (println 
@@ -215,7 +219,7 @@
   (if (nil? RMMA)
   (def RMMA (set-mouse-adapter)))
 (let [srv (get-server)]
-  (set-server srv)
+  (f/set-server srv)
   (def MODE 'ADD)
   (ssv inst "status" (str "MODE " MODE))
   (println 
@@ -231,17 +235,40 @@
     (ssv inst "status" "MODE REMOVE"))
   (ssv inst "status" "Add ways before")))
 
+(defn set-mouse-adapter []
+  (let [rmma (proxy [RuMapMouseAdapter] []
+	(mouseLeftButtonAction [mo llp runa]
+                            (println MODE mo (seq llp) (.getName runa))
+	  (condp = MODE
+	    'ADD (add-way llp)
+	    'REMOVE (remove-way mo)
+                              'NODES (mk-node (reverse llp))
+	    (println (or (if mo (.getName mo)) (seq llp))))
+	  true))
+       pgs (seq (OMT/getPlaygrounds))]
+  (.setRuMapMouseAdapter (first pgs) rmma)
+  rmma))
+
 (defn clear-path [hm inst]
   (def PATH [])
 (ssv inst "status" "CLEAR"))
 
 (defn show-roads [hm inst]
-  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "RoadSubclasses")]))]
   (doseq [rd sel]
     (doseq [dw (svs rd "dirways")]
        (-> (sv dw "way")
          (sv "poly")
          OMT/getOrAdd)))))
+
+(defn hide-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "RoadSubclasses")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (OMT/removeMapOb 
+         (-> (sv dw "way")
+           (sv "poly"))
+         false)))))
 
 (defn create-road [hm inst]
   (if (not (empty? PATH))
@@ -255,19 +282,8 @@
     (ssv inst "status" (str "MODE CREATE, in PATH " (count PATH) " ways.")))
   (ssv inst "status" "Add ways before!")))
 
-(defn star-points [noi]
-  (letfn [(far-end [p1 e]
-             (let [p [(sv e "x") (sv e "y")]
-                    p2 [(sv e "x2") (sv e "y2")]]
-                (if (> (simple-dist p1 p) (simple-dist p1 p2))
-                  p1
-                  p2)))]
-  (let [p1 [(sv noi "x") (sv noi "y")]
-         egs (svs noi "edges")]
-    (map #(far-end p1 %) egs))))
-
 (defn connected-nodes [hm inst]
   (if-let [noi (sv inst "node")]
-  (ssvs inst "nodes" (map mk-node (star-points noi))
+  (ssvs inst "nodes" (map mk-node (star-points noi)))
   (println "Fill node slot!")))
 

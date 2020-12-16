@@ -11,17 +11,76 @@
 (def OSM-DATA (volatile! []))
 (def WAY-TYPE "railway")
 (def WAY-SUBTYPE "rail")
+(def RMMA false)
 (def MODE nil)
-(def RMMA nil)
-(def RADIUS ;; 50 meters
-0.0005)
+(def RADIUS 0)
 (def W-COLOR "FFFF0000")
 (def F "FORWARD")
 (def B "BACKWARD")
 (def PATH [])
-(def SHOW true)
 (defn unref [inst]
   (< (count (.getReferences inst)) 2))
+
+(defn way-api-url [bbx way-type]
+  (let [[w s e n] bbx]
+  (str "https://overpass.kumi.systems/api/interpreter?data=[out:json];(way[" way-type "](" s "," w "," n "," e "););out%20body;%3E;out%20skel%20qt;")))
+
+(defn way-data [bbx way-type]
+  (try
+  (let [url (way-api-url bbx way-type)
+         ;;_ (println :URL url)
+         jsn (json/read-str (slurp url) :key-fn keyword)]
+      jsn)
+  (catch Exception e
+    (println e)
+    nil)))
+
+(defn get-way-data [[lat lon] rad way-type]
+  (let [d (/ rad 60)
+       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]
+  (vreset! OSM-DATA (way-data bbx way-type))))
+
+(defn tags [data]
+  (sort (set (mapcat keys data))))
+
+(defn filter-kk [kk data]
+  (filter #(some? (get-in % kk)) data))
+
+(defn filter-kkv [kk v data]
+  (filter #(= (get-in % kk) v) data))
+
+(defn filter-kkv-not [kk v data]
+  (filter #(not= (get-in % kk) v) data))
+
+(defn tag-stat []
+  (let [sta (for [t (tags @OSM-DATA)]
+	(let [fl (filter-kk t @OSM-DATA)]
+	  [t (count fl)]))
+        sta  (filter #(> (second %) 0) sta)]
+  (sort second sta)))
+
+(defn nodes [data]
+  (if-let [els (seq (:elements data))]
+  (filter-kkv [:type] "node" els)))
+
+(defn id-points [nodes]
+  (reduce #(assoc %1 
+	     (:id %2) 
+	     [(:lat %2) (:lon %2)]) 
+	{} nodes))
+
+(defn id-way-points [idp ways]
+  (reduce #(assoc %1 
+	     (:id %2) 
+	     (map (fn[x] (idp x)) (:nodes %2))) 
+	{} ways))
+
+(defn filter-data [data way-type way-subtype]
+  (if-let [els (seq (:elements data))]
+  (let [idp (id-points (nodes data))]
+    (->> (filter-kkv [:type] "way" els)
+      (filter-kkv [:tags (keyword way-type)] way-subtype)
+      (id-way-points idp)))))
 
 (defn create-line [[id pts]]
   (let [id (str id)
@@ -37,6 +96,33 @@
     (ssvs poi "points" [(str lat1 " " lon1) (str lat2 " " lon2)])
     (OMT/getOrAdd poi)
     poi))
+
+(defn shortest-dist [ips1 ips2]
+  (if (not= ips1 ips2)
+  (let [llp1 (second ips1)
+         llp2 (second ips2)
+         [[la11 lo11] [la12 lo12]] [(first llp1) (last llp1)]
+         [[la21 lo21] [la22 lo22]] [(first llp2) (last llp2)]
+         dis-var {(MapOb/distanceNM la11 lo11 la21 lo21) [B F]	;; f1 f2
+                     (MapOb/distanceNM la11 lo11 la22 lo22) [B B]	;; f1 l2
+                     (MapOb/distanceNM la12 lo12 la21 lo21) [F F]	;; l1 f2
+                     (MapOb/distanceNM la12 lo12 la22 lo22) [F B]}	;; l1 l2
+        sdi (apply min (keys dis-var))
+        dir (dis-var sdi)]
+    [sdi dir ips2])))
+
+(defn nearest-to [ips from]
+  (loop [pool (rest from) sdi-dir-ips (shortest-dist ips (first from))]
+  (cond
+    (empty? pool) sdi-dir-ips
+    (nil? sdi-dir-ips)
+      (recur (rest (rest pool)) (shortest-dist ips (first (rest from))))
+    (= ips (first pool)) (recur (rest pool) sdi-dir-ips)
+    true
+      (let [[nsdi ndir nips :as short] (shortest-dist ips (first pool))]
+        (if (< nsdi (first sdi-dir-ips))
+          (recur (rest pool) short)
+          (recur (rest pool) sdi-dir-ips))))))
 
 (defn create-dirway [[dir [id pts] lin]]
   (let [dw (crin "Dirway")
@@ -83,115 +169,33 @@
         (def PATH (vec (filter #(not= (str (first (second %))) id) PATH)))
         (println "Removed from PATH way" id "," "remains" (count PATH)))))))
 
-(defn hide-roads [hm inst]
-  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
-  (doseq [rd sel]
-    (doseq [dw (svs rd "dirways")]
-       (OMT/removeMapOb 
-         (-> (sv dw "way")
-           (sv "poly"))
-         false)))))
-
-(defn show-mapob [hm inst]
-  (OMT/getOrAdd inst))
-
-(defn show-node [hm inst]
-  (show-mapob nil inst)
-(doseq [egi (svs inst "edges")]
- (show-mapob nil egi)))
-
-(defn hide-mapob [hm inst]
-  (if-let[moi (fifos "MapOb" "label" (sv inst "label"))]
-  (if-let [mo (OMT/getMapOb moi)]
-    (OMT/removeMapOb mo false))))
-
-(defn hide-node [hm inst]
-  (hide-mapob nil inst)
-(doseq [egi (svs inst "edges")]
- (hide-mapob nil egi)))
-
-(defn mk-edge [s]
-  (let [egi (foc "Edge" "label" (str (first s)))
-       crs (rest s)
-       tsf (fn [[x y]] (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))]
-  (ssv egi "x" (float (ffirst crs)))
-  (ssv egi "y" (float (second (first crs))))
-  (ssv egi "x2" (float (first (last crs))))
-  (ssv egi "y2" (float (second (last crs))))
-  (ssvs egi "xx" (map #(str (first %)) crs))
-  (ssvs egi "yy" (map #(str (second %)) crs))
-  (ssvs egi "points" (map tsf crs))
-  (ssv egi "latitude" "0 0")
-  (ssv egi "longitude" "0 0")
-  (ssv egi "lineColor" "FFFF6800")
-  (if SHOW
-    (OMT/getOrAdd egi))
-  egi))
-
-(defn mk-node [[x y]]
-  (if-let [sgs (seq (find-elements-with-beg-or-end-in-bbx [x y]))]
-  (let [egs (map mk-edge sgs)
-         noi (foc "Node" "label" (str "N" [x y]))]
-    (ssv noi "x" (float x)) 
-    (ssv noi "y" (float y)) 
-    (ssv noi "latitude" (MapOb/getDegMin y))
-    (ssv noi "longitude" (MapOb/getDegMin x))
-    (ssv noi "lineColor" "FFFF6800")
-    (ssv noi "point-radius" (int 6))
-    (ssv noi "oval" true)
-    (ssvs noi "edges" egs)
-    (when SHOW
-      (OMT/getOrAdd noi)
-      (println "Created Node from" (count egs) "edges."))
-    noi)))
-
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                        (println MODE mo (seq llp) (.getName runa))
+                        (println MODE mo llp runa)
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
-                          'NODES (mk-node (reverse llp))
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
   (.setRuMapMouseAdapter (first pgs) rmma)
-  rmma))
-
-(defn mode-nodes [hm inst]
-  (if (nil? RMMA)
-  (set-mouse-adapter))
-(let [mp (into {} hm)
-       sel (seq (selection mp "tagvalue"))]
-  (if (empty? sel)
-    (ssv inst "status" "Select tagvalue for nodes!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))
-          srv (SRV-MAP (sv inst "server"))]
-      (set-server srv)
-      (def WAY-TYPE wt)
-      (def WAY-SUBTYPE wst)
-      (def MODE 'NODES)
-      (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE NODES")
-      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+  (def RMMA true)))
 
 (defn mode-add [hm inst]
-  (if (nil? RMMA)
+  (if (not RMMA)
   (set-mouse-adapter))
 (let [mp (into {} hm)
        sel (seq (selection mp "tagvalue"))]
   (if (empty? sel)
     (ssv inst "status" "Select tagvalue for ways!")
-    (let [[wt wst] (read-string (sv (first sel) "value"))
-          srv (SRV-MAP (sv inst "server"))]
-      (set-server srv)
+    (let [[wt wst] (read-string (sv (first sel) "value"))]
+      (println :WAY-TYPE wt :WAY-SUBTYPE wst)
       (def WAY-TYPE wt)
       (def WAY-SUBTYPE wst)
       (def MODE 'ADD)
       (def RADIUS (sv inst "radius"))
-      (ssv inst "status" "MODE ADD")
-      (println :SERVER srv :WAY-TYPE wt :WAY-SUBTYPE wst)))))
+      (ssv inst "status" "MODE ADD")))))
 
 (defn mode-remove [hm inst]
   (if (= MODE 'ADD)
@@ -202,14 +206,6 @@
 (defn clear-path [hm inst]
   (def PATH [])
 (ssv inst "status" "CLEAR"))
-
-(defn show-roads [hm inst]
-  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
-  (doseq [rd sel]
-    (doseq [dw (svs rd "dirways")]
-       (-> (sv dw "way")
-         (sv "poly")
-         OMT/getOrAdd)))))
 
 (defn create-road [hm inst]
   (if (not (empty? PATH))
@@ -235,20 +231,20 @@
   (if (unref ins)
     (.show *prj* ins))))
 
-(defn connected-nodes
-  ([hm inst]
-  (if-let [n1 (sv inst "node")]
-    (ssvs inst "nodes" (connected-nodes n1))
-    (println "Fill node slot!")))
-([n1]
-  (letfn [(far-end [p1 e]
-             (let [p [(sv e "x") (sv e "y")]
-                    p2 [(sv e "x2") (sv e "y2")]]
-                (if (> (simple-dist p1 p) (simple-dist p1 p2))
-                  p1
-                  p2)))]
-    (let [p1 [(sv n1 "x") (sv n1 "y")]
-          egs (svs n1 "edges")
-          pts (map #(far-end p1 %) egs)]
-      (map mk-node pts)))))
+(defn show-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (-> (sv dw "way")
+         (sv "poly")
+         OMT/getOrAdd)))))
+
+(defn hide-roads [hm inst]
+  (if-let [sel (seq (DisplayUtilities/pickInstances nil *kb* [(cls "Road")]))]
+  (doseq [rd sel]
+    (doseq [dw (svs rd "dirways")]
+       (OMT/removeMapOb 
+         (-> (sv dw "way")
+           (sv "poly"))
+         false)))))
 

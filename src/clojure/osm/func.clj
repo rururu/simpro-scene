@@ -15,6 +15,14 @@
 (defn set-server [url]
   (def SERVER url))
 
+(defn bbx [[x y] rad]
+  (let [dy rad
+       dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))]
+  [(- x dx) (- y dy) (+ x dx) (+ y dy)]))
+
+(defn in-bbx [[y x] [w s e n]]
+  (and (> x w) (> y s) (< x e) (< x n)))
+
 (defn osm-api-url [bbx kind kind-type]
   (let [[w s e n] bbx]
   (str SERVER 
@@ -41,11 +49,6 @@
   (catch Exception e
     (println e)
     nil)))
-
-(defn get-osm-data [[lat lon] rad kind kind-type]
-  (let [d (/ rad 60)
-       bbx [(- lon d) (- lat d) (+ lon d) (+ lat d)]]
-  (osm-data bbx kind kind-type)))
 
 (defn tags [data]
   (sort (set (mapcat keys data))))
@@ -89,16 +92,11 @@
       (filter-kkv [:tags (keyword kind-type)] kind-subtype)
       (id-osm-points idp)))))
 
-(defn in-bbx [[y x] [w s e n]]
-  (and (> x w) (> y s) (< x e) (< x n)))
-
-(defn lines-with-beg-or-end-in-bbx [[x y] rad kind kind-type kind-subtype]
-  (let [dy rad
-      dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))
-      bbx [(- x dx) (- y dy) (+ x dx) (+ y dy)]
-      oda (osm-data bbx kind kind-type)
-      fda (filter-data oda kind kind-type kind-subtype)
-      fbe (filter #(or (in-bbx (first (second %)) bbx) (in-bbx (last (second %)) bbx)) (seq fda))]
+(defn iLines-with-beg-or-end-in-bbx [[x y] rad kind kind-type kind-subtype]
+  (let [box (bbx [x y] rad)
+       oda (osm-data box kind kind-type)
+       fda (filter-data oda kind kind-type kind-subtype)
+       fbe (filter #(or (in-bbx (first (second %)) box) (in-bbx (last (second %)) box)) (seq fda))]
   (map #(cons (first %) (map reverse (second %))) fbe)))
 
 (defn simple-dist [[x1 y1] [x2 y2]]
@@ -132,4 +130,15 @@
         (if (< nsdi (first sdi-dir-ips))
           (recur (rest pool) short)
           (recur (rest pool) sdi-dir-ips))))))
+
+(defn sort-iLines [xy iLines]
+  (let [mindis (fn[ps] (min (simple-dist xy (first ps)) (simple-dist xy (last ps))))
+       lst1 (map #(cons (mindis (rest %)) (cons (first %) (rest %))) iLines)
+       lst2 (sort-by first lst1)]
+  (map rest lst2)))
+
+(defn nearest-end [xy iLine]
+  (if (< (simple-dist xy (second iLine)) (simple-dist xy (last iLine)))
+  (second iLine)
+  (last iLine)))
 
