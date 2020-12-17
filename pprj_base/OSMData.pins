@@ -1,4 +1,4 @@
-; Wed Dec 16 20:41:17 MSK 2020
+; Thu Dec 17 18:16:06 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -183,10 +183,10 @@
 		[OSMData_Class0]
 		[OSMData_Class10028]
 		[OSMData_Class1]
+		[BrigBern_Class30000]
 		[OSMData_Class30034]
 		[BrigBern_Class40005]
 		[BrigBern_Class40006]
-		[BrigBern_Class30000]
 		[BrigBern_Class130280]
 		[OSMRoads_Class10002]
 		[OSMRoads_Class10005]
@@ -201,7 +201,7 @@
 		[BrigBern_Class40011]
 		[BrigBern_Class130000]
 		[BrigBern_Class40008])
-	(title "OSM Ontogy"))
+	(title "OSM Ontology"))
 
 ([BrigBern_Class70000] of  CloFunction
 
@@ -250,6 +250,11 @@
 	(source "(hide-mapob nil inst)\n(doseq [egi (svs inst \"edges\")]\n (hide-mapob nil egi))")
 	(title "hide-node [hm inst]"))
 
+([OSMData_Class10000] of  CloFunction
+
+	(source ";; Result fom -Pi to Pi\n(let [sx (- x2 x1)\n       sy (- y2 y1)]\n  (Math/atan2 sy sx))")
+	(title "simple-dir [[x1 y1] [x2 y2]]"))
+
 ([OSMData_Class10003] of  CloFunction
 
 	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map mk-node (star-points noi)))\n  (println \"Fill node slot!\"))")
@@ -257,7 +262,7 @@
 
 ([OSMData_Class10004] of  CloFunction
 
-	(source "(let [sx (- x1 x2)\n       sy (- y1 y2)]\n  (Math/sqrt (+ (* sx sx) (* sy sy))))")
+	(source "(let [sx (- x2 x1)\n       sy (- y2 y1)]\n  (Math/sqrt (+ (* sx sx) (* sy sy))))")
 	(title "simple-dist [[x1 y1] [x2 y2]]"))
 
 ([OSMData_Class10011] of  CloFunction
@@ -325,12 +330,6 @@
 	(tagvalue [BrigBern_Class80016])
 	(title "RoadControl"))
 
-([OSMData_Class40001] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [OSMData_Class40000])
-	(%3ACREATION-TIMESTAMP "2020.12.16 11:31:17.971 MSK")
-	(%3ACREATOR "ru"))
-
 ([OSMData_Class40007] of  CloFunction
 
 	(source "(or (sv (get-control-center) \"kind\") KIND)")
@@ -339,9 +338,11 @@
 ([OSMData_Class40131] of  CloProgram
 
 	(cloFunctions
-		[OSMData_Class30004]
 		[OSMData_Class60051]
 		[OSMData_Class30016]
+		[OSMData_Class10004]
+		[OSMData_Class10000]
+		[OSMData_Class30004]
 		[BrigBern_Class10000]
 		[BrigBern_Class10006]
 		[BrigBern_Class16]
@@ -354,7 +355,6 @@
 		[BrigBern_Class20001]
 		[BrigBern_Class20004]
 		[OSMData_Class10012]
-		[OSMData_Class10004]
 		[BrigBern_Class70001]
 		[BrigBern_Class70000]
 		[OSMData_Class60013]
@@ -429,281 +429,18 @@
 
 	(dashPattern "6 6")
 	(label "L3")
-	(lineWidth "2"))
+	(lineWidth "3"))
 
 ([OSMData_Class60109] of  CloFunction
 
 	(source "(let [dw (crin \"Dirway\")\n       way (foc \"Way\" \"id\" (str id))]\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
 	(title "create-dirway [[dir [id pts] lin]]"))
 
-([OSMData_Class70014] of  OMTPoly
-
-	(description "444855915")
-	(label "444855915")
-	(latitude "43 42.28")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.71")
-	(playground-index 0)
-	(points
-		"43 42.28 7 15.71"
-		"43 42.26 7 15.65")
-	(relative FALSE))
-
-([OSMData_Class70015] of  OMTPoly
-
-	(description "444855927")
-	(label "444855927")
-	(latitude "43 42.26")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.64")
-	(playground-index 0)
-	(points
-		"43 42.26 7 15.64"
-		"43 42.29 7 15.71")
-	(relative FALSE))
-
-([OSMData_Class70016] of  OMTPoly
-
-	(description "444855937")
-	(label "444855937")
-	(latitude "43 42.29")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.71")
-	(playground-index 0)
-	(points
-		"43 42.29 7 15.71"
-		"43 42.26 7 15.64")
-	(relative FALSE))
-
-([OSMData_Class70017] of  OMTPoly
-
-	(description "444855934")
-	(label "444855934")
-	(latitude "43 42.31")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.77")
-	(playground-index 0)
-	(points
-		"43 42.31 7 15.77"
-		"43 42.29 7 15.71")
-	(relative FALSE))
-
-([OSMData_Class70018] of  OMTPoly
-
-	(description "332941122")
-	(label "332941122")
-	(latitude "43 42.35")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.87")
-	(playground-index 0)
-	(points
-		"43 42.35 7 15.87"
-		"43 42.31 7 15.77")
-	(relative FALSE))
-
-([OSMData_Class70019] of  OMTPoly
-
-	(description "257565918")
-	(label "257565918")
-	(latitude "43 42.36")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.89")
-	(playground-index 0)
-	(points
-		"43 42.36 7 15.89"
-		"43 42.35 7 15.87")
-	(relative FALSE))
-
-([OSMData_Class70020] of  OMTPoly
-
-	(description "315735022")
-	(label "315735022")
-	(latitude "43 42.36")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.9")
-	(playground-index 0)
-	(points
-		"43 42.36 7 15.9"
-		"43 42.36 7 15.89")
-	(relative FALSE))
-
-([OSMData_Class70021] of  OMTPoly
-
-	(description "315735021")
-	(label "315735021")
-	(latitude "43 42.36")
-	(line [OSMData_Class60072])
-	(lineColor "FF009900")
-	(longitude "7 15.89")
-	(playground-index 0)
-	(points
-		"43 42.36 7 15.89"
-		"43 42.36 7 15.9")
-	(relative FALSE))
-
 ([OSMData_Class70022] of  Railroad
 
-	(dirways
-		[OSMData_Class70029]
-		[OSMData_Class70031]
-		[OSMData_Class70033]
-		[OSMData_Class70035]
-		[OSMData_Class70037]
-		[OSMData_Class70039]
-		[OSMData_Class70040]
-		[OSMData_Class70041]
-		[OSMData_Class70042]
-		[OSMData_Class70043]
-		[OSMData_Class70044]
-		[OSMData_Class70045]
-		[OSMData_Class70046]
-		[OSMData_Class70047]
-		[OSMData_Class70048])
 	(from1 "K1")
 	(title "Nice")
 	(to1 "K2"))
-
-([OSMData_Class70023] of  Dirway
-
-	(way [OSMData_Class70024]))
-
-([OSMData_Class70024] of  Way
-
-	(id "444855915")
-	(poly [OSMData_Class70014])
-	(source "[[43.7047479 7.2618669] [43.704266 7.2607644]]"))
-
-([OSMData_Class70025] of  Dirway
-
-	(way [OSMData_Class70026]))
-
-([OSMData_Class70026] of  Way
-
-	(id "444855927")
-	(poly [OSMData_Class70015])
-	(source "[[43.7043828 7.2606685] [43.7048602 7.2617611]]"))
-
-([OSMData_Class70027] of  Dirway
-
-	(way [OSMData_Class70028]))
-
-([OSMData_Class70028] of  Way
-
-	(id "444855937")
-	(poly [OSMData_Class70016])
-	(source "[[43.7047822 7.2618331] [43.704303 7.2607341]]"))
-
-([OSMData_Class70029] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70030]))
-
-([OSMData_Class70030] of  Way
-
-	(id "444855934")
-	(poly [OSMData_Class70017])
-	(source "[[43.7051837 7.262754] [43.7047822 7.2618331]]"))
-
-([OSMData_Class70031] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70032]))
-
-([OSMData_Class70032] of  Way
-
-	(id "332941122")
-	(poly [OSMData_Class70018])
-	(source "[[43.7058577 7.2645461] [43.7056632 7.2640553] [43.7055761 7.2638367] [43.7053897 7.2632828] [43.7052794 7.2629735] [43.7051837 7.262754]]"))
-
-([OSMData_Class70033] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70034]))
-
-([OSMData_Class70034] of  Way
-
-	(id "257565918")
-	(poly [OSMData_Class70019])
-	(source "[[43.7059517 7.2647749] [43.7058577 7.2645461]]"))
-
-([OSMData_Class70035] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70036] of  Way
-
-	(id "315735022")
-	(poly [OSMData_Class70020])
-	(source "[[43.7060386 7.2649775] [43.7059517 7.2647749]]"))
-
-([OSMData_Class70037] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
-
-([OSMData_Class70038] of  Way
-
-	(id "315735021")
-	(poly [OSMData_Class70021])
-	(source "[[43.7059429 7.2647815] [43.7060386 7.2649775]]"))
-
-([OSMData_Class70039] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70040] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
-
-([OSMData_Class70041] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70042] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
-
-([OSMData_Class70043] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70044] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
-
-([OSMData_Class70045] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70046] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
-
-([OSMData_Class70047] of  Dirway
-
-	(direction "FORWARD")
-	(way [OSMData_Class70036]))
-
-([OSMData_Class70048] of  Dirway
-
-	(direction "BACKWARD")
-	(way [OSMData_Class70038]))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

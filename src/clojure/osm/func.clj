@@ -12,9 +12,6 @@
   "TAIWAN"
   "https://overpass.nchc.org.tw/api/interpreter"})
 (def SERVER "https://overpass-api.de/api/interpreter")
-(defn set-server [url]
-  (def SERVER url))
-
 (defn bbx [[x y] rad]
   (let [dy rad
        dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))]
@@ -22,6 +19,20 @@
 
 (defn in-bbx [[y x] [w s e n]]
   (and (> x w) (> y s) (< x e) (< x n)))
+
+(defn simple-dist [[x1 y1] [x2 y2]]
+  (let [sx (- x2 x1)
+       sy (- y2 y1)]
+  (Math/sqrt (+ (* sx sx) (* sy sy)))))
+
+(defn simple-dir [[x1 y1] [x2 y2]]
+  ;; Result fom -Pi to Pi
+(let [sx (- x2 x1)
+       sy (- y2 y1)]
+  (Math/atan2 sy sx)))
+
+(defn set-server [url]
+  (def SERVER url))
 
 (defn osm-api-url [bbx kind kind-type]
   (let [[w s e n] bbx]
@@ -98,11 +109,6 @@
        fda (filter-data oda kind kind-type kind-subtype)
        fbe (filter #(or (in-bbx (first (second %)) box) (in-bbx (last (second %)) box)) (seq fda))]
   (map #(cons (first %) (map reverse (second %))) fbe)))
-
-(defn simple-dist [[x1 y1] [x2 y2]]
-  (let [sx (- x1 x2)
-       sy (- y1 y2)]
-  (Math/sqrt (+ (* sx sx) (* sy sy)))))
 
 (defn shortest-dist [ips1 ips2]
   (if (not= ips1 ips2)

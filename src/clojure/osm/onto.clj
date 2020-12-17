@@ -201,6 +201,20 @@
 (doseq [egi (svs inst "edges")]
  (hide-mapob nil egi)))
 
+(defn set-mouse-adapter []
+  (let [rmma (proxy [RuMapMouseAdapter] []
+	(mouseLeftButtonAction [mo llp runa]
+                            (println MODE mo (seq llp) (.getName runa))
+	  (condp = MODE
+	    'ADD (add-way llp)
+	    'REMOVE (remove-way mo)
+                              'NODES (mk-node (reverse llp))
+	    (println (or (if mo (.getName mo)) (seq llp))))
+	  true))
+       pgs (seq (OMT/getPlaygrounds))]
+  (.setRuMapMouseAdapter (first pgs) rmma)
+  rmma))
+
 (defn mode-nodes [hm inst]
   (if (nil? RMMA)
   (def RMMA (set-mouse-adapter)))
@@ -234,20 +248,6 @@
   (do (def MODE 'REMOVE)
     (ssv inst "status" "MODE REMOVE"))
   (ssv inst "status" "Add ways before")))
-
-(defn set-mouse-adapter []
-  (let [rmma (proxy [RuMapMouseAdapter] []
-	(mouseLeftButtonAction [mo llp runa]
-                            (println MODE mo (seq llp) (.getName runa))
-	  (condp = MODE
-	    'ADD (add-way llp)
-	    'REMOVE (remove-way mo)
-                              'NODES (mk-node (reverse llp))
-	    (println (or (if mo (.getName mo)) (seq llp))))
-	  true))
-       pgs (seq (OMT/getPlaygrounds))]
-  (.setRuMapMouseAdapter (first pgs) rmma)
-  rmma))
 
 (defn clear-path [hm inst]
   (def PATH [])

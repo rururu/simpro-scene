@@ -1,4 +1,4 @@
-Directive:
+Instruction:
  :?: {:? {:? 0}}
 Work:
  :?: {"EXTENSION" 1, "CHECK" 4, "OPTIMIZATION" 10}
