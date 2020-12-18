@@ -1,4 +1,4 @@
-; Thu Dec 17 20:42:07 MSK 2020
+; Fri Dec 18 18:50:12 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2029,6 +2029,91 @@
 	(point-radius 6)
 	(x 7.4845257)
 	(y 43.765026))
+
+([NiceSPb_Class50000] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?t1 (Trail1 status ?sts1\n	a ?a\n	b ?c\n	edges ?egs1)\n?t2 (Trail1 status ?sts2\n	a ?b\n	b ?c\n	edges ?egs2\n	(some #{\"OPEN\"} [?sts1 ?sts2]))")
+	(rhs "(asser Solution path (vec (concat (butlast ?egs1) (reverse ?egs2))))\n(modify ?t1 status \"CLOSED\")\n(modify ?2 status \"CLOSED\")")
+	(salience 0)
+	(title "t:Check: Two Trail1 Connection"))
+
+([NiceSPb_Class50001] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"OPEN\"\n	b ?b)")
+	(rhs "(osm.path/spawn-edges ?b)\n(modify ?t status \"SPAWN\")")
+	(salience 0)
+	(title "t:Extension: Path0 Spawn Edges"))
+
+([NiceSPb_Class50002] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Trail0 status \"SPAWN\"\n	a ?a\n	b ?b\n	edges ?egs)\n(Edge instance ?b\n	x2 ?x2 y2 ?y2)\n(Edge instance ?c\n	x2 ?x2 y2 ?y2)")
+	(rhs "(asser Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges (conj ?egs ?c))")
+	(salience 0)
+	(title "t:Extension: Trail0 Extension2"))
+
+([NiceSPb_Class50003] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Trail0 status \"SPAWN\"\n	a ?a\n	b ?b\n	edges ?egs)\n(Edge instance ?b\n	x ?x1 y ?y1)\n(Edge instance ?c\n	x ?x1 y ?y1)")
+	(rhs "(asser Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges (conj ?egs ?c))")
+	(salience 0)
+	(title "t:Extension: Trail0 Extension1"))
+
+([NiceSPb_Class50004] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Trail0 status \"SPAWN\"\n	a ?a\n	b ?b\n	edges ?egs)\n(Edge instance ?b\n	x ?x1 y ?y1)\n(Edge instance ?c\n	x2 ?x1 y2 ?y1)")
+	(rhs "(asser Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges (conj ?egs ?c))")
+	(salience 0)
+	(title "t:Extension: Trail0 Extension3"))
+
+([NiceSPb_Class50005] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(Trail0 status \"SPAWN\"\n	a ?a\n	b ?b\n	edges ?egs)\n(Edge instance ?b\n	x2 ?x2 y2 ?y2)\n(Edge instance ?c\n	x ?x2 y ?y2)")
+	(rhs "(asser Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges (conj ?egs ?c))")
+	(salience 0)
+	(title "t:Extension: Trail0 Extension4"))
+
+([NiceSPb_Class50006] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"SPAWN\")")
+	(rhs "(asser Trail1 status \"CLOSED\"\n	a ?a\n	b ?c\n	edges ?egs)\n(retract ?t)")
+	(salience -1)
+	(title "t:Extension: Trail0 Closing"))
+
+([NiceSPb_Class60000] of  RuleSet
+
+	(rules
+		[NiceSPb_Class50000]
+		[NiceSPb_Class50001]
+		[NiceSPb_Class50003]
+		[NiceSPb_Class50002]
+		[NiceSPb_Class50004]
+		[NiceSPb_Class50005]
+		[NiceSPb_Class50006]
+		[NiceSPb_Class60001]
+		[NiceSPb_Class60002]
+		[NiceSPb_Class60003])
+	(title "Direction Restricted Search Trail Set"))
+
+([NiceSPb_Class60001] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a \n	b ?b)")
+	(rhs "(let [ia (osm.path/init-edge ?a)\n       ib (osm.path/init-edge ?b)]\n  (asser Trail0 a ia\n	b ia\n	status \"OPEN\"\n	edges [])\n  (asser Trail0 a ib\n	b ib\n	status \"OPEN\"\n	edges [])\n  (modify ?g a ia b ib\n	status \"RUN\"))\n(if path/TRACE\n  (println \"Goal\" [?a ?b]))")
+	(salience 0)
+	(title "t:Check: Goal Start"))
+
+([NiceSPb_Class60002] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n(Solution path ?pth)\n?t (Trail1 edges ?egs\n	(> (count ?egs) (count ?pth)))")
+	(rhs "(retract ?t)")
+	(salience 0)
+	(title "t:Check: Long Trail1 Retract"))
+
+([NiceSPb_Class60003] of  Rule
+
+	(lhs "(Work status \"OPTIMIZATION\")\n?s1 (Solution path ?pth1\n	a ?a \n	b ?b)\n?s2 (Solution path ?pth2\n	a ?a \n	b ?b)")
+	(rhs "(if osm.path/TRACE\n  (osm.path/display-edges \"Optimization between\" [?pth1 \"and\" ?pth2]))\n(if (< (osm.path/edges-distance ?pth1) (osm.path/edges-distance ?pth2))\n  (retract ?s2)\n  (retract ?s1))")
+	(salience 0)
+	(title "t:Optimization: Solutions Optimization"))
 
 ([PyongyangSPb_Class0] of  Openmap
 

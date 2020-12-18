@@ -1,4 +1,4 @@
-; Mon Dec 07 10:25:07 MSK 2020
+; Fri Dec 18 18:28:31 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -80,13 +80,6 @@
 
 	(source "(if TRACE\n  (println pfx pts))\npts")
 	(title "display-points [pfx pts]"))
-
-([PyongyangSPb_Class130000] of  Rule
-
-	(lhs "(Work status \"EXTENSION\")\n?p (Path0 a ?a b ?b\n	general-dir ?gdir\n	dir-factor ?dirf\n	points ?pts\n	((> (count ?pts) 8)\n                           (< ?dirf 0)))")
-	(rhs "(retract ?p)")
-	(salience 1)
-	(title "p:Negative Direction"))
 
 ([PyongyangSPb_Class130001] of  Run
 
