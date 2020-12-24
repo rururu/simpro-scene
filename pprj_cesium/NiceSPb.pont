@@ -1,4 +1,4 @@
-; Fri Dec 18 18:50:12 MSK 2020
+; Thu Dec 24 22:40:36 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,4 +10,16 @@
 
 (defclass Railroad_
 	(is-a Railroad)
+	(role concrete))
+
+(defclass Trail0
+	(is-a Path)
+	(role concrete)
+	(multislot edges
+		(type INSTANCE)
+;+		(allowed-classes Edge)
+		(create-accessor read-write)))
+
+(defclass Trail1
+	(is-a Trail0)
 	(role concrete))

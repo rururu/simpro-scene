@@ -1,12 +1,12 @@
 Instruction:
  :?: {:? {:? 0}}
 Work:
- :?: {"EXTENSION" 1, "CHECK" 4, "OPTIMIZATION" 10}
+ :?: {"CHECK" 1, "EXTENSION" 4, "OPTIMIZATION" 10}
 Goal:
- :?: {:? {:? {:? {:? {:? 2}, "START" {:? 6}, "RUN" {:? 8}}}}}
-Path1:
- :?: {:? {:? {:? {"OPEN" 3, :? 9}}}}
+ :?: {:? {:? {:? {"START" {:? 2}, :? {:? 6}, "RUN" {:? 7}}}}}
+Trail1:
+ :?: {:? {:? {:? {"OPEN" 3, :? 8}}}}
+Trail0:
+ :?: {:? {:? {:? {"OPEN" 5}}}}
 Solution:
- :?: {:? {:? {:? {:? 5}}}}
-Path0:
- :?: {:? {:? {:? {"OPEN" 7}}}}
+ :?: {:? {:? {:? {:? 9}}}}
