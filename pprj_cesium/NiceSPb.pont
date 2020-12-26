@@ -1,4 +1,4 @@
-; Thu Dec 24 22:40:36 MSK 2020
+; Sat Dec 26 22:32:23 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,7 +6,11 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot last
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Railroad_
 	(is-a Railroad)
@@ -15,6 +19,10 @@
 (defclass Trail0
 	(is-a Path)
 	(role concrete)
+	(single-slot last
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot edges
 		(type INSTANCE)
 ;+		(allowed-classes Edge)

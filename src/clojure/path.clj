@@ -27,7 +27,7 @@
 (defn find-sequels [p1]
   (SEQUELS p1))
 
-(defn quote [x]
+(defn argval [x]
   x)
 
 (defn distance [pth]

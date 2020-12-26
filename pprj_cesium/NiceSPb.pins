@@ -1,4 +1,4 @@
-; Thu Dec 24 22:40:36 MSK 2020
+; Sat Dec 26 22:32:23 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -367,14 +367,14 @@
 
 ([NiceSPb_Class110010] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?t (Trail1 status \"OPEN\"\n	a ?a\n	edges ?egs\n                      (osm.path/wrong-direction ?b ?a ?egs))")
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?t (Trail1 status \"OPEN\"\n	a ?b\n	b ?m\n                          (osm.path/wrong-direction ?b ?m ?a))")
 	(rhs "(retract ?t)")
 	(salience 1)
 	(title "t:Extension: Direction Assesment Backward"))
 
 ([NiceSPb_Class110011] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?t (Trail1 status \"OPEN\"\n	a ?a\n	edges ?egs\n                      (osm.path/wrong-direction ?a ?b ?egs))")
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?t (Trail1 status \"OPEN\"\n	a ?a\n	b ?m\n                          (osm.path/wrong-direction ?a ?m ?b))")
 	(rhs "(retract ?t)")
 	(salience 1)
 	(title "t:Extension: Direction Assesment Forward"))
@@ -389,8 +389,961 @@
 
 ([NiceSPb_Class110014] of  CloFunction
 
-	(source "(let [dirs (map #(of/simple-dir (vertex1 %) (vertex2 %)) egs)\n      rdir (of/simple-dir start finish)]\n  (some #(not= % rdir) dirs))")
-	(title "wrong-direction [start finish egs]"))
+	(source "(let [rdir (of/simple-dir sta fin)\n       mdir (of/simple-dir sta med)\n       ang (Math/abs (- rdir mdir))]\n  (> ang (/ Math/PI 2)))")
+	(title "wrong-direction [sta med fin]"))
+
+([NiceSPb_Class120000] of  CloFuncall
+
+	(source "rete.core/CFSET"))
+
+([NiceSPb_Class120001] of  CloFuncall
+
+	(source "rete.core/BMEM"))
+
+([NiceSPb_Class120002] of  CloFuncall
+
+	(source "(seq rete.core/BMEM)"))
+
+([NiceSPb_Class120010] of  Node
+
+	(edges
+		[NiceSPb_Class110001]
+		[NiceSPb_Class120011]
+		[NiceSPb_Class120012]
+		[NiceSPb_Class110004])
+	(label "N(7.4794471 43.7597913)")
+	(latitude "43 45.59")
+	(lineColor "FFFF6800")
+	(longitude "7 28.77")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.479447)
+	(y 43.759792))
+
+([NiceSPb_Class120011] of  Edge
+
+	(label "235979156")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.59 7 28.77"
+		"43 45.59 7 28.77")
+	(relative FALSE)
+	(x 7.47956)
+	(x2 7.479447)
+	(xx
+		"7.4795598"
+		"7.4794471")
+	(y 43.75991)
+	(y2 43.759792)
+	(yy
+		"43.7599094"
+		"43.7597913"))
+
+([NiceSPb_Class120012] of  Edge
+
+	(label "157270965")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.59 7 28.76"
+		"43 45.6 7 28.77")
+	(relative FALSE)
+	(x 7.479412)
+	(x2 7.479524)
+	(xx
+		"7.479412"
+		"7.4795241")
+	(y 43.759815)
+	(y2 43.759922)
+	(yy
+		"43.759814"
+		"43.7599239"))
+
+([NiceSPb_Class120013] of  Node
+
+	(edges
+		[NiceSPb_Class120012]
+		[NiceSPb_Class110004]
+		[NiceSPb_Class110001]
+		[NiceSPb_Class120011])
+	(label "N(7.479412 43.759814)")
+	(latitude "43 45.59")
+	(lineColor "FFFF6800")
+	(longitude "7 28.76")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.479412)
+	(y 43.759815))
+
+([NiceSPb_Class120014] of  Node
+
+	(edges
+		[NiceSPb_Class120015]
+		[NiceSPb_Class110007]
+		[NiceSPb_Class110008]
+		[NiceSPb_Class120016])
+	(label "N(7.4872496 43.7677522)")
+	(latitude "43 46.07")
+	(lineColor "FFFF6800")
+	(longitude "7 29.23")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4872494)
+	(y 43.767754))
+
+([NiceSPb_Class120015] of  Edge
+
+	(label "157276747")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.06 7 29.23"
+		"43 46.07 7 29.23")
+	(relative FALSE)
+	(x 7.48709)
+	(x2 7.4872494)
+	(xx
+		"7.4870901"
+		"7.4872496")
+	(y 43.767616)
+	(y2 43.767754)
+	(yy
+		"43.7676144"
+		"43.7677522"))
+
+([NiceSPb_Class120016] of  Edge
+
+	(label "235979151")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.06 7 29.24"
+		"43 46.06 7 29.23")
+	(relative FALSE)
+	(x 7.48729)
+	(x2 7.4871354)
+	(xx
+		"7.4872899"
+		"7.4871352")
+	(y 43.767742)
+	(y2 43.76761)
+	(yy
+		"43.767743"
+		"43.7676084"))
+
+([NiceSPb_Class120017] of  Node
+
+	(edges
+		[NiceSPb_Class110008]
+		[NiceSPb_Class120016]
+		[NiceSPb_Class120015]
+		[NiceSPb_Class110007])
+	(label "N(7.4872899 43.767743)")
+	(latitude "43 46.06")
+	(lineColor "FFFF6800")
+	(longitude "7 29.24")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.48729)
+	(y 43.767742))
+
+([NiceSPb_Class120018] of  Node
+
+	(edges
+		[NiceSPb_Class120019]
+		[NiceSPb_Class120011]
+		[NiceSPb_Class120012]
+		[NiceSPb_Class120020])
+	(label "N(7.4795598 43.7599094)")
+	(latitude "43 45.59")
+	(lineColor "FFFF6800")
+	(longitude "7 28.77")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.47956)
+	(y 43.75991))
+
+([NiceSPb_Class120019] of  Edge
+
+	(label "235979145")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.7 7 28.88"
+		"43 45.59 7 28.77")
+	(relative FALSE)
+	(x 7.481279)
+	(x2 7.47956)
+	(xx
+		"7.4812791"
+		"7.4795598")
+	(y 43.761684)
+	(y2 43.75991)
+	(yy
+		"43.7616858"
+		"43.7599094"))
+
+([NiceSPb_Class120020] of  Edge
+
+	(label "157270966")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.6 7 28.77"
+		"43 45.65 7 28.82"
+		"43 45.7 7 28.87")
+	(relative FALSE)
+	(x 7.479524)
+	(x2 7.481248)
+	(xx
+		"7.4795241"
+		"7.4803622"
+		"7.481248")
+	(y 43.759922)
+	(y2 43.76171)
+	(yy
+		"43.7599239"
+		"43.7607953"
+		"43.7617119"))
+
+([NiceSPb_Class120021] of  Node
+
+	(edges
+		[NiceSPb_Class120012]
+		[NiceSPb_Class120020]
+		[NiceSPb_Class120019]
+		[NiceSPb_Class120011])
+	(label "N(7.4795241 43.7599239)")
+	(latitude "43 45.6")
+	(lineColor "FFFF6800")
+	(longitude "7 28.77")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.479524)
+	(y 43.759922))
+
+([NiceSPb_Class120022] of  Node
+
+	(edges
+		[NiceSPb_Class120023]
+		[NiceSPb_Class120015]
+		[NiceSPb_Class120024]
+		[NiceSPb_Class120016])
+	(label "N(7.4870901 43.7676144)")
+	(latitude "43 46.06")
+	(lineColor "FFFF6800")
+	(longitude "7 29.23")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.48709)
+	(y 43.767616))
+
+([NiceSPb_Class120023] of  Edge
+
+	(label "157276744")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.18"
+		"43 46.02 7 29.19"
+		"43 46.03 7 29.2"
+		"43 46.06 7 29.23")
+	(relative FALSE)
+	(x 7.4862866)
+	(x2 7.48709)
+	(xx
+		"7.4862865"
+		"7.4864584"
+		"7.4866596"
+		"7.4870901")
+	(y 43.766888)
+	(y2 43.767616)
+	(yy
+		"43.7668895"
+		"43.7670689"
+		"43.7672481"
+		"43.7676144"))
+
+([NiceSPb_Class120024] of  Edge
+
+	(label "235979144")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.06 7 29.23"
+		"43 46.03 7 29.2"
+		"43 46.02 7 29.19"
+		"43 46.01 7 29.18")
+	(relative FALSE)
+	(x 7.4871354)
+	(x2 7.486319)
+	(xx
+		"7.4871352"
+		"7.4866985"
+		"7.4865"
+		"7.4863189")
+	(y 43.76761)
+	(y2 43.76687)
+	(yy
+		"43.7676084"
+		"43.7672287"
+		"43.7670495"
+		"43.7668675"))
+
+([NiceSPb_Class120025] of  Node
+
+	(edges
+		[NiceSPb_Class120024]
+		[NiceSPb_Class120016]
+		[NiceSPb_Class120023]
+		[NiceSPb_Class120015])
+	(label "N(7.4871352 43.7676084)")
+	(latitude "43 46.06")
+	(lineColor "FFFF6800")
+	(longitude "7 29.23")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4871354)
+	(y 43.76761))
+
+([NiceSPb_Class120026] of  Node
+
+	(edges
+		[NiceSPb_Class120019]
+		[NiceSPb_Class120027]
+		[NiceSPb_Class120028]
+		[NiceSPb_Class120020])
+	(label "N(7.4812791 43.7616858)")
+	(latitude "43 45.7")
+	(lineColor "FFFF6800")
+	(longitude "7 28.88")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.481279)
+	(y 43.761684))
+
+([NiceSPb_Class120027] of  Edge
+
+	(label "235979155")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.71 7 28.88"
+		"43 45.7 7 28.88")
+	(relative FALSE)
+	(x 7.481386)
+	(x2 7.481279)
+	(xx
+		"7.4813864"
+		"7.4812791")
+	(y 43.761795)
+	(y2 43.761684)
+	(yy
+		"43.7617943"
+		"43.7616858"))
+
+([NiceSPb_Class120028] of  Edge
+
+	(label "157270964")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.7 7 28.87"
+		"43 45.71 7 28.88")
+	(relative FALSE)
+	(x 7.481248)
+	(x2 7.4813466)
+	(xx
+		"7.481248"
+		"7.4813466")
+	(y 43.76171)
+	(y2 43.761806)
+	(yy
+		"43.7617119"
+		"43.7618081"))
+
+([NiceSPb_Class120029] of  Node
+
+	(edges
+		[NiceSPb_Class120028]
+		[NiceSPb_Class120020]
+		[NiceSPb_Class120019]
+		[NiceSPb_Class120027]
+		[NiceSPb_Class120030])
+	(label "N(7.481248 43.7617119)")
+	(latitude "43 45.7")
+	(lineColor "FFFF6800")
+	(longitude "7 28.87")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.481248)
+	(y 43.76171))
+
+([NiceSPb_Class120030] of  Edge
+
+	(label "157270967")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.71 7 28.88"
+		"43 45.72 7 28.89"
+		"43 45.9 7 29.06")
+	(relative FALSE)
+	(x 7.4813466)
+	(x2 7.484373)
+	(xx
+		"7.4813466"
+		"7.48151"
+		"7.484373")
+	(y 43.761806)
+	(y2 43.764923)
+	(yy
+		"43.7618081"
+		"43.7619768"
+		"43.7649245"))
+
+([NiceSPb_Class120031] of  Node
+
+	(edges
+		[NiceSPb_Class120023]
+		[NiceSPb_Class120032]
+		[NiceSPb_Class120033]
+		[NiceSPb_Class120024])
+	(label "N(7.4862865 43.7668895)")
+	(latitude "43 46.01")
+	(lineColor "FFFF6800")
+	(longitude "7 29.18")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4862866)
+	(y 43.766888))
+
+([NiceSPb_Class120032] of  Edge
+
+	(label "157276745")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.17"
+		"43 46.01 7 29.18")
+	(relative FALSE)
+	(x 7.486178)
+	(x2 7.4862866)
+	(xx
+		"7.486178"
+		"7.4862865")
+	(y 43.76679)
+	(y2 43.766888)
+	(yy
+		"43.7667867"
+		"43.7668895"))
+
+([NiceSPb_Class120033] of  Edge
+
+	(label "235979142")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.18"
+		"43 46.01 7 29.17")
+	(relative FALSE)
+	(x 7.486319)
+	(x2 7.486209)
+	(xx
+		"7.4863189"
+		"7.486209")
+	(y 43.76687)
+	(y2 43.766758)
+	(yy
+		"43.7668675"
+		"43.7667571"))
+
+([NiceSPb_Class120034] of  Node
+
+	(edges
+		[NiceSPb_Class120033]
+		[NiceSPb_Class120024]
+		[NiceSPb_Class120023]
+		[NiceSPb_Class120032])
+	(label "N(7.4863189 43.7668675)")
+	(latitude "43 46.01")
+	(lineColor "FFFF6800")
+	(longitude "7 29.18")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.486319)
+	(y 43.76687))
+
+([NiceSPb_Class120035] of  Node
+
+	(edges
+		[NiceSPb_Class120036]
+		[NiceSPb_Class120027]
+		[NiceSPb_Class120028]
+		[NiceSPb_Class120030]
+		[NiceSPb_Class120020])
+	(label "N(7.4813864 43.7617943)")
+	(latitude "43 45.71")
+	(lineColor "FFFF6800")
+	(longitude "7 28.88")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.481386)
+	(y 43.761795))
+
+([NiceSPb_Class120036] of  Edge
+
+	(label "235979149")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.89 7 29.07"
+		"43 45.72 7 28.89"
+		"43 45.71 7 28.88")
+	(relative FALSE)
+	(x 7.48442)
+	(x2 7.481386)
+	(xx
+		"7.48442"
+		"7.4815486"
+		"7.4813864")
+	(y 43.764915)
+	(y2 43.761795)
+	(yy
+		"43.7649159"
+		"43.761958"
+		"43.7617943"))
+
+([NiceSPb_Class120037] of  Node
+
+	(edges
+		[NiceSPb_Class120028]
+		[NiceSPb_Class120030]
+		[NiceSPb_Class120036]
+		[NiceSPb_Class120027]
+		[NiceSPb_Class120020])
+	(label "N(7.4813466 43.7618081)")
+	(latitude "43 45.71")
+	(lineColor "FFFF6800")
+	(longitude "7 28.88")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4813466)
+	(y 43.761806))
+
+([NiceSPb_Class120038] of  Node
+
+	(edges
+		[NiceSPb_Class120030]
+		[NiceSPb_Class120039]
+		[NiceSPb_Class120040]
+		[NiceSPb_Class120036])
+	(label "N(7.484373 43.7649245)")
+	(latitude "43 45.9")
+	(lineColor "FFFF6800")
+	(longitude "7 29.06")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.484373)
+	(y 43.764923))
+
+([NiceSPb_Class120039] of  Edge
+
+	(label "157276742")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.9 7 29.06"
+		"43 45.9 7 29.07")
+	(relative FALSE)
+	(x 7.484373)
+	(x2 7.4844675)
+	(xx
+		"7.484373"
+		"7.4844675")
+	(y 43.764923)
+	(y2 43.765022)
+	(yy
+		"43.7649245"
+		"43.7650239"))
+
+([NiceSPb_Class120040] of  Edge
+
+	(label "235979146")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.9 7 29.07"
+		"43 45.89 7 29.07")
+	(relative FALSE)
+	(x 7.4845257)
+	(x2 7.48442)
+	(xx
+		"7.4845259"
+		"7.48442")
+	(y 43.765026)
+	(y2 43.764915)
+	(yy
+		"43.7650254"
+		"43.7649159"))
+
+([NiceSPb_Class120041] of  Node
+
+	(edges
+		[NiceSPb_Class120032]
+		[NiceSPb_Class120042]
+		[NiceSPb_Class120033]
+		[NiceSPb_Class120043])
+	(label "N(7.486178 43.7667867)")
+	(latitude "43 46.01")
+	(lineColor "FFFF6800")
+	(longitude "7 29.17")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.486178)
+	(y 43.76679))
+
+([NiceSPb_Class120042] of  Edge
+
+	(label "157276748")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.93 7 29.09"
+		"43 46.01 7 29.17")
+	(relative FALSE)
+	(x 7.484877)
+	(x2 7.486178)
+	(xx
+		"7.4848771"
+		"7.486178")
+	(y 43.76544)
+	(y2 43.76679)
+	(yy
+		"43.7654428"
+		"43.7667867"))
+
+([NiceSPb_Class120043] of  Edge
+
+	(label "235979143")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 46.01 7 29.17"
+		"43 45.93 7 29.1")
+	(relative FALSE)
+	(x 7.486209)
+	(x2 7.4849377)
+	(xx
+		"7.486209"
+		"7.4849376")
+	(y 43.766758)
+	(y2 43.765457)
+	(yy
+		"43.7667571"
+		"43.7654554"))
+
+([NiceSPb_Class120044] of  Node
+
+	(edges
+		[NiceSPb_Class120033]
+		[NiceSPb_Class120043]
+		[NiceSPb_Class120032]
+		[NiceSPb_Class120042])
+	(label "N(7.486209 43.7667571)")
+	(latitude "43 46.01")
+	(lineColor "FFFF6800")
+	(longitude "7 29.17")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.486209)
+	(y 43.766758))
+
+([NiceSPb_Class120045] of  Node
+
+	(edges
+		[NiceSPb_Class120040]
+		[NiceSPb_Class120036]
+		[NiceSPb_Class120030]
+		[NiceSPb_Class120039])
+	(label "N(7.48442 43.7649159)")
+	(latitude "43 45.89")
+	(lineColor "FFFF6800")
+	(longitude "7 29.07")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.48442)
+	(y 43.764915))
+
+([NiceSPb_Class120046] of  Node
+
+	(edges
+		[NiceSPb_Class120039]
+		[NiceSPb_Class120047]
+		[NiceSPb_Class120040]
+		[NiceSPb_Class120048]
+		[NiceSPb_Class120030])
+	(label "N(7.4844675 43.7650239)")
+	(latitude "43 45.9")
+	(lineColor "FFFF6800")
+	(longitude "7 29.07")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4844675)
+	(y 43.765022))
+
+([NiceSPb_Class120047] of  Edge
+
+	(label "157276749")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.9 7 29.07"
+		"43 45.92 7 29.09")
+	(relative FALSE)
+	(x 7.4844675)
+	(x2 7.4847875)
+	(xx
+		"7.4844675"
+		"7.4847874")
+	(y 43.765022)
+	(y2 43.765347)
+	(yy
+		"43.7650239"
+		"43.7653479"))
+
+([NiceSPb_Class120048] of  Edge
+
+	(label "235979147")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.92 7 29.09"
+		"43 45.9 7 29.07")
+	(relative FALSE)
+	(x 7.4848223)
+	(x2 7.4845257)
+	(xx
+		"7.4848222"
+		"7.4845259")
+	(y 43.765335)
+	(y2 43.765026)
+	(yy
+		"43.765334"
+		"43.7650254"))
+
+([NiceSPb_Class120049] of  Node
+
+	(edges
+		[NiceSPb_Class120040]
+		[NiceSPb_Class120048]
+		[NiceSPb_Class120039]
+		[NiceSPb_Class120047])
+	(label "N(7.4845259 43.7650254)")
+	(latitude "43 45.9")
+	(lineColor "FFFF6800")
+	(longitude "7 29.07")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4845257)
+	(y 43.765026))
+
+([NiceSPb_Class120050] of  Node
+
+	(edges
+		[NiceSPb_Class120051]
+		[NiceSPb_Class120042]
+		[NiceSPb_Class120043]
+		[NiceSPb_Class120052]
+		[NiceSPb_Class120047])
+	(label "N(7.4848771 43.7654428)")
+	(latitude "43 45.93")
+	(lineColor "FFFF6800")
+	(longitude "7 29.09")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.484877)
+	(y 43.76544))
+
+([NiceSPb_Class120051] of  Edge
+
+	(label "157276743")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.92 7 29.09"
+		"43 45.93 7 29.09")
+	(relative FALSE)
+	(x 7.4847875)
+	(x2 7.484877)
+	(xx
+		"7.4847874"
+		"7.4848771")
+	(y 43.765347)
+	(y2 43.76544)
+	(yy
+		"43.7653479"
+		"43.7654428"))
+
+([NiceSPb_Class120052] of  Edge
+
+	(label "235979148")
+	(latitude "0 0")
+	(lineColor "FFFF6800")
+	(longitude "0 0")
+	(playground-index 0)
+	(points
+		"43 45.93 7 29.1"
+		"43 45.92 7 29.09")
+	(relative FALSE)
+	(x 7.4849377)
+	(x2 7.4848223)
+	(xx
+		"7.4849376"
+		"7.4848222")
+	(y 43.765457)
+	(y2 43.765335)
+	(yy
+		"43.7654554"
+		"43.765334"))
+
+([NiceSPb_Class120053] of  Node
+
+	(edges
+		[NiceSPb_Class120043]
+		[NiceSPb_Class120052]
+		[NiceSPb_Class120051]
+		[NiceSPb_Class120042])
+	(label "N(7.4849376 43.7654554)")
+	(latitude "43 45.93")
+	(lineColor "FFFF6800")
+	(longitude "7 29.1")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 6)
+	(x 7.4849377)
+	(y 43.765457))
+
+([NiceSPb_Class120054] of  CloVar
+
+	(source "[]")
+	(title "NODE-POINTS"))
+
+([NiceSPb_Class120055] of  CloFunction
+
+	(source "(let [box (of/bbx xy (oo/get-radius))]\n  (if (not (some #(of/in-bbx % box) NODE-POINTS))\n    (when-let [noi (oo/mk-node xy)]\n      (def NODE-POINTS (conj NODE-POINTS [(sv noi \"x\") (sv noi \"y\")]))\n      noi)))")
+	(title "find-new-node [xy]"))
+
+([NiceSPb_Class120056] of  CloFuncall
+
+	(source "(osm.path/find-new-node [7.4771376 43.7574965])"))
+
+([NiceSPb_Class120057] of  CloFuncall
+
+	(source "osm.path/NODE-POINTS"))
+
+([NiceSPb_Class120058] of  CloFuncall
+
+	(source "(osm.func/bbx [7.4771376 43.7574965] (osm.onto/get-radius))"))
+
+([NiceSPb_Class120059] of  CloFuncall
+
+	(source "(def box (osm.func/bbx [7.4771376 43.7574965] (osm.onto/get-radius)))"))
+
+([NiceSPb_Class120060] of  CloFuncall
+
+	(source "(osm.func/in-bbx [7.4771376 43.7574965] box)"))
+
+([NiceSPb_Class120061] of  CloFuncall
+
+	(source "box"))
+
+([NiceSPb_Class130000] of  CloFuncall
+
+	(source "(ru.rules/f 18)"))
+
+([NiceSPb_Class130001] of  CloFuncall
+
+	(source "(ru.rules/pp 'Trail))"))
+
+([NiceSPb_Class130002] of  CloFuncall
+
+	(source "(ru.rules/pp 'Trail1))"))
+
+([NiceSPb_Class130021] of  Rule
+
+	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution)")
+	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if osm.path/TRACE\n    (println :OPTIMIZATION))\n  (modify ?w status \"OPTIMIZATION\"))")
+	(salience 1)
+	(title "t:Check:  Max Solutions -> Optimization"))
+
+([NiceSPb_Class130023] of  CloFuncall
+
+	(source "osm.path/NEAR"))
 
 ([NiceSPb_Class20000] of  Instruction
 
@@ -462,15 +1415,15 @@
 
 ([NiceSPb_Class50000] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?t1 (Trail1 status ?sts1\n	a ?a\n	b ?b1\n	edges ?egs1)\n?t2 (Trail1 status ?sts2\n	a ?b\n	b ?b2\n	edges ?egs2\n	((some #{\"OPEN\"} [?sts1 ?sts2])\n	 (osm.path/near ?b1 ?b2)))")
-	(rhs "(let [sol (vec (concat (butlast ?egs1) (reverse ?egs2)))]\n  (asser Solution path  (osm.path/if-display-edges \"Solution\" sol))\n  (modify ?t1 status \"CLOSED\") \n  (modify ?2 status \"CLOSED\"))")
+	(lhs "(Work status \"CHECK\")\n?g (Goal status \"RUN\"\n	a ?a\n	b ?b)\n?t1 (Trail1 status ?sts1\n	a ?a\n	b ?b1\n	edges ?egs1\n	last ?e\n                      (some? ?e))\n?t2 (Trail1 status ?sts2\n	a ?b\n	b ?b2\n	edges ?egs2\n	last ?e\n	(some #{\"OPEN\"} [?sts1 ?sts2]))")
+	(rhs "(let [sol (vec (concat (butlast ?egs1) (reverse ?egs2)))]\n  (asser Solution path  (osm.path/if-display-edges \"Solution\" sol))\n  (modify ?t1 status \"CLOSED\") \n  (modify ?t2 status \"CLOSED\"))")
 	(salience 0)
 	(title "t:Check: Two Trail1 Connection"))
 
 ([NiceSPb_Class50001] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"OPEN\"\n	a ?a \n	b ?b\n                          edges ?egs)")
-	(rhs "(when-let [noi (osm.onto/mk-node ?b)]\n  (doseq [e (protege.core/svs noi \"edges\")]\n    (if (not (some #{e} ?egs))\n      (asser Trail1 a ?a\n	b (osm.path/far-vertex e ?b)\n	status \"OPEN\"\n	edges (osm.path/if-display-edges \"Edges\" (conj ?egs e)))))\n  (asser Trail1 a ?a b ?b\n	status \"CLOSED\"\n	edges ?egs)\n  (retract ?t))")
+	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs\n	last ?e)")
+	(rhs "(when-let [noi (osm.onto/mk-node ?b)]\n  (doseq [e (protege.core/svs noi \"edges\")]\n    (if (not (some #{e} ?egs))\n      (asser Trail1 a ?a\n	b (osm.path/far-vertex e ?b)\n	status \"OPEN\"\n	edges (osm.path/if-display-edges \"Edges\" (conj ?egs e))\n	last (path/argval e))))\n  (asser Trail1 a ?a b ?b\n	status \"CLOSED\"\n	edges ?egs\n	last ?e)\n  (retract ?t))")
 	(salience 0)
 	(title "t:Extension: Trail0 Extension"))
 
@@ -489,7 +1442,8 @@
 		[NiceSPb_Class70002]
 		[NiceSPb_Class70003]
 		[NiceSPb_Class60003]
-		[NiceSPb_Class70005])
+		[NiceSPb_Class70005]
+		[NiceSPb_Class130021])
 	(templates
 		[Instruction]
 		[Goal]
@@ -502,7 +1456,7 @@
 ([NiceSPb_Class60001] of  Rule
 
 	(lhs "(Work status \"CHECK\")\n?g (Goal status \"START\"\n	a ?a \n	b ?b)")
-	(rhs "(let [ia (read-string ?a)\n       ib (read-string ?b)]\n  (asser Trail0 a ia\n	b ia\n	status \"OPEN\"\n	edges [])\n  (asser Trail0 a ib\n	b ib\n	status \"OPEN\"\n	edges [])\n  (modify ?g status \"RUN\"\n	a ia\n	b ib))\n(if osm.path/TRACE\n  (println \"Goal\" [?a ?b]))")
+	(rhs "(let [ia (read-string ?a)\n       ib (read-string ?b)]\n  (asser Trail0 a ia\n	b ia\n	status \"OPEN\"\n	edges []\n	last nil)\n  (asser Trail0 a ib\n	b ib\n	status \"OPEN\"\n	edges []\n	last nil)\n  (modify ?g status \"RUN\"\n	a ia\n	b ib))\n(if osm.path/TRACE\n  (println \"Goal\" [?a ?b]))")
 	(salience 0)
 	(title "t:Check: Goal Start"))
 
@@ -510,7 +1464,7 @@
 
 	(lhs "(Work status \"CHECK\")\n(Solution path ?pth)\n?t (Trail1 edges ?egs\n	(> (count ?egs) (count ?pth)))")
 	(rhs "(retract ?t)")
-	(salience -1)
+	(salience 0)
 	(title "t:Check: Longer Trail1 Retract"))
 
 ([NiceSPb_Class60003] of  Rule
@@ -536,9 +1490,9 @@
 
 ([NiceSPb_Class70002] of  Rule
 
-	(lhs "(Work status \"CHECK\")\n?t (Trail1 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs)")
-	(rhs "(retract ?t)\n(asser Trail0 status \"OPEN\"\n	a ?a\n	b ?b\n	edges ?egs)")
-	(salience -2)
+	(lhs "(Work status \"CHECK\")\n?t (Trail1 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs\n	last ?e)")
+	(rhs "(retract ?t)\n(asser Trail0 status \"OPEN\"\n	a ?a\n	b ?b\n	edges ?egs\n	last ?e)")
+	(salience -1)
 	(title "t:Check: Trail1 to Trail0"))
 
 ([NiceSPb_Class70003] of  Rule
@@ -593,7 +1547,7 @@
 
 ([NiceSPb_Class80003] of  Instruction
 
-	(source "(osm.path/trace true)\n(osm.path/set-near 0.0005)")
+	(source "(osm.path/trace true)\n(osm.path/set-near 0.005)")
 	(title "OSM DR Trail Init"))
 
 ([NiceSPb_Class90000] of  CloFuncall
@@ -631,18 +1585,14 @@
 	(Latitude "43.77")
 	(layers
 		[igis_Class40012]
-		[PyongyangSPb_Class2]
-		[PyongyangSPb_Class3]
 		[igis_Class1]
 		[igis_Class40011])
 	(Longitude "7.49")
-	(Scale "10000")
+	(Scale "20000")
 	(startUpLayers
 		[igis_Class40012]
 		[igis_Class1]
-		[igis_Class40011]
-		[PyongyangSPb_Class2]
-		[PyongyangSPb_Class3]))
+		[igis_Class40011]))
 
 ([PyongyangSPb_Class10] of  Tagvalue
 
@@ -666,11 +1616,13 @@
 		[NiceSPb_Class110014]
 		[NiceSPb_Class100002]
 		[NiceSPb_Class100004]
-		[PyongyangSPb_Class160010])
+		[PyongyangSPb_Class160010]
+		[NiceSPb_Class120055])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[NiceSPb_Class80001]
-		[NiceSPb_Class100003])
+		[NiceSPb_Class100003]
+		[NiceSPb_Class120054])
 	(title "OSM Path"))
 
 ([PyongyangSPb_Class100001] of  CloNamespace
@@ -822,86 +1774,16 @@
 
 	(source "(type (path/quote \"A\"))"))
 
-([PyongyangSPb_Class160007] of  CloFuncall
-
-	(source "path/F-init-point"))
-
-([PyongyangSPb_Class160008] of  CloFuncall
-
-	(source "(path/F-init-point \"A\")"))
-
-([PyongyangSPb_Class160011] of  CloFuncall
-
-	(source "(path/trace true)"))
-
 ([PyongyangSPb_Class160118] of  CloFunction
 
 	(source "(od/create-line [id pts])")
 	(title "create-line [[id & pts]]"))
-
-([PyongyangSPb_Class170009] of  CloFuncall
-
-	(source "(path/mk-segments [1 2 3 4 5 6])"))
-
-([PyongyangSPb_Class170010] of  CloFuncall
-
-	(source "(path/mk-segments [1 2 3 4 5])"))
-
-([PyongyangSPb_Class170012] of  CloFuncall
-
-	(source "(in-ns 'path)"))
-
-([PyongyangSPb_Class170013] of  CloFuncall
-
-	(source "(map init-point-dir [\"\""))
-
-([PyongyangSPb_Class170014] of  CloFuncall
-
-	(source "(map (fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
-
-([PyongyangSPb_Class170015] of  CloFuncall
-
-	(source "(map #(fifos \"Point\" \"id\" %) [\"M\" \"H\" \"D\" \"B\" \"A\"])"))
-
-([PyongyangSPb_Class170016] of  CloFuncall
-
-	(source "(map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"])"))
-
-([PyongyangSPb_Class170017] of  CloFuncall
-
-	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
-
-([PyongyangSPb_Class170018] of  CloFuncall
-
-	(source "(mk-segments pts)"))
-
-([PyongyangSPb_Class170019] of  CloFuncall
-
-	(source "(map direction (mk-segments pts))"))
-
-([PyongyangSPb_Class170020] of  CloFuncall
-
-	(source "(def pts (map #(fifos \"Point\" \"id\" %) [\"N4\" \"R3\" \"M4\" \"H5\" \"D6\" \"B7\" \"A8\"]))"))
-
-([PyongyangSPb_Class170021] of  CloFuncall
-
-	(source "(def stt (fifos \"Point\" \"id\" \"M4\"))"))
 
 ([PyongyangSPb_Class190000] of  %3AINSTANCE-ANNOTATION
 
 	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class60002])
 	(%3ACREATION-TIMESTAMP "2020.12.07 20:26:11.742 MSK")
 	(%3ACREATOR "ru"))
-
-([PyongyangSPb_Class2] of  ShapeLayer
-
-	(class "com.bbn.openmap.layer.shape.ShapeLayer")
-	(fillColor "FFFFCC99")
-	(label "prkrails")
-	(lineColor "ff000000")
-	(prettyName "North Korea Railroads")
-	(shapeFile "data/shape/PRK_rrd/PRK_rails.shp")
-	(spatialIndex "data/shape/PRK_rrd/PRK_rails.shx"))
 
 ([PyongyangSPb_Class20000] of  Line
 
@@ -968,16 +1850,6 @@
 	(url "file:resources/public/img/trnB.gif")
 	(verticalSpeed 0.0))
 
-([PyongyangSPb_Class3] of  ShapeLayer
-
-	(class "com.bbn.openmap.layer.shape.ShapeLayer")
-	(fillColor "FFFFCC99")
-	(label "rusrails")
-	(lineColor "ff000000")
-	(prettyName "Russian Railroads")
-	(shapeFile "data/shape/RUS_rrd/RUS_rails.shp")
-	(spatialIndex "data/shape/RUS_rrd/RUS_rails.shx"))
-
 ([PyongyangSPb_Class30000] of  ImageDoc
 
 	(source "file:doc/images/FromGoal.jpg")
@@ -1033,7 +1905,7 @@
 		[NiceSPb_Class80003]
 		[NiceSPb_Class40027]
 		[PyongyangSPb_Class290000])
-	(mode step)
+	(mode run)
 	(rule-sets [NiceSPb_Class60000])
 	(steps 1)
 	(title "OSMTrailRun"))

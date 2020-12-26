@@ -18,7 +18,7 @@
   [(- x dx) (- y dy) (+ x dx) (+ y dy)]))
 
 (defn in-bbx [[y x] [w s e n]]
-  (and (> x w) (> y s) (< x e) (< x n)))
+  (and (> x w) (> y s) (< x e) (< y n)))
 
 (defn simple-dist [[x1 y1] [x2 y2]]
   (let [sx (- x2 x1)

@@ -1,4 +1,4 @@
-; Thu Dec 17 18:16:06 MSK 2020
+; Sat Dec 26 22:32:58 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -539,28 +539,28 @@
 	(name "instances_file_name")
 	(string_value "OSMData.pins"))
 
-([KB_539871_Class1501] of  Map
+([KB_573863_Class1501] of  Map
 
 	(entries
-		[KB_539871_Class1502]
-		[KB_539871_Class1503]
-		[KB_539871_Class1504]))
+		[KB_573863_Class1502]
+		[KB_573863_Class1503]
+		[KB_573863_Class1504]))
 
-([KB_539871_Class1502] of  Map_Entry
+([KB_573863_Class1502] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_539871_Class1503] of  Map_Entry
+([KB_573863_Class1503] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_539871_Class1504] of  Map_Entry
+([KB_573863_Class1504] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

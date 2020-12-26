@@ -1,4 +1,4 @@
-; Fri Dec 18 18:28:31 MSK 2020
+; Sat Dec 26 18:52:38 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -119,7 +119,7 @@
 
 ([PyongyangSPb_Class150001] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?a\n	points ?pts\n                          (path/F-wrong-direction ?a ?b ?pts))")
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?a\n	points ?pts\n	(path/F-wrong-direction ?a ?b ?pts))")
 	(rhs "(retract ?p)")
 	(salience 1)
 	(title "p:Extension: Direction Assesment Forward"))
@@ -139,7 +139,7 @@
 
 ([PyongyangSPb_Class160004] of  Rule
 
-	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?b\n	points ?pts\n                          (path/F-wrong-direction ?b ?a ?pts))")
+	(lhs "(Work status \"EXTENSION\")\n(Goal a ?a b ?b)\n?p (Path1 status \"OPEN\"\n	a ?b\n	points ?pts\n	(path/F-wrong-direction ?b ?a ?pts))")
 	(rhs "(retract ?p)")
 	(salience 1)
 	(title "p:Extension: Direction Assesment Backward"))
@@ -623,7 +623,7 @@
 ([PyongyangSPb_Class50000] of  Rule
 
 	(lhs "(Work status \"EXTENSION\")\n?p (Path0 status \"OPEN\"\n	a ?a \n	b ?b\n	points ?pts)")
-	(rhs "(let [sqs (path/F-find-sequels ?b)]\n  (doseq [sp sqs]\n    (if (not (some #{sp} ?pts))\n      (asser Path1 a ?a\n	b (path/quote sp)\n	status \"OPEN\"\n	points (path/F-display-points \"Path\" (conj ?pts sp)))))\n  (asser Path1 a ?a b ?b\n	status \"CLOSED\"\n	points ?pts))\n  (retract ?p))")
+	(rhs "(let [sqs (path/F-find-sequels ?b)]\n  (doseq [sp sqs]\n    (if (not (some #{sp} ?pts))\n      (asser Path1 a ?a\n	b (path/argval sp)\n	status \"OPEN\"\n	points (path/F-display-points \"Path\" (conj ?pts sp)))))\n  (asser Path1 a ?a b ?b\n	status \"CLOSED\"\n	points ?pts))\n  (retract ?p))")
 	(salience 0)
 	(title "p:Extension: Path0 Extension"))
 
@@ -684,7 +684,7 @@
 ([PyongyangSPb_Class70000] of  CloFunction
 
 	(source "x")
-	(title "quote [x]"))
+	(title "argval [x]"))
 
 ([PyongyangSPb_Class70001] of  Goal
 

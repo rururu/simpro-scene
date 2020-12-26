@@ -1,4 +1,4 @@
-; Fri Dec 18 18:28:31 MSK 2020
+; Sat Dec 26 18:52:38 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -401,28 +401,28 @@
 ([KB_441164_Class459] of  Property_List
 )
 
-([KB_904753_Class651] of  Map
+([KB_742507_Class651] of  Map
 
 	(entries
-		[KB_904753_Class652]
-		[KB_904753_Class653]
-		[KB_904753_Class654]))
+		[KB_742507_Class652]
+		[KB_742507_Class653]
+		[KB_742507_Class654]))
 
-([KB_904753_Class652] of  Map_Entry
+([KB_742507_Class652] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_904753_Class653] of  Map_Entry
+([KB_742507_Class653] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_904753_Class654] of  Map_Entry
+([KB_742507_Class654] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

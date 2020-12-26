@@ -11,6 +11,7 @@
   ru.igis.omtab.MapOb))
 (def TRACE true)
 (def NEAR 0.0005)
+(def NODE-POINTS [])
 (defn simple-dist-osm
   ([ni1 ni2]
   (of/simple-dist 
@@ -69,10 +70,11 @@ egs)
 (defn edges-distance [egs]
   (apply + (map #(of/simple-dist (vertex1 %) (vertex2 %)) egs)))
 
-(defn wrong-direction [start finish egs]
-  (let [dirs (map #(of/simple-dir (vertex1 %) (vertex2 %)) egs)
-      rdir (of/simple-dir start finish)]
-  (some #(not= % rdir) dirs)))
+(defn wrong-direction [sta med fin]
+  (let [rdir (of/simple-dir sta fin)
+       mdir (of/simple-dir sta med)
+       ang (Math/abs (- rdir mdir))]
+  (> ang (/ Math/PI 2))))
 
 (defn near [p1 p2]
   (< (of/simple-dist p1 p2) NEAR))
@@ -82,4 +84,11 @@ egs)
 
 (defn trace [bool]
   (def TRACE bool))
+
+(defn find-new-node [xy]
+  (let [box (of/bbx xy (oo/get-radius))]
+  (if (not (some #(of/in-bbx % box) NODE-POINTS))
+    (when-let [noi (oo/mk-node xy)]
+      (def NODE-POINTS (conj NODE-POINTS [(sv noi "x") (sv noi "y")]))
+      noi))))
 
