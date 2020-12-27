@@ -1,4 +1,4 @@
-; Sat Dec 26 22:32:23 MSK 2020
+; Sun Dec 27 20:54:13 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,10 +11,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
-
-(defclass Railroad_
-	(is-a Railroad)
-	(role concrete))
 
 (defclass Trail0
 	(is-a Path)

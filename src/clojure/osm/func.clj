@@ -104,7 +104,8 @@
       (id-osm-points idp)))))
 
 (defn iLines-with-beg-or-end-in-bbx [[x y] rad kind kind-type kind-subtype]
-  (let [box (bbx [x y] rad)
+  ;; iLine = (id (x1 y1) (x2 y2)...)
+(let [box (bbx [x y] rad)
        oda (osm-data box kind kind-type)
        fda (filter-data oda kind kind-type kind-subtype)
        fbe (filter #(or (in-bbx (first (second %)) box) (in-bbx (last (second %)) box)) (seq fda))]

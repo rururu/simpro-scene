@@ -11,7 +11,7 @@
   ru.igis.omtab.MapOb))
 (def TRACE true)
 (def NEAR 0.0005)
-(def NODE-POINTS [])
+(def NODE-YXS [])
 (defn simple-dist-osm
   ([ni1 ni2]
   (of/simple-dist 
@@ -82,13 +82,24 @@ egs)
 (defn set-near [deg]
   (def NEAR deg))
 
-(defn trace [bool]
-  (def TRACE bool))
-
 (defn find-new-node [xy]
   (let [box (of/bbx xy (oo/get-radius))]
-  (if (not (some #(of/in-bbx % box) NODE-POINTS))
+  (if (not (some #(of/in-bbx % box) NODE-YXS))
     (when-let [noi (oo/mk-node xy)]
-      (def NODE-POINTS (conj NODE-POINTS [(sv noi "x") (sv noi "y")]))
+      (def NODE-YXS (conj NODE-YXS [(sv noi "y") (sv noi "x")]))
       noi))))
+
+(defn mk-road [tit sub frm to xy egs]
+  (let [drs (oo/edges-dirs xy egs)
+       lbs (map #(sv % "label") egs)
+       ptss (map oo/edge-pts egs)
+       pth (map #(vector %1 [%2 %3] %4) drs lbs ptss egs)
+       rdi (foc sub "title" tit)]
+    (ssv rdi "from1" frm)
+    (ssv rdi "to1" to)
+    (ssvs rdi "dirways" (map oo/create-dirway pth))
+    rdi))
+
+(defn trace [bool]
+  (def TRACE bool))
 

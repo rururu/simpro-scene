@@ -155,6 +155,7 @@
   (ssv egi "latitude" "0 0")
   (ssv egi "longitude" "0 0")
   (ssv egi "lineColor" "FFFF6800")
+  (ssv egi "line" (fifos "Line" "label" "L2"))
   (if (is-show?)
     (OMT/getOrAdd egi))
   egi))
@@ -172,7 +173,8 @@
     (ssv noi "latitude" (MapOb/getDegMin y))
     (ssv noi "longitude" (MapOb/getDegMin x))
     (ssv noi "lineColor" "FFFF6800")
-    (ssv noi "point-radius" (int 6))
+    (ssv noi "fillColor" "FFFF6800")
+    (ssv noi "point-radius" (int 4))
     (ssv noi "oval" true)
     (ssvs noi "edges" egs)
     (when (is-show?)
@@ -286,4 +288,20 @@
   (if-let [noi (sv inst "node")]
   (ssvs inst "nodes" (map mk-node (star-points noi)))
   (println "Fill node slot!")))
+
+(defn edges-dirs [xy egs]
+  (letfn [(dir [xy e]
+             (let [xy1 [(sv e "x") (sv e "y")]
+                    xy2 [(sv e "x2") (sv e "y2")]]
+               (if (< (f/simple-dist xy xy1)
+                        (f/simple-dist xy xy2))
+                 ["FORWARD" xy2]
+                 ["BACKWARD" xy1])))]
+  (cond
+    (empty? egs) egs
+    true (let [[d c] (dir xy (first egs))]
+              (cons d (edges-dirs c (rest egs)))))))
+
+(defn edge-pts [e]
+  (map #(vector (read-string %1) (read-string %2)) (svs e "yy") (svs e "xx")))
 
