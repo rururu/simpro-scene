@@ -1,4 +1,4 @@
-; Sun Dec 27 20:54:36 MSK 2020
+; Mon Dec 28 17:37:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -172,6 +172,7 @@
 		[OSMData_Class50011]
 		[OSMData_Class50010]
 		[OSMData_Class50014]
+		[OSMData_Class70000]
 		[OSMData_Class50016]
 		[BrigBern_Class40012]
 		[OSMData_Class60109]
@@ -459,6 +460,11 @@
 
 	(source "(let [dw (crin \"Dirway\")\n       way (foc \"Way\" \"id\" (str id))]\n  (ssv way \"poly\" lin)\n  (ssv way \"source\" (str (vec pts)))\n  (ssv dw \"direction\" dir)\n  (ssv dw \"way\" way)\n  dw)")
 	(title "create-dirway [[dir [id pts] lin]]"))
+
+([OSMData_Class70000] of  CloFunction
+
+	(source "(or (sv (get-control-center) \"road-subclass\") \"Railroad\")")
+	(title "get-road-subclass []"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

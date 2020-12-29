@@ -70,11 +70,14 @@ egs)
 (defn edges-distance [egs]
   (apply + (map #(of/simple-dist (vertex1 %) (vertex2 %)) egs)))
 
-(defn wrong-direction [sta med fin]
+(defn wrong-direction-trial [sta cur fin]
   (let [rdir (of/simple-dir sta fin)
-       mdir (of/simple-dir sta med)
-       ang (Math/abs (- rdir mdir))]
-  (> ang (/ Math/PI 2))))
+       cdir (of/simple-dir sta cur)
+       gdir (of/simple-dir cur fin)
+       arc (Math/abs (- rdir cdir))
+       arg (Math/abs (- rdir gdir))]
+  (or (> arc (/ Math/PI 2))
+       (> arg (/ Math/PI 2)))))
 
 (defn near [p1 p2]
   (< (of/simple-dist p1 p2) NEAR))
@@ -98,7 +101,11 @@ egs)
     (ssv rdi "from1" frm)
     (ssv rdi "to1" to)
     (ssvs rdi "dirways" (map oo/create-dirway pth))
+    (.show *prj* rdi)
     rdi))
+
+(defn clear-NODE-YXS []
+  (def NODE-YXS []))
 
 (defn trace [bool]
   (def TRACE bool))

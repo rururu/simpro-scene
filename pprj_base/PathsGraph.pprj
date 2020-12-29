@@ -1,4 +1,4 @@
-; Sat Dec 26 18:52:38 MSK 2020
+; Tue Dec 29 12:09:41 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,12 +21,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[PathsGraph_ProjectKB_Class655]
-		[PathsGraph_ProjectKB_Class656]
-		[PathsGraph_ProjectKB_Class657]
-		[PathsGraph_ProjectKB_Class658]
-		[PathsGraph_ProjectKB_Class659]
-		[PathsGraph_ProjectKB_Class660]))
+		[PathsGraph_ProjectKB_Class722]
+		[PathsGraph_ProjectKB_Class723]
+		[PathsGraph_ProjectKB_Class724]
+		[PathsGraph_ProjectKB_Class725]
+		[PathsGraph_ProjectKB_Class726]
+		[PathsGraph_ProjectKB_Class727]))
 
 ([CLSES_TAB] of  Widget
 
@@ -212,23 +212,23 @@
 ([KB_189120_Class1] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class670]
-		[PathsGraph_ProjectKB_Class673]
-		[PathsGraph_ProjectKB_Class679]
-		[PathsGraph_ProjectKB_Class683]
-		[PathsGraph_ProjectKB_Class687]
-		[PathsGraph_ProjectKB_Class691]
-		[PathsGraph_ProjectKB_Class695]
-		[PathsGraph_ProjectKB_Class721])
+		[PathsGraph_ProjectKB_Class737]
+		[PathsGraph_ProjectKB_Class740]
+		[PathsGraph_ProjectKB_Class746]
+		[PathsGraph_ProjectKB_Class750]
+		[PathsGraph_ProjectKB_Class754]
+		[PathsGraph_ProjectKB_Class758]
+		[PathsGraph_ProjectKB_Class762]
+		[PathsGraph_ProjectKB_Class788])
 	(referenced_maps
-		[PathsGraph_ProjectKB_Class688]
-		[PathsGraph_ProjectKB_Class684]
-		[PathsGraph_ProjectKB_Class680]
-		[PathsGraph_ProjectKB_Class661]
-		[PathsGraph_ProjectKB_Class674]
-		[PathsGraph_ProjectKB_Class696]
-		[PathsGraph_ProjectKB_Class692]
-		[PathsGraph_ProjectKB_Class671]))
+		[PathsGraph_ProjectKB_Class755]
+		[PathsGraph_ProjectKB_Class751]
+		[PathsGraph_ProjectKB_Class741]
+		[PathsGraph_ProjectKB_Class763]
+		[PathsGraph_ProjectKB_Class747]
+		[PathsGraph_ProjectKB_Class759]
+		[PathsGraph_ProjectKB_Class738]
+		[PathsGraph_ProjectKB_Class728]))
 
 ([KB_189120_Class13] of  Property_List
 
@@ -370,6 +370,34 @@
 ([KB_236959_Class312] of  Property_List
 )
 
+([KB_281321_Class651] of  Map
+
+	(entries
+		[KB_281321_Class652]
+		[KB_281321_Class653]
+		[KB_281321_Class654]))
+
+([KB_281321_Class652] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_281321_Class653] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_281321_Class654] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_441164_Class455] of  Widget
 
 	(is_hidden FALSE)
@@ -400,34 +428,6 @@
 
 ([KB_441164_Class459] of  Property_List
 )
-
-([KB_742507_Class651] of  Map
-
-	(entries
-		[KB_742507_Class652]
-		[KB_742507_Class653]
-		[KB_742507_Class654]))
-
-([KB_742507_Class652] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_742507_Class653] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_742507_Class654] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -564,481 +564,481 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
-([PathsGraph_ProjectKB_Class655] of  String
+([PathsGraph_ProjectKB_Class722] of  String
 
 	(name "Point")
 	(string_value "id"))
 
-([PathsGraph_ProjectKB_Class656] of  String
+([PathsGraph_ProjectKB_Class723] of  String
 
 	(name "Graph")
 	(string_value "id"))
 
-([PathsGraph_ProjectKB_Class657] of  String
+([PathsGraph_ProjectKB_Class724] of  String
 
 	(name "Work")
 	(string_value "{Work+status+}status"))
 
-([PathsGraph_ProjectKB_Class658] of  String
+([PathsGraph_ProjectKB_Class725] of  String
 
 	(name "Instruction")
 	(string_value "title"))
 
-([PathsGraph_ProjectKB_Class659] of  String
+([PathsGraph_ProjectKB_Class726] of  String
 
 	(name "Goal")
 	(string_value "title"))
 
-([PathsGraph_ProjectKB_Class660] of  String
+([PathsGraph_ProjectKB_Class727] of  String
 
 	(name "NamedDoc")
 	(string_value "title"))
 
-([PathsGraph_ProjectKB_Class661] of  Map
+([PathsGraph_ProjectKB_Class728] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class662]
-		[PathsGraph_ProjectKB_Class663]
-		[PathsGraph_ProjectKB_Class664]
-		[PathsGraph_ProjectKB_Class665]
-		[PathsGraph_ProjectKB_Class666]
-		[PathsGraph_ProjectKB_Class667]
-		[PathsGraph_ProjectKB_Class668]
-		[PathsGraph_ProjectKB_Class669]))
+		[PathsGraph_ProjectKB_Class729]
+		[PathsGraph_ProjectKB_Class730]
+		[PathsGraph_ProjectKB_Class731]
+		[PathsGraph_ProjectKB_Class732]
+		[PathsGraph_ProjectKB_Class733]
+		[PathsGraph_ProjectKB_Class734]
+		[PathsGraph_ProjectKB_Class735]
+		[PathsGraph_ProjectKB_Class736]))
 
-([PathsGraph_ProjectKB_Class662] of  Map_Entry
+([PathsGraph_ProjectKB_Class729] of  Map_Entry
 
 	(key "PyongyangSPb_Class40007")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "82 337 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class663] of  Map_Entry
+([PathsGraph_ProjectKB_Class730] of  Map_Entry
 
 	(key "PyongyangSPb_Class10002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "5 707 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class664] of  Map_Entry
+([PathsGraph_ProjectKB_Class731] of  Map_Entry
 
 	(key "PyongyangSPb_Class60003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "6 493 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class665] of  Map_Entry
+([PathsGraph_ProjectKB_Class732] of  Map_Entry
 
 	(key "PyongyangSPb_Class10001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 502 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class666] of  Map_Entry
+([PathsGraph_ProjectKB_Class733] of  Map_Entry
 
 	(key "PyongyangSPb_Class10000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 291 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class667] of  Map_Entry
+([PathsGraph_ProjectKB_Class734] of  Map_Entry
 
 	(key "PyongyangSPb_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 704 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class668] of  Map_Entry
+([PathsGraph_ProjectKB_Class735] of  Map_Entry
 
 	(key "PyongyangSPb_Class10004")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "93 310 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class669] of  Map_Entry
+([PathsGraph_ProjectKB_Class736] of  Map_Entry
 
 	(key "PyongyangSPb_Class10003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "16 602 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class670] of  Map_Entry
+([PathsGraph_ProjectKB_Class737] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class661")
+	(value "PathsGraph_ProjectKB_Class728")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class671] of  Map
+([PathsGraph_ProjectKB_Class738] of  Map
 
-	(entries [PathsGraph_ProjectKB_Class672]))
+	(entries [PathsGraph_ProjectKB_Class739]))
 
-([PathsGraph_ProjectKB_Class672] of  Map_Entry
+([PathsGraph_ProjectKB_Class739] of  Map_Entry
 
 	(key "PyongyangSPb_Class250001")
 	(key_class "java.lang.String")
 	(value "121 89 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class673] of  Map_Entry
+([PathsGraph_ProjectKB_Class740] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class250000.scenario_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class671")
+	(value "PathsGraph_ProjectKB_Class738")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class674] of  Map
+([PathsGraph_ProjectKB_Class741] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class675]
-		[PathsGraph_ProjectKB_Class676]
-		[PathsGraph_ProjectKB_Class677]
-		[PathsGraph_ProjectKB_Class678]))
+		[PathsGraph_ProjectKB_Class742]
+		[PathsGraph_ProjectKB_Class743]
+		[PathsGraph_ProjectKB_Class744]
+		[PathsGraph_ProjectKB_Class745]))
 
-([PathsGraph_ProjectKB_Class675] of  Map_Entry
+([PathsGraph_ProjectKB_Class742] of  Map_Entry
 
 	(key "PyongyangSPb_Class20005")
 	(key_class "java.lang.String")
 	(value "70 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class676] of  Map_Entry
+([PathsGraph_ProjectKB_Class743] of  Map_Entry
 
 	(key "PyongyangSPb_Class20010")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class677] of  Map_Entry
+([PathsGraph_ProjectKB_Class744] of  Map_Entry
 
 	(key "PyongyangSPb_Class20012")
 	(key_class "java.lang.String")
 	(value "70 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class678] of  Map_Entry
+([PathsGraph_ProjectKB_Class745] of  Map_Entry
 
 	(key "PyongyangSPb_Class20011")
 	(key_class "java.lang.String")
 	(value "70 370 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class679] of  Map_Entry
+([PathsGraph_ProjectKB_Class746] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class20001.task_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class674")
+	(value "PathsGraph_ProjectKB_Class741")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class680] of  Map
+([PathsGraph_ProjectKB_Class747] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class681]
-		[PathsGraph_ProjectKB_Class682]))
+		[PathsGraph_ProjectKB_Class748]
+		[PathsGraph_ProjectKB_Class749]))
 
-([PathsGraph_ProjectKB_Class681] of  Map_Entry
+([PathsGraph_ProjectKB_Class748] of  Map_Entry
 
 	(key "PyongyangSPb_Class250002")
 	(key_class "java.lang.String")
 	(value "177 74 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class682] of  Map_Entry
+([PathsGraph_ProjectKB_Class749] of  Map_Entry
 
 	(key "PyongyangSPb_Class250004")
 	(key_class "java.lang.String")
 	(value "177 204 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class683] of  Map_Entry
+([PathsGraph_ProjectKB_Class750] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class250001.task_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class680")
+	(value "PathsGraph_ProjectKB_Class747")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class684] of  Map
+([PathsGraph_ProjectKB_Class751] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class685]
-		[PathsGraph_ProjectKB_Class686]))
+		[PathsGraph_ProjectKB_Class752]
+		[PathsGraph_ProjectKB_Class753]))
 
-([PathsGraph_ProjectKB_Class685] of  Map_Entry
+([PathsGraph_ProjectKB_Class752] of  Map_Entry
 
 	(key "PyongyangSPb_Class40006")
 	(key_class "java.lang.String")
 	(value "209 60 71 70")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class686] of  Map_Entry
+([PathsGraph_ProjectKB_Class753] of  Map_Entry
 
 	(key "PyongyangSPb_Class20001")
 	(key_class "java.lang.String")
 	(value "57 60 73 70")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class687] of  Map_Entry
+([PathsGraph_ProjectKB_Class754] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class40005.scenario_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class684")
+	(value "PathsGraph_ProjectKB_Class751")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class688] of  Map
+([PathsGraph_ProjectKB_Class755] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class689]
-		[PathsGraph_ProjectKB_Class690]))
+		[PathsGraph_ProjectKB_Class756]
+		[PathsGraph_ProjectKB_Class757]))
 
-([PathsGraph_ProjectKB_Class689] of  Map_Entry
+([PathsGraph_ProjectKB_Class756] of  Map_Entry
 
 	(key "PyongyangSPb_Class40001")
 	(key_class "java.lang.String")
 	(value "70 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class690] of  Map_Entry
+([PathsGraph_ProjectKB_Class757] of  Map_Entry
 
 	(key "PyongyangSPb_Class40000")
 	(key_class "java.lang.String")
 	(value "70 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class691] of  Map_Entry
+([PathsGraph_ProjectKB_Class758] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class40006.task_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class688")
+	(value "PathsGraph_ProjectKB_Class755")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class692] of  Map
+([PathsGraph_ProjectKB_Class759] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class693]
-		[PathsGraph_ProjectKB_Class694]))
+		[PathsGraph_ProjectKB_Class760]
+		[PathsGraph_ProjectKB_Class761]))
 
-([PathsGraph_ProjectKB_Class693] of  Map_Entry
+([PathsGraph_ProjectKB_Class760] of  Map_Entry
 
 	(key "PyongyangSPb_Class40006")
 	(key_class "java.lang.String")
 	(value "200 40 100 79")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class694] of  Map_Entry
+([PathsGraph_ProjectKB_Class761] of  Map_Entry
 
 	(key "PyongyangSPb_Class20001")
 	(key_class "java.lang.String")
 	(value "60 40 100 80")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class695] of  Map_Entry
+([PathsGraph_ProjectKB_Class762] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class20000.scenario_scheme")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class692")
+	(value "PathsGraph_ProjectKB_Class759")
 	(value_class "java.util.Map"))
 
-([PathsGraph_ProjectKB_Class696] of  Map
+([PathsGraph_ProjectKB_Class763] of  Map
 
 	(entries
-		[PathsGraph_ProjectKB_Class697]
-		[PathsGraph_ProjectKB_Class698]
-		[PathsGraph_ProjectKB_Class699]
-		[PathsGraph_ProjectKB_Class700]
-		[PathsGraph_ProjectKB_Class701]
-		[PathsGraph_ProjectKB_Class702]
-		[PathsGraph_ProjectKB_Class703]
-		[PathsGraph_ProjectKB_Class704]
-		[PathsGraph_ProjectKB_Class705]
-		[PathsGraph_ProjectKB_Class706]
-		[PathsGraph_ProjectKB_Class707]
-		[PathsGraph_ProjectKB_Class708]
-		[PathsGraph_ProjectKB_Class709]
-		[PathsGraph_ProjectKB_Class710]
-		[PathsGraph_ProjectKB_Class711]
-		[PathsGraph_ProjectKB_Class712]
-		[PathsGraph_ProjectKB_Class713]
-		[PathsGraph_ProjectKB_Class714]
-		[PathsGraph_ProjectKB_Class715]
-		[PathsGraph_ProjectKB_Class716]
-		[PathsGraph_ProjectKB_Class717]
-		[PathsGraph_ProjectKB_Class718]
-		[PathsGraph_ProjectKB_Class719]
-		[PathsGraph_ProjectKB_Class720]))
+		[PathsGraph_ProjectKB_Class764]
+		[PathsGraph_ProjectKB_Class765]
+		[PathsGraph_ProjectKB_Class766]
+		[PathsGraph_ProjectKB_Class767]
+		[PathsGraph_ProjectKB_Class768]
+		[PathsGraph_ProjectKB_Class769]
+		[PathsGraph_ProjectKB_Class770]
+		[PathsGraph_ProjectKB_Class771]
+		[PathsGraph_ProjectKB_Class772]
+		[PathsGraph_ProjectKB_Class773]
+		[PathsGraph_ProjectKB_Class774]
+		[PathsGraph_ProjectKB_Class775]
+		[PathsGraph_ProjectKB_Class776]
+		[PathsGraph_ProjectKB_Class777]
+		[PathsGraph_ProjectKB_Class778]
+		[PathsGraph_ProjectKB_Class779]
+		[PathsGraph_ProjectKB_Class780]
+		[PathsGraph_ProjectKB_Class781]
+		[PathsGraph_ProjectKB_Class782]
+		[PathsGraph_ProjectKB_Class783]
+		[PathsGraph_ProjectKB_Class784]
+		[PathsGraph_ProjectKB_Class785]
+		[PathsGraph_ProjectKB_Class786]
+		[PathsGraph_ProjectKB_Class787]))
 
-([PathsGraph_ProjectKB_Class697] of  Map_Entry
+([PathsGraph_ProjectKB_Class764] of  Map_Entry
 
 	(key "PyongyangSPb_Class190020")
 	(key_class "java.lang.String")
 	(value "960 280 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class698] of  Map_Entry
+([PathsGraph_ProjectKB_Class765] of  Map_Entry
 
 	(key "PyongyangSPb_Class190031")
 	(key_class "java.lang.String")
 	(value "600 660 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class699] of  Map_Entry
+([PathsGraph_ProjectKB_Class766] of  Map_Entry
 
 	(key "PyongyangSPb_Class190021")
 	(key_class "java.lang.String")
 	(value "360 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class700] of  Map_Entry
+([PathsGraph_ProjectKB_Class767] of  Map_Entry
 
 	(key "PyongyangSPb_Class190032")
 	(key_class "java.lang.String")
 	(value "740 600 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class701] of  Map_Entry
+([PathsGraph_ProjectKB_Class768] of  Map_Entry
 
 	(key "PyongyangSPb_Class190011")
 	(key_class "java.lang.String")
 	(value "660 20 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class702] of  Map_Entry
+([PathsGraph_ProjectKB_Class769] of  Map_Entry
 
 	(key "PyongyangSPb_Class190022")
 	(key_class "java.lang.String")
 	(value "500 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class703] of  Map_Entry
+([PathsGraph_ProjectKB_Class770] of  Map_Entry
 
 	(key "PyongyangSPb_Class190033")
 	(key_class "java.lang.String")
 	(value "880 600 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class704] of  Map_Entry
+([PathsGraph_ProjectKB_Class771] of  Map_Entry
 
 	(key "PyongyangSPb_Class190012")
 	(key_class "java.lang.String")
 	(value "780 100 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class705] of  Map_Entry
+([PathsGraph_ProjectKB_Class772] of  Map_Entry
 
 	(key "PyongyangSPb_Class190023")
 	(key_class "java.lang.String")
 	(value "760 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class706] of  Map_Entry
+([PathsGraph_ProjectKB_Class773] of  Map_Entry
 
 	(key "PyongyangSPb_Class190034")
 	(key_class "java.lang.String")
 	(value "760 720 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class707] of  Map_Entry
+([PathsGraph_ProjectKB_Class774] of  Map_Entry
 
 	(key "PyongyangSPb_Class190030")
 	(key_class "java.lang.String")
 	(value "940 480 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class708] of  Map_Entry
+([PathsGraph_ProjectKB_Class775] of  Map_Entry
 
 	(key "PyongyangSPb_Class190017")
 	(key_class "java.lang.String")
 	(value "580 260 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class709] of  Map_Entry
+([PathsGraph_ProjectKB_Class776] of  Map_Entry
 
 	(key "PyongyangSPb_Class190028")
 	(key_class "java.lang.String")
 	(value "700 480 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class710] of  Map_Entry
+([PathsGraph_ProjectKB_Class777] of  Map_Entry
 
 	(key "PyongyangSPb_Class190018")
 	(key_class "java.lang.String")
 	(value "660 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class711] of  Map_Entry
+([PathsGraph_ProjectKB_Class778] of  Map_Entry
 
 	(key "PyongyangSPb_Class190029")
 	(key_class "java.lang.String")
 	(value "820 480 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class712] of  Map_Entry
+([PathsGraph_ProjectKB_Class779] of  Map_Entry
 
 	(key "PyongyangSPb_Class190019")
 	(key_class "java.lang.String")
 	(value "760 260 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class713] of  Map_Entry
+([PathsGraph_ProjectKB_Class780] of  Map_Entry
 
 	(key "PyongyangSPb_Class190013")
 	(key_class "java.lang.String")
 	(value "540 140 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class714] of  Map_Entry
+([PathsGraph_ProjectKB_Class781] of  Map_Entry
 
 	(key "PyongyangSPb_Class190024")
 	(key_class "java.lang.String")
 	(value "860 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class715] of  Map_Entry
+([PathsGraph_ProjectKB_Class782] of  Map_Entry
 
 	(key "PyongyangSPb_Class190014")
 	(key_class "java.lang.String")
 	(value "660 180 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class716] of  Map_Entry
+([PathsGraph_ProjectKB_Class783] of  Map_Entry
 
 	(key "PyongyangSPb_Class190025")
 	(key_class "java.lang.String")
 	(value "1040 360 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class717] of  Map_Entry
+([PathsGraph_ProjectKB_Class784] of  Map_Entry
 
 	(key "PyongyangSPb_Class190015")
 	(key_class "java.lang.String")
 	(value "880 200 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class718] of  Map_Entry
+([PathsGraph_ProjectKB_Class785] of  Map_Entry
 
 	(key "PyongyangSPb_Class190026")
 	(key_class "java.lang.String")
 	(value "440 480 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class719] of  Map_Entry
+([PathsGraph_ProjectKB_Class786] of  Map_Entry
 
 	(key "PyongyangSPb_Class190016")
 	(key_class "java.lang.String")
 	(value "420 240 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class720] of  Map_Entry
+([PathsGraph_ProjectKB_Class787] of  Map_Entry
 
 	(key "PyongyangSPb_Class190027")
 	(key_class "java.lang.String")
 	(value "560 520 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([PathsGraph_ProjectKB_Class721] of  Map_Entry
+([PathsGraph_ProjectKB_Class788] of  Map_Entry
 
 	(key "InstanceGraphWidget.PyongyangSPb_Class190009.points1")
 	(key_class "java.lang.String")
-	(value "PathsGraph_ProjectKB_Class696")
+	(value "PathsGraph_ProjectKB_Class763")
 	(value_class "java.util.Map"))
 
 ([PROJECT] of  Project

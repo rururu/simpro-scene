@@ -79,6 +79,9 @@
   (f/SRV-MAP srv)
   f/SERVER))
 
+(defn get-road-subclass []
+  (or (sv (get-control-center) "road-subclass") "Railroad"))
+
 (defn is-show? []
   (is? (sv (get-control-center) "show")))
 

@@ -1,4 +1,4 @@
-; Sat Dec 26 18:52:38 MSK 2020
+; Tue Dec 29 12:09:41 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -17,6 +17,13 @@
 	(salience 100)
 	(title "ExecuteInstruction"))
 
+([PathsGraph_Class10000] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(not Solution)\n(not Path1 status \"OPEN\")")
+	(rhs "(rete.core/problem-solved)\n(println :NO-SOLUTIONS)")
+	(salience -1)
+	(title "p:Extension -> No Solutions"))
+
 ([PathsGraph_Class10001] of  Rule
 
 	(lhs "?w (Work status \"EXTENSION\")\n(Solution)")
@@ -33,7 +40,7 @@
 
 ([PathsGraph_Class2] of  Instruction
 
-	(source "(path/set-functions\n path/quote \n path/find-sequels \n path/point-equal\n path/distance\n path/display-points)\n(path/trace true)")
+	(source "(path/set-functions\n path/argval\n path/find-sequels \n path/point-equal\n path/distance\n path/display-points)\n(path/trace true)")
 	(title "Set Path Functions and Goals"))
 
 ([PathsGraph_Class3] of  Instruction
@@ -101,7 +108,7 @@
 ([PyongyangSPb_Class140005] of  Rule
 
 	(lhs "(Work status \"OPTIMIZATION\")\n(Solution path ?pth)\n(not Solution)")
-	(rhs "(rete.core/problem-solved)\n(if path/TRACE\n  (path/F-display-points :OPTIMIZED ?pth))")
+	(rhs "(rete.core/problem-solved)\n(path/F-display-points :OPTIMIZED ?pth)")
 	(salience 0)
 	(title "p:Optimization: Solutions Optimized"))
 
@@ -164,7 +171,7 @@
 
 ([PyongyangSPb_Class170001] of  Rule
 
-	(lhs "?w (Work status \"EXTENSION\")\n(not Path1 status \"OPEN\")")
+	(lhs "?w (Work status \"EXTENSION\")\n(Solution)\n(not Path1 status \"OPEN\")")
 	(rhs "(if path/TRACE\n  (println :OPTIMIZATION))\n(modify ?w status \"OPTIMIZATION\")")
 	(salience -1)
 	(title "p:Extension -> Optimization"))
@@ -546,10 +553,11 @@
 		[PyongyangSPb_Class300098]
 		[PyongyangSPb_Class140006]
 		[PyongyangSPb_Class140005]
-		[PyongyangSPb_Class170001]
 		[PyongyangSPb_Class90004]
 		[PyongyangSPb_Class280000]
-		[PyongyangSPb_Class280001])
+		[PyongyangSPb_Class280001]
+		[PyongyangSPb_Class170001]
+		[PathsGraph_Class10000])
 	(templates
 		[Instruction]
 		[Goal]
@@ -590,10 +598,11 @@
 		[PyongyangSPb_Class300098]
 		[PyongyangSPb_Class140006]
 		[PyongyangSPb_Class140005]
-		[PyongyangSPb_Class170001]
 		[PyongyangSPb_Class90004]
 		[PyongyangSPb_Class280000]
-		[PyongyangSPb_Class280001])
+		[PyongyangSPb_Class280001]
+		[PyongyangSPb_Class170001]
+		[PathsGraph_Class10000])
 	(templates
 		[Instruction]
 		[Goal]

@@ -1,4 +1,4 @@
-; Sun Dec 27 20:54:13 MSK 2020
+; Tue Dec 29 20:56:50 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11,6 +11,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass NiceSPb_Class120001
+	(is-a Goal)
+	(role concrete))
 
 (defclass Trail0
 	(is-a Path)
