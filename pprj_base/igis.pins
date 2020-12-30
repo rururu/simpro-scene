@@ -1,4 +1,4 @@
-; Sun Dec 08 18:40:19 MSK 2019
+; Wed Dec 30 15:02:19 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,8 @@
 		[igis_Class40000]
 		[igis_Class40001]
 		[igis_Class70000]
+		[igis_Class100005]
+		[igis_Class100000]
 		[igis_Class14]
 		[igis_Class15]
 		[igis_Class16]
@@ -35,13 +37,14 @@
 	(Latitude "60.0")
 	(layers
 		[igis_Class40012]
-		[igis_Class1]
-		[igis_Class40011])
+		[NiceSPb_Class160725]
+		[igis_Class40011]
+		[igis_Class110000])
 	(Longitude "30.0")
 	(Scale "10000000")
 	(startUpLayers
 		[igis_Class40012]
-		[igis_Class1]
+		[NiceSPb_Class160725]
 		[igis_Class40011]))
 
 ([igis_Class1] of  MapTileLayer
@@ -51,12 +54,12 @@
 	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
 	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
 	(fileExt ".png")
-	(label "ArcGIS_Tiles")
+	(label "ArcGIS_Topo")
 	(land.fillColor "DECD8B")
 	(land.lineColor "DECD8B")
 	(localCacheRootDir "data/tiles/arcgis")
 	(noCoverageZoom "13")
-	(prettyName "ArcGIS Tiles")
+	(prettyName "ArcGIS Topo")
 	(rootDir "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
@@ -78,6 +81,22 @@
 	(url "file:resources/public/img/tall.gif")
 	(verticalSpeed 0.0))
 
+([igis_Class100000] of  SimpleComponent
+
+	(class "com.bbn.openmap.gui.ProjectionStackTool")
+	(label "projectionstacktool"))
+
+([igis_Class100005] of  OverviewMapHandler
+
+	(class "com.bbn.openmap.gui.OverviewMapHandler")
+	(fillColor "66ff0000")
+	(label "overviewMapHandler")
+	(lineColor "ffff0000")
+	(overviewLayers "overviewLayer")
+	(overviewMinScale "10000000f")
+	(overviewScaleFactor "10f")
+	(overviewStatusLayer "com.bbn.openmap.layer.OverviewMapAreaLayer"))
+
 ([igis_Class10001] of  NavOb
 
 	(altitude 0)
@@ -95,6 +114,16 @@
 
 	(class "ru.igis.omtab.menu.ProtegeMenu")
 	(label "protegeMenu"))
+
+([igis_Class110000] of  ShapeLayer
+
+	(class "com.bbn.openmap.layer.shape.ShapeLayer")
+	(fillColor "ffbdde83")
+	(label "overviewLayer")
+	(lineColor "ff000000")
+	(prettyName "Overview")
+	(shapeFile "data/shape/dcwpo-browse.shp")
+	(spatialIndex "data/shape/dcwpo-browse.ssx"))
 
 ([igis_Class12] of  MenuList
 
@@ -347,22 +376,6 @@
 	(source "file:src/OpenMapTab/ru/igis/omtab/Demo.java")
 	(text "Class ru.igis.omtab.Demo.java"))
 
-([igis_Class80000] of  MapTileLayer
-
-	(background.fillColor "FFFFFF")
-	(background.lineColor "FFFFFF")
-	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
-	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
-	(fileExt ".png")
-	(label "OSM_Tiles")
-	(land.fillColor "DECD8B")
-	(land.lineColor "DECD8B")
-	(localCacheRootDir "data/tiles/osmtiles")
-	(noCoverageZoom "13")
-	(prettyName "OSM Tiles")
-	(rootDir "http://a.tile.openstreetmap.org")
-	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
-
 ([igis_Class9] of  Menu
 
 	(class "com.bbn.openmap.gui.LayersMenu")
@@ -372,3 +385,67 @@
 
 	(class "ru.igis.omtab.gui.RuMapMouseAdapter")
 	(label "ruMapMouseAdapter"))
+
+([NiceSPb_Class130000] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "ArcGIS_Satellite")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/sat")
+	(noCoverageZoom "13")
+	(prettyName "ArcGIS Satellite")
+	(rootDir "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
+
+([NiceSPb_Class160725] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "ArcGIS_Streets")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/street")
+	(noCoverageZoom "13")
+	(prettyName "ArcGIS Streets")
+	(rootDir "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
+
+([NiceSPb_Class160726] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "ArcGIS_NationalGeographic")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/ngeo")
+	(noCoverageZoom "13")
+	(prettyName "ArcGIS National Geographic")
+	(rootDir "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}.png")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
+
+([NiceSPb_Class160727] of  MapTileLayer
+
+	(background.fillColor "FFFFFF")
+	(background.lineColor "FFFFFF")
+	(class "com.bbn.openmap.layer.imageTile.MapTileLayer")
+	(emptyTileHandler "com.bbn.openmap.dataAccess.mapTile.ShpFileEmptyTileHandler")
+	(fileExt ".png")
+	(label "Watercolor")
+	(land.fillColor "DECD8B")
+	(land.lineColor "DECD8B")
+	(localCacheRootDir "data/tiles/water")
+	(noCoverageZoom "13")
+	(prettyName "Watercolor")
+	(rootDir "http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.png")
+	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))

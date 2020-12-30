@@ -110,3 +110,10 @@ egs)
 (defn trace [bool]
   (def TRACE bool))
 
+(defn create-dirways [hm inst]
+  (let [mp (into {} hm)
+      egs (selection mp "edges")
+      dir (mp "direct")]
+ (println egs)
+ (println dir)))
+

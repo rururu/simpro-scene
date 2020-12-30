@@ -1,4 +1,4 @@
-; Mon Dec 28 17:37:20 MSK 2020
+; Wed Dec 30 21:57:54 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -193,6 +193,7 @@
 		[OSMRoads_Class10005]
 		[BrigBern_Class60118]
 		[OSMData_Class10003]
+		[OSMData_Class80000]
 		[OSMData_Class50000]
 		[OSMData_Class60000])
 	(cloNamespace [BrigBern_Class8])
@@ -300,7 +301,7 @@
 
 ([OSMData_Class20004] of  CloFunction
 
-	(source "(let [egi (foc \"Edge\" \"label\" (str (first iLine)))\n       ps (rest iLine)\n       tsf (fn [[x y]] (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))]\n  (ssv egi \"x\" (float (ffirst ps)))\n  (ssv egi \"y\" (float (second (first ps))))\n  (ssv egi \"x2\" (float (first (last ps))))\n  (ssv egi \"y2\" (float (second (last ps))))\n  (ssvs egi \"xx\" (map #(str (first %)) ps))\n  (ssvs egi \"yy\" (map #(str (second %)) ps))\n  (ssvs egi \"points\" (map tsf ps))\n  (ssv egi \"latitude\" \"0 0\")\n  (ssv egi \"longitude\" \"0 0\")\n  (ssv egi \"lineColor\" \"FFFF6800\")\n  (ssv egi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n  (if (is-show?)\n    (OMT/getOrAdd egi))\n  egi)")
+	(source "(let [egi (foc \"Edge\" \"label\" (str (first iLine)))\n       ps (rest iLine)\n       [x y] [(float (ffirst ps)) (float (second (first ps)))]\n       [x2 y2] [(float (first (last ps))) (float (second (last ps)))]\n       [x3 y3] [(/ (Math/abs (+ x x2)) 2) (/ (Math/abs (+ y y2)) 2)]\n       tsf (fn [[x y]] (str (MapOb/getDegMin y) \" \" (MapOb/getDegMin x)))]\n  (ssv egi \"x\" x)\n  (ssv egi \"y\" y)\n  (ssv egi \"x2\" x2)\n  (ssv egi \"y2\" y2)\n  (ssvs egi \"xx\" (map #(str (first %)) ps))\n  (ssvs egi \"yy\" (map #(str (second %)) ps))\n  (ssvs egi \"points\" (map tsf ps))\n  (ssv egi \"latitude\" (MapOb/getDegMin y3))\n  (ssv egi \"longitude\" (MapOb/getDegMin x3))\n  (ssv egi \"lineColor\" \"FFFF6800\")\n  (ssv egi \"line\" (fifos \"Line\" \"label\" \"L2\"))\n  (if (is-show?)\n    (OMT/getOrAdd egi))\n  egi)")
 	(title "mk-edge [iLine]"))
 
 ([OSMData_Class30000] of  Line
@@ -385,7 +386,7 @@
 
 ([OSMData_Class50000] of  CloFunction
 
-	(source "(letfn [(dir [xy e]\n             (let [xy1 [(sv e \"x\") (sv e \"y\")]\n                    xy2 [(sv e \"x2\") (sv e \"y2\")]]\n               (if (< (f/simple-dist xy xy1)\n                        (f/simple-dist xy xy2))\n                 [\"FORWARD\" xy2]\n                 [\"BACKWARD\" xy1])))]\n  (cond\n    (empty? egs) egs\n    true (let [[d c] (dir xy (first egs))]\n              (cons d (edges-dirs c (rest egs))))))")
+	(source "(cond\n  (empty? egs) egs\n  true (let [[d c] (edge-dir-cont xy (first egs))]\n           (cons d (edges-dirs c (rest egs)))))")
 	(title "edges-dirs [xy egs]"))
 
 ([OSMData_Class50008] of  CloFunction
@@ -465,6 +466,11 @@
 
 	(source "(or (sv (get-control-center) \"road-subclass\") \"Railroad\")")
 	(title "get-road-subclass []"))
+
+([OSMData_Class80000] of  CloFunction
+
+	(source "(let [xy1 [(sv e \"x\") (sv e \"y\")]\n      xy2 [(sv e \"x2\") (sv e \"y2\")]]\n  (if (< (f/simple-dist xy xy1)\n          (f/simple-dist xy xy2))\n    [\"FORWARD\" xy2]\n    [\"BACKWARD\" xy1]))")
+	(title "edge-dir-cont [xy e]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

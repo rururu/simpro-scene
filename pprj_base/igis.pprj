@@ -1,4 +1,4 @@
-; Sun Dec 08 18:40:19 MSK 2019
+; Wed Dec 30 15:02:19 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -96,7 +96,7 @@
 	(name "prettyName")
 	(property_list [DroolsScenario_ProjectKB_Instance_40006])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
+	(width 290)
 	(x 0)
 	(y 60))
 
@@ -111,8 +111,8 @@
 	(property_list [DroolsScenario_ProjectKB_Instance_40008])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 200)
-	(y 240))
+	(x 0)
+	(y 360))
 
 ([DroolsScenario_ProjectKB_Instance_40008] of  Property_List
 )
@@ -126,7 +126,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 240))
+	(y 300))
 
 ([DroolsScenario_ProjectKB_Instance_40010] of  Property_List
 )
@@ -138,9 +138,9 @@
 	(name "spatialIndex")
 	(property_list [DroolsScenario_ProjectKB_Instance_40012])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
+	(width 400)
 	(x 0)
-	(y 300))
+	(y 240))
 
 ([DroolsScenario_ProjectKB_Instance_40012] of  Property_List
 )
@@ -976,7 +976,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 200)
-	(y 360))
+	(y 300))
 
 ([igis_ProjectKB_Class10082] of  Property_List
 )
@@ -2073,6 +2073,142 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
+
+([igis_ProjectKB_Class130033] of  Widget
+
+	(is_hidden FALSE)
+	(name "OverviewMapHandler")
+	(property_list [igis_ProjectKB_Class130036])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([igis_ProjectKB_Class130036] of  Property_List
+
+	(properties
+		[igis_ProjectKB_Class130037]
+		[igis_ProjectKB_Class130038]
+		[igis_ProjectKB_Class130040]
+		[igis_ProjectKB_Class130042]
+		[igis_ProjectKB_Class130044]
+		[igis_ProjectKB_Class130046]
+		[igis_ProjectKB_Class130048]
+		[igis_ProjectKB_Class130050]
+		[igis_ProjectKB_Class130061]))
+
+([igis_ProjectKB_Class130037] of  Property_List
+
+	(name "layout properties"))
+
+([igis_ProjectKB_Class130038] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "label")
+	(property_list [igis_ProjectKB_Class130039])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([igis_ProjectKB_Class130039] of  Property_List
+)
+
+([igis_ProjectKB_Class130040] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "class")
+	(property_list [igis_ProjectKB_Class130041])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 400)
+	(x 0)
+	(y 60))
+
+([igis_ProjectKB_Class130041] of  Property_List
+)
+
+([igis_ProjectKB_Class130042] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "overviewLayers")
+	(property_list [igis_ProjectKB_Class130043])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 400)
+	(x 0)
+	(y 120))
+
+([igis_ProjectKB_Class130043] of  Property_List
+)
+
+([igis_ProjectKB_Class130044] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "overviewMinScale")
+	(property_list [igis_ProjectKB_Class130045])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 200)
+	(y 240))
+
+([igis_ProjectKB_Class130045] of  Property_List
+)
+
+([igis_ProjectKB_Class130046] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "overviewScaleFactor")
+	(property_list [igis_ProjectKB_Class130047])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 200)
+	(y 180))
+
+([igis_ProjectKB_Class130047] of  Property_List
+)
+
+([igis_ProjectKB_Class130048] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "fillColor")
+	(property_list [igis_ProjectKB_Class130049])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 240))
+
+([igis_ProjectKB_Class130049] of  Property_List
+)
+
+([igis_ProjectKB_Class130050] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "lineColor")
+	(property_list [igis_ProjectKB_Class130051])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([igis_ProjectKB_Class130051] of  Property_List
+)
+
+([igis_ProjectKB_Class130061] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "overviewStatusLayer")
+	(property_list [igis_ProjectKB_Class130062])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 400)
+	(x 0)
+	(y 300))
+
+([igis_ProjectKB_Class130062] of  Property_List
+)
 
 ([igis_ProjectKB_Class130072] of  Widget
 
@@ -4712,7 +4848,7 @@
 	(property_list [igis_ProjectKB_Class10080])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 0)
+	(x 200)
 	(y 360))
 
 ([igis_ProjectKB_Class8] of  Widget
@@ -6379,8 +6515,8 @@
 	(name "pointImageURL")
 	(property_list [igis_ProjectKB_Instance_3])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 400)
-	(x 0)
+	(width 200)
+	(x 200)
 	(y 420))
 
 ([igis_ProjectKB_Instance_20070] of  Boolean
@@ -6474,8 +6610,8 @@
 	(property_list [igis_ProjectKB_Instance_5])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 200)
-	(y 300))
+	(x 0)
+	(y 420))
 
 ([igis_ProjectKB_Instance_47] of  Property_List
 
@@ -6768,9 +6904,6 @@
 		[igis_ProjectKB_Class120019]
 		[igis_ProjectKB_Class120020]
 		[igis_ProjectKB_Class120021]))
-
-([KB_272522_Class3] of  Map
-)
 
 ([KB_337263_Instance_0] of  String
 
@@ -7180,6 +7313,9 @@
 	(x 0)
 	(y 120))
 
+([KB_716534_Class3] of  Map
+)
+
 ([PAL_FORM_WIDGET] of  Widget
 
 	(height 476)
@@ -7208,6 +7344,7 @@
 		[igis_ProjectKB_Class130072]
 		[igis_ProjectKB_Class90131]
 		[igis_ProjectKB_Class180081]
+		[igis_ProjectKB_Class130033]
 		[igis_ProjectKB_Class100019]
 		[igis_ProjectKB_Class110050]
 		[igis_ProjectKB_Class8]

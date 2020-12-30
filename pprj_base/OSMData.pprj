@@ -1,4 +1,4 @@
-; Mon Dec 28 17:37:20 MSK 2020
+; Wed Dec 30 21:57:54 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -295,11 +295,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[OSMData_ProjectKB_Class11505]
-		[OSMData_ProjectKB_Class11506]
-		[OSMData_ProjectKB_Class11507]
-		[OSMData_ProjectKB_Class11508]
-		[OSMData_ProjectKB_Class11509]))
+		[OSMData_ProjectKB_Class1648]
+		[OSMData_ProjectKB_Class1649]
+		[OSMData_ProjectKB_Class1650]
+		[OSMData_ProjectKB_Class1651]
+		[OSMData_ProjectKB_Class1652]))
 
 ([CLSES_TAB] of  Widget
 
@@ -398,53 +398,53 @@
 ([KB_452178_Class1] of  Map
 
 	(entries
-		[OSMData_ProjectKB_Class11528]
-		[OSMData_ProjectKB_Class11531]
-		[OSMData_ProjectKB_Class11534]
-		[OSMData_ProjectKB_Class11537]
-		[OSMData_ProjectKB_Class11541]
-		[OSMData_ProjectKB_Class11544]
-		[OSMData_ProjectKB_Class11548]
-		[OSMData_ProjectKB_Class11551]
-		[OSMData_ProjectKB_Class11554]
-		[OSMData_ProjectKB_Class11559]
-		[OSMData_ProjectKB_Class11562]
-		[OSMData_ProjectKB_Class11572]
-		[OSMData_ProjectKB_Class11577]
-		[OSMData_ProjectKB_Class11580]
-		[OSMData_ProjectKB_Class11588]
-		[OSMData_ProjectKB_Class11591]
-		[OSMData_ProjectKB_Class11594]
-		[OSMData_ProjectKB_Class11602]
-		[OSMData_ProjectKB_Class11607]
-		[OSMData_ProjectKB_Class11610]
-		[OSMData_ProjectKB_Class11613]
-		[OSMData_ProjectKB_Class11616]
-		[OSMData_ProjectKB_Class11628])
+		[OSMData_ProjectKB_Class1671]
+		[OSMData_ProjectKB_Class1674]
+		[OSMData_ProjectKB_Class1677]
+		[OSMData_ProjectKB_Class1680]
+		[OSMData_ProjectKB_Class1684]
+		[OSMData_ProjectKB_Class1687]
+		[OSMData_ProjectKB_Class1691]
+		[OSMData_ProjectKB_Class1694]
+		[OSMData_ProjectKB_Class1697]
+		[OSMData_ProjectKB_Class1702]
+		[OSMData_ProjectKB_Class1705]
+		[OSMData_ProjectKB_Class1715]
+		[OSMData_ProjectKB_Class1720]
+		[OSMData_ProjectKB_Class1723]
+		[OSMData_ProjectKB_Class1731]
+		[OSMData_ProjectKB_Class1734]
+		[OSMData_ProjectKB_Class1737]
+		[OSMData_ProjectKB_Class1745]
+		[OSMData_ProjectKB_Class1750]
+		[OSMData_ProjectKB_Class1753]
+		[OSMData_ProjectKB_Class1756]
+		[OSMData_ProjectKB_Class1759]
+		[OSMData_ProjectKB_Class1771])
 	(referenced_maps
-		[OSMData_ProjectKB_Class11563]
-		[OSMData_ProjectKB_Class11542]
-		[OSMData_ProjectKB_Class11581]
-		[OSMData_ProjectKB_Class11560]
-		[OSMData_ProjectKB_Class11549]
-		[OSMData_ProjectKB_Class11603]
-		[OSMData_ProjectKB_Class11529]
-		[OSMData_ProjectKB_Class11545]
-		[OSMData_ProjectKB_Class11589]
-		[OSMData_ProjectKB_Class11552]
-		[OSMData_ProjectKB_Class11573]
-		[OSMData_ProjectKB_Class11595]
-		[OSMData_ProjectKB_Class11510]
-		[OSMData_ProjectKB_Class11532]
-		[OSMData_ProjectKB_Class11592]
-		[OSMData_ProjectKB_Class11538]
-		[OSMData_ProjectKB_Class11614]
-		[OSMData_ProjectKB_Class11617]
-		[OSMData_ProjectKB_Class11578]
-		[OSMData_ProjectKB_Class11611]
-		[OSMData_ProjectKB_Class11555]
-		[OSMData_ProjectKB_Class11535]
-		[OSMData_ProjectKB_Class11608]))
+		[OSMData_ProjectKB_Class1692]
+		[OSMData_ProjectKB_Class1672]
+		[OSMData_ProjectKB_Class1751]
+		[OSMData_ProjectKB_Class1695]
+		[OSMData_ProjectKB_Class1706]
+		[OSMData_ProjectKB_Class1688]
+		[OSMData_ProjectKB_Class1721]
+		[OSMData_ProjectKB_Class1724]
+		[OSMData_ProjectKB_Class1746]
+		[OSMData_ProjectKB_Class1703]
+		[OSMData_ProjectKB_Class1681]
+		[OSMData_ProjectKB_Class1760]
+		[OSMData_ProjectKB_Class1685]
+		[OSMData_ProjectKB_Class1716]
+		[OSMData_ProjectKB_Class1738]
+		[OSMData_ProjectKB_Class1698]
+		[OSMData_ProjectKB_Class1653]
+		[OSMData_ProjectKB_Class1675]
+		[OSMData_ProjectKB_Class1678]
+		[OSMData_ProjectKB_Class1732]
+		[OSMData_ProjectKB_Class1754]
+		[OSMData_ProjectKB_Class1735]
+		[OSMData_ProjectKB_Class1757]))
 
 ([KB_452178_Class13] of  Property_List
 
@@ -539,28 +539,28 @@
 	(name "instances_file_name")
 	(string_value "OSMData.pins"))
 
-([KB_663290_Class1501] of  Map
+([KB_784920_Class1520] of  Map
 
 	(entries
-		[KB_663290_Class1502]
-		[KB_663290_Class1503]
-		[KB_663290_Class1504]))
+		[KB_784920_Class1521]
+		[KB_784920_Class1522]
+		[KB_784920_Class1523]))
 
-([KB_663290_Class1502] of  Map_Entry
+([KB_784920_Class1521] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_663290_Class1503] of  Map_Entry
+([KB_784920_Class1522] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_663290_Class1504] of  Map_Entry
+([KB_784920_Class1523] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -664,855 +664,6 @@
 
 ([OSMData_ProjectKB_Class10722] of  Property_List
 )
-
-([OSMData_ProjectKB_Class11505] of  String
-
-	(name "Dirway")
-	(string_value "way{+}direction"))
-
-([OSMData_ProjectKB_Class11506] of  String
-
-	(name "RoadControl")
-	(string_value "title"))
-
-([OSMData_ProjectKB_Class11507] of  String
-
-	(name "Railroad")
-	(string_value "title{+%3A+}from1{+-+}to1"))
-
-([OSMData_ProjectKB_Class11508] of  String
-
-	(name "Tagvalue")
-	(string_value "value"))
-
-([OSMData_ProjectKB_Class11509] of  String
-
-	(name "Way")
-	(string_value "id"))
-
-([OSMData_ProjectKB_Class11510] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11511]
-		[OSMData_ProjectKB_Class11512]
-		[OSMData_ProjectKB_Class11513]
-		[OSMData_ProjectKB_Class11514]
-		[OSMData_ProjectKB_Class11515]
-		[OSMData_ProjectKB_Class11516]
-		[OSMData_ProjectKB_Class11517]
-		[OSMData_ProjectKB_Class11518]
-		[OSMData_ProjectKB_Class11519]
-		[OSMData_ProjectKB_Class11520]
-		[OSMData_ProjectKB_Class11521]
-		[OSMData_ProjectKB_Class11522]
-		[OSMData_ProjectKB_Class11523]
-		[OSMData_ProjectKB_Class11524]
-		[OSMData_ProjectKB_Class11525]
-		[OSMData_ProjectKB_Class11526]
-		[OSMData_ProjectKB_Class11527]))
-
-([OSMData_ProjectKB_Class11511] of  Map_Entry
-
-	(key "OSMRoads_Class80004")
-	(key_class "java.lang.String")
-	(value "45 217 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11512] of  Map_Entry
-
-	(key "OSMRoads_Class40000")
-	(key_class "java.lang.String")
-	(value "43 25 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11513] of  Map_Entry
-
-	(key "OSMRoads_Class80003")
-	(key_class "java.lang.String")
-	(value "390 161 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11514] of  Map_Entry
-
-	(key "OSMRoads_Class90012")
-	(key_class "java.lang.String")
-	(value "617 247 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11515] of  Map_Entry
-
-	(key "OSMRoads_Class90007")
-	(key_class "java.lang.String")
-	(value "476 240 82 77")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11516] of  Map_Entry
-
-	(key "OSMRoads_Class90018")
-	(key_class "java.lang.String")
-	(value "728 485 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11517] of  Map_Entry
-
-	(key "OSMRoads_Class90006")
-	(key_class "java.lang.String")
-	(value "293 239 73 75")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11518] of  Map_Entry
-
-	(key "OSMRoads_Class90017")
-	(key_class "java.lang.String")
-	(value "727 391 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11519] of  Map_Entry
-
-	(key "OSMRoads_Class90003")
-	(key_class "java.lang.String")
-	(value "48 316 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11520] of  Map_Entry
-
-	(key "OSMRoads_Class90014")
-	(key_class "java.lang.String")
-	(value "723 115 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11521] of  Map_Entry
-
-	(key "OSMRoads_Class90013")
-	(key_class "java.lang.String")
-	(value "720 27 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11522] of  Map_Entry
-
-	(key "OSMRoads_Class70002")
-	(key_class "java.lang.String")
-	(value "44 124 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11523] of  Map_Entry
-
-	(key "OSMRoads_Class90005")
-	(key_class "java.lang.String")
-	(value "51 500 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11524] of  Map_Entry
-
-	(key "OSMRoads_Class90016")
-	(key_class "java.lang.String")
-	(value "726 298 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11525] of  Map_Entry
-
-	(key "OSMRoads_Class50001")
-	(key_class "java.lang.String")
-	(value "176 245 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11526] of  Map_Entry
-
-	(key "OSMRoads_Class90004")
-	(key_class "java.lang.String")
-	(value "50 409 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11527] of  Map_Entry
-
-	(key "OSMRoads_Class90015")
-	(key_class "java.lang.String")
-	(value "725 205 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11528] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11510")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11529] of  Map
-
-	(entries [OSMData_ProjectKB_Class11530]))
-
-([OSMData_ProjectKB_Class11530] of  Map_Entry
-
-	(key "OSMRoads_Class40")
-	(key_class "java.lang.String")
-	(value "99 96 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11531] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11529")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11532] of  Map
-
-	(entries [OSMData_ProjectKB_Class11533]))
-
-([OSMData_ProjectKB_Class11533] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "60 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11534] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11532")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11535] of  Map
-
-	(entries [OSMData_ProjectKB_Class11536]))
-
-([OSMData_ProjectKB_Class11536] of  Map_Entry
-
-	(key "OSMRoads_Class90001")
-	(key_class "java.lang.String")
-	(value "107 116 125 145")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11537] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11535")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11538] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11539]
-		[OSMData_ProjectKB_Class11540]))
-
-([OSMData_ProjectKB_Class11539] of  Map_Entry
-
-	(key "OSMRoads_Class20001")
-	(key_class "java.lang.String")
-	(value "56 56 89 89")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11540] of  Map_Entry
-
-	(key "OSMRoads_Class30002")
-	(key_class "java.lang.String")
-	(value "57 206 86 89")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11541] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11538")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11542] of  Map
-
-	(entries [OSMData_ProjectKB_Class11543]))
-
-([OSMData_ProjectKB_Class11543] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11544] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11542")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11545] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11546]
-		[OSMData_ProjectKB_Class11547]))
-
-([OSMData_ProjectKB_Class11546] of  Map_Entry
-
-	(key "OSMRoads_Class20159")
-	(key_class "java.lang.String")
-	(value "207 60 87 81")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11547] of  Map_Entry
-
-	(key "OSMRoads_Class20000")
-	(key_class "java.lang.String")
-	(value "56 58 89 85")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11548] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11545")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11549] of  Map
-
-	(entries [OSMData_ProjectKB_Class11550]))
-
-([OSMData_ProjectKB_Class11550] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11551] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11549")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11552] of  Map
-
-	(entries [OSMData_ProjectKB_Class11553]))
-
-([OSMData_ProjectKB_Class11553] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11554] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11552")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11555] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11556]
-		[OSMData_ProjectKB_Class11557]
-		[OSMData_ProjectKB_Class11558]))
-
-([OSMData_ProjectKB_Class11556] of  Map_Entry
-
-	(key "OSMRoads_Class90020")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11557] of  Map_Entry
-
-	(key "OSMRoads_Class90028")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11558] of  Map_Entry
-
-	(key "OSMRoads_Class90019")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11559] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11555")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11560] of  Map
-
-	(entries [OSMData_ProjectKB_Class11561]))
-
-([OSMData_ProjectKB_Class11561] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11562] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11560")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11563] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11564]
-		[OSMData_ProjectKB_Class11565]
-		[OSMData_ProjectKB_Class11566]
-		[OSMData_ProjectKB_Class11567]
-		[OSMData_ProjectKB_Class11568]
-		[OSMData_ProjectKB_Class11569]
-		[OSMData_ProjectKB_Class11570]
-		[OSMData_ProjectKB_Class11571]))
-
-([OSMData_ProjectKB_Class11564] of  Map_Entry
-
-	(key "BrigBern_Class5")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "85 357 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11565] of  Map_Entry
-
-	(key "OSMRoads_Class70130")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "1041 108 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11566] of  Map_Entry
-
-	(key "OSMRoads_Class120008")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "116 428 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11567] of  Map_Entry
-
-	(key "OSMRoads_Class43")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "188 480 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11568] of  Map_Entry
-
-	(key "OSMData_Class50009")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "14 665 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11569] of  Map_Entry
-
-	(key "OSMRoads_Class20164")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "77 407 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11570] of  Map_Entry
-
-	(key "BrigBern_Class3")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "293 189 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11571] of  Map_Entry
-
-	(key "BrigBern_Class1")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "-4 491 210 132")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11572] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11563")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11573] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11574]
-		[OSMData_ProjectKB_Class11575]
-		[OSMData_ProjectKB_Class11576]))
-
-([OSMData_ProjectKB_Class11574] of  Map_Entry
-
-	(key "OSMRoads_Class50000")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11575] of  Map_Entry
-
-	(key "OSMRoads_Class70123")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11576] of  Map_Entry
-
-	(key "OSMRoads_Class90027")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11577] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11573")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11578] of  Map
-
-	(entries [OSMData_ProjectKB_Class11579]))
-
-([OSMData_ProjectKB_Class11579] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11580] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11578")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11581] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11582]
-		[OSMData_ProjectKB_Class11583]
-		[OSMData_ProjectKB_Class11584]
-		[OSMData_ProjectKB_Class11585]
-		[OSMData_ProjectKB_Class11586]
-		[OSMData_ProjectKB_Class11587]))
-
-([OSMData_ProjectKB_Class11582] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "361 61 78 78")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11583] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "360 320 80 76")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11584] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "500 260 82 79")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11585] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "500 80 77 79")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11586] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "200 360 78 79")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11587] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "205 65 90 71")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11588] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11581")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11589] of  Map
-
-	(entries [OSMData_ProjectKB_Class11590]))
-
-([OSMData_ProjectKB_Class11590] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11591] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11589")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11592] of  Map
-
-	(entries [OSMData_ProjectKB_Class11593]))
-
-([OSMData_ProjectKB_Class11593] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11594] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11592")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11595] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11596]
-		[OSMData_ProjectKB_Class11597]
-		[OSMData_ProjectKB_Class11598]
-		[OSMData_ProjectKB_Class11599]
-		[OSMData_ProjectKB_Class11600]
-		[OSMData_ProjectKB_Class11601]))
-
-([OSMData_ProjectKB_Class11596] of  Map_Entry
-
-	(key "OSMRoads_Class30003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11597] of  Map_Entry
-
-	(key "OSMRoads_Class30006")
-	(key_class "java.lang.String")
-	(value "212 659 77 82")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11598] of  Map_Entry
-
-	(key "OSMRoads_Class20160")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11599] of  Map_Entry
-
-	(key "OSMRoads_Class20161")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11600] of  Map_Entry
-
-	(key "OSMRoads_Class20162")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11601] of  Map_Entry
-
-	(key "OSMRoads_Class20163")
-	(key_class "java.lang.String")
-	(value "201 510 98 81")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11602] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11595")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11603] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11604]
-		[OSMData_ProjectKB_Class11605]
-		[OSMData_ProjectKB_Class11606]))
-
-([OSMData_ProjectKB_Class11604] of  Map_Entry
-
-	(key "OSMRoads_Class41")
-	(key_class "java.lang.String")
-	(value "91 340 119 120")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11605] of  Map_Entry
-
-	(key "OSMRoads_Class42")
-	(key_class "java.lang.String")
-	(value "90 589 120 122")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11606] of  Map_Entry
-
-	(key "OSMRoads_Class0")
-	(key_class "java.lang.String")
-	(value "100 95 100 110")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11607] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11603")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11608] of  Map
-
-	(entries [OSMData_ProjectKB_Class11609]))
-
-([OSMData_ProjectKB_Class11609] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11610] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11608")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11611] of  Map
-
-	(entries [OSMData_ProjectKB_Class11612]))
-
-([OSMData_ProjectKB_Class11612] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11613] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11611")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11614] of  Map
-
-	(entries [OSMData_ProjectKB_Class11615]))
-
-([OSMData_ProjectKB_Class11615] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11616] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11614")
-	(value_class "java.util.Map"))
-
-([OSMData_ProjectKB_Class11617] of  Map
-
-	(entries
-		[OSMData_ProjectKB_Class11618]
-		[OSMData_ProjectKB_Class11619]
-		[OSMData_ProjectKB_Class11620]
-		[OSMData_ProjectKB_Class11621]
-		[OSMData_ProjectKB_Class11622]
-		[OSMData_ProjectKB_Class11623]
-		[OSMData_ProjectKB_Class11624]
-		[OSMData_ProjectKB_Class11625]
-		[OSMData_ProjectKB_Class11626]
-		[OSMData_ProjectKB_Class11627]))
-
-([OSMData_ProjectKB_Class11618] of  Map_Entry
-
-	(key "OSMRoads_Class120010")
-	(key_class "java.lang.String")
-	(value "273 437 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11619] of  Map_Entry
-
-	(key "OSMRoads_Class110003")
-	(key_class "java.lang.String")
-	(value "240 120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11620] of  Map_Entry
-
-	(key "OSMRoads_Class100000")
-	(key_class "java.lang.String")
-	(value "100 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11621] of  Map_Entry
-
-	(key "OSMRoads_Class110000")
-	(key_class "java.lang.String")
-	(value "40 540 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11622] of  Map_Entry
-
-	(key "OSMRoads_Class120007")
-	(key_class "java.lang.String")
-	(value "40 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11623] of  Map_Entry
-
-	(key "OSMRoads_Class120006")
-	(key_class "java.lang.String")
-	(value "240 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11624] of  Map_Entry
-
-	(key "OSMRoads_Class120005")
-	(key_class "java.lang.String")
-	(value "160 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11625] of  Map_Entry
-
-	(key "OSMRoads_Class120004")
-	(key_class "java.lang.String")
-	(value "100 160 76 87")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11626] of  Map_Entry
-
-	(key "OSMRoads_Class90002")
-	(key_class "java.lang.String")
-	(value "240 0 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11627] of  Map_Entry
-
-	(key "OSMRoads_Class120009")
-	(key_class "java.lang.String")
-	(value "80 300 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([OSMData_ProjectKB_Class11628] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
-	(key_class "java.lang.String")
-	(value "OSMData_ProjectKB_Class11617")
-	(value_class "java.util.Map"))
 
 ([OSMData_ProjectKB_Class12230] of  Widget
 
@@ -1625,6 +776,855 @@
 
 ([OSMData_ProjectKB_Class1505] of  Property_List
 )
+
+([OSMData_ProjectKB_Class1648] of  String
+
+	(name "Dirway")
+	(string_value "way{+}direction"))
+
+([OSMData_ProjectKB_Class1649] of  String
+
+	(name "RoadControl")
+	(string_value "title"))
+
+([OSMData_ProjectKB_Class1650] of  String
+
+	(name "Railroad")
+	(string_value "title{+%3A+}from1{+-+}to1"))
+
+([OSMData_ProjectKB_Class1651] of  String
+
+	(name "Tagvalue")
+	(string_value "value"))
+
+([OSMData_ProjectKB_Class1652] of  String
+
+	(name "Way")
+	(string_value "id"))
+
+([OSMData_ProjectKB_Class1653] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1654]
+		[OSMData_ProjectKB_Class1655]
+		[OSMData_ProjectKB_Class1656]
+		[OSMData_ProjectKB_Class1657]
+		[OSMData_ProjectKB_Class1658]
+		[OSMData_ProjectKB_Class1659]
+		[OSMData_ProjectKB_Class1660]
+		[OSMData_ProjectKB_Class1661]
+		[OSMData_ProjectKB_Class1662]
+		[OSMData_ProjectKB_Class1663]
+		[OSMData_ProjectKB_Class1664]
+		[OSMData_ProjectKB_Class1665]
+		[OSMData_ProjectKB_Class1666]
+		[OSMData_ProjectKB_Class1667]
+		[OSMData_ProjectKB_Class1668]
+		[OSMData_ProjectKB_Class1669]
+		[OSMData_ProjectKB_Class1670]))
+
+([OSMData_ProjectKB_Class1654] of  Map_Entry
+
+	(key "OSMRoads_Class80004")
+	(key_class "java.lang.String")
+	(value "45 217 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1655] of  Map_Entry
+
+	(key "OSMRoads_Class40000")
+	(key_class "java.lang.String")
+	(value "43 25 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1656] of  Map_Entry
+
+	(key "OSMRoads_Class80003")
+	(key_class "java.lang.String")
+	(value "390 161 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1657] of  Map_Entry
+
+	(key "OSMRoads_Class90012")
+	(key_class "java.lang.String")
+	(value "617 247 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1658] of  Map_Entry
+
+	(key "OSMRoads_Class90007")
+	(key_class "java.lang.String")
+	(value "476 240 82 77")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1659] of  Map_Entry
+
+	(key "OSMRoads_Class90018")
+	(key_class "java.lang.String")
+	(value "728 485 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1660] of  Map_Entry
+
+	(key "OSMRoads_Class90006")
+	(key_class "java.lang.String")
+	(value "293 239 73 75")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1661] of  Map_Entry
+
+	(key "OSMRoads_Class90017")
+	(key_class "java.lang.String")
+	(value "727 391 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1662] of  Map_Entry
+
+	(key "OSMRoads_Class90003")
+	(key_class "java.lang.String")
+	(value "48 316 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1663] of  Map_Entry
+
+	(key "OSMRoads_Class90014")
+	(key_class "java.lang.String")
+	(value "723 115 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1664] of  Map_Entry
+
+	(key "OSMRoads_Class90013")
+	(key_class "java.lang.String")
+	(value "720 27 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1665] of  Map_Entry
+
+	(key "OSMRoads_Class70002")
+	(key_class "java.lang.String")
+	(value "44 124 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1666] of  Map_Entry
+
+	(key "OSMRoads_Class90005")
+	(key_class "java.lang.String")
+	(value "51 500 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1667] of  Map_Entry
+
+	(key "OSMRoads_Class90016")
+	(key_class "java.lang.String")
+	(value "726 298 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1668] of  Map_Entry
+
+	(key "OSMRoads_Class50001")
+	(key_class "java.lang.String")
+	(value "176 245 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1669] of  Map_Entry
+
+	(key "OSMRoads_Class90004")
+	(key_class "java.lang.String")
+	(value "50 409 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1670] of  Map_Entry
+
+	(key "OSMRoads_Class90015")
+	(key_class "java.lang.String")
+	(value "725 205 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1671] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1653")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1672] of  Map
+
+	(entries [OSMData_ProjectKB_Class1673]))
+
+([OSMData_ProjectKB_Class1673] of  Map_Entry
+
+	(key "OSMRoads_Class40")
+	(key_class "java.lang.String")
+	(value "99 96 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1674] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1672")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1675] of  Map
+
+	(entries [OSMData_ProjectKB_Class1676]))
+
+([OSMData_ProjectKB_Class1676] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "60 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1677] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1675")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1678] of  Map
+
+	(entries [OSMData_ProjectKB_Class1679]))
+
+([OSMData_ProjectKB_Class1679] of  Map_Entry
+
+	(key "OSMRoads_Class90001")
+	(key_class "java.lang.String")
+	(value "107 116 125 145")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1680] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1678")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1681] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1682]
+		[OSMData_ProjectKB_Class1683]))
+
+([OSMData_ProjectKB_Class1682] of  Map_Entry
+
+	(key "OSMRoads_Class20001")
+	(key_class "java.lang.String")
+	(value "56 56 89 89")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1683] of  Map_Entry
+
+	(key "OSMRoads_Class30002")
+	(key_class "java.lang.String")
+	(value "57 206 86 89")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1684] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1681")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1685] of  Map
+
+	(entries [OSMData_ProjectKB_Class1686]))
+
+([OSMData_ProjectKB_Class1686] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1687] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1685")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1688] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1689]
+		[OSMData_ProjectKB_Class1690]))
+
+([OSMData_ProjectKB_Class1689] of  Map_Entry
+
+	(key "OSMRoads_Class20159")
+	(key_class "java.lang.String")
+	(value "207 60 87 81")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1690] of  Map_Entry
+
+	(key "OSMRoads_Class20000")
+	(key_class "java.lang.String")
+	(value "56 58 89 85")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1691] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1688")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1692] of  Map
+
+	(entries [OSMData_ProjectKB_Class1693]))
+
+([OSMData_ProjectKB_Class1693] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1694] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1692")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1695] of  Map
+
+	(entries [OSMData_ProjectKB_Class1696]))
+
+([OSMData_ProjectKB_Class1696] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1697] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1695")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1698] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1699]
+		[OSMData_ProjectKB_Class1700]
+		[OSMData_ProjectKB_Class1701]))
+
+([OSMData_ProjectKB_Class1699] of  Map_Entry
+
+	(key "OSMRoads_Class90020")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1700] of  Map_Entry
+
+	(key "OSMRoads_Class90028")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1701] of  Map_Entry
+
+	(key "OSMRoads_Class90019")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1702] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1698")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1703] of  Map
+
+	(entries [OSMData_ProjectKB_Class1704]))
+
+([OSMData_ProjectKB_Class1704] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1705] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1703")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1706] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1707]
+		[OSMData_ProjectKB_Class1708]
+		[OSMData_ProjectKB_Class1709]
+		[OSMData_ProjectKB_Class1710]
+		[OSMData_ProjectKB_Class1711]
+		[OSMData_ProjectKB_Class1712]
+		[OSMData_ProjectKB_Class1713]
+		[OSMData_ProjectKB_Class1714]))
+
+([OSMData_ProjectKB_Class1707] of  Map_Entry
+
+	(key "BrigBern_Class5")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "85 357 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1708] of  Map_Entry
+
+	(key "OSMRoads_Class70130")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "1041 108 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1709] of  Map_Entry
+
+	(key "OSMRoads_Class120008")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "116 428 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1710] of  Map_Entry
+
+	(key "OSMRoads_Class43")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "188 480 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1711] of  Map_Entry
+
+	(key "OSMData_Class50009")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "14 665 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1712] of  Map_Entry
+
+	(key "OSMRoads_Class20164")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "77 407 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1713] of  Map_Entry
+
+	(key "BrigBern_Class3")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "293 189 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1714] of  Map_Entry
+
+	(key "BrigBern_Class1")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "-4 491 210 132")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1715] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1706")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1716] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1717]
+		[OSMData_ProjectKB_Class1718]
+		[OSMData_ProjectKB_Class1719]))
+
+([OSMData_ProjectKB_Class1717] of  Map_Entry
+
+	(key "OSMRoads_Class50000")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1718] of  Map_Entry
+
+	(key "OSMRoads_Class70123")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1719] of  Map_Entry
+
+	(key "OSMRoads_Class90027")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1720] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1716")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1721] of  Map
+
+	(entries [OSMData_ProjectKB_Class1722]))
+
+([OSMData_ProjectKB_Class1722] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1723] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1721")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1724] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1725]
+		[OSMData_ProjectKB_Class1726]
+		[OSMData_ProjectKB_Class1727]
+		[OSMData_ProjectKB_Class1728]
+		[OSMData_ProjectKB_Class1729]
+		[OSMData_ProjectKB_Class1730]))
+
+([OSMData_ProjectKB_Class1725] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "361 61 78 78")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1726] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "360 320 80 76")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1727] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "500 260 82 79")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1728] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "500 80 77 79")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1729] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "200 360 78 79")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1730] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "205 65 90 71")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1731] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1724")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1732] of  Map
+
+	(entries [OSMData_ProjectKB_Class1733]))
+
+([OSMData_ProjectKB_Class1733] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1734] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1732")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1735] of  Map
+
+	(entries [OSMData_ProjectKB_Class1736]))
+
+([OSMData_ProjectKB_Class1736] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1737] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1735")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1738] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1739]
+		[OSMData_ProjectKB_Class1740]
+		[OSMData_ProjectKB_Class1741]
+		[OSMData_ProjectKB_Class1742]
+		[OSMData_ProjectKB_Class1743]
+		[OSMData_ProjectKB_Class1744]))
+
+([OSMData_ProjectKB_Class1739] of  Map_Entry
+
+	(key "OSMRoads_Class30003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1740] of  Map_Entry
+
+	(key "OSMRoads_Class30006")
+	(key_class "java.lang.String")
+	(value "212 659 77 82")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1741] of  Map_Entry
+
+	(key "OSMRoads_Class20160")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1742] of  Map_Entry
+
+	(key "OSMRoads_Class20161")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1743] of  Map_Entry
+
+	(key "OSMRoads_Class20162")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1744] of  Map_Entry
+
+	(key "OSMRoads_Class20163")
+	(key_class "java.lang.String")
+	(value "201 510 98 81")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1745] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1738")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1746] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1747]
+		[OSMData_ProjectKB_Class1748]
+		[OSMData_ProjectKB_Class1749]))
+
+([OSMData_ProjectKB_Class1747] of  Map_Entry
+
+	(key "OSMRoads_Class41")
+	(key_class "java.lang.String")
+	(value "91 340 119 120")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1748] of  Map_Entry
+
+	(key "OSMRoads_Class42")
+	(key_class "java.lang.String")
+	(value "90 589 120 122")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1749] of  Map_Entry
+
+	(key "OSMRoads_Class0")
+	(key_class "java.lang.String")
+	(value "100 95 100 110")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1750] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1746")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1751] of  Map
+
+	(entries [OSMData_ProjectKB_Class1752]))
+
+([OSMData_ProjectKB_Class1752] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1753] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1751")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1754] of  Map
+
+	(entries [OSMData_ProjectKB_Class1755]))
+
+([OSMData_ProjectKB_Class1755] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1756] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1754")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1757] of  Map
+
+	(entries [OSMData_ProjectKB_Class1758]))
+
+([OSMData_ProjectKB_Class1758] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1759] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1757")
+	(value_class "java.util.Map"))
+
+([OSMData_ProjectKB_Class1760] of  Map
+
+	(entries
+		[OSMData_ProjectKB_Class1761]
+		[OSMData_ProjectKB_Class1762]
+		[OSMData_ProjectKB_Class1763]
+		[OSMData_ProjectKB_Class1764]
+		[OSMData_ProjectKB_Class1765]
+		[OSMData_ProjectKB_Class1766]
+		[OSMData_ProjectKB_Class1767]
+		[OSMData_ProjectKB_Class1768]
+		[OSMData_ProjectKB_Class1769]
+		[OSMData_ProjectKB_Class1770]))
+
+([OSMData_ProjectKB_Class1761] of  Map_Entry
+
+	(key "OSMRoads_Class120010")
+	(key_class "java.lang.String")
+	(value "273 437 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1762] of  Map_Entry
+
+	(key "OSMRoads_Class110003")
+	(key_class "java.lang.String")
+	(value "240 120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1763] of  Map_Entry
+
+	(key "OSMRoads_Class100000")
+	(key_class "java.lang.String")
+	(value "100 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1764] of  Map_Entry
+
+	(key "OSMRoads_Class110000")
+	(key_class "java.lang.String")
+	(value "40 540 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1765] of  Map_Entry
+
+	(key "OSMRoads_Class120007")
+	(key_class "java.lang.String")
+	(value "40 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1766] of  Map_Entry
+
+	(key "OSMRoads_Class120006")
+	(key_class "java.lang.String")
+	(value "240 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1767] of  Map_Entry
+
+	(key "OSMRoads_Class120005")
+	(key_class "java.lang.String")
+	(value "160 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1768] of  Map_Entry
+
+	(key "OSMRoads_Class120004")
+	(key_class "java.lang.String")
+	(value "100 160 76 87")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1769] of  Map_Entry
+
+	(key "OSMRoads_Class90002")
+	(key_class "java.lang.String")
+	(value "240 0 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1770] of  Map_Entry
+
+	(key "OSMRoads_Class120009")
+	(key_class "java.lang.String")
+	(value "80 300 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([OSMData_ProjectKB_Class1771] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
+	(key_class "java.lang.String")
+	(value "OSMData_ProjectKB_Class1760")
+	(value_class "java.util.Map"))
 
 ([OSMData_ProjectKB_Class21504] of  Widget
 

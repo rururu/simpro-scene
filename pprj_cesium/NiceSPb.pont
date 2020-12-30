@@ -1,4 +1,4 @@
-; Tue Dec 29 20:56:50 MSK 2020
+; Wed Dec 30 22:36:35 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,17 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-create-dirways
+		(type STRING)
+;+		(value "Create Dirways/osm.path/create-dirways")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot last
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -31,3 +42,26 @@
 (defclass Trail1
 	(is-a Trail0)
 	(role concrete))
+
+(defclass Console
+	(is-a USER)
+	(role concrete)
+	(single-slot but-create-dirways
+		(type STRING)
+;+		(value "Create Dirways/osm.path/create-dirways")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot edges
+		(type INSTANCE)
+;+		(allowed-classes Edge)
+		(create-accessor read-write)))

@@ -147,16 +147,19 @@
 (defn mk-edge [iLine]
   (let [egi (foc "Edge" "label" (str (first iLine)))
        ps (rest iLine)
+       [x y] [(float (ffirst ps)) (float (second (first ps)))]
+       [x2 y2] [(float (first (last ps))) (float (second (last ps)))]
+       [x3 y3] [(/ (Math/abs (+ x x2)) 2) (/ (Math/abs (+ y y2)) 2)]
        tsf (fn [[x y]] (str (MapOb/getDegMin y) " " (MapOb/getDegMin x)))]
-  (ssv egi "x" (float (ffirst ps)))
-  (ssv egi "y" (float (second (first ps))))
-  (ssv egi "x2" (float (first (last ps))))
-  (ssv egi "y2" (float (second (last ps))))
+  (ssv egi "x" x)
+  (ssv egi "y" y)
+  (ssv egi "x2" x2)
+  (ssv egi "y2" y2)
   (ssvs egi "xx" (map #(str (first %)) ps))
   (ssvs egi "yy" (map #(str (second %)) ps))
   (ssvs egi "points" (map tsf ps))
-  (ssv egi "latitude" "0 0")
-  (ssv egi "longitude" "0 0")
+  (ssv egi "latitude" (MapOb/getDegMin y3))
+  (ssv egi "longitude" (MapOb/getDegMin x3))
   (ssv egi "lineColor" "FFFF6800")
   (ssv egi "line" (fifos "Line" "label" "L2"))
   (if (is-show?)
@@ -292,18 +295,19 @@
   (ssvs inst "nodes" (map mk-node (star-points noi)))
   (println "Fill node slot!")))
 
+(defn edge-dir-cont [xy e]
+  (let [xy1 [(sv e "x") (sv e "y")]
+      xy2 [(sv e "x2") (sv e "y2")]]
+  (if (< (f/simple-dist xy xy1)
+          (f/simple-dist xy xy2))
+    ["FORWARD" xy2]
+    ["BACKWARD" xy1])))
+
 (defn edges-dirs [xy egs]
-  (letfn [(dir [xy e]
-             (let [xy1 [(sv e "x") (sv e "y")]
-                    xy2 [(sv e "x2") (sv e "y2")]]
-               (if (< (f/simple-dist xy xy1)
-                        (f/simple-dist xy xy2))
-                 ["FORWARD" xy2]
-                 ["BACKWARD" xy1])))]
   (cond
-    (empty? egs) egs
-    true (let [[d c] (dir xy (first egs))]
-              (cons d (edges-dirs c (rest egs)))))))
+  (empty? egs) egs
+  true (let [[d c] (edge-dir-cont xy (first egs))]
+           (cons d (edges-dirs c (rest egs))))))
 
 (defn edge-pts [e]
   (map #(vector (read-string %1) (read-string %2)) (svs e "yy") (svs e "xx")))
