@@ -8,10 +8,12 @@
   [path :as p])
 (:import
   ru.igis.omtab.OMT
-  ru.igis.omtab.MapOb))
+  ru.igis.omtab.MapOb
+  edu.stanford.smi.protege.ui.DisplayUtilities))
 (def TRACE true)
 (def NEAR 0.0005)
 (def NODE-YXS [])
+(def FRAME nil)
 (defn simple-dist-osm
   ([ni1 ni2]
   (of/simple-dist 
@@ -116,4 +118,14 @@ egs)
       dir (mp "direct")]
  (println egs)
  (println dir)))
+
+(defn road-show [hm inst]
+  (if-let [rod (sv inst "road")]
+  (def FRAME (.show *prj* rod))))
+
+(defn replace-dirway-in-road [hm inst]
+  (let [mp (into {} hm)
+       dws (mp "dirways")]
+ (if FRAME
+   (println (get-frame-slot-selection FRAME "dirways")))))
 

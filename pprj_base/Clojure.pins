@@ -1,4 +1,4 @@
-; Mon Dec 07 18:51:42 MSK 2020
+; Thu Dec 31 18:03:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -51,7 +51,8 @@
 		[Clojure_Class330000]
 		[Clojure_Class340001]
 		[Clojure_Class310000]
-		[Clojure_Class310001])
+		[Clojure_Class310001]
+		[Clojure_Class350000])
 	(cloNamespace [Clojure_Class9])
 	(cloVars
 		[Clojure_Class10]
@@ -299,6 +300,11 @@
 	(source "([ins]\n  (let [ns (if (instance? Instance ins) (sv ins \"title\") ins)\n         pth (.replace ns \".\" \"/\")]\n    (try\n      (load (str \"/\" pth))\n      true\n      (catch Exception e\n        false))))\n([hm inst]\n  (let [mp (into {} hm)\n        clw (mp \"clsWidget\")\n        pms (.getSelection (.getSlotWidget clw (slt \"cloPrograms\")))]\n    (println \"Loading programs:\")\n    (doseq [pm pms]\n      (println (str (if (ldns (sv pm \"cloNamespace\")) \" + \" \" - \") (sv pm \"title\"))))))")
 	(title "ldns"))
 
+([Clojure_Class350000] of  CloFunction
+
+	(source "(let [sws (ComponentUtilities/getDescendentsOfClass AbstractSlotWidget frm)\n       wgs (filter #(=(.getName (.getDescriptor %)) sln) sws)]\n  (if (seq wgs)\n    (.getSelection (first wgs))))")
+	(title "get-frame-slot-selection [frm sln]"))
+
 ([Clojure_Class350001] of  CloNamespace
 
 	(source "(:use protege.core)\n(:import\n ru.protege.extensions.QueriesTabHelper)")
@@ -415,7 +421,7 @@
 
 ([Clojure_Class9] of  CloNamespace
 
-	(source "(:use clojure.stacktrace)\n(:import\n edu.stanford.smi.protege.ui.ProjectManager\n edu.stanford.smi.protege.model.ValueType\n edu.stanford.smi.protege.model.Instance\n clojuretab.ClojureTab)")
+	(source "(:use clojure.stacktrace)\n(:import\n edu.stanford.smi.protege.ui.ProjectManager\n edu.stanford.smi.protege.model.ValueType\n edu.stanford.smi.protege.model.Instance\n edu.stanford.smi.protege.util.ComponentUtilities\n edu.stanford.smi.protege.widget.AbstractSlotWidget\n clojuretab.ClojureTab)")
 	(title "protege.core"))
 
 ([Clojure_Class90000] of  CloFunction

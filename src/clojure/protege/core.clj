@@ -4,6 +4,8 @@
  edu.stanford.smi.protege.ui.ProjectManager
  edu.stanford.smi.protege.model.ValueType
  edu.stanford.smi.protege.model.Instance
+ edu.stanford.smi.protege.util.ComponentUtilities
+ edu.stanford.smi.protege.widget.AbstractSlotWidget
  clojuretab.ClojureTab))
 (def ^:dynamic *prj* (.getCurrentProject (ProjectManager/getProjectManager)))
 (def ^:dynamic *kb* (.getKnowledgeBase *prj*))
@@ -288,4 +290,10 @@ s)
   (if (seq ss)
     (recur (mapcat #(svs % (first ss)) ii) (rest ss))
     ii)))
+
+(defn get-frame-slot-selection [frm sln]
+  (let [sws (ComponentUtilities/getDescendentsOfClass AbstractSlotWidget frm)
+       wgs (filter #(=(.getName (.getDescriptor %)) sln) sws)]
+  (if (seq wgs)
+    (.getSelection (first wgs)))))
 

@@ -1,4 +1,4 @@
-; Wed Dec 30 22:36:35 MSK 2020
+; Thu Dec 31 19:38:14 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,6 +20,21 @@
 		(create-accessor read-write))
 	(single-slot last
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-replace-dirway-in-road
+		(type STRING)
+;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-road-show
+		(type STRING)
+;+		(value ".../osm.path/road-show")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -61,7 +76,22 @@
 		(default FORWARD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-replace-dirway-in-road
+		(type STRING)
+;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-road-show
+		(type STRING)
+;+		(value ".../osm.path/road-show")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot edges
 		(type INSTANCE)
 ;+		(allowed-classes Edge)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

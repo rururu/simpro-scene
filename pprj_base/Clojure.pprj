@@ -1,4 +1,4 @@
-; Mon Dec 07 18:51:42 MSK 2020
+; Thu Dec 31 18:03:20 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2463,7 +2463,7 @@
 ([KB_127677_Class99] of  Property_List
 )
 
-([KB_623401_Class3] of  Map
+([KB_443208_Class3] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List

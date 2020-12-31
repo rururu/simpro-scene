@@ -1,4 +1,4 @@
-; Wed Dec 30 22:36:35 MSK 2020
+; Thu Dec 31 19:38:14 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1037,38 +1037,6 @@
 
 	(source "egs2"))
 
-([NiceSPb_Class150013] of  CloFuncall
-
-	(source "(def egs3 (map str egs2))"))
-
-([NiceSPb_Class150014] of  CloFuncall
-
-	(source "egs3"))
-
-([NiceSPb_Class150015] of  CloFuncall
-
-	(source "(def egs4 (map #(fifos \"Edge\" \"label\" %) egs3))"))
-
-([NiceSPb_Class150016] of  CloFuncall
-
-	(source "egs4"))
-
-([NiceSPb_Class150017] of  CloFuncall
-
-	(source "(map #(osm.onto/show-mapob nil %) egs4)"))
-
-([NiceSPb_Class150018] of  CloFuncall
-
-	(source "(def trs (rete,core/fact-list 'Trail0))"))
-
-([NiceSPb_Class150019] of  CloFuncall
-
-	(source "(def trs (rete.core/fact-list 'Trail0))"))
-
-([NiceSPb_Class150020] of  CloFuncall
-
-	(source "(count trs)"))
-
 ([NiceSPb_Class150021] of  Edge
 
 	(label "182695884")
@@ -1787,17 +1755,27 @@
 	(id "444971006")
 	(source "[[43.7389252 7.4207861] [43.7385714 7.420282] [43.7384327 7.4200088]]"))
 
+([NiceSPb_Class160000] of  CloFuncall
+
+	(source "(count (cls-instances \"Edge\"))"))
+
+([NiceSPb_Class160001] of  CloFuncall
+
+	(source "(def e400 (nth (cls-instances \"Edge\") 400))"))
+
+([NiceSPb_Class160002] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       dws (mp \"dirways\")]\n (if FRAME\n   (println (get-frame-slot-selection FRAME \"dirways\"))))")
+	(title "replace-dirway-in-road [hm inst]"))
+
 ([NiceSPb_Class160003] of  Console
 
 	(direct BACKWARD)
 	(edges
 		[NiceSPb_Class160344]
 		[NiceSPb_Class160570]
-		[NiceSPb_Class160564]))
-
-([NiceSPb_Class160021] of  CloFuncall
-
-	(source "(first trs)"))
+		[NiceSPb_Class160564])
+	(road [NiceSPb_Class140064]))
 
 ([NiceSPb_Class160022] of  Node
 
@@ -21674,17 +21652,9 @@
 	(x 7.486178)
 	(y 43.76679))
 
-([NiceSPb_Class170022] of  CloFuncall
+([NiceSPb_Class170002] of  CloFuncall
 
-	(source "(nth (first trs) 5)"))
-
-([NiceSPb_Class170023] of  CloFuncall
-
-	(source "(count (nth (first trs) 5))"))
-
-([NiceSPb_Class170024] of  CloFuncall
-
-	(source "(map #(count (nth % 5)) trs)"))
+	(source "(def e400 (nth (seq (cls-instances \"Edge\")) 400))"))
 
 ([NiceSPb_Class170025] of  Node
 
@@ -21723,6 +21693,40 @@
 	(point-radius 4)
 	(x 7.277951)
 	(y 43.710335))
+
+([NiceSPb_Class180003] of  CloFuncall
+
+	(source "e400"))
+
+([NiceSPb_Class180004] of  CloFuncall
+
+	(source "(.show *prj* e400)"))
+
+([NiceSPb_Class180005] of  CloFuncall
+
+	(source "(def e404 (nth (seq (cls-instances \"Edge\")) 404))"))
+
+([NiceSPb_Class180006] of  CloFuncall
+
+	(source "(def frm (.show *prj* e404))"))
+
+([NiceSPb_Class180007] of  CloFuncall
+
+	(source "(get-frame-slot-selection frm \"points\")"))
+
+([NiceSPb_Class180008] of  CloFuncall
+
+	(source "(get-frame-slot-selection frm \"yy\")"))
+
+([NiceSPb_Class180010] of  CloFunction
+
+	(source "(if-let [rod (sv inst \"road\")]\n  (def FRAME (.show *prj* rod)))")
+	(title "road-show [hm inst]"))
+
+([NiceSPb_Class180011] of  CloVar
+
+	(source "nil")
+	(title "FRAME"))
 
 ([NiceSPb_Class20000] of  Instruction
 
@@ -22003,17 +22007,20 @@
 		[NiceSPb_Class90017]
 		[NiceSPb_Class150075]
 		[PyongyangSPb_Class160010]
-		[NiceSPb_Class110000])
+		[NiceSPb_Class110000]
+		[NiceSPb_Class180010]
+		[NiceSPb_Class160002])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[NiceSPb_Class80001]
 		[NiceSPb_Class100003]
-		[NiceSPb_Class120054])
+		[NiceSPb_Class120054]
+		[NiceSPb_Class180011])
 	(title "OSM Path"))
 
 ([PyongyangSPb_Class100001] of  CloNamespace
 
-	(source "(:use \n protege.core\n protege.extensions)\n(:require\n  [osm.func :as of]\n  [osm.onto :as oo]\n  [path :as p])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb)")
+	(source "(:use \n protege.core\n protege.extensions)\n(:require\n  [osm.func :as of]\n  [osm.onto :as oo]\n  [path :as p])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "osm.path"))
 
 ([PyongyangSPb_Class100003] of  CloFunction

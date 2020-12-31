@@ -1,4 +1,4 @@
-; Tue Dec 29 12:09:41 MSK 2020
+; Thu Dec 31 11:00:14 MSK 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -70,6 +70,34 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_070147_Class651] of  Map
+
+	(entries
+		[KB_070147_Class652]
+		[KB_070147_Class653]
+		[KB_070147_Class654]))
+
+([KB_070147_Class652] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_070147_Class653] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_070147_Class654] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_077848_Class4005] of  Widget
 
@@ -221,14 +249,14 @@
 		[PathsGraph_ProjectKB_Class762]
 		[PathsGraph_ProjectKB_Class788])
 	(referenced_maps
-		[PathsGraph_ProjectKB_Class755]
-		[PathsGraph_ProjectKB_Class751]
 		[PathsGraph_ProjectKB_Class741]
 		[PathsGraph_ProjectKB_Class763]
 		[PathsGraph_ProjectKB_Class747]
+		[PathsGraph_ProjectKB_Class728]
+		[PathsGraph_ProjectKB_Class755]
+		[PathsGraph_ProjectKB_Class751]
 		[PathsGraph_ProjectKB_Class759]
-		[PathsGraph_ProjectKB_Class738]
-		[PathsGraph_ProjectKB_Class728]))
+		[PathsGraph_ProjectKB_Class738]))
 
 ([KB_189120_Class13] of  Property_List
 
@@ -369,34 +397,6 @@
 
 ([KB_236959_Class312] of  Property_List
 )
-
-([KB_281321_Class651] of  Map
-
-	(entries
-		[KB_281321_Class652]
-		[KB_281321_Class653]
-		[KB_281321_Class654]))
-
-([KB_281321_Class652] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_281321_Class653] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_281321_Class654] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_441164_Class455] of  Widget
 
