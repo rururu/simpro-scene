@@ -1,4 +1,4 @@
-; Thu Dec 31 19:38:14 MSK 2020
+; Sat Jan 02 23:29:22 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -40,7 +40,7 @@
 
 ([NiceSPb_Class110000] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n      egs (selection mp \"edges\")\n      dir (mp \"direct\")]\n (println egs)\n (println dir))")
+	(source "(let [mp (into {} hm)\n      egs (selection mp \"edges\")\n      dir (mp \"direct\")\n      pth (map #(vector dir [(sv % \"label\") (oo/edge-pts %)] %) egs)]\n  (ssvs inst \"dirways\" (map oo/create-dirway pth)))")
 	(title "create-dirways [hm inst]"))
 
 ([NiceSPb_Class110001] of  CloFuncall
@@ -1775,7 +1775,7 @@
 		[NiceSPb_Class160344]
 		[NiceSPb_Class160570]
 		[NiceSPb_Class160564])
-	(road [NiceSPb_Class140064]))
+	(road [NiceSPb_Class150512]))
 
 ([NiceSPb_Class160022] of  Node
 
@@ -21652,6 +21652,12 @@
 	(x 7.486178)
 	(y 43.76679))
 
+([NiceSPb_Class170001] of  Way
+
+	(id "113494801")
+	(poly [NiceSPb_Class160570])
+	(source "[[43.7183342 7.2894604] [43.7206914 7.2910912] [43.7209783 7.2912306] [43.7212652 7.2913057] [43.7213816 7.2913272]]"))
+
 ([NiceSPb_Class170002] of  CloFuncall
 
 	(source "(def e400 (nth (seq (cls-instances \"Edge\")) 400))"))
@@ -21727,6 +21733,18 @@
 
 	(source "nil")
 	(title "FRAME"))
+
+([NiceSPb_Class190003] of  Way
+
+	(id "113494803")
+	(poly [NiceSPb_Class160564])
+	(source "[[43.7182799 7.2895677] [43.719288 7.290265] [43.7201409 7.2908444] [43.7205829 7.2911126] [43.7209551 7.2912628] [43.7212652 7.2913057]]"))
+
+([NiceSPb_Class190004] of  Railroad
+
+	(from1 "W")
+	(title "X")
+	(to1 "Z"))
 
 ([NiceSPb_Class20000] of  Instruction
 

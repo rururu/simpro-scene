@@ -1,0 +1,5 @@
+2021.01.02 16:49:48.558 MSK INFO: *** SYSTEM START *** -- SystemUtilities.logSystemInfo()
+2021.01.02 16:49:48.603 MSK CONFIG: Protege 3.5 Build 663, JVM 11.0.9.1+1-Ubuntu-0ubuntu1.20.04, memory=2071M, Linux, encoding=UTF-8, language=en, country=US -- SystemUtilities.logSystemInfo()
+2021.01.02 16:49:48.622 MSK WARNING: Plugins directory not found: /home/ru/clojure/simpro-scene/plugins -- PluginUtilities.findPluginsDirectory()
+2021.01.02 16:49:53.098 MSK WARNING: missing bundle: protege_text -- BundleHelper.<init>()
+2021.01.02 16:50:10.489 MSK INFO: Load time for file:/home/ru/clojure/simpro-scene/pprj_cesium/NiceSPb.pprj = 1 sec (project) + 9 sec (ui) -- ProjectManager$3.run()

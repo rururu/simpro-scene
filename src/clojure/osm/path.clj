@@ -115,9 +115,9 @@ egs)
 (defn create-dirways [hm inst]
   (let [mp (into {} hm)
       egs (selection mp "edges")
-      dir (mp "direct")]
- (println egs)
- (println dir)))
+      dir (mp "direct")
+      pth (map #(vector dir [(sv % "label") (oo/edge-pts %)] %) egs)]
+  (ssvs inst "dirways" (map oo/create-dirway pth))))
 
 (defn road-show [hm inst]
   (if-let [rod (sv inst "road")]
