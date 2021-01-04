@@ -155,6 +155,9 @@
   (doseq [fid fids]
      (rete.core/retract-fact fid))))
 
-(defn trace [bool]
-  (def TRACE bool))
+(defn trace []
+  (def TRACE true))
+
+(defn untrace []
+  (def TRACE false))
 

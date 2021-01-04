@@ -1,4 +1,4 @@
-; Mon Sep 21 12:34:50 MSK 2020
+; Mon Jan 04 17:16:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -722,7 +722,7 @@
 		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
-;+		(allowed-classes Road Variable)
+;+		(allowed-classes Variable Road %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot after
@@ -1653,7 +1653,7 @@
 		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
-;+		(allowed-classes Road Variable)
+;+		(allowed-classes Variable Road %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

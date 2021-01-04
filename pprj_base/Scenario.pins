@@ -1,4 +1,4 @@
-; Mon Sep 21 12:34:50 MSK 2020
+; Mon Jan 04 17:16:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1073,7 +1073,8 @@
 		[ScenarioN_Class680000]
 		[ScenarioN_Class300000]
 		[ScenarioN_Class470000]
-		[Scenario_Class580001])
+		[Scenario_Class580001]
+		[Scenario_Class670000])
 	(cloNamespace [Scenario_Class4])
 	(cloVars [Scenario_Class580000])
 	(title "Scenario Functions"))
@@ -1537,7 +1538,7 @@
 ([Scenario_Class550001] of  Rule
 
 	(lhs "?gor (GoRoad status \"WAIT\"\n	object ?mo\n	road ?dws\n	direction ?gbw\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
-	(rhs "(retract ?moe)\n(if (empty? ?dws)\n  (do (.removeAttribute ?mo \"ROAD-SPEED\")\n    (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n       dn (protege.core/sv dw \"direction\")\n       bwd (= dn \"BACKWARD\")\n       bwd (if bwd (not ?gbw) ?gbw)\n       way (protege.core/sv dw \"way\")\n       lla (read-string (protege.core/sv way \"source\"))\n       lla (if bwd (butlast lla) (rest lla))\n       rte (a/to-route (flatten lla) bwd)\n       rsp (.getAttribute ?mo \"ROAD-SPEED\")]\n  (.goRoute ?mo rte)\n  (.setSpeed ?mo (double rsp))\n  (modify ?gor road (rest ?dws))))")
+	(rhs "(retract ?moe)\n(if (empty? ?dws)\n  (do (.removeAttribute ?mo \"ROAD-SPEED\")\n    (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n         dn (protege.core/sv dw \"direction\")\n         bwd (= dn \"BACKWARD\")\n         bwd (if bwd (not ?gbw) ?gbw)\n         way (protege.core/sv dw \"way\")\n         lla (read-string (protege.core/sv way \"source\"))\n         rte (a/to-route (flatten lla) bwd)\n         rsp (.getAttribute ?mo \"ROAD-SPEED\")]\n    (.goRoute ?mo rte)\n    (.setSpeed ?mo (double rsp))\n    (modify ?gor road (rest ?dws))))")
 	(salience 0)
 	(title "a:GoRoadWait"))
 
@@ -1614,8 +1615,8 @@
 
 ([Scenario_Class580001] of  CloFunction
 
-	(source "(def TRACE bool)")
-	(title "trace [bool]"))
+	(source "(def TRACE true)")
+	(title "trace []"))
 
 ([Scenario_Class590000] of  Rule
 
@@ -1808,6 +1809,21 @@
 ([Scenario_Class650000] of  CloFuncall
 
 	(source "(ru.rules/sp :all)"))
+
+([Scenario_Class660000] of  Command
+
+	(label "Trace Scenario")
+	(scenario "clojuretab.ClojureTab invoke s trace"))
+
+([Scenario_Class670000] of  CloFunction
+
+	(source "(def TRACE false)")
+	(title "untrace []"))
+
+([Scenario_Class680000] of  Command
+
+	(label "Untrace Scenario")
+	(scenario "clojuretab.ClojureTab invoke s untrace"))
 
 ([Scenario_Class70000] of  Rule
 

@@ -119,13 +119,21 @@ egs)
       pth (map #(vector dir [(sv % "label") (oo/edge-pts %)] %) egs)]
   (ssvs inst "dirways" (map oo/create-dirway pth))))
 
-(defn road-show [hm inst]
-  (if-let [rod (sv inst "road")]
-  (def FRAME (.show *prj* rod))))
-
 (defn replace-dirway-in-road [hm inst]
-  (let [mp (into {} hm)
-       dws (mp "dirways")]
- (if FRAME
-   (println (get-frame-slot-selection FRAME "dirways")))))
+  (let [mp (into {} hm)]
+  (if-let [rod (mp "road")]
+    (if-let [new (first (selection mp "dirways"))]
+      (if-let [old (DisplayUtilities/pickInstanceFromCollection 
+                                nil 
+                                (svs rod "dirways") 
+                                0
+                                (str "Select Dirway of Road " (sv rod "title")))]
+        (if (ru.rules/confirm (str "Replace Dirway " (.getBrowserText old) 
+                                                                 " on " (.getBrowserText new)))
+            (let [dws (svs rod "dirways")
+                   dws (replace {old new} dws)]
+              (ssvs rod "dirways" dws)
+              (.show *prj* rod)) ))
+      (ru.rules/confirm (str "Select New Dirway to Replace Existing in Road "  (sv rod "title"))))
+    (ru.rules/confirm "Select Road to Update"))))
 

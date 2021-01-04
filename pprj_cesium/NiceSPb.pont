@@ -1,4 +1,4 @@
-; Sat Jan 02 23:29:22 MSK 2021
+; Mon Jan 04 20:03:55 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,11 @@
 		(default FORWARD)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-replace-dirway-in-road
+		(type STRING)
+;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-create-dirways
 		(type STRING)
 ;+		(value "Create Dirways/osm.path/create-dirways")
@@ -20,21 +25,6 @@
 		(create-accessor read-write))
 	(single-slot last
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot road
-		(type INSTANCE)
-;+		(allowed-classes RoadSubclasses)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-replace-dirway-in-road
-		(type STRING)
-;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-road-show
-		(type STRING)
-;+		(value ".../osm.path/road-show")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -58,6 +48,10 @@
 	(is-a Trail0)
 	(role concrete))
 
+(defclass Stop
+	(is-a GiveAdvice)
+	(role concrete))
+
 (defclass Console
 	(is-a USER)
 	(role concrete)
@@ -68,7 +62,7 @@
 		(create-accessor read-write))
 	(multislot dirways
 		(type INSTANCE)
-;+		(allowed-classes)
+;+		(allowed-classes Dirway)
 		(create-accessor read-write))
 	(single-slot direct
 		(type SYMBOL)
@@ -79,11 +73,6 @@
 	(single-slot but-replace-dirway-in-road
 		(type STRING)
 ;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot but-road-show
-		(type STRING)
-;+		(value ".../osm.path/road-show")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot edges
