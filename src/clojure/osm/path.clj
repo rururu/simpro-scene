@@ -72,14 +72,17 @@ egs)
 (defn edges-distance [egs]
   (apply + (map #(of/simple-dist (vertex1 %) (vertex2 %)) egs)))
 
-(defn wrong-direction-trial [sta cur fin]
+(defn from-goal [sta cur fin]
   (let [rdir (of/simple-dir sta fin)
        cdir (of/simple-dir sta cur)
+       arc (Math/abs (- rdir cdir))]
+  (> arc (/ Math/PI 2))))
+
+(defn goal-behind [sta cur fin]
+  (let [rdir (of/simple-dir sta fin)
        gdir (of/simple-dir cur fin)
-       arc (Math/abs (- rdir cdir))
        arg (Math/abs (- rdir gdir))]
-  (or (> arc (/ Math/PI 2))
-       (> arg (/ Math/PI 2)))))
+  (> arg (/ Math/PI 2))))
 
 (defn near [p1 p2]
   (< (of/simple-dist p1 p2) NEAR))
