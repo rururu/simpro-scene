@@ -1,4 +1,4 @@
-; Tue Dec 08 20:00:34 MSK 2020
+; Wed Jan 06 14:28:42 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -44,6 +44,11 @@
 		(default "Start Cesium Server/pro.server/start-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot but-start-client
+		(type STRING)
+;+		(value "Start Cesium Client/pro.server/start-client")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot but-stop-serv
 		(type STRING)
 		(default "Stop Cesium Server/pro.server/stop-server")
@@ -78,6 +83,11 @@
 	(single-slot but-stop-serv
 		(type STRING)
 		(default "Stop Cesium Server/pro.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-start-client
+		(type STRING)
+;+		(value "Start Cesium Client/pro.server/start-client")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

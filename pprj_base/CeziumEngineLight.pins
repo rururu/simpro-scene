@@ -1,4 +1,4 @@
-; Tue Dec 08 20:00:34 MSK 2020
+; Wed Jan 06 14:28:42 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -307,7 +307,8 @@
 		[Cezium_Class80000]
 		[Cezium_Class80001]
 		[Cezium_Class370002]
-		[Cezium_Class360005])
+		[Cezium_Class360005]
+		[CeziumEngineLight_Class1])
 	(cloNamespace [Cezium_Class30027])
 	(cloVars
 		[Cezium_Class30029]
@@ -323,7 +324,7 @@
 
 ([Cezium_Class30027] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [cognitect.transit :as t]\n              [cesium.core :as czs]\n              [clojure.core.async :as async :refer [chan alts!! put!]])\n(:import [java.io \n               ByteArrayOutputStream\n               ByteArrayInputStream]\n             ru.igis.omtab.OMT\n             edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(source "(:use protege.core)\n(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [cognitect.transit :as t]\n              [cesium.core :as czs]\n              [clojure.core.async :as async :refer [chan alts!! put!]])\n(:import [java.io \n               ByteArrayOutputStream\n               ByteArrayInputStream]\n             ru.igis.omtab.OMT\n             edu.stanford.smi.protege.ui.DisplayUtilities\n             java.awt.Desktop\n             java.net.URI)")
 	(title "pro.server"))
 
 ([Cezium_Class30029] of  CloVar
@@ -790,3 +791,8 @@
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
 	(but-stop-serv "Stop Cesium Server/pro.server/stop-server"))
+
+([CeziumEngineLight_Class1] of  CloFunction
+
+	(source "([]\n  (if-let [serv SERV]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://localhost:\" PORT))))))\n([hm inst]\n  (start-client))")
+	(title "start-client"))

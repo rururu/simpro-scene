@@ -12,7 +12,9 @@
                ByteArrayOutputStream
                ByteArrayInputStream]
              ru.igis.omtab.OMT
-             edu.stanford.smi.protege.ui.DisplayUtilities))
+             edu.stanford.smi.protege.ui.DisplayUtilities
+             java.awt.Desktop
+             java.net.URI))
 (def PORT 4444)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def SERV nil)
@@ -157,4 +159,11 @@
 (put! CLI-REPL-CHAN {:sexp (str sexp)})
 (def CLI-REPL :WAIT)
 (clirepl))
+
+(defn start-client
+  ([]
+  (if-let [serv SERV]
+    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://localhost:" PORT))))))
+([hm inst]
+  (start-client)))
 

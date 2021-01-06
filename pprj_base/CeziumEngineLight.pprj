@@ -1,4 +1,4 @@
-; Tue Dec 08 20:00:34 MSK 2020
+; Wed Jan 06 14:28:42 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CeziumEngineLight_ProjectKB_Class1386]
-		[CeziumEngineLight_ProjectKB_Class1387]
-		[CeziumEngineLight_ProjectKB_Class1388]))
+		[CeziumEngineLight_ProjectKB_Class1412]
+		[CeziumEngineLight_ProjectKB_Class1413]
+		[CeziumEngineLight_ProjectKB_Class1414]))
 
 ([Cezium_ProjectKB_Class1636] of  Widget
 
@@ -166,7 +166,8 @@
 		[Cezium_ProjectKB_Class451]
 		[Cezium_ProjectKB_Class453]
 		[Cezium_ProjectKB_Class455]
-		[Cezium_ProjectKB_Class457]))
+		[Cezium_ProjectKB_Class457]
+		[CeziumEngineLight_ProjectKB_Class1407]))
 
 ([Cezium_ProjectKB_Class450] of  Property_List
 
@@ -181,7 +182,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 120))
+	(y 60))
 
 ([Cezium_ProjectKB_Class452] of  Property_List
 )
@@ -208,7 +209,7 @@
 	(property_list [Cezium_ProjectKB_Class456])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 0)
+	(x 200)
 	(y 60))
 
 ([Cezium_ProjectKB_Class456] of  Property_List
@@ -223,7 +224,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 0)
-	(y 180))
+	(y 120))
 
 ([Cezium_ProjectKB_Class458] of  Property_List
 )
@@ -330,17 +331,31 @@
 ([CeziumEngine_ProjectKB_Class1691] of  Property_List
 )
 
-([CeziumEngineLight_ProjectKB_Class1386] of  String
+([CeziumEngineLight_ProjectKB_Class1407] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "but-start-client")
+	(property_list [CeziumEngineLight_ProjectKB_Class1408])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 200)
+	(y 0))
+
+([CeziumEngineLight_ProjectKB_Class1408] of  Property_List
+)
+
+([CeziumEngineLight_ProjectKB_Class1412] of  String
 
 	(name "CZMLGenerator")
 	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
 
-([CeziumEngineLight_ProjectKB_Class1387] of  String
+([CeziumEngineLight_ProjectKB_Class1413] of  String
 
 	(name "Onboard")
 	(string_value "label"))
 
-([CeziumEngineLight_ProjectKB_Class1388] of  String
+([CeziumEngineLight_ProjectKB_Class1414] of  String
 
 	(name "CZMLSpan")
 	(string_value "object"))
@@ -487,6 +502,34 @@
 	(name "instances_file_name")
 	(string_value "CeziumEngineLight.pins"))
 
+([KB_381090_Class1403] of  Map
+
+	(entries
+		[KB_381090_Class1404]
+		[KB_381090_Class1405]
+		[KB_381090_Class1406]))
+
+([KB_381090_Class1404] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_381090_Class1405] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_381090_Class1406] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_684256_Class1343] of  Widget
 
 	(is_hidden FALSE)
@@ -532,34 +575,6 @@
 
 ([KB_684256_Class1349] of  Property_List
 )
-
-([KB_892609_Class1382] of  Map
-
-	(entries
-		[KB_892609_Class1383]
-		[KB_892609_Class1384]
-		[KB_892609_Class1385]))
-
-([KB_892609_Class1383] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_892609_Class1384] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_892609_Class1385] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

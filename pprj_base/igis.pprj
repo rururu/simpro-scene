@@ -1,4 +1,4 @@
-; Wed Dec 30 15:02:19 MSK 2020
+; Wed Jan 06 12:58:45 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[igis_ProjectKB_Class110013]
-		[igis_ProjectKB_Class110014]
-		[igis_ProjectKB_Class110015]
-		[igis_ProjectKB_Class110016]
-		[igis_ProjectKB_Class110017]
-		[igis_ProjectKB_Class110018]))
+		[igis_ProjectKB_Class60006]
+		[igis_ProjectKB_Class100007]
+		[igis_ProjectKB_Class110008]
+		[igis_ProjectKB_Class110009]
+		[igis_ProjectKB_Class110010]
+		[igis_ProjectKB_Class110011]))
 
 ([CLSES_TAB] of  Widget
 
@@ -643,6 +643,11 @@
 
 	(name "layout properties"))
 
+([igis_ProjectKB_Class100007] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
 ([igis_ProjectKB_Class100008] of  Widget
 
 	(height 60)
@@ -1239,35 +1244,46 @@
 	(x 0)
 	(y 180))
 
-([igis_ProjectKB_Class110013] of  String
-
-	(name "IGIS")
-	(string_value "label"))
-
-([igis_ProjectKB_Class110014] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([igis_ProjectKB_Class110015] of  String
+([igis_ProjectKB_Class110008] of  String
 
 	(name "Param")
 	(string_value "label"))
 
-([igis_ProjectKB_Class110016] of  String
+([igis_ProjectKB_Class110009] of  String
 
 	(name "ShapeLayer")
 	(string_value "label"))
 
-([igis_ProjectKB_Class110017] of  String
+([igis_ProjectKB_Class110010] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([igis_ProjectKB_Class110018] of  String
+([igis_ProjectKB_Class110011] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
+
+([igis_ProjectKB_Class110012] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class110013] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([igis_ProjectKB_Class110014] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([igis_ProjectKB_Class110019] of  Boolean
 
@@ -1970,27 +1986,6 @@
 
 ([igis_ProjectKB_Class120010] of  Property_List
 )
-
-([igis_ProjectKB_Class120019] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class120020] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([igis_ProjectKB_Class120021] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([igis_ProjectKB_Class120026] of  Widget
 
@@ -3632,6 +3627,17 @@
 ([igis_ProjectKB_Class30] of  Property_List
 )
 
+([igis_ProjectKB_Class30004] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "WebBrowser")
+	(property_list [igis_ProjectKB_Class60005])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 400)
+	(x 0)
+	(y 650))
+
 ([igis_ProjectKB_Class30005] of  Widget
 
 	(is_hidden FALSE)
@@ -4656,6 +4662,14 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
+
+([igis_ProjectKB_Class60005] of  Property_List
+)
+
+([igis_ProjectKB_Class60006] of  String
+
+	(name "IGIS")
+	(string_value "label"))
 
 ([igis_ProjectKB_Class60007] of  Property_List
 
@@ -6334,7 +6348,8 @@
 		[igis_ProjectKB_Instance_121]
 		[igis_ProjectKB_Instance_123]
 		[igis_ProjectKB_Instance_125]
-		[igis_ProjectKB_Class83]))
+		[igis_ProjectKB_Class83]
+		[igis_ProjectKB_Class30004]))
 
 ([igis_ProjectKB_Instance_104] of  Property_List
 
@@ -6901,9 +6916,9 @@
 ([KB_266843_Class0] of  Map
 
 	(entries
-		[igis_ProjectKB_Class120019]
-		[igis_ProjectKB_Class120020]
-		[igis_ProjectKB_Class120021]))
+		[igis_ProjectKB_Class110012]
+		[igis_ProjectKB_Class110013]
+		[igis_ProjectKB_Class110014]))
 
 ([KB_337263_Instance_0] of  String
 
@@ -7313,7 +7328,7 @@
 	(x 0)
 	(y 120))
 
-([KB_716534_Class3] of  Map
+([KB_883875_Class3] of  Map
 )
 
 ([PAL_FORM_WIDGET] of  Widget
