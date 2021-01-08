@@ -75,6 +75,12 @@ See examples.
 28. [Cesium Lesson 3. Geography and History](https://youtu.be/dGWTxHik4U4)
 28. [Cesium Lesson 4. Ladoga Salmon Migration](https://www.youtube.com/watch?v=cFA5VbI_1HI)
 29. [Cesium Lesson 5. Ladoga Salmon Migration Scenario](https://youtu.be/UBdTVGteGE4)
+30. [NiceSPb Lesson 1. Visual building of the railroad from Nice to Saint Petersburg and movement along. Part I.
+Movement along the ready part of the railroad from Menton to Ventimiglia.](https://youtu.be/MlTFbK8NcmY)
+31. [NiceSPb Lesson 2. Part II.
+Building of the part from Ventimiglia to Bordighera using Expert System of shortest path on a graph and OSM data server.](https://youtu.be/IIz0UDpqncE)
+32. [NiceSPb Lesson 3. Part III.
+Addition of the movement scenario on the  part from Ventimiglia to Bordighera and movement along.](https://youtu.be/aYAiik0Q4xE)
 
 TO BE CONTINUED
 
