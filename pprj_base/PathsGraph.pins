@@ -1,4 +1,4 @@
-; Thu Dec 31 11:00:14 MSK 2020
+; Sat Jan 09 21:39:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,6 +42,13 @@
 
 	(source "(path/set-functions\n path/argval\n path/find-sequels \n path/point-equal\n path/distance\n path/display-points)\n(path/trace true)")
 	(title "Set Path Functions and Goals"))
+
+([PathsGraph_Class20001] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(Goal max-length ?mln)\n(Path0 points ?pts (>= (count ?pts) ?mln))")
+	(rhs "(rete.core/problem-solved)\n(println :TOO-LONG)")
+	(salience 1)
+	(title "p:Extension -> Too Long"))
 
 ([PathsGraph_Class3] of  Instruction
 
@@ -135,6 +142,7 @@
 
 	(a "Directed Graph:A")
 	(b "Directed Graph:X")
+	(max-length 100)
 	(max-solutions 20)
 	(status "START")
 	(title "A-X Directed"))
@@ -165,6 +173,7 @@
 
 	(a "Z")
 	(b "P")
+	(max-length 100)
 	(max-solutions 40)
 	(status "START")
 	(title "Z-P"))
@@ -201,24 +210,11 @@
 	(source "(if (> (latitude p1) (latitude p2))\n  :down\n  :up)")
 	(title "direction [[p1 p2]]"))
 
-([PyongyangSPb_Class180000] of  Goal
-
-	(a "[\"Хабаровск\" 48.495 135.08]")
-	(b "[\"Владимировка\" 48.09 135.11]")
-	(status "START")
-	(title "OSM Хабаровск-Владимировка"))
-
-([PyongyangSPb_Class180001] of  Goal
-
-	(a "[\"Владимировка\" 48.09 135.11]")
-	(b "[\"Лермонтовка\" 47.149 134.315]")
-	(status "START")
-	(title "Владимировка-Лермонтовка"))
-
 ([PyongyangSPb_Class190001] of  Goal
 
 	(a "Q")
 	(b "Z")
+	(max-length 100)
 	(max-solutions 6)
 	(status "START")
 	(title "Q-Z"))
@@ -487,6 +483,7 @@
 
 	(a "Directed Graph:J")
 	(b "Directed Graph:O")
+	(max-length 100)
 	(max-solutions 40)
 	(status "START")
 	(title "J-O Directed"))
@@ -495,6 +492,7 @@
 
 	(a "Directed Graph:E")
 	(b "Directed Graph:W")
+	(max-length 100)
 	(max-solutions 40)
 	(status "START")
 	(title "E-W Directed"))
@@ -503,6 +501,7 @@
 
 	(a "Directed Graph:C")
 	(b "Directed Graph:V")
+	(max-length 100)
 	(max-solutions 40)
 	(status "START")
 	(title "C-V Directed"))
@@ -529,6 +528,7 @@
 
 	(a "A")
 	(b "C")
+	(max-length 100)
 	(max-solutions 6)
 	(status "START")
 	(title "A-C"))
@@ -571,6 +571,7 @@
 
 	(a "X")
 	(b "Q")
+	(max-length 100)
 	(max-solutions 30)
 	(status "START")
 	(title "X-Q"))
@@ -579,6 +580,7 @@
 
 	(a "[\"A\" 48.495 135.08]")
 	(b "[\"B\" 48.406 135.134]")
+	(max-length 100)
 	(status "START")
 	(title "OSM A-B 1"))
 
@@ -699,6 +701,7 @@
 
 	(a "X")
 	(b "P")
+	(max-length 100)
 	(max-solutions 20)
 	(status "START")
 	(title "X-P"))
@@ -707,6 +710,7 @@
 
 	(a "Directed Graph:A8")
 	(b "Directed Graph:M4")
+	(max-length 100)
 	(max-solutions 100)
 	(status "START")
 	(title "A8-M4 Directed"))

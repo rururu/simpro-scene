@@ -1,4 +1,4 @@
-; Thu Dec 31 11:00:14 MSK 2020
+; Sat Jan 09 21:39:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -25,6 +25,10 @@
 		(create-accessor read-write))
 	(single-slot status
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot max-length
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot points
@@ -86,6 +90,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot max-solutions
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot max-length
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
