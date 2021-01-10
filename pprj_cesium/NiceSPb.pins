@@ -1,4 +1,4 @@
-; Sat Jan 09 23:26:18 MSK 2021
+; Sun Jan 10 20:40:21 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -73,7 +73,7 @@
 ([NiceSPb_Class120000] of  MissionScenario
 
 	(context [NiceSPb_Class190000])
-	(final_tasks [NiceSPb_Class260045])
+	(final_tasks [NiceSPb_Class240000])
 	(finish_type AND)
 	(initial_tasks [NiceSPb_Class180000])
 	(protagonist [PyongyangSPb_Class250003])
@@ -83,7 +83,8 @@
 		[NiceSPb_Class180000]
 		[NiceSPb_Class190001]
 		[NiceSPb_Class240066]
-		[NiceSPb_Class260045])
+		[NiceSPb_Class260045]
+		[NiceSPb_Class240000])
 	(title "Nice - Saint-Petersburg"))
 
 ([NiceSPb_Class120054] of  CloVar
@@ -138,61 +139,11 @@
 	(spd "?speed")
 	(title "Nice - Monte-Carlo"))
 
-([NiceSPb_Class130010] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140066]))
-
-([NiceSPb_Class130011] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class130012]))
-
-([NiceSPb_Class130012] of  Way
-
-	(id "444971007")
-	(source "[[43.7547543 7.4487948] [43.7545349 7.4484433] [43.7543143 7.4480303]]"))
-
-([NiceSPb_Class130013] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140068]))
-
-([NiceSPb_Class130014] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140070]))
-
-([NiceSPb_Class130015] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140072]))
-
-([NiceSPb_Class130016] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class130017]))
-
-([NiceSPb_Class130017] of  Way
-
-	(id "157270965")
-	(source "[[43.759814 7.479412] [43.7599239 7.4795241]]"))
-
-([NiceSPb_Class130018] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class130019]))
-
 ([NiceSPb_Class130019] of  Way
 
 	(id "157270966")
 	(poly [NiceSPb_Class230041])
 	(source "[[43.7599239 7.4795241] [43.7607953 7.4803622] [43.7617119 7.481248]]"))
-
-([NiceSPb_Class130020] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140021]))
 
 ([NiceSPb_Class130021] of  Rule
 
@@ -249,11 +200,6 @@
 
 	(source "(def egs1 (sv (fifos \"Instruction\" \"title\" \"Solution\") \"source\"))"))
 
-([NiceSPb_Class140021] of  Way
-
-	(id "157270967")
-	(source "[[43.7618081 7.4813466] [43.7619768 7.48151] [43.7649245 7.484373]]"))
-
 ([NiceSPb_Class140036] of  Goal
 
 	(a "[7.4207861 43.7389252]")
@@ -279,21 +225,11 @@
 	(title "Monte Carlo - Menton")
 	(to1 "Menton"))
 
-([NiceSPb_Class140065] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140066]))
-
 ([NiceSPb_Class140066] of  Way
 
 	(id "156780356")
 	(poly [NiceSPb_Class190002])
 	(source "[[43.7543017 7.448037] [43.7535744 7.4466813] [43.7533361 7.4461475] [43.7531036 7.4454635] [43.7529409 7.4448574] [43.7521678 7.4410728] [43.7520864 7.4400803] [43.7520283 7.4377307] [43.7519353 7.4368456] [43.7514839 7.4350512] [43.7506546 7.4332783] [43.7494069 7.43117] [43.7483218 7.429719] [43.7461149 7.4271414] [43.744993 7.426039] [43.7412589 7.4228619] [43.7404828 7.4222624] [43.7396447 7.4214698] [43.7389252 7.4207861]]"))
-
-([NiceSPb_Class140067] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140068]))
 
 ([NiceSPb_Class140068] of  Way
 
@@ -301,21 +237,11 @@
 	(poly [NiceSPb_Class230017])
 	(source "[[43.7547869 7.4487975] [43.7550042 7.4491087] [43.7552037 7.4493916] [43.7554258 7.4496817] [43.7556348 7.4499227] [43.7558487 7.4501467] [43.7560794 7.4503371] [43.7562991 7.4504936] [43.7567149 7.4507292] [43.7571798 7.450946] [43.757607 7.4511687] [43.7579971 7.4514451] [43.7582812 7.4516769] [43.75856 7.4519397] [43.7588207 7.4521986] [43.7590738 7.4524884] [43.7593031 7.452786] [43.7595056 7.4531562] [43.7596285 7.453419] [43.7597343 7.4536924] [43.7598232 7.4539702] [43.7599003 7.4542492] [43.7602119 7.4555742] [43.7606178 7.457343] [43.7606712 7.4575769] [43.7607992 7.4581477] [43.7609678 7.4588773] [43.7610818 7.4595914] [43.7611194 7.4600417] [43.7611293 7.46039] [43.7611152 7.4607602] [43.7610644 7.46115] [43.7610211 7.4613984] [43.7609388 7.4617554] [43.7608168 7.4621721] [43.7606674 7.4625547] [43.760492 7.4629133] [43.760269 7.4632818] [43.7598646 7.4637918] [43.7592288 7.4645052] [43.7587272 7.4651192] [43.7585272 7.4654165] [43.7583352 7.4657237] [43.7581079 7.4661494] [43.7578903 7.4666883] [43.7575048 7.4677031] [43.756774 7.4695753] [43.7566454 7.4699386]]"))
 
-([NiceSPb_Class140069] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140070]))
-
 ([NiceSPb_Class140070] of  Way
 
 	(id "4980232")
 	(poly [NiceSPb_Class230023])
 	(source "[[43.7566454 7.4699386] [43.7563353 7.471145] [43.7562167 7.471936] [43.7561851 7.4726131] [43.7562201 7.4733661] [43.756315 7.4741694] [43.7565071 7.4750239] [43.7567673 7.4757739] [43.7570737 7.4764535] [43.7575222 7.477097]]"))
-
-([NiceSPb_Class140071] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140072]))
 
 ([NiceSPb_Class140072] of  Way
 
@@ -323,42 +249,17 @@
 	(poly [NiceSPb_Class230029])
 	(source "[[43.7575222 7.477097] [43.7576452 7.4772591] [43.7579673 7.4776246] [43.7591615 7.4787925] [43.759814 7.479412]]"))
 
-([NiceSPb_Class140073] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140074]))
-
-([NiceSPb_Class140074] of  Way
-
-	(id "235979145")
-	(source "[[43.7616858 7.4812791] [43.7599094 7.4795598]]"))
-
-([NiceSPb_Class140075] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140076]))
-
 ([NiceSPb_Class140076] of  Way
 
 	(id "235979149")
 	(poly [NiceSPb_Class230052])
 	(source "[[43.7649159 7.48442] [43.761958 7.4815486] [43.7617943 7.4813864]]"))
 
-([NiceSPb_Class140077] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140078]))
-
 ([NiceSPb_Class140078] of  Way
 
 	(id "235979143")
 	(poly [NiceSPb_Class230043])
 	(source "[[43.7667571 7.486209] [43.7654554 7.4849376]]"))
-
-([NiceSPb_Class140079] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140080]))
 
 ([NiceSPb_Class140080] of  Way
 
@@ -386,216 +287,16 @@
 
 	(source "egs2"))
 
-([NiceSPb_Class150022] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150023]))
-
-([NiceSPb_Class150023] of  Way
-
-	(id "157276742")
-	(source "[[43.7649245 7.484373] [43.7650239 7.4844675]]"))
-
-([NiceSPb_Class150024] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150025]))
-
-([NiceSPb_Class150025] of  Way
-
-	(id "235979147")
-	(source "[[43.7653214 7.4848437] [43.7650428 7.4845648]]"))
-
-([NiceSPb_Class150026] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150027]))
-
-([NiceSPb_Class150027] of  Way
-
-	(id "235979148")
-	(source "[[43.7654554 7.4849376] [43.765334 7.4848222]]"))
-
-([NiceSPb_Class150028] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140078]))
-
-([NiceSPb_Class150029] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150030]))
-
-([NiceSPb_Class150030] of  Way
-
-	(id "235979142")
-	(source "[[43.7668675 7.4863189] [43.7667571 7.486209]]"))
-
-([NiceSPb_Class150031] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150032]))
-
-([NiceSPb_Class150032] of  Way
-
-	(id "235979144")
-	(source "[[43.7675929 7.4871526] [43.7668752 7.486335]]"))
-
-([NiceSPb_Class150033] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150034]))
-
-([NiceSPb_Class150034] of  Way
-
-	(id "235979151")
-	(source "[[43.767743 7.4872899] [43.7676084 7.4871352]]"))
-
-([NiceSPb_Class150035] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140080]))
-
 ([NiceSPb_Class150075] of  CloFunction
 
 	(source "(def NODE-YXS [])")
 	(title "clear-NODE-YXS []"))
-
-([NiceSPb_Class150100] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140066]))
-
-([NiceSPb_Class150101] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150102]))
-
-([NiceSPb_Class150102] of  Way
-
-	(id "235977377")
-	(source "[[43.7565985 7.4699681] [43.757451 7.4676937] [43.7578501 7.4666584] [43.7580592 7.4661298] [43.7582995 7.4657007] [43.7587006 7.4650785] [43.7598413 7.4637507] [43.7602031 7.4633216] [43.7604499 7.4629059] [43.7606262 7.4625492] [43.7607753 7.4621576] [43.7608992 7.4617605] [43.7609807 7.4613717] [43.7610717 7.4607709] [43.761093 7.4604034] [43.761095 7.4600574] [43.7610619 7.459604] [43.7609342 7.4588746] [43.7606184 7.4574772] [43.7601844 7.4555834] [43.7598784 7.4542692] [43.7597098 7.4537487] [43.7594773 7.4531935] [43.7590589 7.4525498] [43.7585204 7.451992] [43.7579914 7.4515037] [43.7575963 7.451241] [43.756279 7.4505597] [43.7558269 7.450171] [43.7554033 7.4497148] [43.754977 7.4491327] [43.7547543 7.4487948]]"))
-
-([NiceSPb_Class150103] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150104]))
-
-([NiceSPb_Class150104] of  Way
-
-	(id "235978302")
-	(source "[[43.7574684 7.477151] [43.7570616 7.4765341] [43.7567342 7.4757938] [43.7564726 7.4750535] [43.7562808 7.4741925] [43.756173 7.473384] [43.7561434 7.4726127] [43.7561763 7.4719395] [43.7562905 7.4711429] [43.7565985 7.4699681]]"))
-
-([NiceSPb_Class150105] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150106]))
-
-([NiceSPb_Class150106] of  Way
-
-	(id "235978301")
-	(source "[[43.7597777 7.4794525] [43.7591539 7.4788409] [43.7576041 7.4773657] [43.7574684 7.477151]]"))
-
-([NiceSPb_Class150107] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class130019]))
-
-([NiceSPb_Class150108] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140076]))
-
-([NiceSPb_Class150109] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140078]))
-
-([NiceSPb_Class150110] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140080]))
-
-([NiceSPb_Class150111] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150112]))
 
 ([NiceSPb_Class150112] of  Way
 
 	(id "235982761")
 	(poly [NiceSPb_Class220011])
 	(source "[[43.7756394 7.4948162] [43.7754332 7.4944098] [43.7752656 7.4940813] [43.7749926 7.4936441] [43.7746924 7.4932471] [43.7743282 7.4928247] [43.7739855 7.4925014] [43.7737201 7.4922989] [43.7734451 7.4921179] [43.7729367 7.4917799] [43.7725705 7.4915176]]"))
-
-([NiceSPb_Class150121] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140066]))
-
-([NiceSPb_Class150122] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class130012]))
-
-([NiceSPb_Class150123] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150102]))
-
-([NiceSPb_Class150124] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150104]))
-
-([NiceSPb_Class150125] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150106]))
-
-([NiceSPb_Class150126] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class130019]))
-
-([NiceSPb_Class150127] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140076]))
-
-([NiceSPb_Class150128] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150025]))
-
-([NiceSPb_Class150129] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140078]))
-
-([NiceSPb_Class150130] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150032]))
-
-([NiceSPb_Class150131] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140080]))
-
-([NiceSPb_Class150132] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150133]))
-
-([NiceSPb_Class150133] of  Way
-
-	(id "235982762")
-	(source "[[43.7725266 7.4915044] [43.7721823 7.4912408]]"))
-
-([NiceSPb_Class150134] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150112]))
 
 ([NiceSPb_Class150135] of  Goal
 
@@ -642,71 +343,11 @@
 	(title "Nice - Monte Carlo")
 	(to1 "Monte Carlo"))
 
-([NiceSPb_Class150513] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150514]))
-
-([NiceSPb_Class150514] of  Way
-
-	(id "444855934")
-	(source "[[43.7051837 7.262754] [43.7047822 7.2618331]]"))
-
-([NiceSPb_Class150515] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150516]))
-
-([NiceSPb_Class150516] of  Way
-
-	(id "332941122")
-	(source "[[43.7058233 7.2644603] [43.7056622 7.2640768] [43.7055761 7.2638367] [43.7053897 7.2632828] [43.7052794 7.2629735] [43.7051837 7.262754]]"))
-
-([NiceSPb_Class150517] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150518]))
-
-([NiceSPb_Class150518] of  Way
-
-	(id "257565926")
-	(source "[[43.7058904 7.2645315] [43.7059894 7.2647617]]"))
-
-([NiceSPb_Class150519] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150520]))
-
-([NiceSPb_Class150520] of  Way
-
-	(id "444826085")
-	(source "[[43.706101 7.2646834] [43.7062515 7.2650687] [43.7064662 7.2655767] [43.7068396 7.2664105] [43.7069258 7.2665874]]"))
-
-([NiceSPb_Class150521] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150522]))
-
 ([NiceSPb_Class150522] of  Way
 
 	(id "315735019")
 	(poly [NiceSPb_Class210118])
 	(source "[[43.7069985 7.2667375] [43.7072843 7.2674558] [43.7074212 7.2678386]]"))
-
-([NiceSPb_Class150523] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150524]))
-
-([NiceSPb_Class150524] of  Way
-
-	(id "444826081")
-	(source "[[43.7074755 7.2680116] [43.7076666 7.268591]]"))
-
-([NiceSPb_Class150525] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150526]))
 
 ([NiceSPb_Class150526] of  Way
 
@@ -714,61 +355,11 @@
 	(poly [NiceSPb_Class210150])
 	(source "[[43.7077233 7.2687526] [43.7079674 7.2694432] [43.7081221 7.2698106] [43.7082026 7.2699669]]"))
 
-([NiceSPb_Class150527] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150528]))
-
-([NiceSPb_Class150528] of  Way
-
-	(id "23045952")
-	(source "[[43.7081205 7.2700659] [43.7084781 7.2707568] [43.7092818 7.2730742] [43.7102339 7.2765802] [43.7104149 7.2779358]]"))
-
-([NiceSPb_Class150529] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150530]))
-
-([NiceSPb_Class150530] of  Way
-
-	(id "4191934")
-	(source "[[43.7104149 7.2779358] [43.710425 7.2782355] [43.7104421 7.2785336] [43.7104413 7.2788343]]"))
-
-([NiceSPb_Class150531] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150532]))
-
-([NiceSPb_Class150532] of  Way
-
-	(id "140014431")
-	(source "[[43.7104413 7.2788343] [43.7104347 7.2791115]]"))
-
-([NiceSPb_Class150533] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150534]))
-
 ([NiceSPb_Class150534] of  Way
 
 	(id "140014432")
 	(poly [NiceSPb_Class210180])
 	(source "[[43.7104434 7.2791155] [43.7104223 7.2793959] [43.7103895 7.2797098] [43.710293 7.280357] [43.71019 7.2809895]]"))
-
-([NiceSPb_Class150535] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150536]))
-
-([NiceSPb_Class150536] of  Way
-
-	(id "315741277")
-	(source "[[43.7099419 7.2823545] [43.7101296 7.2811703]]"))
-
-([NiceSPb_Class150537] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150538]))
 
 ([NiceSPb_Class150538] of  Way
 
@@ -776,31 +367,11 @@
 	(poly [NiceSPb_Class210197])
 	(source "[[43.7095916 7.284672] [43.7099419 7.2823545]]"))
 
-([NiceSPb_Class150539] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150540]))
-
 ([NiceSPb_Class150540] of  Way
 
 	(id "315741934")
 	(poly [NiceSPb_Class210214])
 	(source "[[43.7084952 7.2872518] [43.7087163 7.2869578] [43.7089238 7.2866304] [43.7090633 7.286374] [43.7091846 7.2860906] [43.709297 7.2858127] [43.7094469 7.2853271] [43.7095212 7.2850355] [43.7095916 7.284672]]"))
-
-([NiceSPb_Class150541] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150542]))
-
-([NiceSPb_Class150542] of  Way
-
-	(id "315741279")
-	(source "[[43.7079405 7.2879089] [43.7084937 7.2872478]]"))
-
-([NiceSPb_Class150543] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150544]))
 
 ([NiceSPb_Class150544] of  Way
 
@@ -808,21 +379,11 @@
 	(poly [NiceSPb_Class210278])
 	(source "[[43.7069855 7.2890594] [43.7079444 7.2879143]]"))
 
-([NiceSPb_Class150545] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150546]))
-
 ([NiceSPb_Class150546] of  Way
 
 	(id "235902312")
 	(poly [NiceSPb_Class210307])
 	(source "[[43.705468 7.2910012] [43.7056366 7.2907329] [43.7058071 7.2904789] [43.7060795 7.2901392] [43.7063131 7.2898609] [43.7068787 7.2891933]]"))
-
-([NiceSPb_Class150547] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150548]))
 
 ([NiceSPb_Class150548] of  Way
 
@@ -830,41 +391,11 @@
 	(poly [NiceSPb_Class210317])
 	(source "[[43.704823 7.2925166] [43.704951 7.292108] [43.7051178 7.2916894] [43.7053125 7.2912769]]"))
 
-([NiceSPb_Class150549] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150550]))
-
-([NiceSPb_Class150550] of  Way
-
-	(id "315741282")
-	(source "[[43.704735 7.2928298] [43.704823 7.2925166]]"))
-
-([NiceSPb_Class150551] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150552]))
-
 ([NiceSPb_Class150552] of  Way
 
 	(id "235902314")
 	(poly [NiceSPb_Class210329])
 	(source "[[43.7045095 7.2944389] [43.7045319 7.2940837] [43.704557 7.2938524] [43.7046177 7.2934212] [43.7047011 7.293] [43.7047403 7.2928325]]"))
-
-([NiceSPb_Class150553] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150554]))
-
-([NiceSPb_Class150554] of  Way
-
-	(id "4978447")
-	(source "[[43.7045607 7.2944479] [43.7044953 7.2964463] [43.7054399 7.3033415] [43.7060176 7.3075584] [43.7067815 7.3131166]]"))
-
-([NiceSPb_Class150555] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150556]))
 
 ([NiceSPb_Class150556] of  Way
 
@@ -872,41 +403,11 @@
 	(poly [NiceSPb_Class210349])
 	(source "[[43.7069612 7.3162084] [43.7070035 7.3158125] [43.7070166 7.3154405] [43.7070096 7.315094] [43.7069837 7.3147179] [43.7069169 7.3141636] [43.7068069 7.3133299] [43.7067763 7.3130978]]"))
 
-([NiceSPb_Class150557] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150558]))
-
-([NiceSPb_Class150558] of  Way
-
-	(id "235902313")
-	(source "[[43.7067369 7.317291] [43.7069534 7.3162124]]"))
-
-([NiceSPb_Class150559] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150560]))
-
-([NiceSPb_Class150560] of  Way
-
-	(id "235973166")
-	(source "[[43.7061663 7.3315316] [43.7057281 7.3313031] [43.705127 7.3309169] [43.7036147 7.3298335] [43.7029249 7.3292557] [43.702694 7.3290153] [43.7024775 7.3287568] [43.7022901 7.3284642] [43.7021053 7.3281665] [43.7019705 7.327871] [43.7018308 7.3275126] [43.7017146 7.3271528] [43.7016284 7.3267764] [43.7015744 7.3264589] [43.7015344 7.3260322] [43.7015221 7.3256465] [43.7015385 7.3252483] [43.7015758 7.3248684] [43.7016736 7.3242866] [43.7019232 7.3235429] [43.702143 7.3230688] [43.7023908 7.3226353] [43.7028546 7.3220696] [43.7031589 7.321767] [43.7040262 7.3212252] [43.7046219 7.3207522] [43.705068 7.3202178] [43.7057628 7.3193447] [43.7059518 7.3190483] [43.7061329 7.3187431] [43.7064524 7.3180697] [43.7066039 7.3177098] [43.7067369 7.317291]]"))
-
-([NiceSPb_Class150561] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150562]))
-
 ([NiceSPb_Class150562] of  Way
 
 	(id "235975235")
 	(poly [NiceSPb_Class210343])
 	(source "[[43.7143366 7.3454627] [43.7142814 7.3451462] [43.7142338 7.3448269] [43.7141834 7.344434] [43.7141486 7.3439191] [43.7140981 7.3427759] [43.7140701 7.3424198] [43.7140148 7.3419987] [43.7136753 7.3398214] [43.7135794 7.3393122] [43.7134729 7.3388993] [43.7132955 7.338367] [43.7131035 7.3379169] [43.7127411 7.3372217] [43.7123349 7.3364867] [43.7120829 7.3360571] [43.7117232 7.3354232] [43.7115342 7.3351054] [43.7113382 7.3348212] [43.7111261 7.3345314] [43.7109224 7.3342823] [43.7106676 7.3340084] [43.7104066 7.3337667] [43.7101538 7.3335537] [43.7098881 7.3333601] [43.7094975 7.3331179] [43.7090858 7.33291] [43.706632 7.3317324] [43.7062963 7.3315702]]"))
-
-([NiceSPb_Class150563] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150564]))
 
 ([NiceSPb_Class150564] of  Way
 
@@ -914,31 +415,11 @@
 	(poly [NiceSPb_Class210334])
 	(source "[[43.7166177 7.3494432] [43.7157208 7.3486653] [43.7148039 7.3470721] [43.7143366 7.3454627]]"))
 
-([NiceSPb_Class150565] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150566]))
-
-([NiceSPb_Class150566] of  Way
-
-	(id "235975234")
-	(source "[[43.7169022 7.3496967] [43.7166119 7.3494526]]"))
-
-([NiceSPb_Class150567] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150568]))
-
 ([NiceSPb_Class150568] of  Way
 
 	(id "235975472")
 	(poly [NiceSPb_Class210320])
 	(source "[[43.7200273 7.3700142] [43.7201156 7.3695463] [43.7202202 7.3690179] [43.7203617 7.3684171] [43.720507 7.3679717] [43.7206544 7.3676552] [43.7208503 7.3672624] [43.7210421 7.3669552] [43.7213675 7.366469] [43.7219459 7.365665] [43.722117 7.3653726] [43.7222692 7.3650536] [43.7224126 7.3646767] [43.7225202 7.364316] [43.7226045 7.3639309] [43.7226519 7.3636493] [43.7226811 7.3633423] [43.7227035 7.3629977] [43.7228127 7.3612869] [43.7228604 7.360353] [43.7228734 7.3600438] [43.722872 7.3596629] [43.7228449 7.3592961] [43.7227979 7.3589353] [43.722747 7.3586512] [43.7226719 7.3583659] [43.7224902 7.3577741] [43.7223288 7.3572925] [43.7221645 7.3568393] [43.7219902 7.356427] [43.7218097 7.3560681] [43.7216245 7.3557448] [43.7195408 7.3524204] [43.7192142 7.3519188] [43.7189398 7.3515245] [43.7185899 7.3510858] [43.7183213 7.3507975] [43.7181315 7.3506166] [43.7179447 7.3504578] [43.7168993 7.3496873]]"))
-
-([NiceSPb_Class150569] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150570]))
 
 ([NiceSPb_Class150570] of  Way
 
@@ -946,31 +427,11 @@
 	(poly [NiceSPb_Class210310])
 	(source "[[43.7200873 7.3765118] [43.7199334 7.3761217] [43.7197394 7.3753102] [43.7196406 7.3741946] [43.7196599 7.3722713] [43.7200273 7.3700142]]"))
 
-([NiceSPb_Class150571] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150572]))
-
 ([NiceSPb_Class150572] of  Way
 
 	(id "235975839")
 	(poly [NiceSPb_Class210283])
 	(source "[[43.7218562 7.379713] [43.7214405 7.3791003] [43.7211313 7.3786014] [43.7208551 7.3780838] [43.720574 7.3775272] [43.7203521 7.3770887] [43.720229 7.3768392] [43.7200873 7.3765118]]"))
-
-([NiceSPb_Class150573] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150574]))
-
-([NiceSPb_Class150574] of  Way
-
-	(id "235975835")
-	(source "[[43.7221587 7.3802456] [43.7218388 7.3797412]]"))
-
-([NiceSPb_Class150575] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150576]))
 
 ([NiceSPb_Class150576] of  Way
 
@@ -978,21 +439,11 @@
 	(poly [NiceSPb_Class210217])
 	(source "[[43.7229951 7.3819876] [43.7229079 7.3816887] [43.7228042 7.3814164] [43.7226705 7.3810959] [43.722497 7.38077] [43.7222246 7.3803207]]"))
 
-([NiceSPb_Class150577] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150578]))
-
 ([NiceSPb_Class150578] of  Way
 
 	(id "235975833")
 	(poly [NiceSPb_Class210200])
 	(source "[[43.7234816 7.3896614] [43.7236649 7.3890084] [43.7238122 7.3881903] [43.7238761 7.386817] [43.7237384 7.3851164] [43.7234187 7.3834133] [43.7229951 7.3819876]]"))
-
-([NiceSPb_Class150579] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150580]))
 
 ([NiceSPb_Class150580] of  Way
 
@@ -1000,21 +451,11 @@
 	(poly [NiceSPb_Class210184])
 	(source "[[43.7220492 7.391728] [43.7227634 7.3909368] [43.723062 7.3905319] [43.7233412 7.3900114] [43.7234816 7.3896614]]"))
 
-([NiceSPb_Class150581] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150582]))
-
 ([NiceSPb_Class150582] of  Way
 
 	(id "235975836")
 	(poly [NiceSPb_Class210168])
 	(source "[[43.7209529 7.3931369] [43.7214551 7.3923933] [43.7220492 7.391728]]"))
-
-([NiceSPb_Class150583] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150584]))
 
 ([NiceSPb_Class150584] of  Way
 
@@ -1022,21 +463,11 @@
 	(poly [NiceSPb_Class210157])
 	(source "[[43.7203826 7.3969967] [43.7203511 7.3967781] [43.7203307 7.396566] [43.7203104 7.3962792] [43.7203045 7.3959914] [43.7203235 7.3955335] [43.7203676 7.3951067] [43.7204286 7.3947148] [43.7205164 7.394329] [43.7206128 7.3940074] [43.7207106 7.3937197] [43.7208328 7.393418] [43.7209529 7.3931369]]"))
 
-([NiceSPb_Class150585] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150586]))
-
 ([NiceSPb_Class150586] of  Way
 
 	(id "235975834")
 	(poly [NiceSPb_Class210126])
 	(source "[[43.7210538 7.3994984] [43.7206951 7.3984282] [43.7203826 7.3969967]]"))
-
-([NiceSPb_Class150587] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150588]))
 
 ([NiceSPb_Class150588] of  Way
 
@@ -1044,37 +475,17 @@
 	(poly [NiceSPb_Class210102])
 	(source "[[43.7215044 7.4016925] [43.7213998 7.4008879] [43.7213485 7.4005753] [43.7212195 7.4000159] [43.7210538 7.3994984]]"))
 
-([NiceSPb_Class150589] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150590]))
-
 ([NiceSPb_Class150590] of  Way
 
 	(id "235692674")
 	(poly [NiceSPb_Class210058])
 	(source "[[43.737627 7.4185848] [43.7374997 7.4183793] [43.7360382 7.4161953] [43.7351913 7.4146289] [43.7344606 7.4138804] [43.7340362 7.4135479] [43.7335458 7.4132179] [43.7327532 7.4129847] [43.7291405 7.4124295] [43.7274795 7.4118018] [43.7259288 7.4108817] [43.723661 7.4097526] [43.7232268 7.4095756] [43.7225793 7.4094521] [43.7223371 7.4093127] [43.722149 7.4091597] [43.721959 7.4089773] [43.7217961 7.4087359] [43.721709 7.4085349] [43.721645 7.4082693] [43.7214609 7.4064186] [43.7214667 7.4058016] [43.721615 7.4033177] [43.7216112 7.4024762] [43.7215044 7.4016925]]"))
 
-([NiceSPb_Class150591] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150592]))
-
 ([NiceSPb_Class150592] of  Way
 
 	(id "444971012")
 	(poly [NiceSPb_Class210006])
 	(source "[[43.7384327 7.4200088] [43.7382149 7.4195991] [43.7378982 7.4190281] [43.737627 7.4185848]]"))
-
-([NiceSPb_Class150593] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150594]))
-
-([NiceSPb_Class150594] of  Way
-
-	(id "444971006")
-	(source "[[43.7389252 7.4207861] [43.7385714 7.420282] [43.7384327 7.4200088]]"))
 
 ([NiceSPb_Class160000] of  CloFuncall
 
@@ -1091,15 +502,10 @@
 
 ([NiceSPb_Class160003] of  Console
 
-	(direct BACKWARD)
-	(dirways [NiceSPb_Class210392])
-	(edges [NiceSPb_Class210166])
+	(direct FORWARD)
+	(dirways [NiceSPb_Class313864])
+	(edges [NiceSPb_Class313863])
 	(road [NiceSPb_Class150512]))
-
-([NiceSPb_Class160595] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class160596]))
 
 ([NiceSPb_Class160596] of  Way
 
@@ -1107,77 +513,11 @@
 	(poly [NiceSPb_Class210032])
 	(source "[[43.7060206 7.2644402] [43.7059639 7.2642335] [43.7057845 7.2633415] [43.7057108 7.2625099] [43.7056904 7.2619614]]"))
 
-([NiceSPb_Class160597] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class160598]))
-
 ([NiceSPb_Class160598] of  Way
 
 	(id "315735051")
 	(poly [NiceSPb_Class210083])
 	(source "[[43.7065091 7.2658679] [43.7064013 7.2656114] [43.7062612 7.2652781] [43.7060358 7.2647309]]"))
-
-([NiceSPb_Class160599] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150522]))
-
-([NiceSPb_Class160600] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150526]))
-
-([NiceSPb_Class160601] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class160602]))
-
-([NiceSPb_Class160602] of  Way
-
-	(id "257565933")
-	(poly [NiceSPb_Class210160])
-	(source "[[43.7081816 7.2700015] [43.7085688 7.2707096] [43.7090923 7.2722331] [43.7096429 7.2738263] [43.7103835 7.276479] [43.7105503 7.2769994] [43.7107364 7.2774875] [43.7111494 7.2782688]]"))
-
-([NiceSPb_Class160603] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150534]))
-
-([NiceSPb_Class160604] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150538]))
-
-([NiceSPb_Class160605] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150540]))
-
-([NiceSPb_Class160606] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150544]))
-
-([NiceSPb_Class160607] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150546]))
-
-([NiceSPb_Class160608] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150548]))
-
-([NiceSPb_Class160609] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150552]))
-
-([NiceSPb_Class160610] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class160611]))
 
 ([NiceSPb_Class160611] of  Way
 
@@ -1185,145 +525,15 @@
 	(poly [NiceSPb_Class210340])
 	(source "[[43.7067763 7.3130978] [43.7064146 7.3106584] [43.7055517 7.3043846] [43.7044621 7.2964373] [43.7045095 7.2944389]]"))
 
-([NiceSPb_Class160612] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150556]))
-
-([NiceSPb_Class160613] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class160614]))
-
 ([NiceSPb_Class160614] of  Way
 
 	(id "86648662")
 	(poly [NiceSPb_Class210355])
 	(source "[[43.706775 7.3173122] [43.7066328 7.3177022] [43.7064813 7.3180972] [43.7063288 7.3184435] [43.7061717 7.3187544] [43.7059731 7.319091] [43.7057751 7.3193803] [43.7050812 7.3202948] [43.7048557 7.3205745] [43.7046273 7.3208259] [43.7044254 7.321001] [43.7042372 7.3211485] [43.7040483 7.3212655] [43.7036422 7.3215292] [43.7031865 7.3218383] [43.7028829 7.3221085] [43.7026566 7.3223582] [43.7024047 7.3226933] [43.7021706 7.3230868] [43.7019622 7.3235366] [43.7018199 7.3239365] [43.701719 7.3243209] [43.7016621 7.3245764] [43.7016137 7.3248721] [43.7015799 7.3252609] [43.7015713 7.3256466] [43.7015849 7.3260182] [43.7016253 7.3264216] [43.7016801 7.3267573] [43.7017675 7.3271259] [43.7018744 7.3274859] [43.7020049 7.3278337] [43.7021353 7.3281324] [43.7023159 7.3284425] [43.7025095 7.3287213] [43.702719 7.3289727] [43.7029365 7.3291986] [43.7032638 7.3294795] [43.7036037 7.3297343] [43.7051181 7.3308506] [43.7054306 7.3310566] [43.7057504 7.3312482] [43.7059648 7.3313637] [43.7061778 7.3314617]]"))
 
-([NiceSPb_Class160615] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150562]))
-
-([NiceSPb_Class160616] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150564]))
-
-([NiceSPb_Class160617] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150568]))
-
-([NiceSPb_Class160618] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150570]))
-
-([NiceSPb_Class160619] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150572]))
-
-([NiceSPb_Class160620] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150576]))
-
-([NiceSPb_Class160621] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150578]))
-
-([NiceSPb_Class160622] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150580]))
-
-([NiceSPb_Class160623] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150582]))
-
-([NiceSPb_Class160624] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150584]))
-
-([NiceSPb_Class160625] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150586]))
-
-([NiceSPb_Class160626] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150588]))
-
-([NiceSPb_Class160627] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150590]))
-
-([NiceSPb_Class160628] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150592]))
-
-([NiceSPb_Class160715] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140066]))
-
-([NiceSPb_Class160716] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140068]))
-
-([NiceSPb_Class160717] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140070]))
-
-([NiceSPb_Class160718] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class140072]))
-
-([NiceSPb_Class160719] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class130019]))
-
-([NiceSPb_Class160720] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140076]))
-
-([NiceSPb_Class160721] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140078]))
-
-([NiceSPb_Class160722] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class140080]))
-
-([NiceSPb_Class160723] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150112]))
-
 ([NiceSPb_Class170000] of  CloFuncall
 
 	(source "(invoke-later ("))
-
-([NiceSPb_Class170001] of  Way
-
-	(id "113494801")
-	(source "[[43.7183342 7.2894604] [43.7206914 7.2910912] [43.7209783 7.2912306] [43.7212652 7.2913057] [43.7213816 7.2913272]]"))
 
 ([NiceSPb_Class170002] of  CloFuncall
 
@@ -1334,7 +544,7 @@
 	(final_actions [NiceSPb_Class130004])
 	(finish_type AND)
 	(initial_actions [NiceSPb_Class130003])
-	(next_tasks [NiceSPb_Class240066])
+	(next_tasks [NiceSPb_Class240000])
 	(task_scheme
 		[NiceSPb_Class130003]
 		[NiceSPb_Class130004]
@@ -1468,11 +678,6 @@
 		"43.7396447"
 		"43.7389252"))
 
-([NiceSPb_Class190003] of  Way
-
-	(id "113494803")
-	(source "[[43.7182799 7.2895677] [43.719288 7.290265] [43.7201409 7.2908444] [43.7205829 7.2911126] [43.7209551 7.2912628] [43.7212652 7.2913057]]"))
-
 ([NiceSPb_Class20000] of  Instruction
 
 	(source "(path/set-functions-dir\n osm.path/init-point-osm\n osm.path/find-sequels-osm\n path/point-equal\n osm.path/simple-dist-osm\n osm.path/display-points-osm\n osm.path/wrong-direction-osm)\n(path/trace true)")
@@ -1508,16 +713,6 @@
 ([NiceSPb_Class200005] of  CloFuncall
 
 	(source "(replace {4 3} [2 5 6 4 7 8 4 9 0])"))
-
-([NiceSPb_Class200006] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class150528]))
-
-([NiceSPb_Class200007] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class150528]))
 
 ([NiceSPb_Class20001] of  CloFunction
 
@@ -1893,47 +1088,6 @@
 		"43.7207106"
 		"43.7208328"
 		"43.7209529"))
-
-([NiceSPb_Class210160] of  Edge
-
-	(label "257565933")
-	(latitude "43 42.58")
-	(line [OSMData_Class60072])
-	(lineColor "FFFF6800")
-	(longitude "7 16.45")
-	(playground-index 0)
-	(points
-		"43 42.49 7 16.2"
-		"43 42.51 7 16.24"
-		"43 42.55 7 16.33"
-		"43 42.58 7 16.43"
-		"43 42.62 7 16.59"
-		"43 42.63 7 16.62"
-		"43 42.64 7 16.65"
-		"43 42.67 7 16.69")
-	(relative FALSE)
-	(x 7.2700014)
-	(x2 7.2782373)
-	(xx
-		"7.2700015"
-		"7.2707096"
-		"7.2722331"
-		"7.2738263"
-		"7.276479"
-		"7.2769994"
-		"7.2774875"
-		"7.2782373")
-	(y 43.708183)
-	(y2 43.711143)
-	(yy
-		"43.7081816"
-		"43.7085688"
-		"43.7090923"
-		"43.7096429"
-		"43.7103835"
-		"43.7105503"
-		"43.7107364"
-		"43.7111426"))
 
 ([NiceSPb_Class210166] of  Edge
 
@@ -2904,11 +2058,6 @@
 	(direction "FORWARD")
 	(way [NiceSPb_Class150526]))
 
-([NiceSPb_Class210366] of  Dirway
-
-	(direction "FORWARD")
-	(way [NiceSPb_Class160602]))
-
 ([NiceSPb_Class210367] of  Dirway
 
 	(direction "FORWARD")
@@ -3849,14 +2998,27 @@
 	(text "Menton")
 	(title "Arrived to Menton"))
 
-([NiceSPb_Class240000] of  Goal
+([NiceSPb_Class240000] of  Task
 
-	(a "[7.8487084 43.8436386]")
-	(b "[8.9182372 44.4174918]")
-	(max-length 300)
-	(max-solutions 1)
-	(status "START")
-	(title "San Remo - Genoa Principe"))
+	(final_actions [NiceSPb_Class260005])
+	(finish_type AND)
+	(initial_actions [NiceSPb_Class240001])
+	(task_scheme
+		[NiceSPb_Class240001]
+		[NiceSPb_Class260002]
+		[NiceSPb_Class260003]
+		[NiceSPb_Class260004]
+		[NiceSPb_Class260005])
+	(title "San-Remo - Genova"))
+
+([NiceSPb_Class240001] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class260002])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class310273])
+	(spd "?speed")
+	(title "San Remo - Albenga"))
 
 ([NiceSPb_Class240002] of  Edge
 
@@ -4826,56 +3988,6 @@
 		"43.7848457"
 		"43.7848051"))
 
-([NiceSPb_Class250057] of  Edge
-
-	(label "15462347")
-	(latitude "43 47.06")
-	(line [OSMData_Class60072])
-	(lineColor "FFFF6800")
-	(longitude "7 32.35")
-	(playground-index 0)
-	(points
-		"43 47.1 7 32.53"
-		"43 47.1 7 32.51"
-		"43 47.09 7 32.48"
-		"43 47.08 7 32.44"
-		"43 47.06 7 32.39"
-		"43 47.04 7 32.33"
-		"43 47.03 7 32.3"
-		"43 47.03 7 32.28"
-		"43 47.03 7 32.26"
-		"43 47.03 7 32.24"
-		"43 47.03 7 32.17")
-	(relative FALSE)
-	(x 7.5421867)
-	(x2 7.5362453)
-	(xx
-		"7.5421865"
-		"7.5417956"
-		"7.5413041"
-		"7.5406356"
-		"7.5398772"
-		"7.5388921"
-		"7.5383778"
-		"7.5379433"
-		"7.537622"
-		"7.5372975"
-		"7.5362455")
-	(y 43.78498)
-	(y2 43.78383)
-	(yy
-		"43.7849817"
-		"43.7849457"
-		"43.7848553"
-		"43.7846497"
-		"43.7843617"
-		"43.7840068"
-		"43.7839152"
-		"43.7838449"
-		"43.7838251"
-		"43.7838124"
-		"43.7838286"))
-
 ([NiceSPb_Class250059] of  Edge
 
 	(label "348050492")
@@ -5404,6 +4516,39 @@
 
 	(source "(ru.rules/sp 'Quasiso)"))
 
+([NiceSPb_Class260002] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class260003])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class310646])
+	(spd "?speed")
+	(title "Albenga - Valleggia"))
+
+([NiceSPb_Class260003] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class260004])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class313676])
+	(spd "?speed")
+	(title "Valleggia - Rivarolo Ligure"))
+
+([NiceSPb_Class260004] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class260005])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class313839])
+	(spd "?speed")
+	(title "Rivarolo Ligure - Genoa Principe"))
+
+([NiceSPb_Class260005] of  Stop
+
+	(category "0")
+	(text "Genova Principe")
+	(title "Arrived to Genova"))
+
 ([NiceSPb_Class260013] of  Edge
 
 	(label "22880227")
@@ -5680,6 +4825,7 @@
 	(final_actions [NiceSPb_Class270047])
 	(finish_type AND)
 	(initial_actions [NiceSPb_Class270046])
+	(next_tasks [NiceSPb_Class240000])
 	(task_scheme
 		[NiceSPb_Class270046]
 		[NiceSPb_Class270047])
@@ -5714,17 +4860,6 @@
 	(from1 "Menton")
 	(title "Menton - Ventimiglia")
 	(to1 "Ventimiglia"))
-
-([NiceSPb_Class260047] of  Dirway
-
-	(direction "BACKWARD")
-	(way [NiceSPb_Class260048]))
-
-([NiceSPb_Class260048] of  Way
-
-	(id "15462347")
-	(poly [NiceSPb_Class250057])
-	(source "[[43.7849817 7.5421865] [43.7849457 7.5417956] [43.7848553 7.5413041] [43.7846497 7.5406356] [43.7843617 7.5398772] [43.7840068 7.5388921] [43.7839152 7.5383778] [43.7838449 7.5379433] [43.7838251 7.537622] [43.7838124 7.5372975] [43.7838286 7.5362455]]"))
 
 ([NiceSPb_Class270000] of  HelpMenuItem
 
@@ -6068,10 +5203,413 @@
 	(source "([ni1 ni2]\n  (of/simple-dist \n    [(sv ni1 \"x\") (sv ni1 \"y\")]\n    [(sv ni2 \"x\") (sv ni2 \"y\")]))\n([nis]\n  (let [sgs (p/mk-segments nis)\n         dss (map simple-dist-osm sgs)]\n    (apply + dss)))")
 	(title "simple-dist-osm"))
 
+([NiceSPb_Class300000] of  Goal
+
+	(a "[7.8487084 43.8436386]")
+	(b "[8.223 44.049]")
+	(max-length 300)
+	(max-solutions 1)
+	(status "START")
+	(title "San Remo - Albenga"))
+
+([NiceSPb_Class300002] of  Edge
+
+	(label "377285715")
+	(latitude "44 3.01")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.42")
+	(playground-index 0)
+	(points
+		"44 2.9 8 13.34"
+		"44 2.98 8 13.39"
+		"44 2.99 8 13.4"
+		"44 3 8 13.41"
+		"44 3.01 8 13.42"
+		"44 3.02 8 13.42"
+		"44 3.02 8 13.43"
+		"44 3.03 8 13.44"
+		"44 3.04 8 13.44"
+		"44 3.08 8 13.48"
+		"44 3.1 8 13.49"
+		"44 3.11 8 13.5")
+	(relative FALSE)
+	(x 8.222299)
+	(x2 8.224984)
+	(xx
+		"8.2222985"
+		"8.2232264"
+		"8.2233721"
+		"8.2235322"
+		"8.2236341"
+		"8.2237253"
+		"8.2238066"
+		"8.223991"
+		"8.2240767"
+		"8.2246247"
+		"8.2248527"
+		"8.2249841")
+	(y 44.048416)
+	(y2 44.0519)
+	(yy
+		"44.0484166"
+		"44.0496137"
+		"44.0497926"
+		"44.0500321"
+		"44.0501824"
+		"44.050302"
+		"44.0503825"
+		"44.0505796"
+		"44.0506837"
+		"44.051358"
+		"44.0516684"
+		"44.0518997"))
+
 ([NiceSPb_Class30001] of  CloFunction
 
 	(source "(if p/TRACE\n  (println pfx (map #(sv % \"label\") nis)))\nnis")
 	(title "display-points-osm [pfx nis]"))
+
+([NiceSPb_Class300017] of  Edge
+
+	(label "377286985")
+	(latitude "44 2.89")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.36")
+	(playground-index 0)
+	(points
+		"44 2.82 8 13.3"
+		"44 2.83 8 13.32"
+		"44 2.84 8 13.33"
+		"44 2.85 8 13.33"
+		"44 2.86 8 13.34"
+		"44 2.87 8 13.35"
+		"44 2.94 8 13.41"
+		"44 2.95 8 13.42"
+		"44 2.97 8 13.42")
+	(relative FALSE)
+	(x 8.221711)
+	(x2 8.223742)
+	(xx
+		"8.221711"
+		"8.2219183"
+		"8.2221106"
+		"8.2222233"
+		"8.2223896"
+		"8.2225621"
+		"8.2234692"
+		"8.2236117"
+		"8.2237414")
+	(y 44.047047)
+	(y2 44.04943)
+	(yy
+		"44.0470458"
+		"44.0472344"
+		"44.0473794"
+		"44.0475008"
+		"44.0476878"
+		"44.0478976"
+		"44.0490564"
+		"44.0492413"
+		"44.0494325"))
+
+([NiceSPb_Class300036] of  Edge
+
+	(label "377277155")
+	(latitude "44 2.77")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.26")
+	(playground-index 0)
+	(points
+		"44 2.75 8 13.24"
+		"44 2.77 8 13.25"
+		"44 2.78 8 13.26"
+		"44 2.79 8 13.27"
+		"44 2.8 8 13.27")
+	(relative FALSE)
+	(x 8.2206)
+	(x2 8.221239)
+	(xx
+		"8.2206006"
+		"8.2208613"
+		"8.2209608"
+		"8.2211673"
+		"8.2212394")
+	(y 44.045883)
+	(y2 44.046616)
+	(yy
+		"44.0458833"
+		"44.0461402"
+		"44.0462608"
+		"44.0465249"
+		"44.0466175"))
+
+([NiceSPb_Class300049] of  Edge
+
+	(label "377278566")
+	(latitude "44 2.71")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.21")
+	(playground-index 0)
+	(points
+		"44 2.74 8 13.23"
+		"44 2.72 8 13.21"
+		"44 2.71 8 13.2"
+		"44 2.69 8 13.19")
+	(relative FALSE)
+	(x 8.220436)
+	(x2 8.219907)
+	(xx
+		"8.2204363"
+		"8.2202178"
+		"8.2200695"
+		"8.2199067")
+	(y 44.045616)
+	(y2 44.04481)
+	(yy
+		"44.0456173"
+		"44.0453315"
+		"44.0450909"
+		"44.044811"))
+
+([NiceSPb_Class300052] of  Edge
+
+	(label "377277152")
+	(latitude "44 3.15")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.52")
+	(playground-index 0)
+	(points
+		"44 3.1 8 13.5"
+		"44 3.11 8 13.51"
+		"44 3.12 8 13.51"
+		"44 3.14 8 13.52"
+		"44 3.16 8 13.53"
+		"44 3.18 8 13.53"
+		"44 3.19 8 13.54")
+	(relative FALSE)
+	(x 8.224981)
+	(x2 8.225619)
+	(xx
+		"8.2249809"
+		"8.2251241"
+		"8.2252385"
+		"8.2253502"
+		"8.2254866"
+		"8.2255752"
+		"8.2256191")
+	(y 44.051655)
+	(y2 44.05322)
+	(yy
+		"44.051656"
+		"44.0518689"
+		"44.0520704"
+		"44.0522913"
+		"44.0526191"
+		"44.0529303"
+		"44.053219"))
+
+([NiceSPb_Class300053] of  Edge
+
+	(label "23824677")
+	(latitude "44 2.65")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.16")
+	(playground-index 0)
+	(points
+		"44 2.61 8 13.13"
+		"44 2.67 8 13.18"
+		"44 2.68 8 13.18")
+	(relative FALSE)
+	(x 8.218826)
+	(x2 8.219738)
+	(xx
+		"8.2188267"
+		"8.2196138"
+		"8.2197377")
+	(y 44.043533)
+	(y2 44.044704)
+	(yy
+		"44.0435349"
+		"44.0445402"
+		"44.044705"))
+
+([NiceSPb_Class300056] of  Edge
+
+	(label "343757678")
+	(latitude "44 3.37")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.53")
+	(playground-index 0)
+	(points
+		"44 3.22 8 13.54"
+		"44 3.25 8 13.54"
+		"44 3.35 8 13.53"
+		"44 3.4 8 13.52"
+		"44 3.44 8 13.52"
+		"44 3.51 8 13.51")
+	(relative FALSE)
+	(x 8.225635)
+	(x2 8.225201)
+	(xx
+		"8.2256346"
+		"8.2256007"
+		"8.2254237"
+		"8.2253305"
+		"8.2252711"
+		"8.2252005")
+	(y 44.053684)
+	(y2 44.05853)
+	(yy
+		"44.0536847"
+		"44.0541475"
+		"44.0558089"
+		"44.056611"
+		"44.0572775"
+		"44.0585308"))
+
+([NiceSPb_Class300063] of  Edge
+
+	(label "22878560")
+	(latitude "44 2.33")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 12.8")
+	(playground-index 0)
+	(points
+		"44 2.2 8 12.64"
+		"44 2.27 8 12.75"
+		"44 2.3 8 12.79"
+		"44 2.32 8 12.83"
+		"44 2.35 8 12.86"
+		"44 2.36 8 12.87"
+		"44 2.42 8 12.93"
+		"44 2.46 8 12.97")
+	(relative FALSE)
+	(x 8.210585)
+	(x2 8.216238)
+	(xx
+		"8.210585"
+		"8.2124346"
+		"8.2132247"
+		"8.2138074"
+		"8.2143343"
+		"8.2145278"
+		"8.2154502"
+		"8.2162382")
+	(y 44.036667)
+	(y2 44.041004)
+	(yy
+		"44.036665"
+		"44.0378182"
+		"44.0383239"
+		"44.0387462"
+		"44.039211"
+		"44.0393841"
+		"44.0402678"
+		"44.0410049"))
+
+([NiceSPb_Class300069] of  Edge
+
+	(label "451865520")
+	(latitude "43 50.63")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 50.99")
+	(playground-index 0)
+	(points
+		"43 50.62 7 50.92"
+		"43 50.62 7 50.94"
+		"43 50.64 7 51.06")
+	(relative FALSE)
+	(x 7.8487086)
+	(x2 7.850971)
+	(xx
+		"7.8487084"
+		"7.8490072"
+		"7.8509713")
+	(y 43.84364)
+	(y2 43.84397)
+	(yy
+		"43.8436386"
+		"43.8436823"
+		"43.8439694"))
+
+([NiceSPb_Class300078] of  Edge
+
+	(label "303343214")
+	(latitude "43 50.67")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 51.3")
+	(playground-index 0)
+	(points
+		"43 50.64 7 51.06"
+		"43 50.64 7 51.06"
+		"43 50.65 7 51.15"
+		"43 50.66 7 51.23"
+		"43 50.67 7 51.31"
+		"43 50.69 7 51.39"
+		"43 50.7 7 51.46"
+		"43 50.71 7 51.52"
+		"43 50.71 7 51.55")
+	(relative FALSE)
+	(x 7.850971)
+	(x2 7.859128)
+	(xx
+		"7.8509713"
+		"7.8510185"
+		"7.8524921"
+		"7.8538459"
+		"7.8551662"
+		"7.8565657"
+		"7.8577217"
+		"7.8587302"
+		"7.8591279")
+	(y 43.84397)
+	(y2 43.84515)
+	(yy
+		"43.8439694"
+		"43.843976"
+		"43.844183"
+		"43.8443837"
+		"43.8445757"
+		"43.8447802"
+		"43.8449466"
+		"43.8450917"
+		"43.84515"))
+
+([NiceSPb_Class300094] of  Edge
+
+	(label "303343213")
+	(latitude "43 50.72")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 51.6")
+	(playground-index 0)
+	(points
+		"43 50.71 7 51.55"
+		"43 50.72 7 51.63"
+		"43 50.72 7 51.65")
+	(relative FALSE)
+	(x 7.859128)
+	(x2 7.8607984)
+	(xx
+		"7.8591279"
+		"7.8604849"
+		"7.8607982")
+	(y 43.84515)
+	(y2 43.84539)
+	(yy
+		"43.84515"
+		"43.8453462"
+		"43.8453915"))
 
 ([NiceSPb_Class300100] of  Edge
 
@@ -7639,10 +7177,6 @@
 	(longitude "8 27.17")
 	(playground-index 0)
 	(points
-		"44 17.86 8 27.7"
-		"44 17.83 8 27.63"
-		"44 17.8 8 27.57"
-		"44 17.79 8 27.55"
 		"44 17.77 8 27.52"
 		"44 17.67 8 27.37"
 		"44 17.6 8 27.24"
@@ -7665,13 +7199,9 @@
 		"44 17.09 8 26.69"
 		"44 17.05 8 26.65")
 	(relative FALSE)
-	(x 8.461604)
+	(x 8.458703)
 	(x2 8.444135)
 	(xx
-		"8.4616045"
-		"8.4604853"
-		"8.4595637"
-		"8.4592267"
 		"8.4587028"
 		"8.4561476"
 		"8.4540051"
@@ -7693,13 +7223,9 @@
 		"8.4457941"
 		"8.4448409"
 		"8.4441349")
-	(y 44.29762)
+	(y 44.296177)
 	(y2 44.28417)
 	(yy
-		"44.2976197"
-		"44.2970915"
-		"44.2966717"
-		"44.2964954"
 		"44.2961774"
 		"44.2945814"
 		"44.2932533"
@@ -9087,65 +8613,6 @@
 		"44.4564349"
 		"44.4554852"))
 
-([NiceSPb_Class306484] of  Railroad
-
-	(dirways
-		[NiceSPb_Class306485]
-		[NiceSPb_Class306487]
-		[NiceSPb_Class306489]
-		[NiceSPb_Class306491]
-		[NiceSPb_Class306493]
-		[NiceSPb_Class306495]
-		[NiceSPb_Class306497]
-		[NiceSPb_Class306499]
-		[NiceSPb_Class306501]
-		[NiceSPb_Class306503]
-		[NiceSPb_Class306505]
-		[NiceSPb_Class306507]
-		[NiceSPb_Class306509]
-		[NiceSPb_Class306511]
-		[NiceSPb_Class306513]
-		[NiceSPb_Class306515]
-		[NiceSPb_Class306517]
-		[NiceSPb_Class306519]
-		[NiceSPb_Class306521]
-		[NiceSPb_Class306523]
-		[NiceSPb_Class306525]
-		[NiceSPb_Class306527]
-		[NiceSPb_Class306529]
-		[NiceSPb_Class306531]
-		[NiceSPb_Class306533]
-		[NiceSPb_Class306535]
-		[NiceSPb_Class306537]
-		[NiceSPb_Class306539]
-		[NiceSPb_Class306541]
-		[NiceSPb_Class306543]
-		[NiceSPb_Class306545]
-		[NiceSPb_Class306547]
-		[NiceSPb_Class306549]
-		[NiceSPb_Class306551]
-		[NiceSPb_Class306553]
-		[NiceSPb_Class306555]
-		[NiceSPb_Class306557]
-		[NiceSPb_Class306559]
-		[NiceSPb_Class306561]
-		[NiceSPb_Class306563]
-		[NiceSPb_Class306565]
-		[NiceSPb_Class306567]
-		[NiceSPb_Class306569]
-		[NiceSPb_Class306571]
-		[NiceSPb_Class306573]
-		[NiceSPb_Class306575]
-		[NiceSPb_Class306577]
-		[NiceSPb_Class306579]
-		[NiceSPb_Class306581]
-		[NiceSPb_Class306583]
-		[NiceSPb_Class306585]
-		[NiceSPb_Class306587])
-	(from1 "San Remo")
-	(title "San Remo - Genoa Principe")
-	(to1 "Genoa Principe"))
-
 ([NiceSPb_Class306485] of  Dirway
 
 	(direction "BACKWARD")
@@ -9485,7 +8952,7 @@
 
 	(id "328986872")
 	(poly [NiceSPb_Class300969])
-	(source "[[44.2976197 8.4616045] [44.2970915 8.4604853] [44.2966717 8.4595637] [44.2964954 8.4592267] [44.2961774 8.4587028] [44.2945814 8.4561476] [44.2932533 8.4540051] [44.2926616 8.4532178] [44.2923497 8.4528842] [44.291865 8.4523953] [44.2915642 8.452081] [44.2914791 8.4519761] [44.2912692 8.451753] [44.2908517 8.4513387] [44.2904516 8.450921] [44.2897019 8.4501682] [44.2893918 8.4498954] [44.2890542 8.4495944] [44.2884866 8.4489908] [44.2878666 8.4483041] [44.2869232 8.4472667] [44.2862592 8.4465313] [44.2855926 8.4457941] [44.2847529 8.4448409] [44.2841665 8.4441349]]"))
+	(source "[[44.2961774 8.4587028] [44.2945814 8.4561476] [44.2932533 8.4540051] [44.2926616 8.4532178] [44.2923497 8.4528842] [44.291865 8.4523953] [44.2915642 8.452081] [44.2914791 8.4519761] [44.2912692 8.451753] [44.2908517 8.4513387] [44.2904516 8.450921] [44.2897019 8.4501682] [44.2893918 8.4498954] [44.2890542 8.4495944] [44.2884866 8.4489908] [44.2878666 8.4483041] [44.2869232 8.4472667] [44.2862592 8.4465313] [44.2855926 8.4457941] [44.2847529 8.4448409] [44.2841665 8.4441349]]"))
 
 ([NiceSPb_Class306547] of  Dirway
 
@@ -9718,6 +9185,6621 @@
 	(poly [NiceSPb_Class301955])
 	(source "[[44.4600777 8.9002145] [44.4599436 8.9001974] [44.459575 8.900129] [44.4588326 8.8999604] [44.4585807 8.8998884] [44.4583354 8.8998107] [44.4583119 8.8998] [44.4581023 8.8997059] [44.4574045 8.8993083] [44.4571327 8.89915] [44.4568484 8.8989198] [44.4564349 8.8985402] [44.4554852 8.8974311]]"))
 
+([NiceSPb_Class310127] of  Edge
+
+	(label "32810696")
+	(latitude "43 51.55")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 57.46")
+	(playground-index 0)
+	(points
+		"43 51.56 7 57.49"
+		"43 51.53 7 57.43")
+	(relative FALSE)
+	(x 7.9581566)
+	(x2 7.9572425)
+	(xx
+		"7.9581567"
+		"7.9572426")
+	(y 43.859386)
+	(y2 43.85883)
+	(yy
+		"43.8593851"
+		"43.8588276"))
+
+([NiceSPb_Class310135] of  Edge
+
+	(label "303354270")
+	(latitude "43 51.61")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 57.56")
+	(playground-index 0)
+	(points
+		"43 51.6 7 57.55"
+		"43 51.62 7 57.57")
+	(relative FALSE)
+	(x 7.959128)
+	(x2 7.9595523)
+	(xx
+		"7.9591279"
+		"7.9595525")
+	(y 43.859978)
+	(y2 43.860264)
+	(yy
+		"43.8599793"
+		"43.8602649"))
+
+([NiceSPb_Class310139] of  Edge
+
+	(label "432239264")
+	(latitude "44 2.14")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 12.55")
+	(playground-index 0)
+	(points
+		"44 2.09 8 12.47"
+		"44 2.16 8 12.57"
+		"44 2.19 8 12.63")
+	(relative FALSE)
+	(x 8.20782)
+	(x2 8.210417)
+	(xx
+		"8.2078199"
+		"8.2095353"
+		"8.2104168")
+	(y 44.034847)
+	(y2 44.036556)
+	(yy
+		"44.034848"
+		"44.0360019"
+		"44.0365574"))
+
+([NiceSPb_Class310144] of  Edge
+
+	(label "21259176")
+	(latitude "44 2.01")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 12.35")
+	(playground-index 0)
+	(points
+		"44 1.93 8 12.23"
+		"44 2.09 8 12.47")
+	(relative FALSE)
+	(x 8.203788)
+	(x2 8.20782)
+	(xx
+		"8.2037877"
+		"8.2078199")
+	(y 44.032143)
+	(y2 44.034847)
+	(yy
+		"44.0321419"
+		"44.034848"))
+
+([NiceSPb_Class310148] of  Edge
+
+	(label "445352279")
+	(latitude "43 52.48")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 59.58")
+	(playground-index 0)
+	(points
+		"43 52.56 7 59.66"
+		"43 52.49 7 59.6"
+		"43 52.47 7 59.58"
+		"43 52.45 7 59.56"
+		"43 52.41 7 59.5")
+	(relative FALSE)
+	(x 7.9943457)
+	(x2 7.9917226)
+	(xx
+		"7.9943456"
+		"7.9933445"
+		"7.9929623"
+		"7.9926472"
+		"7.9917224")
+	(y 43.87594)
+	(y2 43.87344)
+	(yy
+		"43.8759384"
+		"43.8748813"
+		"43.8745018"
+		"43.8742087"
+		"43.8734404"))
+
+([NiceSPb_Class310152] of  Edge
+
+	(label "445352278")
+	(latitude "43 52.6")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 59.7")
+	(playground-index 0)
+	(points
+		"43 52.64 7 59.74"
+		"43 52.56 7 59.66")
+	(relative FALSE)
+	(x 7.9956226)
+	(x2 7.9943457)
+	(xx
+		"7.9956224"
+		"7.9943456")
+	(y 43.877308)
+	(y2 43.87594)
+	(yy
+		"43.8773073"
+		"43.8759384"))
+
+([NiceSPb_Class310155] of  Edge
+
+	(label "22879056")
+	(latitude "44 1.51")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 11.8")
+	(playground-index 0)
+	(points
+		"44 1.47 8 11.73"
+		"44 1.51 8 11.81"
+		"44 1.55 8 11.87")
+	(relative FALSE)
+	(x 8.195539)
+	(x2 8.197828)
+	(xx
+		"8.1955397"
+		"8.1968904"
+		"8.1978281")
+	(y 44.02451)
+	(y2 44.025803)
+	(yy
+		"44.0245105"
+		"44.0251815"
+		"44.0258033"))
+
+([NiceSPb_Class310157] of  Edge
+
+	(label "445352256")
+	(latitude "43 52.68")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 59.78")
+	(playground-index 0)
+	(points
+		"43 52.73 7 59.82"
+		"43 52.64 7 59.74")
+	(relative FALSE)
+	(x 7.9970407)
+	(x2 7.9956226)
+	(xx
+		"7.9970406"
+		"7.9956224")
+	(y 43.878784)
+	(y2 43.877308)
+	(yy
+		"43.8787855"
+		"43.8773073"))
+
+([NiceSPb_Class310160] of  Edge
+
+	(label "215066668")
+	(latitude "44 1.43")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 11.67")
+	(playground-index 0)
+	(points
+		"44 1.39 8 11.62"
+		"44 1.42 8 11.66"
+		"44 1.45 8 11.7"
+		"44 1.47 8 11.73")
+	(relative FALSE)
+	(x 8.193614)
+	(x2 8.195539)
+	(xx
+		"8.1936137"
+		"8.1942625"
+		"8.1949383"
+		"8.1955397")
+	(y 44.023144)
+	(y2 44.02451)
+	(yy
+		"44.0231422"
+		"44.0237157"
+		"44.0241774"
+		"44.0245105"))
+
+([NiceSPb_Class310164] of  Edge
+
+	(label "445352298")
+	(latitude "43 52.82")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "7 59.91")
+	(playground-index 0)
+	(points
+		"43 52.89 7 59.98"
+		"43 52.85 7 59.94"
+		"43 52.75 7 59.85")
+	(relative FALSE)
+	(x 7.999592)
+	(x2 7.997421)
+	(xx
+		"7.9995918"
+		"7.9989914"
+		"7.9974207")
+	(y 43.88144)
+	(y2 43.879158)
+	(yy
+		"43.8814392"
+		"43.880801"
+		"43.8791579"))
+
+([NiceSPb_Class310168] of  Edge
+
+	(label "22879097")
+	(latitude "44 1.25")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 11.53")
+	(playground-index 0)
+	(points
+		"44 1.13 8 11.48"
+		"44 1.16 8 11.49"
+		"44 1.23 8 11.5"
+		"44 1.26 8 11.51"
+		"44 1.28 8 11.52"
+		"44 1.32 8 11.54"
+		"44 1.34 8 11.56"
+		"44 1.36 8 11.59")
+	(relative FALSE)
+	(x 8.191335)
+	(x2 8.193113)
+	(xx
+		"8.191335"
+		"8.1915202"
+		"8.1917311"
+		"8.1918385"
+		"8.1919915"
+		"8.1923456"
+		"8.1926501"
+		"8.1931136")
+	(y 44.01879)
+	(y2 44.02272)
+	(yy
+		"44.0187917"
+		"44.0194055"
+		"44.0204835"
+		"44.020954"
+		"44.0213331"
+		"44.0219385"
+		"44.0222842"
+		"44.0227199"))
+
+([NiceSPb_Class310174] of  Edge
+
+	(label "22879098")
+	(latitude "44 1.04")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 11.34")
+	(playground-index 0)
+	(points
+		"44 0.96 8 11.19"
+		"44 0.97 8 11.26"
+		"44 1 8 11.32"
+		"44 1.03 8 11.38"
+		"44 1.04 8 11.41"
+		"44 1.06 8 11.43"
+		"44 1.1 8 11.47"
+		"44 1.13 8 11.48")
+	(relative FALSE)
+	(x 8.186529)
+	(x2 8.191335)
+	(xx
+		"8.1865293"
+		"8.1876128"
+		"8.1886583"
+		"8.1896969"
+		"8.1901936"
+		"8.1905372"
+		"8.1910919"
+		"8.191335")
+	(y 44.015934)
+	(y2 44.01879)
+	(yy
+		"44.015933"
+		"44.0162211"
+		"44.0166393"
+		"44.0171334"
+		"44.0174002"
+		"44.0177105"
+		"44.0182948"
+		"44.0187917"))
+
+([NiceSPb_Class310176] of  Edge
+
+	(label "449505159")
+	(latitude "43 53.79")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 1.59")
+	(playground-index 0)
+	(points
+		"43 53.82 8 1.77"
+		"43 53.78 8 1.52"
+		"43 53.76 8 1.45"
+		"43 53.76 8 1.42"
+		"43 53.75 8 1.41")
+	(relative FALSE)
+	(x 8.029543)
+	(x2 8.023528)
+	(xx
+		"8.0295429"
+		"8.0254062"
+		"8.0241807"
+		"8.0237154"
+		"8.0235279")
+	(y 43.897)
+	(y2 43.8959)
+	(yy
+		"43.8969995"
+		"43.8962515"
+		"43.8960224"
+		"43.8959349"
+		"43.8959004"))
+
+([NiceSPb_Class310191] of  Edge
+
+	(label "451868847")
+	(latitude "43 53.86")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 2")
+	(playground-index 0)
+	(points
+		"43 53.9 8 2.21"
+		"43 53.88 8 2.1"
+		"43 53.84 8 1.88"
+		"43 53.83 8 1.8")
+	(relative FALSE)
+	(x 8.036762)
+	(x2 8.030014)
+	(xx
+		"8.0367627"
+		"8.0350635"
+		"8.0313642"
+		"8.0300143")
+	(y 43.898346)
+	(y2 43.89713)
+	(yy
+		"43.8983473"
+		"43.8980385"
+		"43.897368"
+		"43.8971291"))
+
+([NiceSPb_Class310197] of  Edge
+
+	(label "448975379")
+	(latitude "44 0.63")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 10.47")
+	(playground-index 0)
+	(points
+		"44 0.67 8 10.55"
+		"44 0.66 8 10.52"
+		"44 0.63 8 10.45"
+		"44 0.6 8 10.42"
+		"44 0.58 8 10.39")
+	(relative FALSE)
+	(x 8.175897)
+	(x2 8.173235)
+	(xx
+		"8.1758963"
+		"8.1752564"
+		"8.1741866"
+		"8.1736375"
+		"8.1732348")
+	(y 44.01118)
+	(y2 44.009674)
+	(yy
+		"44.0111795"
+		"44.0109199"
+		"44.0104228"
+		"44.0100448"
+		"44.0096755"))
+
+([NiceSPb_Class310199] of  Edge
+
+	(label "451868846")
+	(latitude "43 53.91")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 2.25")
+	(playground-index 0)
+	(points
+		"43 53.92 8 2.29"
+		"43 53.9 8 2.21")
+	(relative FALSE)
+	(x 8.038225)
+	(x2 8.036762)
+	(xx
+		"8.0382251"
+		"8.0367627")
+	(y 43.898613)
+	(y2 43.898346)
+	(yy
+		"43.8986129"
+		"43.8983473"))
+
+([NiceSPb_Class310207] of  Edge
+
+	(label "726166140")
+	(latitude "44 0.48")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 10.26")
+	(playground-index 0)
+	(points
+		"44 0.57 8 10.39"
+		"44 0.54 8 10.36"
+		"44 0.54 8 10.36"
+		"44 0.5 8 10.31"
+		"44 0.48 8 10.3"
+		"44 0.47 8 10.28"
+		"44 0.45 8 10.24"
+		"44 0.44 8 10.23"
+		"44 0.43 8 10.21"
+		"44 0.42 8 10.19"
+		"44 0.41 8 10.18"
+		"44 0.41 8 10.16"
+		"44 0.4 8 10.15"
+		"44 0.39 8 10.13")
+	(relative FALSE)
+	(x 8.173093)
+	(x2 8.168913)
+	(xx
+		"8.1730929"
+		"8.1727402"
+		"8.1725999"
+		"8.1718782"
+		"8.17162"
+		"8.1712932"
+		"8.1707302"
+		"8.1704566"
+		"8.1701479"
+		"8.1698639"
+		"8.1696704"
+		"8.1693942"
+		"8.169193"
+		"8.1689131")
+	(y 44.009506)
+	(y2 44.006565)
+	(yy
+		"44.0095057"
+		"44.0090615"
+		"44.0089181"
+		"44.0082565"
+		"44.0080455"
+		"44.0078177"
+		"44.0074569"
+		"44.0072871"
+		"44.0071078"
+		"44.0069688"
+		"44.0068743"
+		"44.0067625"
+		"44.0066853"
+		"44.0065645"))
+
+([NiceSPb_Class310222] of  Edge
+
+	(label "445352293")
+	(latitude "43 55.2")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 3.92")
+	(playground-index 0)
+	(points
+		"43 55.24 8 3.96"
+		"43 55.22 8 3.93"
+		"43 55.18 8 3.89"
+		"43 55.17 8 3.88")
+	(relative FALSE)
+	(x 8.065976)
+	(x2 8.064662)
+	(xx
+		"8.0659765"
+		"8.0655082"
+		"8.0648561"
+		"8.0646622")
+	(y 43.92067)
+	(y2 43.91946)
+	(yy
+		"43.9206678"
+		"43.9202596"
+		"43.9196425"
+		"43.9194584"))
+
+([NiceSPb_Class310228] of  Edge
+
+	(label "29102227")
+	(latitude "43 59.92")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 9.86")
+	(playground-index 0)
+	(points
+		"44 0.2 8 9.91"
+		"44 0.19 8 9.91"
+		"44 0.17 8 9.89"
+		"44 0.14 8 9.88"
+		"44 0.12 8 9.87"
+		"44 0.1 8 9.87"
+		"44 0.07 8 9.86"
+		"44 0.05 8 9.86"
+		"44 0.01 8 9.86"
+		"43 59.99 8 9.85"
+		"43 59.95 8 9.86"
+		"43 59.93 8 9.86"
+		"43 59.86 8 9.86"
+		"43 59.85 8 9.86"
+		"43 59.84 8 9.86"
+		"43 59.83 8 9.86"
+		"43 59.82 8 9.86"
+		"43 59.79 8 9.86"
+		"43 59.77 8 9.86"
+		"43 59.75 8 9.85"
+		"43 59.73 8 9.84"
+		"43 59.71 8 9.84"
+		"43 59.68 8 9.82"
+		"43 59.65 8 9.8")
+	(relative FALSE)
+	(x 8.165238)
+	(x2 8.163411)
+	(xx
+		"8.1652385"
+		"8.1651174"
+		"8.1649164"
+		"8.1647102"
+		"8.1645706"
+		"8.1644632"
+		"8.1643615"
+		"8.1643165"
+		"8.1642547"
+		"8.1642432"
+		"8.1643033"
+		"8.1643591"
+		"8.1643719"
+		"8.1643731"
+		"8.1643801"
+		"8.1643881"
+		"8.1643968"
+		"8.1643814"
+		"8.1643244"
+		"8.1642312"
+		"8.1640636"
+		"8.1639213"
+		"8.1636442"
+		"8.1634107")
+	(y 44.00333)
+	(y2 43.994137)
+	(yy
+		"44.0033307"
+		"44.0031308"
+		"44.002755"
+		"44.0023327"
+		"44.0019932"
+		"44.0015938"
+		"44.0011931"
+		"44.0007746"
+		"44.0001665"
+		"43.9998221"
+		"43.9991924"
+		"43.9988419"
+		"43.9977229"
+		"43.9974386"
+		"43.9973351"
+		"43.9972053"
+		"43.9969616"
+		"43.9965801"
+		"43.9961916"
+		"43.9958787"
+		"43.9954271"
+		"43.9951095"
+		"43.9946024"
+		"43.9941356"))
+
+([NiceSPb_Class310230] of  Edge
+
+	(label "445352274")
+	(latitude "43 55.34")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 4.12")
+	(playground-index 0)
+	(points
+		"43 55.45 8 4.27"
+		"43 55.42 8 4.23"
+		"43 55.39 8 4.18"
+		"43 55.35 8 4.1"
+		"43 55.29 8 4.02"
+		"43 55.24 8 3.96")
+	(relative FALSE)
+	(x 8.071195)
+	(x2 8.065976)
+	(xx
+		"8.0711948"
+		"8.0704592"
+		"8.0696096"
+		"8.0683558"
+		"8.0670137"
+		"8.0659765")
+	(y 43.92414)
+	(y2 43.92067)
+	(yy
+		"43.9241404"
+		"43.9237227"
+		"43.9232259"
+		"43.9224584"
+		"43.9215058"
+		"43.9206678"))
+
+([NiceSPb_Class310236] of  Edge
+
+	(label "452411470")
+	(latitude "43 55.48")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 4.32")
+	(playground-index 0)
+	(points
+		"43 55.5 8 4.37"
+		"43 55.45 8 4.28")
+	(relative FALSE)
+	(x 8.072761)
+	(x2 8.071329)
+	(xx
+		"8.0727603"
+		"8.0713293")
+	(y 43.92505)
+	(y2 43.924213)
+	(yy
+		"43.9250507"
+		"43.9242152"))
+
+([NiceSPb_Class310245] of  Edge
+
+	(label "23824478")
+	(latitude "43 57.83")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 8.7")
+	(playground-index 0)
+	(points
+		"43 57.93 8 8.84"
+		"43 57.92 8 8.83"
+		"43 57.9 8 8.83"
+		"43 57.88 8 8.81"
+		"43 57.87 8 8.8"
+		"43 57.85 8 8.79"
+		"43 57.84 8 8.77"
+		"43 57.82 8 8.76"
+		"43 57.81 8 8.74"
+		"43 57.8 8 8.72"
+		"43 57.79 8 8.7"
+		"43 57.78 8 8.68"
+		"43 57.73 8 8.57")
+	(relative FALSE)
+	(x 8.147284)
+	(x2 8.142835)
+	(xx
+		"8.1472839"
+		"8.1472385"
+		"8.1470972"
+		"8.1469033"
+		"8.1466948"
+		"8.1464526"
+		"8.1461762"
+		"8.1459284"
+		"8.1456676"
+		"8.1453296"
+		"8.1450069"
+		"8.1446255"
+		"8.1428342")
+	(y 43.96543)
+	(y2 43.962173)
+	(yy
+		"43.9654317"
+		"43.9653168"
+		"43.96503"
+		"43.9647173"
+		"43.9644465"
+		"43.964173"
+		"43.9639179"
+		"43.963712"
+		"43.9635208"
+		"43.963321"
+		"43.963156"
+		"43.962973"
+		"43.9621731"))
+
+([NiceSPb_Class310251] of  Edge
+
+	(label "445352262")
+	(latitude "43 56.34")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 6.23")
+	(playground-index 0)
+	(points
+		"43 56.35 8 6.25"
+		"43 56.33 8 6.2")
+	(relative FALSE)
+	(x 8.1042185)
+	(x2 8.103313)
+	(xx
+		"8.1042186"
+		"8.1033135")
+	(y 43.93914)
+	(y2 43.938766)
+	(yy
+		"43.9391413"
+		"43.9387663"))
+
+([NiceSPb_Class310256] of  Edge
+
+	(label "38840472")
+	(latitude "43 57.69")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 8.49")
+	(playground-index 0)
+	(points
+		"43 57.7 8 8.51"
+		"43 57.68 8 8.46")
+	(relative FALSE)
+	(x 8.141874)
+	(x2 8.141005)
+	(xx
+		"8.1418741"
+		"8.1410049")
+	(y 43.961742)
+	(y2 43.96135)
+	(yy
+		"43.9617421"
+		"43.9613507"))
+
+([NiceSPb_Class310260] of  Edge
+
+	(label "451901017")
+	(latitude "43 57.64")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 8.38")
+	(playground-index 0)
+	(points
+		"43 57.68 8 8.46"
+		"43 57.68 8 8.45"
+		"43 57.67 8 8.42"
+		"43 57.66 8 8.41"
+		"43 57.65 8 8.39"
+		"43 57.64 8 8.36"
+		"43 57.62 8 8.33"
+		"43 57.61 8 8.31")
+	(relative FALSE)
+	(x 8.141005)
+	(x2 8.138449)
+	(xx
+		"8.1410049"
+		"8.1408174"
+		"8.1403279"
+		"8.1402009"
+		"8.1397631"
+		"8.1392545"
+		"8.1388307"
+		"8.1384491")
+	(y 43.96135)
+	(y2 43.960133)
+	(yy
+		"43.9613507"
+		"43.9612655"
+		"43.9610904"
+		"43.961045"
+		"43.9608503"
+		"43.9605889"
+		"43.9603611"
+		"43.9601335"))
+
+([NiceSPb_Class310266] of  Edge
+
+	(label "445352255")
+	(latitude "43 57.51")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 8.19")
+	(playground-index 0)
+	(points
+		"43 57.53 8 8.22"
+		"43 57.48 8 8.17")
+	(relative FALSE)
+	(x 8.136944)
+	(x2 8.136092)
+	(xx
+		"8.1369442"
+		"8.1360919")
+	(y 43.958847)
+	(y2 43.95801)
+	(yy
+		"43.958847"
+		"43.9580115"))
+
+([NiceSPb_Class310271] of  Edge
+
+	(label "758692400")
+	(latitude "43 57.57")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 8.27")
+	(playground-index 0)
+	(points
+		"43 57.61 8 8.31"
+		"43 57.59 8 8.29"
+		"43 57.57 8 8.27"
+		"43 57.56 8 8.25"
+		"43 57.53 8 8.22")
+	(relative FALSE)
+	(x 8.138511)
+	(x2 8.136992)
+	(xx
+		"8.1385106"
+		"8.1381407"
+		"8.1377757"
+		"8.1374351"
+		"8.1369925")
+	(y 43.96011)
+	(y2 43.958824)
+	(yy
+		"43.9601084"
+		"43.9598549"
+		"43.9595745"
+		"43.9592607"
+		"43.9588248"))
+
+([NiceSPb_Class310273] of  Railroad
+
+	(dirways
+		[NiceSPb_Class310274]
+		[NiceSPb_Class310276]
+		[NiceSPb_Class310278]
+		[NiceSPb_Class310280]
+		[NiceSPb_Class310281]
+		[NiceSPb_Class310283]
+		[NiceSPb_Class310285]
+		[NiceSPb_Class310286]
+		[NiceSPb_Class310288]
+		[NiceSPb_Class310290]
+		[NiceSPb_Class310292]
+		[NiceSPb_Class310294]
+		[NiceSPb_Class310295]
+		[NiceSPb_Class310297]
+		[NiceSPb_Class310299]
+		[NiceSPb_Class310301]
+		[NiceSPb_Class310302]
+		[NiceSPb_Class310304]
+		[NiceSPb_Class310306]
+		[NiceSPb_Class310308]
+		[NiceSPb_Class310309]
+		[NiceSPb_Class310311]
+		[NiceSPb_Class310312]
+		[NiceSPb_Class310314]
+		[NiceSPb_Class310316]
+		[NiceSPb_Class310318]
+		[NiceSPb_Class310320]
+		[NiceSPb_Class310322]
+		[NiceSPb_Class310323]
+		[NiceSPb_Class310324]
+		[NiceSPb_Class310326]
+		[NiceSPb_Class310327]
+		[NiceSPb_Class310329]
+		[NiceSPb_Class310331]
+		[NiceSPb_Class310332]
+		[NiceSPb_Class310334]
+		[NiceSPb_Class310336]
+		[NiceSPb_Class310338]
+		[NiceSPb_Class310340]
+		[NiceSPb_Class310341]
+		[NiceSPb_Class310343]
+		[NiceSPb_Class310345]
+		[NiceSPb_Class310347]
+		[NiceSPb_Class310348]
+		[NiceSPb_Class310350]
+		[NiceSPb_Class310352]
+		[NiceSPb_Class310354])
+	(from1 "San Remo")
+	(title "San Remo - Albenga")
+	(to1 "Albenga"))
+
+([NiceSPb_Class310274] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310275]))
+
+([NiceSPb_Class310275] of  Way
+
+	(id "451865520")
+	(poly [NiceSPb_Class300069])
+	(source "[[43.8436386 7.8487084] [43.8436823 7.8490072] [43.8439694 7.8509713]]"))
+
+([NiceSPb_Class310276] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310277]))
+
+([NiceSPb_Class310277] of  Way
+
+	(id "303343214")
+	(poly [NiceSPb_Class300078])
+	(source "[[43.8439694 7.8509713] [43.843976 7.8510185] [43.844183 7.8524921] [43.8443837 7.8538459] [43.8445757 7.8551662] [43.8447802 7.8565657] [43.8449466 7.8577217] [43.8450917 7.8587302] [43.84515 7.8591279]]"))
+
+([NiceSPb_Class310278] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310279]))
+
+([NiceSPb_Class310279] of  Way
+
+	(id "303343213")
+	(poly [NiceSPb_Class300094])
+	(source "[[43.84515 7.8591279] [43.8453462 7.8604849] [43.8453915 7.8607982]]"))
+
+([NiceSPb_Class310280] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306486]))
+
+([NiceSPb_Class310281] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310282]))
+
+([NiceSPb_Class310282] of  Way
+
+	(id "32810696")
+	(poly [NiceSPb_Class310127])
+	(source "[[43.8593851 7.9581567] [43.8588276 7.9572426]]"))
+
+([NiceSPb_Class310283] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310284]))
+
+([NiceSPb_Class310284] of  Way
+
+	(id "303354270")
+	(poly [NiceSPb_Class310135])
+	(source "[[43.8599793 7.9591279] [43.8602649 7.9595525]]"))
+
+([NiceSPb_Class310285] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306488]))
+
+([NiceSPb_Class310286] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310287]))
+
+([NiceSPb_Class310287] of  Way
+
+	(id "445352279")
+	(poly [NiceSPb_Class310148])
+	(source "[[43.8759384 7.9943456] [43.8748813 7.9933445] [43.8745018 7.9929623] [43.8742087 7.9926472] [43.8734404 7.9917224]]"))
+
+([NiceSPb_Class310288] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310289]))
+
+([NiceSPb_Class310289] of  Way
+
+	(id "445352278")
+	(poly [NiceSPb_Class310152])
+	(source "[[43.8773073 7.9956224] [43.8759384 7.9943456]]"))
+
+([NiceSPb_Class310290] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310291]))
+
+([NiceSPb_Class310291] of  Way
+
+	(id "445352256")
+	(poly [NiceSPb_Class310157])
+	(source "[[43.8787855 7.9970406] [43.8773073 7.9956224]]"))
+
+([NiceSPb_Class310292] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310293]))
+
+([NiceSPb_Class310293] of  Way
+
+	(id "445352298")
+	(poly [NiceSPb_Class310164])
+	(source "[[43.8814392 7.9995918] [43.880801 7.9989914] [43.8791579 7.9974207]]"))
+
+([NiceSPb_Class310294] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306490]))
+
+([NiceSPb_Class310295] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310296]))
+
+([NiceSPb_Class310296] of  Way
+
+	(id "449505159")
+	(poly [NiceSPb_Class310176])
+	(source "[[43.8969995 8.0295429] [43.8962515 8.0254062] [43.8960224 8.0241807] [43.8959349 8.0237154] [43.8959004 8.0235279]]"))
+
+([NiceSPb_Class310297] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310298]))
+
+([NiceSPb_Class310298] of  Way
+
+	(id "451868847")
+	(poly [NiceSPb_Class310191])
+	(source "[[43.8983473 8.0367627] [43.8980385 8.0350635] [43.897368 8.0313642] [43.8971291 8.0300143]]"))
+
+([NiceSPb_Class310299] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310300]))
+
+([NiceSPb_Class310300] of  Way
+
+	(id "451868846")
+	(poly [NiceSPb_Class310199])
+	(source "[[43.8986129 8.0382251] [43.8983473 8.0367627]]"))
+
+([NiceSPb_Class310301] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306494]))
+
+([NiceSPb_Class310302] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310303]))
+
+([NiceSPb_Class310303] of  Way
+
+	(id "445352293")
+	(poly [NiceSPb_Class310222])
+	(source "[[43.9206678 8.0659765] [43.9202596 8.0655082] [43.9196425 8.0648561] [43.9194584 8.0646622]]"))
+
+([NiceSPb_Class310304] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310305]))
+
+([NiceSPb_Class310305] of  Way
+
+	(id "445352274")
+	(poly [NiceSPb_Class310230])
+	(source "[[43.9241404 8.0711948] [43.9237227 8.0704592] [43.9232259 8.0696096] [43.9224584 8.0683558] [43.9215058 8.0670137] [43.9206678 8.0659765]]"))
+
+([NiceSPb_Class310306] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310307]))
+
+([NiceSPb_Class310307] of  Way
+
+	(id "452411470")
+	(poly [NiceSPb_Class310236])
+	(source "[[43.9250507 8.0727603] [43.9242152 8.0713293]]"))
+
+([NiceSPb_Class310308] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306496]))
+
+([NiceSPb_Class310309] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310310]))
+
+([NiceSPb_Class310310] of  Way
+
+	(id "445352262")
+	(poly [NiceSPb_Class310251])
+	(source "[[43.9391413 8.1042186] [43.9387663 8.1033135]]"))
+
+([NiceSPb_Class310311] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306498]))
+
+([NiceSPb_Class310312] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310313]))
+
+([NiceSPb_Class310313] of  Way
+
+	(id "445352255")
+	(poly [NiceSPb_Class310266])
+	(source "[[43.958847 8.1369442] [43.9580115 8.1360919]]"))
+
+([NiceSPb_Class310314] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310315]))
+
+([NiceSPb_Class310315] of  Way
+
+	(id "758692400")
+	(poly [NiceSPb_Class310271])
+	(source "[[43.9601084 8.1385106] [43.9598549 8.1381407] [43.9595745 8.1377757] [43.9592607 8.1374351] [43.9588248 8.1369925]]"))
+
+([NiceSPb_Class310316] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310317]))
+
+([NiceSPb_Class310317] of  Way
+
+	(id "451901017")
+	(poly [NiceSPb_Class310260])
+	(source "[[43.9613507 8.1410049] [43.9612655 8.1408174] [43.9610904 8.1403279] [43.961045 8.1402009] [43.9608503 8.1397631] [43.9605889 8.1392545] [43.9603611 8.1388307] [43.9601335 8.1384491]]"))
+
+([NiceSPb_Class310318] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310319]))
+
+([NiceSPb_Class310319] of  Way
+
+	(id "38840472")
+	(poly [NiceSPb_Class310256])
+	(source "[[43.9617421 8.1418741] [43.9613507 8.1410049]]"))
+
+([NiceSPb_Class310320] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310321]))
+
+([NiceSPb_Class310321] of  Way
+
+	(id "23824478")
+	(poly [NiceSPb_Class310245])
+	(source "[[43.9654317 8.1472839] [43.9653168 8.1472385] [43.96503 8.1470972] [43.9647173 8.1469033] [43.9644465 8.1466948] [43.964173 8.1464526] [43.9639179 8.1461762] [43.963712 8.1459284] [43.9635208 8.1456676] [43.963321 8.1453296] [43.963156 8.1450069] [43.962973 8.1446255] [43.9621731 8.1428342]]"))
+
+([NiceSPb_Class310322] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306500]))
+
+([NiceSPb_Class310323] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306502]))
+
+([NiceSPb_Class310324] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310325]))
+
+([NiceSPb_Class310325] of  Way
+
+	(id "29102227")
+	(poly [NiceSPb_Class310228])
+	(source "[[44.0033307 8.1652385] [44.0031308 8.1651174] [44.002755 8.1649164] [44.0023327 8.1647102] [44.0019932 8.1645706] [44.0015938 8.1644632] [44.0011931 8.1643615] [44.0007746 8.1643165] [44.0001665 8.1642547] [43.9998221 8.1642432] [43.9991924 8.1643033] [43.9988419 8.1643591] [43.9977229 8.1643719] [43.9974386 8.1643731] [43.9973351 8.1643801] [43.9972053 8.1643881] [43.9969616 8.1643968] [43.9965801 8.1643814] [43.9961916 8.1643244] [43.9958787 8.1642312] [43.9954271 8.1640636] [43.9951095 8.1639213] [43.9946024 8.1636442] [43.9941356 8.1634107]]"))
+
+([NiceSPb_Class310326] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306504]))
+
+([NiceSPb_Class310327] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310328]))
+
+([NiceSPb_Class310328] of  Way
+
+	(id "726166140")
+	(poly [NiceSPb_Class310207])
+	(source "[[44.0095057 8.1730929] [44.0090615 8.1727402] [44.0089181 8.1725999] [44.0082565 8.1718782] [44.0080455 8.17162] [44.0078177 8.1712932] [44.0074569 8.1707302] [44.0072871 8.1704566] [44.0071078 8.1701479] [44.0069688 8.1698639] [44.0068743 8.1696704] [44.0067625 8.1693942] [44.0066853 8.169193] [44.0065645 8.1689131]]"))
+
+([NiceSPb_Class310329] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310330]))
+
+([NiceSPb_Class310330] of  Way
+
+	(id "448975379")
+	(poly [NiceSPb_Class310197])
+	(source "[[44.0111795 8.1758963] [44.0109199 8.1752564] [44.0104228 8.1741866] [44.0100448 8.1736375] [44.0096755 8.1732348]]"))
+
+([NiceSPb_Class310331] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306506]))
+
+([NiceSPb_Class310332] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310333]))
+
+([NiceSPb_Class310333] of  Way
+
+	(id "22879098")
+	(poly [NiceSPb_Class310174])
+	(source "[[44.015933 8.1865293] [44.0162211 8.1876128] [44.0166393 8.1886583] [44.0171334 8.1896969] [44.0174002 8.1901936] [44.0177105 8.1905372] [44.0182948 8.1910919] [44.0187917 8.191335]]"))
+
+([NiceSPb_Class310334] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310335]))
+
+([NiceSPb_Class310335] of  Way
+
+	(id "22879097")
+	(poly [NiceSPb_Class310168])
+	(source "[[44.0187917 8.191335] [44.0194055 8.1915202] [44.0204835 8.1917311] [44.020954 8.1918385] [44.0213331 8.1919915] [44.0219385 8.1923456] [44.0222842 8.1926501] [44.0227199 8.1931136]]"))
+
+([NiceSPb_Class310336] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310337]))
+
+([NiceSPb_Class310337] of  Way
+
+	(id "215066668")
+	(poly [NiceSPb_Class310160])
+	(source "[[44.0231422 8.1936137] [44.0237157 8.1942625] [44.0241774 8.1949383] [44.0245105 8.1955397]]"))
+
+([NiceSPb_Class310338] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310339]))
+
+([NiceSPb_Class310339] of  Way
+
+	(id "22879056")
+	(poly [NiceSPb_Class310155])
+	(source "[[44.0245105 8.1955397] [44.0251815 8.1968904] [44.0258033 8.1978281]]"))
+
+([NiceSPb_Class310340] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306508]))
+
+([NiceSPb_Class310341] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310342]))
+
+([NiceSPb_Class310342] of  Way
+
+	(id "21259176")
+	(poly [NiceSPb_Class310144])
+	(source "[[44.0321419 8.2037877] [44.034848 8.2078199]]"))
+
+([NiceSPb_Class310343] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310344]))
+
+([NiceSPb_Class310344] of  Way
+
+	(id "432239264")
+	(poly [NiceSPb_Class310139])
+	(source "[[44.034848 8.2078199] [44.0360019 8.2095353] [44.0365574 8.2104168]]"))
+
+([NiceSPb_Class310345] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310346]))
+
+([NiceSPb_Class310346] of  Way
+
+	(id "22878560")
+	(poly [NiceSPb_Class300063])
+	(source "[[44.036665 8.210585] [44.0378182 8.2124346] [44.0383239 8.2132247] [44.0387462 8.2138074] [44.039211 8.2143343] [44.0393841 8.2145278] [44.0402678 8.2154502] [44.0410049 8.2162382]]"))
+
+([NiceSPb_Class310347] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306510]))
+
+([NiceSPb_Class310348] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310349]))
+
+([NiceSPb_Class310349] of  Way
+
+	(id "23824677")
+	(poly [NiceSPb_Class300053])
+	(source "[[44.0435349 8.2188267] [44.0445402 8.2196138] [44.044705 8.2197377]]"))
+
+([NiceSPb_Class310350] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310351]))
+
+([NiceSPb_Class310351] of  Way
+
+	(id "377278566")
+	(poly [NiceSPb_Class300049])
+	(source "[[44.0456173 8.2204363] [44.0453315 8.2202178] [44.0450909 8.2200695] [44.044811 8.2199067]]"))
+
+([NiceSPb_Class310352] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310353]))
+
+([NiceSPb_Class310353] of  Way
+
+	(id "377277155")
+	(poly [NiceSPb_Class300036])
+	(source "[[44.0458833 8.2206006] [44.0461402 8.2208613] [44.0462608 8.2209608] [44.0465249 8.2211673] [44.0466175 8.2212394]]"))
+
+([NiceSPb_Class310354] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310355]))
+
+([NiceSPb_Class310355] of  Way
+
+	(id "377286985")
+	(poly [NiceSPb_Class300017])
+	(source "[[44.0470458 8.221711] [44.0472344 8.2219183] [44.0473794 8.2221106] [44.0475008 8.2222233] [44.0476878 8.2223896] [44.0478976 8.2225621] [44.0490564 8.2234692] [44.0492413 8.2236117] [44.0494325 8.2237414]]"))
+
+([NiceSPb_Class310356] of  Goal
+
+	(a "[8.223 44.049]")
+	(b "[8.439 44.275]")
+	(max-length 300)
+	(max-solutions 1)
+	(status "START")
+	(title "Albenga - Valleggia"))
+
+([NiceSPb_Class310368] of  Edge
+
+	(label "377276613")
+	(latitude "44 3.62")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.51")
+	(playground-index 0)
+	(points
+		"44 3.52 8 13.51"
+		"44 3.55 8 13.51"
+		"44 3.61 8 13.51"
+		"44 3.65 8 13.51"
+		"44 3.71 8 13.5")
+	(relative FALSE)
+	(x 8.225193)
+	(x2 8.225047)
+	(xx
+		"8.2251926"
+		"8.2251736"
+		"8.2251309"
+		"8.2251029"
+		"8.2250474")
+	(y 44.058712)
+	(y2 44.0619)
+	(yy
+		"44.0587119"
+		"44.0591436"
+		"44.0601421"
+		"44.0608093"
+		"44.0619002"))
+
+([NiceSPb_Class310377] of  Edge
+
+	(label "377276616")
+	(latitude "44 3.99")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.51")
+	(playground-index 0)
+	(points
+		"44 3.97 8 13.5"
+		"44 4.01 8 13.51")
+	(relative FALSE)
+	(x 8.225065)
+	(x2 8.225161)
+	(xx
+		"8.2250652"
+		"8.2251603")
+	(y 44.066093)
+	(y2 44.066902)
+	(yy
+		"44.0660949"
+		"44.0669009"))
+
+([NiceSPb_Class310382] of  Edge
+
+	(label "377276612")
+	(latitude "44 4.18")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.53")
+	(playground-index 0)
+	(points
+		"44 4.02 8 13.51"
+		"44 4.14 8 13.52"
+		"44 4.24 8 13.54"
+		"44 4.33 8 13.55")
+	(relative FALSE)
+	(x 8.225172)
+	(x2 8.225787)
+	(xx
+		"8.2251721"
+		"8.2253997"
+		"8.2256117"
+		"8.2257873")
+	(y 44.067)
+	(y2 44.07223)
+	(yy
+		"44.0670015"
+		"44.068952"
+		"44.0707017"
+		"44.0722325"))
+
+([NiceSPb_Class310387] of  Edge
+
+	(label "377276601")
+	(latitude "44 4.48")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.56")
+	(playground-index 0)
+	(points
+		"44 4.35 8 13.55"
+		"44 4.38 8 13.55"
+		"44 4.42 8 13.56"
+		"44 4.61 8 13.58")
+	(relative FALSE)
+	(x 8.225811)
+	(x2 8.226321)
+	(xx
+		"8.2258113"
+		"8.2258773"
+		"8.2259596"
+		"8.2263216")
+	(y 44.07244)
+	(y2 44.0768)
+	(yy
+		"44.0724426"
+		"44.0729699"
+		"44.0736736"
+		"44.0768011"))
+
+([NiceSPb_Class310391] of  Edge
+
+	(label "377271719")
+	(latitude "44 4.74")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.6")
+	(playground-index 0)
+	(points
+		"44 4.61 8 13.58"
+		"44 4.87 8 13.61")
+	(relative FALSE)
+	(x 8.226336)
+	(x2 8.226845)
+	(xx
+		"8.2263359"
+		"8.226845")
+	(y 44.076904)
+	(y2 44.081223)
+	(yy
+		"44.0769029"
+		"44.0812208"))
+
+([NiceSPb_Class310400] of  Edge
+
+	(label "377158218")
+	(latitude "44 4.98")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.63")
+	(playground-index 0)
+	(points
+		"44 4.93 8 13.62"
+		"44 4.95 8 13.62"
+		"44 4.98 8 13.63"
+		"44 5.02 8 13.64"
+		"44 5.04 8 13.65")
+	(relative FALSE)
+	(x 8.226954)
+	(x2 8.227454)
+	(xx
+		"8.2269547"
+		"8.2270298"
+		"8.2271505"
+		"8.2273115"
+		"8.2274546")
+	(y 44.08211)
+	(y2 44.084007)
+	(yy
+		"44.0821122"
+		"44.0825515"
+		"44.0830536"
+		"44.0835958"
+		"44.0840058"))
+
+([NiceSPb_Class310411] of  Edge
+
+	(label "377155045")
+	(latitude "44 5.27")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.73")
+	(playground-index 0)
+	(points
+		"44 5.27 8 13.73"
+		"44 5.28 8 13.73")
+	(relative FALSE)
+	(x 8.228815)
+	(x2 8.228844)
+	(xx
+		"8.2288155"
+		"8.2288434")
+	(y 44.087864)
+	(y2 44.087944)
+	(yy
+		"44.0878653"
+		"44.0879441"))
+
+([NiceSPb_Class310414] of  Edge
+
+	(label "377155048")
+	(latitude "44 5.32")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.75")
+	(playground-index 0)
+	(points
+		"44 5.28 8 13.73"
+		"44 5.37 8 13.76")
+	(relative FALSE)
+	(x 8.228844)
+	(x2 8.22939)
+	(xx
+		"8.2288434"
+		"8.2293905")
+	(y 44.087944)
+	(y2 44.08949)
+	(yy
+		"44.0879441"
+		"44.0894897"))
+
+([NiceSPb_Class310419] of  Edge
+
+	(label "377154260")
+	(latitude "44 5.41")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.78")
+	(playground-index 0)
+	(points
+		"44 5.37 8 13.77"
+		"44 5.45 8 13.79")
+	(relative FALSE)
+	(x 8.229423)
+	(x2 8.229855)
+	(xx
+		"8.2294226"
+		"8.2298546")
+	(y 44.08958)
+	(y2 44.0908)
+	(yy
+		"44.0895802"
+		"44.0908006"))
+
+([NiceSPb_Class310424] of  Edge
+
+	(label "377154116")
+	(latitude "44 5.54")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.82")
+	(playground-index 0)
+	(points
+		"44 5.45 8 13.79"
+		"44 5.51 8 13.81"
+		"44 5.6 8 13.84"
+		"44 5.63 8 13.85")
+	(relative FALSE)
+	(x 8.229875)
+	(x2 8.230881)
+	(xx
+		"8.2298746"
+		"8.2302482"
+		"8.2307451"
+		"8.2308803")
+	(y 44.09086)
+	(y2 44.093758)
+	(yy
+		"44.0908572"
+		"44.0919127"
+		"44.0933811"
+		"44.0937574"))
+
+([NiceSPb_Class310433] of  Edge
+
+	(label "377154028")
+	(latitude "44 5.72")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 13.89")
+	(playground-index 0)
+	(points
+		"44 5.65 8 13.86"
+		"44 5.67 8 13.87"
+		"44 5.74 8 13.89"
+		"44 5.76 8 13.9"
+		"44 5.77 8 13.91"
+		"44 5.79 8 13.92")
+	(relative FALSE)
+	(x 8.231015)
+	(x2 8.231991)
+	(xx
+		"8.2310155"
+		"8.2311237"
+		"8.2315266"
+		"8.2316626"
+		"8.2318181"
+		"8.2319906")
+	(y 44.094246)
+	(y2 44.09649)
+	(yy
+		"44.0942477"
+		"44.0945482"
+		"44.095633"
+		"44.0959381"
+		"44.0962119"
+		"44.0964904"))
+
+([NiceSPb_Class310441] of  Edge
+
+	(label "377152158")
+	(latitude "44 6")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 14.1")
+	(playground-index 0)
+	(points
+		"44 5.84 8 13.96"
+		"44 5.86 8 13.98"
+		"44 5.9 8 14.02"
+		"44 5.94 8 14.05"
+		"44 5.99 8 14.1"
+		"44 6.03 8 14.14"
+		"44 6.05 8 14.16"
+		"44 6.07 8 14.18"
+		"44 6.09 8 14.2"
+		"44 6.12 8 14.22"
+		"44 6.14 8 14.24"
+		"44 6.15 8 14.25")
+	(relative FALSE)
+	(x 8.232635)
+	(x2 8.237455)
+	(xx
+		"8.2326349"
+		"8.232959"
+		"8.2336204"
+		"8.2341483"
+		"8.2350747"
+		"8.2356357"
+		"8.2360232"
+		"8.2363669"
+		"8.2366914"
+		"8.2370456"
+		"8.2372613"
+		"8.2374556")
+	(y 44.09738)
+	(y2 44.102573)
+	(yy
+		"44.0973801"
+		"44.0977368"
+		"44.0984144"
+		"44.098944"
+		"44.0998802"
+		"44.1004319"
+		"44.1007953"
+		"44.1011372"
+		"44.1014896"
+		"44.1019491"
+		"44.1022677"
+		"44.1025746"))
+
+([NiceSPb_Class310444] of  Edge
+
+	(label "22879022")
+	(latitude "44 6.23")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 14.3")
+	(playground-index 0)
+	(points
+		"44 6.15 8 14.25"
+		"44 6.26 8 14.31"
+		"44 6.28 8 14.32"
+		"44 6.3 8 14.33"
+		"44 6.31 8 14.34")
+	(relative FALSE)
+	(x 8.237455)
+	(x2 8.239053)
+	(xx
+		"8.2374556"
+		"8.238451"
+		"8.2386398"
+		"8.238823"
+		"8.2390526")
+	(y 44.102573)
+	(y2 44.10519)
+	(yy
+		"44.1025746"
+		"44.1043651"
+		"44.104678"
+		"44.1049337"
+		"44.1051904"))
+
+([NiceSPb_Class310451] of  Edge
+
+	(label "377140866")
+	(latitude "44 6.59")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 14.58")
+	(playground-index 0)
+	(points
+		"44 6.46 8 14.47"
+		"44 6.5 8 14.5"
+		"44 6.54 8 14.54"
+		"44 6.73 8 14.69")
+	(relative FALSE)
+	(x 8.2411375)
+	(x2 8.244789)
+	(xx
+		"8.2411373"
+		"8.2416326"
+		"8.2422771"
+		"8.2447888")
+	(y 44.107666)
+	(y2 44.11209)
+	(yy
+		"44.1076649"
+		"44.1082743"
+		"44.1090449"
+		"44.11209"))
+
+([NiceSPb_Class310456] of  Edge
+
+	(label "377140869")
+	(latitude "44 6.77")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 14.73")
+	(playground-index 0)
+	(points
+		"44 6.74 8 14.7"
+		"44 6.76 8 14.72"
+		"44 6.8 8 14.75")
+	(relative FALSE)
+	(x 8.245044)
+	(x2 8.245867)
+	(xx
+		"8.2450436"
+		"8.2453922"
+		"8.245867")
+	(y 44.112335)
+	(y2 44.11332)
+	(yy
+		"44.1123363"
+		"44.1127484"
+		"44.1133203"))
+
+([NiceSPb_Class310461] of  Edge
+
+	(label "377140863")
+	(latitude "44 6.9")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 14.84")
+	(playground-index 0)
+	(points
+		"44 6.8 8 14.75"
+		"44 6.88 8 14.82"
+		"44 6.9 8 14.84"
+		"44 6.93 8 14.86"
+		"44 6.95 8 14.87"
+		"44 6.98 8 14.9"
+		"44 7 8 14.92")
+	(relative FALSE)
+	(x 8.245915)
+	(x2 8.248612)
+	(xx
+		"8.2459153"
+		"8.2469613"
+		"8.247251"
+		"8.2476024"
+		"8.2479055"
+		"8.2482917"
+		"8.2486124")
+	(y 44.11338)
+	(y2 44.116634)
+	(yy
+		"44.11338"
+		"44.1146626"
+		"44.1150207"
+		"44.1154482"
+		"44.115818"
+		"44.1162743"
+		"44.1166342"))
+
+([NiceSPb_Class310471] of  Edge
+
+	(label "377157638")
+	(latitude "44 7.29")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 15.18")
+	(playground-index 0)
+	(points
+		"44 7.1 8 15.03"
+		"44 7.12 8 15.06"
+		"44 7.14 8 15.08"
+		"44 7.19 8 15.14"
+		"44 7.22 8 15.17"
+		"44 7.24 8 15.19"
+		"44 7.26 8 15.21"
+		"44 7.28 8 15.23"
+		"44 7.3 8 15.24"
+		"44 7.32 8 15.26"
+		"44 7.34 8 15.27"
+		"44 7.35 8 15.27"
+		"44 7.36 8 15.28"
+		"44 7.38 8 15.29"
+		"44 7.4 8 15.3"
+		"44 7.44 8 15.32"
+		"44 7.46 8 15.33"
+		"44 7.47 8 15.33")
+	(relative FALSE)
+	(x 8.2505045)
+	(x2 8.255503)
+	(xx
+		"8.2505045"
+		"8.2509444"
+		"8.2513521"
+		"8.2523365"
+		"8.2527764"
+		"8.2531251"
+		"8.2534764"
+		"8.2537581"
+		"8.2540156"
+		"8.2542569"
+		"8.2544313"
+		"8.2545072"
+		"8.2546298"
+		"8.2548122"
+		"8.2549946"
+		"8.2552718"
+		"8.2554237"
+		"8.2555027")
+	(y 44.118332)
+	(y2 44.124508)
+	(yy
+		"44.1183328"
+		"44.1186948"
+		"44.1190414"
+		"44.1199079"
+		"44.1202834"
+		"44.1206011"
+		"44.1209638"
+		"44.1212865"
+		"44.1216158"
+		"44.1219824"
+		"44.1222839"
+		"44.1224209"
+		"44.1226421"
+		"44.1229886"
+		"44.1233341"
+		"44.1239384"
+		"44.1243276"
+		"44.1245068"))
+
+([NiceSPb_Class310480] of  Edge
+
+	(label "38691770")
+	(latitude "44 7.9")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 15.68")
+	(playground-index 0)
+	(points
+		"44 7.82 8 15.59"
+		"44 7.83 8 15.61"
+		"44 7.86 8 15.64"
+		"44 7.95 8 15.73"
+		"44 7.99 8 15.77")
+	(relative FALSE)
+	(x 8.259906)
+	(x2 8.262816)
+	(xx
+		"8.2599057"
+		"8.2601903"
+		"8.2606661"
+		"8.2620895"
+		"8.2628163")
+	(y 44.13027)
+	(y2 44.133194)
+	(yy
+		"44.130267"
+		"44.1305534"
+		"44.1310499"
+		"44.1324617"
+		"44.1331955"))
+
+([NiceSPb_Class310484] of  Edge
+
+	(label "377136996")
+	(latitude "44 8.03")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 15.81")
+	(playground-index 0)
+	(points
+		"44 8 8 15.78"
+		"44 8.06 8 15.83")
+	(relative FALSE)
+	(x 8.262929)
+	(x2 8.263906)
+	(xx
+		"8.2629289"
+		"8.2639054")
+	(y 44.133312)
+	(y2 44.134296)
+	(yy
+		"44.1333114"
+		"44.1342976"))
+
+([NiceSPb_Class310486] of  Edge
+
+	(label "234577967")
+	(latitude "44 8.19")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 15.96")
+	(playground-index 0)
+	(points
+		"44 8.32 8 16.09"
+		"44 8.31 8 16.08"
+		"44 8.29 8 16.07"
+		"44 8.23 8 16.01"
+		"44 8.22 8 16"
+		"44 8.16 8 15.93"
+		"44 8.07 8 15.84"
+		"44 8.06 8 15.83")
+	(relative FALSE)
+	(x 8.268217)
+	(x2 8.263906)
+	(xx
+		"8.2682172"
+		"8.2680113"
+		"8.2677781"
+		"8.2667886"
+		"8.2665867"
+		"8.2655491"
+		"8.2640524"
+		"8.2639054")
+	(y 44.138653)
+	(y2 44.134296)
+	(yy
+		"44.1386522"
+		"44.1384458"
+		"44.138211"
+		"44.1371967"
+		"44.1370065"
+		"44.1359723"
+		"44.1344516"
+		"44.1342976"))
+
+([NiceSPb_Class310491] of  Edge
+
+	(label "234578236")
+	(latitude "44 8.74")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 16.65")
+	(playground-index 0)
+	(points
+		"44 8.63 8 16.51"
+		"44 8.64 8 16.52"
+		"44 8.64 8 16.52"
+		"44 8.64 8 16.53"
+		"44 8.65 8 16.55"
+		"44 8.66 8 16.56"
+		"44 8.68 8 16.6"
+		"44 8.72 8 16.66"
+		"44 8.74 8 16.69"
+		"44 8.76 8 16.72"
+		"44 8.78 8 16.73"
+		"44 8.78 8 16.74"
+		"44 8.8 8 16.75"
+		"44 8.82 8 16.77"
+		"44 8.82 8 16.77"
+		"44 8.83 8 16.78"
+		"44 8.84 8 16.79"
+		"44 8.85 8 16.79")
+	(relative FALSE)
+	(x 8.275091)
+	(x2 8.279895)
+	(xx
+		"8.2750915"
+		"8.2753131"
+		"8.2754066"
+		"8.275509"
+		"8.2758549"
+		"8.2760717"
+		"8.2765957"
+		"8.2776199"
+		"8.2781596"
+		"8.2785944"
+		"8.2788307"
+		"8.2789951"
+		"8.2791881"
+		"8.2794877"
+		"8.2795478"
+		"8.2796871"
+		"8.2797902"
+		"8.2798948")
+	(y 44.14384)
+	(y2 44.147434)
+	(yy
+		"44.1438401"
+		"44.1439648"
+		"44.1440147"
+		"44.144064"
+		"44.1442497"
+		"44.1443766"
+		"44.1447113"
+		"44.1453627"
+		"44.1457261"
+		"44.1460619"
+		"44.1462606"
+		"44.1464088"
+		"44.1465939"
+		"44.1469241"
+		"44.146991"
+		"44.1471592"
+		"44.1472959"
+		"44.147436"))
+
+([NiceSPb_Class310496] of  Edge
+
+	(label "448975381")
+	(latitude "44 8.91")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 16.86")
+	(playground-index 0)
+	(points
+		"44 8.85 8 16.79"
+		"44 8.86 8 16.81"
+		"44 8.89 8 16.84"
+		"44 8.92 8 16.86"
+		"44 8.95 8 16.89"
+		"44 8.96 8 16.91"
+		"44 8.97 8 16.92"
+		"44 8.98 8 16.94")
+	(relative FALSE)
+	(x 8.279895)
+	(x2 8.282254)
+	(xx
+		"8.2798948"
+		"8.2801523"
+		"8.2806161"
+		"8.2810465"
+		"8.2815696"
+		"8.2818154"
+		"8.2820204"
+		"8.2822538")
+	(y 44.147434)
+	(y2 44.149666)
+	(yy
+		"44.147436"
+		"44.1477067"
+		"44.1481845"
+		"44.1486248"
+		"44.1491343"
+		"44.1493463"
+		"44.1495019"
+		"44.1496658"))
+
+([NiceSPb_Class310500] of  Edge
+
+	(label "202130779")
+	(latitude "44 9.04")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 17.06")
+	(playground-index 0)
+	(points
+		"44 9.08 8 17.16"
+		"44 9.07 8 17.13"
+		"44 9.06 8 17.1"
+		"44 9.05 8 17.07"
+		"44 9.04 8 17.04"
+		"44 9.03 8 17.02"
+		"44 9.02 8 17"
+		"44 9.01 8 16.98"
+		"44 9 8 16.97")
+	(relative FALSE)
+	(x 8.286013)
+	(x2 8.282754)
+	(xx
+		"8.2860131"
+		"8.285496"
+		"8.2849562"
+		"8.2844602"
+		"8.2840079"
+		"8.2836412"
+		"8.2832794"
+		"8.2829444"
+		"8.2827542")
+	(y 44.15128)
+	(y2 44.149986)
+	(yy
+		"44.1512803"
+		"44.1511161"
+		"44.1509398"
+		"44.1507584"
+		"44.1505924"
+		"44.15044"
+		"44.1502677"
+		"44.1500847"
+		"44.1499845"))
+
+([NiceSPb_Class310507] of  Edge
+
+	(label "256365317")
+	(latitude "44 9.28")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 17.84")
+	(playground-index 0)
+	(points
+		"44 9.38 8 18.18"
+		"44 9.38 8 18.15"
+		"44 9.37 8 18.12"
+		"44 9.34 8 18.02"
+		"44 9.32 8 17.95"
+		"44 9.25 8 17.72"
+		"44 9.22 8 17.62"
+		"44 9.2 8 17.57"
+		"44 9.18 8 17.5")
+	(relative FALSE)
+	(x 8.302935)
+	(x2 8.291702)
+	(xx
+		"8.3029346"
+		"8.3024752"
+		"8.3019881"
+		"8.3003357"
+		"8.299151"
+		"8.2953469"
+		"8.2937287"
+		"8.2928602"
+		"8.2917019")
+	(y 44.156403)
+	(y2 44.152992)
+	(yy
+		"44.1564007"
+		"44.1562809"
+		"44.1561432"
+		"44.1556339"
+		"44.155274"
+		"44.154112"
+		"44.1536144"
+		"44.1533451"
+		"44.1529923"))
+
+([NiceSPb_Class310510] of  Edge
+
+	(label "29029055")
+	(latitude "44 9.4")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 18.23")
+	(playground-index 0)
+	(points
+		"44 9.4 8 18.27"
+		"44 9.39 8 18.19")
+	(relative FALSE)
+	(x 8.30447)
+	(x2 8.303089)
+	(xx
+		"8.3044698"
+		"8.3030896")
+	(y 44.156742)
+	(y2 44.156437)
+	(yy
+		"44.1567427"
+		"44.1564383"))
+
+([NiceSPb_Class310514] of  Edge
+
+	(label "23214518")
+	(latitude "44 9.65")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 19.51")
+	(playground-index 0)
+	(points
+		"44 9.68 8 19.62"
+		"44 9.66 8 19.58"
+		"44 9.65 8 19.55"
+		"44 9.64 8 19.51"
+		"44 9.63 8 19.44"
+		"44 9.63 8 19.4")
+	(relative FALSE)
+	(x 8.327022)
+	(x2 8.323254)
+	(xx
+		"8.3270214"
+		"8.3262735"
+		"8.3258024"
+		"8.3252205"
+		"8.3240538"
+		"8.3232541")
+	(y 44.161274)
+	(y2 44.16046)
+	(yy
+		"44.1612742"
+		"44.160983"
+		"44.160857"
+		"44.1607385"
+		"44.1605742"
+		"44.1604629"))
+
+([NiceSPb_Class310517] of  Edge
+
+	(label "377135063")
+	(latitude "44 10.08")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 20.3")
+	(playground-index 0)
+	(points
+		"44 10.05 8 20.24"
+		"44 10.06 8 20.26"
+		"44 10.07 8 20.28"
+		"44 10.09 8 20.3"
+		"44 10.1 8 20.32"
+		"44 10.11 8 20.35")
+	(relative FALSE)
+	(x 8.337413)
+	(x2 8.33913)
+	(xx
+		"8.3374127"
+		"8.33773"
+		"8.3379472"
+		"8.3383362"
+		"8.3386233"
+		"8.33913")
+	(y 44.167503)
+	(y2 44.16854)
+	(yy
+		"44.1675026"
+		"44.1677153"
+		"44.167855"
+		"44.1680981"
+		"44.1682629"
+		"44.1685411"))
+
+([NiceSPb_Class310534] of  Edge
+
+	(label "179829539")
+	(latitude "44 10.15")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 20.41")
+	(playground-index 0)
+	(points
+		"44 10.17 8 20.45"
+		"44 10.16 8 20.42"
+		"44 10.13 8 20.37")
+	(relative FALSE)
+	(x 8.340839)
+	(x2 8.339554)
+	(xx
+		"8.3408393"
+		"8.3403653"
+		"8.3395535")
+	(y 44.169506)
+	(y2 44.16881)
+	(yy
+		"44.1695072"
+		"44.1692554"
+		"44.1688128"))
+
+([NiceSPb_Class310545] of  Edge
+
+	(label "377130010")
+	(latitude "44 10.2")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 20.51")
+	(playground-index 0)
+	(points
+		"44 10.22 8 20.55"
+		"44 10.22 8 20.54"
+		"44 10.18 8 20.48")
+	(relative FALSE)
+	(x 8.342464)
+	(x2 8.341269)
+	(xx
+		"8.3424642"
+		"8.342281"
+		"8.3412687")
+	(y 44.170376)
+	(y2 44.16974)
+	(yy
+		"44.1703748"
+		"44.1702901"
+		"44.1697388"))
+
+([NiceSPb_Class310557] of  Edge
+
+	(label "28797719")
+	(latitude "44 10.35")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 20.78")
+	(playground-index 0)
+	(points
+		"44 10.46 8 20.99"
+		"44 10.29 8 20.67"
+		"44 10.23 8 20.57")
+	(relative FALSE)
+	(x 8.349757)
+	(x2 8.342751)
+	(xx
+		"8.349757"
+		"8.3445286"
+		"8.3427508")
+	(y 44.174335)
+	(y2 44.170506)
+	(yy
+		"44.1743372"
+		"44.171483"
+		"44.1705074"))
+
+([NiceSPb_Class310565] of  Edge
+
+	(label "28797734")
+	(latitude "44 10.54")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 21.14")
+	(playground-index 0)
+	(points
+		"44 10.58 8 21.19"
+		"44 10.56 8 21.16"
+		"44 10.54 8 21.14"
+		"44 10.53 8 21.11"
+		"44 10.51 8 21.08")
+	(relative FALSE)
+	(x 8.353103)
+	(x2 8.351415)
+	(xx
+		"8.3531025"
+		"8.3527157"
+		"8.3522878"
+		"8.3519029"
+		"8.351415")
+	(y 44.176254)
+	(y2 44.17523)
+	(yy
+		"44.1762551"
+		"44.1760026"
+		"44.1757306"
+		"44.1755017"
+		"44.1752279"))
+
+([NiceSPb_Class310568] of  Edge
+
+	(label "28797727")
+	(latitude "44 10.61")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 21.24")
+	(playground-index 0)
+	(points
+		"44 10.65 8 21.29"
+		"44 10.63 8 21.27"
+		"44 10.61 8 21.24"
+		"44 10.59 8 21.21"
+		"44 10.58 8 21.19")
+	(relative FALSE)
+	(x 8.354841)
+	(x2 8.353103)
+	(xx
+		"8.3548415"
+		"8.3544368"
+		"8.3540043"
+		"8.3535661"
+		"8.3531025")
+	(y 44.177563)
+	(y2 44.176254)
+	(yy
+		"44.1775645"
+		"44.1772276"
+		"44.1768916"
+		"44.1765771"
+		"44.1762551"))
+
+([NiceSPb_Class310573] of  Edge
+
+	(label "15075844")
+	(latitude "44 13.34")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 24.52")
+	(playground-index 0)
+	(points
+		"44 13.3 8 24.49"
+		"44 13.38 8 24.54")
+	(relative FALSE)
+	(x 8.408228)
+	(x2 8.408982)
+	(xx
+		"8.4082279"
+		"8.4089822")
+	(y 44.221695)
+	(y2 44.223064)
+	(yy
+		"44.2216954"
+		"44.2230635"))
+
+([NiceSPb_Class310576] of  Edge
+
+	(label "438013738")
+	(latitude "44 13.43")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 24.57")
+	(playground-index 0)
+	(points
+		"44 13.38 8 24.54"
+		"44 13.48 8 24.59")
+	(relative FALSE)
+	(x 8.408982)
+	(x2 8.409873)
+	(xx
+		"8.4089822"
+		"8.4098733")
+	(y 44.223064)
+	(y2 44.224743)
+	(yy
+		"44.2230635"
+		"44.2247411"))
+
+([NiceSPb_Class310590] of  Edge
+
+	(label "179829532")
+	(latitude "44 13.58")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 24.64")
+	(playground-index 0)
+	(points
+		"44 13.51 8 24.6"
+		"44 13.59 8 24.65"
+		"44 13.64 8 24.68")
+	(relative FALSE)
+	(x 8.410069)
+	(x2 8.411254)
+	(xx
+		"8.4100691"
+		"8.4107855"
+		"8.4112542")
+	(y 44.22517)
+	(y2 44.22737)
+	(yy
+		"44.2251709"
+		"44.2265175"
+		"44.2273714"))
+
+([NiceSPb_Class310600] of  Edge
+
+	(label "179829544")
+	(latitude "44 13.74")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 24.73")
+	(playground-index 0)
+	(points
+		"44 13.68 8 24.7"
+		"44 13.76 8 24.74"
+		"44 13.8 8 24.76")
+	(relative FALSE)
+	(x 8.411618)
+	(x2 8.412658)
+	(xx
+		"8.4116184"
+		"8.4123384"
+		"8.4126575")
+	(y 44.228058)
+	(y2 44.23001)
+	(yy
+		"44.2280572"
+		"44.229407"
+		"44.230012"))
+
+([NiceSPb_Class310607] of  Edge
+
+	(label "438013740")
+	(latitude "44 13.83")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 24.78")
+	(playground-index 0)
+	(points
+		"44 13.79 8 24.76"
+		"44 13.84 8 24.78"
+		"44 13.88 8 24.8")
+	(relative FALSE)
+	(x 8.412606)
+	(x2 8.413367)
+	(xx
+		"8.4126062"
+		"8.4130491"
+		"8.4133669")
+	(y 44.2298)
+	(y2 44.231255)
+	(yy
+		"44.2298023"
+		"44.230651"
+		"44.2312558"))
+
+([NiceSPb_Class310616] of  Edge
+
+	(label "283410162")
+	(latitude "44 15.78")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.17")
+	(playground-index 0)
+	(points
+		"44 15.71 8 25.15"
+		"44 15.73 8 25.16"
+		"44 15.78 8 25.17"
+		"44 15.82 8 25.18"
+		"44 15.85 8 25.19")
+	(relative FALSE)
+	(x 8.41918)
+	(x2 8.419871)
+	(xx
+		"8.4191799"
+		"8.419253"
+		"8.4194754"
+		"8.4196473"
+		"8.4198711")
+	(y 44.26177)
+	(y2 44.264206)
+	(yy
+		"44.2617691"
+		"44.2620958"
+		"44.2630553"
+		"44.2636045"
+		"44.2642041"))
+
+([NiceSPb_Class310619] of  Edge
+
+	(label "38690975")
+	(latitude "44 15.89")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.21")
+	(playground-index 0)
+	(points
+		"44 15.85 8 25.19"
+		"44 15.89 8 25.21"
+		"44 15.92 8 25.23")
+	(relative FALSE)
+	(x 8.419871)
+	(x2 8.420433)
+	(xx
+		"8.4198711"
+		"8.4201379"
+		"8.4204329")
+	(y 44.264206)
+	(y2 44.265335)
+	(yy
+		"44.2642041"
+		"44.2647906"
+		"44.2653359"))
+
+([NiceSPb_Class310624] of  Edge
+
+	(label "283410160")
+	(latitude "44 15.98")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.26")
+	(playground-index 0)
+	(points
+		"44 15.93 8 25.23"
+		"44 16.03 8 25.29")
+	(relative FALSE)
+	(x 8.420523)
+	(x2 8.421417)
+	(xx
+		"8.4205225"
+		"8.4214169")
+	(y 44.265514)
+	(y2 44.26723)
+	(yy
+		"44.2655139"
+		"44.2672291"))
+
+([NiceSPb_Class310627] of  Edge
+
+	(label "38690972")
+	(latitude "44 16.07")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.3")
+	(playground-index 0)
+	(points
+		"44 16.03 8 25.29"
+		"44 16.1 8 25.32")
+	(relative FALSE)
+	(x 8.421417)
+	(x2 8.422022)
+	(xx
+		"8.4214169"
+		"8.4220216")
+	(y 44.26723)
+	(y2 44.26837)
+	(yy
+		"44.2672291"
+		"44.2683719"))
+
+([NiceSPb_Class310630] of  Edge
+
+	(label "38690974")
+	(latitude "44 16.14")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.34")
+	(playground-index 0)
+	(points
+		"44 16.1 8 25.32"
+		"44 16.17 8 25.36")
+	(relative FALSE)
+	(x 8.422022)
+	(x2 8.422672)
+	(xx
+		"8.4220216"
+		"8.4226722")
+	(y 44.26837)
+	(y2 44.26954)
+	(yy
+		"44.2683719"
+		"44.2695396"))
+
+([NiceSPb_Class310633] of  Edge
+
+	(label "180798838")
+	(latitude "44 16.22")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.39")
+	(playground-index 0)
+	(points
+		"44 16.17 8 25.36"
+		"44 16.27 8 25.41")
+	(relative FALSE)
+	(x 8.422672)
+	(x2 8.4235)
+	(xx
+		"8.4226722"
+		"8.4235004")
+	(y 44.26954)
+	(y2 44.271095)
+	(yy
+		"44.2695396"
+		"44.2710953"))
+
+([NiceSPb_Class310639] of  Edge
+
+	(label "180798837")
+	(latitude "44 16.52")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 25.7")
+	(playground-index 0)
+	(points
+		"44 16.3 8 25.43"
+		"44 16.33 8 25.45"
+		"44 16.37 8 25.47"
+		"44 16.41 8 25.49"
+		"44 16.43 8 25.51"
+		"44 16.46 8 25.53"
+		"44 16.5 8 25.56"
+		"44 16.52 8 25.59"
+		"44 16.55 8 25.61"
+		"44 16.57 8 25.64"
+		"44 16.6 8 25.68"
+		"44 16.62 8 25.71"
+		"44 16.64 8 25.75"
+		"44 16.66 8 25.79"
+		"44 16.68 8 25.83"
+		"44 16.69 8 25.86"
+		"44 16.74 8 25.97")
+	(relative FALSE)
+	(x 8.423798)
+	(x2 8.432854)
+	(xx
+		"8.4237979"
+		"8.424134"
+		"8.4244451"
+		"8.4248223"
+		"8.4251551"
+		"8.4255421"
+		"8.426033"
+		"8.4265023"
+		"8.4268893"
+		"8.4274144"
+		"8.4279702"
+		"8.4284791"
+		"8.4291946"
+		"8.4298471"
+		"8.43042"
+		"8.43107"
+		"8.4328538")
+	(y 44.27161)
+	(y2 44.278946)
+	(yy
+		"44.2716098"
+		"44.272219"
+		"44.2728031"
+		"44.2734295"
+		"44.2738962"
+		"44.274409"
+		"44.2749524"
+		"44.2754151"
+		"44.2757546"
+		"44.2761849"
+		"44.2766006"
+		"44.2769358"
+		"44.2773432"
+		"44.2776944"
+		"44.2779549"
+		"44.2782384"
+		"44.2789446"))
+
+([NiceSPb_Class310645] of  Edge
+
+	(label "378111055")
+	(latitude "44 16.79")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.11")
+	(playground-index 0)
+	(points
+		"44 16.75 8 26.01"
+		"44 16.79 8 26.13"
+		"44 16.82 8 26.2")
+	(relative FALSE)
+	(x 8.433549)
+	(x2 8.43667)
+	(xx
+		"8.4335486"
+		"8.435491"
+		"8.4366702")
+	(y 44.279163)
+	(y2 44.28035)
+	(yy
+		"44.2791649"
+		"44.2798993"
+		"44.2803502"))
+
+([NiceSPb_Class310646] of  Railroad
+
+	(dirways
+		[NiceSPb_Class310647]
+		[NiceSPb_Class310649]
+		[NiceSPb_Class310651]
+		[NiceSPb_Class310653]
+		[NiceSPb_Class310655]
+		[NiceSPb_Class310656]
+		[NiceSPb_Class310658]
+		[NiceSPb_Class310660]
+		[NiceSPb_Class310662]
+		[NiceSPb_Class310664]
+		[NiceSPb_Class310666]
+		[NiceSPb_Class310667]
+		[NiceSPb_Class310669]
+		[NiceSPb_Class310671]
+		[NiceSPb_Class310673]
+		[NiceSPb_Class310675]
+		[NiceSPb_Class310677]
+		[NiceSPb_Class310679]
+		[NiceSPb_Class310681]
+		[NiceSPb_Class310682]
+		[NiceSPb_Class310684]
+		[NiceSPb_Class310686]
+		[NiceSPb_Class310688]
+		[NiceSPb_Class310689]
+		[NiceSPb_Class310691]
+		[NiceSPb_Class310692]
+		[NiceSPb_Class310694]
+		[NiceSPb_Class310696]
+		[NiceSPb_Class310698]
+		[NiceSPb_Class310699]
+		[NiceSPb_Class310701]
+		[NiceSPb_Class310703]
+		[NiceSPb_Class310705]
+		[NiceSPb_Class310706]
+		[NiceSPb_Class310708]
+		[NiceSPb_Class310710]
+		[NiceSPb_Class310711]
+		[NiceSPb_Class310713]
+		[NiceSPb_Class310714]
+		[NiceSPb_Class310716]
+		[NiceSPb_Class310718]
+		[NiceSPb_Class310720]
+		[NiceSPb_Class310722]
+		[NiceSPb_Class310723]
+		[NiceSPb_Class310725]
+		[NiceSPb_Class310727]
+		[NiceSPb_Class310728]
+		[NiceSPb_Class310730]
+		[NiceSPb_Class310732]
+		[NiceSPb_Class310734]
+		[NiceSPb_Class310736]
+		[NiceSPb_Class310738]
+		[NiceSPb_Class310739]
+		[NiceSPb_Class310741]
+		[NiceSPb_Class310743]
+		[NiceSPb_Class310745]
+		[NiceSPb_Class310747]
+		[NiceSPb_Class310749]
+		[NiceSPb_Class310751]
+		[NiceSPb_Class310753])
+	(from1 "Albenga")
+	(title "Albenga - Valleggia")
+	(to1 "Valleggia"))
+
+([NiceSPb_Class310647] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310648]))
+
+([NiceSPb_Class310648] of  Way
+
+	(id "377285715")
+	(poly [NiceSPb_Class300002])
+	(source "[[44.0484166 8.2222985] [44.0496137 8.2232264] [44.0497926 8.2233721] [44.0500321 8.2235322] [44.0501824 8.2236341] [44.050302 8.2237253] [44.0503825 8.2238066] [44.0505796 8.223991] [44.0506837 8.2240767] [44.051358 8.2246247] [44.0516684 8.2248527] [44.0518997 8.2249841]]"))
+
+([NiceSPb_Class310649] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310650]))
+
+([NiceSPb_Class310650] of  Way
+
+	(id "377277152")
+	(poly [NiceSPb_Class300052])
+	(source "[[44.051656 8.2249809] [44.0518689 8.2251241] [44.0520704 8.2252385] [44.0522913 8.2253502] [44.0526191 8.2254866] [44.0529303 8.2255752] [44.053219 8.2256191]]"))
+
+([NiceSPb_Class310651] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310652]))
+
+([NiceSPb_Class310652] of  Way
+
+	(id "343757678")
+	(poly [NiceSPb_Class300056])
+	(source "[[44.0536847 8.2256346] [44.0541475 8.2256007] [44.0558089 8.2254237] [44.056611 8.2253305] [44.0572775 8.2252711] [44.0585308 8.2252005]]"))
+
+([NiceSPb_Class310653] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310654]))
+
+([NiceSPb_Class310654] of  Way
+
+	(id "377276613")
+	(poly [NiceSPb_Class310368])
+	(source "[[44.0587119 8.2251926] [44.0591436 8.2251736] [44.0601421 8.2251309] [44.0608093 8.2251029] [44.0619002 8.2250474]]"))
+
+([NiceSPb_Class310655] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306514]))
+
+([NiceSPb_Class310656] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310657]))
+
+([NiceSPb_Class310657] of  Way
+
+	(id "377276616")
+	(poly [NiceSPb_Class310377])
+	(source "[[44.0660949 8.2250652] [44.0669009 8.2251603]]"))
+
+([NiceSPb_Class310658] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310659]))
+
+([NiceSPb_Class310659] of  Way
+
+	(id "377276612")
+	(poly [NiceSPb_Class310382])
+	(source "[[44.0670015 8.2251721] [44.068952 8.2253997] [44.0707017 8.2256117] [44.0722325 8.2257873]]"))
+
+([NiceSPb_Class310660] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310661]))
+
+([NiceSPb_Class310661] of  Way
+
+	(id "377276601")
+	(poly [NiceSPb_Class310387])
+	(source "[[44.0724426 8.2258113] [44.0729699 8.2258773] [44.0736736 8.2259596] [44.0768011 8.2263216]]"))
+
+([NiceSPb_Class310662] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310663]))
+
+([NiceSPb_Class310663] of  Way
+
+	(id "377271719")
+	(poly [NiceSPb_Class310391])
+	(source "[[44.0769029 8.2263359] [44.0812208 8.226845]]"))
+
+([NiceSPb_Class310664] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310665]))
+
+([NiceSPb_Class310665] of  Way
+
+	(id "377158218")
+	(poly [NiceSPb_Class310400])
+	(source "[[44.0821122 8.2269547] [44.0825515 8.2270298] [44.0830536 8.2271505] [44.0835958 8.2273115] [44.0840058 8.2274546]]"))
+
+([NiceSPb_Class310666] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306518]))
+
+([NiceSPb_Class310667] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310668]))
+
+([NiceSPb_Class310668] of  Way
+
+	(id "377155045")
+	(poly [NiceSPb_Class310411])
+	(source "[[44.0878653 8.2288155] [44.0879441 8.2288434]]"))
+
+([NiceSPb_Class310669] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310670]))
+
+([NiceSPb_Class310670] of  Way
+
+	(id "377155048")
+	(poly [NiceSPb_Class310414])
+	(source "[[44.0879441 8.2288434] [44.0894897 8.2293905]]"))
+
+([NiceSPb_Class310671] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310672]))
+
+([NiceSPb_Class310672] of  Way
+
+	(id "377154260")
+	(poly [NiceSPb_Class310419])
+	(source "[[44.0895802 8.2294226] [44.0908006 8.2298546]]"))
+
+([NiceSPb_Class310673] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310674]))
+
+([NiceSPb_Class310674] of  Way
+
+	(id "377154116")
+	(poly [NiceSPb_Class310424])
+	(source "[[44.0908572 8.2298746] [44.0919127 8.2302482] [44.0933811 8.2307451] [44.0937574 8.2308803]]"))
+
+([NiceSPb_Class310675] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310676]))
+
+([NiceSPb_Class310676] of  Way
+
+	(id "377154028")
+	(poly [NiceSPb_Class310433])
+	(source "[[44.0942477 8.2310155] [44.0945482 8.2311237] [44.095633 8.2315266] [44.0959381 8.2316626] [44.0962119 8.2318181] [44.0964904 8.2319906]]"))
+
+([NiceSPb_Class310677] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310678]))
+
+([NiceSPb_Class310678] of  Way
+
+	(id "377152158")
+	(poly [NiceSPb_Class310441])
+	(source "[[44.0973801 8.2326349] [44.0977368 8.232959] [44.0984144 8.2336204] [44.098944 8.2341483] [44.0998802 8.2350747] [44.1004319 8.2356357] [44.1007953 8.2360232] [44.1011372 8.2363669] [44.1014896 8.2366914] [44.1019491 8.2370456] [44.1022677 8.2372613] [44.1025746 8.2374556]]"))
+
+([NiceSPb_Class310679] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310680]))
+
+([NiceSPb_Class310680] of  Way
+
+	(id "22879022")
+	(poly [NiceSPb_Class310444])
+	(source "[[44.1025746 8.2374556] [44.1043651 8.238451] [44.104678 8.2386398] [44.1049337 8.238823] [44.1051904 8.2390526]]"))
+
+([NiceSPb_Class310681] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306522]))
+
+([NiceSPb_Class310682] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310683]))
+
+([NiceSPb_Class310683] of  Way
+
+	(id "377140866")
+	(poly [NiceSPb_Class310451])
+	(source "[[44.1076649 8.2411373] [44.1082743 8.2416326] [44.1090449 8.2422771] [44.11209 8.2447888]]"))
+
+([NiceSPb_Class310684] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310685]))
+
+([NiceSPb_Class310685] of  Way
+
+	(id "377140869")
+	(poly [NiceSPb_Class310456])
+	(source "[[44.1123363 8.2450436] [44.1127484 8.2453922] [44.1133203 8.245867]]"))
+
+([NiceSPb_Class310686] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310687]))
+
+([NiceSPb_Class310687] of  Way
+
+	(id "377140863")
+	(poly [NiceSPb_Class310461])
+	(source "[[44.11338 8.2459153] [44.1146626 8.2469613] [44.1150207 8.247251] [44.1154482 8.2476024] [44.115818 8.2479055] [44.1162743 8.2482917] [44.1166342 8.2486124]]"))
+
+([NiceSPb_Class310688] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306524]))
+
+([NiceSPb_Class310689] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310690]))
+
+([NiceSPb_Class310690] of  Way
+
+	(id "377157638")
+	(poly [NiceSPb_Class310471])
+	(source "[[44.1183328 8.2505045] [44.1186948 8.2509444] [44.1190414 8.2513521] [44.1199079 8.2523365] [44.1202834 8.2527764] [44.1206011 8.2531251] [44.1209638 8.2534764] [44.1212865 8.2537581] [44.1216158 8.2540156] [44.1219824 8.2542569] [44.1222839 8.2544313] [44.1224209 8.2545072] [44.1226421 8.2546298] [44.1229886 8.2548122] [44.1233341 8.2549946] [44.1239384 8.2552718] [44.1243276 8.2554237] [44.1245068 8.2555027]]"))
+
+([NiceSPb_Class310691] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306526]))
+
+([NiceSPb_Class310692] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310693]))
+
+([NiceSPb_Class310693] of  Way
+
+	(id "38691770")
+	(poly [NiceSPb_Class310480])
+	(source "[[44.130267 8.2599057] [44.1305534 8.2601903] [44.1310499 8.2606661] [44.1324617 8.2620895] [44.1331955 8.2628163]]"))
+
+([NiceSPb_Class310694] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310695]))
+
+([NiceSPb_Class310695] of  Way
+
+	(id "377136996")
+	(poly [NiceSPb_Class310484])
+	(source "[[44.1333114 8.2629289] [44.1342976 8.2639054]]"))
+
+([NiceSPb_Class310696] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310697]))
+
+([NiceSPb_Class310697] of  Way
+
+	(id "234577967")
+	(poly [NiceSPb_Class310486])
+	(source "[[44.1386522 8.2682172] [44.1384458 8.2680113] [44.138211 8.2677781] [44.1371967 8.2667886] [44.1370065 8.2665867] [44.1359723 8.2655491] [44.1344516 8.2640524] [44.1342976 8.2639054]]"))
+
+([NiceSPb_Class310698] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306528]))
+
+([NiceSPb_Class310699] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310700]))
+
+([NiceSPb_Class310700] of  Way
+
+	(id "234578236")
+	(poly [NiceSPb_Class310491])
+	(source "[[44.1438401 8.2750915] [44.1439648 8.2753131] [44.1440147 8.2754066] [44.144064 8.275509] [44.1442497 8.2758549] [44.1443766 8.2760717] [44.1447113 8.2765957] [44.1453627 8.2776199] [44.1457261 8.2781596] [44.1460619 8.2785944] [44.1462606 8.2788307] [44.1464088 8.2789951] [44.1465939 8.2791881] [44.1469241 8.2794877] [44.146991 8.2795478] [44.1471592 8.2796871] [44.1472959 8.2797902] [44.147436 8.2798948]]"))
+
+([NiceSPb_Class310701] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310702]))
+
+([NiceSPb_Class310702] of  Way
+
+	(id "448975381")
+	(poly [NiceSPb_Class310496])
+	(source "[[44.147436 8.2798948] [44.1477067 8.2801523] [44.1481845 8.2806161] [44.1486248 8.2810465] [44.1491343 8.2815696] [44.1493463 8.2818154] [44.1495019 8.2820204] [44.1496658 8.2822538]]"))
+
+([NiceSPb_Class310703] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310704]))
+
+([NiceSPb_Class310704] of  Way
+
+	(id "202130779")
+	(poly [NiceSPb_Class310500])
+	(source "[[44.1512803 8.2860131] [44.1511161 8.285496] [44.1509398 8.2849562] [44.1507584 8.2844602] [44.1505924 8.2840079] [44.15044 8.2836412] [44.1502677 8.2832794] [44.1500847 8.2829444] [44.1499845 8.2827542]]"))
+
+([NiceSPb_Class310705] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306530]))
+
+([NiceSPb_Class310706] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310707]))
+
+([NiceSPb_Class310707] of  Way
+
+	(id "256365317")
+	(poly [NiceSPb_Class310507])
+	(source "[[44.1564007 8.3029346] [44.1562809 8.3024752] [44.1561432 8.3019881] [44.1556339 8.3003357] [44.155274 8.299151] [44.154112 8.2953469] [44.1536144 8.2937287] [44.1533451 8.2928602] [44.1529923 8.2917019]]"))
+
+([NiceSPb_Class310708] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310709]))
+
+([NiceSPb_Class310709] of  Way
+
+	(id "29029055")
+	(poly [NiceSPb_Class310510])
+	(source "[[44.1567427 8.3044698] [44.1564383 8.3030896]]"))
+
+([NiceSPb_Class310710] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306532]))
+
+([NiceSPb_Class310711] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310712]))
+
+([NiceSPb_Class310712] of  Way
+
+	(id "23214518")
+	(poly [NiceSPb_Class310514])
+	(source "[[44.1612742 8.3270214] [44.160983 8.3262735] [44.160857 8.3258024] [44.1607385 8.3252205] [44.1605742 8.3240538] [44.1604629 8.3232541]]"))
+
+([NiceSPb_Class310713] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306534]))
+
+([NiceSPb_Class310714] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310715]))
+
+([NiceSPb_Class310715] of  Way
+
+	(id "377135063")
+	(poly [NiceSPb_Class310517])
+	(source "[[44.1675026 8.3374127] [44.1677153 8.33773] [44.167855 8.3379472] [44.1680981 8.3383362] [44.1682629 8.3386233] [44.1685411 8.33913]]"))
+
+([NiceSPb_Class310716] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310717]))
+
+([NiceSPb_Class310717] of  Way
+
+	(id "179829539")
+	(poly [NiceSPb_Class310534])
+	(source "[[44.1695072 8.3408393] [44.1692554 8.3403653] [44.1688128 8.3395535]]"))
+
+([NiceSPb_Class310718] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310719]))
+
+([NiceSPb_Class310719] of  Way
+
+	(id "377130010")
+	(poly [NiceSPb_Class310545])
+	(source "[[44.1703748 8.3424642] [44.1702901 8.342281] [44.1697388 8.3412687]]"))
+
+([NiceSPb_Class310720] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310721]))
+
+([NiceSPb_Class310721] of  Way
+
+	(id "28797719")
+	(poly [NiceSPb_Class310557])
+	(source "[[44.1743372 8.349757] [44.171483 8.3445286] [44.1705074 8.3427508]]"))
+
+([NiceSPb_Class310722] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306536]))
+
+([NiceSPb_Class310723] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310724]))
+
+([NiceSPb_Class310724] of  Way
+
+	(id "28797734")
+	(poly [NiceSPb_Class310565])
+	(source "[[44.1762551 8.3531025] [44.1760026 8.3527157] [44.1757306 8.3522878] [44.1755017 8.3519029] [44.1752279 8.351415]]"))
+
+([NiceSPb_Class310725] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class310726]))
+
+([NiceSPb_Class310726] of  Way
+
+	(id "28797727")
+	(poly [NiceSPb_Class310568])
+	(source "[[44.1775645 8.3548415] [44.1772276 8.3544368] [44.1768916 8.3540043] [44.1765771 8.3535661] [44.1762551 8.3531025]]"))
+
+([NiceSPb_Class310727] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306538]))
+
+([NiceSPb_Class310728] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310729]))
+
+([NiceSPb_Class310729] of  Way
+
+	(id "15075844")
+	(poly [NiceSPb_Class310573])
+	(source "[[44.2216954 8.4082279] [44.2230635 8.4089822]]"))
+
+([NiceSPb_Class310730] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310731]))
+
+([NiceSPb_Class310731] of  Way
+
+	(id "438013738")
+	(poly [NiceSPb_Class310576])
+	(source "[[44.2230635 8.4089822] [44.2247411 8.4098733]]"))
+
+([NiceSPb_Class310732] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310733]))
+
+([NiceSPb_Class310733] of  Way
+
+	(id "179829532")
+	(poly [NiceSPb_Class310590])
+	(source "[[44.2251709 8.4100691] [44.2265175 8.4107855] [44.2273714 8.4112542]]"))
+
+([NiceSPb_Class310734] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310735]))
+
+([NiceSPb_Class310735] of  Way
+
+	(id "179829544")
+	(poly [NiceSPb_Class310600])
+	(source "[[44.2280572 8.4116184] [44.229407 8.4123384] [44.230012 8.4126575]]"))
+
+([NiceSPb_Class310736] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310737]))
+
+([NiceSPb_Class310737] of  Way
+
+	(id "438013740")
+	(poly [NiceSPb_Class310607])
+	(source "[[44.2298023 8.4126062] [44.230651 8.4130491] [44.2312558 8.4133669]]"))
+
+([NiceSPb_Class310738] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306540]))
+
+([NiceSPb_Class310739] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310740]))
+
+([NiceSPb_Class310740] of  Way
+
+	(id "283410162")
+	(poly [NiceSPb_Class310616])
+	(source "[[44.2617691 8.4191799] [44.2620958 8.419253] [44.2630553 8.4194754] [44.2636045 8.4196473] [44.2642041 8.4198711]]"))
+
+([NiceSPb_Class310741] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310742]))
+
+([NiceSPb_Class310742] of  Way
+
+	(id "38690975")
+	(poly [NiceSPb_Class310619])
+	(source "[[44.2642041 8.4198711] [44.2647906 8.4201379] [44.2653359 8.4204329]]"))
+
+([NiceSPb_Class310743] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310744]))
+
+([NiceSPb_Class310744] of  Way
+
+	(id "283410160")
+	(poly [NiceSPb_Class310624])
+	(source "[[44.2655139 8.4205225] [44.2672291 8.4214169]]"))
+
+([NiceSPb_Class310745] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310746]))
+
+([NiceSPb_Class310746] of  Way
+
+	(id "38690972")
+	(poly [NiceSPb_Class310627])
+	(source "[[44.2672291 8.4214169] [44.2683719 8.4220216]]"))
+
+([NiceSPb_Class310747] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310748]))
+
+([NiceSPb_Class310748] of  Way
+
+	(id "38690974")
+	(poly [NiceSPb_Class310630])
+	(source "[[44.2683719 8.4220216] [44.2695396 8.4226722]]"))
+
+([NiceSPb_Class310749] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310750]))
+
+([NiceSPb_Class310750] of  Way
+
+	(id "180798838")
+	(poly [NiceSPb_Class310633])
+	(source "[[44.2695396 8.4226722] [44.2710953 8.4235004]]"))
+
+([NiceSPb_Class310751] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310752]))
+
+([NiceSPb_Class310752] of  Way
+
+	(id "180798837")
+	(poly [NiceSPb_Class310639])
+	(source "[[44.2716098 8.4237979] [44.272219 8.424134] [44.2728031 8.4244451] [44.2734295 8.4248223] [44.2738962 8.4251551] [44.274409 8.4255421] [44.2749524 8.426033] [44.2754151 8.4265023] [44.2757546 8.4268893] [44.2761849 8.4274144] [44.2766006 8.4279702] [44.2769358 8.4284791] [44.2773432 8.4291946] [44.2776944 8.4298471] [44.2779549 8.43042] [44.2782384 8.43107] [44.2789446 8.4328538]]"))
+
+([NiceSPb_Class310753] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class310754]))
+
+([NiceSPb_Class310754] of  Way
+
+	(id "378111055")
+	(poly [NiceSPb_Class310645])
+	(source "[[44.2791649 8.4335486] [44.2798993 8.435491] [44.2803502 8.4366702]]"))
+
+([NiceSPb_Class310755] of  Goal
+
+	(a "[8.439 44.275]")
+	(b "[8.8908139 44.4343147]")
+	(max-length 300)
+	(max-solutions 1)
+	(status "START")
+	(title "Valleggia - Rivarolo Ligure"))
+
+([NiceSPb_Class310769] of  Edge
+
+	(label "461681030")
+	(latitude "44 25.02")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 55")
+	(playground-index 0)
+	(points
+		"44 25.03 8 55.08"
+		"44 25.03 8 55.06"
+		"44 25.03 8 55.03"
+		"44 25.01 8 54.99"
+		"44 25.01 8 54.97"
+		"44 25 8 54.95"
+		"44 25 8 54.93")
+	(relative FALSE)
+	(x 8.917978)
+	(x2 8.915484)
+	(xx
+		"8.9179784"
+		"8.9176506"
+		"8.9172305"
+		"8.9165067"
+		"8.9161006"
+		"8.9157587"
+		"8.9154844")
+	(y 44.417233)
+	(y2 44.41661)
+	(yy
+		"44.4172326"
+		"44.4171838"
+		"44.4170927"
+		"44.4169093"
+		"44.4167991"
+		"44.4166947"
+		"44.4166089"))
+
+([NiceSPb_Class310789] of  Edge
+
+	(label "461681027")
+	(latitude "44 24.94")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 54.85")
+	(playground-index 0)
+	(points
+		"44 24.89 8 54.76"
+		"44 24.89 8 54.77"
+		"44 24.91 8 54.8"
+		"44 24.93 8 54.84"
+		"44 24.94 8 54.86"
+		"44 24.97 8 54.89"
+		"44 24.98 8 54.9"
+		"44 24.98 8 54.91"
+		"44 24.99 8 54.92"
+		"44 24.99 8 54.93")
+	(relative FALSE)
+	(x 8.912737)
+	(x2 8.915527)
+	(xx
+		"8.9127368"
+		"8.9128271"
+		"8.9133707"
+		"8.9139971"
+		"8.9142912"
+		"8.91484"
+		"8.9150442"
+		"8.9152215"
+		"8.9154037"
+		"8.9155273")
+	(y 44.414787)
+	(y2 44.416573)
+	(yy
+		"44.4147862"
+		"44.4148351"
+		"44.4151294"
+		"44.4155083"
+		"44.4157134"
+		"44.4161334"
+		"44.4162781"
+		"44.416402"
+		"44.4165153"
+		"44.4165735"))
+
+([NiceSPb_Class310810] of  Edge
+
+	(label "461681028")
+	(latitude "44 24.84")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 54.66")
+	(playground-index 0)
+	(points
+		"44 24.89 8 54.76"
+		"44 24.88 8 54.75"
+		"44 24.87 8 54.73"
+		"44 24.86 8 54.71"
+		"44 24.85 8 54.68"
+		"44 24.82 8 54.62"
+		"44 24.8 8 54.56")
+	(relative FALSE)
+	(x 8.912737)
+	(x2 8.909381)
+	(xx
+		"8.9127368"
+		"8.9124455"
+		"8.912127"
+		"8.9117534"
+		"8.9113205"
+		"8.9102908"
+		"8.9093809")
+	(y 44.414787)
+	(y2 44.4133)
+	(yy
+		"44.4147862"
+		"44.4146213"
+		"44.4144669"
+		"44.4142975"
+		"44.4141308"
+		"44.4137181"
+		"44.4132988"))
+
+([NiceSPb_Class310820] of  Edge
+
+	(label "34321029")
+	(latitude "44 16.98")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.6")
+	(playground-index 0)
+	(points
+		"44 17.02 8 26.63"
+		"44 16.95 8 26.58"
+		"44 16.93 8 26.57")
+	(relative FALSE)
+	(x 8.443796)
+	(x2 8.442832)
+	(xx
+		"8.4437962"
+		"8.4430664"
+		"8.4428316")
+	(y 44.283737)
+	(y2 44.282143)
+	(yy
+		"44.2837376"
+		"44.2825268"
+		"44.2821428"))
+
+([NiceSPb_Class310823] of  Edge
+
+	(label "461681026")
+	(latitude "44 24.7")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 54.34")
+	(playground-index 0)
+	(points
+		"44 24.6 8 54.12"
+		"44 24.61 8 54.14"
+		"44 24.63 8 54.19"
+		"44 24.64 8 54.21"
+		"44 24.8 8 54.56")
+	(relative FALSE)
+	(x 8.902016)
+	(x2 8.909381)
+	(xx
+		"8.9020154"
+		"8.90233"
+		"8.9032246"
+		"8.9035041"
+		"8.9093809")
+	(y 44.41002)
+	(y2 44.4133)
+	(yy
+		"44.4100187"
+		"44.4101636"
+		"44.4105148"
+		"44.4106213"
+		"44.4132988"))
+
+([NiceSPb_Class310834] of  Edge
+
+	(label "461681025")
+	(latitude "44 24.71")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.66")
+	(playground-index 0)
+	(points
+		"44 24.81 8 53.21"
+		"44 24.79 8 53.23"
+		"44 24.77 8 53.25"
+		"44 24.74 8 53.28"
+		"44 24.73 8 53.31"
+		"44 24.72 8 53.33"
+		"44 24.7 8 53.35"
+		"44 24.69 8 53.37"
+		"44 24.68 8 53.39"
+		"44 24.68 8 53.41"
+		"44 24.66 8 53.45"
+		"44 24.65 8 53.48"
+		"44 24.61 8 53.59"
+		"44 24.59 8 53.68"
+		"44 24.56 8 53.77"
+		"44 24.55 8 53.78"
+		"44 24.55 8 53.79"
+		"44 24.55 8 53.81"
+		"44 24.54 8 53.83"
+		"44 24.54 8 53.86"
+		"44 24.54 8 53.88"
+		"44 24.54 8 53.9"
+		"44 24.54 8 53.92"
+		"44 24.54 8 53.94"
+		"44 24.55 8 53.99"
+		"44 24.55 8 54.01"
+		"44 24.56 8 54.04"
+		"44 24.57 8 54.06"
+		"44 24.6 8 54.12")
+	(relative FALSE)
+	(x 8.886804)
+	(x2 8.902016)
+	(xx
+		"8.8868036"
+		"8.8872477"
+		"8.8875435"
+		"8.8880774"
+		"8.8884806"
+		"8.8887612"
+		"8.8892489"
+		"8.8895149"
+		"8.8898478"
+		"8.8901773"
+		"8.8908203"
+		"8.8913582"
+		"8.8931873"
+		"8.8946168"
+		"8.8961047"
+		"8.8963348"
+		"8.8965683"
+		"8.8968531"
+		"8.8971429"
+		"8.89773"
+		"8.8980238"
+		"8.89834"
+		"8.8986871"
+		"8.8990567"
+		"8.8997648"
+		"8.9002244"
+		"8.9006156"
+		"8.9010473"
+		"8.9020154")
+	(y 44.413548)
+	(y2 44.41002)
+	(yy
+		"44.4135468"
+		"44.4130987"
+		"44.4128236"
+		"44.4123974"
+		"44.4121373"
+		"44.4119682"
+		"44.4116851"
+		"44.4115519"
+		"44.4113973"
+		"44.4112594"
+		"44.4110164"
+		"44.4108388"
+		"44.4102367"
+		"44.4097662"
+		"44.409275"
+		"44.4092077"
+		"44.4091468"
+		"44.4090838"
+		"44.4090311"
+		"44.4089734"
+		"44.4089539"
+		"44.4089479"
+		"44.4089624"
+		"44.4089937"
+		"44.4091227"
+		"44.4092403"
+		"44.4093811"
+		"44.4095652"
+		"44.4100187"))
+
+([NiceSPb_Class310875] of  Edge
+
+	(label "377983652")
+	(latitude "44 17.96")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 27.85")
+	(playground-index 0)
+	(points
+		"44 17.75 8 27.54"
+		"44 17.76 8 27.56"
+		"44 17.78 8 27.6"
+		"44 17.8 8 27.63"
+		"44 17.81 8 27.66"
+		"44 17.83 8 27.68"
+		"44 17.84 8 27.72"
+		"44 17.87 8 27.78"
+		"44 17.93 8 27.92"
+		"44 17.94 8 27.96"
+		"44 17.96 8 28"
+		"44 17.97 8 28.02"
+		"44 17.98 8 28.04"
+		"44 18 8 28.06"
+		"44 18.02 8 28.09"
+		"44 18.03 8 28.1"
+		"44 18.05 8 28.12"
+		"44 18.06 8 28.13"
+		"44 18.08 8 28.14"
+		"44 18.09 8 28.14"
+		"44 18.11 8 28.15"
+		"44 18.13 8 28.16"
+		"44 18.17 8 28.17")
+	(relative FALSE)
+	(x 8.459048)
+	(x2 8.469431)
+	(xx
+		"8.4590482"
+		"8.4593262"
+		"8.4599897"
+		"8.460468"
+		"8.460964"
+		"8.4614086"
+		"8.4620345"
+		"8.4630501"
+		"8.4652858"
+		"8.4659484"
+		"8.4667193"
+		"8.4669963"
+		"8.4673478"
+		"8.467742"
+		"8.4681353"
+		"8.4683621"
+		"8.4686031"
+		"8.4687867"
+		"8.4689523"
+		"8.4690654"
+		"8.4691678"
+		"8.4692718"
+		"8.4694311")
+	(y 44.295773)
+	(y2 44.30277)
+	(yy
+		"44.2957732"
+		"44.2959433"
+		"44.2963422"
+		"44.2966251"
+		"44.2968919"
+		"44.297112"
+		"44.2973945"
+		"44.2978319"
+		"44.2987797"
+		"44.2990586"
+		"44.2993946"
+		"44.2995297"
+		"44.2997314"
+		"44.2999953"
+		"44.3003173"
+		"44.3005384"
+		"44.3008152"
+		"44.3010662"
+		"44.3013444"
+		"44.3015822"
+		"44.3018268"
+		"44.3021541"
+		"44.3027687"))
+
+([NiceSPb_Class310917] of  Edge
+
+	(label "174986147")
+	(latitude "44 24.95")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.13")
+	(playground-index 0)
+	(points
+		"44 24.87 8 53.16"
+		"44 24.89 8 53.14"
+		"44 24.93 8 53.13"
+		"44 24.97 8 53.11"
+		"44 24.98 8 53.11"
+		"44 25.01 8 53.1"
+		"44 25.02 8 53.1"
+		"44 25.03 8 53.1")
+	(relative FALSE)
+	(x 8.885938)
+	(x2 8.884953)
+	(xx
+		"8.8859377"
+		"8.8856789"
+		"8.8854598"
+		"8.8852115"
+		"8.8851464"
+		"8.8849666"
+		"8.8849622"
+		"8.8849529")
+	(y 44.41443)
+	(y2 44.417217)
+	(yy
+		"44.4144274"
+		"44.4149047"
+		"44.4154285"
+		"44.416086"
+		"44.4163008"
+		"44.4168938"
+		"44.416971"
+		"44.4172182"))
+
+([NiceSPb_Class310932] of  Edge
+
+	(label "34005312")
+	(latitude "44 18.49")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 28.2")
+	(playground-index 0)
+	(points
+		"44 18.76 8 28.21"
+		"44 18.75 8 28.21"
+		"44 18.68 8 28.21"
+		"44 18.66 8 28.2"
+		"44 18.6 8 28.2"
+		"44 18.49 8 28.2"
+		"44 18.44 8 28.2"
+		"44 18.36 8 28.2"
+		"44 18.34 8 28.2"
+		"44 18.3 8 28.19"
+		"44 18.26 8 28.18"
+		"44 18.21 8 28.18")
+	(relative FALSE)
+	(x 8.470246)
+	(x2 8.4696245)
+	(xx
+		"8.4702461"
+		"8.4702103"
+		"8.4701082"
+		"8.4700652"
+		"8.4700301"
+		"8.4699927"
+		"8.469984"
+		"8.4699613"
+		"8.4699394"
+		"8.4698729"
+		"8.4696963"
+		"8.4696242")
+	(y 44.312702)
+	(y2 44.303543)
+	(yy
+		"44.3127023"
+		"44.3124286"
+		"44.3113711"
+		"44.3109386"
+		"44.3100414"
+		"44.3081591"
+		"44.3072794"
+		"44.3060421"
+		"44.305656"
+		"44.3050676"
+		"44.304253"
+		"44.3035414"))
+
+([NiceSPb_Class310960] of  Edge
+
+	(label "617665756")
+	(latitude "44 25.32")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.24")
+	(playground-index 0)
+	(points
+		"44 25.61 8 53.39"
+		"44 25.42 8 53.28"
+		"44 25.33 8 53.22"
+		"44 25.24 8 53.16"
+		"44 25.22 8 53.15"
+		"44 25.2 8 53.14"
+		"44 25.17 8 53.13"
+		"44 25.15 8 53.12"
+		"44 25.13 8 53.11"
+		"44 25.11 8 53.11"
+		"44 25.09 8 53.11"
+		"44 25.09 8 53.1"
+		"44 25.07 8 53.1"
+		"44 25.06 8 53.1"
+		"44 25.05 8 53.1"
+		"44 25.03 8 53.1")
+	(relative FALSE)
+	(x 8.889857)
+	(x2 8.884953)
+	(xx
+		"8.8898574"
+		"8.8879548"
+		"8.8869494"
+		"8.8860726"
+		"8.8858546"
+		"8.8856958"
+		"8.8854642"
+		"8.8853612"
+		"8.8852353"
+		"8.8851608"
+		"8.8850928"
+		"8.8850649"
+		"8.8850162"
+		"8.8849961"
+		"8.8849791"
+		"8.8849529")
+	(y 44.42684)
+	(y2 44.417217)
+	(yy
+		"44.4268413"
+		"44.423671"
+		"44.4221291"
+		"44.4206416"
+		"44.4202591"
+		"44.4199424"
+		"44.4194758"
+		"44.4191775"
+		"44.4188168"
+		"44.4185395"
+		"44.4182344"
+		"44.418084"
+		"44.417822"
+		"44.4176541"
+		"44.4175105"
+		"44.4172182"))
+
+([NiceSPb_Class310981] of  Edge
+
+	(label "448978023")
+	(latitude "44 18.84")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 28.24")
+	(playground-index 0)
+	(points
+		"44 18.96 8 28.26"
+		"44 18.89 8 28.25"
+		"44 18.87 8 28.24"
+		"44 18.84 8 28.24"
+		"44 18.81 8 28.23"
+		"44 18.78 8 28.22"
+		"44 18.75 8 28.22"
+		"44 18.72 8 28.22")
+	(relative FALSE)
+	(x 8.471039)
+	(x2 8.470295)
+	(xx
+		"8.4710384"
+		"8.4707829"
+		"8.4707058"
+		"8.4706005"
+		"8.4704864"
+		"8.4703864"
+		"8.4703243"
+		"8.4702954")
+	(y 44.315952)
+	(y2 44.312004)
+	(yy
+		"44.3159528"
+		"44.3147732"
+		"44.3144238"
+		"44.3139676"
+		"44.3134845"
+		"44.3129969"
+		"44.3125096"
+		"44.3120055"))
+
+([NiceSPb_Class311002] of  Edge
+
+	(label "33945342")
+	(latitude "44 19.02")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 28.27")
+	(playground-index 0)
+	(points
+		"44 19.08 8 28.28"
+		"44 18.96 8 28.26")
+	(relative FALSE)
+	(x 8.471405)
+	(x2 8.471039)
+	(xx
+		"8.4714052"
+		"8.4710384")
+	(y 44.317978)
+	(y2 44.315952)
+	(yy
+		"44.3179772"
+		"44.3159528"))
+
+([NiceSPb_Class311013] of  Edge
+
+	(label "33844937")
+	(latitude "44 19.19")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 28.33")
+	(playground-index 0)
+	(points
+		"44 19.3 8 28.37"
+		"44 19.27 8 28.35"
+		"44 19.24 8 28.33"
+		"44 19.21 8 28.32"
+		"44 19.17 8 28.3"
+		"44 19.15 8 28.3"
+		"44 19.12 8 28.29"
+		"44 19.08 8 28.28")
+	(relative FALSE)
+	(x 8.472814)
+	(x2 8.471405)
+	(xx
+		"8.4728138"
+		"8.4725195"
+		"8.4721865"
+		"8.4719382"
+		"8.4717399"
+		"8.4716268"
+		"8.4715239"
+		"8.4714052")
+	(y 44.321693)
+	(y2 44.317978)
+	(yy
+		"44.321693"
+		"44.3212453"
+		"44.3206644"
+		"44.3200965"
+		"44.3195535"
+		"44.3191315"
+		"44.3186277"
+		"44.3179772"))
+
+([NiceSPb_Class311022] of  Edge
+
+	(label "377981149")
+	(latitude "44 19.64")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 29.25")
+	(playground-index 0)
+	(points
+		"44 19.3 8 28.37"
+		"44 19.33 8 28.39"
+		"44 19.36 8 28.41"
+		"44 19.39 8 28.44"
+		"44 19.42 8 28.48"
+		"44 19.45 8 28.51"
+		"44 19.48 8 28.55"
+		"44 19.51 8 28.59"
+		"44 19.54 8 28.63"
+		"44 19.57 8 28.69"
+		"44 19.6 8 28.74"
+		"44 19.64 8 28.8"
+		"44 19.68 8 28.87"
+		"44 19.71 8 28.94"
+		"44 19.74 8 29.01"
+		"44 19.76 8 29.07"
+		"44 19.78 8 29.16"
+		"44 19.81 8 29.25"
+		"44 19.83 8 29.34"
+		"44 19.85 8 29.43"
+		"44 19.9 8 29.66"
+		"44 19.93 8 29.85"
+		"44 19.98 8 30.14")
+	(relative FALSE)
+	(x 8.472814)
+	(x2 8.502319)
+	(xx
+		"8.4728138"
+		"8.4731701"
+		"8.4735802"
+		"8.4740233"
+		"8.4746381"
+		"8.475211"
+		"8.4758201"
+		"8.4765602"
+		"8.4772012"
+		"8.4780895"
+		"8.4789489"
+		"8.4799856"
+		"8.4812307"
+		"8.4822708"
+		"8.4834955"
+		"8.4845783"
+		"8.4859479"
+		"8.4875414"
+		"8.4889914"
+		"8.4904827"
+		"8.49427"
+		"8.497483"
+		"8.5023196")
+	(y 44.321693)
+	(y2 44.33303)
+	(yy
+		"44.321693"
+		"44.3221925"
+		"44.3226655"
+		"44.3231233"
+		"44.3237007"
+		"44.3241942"
+		"44.3246669"
+		"44.3252001"
+		"44.325642"
+		"44.3262038"
+		"44.3266989"
+		"44.3272795"
+		"44.327937"
+		"44.3284305"
+		"44.3289305"
+		"44.3293118"
+		"44.3297247"
+		"44.3301397"
+		"44.3304894"
+		"44.3308204"
+		"44.3315898"
+		"44.3321947"
+		"44.3330293"))
+
+([NiceSPb_Class311031] of  Edge
+
+	(label "378121839")
+	(latitude "44 19.99")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 30.19")
+	(playground-index 0)
+	(points
+		"44 19.98 8 30.14"
+		"44 20 8 30.25")
+	(relative FALSE)
+	(x 8.502319)
+	(x2 8.504128)
+	(xx
+		"8.5023196"
+		"8.5041287")
+	(y 44.33303)
+	(y2 44.33334)
+	(yy
+		"44.3330293"
+		"44.3333415"))
+
+([NiceSPb_Class311045] of  Edge
+
+	(label "62021644")
+	(latitude "44 20.02")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 30.35")
+	(playground-index 0)
+	(points
+		"44 20.03 8 30.41"
+		"44 20.03 8 30.39"
+		"44 20.01 8 30.3")
+	(relative FALSE)
+	(x 8.506754)
+	(x2 8.504967)
+	(xx
+		"8.506754"
+		"8.5065825"
+		"8.5049663")
+	(y 44.33379)
+	(y2 44.33349)
+	(yy
+		"44.33379"
+		"44.3337609"
+		"44.3334873"))
+
+([NiceSPb_Class311057] of  Edge
+
+	(label "74395986")
+	(latitude "44 20.05")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 30.52")
+	(playground-index 0)
+	(points
+		"44 20.07 8 30.64"
+		"44 20.06 8 30.6"
+		"44 20.06 8 30.56"
+		"44 20.04 8 30.5"
+		"44 20.03 8 30.41")
+	(relative FALSE)
+	(x 8.510665)
+	(x2 8.506754)
+	(xx
+		"8.5106652"
+		"8.5100424"
+		"8.5093005"
+		"8.508326"
+		"8.506754")
+	(y 44.334515)
+	(y2 44.33379)
+	(yy
+		"44.3345145"
+		"44.3344046"
+		"44.3342641"
+		"44.3340682"
+		"44.33379"))
+
+([NiceSPb_Class311073] of  Edge
+
+	(label "62021642")
+	(latitude "44 20.15")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 31.21")
+	(playground-index 0)
+	(points
+		"44 20.17 8 31.4"
+		"44 20.17 8 31.37"
+		"44 20.17 8 31.32"
+		"44 20.16 8 31.29"
+		"44 20.16 8 31.25"
+		"44 20.16 8 31.22"
+		"44 20.16 8 31.19"
+		"44 20.15 8 31.16"
+		"44 20.15 8 31.12"
+		"44 20.14 8 31.08"
+		"44 20.13 8 31.02")
+	(relative FALSE)
+	(x 8.5233555)
+	(x2 8.517009)
+	(xx
+		"8.5233558"
+		"8.5229133"
+		"8.5219719"
+		"8.5214728"
+		"8.5208711"
+		"8.5203608"
+		"8.5197988"
+		"8.5192554"
+		"8.5187082"
+		"8.5180745"
+		"8.5170088")
+	(y 44.33609)
+	(y2 44.33556)
+	(yy
+		"44.336091"
+		"44.3360952"
+		"44.3360926"
+		"44.3360806"
+		"44.3360559"
+		"44.3360164"
+		"44.3359636"
+		"44.335899"
+		"44.3358254"
+		"44.3357318"
+		"44.3355602"))
+
+([NiceSPb_Class311083] of  Edge
+
+	(label "62021665")
+	(latitude "44 20.2")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 31.76")
+	(playground-index 0)
+	(points
+		"44 20.23 8 32.09"
+		"44 20.22 8 32.06"
+		"44 20.21 8 32.01"
+		"44 20.2 8 31.96"
+		"44 20.19 8 31.93"
+		"44 20.18 8 31.9"
+		"44 20.18 8 31.86"
+		"44 20.17 8 31.82"
+		"44 20.17 8 31.78"
+		"44 20.16 8 31.74"
+		"44 20.16 8 31.69"
+		"44 20.16 8 31.64"
+		"44 20.16 8 31.6"
+		"44 20.16 8 31.44")
+	(relative FALSE)
+	(x 8.534785)
+	(x2 8.523971)
+	(xx
+		"8.534785"
+		"8.534265"
+		"8.5335281"
+		"8.532688"
+		"8.5321611"
+		"8.5316682"
+		"8.5310124"
+		"8.5304002"
+		"8.5297436"
+		"8.5289807"
+		"8.5281376"
+		"8.5273249"
+		"8.5265989"
+		"8.523971")
+	(y 44.337215)
+	(y2 44.336067)
+	(yy
+		"44.3372165"
+		"44.3370347"
+		"44.3368158"
+		"44.3366088"
+		"44.3364935"
+		"44.336399"
+		"44.3362865"
+		"44.3361973"
+		"44.3361217"
+		"44.3360497"
+		"44.3359842"
+		"44.3359594"
+		"44.3359694"
+		"44.3360682"))
+
+([NiceSPb_Class311095] of  Edge
+
+	(label "271705703")
+	(latitude "44 20.27")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 32.17")
+	(playground-index 0)
+	(points
+		"44 20.28 8 32.18"
+		"44 20.27 8 32.17")
+	(relative FALSE)
+	(x 8.536308)
+	(x2 8.536144)
+	(xx
+		"8.5363079"
+		"8.536144")
+	(y 44.33793)
+	(y2 44.337845)
+	(yy
+		"44.3379305"
+		"44.3378463"))
+
+([NiceSPb_Class311105] of  Edge
+
+	(label "62425366")
+	(latitude "44 20.36")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 32.3")
+	(playground-index 0)
+	(points
+		"44 20.42 8 32.39"
+		"44 20.39 8 32.34"
+		"44 20.34 8 32.28"
+		"44 20.3 8 32.22")
+	(relative FALSE)
+	(x 8.539848)
+	(x2 8.536938)
+	(xx
+		"8.5398486"
+		"8.5390544"
+		"8.5380635"
+		"8.536938")
+	(y 44.340385)
+	(y2 44.33829)
+	(yy
+		"44.3403839"
+		"44.3397773"
+		"44.3390415"
+		"44.3382917"))
+
+([NiceSPb_Class311115] of  Edge
+
+	(label "62425365")
+	(latitude "44 20.47")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 32.45")
+	(playground-index 0)
+	(points
+		"44 20.5 8 32.49"
+		"44 20.44 8 32.41")
+	(relative FALSE)
+	(x 8.541461)
+	(x2 8.540246)
+	(xx
+		"8.5414608"
+		"8.540246")
+	(y 44.34161)
+	(y2 44.340687)
+	(yy
+		"44.3416083"
+		"44.3406857"))
+
+([NiceSPb_Class311122] of  Edge
+
+	(label "62425214")
+	(latitude "44 20.59")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 32.61")
+	(playground-index 0)
+	(points
+		"44 20.69 8 32.74"
+		"44 20.62 8 32.65"
+		"44 20.55 8 32.56"
+		"44 20.5 8 32.49")
+	(relative FALSE)
+	(x 8.545592)
+	(x2 8.541461)
+	(xx
+		"8.5455924"
+		"8.5440884"
+		"8.5426566"
+		"8.5414608")
+	(y 44.344795)
+	(y2 44.34161)
+	(yy
+		"44.3447937"
+		"44.3436356"
+		"44.3425173"
+		"44.3416083"))
+
+([NiceSPb_Class311137] of  Edge
+
+	(label "62425373")
+	(latitude "44 21.08")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 33.41")
+	(playground-index 0)
+	(points
+		"44 21.26 8 33.76"
+		"44 21.24 8 33.71"
+		"44 20.9 8 33.07")
+	(relative FALSE)
+	(x 8.562606)
+	(x2 8.551178)
+	(xx
+		"8.5626054"
+		"8.5619153"
+		"8.5511781")
+	(y 44.35439)
+	(y2 44.348297)
+	(yy
+		"44.3543898"
+		"44.3540195"
+		"44.3482974"))
+
+([NiceSPb_Class311170] of  Edge
+
+	(label "377598422")
+	(latitude "44 21.63")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 34.31")
+	(playground-index 0)
+	(points
+		"44 21.7 8 34.41"
+		"44 21.68 8 34.37"
+		"44 21.63 8 34.31"
+		"44 21.58 8 34.24"
+		"44 21.56 8 34.21")
+	(relative FALSE)
+	(x 8.573535)
+	(x2 8.570168)
+	(xx
+		"8.5735352"
+		"8.5728727"
+		"8.5718466"
+		"8.5707447"
+		"8.5701676")
+	(y 44.36173)
+	(y2 44.359287)
+	(yy
+		"44.3617268"
+		"44.3612665"
+		"44.3605501"
+		"44.3597185"
+		"44.3592871"))
+
+([NiceSPb_Class311184] of  Edge
+
+	(label "377598421")
+	(latitude "44 21.75")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 34.5")
+	(playground-index 0)
+	(points
+		"44 21.8 8 34.6"
+		"44 21.76 8 34.51"
+		"44 21.73 8 34.46"
+		"44 21.72 8 34.43"
+		"44 21.7 8 34.41")
+	(relative FALSE)
+	(x 8.576588)
+	(x2 8.573535)
+	(xx
+		"8.5765876"
+		"8.5751752"
+		"8.5743962"
+		"8.5738329"
+		"8.5735352")
+	(y 44.36335)
+	(y2 44.36173)
+	(yy
+		"44.3633508"
+		"44.3626633"
+		"44.3622484"
+		"44.3619185"
+		"44.3617268"))
+
+([NiceSPb_Class311192] of  Edge
+
+	(label "377598296")
+	(latitude "44 22.33")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 36.23")
+	(playground-index 0)
+	(points
+		"44 22.86 8 37.86"
+		"44 22.75 8 37.57"
+		"44 22.7 8 37.47"
+		"44 22.65 8 37.36"
+		"44 22.6 8 37.22"
+		"44 22.54 8 37.03"
+		"44 22.47 8 36.78"
+		"44 22.41 8 36.51"
+		"44 22.36 8 36.28"
+		"44 22.32 8 36.09"
+		"44 22.28 8 35.92"
+		"44 22.22 8 35.73"
+		"44 22.18 8 35.59"
+		"44 22.14 8 35.45"
+		"44 22.09 8 35.32"
+		"44 22.05 8 35.19"
+		"44 22 8 35.07"
+		"44 21.95 8 34.93"
+		"44 21.86 8 34.72"
+		"44 21.8 8 34.6")
+	(relative FALSE)
+	(x 8.631039)
+	(x2 8.576588)
+	(xx
+		"8.6310385"
+		"8.6262137"
+		"8.624453"
+		"8.622651"
+		"8.6203174"
+		"8.6171012"
+		"8.6129867"
+		"8.6085667"
+		"8.6046858"
+		"8.601538"
+		"8.5986363"
+		"8.5954185"
+		"8.5931547"
+		"8.5908379"
+		"8.5886314"
+		"8.586419"
+		"8.5844842"
+		"8.5822161"
+		"8.5786806"
+		"8.5765876")
+	(y 44.38108)
+	(y2 44.36335)
+	(yy
+		"44.3810801"
+		"44.3791008"
+		"44.3783206"
+		"44.3775809"
+		"44.3767374"
+		"44.3756659"
+		"44.3744964"
+		"44.3734563"
+		"44.3726563"
+		"44.3719799"
+		"44.3712632"
+		"44.3703885"
+		"44.3697172"
+		"44.3689777"
+		"44.3682257"
+		"44.3674414"
+		"44.3667293"
+		"44.3658235"
+		"44.3642678"
+		"44.3633508"))
+
+([NiceSPb_Class311203] of  Edge
+
+	(label "32939751")
+	(latitude "44 22.93")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 37.99")
+	(playground-index 0)
+	(points
+		"44 22.97 8 38.05"
+		"44 22.93 8 37.99"
+		"44 22.9 8 37.93")
+	(relative FALSE)
+	(x 8.634185)
+	(x2 8.632147)
+	(xx
+		"8.6341853"
+		"8.6331233"
+		"8.6321468")
+	(y 44.382797)
+	(y2 44.38163)
+	(yy
+		"44.3827976"
+		"44.3821474"
+		"44.3816283"))
+
+([NiceSPb_Class311211] of  Edge
+
+	(label "377974000")
+	(latitude "44 23.02")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 38.11")
+	(playground-index 0)
+	(points
+		"44 23.06 8 38.17"
+		"44 23.04 8 38.15"
+		"44 23.01 8 38.11"
+		"44 22.98 8 38.07"
+		"44 22.97 8 38.05")
+	(relative FALSE)
+	(x 8.636233)
+	(x2 8.634185)
+	(xx
+		"8.6362338"
+		"8.6357525"
+		"8.6351145"
+		"8.6345619"
+		"8.6341853")
+	(y 44.384403)
+	(y2 44.382797)
+	(yy
+		"44.3844033"
+		"44.3839972"
+		"44.3834859"
+		"44.3830604"
+		"44.3827976"))
+
+([NiceSPb_Class311227] of  Edge
+
+	(label "377595474")
+	(latitude "44 23.13")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 38.25")
+	(playground-index 0)
+	(points
+		"44 23.14 8 38.26"
+		"44 23.12 8 38.24")
+	(relative FALSE)
+	(x 8.637704)
+	(x2 8.637255)
+	(xx
+		"8.637704"
+		"8.6372549")
+	(y 44.38571)
+	(y2 44.385326)
+	(yy
+		"44.3857123"
+		"44.3853267"))
+
+([NiceSPb_Class311271] of  Edge
+
+	(label "377589660")
+	(latitude "44 23.77")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 39.7")
+	(playground-index 0)
+	(points
+		"44 23.78 8 39.74"
+		"44 23.75 8 39.66")
+	(relative FALSE)
+	(x 8.662358)
+	(x2 8.660948)
+	(xx
+		"8.662358"
+		"8.6609477")
+	(y 44.39633)
+	(y2 44.39591)
+	(yy
+		"44.3963321"
+		"44.3959083"))
+
+([NiceSPb_Class311280] of  Edge
+
+	(label "377588597")
+	(latitude "44 24.19")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 40.69")
+	(playground-index 0)
+	(points
+		"44 24.27 8 40.8"
+		"44 24.25 8 40.77"
+		"44 24.23 8 40.76"
+		"44 24.21 8 40.73"
+		"44 24.2 8 40.71"
+		"44 24.18 8 40.69"
+		"44 24.17 8 40.67"
+		"44 24.15 8 40.64"
+		"44 24.13 8 40.6"
+		"44 24.11 8 40.57")
+	(relative FALSE)
+	(x 8.680042)
+	(x2 8.676139)
+	(xx
+		"8.6800421"
+		"8.6795763"
+		"8.6792741"
+		"8.6788259"
+		"8.6784873"
+		"8.6781842"
+		"8.6778231"
+		"8.6773078"
+		"8.6766922"
+		"8.676139")
+	(y 44.40448)
+	(y2 44.4018)
+	(yy
+		"44.4044798"
+		"44.4041001"
+		"44.4038461"
+		"44.4035196"
+		"44.4032828"
+		"44.403067"
+		"44.4028199"
+		"44.4024871"
+		"44.4021155"
+		"44.4017994"))
+
+([NiceSPb_Class311283] of  Edge
+
+	(label "32940181")
+	(latitude "44 24.35")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 40.91")
+	(playground-index 0)
+	(points
+		"44 24.43 8 41.01"
+		"44 24.39 8 40.96"
+		"44 24.35 8 40.91"
+		"44 24.27 8 40.81"
+		"44 24.27 8 40.8")
+	(relative FALSE)
+	(x 8.683515)
+	(x2 8.680042)
+	(xx
+		"8.6835142"
+		"8.6826167"
+		"8.6817574"
+		"8.6801622"
+		"8.6800421")
+	(y 44.40713)
+	(y2 44.40448)
+	(yy
+		"44.4071301"
+		"44.4065581"
+		"44.4059076"
+		"44.4045745"
+		"44.4044798"))
+
+([NiceSPb_Class311288] of  Edge
+
+	(label "32940191")
+	(latitude "44 24.47")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 41.09")
+	(playground-index 0)
+	(points
+		"44 24.48 8 41.1"
+		"44 24.47 8 41.08")
+	(relative FALSE)
+	(x 8.685052)
+	(x2 8.684712)
+	(xx
+		"8.6850517"
+		"8.6847127")
+	(y 44.408005)
+	(y2 44.40782)
+	(yy
+		"44.4080034"
+		"44.4078208"))
+
+([NiceSPb_Class311298] of  Edge
+
+	(label "10070328")
+	(latitude "44 24.83")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 42.37")
+	(playground-index 0)
+	(points
+		"44 24.86 8 42.46"
+		"44 24.8 8 42.27")
+	(relative FALSE)
+	(x 8.707684)
+	(x2 8.70449)
+	(xx
+		"8.7076838"
+		"8.70449")
+	(y 44.414303)
+	(y2 44.413353)
+	(yy
+		"44.4143016"
+		"44.4133539"))
+
+([NiceSPb_Class311302] of  Edge
+
+	(label "108103844")
+	(latitude "44 24.92")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 42.61")
+	(playground-index 0)
+	(points
+		"44 24.86 8 42.44"
+		"44 24.93 8 42.6"
+		"44 24.94 8 42.64"
+		"44 24.95 8 42.68"
+		"44 24.96 8 42.72"
+		"44 24.97 8 42.75"
+		"44 24.97 8 42.77")
+	(relative FALSE)
+	(x 8.707311)
+	(x2 8.712913)
+	(xx
+		"8.707311"
+		"8.7099841"
+		"8.7107061"
+		"8.7112839"
+		"8.7119322"
+		"8.7125818"
+		"8.7129129")
+	(y 44.41441)
+	(y2 44.416164)
+	(yy
+		"44.4144088"
+		"44.4154426"
+		"44.4156855"
+		"44.4158405"
+		"44.4159953"
+		"44.4161101"
+		"44.4161628"))
+
+([NiceSPb_Class311307] of  Edge
+
+	(label "24535550")
+	(latitude "44 24.98")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 42.84")
+	(playground-index 0)
+	(points
+		"44 24.99 8 42.91"
+		"44 24.98 8 42.83"
+		"44 24.97 8 42.77")
+	(relative FALSE)
+	(x 8.715188)
+	(x2 8.712913)
+	(xx
+		"8.715188"
+		"8.7139146"
+		"8.7129129")
+	(y 44.41651)
+	(y2 44.416164)
+	(yy
+		"44.4165119"
+		"44.4163113"
+		"44.4161628"))
+
+([NiceSPb_Class311315] of  Edge
+
+	(label "108110662")
+	(latitude "44 25.74")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 44.81")
+	(playground-index 0)
+	(points
+		"44 25.69 8 44.56"
+		"44 25.72 8 44.6"
+		"44 25.74 8 44.65"
+		"44 25.76 8 44.72"
+		"44 25.77 8 44.77"
+		"44 25.78 8 44.83"
+		"44 25.79 8 44.89"
+		"44 25.79 8 44.93"
+		"44 25.79 8 44.95"
+		"44 25.79 8 44.97"
+		"44 25.79 8 45.07")
+	(relative FALSE)
+	(x 8.7425995)
+	(x2 8.75117)
+	(xx
+		"8.7425996"
+		"8.7433759"
+		"8.7442028"
+		"8.7452537"
+		"8.746159"
+		"8.7471613"
+		"8.7481189"
+		"8.7487804"
+		"8.7491619"
+		"8.7494741"
+		"8.7511697")
+	(y 44.428246)
+	(y2 44.429802)
+	(yy
+		"44.4282472"
+		"44.4286129"
+		"44.4289418"
+		"44.4292804"
+		"44.4295101"
+		"44.429688"
+		"44.4298152"
+		"44.4298722"
+		"44.4298905"
+		"44.4298949"
+		"44.4298022"))
+
+([NiceSPb_Class311323] of  Edge
+
+	(label "15220994")
+	(latitude "44 25.76")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 45.19")
+	(playground-index 0)
+	(points
+		"44 25.76 8 45.24"
+		"44 25.76 8 45.22"
+		"44 25.76 8 45.2"
+		"44 25.76 8 45.18"
+		"44 25.76 8 45.17"
+		"44 25.76 8 45.15")
+	(relative FALSE)
+	(x 8.754035)
+	(x2 8.752422)
+	(xx
+		"8.7540348"
+		"8.7537251"
+		"8.7534088"
+		"8.7530599"
+		"8.7528437"
+		"8.7524227")
+	(y 44.429306)
+	(y2 44.42934)
+	(yy
+		"44.4293075"
+		"44.4293296"
+		"44.4293418"
+		"44.4293479"
+		"44.4293476"
+		"44.429341"))
+
+([NiceSPb_Class311328] of  Edge
+
+	(label "134464057")
+	(latitude "44 25.75")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 45.31")
+	(playground-index 0)
+	(points
+		"44 25.74 8 45.38"
+		"44 25.74 8 45.36"
+		"44 25.75 8 45.34"
+		"44 25.75 8 45.32"
+		"44 25.75 8 45.3"
+		"44 25.75 8 45.28"
+		"44 25.76 8 45.25"
+		"44 25.76 8 45.24")
+	(relative FALSE)
+	(x 8.7563505)
+	(x2 8.754035)
+	(xx
+		"8.7563505"
+		"8.7560386"
+		"8.7556771"
+		"8.7553064"
+		"8.7549482"
+		"8.7546011"
+		"8.7541823"
+		"8.7540348")
+	(y 44.428925)
+	(y2 44.429306)
+	(yy
+		"44.4289238"
+		"44.4290069"
+		"44.4290884"
+		"44.4291549"
+		"44.4292045"
+		"44.4292481"
+		"44.4292919"
+		"44.4293075"))
+
+([NiceSPb_Class311340] of  Edge
+
+	(label "27884910")
+	(latitude "44 25.63")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 46.51")
+	(playground-index 0)
+	(points
+		"44 25.62 8 46.59"
+		"44 25.62 8 46.56"
+		"44 25.63 8 46.53"
+		"44 25.63 8 46.49"
+		"44 25.64 8 46.42")
+	(relative FALSE)
+	(x 8.7765665)
+	(x2 8.7736435)
+	(xx
+		"8.7765668"
+		"8.7759919"
+		"8.7754522"
+		"8.7748173"
+		"8.7736434")
+	(y 44.42696)
+	(y2 44.427414)
+	(yy
+		"44.4269604"
+		"44.4270264"
+		"44.4271039"
+		"44.4272004"
+		"44.427413"))
+
+([NiceSPb_Class311362] of  Edge
+
+	(label "251198162")
+	(latitude "44 25.58")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 46.85")
+	(playground-index 0)
+	(points
+		"44 25.55 8 47.09"
+		"44 25.57 8 46.93"
+		"44 25.58 8 46.88"
+		"44 25.59 8 46.84"
+		"44 25.59 8 46.81"
+		"44 25.6 8 46.77"
+		"44 25.6 8 46.68"
+		"44 25.6 8 46.67"
+		"44 25.6 8 46.61")
+	(relative FALSE)
+	(x 8.784905)
+	(x2 8.77688)
+	(xx
+		"8.784905"
+		"8.7822323"
+		"8.7813376"
+		"8.7806969"
+		"8.7801089"
+		"8.7794539"
+		"8.7780831"
+		"8.7778985"
+		"8.7768802")
+	(y 44.425808)
+	(y2 44.42674)
+	(yy
+		"44.4258065"
+		"44.4262411"
+		"44.4263786"
+		"44.4264666"
+		"44.4265305"
+		"44.4265838"
+		"44.4266753"
+		"44.4266851"
+		"44.426739"))
+
+([NiceSPb_Class311381] of  Edge
+
+	(label "25991904")
+	(latitude "44 25.55")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 47.51")
+	(playground-index 0)
+	(points
+		"44 25.55 8 47.09"
+		"44 25.54 8 47.16"
+		"44 25.51 8 47.33"
+		"44 25.51 8 47.35"
+		"44 25.5 8 47.4"
+		"44 25.5 8 47.44"
+		"44 25.5 8 47.48"
+		"44 25.5 8 47.52"
+		"44 25.5 8 47.56"
+		"44 25.5 8 47.59"
+		"44 25.5 8 47.63"
+		"44 25.5 8 47.67"
+		"44 25.51 8 47.71"
+		"44 25.51 8 47.75"
+		"44 25.51 8 47.79"
+		"44 25.52 8 47.81"
+		"44 25.52 8 47.82"
+		"44 25.53 8 47.86"
+		"44 25.54 8 47.9"
+		"44 25.54 8 47.93")
+	(relative FALSE)
+	(x 8.784905)
+	(x2 8.798786)
+	(xx
+		"8.784905"
+		"8.7859933"
+		"8.788818"
+		"8.7891634"
+		"8.7899201"
+		"8.7906229"
+		"8.7913777"
+		"8.7920684"
+		"8.7926941"
+		"8.7932421"
+		"8.7938834"
+		"8.794581"
+		"8.7952186"
+		"8.795869"
+		"8.7964301"
+		"8.7968158"
+		"8.7969528"
+		"8.7976102"
+		"8.7983306"
+		"8.7987859")
+	(y 44.425808)
+	(y2 44.425694)
+	(yy
+		"44.4258065"
+		"44.4256293"
+		"44.4251733"
+		"44.4251282"
+		"44.4250525"
+		"44.4250008"
+		"44.4249612"
+		"44.424952"
+		"44.4249545"
+		"44.4249635"
+		"44.4249887"
+		"44.4250331"
+		"44.4250917"
+		"44.4251631"
+		"44.4252351"
+		"44.4252999"
+		"44.4253229"
+		"44.4254375"
+		"44.4255842"
+		"44.4256922"))
+
+([NiceSPb_Class311457] of  Edge
+
+	(label "138383095")
+	(latitude "44 26.08")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 51.81")
+	(playground-index 0)
+	(points
+		"44 26.09 8 51.87"
+		"44 26.08 8 51.85"
+		"44 26.08 8 51.84"
+		"44 26.08 8 51.82"
+		"44 26.07 8 51.8"
+		"44 26.07 8 51.79"
+		"44 26.07 8 51.76"
+		"44 26.06 8 51.74")
+	(relative FALSE)
+	(x 8.864443)
+	(x2 8.8624115)
+	(xx
+		"8.8644427"
+		"8.8642299"
+		"8.8639552"
+		"8.8636756"
+		"8.8633919"
+		"8.8631106"
+		"8.8627077"
+		"8.8624119")
+	(y 44.434776)
+	(y2 44.4344)
+	(yy
+		"44.4347771"
+		"44.4347202"
+		"44.4346524"
+		"44.4345958"
+		"44.4345438"
+		"44.4344963"
+		"44.4344337"
+		"44.4343989"))
+
+([NiceSPb_Class311470] of  Edge
+
+	(label "141628914")
+	(latitude "44 26.06")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 51.69")
+	(playground-index 0)
+	(points
+		"44 26.06 8 51.74"
+		"44 26.06 8 51.72"
+		"44 26.06 8 51.7"
+		"44 26.06 8 51.68"
+		"44 26.06 8 51.66"
+		"44 26.06 8 51.63")
+	(relative FALSE)
+	(x 8.8624115)
+	(x2 8.86057)
+	(xx
+		"8.8624119"
+		"8.8620172"
+		"8.8616732"
+		"8.8613067"
+		"8.8609413"
+		"8.8605704")
+	(y 44.4344)
+	(y2 44.4344)
+	(yy
+		"44.4343989"
+		"44.4343705"
+		"44.4343508"
+		"44.434347"
+		"44.4343624"
+		"44.4343973"))
+
+([NiceSPb_Class311483] of  Edge
+
+	(label "59226936")
+	(latitude "44 26.1")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 51.98")
+	(playground-index 0)
+	(points
+		"44 26.14 8 52.33"
+		"44 26.13 8 52.31"
+		"44 26.12 8 52.29"
+		"44 26.11 8 52.26"
+		"44 26.11 8 52.24"
+		"44 26.1 8 52.21"
+		"44 26.1 8 52.19"
+		"44 26.1 8 52.16"
+		"44 26.09 8 52.1"
+		"44 26.08 8 51.99"
+		"44 26.06 8 51.76"
+		"44 26.06 8 51.71"
+		"44 26.06 8 51.69"
+		"44 26.06 8 51.67"
+		"44 26.06 8 51.66"
+		"44 26.06 8 51.63")
+	(relative FALSE)
+	(x 8.872125)
+	(x2 8.86057)
+	(xx
+		"8.8721246"
+		"8.8717716"
+		"8.8714373"
+		"8.8710258"
+		"8.8705924"
+		"8.8701791"
+		"8.8698"
+		"8.8693783"
+		"8.8683938"
+		"8.8665563"
+		"8.862675"
+		"8.8618898"
+		"8.8615557"
+		"8.8611975"
+		"8.8609266"
+		"8.8605704")
+	(y 44.43569)
+	(y2 44.4344)
+	(yy
+		"44.4356932"
+		"44.4355217"
+		"44.4353829"
+		"44.4352366"
+		"44.4351164"
+		"44.4350242"
+		"44.4349643"
+		"44.4349171"
+		"44.4348454"
+		"44.4346933"
+		"44.4343842"
+		"44.4343251"
+		"44.4343216"
+		"44.4343317"
+		"44.4343517"
+		"44.4343973"))
+
+([NiceSPb_Class311511] of  Edge
+
+	(label "138383367")
+	(latitude "44 26.33")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 52.85")
+	(playground-index 0)
+	(points
+		"44 26.33 8 52.9"
+		"44 26.33 8 52.88"
+		"44 26.33 8 52.86"
+		"44 26.33 8 52.84"
+		"44 26.33 8 52.82"
+		"44 26.33 8 52.8")
+	(relative FALSE)
+	(x 8.881643)
+	(x2 8.880034)
+	(xx
+		"8.8816431"
+		"8.881278"
+		"8.8809851"
+		"8.8806592"
+		"8.880337"
+		"8.8800344")
+	(y 44.4388)
+	(y2 44.438877)
+	(yy
+		"44.4388011"
+		"44.4388409"
+		"44.4388612"
+		"44.4388723"
+		"44.4388772"
+		"44.4388781"))
+
+([NiceSPb_Class311542] of  Edge
+
+	(label "797715333")
+	(latitude "44 26.29")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.03")
+	(playground-index 0)
+	(points
+		"44 26.26 8 53.13"
+		"44 26.31 8 52.99"
+		"44 26.32 8 52.96"
+		"44 26.32 8 52.95"
+		"44 26.32 8 52.93")
+	(relative FALSE)
+	(x 8.8855715)
+	(x2 8.882158)
+	(xx
+		"8.8855716"
+		"8.8832383"
+		"8.8826741"
+		"8.8824355"
+		"8.8821587")
+	(y 44.437737)
+	(y2 44.438725)
+	(yy
+		"44.4377356"
+		"44.4384593"
+		"44.4386145"
+		"44.4386714"
+		"44.438723"))
+
+([NiceSPb_Class311566] of  Edge
+
+	(label "138383343")
+	(latitude "44 26.24")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.19")
+	(playground-index 0)
+	(points
+		"44 26.22 8 53.22"
+		"44 26.23 8 53.21"
+		"44 26.24 8 53.19"
+		"44 26.25 8 53.17"
+		"44 26.26 8 53.15")
+	(relative FALSE)
+	(x 8.887079)
+	(x2 8.885846)
+	(xx
+		"8.8870793"
+		"8.8868196"
+		"8.8865574"
+		"8.8862483"
+		"8.8858457")
+	(y 44.437035)
+	(y2 44.43764)
+	(yy
+		"44.437035"
+		"44.4371937"
+		"44.4373308"
+		"44.4374743"
+		"44.4376409"))
+
+([NiceSPb_Class311609] of  Edge
+
+	(label "19127754")
+	(latitude "44 26.18")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.29")
+	(playground-index 0)
+	(points
+		"44 26.15 8 53.34"
+		"44 26.16 8 53.32"
+		"44 26.18 8 53.29"
+		"44 26.21 8 53.25"
+		"44 26.21 8 53.24")
+	(relative FALSE)
+	(x 8.888924)
+	(x2 8.887342)
+	(xx
+		"8.8889237"
+		"8.888716"
+		"8.8881528"
+		"8.8874851"
+		"8.8873423")
+	(y 44.43578)
+	(y2 44.436867)
+	(yy
+		"44.4357792"
+		"44.4359201"
+		"44.4363111"
+		"44.4367733"
+		"44.4368649"))
+
+([NiceSPb_Class311680] of  Edge
+
+	(label "617088786")
+	(latitude "44 26.1")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.39")
+	(playground-index 0)
+	(points
+		"44 26.06 8 53.45"
+		"44 26.06 8 53.45"
+		"44 26.08 8 53.43"
+		"44 26.09 8 53.41"
+		"44 26.12 8 53.38"
+		"44 26.13 8 53.36"
+		"44 26.15 8 53.34")
+	(relative FALSE)
+	(x 8.890814)
+	(x2 8.888978)
+	(xx
+		"8.8908139"
+		"8.8907607"
+		"8.8905075"
+		"8.8902331"
+		"8.8896178"
+		"8.8893122"
+		"8.8889783")
+	(y 44.434315)
+	(y2 44.4358)
+	(yy
+		"44.4343147"
+		"44.4343755"
+		"44.4346253"
+		"44.4348278"
+		"44.4352788"
+		"44.4355029"
+		"44.4357978"))
+
+([NiceSPb_Class311800] of  Edge
+
+	(label "24461727")
+	(latitude "44 25.89")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.44")
+	(playground-index 0)
+	(points
+		"44 25.72 8 53.44"
+		"44 25.76 8 53.45"
+		"44 25.79 8 53.46"
+		"44 25.81 8 53.47"
+		"44 25.86 8 53.48"
+		"44 25.89 8 53.49"
+		"44 25.89 8 53.49"
+		"44 25.91 8 53.49"
+		"44 25.93 8 53.49"
+		"44 25.94 8 53.49"
+		"44 25.96 8 53.49"
+		"44 25.97 8 53.49"
+		"44 25.97 8 53.49"
+		"44 25.99 8 53.48"
+		"44 26.01 8 53.48"
+		"44 26.02 8 53.47"
+		"44 26.04 8 53.46"
+		"44 26.05 8 53.46"
+		"44 26.06 8 53.45")
+	(relative FALSE)
+	(x 8.89061)
+	(x2 8.890814)
+	(xx
+		"8.8906097"
+		"8.8908952"
+		"8.8910374"
+		"8.8911581"
+		"8.8913823"
+		"8.8914816"
+		"8.8915067"
+		"8.8915524"
+		"8.8915818"
+		"8.8915664"
+		"8.8915324"
+		"8.8914848"
+		"8.891471"
+		"8.8913566"
+		"8.8912577"
+		"8.8911896"
+		"8.8910426"
+		"8.8909304"
+		"8.8908139")
+	(y 44.428654)
+	(y2 44.434315)
+	(yy
+		"44.4286533"
+		"44.4293976"
+		"44.4298113"
+		"44.4301618"
+		"44.4310495"
+		"44.4314512"
+		"44.4315642"
+		"44.4317697"
+		"44.4320865"
+		"44.4323843"
+		"44.4326411"
+		"44.432821"
+		"44.4328668"
+		"44.4332475"
+		"44.4334683"
+		"44.433633"
+		"44.4339662"
+		"44.4341524"
+		"44.4343147"))
+
+([NiceSPb_Class311838] of  Edge
+
+	(label "797715360")
+	(latitude "44 25.67")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 53.42")
+	(playground-index 0)
+	(points
+		"44 25.72 8 53.44"
+		"44 25.7 8 53.43"
+		"44 25.68 8 53.43"
+		"44 25.66 8 53.42"
+		"44 25.62 8 53.4")
+	(relative FALSE)
+	(x 8.89061)
+	(x2 8.88992)
+	(xx
+		"8.8906097"
+		"8.890518"
+		"8.89045"
+		"8.8902864"
+		"8.8899207")
+	(y 44.428654)
+	(y2 44.427048)
+	(yy
+		"44.4286533"
+		"44.4283037"
+		"44.4280683"
+		"44.4277273"
+		"44.427046"))
+
+([NiceSPb_Class313676] of  Railroad
+
+	(dirways
+		[NiceSPb_Class313864]
+		[NiceSPb_Class313683]
+		[NiceSPb_Class313686]
+		[NiceSPb_Class313688]
+		[NiceSPb_Class313690]
+		[NiceSPb_Class313692]
+		[NiceSPb_Class313694]
+		[NiceSPb_Class313696]
+		[NiceSPb_Class313698]
+		[NiceSPb_Class313700]
+		[NiceSPb_Class313702]
+		[NiceSPb_Class313704]
+		[NiceSPb_Class313705]
+		[NiceSPb_Class313707]
+		[NiceSPb_Class313709]
+		[NiceSPb_Class313711]
+		[NiceSPb_Class313713]
+		[NiceSPb_Class313715]
+		[NiceSPb_Class313717]
+		[NiceSPb_Class313718]
+		[NiceSPb_Class313720]
+		[NiceSPb_Class313721]
+		[NiceSPb_Class313723]
+		[NiceSPb_Class313725]
+		[NiceSPb_Class313727]
+		[NiceSPb_Class313729]
+		[NiceSPb_Class313731]
+		[NiceSPb_Class313733]
+		[NiceSPb_Class313734]
+		[NiceSPb_Class313735]
+		[NiceSPb_Class313737]
+		[NiceSPb_Class313738]
+		[NiceSPb_Class313740]
+		[NiceSPb_Class313742]
+		[NiceSPb_Class313744]
+		[NiceSPb_Class313745]
+		[NiceSPb_Class313747]
+		[NiceSPb_Class313749]
+		[NiceSPb_Class313751]
+		[NiceSPb_Class313752]
+		[NiceSPb_Class313754]
+		[NiceSPb_Class313756]
+		[NiceSPb_Class313758]
+		[NiceSPb_Class313759]
+		[NiceSPb_Class313761]
+		[NiceSPb_Class313763]
+		[NiceSPb_Class313765]
+		[NiceSPb_Class313766]
+		[NiceSPb_Class313767]
+		[NiceSPb_Class313768]
+		[NiceSPb_Class313770]
+		[NiceSPb_Class313772]
+		[NiceSPb_Class313774]
+		[NiceSPb_Class313775]
+		[NiceSPb_Class313777]
+		[NiceSPb_Class313779]
+		[NiceSPb_Class313781]
+		[NiceSPb_Class313783])
+	(from1 "Valleggia")
+	(title "Valleggia - Rivarolo Ligure")
+	(to1 "Rivarolo Ligure"))
+
+([NiceSPb_Class313683] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306546]))
+
+([NiceSPb_Class313686] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313687]))
+
+([NiceSPb_Class313687] of  Way
+
+	(id "377983652")
+	(poly [NiceSPb_Class310875])
+	(source "[[44.2957732 8.4590482] [44.2959433 8.4593262] [44.2963422 8.4599897] [44.2966251 8.460468] [44.2968919 8.460964] [44.297112 8.4614086] [44.2973945 8.4620345] [44.2978319 8.4630501] [44.2987797 8.4652858] [44.2990586 8.4659484] [44.2993946 8.4667193] [44.2995297 8.4669963] [44.2997314 8.4673478] [44.2999953 8.467742] [44.3003173 8.4681353] [44.3005384 8.4683621] [44.3008152 8.4686031] [44.3010662 8.4687867] [44.3013444 8.4689523] [44.3015822 8.4690654] [44.3018268 8.4691678] [44.3021541 8.4692718] [44.3027687 8.4694311]]"))
+
+([NiceSPb_Class313688] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313689]))
+
+([NiceSPb_Class313689] of  Way
+
+	(id "34005312")
+	(poly [NiceSPb_Class310932])
+	(source "[[44.3127023 8.4702461] [44.3124286 8.4702103] [44.3113711 8.4701082] [44.3109386 8.4700652] [44.3100414 8.4700301] [44.3081591 8.4699927] [44.3072794 8.469984] [44.3060421 8.4699613] [44.305656 8.4699394] [44.3050676 8.4698729] [44.304253 8.4696963] [44.3035414 8.4696242]]"))
+
+([NiceSPb_Class313690] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313691]))
+
+([NiceSPb_Class313691] of  Way
+
+	(id "448978023")
+	(poly [NiceSPb_Class310981])
+	(source "[[44.3159528 8.4710384] [44.3147732 8.4707829] [44.3144238 8.4707058] [44.3139676 8.4706005] [44.3134845 8.4704864] [44.3129969 8.4703864] [44.3125096 8.4703243] [44.3120055 8.4702954]]"))
+
+([NiceSPb_Class313692] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313693]))
+
+([NiceSPb_Class313693] of  Way
+
+	(id "33945342")
+	(poly [NiceSPb_Class311002])
+	(source "[[44.3179772 8.4714052] [44.3159528 8.4710384]]"))
+
+([NiceSPb_Class313694] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313695]))
+
+([NiceSPb_Class313695] of  Way
+
+	(id "33844937")
+	(poly [NiceSPb_Class311013])
+	(source "[[44.321693 8.4728138] [44.3212453 8.4725195] [44.3206644 8.4721865] [44.3200965 8.4719382] [44.3195535 8.4717399] [44.3191315 8.4716268] [44.3186277 8.4715239] [44.3179772 8.4714052]]"))
+
+([NiceSPb_Class313696] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313697]))
+
+([NiceSPb_Class313697] of  Way
+
+	(id "377981149")
+	(poly [NiceSPb_Class311022])
+	(source "[[44.321693 8.4728138] [44.3221925 8.4731701] [44.3226655 8.4735802] [44.3231233 8.4740233] [44.3237007 8.4746381] [44.3241942 8.475211] [44.3246669 8.4758201] [44.3252001 8.4765602] [44.325642 8.4772012] [44.3262038 8.4780895] [44.3266989 8.4789489] [44.3272795 8.4799856] [44.327937 8.4812307] [44.3284305 8.4822708] [44.3289305 8.4834955] [44.3293118 8.4845783] [44.3297247 8.4859479] [44.3301397 8.4875414] [44.3304894 8.4889914] [44.3308204 8.4904827] [44.3315898 8.49427] [44.3321947 8.497483] [44.3330293 8.5023196]]"))
+
+([NiceSPb_Class313698] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313699]))
+
+([NiceSPb_Class313699] of  Way
+
+	(id "378121839")
+	(poly [NiceSPb_Class311031])
+	(source "[[44.3330293 8.5023196] [44.3333415 8.5041287]]"))
+
+([NiceSPb_Class313700] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313701]))
+
+([NiceSPb_Class313701] of  Way
+
+	(id "62021644")
+	(poly [NiceSPb_Class311045])
+	(source "[[44.33379 8.506754] [44.3337609 8.5065825] [44.3334873 8.5049663]]"))
+
+([NiceSPb_Class313702] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313703]))
+
+([NiceSPb_Class313703] of  Way
+
+	(id "74395986")
+	(poly [NiceSPb_Class311057])
+	(source "[[44.3345145 8.5106652] [44.3344046 8.5100424] [44.3342641 8.5093005] [44.3340682 8.508326] [44.33379 8.506754]]"))
+
+([NiceSPb_Class313704] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306552]))
+
+([NiceSPb_Class313705] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313706]))
+
+([NiceSPb_Class313706] of  Way
+
+	(id "62021642")
+	(poly [NiceSPb_Class311073])
+	(source "[[44.336091 8.5233558] [44.3360952 8.5229133] [44.3360926 8.5219719] [44.3360806 8.5214728] [44.3360559 8.5208711] [44.3360164 8.5203608] [44.3359636 8.5197988] [44.335899 8.5192554] [44.3358254 8.5187082] [44.3357318 8.5180745] [44.3355602 8.5170088]]"))
+
+([NiceSPb_Class313707] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313708]))
+
+([NiceSPb_Class313708] of  Way
+
+	(id "62021665")
+	(poly [NiceSPb_Class311083])
+	(source "[[44.3372165 8.534785] [44.3370347 8.534265] [44.3368158 8.5335281] [44.3366088 8.532688] [44.3364935 8.5321611] [44.336399 8.5316682] [44.3362865 8.5310124] [44.3361973 8.5304002] [44.3361217 8.5297436] [44.3360497 8.5289807] [44.3359842 8.5281376] [44.3359594 8.5273249] [44.3359694 8.5265989] [44.3360682 8.523971]]"))
+
+([NiceSPb_Class313709] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313710]))
+
+([NiceSPb_Class313710] of  Way
+
+	(id "271705703")
+	(poly [NiceSPb_Class311095])
+	(source "[[44.3379305 8.5363079] [44.3378463 8.536144]]"))
+
+([NiceSPb_Class313711] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313712]))
+
+([NiceSPb_Class313712] of  Way
+
+	(id "62425366")
+	(poly [NiceSPb_Class311105])
+	(source "[[44.3403839 8.5398486] [44.3397773 8.5390544] [44.3390415 8.5380635] [44.3382917 8.536938]]"))
+
+([NiceSPb_Class313713] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313714]))
+
+([NiceSPb_Class313714] of  Way
+
+	(id "62425365")
+	(poly [NiceSPb_Class311115])
+	(source "[[44.3416083 8.5414608] [44.3406857 8.540246]]"))
+
+([NiceSPb_Class313715] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313716]))
+
+([NiceSPb_Class313716] of  Way
+
+	(id "62425214")
+	(poly [NiceSPb_Class311122])
+	(source "[[44.3447937 8.5455924] [44.3436356 8.5440884] [44.3425173 8.5426566] [44.3416083 8.5414608]]"))
+
+([NiceSPb_Class313717] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306556]))
+
+([NiceSPb_Class313718] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313719]))
+
+([NiceSPb_Class313719] of  Way
+
+	(id "62425373")
+	(poly [NiceSPb_Class311137])
+	(source "[[44.3543898 8.5626054] [44.3540195 8.5619153] [44.3482974 8.5511781]]"))
+
+([NiceSPb_Class313720] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306558]))
+
+([NiceSPb_Class313721] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313722]))
+
+([NiceSPb_Class313722] of  Way
+
+	(id "377598422")
+	(poly [NiceSPb_Class311170])
+	(source "[[44.3617268 8.5735352] [44.3612665 8.5728727] [44.3605501 8.5718466] [44.3597185 8.5707447] [44.3592871 8.5701676]]"))
+
+([NiceSPb_Class313723] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313724]))
+
+([NiceSPb_Class313724] of  Way
+
+	(id "377598421")
+	(poly [NiceSPb_Class311184])
+	(source "[[44.3633508 8.5765876] [44.3626633 8.5751752] [44.3622484 8.5743962] [44.3619185 8.5738329] [44.3617268 8.5735352]]"))
+
+([NiceSPb_Class313725] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313726]))
+
+([NiceSPb_Class313726] of  Way
+
+	(id "377598296")
+	(poly [NiceSPb_Class311192])
+	(source "[[44.3810801 8.6310385] [44.3791008 8.6262137] [44.3783206 8.624453] [44.3775809 8.622651] [44.3767374 8.6203174] [44.3756659 8.6171012] [44.3744964 8.6129867] [44.3734563 8.6085667] [44.3726563 8.6046858] [44.3719799 8.601538] [44.3712632 8.5986363] [44.3703885 8.5954185] [44.3697172 8.5931547] [44.3689777 8.5908379] [44.3682257 8.5886314] [44.3674414 8.586419] [44.3667293 8.5844842] [44.3658235 8.5822161] [44.3642678 8.5786806] [44.3633508 8.5765876]]"))
+
+([NiceSPb_Class313727] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313728]))
+
+([NiceSPb_Class313728] of  Way
+
+	(id "32939751")
+	(poly [NiceSPb_Class311203])
+	(source "[[44.3827976 8.6341853] [44.3821474 8.6331233] [44.3816283 8.6321468]]"))
+
+([NiceSPb_Class313729] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313730]))
+
+([NiceSPb_Class313730] of  Way
+
+	(id "377974000")
+	(poly [NiceSPb_Class311211])
+	(source "[[44.3844033 8.6362338] [44.3839972 8.6357525] [44.3834859 8.6351145] [44.3830604 8.6345619] [44.3827976 8.6341853]]"))
+
+([NiceSPb_Class313731] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313732]))
+
+([NiceSPb_Class313732] of  Way
+
+	(id "377595474")
+	(poly [NiceSPb_Class311227])
+	(source "[[44.3857123 8.637704] [44.3853267 8.6372549]]"))
+
+([NiceSPb_Class313733] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306562]))
+
+([NiceSPb_Class313734] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306564]))
+
+([NiceSPb_Class313735] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313736]))
+
+([NiceSPb_Class313736] of  Way
+
+	(id "377589660")
+	(poly [NiceSPb_Class311271])
+	(source "[[44.3963321 8.662358] [44.3959083 8.6609477]]"))
+
+([NiceSPb_Class313737] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306566]))
+
+([NiceSPb_Class313738] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313739]))
+
+([NiceSPb_Class313739] of  Way
+
+	(id "377588597")
+	(poly [NiceSPb_Class311280])
+	(source "[[44.4044798 8.6800421] [44.4041001 8.6795763] [44.4038461 8.6792741] [44.4035196 8.6788259] [44.4032828 8.6784873] [44.403067 8.6781842] [44.4028199 8.6778231] [44.4024871 8.6773078] [44.4021155 8.6766922] [44.4017994 8.676139]]"))
+
+([NiceSPb_Class313740] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313741]))
+
+([NiceSPb_Class313741] of  Way
+
+	(id "32940181")
+	(poly [NiceSPb_Class311283])
+	(source "[[44.4071301 8.6835142] [44.4065581 8.6826167] [44.4059076 8.6817574] [44.4045745 8.6801622] [44.4044798 8.6800421]]"))
+
+([NiceSPb_Class313742] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313743]))
+
+([NiceSPb_Class313743] of  Way
+
+	(id "32940191")
+	(poly [NiceSPb_Class311288])
+	(source "[[44.4080034 8.6850517] [44.4078208 8.6847127]]"))
+
+([NiceSPb_Class313744] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306568]))
+
+([NiceSPb_Class313745] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313746]))
+
+([NiceSPb_Class313746] of  Way
+
+	(id "10070328")
+	(poly [NiceSPb_Class311298])
+	(source "[[44.4143016 8.7076838] [44.4133539 8.70449]]"))
+
+([NiceSPb_Class313747] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313748]))
+
+([NiceSPb_Class313748] of  Way
+
+	(id "108103844")
+	(poly [NiceSPb_Class311302])
+	(source "[[44.4144088 8.707311] [44.4154426 8.7099841] [44.4156855 8.7107061] [44.4158405 8.7112839] [44.4159953 8.7119322] [44.4161101 8.7125818] [44.4161628 8.7129129]]"))
+
+([NiceSPb_Class313749] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313750]))
+
+([NiceSPb_Class313750] of  Way
+
+	(id "24535550")
+	(poly [NiceSPb_Class311307])
+	(source "[[44.4165119 8.715188] [44.4163113 8.7139146] [44.4161628 8.7129129]]"))
+
+([NiceSPb_Class313751] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306570]))
+
+([NiceSPb_Class313752] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313753]))
+
+([NiceSPb_Class313753] of  Way
+
+	(id "108110662")
+	(poly [NiceSPb_Class311315])
+	(source "[[44.4282472 8.7425996] [44.4286129 8.7433759] [44.4289418 8.7442028] [44.4292804 8.7452537] [44.4295101 8.746159] [44.429688 8.7471613] [44.4298152 8.7481189] [44.4298722 8.7487804] [44.4298905 8.7491619] [44.4298949 8.7494741] [44.4298022 8.7511697]]"))
+
+([NiceSPb_Class313754] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313755]))
+
+([NiceSPb_Class313755] of  Way
+
+	(id "15220994")
+	(poly [NiceSPb_Class311323])
+	(source "[[44.4293075 8.7540348] [44.4293296 8.7537251] [44.4293418 8.7534088] [44.4293479 8.7530599] [44.4293476 8.7528437] [44.429341 8.7524227]]"))
+
+([NiceSPb_Class313756] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313757]))
+
+([NiceSPb_Class313757] of  Way
+
+	(id "134464057")
+	(poly [NiceSPb_Class311328])
+	(source "[[44.4289238 8.7563505] [44.4290069 8.7560386] [44.4290884 8.7556771] [44.4291549 8.7553064] [44.4292045 8.7549482] [44.4292481 8.7546011] [44.4292919 8.7541823] [44.4293075 8.7540348]]"))
+
+([NiceSPb_Class313758] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306574]))
+
+([NiceSPb_Class313759] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313760]))
+
+([NiceSPb_Class313760] of  Way
+
+	(id "27884910")
+	(poly [NiceSPb_Class311340])
+	(source "[[44.4269604 8.7765668] [44.4270264 8.7759919] [44.4271039 8.7754522] [44.4272004 8.7748173] [44.427413 8.7736434]]"))
+
+([NiceSPb_Class313761] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313762]))
+
+([NiceSPb_Class313762] of  Way
+
+	(id "251198162")
+	(poly [NiceSPb_Class311362])
+	(source "[[44.4258065 8.784905] [44.4262411 8.7822323] [44.4263786 8.7813376] [44.4264666 8.7806969] [44.4265305 8.7801089] [44.4265838 8.7794539] [44.4266753 8.7780831] [44.4266851 8.7778985] [44.426739 8.7768802]]"))
+
+([NiceSPb_Class313763] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313764]))
+
+([NiceSPb_Class313764] of  Way
+
+	(id "25991904")
+	(poly [NiceSPb_Class311381])
+	(source "[[44.4258065 8.784905] [44.4256293 8.7859933] [44.4251733 8.788818] [44.4251282 8.7891634] [44.4250525 8.7899201] [44.4250008 8.7906229] [44.4249612 8.7913777] [44.424952 8.7920684] [44.4249545 8.7926941] [44.4249635 8.7932421] [44.4249887 8.7938834] [44.4250331 8.794581] [44.4250917 8.7952186] [44.4251631 8.795869] [44.4252351 8.7964301] [44.4252999 8.7968158] [44.4253229 8.7969528] [44.4254375 8.7976102] [44.4255842 8.7983306] [44.4256922 8.7987859]]"))
+
+([NiceSPb_Class313765] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306578]))
+
+([NiceSPb_Class313766] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306580]))
+
+([NiceSPb_Class313767] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class306582]))
+
+([NiceSPb_Class313768] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313769]))
+
+([NiceSPb_Class313769] of  Way
+
+	(id "138383095")
+	(poly [NiceSPb_Class311457])
+	(source "[[44.4347771 8.8644427] [44.4347202 8.8642299] [44.4346524 8.8639552] [44.4345958 8.8636756] [44.4345438 8.8633919] [44.4344963 8.8631106] [44.4344337 8.8627077] [44.4343989 8.8624119]]"))
+
+([NiceSPb_Class313770] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313771]))
+
+([NiceSPb_Class313771] of  Way
+
+	(id "141628914")
+	(poly [NiceSPb_Class311470])
+	(source "[[44.4343989 8.8624119] [44.4343705 8.8620172] [44.4343508 8.8616732] [44.434347 8.8613067] [44.4343624 8.8609413] [44.4343973 8.8605704]]"))
+
+([NiceSPb_Class313772] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313773]))
+
+([NiceSPb_Class313773] of  Way
+
+	(id "59226936")
+	(poly [NiceSPb_Class311483])
+	(source "[[44.4356932 8.8721246] [44.4355217 8.8717716] [44.4353829 8.8714373] [44.4352366 8.8710258] [44.4351164 8.8705924] [44.4350242 8.8701791] [44.4349643 8.8698] [44.4349171 8.8693783] [44.4348454 8.8683938] [44.4346933 8.8665563] [44.4343842 8.862675] [44.4343251 8.8618898] [44.4343216 8.8615557] [44.4343317 8.8611975] [44.4343517 8.8609266] [44.4343973 8.8605704]]"))
+
+([NiceSPb_Class313774] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class306584]))
+
+([NiceSPb_Class313775] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313776]))
+
+([NiceSPb_Class313776] of  Way
+
+	(id "138383367")
+	(poly [NiceSPb_Class311511])
+	(source "[[44.4388011 8.8816431] [44.4388409 8.881278] [44.4388612 8.8809851] [44.4388723 8.8806592] [44.4388772 8.880337] [44.4388781 8.8800344]]"))
+
+([NiceSPb_Class313777] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313778]))
+
+([NiceSPb_Class313778] of  Way
+
+	(id "797715333")
+	(poly [NiceSPb_Class311542])
+	(source "[[44.4377356 8.8855716] [44.4384593 8.8832383] [44.4386145 8.8826741] [44.4386714 8.8824355] [44.438723 8.8821587]]"))
+
+([NiceSPb_Class313779] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313780]))
+
+([NiceSPb_Class313780] of  Way
+
+	(id "138383343")
+	(poly [NiceSPb_Class311566])
+	(source "[[44.437035 8.8870793] [44.4371937 8.8868196] [44.4373308 8.8865574] [44.4374743 8.8862483] [44.4376409 8.8858457]]"))
+
+([NiceSPb_Class313781] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313782]))
+
+([NiceSPb_Class313782] of  Way
+
+	(id "19127754")
+	(poly [NiceSPb_Class311609])
+	(source "[[44.4357792 8.8889237] [44.4359201 8.888716] [44.4363111 8.8881528] [44.4367733 8.8874851] [44.4368649 8.8873423]]"))
+
+([NiceSPb_Class313783] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313784]))
+
+([NiceSPb_Class313784] of  Way
+
+	(id "617088786")
+	(poly [NiceSPb_Class311680])
+	(source "[[44.4343147 8.8908139] [44.4343755 8.8907607] [44.4346253 8.8905075] [44.4348278 8.8902331] [44.4352788 8.8896178] [44.4355029 8.8893122] [44.4357978 8.8889783]]"))
+
+([NiceSPb_Class313819] of  Goal
+
+	(a "[8.8908139 44.4343147]")
+	(b "[8.9179165 44.417364]")
+	(max-length 100)
+	(max-solutions 1)
+	(status "START")
+	(title "Rivarolo Ligure - Genoa Principe"))
+
+([NiceSPb_Class313839] of  Railroad
+
+	(dirways
+		[NiceSPb_Class313840]
+		[NiceSPb_Class313842]
+		[NiceSPb_Class313844]
+		[NiceSPb_Class313846]
+		[NiceSPb_Class313848]
+		[NiceSPb_Class313850]
+		[NiceSPb_Class313852]
+		[NiceSPb_Class313854]
+		[NiceSPb_Class313856])
+	(from1 "Rivarolo Ligure")
+	(title "Rivarolo Ligure - Genoa Principe")
+	(to1 "Genoa Principe"))
+
+([NiceSPb_Class313840] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313841]))
+
+([NiceSPb_Class313841] of  Way
+
+	(id "24461727")
+	(poly [NiceSPb_Class311800])
+	(source "[[44.4286533 8.8906097] [44.4293976 8.8908952] [44.4298113 8.8910374] [44.4301618 8.8911581] [44.4310495 8.8913823] [44.4314512 8.8914816] [44.4315642 8.8915067] [44.4317697 8.8915524] [44.4320865 8.8915818] [44.4323843 8.8915664] [44.4326411 8.8915324] [44.432821 8.8914848] [44.4328668 8.891471] [44.4332475 8.8913566] [44.4334683 8.8912577] [44.433633 8.8911896] [44.4339662 8.8910426] [44.4341524 8.8909304] [44.4343147 8.8908139]]"))
+
+([NiceSPb_Class313842] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313843]))
+
+([NiceSPb_Class313843] of  Way
+
+	(id "797715360")
+	(poly [NiceSPb_Class311838])
+	(source "[[44.4286533 8.8906097] [44.4283037 8.890518] [44.4280683 8.89045] [44.4277273 8.8902864] [44.427046 8.8899207]]"))
+
+([NiceSPb_Class313844] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313845]))
+
+([NiceSPb_Class313845] of  Way
+
+	(id "617665756")
+	(poly [NiceSPb_Class310960])
+	(source "[[44.4268413 8.8898574] [44.423671 8.8879548] [44.4221291 8.8869494] [44.4206416 8.8860726] [44.4202591 8.8858546] [44.4199424 8.8856958] [44.4194758 8.8854642] [44.4191775 8.8853612] [44.4188168 8.8852353] [44.4185395 8.8851608] [44.4182344 8.8850928] [44.418084 8.8850649] [44.417822 8.8850162] [44.4176541 8.8849961] [44.4175105 8.8849791] [44.4172182 8.8849529]]"))
+
+([NiceSPb_Class313846] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313847]))
+
+([NiceSPb_Class313847] of  Way
+
+	(id "174986147")
+	(poly [NiceSPb_Class310917])
+	(source "[[44.4144274 8.8859377] [44.4149047 8.8856789] [44.4154285 8.8854598] [44.416086 8.8852115] [44.4163008 8.8851464] [44.4168938 8.8849666] [44.416971 8.8849622] [44.4172182 8.8849529]]"))
+
+([NiceSPb_Class313848] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313849]))
+
+([NiceSPb_Class313849] of  Way
+
+	(id "461681025")
+	(poly [NiceSPb_Class310834])
+	(source "[[44.4135468 8.8868036] [44.4130987 8.8872477] [44.4128236 8.8875435] [44.4123974 8.8880774] [44.4121373 8.8884806] [44.4119682 8.8887612] [44.4116851 8.8892489] [44.4115519 8.8895149] [44.4113973 8.8898478] [44.4112594 8.8901773] [44.4110164 8.8908203] [44.4108388 8.8913582] [44.4102367 8.8931873] [44.4097662 8.8946168] [44.409275 8.8961047] [44.4092077 8.8963348] [44.4091468 8.8965683] [44.4090838 8.8968531] [44.4090311 8.8971429] [44.4089734 8.89773] [44.4089539 8.8980238] [44.4089479 8.89834] [44.4089624 8.8986871] [44.4089937 8.8990567] [44.4091227 8.8997648] [44.4092403 8.9002244] [44.4093811 8.9006156] [44.4095652 8.9010473] [44.4100187 8.9020154]]"))
+
+([NiceSPb_Class313850] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313851]))
+
+([NiceSPb_Class313851] of  Way
+
+	(id "461681026")
+	(poly [NiceSPb_Class310823])
+	(source "[[44.4100187 8.9020154] [44.4101636 8.90233] [44.4105148 8.9032246] [44.4106213 8.9035041] [44.4132988 8.9093809]]"))
+
+([NiceSPb_Class313852] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313853]))
+
+([NiceSPb_Class313853] of  Way
+
+	(id "461681028")
+	(poly [NiceSPb_Class310810])
+	(source "[[44.4147862 8.9127368] [44.4146213 8.9124455] [44.4144669 8.912127] [44.4142975 8.9117534] [44.4141308 8.9113205] [44.4137181 8.9102908] [44.4132988 8.9093809]]"))
+
+([NiceSPb_Class313854] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313855]))
+
+([NiceSPb_Class313855] of  Way
+
+	(id "461681027")
+	(poly [NiceSPb_Class310789])
+	(source "[[44.4147862 8.9127368] [44.4148351 8.9128271] [44.4151294 8.9133707] [44.4155083 8.9139971] [44.4157134 8.9142912] [44.4161334 8.91484] [44.4162781 8.9150442] [44.416402 8.9152215] [44.4165153 8.9154037] [44.4165735 8.9155273]]"))
+
+([NiceSPb_Class313856] of  Dirway
+
+	(direction "BACKWARD")
+	(way [NiceSPb_Class313857]))
+
+([NiceSPb_Class313857] of  Way
+
+	(id "461681030")
+	(poly [NiceSPb_Class310769])
+	(source "[[44.4172326 8.9179784] [44.4171838 8.9176506] [44.4170927 8.9172305] [44.4169093 8.9165067] [44.4167991 8.9161006] [44.4166947 8.9157587] [44.4166089 8.9154844]]"))
+
+([NiceSPb_Class313858] of  Node
+
+	(edges
+		[NiceSPb_Class313859]
+		[NiceSPb_Class310820]
+		[NiceSPb_Class300969])
+	(fillColor "FFFF6800")
+	(label "N(8.4437962 44.2837376)")
+	(latitude "44 17.02")
+	(lineColor "FFFF6800")
+	(longitude "8 26.63")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 4)
+	(x 8.443796)
+	(y 44.283737))
+
+([NiceSPb_Class313859] of  Edge
+
+	(label "34321028")
+	(latitude "44 17.04")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.64")
+	(playground-index 0)
+	(points
+		"44 17.05 8 26.65"
+		"44 17.02 8 26.63")
+	(relative FALSE)
+	(x 8.444135)
+	(x2 8.443796)
+	(xx
+		"8.4441349"
+		"8.4437962")
+	(y 44.28417)
+	(y2 44.283737)
+	(yy
+		"44.2841665"
+		"44.2837376"))
+
+([NiceSPb_Class313860] of  Node
+
+	(edges
+		[NiceSPb_Class313861]
+		[NiceSPb_Class310645]
+		[NiceSPb_Class313862]
+		[NiceSPb_Class313863])
+	(fillColor "FFFF6800")
+	(label "N(8.4366702 44.2803502)")
+	(latitude "44 16.82")
+	(lineColor "FFFF6800")
+	(longitude "8 26.2")
+	(oval TRUE)
+	(playground-index 0)
+	(point-radius 4)
+	(x 8.43667)
+	(y 44.28035))
+
+([NiceSPb_Class313861] of  Edge
+
+	(label "378107676")
+	(latitude "44 16.96")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.46")
+	(playground-index 0)
+	(points
+		"44 16.82 8 26.2"
+		"44 16.87 8 26.33"
+		"44 16.89 8 26.37"
+		"44 16.9 8 26.41"
+		"44 16.91 8 26.44"
+		"44 16.93 8 26.46"
+		"44 16.94 8 26.48"
+		"44 16.96 8 26.52"
+		"44 16.98 8 26.55"
+		"44 17.01 8 26.61"
+		"44 17.04 8 26.64"
+		"44 17.06 8 26.66"
+		"44 17.08 8 26.69"
+		"44 17.09 8 26.71")
+	(relative FALSE)
+	(x 8.43667)
+	(x2 8.445166)
+	(xx
+		"8.4366702"
+		"8.4388374"
+		"8.4395411"
+		"8.4401553"
+		"8.4405952"
+		"8.4410127"
+		"8.4413784"
+		"8.4419417"
+		"8.4425121"
+		"8.4434464"
+		"8.4439963"
+		"8.4444138"
+		"8.4448586"
+		"8.4451653")
+	(y 44.28035)
+	(y2 44.28489)
+	(yy
+		"44.2803502"
+		"44.281174"
+		"44.2814336"
+		"44.2817005"
+		"44.2819041"
+		"44.2821226"
+		"44.2823246"
+		"44.2826549"
+		"44.2829944"
+		"44.2835804"
+		"44.2839472"
+		"44.2842521"
+		"44.2846231"
+		"44.2848897"))
+
+([NiceSPb_Class313862] of  Edge
+
+	(label "28592764")
+	(latitude "44 16.79")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.11")
+	(playground-index 0)
+	(points
+		"44 16.75 8 26.01"
+		"44 16.76 8 26.02"
+		"44 16.82 8 26.2")
+	(relative FALSE)
+	(x 8.433528)
+	(x2 8.436645)
+	(xx
+		"8.4335283"
+		"8.4337309"
+		"8.436645")
+	(y 44.279198)
+	(y2 44.280384)
+	(yy
+		"44.2791983"
+		"44.2792731"
+		"44.2803846"))
+
+([NiceSPb_Class313863] of  Edge
+
+	(label "38690969")
+	(latitude "44 16.96")
+	(line [OSMData_Class60072])
+	(lineColor "FFFF6800")
+	(longitude "8 26.45")
+	(playground-index 0)
+	(points
+		"44 16.82 8 26.2"
+		"44 16.84 8 26.26"
+		"44 16.87 8 26.32"
+		"44 16.88 8 26.36"
+		"44 16.9 8 26.39"
+		"44 16.91 8 26.43"
+		"44 16.93 8 26.47"
+		"44 16.95 8 26.5"
+		"44 16.97 8 26.54"
+		"44 17.02 8 26.61"
+		"44 17.04 8 26.64"
+		"44 17.06 8 26.66")
+	(relative FALSE)
+	(x 8.436645)
+	(x2 8.445127)
+	(xx
+		"8.436645"
+		"8.4375846"
+		"8.438699"
+		"8.4392777"
+		"8.4399107"
+		"8.4405174"
+		"8.4410942"
+		"8.44166"
+		"8.4422595"
+		"8.4434217"
+		"8.4439213"
+		"8.4444048")
+	(y 44.280384)
+	(y2 44.28491)
+	(yy
+		"44.2803846"
+		"44.2807379"
+		"44.2811634"
+		"44.2813775"
+		"44.2816371"
+		"44.2819136"
+		"44.2822133"
+		"44.2825409"
+		"44.2828871"
+		"44.2836204"
+		"44.2839431"
+		"44.2843008"))
+
+([NiceSPb_Class313864] of  Dirway
+
+	(direction "FORWARD")
+	(way [NiceSPb_Class313865]))
+
+([NiceSPb_Class313865] of  Way
+
+	(id "38690969")
+	(poly [NiceSPb_Class313863])
+	(source "[[44.2803846 8.436645] [44.2807379 8.4375846] [44.2811634 8.438699] [44.2813775 8.4392777] [44.2816371 8.4399107] [44.2819136 8.4405174] [44.2822133 8.4410942] [44.2825409 8.44166] [44.2828871 8.4422595] [44.2836204 8.4434217] [44.2839431 8.4439213]\n[44.2843008 8.4444048]]"))
+
 ([NiceSPb_Class40000] of  CloFunction
 
 	(source "(let [sgs (p/mk-segments nis)\n       dirs (map simple-dir-osm sgs)\n       rdir (simple-dir-osm [start finish])]\n  (some #(is-backward-dir? % rdir) dirs))")
@@ -9736,7 +15818,7 @@
 ([NiceSPb_Class40003] of  RoadControl
 
 	(kind way)
-	(radius 0.01)
+	(radius 0.001)
 	(road-subclass Railroad)
 	(server FRENCH)
 	(show TRUE)
@@ -10112,7 +16194,7 @@
 	(butt-step "Step/ru.rules/step-engine")
 	(facts
 		[NiceSPb_Class80003]
-		[NiceSPb_Class240000]
+		[NiceSPb_Class313819]
 		[PyongyangSPb_Class290000])
 	(mode run)
 	(rule-sets [NiceSPb_Class60000])
