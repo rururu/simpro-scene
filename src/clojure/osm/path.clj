@@ -14,6 +14,7 @@
 (def NEAR 0.0005)
 (def NODE-YXS [])
 (def FRAME nil)
+(def GOAL-RAD 0.001)
 (defn simple-dist-osm
   ([ni1 ni2]
   (of/simple-dist 
@@ -91,7 +92,7 @@ egs)
   (def NEAR deg))
 
 (defn find-new-node [xy]
-  (let [box (of/bbx xy (oo/get-radius))]
+  (let [box (of/bbx xy GOAL-RAD)]
   (if (not (some #(of/in-bbx % box) NODE-YXS))
     (when-let [noi (oo/mk-node xy)]
       (def NODE-YXS (conj NODE-YXS [(sv noi "y") (sv noi "x")]))
@@ -139,4 +140,7 @@ egs)
               (.show *prj* rod)) ))
       (ru.rules/confirm (str "Select New Dirway to Replace Existing in Road "  (sv rod "title"))))
     (ru.rules/confirm "Select Road to Update"))))
+
+(defn set-goal-rad [r]
+  (def GOAL-RAD r))
 

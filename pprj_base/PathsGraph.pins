@@ -1,12 +1,12 @@
-; Sat Jan 09 21:39:06 MSK 2021
+; Mon Jan 11 12:06:36 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([PathsGraph_Class0] of  Rule
 
-	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution)")
-	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if path/TRACE\n    (println :POSTPROCESSING))\n  (modify ?w status \"POSTPROCESSING\"))")
+	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution (>= (count (rete.core/fact-list 'Solution)) ?msl))")
+	(rhs "(if path/TRACE\n  (println :POSTPROCESSING))\n(modify ?w status \"POSTPROCESSING\")")
 	(salience 1)
 	(title "p:Check:  Max Solutions -> Postprocessing"))
 
@@ -45,8 +45,8 @@
 
 ([PathsGraph_Class20001] of  Rule
 
-	(lhs "?w (Work status \"EXTENSION\")\n(Goal max-length ?mln)\n(Path0 points ?pts (>= (count ?pts) ?mln))")
-	(rhs "(rete.core/problem-solved)\n(println :TOO-LONG)")
+	(lhs "?w (Work status \"EXTENSION\")\n(Goal max-length ?mln)\n?p (Path0 points ?pts (>= (count ?pts) ?mln))")
+	(rhs "(retract ?p)")
 	(salience 1)
 	(title "p:Extension -> Too Long"))
 
@@ -221,8 +221,8 @@
 
 ([PyongyangSPb_Class190002] of  Rule
 
-	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution)")
-	(rhs "(when (>= (count (rete.core/fact-list 'Solution)) ?msl)\n  (if path/TRACE\n    (println :OPTIMIZATION))\n  (modify ?w status \"OPTIMIZATION\"))")
+	(lhs "?w (Work status \"CHECK\")\n(Goal max-solutions ?msl)\n(Solution (>= (count (rete.core/fact-list 'Solution)) ?msl))")
+	(rhs "(if path/TRACE\n  (println :OPTIMIZATION))\n(modify ?w status \"OPTIMIZATION\")")
 	(salience 1)
 	(title "p:Check:  Max Solutions -> Optimization"))
 
