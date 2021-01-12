@@ -1,4 +1,4 @@
-; Tue Jan 12 17:30:18 MSK 2021
+; Tue Jan 12 22:01:23 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -73,7 +73,7 @@
 ([NiceSPb_Class120000] of  MissionScenario
 
 	(context [NiceSPb_Class190000])
-	(final_tasks [NiceSPb_Class363060])
+	(final_tasks [NiceSPb_Class290000])
 	(finish_type AND)
 	(initial_tasks [NiceSPb_Class180000])
 	(protagonist [PyongyangSPb_Class250003])
@@ -85,7 +85,8 @@
 		[NiceSPb_Class240066]
 		[NiceSPb_Class260045]
 		[NiceSPb_Class240000]
-		[NiceSPb_Class363060])
+		[NiceSPb_Class363060]
+		[NiceSPb_Class290000])
 	(title "Nice - Saint-Petersburg"))
 
 ([NiceSPb_Class120054] of  CloVar
@@ -127,7 +128,8 @@
 
 ([NiceSPb_Class130004] of  PutObProperties
 
-	(new_altitude "10")
+	(new_altitude "?height")
+	(next_actions [NiceSPb_Class300006])
 	(object [ScenarioN_Class570000])
 	(title "Set Train View Height"))
 
@@ -544,14 +546,16 @@
 
 ([NiceSPb_Class180000] of  Task
 
-	(final_actions [NiceSPb_Class130004])
+	(final_actions [NiceSPb_Class300007])
 	(finish_type AND)
 	(initial_actions [NiceSPb_Class130003])
-	(next_tasks [NiceSPb_Class363060])
+	(next_tasks [NiceSPb_Class290000])
 	(task_scheme
 		[NiceSPb_Class130003]
 		[NiceSPb_Class130004]
-		[NiceSPb_Class220000])
+		[NiceSPb_Class220000]
+		[NiceSPb_Class300006]
+		[NiceSPb_Class300007])
 	(title "Start"))
 
 ([NiceSPb_Class180001] of  CloFuncall
@@ -593,7 +597,11 @@
 
 ([NiceSPb_Class190000] of  Context
 
-	(pairs [NiceSPb_Class200001])
+	(pairs
+		[NiceSPb_Class200001]
+		[NiceSPb_Class300008]
+		[NiceSPb_Class300010]
+		[NiceSPb_Class300012])
 	(title "k"))
 
 ([NiceSPb_Class190001] of  Task
@@ -5197,6 +5205,53 @@
 	(poly [NiceSPb_Class230001])
 	(source "[[43.7926964 7.6100569] [43.793314 7.6086916] [43.793527 7.6082522] [43.7937273 7.6077864]]"))
 
+([NiceSPb_Class290000] of  Task
+
+	(final_actions [NiceSPb_Class300005])
+	(finish_type AND)
+	(initial_actions [NiceSPb_Class290001])
+	(task_scheme
+		[NiceSPb_Class290001]
+		[NiceSPb_Class290002]
+		[NiceSPb_Class290003]
+		[NiceSPb_Class290004]
+		[NiceSPb_Class300005])
+	(title "Milano - Verona"))
+
+([NiceSPb_Class290001] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class290003])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class363034])
+	(spd "?speed")
+	(title "Milano Rogoredo - Milano Centrale"))
+
+([NiceSPb_Class290002] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class290004])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class362662])
+	(spd "?speed")
+	(title "Milano Centrale - Brescia"))
+
+([NiceSPb_Class290003] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class290002])
+	(text "Milano Centrale")
+	(title "Arrived in Milano Centrale"))
+
+([NiceSPb_Class290004] of  GoRoad
+
+	(direction "FORWARD")
+	(next_actions [NiceSPb_Class300005])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class340704])
+	(spd "?speed")
+	(title "Brescia - Verona Porta Nuova"))
+
 ([NiceSPb_Class290005] of  GoalR
 
 	(a "[9.21455 45.49616]")
@@ -5275,10 +5330,58 @@
 		"44.0516684"
 		"44.0518997"))
 
+([NiceSPb_Class300005] of  Stop
+
+	(category "0")
+	(text "Verona")
+	(title "Arrived to Verona"))
+
+([NiceSPb_Class300006] of  SetTimeScale
+
+	(next_actions [NiceSPb_Class300007])
+	(scale "?time-scale")
+	(title "Set Train Time Scale"))
+
+([NiceSPb_Class300007] of  Camera
+
+	(object [ScenarioN_Class570000])
+	(pitch "?pitch")
+	(title "Set Train Camera Control"))
+
+([NiceSPb_Class300008] of  ValuePair
+
+	(title "p")
+	(value "80")
+	(variable [NiceSPb_Class300009]))
+
+([NiceSPb_Class300009] of  Variable
+
+	(title "?height"))
+
 ([NiceSPb_Class30001] of  CloFunction
 
 	(source "(if p/TRACE\n  (println pfx (map #(sv % \"label\") nis)))\nnis")
 	(title "display-points-osm [pfx nis]"))
+
+([NiceSPb_Class300010] of  ValuePair
+
+	(title "p")
+	(value "8:1")
+	(variable [NiceSPb_Class300011]))
+
+([NiceSPb_Class300011] of  Variable
+
+	(title "?time-scale"))
+
+([NiceSPb_Class300012] of  ValuePair
+
+	(title "p")
+	(value "-13")
+	(variable [NiceSPb_Class300013]))
+
+([NiceSPb_Class300013] of  Variable
+
+	(title "?pitch"))
 
 ([NiceSPb_Class300017] of  Edge
 
@@ -31460,6 +31563,7 @@
 	(final_actions [NiceSPb_Class363064])
 	(finish_type AND)
 	(initial_actions [NiceSPb_Class363061])
+	(next_tasks [NiceSPb_Class290000])
 	(task_scheme
 		[NiceSPb_Class363061]
 		[NiceSPb_Class363062]
