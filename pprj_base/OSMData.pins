@@ -1,4 +1,4 @@
-; Wed Dec 30 21:57:54 MSK 2020
+; Wed Jan 13 13:54:23 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -15,7 +15,7 @@
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [url (osm-api-url bbx kind kind-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println e)\n    nil))")
+	(source "(try\n  (let [url (osm-api-url bbx kind kind-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println (.getMessage e))\n    (try\n      (let [url (osm-api-url bbx kind kind-type)\n             ;;_ (println :URL url)\n             jsn (json/read-str (slurp url) :key-fn keyword)]\n          jsn)\n      (catch Exception e\n        (println (.getMessage e))\n        nil))\n    nil))")
 	(title "osm-data [bbx kind kind-type]"))
 
 ([BrigBern_Class13] of  CloFunction

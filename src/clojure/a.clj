@@ -637,3 +637,9 @@
 (defn omp-lla [omp]
   (ProjMath/arrayRadToDeg (.getLatLonArrayCopy omp)))
 
+(defn any-collection [inst]
+  (let [dt (.getDirectType inst)
+       sls (.getTemplateSlots dt)]
+  (if-let [csl (first (filter #(.getAllowsMultipleValues %) sls))]
+    (.getOwnSlotValues inst csl))))
+

@@ -58,7 +58,15 @@
          jsn (json/read-str (slurp url) :key-fn keyword)]
       jsn)
   (catch Exception e
-    (println e)
+    (println (.getMessage e))
+    (try
+      (let [url (osm-api-url bbx kind kind-type)
+             ;;_ (println :URL url)
+             jsn (json/read-str (slurp url) :key-fn keyword)]
+          jsn)
+      (catch Exception e
+        (println (.getMessage e))
+        nil))
     nil)))
 
 (defn tags [data]

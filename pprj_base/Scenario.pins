@@ -1,4 +1,4 @@
-; Mon Jan 04 17:16:26 MSK 2021
+; Thu Jan 14 20:05:20 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -623,7 +623,8 @@
 		[Scenario_Class610000]
 		[Scenario_Class630000]
 		[Scenario_Class620001]
-		[Scenario_Class170002])
+		[Scenario_Class170002]
+		[Scenario_Class690000])
 	(cloNamespace [Scenario_Class120023])
 	(cloVars [Scenario_Class480000])
 	(title "Action Functions"))
@@ -1825,6 +1826,11 @@
 	(label "Untrace Scenario")
 	(scenario "clojuretab.ClojureTab invoke s untrace"))
 
+([Scenario_Class690000] of  CloFunction
+
+	(source "(let [dt (.getDirectType inst)\n       sls (.getTemplateSlots dt)]\n  (if-let [csl (first (filter #(.getAllowsMultipleValues %) sls))]\n    (.getOwnSlotValues inst csl)))")
+	(title "any-collection [inst]"))
+
 ([Scenario_Class70000] of  Rule
 
 	(lhs "(Clock time ?t)\n?del (Delay status \"REPEAT\" \n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?n))")
@@ -1983,8 +1989,8 @@
 
 ([ScenarioN_Class170002] of  Rule
 
-	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	seed ?sed\n                      number ?num\n	rename ?ren\n	rename-slot ?rns\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (and mo\n            (or (seq ?mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
+	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	thing ?thg\n	seed ?sed\n	number ?num\n	rename ?ren\n	rename-slot ?rns\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       thg (a/mapob-vv ?thg ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (cond\n            thg\n            (a/any-collection thg)\n            mo\n            (or (seq ?mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
 	(salience 0)
 	(title "a:LoadResource"))
 

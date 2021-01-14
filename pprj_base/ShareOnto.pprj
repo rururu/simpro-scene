@@ -1,4 +1,4 @@
-; Sat Feb 02 13:20:48 MSK 2019
+; Wed Jan 13 17:58:34 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,8 +20,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[ShareOnto_ProjectKB_Class361]
-		[ShareOnto_ProjectKB_Class362]))
+		[ShareOnto_ProjectKB_Class396]
+		[ShareOnto_ProjectKB_Class397]))
 
 ([CLSES_TAB] of  Widget
 
@@ -166,28 +166,28 @@
 	(name "instances_file_name")
 	(string_value "ShareOnto.pins"))
 
-([KB_277071_Class355] of  Map
+([KB_618172_Class392] of  Map
 
 	(entries
-		[KB_277071_Class356]
-		[KB_277071_Class357]
-		[KB_277071_Class358]))
+		[KB_618172_Class393]
+		[KB_618172_Class394]
+		[KB_618172_Class395]))
 
-([KB_277071_Class356] of  Map_Entry
+([KB_618172_Class393] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_277071_Class357] of  Map_Entry
+([KB_618172_Class394] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_277071_Class358] of  Map_Entry
+([KB_618172_Class395] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -497,19 +497,19 @@
 ([ShareOnto_ProjectKB_Class244] of  Property_List
 )
 
-([ShareOnto_ProjectKB_Class361] of  String
+([ShareOnto_ProjectKB_Class37] of  String
+
+	(name "SearchTab_Query"))
+
+([ShareOnto_ProjectKB_Class396] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([ShareOnto_ProjectKB_Class362] of  String
+([ShareOnto_ProjectKB_Class397] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
-
-([ShareOnto_ProjectKB_Class37] of  String
-
-	(name "SearchTab_Query"))
 
 ([SLOTS_TAB] of  Widget
 

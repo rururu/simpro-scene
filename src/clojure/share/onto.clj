@@ -103,16 +103,19 @@
         (def INSS-MAPPING (atom {}))
         (ssv inst "source-project" (str KB2))) ))))
 
-(defn delete-unref [hm inst]
+(defn delete-unref
+  ([inss]
+  (doseq [in inss]
+    (delin in)))
+([hm inst]
   (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls ":THING")])]
-  (do (def cnt 0)
-    (doseq [in (cls-instances (.getName clz))]
-      (if (< (count (.getReferences in)) 2)
-        (do
-          (println (str "Deleting unreferenced instance " (or (titorlab-slot-val in *kb*) (.getName in)) " of class " (.getName clz)))
-          (delin in)
-          (def cnt (inc cnt)))))
-    (confirm (str "Deleted " cnt)))))
+    (let [cln (.getName clz)
+          inss (cls-instances cln)
+          cnt (count inss)
+          mes (str cnt "instances of class" cln)]
+      (if (confirm (str "Delete" mes "?"))
+        (do (delete-unref inss)
+          (confirm (str "Deleted " mes))))))))
 
 (defn find-unref [hm inst]
   (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls ":THING")])]

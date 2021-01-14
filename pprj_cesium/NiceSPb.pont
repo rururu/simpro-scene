@@ -1,4 +1,4 @@
-; Tue Jan 12 22:01:23 MSK 2021
+; Thu Jan 14 20:48:11 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -24,6 +24,35 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot last
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot directed-roads
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoad)
+		(create-accessor read-write)))
+
+(defclass DirectedRoad
+	(is-a OSM+Onto)
+	(role concrete)
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes Variable Road %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DirectedRoute
+	(is-a OSM+Onto)
+	(role concrete)
+	(multislot directed-roads
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoad)
+		(create-accessor read-write))
+	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -54,6 +83,10 @@
 
 (defclass Quasisolution
 	(is-a Solution)
+	(role concrete))
+
+(defclass GoDirectedRoad
+	(is-a GoRoad)
 	(role concrete))
 
 (defclass Stop
