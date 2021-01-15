@@ -1,4 +1,4 @@
-; Thu Jan 14 20:05:20 MSK 2021
+; Fri Jan 15 20:14:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2148,6 +2148,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING)
 		(create-accessor read-write)))
+
+(defclass NoAction
+	(is-a Action)
+	(role concrete))
 
 (defclass Exception
 	(is-a Activity)

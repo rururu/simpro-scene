@@ -1,4 +1,4 @@
-; Thu Jan 14 20:05:20 MSK 2021
+; Fri Jan 15 20:14:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -54,7 +54,8 @@
 		[Scenario_Class310005]))
 
 ([CalcMessage] of  ActionClass
-)
+
+	(rules [Scenario_Class700000]))
 
 ([Calculus] of  ActionClass
 
@@ -225,6 +226,10 @@
 	(rules
 		[ScenarioN_Class580002]
 		[ScenarioN_Class580001]))
+
+([NoAction] of  ActionClass
+
+	(rules [Scenario_Class570001]))
 
 ([ObAttribute] of  EventClass
 
@@ -447,7 +452,9 @@
 		[Scenario_Class590016]
 		[Scenario_Class590015]
 		[Scenario_Class610001]
-		[Scenario_Class620000])
+		[Scenario_Class620000]
+		[Scenario_Class700000]
+		[Scenario_Class570001])
 	(templates
 		[Action]
 		[Arrive]
@@ -503,7 +510,9 @@
 		[SetScale]
 		[FlightView]
 		[Camera]
-		[SendSignal])
+		[SendSignal]
+		[CalcMessage]
+		[NoAction])
 	(title "ActionExecutor"))
 
 ([Scenario_Class110000] of  Rule
@@ -1571,15 +1580,12 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
-([Scenario_Class570000] of  ShareOnto
+([Scenario_Class570001] of  Rule
 
-	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
-	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
-	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
-	(but-find-unref "Find Unreferenced/share.onto/find-unref")
-	(but-load-prj "Load Source Project/share.onto/load-src-prj")
-	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
-	(source-project "Duplicate definition of class Railroad was ignored"))
+	(lhs "?na (NoAction status \"START\"\n	title ?tit\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"NoAction\"))\n(retract ?na)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:NoAction"))
 
 ([Scenario_Class570047] of  Table2
 
@@ -1838,6 +1844,43 @@
 	(salience 0)
 	(title "a:DelayRepeat"))
 
+([Scenario_Class700000] of  Rule
+
+	(lhs "?tm (CalcMessage status \"START\"\n	title ?tit\n	clients ?cls\n	category ?cat\n	text ?txt\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"CalcMessage\"))\n(let [cat (a/vv ?cat ?run)\n       bnd0 (d/embed-ctx-vars ?run)\n       bnd2 (d/parse-let-body (d/uncomment ?txt))\n       bnd3 (vec (concat bnd0 bnd2))\n       lvr (last (butlast bnd3))\n       sex (str \"(in-ns 'a) (let \" bnd3 lvr \")\")\n       ;;_ (println :SEX sex)\n       txt (str (load-string sex))]\n  (a/es-mess (str (a/op-time) \" \" txt) {} cat))\n(retract ?tm)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:CalcMessage"))
+
+([Scenario_Class700002] of  Context
+
+	(pairs
+		[Scenario_Class700003]
+		[Scenario_Class710003])
+	(title "k"))
+
+([Scenario_Class700003] of  ValuePair
+
+	(title "p")
+	(value "4"))
+
+([Scenario_Class710000] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2021.01.15 12:56:25.768 MSK")
+	(%3ACREATOR "ru"))
+
+([Scenario_Class710001] of  CloFuncall
+
+	(source "s/mission-button-support"))
+
+([Scenario_Class710002] of  CloFuncall
+
+	(source "(clojuretab.ClojureTab/invoke \"s\" \"mission-button-support\")"))
+
+([Scenario_Class710003] of  ValuePair
+
+	(title "p")
+	(value "0"))
+
 ([Scenario_Class80000] of  Rule
 
 	(lhs "?ts (Task status \"START\" \n	title ?tit \n	task_scheme ?tsc\n	(empty? ?tsc))")
@@ -1990,7 +2033,7 @@
 ([ScenarioN_Class170002] of  Rule
 
 	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	thing ?thg\n	seed ?sed\n	number ?num\n	rename ?ren\n	rename-slot ?rns\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       thg (a/mapob-vv ?thg ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (cond\n            thg\n            (a/any-collection thg)\n            mo\n            (or (seq ?mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       thg (a/vv ?thg ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (cond\n            thg\n            (a/any-collection thg)\n            mo\n            (or (seq ?mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
 	(salience 0)
 	(title "a:LoadResource"))
 

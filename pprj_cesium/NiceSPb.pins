@@ -1,4 +1,4 @@
-; Thu Jan 14 20:48:11 MSK 2021
+; Fri Jan 15 18:38:42 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2232,7 +2232,9 @@
 ([NiceSPb_Class220003] of  Type
 
 	(label "Train")
-	(missions [NiceSPb_Class220004]))
+	(missions
+		[NiceSPb_Class220004]
+		[NiceSPb_Class380000]))
 
 ([NiceSPb_Class220004] of  ObjectMission
 
@@ -26959,29 +26961,20 @@
 
 	(source "osm.path/GOAL-RDS"))
 
-([NiceSPb_Class351483] of  CloFuncall
-
-	(source "osm.path/GOAL-RAD"))
-
-([NiceSPb_Class351484] of  CloFuncall
-
-	(source "osm.path/NODE-YXS"))
-
 ([NiceSPb_Class360000] of  MissionScenario
 
 	(context [NiceSPb_Class360001])
+	(final_tasks [NiceSPb_Class370000])
 	(finish_type AND)
 	(initial_tasks [NiceSPb_Class370000])
+	(protagonist [PyongyangSPb_Class250003])
 	(scenario_scheme [NiceSPb_Class370000])
-	(title "mdr:Move Directed Route"))
+	(title "mdr:Go Directed Route"))
 
 ([NiceSPb_Class360001] of  Context
 
 	(pairs
-		[NiceSPb_Class300008]
-		[NiceSPb_Class300012]
 		[NiceSPb_Class200001]
-		[NiceSPb_Class300010]
 		[NiceSPb_Class360007])
 	(title "k"))
 
@@ -31778,13 +31771,16 @@
 
 ([NiceSPb_Class370000] of  Task
 
+	(final_actions [NiceSPb_Class400000])
 	(finish_type AND)
+	(initial_actions [NiceSPb_Class370001])
 	(task_scheme
 		[NiceSPb_Class370001]
 		[NiceSPb_Class370003]
 		[NiceSPb_Class370008]
 		[NiceSPb_Class370009]
-		[NiceSPb_Class370011])
+		[NiceSPb_Class370011]
+		[NiceSPb_Class400000])
 	(title "mdr:Move Directed Route"))
 
 ([NiceSPb_Class370001] of  LoadResource
@@ -31814,7 +31810,7 @@
 ([NiceSPb_Class370006] of  Rule
 
 	(lhs "?gor (GoDirectedRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	run ?run\n	parent ?par)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoDirectedRoad\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       sps (a/vv ?spd ?run)\n       roa (protege.core/sv roa \"road\")\n       dir (protege.core/sv roa \"direction\")]\n  (if (and (some? mo) (a/worth? roa) (a/worth? dir) (a/worth? sps))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           gbw (= dir \"BACKWARD\")\n           dws (if gbw (reverse dws) dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           bwd (= dn \"BACKWARD\")\n           bwd (if bwd (not gbw) gbw)\n           way (protege.core/sv dw \"way\")\n           lla (read-string (protege.core/sv way \"source\"))\n           [lat lon] (if bwd (last lla) (first lla))\n           lla (flatten lla)\n           rte (a/to-route lla bwd)\n           rsp (a/nors sps)]\n      (.setLocation mo lat lon)\n      (.goRoute mo rte)\n      (.setSpeed mo (double rsp))\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"WAIT\"\n	object mo\n	road (rest dws)\n	direction gbw))\n    (modify ?gor status \"FAILED\")))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoDirectedRoad\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       sps (a/vv ?spd ?run)\n       roa (protege.core/sv roa \"road\")\n       dir (protege.core/sv roa \"direction\")]\n  (if (and (some? mo) (a/worth? roa) (a/worth? sps))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           gbw (= dir \"BACKWARD\")\n           dws (if gbw (reverse dws) dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           bwd (= dn \"BACKWARD\")\n           bwd (if bwd (not gbw) gbw)\n           way (protege.core/sv dw \"way\")\n           lla (read-string (protege.core/sv way \"source\"))\n           [lat lon] (if bwd (last lla) (first lla))\n           lla (flatten lla)\n           rte (a/to-route lla bwd)\n           rsp (a/nors sps)]\n      (.setLocation mo lat lon)\n      (.goRoute mo rte)\n      (.setSpeed mo (double rsp))\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"WAIT\"\n	object mo\n	road (rest dws)\n	direction gbw))\n    (modify ?gor status \"FAILED\")))")
 	(salience 0)
 	(title "trn:GoDirectedRoadStart"))
 
@@ -31851,6 +31847,8 @@
 ([NiceSPb_Class370011] of  CalcMessage
 
 	(category "0")
+	(next_actions [NiceSPb_Class400000])
+	(text "title (sv (ins ?dir-route) \"title\")\ntext (str \"End of route: \" title)")
 	(title "mdr:End Route"))
 
 ([NiceSPb_Class370014] of  DirectedRoad
@@ -32479,6 +32477,10 @@
 	(id "114975200")
 	(poly [NiceSPb_Class350012])
 	(source "[[45.4957599 9.2149436] [45.4956687 9.2148162] [45.4955926 9.2147197] [45.4955164 9.2146231] [45.4954365 9.2145265] [45.4953501 9.2144286] [45.4952557 9.214328] [45.4945134 9.2135636] [45.4941778 9.2132109] [45.4940557 9.2130753] [45.4939578 9.2129614] [45.4938995 9.212893] [45.4938346 9.2128139] [45.4937641 9.2127267] [45.4937077 9.2126516] [45.4936128 9.2125336]]"))
+
+([NiceSPb_Class380000] of  ObjectMission
+
+	(label "mdr:Go Directed Route"))
 
 ([NiceSPb_Class380167] of  Edge
 
@@ -45157,6 +45159,19 @@
 	(source "(let [sgs (p/mk-segments nis)\n       dirs (map simple-dir-osm sgs)\n       rdir (simple-dir-osm [start finish])]\n  (some #(is-backward-dir? % rdir) dirs))")
 	(title "wrong-direction-osm [start finish nis]"))
 
+([NiceSPb_Class400000] of  NoAction
+
+	(title "mdr:End Route"))
+
+([NiceSPb_Class400001] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class360010])
+	(title "Test"))
+
+([NiceSPb_Class400002] of  CloFuncall
+
+	(source "(ru.rules/f 604)"))
+
 ([NiceSPb_Class40001] of  CloFunction
 
 	(source "(of/simple-dir\n  [(sv ni1 \"x\") (sv ni1 \"y\")]\n  [(sv ni2 \"x\") (sv ni2 \"y\")])")
@@ -45471,23 +45486,6 @@
 	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class130001])
 	(%3ACREATION-TIMESTAMP "2020.12.01 11:40:59.894 MSK")
 	(%3ACREATOR "ru"))
-
-([PyongyangSPb_Class20013] of  NavOb
-
-	(altitude 0)
-	(course 270)
-	(label "t2")
-	(latitude "38 57.7")
-	(longitude "125 46")
-	(playground-index 0)
-	(speed 0.0)
-	(type [PyongyangSPb_Class20014])
-	(url "file:resources/public/img/bluball.png")
-	(verticalSpeed 0.0))
-
-([PyongyangSPb_Class20014] of  Type
-
-	(label "Trains"))
 
 ([PyongyangSPb_Class210001] of  %3AINSTANCE-ANNOTATION
 
