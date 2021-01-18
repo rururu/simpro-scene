@@ -1,4 +1,4 @@
-; Wed Jan 13 17:58:34 MSK 2021
+; Mon Jan 18 16:36:54 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -166,28 +166,28 @@
 	(name "instances_file_name")
 	(string_value "ShareOnto.pins"))
 
-([KB_618172_Class392] of  Map
+([KB_574074_Class392] of  Map
 
 	(entries
-		[KB_618172_Class393]
-		[KB_618172_Class394]
-		[KB_618172_Class395]))
+		[KB_574074_Class393]
+		[KB_574074_Class394]
+		[KB_574074_Class395]))
 
-([KB_618172_Class393] of  Map_Entry
+([KB_574074_Class393] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_618172_Class394] of  Map_Entry
+([KB_574074_Class394] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_618172_Class395] of  Map_Entry
+([KB_574074_Class395] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

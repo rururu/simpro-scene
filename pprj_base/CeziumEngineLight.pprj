@@ -1,4 +1,4 @@
-; Wed Jan 06 14:28:42 MSK 2021
+; Mon Jan 18 17:22:48 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CeziumEngineLight_ProjectKB_Class1412]
-		[CeziumEngineLight_ProjectKB_Class1413]
-		[CeziumEngineLight_ProjectKB_Class1414]))
+		[CeziumEngineLight_ProjectKB_Class11410]
+		[CeziumEngineLight_ProjectKB_Class11411]
+		[CeziumEngineLight_ProjectKB_Class11412]))
 
 ([Cezium_ProjectKB_Class1636] of  Widget
 
@@ -331,6 +331,21 @@
 ([CeziumEngine_ProjectKB_Class1691] of  Property_List
 )
 
+([CeziumEngineLight_ProjectKB_Class11410] of  String
+
+	(name "CZMLGenerator")
+	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
+
+([CeziumEngineLight_ProjectKB_Class11411] of  String
+
+	(name "Onboard")
+	(string_value "label"))
+
+([CeziumEngineLight_ProjectKB_Class11412] of  String
+
+	(name "CZMLSpan")
+	(string_value "object"))
+
 ([CeziumEngineLight_ProjectKB_Class1407] of  Widget
 
 	(height 60)
@@ -344,21 +359,6 @@
 
 ([CeziumEngineLight_ProjectKB_Class1408] of  Property_List
 )
-
-([CeziumEngineLight_ProjectKB_Class1412] of  String
-
-	(name "CZMLGenerator")
-	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
-
-([CeziumEngineLight_ProjectKB_Class1413] of  String
-
-	(name "Onboard")
-	(string_value "label"))
-
-([CeziumEngineLight_ProjectKB_Class1414] of  String
-
-	(name "CZMLSpan")
-	(string_value "object"))
 
 ([CLSES_TAB] of  Widget
 
@@ -502,34 +502,6 @@
 	(name "instances_file_name")
 	(string_value "CeziumEngineLight.pins"))
 
-([KB_381090_Class1403] of  Map
-
-	(entries
-		[KB_381090_Class1404]
-		[KB_381090_Class1405]
-		[KB_381090_Class1406]))
-
-([KB_381090_Class1404] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_381090_Class1405] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_381090_Class1406] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([KB_684256_Class1343] of  Widget
 
 	(is_hidden FALSE)
@@ -575,6 +547,34 @@
 
 ([KB_684256_Class1349] of  Property_List
 )
+
+([KB_877467_Class1403] of  Map
+
+	(entries
+		[KB_877467_Class1404]
+		[KB_877467_Class1405]
+		[KB_877467_Class1406]))
+
+([KB_877467_Class1404] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_877467_Class1405] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_877467_Class1406] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

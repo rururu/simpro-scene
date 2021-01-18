@@ -41,6 +41,13 @@
        nds (filter some? nds)]
   (distinct nds)))
 
+(defn from-goal [sta cur fin]
+  (let [rdir (of/simple-dir sta fin)
+       cdir (of/simple-dir sta cur)
+       arc (Math/abs (- rdir cdir))
+       hpi (/ Math/PI 2)]
+  (and (> arc hpi) (< arc (* hpi 3)))))
+
 (defn display-points-osm [pfx nis]
   (if p/TRACE
   (println pfx (map #(sv % "label") nis)))
@@ -73,17 +80,12 @@ egs)
 (defn edges-distance [egs]
   (apply + (map #(of/simple-dist (vertex1 %) (vertex2 %)) egs)))
 
-(defn from-goal [sta cur fin]
-  (let [rdir (of/simple-dir sta fin)
-       cdir (of/simple-dir sta cur)
-       arc (Math/abs (- rdir cdir))]
-  (> arc (/ Math/PI 2))))
-
 (defn goal-behind [sta cur fin]
   (let [rdir (of/simple-dir sta fin)
        gdir (of/simple-dir cur fin)
-       arg (Math/abs (- rdir gdir))]
-  (> arg (/ Math/PI 2))))
+       arg (Math/abs (- rdir gdir))
+       hpi (/ Math/PI 2)]
+  (and (> arg hpi) (< arg (* hpi 3)))))
 
 (defn near [p1 p2]
   (< (of/simple-dist p1 p2) NEAR))
@@ -143,4 +145,13 @@ egs)
 
 (defn set-goal-rad [r]
   (def GOAL-RAD r))
+
+(defn restore-edge [way]
+  (let [id (sv way "id")
+       src (sv way "source")
+       src (read-string src)
+       src (map reverse src)
+       iln (cons id src)
+       edg (oo/mk-edge iln)]
+  (ssv way "poly" edg)))
 

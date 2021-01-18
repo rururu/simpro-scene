@@ -1,7 +1,8 @@
 (ns osm.onto
 (:use protege.core) 
 (:require
-  [osm.func :as f])
+  [osm.func :as f]
+  [protege.extensions :as pe])
 (:import
   ru.igis.omtab.MapOb
   ru.igis.omtab.OMT
@@ -166,6 +167,9 @@
     (OMT/getOrAdd egi))
   egi))
 
+(defn find-nodes [xy rad]
+  (pe/qt-do-query "Node" (f/bbx xy rad)))
+
 (defn mk-node [xy]
   (if-let [ils (seq (f/iLines-with-beg-or-end-in-bbx 
                            xy (get-radius) (get-kind) (get-kind-type) (get-kind-subtype)))]
@@ -190,6 +194,15 @@
   (when (is-show?)
     (println "No edges")
     nil)))
+
+(defn fmk-node [xy]
+  (if-let [noi (first (find-nodes xy (get-radius)))]
+  (do 
+    (when (is-show?)
+      (OMT/getOrAdd noi)
+      (println "Find Node"))
+    noi)
+  (mk-node xy)))
 
 (defn show-mapob [hm inst]
   (OMT/getOrAdd inst))
@@ -216,7 +229,7 @@
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
-                              'NODES (mk-node (reverse llp))
+	    'NODES (mk-node (reverse llp))
 	    (println (or (if mo (.getName mo)) (seq llp))))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
@@ -292,7 +305,7 @@
 
 (defn connected-nodes [hm inst]
   (if-let [noi (sv inst "node")]
-  (ssvs inst "nodes" (map mk-node (star-points noi)))
+  (ssvs inst "nodes" (map fmk-node (star-points noi)))
   (println "Fill node slot!")))
 
 (defn edge-dir-cont [xy e]

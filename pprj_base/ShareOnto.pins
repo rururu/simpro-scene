@@ -1,4 +1,4 @@
-; Wed Jan 13 17:58:34 MSK 2021
+; Mon Jan 18 16:36:54 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -67,7 +67,7 @@
 
 ([ShareOnto_Class30002] of  CloFunction
 
-	(source "([inss]\n  (doseq [in inss]\n    (delin in)))\n([hm inst]\n  (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls \":THING\")])]\n    (let [cln (.getName clz)\n          inss (cls-instances cln)\n          cnt (count inss)\n          mes (str cnt \"instances of class\" cln)]\n      (if (confirm (str \"Delete\" mes \"?\"))\n        (do (delete-unref inss)\n          (confirm (str \"Deleted \" mes)))))))")
+	(source "([inss]\n  (doseq [in (filter #(< (count (.getReferences %)) 2) inss)]\n    (delin in)))\n([hm inst]\n  (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls \":THING\")])]\n    (let [cln (.getName clz)\n          inss (cls-instances cln)\n          dins (filter #(< (count (.getReferences %)) 2) inss)\n          cnt (count dins)\n          mes (str cnt \" instances of class \" cln)]\n      (when (confirm (str \"Delete \" mes \"?\"))\n        (doseq [in dins]\n          (delin in))\n        (confirm (str \"Deleted \" mes))))))")
 	(title "delete-unref"))
 
 ([ShareOnto_Class4] of  CloNamespace

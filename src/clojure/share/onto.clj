@@ -105,17 +105,19 @@
 
 (defn delete-unref
   ([inss]
-  (doseq [in inss]
+  (doseq [in (filter #(< (count (.getReferences %)) 2) inss)]
     (delin in)))
 ([hm inst]
   (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls ":THING")])]
     (let [cln (.getName clz)
           inss (cls-instances cln)
-          cnt (count inss)
-          mes (str cnt "instances of class" cln)]
-      (if (confirm (str "Delete" mes "?"))
-        (do (delete-unref inss)
-          (confirm (str "Deleted " mes))))))))
+          dins (filter #(< (count (.getReferences %)) 2) inss)
+          cnt (count dins)
+          mes (str cnt " instances of class " cln)]
+      (when (confirm (str "Delete " mes "?"))
+        (doseq [in dins]
+          (delin in))
+        (confirm (str "Deleted " mes)))))))
 
 (defn find-unref [hm inst]
   (if-let [clz (DisplayUtilities/pickCls nil *kb* [(cls ":THING")])]

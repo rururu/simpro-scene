@@ -1,4 +1,4 @@
-; Fri Jan 15 20:14:26 MSK 2021
+; Mon Jan 18 16:55:30 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -389,7 +389,7 @@
 		(create-accessor read-write))
 	(multislot dirways
 		(type INSTANCE)
-;+		(allowed-classes Dirway)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot activities
 		(type INSTANCE)
@@ -650,7 +650,7 @@
 		(create-accessor read-write))
 	(single-slot way
 		(type INSTANCE)
-;+		(allowed-classes Way)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot rename
@@ -722,7 +722,7 @@
 		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
-;+		(allowed-classes Variable Road %3ATHING)
+;+		(allowed-classes Variable %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot after
@@ -1653,7 +1653,7 @@
 		(create-accessor read-write))
 	(single-slot road
 		(type INSTANCE)
-;+		(allowed-classes Variable Road %3ATHING)
+;+		(allowed-classes Variable %3ATHING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -2359,6 +2359,48 @@
 		(type FLOAT)
 		(create-accessor read-write)))
 
+(defclass Fairway
+	(is-a Artefact)
+	(role concrete)
+	(single-slot entry_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot axis
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entrance
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot exit_lane
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Route
+	(is-a Artefact)
+	(role concrete)
+	(multislot points
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass NetCom
 	(is-a ScenarioOntology)
 	(role concrete)
@@ -2744,101 +2786,5 @@
 	(single-slot but-csv-create
 		(type STRING)
 		(default "Create Instances/csv.imp/crea-inst")
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Way+Onto
-	(is-a USER)
-	(role abstract))
-
-(defclass Fairway
-	(is-a Way+Onto)
-	(role concrete)
-	(single-slot entry_lane
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot axis
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot exit
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot entrance
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot exit_lane
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Road
-	(is-a Way+Onto)
-	(role concrete)
-	(single-slot to1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot dirways
-		(type INSTANCE)
-;+		(allowed-classes Dirway)
-		(create-accessor read-write))
-	(single-slot from1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Route
-	(is-a Way+Onto)
-	(role concrete)
-	(multislot points
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot title
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Way
-	(is-a Way+Onto)
-	(role concrete)
-	(single-slot poly
-		(type INSTANCE)
-;+		(allowed-classes OMTPoly)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot source
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Dirway
-	(is-a Way+Onto)
-	(role concrete)
-	(single-slot way
-		(type INSTANCE)
-;+		(allowed-classes Way)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot direction
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

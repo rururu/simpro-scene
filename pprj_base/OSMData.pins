@@ -1,4 +1,4 @@
-; Wed Jan 13 13:54:23 MSK 2021
+; Sun Jan 17 18:22:16 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -105,7 +105,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n                              'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class40000] of  CloFunction
@@ -179,7 +179,9 @@
 		[OSMData_Class50013]
 		[BrigBern_Class40013]
 		[OSMData_Class20004]
+		[OSMData_Class90034]
 		[OSMData_Class20003]
+		[OSMData_Class90038]
 		[OSMData_Class10027]
 		[OSMData_Class0]
 		[OSMData_Class10028]
@@ -219,7 +221,7 @@
 
 ([BrigBern_Class8] of  CloNamespace
 
-	(source "(:use protege.core) \n(:require\n  [osm.func :as f])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(source "(:use protege.core) \n(:require\n  [osm.func :as f]\n  [protege.extensions :as pe])\n(:import\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OMT\n  ru.igis.omtab.OMTPoly\n  ru.igis.omtab.gui.RuMapMouseAdapter\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
 	(title "osm.onto"))
 
 ([BrigBern_Class80011] of  CloVar
@@ -261,7 +263,7 @@
 
 ([OSMData_Class10003] of  CloFunction
 
-	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map mk-node (star-points noi)))\n  (println \"Fill node slot!\"))")
+	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map fmk-node (star-points noi)))\n  (println \"Fill node slot!\"))")
 	(title "connected-nodes [hm inst]"))
 
 ([OSMData_Class10004] of  CloFunction
@@ -338,7 +340,7 @@
 	(kind way)
 	(radius 0.001)
 	(road-subclass Railroad)
-	(server RUSSIAN)
+	(server FRENCH)
 	(show TRUE)
 	(status "MODE NODES")
 	(tagvalue [BrigBern_Class80016])
@@ -471,6 +473,22 @@
 
 	(source "(let [xy1 [(sv e \"x\") (sv e \"y\")]\n      xy2 [(sv e \"x2\") (sv e \"y2\")]]\n  (if (< (f/simple-dist xy xy1)\n          (f/simple-dist xy xy2))\n    [\"FORWARD\" xy2]\n    [\"BACKWARD\" xy1]))")
 	(title "edge-dir-cont [xy e]"))
+
+([OSMData_Class90000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [OSMData_Class40000])
+	(%3ACREATION-TIMESTAMP "2021.01.16 12:47:59.384 MSK")
+	(%3ACREATOR "ru"))
+
+([OSMData_Class90034] of  CloFunction
+
+	(source "(pe/qt-do-query \"Node\" (f/bbx xy rad))")
+	(title "find-nodes [xy rad]"))
+
+([OSMData_Class90038] of  CloFunction
+
+	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Find Node\"))\n    noi)\n  (mk-node xy))")
+	(title "fmk-node [xy]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 
