@@ -1,4 +1,4 @@
-; Mon Jan 18 16:55:31 MSK 2021
+; Tue Jan 19 21:31:44 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1868,14 +1868,6 @@
 	(%3ACREATION-TIMESTAMP "2021.01.15 12:56:25.768 MSK")
 	(%3ACREATOR "ru"))
 
-([Scenario_Class710001] of  CloFuncall
-
-	(source "s/mission-button-support"))
-
-([Scenario_Class710002] of  CloFuncall
-
-	(source "(clojuretab.ClojureTab/invoke \"s\" \"mission-button-support\")"))
-
 ([Scenario_Class710003] of  ValuePair
 
 	(title "p")
@@ -2006,7 +1998,7 @@
 
 ([ScenarioN_Class140000] of  CloFunction
 
-	(source "(let [ii (OMT/getMapObInstances)\n      tt (DisplayUtilities/pickInstancesFromCollection nil ii \"Toggle Labels Visible\")]\n  (doseq [t tt]\n    (if-let[mo (OMT/getMapOb t)]\n      (.hideLabel mo)) ))")
+	(source "(let [ii (OMT/getMapObInstances)]\n  (if (confirm \"Hide all labels?\")\n    (doseq [t ii]\n      (if-let[mo (OMT/getMapOb t)]\n        (.hideLabel mo)))\n    (let [tt (DisplayUtilities/pickInstancesFromCollection nil ii \"Toggle Labels Visible\")]\n      (doseq [t tt]\n        (if-let[mo (OMT/getMapOb t)]\n          (.hideLabel mo)) )) ))")
 	(title "hide-labels []"))
 
 ([ScenarioN_Class160001] of  Rule

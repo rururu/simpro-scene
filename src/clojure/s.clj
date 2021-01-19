@@ -131,11 +131,15 @@
       (.showLabel mo)) )))
 
 (defn hide-labels []
-  (let [ii (OMT/getMapObInstances)
-      tt (DisplayUtilities/pickInstancesFromCollection nil ii "Toggle Labels Visible")]
-  (doseq [t tt]
-    (if-let[mo (OMT/getMapOb t)]
-      (.hideLabel mo)) )))
+  (let [ii (OMT/getMapObInstances)]
+  (if (confirm "Hide all labels?")
+    (doseq [t ii]
+      (if-let[mo (OMT/getMapOb t)]
+        (.hideLabel mo)))
+    (let [tt (DisplayUtilities/pickInstancesFromCollection nil ii "Toggle Labels Visible")]
+      (doseq [t tt]
+        (if-let[mo (OMT/getMapOb t)]
+          (.hideLabel mo)) )) )))
 
 (defn find-general-scenario [title]
   ;; Title of specific scenario STARTS WITH title of general scenario

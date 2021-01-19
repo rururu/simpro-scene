@@ -1,4 +1,4 @@
-; Mon Jan 18 17:22:48 MSK 2021
+; Tue Jan 19 16:25:00 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -329,7 +329,7 @@
 
 ([Cezium_Class30029] of  CloVar
 
-	(source "4444")
+	(source "4448")
 	(title "PORT"))
 
 ([Cezium_Class30030] of  CloVar
@@ -364,7 +364,7 @@
 
 ([Cezium_Class30038] of  CloFunction
 
-	(source "([]\n    (start-server PORT))\n([port]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))\n([hm inst]\n  (start-server))")
+	(source "([]\n    (start-server PORT))\n([port]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))\n([hm inst]\n  (if-let [port (sv inst \"port\")]\n    (def PORT (read-string port)))\n  (start-server))")
 	(title "start-server"))
 
 ([Cezium_Class30039] of  CloFunction
@@ -790,3 +790,10 @@
 
 	(source "([]\n  (if-let [serv SERV]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://0.0.0.0:\" PORT))))))\n([hm inst]\n  (start-client))")
 	(title "start-client"))
+
+([CeziumEngineLight_Class10001] of  CeziumControl
+
+	(but-onboard "Go on Board/pro.server/go-onboard")
+	(but-start-serv "Start Cesium Server/pro.server/start-server")
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
+	(port "4448"))

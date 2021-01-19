@@ -1,4 +1,4 @@
-; Sun Jan 17 18:22:16 MSK 2021
+; Tue Jan 19 18:26:19 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -298,7 +298,7 @@
 
 ([OSMData_Class20003] of  CloFunction
 
-	(source "(if-let [ils (seq (f/iLines-with-beg-or-end-in-bbx \n                           xy (get-radius) (get-kind) (get-kind-type) (get-kind-subtype)))]\n  (let [ils (f/sort-iLines xy ils)\n         egs (map mk-edge ils)\n         ned (f/nearest-end xy (first ils))\n         noi (foc \"Node\" \"label\" (str \"N\" ned))\n         [x y] ned]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FFFF6800\")\n    (ssv noi \"fillColor\" \"FFFF6800\")\n    (ssv noi \"point-radius\" (int 4))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Created Node from\" (count egs) \"edges.\"))\n    noi)\n  (when (is-show?)\n    (println \"No edges\")\n    nil))")
+	(source "(if-let [ils (seq (f/iLines-with-beg-or-end-in-bbx \n                           xy (get-radius) (get-kind) (get-kind-type) (get-kind-subtype)))]\n  (let [ils (f/sort-iLines xy ils)\n         egs (map mk-edge ils)\n         ned (f/nearest-end xy (first ils))\n         lab (str \"N\" ned)\n         noi (foc \"Node\" \"label\" lab)\n         [x y] ned]\n    (ssv noi \"x\" (float x)) \n    (ssv noi \"y\" (float y)) \n    (ssv noi \"latitude\" (MapOb/getDegMin y))\n    (ssv noi \"longitude\" (MapOb/getDegMin x))\n    (ssv noi \"lineColor\" \"FFFF6800\")\n    (ssv noi \"fillColor\" \"FFFF6800\")\n    (ssv noi \"point-radius\" (int 4))\n    (ssv noi \"oval\" true)\n    (ssvs noi \"edges\" egs)\n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Created Node from\" (count egs) \"edges:\" lab))\n    noi)\n  (when (is-show?)\n    (println \"No edges\")\n    nil))")
 	(title "mk-node [xy]"))
 
 ([OSMData_Class20004] of  CloFunction
@@ -487,7 +487,7 @@
 
 ([OSMData_Class90038] of  CloFunction
 
-	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Find Node\"))\n    noi)\n  (mk-node xy))")
+	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Find Node\" (sv noi \"label\")))\n    noi)\n  (mk-node xy))")
 	(title "fmk-node [xy]"))
 
 ([OSMRoads_Class100006] of  Tagvalue

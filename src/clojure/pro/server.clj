@@ -15,7 +15,7 @@
              edu.stanford.smi.protege.ui.DisplayUtilities
              java.awt.Desktop
              java.net.URI))
-(def PORT 4444)
+(def PORT 4448)
 (def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
 (def SERV nil)
 (def ONBOARD (volatile! nil))
@@ -105,6 +105,8 @@
     (init-server))
   (def SERV (jetty/run-jetty APP {:port port :join? false})))
 ([hm inst]
+  (if-let [port (sv inst "port")]
+    (def PORT (read-string port)))
   (start-server)))
 
 (defn stop-server

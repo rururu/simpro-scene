@@ -176,7 +176,8 @@
   (let [ils (f/sort-iLines xy ils)
          egs (map mk-edge ils)
          ned (f/nearest-end xy (first ils))
-         noi (foc "Node" "label" (str "N" ned))
+         lab (str "N" ned)
+         noi (foc "Node" "label" lab)
          [x y] ned]
     (ssv noi "x" (float x)) 
     (ssv noi "y" (float y)) 
@@ -189,7 +190,7 @@
     (ssvs noi "edges" egs)
     (when (is-show?)
       (OMT/getOrAdd noi)
-      (println "Created Node from" (count egs) "edges."))
+      (println "Created Node from" (count egs) "edges:" lab))
     noi)
   (when (is-show?)
     (println "No edges")
@@ -200,7 +201,7 @@
   (do 
     (when (is-show?)
       (OMT/getOrAdd noi)
-      (println "Find Node"))
+      (println "Find Node" (sv noi "label")))
     noi)
   (mk-node xy)))
 

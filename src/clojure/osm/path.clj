@@ -96,7 +96,7 @@ egs)
 (defn find-new-node [xy]
   (let [box (of/bbx xy GOAL-RAD)]
   (if (not (some #(of/in-bbx % box) NODE-YXS))
-    (when-let [noi (oo/mk-node xy)]
+    (when-let [noi (oo/fmk-node xy)]
       (def NODE-YXS (conj NODE-YXS [(sv noi "y") (sv noi "x")]))
       noi))))
 

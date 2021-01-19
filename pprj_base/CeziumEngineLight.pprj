@@ -1,4 +1,4 @@
-; Mon Jan 18 17:22:48 MSK 2021
+; Tue Jan 19 16:25:00 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CeziumEngineLight_ProjectKB_Class11410]
-		[CeziumEngineLight_ProjectKB_Class11411]
-		[CeziumEngineLight_ProjectKB_Class11412]))
+		[CeziumEngineLight_ProjectKB_Class11427]
+		[CeziumEngineLight_ProjectKB_Class11428]
+		[CeziumEngineLight_ProjectKB_Class11429]))
 
 ([Cezium_ProjectKB_Class1636] of  Widget
 
@@ -167,7 +167,8 @@
 		[Cezium_ProjectKB_Class453]
 		[Cezium_ProjectKB_Class455]
 		[Cezium_ProjectKB_Class457]
-		[CeziumEngineLight_ProjectKB_Class1407]))
+		[CeziumEngineLight_ProjectKB_Class1407]
+		[CeziumEngineLight_ProjectKB_Class11407]))
 
 ([Cezium_ProjectKB_Class450] of  Property_List
 
@@ -182,7 +183,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 60))
+	(y 120))
 
 ([Cezium_ProjectKB_Class452] of  Property_List
 )
@@ -195,7 +196,7 @@
 	(property_list [Cezium_ProjectKB_Class454])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 0)
+	(x 200)
 	(y 0))
 
 ([Cezium_ProjectKB_Class454] of  Property_List
@@ -210,7 +211,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 200)
-	(y 60))
+	(y 120))
 
 ([Cezium_ProjectKB_Class456] of  Property_List
 )
@@ -223,8 +224,8 @@
 	(property_list [Cezium_ProjectKB_Class458])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 0)
-	(y 120))
+	(x 200)
+	(y 180))
 
 ([Cezium_ProjectKB_Class458] of  Property_List
 )
@@ -331,17 +332,31 @@
 ([CeziumEngine_ProjectKB_Class1691] of  Property_List
 )
 
-([CeziumEngineLight_ProjectKB_Class11410] of  String
+([CeziumEngineLight_ProjectKB_Class11407] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "port")
+	(property_list [CeziumEngineLight_ProjectKB_Class11408])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([CeziumEngineLight_ProjectKB_Class11408] of  Property_List
+)
+
+([CeziumEngineLight_ProjectKB_Class11427] of  String
 
 	(name "CZMLGenerator")
 	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
 
-([CeziumEngineLight_ProjectKB_Class11411] of  String
+([CeziumEngineLight_ProjectKB_Class11428] of  String
 
 	(name "Onboard")
 	(string_value "label"))
 
-([CeziumEngineLight_ProjectKB_Class11412] of  String
+([CeziumEngineLight_ProjectKB_Class11429] of  String
 
 	(name "CZMLSpan")
 	(string_value "object"))
@@ -355,7 +370,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 200)
-	(y 0))
+	(y 60))
 
 ([CeziumEngineLight_ProjectKB_Class1408] of  Property_List
 )
@@ -502,6 +517,34 @@
 	(name "instances_file_name")
 	(string_value "CeziumEngineLight.pins"))
 
+([KB_408956_Class1403] of  Map
+
+	(entries
+		[KB_408956_Class1404]
+		[KB_408956_Class1405]
+		[KB_408956_Class1406]))
+
+([KB_408956_Class1404] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_408956_Class1405] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_408956_Class1406] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_684256_Class1343] of  Widget
 
 	(is_hidden FALSE)
@@ -547,34 +590,6 @@
 
 ([KB_684256_Class1349] of  Property_List
 )
-
-([KB_877467_Class1403] of  Map
-
-	(entries
-		[KB_877467_Class1404]
-		[KB_877467_Class1405]
-		[KB_877467_Class1406]))
-
-([KB_877467_Class1404] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_877467_Class1405] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_877467_Class1406] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
