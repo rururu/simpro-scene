@@ -196,15 +196,6 @@
     (println "No edges")
     nil)))
 
-(defn fmk-node [xy]
-  (if-let [noi (first (find-nodes xy (get-radius)))]
-  (do 
-    (when (is-show?)
-      (OMT/getOrAdd noi)
-      (println "Find Node" (sv noi "label")))
-    noi)
-  (mk-node xy)))
-
 (defn show-mapob [hm inst]
   (OMT/getOrAdd inst))
 
@@ -212,6 +203,15 @@
   (show-mapob nil inst)
 (doseq [egi (svs inst "edges")]
  (show-mapob nil egi)))
+
+(defn fmk-node [xy]
+  (if-let [noi (first (find-nodes xy (get-radius)))]
+  (do 
+    (when (is-show?)
+      (show-node nil noi)
+      (println "Find Node" (sv noi "label")))
+    noi)
+  (mk-node xy)))
 
 (defn hide-mapob [hm inst]
   (if-let[moi (fifos "MapOb" "label" (sv inst "label"))]

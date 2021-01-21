@@ -1,12 +1,14 @@
 Instruction:
  :?: {:? {:? 0}}
 Work:
- :?: {"CHECK" 1, "EXTENSION" 6, "OPTIMIZATION" 10}
-Goal:
- :?: {:? {:? {:? {:? {:? 2}, "START" {:? 4}, "RUN" {:? 8}}}}}
+ :?: {"CHECK" 1, "EXTENSION" 8, "OPTIMIZATION" 12, "QUASIOPTIMIZATION" 13}
+GoalR:
+ :?: {:? {:? {:? {:? {:? {:? {:? {:? 2}, "START" {:? 4}, "RUN" {:? 5}}}}}}}}
 Solution:
  :?: {:? {:? {:? {:? 3}}}}
 Trail1:
- :?: {:? {:? {:? {:? {"OPEN" 5, :? 9}}}}}
+ :?: {:? {:? {:? {:? {:? 6, "OPEN" 7}}}}}
 Trail0:
- :?: {:? {:? {:? {:? {"OPEN" 7}}}}}
+ :?: {:? {:? {:? {:? {:? 9, "OPEN" 10}}}}}
+Quasisolution:
+ :?: {:? {:? {:? {:? 11}}}}

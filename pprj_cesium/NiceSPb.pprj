@@ -1,4 +1,4 @@
-; Tue Jan 19 19:33:58 MSK 2021
+; Thu Jan 21 21:19:57 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,8 +21,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[NiceSPb_ProjectKB_Class50661]
-		[NiceSPb_ProjectKB_Class50662]))
+		[NiceSPb_ProjectKB_Class50561]
+		[NiceSPb_ProjectKB_Class50562]))
 
 ([CLSES_TAB] of  Widget
 
@@ -66,3168 +66,6 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_032241_Class10000] of  Map
-
-	(entries
-		[KB_032241_Class10001]
-		[KB_032241_Class10002]))
-
-([KB_032241_Class10001] of  Map_Entry
-
-	(key "ScenarioN_Class640004")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10002] of  Map_Entry
-
-	(key "ScenarioN_Class640005")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10003] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class640002.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10000")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10004] of  Map
-
-	(entries
-		[KB_032241_Class10005]
-		[KB_032241_Class10006]
-		[KB_032241_Class10007]
-		[KB_032241_Class10008]
-		[KB_032241_Class10009]
-		[KB_032241_Class10010]
-		[KB_032241_Class10011]
-		[KB_032241_Class10012]
-		[KB_032241_Class10013]
-		[KB_032241_Class10014]))
-
-([KB_032241_Class10005] of  Map_Entry
-
-	(key "OSMRoads_Class120010")
-	(key_class "java.lang.String")
-	(value "273 437 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10006] of  Map_Entry
-
-	(key "OSMRoads_Class110003")
-	(key_class "java.lang.String")
-	(value "240 120 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10007] of  Map_Entry
-
-	(key "OSMRoads_Class100000")
-	(key_class "java.lang.String")
-	(value "100 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10008] of  Map_Entry
-
-	(key "OSMRoads_Class110000")
-	(key_class "java.lang.String")
-	(value "40 540 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10009] of  Map_Entry
-
-	(key "OSMRoads_Class120007")
-	(key_class "java.lang.String")
-	(value "40 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10010] of  Map_Entry
-
-	(key "OSMRoads_Class120006")
-	(key_class "java.lang.String")
-	(value "240 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10011] of  Map_Entry
-
-	(key "OSMRoads_Class120005")
-	(key_class "java.lang.String")
-	(value "160 440 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10012] of  Map_Entry
-
-	(key "OSMRoads_Class120004")
-	(key_class "java.lang.String")
-	(value "100 160 76 87")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10013] of  Map_Entry
-
-	(key "OSMRoads_Class90002")
-	(key_class "java.lang.String")
-	(value "240 0 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10014] of  Map_Entry
-
-	(key "OSMRoads_Class120009")
-	(key_class "java.lang.String")
-	(value "80 300 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10015] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10004")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10016] of  Map
-)
-
-([KB_032241_Class10017] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_130016.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10016")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10018] of  Map
-
-	(entries
-		[KB_032241_Class10019]
-		[KB_032241_Class10020]
-		[KB_032241_Class10021]
-		[KB_032241_Class10022]
-		[KB_032241_Class10023]
-		[KB_032241_Class10024]
-		[KB_032241_Class10025]
-		[KB_032241_Class10026]
-		[KB_032241_Class10027]
-		[KB_032241_Class10028]
-		[KB_032241_Class10029]
-		[KB_032241_Class10030]
-		[KB_032241_Class10031]
-		[KB_032241_Class10032]
-		[KB_032241_Class10033]
-		[KB_032241_Class10034]
-		[KB_032241_Class10035]
-		[KB_032241_Class10036]
-		[KB_032241_Class10037]
-		[KB_032241_Class10038]
-		[KB_032241_Class10039]
-		[KB_032241_Class10040]
-		[KB_032241_Class10041]
-		[KB_032241_Class10042]))
-
-([KB_032241_Class10019] of  Map_Entry
-
-	(key "PyongyangSPb_Class190020")
-	(key_class "java.lang.String")
-	(value "960 280 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10020] of  Map_Entry
-
-	(key "PyongyangSPb_Class190031")
-	(key_class "java.lang.String")
-	(value "600 660 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10021] of  Map_Entry
-
-	(key "PyongyangSPb_Class190021")
-	(key_class "java.lang.String")
-	(value "360 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10022] of  Map_Entry
-
-	(key "PyongyangSPb_Class190032")
-	(key_class "java.lang.String")
-	(value "740 600 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10023] of  Map_Entry
-
-	(key "PyongyangSPb_Class190011")
-	(key_class "java.lang.String")
-	(value "660 20 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10024] of  Map_Entry
-
-	(key "PyongyangSPb_Class190022")
-	(key_class "java.lang.String")
-	(value "500 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10025] of  Map_Entry
-
-	(key "PyongyangSPb_Class190033")
-	(key_class "java.lang.String")
-	(value "880 600 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10026] of  Map_Entry
-
-	(key "PyongyangSPb_Class190012")
-	(key_class "java.lang.String")
-	(value "780 100 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10027] of  Map_Entry
-
-	(key "PyongyangSPb_Class190023")
-	(key_class "java.lang.String")
-	(value "760 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10028] of  Map_Entry
-
-	(key "PyongyangSPb_Class190034")
-	(key_class "java.lang.String")
-	(value "760 720 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10029] of  Map_Entry
-
-	(key "PyongyangSPb_Class190030")
-	(key_class "java.lang.String")
-	(value "940 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10030] of  Map_Entry
-
-	(key "PyongyangSPb_Class190017")
-	(key_class "java.lang.String")
-	(value "580 260 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10031] of  Map_Entry
-
-	(key "PyongyangSPb_Class190028")
-	(key_class "java.lang.String")
-	(value "700 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10032] of  Map_Entry
-
-	(key "PyongyangSPb_Class190018")
-	(key_class "java.lang.String")
-	(value "660 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10033] of  Map_Entry
-
-	(key "PyongyangSPb_Class190029")
-	(key_class "java.lang.String")
-	(value "820 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10034] of  Map_Entry
-
-	(key "PyongyangSPb_Class190019")
-	(key_class "java.lang.String")
-	(value "760 260 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10035] of  Map_Entry
-
-	(key "PyongyangSPb_Class190013")
-	(key_class "java.lang.String")
-	(value "540 140 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10036] of  Map_Entry
-
-	(key "PyongyangSPb_Class190024")
-	(key_class "java.lang.String")
-	(value "860 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10037] of  Map_Entry
-
-	(key "PyongyangSPb_Class190014")
-	(key_class "java.lang.String")
-	(value "660 180 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10038] of  Map_Entry
-
-	(key "PyongyangSPb_Class190025")
-	(key_class "java.lang.String")
-	(value "1040 360 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10039] of  Map_Entry
-
-	(key "PyongyangSPb_Class190015")
-	(key_class "java.lang.String")
-	(value "880 200 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10040] of  Map_Entry
-
-	(key "PyongyangSPb_Class190026")
-	(key_class "java.lang.String")
-	(value "440 480 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10041] of  Map_Entry
-
-	(key "PyongyangSPb_Class190016")
-	(key_class "java.lang.String")
-	(value "420 240 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10042] of  Map_Entry
-
-	(key "PyongyangSPb_Class190027")
-	(key_class "java.lang.String")
-	(value "560 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10043] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class190009.points1")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10018")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10044] of  Map
-
-	(entries
-		[KB_032241_Class10045]
-		[KB_032241_Class10046]
-		[KB_032241_Class10047]))
-
-([KB_032241_Class10045] of  Map_Entry
-
-	(key "Scenario_Class250002")
-	(key_class "java.lang.String")
-	(value "97 265 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10046] of  Map_Entry
-
-	(key "Scenario_Class250001")
-	(key_class "java.lang.String")
-	(value "276 160 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10047] of  Map_Entry
-
-	(key "Scenario_Class240000")
-	(key_class "java.lang.String")
-	(value "276 279 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10048] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class180000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10044")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10049] of  Map
-)
-
-([KB_032241_Class10050] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class380002.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10049")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10051] of  Map
-
-	(entries
-		[KB_032241_Class10052]
-		[KB_032241_Class10053]
-		[KB_032241_Class10054]
-		[KB_032241_Class10055]
-		[KB_032241_Class10056]
-		[KB_032241_Class10057]
-		[KB_032241_Class10058]
-		[KB_032241_Class10059]
-		[KB_032241_Class10060]
-		[KB_032241_Class10061]
-		[KB_032241_Class10062]
-		[KB_032241_Class10063]
-		[KB_032241_Class10064]
-		[KB_032241_Class10065]
-		[KB_032241_Class10066]
-		[KB_032241_Class10067]
-		[KB_032241_Class10068]))
-
-([KB_032241_Class10052] of  Map_Entry
-
-	(key "OSMRoads_Class80004")
-	(key_class "java.lang.String")
-	(value "45 217 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10053] of  Map_Entry
-
-	(key "OSMRoads_Class40000")
-	(key_class "java.lang.String")
-	(value "43 25 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10054] of  Map_Entry
-
-	(key "OSMRoads_Class80003")
-	(key_class "java.lang.String")
-	(value "390 161 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10055] of  Map_Entry
-
-	(key "OSMRoads_Class90012")
-	(key_class "java.lang.String")
-	(value "617 247 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10056] of  Map_Entry
-
-	(key "OSMRoads_Class90007")
-	(key_class "java.lang.String")
-	(value "476 240 82 77")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10057] of  Map_Entry
-
-	(key "OSMRoads_Class90018")
-	(key_class "java.lang.String")
-	(value "728 485 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10058] of  Map_Entry
-
-	(key "OSMRoads_Class90006")
-	(key_class "java.lang.String")
-	(value "293 239 73 75")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10059] of  Map_Entry
-
-	(key "OSMRoads_Class90017")
-	(key_class "java.lang.String")
-	(value "727 391 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10060] of  Map_Entry
-
-	(key "OSMRoads_Class90003")
-	(key_class "java.lang.String")
-	(value "48 316 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10061] of  Map_Entry
-
-	(key "OSMRoads_Class90014")
-	(key_class "java.lang.String")
-	(value "723 115 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10062] of  Map_Entry
-
-	(key "OSMRoads_Class90013")
-	(key_class "java.lang.String")
-	(value "720 27 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10063] of  Map_Entry
-
-	(key "OSMRoads_Class70002")
-	(key_class "java.lang.String")
-	(value "44 124 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10064] of  Map_Entry
-
-	(key "OSMRoads_Class90005")
-	(key_class "java.lang.String")
-	(value "51 500 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10065] of  Map_Entry
-
-	(key "OSMRoads_Class90016")
-	(key_class "java.lang.String")
-	(value "726 298 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10066] of  Map_Entry
-
-	(key "OSMRoads_Class50001")
-	(key_class "java.lang.String")
-	(value "176 245 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10067] of  Map_Entry
-
-	(key "OSMRoads_Class90004")
-	(key_class "java.lang.String")
-	(value "50 409 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10068] of  Map_Entry
-
-	(key "OSMRoads_Class90015")
-	(key_class "java.lang.String")
-	(value "725 205 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10069] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10051")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10070] of  Map
-
-	(entries
-		[KB_032241_Class10071]
-		[KB_032241_Class10072]
-		[KB_032241_Class10073]))
-
-([KB_032241_Class10071] of  Map_Entry
-
-	(key "Algorithm_Class80012")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10072] of  Map_Entry
-
-	(key "Algorithm_Class80004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10073] of  Map_Entry
-
-	(key "Algorithm_Class100003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10074] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10070")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10075] of  Map
-
-	(entries
-		[KB_032241_Class10076]
-		[KB_032241_Class10077]))
-
-([KB_032241_Class10076] of  Map_Entry
-
-	(key "PyongyangSPb_Class40001")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10077] of  Map_Entry
-
-	(key "PyongyangSPb_Class40000")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10078] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class40006.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10075")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10079] of  Map
-
-	(entries [KB_032241_Class10080]))
-
-([KB_032241_Class10080] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "60 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10081] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10079")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10082] of  Map
-
-	(entries
-		[KB_032241_Class10083]
-		[KB_032241_Class10084]))
-
-([KB_032241_Class10083] of  Map_Entry
-
-	(key "PyongyangSPb_Class40006")
-	(key_class "java.lang.String")
-	(value "200 40 100 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10084] of  Map_Entry
-
-	(key "PyongyangSPb_Class20001")
-	(key_class "java.lang.String")
-	(value "60 40 100 80")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10085] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class20000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10082")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10086] of  Map
-
-	(entries
-		[KB_032241_Class10087]
-		[KB_032241_Class10088]))
-
-([KB_032241_Class10087] of  Map_Entry
-
-	(key "ScenarioAzm_Instance_10003")
-	(key_class "java.lang.String")
-	(value "146 44 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10088] of  Map_Entry
-
-	(key "ScenarioAzm_Instance_10005")
-	(key_class "java.lang.String")
-	(value "138 164 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10089] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioAzm_Instance_10002.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10086")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10090] of  Map
-
-	(entries [KB_032241_Class10091]))
-
-([KB_032241_Class10091] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10092] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10090")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10093] of  Map
-
-	(entries [KB_032241_Class10094]))
-
-([KB_032241_Class10094] of  Map_Entry
-
-	(key "ScenarioN_Class350004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10095] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class350003.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10093")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10096] of  Map
-
-	(entries [KB_032241_Class10097]))
-
-([KB_032241_Class10097] of  Map_Entry
-
-	(key "PyongyangSPb_Class250001")
-	(key_class "java.lang.String")
-	(value "121 89 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10098] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class250000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10096")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10099] of  Map
-
-	(entries
-		[KB_032241_Class10100]
-		[KB_032241_Class10101]
-		[KB_032241_Class10102]
-		[KB_032241_Class10103]
-		[KB_032241_Class10104]
-		[KB_032241_Class10105]))
-
-([KB_032241_Class10100] of  Map_Entry
-
-	(key "Scenari0_Class3")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10101] of  Map_Entry
-
-	(key "Scenari0_Class10003")
-	(key_class "java.lang.String")
-	(value "156 391 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10102] of  Map_Entry
-
-	(key "Scenari0_Class5")
-	(key_class "java.lang.String")
-	(value "370 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10103] of  Map_Entry
-
-	(key "Scenari0_Class4")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10104] of  Map_Entry
-
-	(key "Scenari0_Class7")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10105] of  Map_Entry
-
-	(key "Scenari0_Class6")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10106] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class1.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10099")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10107] of  Map
-)
-
-([KB_032241_Class10108] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_30001.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10107")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10109] of  Map
-
-	(entries
-		[KB_032241_Class10110]
-		[KB_032241_Class10111]
-		[KB_032241_Class10112]
-		[KB_032241_Class10113]))
-
-([KB_032241_Class10110] of  Map_Entry
-
-	(key "ScenarioN_Class190014")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10111] of  Map_Entry
-
-	(key "ScenarioN_Class190015")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10112] of  Map_Entry
-
-	(key "ScenarioN_Class190004")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10113] of  Map_Entry
-
-	(key "ScenarioN_Class50003")
-	(key_class "java.lang.String")
-	(value "370 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10114] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class50002.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10109")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10115] of  Map
-)
-
-([KB_032241_Class10116] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class140000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10115")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10117] of  Map
-
-	(entries [KB_032241_Class10118]))
-
-([KB_032241_Class10118] of  Map_Entry
-
-	(key "Scenario_Class360001")
-	(key_class "java.lang.String")
-	(value "98 177 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10119] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class360000.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10117")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10120] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_032241_Class10121] of  Map
-
-	(entries
-		[KB_032241_Class10122]
-		[KB_032241_Class10123]
-		[KB_032241_Class10124]
-		[KB_032241_Class10125]))
-
-([KB_032241_Class10122] of  Map_Entry
-
-	(key "Algorithm_Class80001")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10123] of  Map_Entry
-
-	(key "Algorithm_Class90003")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10124] of  Map_Entry
-
-	(key "Algorithm_Class90004")
-	(key_class "java.lang.String")
-	(value "120 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10125] of  Map_Entry
-
-	(key "Algorithm_Class90002")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10126] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10121")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10127] of  Map
-
-	(entries
-		[KB_032241_Class10128]
-		[KB_032241_Class10129]
-		[KB_032241_Class10130]
-		[KB_032241_Class10131]
-		[KB_032241_Class10132]
-		[KB_032241_Class10133]))
-
-([KB_032241_Class10128] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "361 61 78 78")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10129] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "360 320 80 76")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10130] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "500 260 82 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10131] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "500 80 77 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10132] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "200 360 78 79")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10133] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "205 65 90 71")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10134] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10127")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10135] of  Map
-)
-
-([KB_032241_Class10136] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class30008.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10135")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10137] of  Map
-)
-
-([KB_032241_Class10138] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class700005.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10137")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10139] of  Map
-)
-
-([KB_032241_Class10140] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_21.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10139")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10141] of  Map
-
-	(entries
-		[KB_032241_Class10142]
-		[KB_032241_Class10143]
-		[KB_032241_Class10144]
-		[KB_032241_Class10145]))
-
-([KB_032241_Class10142] of  Map_Entry
-
-	(key "Scenario_Instance_150008")
-	(key_class "java.lang.String")
-	(value "200 160 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10143] of  Map_Entry
-
-	(key "Scenario_Instance_150006")
-	(key_class "java.lang.String")
-	(value "320 280 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10144] of  Map_Entry
-
-	(key "Scenario_Instance_20001")
-	(key_class "java.lang.String")
-	(value "200 40 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10145] of  Map_Entry
-
-	(key "Scenario_Instance_150002")
-	(key_class "java.lang.String")
-	(value "120 280 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10146] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_150007.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10141")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10147] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_032241_Class10148] of  Map
-)
-
-([KB_032241_Class10149] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_170004.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10148")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10150] of  Map
-)
-
-([KB_032241_Class10151] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class380004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10150")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10152] of  Map
-)
-
-([KB_032241_Class10153] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_190001.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10152")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10154] of  Map
-)
-
-([KB_032241_Class10155] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class590014.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10154")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10156] of  Map
-)
-
-([KB_032241_Class10157] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class700001.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10156")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10158] of  Map
-
-	(entries [KB_032241_Class10159]))
-
-([KB_032241_Class10159] of  Map_Entry
-
-	(key "OSMRoads_Class90001")
-	(key_class "java.lang.String")
-	(value "107 116 125 145")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10160] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10158")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10161] of  Map
-)
-
-([KB_032241_Class10162] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class70000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10161")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10163] of  Map
-
-	(entries
-		[KB_032241_Class10164]
-		[KB_032241_Class10165]))
-
-([KB_032241_Class10164] of  Map_Entry
-
-	(key "OSMRoads_Class20001")
-	(key_class "java.lang.String")
-	(value "56 56 89 89")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10165] of  Map_Entry
-
-	(key "OSMRoads_Class30002")
-	(key_class "java.lang.String")
-	(value "57 206 86 89")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10166] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10163")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10167] of  Map
-
-	(entries
-		[KB_032241_Class10168]
-		[KB_032241_Class10169]
-		[KB_032241_Class10170]
-		[KB_032241_Class10171]
-		[KB_032241_Class10172]
-		[KB_032241_Class10173]))
-
-([KB_032241_Class10168] of  Map_Entry
-
-	(key "Scenario_Instance_300002")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10169] of  Map_Entry
-
-	(key "Scenario_Instance_300003")
-	(key_class "java.lang.String")
-	(value "370 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10170] of  Map_Entry
-
-	(key "Scenario_Instance_300001")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10171] of  Map_Entry
-
-	(key "Scenario_Instance_300006")
-	(key_class "java.lang.String")
-	(value "270 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10172] of  Map_Entry
-
-	(key "Scenario_Instance_300004")
-	(key_class "java.lang.String")
-	(value "270 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10173] of  Map_Entry
-
-	(key "Scenario_Instance_320000")
-	(key_class "java.lang.String")
-	(value "520 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10174] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_300005.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10167")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10175] of  Map
-
-	(entries
-		[KB_032241_Class10176]
-		[KB_032241_Class10177]
-		[KB_032241_Class10178]
-		[KB_032241_Class10179]
-		[KB_032241_Class10180]
-		[KB_032241_Class10181]
-		[KB_032241_Class10182]
-		[KB_032241_Class10183]
-		[KB_032241_Class10184]
-		[KB_032241_Class10185]))
-
-([KB_032241_Class10176] of  Map_Entry
-
-	(key "Scenario_Instance_20007")
-	(key_class "java.lang.String")
-	(value "259 374 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10177] of  Map_Entry
-
-	(key "Scenario_Instance_20008")
-	(key_class "java.lang.String")
-	(value "154 498 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10178] of  Map_Entry
-
-	(key "Scenario_Instance_190005")
-	(key_class "java.lang.String")
-	(value "341 18 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10179] of  Map_Entry
-
-	(key "Scenario_Instance_190004")
-	(key_class "java.lang.String")
-	(value "191 18 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10180] of  Map_Entry
-
-	(key "Scenario_Instance_10003")
-	(key_class "java.lang.String")
-	(value "102 98 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10181] of  Map_Entry
-
-	(key "Scenario_Instance_190002")
-	(key_class "java.lang.String")
-	(value "509 108 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10182] of  Map_Entry
-
-	(key "Scenario_Instance_10004")
-	(key_class "java.lang.String")
-	(value "260 100 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10183] of  Map_Entry
-
-	(key "Scenario_Instance_190001")
-	(key_class "java.lang.String")
-	(value "398 105 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10184] of  Map_Entry
-
-	(key "Scenario_Instance_10005")
-	(key_class "java.lang.String")
-	(value "191 232 32 35")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10185] of  Map_Entry
-
-	(key "Scenario_Instance_10006")
-	(key_class "java.lang.String")
-	(value "126 375 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10186] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_10002.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10175")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10187] of  Map
-
-	(entries
-		[KB_032241_Class10188]
-		[KB_032241_Class10189]
-		[KB_032241_Class10190]))
-
-([KB_032241_Class10188] of  Map_Entry
-
-	(key "ScenarioN_Class370002")
-	(key_class "java.lang.String")
-	(value "73 273 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10189] of  Map_Entry
-
-	(key "ScenarioN_Class370004")
-	(key_class "java.lang.String")
-	(value "376 273 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10190] of  Map_Entry
-
-	(key "ScenarioN_Class370003")
-	(key_class "java.lang.String")
-	(value "225 271 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10191] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class370000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10187")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10192] of  Map
-)
-
-([KB_032241_Class10193] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10192")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10194] of  Map
-
-	(entries [KB_032241_Class10195]))
-
-([KB_032241_Class10195] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10196] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10194")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10197] of  Map
-)
-
-([KB_032241_Class10198] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class540002.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10197")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10199] of  Map
-)
-
-([KB_032241_Class10200] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_60001.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10199")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10201] of  Map
-
-	(entries [KB_032241_Class10202]))
-
-([KB_032241_Class10202] of  Map_Entry
-
-	(key "OSMRoads_Class70124")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10203] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10201")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10204] of  Map
-
-	(entries [KB_032241_Class10205]))
-
-([KB_032241_Class10205] of  Map_Entry
-
-	(key "OSMRoads_Class70128")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10206] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10204")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10207] of  Map
-
-	(entries [KB_032241_Class10208]))
-
-([KB_032241_Class10208] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10209] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10207")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10210] of  Map
-
-	(entries [KB_032241_Class10211]))
-
-([KB_032241_Class10211] of  Map_Entry
-
-	(key "OSMRoads_Class70125")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10212] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10210")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10213] of  Map
-)
-
-([KB_032241_Class10214] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class530000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10213")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10215] of  Map
-
-	(entries [KB_032241_Class10216]))
-
-([KB_032241_Class10216] of  Map_Entry
-
-	(key "ScenarioN_Class500006")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10217] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class500005.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10215")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10218] of  Map
-
-	(entries
-		[KB_032241_Class10219]
-		[KB_032241_Class10220]))
-
-([KB_032241_Class10219] of  Map_Entry
-
-	(key "ScenarioN_Class650007")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10220] of  Map_Entry
-
-	(key "ScenarioN_Class650006")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10221] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class650001.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10218")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10222] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_032241_Class10223] of  Map
-
-	(entries [KB_032241_Class10224]))
-
-([KB_032241_Class10224] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10225] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10223")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10226] of  Map
-)
-
-([KB_032241_Class10227] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class190000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10226")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10228] of  Map
-
-	(entries
-		[KB_032241_Class10229]
-		[KB_032241_Class10230]
-		[KB_032241_Class10231]
-		[KB_032241_Class10232]))
-
-([KB_032241_Class10229] of  Map_Entry
-
-	(key "Scenario_Class570001")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10230] of  Map_Entry
-
-	(key "Scenario_Class570002")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10231] of  Map_Entry
-
-	(key "Scenario_Class570003")
-	(key_class "java.lang.String")
-	(value "120 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10232] of  Map_Entry
-
-	(key "Scenario_Class570004")
-	(key_class "java.lang.String")
-	(value "120 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10233] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class570000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10228")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class10234] of  Map
-
-	(entries
-		[KB_032241_Class10235]
-		[KB_032241_Class10236]
-		[KB_032241_Class10237]
-		[KB_032241_Class10238]
-		[KB_032241_Class10239]))
-
-([KB_032241_Class10235] of  Map_Entry
-
-	(key "ScenarioN_Class620013")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10236] of  Map_Entry
-
-	(key "ScenarioN_Class650009")
-	(key_class "java.lang.String")
-	(value "370 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10237] of  Map_Entry
-
-	(key "ScenarioN_Class620012")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10238] of  Map_Entry
-
-	(key "ScenarioN_Class620004")
-	(key_class "java.lang.String")
-	(value "220 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10239] of  Map_Entry
-
-	(key "ScenarioN_Class640000")
-	(key_class "java.lang.String")
-	(value "199 220 103 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class10240] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class620003.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class10234")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9797] of  Map
-
-	(entries
-		[KB_032241_Class9799]
-		[KB_032241_Class9804]
-		[KB_032241_Class9806]
-		[KB_032241_Class9810]
-		[KB_032241_Class9817]
-		[KB_032241_Class9819]
-		[KB_032241_Class9823]
-		[KB_032241_Class9826]
-		[KB_032241_Class9828]
-		[KB_032241_Class9832]
-		[KB_032241_Class9834]
-		[KB_032241_Class9837]
-		[KB_032241_Class9842]
-		[KB_032241_Class9844]
-		[KB_032241_Class9848]
-		[KB_032241_Class9865]
-		[KB_032241_Class9871]
-		[KB_032241_Class9874]
-		[KB_032241_Class9878]
-		[KB_032241_Class9880]
-		[KB_032241_Class9883]
-		[KB_032241_Class9886]
-		[KB_032241_Class9888]
-		[KB_032241_Class9890]
-		[KB_032241_Class9892]
-		[KB_032241_Class9895]
-		[KB_032241_Class9897]
-		[KB_032241_Class9899]
-		[KB_032241_Class9903]
-		[KB_032241_Class9906]
-		[KB_032241_Class9911]
-		[KB_032241_Class9915]
-		[KB_032241_Class9917]
-		[KB_032241_Class9919]
-		[KB_032241_Class9922]
-		[KB_032241_Class9929]
-		[KB_032241_Class9936]
-		[KB_032241_Class9939]
-		[KB_032241_Class9945]
-		[KB_032241_Class9948]
-		[KB_032241_Class9950]
-		[KB_032241_Class9954]
-		[KB_032241_Class9959]
-		[KB_032241_Class9962]
-		[KB_032241_Class9964]
-		[KB_032241_Class9967]
-		[KB_032241_Class9970]
-		[KB_032241_Class9973]
-		[KB_032241_Class9981]
-		[KB_032241_Class9984]
-		[KB_032241_Class9989]
-		[KB_032241_Class9991]
-		[KB_032241_Class9994]
-		[KB_032241_Class9997]
-		[KB_032241_Class9999]
-		[KB_032241_Class10003]
-		[KB_032241_Class10015]
-		[KB_032241_Class10017]
-		[KB_032241_Class10043]
-		[KB_032241_Class10048]
-		[KB_032241_Class10050]
-		[KB_032241_Class10069]
-		[KB_032241_Class10074]
-		[KB_032241_Class10078]
-		[KB_032241_Class10081]
-		[KB_032241_Class10085]
-		[KB_032241_Class10089]
-		[KB_032241_Class10092]
-		[KB_032241_Class10095]
-		[KB_032241_Class10098]
-		[KB_032241_Class10106]
-		[KB_032241_Class10108]
-		[KB_032241_Class10114]
-		[KB_032241_Class10116]
-		[KB_032241_Class10119]
-		[KB_032241_Class10120]
-		[KB_032241_Class10126]
-		[KB_032241_Class10134]
-		[KB_032241_Class10136]
-		[KB_032241_Class10138]
-		[KB_032241_Class10140]
-		[KB_032241_Class10146]
-		[KB_032241_Class10147]
-		[KB_032241_Class10149]
-		[KB_032241_Class10151]
-		[KB_032241_Class10153]
-		[KB_032241_Class10155]
-		[KB_032241_Class10157]
-		[KB_032241_Class10160]
-		[KB_032241_Class10162]
-		[KB_032241_Class10166]
-		[KB_032241_Class10174]
-		[KB_032241_Class10186]
-		[KB_032241_Class10191]
-		[KB_032241_Class10193]
-		[KB_032241_Class10196]
-		[KB_032241_Class10198]
-		[KB_032241_Class10200]
-		[KB_032241_Class10203]
-		[KB_032241_Class10206]
-		[KB_032241_Class10209]
-		[KB_032241_Class10212]
-		[KB_032241_Class10214]
-		[KB_032241_Class10217]
-		[KB_032241_Class10221]
-		[KB_032241_Class10222]
-		[KB_032241_Class10225]
-		[KB_032241_Class10227]
-		[KB_032241_Class10233]
-		[KB_032241_Class10240])
-	(referenced_maps
-		[KB_032241_Class10090]
-		[KB_032241_Class9930]
-		[KB_032241_Class9898]
-		[KB_032241_Class10096]
-		[KB_032241_Class9896]
-		[KB_032241_Class9893]
-		[KB_032241_Class10093]
-		[KB_032241_Class9891]
-		[KB_032241_Class10018]
-		[KB_032241_Class10139]
-		[KB_032241_Class9807]
-		[KB_032241_Class10016]
-		[KB_032241_Class10137]
-		[KB_032241_Class9805]
-		[KB_032241_Class9923]
-		[KB_032241_Class10135]
-		[KB_032241_Class9800]
-		[KB_032241_Class9889]
-		[KB_032241_Class10099]
-		[KB_032241_Class9887]
-		[KB_032241_Class9920]
-		[KB_032241_Class10086]
-		[KB_032241_Class9884]
-		[KB_032241_Class10082]
-		[KB_032241_Class9881]
-		[KB_032241_Class9916]
-		[KB_032241_Class10127]
-		[KB_032241_Class10004]
-		[KB_032241_Class9879]
-		[KB_032241_Class9912]
-		[KB_032241_Class9998]
-		[KB_032241_Class10000]
-		[KB_032241_Class10121]
-		[KB_032241_Class9918]
-		[KB_032241_Class9875]
-		[KB_032241_Class10197]
-		[KB_032241_Class10075]
-		[KB_032241_Class9995]
-		[KB_032241_Class10194]
-		[KB_032241_Class9992]
-		[KB_032241_Class9872]
-		[KB_032241_Class10192]
-		[KB_032241_Class9990]
-		[KB_032241_Class10070]
-		[KB_032241_Class10117]
-		[KB_032241_Class10115]
-		[KB_032241_Class9904]
-		[KB_032241_Class10234]
-		[KB_032241_Class10079]
-		[KB_032241_Class9866]
-		[KB_032241_Class10199]
-		[KB_032241_Class9900]
-		[KB_032241_Class9907]
-		[KB_032241_Class9985]
-		[KB_032241_Class9982]
-		[KB_032241_Class10226]
-		[KB_032241_Class10223]
-		[KB_032241_Class10187]
-		[KB_032241_Class10109]
-		[KB_032241_Class10107]
-		[KB_032241_Class10228]
-		[KB_032241_Class9974]
-		[KB_032241_Class10175]
-		[KB_032241_Class10051]
-		[KB_032241_Class9971]
-		[KB_032241_Class10215]
-		[KB_032241_Class9849]
-		[KB_032241_Class10213]
-		[KB_032241_Class9968]
-		[KB_032241_Class9965]
-		[KB_032241_Class10210]
-		[KB_032241_Class9845]
-		[KB_032241_Class10218]
-		[KB_032241_Class9963]
-		[KB_032241_Class9843]
-		[KB_032241_Class10163]
-		[KB_032241_Class10161]
-		[KB_032241_Class9960]
-		[KB_032241_Class10204]
-		[KB_032241_Class10049]
-		[KB_032241_Class9838]
-		[KB_032241_Class9835]
-		[KB_032241_Class10201]
-		[KB_032241_Class10167]
-		[KB_032241_Class9833]
-		[KB_032241_Class9955]
-		[KB_032241_Class10044]
-		[KB_032241_Class10207]
-		[KB_032241_Class9798]
-		[KB_032241_Class10152]
-		[KB_032241_Class9951]
-		[KB_032241_Class10150]
-		[KB_032241_Class9949]
-		[KB_032241_Class9829]
-		[KB_032241_Class9827]
-		[KB_032241_Class10158]
-		[KB_032241_Class9824]
-		[KB_032241_Class9946]
-		[KB_032241_Class10156]
-		[KB_032241_Class10154]
-		[KB_032241_Class9820]
-		[KB_032241_Class10141]
-		[KB_032241_Class9940]
-		[KB_032241_Class9818]
-		[KB_032241_Class10148]
-		[KB_032241_Class9937]
-		[KB_032241_Class9811]))
-
-([KB_032241_Class9798] of  Map
-)
-
-([KB_032241_Class9799] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_150019.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9798")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9800] of  Map
-
-	(entries
-		[KB_032241_Class9801]
-		[KB_032241_Class9802]
-		[KB_032241_Class9803]))
-
-([KB_032241_Class9801] of  Map_Entry
-
-	(key "ScenarioN_Class680007")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9802] of  Map_Entry
-
-	(key "ScenarioN_Class680008")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9803] of  Map_Entry
-
-	(key "ScenarioN_Class680001")
-	(key_class "java.lang.String")
-	(value "84 60 133 81")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9804] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class680000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9800")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9805] of  Map
-)
-
-([KB_032241_Class9806] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_190004.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9805")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9807] of  Map
-
-	(entries
-		[KB_032241_Class9808]
-		[KB_032241_Class9809]))
-
-([KB_032241_Class9808] of  Map_Entry
-
-	(key "Scenario_Instance_310010")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9809] of  Map_Entry
-
-	(key "Scenario_Instance_310009")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9810] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_310008.t-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9807")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9811] of  Map
-
-	(entries
-		[KB_032241_Class9812]
-		[KB_032241_Class9813]
-		[KB_032241_Class9814]
-		[KB_032241_Class9815]
-		[KB_032241_Class9816]))
-
-([KB_032241_Class9812] of  Map_Entry
-
-	(key "ScenarioN_Class160001")
-	(key_class "java.lang.String")
-	(value "370 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9813] of  Map_Entry
-
-	(key "ScenarioN_Class150003")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9814] of  Map_Entry
-
-	(key "ScenarioN_Class150001")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9815] of  Map_Entry
-
-	(key "ScenarioN_Class50005")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9816] of  Map_Entry
-
-	(key "ScenarioN_Class130003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9817] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class50004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9811")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9818] of  Map
-)
-
-([KB_032241_Class9819] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_140005.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9818")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9820] of  Map
-
-	(entries
-		[KB_032241_Class9821]
-		[KB_032241_Class9822]))
-
-([KB_032241_Class9821] of  Map_Entry
-
-	(key "OSMRoads_Class20159")
-	(key_class "java.lang.String")
-	(value "207 60 87 81")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9822] of  Map_Entry
-
-	(key "OSMRoads_Class20000")
-	(key_class "java.lang.String")
-	(value "56 58 89 85")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9823] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9820")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9824] of  Map
-
-	(entries [KB_032241_Class9825]))
-
-([KB_032241_Class9825] of  Map_Entry
-
-	(key "ScenarioN_Class590013")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9826] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class590012.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9824")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9827] of  Map
-)
-
-([KB_032241_Class9828] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class110004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9827")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9829] of  Map
-
-	(entries
-		[KB_032241_Class9830]
-		[KB_032241_Class9831]))
-
-([KB_032241_Class9830] of  Map_Entry
-
-	(key "PyongyangSPb_Class40006")
-	(key_class "java.lang.String")
-	(value "209 60 71 70")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9831] of  Map_Entry
-
-	(key "PyongyangSPb_Class20001")
-	(key_class "java.lang.String")
-	(value "57 60 73 70")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9832] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class40005.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9829")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9833] of  Map
-)
-
-([KB_032241_Class9834] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_70003.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9833")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9835] of  Map
-
-	(entries [KB_032241_Class9836]))
-
-([KB_032241_Class9836] of  Map_Entry
-
-	(key "ScenarioN_Class110003")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9837] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class100002.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9835")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9838] of  Map
-
-	(entries
-		[KB_032241_Class9839]
-		[KB_032241_Class9840]
-		[KB_032241_Class9841]))
-
-([KB_032241_Class9839] of  Map_Entry
-
-	(key "OSMRoads_Class90020")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9840] of  Map_Entry
-
-	(key "OSMRoads_Class90028")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9841] of  Map_Entry
-
-	(key "OSMRoads_Class90019")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9842] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9838")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9843] of  Map
-)
-
-([KB_032241_Class9844] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_120012.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9843")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9845] of  Map
-
-	(entries
-		[KB_032241_Class9846]
-		[KB_032241_Class9847]))
-
-([KB_032241_Class9846] of  Map_Entry
-
-	(key "Scenario_Class190003")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9847] of  Map_Entry
-
-	(key "Scenario_Class230009")
-	(key_class "java.lang.String")
-	(value "74 199 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9848] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class180002.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9845")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9849] of  Map
-
-	(entries
-		[KB_032241_Class9850]
-		[KB_032241_Class9851]
-		[KB_032241_Class9852]
-		[KB_032241_Class9853]
-		[KB_032241_Class9854]
-		[KB_032241_Class9855]
-		[KB_032241_Class9856]
-		[KB_032241_Class9857]
-		[KB_032241_Class9858]
-		[KB_032241_Class9859]
-		[KB_032241_Class9860]
-		[KB_032241_Class9861]
-		[KB_032241_Class9862]
-		[KB_032241_Class9863]
-		[KB_032241_Class9864]))
-
-([KB_032241_Class9850] of  Map_Entry
-
-	(key "ScenarioN_Class590017")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "205 281 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9851] of  Map_Entry
-
-	(key "ScenarioN_Class540004")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 25 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9852] of  Map_Entry
-
-	(key "ScenarioN_Class290013")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "6 110 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9853] of  Map_Entry
-
-	(key "ScenarioN_Class500009")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "106 295 212 124")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9854] of  Map_Entry
-
-	(key "Scenario_Instance_240000")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "21 466 330 445")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9855] of  Map_Entry
-
-	(key "ScenarioN_Class370007")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 25 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9856] of  Map_Entry
-
-	(key "ScenarioN_Class110007")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 25 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9857] of  Map_Entry
-
-	(key "ScenarioN_Class650008")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "246 364 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9858] of  Map_Entry
-
-	(key "ScenarioN_Class680011")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "119 469 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9859] of  Map_Entry
-
-	(key "ScenarioN_Class380010")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 25 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9860] of  Map_Entry
-
-	(key "ScenarioN_Class320007")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "25 115 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9861] of  Map_Entry
-
-	(key "ScenarioN_Class620009")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "197 619 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9862] of  Map_Entry
-
-	(key "Scenario_Class60003")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "12 281 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9863] of  Map_Entry
-
-	(key "ScenarioN_Class640008")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "70 513 224 146")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9864] of  Map_Entry
-
-	(key "Scenario_Class710000")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "131 615 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9865] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9849")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9866] of  Map
-
-	(entries
-		[KB_032241_Class9867]
-		[KB_032241_Class9868]
-		[KB_032241_Class9869]
-		[KB_032241_Class9870]))
-
-([KB_032241_Class9867] of  Map_Entry
-
-	(key "PyongyangSPb_Class20005")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9868] of  Map_Entry
-
-	(key "PyongyangSPb_Class20010")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9869] of  Map_Entry
-
-	(key "PyongyangSPb_Class20012")
-	(key_class "java.lang.String")
-	(value "70 520 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9870] of  Map_Entry
-
-	(key "PyongyangSPb_Class20011")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9871] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class20001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9866")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9872] of  Map
-
-	(entries [KB_032241_Class9873]))
-
-([KB_032241_Class9873] of  Map_Entry
-
-	(key "Scenari0_Class18")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9874] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class4.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9872")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9875] of  Map
-
-	(entries
-		[KB_032241_Class9876]
-		[KB_032241_Class9877]))
-
-([KB_032241_Class9876] of  Map_Entry
-
-	(key "Scenari0_Class18")
-	(key_class "java.lang.String")
-	(value "10 10 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9877] of  Map_Entry
-
-	(key "Scenari0_Class21")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9878] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class6.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9875")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9879] of  Map
-)
-
-([KB_032241_Class9880] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_80003.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9879")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9881] of  Map
-
-	(entries [KB_032241_Class9882]))
-
-([KB_032241_Class9882] of  Map_Entry
-
-	(key "ScenarioN_Class620008")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9883] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class620004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9881")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9884] of  Map
-
-	(entries [KB_032241_Class9885]))
-
-([KB_032241_Class9885] of  Map_Entry
-
-	(key "Scenari0_Class24")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9886] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class5.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9884")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9887] of  Map
-)
-
-([KB_032241_Class9888] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class30000.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9887")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9889] of  Map
-)
-
-([KB_032241_Class9890] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_120001.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9889")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9891] of  Map
-)
-
-([KB_032241_Class9892] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class500007.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9891")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9893] of  Map
-
-	(entries [KB_032241_Class9894]))
-
-([KB_032241_Class9894] of  Map_Entry
-
-	(key "Scenari0_Class12")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9895] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class3.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9893")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9896] of  Map
-)
-
-([KB_032241_Class9897] of  Map_Entry
-
-	(key "InstanceGraphWidget.CompoServer_Class160002.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9896")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9898] of  Map
-)
-
-([KB_032241_Class9899] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class620012.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9898")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9900] of  Map
-
-	(entries
-		[KB_032241_Class9901]
-		[KB_032241_Class9902]))
-
-([KB_032241_Class9901] of  Map_Entry
-
-	(key "Scenario_Class70189")
-	(key_class "java.lang.String")
-	(value "61 257 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9902] of  Map_Entry
-
-	(key "Scenari0_Class15")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9903] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenari0_Class7.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9900")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9904] of  Map
-
-	(entries [KB_032241_Class9905]))
-
-([KB_032241_Class9905] of  Map_Entry
-
-	(key "Scenario_Instance_10004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9906] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_10008.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9904")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9907] of  Map
-
-	(entries
-		[KB_032241_Class9908]
-		[KB_032241_Class9909]
-		[KB_032241_Class9910]))
-
-([KB_032241_Class9908] of  Map_Entry
-
-	(key "Scenario_Class90003")
-	(key_class "java.lang.String")
-	(value "160 60 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9909] of  Map_Entry
-
-	(key "Scenario_Class120015")
-	(key_class "java.lang.String")
-	(value "100 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9910] of  Map_Entry
-
-	(key "Scenario_Class180009")
-	(key_class "java.lang.String")
-	(value "340 200 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9911] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class70003.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9907")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9912] of  Map
-
-	(entries
-		[KB_032241_Class9913]
-		[KB_032241_Class9914]))
-
-([KB_032241_Class9913] of  Map_Entry
-
-	(key "Scenario_Class180010")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9914] of  Map_Entry
-
-	(key "Scenario_Class180009")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9915] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class70004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9912")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9916] of  Map
-)
-
-([KB_032241_Class9917] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class200013.t-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9916")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9918] of  Map
-)
-
-([KB_032241_Class9919] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_11.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9918")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9920] of  Map
-
-	(entries [KB_032241_Class9921]))
-
-([KB_032241_Class9921] of  Map_Entry
-
-	(key "OSMRoads_Class40")
-	(key_class "java.lang.String")
-	(value "99 96 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9922] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9920")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9923] of  Map
-
-	(entries
-		[KB_032241_Class9924]
-		[KB_032241_Class9925]
-		[KB_032241_Class9926]
-		[KB_032241_Class9927]
-		[KB_032241_Class9928]))
-
-([KB_032241_Class9924] of  Map_Entry
-
-	(key "ScenarioN_Class100003")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9925] of  Map_Entry
-
-	(key "ScenarioN_Class100005")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9926] of  Map_Entry
-
-	(key "ScenarioN_Class290012")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9927] of  Map_Entry
-
-	(key "ScenarioN_Class200006")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9928] of  Map_Entry
-
-	(key "ScenarioN_Class200002")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9929] of  Map_Entry
-
-	(key "InstanceGraphWidget.ScenarioN_Class100002.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9923")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9930] of  Map
-
-	(entries
-		[KB_032241_Class9931]
-		[KB_032241_Class9932]
-		[KB_032241_Class9933]
-		[KB_032241_Class9934]
-		[KB_032241_Class9935]))
-
-([KB_032241_Class9931] of  Map_Entry
-
-	(key "Scenario_Class80002")
-	(key_class "java.lang.String")
-	(value "170 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9932] of  Map_Entry
-
-	(key "Scenario_Class180010")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9933] of  Map_Entry
-
-	(key "Scenario_Class120015")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9934] of  Map_Entry
-
-	(key "Scenario_Class120026")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9935] of  Map_Entry
-
-	(key "Scenario_Class180009")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9936] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class70006.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9930")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9937] of  Map
-
-	(entries [KB_032241_Class9938]))
-
-([KB_032241_Class9938] of  Map_Entry
-
-	(key "Scenario_Instance_180008")
-	(key_class "java.lang.String")
-	(value "161 73 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9939] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_180007.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9937")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9940] of  Map
-
-	(entries
-		[KB_032241_Class9941]
-		[KB_032241_Class9942]
-		[KB_032241_Class9943]
-		[KB_032241_Class9944]))
-
-([KB_032241_Class9941] of  Map_Entry
-
-	(key "Scenario_Class340000")
-	(key_class "java.lang.String")
-	(value "361 267 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9942] of  Map_Entry
-
-	(key "Scenario_Class90003")
-	(key_class "java.lang.String")
-	(value "360 80 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9943] of  Map_Entry
-
-	(key "Scenario_Class120015")
-	(key_class "java.lang.String")
-	(value "77 61 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9944] of  Map_Entry
-
-	(key "Scenario_Class120026")
-	(key_class "java.lang.String")
-	(value "80 185 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9945] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class70005.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9940")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9946] of  Map
-
-	(entries [KB_032241_Class9947]))
-
-([KB_032241_Class9947] of  Map_Entry
-
-	(key "CompoServer_Class210008")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9948] of  Map_Entry
-
-	(key "InstanceGraphWidget.CompoServer_Class210007.scenario_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9946")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9949] of  Map
-)
-
-([KB_032241_Class9950] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class140001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9949")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9951] of  Map
-
-	(entries
-		[KB_032241_Class9952]
-		[KB_032241_Class9953]))
-
-([KB_032241_Class9952] of  Map_Entry
-
-	(key "PyongyangSPb_Class250002")
-	(key_class "java.lang.String")
-	(value "177 74 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9953] of  Map_Entry
-
-	(key "PyongyangSPb_Class250004")
-	(key_class "java.lang.String")
-	(value "177 204 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9954] of  Map_Entry
-
-	(key "InstanceGraphWidget.PyongyangSPb_Class250001.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9951")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9955] of  Map
-
-	(entries
-		[KB_032241_Class9956]
-		[KB_032241_Class9957]
-		[KB_032241_Class9958]))
-
-([KB_032241_Class9956] of  Map_Entry
-
-	(key "OSMRoads_Class50000")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9957] of  Map_Entry
-
-	(key "OSMRoads_Class70123")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9958] of  Map_Entry
-
-	(key "OSMRoads_Class90027")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9959] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9955")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9960] of  Map
-
-	(entries [KB_032241_Class9961]))
-
-([KB_032241_Class9961] of  Map_Entry
-
-	(key "OSMRoads_Class70129")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9962] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9960")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9963] of  Map
-)
-
-([KB_032241_Class9964] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_190003.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9963")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9965] of  Map
-
-	(entries [KB_032241_Class9966]))
-
-([KB_032241_Class9966] of  Map_Entry
-
-	(key "Scenario_Instance_210019")
-	(key_class "java.lang.String")
-	(value "260 140 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9967] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_210016.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9965")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9968] of  Map
-
-	(entries [KB_032241_Class9969]))
-
-([KB_032241_Class9969] of  Map_Entry
-
-	(key "Scenario_Class570006")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9970] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class570005.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9968")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9971] of  Map
-
-	(entries [KB_032241_Class9972]))
-
-([KB_032241_Class9972] of  Map_Entry
-
-	(key "Scenario_Class570008")
-	(key_class "java.lang.String")
-	(value "1 19 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9973] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Class570007.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9971")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9974] of  Map
-
-	(entries
-		[KB_032241_Class9975]
-		[KB_032241_Class9976]
-		[KB_032241_Class9977]
-		[KB_032241_Class9978]
-		[KB_032241_Class9979]
-		[KB_032241_Class9980]))
-
-([KB_032241_Class9975] of  Map_Entry
-
-	(key "OSMRoads_Class30003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9976] of  Map_Entry
-
-	(key "OSMRoads_Class30006")
-	(key_class "java.lang.String")
-	(value "212 659 77 82")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9977] of  Map_Entry
-
-	(key "OSMRoads_Class20160")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9978] of  Map_Entry
-
-	(key "OSMRoads_Class20161")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9979] of  Map_Entry
-
-	(key "OSMRoads_Class20162")
-	(key_class "java.lang.String")
-	(value "220 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9980] of  Map_Entry
-
-	(key "OSMRoads_Class20163")
-	(key_class "java.lang.String")
-	(value "201 510 98 81")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9981] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9974")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9982] of  Map
-
-	(entries [KB_032241_Class9983]))
-
-([KB_032241_Class9983] of  Map_Entry
-
-	(key "CompoServer_Class160001")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9984] of  Map_Entry
-
-	(key "InstanceGraphWidget.CompoServer_Class160004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9982")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9985] of  Map
-
-	(entries
-		[KB_032241_Class9986]
-		[KB_032241_Class9987]
-		[KB_032241_Class9988]))
-
-([KB_032241_Class9986] of  Map_Entry
-
-	(key "OSMRoads_Class41")
-	(key_class "java.lang.String")
-	(value "91 340 119 120")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9987] of  Map_Entry
-
-	(key "OSMRoads_Class42")
-	(key_class "java.lang.String")
-	(value "90 589 120 122")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9988] of  Map_Entry
-
-	(key "OSMRoads_Class0")
-	(key_class "java.lang.String")
-	(value "100 95 100 110")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9989] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9985")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9990] of  Map
-)
-
-([KB_032241_Class9991] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_60000.p-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9990")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9992] of  Map
-
-	(entries [KB_032241_Class9993]))
-
-([KB_032241_Class9993] of  Map_Entry
-
-	(key "OSMRoads_Class70127")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9994] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9992")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9995] of  Map
-
-	(entries [KB_032241_Class9996]))
-
-([KB_032241_Class9996] of  Map_Entry
-
-	(key "OSMRoads_Class70126")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_032241_Class9997] of  Map_Entry
-
-	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9995")
-	(value_class "java.util.Map"))
-
-([KB_032241_Class9998] of  Map
-)
-
-([KB_032241_Class9999] of  Map_Entry
-
-	(key "InstanceGraphWidget.Scenario_Instance_2.s-scheme")
-	(key_class "java.lang.String")
-	(value "KB_032241_Class9998")
-	(value_class "java.util.Map"))
 
 ([KB_077848_Class4005] of  Widget
 
@@ -3362,6 +200,3168 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
 
+([KB_127913_Class10000] of  Map
+
+	(entries
+		[KB_127913_Class10001]
+		[KB_127913_Class10002]))
+
+([KB_127913_Class10001] of  Map_Entry
+
+	(key "ScenarioN_Class640004")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10002] of  Map_Entry
+
+	(key "ScenarioN_Class640005")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10003] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class640002.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10000")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10004] of  Map
+
+	(entries
+		[KB_127913_Class10005]
+		[KB_127913_Class10006]
+		[KB_127913_Class10007]
+		[KB_127913_Class10008]
+		[KB_127913_Class10009]
+		[KB_127913_Class10010]
+		[KB_127913_Class10011]
+		[KB_127913_Class10012]
+		[KB_127913_Class10013]
+		[KB_127913_Class10014]))
+
+([KB_127913_Class10005] of  Map_Entry
+
+	(key "OSMRoads_Class120010")
+	(key_class "java.lang.String")
+	(value "273 437 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10006] of  Map_Entry
+
+	(key "OSMRoads_Class110003")
+	(key_class "java.lang.String")
+	(value "240 120 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10007] of  Map_Entry
+
+	(key "OSMRoads_Class100000")
+	(key_class "java.lang.String")
+	(value "100 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10008] of  Map_Entry
+
+	(key "OSMRoads_Class110000")
+	(key_class "java.lang.String")
+	(value "40 540 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10009] of  Map_Entry
+
+	(key "OSMRoads_Class120007")
+	(key_class "java.lang.String")
+	(value "40 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10010] of  Map_Entry
+
+	(key "OSMRoads_Class120006")
+	(key_class "java.lang.String")
+	(value "240 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10011] of  Map_Entry
+
+	(key "OSMRoads_Class120005")
+	(key_class "java.lang.String")
+	(value "160 440 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10012] of  Map_Entry
+
+	(key "OSMRoads_Class120004")
+	(key_class "java.lang.String")
+	(value "100 160 76 87")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10013] of  Map_Entry
+
+	(key "OSMRoads_Class90002")
+	(key_class "java.lang.String")
+	(value "240 0 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10014] of  Map_Entry
+
+	(key "OSMRoads_Class120009")
+	(key_class "java.lang.String")
+	(value "80 300 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10015] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10004")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10016] of  Map
+)
+
+([KB_127913_Class10017] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_130016.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10016")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10018] of  Map
+
+	(entries
+		[KB_127913_Class10019]
+		[KB_127913_Class10020]
+		[KB_127913_Class10021]
+		[KB_127913_Class10022]
+		[KB_127913_Class10023]
+		[KB_127913_Class10024]
+		[KB_127913_Class10025]
+		[KB_127913_Class10026]
+		[KB_127913_Class10027]
+		[KB_127913_Class10028]
+		[KB_127913_Class10029]
+		[KB_127913_Class10030]
+		[KB_127913_Class10031]
+		[KB_127913_Class10032]
+		[KB_127913_Class10033]
+		[KB_127913_Class10034]
+		[KB_127913_Class10035]
+		[KB_127913_Class10036]
+		[KB_127913_Class10037]
+		[KB_127913_Class10038]
+		[KB_127913_Class10039]
+		[KB_127913_Class10040]
+		[KB_127913_Class10041]
+		[KB_127913_Class10042]))
+
+([KB_127913_Class10019] of  Map_Entry
+
+	(key "PyongyangSPb_Class190020")
+	(key_class "java.lang.String")
+	(value "960 280 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10020] of  Map_Entry
+
+	(key "PyongyangSPb_Class190031")
+	(key_class "java.lang.String")
+	(value "600 660 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10021] of  Map_Entry
+
+	(key "PyongyangSPb_Class190021")
+	(key_class "java.lang.String")
+	(value "360 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10022] of  Map_Entry
+
+	(key "PyongyangSPb_Class190032")
+	(key_class "java.lang.String")
+	(value "740 600 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10023] of  Map_Entry
+
+	(key "PyongyangSPb_Class190011")
+	(key_class "java.lang.String")
+	(value "660 20 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10024] of  Map_Entry
+
+	(key "PyongyangSPb_Class190022")
+	(key_class "java.lang.String")
+	(value "500 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10025] of  Map_Entry
+
+	(key "PyongyangSPb_Class190033")
+	(key_class "java.lang.String")
+	(value "880 600 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10026] of  Map_Entry
+
+	(key "PyongyangSPb_Class190012")
+	(key_class "java.lang.String")
+	(value "780 100 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10027] of  Map_Entry
+
+	(key "PyongyangSPb_Class190023")
+	(key_class "java.lang.String")
+	(value "760 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10028] of  Map_Entry
+
+	(key "PyongyangSPb_Class190034")
+	(key_class "java.lang.String")
+	(value "760 720 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10029] of  Map_Entry
+
+	(key "PyongyangSPb_Class190030")
+	(key_class "java.lang.String")
+	(value "940 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10030] of  Map_Entry
+
+	(key "PyongyangSPb_Class190017")
+	(key_class "java.lang.String")
+	(value "580 260 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10031] of  Map_Entry
+
+	(key "PyongyangSPb_Class190028")
+	(key_class "java.lang.String")
+	(value "700 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10032] of  Map_Entry
+
+	(key "PyongyangSPb_Class190018")
+	(key_class "java.lang.String")
+	(value "660 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10033] of  Map_Entry
+
+	(key "PyongyangSPb_Class190029")
+	(key_class "java.lang.String")
+	(value "820 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10034] of  Map_Entry
+
+	(key "PyongyangSPb_Class190019")
+	(key_class "java.lang.String")
+	(value "760 260 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10035] of  Map_Entry
+
+	(key "PyongyangSPb_Class190013")
+	(key_class "java.lang.String")
+	(value "540 140 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10036] of  Map_Entry
+
+	(key "PyongyangSPb_Class190024")
+	(key_class "java.lang.String")
+	(value "860 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10037] of  Map_Entry
+
+	(key "PyongyangSPb_Class190014")
+	(key_class "java.lang.String")
+	(value "660 180 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10038] of  Map_Entry
+
+	(key "PyongyangSPb_Class190025")
+	(key_class "java.lang.String")
+	(value "1040 360 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10039] of  Map_Entry
+
+	(key "PyongyangSPb_Class190015")
+	(key_class "java.lang.String")
+	(value "880 200 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10040] of  Map_Entry
+
+	(key "PyongyangSPb_Class190026")
+	(key_class "java.lang.String")
+	(value "440 480 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10041] of  Map_Entry
+
+	(key "PyongyangSPb_Class190016")
+	(key_class "java.lang.String")
+	(value "420 240 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10042] of  Map_Entry
+
+	(key "PyongyangSPb_Class190027")
+	(key_class "java.lang.String")
+	(value "560 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10043] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class190009.points1")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10018")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10044] of  Map
+
+	(entries
+		[KB_127913_Class10045]
+		[KB_127913_Class10046]
+		[KB_127913_Class10047]))
+
+([KB_127913_Class10045] of  Map_Entry
+
+	(key "Scenario_Class250002")
+	(key_class "java.lang.String")
+	(value "97 265 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10046] of  Map_Entry
+
+	(key "Scenario_Class250001")
+	(key_class "java.lang.String")
+	(value "276 160 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10047] of  Map_Entry
+
+	(key "Scenario_Class240000")
+	(key_class "java.lang.String")
+	(value "276 279 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10048] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class180000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10044")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10049] of  Map
+)
+
+([KB_127913_Class10050] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class380002.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10049")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10051] of  Map
+
+	(entries
+		[KB_127913_Class10052]
+		[KB_127913_Class10053]
+		[KB_127913_Class10054]
+		[KB_127913_Class10055]
+		[KB_127913_Class10056]
+		[KB_127913_Class10057]
+		[KB_127913_Class10058]
+		[KB_127913_Class10059]
+		[KB_127913_Class10060]
+		[KB_127913_Class10061]
+		[KB_127913_Class10062]
+		[KB_127913_Class10063]
+		[KB_127913_Class10064]
+		[KB_127913_Class10065]
+		[KB_127913_Class10066]
+		[KB_127913_Class10067]
+		[KB_127913_Class10068]))
+
+([KB_127913_Class10052] of  Map_Entry
+
+	(key "OSMRoads_Class80004")
+	(key_class "java.lang.String")
+	(value "45 217 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10053] of  Map_Entry
+
+	(key "OSMRoads_Class40000")
+	(key_class "java.lang.String")
+	(value "43 25 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10054] of  Map_Entry
+
+	(key "OSMRoads_Class80003")
+	(key_class "java.lang.String")
+	(value "390 161 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10055] of  Map_Entry
+
+	(key "OSMRoads_Class90012")
+	(key_class "java.lang.String")
+	(value "617 247 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10056] of  Map_Entry
+
+	(key "OSMRoads_Class90007")
+	(key_class "java.lang.String")
+	(value "476 240 82 77")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10057] of  Map_Entry
+
+	(key "OSMRoads_Class90018")
+	(key_class "java.lang.String")
+	(value "728 485 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10058] of  Map_Entry
+
+	(key "OSMRoads_Class90006")
+	(key_class "java.lang.String")
+	(value "293 239 73 75")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10059] of  Map_Entry
+
+	(key "OSMRoads_Class90017")
+	(key_class "java.lang.String")
+	(value "727 391 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10060] of  Map_Entry
+
+	(key "OSMRoads_Class90003")
+	(key_class "java.lang.String")
+	(value "48 316 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10061] of  Map_Entry
+
+	(key "OSMRoads_Class90014")
+	(key_class "java.lang.String")
+	(value "723 115 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10062] of  Map_Entry
+
+	(key "OSMRoads_Class90013")
+	(key_class "java.lang.String")
+	(value "720 27 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10063] of  Map_Entry
+
+	(key "OSMRoads_Class70002")
+	(key_class "java.lang.String")
+	(value "44 124 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10064] of  Map_Entry
+
+	(key "OSMRoads_Class90005")
+	(key_class "java.lang.String")
+	(value "51 500 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10065] of  Map_Entry
+
+	(key "OSMRoads_Class90016")
+	(key_class "java.lang.String")
+	(value "726 298 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10066] of  Map_Entry
+
+	(key "OSMRoads_Class50001")
+	(key_class "java.lang.String")
+	(value "176 245 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10067] of  Map_Entry
+
+	(key "OSMRoads_Class90004")
+	(key_class "java.lang.String")
+	(value "50 409 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10068] of  Map_Entry
+
+	(key "OSMRoads_Class90015")
+	(key_class "java.lang.String")
+	(value "725 205 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10069] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70121.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10051")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10070] of  Map
+
+	(entries
+		[KB_127913_Class10071]
+		[KB_127913_Class10072]
+		[KB_127913_Class10073]))
+
+([KB_127913_Class10071] of  Map_Entry
+
+	(key "Algorithm_Class80012")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10072] of  Map_Entry
+
+	(key "Algorithm_Class80004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10073] of  Map_Entry
+
+	(key "Algorithm_Class100003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10074] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10070")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10075] of  Map
+
+	(entries
+		[KB_127913_Class10076]
+		[KB_127913_Class10077]))
+
+([KB_127913_Class10076] of  Map_Entry
+
+	(key "PyongyangSPb_Class40001")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10077] of  Map_Entry
+
+	(key "PyongyangSPb_Class40000")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10078] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class40006.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10075")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10079] of  Map
+
+	(entries [KB_127913_Class10080]))
+
+([KB_127913_Class10080] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "60 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10081] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40000.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10079")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10082] of  Map
+
+	(entries
+		[KB_127913_Class10083]
+		[KB_127913_Class10084]))
+
+([KB_127913_Class10083] of  Map_Entry
+
+	(key "PyongyangSPb_Class40006")
+	(key_class "java.lang.String")
+	(value "200 40 100 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10084] of  Map_Entry
+
+	(key "PyongyangSPb_Class20001")
+	(key_class "java.lang.String")
+	(value "60 40 100 80")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10085] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class20000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10082")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10086] of  Map
+
+	(entries
+		[KB_127913_Class10087]
+		[KB_127913_Class10088]))
+
+([KB_127913_Class10087] of  Map_Entry
+
+	(key "ScenarioAzm_Instance_10003")
+	(key_class "java.lang.String")
+	(value "146 44 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10088] of  Map_Entry
+
+	(key "ScenarioAzm_Instance_10005")
+	(key_class "java.lang.String")
+	(value "138 164 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10089] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioAzm_Instance_10002.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10086")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10090] of  Map
+
+	(entries [KB_127913_Class10091]))
+
+([KB_127913_Class10091] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10092] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70002.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10090")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10093] of  Map
+
+	(entries [KB_127913_Class10094]))
+
+([KB_127913_Class10094] of  Map_Entry
+
+	(key "ScenarioN_Class350004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10095] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class350003.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10093")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10096] of  Map
+
+	(entries [KB_127913_Class10097]))
+
+([KB_127913_Class10097] of  Map_Entry
+
+	(key "PyongyangSPb_Class250001")
+	(key_class "java.lang.String")
+	(value "121 89 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10098] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class250000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10096")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10099] of  Map
+
+	(entries
+		[KB_127913_Class10100]
+		[KB_127913_Class10101]
+		[KB_127913_Class10102]
+		[KB_127913_Class10103]
+		[KB_127913_Class10104]
+		[KB_127913_Class10105]))
+
+([KB_127913_Class10100] of  Map_Entry
+
+	(key "Scenari0_Class3")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10101] of  Map_Entry
+
+	(key "Scenari0_Class10003")
+	(key_class "java.lang.String")
+	(value "156 391 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10102] of  Map_Entry
+
+	(key "Scenari0_Class5")
+	(key_class "java.lang.String")
+	(value "370 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10103] of  Map_Entry
+
+	(key "Scenari0_Class4")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10104] of  Map_Entry
+
+	(key "Scenari0_Class7")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10105] of  Map_Entry
+
+	(key "Scenari0_Class6")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10106] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class1.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10099")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10107] of  Map
+)
+
+([KB_127913_Class10108] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_30001.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10107")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10109] of  Map
+
+	(entries
+		[KB_127913_Class10110]
+		[KB_127913_Class10111]
+		[KB_127913_Class10112]
+		[KB_127913_Class10113]))
+
+([KB_127913_Class10110] of  Map_Entry
+
+	(key "ScenarioN_Class190014")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10111] of  Map_Entry
+
+	(key "ScenarioN_Class190015")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10112] of  Map_Entry
+
+	(key "ScenarioN_Class190004")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10113] of  Map_Entry
+
+	(key "ScenarioN_Class50003")
+	(key_class "java.lang.String")
+	(value "370 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10114] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class50002.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10109")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10115] of  Map
+)
+
+([KB_127913_Class10116] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class140000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10115")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10117] of  Map
+
+	(entries [KB_127913_Class10118]))
+
+([KB_127913_Class10118] of  Map_Entry
+
+	(key "Scenario_Class360001")
+	(key_class "java.lang.String")
+	(value "98 177 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10119] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class360000.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10117")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10120] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_127913_Class10121] of  Map
+
+	(entries
+		[KB_127913_Class10122]
+		[KB_127913_Class10123]
+		[KB_127913_Class10124]
+		[KB_127913_Class10125]))
+
+([KB_127913_Class10122] of  Map_Entry
+
+	(key "Algorithm_Class80001")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10123] of  Map_Entry
+
+	(key "Algorithm_Class90003")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10124] of  Map_Entry
+
+	(key "Algorithm_Class90004")
+	(key_class "java.lang.String")
+	(value "120 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10125] of  Map_Entry
+
+	(key "Algorithm_Class90002")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10126] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10121")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10127] of  Map
+
+	(entries
+		[KB_127913_Class10128]
+		[KB_127913_Class10129]
+		[KB_127913_Class10130]
+		[KB_127913_Class10131]
+		[KB_127913_Class10132]
+		[KB_127913_Class10133]))
+
+([KB_127913_Class10128] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "361 61 78 78")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10129] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "360 320 80 76")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10130] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "500 260 82 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10131] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "500 80 77 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10132] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "200 360 78 79")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10133] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "205 65 90 71")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10134] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class70122.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10127")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10135] of  Map
+)
+
+([KB_127913_Class10136] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class30008.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10135")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10137] of  Map
+)
+
+([KB_127913_Class10138] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class700005.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10137")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10139] of  Map
+)
+
+([KB_127913_Class10140] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_21.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10139")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10141] of  Map
+
+	(entries
+		[KB_127913_Class10142]
+		[KB_127913_Class10143]
+		[KB_127913_Class10144]
+		[KB_127913_Class10145]))
+
+([KB_127913_Class10142] of  Map_Entry
+
+	(key "Scenario_Instance_150008")
+	(key_class "java.lang.String")
+	(value "200 160 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10143] of  Map_Entry
+
+	(key "Scenario_Instance_150006")
+	(key_class "java.lang.String")
+	(value "320 280 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10144] of  Map_Entry
+
+	(key "Scenario_Instance_20001")
+	(key_class "java.lang.String")
+	(value "200 40 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10145] of  Map_Entry
+
+	(key "Scenario_Instance_150002")
+	(key_class "java.lang.String")
+	(value "120 280 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10146] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_150007.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10141")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10147] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_127913_Class10148] of  Map
+)
+
+([KB_127913_Class10149] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_170004.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10148")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10150] of  Map
+)
+
+([KB_127913_Class10151] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class380004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10150")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10152] of  Map
+)
+
+([KB_127913_Class10153] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_190001.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10152")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10154] of  Map
+)
+
+([KB_127913_Class10155] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class590014.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10154")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10156] of  Map
+)
+
+([KB_127913_Class10157] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class700001.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10156")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10158] of  Map
+
+	(entries [KB_127913_Class10159]))
+
+([KB_127913_Class10159] of  Map_Entry
+
+	(key "OSMRoads_Class90001")
+	(key_class "java.lang.String")
+	(value "107 116 125 145")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10160] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10158")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10161] of  Map
+)
+
+([KB_127913_Class10162] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class70000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10161")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10163] of  Map
+
+	(entries
+		[KB_127913_Class10164]
+		[KB_127913_Class10165]))
+
+([KB_127913_Class10164] of  Map_Entry
+
+	(key "OSMRoads_Class20001")
+	(key_class "java.lang.String")
+	(value "56 56 89 89")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10165] of  Map_Entry
+
+	(key "OSMRoads_Class30002")
+	(key_class "java.lang.String")
+	(value "57 206 86 89")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10166] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20000.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10163")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10167] of  Map
+
+	(entries
+		[KB_127913_Class10168]
+		[KB_127913_Class10169]
+		[KB_127913_Class10170]
+		[KB_127913_Class10171]
+		[KB_127913_Class10172]
+		[KB_127913_Class10173]))
+
+([KB_127913_Class10168] of  Map_Entry
+
+	(key "Scenario_Instance_300002")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10169] of  Map_Entry
+
+	(key "Scenario_Instance_300003")
+	(key_class "java.lang.String")
+	(value "370 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10170] of  Map_Entry
+
+	(key "Scenario_Instance_300001")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10171] of  Map_Entry
+
+	(key "Scenario_Instance_300006")
+	(key_class "java.lang.String")
+	(value "270 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10172] of  Map_Entry
+
+	(key "Scenario_Instance_300004")
+	(key_class "java.lang.String")
+	(value "270 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10173] of  Map_Entry
+
+	(key "Scenario_Instance_320000")
+	(key_class "java.lang.String")
+	(value "520 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10174] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_300005.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10167")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10175] of  Map
+
+	(entries
+		[KB_127913_Class10176]
+		[KB_127913_Class10177]
+		[KB_127913_Class10178]
+		[KB_127913_Class10179]
+		[KB_127913_Class10180]
+		[KB_127913_Class10181]
+		[KB_127913_Class10182]
+		[KB_127913_Class10183]
+		[KB_127913_Class10184]
+		[KB_127913_Class10185]))
+
+([KB_127913_Class10176] of  Map_Entry
+
+	(key "Scenario_Instance_20007")
+	(key_class "java.lang.String")
+	(value "259 374 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10177] of  Map_Entry
+
+	(key "Scenario_Instance_20008")
+	(key_class "java.lang.String")
+	(value "154 498 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10178] of  Map_Entry
+
+	(key "Scenario_Instance_190005")
+	(key_class "java.lang.String")
+	(value "341 18 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10179] of  Map_Entry
+
+	(key "Scenario_Instance_190004")
+	(key_class "java.lang.String")
+	(value "191 18 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10180] of  Map_Entry
+
+	(key "Scenario_Instance_10003")
+	(key_class "java.lang.String")
+	(value "102 98 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10181] of  Map_Entry
+
+	(key "Scenario_Instance_190002")
+	(key_class "java.lang.String")
+	(value "509 108 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10182] of  Map_Entry
+
+	(key "Scenario_Instance_10004")
+	(key_class "java.lang.String")
+	(value "260 100 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10183] of  Map_Entry
+
+	(key "Scenario_Instance_190001")
+	(key_class "java.lang.String")
+	(value "398 105 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10184] of  Map_Entry
+
+	(key "Scenario_Instance_10005")
+	(key_class "java.lang.String")
+	(value "191 232 32 35")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10185] of  Map_Entry
+
+	(key "Scenario_Instance_10006")
+	(key_class "java.lang.String")
+	(value "126 375 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10186] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_10002.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10175")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10187] of  Map
+
+	(entries
+		[KB_127913_Class10188]
+		[KB_127913_Class10189]
+		[KB_127913_Class10190]))
+
+([KB_127913_Class10188] of  Map_Entry
+
+	(key "ScenarioN_Class370002")
+	(key_class "java.lang.String")
+	(value "73 273 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10189] of  Map_Entry
+
+	(key "ScenarioN_Class370004")
+	(key_class "java.lang.String")
+	(value "376 273 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10190] of  Map_Entry
+
+	(key "ScenarioN_Class370003")
+	(key_class "java.lang.String")
+	(value "225 271 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10191] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class370000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10187")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10192] of  Map
+)
+
+([KB_127913_Class10193] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10192")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10194] of  Map
+
+	(entries [KB_127913_Class10195]))
+
+([KB_127913_Class10195] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10196] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class80004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10194")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10197] of  Map
+)
+
+([KB_127913_Class10198] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class540002.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10197")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10199] of  Map
+)
+
+([KB_127913_Class10200] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_60001.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10199")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10201] of  Map
+
+	(entries [KB_127913_Class10202]))
+
+([KB_127913_Class10202] of  Map_Entry
+
+	(key "OSMRoads_Class70124")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10203] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90018.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10201")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10204] of  Map
+
+	(entries [KB_127913_Class10205]))
+
+([KB_127913_Class10205] of  Map_Entry
+
+	(key "OSMRoads_Class70128")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10206] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90016.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10204")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10207] of  Map
+
+	(entries [KB_127913_Class10208]))
+
+([KB_127913_Class10208] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10209] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90015.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10207")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10210] of  Map
+
+	(entries [KB_127913_Class10211]))
+
+([KB_127913_Class10211] of  Map_Entry
+
+	(key "OSMRoads_Class70125")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10212] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90017.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10210")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10213] of  Map
+)
+
+([KB_127913_Class10214] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class530000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10213")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10215] of  Map
+
+	(entries [KB_127913_Class10216]))
+
+([KB_127913_Class10216] of  Map_Entry
+
+	(key "ScenarioN_Class500006")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10217] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class500005.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10215")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10218] of  Map
+
+	(entries
+		[KB_127913_Class10219]
+		[KB_127913_Class10220]))
+
+([KB_127913_Class10219] of  Map_Entry
+
+	(key "ScenarioN_Class650007")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10220] of  Map_Entry
+
+	(key "ScenarioN_Class650006")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10221] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class650001.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10218")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10222] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_127913_Class10223] of  Map
+
+	(entries [KB_127913_Class10224]))
+
+([KB_127913_Class10224] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10225] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90014.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10223")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10226] of  Map
+)
+
+([KB_127913_Class10227] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class190000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10226")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10228] of  Map
+
+	(entries
+		[KB_127913_Class10229]
+		[KB_127913_Class10230]
+		[KB_127913_Class10231]
+		[KB_127913_Class10232]))
+
+([KB_127913_Class10229] of  Map_Entry
+
+	(key "Scenario_Class570001")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10230] of  Map_Entry
+
+	(key "Scenario_Class570002")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10231] of  Map_Entry
+
+	(key "Scenario_Class570003")
+	(key_class "java.lang.String")
+	(value "120 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10232] of  Map_Entry
+
+	(key "Scenario_Class570004")
+	(key_class "java.lang.String")
+	(value "120 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10233] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class570000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10228")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class10234] of  Map
+
+	(entries
+		[KB_127913_Class10235]
+		[KB_127913_Class10236]
+		[KB_127913_Class10237]
+		[KB_127913_Class10238]
+		[KB_127913_Class10239]))
+
+([KB_127913_Class10235] of  Map_Entry
+
+	(key "ScenarioN_Class620013")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10236] of  Map_Entry
+
+	(key "ScenarioN_Class650009")
+	(key_class "java.lang.String")
+	(value "370 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10237] of  Map_Entry
+
+	(key "ScenarioN_Class620012")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10238] of  Map_Entry
+
+	(key "ScenarioN_Class620004")
+	(key_class "java.lang.String")
+	(value "220 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10239] of  Map_Entry
+
+	(key "ScenarioN_Class640000")
+	(key_class "java.lang.String")
+	(value "199 220 103 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class10240] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class620003.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class10234")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9797] of  Map
+
+	(entries
+		[KB_127913_Class9799]
+		[KB_127913_Class9804]
+		[KB_127913_Class9806]
+		[KB_127913_Class9810]
+		[KB_127913_Class9817]
+		[KB_127913_Class9819]
+		[KB_127913_Class9823]
+		[KB_127913_Class9826]
+		[KB_127913_Class9828]
+		[KB_127913_Class9832]
+		[KB_127913_Class9834]
+		[KB_127913_Class9837]
+		[KB_127913_Class9842]
+		[KB_127913_Class9844]
+		[KB_127913_Class9848]
+		[KB_127913_Class9865]
+		[KB_127913_Class9871]
+		[KB_127913_Class9874]
+		[KB_127913_Class9878]
+		[KB_127913_Class9880]
+		[KB_127913_Class9883]
+		[KB_127913_Class9886]
+		[KB_127913_Class9888]
+		[KB_127913_Class9890]
+		[KB_127913_Class9892]
+		[KB_127913_Class9895]
+		[KB_127913_Class9897]
+		[KB_127913_Class9899]
+		[KB_127913_Class9903]
+		[KB_127913_Class9906]
+		[KB_127913_Class9911]
+		[KB_127913_Class9915]
+		[KB_127913_Class9917]
+		[KB_127913_Class9919]
+		[KB_127913_Class9922]
+		[KB_127913_Class9929]
+		[KB_127913_Class9936]
+		[KB_127913_Class9939]
+		[KB_127913_Class9945]
+		[KB_127913_Class9948]
+		[KB_127913_Class9950]
+		[KB_127913_Class9954]
+		[KB_127913_Class9959]
+		[KB_127913_Class9962]
+		[KB_127913_Class9964]
+		[KB_127913_Class9967]
+		[KB_127913_Class9970]
+		[KB_127913_Class9973]
+		[KB_127913_Class9981]
+		[KB_127913_Class9984]
+		[KB_127913_Class9989]
+		[KB_127913_Class9991]
+		[KB_127913_Class9994]
+		[KB_127913_Class9997]
+		[KB_127913_Class9999]
+		[KB_127913_Class10003]
+		[KB_127913_Class10015]
+		[KB_127913_Class10017]
+		[KB_127913_Class10043]
+		[KB_127913_Class10048]
+		[KB_127913_Class10050]
+		[KB_127913_Class10069]
+		[KB_127913_Class10074]
+		[KB_127913_Class10078]
+		[KB_127913_Class10081]
+		[KB_127913_Class10085]
+		[KB_127913_Class10089]
+		[KB_127913_Class10092]
+		[KB_127913_Class10095]
+		[KB_127913_Class10098]
+		[KB_127913_Class10106]
+		[KB_127913_Class10108]
+		[KB_127913_Class10114]
+		[KB_127913_Class10116]
+		[KB_127913_Class10119]
+		[KB_127913_Class10120]
+		[KB_127913_Class10126]
+		[KB_127913_Class10134]
+		[KB_127913_Class10136]
+		[KB_127913_Class10138]
+		[KB_127913_Class10140]
+		[KB_127913_Class10146]
+		[KB_127913_Class10147]
+		[KB_127913_Class10149]
+		[KB_127913_Class10151]
+		[KB_127913_Class10153]
+		[KB_127913_Class10155]
+		[KB_127913_Class10157]
+		[KB_127913_Class10160]
+		[KB_127913_Class10162]
+		[KB_127913_Class10166]
+		[KB_127913_Class10174]
+		[KB_127913_Class10186]
+		[KB_127913_Class10191]
+		[KB_127913_Class10193]
+		[KB_127913_Class10196]
+		[KB_127913_Class10198]
+		[KB_127913_Class10200]
+		[KB_127913_Class10203]
+		[KB_127913_Class10206]
+		[KB_127913_Class10209]
+		[KB_127913_Class10212]
+		[KB_127913_Class10214]
+		[KB_127913_Class10217]
+		[KB_127913_Class10221]
+		[KB_127913_Class10222]
+		[KB_127913_Class10225]
+		[KB_127913_Class10227]
+		[KB_127913_Class10233]
+		[KB_127913_Class10240])
+	(referenced_maps
+		[KB_127913_Class9904]
+		[KB_127913_Class9907]
+		[KB_127913_Class9985]
+		[KB_127913_Class9982]
+		[KB_127913_Class9900]
+		[KB_127913_Class9866]
+		[KB_127913_Class9992]
+		[KB_127913_Class10150]
+		[KB_127913_Class9990]
+		[KB_127913_Class10154]
+		[KB_127913_Class10152]
+		[KB_127913_Class10158]
+		[KB_127913_Class10156]
+		[KB_127913_Class9916]
+		[KB_127913_Class10148]
+		[KB_127913_Class9918]
+		[KB_127913_Class9875]
+		[KB_127913_Class9995]
+		[KB_127913_Class9872]
+		[KB_127913_Class9879]
+		[KB_127913_Class9912]
+		[KB_127913_Class9998]
+		[KB_127913_Class9881]
+		[KB_127913_Class10141]
+		[KB_127913_Class9849]
+		[KB_127913_Class10215]
+		[KB_127913_Class9968]
+		[KB_127913_Class10218]
+		[KB_127913_Class9963]
+		[KB_127913_Class9960]
+		[KB_127913_Class9845]
+		[KB_127913_Class9965]
+		[KB_127913_Class9843]
+		[KB_127913_Class10051]
+		[KB_127913_Class10175]
+		[KB_127913_Class10213]
+		[KB_127913_Class10210]
+		[KB_127913_Class10204]
+		[KB_127913_Class10049]
+		[KB_127913_Class10207]
+		[KB_127913_Class9974]
+		[KB_127913_Class9971]
+		[KB_127913_Class10161]
+		[KB_127913_Class10044]
+		[KB_127913_Class10163]
+		[KB_127913_Class10201]
+		[KB_127913_Class10167]
+		[KB_127913_Class9949]
+		[KB_127913_Class9827]
+		[KB_127913_Class10117]
+		[KB_127913_Class9946]
+		[KB_127913_Class10115]
+		[KB_127913_Class9829]
+		[KB_127913_Class9820]
+		[KB_127913_Class9940]
+		[KB_127913_Class9824]
+		[KB_127913_Class10194]
+		[KB_127913_Class10192]
+		[KB_127913_Class10070]
+		[KB_127913_Class10197]
+		[KB_127913_Class10075]
+		[KB_127913_Class10234]
+		[KB_127913_Class10079]
+		[KB_127913_Class10199]
+		[KB_127913_Class10107]
+		[KB_127913_Class10228]
+		[KB_127913_Class9838]
+		[KB_127913_Class10226]
+		[KB_127913_Class10109]
+		[KB_127913_Class9798]
+		[KB_127913_Class9951]
+		[KB_127913_Class9835]
+		[KB_127913_Class9955]
+		[KB_127913_Class9833]
+		[KB_127913_Class10187]
+		[KB_127913_Class10223]
+		[KB_127913_Class9805]
+		[KB_127913_Class10018]
+		[KB_127913_Class10139]
+		[KB_127913_Class10016]
+		[KB_127913_Class10137]
+		[KB_127913_Class9807]
+		[KB_127913_Class9884]
+		[KB_127913_Class9923]
+		[KB_127913_Class9889]
+		[KB_127913_Class9800]
+		[KB_127913_Class9887]
+		[KB_127913_Class9920]
+		[KB_127913_Class10090]
+		[KB_127913_Class9893]
+		[KB_127913_Class9891]
+		[KB_127913_Class10093]
+		[KB_127913_Class10099]
+		[KB_127913_Class10096]
+		[KB_127913_Class10135]
+		[KB_127913_Class9937]
+		[KB_127913_Class10127]
+		[KB_127913_Class9818]
+		[KB_127913_Class9930]
+		[KB_127913_Class9896]
+		[KB_127913_Class9811]
+		[KB_127913_Class9898]
+		[KB_127913_Class10082]
+		[KB_127913_Class10000]
+		[KB_127913_Class10121]
+		[KB_127913_Class10086]
+		[KB_127913_Class10004]))
+
+([KB_127913_Class9798] of  Map
+)
+
+([KB_127913_Class9799] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_150019.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9798")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9800] of  Map
+
+	(entries
+		[KB_127913_Class9801]
+		[KB_127913_Class9802]
+		[KB_127913_Class9803]))
+
+([KB_127913_Class9801] of  Map_Entry
+
+	(key "ScenarioN_Class680007")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9802] of  Map_Entry
+
+	(key "ScenarioN_Class680008")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9803] of  Map_Entry
+
+	(key "ScenarioN_Class680001")
+	(key_class "java.lang.String")
+	(value "84 60 133 81")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9804] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class680000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9800")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9805] of  Map
+)
+
+([KB_127913_Class9806] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_190004.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9805")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9807] of  Map
+
+	(entries
+		[KB_127913_Class9808]
+		[KB_127913_Class9809]))
+
+([KB_127913_Class9808] of  Map_Entry
+
+	(key "Scenario_Instance_310010")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9809] of  Map_Entry
+
+	(key "Scenario_Instance_310009")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9810] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_310008.t-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9807")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9811] of  Map
+
+	(entries
+		[KB_127913_Class9812]
+		[KB_127913_Class9813]
+		[KB_127913_Class9814]
+		[KB_127913_Class9815]
+		[KB_127913_Class9816]))
+
+([KB_127913_Class9812] of  Map_Entry
+
+	(key "ScenarioN_Class160001")
+	(key_class "java.lang.String")
+	(value "370 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9813] of  Map_Entry
+
+	(key "ScenarioN_Class150003")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9814] of  Map_Entry
+
+	(key "ScenarioN_Class150001")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9815] of  Map_Entry
+
+	(key "ScenarioN_Class50005")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9816] of  Map_Entry
+
+	(key "ScenarioN_Class130003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9817] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class50004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9811")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9818] of  Map
+)
+
+([KB_127913_Class9819] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_140005.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9818")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9820] of  Map
+
+	(entries
+		[KB_127913_Class9821]
+		[KB_127913_Class9822]))
+
+([KB_127913_Class9821] of  Map_Entry
+
+	(key "OSMRoads_Class20159")
+	(key_class "java.lang.String")
+	(value "207 60 87 81")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9822] of  Map_Entry
+
+	(key "OSMRoads_Class20000")
+	(key_class "java.lang.String")
+	(value "56 58 89 85")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9823] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20158.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9820")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9824] of  Map
+
+	(entries [KB_127913_Class9825]))
+
+([KB_127913_Class9825] of  Map_Entry
+
+	(key "ScenarioN_Class590013")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9826] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class590012.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9824")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9827] of  Map
+)
+
+([KB_127913_Class9828] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class110004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9827")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9829] of  Map
+
+	(entries
+		[KB_127913_Class9830]
+		[KB_127913_Class9831]))
+
+([KB_127913_Class9830] of  Map_Entry
+
+	(key "PyongyangSPb_Class40006")
+	(key_class "java.lang.String")
+	(value "209 60 71 70")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9831] of  Map_Entry
+
+	(key "PyongyangSPb_Class20001")
+	(key_class "java.lang.String")
+	(value "57 60 73 70")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9832] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class40005.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9829")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9833] of  Map
+)
+
+([KB_127913_Class9834] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_70003.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9833")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9835] of  Map
+
+	(entries [KB_127913_Class9836]))
+
+([KB_127913_Class9836] of  Map_Entry
+
+	(key "ScenarioN_Class110003")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9837] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class100002.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9835")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9838] of  Map
+
+	(entries
+		[KB_127913_Class9839]
+		[KB_127913_Class9840]
+		[KB_127913_Class9841]))
+
+([KB_127913_Class9839] of  Map_Entry
+
+	(key "OSMRoads_Class90020")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9840] of  Map_Entry
+
+	(key "OSMRoads_Class90028")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9841] of  Map_Entry
+
+	(key "OSMRoads_Class90019")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9842] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90007.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9838")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9843] of  Map
+)
+
+([KB_127913_Class9844] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_120012.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9843")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9845] of  Map
+
+	(entries
+		[KB_127913_Class9846]
+		[KB_127913_Class9847]))
+
+([KB_127913_Class9846] of  Map_Entry
+
+	(key "Scenario_Class190003")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9847] of  Map_Entry
+
+	(key "Scenario_Class230009")
+	(key_class "java.lang.String")
+	(value "74 199 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9848] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class180002.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9845")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9849] of  Map
+
+	(entries
+		[KB_127913_Class9850]
+		[KB_127913_Class9851]
+		[KB_127913_Class9852]
+		[KB_127913_Class9853]
+		[KB_127913_Class9854]
+		[KB_127913_Class9855]
+		[KB_127913_Class9856]
+		[KB_127913_Class9857]
+		[KB_127913_Class9858]
+		[KB_127913_Class9859]
+		[KB_127913_Class9860]
+		[KB_127913_Class9861]
+		[KB_127913_Class9862]
+		[KB_127913_Class9863]
+		[KB_127913_Class9864]))
+
+([KB_127913_Class9850] of  Map_Entry
+
+	(key "ScenarioN_Class590017")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "205 281 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9851] of  Map_Entry
+
+	(key "ScenarioN_Class540004")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9852] of  Map_Entry
+
+	(key "ScenarioN_Class290013")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "6 110 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9853] of  Map_Entry
+
+	(key "ScenarioN_Class500009")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "106 295 212 124")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9854] of  Map_Entry
+
+	(key "Scenario_Instance_240000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "21 466 330 445")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9855] of  Map_Entry
+
+	(key "ScenarioN_Class370007")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9856] of  Map_Entry
+
+	(key "ScenarioN_Class110007")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9857] of  Map_Entry
+
+	(key "ScenarioN_Class650008")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "246 364 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9858] of  Map_Entry
+
+	(key "ScenarioN_Class680011")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "119 469 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9859] of  Map_Entry
+
+	(key "ScenarioN_Class380010")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9860] of  Map_Entry
+
+	(key "ScenarioN_Class320007")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 115 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9861] of  Map_Entry
+
+	(key "ScenarioN_Class620009")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "197 619 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9862] of  Map_Entry
+
+	(key "Scenario_Class60003")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "12 281 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9863] of  Map_Entry
+
+	(key "ScenarioN_Class640008")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "70 513 224 146")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9864] of  Map_Entry
+
+	(key "Scenario_Class710000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "131 615 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9865] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9849")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9866] of  Map
+
+	(entries
+		[KB_127913_Class9867]
+		[KB_127913_Class9868]
+		[KB_127913_Class9869]
+		[KB_127913_Class9870]))
+
+([KB_127913_Class9867] of  Map_Entry
+
+	(key "PyongyangSPb_Class20005")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9868] of  Map_Entry
+
+	(key "PyongyangSPb_Class20010")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9869] of  Map_Entry
+
+	(key "PyongyangSPb_Class20012")
+	(key_class "java.lang.String")
+	(value "70 520 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9870] of  Map_Entry
+
+	(key "PyongyangSPb_Class20011")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9871] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class20001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9866")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9872] of  Map
+
+	(entries [KB_127913_Class9873]))
+
+([KB_127913_Class9873] of  Map_Entry
+
+	(key "Scenari0_Class18")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9874] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class4.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9872")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9875] of  Map
+
+	(entries
+		[KB_127913_Class9876]
+		[KB_127913_Class9877]))
+
+([KB_127913_Class9876] of  Map_Entry
+
+	(key "Scenari0_Class18")
+	(key_class "java.lang.String")
+	(value "10 10 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9877] of  Map_Entry
+
+	(key "Scenari0_Class21")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9878] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class6.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9875")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9879] of  Map
+)
+
+([KB_127913_Class9880] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_80003.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9879")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9881] of  Map
+
+	(entries [KB_127913_Class9882]))
+
+([KB_127913_Class9882] of  Map_Entry
+
+	(key "ScenarioN_Class620008")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9883] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class620004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9881")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9884] of  Map
+
+	(entries [KB_127913_Class9885]))
+
+([KB_127913_Class9885] of  Map_Entry
+
+	(key "Scenari0_Class24")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9886] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class5.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9884")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9887] of  Map
+)
+
+([KB_127913_Class9888] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class30000.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9887")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9889] of  Map
+)
+
+([KB_127913_Class9890] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_120001.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9889")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9891] of  Map
+)
+
+([KB_127913_Class9892] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class500007.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9891")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9893] of  Map
+
+	(entries [KB_127913_Class9894]))
+
+([KB_127913_Class9894] of  Map_Entry
+
+	(key "Scenari0_Class12")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9895] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class3.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9893")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9896] of  Map
+)
+
+([KB_127913_Class9897] of  Map_Entry
+
+	(key "InstanceGraphWidget.CompoServer_Class160002.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9896")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9898] of  Map
+)
+
+([KB_127913_Class9899] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class620012.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9898")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9900] of  Map
+
+	(entries
+		[KB_127913_Class9901]
+		[KB_127913_Class9902]))
+
+([KB_127913_Class9901] of  Map_Entry
+
+	(key "Scenario_Class70189")
+	(key_class "java.lang.String")
+	(value "61 257 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9902] of  Map_Entry
+
+	(key "Scenari0_Class15")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9903] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenari0_Class7.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9900")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9904] of  Map
+
+	(entries [KB_127913_Class9905]))
+
+([KB_127913_Class9905] of  Map_Entry
+
+	(key "Scenario_Instance_10004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9906] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_10008.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9904")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9907] of  Map
+
+	(entries
+		[KB_127913_Class9908]
+		[KB_127913_Class9909]
+		[KB_127913_Class9910]))
+
+([KB_127913_Class9908] of  Map_Entry
+
+	(key "Scenario_Class90003")
+	(key_class "java.lang.String")
+	(value "160 60 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9909] of  Map_Entry
+
+	(key "Scenario_Class120015")
+	(key_class "java.lang.String")
+	(value "100 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9910] of  Map_Entry
+
+	(key "Scenario_Class180009")
+	(key_class "java.lang.String")
+	(value "340 200 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9911] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class70003.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9907")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9912] of  Map
+
+	(entries
+		[KB_127913_Class9913]
+		[KB_127913_Class9914]))
+
+([KB_127913_Class9913] of  Map_Entry
+
+	(key "Scenario_Class180010")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9914] of  Map_Entry
+
+	(key "Scenario_Class180009")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9915] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class70004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9912")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9916] of  Map
+)
+
+([KB_127913_Class9917] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class200013.t-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9916")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9918] of  Map
+)
+
+([KB_127913_Class9919] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_11.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9918")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9920] of  Map
+
+	(entries [KB_127913_Class9921]))
+
+([KB_127913_Class9921] of  Map_Entry
+
+	(key "OSMRoads_Class40")
+	(key_class "java.lang.String")
+	(value "99 96 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9922] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class39.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9920")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9923] of  Map
+
+	(entries
+		[KB_127913_Class9924]
+		[KB_127913_Class9925]
+		[KB_127913_Class9926]
+		[KB_127913_Class9927]
+		[KB_127913_Class9928]))
+
+([KB_127913_Class9924] of  Map_Entry
+
+	(key "ScenarioN_Class100003")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9925] of  Map_Entry
+
+	(key "ScenarioN_Class100005")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9926] of  Map_Entry
+
+	(key "ScenarioN_Class290012")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9927] of  Map_Entry
+
+	(key "ScenarioN_Class200006")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9928] of  Map_Entry
+
+	(key "ScenarioN_Class200002")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9929] of  Map_Entry
+
+	(key "InstanceGraphWidget.ScenarioN_Class100002.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9923")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9930] of  Map
+
+	(entries
+		[KB_127913_Class9931]
+		[KB_127913_Class9932]
+		[KB_127913_Class9933]
+		[KB_127913_Class9934]
+		[KB_127913_Class9935]))
+
+([KB_127913_Class9931] of  Map_Entry
+
+	(key "Scenario_Class80002")
+	(key_class "java.lang.String")
+	(value "170 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9932] of  Map_Entry
+
+	(key "Scenario_Class180010")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9933] of  Map_Entry
+
+	(key "Scenario_Class120015")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9934] of  Map_Entry
+
+	(key "Scenario_Class120026")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9935] of  Map_Entry
+
+	(key "Scenario_Class180009")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9936] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class70006.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9930")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9937] of  Map
+
+	(entries [KB_127913_Class9938]))
+
+([KB_127913_Class9938] of  Map_Entry
+
+	(key "Scenario_Instance_180008")
+	(key_class "java.lang.String")
+	(value "161 73 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9939] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_180007.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9937")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9940] of  Map
+
+	(entries
+		[KB_127913_Class9941]
+		[KB_127913_Class9942]
+		[KB_127913_Class9943]
+		[KB_127913_Class9944]))
+
+([KB_127913_Class9941] of  Map_Entry
+
+	(key "Scenario_Class340000")
+	(key_class "java.lang.String")
+	(value "361 267 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9942] of  Map_Entry
+
+	(key "Scenario_Class90003")
+	(key_class "java.lang.String")
+	(value "360 80 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9943] of  Map_Entry
+
+	(key "Scenario_Class120015")
+	(key_class "java.lang.String")
+	(value "77 61 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9944] of  Map_Entry
+
+	(key "Scenario_Class120026")
+	(key_class "java.lang.String")
+	(value "80 185 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9945] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class70005.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9940")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9946] of  Map
+
+	(entries [KB_127913_Class9947]))
+
+([KB_127913_Class9947] of  Map_Entry
+
+	(key "CompoServer_Class210008")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9948] of  Map_Entry
+
+	(key "InstanceGraphWidget.CompoServer_Class210007.scenario_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9946")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9949] of  Map
+)
+
+([KB_127913_Class9950] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class140001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9949")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9951] of  Map
+
+	(entries
+		[KB_127913_Class9952]
+		[KB_127913_Class9953]))
+
+([KB_127913_Class9952] of  Map_Entry
+
+	(key "PyongyangSPb_Class250002")
+	(key_class "java.lang.String")
+	(value "177 74 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9953] of  Map_Entry
+
+	(key "PyongyangSPb_Class250004")
+	(key_class "java.lang.String")
+	(value "177 204 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9954] of  Map_Entry
+
+	(key "InstanceGraphWidget.PyongyangSPb_Class250001.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9951")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9955] of  Map
+
+	(entries
+		[KB_127913_Class9956]
+		[KB_127913_Class9957]
+		[KB_127913_Class9958]))
+
+([KB_127913_Class9956] of  Map_Entry
+
+	(key "OSMRoads_Class50000")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9957] of  Map_Entry
+
+	(key "OSMRoads_Class70123")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9958] of  Map_Entry
+
+	(key "OSMRoads_Class90027")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9959] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90006.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9955")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9960] of  Map
+
+	(entries [KB_127913_Class9961]))
+
+([KB_127913_Class9961] of  Map_Entry
+
+	(key "OSMRoads_Class70129")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9962] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90005.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9960")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9963] of  Map
+)
+
+([KB_127913_Class9964] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_190003.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9963")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9965] of  Map
+
+	(entries [KB_127913_Class9966]))
+
+([KB_127913_Class9966] of  Map_Entry
+
+	(key "Scenario_Instance_210019")
+	(key_class "java.lang.String")
+	(value "260 140 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9967] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_210016.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9965")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9968] of  Map
+
+	(entries [KB_127913_Class9969]))
+
+([KB_127913_Class9969] of  Map_Entry
+
+	(key "Scenario_Class570006")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9970] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class570005.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9968")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9971] of  Map
+
+	(entries [KB_127913_Class9972]))
+
+([KB_127913_Class9972] of  Map_Entry
+
+	(key "Scenario_Class570008")
+	(key_class "java.lang.String")
+	(value "1 19 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9973] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Class570007.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9971")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9974] of  Map
+
+	(entries
+		[KB_127913_Class9975]
+		[KB_127913_Class9976]
+		[KB_127913_Class9977]
+		[KB_127913_Class9978]
+		[KB_127913_Class9979]
+		[KB_127913_Class9980]))
+
+([KB_127913_Class9975] of  Map_Entry
+
+	(key "OSMRoads_Class30003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9976] of  Map_Entry
+
+	(key "OSMRoads_Class30006")
+	(key_class "java.lang.String")
+	(value "212 659 77 82")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9977] of  Map_Entry
+
+	(key "OSMRoads_Class20160")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9978] of  Map_Entry
+
+	(key "OSMRoads_Class20161")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9979] of  Map_Entry
+
+	(key "OSMRoads_Class20162")
+	(key_class "java.lang.String")
+	(value "220 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9980] of  Map_Entry
+
+	(key "OSMRoads_Class20163")
+	(key_class "java.lang.String")
+	(value "201 510 98 81")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9981] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class20159.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9974")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9982] of  Map
+
+	(entries [KB_127913_Class9983]))
+
+([KB_127913_Class9983] of  Map_Entry
+
+	(key "CompoServer_Class160001")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9984] of  Map_Entry
+
+	(key "InstanceGraphWidget.CompoServer_Class160004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9982")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9985] of  Map
+
+	(entries
+		[KB_127913_Class9986]
+		[KB_127913_Class9987]
+		[KB_127913_Class9988]))
+
+([KB_127913_Class9986] of  Map_Entry
+
+	(key "OSMRoads_Class41")
+	(key_class "java.lang.String")
+	(value "91 340 119 120")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9987] of  Map_Entry
+
+	(key "OSMRoads_Class42")
+	(key_class "java.lang.String")
+	(value "90 589 120 122")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9988] of  Map_Entry
+
+	(key "OSMRoads_Class0")
+	(key_class "java.lang.String")
+	(value "100 95 100 110")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9989] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class40.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9985")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9990] of  Map
+)
+
+([KB_127913_Class9991] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_60000.p-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9990")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9992] of  Map
+
+	(entries [KB_127913_Class9993]))
+
+([KB_127913_Class9993] of  Map_Entry
+
+	(key "OSMRoads_Class70127")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9994] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90003.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9992")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9995] of  Map
+
+	(entries [KB_127913_Class9996]))
+
+([KB_127913_Class9996] of  Map_Entry
+
+	(key "OSMRoads_Class70126")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_127913_Class9997] of  Map_Entry
+
+	(key "InstanceGraphWidget.OSMRoads_Class90004.task_scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9995")
+	(value_class "java.util.Map"))
+
+([KB_127913_Class9998] of  Map
+)
+
+([KB_127913_Class9999] of  Map_Entry
+
+	(key "InstanceGraphWidget.Scenario_Instance_2.s-scheme")
+	(key_class "java.lang.String")
+	(value "KB_127913_Class9998")
+	(value_class "java.util.Map"))
+
 ([KB_189120_Class0] of  String
 
 	(name "factory_class_name")
@@ -3370,38 +3370,38 @@
 ([KB_189120_Class1] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50679]
-		[NiceSPb_ProjectKB_Class50683]
-		[NiceSPb_ProjectKB_Class50687]
-		[NiceSPb_ProjectKB_Class50691]
-		[NiceSPb_ProjectKB_Class50695]
-		[NiceSPb_ProjectKB_Class50702]
-		[NiceSPb_ProjectKB_Class50706]
-		[NiceSPb_ProjectKB_Class50709]
-		[NiceSPb_ProjectKB_Class50713]
-		[NiceSPb_ProjectKB_Class50724]
-		[NiceSPb_ProjectKB_Class50730]
-		[NiceSPb_ProjectKB_Class50734]
-		[NiceSPb_ProjectKB_Class50751]
-		[NiceSPb_ProjectKB_Class50758]
-		[NiceSPb_ProjectKB_Class50765])
+		[NiceSPb_ProjectKB_Class50579]
+		[NiceSPb_ProjectKB_Class50583]
+		[NiceSPb_ProjectKB_Class50587]
+		[NiceSPb_ProjectKB_Class50591]
+		[NiceSPb_ProjectKB_Class50595]
+		[NiceSPb_ProjectKB_Class50602]
+		[NiceSPb_ProjectKB_Class50606]
+		[NiceSPb_ProjectKB_Class50609]
+		[NiceSPb_ProjectKB_Class50613]
+		[NiceSPb_ProjectKB_Class50624]
+		[NiceSPb_ProjectKB_Class50630]
+		[NiceSPb_ProjectKB_Class50634]
+		[NiceSPb_ProjectKB_Class50651]
+		[NiceSPb_ProjectKB_Class50658]
+		[NiceSPb_ProjectKB_Class50665])
 	(referenced_maps
-		[NiceSPb_ProjectKB_Class50707]
-		[NiceSPb_ProjectKB_Class50663]
-		[NiceSPb_ProjectKB_Class50703]
-		[NiceSPb_ProjectKB_Class50719]
-		[NiceSPb_ProjectKB_Class50710]
-		[NiceSPb_ProjectKB_Class50714]
-		[NiceSPb_ProjectKB_Class50680]
-		[NiceSPb_ProjectKB_Class50684]
-		[NiceSPb_ProjectKB_Class50688]
-		[NiceSPb_ProjectKB_Class50725]
-		[NiceSPb_ProjectKB_Class50692]
-		[NiceSPb_ProjectKB_Class50696]
-		[NiceSPb_ProjectKB_Class50731]
-		[NiceSPb_ProjectKB_Class50735]
-		[NiceSPb_ProjectKB_Class50752]
-		[NiceSPb_ProjectKB_Class50759]))
+		[NiceSPb_ProjectKB_Class50607]
+		[NiceSPb_ProjectKB_Class50563]
+		[NiceSPb_ProjectKB_Class50603]
+		[NiceSPb_ProjectKB_Class50619]
+		[NiceSPb_ProjectKB_Class50610]
+		[NiceSPb_ProjectKB_Class50614]
+		[NiceSPb_ProjectKB_Class50580]
+		[NiceSPb_ProjectKB_Class50584]
+		[NiceSPb_ProjectKB_Class50588]
+		[NiceSPb_ProjectKB_Class50625]
+		[NiceSPb_ProjectKB_Class50592]
+		[NiceSPb_ProjectKB_Class50596]
+		[NiceSPb_ProjectKB_Class50631]
+		[NiceSPb_ProjectKB_Class50635]
+		[NiceSPb_ProjectKB_Class50652]
+		[NiceSPb_ProjectKB_Class50659]))
 
 ([KB_189120_Class13] of  Property_List
 
@@ -17251,757 +17251,757 @@
 ([NiceSPb_ProjectKB_Class40556] of  Property_List
 )
 
-([NiceSPb_ProjectKB_Class50661] of  String
+([NiceSPb_ProjectKB_Class50561] of  String
 
 	(name "DirectedRoute")
 	(string_value "title"))
 
-([NiceSPb_ProjectKB_Class50662] of  String
+([NiceSPb_ProjectKB_Class50562] of  String
 
 	(name "DirectedRoad")
 	(string_value "direction{+}road"))
 
-([NiceSPb_ProjectKB_Class50663] of  Map
+([NiceSPb_ProjectKB_Class50563] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50664]
-		[NiceSPb_ProjectKB_Class50665]
-		[NiceSPb_ProjectKB_Class50666]
-		[NiceSPb_ProjectKB_Class50667]
-		[NiceSPb_ProjectKB_Class50668]
-		[NiceSPb_ProjectKB_Class50669]
-		[NiceSPb_ProjectKB_Class50670]
-		[NiceSPb_ProjectKB_Class50671]
-		[NiceSPb_ProjectKB_Class50672]
-		[NiceSPb_ProjectKB_Class50673]
-		[NiceSPb_ProjectKB_Class50674]
-		[NiceSPb_ProjectKB_Class50675]
-		[NiceSPb_ProjectKB_Class50676]
-		[NiceSPb_ProjectKB_Class50677]
-		[NiceSPb_ProjectKB_Class50678]))
+		[NiceSPb_ProjectKB_Class50564]
+		[NiceSPb_ProjectKB_Class50565]
+		[NiceSPb_ProjectKB_Class50566]
+		[NiceSPb_ProjectKB_Class50567]
+		[NiceSPb_ProjectKB_Class50568]
+		[NiceSPb_ProjectKB_Class50569]
+		[NiceSPb_ProjectKB_Class50570]
+		[NiceSPb_ProjectKB_Class50571]
+		[NiceSPb_ProjectKB_Class50572]
+		[NiceSPb_ProjectKB_Class50573]
+		[NiceSPb_ProjectKB_Class50574]
+		[NiceSPb_ProjectKB_Class50575]
+		[NiceSPb_ProjectKB_Class50576]
+		[NiceSPb_ProjectKB_Class50577]
+		[NiceSPb_ProjectKB_Class50578]))
 
-([NiceSPb_ProjectKB_Class50664] of  Map_Entry
+([NiceSPb_ProjectKB_Class50564] of  Map_Entry
 
 	(key "PyongyangSPb_Class40007")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "82 337 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50665] of  Map_Entry
+([NiceSPb_ProjectKB_Class50565] of  Map_Entry
 
 	(key "NiceSPb_Class140001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "13 606 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50666] of  Map_Entry
+([NiceSPb_ProjectKB_Class50566] of  Map_Entry
 
 	(key "PyongyangSPb_Class200003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "21 596 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50667] of  Map_Entry
+([NiceSPb_ProjectKB_Class50567] of  Map_Entry
 
 	(key "PyongyangSPb_Class10002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "5 707 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50668] of  Map_Entry
+([NiceSPb_ProjectKB_Class50568] of  Map_Entry
 
 	(key "PyongyangSPb_Class60003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "6 493 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50669] of  Map_Entry
+([NiceSPb_ProjectKB_Class50569] of  Map_Entry
 
 	(key "PyongyangSPb_Class190000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "11 497 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50670] of  Map_Entry
+([NiceSPb_ProjectKB_Class50570] of  Map_Entry
 
 	(key "PyongyangSPb_Class10001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 502 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50671] of  Map_Entry
+([NiceSPb_ProjectKB_Class50571] of  Map_Entry
 
 	(key "PyongyangSPb_Class10000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 291 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50672] of  Map_Entry
+([NiceSPb_ProjectKB_Class50572] of  Map_Entry
 
 	(key "BrigBern_Class3")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "44 180 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50673] of  Map_Entry
+([NiceSPb_ProjectKB_Class50573] of  Map_Entry
 
 	(key "PyongyangSPb_Class210001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 765 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50674] of  Map_Entry
+([NiceSPb_ProjectKB_Class50574] of  Map_Entry
 
 	(key "NiceSPb_Class130001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "220 835 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50675] of  Map_Entry
+([NiceSPb_ProjectKB_Class50575] of  Map_Entry
 
 	(key "PyongyangSPb_Class1")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 704 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50676] of  Map_Entry
+([NiceSPb_ProjectKB_Class50576] of  Map_Entry
 
 	(key "NiceSPb_Class40004")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "12 607 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50677] of  Map_Entry
+([NiceSPb_ProjectKB_Class50577] of  Map_Entry
 
 	(key "PyongyangSPb_Class10004")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "93 310 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50678] of  Map_Entry
+([NiceSPb_ProjectKB_Class50578] of  Map_Entry
 
 	(key "PyongyangSPb_Class10003")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "16 602 210 132")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50679] of  Map_Entry
+([NiceSPb_ProjectKB_Class50579] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50663")
+	(value "NiceSPb_ProjectKB_Class50563")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50680] of  Map
+([NiceSPb_ProjectKB_Class50580] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50681]
-		[NiceSPb_ProjectKB_Class50682]))
+		[NiceSPb_ProjectKB_Class50581]
+		[NiceSPb_ProjectKB_Class50582]))
 
-([NiceSPb_ProjectKB_Class50681] of  Map_Entry
+([NiceSPb_ProjectKB_Class50581] of  Map_Entry
 
 	(key "NiceSPb_Class210003")
 	(key_class "java.lang.String")
 	(value "55 211 90 87")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50682] of  Map_Entry
+([NiceSPb_ProjectKB_Class50582] of  Map_Entry
 
 	(key "NiceSPb_Class210002")
 	(key_class "java.lang.String")
 	(value "56 57 88 87")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50683] of  Map_Entry
+([NiceSPb_ProjectKB_Class50583] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class190001.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50680")
+	(value "NiceSPb_ProjectKB_Class50580")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50684] of  Map
+([NiceSPb_ProjectKB_Class50584] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50685]
-		[NiceSPb_ProjectKB_Class50686]))
+		[NiceSPb_ProjectKB_Class50585]
+		[NiceSPb_ProjectKB_Class50586]))
 
-([NiceSPb_ProjectKB_Class50685] of  Map_Entry
+([NiceSPb_ProjectKB_Class50585] of  Map_Entry
 
 	(key "NiceSPb_Class130005")
 	(key_class "java.lang.String")
 	(value "51 98 99 105")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50686] of  Map_Entry
+([NiceSPb_ProjectKB_Class50586] of  Map_Entry
 
 	(key "NiceSPb_Class220008")
 	(key_class "java.lang.String")
 	(value "51 302 98 97")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50687] of  Map_Entry
+([NiceSPb_ProjectKB_Class50587] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class130002.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50684")
+	(value "NiceSPb_ProjectKB_Class50584")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50688] of  Map
+([NiceSPb_ProjectKB_Class50588] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50689]
-		[NiceSPb_ProjectKB_Class50690]))
+		[NiceSPb_ProjectKB_Class50589]
+		[NiceSPb_ProjectKB_Class50590]))
 
-([NiceSPb_ProjectKB_Class50689] of  Map_Entry
+([NiceSPb_ProjectKB_Class50589] of  Map_Entry
 
 	(key "NiceSPb_Class350002")
 	(key_class "java.lang.String")
 	(value "80 200 100 101")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50690] of  Map_Entry
+([NiceSPb_ProjectKB_Class50590] of  Map_Entry
 
 	(key "NiceSPb_Class350001")
 	(key_class "java.lang.String")
 	(value "80 60 101 102")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50691] of  Map_Entry
+([NiceSPb_ProjectKB_Class50591] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class350000.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50688")
+	(value "NiceSPb_ProjectKB_Class50588")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50692] of  Map
+([NiceSPb_ProjectKB_Class50592] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50693]
-		[NiceSPb_ProjectKB_Class50694]))
+		[NiceSPb_ProjectKB_Class50593]
+		[NiceSPb_ProjectKB_Class50594]))
 
-([NiceSPb_ProjectKB_Class50693] of  Map_Entry
+([NiceSPb_ProjectKB_Class50593] of  Map_Entry
 
 	(key "NiceSPb_Class192739")
 	(key_class "java.lang.String")
 	(value "59 60 82 81")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50694] of  Map_Entry
+([NiceSPb_ProjectKB_Class50594] of  Map_Entry
 
 	(key "NiceSPb_Class192744")
 	(key_class "java.lang.String")
 	(value "60 210 80 80")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50695] of  Map_Entry
+([NiceSPb_ProjectKB_Class50595] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class192734.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50692")
+	(value "NiceSPb_ProjectKB_Class50592")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50696] of  Map
+([NiceSPb_ProjectKB_Class50596] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50697]
-		[NiceSPb_ProjectKB_Class50698]
-		[NiceSPb_ProjectKB_Class50699]
-		[NiceSPb_ProjectKB_Class50700]
-		[NiceSPb_ProjectKB_Class50701]))
+		[NiceSPb_ProjectKB_Class50597]
+		[NiceSPb_ProjectKB_Class50598]
+		[NiceSPb_ProjectKB_Class50599]
+		[NiceSPb_ProjectKB_Class50600]
+		[NiceSPb_ProjectKB_Class50601]))
 
-([NiceSPb_ProjectKB_Class50697] of  Map_Entry
+([NiceSPb_ProjectKB_Class50597] of  Map_Entry
 
 	(key "NiceSPb_Class290001")
 	(key_class "java.lang.String")
 	(value "100 60 101 101")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50698] of  Map_Entry
+([NiceSPb_ProjectKB_Class50598] of  Map_Entry
 
 	(key "NiceSPb_Class290002")
 	(key_class "java.lang.String")
 	(value "100 340 102 103")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50699] of  Map_Entry
+([NiceSPb_ProjectKB_Class50599] of  Map_Entry
 
 	(key "NiceSPb_Class290003")
 	(key_class "java.lang.String")
 	(value "100 200 101 99")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50700] of  Map_Entry
+([NiceSPb_ProjectKB_Class50600] of  Map_Entry
 
 	(key "NiceSPb_Class290004")
 	(key_class "java.lang.String")
 	(value "100 480 99 101")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50701] of  Map_Entry
+([NiceSPb_ProjectKB_Class50601] of  Map_Entry
 
 	(key "NiceSPb_Class300005")
 	(key_class "java.lang.String")
 	(value "100 620 99 103")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50702] of  Map_Entry
+([NiceSPb_ProjectKB_Class50602] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class290000.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50696")
+	(value "NiceSPb_ProjectKB_Class50596")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50703] of  Map
+([NiceSPb_ProjectKB_Class50603] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50704]
-		[NiceSPb_ProjectKB_Class50705]))
+		[NiceSPb_ProjectKB_Class50604]
+		[NiceSPb_ProjectKB_Class50605]))
 
-([NiceSPb_ProjectKB_Class50704] of  Map_Entry
+([NiceSPb_ProjectKB_Class50604] of  Map_Entry
 
 	(key "NiceSPb_Class230088")
 	(key_class "java.lang.String")
 	(value "96 93 109 114")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50705] of  Map_Entry
+([NiceSPb_ProjectKB_Class50605] of  Map_Entry
 
 	(key "NiceSPb_Class230089")
 	(key_class "java.lang.String")
 	(value "101 349 99 103")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50706] of  Map_Entry
+([NiceSPb_ProjectKB_Class50606] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class230087.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50703")
+	(value "NiceSPb_ProjectKB_Class50603")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50707] of  Map
+([NiceSPb_ProjectKB_Class50607] of  Map
 
-	(entries [NiceSPb_ProjectKB_Class50708]))
+	(entries [NiceSPb_ProjectKB_Class50608]))
 
-([NiceSPb_ProjectKB_Class50708] of  Map_Entry
+([NiceSPb_ProjectKB_Class50608] of  Map_Entry
 
 	(key "NiceSPb_Class370000")
 	(key_class "java.lang.String")
 	(value "61 56 79 88")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50709] of  Map_Entry
+([NiceSPb_ProjectKB_Class50609] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class360000.scenario_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50707")
+	(value "NiceSPb_ProjectKB_Class50607")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50710] of  Map
+([NiceSPb_ProjectKB_Class50610] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50711]
-		[NiceSPb_ProjectKB_Class50712]))
+		[NiceSPb_ProjectKB_Class50611]
+		[NiceSPb_ProjectKB_Class50612]))
 
-([NiceSPb_ProjectKB_Class50711] of  Map_Entry
+([NiceSPb_ProjectKB_Class50611] of  Map_Entry
 
 	(key "NiceSPb_Class270046")
 	(key_class "java.lang.String")
 	(value "100 98 100 104")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50712] of  Map_Entry
+([NiceSPb_ProjectKB_Class50612] of  Map_Entry
 
 	(key "NiceSPb_Class270047")
 	(key_class "java.lang.String")
 	(value "110 309 81 83")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50713] of  Map_Entry
+([NiceSPb_ProjectKB_Class50613] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class260045.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50710")
+	(value "NiceSPb_ProjectKB_Class50610")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50714] of  Map
+([NiceSPb_ProjectKB_Class50614] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50715]
-		[NiceSPb_ProjectKB_Class50716]
-		[NiceSPb_ProjectKB_Class50717]
-		[NiceSPb_ProjectKB_Class50718]
-		[NiceSPb_ProjectKB_Class50721]
-		[NiceSPb_ProjectKB_Class50722]
-		[NiceSPb_ProjectKB_Class50723]))
+		[NiceSPb_ProjectKB_Class50615]
+		[NiceSPb_ProjectKB_Class50616]
+		[NiceSPb_ProjectKB_Class50617]
+		[NiceSPb_ProjectKB_Class50618]
+		[NiceSPb_ProjectKB_Class50621]
+		[NiceSPb_ProjectKB_Class50622]
+		[NiceSPb_ProjectKB_Class50623]))
 
-([NiceSPb_ProjectKB_Class50715] of  Map_Entry
+([NiceSPb_ProjectKB_Class50615] of  Map_Entry
 
 	(key "NiceSPb_Class370011")
 	(key_class "java.lang.String")
 	(value "270 670 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50716] of  Map_Entry
+([NiceSPb_ProjectKB_Class50616] of  Map_Entry
 
 	(key "NiceSPb_Class370001")
 	(key_class "java.lang.String")
 	(value "270 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50717] of  Map_Entry
+([NiceSPb_ProjectKB_Class50617] of  Map_Entry
 
 	(key "NiceSPb_Class370003")
 	(key_class "java.lang.String")
 	(value "270 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50718] of  Map_Entry
+([NiceSPb_ProjectKB_Class50618] of  Map_Entry
 
 	(key "NiceSPb_Class370008")
 	(key_class "java.lang.String")
 	(value "84 370 132 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50719] of  Map
+([NiceSPb_ProjectKB_Class50619] of  Map
 
-	(entries [NiceSPb_ProjectKB_Class50720]))
+	(entries [NiceSPb_ProjectKB_Class50620]))
 
-([NiceSPb_ProjectKB_Class50720] of  Map_Entry
+([NiceSPb_ProjectKB_Class50620] of  Map_Entry
 
 	(key "1")
 	(key_class "java.lang.String")
 	(value "446,382")
 	(value_class "edu.stanford.smi.protegex.widget.graph.GraphPoint"))
 
-([NiceSPb_ProjectKB_Class50721] of  Map_Entry
+([NiceSPb_ProjectKB_Class50621] of  Map_Entry
 
 	(key "NiceSPb_Class370009+NiceSPb_Class370003")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50719")
+	(value "NiceSPb_ProjectKB_Class50619")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50722] of  Map_Entry
+([NiceSPb_ProjectKB_Class50622] of  Map_Entry
 
 	(key "NiceSPb_Class400000")
 	(key_class "java.lang.String")
 	(value "420 660 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50723] of  Map_Entry
+([NiceSPb_ProjectKB_Class50623] of  Map_Entry
 
 	(key "NiceSPb_Class370009")
 	(key_class "java.lang.String")
 	(value "231 507 139 86")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50724] of  Map_Entry
+([NiceSPb_ProjectKB_Class50624] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class370000.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50714")
+	(value "NiceSPb_ProjectKB_Class50614")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50725] of  Map
+([NiceSPb_ProjectKB_Class50625] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50726]
-		[NiceSPb_ProjectKB_Class50727]
-		[NiceSPb_ProjectKB_Class50728]
-		[NiceSPb_ProjectKB_Class50729]))
+		[NiceSPb_ProjectKB_Class50626]
+		[NiceSPb_ProjectKB_Class50627]
+		[NiceSPb_ProjectKB_Class50628]
+		[NiceSPb_ProjectKB_Class50629]))
 
-([NiceSPb_ProjectKB_Class50726] of  Map_Entry
+([NiceSPb_ProjectKB_Class50626] of  Map_Entry
 
 	(key "NiceSPb_Class363061")
 	(key_class "java.lang.String")
 	(value "96 56 84 83")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50727] of  Map_Entry
+([NiceSPb_ProjectKB_Class50627] of  Map_Entry
 
 	(key "NiceSPb_Class363062")
 	(key_class "java.lang.String")
 	(value "100 180 79 82")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50728] of  Map_Entry
+([NiceSPb_ProjectKB_Class50628] of  Map_Entry
 
 	(key "NiceSPb_Class363063")
 	(key_class "java.lang.String")
 	(value "100 300 82 81")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50729] of  Map_Entry
+([NiceSPb_ProjectKB_Class50629] of  Map_Entry
 
 	(key "NiceSPb_Class363064")
 	(key_class "java.lang.String")
 	(value "100 420 79 81")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50730] of  Map_Entry
+([NiceSPb_ProjectKB_Class50630] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class363060.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50725")
+	(value "NiceSPb_ProjectKB_Class50625")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50731] of  Map
+([NiceSPb_ProjectKB_Class50631] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50732]
-		[NiceSPb_ProjectKB_Class50733]))
+		[NiceSPb_ProjectKB_Class50632]
+		[NiceSPb_ProjectKB_Class50633]))
 
-([NiceSPb_ProjectKB_Class50732] of  Map_Entry
+([NiceSPb_ProjectKB_Class50632] of  Map_Entry
 
 	(key "NiceSPb_Class240067")
 	(key_class "java.lang.String")
 	(value "58 57 84 86")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50733] of  Map_Entry
+([NiceSPb_ProjectKB_Class50633] of  Map_Entry
 
 	(key "NiceSPb_Class240068")
 	(key_class "java.lang.String")
 	(value "61 208 79 84")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50734] of  Map_Entry
+([NiceSPb_ProjectKB_Class50634] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class240066.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50731")
+	(value "NiceSPb_ProjectKB_Class50631")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50735] of  Map
+([NiceSPb_ProjectKB_Class50635] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50736]
-		[NiceSPb_ProjectKB_Class50737]
-		[NiceSPb_ProjectKB_Class50738]
-		[NiceSPb_ProjectKB_Class50739]
-		[NiceSPb_ProjectKB_Class50740]
-		[NiceSPb_ProjectKB_Class50741]
-		[NiceSPb_ProjectKB_Class50742]
-		[NiceSPb_ProjectKB_Class50743]
-		[NiceSPb_ProjectKB_Class50744]
-		[NiceSPb_ProjectKB_Class50745]
-		[NiceSPb_ProjectKB_Class50746]
-		[NiceSPb_ProjectKB_Class50747]
-		[NiceSPb_ProjectKB_Class50748]
-		[NiceSPb_ProjectKB_Class50749]
-		[NiceSPb_ProjectKB_Class50750]))
+		[NiceSPb_ProjectKB_Class50636]
+		[NiceSPb_ProjectKB_Class50637]
+		[NiceSPb_ProjectKB_Class50638]
+		[NiceSPb_ProjectKB_Class50639]
+		[NiceSPb_ProjectKB_Class50640]
+		[NiceSPb_ProjectKB_Class50641]
+		[NiceSPb_ProjectKB_Class50642]
+		[NiceSPb_ProjectKB_Class50643]
+		[NiceSPb_ProjectKB_Class50644]
+		[NiceSPb_ProjectKB_Class50645]
+		[NiceSPb_ProjectKB_Class50646]
+		[NiceSPb_ProjectKB_Class50647]
+		[NiceSPb_ProjectKB_Class50648]
+		[NiceSPb_ProjectKB_Class50649]
+		[NiceSPb_ProjectKB_Class50650]))
 
-([NiceSPb_ProjectKB_Class50736] of  Map_Entry
+([NiceSPb_ProjectKB_Class50636] of  Map_Entry
 
 	(key "NiceSPb_Class290000")
 	(key_class "java.lang.String")
 	(value "358 36 103 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50737] of  Map_Entry
+([NiceSPb_ProjectKB_Class50637] of  Map_Entry
 
 	(key "NiceSPb_Class240066")
 	(key_class "java.lang.String")
 	(value "178 319 98 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50738] of  Map_Entry
+([NiceSPb_ProjectKB_Class50638] of  Map_Entry
 
 	(key "NiceSPb_Class240000")
 	(key_class "java.lang.String")
 	(value "175 516 104 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50739] of  Map_Entry
+([NiceSPb_ProjectKB_Class50639] of  Map_Entry
 
 	(key "NiceSPb_Class192735")
 	(key_class "java.lang.String")
 	(value "360 340 104 59")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50740] of  Map_Entry
+([NiceSPb_ProjectKB_Class50640] of  Map_Entry
 
 	(key "NiceSPb_Class192736")
 	(key_class "java.lang.String")
 	(value "360 440 101 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50741] of  Map_Entry
+([NiceSPb_ProjectKB_Class50641] of  Map_Entry
 
 	(key "NiceSPb_Class350000")
 	(key_class "java.lang.String")
 	(value "360 140 100 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50742] of  Map_Entry
+([NiceSPb_ProjectKB_Class50642] of  Map_Entry
 
 	(key "NiceSPb_Class192737")
 	(key_class "java.lang.String")
 	(value "360 539 101 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50743] of  Map_Entry
+([NiceSPb_ProjectKB_Class50643] of  Map_Entry
 
 	(key "NiceSPb_Class192738")
 	(key_class "java.lang.String")
 	(value "362 639 98 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50744] of  Map_Entry
+([NiceSPb_ProjectKB_Class50644] of  Map_Entry
 
 	(key "NiceSPb_Class180000")
 	(key_class "java.lang.String")
 	(value "40 40 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50745] of  Map_Entry
+([NiceSPb_ProjectKB_Class50645] of  Map_Entry
 
 	(key "NiceSPb_Class363060")
 	(key_class "java.lang.String")
 	(value "178 614 102 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50746] of  Map_Entry
+([NiceSPb_ProjectKB_Class50646] of  Map_Entry
 
 	(key "NiceSPb_Class230087")
 	(key_class "java.lang.String")
 	(value "180 120 100 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50747] of  Map_Entry
+([NiceSPb_ProjectKB_Class50647] of  Map_Entry
 
 	(key "NiceSPb_Class260045")
 	(key_class "java.lang.String")
 	(value "182 418 96 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50748] of  Map_Entry
+([NiceSPb_ProjectKB_Class50648] of  Map_Entry
 
 	(key "NiceSPb_Class190001")
 	(key_class "java.lang.String")
 	(value "185 215 95 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50749] of  Map_Entry
+([NiceSPb_ProjectKB_Class50649] of  Map_Entry
 
 	(key "NiceSPb_Class130002")
 	(key_class "java.lang.String")
 	(value "180 40 102 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50750] of  Map_Entry
+([NiceSPb_ProjectKB_Class50650] of  Map_Entry
 
 	(key "NiceSPb_Class192734")
 	(key_class "java.lang.String")
 	(value "360 239 101 59")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50751] of  Map_Entry
+([NiceSPb_ProjectKB_Class50651] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class120000.scenario_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50735")
+	(value "NiceSPb_ProjectKB_Class50635")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50752] of  Map
+([NiceSPb_ProjectKB_Class50652] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50753]
-		[NiceSPb_ProjectKB_Class50754]
-		[NiceSPb_ProjectKB_Class50755]
-		[NiceSPb_ProjectKB_Class50756]
-		[NiceSPb_ProjectKB_Class50757]))
+		[NiceSPb_ProjectKB_Class50653]
+		[NiceSPb_ProjectKB_Class50654]
+		[NiceSPb_ProjectKB_Class50655]
+		[NiceSPb_ProjectKB_Class50656]
+		[NiceSPb_ProjectKB_Class50657]))
 
-([NiceSPb_ProjectKB_Class50753] of  Map_Entry
+([NiceSPb_ProjectKB_Class50653] of  Map_Entry
 
 	(key "NiceSPb_Class220000")
 	(key_class "java.lang.String")
 	(value "220 220 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50754] of  Map_Entry
+([NiceSPb_ProjectKB_Class50654] of  Map_Entry
 
 	(key "NiceSPb_Class130004")
 	(key_class "java.lang.String")
 	(value "60 200 78 77")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50755] of  Map_Entry
+([NiceSPb_ProjectKB_Class50655] of  Map_Entry
 
 	(key "NiceSPb_Class130003")
 	(key_class "java.lang.String")
 	(value "120 70 60 60")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50756] of  Map_Entry
+([NiceSPb_ProjectKB_Class50656] of  Map_Entry
 
 	(key "NiceSPb_Class300006")
 	(key_class "java.lang.String")
 	(value "60 340 78 82")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50757] of  Map_Entry
+([NiceSPb_ProjectKB_Class50657] of  Map_Entry
 
 	(key "NiceSPb_Class300007")
 	(key_class "java.lang.String")
 	(value "60 460 81 80")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50758] of  Map_Entry
+([NiceSPb_ProjectKB_Class50658] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class180000.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50752")
+	(value "NiceSPb_ProjectKB_Class50652")
 	(value_class "java.util.Map"))
 
-([NiceSPb_ProjectKB_Class50759] of  Map
+([NiceSPb_ProjectKB_Class50659] of  Map
 
 	(entries
-		[NiceSPb_ProjectKB_Class50760]
-		[NiceSPb_ProjectKB_Class50761]
-		[NiceSPb_ProjectKB_Class50762]
-		[NiceSPb_ProjectKB_Class50763]
-		[NiceSPb_ProjectKB_Class50764]))
+		[NiceSPb_ProjectKB_Class50660]
+		[NiceSPb_ProjectKB_Class50661]
+		[NiceSPb_ProjectKB_Class50662]
+		[NiceSPb_ProjectKB_Class50663]
+		[NiceSPb_ProjectKB_Class50664]))
 
-([NiceSPb_ProjectKB_Class50760] of  Map_Entry
+([NiceSPb_ProjectKB_Class50660] of  Map_Entry
 
 	(key "NiceSPb_Class260005")
 	(key_class "java.lang.String")
 	(value "61 660 78 81")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50761] of  Map_Entry
+([NiceSPb_ProjectKB_Class50661] of  Map_Entry
 
 	(key "NiceSPb_Class240001")
 	(key_class "java.lang.String")
 	(value "60 61 80 78")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50762] of  Map_Entry
+([NiceSPb_ProjectKB_Class50662] of  Map_Entry
 
 	(key "NiceSPb_Class260003")
 	(key_class "java.lang.String")
 	(value "61 360 79 80")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50763] of  Map_Entry
+([NiceSPb_ProjectKB_Class50663] of  Map_Entry
 
 	(key "NiceSPb_Class260004")
 	(key_class "java.lang.String")
 	(value "60 510 80 81")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50764] of  Map_Entry
+([NiceSPb_ProjectKB_Class50664] of  Map_Entry
 
 	(key "NiceSPb_Class260002")
 	(key_class "java.lang.String")
 	(value "60 212 81 77")
 	(value_class "java.awt.Rectangle"))
 
-([NiceSPb_ProjectKB_Class50765] of  Map_Entry
+([NiceSPb_ProjectKB_Class50665] of  Map_Entry
 
 	(key "InstanceGraphWidget.NiceSPb_Class240000.task_scheme")
 	(key_class "java.lang.String")
-	(value "NiceSPb_ProjectKB_Class50759")
+	(value "NiceSPb_ProjectKB_Class50659")
 	(value_class "java.util.Map"))
 
 ([option_instance] of  Options
@@ -19037,7 +19037,7 @@
 ([TravelDot_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query")
-	(string_value "Query Name: Node\nMatch All:true\nLength: 4\nNode	x	is greater than	Other:12.39797841595372	1	\nNode	y	is greater than	Other:47.44125692744274	1	\nNode	x	is less than	Other:12.400935539734757	1	\nNode	y	is less than	Other:47.44325692753773	1	\n\nQuery Name: Edge by label\nMatch All:true\nLength: 1\nEdge	label	is	Other:813962423	1	\n\n"))
+	(string_value "Query Name: Node\nMatch All:true\nLength: 4\nNode	x	is greater than	Other:12.811377357913123	1	\nNode	y	is greater than	Other:47.366149352979846	1	\nNode	x	is less than	Other:12.81433026842965	1	\nNode	y	is less than	Other:47.36814935307484	1	\n\nQuery Name: Edge by label\nMatch All:true\nLength: 1\nEdge	label	is	Other:813962423	1	\n\n"))
 
 ([TravelDot_ProjectKB_Class9276] of  Widget
 

@@ -1,4 +1,4 @@
-; Tue Jan 19 18:26:19 MSK 2021
+; Thu Jan 21 17:01:30 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -181,9 +181,9 @@
 		[OSMData_Class20004]
 		[OSMData_Class90034]
 		[OSMData_Class20003]
-		[OSMData_Class90038]
 		[OSMData_Class10027]
 		[OSMData_Class0]
+		[OSMData_Class90038]
 		[OSMData_Class10028]
 		[OSMData_Class1]
 		[BrigBern_Class30000]
@@ -487,7 +487,7 @@
 
 ([OSMData_Class90038] of  CloFunction
 
-	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (OMT/getOrAdd noi)\n      (println \"Find Node\" (sv noi \"label\")))\n    noi)\n  (mk-node xy))")
+	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (show-node nil noi)\n      (println \"Find Node\" (sv noi \"label\")))\n    noi)\n  (mk-node xy))")
 	(title "fmk-node [xy]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
