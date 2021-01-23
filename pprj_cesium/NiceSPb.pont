@@ -1,4 +1,4 @@
-; Sat Jan 23 01:53:19 MSK 2021
+; Sat Jan 23 17:13:45 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,11 +7,26 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot bur-fill-dir-route
+		(type STRING)
+;+		(value "Fill Directed Route/osm.path/fill-dir-route")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot directed-route
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot direct
 		(type SYMBOL)
 		(allowed-values FORWARD BACKWARD)
 		(default FORWARD)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot directions
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
 		(create-accessor read-write))
 	(single-slot but-replace-dirway-in-road
 		(type STRING)
@@ -27,9 +42,36 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot roads
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+		(create-accessor read-write))
 	(multislot directed-roads
 		(type INSTANCE)
 ;+		(allowed-classes DirectedRoad)
+		(create-accessor read-write)))
+
+(defclass RoadControlD
+	(is-a RoadControl)
+	(role concrete)
+	(single-slot bur-fill-dir-route
+		(type STRING)
+;+		(value "Fill Directed Route/osm.path/fill-dir-route")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot directed-route
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot roads
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+		(create-accessor read-write))
+	(multislot directions
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
 		(create-accessor read-write)))
 
 (defclass DirectedRoad

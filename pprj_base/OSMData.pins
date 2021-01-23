@@ -1,4 +1,4 @@
-; Thu Jan 21 17:01:30 MSK 2021
+; Sat Jan 23 13:08:12 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -473,12 +473,6 @@
 
 	(source "(let [xy1 [(sv e \"x\") (sv e \"y\")]\n      xy2 [(sv e \"x2\") (sv e \"y2\")]]\n  (if (< (f/simple-dist xy xy1)\n          (f/simple-dist xy xy2))\n    [\"FORWARD\" xy2]\n    [\"BACKWARD\" xy1]))")
 	(title "edge-dir-cont [xy e]"))
-
-([OSMData_Class90000] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [OSMData_Class40000])
-	(%3ACREATION-TIMESTAMP "2021.01.16 12:47:59.384 MSK")
-	(%3ACREATOR "ru"))
 
 ([OSMData_Class90034] of  CloFunction
 

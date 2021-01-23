@@ -1,4 +1,4 @@
-; Sat Jan 23 01:53:19 MSK 2021
+; Sat Jan 23 17:13:45 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -44313,13 +44313,25 @@
 
 ([NiceSPb_Class192734] of  Task
 
-	(final_actions [NiceSPb_Class192744])
+	(final_actions [NiceSPb_Class450036])
 	(finish_type AND)
 	(initial_actions [NiceSPb_Class192739])
 	(next_tasks [NiceSPb_Class192735])
 	(task_scheme
 		[NiceSPb_Class192739]
-		[NiceSPb_Class192744])
+		[NiceSPb_Class192744]
+		[NiceSPb_Class430000]
+		[NiceSPb_Class440004]
+		[NiceSPb_Class430001]
+		[NiceSPb_Class430002]
+		[NiceSPb_Class440005]
+		[NiceSPb_Class440003]
+		[NiceSPb_Class450036]
+		[NiceSPb_Class450037]
+		[NiceSPb_Class450038]
+		[NiceSPb_Class450039]
+		[NiceSPb_Class450040]
+		[NiceSPb_Class450041])
 	(title "Austria"))
 
 ([NiceSPb_Class192735] of  Task
@@ -44378,6 +44390,8 @@
 ([NiceSPb_Class192744] of  Stop
 
 	(category "0")
+	(next_actions [NiceSPb_Class430000])
+	(text "Innsbruck")
 	(title "Arrived to Innsbruck"))
 
 ([NiceSPb_Class20000] of  Instruction
@@ -78276,11 +78290,6 @@
 
 	(title "mdr:End Route"))
 
-([NiceSPb_Class400001] of  DirectedRoute
-
-	(directed-roads [NiceSPb_Class360010])
-	(title "Test"))
-
 ([NiceSPb_Class40001] of  CloFunction
 
 	(source "(of/simple-dir\n  [(sv ni1 \"x\") (sv ni1 \"y\")]\n  [(sv ni2 \"x\") (sv ni2 \"y\")])")
@@ -78291,11 +78300,16 @@
 	(source "(> (Math/abs (- x rdir)) (* 0.6 Math/PI))")
 	(title "is-backward-dir? [x rdir]"))
 
-([NiceSPb_Class40003] of  RoadControl
+([NiceSPb_Class40003] of  RoadControlD
 
+	(directed-route [NiceSPb_Class450018])
+	(directions FORWARD FORWARD)
 	(kind way)
 	(radius 0.001)
 	(road-subclass Railroad)
+	(roads
+		[NiceSPb_Class430169]
+		[NiceSPb_Class430564])
 	(server FRENCH)
 	(show TRUE)
 	(status "MODE NODES")
@@ -87023,6 +87037,33 @@
 	(poly [NiceSPb_Class420630])
 	(source "[[47.4333778 12.8216637] [47.4334926 12.8214025]]"))
 
+([NiceSPb_Class430000] of  Mission
+
+	(context [NiceSPb_Class440007])
+	(next_actions [NiceSPb_Class450041])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Innsbruck - Jenbach")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class430001] of  Mission
+
+	(context [NiceSPb_Class450026])
+	(next_actions [NiceSPb_Class450040])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Jenbach - Kirchberg")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class430002] of  Mission
+
+	(context [NiceSPb_Class450028])
+	(next_actions [NiceSPb_Class450039])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Kirchberg - Zell am See")
+	(wait_subscenario TRUE))
+
 ([NiceSPb_Class430003] of  Way
 
 	(id "101790475")
@@ -90642,6 +90683,56 @@
 	(id "47450163")
 	(poly [NiceSPb_Class240542])
 	(source "[[47.3170733 12.7943624] [47.3175437 12.7944186] [47.3178036 12.7944442] [47.3179758 12.7944522] [47.3182211 12.794464] [47.3183776 12.7944843] [47.3185404 12.7945165] [47.3187868 12.794609] [47.3189545 12.7947095] [47.3190386 12.794768] [47.3191909 12.794883] [47.3193162 12.7950081] [47.319463 12.7951744] [47.3195772 12.7953278] [47.3196896 12.7954949] [47.3197575 12.7955984]]"))
+
+([NiceSPb_Class440000] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n      drt (mp \"directed-route\")\n      rds (mp \"roads\")\n      drs (mp \"directions\")]\n  (if (some? drt)\n    (if (and (seq rds) (seq drs) (= (count rds) (count drs)))\n      (let [dds (map mk-dir-road rds drs)]\n        (ssvs drt \"directed-roads\" dds))\n      (if (empty? drs)\n        (let [dds (svs drt \"directed-roads\")\n              rds (map #(sv % \"road\") dds)\n              drs (map #(sv % \"direction\") dds)]\n          (ssvs inst \"roads\" rds)\n          (ssvs inst \"directions\" drs))))))")
+	(title "fill-dir-route [hm inst]"))
+
+([NiceSPb_Class440003] of  Mission
+
+	(context [NiceSPb_Class450030])
+	(next_actions [NiceSPb_Class450038])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Zell am See - Bischofshofen")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class440004] of  Mission
+
+	(context [NiceSPb_Class450032])
+	(next_actions [NiceSPb_Class450037])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Bischofshofen - Linz")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class440005] of  Mission
+
+	(context [NiceSPb_Class450034])
+	(next_actions [NiceSPb_Class450036])
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route Linz - Vienna")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class440006] of  Mission
+
+	(player [ScenarioN_Class570000])
+	(sub_scenario [NiceSPb_Class360000])
+	(title "Route  -")
+	(wait_subscenario TRUE))
+
+([NiceSPb_Class440007] of  Context
+
+	(pairs [NiceSPb_Class440008])
+	(title "k"))
+
+([NiceSPb_Class440008] of  ObjectPair
+
+	(object [NiceSPb_Class450011])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
 
 ([NiceSPb_Class440097] of  Way
 
@@ -100702,6 +100793,214 @@
 		"48.124175"
 		"48.124073"))
 
+([NiceSPb_Class450005] of  CloFunction
+
+	(source "(if (has-typ road \"RoadSubclasses\")\n  (let [i (crin \"DirectedRoad\")]\n    (ssv i \"road\" road)\n    (ssv i \"direction\" dir)\n    i))")
+	(title "mk-dir-road [road dir]"))
+
+([NiceSPb_Class450006] of  CloFuncall
+
+	(source "(in-ns 'osm.path)"))
+
+([NiceSPb_Class450007] of  CloFuncall
+
+	(source "(cls-instances \"Railroad\")"))
+
+([NiceSPb_Class450008] of  CloFuncall
+
+	(source "(has-typ(cls-instances \"Railroad\")"))
+
+([NiceSPb_Class450009] of  CloFuncall
+
+	(source "(has-typ (first (cls-instances \"Railroad\")) \"Railroad\")"))
+
+([NiceSPb_Class450010] of  CloFuncall
+
+	(source "(has-typ (first (cls-instances \"Railroad\")) \"RoadSubclasses\")"))
+
+([NiceSPb_Class450011] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class450015])
+	(title "Innsbruck - Jenbach"))
+
+([NiceSPb_Class450012] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class200141]))
+
+([NiceSPb_Class450013] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class200141]))
+
+([NiceSPb_Class450014] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class200141]))
+
+([NiceSPb_Class450015] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class200141]))
+
+([NiceSPb_Class450016] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class450017])
+	(title "Jenbach - Kirchberg in Tirol"))
+
+([NiceSPb_Class450017] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class410000]))
+
+([NiceSPb_Class450018] of  DirectedRoute
+
+	(directed-roads
+		[NiceSPb_Class450042]
+		[NiceSPb_Class450043])
+	(title "Kirchberg in Tirol - Zell am See"))
+
+([NiceSPb_Class450019] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class430169]))
+
+([NiceSPb_Class450020] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class450021])
+	(title "Zell am See - Bischofshofen"))
+
+([NiceSPb_Class450021] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class260803]))
+
+([NiceSPb_Class450022] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class450023])
+	(title "Bischofshofen - Linz Central"))
+
+([NiceSPb_Class450023] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class269692]))
+
+([NiceSPb_Class450024] of  DirectedRoute
+
+	(directed-roads [NiceSPb_Class450025])
+	(title "Linz Central - Vienna Central"))
+
+([NiceSPb_Class450025] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class454352]))
+
+([NiceSPb_Class450026] of  Context
+
+	(pairs [NiceSPb_Class450027])
+	(title "k"))
+
+([NiceSPb_Class450027] of  ObjectPair
+
+	(object [NiceSPb_Class450016])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class450028] of  Context
+
+	(pairs [NiceSPb_Class450029])
+	(title "k"))
+
+([NiceSPb_Class450029] of  ObjectPair
+
+	(object [NiceSPb_Class450018])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class450030] of  Context
+
+	(pairs [NiceSPb_Class450031])
+	(title "k"))
+
+([NiceSPb_Class450031] of  ObjectPair
+
+	(object [NiceSPb_Class450020])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class450032] of  Context
+
+	(pairs [NiceSPb_Class450033])
+	(title "k"))
+
+([NiceSPb_Class450033] of  ObjectPair
+
+	(object [NiceSPb_Class450022])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class450034] of  Context
+
+	(pairs [NiceSPb_Class450035])
+	(title "k"))
+
+([NiceSPb_Class450035] of  ObjectPair
+
+	(object [NiceSPb_Class450024])
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class450036] of  Stop
+
+	(category "0")
+	(text "Vienna")
+	(title "Arrived to Vienna"))
+
+([NiceSPb_Class450037] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class440005])
+	(text "Linz")
+	(title "Arrived to Linz"))
+
+([NiceSPb_Class450038] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class440004])
+	(text "Bischohen")
+	(title "Arrived to Bischohen"))
+
+([NiceSPb_Class450039] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class440003])
+	(text "Zell am See")
+	(title "Arrived to Zell am See"))
+
+([NiceSPb_Class450040] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class430002])
+	(text "KIrchberg")
+	(title "Arrived to KIrchberg"))
+
+([NiceSPb_Class450041] of  Stop
+
+	(category "0")
+	(next_actions [NiceSPb_Class430001])
+	(text "Jenbach")
+	(title "Arrived to Jenbach"))
+
+([NiceSPb_Class450042] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class430169]))
+
+([NiceSPb_Class450043] of  DirectedRoad
+
+	(direction "FORWARD")
+	(road [NiceSPb_Class430564]))
+
 ([NiceSPb_Class450502] of  Edge
 
 	(label "395566560")
@@ -108754,7 +109053,9 @@
 		[NiceSPb_Class110000]
 		[NiceSPb_Class160002]
 		[NiceSPb_Class323101]
-		[NiceSPb_Class160000])
+		[NiceSPb_Class160000]
+		[NiceSPb_Class450005]
+		[NiceSPb_Class440000])
 	(cloNamespace [PyongyangSPb_Class100001])
 	(cloVars
 		[NiceSPb_Class80001]

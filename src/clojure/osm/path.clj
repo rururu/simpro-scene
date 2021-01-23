@@ -155,3 +155,26 @@ egs)
        edg (oo/mk-edge iln)]
   (ssv way "poly" edg)))
 
+(defn mk-dir-road [road dir]
+  (if (has-typ road "RoadSubclasses")
+  (let [i (crin "DirectedRoad")]
+    (ssv i "road" road)
+    (ssv i "direction" dir)
+    i)))
+
+(defn fill-dir-route [hm inst]
+  (let [mp (into {} hm)
+      drt (mp "directed-route")
+      rds (mp "roads")
+      drs (mp "directions")]
+  (if (some? drt)
+    (if (and (seq rds) (seq drs) (= (count rds) (count drs)))
+      (let [dds (map mk-dir-road rds drs)]
+        (ssvs drt "directed-roads" dds))
+      (if (empty? drs)
+        (let [dds (svs drt "directed-roads")
+              rds (map #(sv % "road") dds)
+              drs (map #(sv % "direction") dds)]
+          (ssvs inst "roads" rds)
+          (ssvs inst "directions" drs)))))))
+
