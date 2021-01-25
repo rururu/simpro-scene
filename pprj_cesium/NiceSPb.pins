@@ -1,4 +1,4 @@
-; Sat Jan 23 17:13:45 MSK 2021
+; Sun Jan 24 12:36:35 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -100793,6 +100793,27 @@
 		"48.124175"
 		"48.124073"))
 
+([NiceSPb_Class450000] of  BBXWiki
+
+	(bbx [NiceSPb_Class470025])
+	(button-bbx "submit/wiki.gis/submit-bbx")
+	(button-clear-articles "Clear Articles/wiki.gis/clear-articles")
+	(language English-en)
+	(max-responses 12)
+	(responses
+		[NiceSPb_Class470026]
+		[NiceSPb_Class470027]
+		[NiceSPb_Class470028]
+		[NiceSPb_Class470029]
+		[NiceSPb_Class470030]
+		[NiceSPb_Class470031]
+		[NiceSPb_Class470032]
+		[NiceSPb_Class470033]
+		[NiceSPb_Class470034]
+		[NiceSPb_Class470035]
+		[NiceSPb_Class470036]
+		[NiceSPb_Class470037]))
+
 ([NiceSPb_Class450005] of  CloFunction
 
 	(source "(if (has-typ road \"RoadSubclasses\")\n  (let [i (crin \"DirectedRoad\")]\n    (ssv i \"road\" road)\n    (ssv i \"direction\" dir)\n    i))")
@@ -108818,6 +108839,173 @@
 	(poly [NiceSPb_Class240536])
 	(source "[[47.320079 12.7962206] [47.3201007 12.7962552] [47.3211495 12.7979494] [47.3212467 12.7980842] [47.3215719 12.7984894]]"))
 
+([NiceSPb_Class470025] of  BBX
+
+	(title "Nice")
+	(wsen 7.24 43.68 7.3 43.72))
+
+([NiceSPb_Class470026] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "FR")
+	(elevation false)
+	(feature "city")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "Nice (; Niçard or Nissa , or Nizza Marittima, , Latin: Nicaea) is the fifth most populous city in France, after Paris, Marseille, Lyon and Toulouse, and it is the capital of the Alpes Maritimes département. The urban area of Nice extends beyond the administrative city limits, with a population of (...)")
+	(thumbnailImg "http://www.geonames.org/img/wikipedia/135000/thumb-134016-100.jpg")
+	(title "Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Nice"))
+
+([NiceSPb_Class470027] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "RU")
+	(elevation false)
+	(feature "railwaystation")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "Nice-Ville (French: Gare de Nice-Ville) is the main railway station in Nice, France.  (...)")
+	(title "Gare de Nice-Ville")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Gare_de_Nice-Ville"))
+
+([NiceSPb_Class470028] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "IT")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "Cimiez is a neighborhood in Nice, southern France. The area contains the Musée Matisse and the ruins of Cemenelum, capital of the Ancient Roman province Alpes Maritimae on the Ligurian coast. Cemenelum was an important rival of Nice, continuing to exist as a separate city till the time of the (...)")
+	(title "Cimiez")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Cimiez"))
+
+([NiceSPb_Class470029] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(elevation false)
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Roman Catholic Diocese of Nice is a diocese of the Latin Church of the Roman Catholic Church in France. The diocese comprises the Départment of Alpes-Maritimes. The diocese is a suffragan of the archdiocese of Marseille (...)")
+	(title "Roman Catholic Diocese of Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Roman_Catholic_Diocese_of_Nice"))
+
+([NiceSPb_Class470030] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Internationaux de Tennis Feminin Nice is a defunct WTA Tour affiliated tennis tournament played in 2001. It was held in Nice in France and played on indoor hard courts.  (...)")
+	(title "Internationaux de Tennis Feminin Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Internationaux_de_Tennis_Feminin_Nice"))
+
+([NiceSPb_Class470031] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "FR")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Promenade des Anglais (; Niçard: Camin dei Anglés) is a celebrated promenade along the Mediterranean at Nice, France.  (...)")
+	(title "Promenade des Anglais")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Promenade_des_Anglais"))
+
+([NiceSPb_Class470032] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "AT")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Siege of Nice occurred in 1543 and was part of the Italian War of 1542–46 in which Francis I and Suleiman the Magnificent collaborated in a Franco-Ottoman alliance against the Holy Roman Emperor Charles V, and Henry VIII of England (...)")
+	(title "Siege of Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Siege_of_Nice"))
+
+([NiceSPb_Class470033] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "AT")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Hotel Negresco is a famous hotel and site of the equally famous restaurant Le Chantecler, located on the Promenade des Anglais. p. 733. on the Baie des Anges in Nice, France. It was named after Henri Negresco (Romanian: Henri Negrescu) . p. 602 (...)")
+	(thumbnailImg "http://www.geonames.org/img/wikipedia/97000/thumb-96856-100.jpg")
+	(title "Hotel Negresco")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Hotel_Negresco"))
+
+([NiceSPb_Class470034] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(elevation false)
+	(feature "landmark")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The St Nicholas Orthodox Cathedral, Nice is a Russian Orthodox cathedral located in the French city of Nice. It functions as a house of worship of the Moscow Patriarchate, while it is the legal property of the Russian Federation, administered by the Property Department of the Moscow Kremlin, it is (...)")
+	(title "Russian Orthodox Cathedral, Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Russian_Orthodox_Cathedral%2C_Nice"))
+
+([NiceSPb_Class470035] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(countryCode "FR")
+	(elevation false)
+	(feature "adm3rd")
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The arrondissement of Nice is an arrondissement of France in the Alpes-Maritimes department in the Provence-Alpes-Côte d'Azur region. It has 101 communes.  (...)")
+	(title "Arrondissement of Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Arrondissement_of_Nice"))
+
+([NiceSPb_Class470036] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(elevation false)
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Palais des Congrès Acropolis (also known as Acropolis Exhibition Hall) is a convention center for Nice, France. It hosts various conventions. It has also hosted the 1999 Davis Cup final, where the main convention was converted into a temporary tennis court.  (...)")
+	(title "Palais des Congrès Acropolis")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Palais_des_Congr%C3%A8s_Acropolis"))
+
+([NiceSPb_Class470037] of  WikiArticle
+
+	(button-open-site "Open Site/wiki.gis/open-site")
+	(elevation false)
+	(lang "en")
+	(lat false)
+	(lng false)
+	(rank false)
+	(summary "The Castle of Nice was a citadel used for military purposes. Built at the top of a hill, it stood overlooking the bay of Nice from the 11th century to the 18th century. It was besieged several times, especially in 1543 and in 1691, before it was taken by French troops in 1705 and finally destroyed (...)")
+	(title "Castle of Nice")
+	(wikipediaUrl "https://en.wikipedia.org/wiki/Castle_of_Nice"))
+
 ([NiceSPb_Class50000] of  Rule
 
 	(lhs "(Work status \"CHECK\")\n?g (GoalR status \"RUN\"\n	a ?a\n	b ?b)\n?t1 (Trail1 status ?sts1\n	a ?a\n	b ?b1\n	edges ?egs1\n	last ?e\n	(some? ?e))\n?t2 (Trail1 status ?sts2\n	a ?b\n	b ?b2\n	edges ?egs2\n	last ?e\n	(some #{\"OPEN\"} [?sts1 ?sts2]))")
@@ -109156,7 +109344,9 @@
 		[PyongyangSPb_Class50010]
 		[OSMData_Class40131]
 		[BrigBern_Class7]
-		[PyongyangSPb_Class100000])
+		[PyongyangSPb_Class100000]
+		[Example_Class10000]
+		[GeoNamesWikipedia_Class0])
 	(title "NiceSPb Programs"))
 
 ([PyongyangSPb_Class90001] of  Run
