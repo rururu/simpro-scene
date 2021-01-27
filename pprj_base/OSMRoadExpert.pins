@@ -1,0 +1,840 @@
+; Wed Jan 27 19:41:23 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([GoDirectedRoad] of  ActionClass
+
+	(rules
+		[NiceSPb_Class370006]
+		[NiceSPb_Class370007]))
+
+([NiceSPb_Class0] of  CloFunction
+
+	(source "(let [nds (map oo/mk-node (oo/star-points noi))\n       nds (filter some? nds)]\n  (distinct nds))")
+	(title "find-sequels-osm [noi]"))
+
+([NiceSPb_Class100000] of  CloFunction
+
+	(source "[(sv e \"x\") (sv e \"y\")]")
+	(title "vertex1 [e]"))
+
+([NiceSPb_Class100001] of  CloFunction
+
+	(source "[(sv e \"x2\") (sv e \"y2\")]")
+	(title "vertex2 [e]"))
+
+([NiceSPb_Class100002] of  CloFunction
+
+	(source "(< (of/simple-dist p1 p2) NEAR)")
+	(title "near [p1 p2]"))
+
+([NiceSPb_Class100003] of  CloVar
+
+	(source "0.0005")
+	(title "NEAR"))
+
+([NiceSPb_Class100004] of  CloFunction
+
+	(source "(def NEAR deg)")
+	(title "set-near [deg]"))
+
+([NiceSPb_Class110000] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n      egs (selection mp \"edges\")\n      dir (mp \"direct\")\n      pth (map #(vector dir [(sv % \"label\") (oo/edge-pts %)] %) egs)]\n  (ssvs inst \"dirways\" (map oo/create-dirway pth)))")
+	(title "create-dirways [hm inst]"))
+
+([NiceSPb_Class110010] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(GoalR a ?a b ?b min-length ?mil)\n?t (Trail1 status \"OPEN\"\n	a ?b\n	b ?c\n	edges ?egs\n	((> (count ?egs) ?mil)\n 	(osm.path/from-goal ?b ?c ?a)))")
+	(rhs "(retract ?t)")
+	(salience 1)
+	(title "t:Extension: From Goal Backward"))
+
+([NiceSPb_Class110011] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(GoalR a ?a b ?b min-length ?mil)\n?t (Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges ?egs\n	((> (count ?egs) ?mil)\n	 (osm.path/from-goal ?a ?c ?b)))")
+	(rhs "(retract ?t)")
+	(salience 1)
+	(title "t:Extension: From Goal Forward"))
+
+([NiceSPb_Class110014] of  CloFunction
+
+	(source "(let [rdir (of/simple-dir sta fin)\n       cdir (of/simple-dir sta cur)\n       arc (Math/abs (- rdir cdir))\n       hpi (/ Math/PI 2)]\n  (and (> arc hpi) (< arc (* hpi 3))))")
+	(title "from-goal [sta cur fin]"))
+
+([NiceSPb_Class120054] of  CloVar
+
+	(source "[]")
+	(title "NODE-YXS"))
+
+([NiceSPb_Class120055] of  CloFunction
+
+	(source "(let [box (of/bbx xy GOAL-RAD)]\n  (if (not (some #(of/in-bbx % box) NODE-YXS))\n    (when-let [noi (oo/fmk-node xy)]\n      (def NODE-YXS (conj NODE-YXS [(sv noi \"y\") (sv noi \"x\")]))\n      noi)))")
+	(title "find-new-node [xy]"))
+
+([NiceSPb_Class130001] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2021.01.04 12:08:37.492 MSK")
+	(%3ACREATOR "ru"))
+
+([NiceSPb_Class130021] of  Rule
+
+	(lhs "?w (Work status \"CHECK\")\n(GoalR max-solutions ?msl)\n(Solution (>= (count (rete.core/fact-list 'Solution)) ?msl))")
+	(rhs "(if osm.path/TRACE\n  (println :OPTIMIZATION))\n(modify ?w status \"OPTIMIZATION\")")
+	(salience 1)
+	(title "t:Check: Max Solutions -> Optimization"))
+
+([NiceSPb_Class140000] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(mode run)
+	(rule-sets
+		[ScenarioN_Class550030]
+		[Scenario_Class100006]
+		[Scenario_Class250011]
+		[Scenario_Class17]
+		[Scenario_Class340000]
+		[NiceSPb_Class220007])
+	(steps 1)
+	(title "OSMRoadExpertRun"))
+
+([NiceSPb_Class150075] of  CloFunction
+
+	(source "(def NODE-YXS [])")
+	(title "clear-NODE-YXS []"))
+
+([NiceSPb_Class160000] of  CloFunction
+
+	(source "(let [id (sv way \"id\")\n       src (sv way \"source\")\n       src (read-string src)\n       src (map reverse src)\n       iln (cons id src)\n       edg (oo/mk-edge iln)]\n  (ssv way \"poly\" edg))")
+	(title "restore-edge [way]"))
+
+([NiceSPb_Class160002] of  CloFunction
+
+	(source "(let [mp (into {} hm)]\n  (if-let [rod (mp \"road\")]\n    (if-let [new (first (selection mp \"dirways\"))]\n      (if-let [old (DisplayUtilities/pickInstanceFromCollection \n                                nil \n                                (svs rod \"dirways\") \n                                0\n                                (str \"Select Dirway of Road \" (sv rod \"title\")))]\n        (if (ru.rules/confirm (str \"Replace Dirway \" (.getBrowserText old) \n                                                                 \" on \" (.getBrowserText new)))\n            (let [dws (svs rod \"dirways\")\n                   dws (replace {old new} dws)]\n              (ssvs rod \"dirways\" dws)\n              (.show *prj* rod)) ))\n      (ru.rules/confirm (str \"Select New Dirway to Replace Existing in Road \"  (sv rod \"title\"))))\n    (ru.rules/confirm \"Select Road to Update\")))")
+	(title "replace-dirway-in-road [hm inst]"))
+
+([NiceSPb_Class180011] of  CloVar
+
+	(source "nil")
+	(title "FRAME"))
+
+([NiceSPb_Class20000] of  Instruction
+
+	(source "(path/set-functions-dir\n osm.path/init-point-osm\n osm.path/find-sequels-osm\n path/point-equal\n osm.path/simple-dist-osm\n osm.path/display-points-osm\n osm.path/wrong-direction-osm)\n(path/trace true)")
+	(title "OSM DR Path Init"))
+
+([NiceSPb_Class200001] of  ValuePair
+
+	(title "p")
+	(value "30")
+	(variable [NiceSPb_Class200002]))
+
+([NiceSPb_Class200002] of  Variable
+
+	(title "?speed"))
+
+([NiceSPb_Class200003] of  Display
+
+	(source "<html>Select Road to Update<br>"))
+
+([NiceSPb_Class20001] of  CloFunction
+
+	(source "(fifos \"Node\" \"label\" x)")
+	(title "init-point-osm [x]"))
+
+([NiceSPb_Class210394] of  CeziumControl
+
+	(but-onboard "Go on Board/pro.server/go-onboard")
+	(but-start-serv "Start Cesium Server/pro.server/start-server")
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
+	(onboard "train"))
+
+([NiceSPb_Class220003] of  Type
+
+	(label "Train")
+	(missions [NiceSPb_Class380000]))
+
+([NiceSPb_Class220006] of  Rule
+
+	(lhs "?a (Stop status \"START\"\n	title ?tit\n	text ?txt\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"Stop\"))\n(ru.rules/confirm ?txt)\n(retract ?a)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "trn:Stop"))
+
+([NiceSPb_Class220007] of  RuleSet
+
+	(rules
+		[NiceSPb_Class220006]
+		[NiceSPb_Class370006]
+		[NiceSPb_Class370007])
+	(templates
+		[Stop]
+		[GoDirectedRoad])
+	(title "Train Set"))
+
+([NiceSPb_Class250000] of  CloFunction
+
+	(source "(let [rdir (of/simple-dir sta fin)\n       gdir (of/simple-dir cur fin)\n       arg (Math/abs (- rdir gdir))\n       hpi (/ Math/PI 2)]\n  (and (> arg hpi) (< arg (* hpi 3))))")
+	(title "goal-behind [sta cur fin]"))
+
+([NiceSPb_Class250002] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(GoalR a ?a b ?b min-length ?mil)\n?t (Trail1 status \"OPEN\"\n	a ?a\n	b ?c\n	edges ?egs\n	((> (count ?egs) ?mil)\n	 (osm.path/goal-behind ?a ?c ?b)))")
+	(rhs "(retract ?t)\n(asser Quasisolution\n	a ?a\n	b ?c\n	path ?egs)")
+	(salience 1)
+	(title "t:Extension: Goal Behind Forward"))
+
+([NiceSPb_Class260000] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class340000]
+		[OSMData_Class40131]
+		[BrigBern_Class7]
+		[RuleEngine_Class30000]
+		[PyongyangSPb_Class50010]
+		[PyongyangSPb_Class100000]
+		[Scenario_Class3])
+	(title "Expert System Programs"))
+
+([NiceSPb_Class270000] of  HelpMenuItem
+
+	(class "ru.igis.omtab.menu.BrowserHelpMenuItem")
+	(label "nspbHelp1")
+	(source "https://www.youtube.com/watch?v=YAZSrUjKRhk")
+	(text "Cesium"))
+
+([NiceSPb_Class270001] of  HelpMenu
+
+	(class "com.bbn.openmap.gui.DefaultHelpMenu")
+	(items "omtHelp1 omtHelp2 omtHelp3 nspbHelp1")
+	(label "nspbHelpMenu"))
+
+([NiceSPb_Class270002] of  MenuList
+
+	(class "com.bbn.openmap.gui.menu.MenuList")
+	(label "nspbMenuList")
+	(menus
+		[igis_Class5]
+		[igis_Class6]
+		[igis_Class7]
+		[igis_Class9]
+		[igis_Class10]
+		[igis_Class11]
+		[NiceSPb_Class270001]))
+
+([NiceSPb_Class270003] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n(GoalR a ?a b ?b min-length ?mil)\n?t (Trail1 status \"OPEN\"\n	a ?b\n	b ?c\n	edges ?egs\n	((> (count ?egs) ?mil)\n 	(osm.path/goal-behind ?b ?c ?a)))")
+	(rhs "(retract ?t)\n(asser Quasisolution\n	a ?a\n	b ?c\n	path (reverse ?egs))")
+	(salience 1)
+	(title "t:Extension: Goal Behind Backward"))
+
+([NiceSPb_Class280000] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(GoalR max-length ?mln)\n?t (Trail0 edges ?egs (>= (count ?egs) ?mln))")
+	(rhs "(retract ?t)")
+	(salience 1)
+	(title "t:Extension -> Too Long"))
+
+([NiceSPb_Class280004] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(Quasisolution)\n(not Solution)\n(not Trail1 status \"OPEN\")")
+	(rhs "(if osm.path/TRACE\n  (println :QUASIOPTIMIZATION))\n(modify ?w status \"QUASIOPTIMIZATION\")")
+	(salience -1)
+	(title "t:Extension -> Quasioptimisation"))
+
+([NiceSPb_Class280005] of  Rule
+
+	(lhs "(Work status \"QUASIOPTIMIZATION\")\n(GoalR a ?a b ?b)\n?qs1 (Quasisolution path ?pth1\n	a ?a \n	b ?c1)\n?qs2 (Quasisolution path ?pth2\n	a ?a \n	b ?c2)")
+	(rhs "(osm.path/if-display-edges \"Quasioptimization between\" ?pth1)\n(osm.path/if-display-edges \"                    and\" ?pth2)\n(if (< (osm.func/simple-dist ?b ?c1) (osm.func/simple-dist ?b ?c2))\n  (retract ?qs2)\n  (retract ?qs1))")
+	(salience 0)
+	(title "t:Quasioptimization: Nearest Quasisolution"))
+
+([NiceSPb_Class280006] of  Rule
+
+	(lhs "(Work status \"QUASIOPTIMIZATION\")\n(GoalR title ?tit a ?a)\n(Quasisolution path ?pth)\n(not Quasisolution)")
+	(rhs "(let [xy ?a\n       [from to] (seq (.split ?tit \"-\"))\n       sub (osm.onto/get-road-subclass)]\n  (rete.core/problem-solved)\n  (osm.path/if-display-edges :OPTIMIZED ?pth)\n  (osm.path/mk-road ?tit sub (.trim from) (.trim to) xy ?pth))")
+	(salience 0)
+	(title "t:Quasioptimization: Quasisolutions optimized"))
+
+([NiceSPb_Class30000] of  CloFunction
+
+	(source "([ni1 ni2]\n  (of/simple-dist \n    [(sv ni1 \"x\") (sv ni1 \"y\")]\n    [(sv ni2 \"x\") (sv ni2 \"y\")]))\n([nis]\n  (let [sgs (p/mk-segments nis)\n         dss (map simple-dist-osm sgs)]\n    (apply + dss)))")
+	(title "simple-dist-osm"))
+
+([NiceSPb_Class30001] of  CloFunction
+
+	(source "(if p/TRACE\n  (println pfx (map #(sv % \"label\") nis)))\nnis")
+	(title "display-points-osm [pfx nis]"))
+
+([NiceSPb_Class323100] of  CloVar
+
+	(source "0.001")
+	(title "GOAL-RAD"))
+
+([NiceSPb_Class323101] of  CloFunction
+
+	(source "(def GOAL-RAD r)")
+	(title "set-goal-rad [r]"))
+
+([NiceSPb_Class360000] of  MissionScenario
+
+	(context [NiceSPb_Class360001])
+	(final_tasks [OSMRoadExpert_Class503718])
+	(finish_type AND)
+	(initial_tasks [OSMRoadExpert_Class503718])
+	(protagonist [PyongyangSPb_Class250003])
+	(scenario_scheme [OSMRoadExpert_Class503718])
+	(title "mdr:Go Directed Route"))
+
+([NiceSPb_Class360001] of  Context
+
+	(pairs
+		[NiceSPb_Class200001]
+		[NiceSPb_Class360007])
+	(title "k"))
+
+([NiceSPb_Class360003] of  Variable
+
+	(title "?dir-route"))
+
+([NiceSPb_Class360007] of  ObjectPair
+
+	(title "p")
+	(variable [NiceSPb_Class360003]))
+
+([NiceSPb_Class370001] of  LoadResource
+
+	(next_actions [NiceSPb_Class370003])
+	(object [ScenarioN_Class570000])
+	(resource [NiceSPb_Class370002])
+	(thing [NiceSPb_Class360003])
+	(title "mdr:Load Directed Route"))
+
+([NiceSPb_Class370002] of  Attribute
+
+	(title "ROUTE"))
+
+([NiceSPb_Class370003] of  UseResource
+
+	(next_actions [NiceSPb_Class370008])
+	(object [ScenarioN_Class570000])
+	(resource [NiceSPb_Class370002])
+	(title "mdr:Get Next Road")
+	(variable [NiceSPb_Class370004]))
+
+([NiceSPb_Class370004] of  Variable
+
+	(title "?next-road"))
+
+([NiceSPb_Class370006] of  Rule
+
+	(lhs "?gor (GoDirectedRoad status \"START\"\n	title ?tit\n	object ?obj\n	road ?road\n	spd ?spd\n	run ?run\n	parent ?par)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"GoDirectedRoad\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       roa (a/vv ?road ?run)\n       sps (a/vv ?spd ?run)\n       roa (protege.core/sv roa \"road\")\n       dir (protege.core/sv roa \"direction\")]\n  (if (and (some? mo) (a/worth? roa) (a/worth? sps))\n    (let [dws (seq (protege.core/svs roa \"dirways\"))\n           gbw (= dir \"BACKWARD\")\n           dws (if gbw (reverse dws) dws)\n           dw (first dws)\n           dn (protege.core/sv dw \"direction\")\n           bwd (= dn \"BACKWARD\")\n           bwd (if bwd (not gbw) gbw)\n           way (protege.core/sv dw \"way\")\n           lla (read-string (protege.core/sv way \"source\"))\n           [lat lon] (if bwd (last lla) (first lla))\n           lla (flatten lla)\n           rte (a/to-route lla bwd)\n           rsp (a/nors sps)]\n      (.setLocation mo lat lon)\n      (.goRoute mo rte)\n      (.setSpeed mo (double rsp))\n      (.putAttribute mo \"ROAD-SPEED\" rsp)\n      (modify ?gor status \"WAIT\"\n	object mo\n	road (rest dws)\n	direction gbw))\n    (modify ?gor status \"FAILED\")))")
+	(salience 0)
+	(title "trn:GoDirectedRoadStart"))
+
+([NiceSPb_Class370007] of  Rule
+
+	(lhs "?gor (GoDirectedRoad status \"WAIT\"\n	object ?mo\n	road ?dws\n	direction ?gbw\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n?moe (MapObEvent status \"STOP_ROUTE\"\n	object ?mo)")
+	(rhs "(retract ?moe)\n(if (empty? ?dws)\n  (do (.removeAttribute ?mo \"ROAD-SPEED\")\n    (retract ?gor)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (let [dw (first ?dws)\n         dn (protege.core/sv dw \"direction\")\n         bwd (= dn \"BACKWARD\")\n         bwd (if bwd (not ?gbw) ?gbw)\n         way (protege.core/sv dw \"way\")\n         lla (read-string (protege.core/sv way \"source\"))\n         rte (a/to-route (flatten lla) bwd)\n         rsp (.getAttribute ?mo \"ROAD-SPEED\")]\n    (.goRoute ?mo rte)\n    (.setSpeed ?mo (double rsp))\n    (modify ?gor road (rest ?dws))))")
+	(salience 0)
+	(title "trn:GoDirectedRoadWait"))
+
+([NiceSPb_Class370008] of  GoDirectedRoad
+
+	(next_actions [NiceSPb_Class370009])
+	(object [ScenarioN_Class570000])
+	(road [NiceSPb_Class370004])
+	(spd "?speed")
+	(title "mdr:Go Next Road"))
+
+([NiceSPb_Class370009] of  EventDecision
+
+	(events [NiceSPb_Class370010])
+	(title "mdr:All Roads Passed?")
+	(variants
+		[NiceSPb_Class370011]
+		[NiceSPb_Class370003]))
+
+([NiceSPb_Class370010] of  ObAttribute
+
+	(attribute [NiceSPb_Class370002])
+	(object [ScenarioN_Class570000])
+	(relation resource-exhausted)
+	(title "mdr:Roads Passed"))
+
+([NiceSPb_Class370011] of  CalcMessage
+
+	(category "0")
+	(next_actions [NiceSPb_Class400000])
+	(text "title (sv (ins ?dir-route) \"title\")\ntext (str \"End of route: \" title)")
+	(title "mdr:End Route"))
+
+([NiceSPb_Class380000] of  ObjectMission
+
+	(label "mdr:Go Directed Route"))
+
+([NiceSPb_Class40000] of  CloFunction
+
+	(source "(let [sgs (p/mk-segments nis)\n       dirs (map simple-dir-osm sgs)\n       rdir (simple-dir-osm [start finish])]\n  (some #(is-backward-dir? % rdir) dirs))")
+	(title "wrong-direction-osm [start finish nis]"))
+
+([NiceSPb_Class400000] of  NoAction
+
+	(title "mdr:End Route"))
+
+([NiceSPb_Class40001] of  CloFunction
+
+	(source "(of/simple-dir\n  [(sv ni1 \"x\") (sv ni1 \"y\")]\n  [(sv ni2 \"x\") (sv ni2 \"y\")])")
+	(title "simple-dir-osm [[ni1 ni2]]"))
+
+([NiceSPb_Class40002] of  CloFunction
+
+	(source "(> (Math/abs (- x rdir)) (* 0.6 Math/PI))")
+	(title "is-backward-dir? [x rdir]"))
+
+([NiceSPb_Class40004] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2020.12.17 19:45:42.802 MSK")
+	(%3ACREATOR "ru"))
+
+([NiceSPb_Class440000] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n      drt (mp \"directed-route\")\n      rds (mp \"roads\")\n      drs (mp \"directions\")]\n  (if (some? drt)\n    (if (and (seq rds) (seq drs) (= (count rds) (count drs)))\n      (let [dds (map mk-dir-road rds drs)]\n        (ssvs drt \"directed-roads\" dds))\n      (if (empty? drs)\n        (let [dds (svs drt \"directed-roads\")\n              rds (map #(sv % \"road\") dds)\n              drs (map #(sv % \"direction\") dds)]\n          (ssvs inst \"roads\" rds)\n          (ssvs inst \"directions\" drs))))))")
+	(title "fill-dir-route [hm inst]"))
+
+([NiceSPb_Class450005] of  CloFunction
+
+	(source "(if (has-typ road \"RoadSubclasses\")\n  (let [i (crin \"DirectedRoad\")]\n    (ssv i \"road\" road)\n    (ssv i \"direction\" dir)\n    i))")
+	(title "mk-dir-road [road dir]"))
+
+([NiceSPb_Class460000] of  CloFuncall
+
+	(source "(apply + [1 2 3 4 5])"))
+
+([NiceSPb_Class460001] of  CloFuncall
+
+	(source "(count (cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class460002] of  CloFuncall
+
+	(source "(clojure.user/count (cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class460003] of  CloFuncall
+
+	(source "(map #(count (svs % \"\" (cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class470004] of  CloFuncall
+
+	(source "(map #(count (svs % \"dirways\")) (cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class470005] of  CloFuncall
+
+	(source "(clojure.core/apply + [1 2 3 4 5])"))
+
+([NiceSPb_Class470006] of  CloFuncall
+
+	(source "(clojure.core/apply clojure.core/+ [1 2 3 4 5])"))
+
+([NiceSPb_Class470007] of  CloFuncall
+
+	(source "(clojure.core/map #(clojure.core/count (svs % \"dirways\")) (cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class470008] of  CloFuncall
+
+	(source "(in-ns 'clojure.core)"))
+
+([NiceSPb_Class470009] of  CloFuncall
+
+	(source "(in-ns 'osm.path)"))
+
+([NiceSPb_Class470010] of  CloFuncall
+
+	(source "(map #(count (protege.core/svs % \"dirways\")) (protege.core/cls-instances \"Railroad\"))"))
+
+([NiceSPb_Class470011] of  CloFuncall
+
+	(source "(apply + (map #(count (protege.core/svs % \"dirways\")) (protege.core/cls-instances \"Railroad\")))"))
+
+([NiceSPb_Class470025] of  BBX
+
+	(title "Nice")
+	(wsen 7.24 43.68 7.3 43.72))
+
+([NiceSPb_Class50000] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (GoalR status \"RUN\"\n	a ?a\n	b ?b)\n?t1 (Trail1 status ?sts1\n	a ?a\n	b ?b1\n	edges ?egs1\n	last ?e\n	(some? ?e))\n?t2 (Trail1 status ?sts2\n	a ?b\n	b ?b2\n	edges ?egs2\n	last ?e\n	(some #{\"OPEN\"} [?sts1 ?sts2]))")
+	(rhs "(let [sol (vec (concat (butlast ?egs1) (reverse ?egs2)))]\n  (asser Solution path  (osm.path/if-display-edges \"Solution\" sol))\n  (modify ?t1 status \"CLOSED\") \n  (modify ?t2 status \"CLOSED\"))")
+	(salience 0)
+	(title "t:Check: Two Trail1 Connection"))
+
+([NiceSPb_Class50001] of  Rule
+
+	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs\n	last ?e)")
+	(rhs "(if-let [noi (osm.path/find-new-node ?b)]\n  (doseq [e (protege.core/svs noi \"edges\")]\n    (if (not (some #{e} ?egs))\n      (asser Trail1 a ?a\n	b (osm.path/far-vertex e ?b)\n	status \"OPEN\"\n	edges (osm.path/if-display-edges \"Edges\" (conj ?egs e))\n	last (path/argval e)))))\n(asser Trail1 a ?a b ?b\n	status \"CLOSED\"\n	edges ?egs\n	last ?e)\n(retract ?t)")
+	(salience 0)
+	(title "t:Extension: Trail0 Extension"))
+
+([NiceSPb_Class501867] of  GoalR
+
+	(a "[17.1714407 49.3407351]")
+	(b "[17.3211349 49.3502869]")
+	(max-length 40)
+	(max-solutions 1)
+	(min-length 5)
+	(radius 0.001)
+	(status "START")
+	(title "A - B"))
+
+([NiceSPb_Class60000] of  RuleSet
+
+	(rules
+		[PathsGraph_Class1]
+		[NiceSPb_Class130021]
+		[NiceSPb_Class60001]
+		[NiceSPb_Class50000]
+		[NiceSPb_Class60002]
+		[NiceSPb_Class70002]
+		[NiceSPb_Class70000]
+		[NiceSPb_Class110010]
+		[NiceSPb_Class110011]
+		[NiceSPb_Class250002]
+		[NiceSPb_Class270003]
+		[NiceSPb_Class280000]
+		[NiceSPb_Class50001]
+		[NiceSPb_Class70001]
+		[NiceSPb_Class70003]
+		[NiceSPb_Class280004]
+		[NiceSPb_Class90000]
+		[NiceSPb_Class60003]
+		[NiceSPb_Class70005]
+		[NiceSPb_Class280005]
+		[NiceSPb_Class280006])
+	(templates
+		[Instruction]
+		[Trail0]
+		[Trail1]
+		[Solution]
+		[Work]
+		[Quasisolution]
+		[GoalR])
+	(title "Direction Restricted Search Trail Set"))
+
+([NiceSPb_Class60001] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?g (GoalR status \"START\"\n	a ?a \n	b ?b\n	max-length ?mln\n	max-solutions ?msl\n	radius ?rad)")
+	(rhs "(osm.path/set-goal-rad ?rad)\n(let [ia (read-string ?a)\n       ib (read-string ?b)]\n  (asser Trail0 a ia\n	b ia\n	status \"OPEN\"\n	edges []\n	last nil)\n  (asser Trail0 a ib\n	b ib\n	status \"OPEN\"\n	edges []\n	last nil)\n  (modify ?g status \"RUN\"\n	a ia\n	b ib))\n(if osm.path/TRACE\n  (println \"GoalR\" [?a ?b ?rad ?mln ?msl]))")
+	(salience 0)
+	(title "t:Check: Goal Start"))
+
+([NiceSPb_Class60002] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n(Solution path ?pth)\n?t (Trail1 edges ?egs\n	(> (count ?egs) (count ?pth)))")
+	(rhs "(retract ?t)")
+	(salience 0)
+	(title "t:Check: Longer Trail1 Retract"))
+
+([NiceSPb_Class60003] of  Rule
+
+	(lhs "(Work status \"OPTIMIZATION\")\n?s1 (Solution path ?pth1\n	a ?a \n	b ?b)\n?s2 (Solution path ?pth2\n	a ?a \n	b ?b)")
+	(rhs "(osm.path/if-display-edges \"Optimization between\" ?pth1)\n(osm.path/if-display-edges \"            and\" ?pth2)\n(if (< (osm.path/edges-distance ?pth1) (osm.path/edges-distance ?pth2))\n  (retract ?s2)\n  (retract ?s1))")
+	(salience 0)
+	(title "t:Optimization: Solutions Optimization"))
+
+([NiceSPb_Class70000] of  Rule
+
+	(lhs "?w (Work status \"CHECK\")\n(not Trail1 status \"OPEN\")")
+	(rhs "(if osm.path/TRACE\n  (println :EXTENSION))\n(modify ?w status \"EXTENSION\")")
+	(salience -1)
+	(title "t:Check -> Extension"))
+
+([NiceSPb_Class70001] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(Trail1 status \"OPEN\")")
+	(rhs "(if osm.path/TRACE\n  (println :CHECK))\n(modify ?w status \"CHECK\")")
+	(salience -1)
+	(title "t:Extension -> Check"))
+
+([NiceSPb_Class70002] of  Rule
+
+	(lhs "(Work status \"CHECK\")\n?t (Trail1 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs\n	last ?e)")
+	(rhs "(retract ?t)\n(asser Trail0 status \"OPEN\"\n	a ?a\n	b ?b\n	edges ?egs\n	last ?e)")
+	(salience -1)
+	(title "t:Check: Trail1 to Trail0"))
+
+([NiceSPb_Class70003] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(not Trail1 status \"OPEN\")")
+	(rhs "(if osm.path/TRACE\n  (println :OPTIMIZATION))\n(modify ?w status \"OPTIMIZATION\")")
+	(salience -1)
+	(title "t:Extension -> Optimization"))
+
+([NiceSPb_Class70005] of  Rule
+
+	(lhs "(Work status \"OPTIMIZATION\")\n(GoalR title ?tit a ?a)\n(Solution path ?pth)\n(not Solution)")
+	(rhs "(let [xy ?a\n       [from to] (seq (.split ?tit \"-\"))\n       sub (osm.onto/get-road-subclass)]\n  (rete.core/problem-solved)\n  (osm.path/if-display-edges :OPTIMIZED ?pth)\n  (osm.path/mk-road ?tit sub (.trim from) (.trim to) xy ?pth))")
+	(salience 0)
+	(title "t:Optimization: Solutions Optimized"))
+
+([NiceSPb_Class70008] of  CloFunction
+
+	(source "(if TRACE \n  (println pfx (map #(sv % \"label\") egs)))\negs")
+	(title "if-display-edges [pfx egs]"))
+
+([NiceSPb_Class70009] of  CloFunction
+
+	(source "(let [v1 (vertex1 e)\n       v2 (vertex2 e)]\n  (if (> (of/simple-dist v1 pnt) (of/simple-dist v2 pnt))\n    v1\n    v2))")
+	(title "far-vertex [e pnt]"))
+
+([NiceSPb_Class80000] of  CloFunction
+
+	(source "(apply + (map #(of/simple-dist (vertex1 %) (vertex2 %)) egs))")
+	(title "edges-distance [egs]"))
+
+([NiceSPb_Class80001] of  CloVar
+
+	(source "true")
+	(title "TRACE"))
+
+([NiceSPb_Class80002] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(facts
+		[NiceSPb_Class20000]
+		[PyongyangSPb_Class290000])
+	(mode step)
+	(rule-sets [PyongyangSPb_Class40000])
+	(steps 1000)
+	(title "OSMPathRun"))
+
+([NiceSPb_Class80003] of  Instruction
+
+	(source "(osm.path/clear-NODE-YXS)\n(osm.path/trace true)\n(osm.path/set-near 0.005)")
+	(title "OSM DR Trail Init Trace"))
+
+([NiceSPb_Class90000] of  Rule
+
+	(lhs "?w (Work status \"EXTENSION\")\n(not Quasisolution)\n(not Solution)\n(not Trail1 status \"OPEN\")")
+	(rhs "(rete.core/problem-solved)\n(println :NO-SOLUTIONS :NO-QUASISOLUTIONS)")
+	(salience -1)
+	(title "t:Extension -> No Any Solutions"))
+
+([NiceSPb_Class90017] of  CloFunction
+
+	(source "(let [drs (oo/edges-dirs xy egs)\n       lbs (map #(sv % \"label\") egs)\n       ptss (map oo/edge-pts egs)\n       pth (map #(vector %1 [%2 %3] %4) drs lbs ptss egs)\n       rdi (foc sub \"title\" tit)]\n    (ssv rdi \"from1\" frm)\n    (ssv rdi \"to1\" to)\n    (ssvs rdi \"dirways\" (map oo/create-dirway pth))\n    (.show *prj* rdi)\n    rdi)")
+	(title "mk-road [tit sub frm to xy egs]"))
+
+([OSMRoadExpert_Class503718] of  Task
+
+	(final_actions [NiceSPb_Class400000])
+	(finish_type AND)
+	(initial_actions [NiceSPb_Class370001])
+	(task_scheme
+		[NiceSPb_Class370001]
+		[NiceSPb_Class370003]
+		[NiceSPb_Class370008]
+		[NiceSPb_Class370009]
+		[NiceSPb_Class370011]
+		[NiceSPb_Class400000])
+	(title "mdr:Move Directed Route"))
+
+([PyongyangSPb_Class0] of  Openmap
+
+	(components
+		[igis_Class2]
+		[igis_Class3]
+		[igis_Class4]
+		[NiceSPb_Class270002]
+		[igis_Class40000]
+		[igis_Class40001]
+		[igis_Class70000]
+		[NiceSPb_Class270000]
+		[igis_Class100005]
+		[igis_Class100000]
+		[igis_Class14]
+		[igis_Class15]
+		[igis_Class16]
+		[igis_Class17]
+		[igis_Class18]
+		[igis_Class19]
+		[igis_Class20]
+		[igis_Class21]
+		[igis_Class22]
+		[Scenario_Class60001]
+		[igis_Class25]
+		[igis_Class26]
+		[igis_Class27]
+		[igis_Class28]
+		[igis_Class29]
+		[igis_Class30])
+	(Debug "FINE")
+	(label "OSMRoadExpert Map")
+	(Latitude "60.0")
+	(layers
+		[igis_Class40012]
+		[igis_Class110000]
+		[NiceSPb_Class160727]
+		[igis_Class1]
+		[NiceSPb_Class160725]
+		[NiceSPb_Class130000]
+		[NiceSPb_Class160726]
+		[igis_Class40011])
+	(Longitude "30.0")
+	(Scale "300000")
+	(startUpLayers
+		[igis_Class40012]
+		[NiceSPb_Class160727]
+		[igis_Class40011])
+	(WebBrowser "/usr/lib/firefox/firefox"))
+
+([PyongyangSPb_Class10] of  Tagvalue
+
+	(value "[\"railway\" \"way\"]"))
+
+([PyongyangSPb_Class100000] of  CloProgram
+
+	(cloFunctions
+		[NiceSPb_Class30000]
+		[NiceSPb_Class40001]
+		[NiceSPb_Class40002]
+		[NiceSPb_Class20001]
+		[NiceSPb_Class0]
+		[NiceSPb_Class110014]
+		[NiceSPb_Class30001]
+		[NiceSPb_Class40000]
+		[NiceSPb_Class70008]
+		[NiceSPb_Class100000]
+		[NiceSPb_Class100001]
+		[NiceSPb_Class70009]
+		[NiceSPb_Class80000]
+		[NiceSPb_Class250000]
+		[NiceSPb_Class100002]
+		[NiceSPb_Class100004]
+		[NiceSPb_Class120055]
+		[NiceSPb_Class90017]
+		[NiceSPb_Class150075]
+		[PyongyangSPb_Class160010]
+		[NiceSPb_Class110000]
+		[NiceSPb_Class160002]
+		[NiceSPb_Class323101]
+		[NiceSPb_Class160000]
+		[NiceSPb_Class450005]
+		[NiceSPb_Class440000])
+	(cloNamespace [PyongyangSPb_Class100001])
+	(cloVars
+		[NiceSPb_Class80001]
+		[NiceSPb_Class100003]
+		[NiceSPb_Class120054]
+		[NiceSPb_Class180011]
+		[NiceSPb_Class323100])
+	(title "OSM Path"))
+
+([PyongyangSPb_Class100001] of  CloNamespace
+
+	(source "(:use \n protege.core\n protege.extensions)\n(:require\n  [osm.func :as of]\n  [osm.onto :as oo]\n  [path :as p])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  edu.stanford.smi.protege.ui.DisplayUtilities)")
+	(title "osm.path"))
+
+([PyongyangSPb_Class150038] of  Line
+
+	(capDecoration BUTT)
+	(jointDecoration BEVEL)
+	(label "L3")
+	(lineType STRAIGHT)
+	(lineWidth "3"))
+
+([PyongyangSPb_Class160000] of  CloVar
+
+	(source "{[3 1]{\"B\" [2 2] \"D\" [1 1] \"A1\" [4 2] \"A2\" [3.5 3]}\n  [2 2]{\"A\" [3 1] \"C\" [1 3]}\n  [1 3]{\"B\" [2 2] \"D\" [1 1] \"C1\" [2 4] \"C2\" [1 4.5]}\n  [1 1]{\"A\" [3 1] \"C\" [1 3]}\n  [9 3]{\"F\" [8 5] \"G\" [7 4] \"U\" [11 4] \"V\" [10 6]}\n  [8 5]{\"I\" [6 6] \"E\" [9 3]}\n  [7 4]{\"H\" [5 3] \"E\" [9 3]}\n  [6 6]{\"R\" [4 7] \"F\" [8 5]}\n  [5 3]{\"J\" [4 4] \"G\" [7 4]}\n  [4 4]{\"K\" [5 5] \"H\" [5 3]}\n  [4 7]{\"L\" [2 8] \"I\" [6 6]}\n  [5 5]{\"M\" [3 6] \"J\" [4 4]}\n  [3 6]{\"N\" [2 5] \"K\" [5 5]}\n  [2 8]{\"P\" [1 7] \"R\" [4 7]}\n  [2 5]{\"P\" [1 7] \"M\" [3 6]}\n  [1 7]{\"N\" [2 5] \"L\" [2 8]}\n  [4 2]{\"A\" [3 1] \"Z\" [5 2]}\n  [3.5 3]{\"A\" [3 1]}\n  [2 4]{\"C\" [1 3]}\n  [1 4.5]{\"C\" [1 3]}\n  [11 4] {\"E\" [9 3] \"Y\" [13 4] \"Z\" [12 5]}\n  [10 6] {\"E\" [9 3] \"W\" [11 7]}\n  [13 4] {\"U\" [11 4] \"X\" [14 6]}\n  [12 5] {\"U\" [11 4] \"X\" [14 6]}\n  [11 7] {\"V\" [10 6] \"X\" [14 6]}\n  [14 6] {\"Y\" [13 4] \"Z\" [12 5] \"W\" [11 7]}}")
+	(title "SEQUELS0"))
+
+([PyongyangSPb_Class20000] of  Line
+
+	(capDecoration BUTT)
+	(dashPattern "3 1")
+	(jointDecoration BEVEL)
+	(label "L2")
+	(lineType STRAIGHT)
+	(lineWidth "2"))
+
+([PyongyangSPb_Class200003] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class130001])
+	(%3ACREATION-TIMESTAMP "2020.12.01 11:40:59.894 MSK")
+	(%3ACREATOR "ru"))
+
+([PyongyangSPb_Class250003] of  NavOb
+
+	(altitude 0)
+	(course 0)
+	(label "train")
+	(latitude "0 0")
+	(longitude "0 0")
+	(playground-index 0)
+	(speed 0.0)
+	(type [NiceSPb_Class220003])
+	(url "file:resources/public/img/trnB.gif")
+	(verticalSpeed 0.0))
+
+([PyongyangSPb_Class30000] of  ImageDoc
+
+	(source "file:doc/images/FromGoal.jpg")
+	(title "Graph2"))
+
+([PyongyangSPb_Class60001] of  CloProgram
+
+	(cloFunctions [Scenario_Class21])
+	(cloNamespace [Clojure_Class300001])
+	(title "CW"))
+
+([PyongyangSPb_Class60002] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms
+		[Clojure_Class10000]
+		[Clojure_Class340000]
+		[RuleEngine_Class30000]
+		[ScenarioN_Class550020]
+		[Scenario_Class3]
+		[Algorithm_Class10000]
+		[Scenario_Class120024]
+		[Scenario_Class220003]
+		[Scenario_Class250008]
+		[ScenarioN_Class510000]
+		[PyongyangSPb_Class50010]
+		[OSMData_Class40131]
+		[BrigBern_Class7]
+		[PyongyangSPb_Class100000]
+		[Example_Class10000]
+		[GeoNamesWikipedia_Class0])
+	(title "Scenario Run Programs"))
+
+([PyongyangSPb_Class90001] of  Run
+
+	(butt-ass-inss "Assert Instances/ru.rules/ass-inss")
+	(butt-fire "Fire/ru.rules/fire-all-rules")
+	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
+	(butt-run "Run/ru.rules/run-engine")
+	(butt-step "Step/ru.rules/step-engine")
+	(facts
+		[NiceSPb_Class80003]
+		[NiceSPb_Class501867]
+		[PyongyangSPb_Class290000])
+	(mode run)
+	(rule-sets [NiceSPb_Class60000])
+	(steps 10)
+	(title "OSMTrailRun"))
+
+([Stop] of  ActionClass
+
+	(rules [NiceSPb_Class220006]))

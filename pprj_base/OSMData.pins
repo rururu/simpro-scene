@@ -1,4 +1,4 @@
-; Sat Jan 23 13:08:12 MSK 2021
+; Tue Jan 26 14:29:08 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -105,7 +105,7 @@
 
 ([BrigBern_Class30000] of  CloFunction
 
-	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                            (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseLeftButtonAction [mo llp runa]\n                        (println MODE mo (seq llp) (.getName runa))\n	  (condp = MODE\n	    'ADD (add-way llp)\n	    'REMOVE (remove-way mo)\n	    'NODES (mk-node (reverse llp))\n	    (println (or (if mo (.getName mo)) (seq llp))))\n	  true)\n	(mouseRightButtonClickedOn [mo llp runa]\n                        (if mo\n                          (if-let [art (sv (.getInstance mo) \"reference\")]\n                            (.show *prj* art)))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
 	(title "set-mouse-adapter []"))
 
 ([BrigBern_Class40000] of  CloFunction

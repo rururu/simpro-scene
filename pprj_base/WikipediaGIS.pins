@@ -1,4 +1,4 @@
-; Mon Jan 25 22:06:03 MSK 2021
+; Tue Jan 26 17:17:14 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,6 +10,7 @@
 		[WikipediaGIS_Class11]
 		[WikipediaGIS_Class18]
 		[WikipediaGIS_Class20008]
+		[WikipediaGIS_Class40015]
 		[WikipediaGIS_Class10003]
 		[WikipediaGIS_Class17]
 		[WikipediaGIS_Class20005]
@@ -18,20 +19,20 @@
 		[WikipediaGIS_Class50049]
 		[WikipediaGIS_Class20000]
 		[WikipediaGIS_Class30023]
+		[WikipediaGIS_Class80115]
 		[WikipediaGIS_Class50068]
 		[WikipediaGIS_Class60088]
-		[WikipediaGIS_Class40015]
-		[WikipediaGIS_Class70002])
+		[WikipediaGIS_Class70002]
+		[WikipediaGIS_Class80211])
 	(cloNamespace [GeoNamesWikipedia_Class1])
 	(cloVars
 		[WikipediaGIS_Class1]
-		[WikipediaGIS_Class40012]
-		[WikipediaGIS_Class50015])
+		[WikipediaGIS_Class40012])
 	(title "Wikipedia GIS"))
 
 ([GeoNamesWikipedia_Class1] of  CloNamespace
 
-	(source "(:use\n  protege.core\n  geo.names)\n(:import\n  java.awt.Image\n  javax.swing.ImageIcon\n  javax.swing.JOptionPane\n  com.bbn.openmap.omGraphics.OMScalingIcon\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OpenMapTab)")
+	(source "(:use\n  protege.core\n  geo.names)\n(:import\n  java.awt.Image\n  javax.swing.ImageIcon\n  javax.swing.JOptionPane\n  com.bbn.openmap.omGraphics.OMScalingIcon\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.OpenMapTab\n  ru.igis.omtab.gui.RuMapMouseAdapter)")
 	(title "wiki.gis"))
 
 ([WikipediaGIS_Class0] of  CloMacro
@@ -44,51 +45,9 @@
 	(source "15000")
 	(title "TIMEOUT"))
 
-([WikipediaGIS_Class10000] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(elevation 8)
-	(feature "city")
-	(lang "en")
-	(lat 59.9917)
-	(lng 29.775)
-	(rank 100)
-	(summary "Kronstadt , also spelled Kronshtadt, Cronstadt (for \"crown\" and Stadt for \"city\";), is a municipal town in Kronshtadtsky District of the federal city of St. Petersburg, Russia, located on Kotlin Island, west of St. Petersburg proper near the head of the Gulf of Finland. Population: It is also St (...)")
-	(thumbnailImg "http://www.geonames.org/img/wikipedia/2000/thumb-1738-100.jpg")
-	(title "Kronstadt")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Kronstadt"))
-
-([WikipediaGIS_Class10001] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(elevation 17)
-	(feature "city")
-	(lang "en")
-	(lat 59.8846)
-	(lng 29.9088)
-	(rank 100)
-	(summary "Petergof or Peterhof (German and Dutch for \"Peter's Court\"), known as Petrodvorets from 1944 to 1997, is a municipal town in Petrodvortsovy District of the federal city of St. Petersburg, located on the southern shore of the Gulf of Finland (...)")
-	(thumbnailImg "http://www.geonames.org/img/wikipedia/120000/thumb-119691-100.jpg")
-	(title "Petergof")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Petergof"))
-
-([WikipediaGIS_Class10002] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "DE")
-	(elevation 6)
-	(feature "city")
-	(lang "en")
-	(lat 59.9175)
-	(lng 29.7686)
-	(rank 100)
-	(summary "Lomonosov (; before 1948: Oranienbaum) is a municipal town in Petrodvortsovy District of the federal city of St. Petersburg, Russia, located on the southern coast of the Gulf of Finland, west of St. Petersburg proper (...)")
-	(title "Lomonosov, Russia")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Lomonosov%2C_Russia"))
-
 ([WikipediaGIS_Class10003] of  CloFunction
 
-	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         [west south east north] (seq (svs (mp \"bbx\") \"wsen\"))]\n    (ssvs inst \"responses\" \n      (if-let [resp (with-timeout TIMEOUT\n	   (call-wiki-bbx north west south east max lang))]\n        (filter some? (map #(article-from-map % \"WikiArticle\") resp))\n        [])) ))\n([inst bbx-title bbx]\n  (if-let [bbx-inst (fifos \"BBX\" \"title\" bbx-title)]\n    (ssv inst \"bbx\" bbx-inst)\n    (let [[w s e n] bbx]\n      (ssv inst \"bbx\" (bbx-of-list [[n w] [s e]] bbx-title))))\n  (submit-bbx (itm inst 0) inst)\n  inst)")
+	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         [west south east north] (seq (svs (mp \"bbx\") \"wsen\"))\n         rsp (if-let [r (with-timeout TIMEOUT\n	    (call-wiki-bbx north west south east max lang))]\n                 (filter some? (map #(article-from-map % \"WikiArticle\") r))\n                 [])]\n    (doall (map add-placemark rsp))\n    (ssvs inst \"responses\" rsp)))\n([inst bbx-title bbx]\n  (if-let [bbx-inst (fifos \"BBX\" \"title\" bbx-title)]\n    (ssv inst \"bbx\" bbx-inst)\n    (let [[w s e n] bbx]\n      (ssv inst \"bbx\" (bbx-of-list [[n w] [s e]] bbx-title))))\n  (submit-bbx (itm inst 0) inst)\n  inst)")
 	(title "submit-bbx"))
 
 ([WikipediaGIS_Class11] of  CloFunction
@@ -98,7 +57,7 @@
 
 ([WikipediaGIS_Class17] of  CloFunction
 
-	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         text (mp \"text\")]\n    (ssvs inst \"responses\" \n      (if-let [resp (with-timeout TIMEOUT\n	   (call-wiki-search text max lang))]\n        (filter some? (map #(article-from-map % \"WikiArticle\") resp))\n        [])) ))\n([inst any txt]\n  (ssv inst \"text\" txt)\n  (ssvs inst \"responses\" \n    (if-let [resp (call-wiki-search txt \n	(sv inst \"max-responses\") \n	(request-lang (sv inst  \"language\")))]\n      (filter some? (map #(article-from-map % \"WikiArticle\") resp))\n      []))\n  inst)")
+	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         text (mp \"text\")\n         rsp (if-let [r (with-timeout TIMEOUT\n	   (call-wiki-search text max lang))]\n                 (filter some? (map #(article-from-map % \"WikiArticle\") r))\n                 [])]\n    (doall (map add-placemark rsp))\n    (ssvs inst \"responses\" rsp)))\n([inst any txt]\n  (ssv inst \"text\" txt)\n  (ssvs inst \"responses\" \n    (if-let [resp (call-wiki-search txt \n	(sv inst \"max-responses\") \n	(request-lang (sv inst  \"language\")))]\n      (filter some? (map #(article-from-map % \"WikiArticle\") resp))\n      []))\n  (doall (map add-placemark (svs inst \"responses\")))\n  inst)")
 	(title "submit-search"))
 
 ([WikipediaGIS_Class18] of  CloFunction
@@ -116,33 +75,6 @@
 	(source "([hm inst]\n  (let [mp (into {} hm)\n         url (first (selection mp \"feedURL\"))]\n    (if url\n      (if-let [resp (with-timeout TIMEOUT\n	   (call-geonames-rss url))]\n          (let [[inss bbx] (irss-bbx url resp)]\n             (ssvs inst \"georss_items\" inss)\n             (ssv inst \"bbx\" bbx))) )))\n([inst any url]\n  (if-let [resp (call-geonames-rss url)]\n    (let [[inss bbx] (irss-bbx url resp)]\n      (ssvs inst \"georss_items\" inss)\n      (ssv inst \"bbx\" bbx)\n      inst)))")
 	(title "submit-rss"))
 
-([WikipediaGIS_Class20003] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 16)
-	(feature "city")
-	(lang "en")
-	(lat 59.9003)
-	(lng 29.0936)
-	(rank 100)
-	(summary "Sosnovy Bor (lit. pine forest) is a town in Leningrad Oblast, Russia, situated on the Koporye Bay of the Gulf of Finland, west of St. Petersburg. The town of Sosnovy Bor is surrounded by Lomonosovsky District. Population:  (...)")
-	(title "Sosnovy Bor, Leningrad Oblast")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Sosnovy_Bor%2C_Leningrad_Oblast"))
-
-([WikipediaGIS_Class20004] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 7)
-	(lang "en")
-	(lat 59.9167)
-	(lng 29.7667)
-	(rank 100)
-	(summary "Lomonosovsky District is an administrativeOblast Law #32-oz and municipalLaw #117-oz district (raion), one of the seventeen in Leningrad Oblast, Russia. It is located in the west of the oblast and borders with Petrodvortsovy and Krasnoselsky Districts of the Federal city of Saint Petersburg in the (...)")
-	(title "Lomonosovsky District, Leningrad Oblast")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Lomonosovsky_District%2C_Leningrad_Oblast"))
-
 ([WikipediaGIS_Class20005] of  CloFunction
 
 	(source ";; returns [lat lon]\n(let [[w s e n] (seq (svs bbx-ins \"wsen\"))]\n  [(float (/ (+ s n) 2)) (float (/ (+ w e) 2))])")
@@ -158,349 +90,25 @@
 	(source ";; crds = ([lat lon]..)\n([crds title]\n  ;; return instance of BBX class\n  (if-let [wsen (bbx-of-list  crds)]\n    (let [ins (crin \"BBX\")]\n       (ssv ins \"title\" title)\n       (ssvs ins \"wsen\" wsen)\n       ins)))\n([crds]\n  ;; return [west south east north] or nil\n  (try\n    (letfn [(apl [mx fst]\n	(float (apply mx (map fst crds))))]\n      [(apl min second) (apl min first) (apl max second) (apl max first)])\n  (catch Exception e\n     (println [:bbx-of-list crds :exception e])\n     nil)))")
 	(title "bbx-of-list"))
 
-([WikipediaGIS_Class20014] of  BBX
-
-	(title "Helsinki")
-	(wsen 24.5 59.9 25.5 60.5))
-
-([WikipediaGIS_Class30000] of  CloFuncall
-
-	(source "(in-ns '"))
-
-([WikipediaGIS_Class30001] of  CloFuncall
-
-	(source "(in-ns 'wiki.gis)"))
-
-([WikipediaGIS_Class30002] of  CloFuncall
-
-	(source "(fifos \"Placemark\" \"label\" \"airport\")"))
-
-([WikipediaGIS_Class30003] of  CloFuncall
-
-	(source "(scale-omtraster (fifos \"Placemark\" \"label\" \"airport\") 32 32)"))
-
-([WikipediaGIS_Class30004] of  CloFuncall
-
-	(source "(O (fifos \"Placemark\" \"label\" \"airport\") 32 32)"))
-
-([WikipediaGIS_Class30005] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 146)
-	(lang "en")
-	(lat 59.45)
-	(lng 29.4833)
-	(rank 100)
-	(summary "Volosovsky District is an administrativeOblast Law #32-oz and municipalLaw #64-oz district (raion), one of the seventeen in Leningrad Oblast, Russia. It is located in the southwest of the oblast with Lomonosovsky District in the north, Gatchinsky District in the east, Luzhsky District in the south, (...)")
-	(title "Volosovsky District")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Volosovsky_District"))
-
-([WikipediaGIS_Class30006] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(elevation 17)
-	(feature "city")
-	(lang "en")
-	(lat 59.8846)
-	(lng 29.9088)
-	(rank 100)
-	(summary "The Peterhof Palace (is commonly/historically transliterated into Russian as (g), so German ' is transliterated as \"Петергoф\" Petergof. Dutch for Peter's Court)Adrian Room, , Placenames of the world: origins and meanings of the names for over 5000 Natural Features, Countries, Capitals, Territories, (...)")
-	(title "Peterhof Palace")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Peterhof_Palace"))
-
-([WikipediaGIS_Class30007] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 146)
-	(lang "en")
-	(lat 59.45)
-	(lng 29.4833)
-	(rank 100)
-	(summary "Volosovo is a town and the administrative center of Volosovsky District in Leningrad Oblast, Russia, located on the railway between St. Petersburg and Tallinn, Estonia, southwest from St. Petersburg. Population:  (...)")
-	(thumbnailImg "http://www.geonames.org/img/wikipedia/128000/thumb-127208-100.jpg")
-	(title "Volosovo, Volosovsky District, Leningrad Oblast")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Volosovo%2C_Volosovsky_District%2C_Leningrad_Oblast"))
-
-([WikipediaGIS_Class30008] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(elevation 153)
-	(lang "en")
-	(lat 59.6333)
-	(lng 29.3)
-	(rank 98)
-	(summary "Historical Ingria (or '; , Ingriya, , Izhorskaya zemlya, or , Ingermanlandiya; ; or ') is the geographical area located along the southern shore of the Gulf of Finland - bordered by Lake Ladoga on the Karelian Isthmus in the north and by the River Narva on the border with Estonia in the west (...)")
-	(title "Ingria")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Ingria"))
-
-([WikipediaGIS_Class30009] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 72)
-	(lang "en")
-	(lat 59.7341)
-	(lng 29.8717)
-	(rank 97)
-	(summary "Ropsha is a settlement in Lomonosovsky District of Leningrad Oblast, Russia, situated about south of Peterhof and south-west of central Saint Petersburg, at an elevation of to in elevation.  (...)")
-	(title "Ropsha")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Ropsha"))
-
-([WikipediaGIS_Class30010] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(feature "waterbody")
-	(lang "en")
-	(lat 59.9397)
-	(lng 29.9914)
-	(rank 97)
-	(summary "The Neva Bay (Russian: Невская губа, Nevskaya Guba), also known as the Gulf of Kronstadt, is the easternmost part of the Gulf of Finland between Kotlin Island and the Neva River estuary where Saint Petersburg city centre is located. It has a surface area of  (...)")
-	(title "Neva Bay")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Neva_Bay"))
-
-([WikipediaGIS_Class30011] of  WikiArticle
-
-	(button-open-site "Open Site/wiki.gis/open-site")
-	(countryCode "RU")
-	(elevation 28)
-	(lang "en")
-	(lat 59.87)
-	(lng 29.89)
-	(rank 97)
-	(summary "Petrodvortsovy District is a district of the federal city of St. Petersburg, Russia. As of the 2010 Census, its population: was 128,156; up from 77,542 recorded in the 2002 Census.  (...)")
-	(title "Petrodvortsovy District")
-	(wikipediaUrl "https://en.wikipedia.org/wiki/Petrodvortsovy_District"))
-
-([WikipediaGIS_Class30013] of  BBX
-
-	(title "Grey Horse")
-	(wsen 29.0 59.0 30.0 60.0))
-
 ([WikipediaGIS_Class30023] of  CloFunction
 
 	(source "(let [mp (into {} hm)\n       url (or (mp \"wikipediaUrl\") (mp \"link\"))]\n  (if url\n    (.browse (java.awt.Desktop/getDesktop) (java.net.URI. url))))")
 	(title "open-site [hm inst]"))
 
-([WikipediaGIS_Class40000] of  CloFuncall
-
-	(source "(add-placemark \"A1\" \"airport\" 59.9 29.9 24 24) "))
-
-([WikipediaGIS_Class40001] of  Placemark
-
-	(description "airport: label")
-	(label "A1")
-	(latitude "59 54")
-	(longitude "29 54")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/airport.png"))
-
-([WikipediaGIS_Class40002] of  CloFuncall
-
-	(source "(add-placemark \"C1\" \"city\" 59.8 29.9 24 24) "))
-
-([WikipediaGIS_Class40003] of  Placemark
-
-	(description "city: label")
-	(label "C1")
-	(latitude "59 48")
-	(longitude "29 54")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
-
-([WikipediaGIS_Class40004] of  CloFuncall
-
-	(source "(add-placemark \"D1\" \"\" 59.85 29.9 24 24) "))
-
-([WikipediaGIS_Class40005] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb (fifos \"Placemark\" \"label\" \"airport\"))"))
-
-([WikipediaGIS_Class40006] of  CloFuncall
-
-	(source "(def omtr (ru.igis.omtab.OMT/getMapOb (fifos \"Placemark\" \"label\" \"airport\")))"))
-
-([WikipediaGIS_Class40007] of  CloFuncall
-
-	(source "(scale-omtraster  32 32)"))
-
-([WikipediaGIS_Class40008] of  CloFuncall
-
-	(source "(scale-omtraster omtr 32 32)"))
-
-([WikipediaGIS_Class40009] of  CloFuncall
-
-	(source "(scale-omtraster (ru.igis.omtab.OMT/getMapOb (fifos \"Placemark\" \"label\" \"airport\")) 32 32)"))
-
-([WikipediaGIS_Class40010] of  CloFuncall
-
-	(source "(scale-omtraster (ru.igis.omtab.OMT/getMapOb (fifos \"Placemark\" \"label\" \"airport\")) 16 16)"))
-
-([WikipediaGIS_Class40011] of  CloFuncall
-
-	(source "(scale-omtraster (ru.igis.omtab.OMT/getMapOb (fifos \"Placemark\" \"label\" \"airport\")) 24 24)"))
-
 ([WikipediaGIS_Class40012] of  CloVar
 
-	(source "{\"PATH\" \"file:resources/public/img/placemark/\"\n \"airport\" \"airport.png\"\n \"city\" \"city.png\"\n \"waterbody\" \"waterbody.png\"\n \"default\" \"info.png\"}")
+	(source "{\"PATH\"               \"file:resources/public/img/placemark/\"\n \"airport\"              \"airport.png\"\n \"city\"                   \"city.png\"\n \"waterbody\"        \"waterbody.png\"\n \"default-pois\"      \"place1.png\"\n \"landmark\"          \"landmark.png\"\n \"edu\"                   \"edu.png\"\n \"mountain\"          \"mountain.png\"\n \"river\"                  \"river.png\"\n \"railwaystation\"   \"railwaystation.png\"\n \"event\"                \"event.png\"\n \"isle\"                    \"isle.png\"\n \"adm2nd\"            \"house.png\"\n \"default\"              \"landmark.png\"\n \"\"                         \"info.png\"}")
 	(title "PM-FILES"))
-
-([WikipediaGIS_Class40013] of  Placemark
-
-	(description "airport")
-	(label "airport")
-	(latitude "60 0")
-	(longitude "30 0")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/airport.png"))
-
-([WikipediaGIS_Class40014] of  IconScale
-
-	(basicScale 0.01)
-	(label "IS1")
-	(maxScale 0.02)
-	(minScale 0.005))
 
 ([WikipediaGIS_Class40015] of  CloFunction
 
-	(source "([wia]\n  (let [tit (sv wia \"title\")\n        ins (add-placemark tit (sv wia \"feature\") (sv wia \"lat\") (sv wia \"lng\"))]\n    (ssv wia \"reference\" ins)))\n([lab feature lat lon]\n  (let [ins (foc \"Placemark\" \"label\" lab)]\n    (ssv ins \"description\" (str feature \": \" \"label\")) \n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"url\" (str (PM-FILES \"PATH\") (PM-FILES (or feature \"default\"))))\n    (OMT/getOrAdd ins)\n    ins))")
+	(source "([wia]\n  (let [tit (sv wia \"title\")\n        ins (add-placemark tit (sv wia \"feature\") (sv wia \"lat\") (sv wia \"lng\"))]\n    (ssv ins \"reference\" wia)\n    (ssv wia \"reference\" ins)))\n([lab feature lat lon]\n  (let [ins (foc \"Placemark\" \"label\" lab)]\n    (ssv ins \"description\" (str feature \": \" \"label\")) \n    (ssv ins \"latitude\" (MapOb/getDegMin lat))\n    (ssv ins \"longitude\" (MapOb/getDegMin lon))\n    (ssv ins \"url\" (str (PM-FILES \"PATH\") (or (PM-FILES feature) feature)))\n    (OMT/getOrAdd ins)\n    ins))")
 	(title "add-placemark"))
 
 ([WikipediaGIS_Class40028] of  CloFunction
 
-	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         radius-km (mp \"radius-km\")\n         lat (mp \"lat\")\n         lon (mp \"lng\")]\n    (ssvs inst \"responses\" \n      (if-let [resp (with-timeout TIMEOUT\n	   (call-wiki-nearby lat lon radius-km max lang))]\n        (filter some? (map #(article-from-map % \"WikiNearArticle\") resp))\n        [])) ))\n([inst lat lon]\n  (ssv inst \"lat\" lat)\n  (ssv inst \"lng\" lon)\n  (submit-nearby (itm inst 0) inst)\n  inst)")
+	(source "([hm inst]\n  (let [mp (into {} hm)\n         max (mp \"max-responses\")\n         lang (request-lang (mp \"language\"))\n         radius-km (mp \"radius-km\")\n         lat (mp \"lat\")\n         lon (mp \"lng\")\n         rsp (if-let [r (with-timeout TIMEOUT\n	   (call-wiki-nearby lat lon radius-km max lang))]\n                 (filter some? (map #(article-from-map % \"WikiArticle\") r))\n                 [])]\n    (doall (map add-placemark rsp))\n    (ssvs inst \"responses\" rsp)))\n([inst lat lon]\n  (ssv inst \"lat\" lat)\n  (ssv inst \"lng\" lon)\n  (submit-nearby (itm inst 0) inst)\n  inst)")
 	(title "submit-nearby"))
-
-([WikipediaGIS_Class50000] of  Placemark
-
-	(description ": label")
-	(label "Volosovo, Volosovsky District, Leningrad Oblast")
-	(latitude "59 27")
-	(longitude "29 29")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class50001] of  BBXWiki
-
-	(bbx [WikipediaGIS_Class30013])
-	(button-bbx "submit/wiki.gis/submit-bbx")
-	(button-clear-articles "Clear Articles/wiki.gis/clear-articles")
-	(language English-en)
-	(max-responses 12)
-	(responses
-		[WikipediaGIS_Class10000]
-		[WikipediaGIS_Class10001]
-		[WikipediaGIS_Class10002]
-		[WikipediaGIS_Class20003]
-		[WikipediaGIS_Class20004]
-		[WikipediaGIS_Class30005]
-		[WikipediaGIS_Class30006]
-		[WikipediaGIS_Class30007]
-		[WikipediaGIS_Class30008]
-		[WikipediaGIS_Class30009]
-		[WikipediaGIS_Class30010]
-		[WikipediaGIS_Class30011]))
-
-([WikipediaGIS_Class50002] of  FulltextSearch
-
-	(button-clear-articles "Clear Articles/wiki.gis/clear-articles")
-	(button-search "submit/wiki.gis/submit-search")
-	(language English-en)
-	(max-responses 5)
-	(text "hollywood"))
-
-([WikipediaGIS_Class50003] of  NearbySearch
-
-	(button-clear-articles "Clear Articles/wiki.gis/clear-articles")
-	(button-nearby "submit/wiki.gis/submit-nearby")
-	(language English-en)
-	(lat 60.0)
-	(lng 30.0)
-	(max-responses 12)
-	(radius-km 20))
-
-([WikipediaGIS_Class50005] of  Placemark
-
-	(description ": label")
-	(label "D1")
-	(latitude "59 51")
-	(longitude "29 51")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class50006] of  CloFuncall
-
-	(source "(add-placemark \"D1\" nil 59.85 29.85 24 24) "))
-
-([WikipediaGIS_Class50007] of  CloFuncall
-
-	(source "(add-placemark (first (cls-instances \"WikiArticle\")))"))
-
-([WikipediaGIS_Class50008] of  CloFuncall
-
-	(source "(add-placemark (second (cls-instances \"WikiArticle\")))"))
-
-([WikipediaGIS_Class50009] of  Placemark
-
-	(description "city: label")
-	(label "Petergof")
-	(latitude "59 53.08")
-	(longitude "29 54.53")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
-
-([WikipediaGIS_Class50010] of  CloFuncall
-
-	(source "(add-placemark (nth (cls-instances \"WikiArticle\") 2))"))
-
-([WikipediaGIS_Class50011] of  CloFuncall
-
-	(source "(add-placemark (nth (seq (cls-instances \"WikiArticle\")) 2))"))
-
-([WikipediaGIS_Class50012] of  Placemark
-
-	(description "city: label")
-	(label "Lomonosov, Russia")
-	(latitude "59 55.05")
-	(longitude "29 46.12")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
-
-([WikipediaGIS_Class50013] of  CloFuncall
-
-	(source "(add-placemark \"Pulkovo\" \"airport\" 59.746 30.191 24 24)"))
-
-([WikipediaGIS_Class50014] of  Placemark
-
-	(label "Pulkovo")
-	(latitude "59 44.76")
-	(longitude "30 11.46")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/airport.png"))
-
-([WikipediaGIS_Class50015] of  CloVar
-
-	(source "(volatile! {})")
-	(title "PM-MAP"))
-
-([WikipediaGIS_Class50016] of  CloFuncall
-
-	(source "(cls-instances \"WikiArticle\")"))
-
-([WikipediaGIS_Class50017] of  CloFuncall
-
-	(source "(map add-placemark (cls-instances \"WikiArticle\"))"))
-
-([WikipediaGIS_Class50018] of  Placemark
-
-	(description "city: label")
-	(label "Kronstadt")
-	(latitude "59 59.5")
-	(longitude "29 46.5")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
 
 ([WikipediaGIS_Class50049] of  CloFunction
 
@@ -509,111 +117,30 @@
 
 ([WikipediaGIS_Class50068] of  CloFunction
 
-	(source "(let [ans (JOptionPane/showConfirmDialog nil \"Are you shure?\")]\n  (if (= ans (JOptionPane/YES_OPTION))\n      (doall (map delin (cls-instances \"WikiArticle\"))) ))")
+	(source "(let [ans (JOptionPane/showConfirmDialog nil \"All articles?\")]\n  (if (= ans (JOptionPane/YES_OPTION))\n        (doall (map del-article (cls-instances \"WikiArticle\")))\n        (let [ans (JOptionPane/showConfirmDialog nil \"Responses articles?\")]\n          (if (= ans (JOptionPane/YES_OPTION))\n            (doall (map del-article (svs inst \"responses\"))) ))))")
 	(title "clear-articles [hm inst]"))
-
-([WikipediaGIS_Class60001] of  Placemark
-
-	(description ": label")
-	(label "Ingria")
-	(latitude "59 38")
-	(longitude "29 18")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class60002] of  Placemark
-
-	(description ": label")
-	(label "Ropsha")
-	(latitude "59 44.05")
-	(longitude "29 52.3")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class60003] of  Placemark
-
-	(description "waterbody: label")
-	(label "Neva Bay")
-	(latitude "59 56.38")
-	(longitude "29 59.48")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/waterbody.png"))
-
-([WikipediaGIS_Class60004] of  Placemark
-
-	(description ": label")
-	(label "Petrodvortsovy District")
-	(latitude "59 52.2")
-	(longitude "29 53.4")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class60013] of  CloFuncall
-
-	(source "(add-placemark (nth (seq (cls-instances \"WikiArticle\")) 3))"))
-
-([WikipediaGIS_Class60014] of  Placemark
-
-	(description "city: label")
-	(label "Sosnovy Bor, Leningrad Oblast")
-	(latitude "59 54.02")
-	(longitude "29 5.62")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
-
-([WikipediaGIS_Class60015] of  CloFuncall
-
-	(source "(add-placemark (nth (seq (cls-instances \"WikiArticle\")) 4))"))
-
-([WikipediaGIS_Class60016] of  Placemark
-
-	(description ": label")
-	(label "Lomonosovsky District, Leningrad Oblast")
-	(latitude "59 55")
-	(longitude "29 46")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class60017] of  CloFuncall
-
-	(source "(add-placemark (nth (seq (cls-instances \"WikiArticle\")) 5))"))
-
-([WikipediaGIS_Class60018] of  Placemark
-
-	(description ": label")
-	(label "Volosovsky District")
-	(latitude "59 27")
-	(longitude "29 29")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/info.png"))
-
-([WikipediaGIS_Class60019] of  CloFuncall
-
-	(source "(add-placemark (nth (seq (cls-instances \"WikiArticle\")) 6))"))
-
-([WikipediaGIS_Class60020] of  Placemark
-
-	(description "city: label")
-	(label "Peterhof Palace")
-	(latitude "59 53.08")
-	(longitude "29 54.53")
-	(playground-index 0)
-	(url "file:resources/public/img/placemark/city.png"))
 
 ([WikipediaGIS_Class60088] of  CloFunction
 
 	(source "(let [ans (JOptionPane/showConfirmDialog nil \"Are you shure?\")]\n  (if (= ans (JOptionPane/YES_OPTION))\n      (doall (map delin (cls-instances \"GeoRSSItem\"))) ))")
 	(title "clear-rss [hm inst]"))
 
-([WikipediaGIS_Class60090] of  RSSRequest
-
-	(button-clear-rss "Clear RSS/wiki.gis/clear-rss")
-	(button-rss "submit/wiki.gis/submit-rss")
-	(feedURL
-		"http://feeds.reuters.com/reuters/worldNews"
-		"http://news.nationalgeographic.com/index.rss"))
-
 ([WikipediaGIS_Class70002] of  CloFunction
 
-	(source "(let [mb (OpenMapTab/getMapBean)\n      prj (.getProjection mb)\n      lrp (.getLowerRight prj)\n      ulp (.getUpperLeft prj)\n      wsen [(.getX ulp) (.getY lrp) (.getX lrp) (.getY ulp)]]\n  (println wsen))")
+	(source "(let [mp (into {} hm)\n       max (mp \"max-responses\")\n       lang (request-lang (mp \"language\"))\n       mb (OpenMapTab/getMapBean)\n       prj (.getProjection mb)\n       lrp (.getLowerRight prj)\n       ulp (.getUpperLeft prj)\n       [w s e n] [(.getX ulp) (.getY lrp) (.getX lrp) (.getY ulp)]\n       rsp (if-let [r (with-timeout TIMEOUT\n                            (call-wiki-bbx n w s e max lang))]\n               (filter some? (map #(article-from-map % \"WikiArticle\") r))\n               [])]\n  (doall (map add-placemark rsp))\n  (ssvs inst \"responses\" rsp))")
 	(title "submit-current-bbx [hm inst]"))
+
+([WikipediaGIS_Class80115] of  CloFunction
+
+	(source "(if-let [ref (sv ari \"reference\")]\n  (OMT/removeMapOb ref true))\n(delin ari)")
+	(title "del-article [ari]"))
+
+([WikipediaGIS_Class80211] of  CloFunction
+
+	(source "(let [rmma (proxy [RuMapMouseAdapter] []\n	(mouseRightButtonClickedOn [mo llp runa]\n                            (if mo\n                              (if-let [art (sv (.getInstance mo) \"reference\")]\n                                (.show *prj* art)))\n	  true))\n       pgs (seq (OMT/getPlaygrounds))]\n  (.setRuMapMouseAdapter (first pgs) rmma)\n  rmma)")
+	(title "set-mouse-adapter []"))
+
+([WikipediaGIS_Class80238] of  Command
+
+	(label "Activate Right Mouse Button")
+	(scenario "clojuretab.ClojureTab invoke wiki.gis set-mouse-adapter"))

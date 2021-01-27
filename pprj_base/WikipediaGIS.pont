@@ -1,4 +1,4 @@
-; Mon Jan 25 22:06:03 MSK 2021
+; Tue Jan 26 17:17:14 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,7 +9,7 @@
 	(role abstract)
 	(single-slot button-bbx
 		(type STRING)
-		(default "submit/wiki.gis/submit-bbx")
+;+		(value "Submit BBX/wiki.gis/submit-bbx")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot geo%3Along
@@ -45,7 +45,7 @@
 		(create-accessor read-write))
 	(single-slot max-responses
 		(type INTEGER)
-		(default 5)
+		(default 12)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot button-nearby
@@ -120,13 +120,13 @@
 		(type INSTANCE)
 ;+		(allowed-classes WikiArticle)
 		(create-accessor read-write))
-	(single-slot wikipediaUrl
+	(single-slot button-current-map
 		(type STRING)
+;+		(value "Submit Current Map/wiki.gis/submit-current-bbx")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot button-current-bbx
+	(single-slot wikipediaUrl
 		(type STRING)
-;+		(value "Submit Current BBX/wiki.gis/submit-current-bbx")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot pubDate
@@ -219,6 +219,11 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot reference
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot population
 		(type INTEGER)
 ;+		(cardinality 0 1)
@@ -267,7 +272,7 @@
 		(create-accessor read-write))
 	(single-slot max-responses
 		(type INTEGER)
-		(default 5)
+		(default 12)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot button-clear-articles
@@ -296,19 +301,19 @@
 (defclass BBXWiki
 	(is-a Request)
 	(role concrete)
+	(single-slot button-current-map
+		(type STRING)
+;+		(value "Submit Current Map/wiki.gis/submit-current-bbx")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot bbx
 		(type INSTANCE)
 ;+		(allowed-classes BBX)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot button-current-bbx
-		(type STRING)
-;+		(value "Submit Current BBX/wiki.gis/submit-current-bbx")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot button-bbx
 		(type STRING)
-		(default "submit/wiki.gis/submit-bbx")
+;+		(value "Submit BBX/wiki.gis/submit-bbx")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

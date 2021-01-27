@@ -1,4 +1,4 @@
-; Mon Jan 25 22:06:03 MSK 2021
+; Tue Jan 26 17:17:14 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,9 +21,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[WikipediaGIS_ProjectKB_Class21539]
-		[WikipediaGIS_ProjectKB_Class21540]
-		[WikipediaGIS_ProjectKB_Class21541]))
+		[WikipediaGIS_ProjectKB_Class31514]
+		[WikipediaGIS_ProjectKB_Class31515]
+		[WikipediaGIS_ProjectKB_Class31516]))
 
 ([CLSES_TAB] of  Widget
 
@@ -113,6 +113,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_242781_Class1505] of  Map
+
+	(entries
+		[KB_242781_Class1506]
+		[KB_242781_Class1507]
+		[KB_242781_Class1508]))
+
+([KB_242781_Class1506] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_242781_Class1507] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_242781_Class1508] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_727229_Class0] of  String
 
 	(name "factory_class_name")
@@ -120,8 +148,8 @@
 
 ([KB_727229_Class1] of  Map
 
-	(entries [WikipediaGIS_ProjectKB_Class21544])
-	(referenced_maps [WikipediaGIS_ProjectKB_Class21542]))
+	(entries [WikipediaGIS_ProjectKB_Class31519])
+	(referenced_maps [WikipediaGIS_ProjectKB_Class31517]))
 
 ([KB_727229_Class13] of  Property_List
 
@@ -211,34 +239,6 @@
 
 	(name "instances_file_name")
 	(string_value "WikipediaGIS.pins"))
-
-([KB_948793_Class1505] of  Map
-
-	(entries
-		[KB_948793_Class1506]
-		[KB_948793_Class1507]
-		[KB_948793_Class1508]))
-
-([KB_948793_Class1506] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_948793_Class1507] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_948793_Class1508] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -1055,6 +1055,33 @@
 ([WikipediaGIS_ProjectKB_Class11103] of  Property_List
 )
 
+([WikipediaGIS_ProjectKB_Class11570] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "reference")
+	(property_list [WikipediaGIS_ProjectKB_Class11571])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 560))
+
+([WikipediaGIS_ProjectKB_Class11571] of  Property_List
+
+	(properties
+		[WikipediaGIS_ProjectKB_Class11572]
+		[WikipediaGIS_ProjectKB_Class11573]))
+
+([WikipediaGIS_ProjectKB_Class11572] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([WikipediaGIS_ProjectKB_Class11573] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
 ([WikipediaGIS_ProjectKB_Class1509] of  Widget
 
 	(is_hidden FALSE)
@@ -1235,7 +1262,7 @@
 
 ([WikipediaGIS_ProjectKB_Class20736] of  Widget
 
-	(height 280)
+	(height 370)
 	(is_hidden FALSE)
 	(label "Responses")
 	(name "responses")
@@ -1439,7 +1466,7 @@
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "button-current-bbx")
+	(name "button-current-map")
 	(property_list [WikipediaGIS_ProjectKB_Class21532])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
@@ -1448,39 +1475,6 @@
 
 ([WikipediaGIS_ProjectKB_Class21532] of  Property_List
 )
-
-([WikipediaGIS_ProjectKB_Class21539] of  String
-
-	(name "BBX")
-	(string_value "title"))
-
-([WikipediaGIS_ProjectKB_Class21540] of  String
-
-	(name "GeoRSSItem")
-	(string_value "title"))
-
-([WikipediaGIS_ProjectKB_Class21541] of  String
-
-	(name "WikiArticle")
-	(string_value "title"))
-
-([WikipediaGIS_ProjectKB_Class21542] of  Map
-
-	(entries [WikipediaGIS_ProjectKB_Class21543]))
-
-([WikipediaGIS_ProjectKB_Class21543] of  Map_Entry
-
-	(key "WikipediaGIS_Class2")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "12 479 212 124")
-	(value_class "java.awt.Rectangle"))
-
-([WikipediaGIS_ProjectKB_Class21544] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "WikipediaGIS_ProjectKB_Class21542")
-	(value_class "java.util.Map"))
 
 ([WikipediaGIS_ProjectKB_Class30736] of  Widget
 
@@ -1643,6 +1637,39 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
+
+([WikipediaGIS_ProjectKB_Class31514] of  String
+
+	(name "BBX")
+	(string_value "title"))
+
+([WikipediaGIS_ProjectKB_Class31515] of  String
+
+	(name "GeoRSSItem")
+	(string_value "title"))
+
+([WikipediaGIS_ProjectKB_Class31516] of  String
+
+	(name "WikiArticle")
+	(string_value "title"))
+
+([WikipediaGIS_ProjectKB_Class31517] of  Map
+
+	(entries [WikipediaGIS_ProjectKB_Class31518]))
+
+([WikipediaGIS_ProjectKB_Class31518] of  Map_Entry
+
+	(key "WikipediaGIS_Class2")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "12 479 212 124")
+	(value_class "java.awt.Rectangle"))
+
+([WikipediaGIS_ProjectKB_Class31519] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "WikipediaGIS_ProjectKB_Class31517")
+	(value_class "java.util.Map"))
 
 ([WikipediaGIS_ProjectKB_Class324] of  Widget
 
@@ -2289,7 +2316,8 @@
 		[WikipediaGIS_ProjectKB_Class446]
 		[WikipediaGIS_ProjectKB_Class448]
 		[WikipediaGIS_ProjectKB_Class450]
-		[WikipediaGIS_ProjectKB_Class452]))
+		[WikipediaGIS_ProjectKB_Class452]
+		[WikipediaGIS_ProjectKB_Class11570]))
 
 ([WikipediaGIS_ProjectKB_Class785] of  Property_List
 

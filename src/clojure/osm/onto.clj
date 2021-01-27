@@ -226,12 +226,17 @@
 (defn set-mouse-adapter []
   (let [rmma (proxy [RuMapMouseAdapter] []
 	(mouseLeftButtonAction [mo llp runa]
-                            (println MODE mo (seq llp) (.getName runa))
+                        (println MODE mo (seq llp) (.getName runa))
 	  (condp = MODE
 	    'ADD (add-way llp)
 	    'REMOVE (remove-way mo)
 	    'NODES (mk-node (reverse llp))
 	    (println (or (if mo (.getName mo)) (seq llp))))
+	  true)
+	(mouseRightButtonClickedOn [mo llp runa]
+                        (if mo
+                          (if-let [art (sv (.getInstance mo) "reference")]
+                            (.show *prj* art)))
 	  true))
        pgs (seq (OMT/getPlaygrounds))]
   (.setRuMapMouseAdapter (first pgs) rmma)

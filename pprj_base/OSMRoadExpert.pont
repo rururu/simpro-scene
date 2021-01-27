@@ -1,0 +1,169 @@
+; Wed Jan 27 19:41:23 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot bur-fill-dir-route
+		(type STRING)
+;+		(value "Fill Directed Route/osm.path/fill-dir-route")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot directed-route
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot directions
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+		(create-accessor read-write))
+	(single-slot but-replace-dirway-in-road
+		(type STRING)
+;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-create-dirways
+		(type STRING)
+;+		(value "Create Dirways/osm.path/create-dirways")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot last
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot roads
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+		(create-accessor read-write))
+	(multislot directed-roads
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoad)
+		(create-accessor read-write)))
+
+(defclass RoadControlD
+	(is-a RoadControl)
+	(role concrete)
+	(single-slot bur-fill-dir-route
+		(type STRING)
+;+		(value "Fill Directed Route/osm.path/fill-dir-route")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot directed-route
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoute)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot roads
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+		(create-accessor read-write))
+	(multislot directions
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+		(create-accessor read-write)))
+
+(defclass DirectedRoad
+	(is-a OSM+Onto)
+	(role concrete)
+	(single-slot direction
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes Variable %3ATHING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DirectedRoute
+	(is-a OSM+Onto)
+	(role concrete)
+	(multislot directed-roads
+		(type INSTANCE)
+;+		(allowed-classes DirectedRoad)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoalR
+	(is-a Goal)
+	(role concrete)
+	(single-slot radius
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Trail0
+	(is-a Path)
+	(role concrete)
+	(single-slot last
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot edges
+		(type INSTANCE)
+;+		(allowed-classes Edge)
+		(create-accessor read-write)))
+
+(defclass Trail1
+	(is-a Trail0)
+	(role concrete))
+
+(defclass Quasisolution
+	(is-a Solution)
+	(role concrete))
+
+(defclass GoDirectedRoad
+	(is-a GoRoad)
+	(role concrete))
+
+(defclass Stop
+	(is-a GiveAdvice)
+	(role concrete))
+
+(defclass Console
+	(is-a USER)
+	(role concrete)
+	(single-slot but-create-dirways
+		(type STRING)
+;+		(value "Create Dirways/osm.path/create-dirways")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot dirways
+		(type INSTANCE)
+;+		(allowed-classes Dirway)
+		(create-accessor read-write))
+	(single-slot direct
+		(type SYMBOL)
+		(allowed-values FORWARD BACKWARD)
+		(default FORWARD)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-replace-dirway-in-road
+		(type STRING)
+;+		(value "Replace Dirway in Road/osm.path/replace-dirway-in-road")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot edges
+		(type INSTANCE)
+;+		(allowed-classes Edge)
+		(create-accessor read-write))
+	(single-slot road
+		(type INSTANCE)
+;+		(allowed-classes RoadSubclasses)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -9,14 +9,24 @@
   com.bbn.openmap.omGraphics.OMScalingIcon
   ru.igis.omtab.OMT
   ru.igis.omtab.MapOb
-  ru.igis.omtab.OpenMapTab))
+  ru.igis.omtab.OpenMapTab
+  ru.igis.omtab.gui.RuMapMouseAdapter))
 (def TIMEOUT 15000)
-(def PM-FILES {"PATH" "file:resources/public/img/placemark/"
- "airport" "airport.png"
- "city" "city.png"
- "waterbody" "waterbody.png"
- "default" "info.png"})
-(def PM-MAP (volatile! {}))
+(def PM-FILES {"PATH"               "file:resources/public/img/placemark/"
+ "airport"              "airport.png"
+ "city"                   "city.png"
+ "waterbody"        "waterbody.png"
+ "default-pois"      "place1.png"
+ "landmark"          "landmark.png"
+ "edu"                   "edu.png"
+ "mountain"          "mountain.png"
+ "river"                  "river.png"
+ "railwaystation"   "railwaystation.png"
+ "event"                "event.png"
+ "isle"                    "isle.png"
+ "adm2nd"            "house.png"
+ "default"              "landmark.png"
+ ""                         "info.png"})
 (defmacro with-timeout [msec & body]
   `(let [f# (future (do ~@body))
          v# (gensym)
@@ -57,17 +67,33 @@
      (println [:bbx-of-list crds :exception e])
      nil))))
 
+(defn add-placemark
+  ([wia]
+  (let [tit (sv wia "title")
+        ins (add-placemark tit (sv wia "feature") (sv wia "lat") (sv wia "lng"))]
+    (ssv ins "reference" wia)
+    (ssv wia "reference" ins)))
+([lab feature lat lon]
+  (let [ins (foc "Placemark" "label" lab)]
+    (ssv ins "description" (str feature ": " "label")) 
+    (ssv ins "latitude" (MapOb/getDegMin lat))
+    (ssv ins "longitude" (MapOb/getDegMin lon))
+    (ssv ins "url" (str (PM-FILES "PATH") (or (PM-FILES feature) feature)))
+    (OMT/getOrAdd ins)
+    ins)))
+
 (defn submit-bbx
   ([hm inst]
   (let [mp (into {} hm)
          max (mp "max-responses")
          lang (request-lang (mp "language"))
-         [west south east north] (seq (svs (mp "bbx") "wsen"))]
-    (ssvs inst "responses" 
-      (if-let [resp (with-timeout TIMEOUT
-	   (call-wiki-bbx north west south east max lang))]
-        (filter some? (map #(article-from-map % "WikiArticle") resp))
-        [])) ))
+         [west south east north] (seq (svs (mp "bbx") "wsen"))
+         rsp (if-let [r (with-timeout TIMEOUT
+	    (call-wiki-bbx north west south east max lang))]
+                 (filter some? (map #(article-from-map % "WikiArticle") r))
+                 [])]
+    (doall (map add-placemark rsp))
+    (ssvs inst "responses" rsp)))
 ([inst bbx-title bbx]
   (if-let [bbx-inst (fifos "BBX" "title" bbx-title)]
     (ssv inst "bbx" bbx-inst)
@@ -81,12 +107,13 @@
   (let [mp (into {} hm)
          max (mp "max-responses")
          lang (request-lang (mp "language"))
-         text (mp "text")]
-    (ssvs inst "responses" 
-      (if-let [resp (with-timeout TIMEOUT
+         text (mp "text")
+         rsp (if-let [r (with-timeout TIMEOUT
 	   (call-wiki-search text max lang))]
-        (filter some? (map #(article-from-map % "WikiArticle") resp))
-        [])) ))
+                 (filter some? (map #(article-from-map % "WikiArticle") r))
+                 [])]
+    (doall (map add-placemark rsp))
+    (ssvs inst "responses" rsp)))
 ([inst any txt]
   (ssv inst "text" txt)
   (ssvs inst "responses" 
@@ -95,6 +122,7 @@
 	(request-lang (sv inst  "language")))]
       (filter some? (map #(article-from-map % "WikiArticle") resp))
       []))
+  (doall (map add-placemark (svs inst "responses")))
   inst))
 
 (defn get-bbx-center [bbx-ins]
@@ -109,12 +137,13 @@
          lang (request-lang (mp "language"))
          radius-km (mp "radius-km")
          lat (mp "lat")
-         lon (mp "lng")]
-    (ssvs inst "responses" 
-      (if-let [resp (with-timeout TIMEOUT
+         lon (mp "lng")
+         rsp (if-let [r (with-timeout TIMEOUT
 	   (call-wiki-nearby lat lon radius-km max lang))]
-        (filter some? (map #(article-from-map % "WikiNearArticle") resp))
-        [])) ))
+                 (filter some? (map #(article-from-map % "WikiArticle") r))
+                 [])]
+    (doall (map add-placemark rsp))
+    (ssvs inst "responses" rsp)))
 ([inst lat lon]
   (ssv inst "lat" lat)
   (ssv inst "lng" lon)
@@ -155,35 +184,48 @@
   (if url
     (.browse (java.awt.Desktop/getDesktop) (java.net.URI. url)))))
 
+(defn del-article [ari]
+  (if-let [ref (sv ari "reference")]
+  (OMT/removeMapOb ref true))
+(delin ari))
+
 (defn clear-articles [hm inst]
-  (let [ans (JOptionPane/showConfirmDialog nil "Are you shure?")]
+  (let [ans (JOptionPane/showConfirmDialog nil "All articles?")]
   (if (= ans (JOptionPane/YES_OPTION))
-      (doall (map delin (cls-instances "WikiArticle"))) )))
+        (doall (map del-article (cls-instances "WikiArticle")))
+        (let [ans (JOptionPane/showConfirmDialog nil "Responses articles?")]
+          (if (= ans (JOptionPane/YES_OPTION))
+            (doall (map del-article (svs inst "responses"))) )))))
 
 (defn clear-rss [hm inst]
   (let [ans (JOptionPane/showConfirmDialog nil "Are you shure?")]
   (if (= ans (JOptionPane/YES_OPTION))
       (doall (map delin (cls-instances "GeoRSSItem"))) )))
 
-(defn add-placemark
-  ([wia]
-  (let [tit (sv wia "title")
-        ins (add-placemark tit (sv wia "feature") (sv wia "lat") (sv wia "lng"))]
-    (ssv wia "reference" ins)))
-([lab feature lat lon]
-  (let [ins (foc "Placemark" "label" lab)]
-    (ssv ins "description" (str feature ": " "label")) 
-    (ssv ins "latitude" (MapOb/getDegMin lat))
-    (ssv ins "longitude" (MapOb/getDegMin lon))
-    (ssv ins "url" (str (PM-FILES "PATH") (PM-FILES (or feature "default"))))
-    (OMT/getOrAdd ins)
-    ins)))
-
 (defn submit-current-bbx [hm inst]
-  (let [mb (OpenMapTab/getMapBean)
-      prj (.getProjection mb)
-      lrp (.getLowerRight prj)
-      ulp (.getUpperLeft prj)
-      wsen [(.getX ulp) (.getY lrp) (.getX lrp) (.getY ulp)]]
-  (println wsen)))
+  (let [mp (into {} hm)
+       max (mp "max-responses")
+       lang (request-lang (mp "language"))
+       mb (OpenMapTab/getMapBean)
+       prj (.getProjection mb)
+       lrp (.getLowerRight prj)
+       ulp (.getUpperLeft prj)
+       [w s e n] [(.getX ulp) (.getY lrp) (.getX lrp) (.getY ulp)]
+       rsp (if-let [r (with-timeout TIMEOUT
+                            (call-wiki-bbx n w s e max lang))]
+               (filter some? (map #(article-from-map % "WikiArticle") r))
+               [])]
+  (doall (map add-placemark rsp))
+  (ssvs inst "responses" rsp)))
+
+(defn set-mouse-adapter []
+  (let [rmma (proxy [RuMapMouseAdapter] []
+	(mouseRightButtonClickedOn [mo llp runa]
+                            (if mo
+                              (if-let [art (sv (.getInstance mo) "reference")]
+                                (.show *prj* art)))
+	  true))
+       pgs (seq (OMT/getPlaygrounds))]
+  (.setRuMapMouseAdapter (first pgs) rmma)
+  rmma))
 
