@@ -18,8 +18,8 @@ ajax.simple.process_response = (function ajax$simple$process_response(response,i
 return ajax.protocols._process_response.call(null,interceptor,response);
 });
 ajax.simple.js_handler = (function ajax$simple$js_handler(var_args){
-var G__9227 = arguments.length;
-switch (G__9227) {
+var G__8769 = arguments.length;
+switch (G__8769) {
 case 3:
 return ajax.simple.js_handler.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -59,10 +59,10 @@ return handler.call(null,processed);
 
 ajax.simple.js_handler.cljs$lang$maxFixedArity = 3;
 
-ajax.simple.base_handler = (function ajax$simple$base_handler(interceptors,p__9229){
-var map__9230 = p__9229;
-var map__9230__$1 = (((((!((map__9230 == null))))?(((((map__9230.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__9230.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__9230):map__9230);
-var handler = cljs.core.get.call(null,map__9230__$1,new cljs.core.Keyword(null,"handler","handler",-195596612));
+ajax.simple.base_handler = (function ajax$simple$base_handler(interceptors,p__8771){
+var map__8772 = p__8771;
+var map__8772__$1 = (((((!((map__8772 == null))))?(((((map__8772.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8772.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8772):map__8772);
+var handler = cljs.core.get.call(null,map__8772__$1,new cljs.core.Keyword(null,"handler","handler",-195596612));
 if(cljs.core.truth_(handler)){
 return ajax.simple.js_handler.call(null,handler,interceptors);
 } else {
@@ -73,8 +73,8 @@ ajax.simple.default_interceptors = cljs.core.atom.call(null,cljs.core.Persistent
 ajax.simple.normalize_request = (function ajax$simple$normalize_request(request){
 var response_format = ajax.interceptors.get_response_format.call(null,ajax.formats.detect_response_format,request);
 return cljs.core.update.call(null,cljs.core.update.call(null,request,new cljs.core.Keyword(null,"method","method",55703592),ajax.simple.normalize_method),new cljs.core.Keyword(null,"interceptors","interceptors",-1546782951),((function (response_format){
-return (function (p1__9232_SHARP_){
-return cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [response_format], null),(function (){var or__4047__auto__ = p1__9232_SHARP_;
+return (function (p1__8774_SHARP_){
+return cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [response_format], null),(function (){var or__4047__auto__ = p1__8774_SHARP_;
 if(cljs.core.truth_(or__4047__auto__)){
 return or__4047__auto__;
 } else {
@@ -91,11 +91,11 @@ ajax.simple.process_request = (function ajax$simple$process_request(request,inte
 
 return ajax.protocols._process_request.call(null,interceptor,request);
 });
-ajax.simple.raw_ajax_request = (function ajax$simple$raw_ajax_request(p__9233){
-var map__9234 = p__9233;
-var map__9234__$1 = (((((!((map__9234 == null))))?(((((map__9234.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__9234.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__9234):map__9234);
-var request = map__9234__$1;
-var interceptors = cljs.core.get.call(null,map__9234__$1,new cljs.core.Keyword(null,"interceptors","interceptors",-1546782951));
+ajax.simple.raw_ajax_request = (function ajax$simple$raw_ajax_request(p__8775){
+var map__8776 = p__8775;
+var map__8776__$1 = (((((!((map__8776 == null))))?(((((map__8776.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8776.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8776):map__8776);
+var request = map__8776__$1;
+var interceptors = cljs.core.get.call(null,map__8776__$1,new cljs.core.Keyword(null,"interceptors","interceptors",-1546782951));
 
 var request__$1 = cljs.core.reduce.call(null,ajax.simple.process_request,request,interceptors);
 var handler = ajax.simple.base_handler.call(null,cljs.core.reverse.call(null,interceptors),request__$1);

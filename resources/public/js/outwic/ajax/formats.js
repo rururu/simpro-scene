@@ -11,8 +11,8 @@ goog.require('ajax.protocols');
  * is nonetheless really rather useful.
  */
 ajax.formats.raw_response_format = (function ajax$formats$raw_response_format(var_args){
-var G__8979 = arguments.length;
-switch (G__8979) {
+var G__8440 = arguments.length;
+switch (G__8440) {
 case 0:
 return ajax.formats.raw_response_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -42,8 +42,8 @@ return new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"wr
 });
 ajax.formats.text_response_format = ajax.formats.raw_response_format;
 ajax.formats.get_format = (function ajax$formats$get_format(var_args){
-var G__8982 = arguments.length;
-switch (G__8982) {
+var G__8443 = arguments.length;
+switch (G__8443) {
 case 2:
 return ajax.formats.get_format.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -91,8 +91,8 @@ return format_entry.call(null,request);
 ajax.formats.get_format.cljs$lang$maxFixedArity = 2;
 
 ajax.formats.get_accept_entries = (function ajax$formats$get_accept_entries(var_args){
-var G__8985 = arguments.length;
-switch (G__8985) {
+var G__8446 = arguments.length;
+switch (G__8446) {
 case 2:
 return ajax.formats.get_accept_entries.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -140,8 +140,8 @@ return fe;
 ajax.formats.get_accept_entries.cljs$lang$maxFixedArity = 2;
 
 ajax.formats.content_type_matches = (function ajax$formats$content_type_matches(var_args){
-var G__8988 = arguments.length;
-switch (G__8988) {
+var G__8449 = arguments.length;
+switch (G__8449) {
 case 2:
 return ajax.formats.content_type_matches.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -169,8 +169,8 @@ return ((cljs.core._EQ_.call(null,accept,"*/*")) || ((content_type.indexOf(accep
 ajax.formats.content_type_matches.cljs$lang$maxFixedArity = 2;
 
 ajax.formats.detect_content_type = (function ajax$formats$detect_content_type(var_args){
-var G__8991 = arguments.length;
-switch (G__8991) {
+var G__8452 = arguments.length;
+switch (G__8452) {
 case 3:
 return ajax.formats.detect_content_type.cljs$core$IFn$_invoke$arity$3((arguments[(0)]),(arguments[(1)]),(arguments[(2)]));
 
@@ -210,17 +210,17 @@ return cljs.core.some.call(null,ajax.formats.content_type_matches.call(null,cont
 
 ajax.formats.detect_content_type.cljs$lang$maxFixedArity = 3;
 
-ajax.formats.get_default_format = (function ajax$formats$get_default_format(response,p__8993){
-var map__8994 = p__8993;
-var map__8994__$1 = (((((!((map__8994 == null))))?(((((map__8994.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8994.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8994):map__8994);
-var request = map__8994__$1;
-var response_format = cljs.core.get.call(null,map__8994__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
+ajax.formats.get_default_format = (function ajax$formats$get_default_format(response,p__8454){
+var map__8455 = p__8454;
+var map__8455__$1 = (((((!((map__8455 == null))))?(((((map__8455.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8455.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8455):map__8455);
+var request = map__8455__$1;
+var response_format = cljs.core.get.call(null,map__8455__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
 var f = ajax.formats.detect_content_type.call(null,ajax.util.get_content_type.call(null,response),request);
 return ajax.formats.get_format.call(null,request,cljs.core.first.call(null,cljs.core.filter.call(null,f,response_format)));
 });
 ajax.formats.detect_response_format_read = (function ajax$formats$detect_response_format_read(var_args){
-var G__8997 = arguments.length;
-switch (G__8997) {
+var G__8458 = arguments.length;
+switch (G__8458) {
 case 2:
 return ajax.formats.detect_response_format_read.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -249,11 +249,11 @@ return new cljs.core.Keyword(null,"read","read",1140058661).cljs$core$IFn$_invok
 
 ajax.formats.detect_response_format_read.cljs$lang$maxFixedArity = 2;
 
-ajax.formats.accept_header = (function ajax$formats$accept_header(p__8999){
-var map__9000 = p__8999;
-var map__9000__$1 = (((((!((map__9000 == null))))?(((((map__9000.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__9000.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__9000):map__9000);
-var request = map__9000__$1;
-var response_format = cljs.core.get.call(null,map__9000__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
+ajax.formats.accept_header = (function ajax$formats$accept_header(p__8460){
+var map__8461 = p__8460;
+var map__8461__$1 = (((((!((map__8461 == null))))?(((((map__8461.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8461.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8461):map__8461);
+var request = map__8461__$1;
+var response_format = cljs.core.get.call(null,map__8461__$1,new cljs.core.Keyword(null,"response-format","response-format",1664465322));
 if(cljs.core.vector_QMARK_.call(null,response_format)){
 return cljs.core.mapcat.call(null,ajax.formats.get_accept_entries.call(null,request),response_format);
 } else {

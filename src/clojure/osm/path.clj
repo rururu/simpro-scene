@@ -12,7 +12,7 @@
   edu.stanford.smi.protege.ui.DisplayUtilities))
 (def TRACE true)
 (def NEAR 0.0005)
-(def NODE-YXS [])
+(def OLD-NODES (volatile! []))
 (def FRAME nil)
 (def GOAL-RAD 0.001)
 (defn simple-dist-osm
@@ -93,12 +93,13 @@ egs)
 (defn set-near [deg]
   (def NEAR deg))
 
-(defn find-new-node [xy]
-  (let [box (of/bbx xy GOAL-RAD)]
-  (if (not (some #(of/in-bbx % box) NODE-YXS))
-    (when-let [noi (oo/fmk-node xy)]
-      (def NODE-YXS (conj NODE-YXS [(sv noi "y") (sv noi "x")]))
-      noi))))
+(defn find-new-nodes [xy]
+  (if-let [nis (seq (oo/fmk-nodes xy))]
+  (let [old @OLD-NODES
+        new (filter #(not (some #{%} old)) nis)]
+    (when (seq new)
+      (vreset! OLD-NODES (concat old new))
+      new))))
 
 (defn mk-road [tit sub frm to xy egs]
   (let [drs (oo/edges-dirs xy egs)

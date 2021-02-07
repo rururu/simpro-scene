@@ -168,7 +168,9 @@
   egi))
 
 (defn find-nodes [xy rad]
-  (pe/qt-do-query "Node" (f/bbx xy rad)))
+  (let [[w s e n] (f/bbx xy rad)]
+  (filter #(let [xi (sv % "x") yi (sv % "y")]
+               (and (> xi w) (> yi s) (< xi e) (< yi n))) (cls-instances "Node"))))
 
 (defn mk-node [xy]
   (if-let [ils (seq (f/iLines-with-beg-or-end-in-bbx 
@@ -204,14 +206,15 @@
 (doseq [egi (svs inst "edges")]
  (show-mapob nil egi)))
 
-(defn fmk-node [xy]
-  (if-let [noi (first (find-nodes xy (get-radius)))]
+(defn fmk-nodes [xy]
+  (if-let [nis (seq (find-nodes xy (get-radius)))]
   (do 
     (when (is-show?)
-      (show-node nil noi)
-      (println "Find Node" (sv noi "label")))
-    noi)
-  (mk-node xy)))
+      (doseq [ni nis]
+        (show-node nil ni)
+        (println "Find Node" (sv ni "label"))))
+    nis)
+  [(mk-node xy)]))
 
 (defn hide-mapob [hm inst]
   (if-let[moi (fifos "MapOb" "label" (sv inst "label"))]
@@ -311,7 +314,7 @@
 
 (defn connected-nodes [hm inst]
   (if-let [noi (sv inst "node")]
-  (ssvs inst "nodes" (map fmk-node (star-points noi)))
+  (ssvs inst "nodes" (map fmk-nodes (star-points noi)))
   (println "Fill node slot!")))
 
 (defn edge-dir-cont [xy e]

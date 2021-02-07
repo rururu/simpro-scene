@@ -1,4 +1,4 @@
-; Tue Jan 19 21:31:44 MSK 2021
+; Fri Jan 29 13:13:27 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1634,15 +1634,15 @@
 
 ([Scenario_Class590013] of  Rule
 
-	(lhs "?fv (FlightView status \"START\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	run ?run)\n(not FlightView)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"FlightView\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       scl (a/vv ?scl ?run)]\n  (if (and (some? mo) (a/worth? scl))\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (modify ?fv status \"REPEAT\"))\n    (modify ?fv status\"FAILED\")))")
+	(lhs "?fv (FlightView status \"START\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	delay ?del\n	run ?run)\n(Clock time ?t)\n(not FlightView)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"FlightView\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       scl (a/vv ?scl ?run)\n       del (a/vv ?del ?run)]\n  (if (and (some? mo) (a/worth? scl) (a/worth? del))\n    (let [mb (ru.igis.omtab.OpenMapTab/getMapBean)]\n      (.setScale mb (float (read-string scl)))\n      (.setCenter mb (.getLatitude mo) (.getLongitude mo))\n      (modify ?fv status \"REPEAT\"\n	delay del\n	N ?t))\n    (modify ?fv status\"FAILED\")))")
 	(salience 0)
 	(title "a:FlightViewStart"))
 
 ([Scenario_Class590014] of  Rule
 
-	(lhs "?fv (FlightView status \"REPEAT\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n(Clock time ?t)")
-	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n    (.setCenter (.getLatitude mo) (.getLongitude mo)))\n  (do (retract ?fv)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
+	(lhs "(Clock time ?t)\n?fv (FlightView status \"REPEAT\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	delay ?del\n	N ?n \n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts\n	(> ?t ?n))")
+	(rhs "(if-let [mo (a/mapob-vv ?obj ?run)]\n  (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n         (.setCenter (.getLatitude mo) (.getLongitude mo)))\n    (modify ?fv N (a/to-be ?t ?del)))\n  (do (retract ?fv)\n    (s/start-next ?nacts ?pid ?ain ?run)))")
 	(salience 0)
 	(title "a:FlightViewRepeat"))
 

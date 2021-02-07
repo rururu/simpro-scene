@@ -1,4 +1,4 @@
-; Tue Jan 19 16:25:00 MSK 2021
+; Fri Jan 29 12:38:23 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,7 +19,6 @@
 	(cloNamespace [Cezium_Class1])
 	(cloVars
 		[Cezium_Class3]
-		[Cezium_Class10005]
 		[Cezium_Class4]
 		[Cezium_Class5]
 		[Cezium_Class90017]
@@ -54,7 +53,7 @@
 
 ([Cezium_Class10001] of  CloFunction
 
-	(source "(czm/init-3D-view)\n(repeater receive-vehicle 1000)\n(show-controls)")
+	(source "(czm/init-3D-view (str \"http://0.0.0.0/\" PORT))\n(repeater receive-vehicle 1000)\n(show-controls)")
 	(title "on-load []"))
 
 ([Cezium_Class10002] of  CloFunction
@@ -66,11 +65,6 @@
 
 	(source "(vreset! RESPONSE (read-transit (params :response)))\n{:status 204}")
 	(title "response [params]"))
-
-([Cezium_Class10005] of  CloVar
-
-	(source "\"http://localhost:4444/czml\"")
-	(title "CZML-URL"))
 
 ([Cezium_Class10007] of  CloVar
 
@@ -104,8 +98,8 @@
 
 ([Cezium_Class13] of  CloFunction
 
-	(source "(.add (.-dataSources VIEWER) CZML-SRC)\n(.addEventListener (js/EventSource. CZML-URL) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW CZML-URL])")
-	(title "init-3D-view []"))
+	(source "(.add (.-dataSources VIEWER) CZML-SRC)\n(.addEventListener (js/EventSource. url) \"czml\" cz-processor false)\n(println [:INIT-3D-VIEW url])")
+	(title "init-3D-view [url]"))
 
 ([Cezium_Class14] of  CloDocumentation
 
@@ -141,7 +135,8 @@
 		[Cezium_Class17]
 		[Cezium_Class10007]
 		[Cezium_Class360000]
-		[Cezium_Class80004])
+		[Cezium_Class80004]
+		[Cezium_Class30029])
 	(compiler-options "{:verbose false}")
 	(css [Cezium_Class20002])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (on-load))\n(run-repl)\n(tst)")
@@ -329,7 +324,7 @@
 
 ([Cezium_Class30029] of  CloVar
 
-	(source "4448")
+	(source "8421")
 	(title "PORT"))
 
 ([Cezium_Class30030] of  CloVar
@@ -795,5 +790,4 @@
 
 	(but-onboard "Go on Board/pro.server/go-onboard")
 	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(port "4448"))
+	(but-stop-serv "Stop Cesium Server/pro.server/stop-server"))

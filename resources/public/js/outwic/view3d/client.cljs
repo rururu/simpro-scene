@@ -11,7 +11,6 @@
   [czm.core :as czm])
 (:require-macros 
   [cljs.core.async.macros :refer [go]]))
-
 (def VEHICLE (volatile! {:name "Аврора"
                :coord [60 30]
                :altitude 4000
@@ -24,6 +23,7 @@
   {:state (eva/empty-state)
    :value nil}))
 (def RESPONSE (volatile! {}))
+(def PORT 8421)
 (defn repeater
   ([func time-out]
   (go (while true
@@ -164,7 +164,7 @@
 (left-controls))
 
 (defn on-load []
-  (czm/init-3D-view)
+  (czm/init-3D-view (str "http://0.0.0.0/" PORT))
 (repeater receive-vehicle 1000)
 (show-controls))
 
@@ -194,7 +194,19 @@
 	    :error-handler error-handler})
   (js/setTimeout run-repl 1000)))
 
+(defn tst []
+  (set! (.-depthTestAgainstTerrain (.-globe (.-scene czm/VIEWER))) true)
+(println :D (.-depthTestAgainstTerrain (.-globe (.-scene czm/VIEWER))))
+(let [ppc (js/Cesium.PointPrimitiveCollection. #js{
+              :heightReference js/Cesium.HeightReference.CLAMP_TO_GROUND})
+       lla [[61.6 7.5][61.61 7.51][61.6 7.52]]
+       clr js/Cesium.Color.YELLOW
+       size 10
+       prims (.add (.-primitives (.-scene czm/VIEWER)) ppc)]
+  (js/fillPointPrimColl prims (clj->js lla) clr size)))
+
 
 (enable-console-print!)
 (set! (.-onload js/window) (on-load))
 (run-repl)
+(tst)

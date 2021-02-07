@@ -12,6 +12,8 @@
   "TAIWAN"
   "https://overpass.nchc.org.tw/api/interpreter"})
 (def SERVER "https://overpass-api.de/api/interpreter")
+(def URL nil)
+(def DATA nil)
 (defn bbx [[x y] rad]
   (let [dy rad
        dx (/ dy (Math/abs (Math/cos (Math/toRadians y))))]
@@ -60,10 +62,9 @@
   (catch Exception e
     (println (.getMessage e))
     (try
-      (let [url (osm-api-url bbx kind kind-type)
-             ;;_ (println :URL url)
-             jsn (json/read-str (slurp url) :key-fn keyword)]
-          jsn)
+      (def URL (osm-api-url bbx kind kind-type))
+      (def DATA (slurp URL))   
+      (json/read-str DATA :key-fn keyword)
       (catch Exception e
         (println (.getMessage e))
         nil))

@@ -1,4 +1,4 @@
-; Mon Feb 10 13:05:20 MSK 2020
+; Mon Feb 01 18:05:00 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -48,7 +48,7 @@
 
 ([WebInterface_Class10000] of  CloFunction
 
-	(source "(condp = (lmp :type)\n  :Base (base-layers)\n  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}\n  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}\n  (js/alert (str \"Unknown layer class \" (lmp :type))))")
+	(source "(let [tit (lmp :title)\n       typ (lmp :type)\n       src (lmp :source)\n       arg (lmp :arguments)\n       ops (or (arg :options) {})\n       ops (clj->js ops)]\n  (condp = typ\n    :GeoJSON {tit (L.GeoJSON.AJAX. src (clj->js arg))}\n    :Tile {tit (L.tileLayer src ops)}\n    :TileWMS {tit  (L.tileLayer.wms src ops)}\n    :ImageOverlay {tit (L.imageOverlay src (let [[[w s][e n]] (arg :imageBounds)]\n                                                                     (L.latLngBounds (L.latLng w s) (L.latLng e n))))}\n    :VideoOverlay {tit (L.videoOverlay src (let [[[w s][e n]] (arg :videoBounds)]\n                                                                   (L.latLngBounds (L.latLng w s) (L.latLng e n))))}\n    (js/alert (str \"Unknown layer class \" (lmp :type)))))")
 	(title "create-layer [lmp]"))
 
 ([WebInterface_Class100000] of  CloFunction
@@ -81,10 +81,188 @@
 	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;; (println :EVT evt)\n  (write-transit evt))")
 	(title "response-events []"))
 
+([WebInterface_Class110001] of  CloFunction
+
+	(source "([port]\n  (if-let [serv (@SYS :SERVER)]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://0.0.0.0:\" port))))))\n([hm inst]\n  (if-let [port (sv inst \"wiport\")]\n    (start-client (read-string port))))")
+	(title "start-client"))
+
 ([WebInterface_Class110006] of  CloFunction
 
 	(source "(let [mp (into {} hm)\n       ops (vec (map #(sv % (mp \"wislot\")) (mp \"wilist\")))\n       pins (crin \"WiOptionParameter\")]\n  (ssvs inst \"wiparam-options\" ops)\n  (ssvs pins \"wiparam-options\" ops)\n  (ssv pins \"title\" (mp \"title\"))\n  (ssv pins \"width\" (mp \"width\"))\n  (ssv pins \"size\" (mp \"size\"))\n  (ssv pins \"multiple\" (mp \"multiple\")))")
 	(title "par-ops-gen [hm inst]"))
+
+([WebInterface_Class120001] of  WiLayer
+
+	(title "OpenStreetMap")
+	(wiarguments "{:options {:maxZoom 20\n                 :attribution \"Ru, OpenStreetMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://{s}.tile.osm.org/{z}/{x}/{y}.png"))
+
+([WebInterface_Class120002] of  WiLayer
+
+	(title "Google Satellite")
+	(wiarguments "{:options {:maxZoom 20\n                 :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                 :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"))
+
+([WebInterface_Class120003] of  WiLayer
+
+	(title "Google Streets")
+	(wiarguments "{:options {:maxZoom 20\n                 :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                 :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"))
+
+([WebInterface_Class120004] of  WiLayer
+
+	(title "Google Hybrid")
+	(wiarguments "{:options {:maxZoom 20\n                 :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                 :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"))
+
+([WebInterface_Class120005] of  WiLayer
+
+	(title "Google Terrain")
+	(wiarguments "{:options {:maxZoom 20\n                 :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                 :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"))
+
+([WebInterface_Class120006] of  WiMap
+
+	(wibase
+		[WebInterface_Class120001]
+		[WebInterface_Class120005]
+		[WebInterface_Class120003]
+		[WebInterface_Class120002]
+		[WebInterface_Class120004]
+		[WebInterface_Class20006]
+		[WebInterface_Class120013]
+		[WebInterface_Class120010]
+		[WebInterface_Class120011]
+		[WebInterface_Class120012]
+		[WebInterface_Class120014])
+	(wicenter "[0 0]")
+	(wioverlay
+		[WebInterface_Class120017]
+		[WebInterface_Class120018]
+		[WebInterface_Class120019]
+		[WebInterface_Class120015]
+		[WebInterface_Class120016]
+		[WebInterface_Class120020]
+		[WebInterface_Class120021]
+		[WebInterface_Class120022])
+	(wizoom 2))
+
+([WebInterface_Class120007] of  WiServer
+
+	(cloNamespace [WebInterface_Class40003])
+	(wibut-client "Strat Client/wint.server/start-client")
+	(wibut-start "Start Server/wint.server/start-server")
+	(wibut-stop "Stop Server/wint.server/stop-server")
+	(wibut-upd-start-page "Update Start Page/wint.server/update-start-page")
+	(wiport "8421")
+	(wistart-page "resources/public/webinterface.html"))
+
+([WebInterface_Class120008] of  WiClient
+
+	(wicolor "grey")
+	(wiheader "Webinterface"))
+
+([WebInterface_Class120009] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [WebInterface_Class120006])
+	(%3ACREATION-TIMESTAMP "2021.02.01 01:28:34.618 MSK")
+	(%3ACREATOR "ru"))
+
+([WebInterface_Class120010] of  WiLayer
+
+	(title "ArcGIS Topo")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png"))
+
+([WebInterface_Class120011] of  WiLayer
+
+	(title "ArcGIS Streets")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png"))
+
+([WebInterface_Class120012] of  WiLayer
+
+	(title "ArcGIS Satellite")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"))
+
+([WebInterface_Class120013] of  WiLayer
+
+	(title "ArcGIS National Geographic")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, ESRI &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}.png"))
+
+([WebInterface_Class120014] of  WiLayer
+
+	(title "Watercolor")
+	(wiarguments "{:options{:maxZoom 20\n                 :attribution \"Ru, OpenStreet, Stamen &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.png"))
+
+([WebInterface_Class120015] of  WiLayer
+
+	(title "OWM1.0 Temperature")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+
+([WebInterface_Class120016] of  WiLayer
+
+	(title "OWM1.0 Wind speed")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+
+([WebInterface_Class120017] of  WiLayer
+
+	(title "OWM1.0 Clouds")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+
+([WebInterface_Class120018] of  WiLayer
+
+	(title "OWM1.0 Precipitation")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+
+([WebInterface_Class120019] of  WiLayer
+
+	(title "OWM1.0 Pressure")
+	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
+	(wilayer-type Tile)
+	(wisource "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+
+([WebInterface_Class120020] of  WiLayer
+
+	(title "Weather WMS")
+	(wiarguments "{:options {:layers \"nexrad-n0r-900913\"\n                  :format \"image/png\"\n                  :transparent true\n                  :attribution \"Weather data © 2012 IEM Nexrad\"}}")
+	(wilayer-type TileWMS)
+	(wisource "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"))
+
+([WebInterface_Class120021] of  WiLayer
+
+	(title "ImageOverlay1")
+	(wiarguments "{:imageBounds [[40.712216 -74.22655] [40.773941 -74.12544]]}")
+	(wilayer-type ImageOverlay)
+	(wisource "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"))
+
+([WebInterface_Class120022] of  WiLayer
+
+	(title "VideoOverlay1")
+	(wiarguments "{:videoBounds [[40.712216 -74.22655] [40.773941 -74.12544]]}")
+	(wilayer-type VideoOverlay)
+	(wisource "https://www.mapbox.com/bites/00188/patricia_nasa.webm"))
 
 ([WebInterface_Class15] of  CloFunction
 
@@ -115,15 +293,10 @@
 	(source "(/ Math.PI 180)")
 	(title "PID180"))
 
-([WebInterface_Class20003] of  CloFunction
-
-	(source "(let [tile1 (js/L.tileLayer \"http://{s}.tile.osm.org/{z}/{x}/{y}.png\"\n                                   #js{:maxZoom 20\n                                       :attribution \"Ru, OpenStreetMap &copy;\"})\n        tile2 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile3 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile4 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})\n        tile5 (js/L.tileLayer \"http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}\"\n                                   #js{:maxZoom 20\n                                       :subdomains #js[\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                       :attribution \"Ru, Google &copy;\"})]\n  {\"OpenStreetMap\" tile1\n    \"Google Satellite\" tile2\n    \"Google Streets\" tile3\n    \"Google Hybrid\" tile4\n    \"Google Terrain\" tile5})")
-	(title "base-layers []"))
-
 ([WebInterface_Class20006] of  WiLayer
 
 	(title "World Countries")
-	(wiattributes "{:style {:weight 2\n             :color \"orange\"}}")
+	(wiarguments "{:options {:style {:weight 2\n                             :color \"orange\"}}}")
 	(wilayer-type GeoJSON)
 	(wisource "map/countries.geo.json"))
 
@@ -245,11 +418,6 @@
 
 	(source "(let [{:keys [lat lon html]} params\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter MAP))]\n  (.addLayer MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent html))))")
 	(title "add-popup [params]"))
-
-([WebInterface_Class50003] of  WiLayer
-
-	(title "Base")
-	(wilayer-type Base))
 
 ([WebInterface_Class6] of  CloFunction
 
@@ -431,7 +599,8 @@
 		[WebServer_Class40009]
 		[WebServer_Class40012]
 		[WebServer_Class40014]
-		[WebInterface_Class110006])
+		[WebInterface_Class110006]
+		[WebInterface_Class110001])
 	(cloNamespace [WebServer_Class4])
 	(cloVars [WebServer_Class40013])
 	(title "Wint Server"))
@@ -443,7 +612,7 @@
 
 ([WebServer_Class4] of  CloNamespace
 
-	(source "(:use\n  protege.core)\n(:require\n  [cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET POST]]\n  [compojure.route :as route]\n  [compojure.handler :as handler]\n  [async.proc :as asp])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab)")
+	(source "(:use\n  protege.core)\n(:require\n  [cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET POST]]\n  [compojure.route :as route]\n  [compojure.handler :as handler]\n  [async.proc :as asp])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab\n  java.awt.Desktop\n  java.net.URI)")
 	(title "wint.server"))
 
 ([WebServer_Class40000] of  CloFunction
@@ -453,7 +622,7 @@
 
 ([WebServer_Class40001] of  CloFunction
 
-	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [lmps (apply merge (map create-layer (mp :layers)))\n           flay (second (first  lmps)) \n           lctl (js/L.control.layers (clj->js lmps) nil)\n           fzoom (fn [] (set-html! \"zoom\" (str \"zoom \" (.getZoom MAP))))]\n      (add-heatmap {})\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP)\n      (fzoom)\n      (.on MAP \"zoomend\" fzoom))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
+	(source "(let [mp (read-transit resp)]\n  (println :RMR mp)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [blms (apply merge (map create-layer (mp :base)))\n           olms (apply merge (map create-layer (mp :overlay)))\n           flay (second (first  blms)) \n           lctl (js/L.control.layers (clj->js blms) (clj->js olms))\n           fzoom (fn [] (set-html! \"zoom\" (str \"zoom \" (.getZoom MAP))))]\n      (add-heatmap {})\n      (.addTo flay MAP)\n      (.setView MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) MAP)\n      (.addTo lctl MAP)\n      (fzoom)\n      (.on MAP \"zoomend\" fzoom))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
 	(title "map-hr [resp]"))
 
 ([WebServer_Class40002] of  CloFunction
@@ -463,7 +632,7 @@
 
 ([WebServer_Class40003] of  CloFunction
 
-	(source "(if (@SYS :BUSY) \n  (write-transit \"BUSY\")\n  (let [resp (if-let [mapi (first (cls-instances \"WiMap\"))]\n                   {:zoom (sv mapi \"wizoom\") \n                     :center (read-string (sv mapi \"wicenter\"))\n                     :layers (map-layers mapi)}\n                   {})]\n    ;;(vswap! SYS assoc :BUSY true)\n    (write-transit resp)))")
+	(source "(if (@SYS :BUSY) \n  (write-transit \"BUSY\")\n  (let [resp (if-let [mapi (fainst (cls-instances \"WiMap\") nil)]\n                   {:zoom (sv mapi \"wizoom\") \n                     :center (read-string (sv mapi \"wicenter\"))\n                     :base (map-layers mapi \"wibase\")\n                     :overlay (map-layers mapi \"wioverlay\")}\n                   {})]\n    ;;(vswap! SYS assoc :BUSY true)\n    (write-transit resp)))")
 	(title "response-map []"))
 
 ([WebServer_Class40004] of  CloFunction
@@ -510,7 +679,6 @@
 		[WebInterface_Class80000]
 		[WebServer_Class40002]
 		[WebServer_Class40000]
-		[WebInterface_Class20003]
 		[WebInterface_Class10000]
 		[WebInterface_Class70000]
 		[WebInterface_Class90000]
@@ -553,8 +721,8 @@
 
 ([WebServer_Class50001] of  CloFunction
 
-	(source "(letfn [(laymap [x]\n             {:type (if-let [t (sv x \"wilayer-type\")] (keyword t))\n               :title (sv x \"title\")\n               :source (sv x \"wisource\")\n               :attributes (if-let [a (sv x \"wiattributes\")] (read-string a))})]\n  (vec (map laymap (svs mapi \"wilayers\"))))")
-	(title "map-layers [mapi]"))
+	(source "(letfn [(laymap [x]\n             (println \"Layer \" (sv x \"title\"))\n             {:type (if-let [t (sv x \"wilayer-type\")] (keyword t))\n               :title (sv x \"title\")\n               :source (sv x \"wisource\")\n               :arguments (if-let [a (sv x \"wiarguments\")] \n                                  (read-string a))})]\n  (if-let [lays (seq (svs mapi group))]\n    (vec (map laymap lays))))")
+	(title "map-layers [mapi group]"))
 
 ([WebServer_Class50002] of  CloFunction
 
@@ -568,7 +736,7 @@
 
 ([WebServer_Class7] of  CloFunction
 
-	(source "(if-let [cli (first (cls-instances \"WiClient\"))]\n  (if-let [wc (first (cls-instances \"ClsMain\"))]\n    (if-let [idx (first (svs wc \"html\"))]\n      (let [src (sv idx \"source\")\n             sbs (apply str (map sidebar (svs cli \"wisidebars\")))\n             tit (str \"  <title>\" (sv cli \"wiheader\") \"</title>\\n\")\n             hdr (str \"   <div id=\\\"header\\\" style=\\\"background:\" (sv cli \"wicolor\") \";text-align:center;\\\">\" (sv cli \"wiheader\") \"</div>\\n\")\n             src (.replace src \"<SIDEBARS>\" sbs)\n             src (.replace src \"<HEADER>\" hdr)\n             src (.replace src \"<TITLE>\" tit)\n             spg (sv inst \"wistart-page\")]\n          (spit spg src)))))")
+	(source "(if-let [cli (fainst (cls-instances \"WiClient\") nil)]\n  (if-let [wc (first (cls-instances \"ClsMain\"))]\n    (if-let [idx (first (svs wc \"html\"))]\n      (let [src (sv idx \"source\")\n             sbs (apply str (map sidebar (svs cli \"wisidebars\")))\n             tit (str \"  <title>\" (sv cli \"wiheader\") \"</title>\\n\")\n             hdr (str \"   <div id=\\\"header\\\" style=\\\"background:\" (sv cli \"wicolor\") \";text-align:center;\\\">\" (sv cli \"wiheader\") \"</div>\\n\")\n             src (.replace src \"<SIDEBARS>\" sbs)\n             src (.replace src \"<HEADER>\" hdr)\n             src (.replace src \"<TITLE>\" tit)\n             spg (sv inst \"wistart-page\")]\n          (spit spg src)))))")
 	(title "update-start-page [hm inst]"))
 
 ([WebServer_Class9] of  CloFunction

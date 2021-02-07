@@ -12,7 +12,9 @@
   [java.io 
     ByteArrayOutputStream
     ByteArrayInputStream]
-  clojuretab.ClojureTab))
+  clojuretab.ClojureTab
+  java.awt.Desktop
+  java.net.URI))
 (def defonceSYS (defonce SYS 
   (volatile! 
    {:SERVER nil
@@ -20,7 +22,6 @@
      :ROOT (str (System/getProperty "user.dir") "/resources/public/")
      :NAMESPACE nil
      :CHAN (asp/mk-chan)
-     :MAPICK-CHAN (asp/mk-chan)
      :BUSY nil})))
 (defn write-transit [x]
   (let [baos (ByteArrayOutputStream.)
@@ -69,10 +70,7 @@
   "          <h4>" footer "</h4>\n")))
 
 (defn to-vec-param [p]
-  (cond
-  (vector? p) p
-  (some? p) [p]
-  true []))
+  (if (vector? p) p [p]))
 
 (defn sidebar
   ([side-bar]
@@ -103,16 +101,16 @@
     "  </div>\n"))))
 
 (defn update-start-page [hm inst]
-  (if-let [cli (first (cls-instances "WiClient"))]
+  (if-let [cli (fainst (cls-instances "WiClient") nil)]
   (if-let [wc (first (cls-instances "ClsMain"))]
     (if-let [idx (first (svs wc "html"))]
       (let [src (sv idx "source")
              sbs (apply str (map sidebar (svs cli "wisidebars")))
              tit (str "  <title>" (sv cli "wiheader") "</title>\n")
              hdr (str "   <div id=\"header\" style=\"background:" (sv cli "wicolor") ";text-align:center;\">" (sv cli "wiheader") "</div>\n")
-             src (.replace src "<TITLE>" tit)
              src (.replace src "<SIDEBARS>" sbs)
              src (.replace src "<HEADER>" hdr)
+             src (.replace src "<TITLE>" tit)
              spg (sv inst "wistart-page")]
           (spit spg src))))))
 
@@ -129,21 +127,19 @@
     (println :ERROR e)
     (str "Task execution error for parameters:" params))))
 
-(defn map-layers [mapi]
+(defn map-layers [mapi group]
   (letfn [(laymap [x]
+             (println "Layer " (sv x "title"))
              {:type (if-let [t (sv x "wilayer-type")] (keyword t))
                :title (sv x "title")
                :source (sv x "wisource")
-               :attributes (if-let [a (sv x "wiattributes")] (read-string a))})]
-  (vec (map laymap (svs mapi "wilayers")))))
+               :arguments (if-let [a (sv x "wiarguments")] 
+                                  (read-string a))})]
+  (if-let [lays (seq (svs mapi group))]
+    (vec (map laymap lays)))))
 
 (defn map-controls [mapi]
   (vec (map keyword (svs mapi "wicontrols"))))
-
-(defn response-snapshots []
-  (let [sns (deref (future (asp/pump-out (@SYS :MAPICK-CHAN))))]
-  ;; (println :SNS sns)
-  (write-transit sns)))
 
 (defn response-events []
   (let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]
@@ -153,10 +149,11 @@
 (defn response-map []
   (if (@SYS :BUSY) 
   (write-transit "BUSY")
-  (let [resp (if-let [mapi (first (cls-instances "WiMap"))]
+  (let [resp (if-let [mapi (fainst (cls-instances "WiMap") nil)]
                    {:zoom (sv mapi "wizoom") 
                      :center (read-string (sv mapi "wicenter"))
-                     :layers (map-layers mapi)}
+                     :base (map-layers mapi "wibase")
+                     :overlay (map-layers mapi "wioverlay")}
                    {})]
     ;;(vswap! SYS assoc :BUSY true)
     (write-transit resp))))
@@ -167,7 +164,6 @@
   (POST "/" [& params] (request params))
   (GET "/map" [] (response-map))
   (GET "/events" [] (response-events))
-  (GET "/snapshots" [] (response-snapshots))
   (route/files "/" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))
   (route/resources "/")
   (route/not-found "Not Found"))
@@ -206,28 +202,11 @@
   (ssv pins "size" (mp "size"))
   (ssv pins "multiple" (mp "multiple"))))
 
-(defn check [val validator messager default]
-  (try
-  (let [v (validator val)]
-    (if (nil? v)
-      (throw Exception)
-      v))
-  (catch Exception e
-    (asp/pump-in (@SYS :CHAN)
-      {:event :popup
-        :html (messager val)})
-     default)))
-
-(defn ch [t val messer dft]
-  (let [vld (condp = t
-               :i #(int (read-string %))
-               :f #(float (read-string %))
-               :d #(double (read-string %))
-               :b #(let [v (read-string %)]
-                        (condp = v
-                          true v
-                          false v
-                          nil))
-               (read-string))]
-  (check val vld messer dft)))
+(defn start-client
+  ([port]
+  (if-let [serv (@SYS :SERVER)]
+    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://0.0.0.0:" port))))))
+([hm inst]
+  (if-let [port (sv inst "wiport")]
+    (start-client (read-string port)))))
 

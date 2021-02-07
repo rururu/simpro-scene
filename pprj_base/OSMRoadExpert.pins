@@ -1,4 +1,4 @@
-; Wed Jan 27 19:41:23 MSK 2021
+; Sat Feb 06 20:18:05 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -65,13 +65,13 @@
 
 ([NiceSPb_Class120054] of  CloVar
 
-	(source "[]")
-	(title "NODE-YXS"))
+	(source "(volatile! [])")
+	(title "OLD-NODES"))
 
 ([NiceSPb_Class120055] of  CloFunction
 
-	(source "(let [box (of/bbx xy GOAL-RAD)]\n  (if (not (some #(of/in-bbx % box) NODE-YXS))\n    (when-let [noi (oo/fmk-node xy)]\n      (def NODE-YXS (conj NODE-YXS [(sv noi \"y\") (sv noi \"x\")]))\n      noi)))")
-	(title "find-new-node [xy]"))
+	(source "(if-let [nis (seq (oo/fmk-nodes xy))]\n  (let [old @OLD-NODES\n        new (filter #(not (some #{%} old)) nis)]\n    (when (seq new)\n      (vreset! OLD-NODES (concat old new))\n      new)))")
+	(title "find-new-nodes [xy]"))
 
 ([NiceSPb_Class130001] of  %3AINSTANCE-ANNOTATION
 
@@ -146,13 +146,6 @@
 
 	(source "(fifos \"Node\" \"label\" x)")
 	(title "init-point-osm [x]"))
-
-([NiceSPb_Class210394] of  CeziumControl
-
-	(but-onboard "Go on Board/pro.server/go-onboard")
-	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "train"))
 
 ([NiceSPb_Class220003] of  Type
 
@@ -415,54 +408,6 @@
 	(source "(if (has-typ road \"RoadSubclasses\")\n  (let [i (crin \"DirectedRoad\")]\n    (ssv i \"road\" road)\n    (ssv i \"direction\" dir)\n    i))")
 	(title "mk-dir-road [road dir]"))
 
-([NiceSPb_Class460000] of  CloFuncall
-
-	(source "(apply + [1 2 3 4 5])"))
-
-([NiceSPb_Class460001] of  CloFuncall
-
-	(source "(count (cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class460002] of  CloFuncall
-
-	(source "(clojure.user/count (cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class460003] of  CloFuncall
-
-	(source "(map #(count (svs % \"\" (cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class470004] of  CloFuncall
-
-	(source "(map #(count (svs % \"dirways\")) (cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class470005] of  CloFuncall
-
-	(source "(clojure.core/apply + [1 2 3 4 5])"))
-
-([NiceSPb_Class470006] of  CloFuncall
-
-	(source "(clojure.core/apply clojure.core/+ [1 2 3 4 5])"))
-
-([NiceSPb_Class470007] of  CloFuncall
-
-	(source "(clojure.core/map #(clojure.core/count (svs % \"dirways\")) (cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class470008] of  CloFuncall
-
-	(source "(in-ns 'clojure.core)"))
-
-([NiceSPb_Class470009] of  CloFuncall
-
-	(source "(in-ns 'osm.path)"))
-
-([NiceSPb_Class470010] of  CloFuncall
-
-	(source "(map #(count (protege.core/svs % \"dirways\")) (protege.core/cls-instances \"Railroad\"))"))
-
-([NiceSPb_Class470011] of  CloFuncall
-
-	(source "(apply + (map #(count (protege.core/svs % \"dirways\")) (protege.core/cls-instances \"Railroad\")))"))
-
 ([NiceSPb_Class470025] of  BBX
 
 	(title "Nice")
@@ -478,7 +423,7 @@
 ([NiceSPb_Class50001] of  Rule
 
 	(lhs "(Work status \"EXTENSION\")\n?t (Trail0 status \"OPEN\"\n	a ?a \n	b ?b\n	edges ?egs\n	last ?e)")
-	(rhs "(if-let [noi (osm.path/find-new-node ?b)]\n  (doseq [e (protege.core/svs noi \"edges\")]\n    (if (not (some #{e} ?egs))\n      (asser Trail1 a ?a\n	b (osm.path/far-vertex e ?b)\n	status \"OPEN\"\n	edges (osm.path/if-display-edges \"Edges\" (conj ?egs e))\n	last (path/argval e)))))\n(asser Trail1 a ?a b ?b\n	status \"CLOSED\"\n	edges ?egs\n	last ?e)\n(retract ?t)")
+	(rhs "(if-let [nois (seq (filter some?(osm.path/find-new-nodes ?b)))]\n  (doseq [e (mapcat #(protege.core/svs % \"edges\") nois)]\n    (if (not (some #{e} ?egs))\n      (asser Trail1 a ?a\n	b (osm.path/far-vertex e ?b)\n	status \"OPEN\"\n	edges (osm.path/if-display-edges \"Edges\" (conj ?egs e))\n	last (path/argval e)))))\n(asser Trail1 a ?a b ?b\n	status \"CLOSED\"\n	edges ?egs\n	last ?e)\n(retract ?t)")
 	(salience 0)
 	(title "t:Extension: Trail0 Extension"))
 
@@ -749,7 +694,7 @@
 
 	(capDecoration BUTT)
 	(jointDecoration BEVEL)
-	(label "L3")
+	(label "L3d")
 	(lineType STRAIGHT)
 	(lineWidth "3"))
 
@@ -761,17 +706,11 @@
 ([PyongyangSPb_Class20000] of  Line
 
 	(capDecoration BUTT)
-	(dashPattern "3 1")
+	(dashPattern "8  4")
 	(jointDecoration BEVEL)
-	(label "L2")
+	(label "L2d")
 	(lineType STRAIGHT)
 	(lineWidth "2"))
-
-([PyongyangSPb_Class200003] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [PyongyangSPb_Class130001])
-	(%3ACREATION-TIMESTAMP "2020.12.01 11:40:59.894 MSK")
-	(%3ACREATOR "ru"))
 
 ([PyongyangSPb_Class250003] of  NavOb
 

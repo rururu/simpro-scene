@@ -10,6 +10,7 @@
 (def MOVERS (volatile! {}))
 (def DATA nil)
 (def T-SCALE 1.0)
+(def DEBUG false)
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -23,38 +24,22 @@
   (let [{:keys [status status-text]} resp]
   (println "AJAX ERROR:" status status-text)))
 
-(defn base-layers []
-  (let [tile1 (js/L.tileLayer "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                                   #js{:maxZoom 20
-                                       :attribution "Ru, OpenStreetMap &copy;"})
-        tile2 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-                                   #js{:maxZoom 20
-                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
-                                       :attribution "Ru, Google &copy;"})
-        tile3 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-                                   #js{:maxZoom 20
-                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
-                                       :attribution "Ru, Google &copy;"})
-        tile4 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                                   #js{:maxZoom 20
-                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
-                                       :attribution "Ru, Google &copy;"})
-        tile5 (js/L.tileLayer "http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                                   #js{:maxZoom 20
-                                       :subdomains #js["mt0" "mt1" "mt2" "mt3"]
-                                       :attribution "Ru, Google &copy;"})]
-  {"OpenStreetMap" tile1
-    "Google Satellite" tile2
-    "Google Streets" tile3
-    "Google Hybrid" tile4
-    "Google Terrain" tile5}))
-
 (defn create-layer [lmp]
-  (condp = (lmp :type)
-  :Base (base-layers)
-  :GeoJSON {(lmp :title) (L.GeoJSON.AJAX. (lmp :source) (clj->js (lmp :attributes)))}
-  :Tile {(lmp :title) (L.tileLayer (lmp :source) (clj->js (lmp :attributes)))}
-  (js/alert (str "Unknown layer class " (lmp :type)))))
+  (let [tit (lmp :title)
+       typ (lmp :type)
+       src (lmp :source)
+       arg (lmp :arguments)
+       ops (or (arg :options) {})
+       ops (clj->js ops)]
+  (condp = typ
+    :GeoJSON {tit (L.GeoJSON.AJAX. src (clj->js arg))}
+    :Tile {tit (L.tileLayer src ops)}
+    :TileWMS {tit  (L.tileLayer.wms src ops)}
+    :ImageOverlay {tit (L.imageOverlay src (let [[[w s][e n]] (arg :imageBounds)]
+                                                                     (L.latLngBounds (L.latLng w s) (L.latLng e n))))}
+    :VideoOverlay {tit (L.videoOverlay src (let [[[w s][e n]] (arg :videoBounds)]
+                                                                   (L.latLngBounds (L.latLng w s) (L.latLng e n))))}
+    (js/alert (str "Unknown layer class " (lmp :type))))))
 
 (defn remove-layer [params]
   (if-let [tit (params :title)]
@@ -63,7 +48,26 @@
       (.remove lay)
       (vswap! OBJECTS dissoc tit))
     (if-let [mov (@MOVERS tit)]
-      (vswap! MOVERS dissoc mov)))))
+      (vswap! MOVERS dissoc tit)))))
+
+(defn remove-tow [params]
+  (let [{:keys [title tug]} params]
+  (if-let [mov (@MOVERS tug)]
+    (if-let [obj (@OBJECTS title)]
+      (vswap! mov assoc :tows
+        (dissoc (@mov :tows) obj))))))
+
+(defn add-tow [params]
+  (let [{:keys [title tug bear dist]} params]
+  (if-let [mov (@MOVERS tug)]
+    (if-let [obj (@OBJECTS title)]
+      (do
+        (vswap! mov assoc-in [:tows obj]
+          [(* (/ dist 60) mvo/PID180) (* bear mvo/PID180)])
+        (if-let [mov (@MOVERS title)]
+          (vswap! MOVERS dissoc title)))
+      (js/alert "Object " title " on tow of " tug " is missing!"))
+    (js/alert "Tug "" for object "" on tow  is missing!"))))
 
 (defn add-path [params]
   (let [{:keys [title type coord options]} params]
@@ -139,9 +143,15 @@
     (if speed
       (mvo/set-speed mv speed)))))
 
+(defn set-time-run [params]
+  (mvo/set-time-run (params :time-run)))
+
+(defn set-debug [params]
+  (def DEBUG (params :debug)))
+
 (defn events-hr [resp]
   (doseq [{:keys [event] :as evt} (read-transit resp)]
-  (println [:EVENTS-HR evt])
+  (if DEBUG (println [:EVENTS-HR evt]))
   (condp = event
     :path (add-path evt)
     :marker (add-marker evt)
@@ -149,7 +159,11 @@
     :heatmap (add-heatmap evt)
     :remove (remove-layer evt)
     :time-scale (set-time-scale evt)
+    :time-run (set-time-run evt)
     :move (move-control evt)
+    :tow (add-tow evt)
+    :endtow (remove-tow evt)
+    :debug (set-debug evt)
     (js/alert "Unknown event: " [event evt]))))
 
 (defn request-events []
@@ -161,9 +175,10 @@
   (let [mp (read-transit resp)]
   (println :RMR mp)
   (if (and (map? mp) (not (empty? mp)))
-    (let [lmps (apply merge (map create-layer (mp :layers)))
-           flay (second (first  lmps)) 
-           lctl (js/L.control.layers (clj->js lmps) nil)
+    (let [blms (apply merge (map create-layer (mp :base)))
+           olms (apply merge (map create-layer (mp :overlay)))
+           flay (second (first  blms)) 
+           lctl (js/L.control.layers (clj->js blms) (clj->js olms))
            fzoom (fn [] (set-html! "zoom" (str "zoom " (.getZoom MAP))))]
       (add-heatmap {})
       (.addTo flay MAP)

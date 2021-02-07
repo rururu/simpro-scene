@@ -1,4 +1,4 @@
-; Tue Jan 19 16:25:00 MSK 2021
+; Fri Jan 29 12:38:23 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -92,10 +92,6 @@
 	(single-slot but-start-client
 		(type STRING)
 ;+		(value "Start Cesium Client/pro.server/start-client")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot port
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

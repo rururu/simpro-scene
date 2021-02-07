@@ -1,4 +1,4 @@
-; Mon Feb 10 13:05:20 MSK 2020
+; Mon Feb 01 18:05:00 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -68,9 +68,14 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot wilayers
+	(multislot wibase
 		(type INSTANCE)
 ;+		(allowed-classes WiLayer)
+		(create-accessor read-write))
+	(single-slot wibut-client
+		(type STRING)
+		(default "Strat Client/wint.server/start-client")
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wistart-page
 		(type STRING)
@@ -78,11 +83,6 @@
 		(create-accessor read-write))
 	(single-slot width
 		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wiattributes
-		(type STRING)
-		(default "GeoJSON")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wiexec-button
@@ -115,6 +115,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot wiarguments
+		(type STRING)
+		(default "GeoJSON")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot wiparam-options
 		(type STRING)
 		(create-accessor read-write))
@@ -124,9 +129,13 @@
 		(create-accessor read-write))
 	(single-slot wilayer-type
 		(type SYMBOL)
-		(allowed-values Base Tile GeoJSON)
+		(allowed-values GeoJSON Tile TileWMS ImageOverlay VideoOverlay)
 		(default Base)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot wioverlay
+		(type INSTANCE)
+;+		(allowed-classes WiLayer)
 		(create-accessor read-write))
 	(single-slot butt-par-ops-gen
 		(type STRING)
@@ -158,7 +167,11 @@
 (defclass WiMap
 	(is-a WintOnto)
 	(role concrete)
-	(multislot wilayers
+	(multislot wioverlay
+		(type INSTANCE)
+;+		(allowed-classes WiLayer)
+		(create-accessor read-write))
+	(multislot wibase
 		(type INSTANCE)
 ;+		(allowed-classes WiLayer)
 		(create-accessor read-write))
@@ -292,6 +305,11 @@
 		(default "Stop Server/wint.server/stop-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot wibut-client
+		(type STRING)
+		(default "Strat Client/wint.server/start-client")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wibut-start
 		(type STRING)
 		(default "Start Server/wint.server/start-server")
@@ -305,19 +323,19 @@
 (defclass WiLayer
 	(is-a WintOnto)
 	(role concrete)
+	(single-slot wiarguments
+		(type STRING)
+		(default "GeoJSON")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot wilayer-type
 		(type SYMBOL)
-		(allowed-values Base Tile GeoJSON)
+		(allowed-values GeoJSON Tile TileWMS ImageOverlay VideoOverlay)
 		(default Base)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wiattributes
-		(type STRING)
-		(default "GeoJSON")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wisource

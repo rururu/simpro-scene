@@ -1,4 +1,4 @@
-; Tue Jan 19 21:31:43 MSK 2021
+; Fri Jan 29 13:13:27 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1083,9 +1083,17 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot N
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

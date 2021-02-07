@@ -1,4 +1,4 @@
-; Mon Feb 10 13:05:20 MSK 2020
+; Mon Feb 01 18:05:00 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,7 @@
 	(height 100)
 	(is_hidden FALSE)
 	(name ":ANNOTATION-TEXT")
+	(property_list [WebInterface_ProjectKB_Class30483])
 	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
 	(width 200)
 	(x 0)
@@ -20,14 +21,14 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[WebInterface_ProjectKB_Class40424]
-		[WebInterface_ProjectKB_Class40425]
-		[WebInterface_ProjectKB_Class40426]
-		[WebInterface_ProjectKB_Class40427]
-		[WebInterface_ProjectKB_Class40428]
-		[WebInterface_ProjectKB_Class40429]
-		[WebInterface_ProjectKB_Class40430]
-		[WebInterface_ProjectKB_Class40431]))
+		[WebInterface_ProjectKB_Class60405]
+		[WebInterface_ProjectKB_Class60406]
+		[WebInterface_ProjectKB_Class60407]
+		[WebInterface_ProjectKB_Class60408]
+		[WebInterface_ProjectKB_Class60409]
+		[WebInterface_ProjectKB_Class60410]
+		[WebInterface_ProjectKB_Class60411]
+		[WebInterface_ProjectKB_Class60412]))
 
 ([CLSES_TAB] of  Widget
 
@@ -64,35 +65,36 @@
 		[ANNOTATED_INSTANCE_WIDGET]
 		[CREATOR_WIDGET]
 		[CREATION_TIMESTAMP_WIDGET]
-		[ANNOTATION_TEXT_WIDGET]))
+		[ANNOTATION_TEXT_WIDGET]
+		[WebInterface_ProjectKB_Class30482]))
 
 ([INSTANCES_TAB] of  Widget
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_761269_Class368] of  Map
+([KB_586102_Class395] of  Map
 
 	(entries
-		[KB_761269_Class369]
-		[KB_761269_Class370]
-		[KB_761269_Class371]))
+		[KB_586102_Class396]
+		[KB_586102_Class397]
+		[KB_586102_Class398]))
 
-([KB_761269_Class369] of  Map_Entry
+([KB_586102_Class396] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_761269_Class370] of  Map_Entry
+([KB_586102_Class397] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_761269_Class371] of  Map_Entry
+([KB_586102_Class398] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -105,7 +107,9 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_941803_Class1] of  Map
-)
+
+	(entries [WebInterface_ProjectKB_Class60415])
+	(referenced_maps [WebInterface_ProjectKB_Class60413]))
 
 ([KB_941803_Class10] of  Property_List
 )
@@ -673,122 +677,36 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([WebInterface_ProjectKB_Class10372] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [WebInterface_ProjectKB_Class10373])
-	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
-
-([WebInterface_ProjectKB_Class10373] of  Property_List
-)
-
-([WebInterface_ProjectKB_Class10374] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [WebInterface_ProjectKB_Class10375])
-	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
-
-([WebInterface_ProjectKB_Class10375] of  Property_List
-)
-
-([WebInterface_ProjectKB_Class10376] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [WebInterface_ProjectKB_Class10377])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
-([WebInterface_ProjectKB_Class10377] of  Property_List
-)
-
-([WebInterface_ProjectKB_Class10378] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10379] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10380] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10381] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10382] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10383] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10384] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10385] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10386] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10387] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10388] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([WebInterface_ProjectKB_Class10389] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10390] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
-([WebInterface_ProjectKB_Class10391] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
-
-([WebInterface_ProjectKB_Class10392] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
-
 ([WebInterface_ProjectKB_Class10393] of  Boolean
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
 
-([WebInterface_ProjectKB_Class10394] of  Boolean
+([WebInterface_ProjectKB_Class10399] of  Widget
 
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Показать ссылки на Выделенное Значение  "))
+	(is_hidden TRUE)
+	(property_list [WebInterface_ProjectKB_Class10400])
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
 
-([WebInterface_ProjectKB_Class10395] of  Boolean
+([WebInterface_ProjectKB_Class10400] of  Property_List
+)
 
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Стереть Выделенный Экземпляр"))
+([WebInterface_ProjectKB_Class10401] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [WebInterface_ProjectKB_Class50402])
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
+
+([WebInterface_ProjectKB_Class10402] of  Widget
+
+	(height 260)
+	(is_hidden FALSE)
+	(name "wioverlay")
+	(property_list [WebInterface_ProjectKB_Class30403])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 200)
+	(y 60))
 
 ([WebInterface_ProjectKB_Class10403] of  Boolean
 
@@ -964,6 +882,67 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
+([WebInterface_ProjectKB_Class30402] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "wibut-client")
+	(property_list [WebInterface_ProjectKB_Class50403])
+	(widget_class_name "clojuretab.ClojureActionButton")
+	(width 200)
+	(x 200)
+	(y 120))
+
+([WebInterface_ProjectKB_Class30403] of  Property_List
+
+	(properties
+		[WebInterface_ProjectKB_Class30404]
+		[WebInterface_ProjectKB_Class30405]))
+
+([WebInterface_ProjectKB_Class30404] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([WebInterface_ProjectKB_Class30405] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([WebInterface_ProjectKB_Class30406] of  Widget
+
+	(height 320)
+	(is_hidden FALSE)
+	(name "wibase")
+	(property_list [WebInterface_ProjectKB_Class30407])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
+	(width 200)
+	(x 0)
+	(y 60))
+
+([WebInterface_ProjectKB_Class30407] of  Property_List
+
+	(properties
+		[WebInterface_ProjectKB_Class30408]
+		[WebInterface_ProjectKB_Class30409]))
+
+([WebInterface_ProjectKB_Class30408] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([WebInterface_ProjectKB_Class30409] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
+([WebInterface_ProjectKB_Class30482] of  Property_List
+
+	(name "layout properties"))
+
+([WebInterface_ProjectKB_Class30483] of  Property_List
+)
+
 ([WebInterface_ProjectKB_Class30488] of  Widget
 
 	(height 60)
@@ -982,7 +961,7 @@
 
 	(height 120)
 	(is_hidden FALSE)
-	(name "wiattributes")
+	(name "wiarguments")
 	(property_list [WebInterface_ProjectKB_Class30491])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
 	(width 350)
@@ -1017,42 +996,14 @@
 
 	(properties
 		[WebInterface_ProjectKB_Class369]
-		[WebInterface_ProjectKB_Class370]
 		[WebInterface_ProjectKB_Class385]
-		[WebInterface_ProjectKB_Class387]))
+		[WebInterface_ProjectKB_Class387]
+		[WebInterface_ProjectKB_Class10402]
+		[WebInterface_ProjectKB_Class30406]))
 
 ([WebInterface_ProjectKB_Class369] of  Property_List
 
 	(name "layout properties"))
-
-([WebInterface_ProjectKB_Class370] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "wilayers")
-	(property_list [WebInterface_ProjectKB_Class371])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceListWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([WebInterface_ProjectKB_Class371] of  Property_List
-
-	(properties
-		[WebInterface_ProjectKB_Class372]
-		[WebInterface_ProjectKB_Class373]
-		[WebInterface_ProjectKB_Class10394]
-		[WebInterface_ProjectKB_Class10395]))
-
-([WebInterface_ProjectKB_Class372] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([WebInterface_ProjectKB_Class373] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([WebInterface_ProjectKB_Class385] of  Widget
 
@@ -1076,8 +1027,8 @@
 	(property_list [WebInterface_ProjectKB_Class388])
 	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
 	(width 100)
-	(x 0)
-	(y 180))
+	(x 200)
+	(y 320))
 
 ([WebInterface_ProjectKB_Class388] of  Property_List
 )
@@ -1118,8 +1069,8 @@
 	(property_list [WebInterface_ProjectKB_Class395])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 0)
-	(y 120))
+	(x 200)
+	(y 180))
 
 ([WebInterface_ProjectKB_Class395] of  Property_List
 )
@@ -1132,7 +1083,7 @@
 	(property_list [WebInterface_ProjectKB_Class397])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 200)
+	(x 0)
 	(y 180))
 
 ([WebInterface_ProjectKB_Class397] of  Property_List
@@ -1146,7 +1097,7 @@
 	(property_list [WebInterface_ProjectKB_Class399])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 200)
+	(x 0)
 	(y 120))
 
 ([WebInterface_ProjectKB_Class399] of  Property_List
@@ -1339,46 +1290,6 @@
 ([WebInterface_ProjectKB_Class40415] of  Property_List
 )
 
-([WebInterface_ProjectKB_Class40424] of  String
-
-	(name "WiServer")
-	(string_value "{Port%3A+}wiport{+}wistart-page"))
-
-([WebInterface_ProjectKB_Class40425] of  String
-
-	(name "WiTask")
-	(string_value "wiid"))
-
-([WebInterface_ProjectKB_Class40426] of  String
-
-	(name "WiClient")
-	(string_value "wiheader"))
-
-([WebInterface_ProjectKB_Class40427] of  String
-
-	(name "WiSidebar")
-	(string_value "wiside"))
-
-([WebInterface_ProjectKB_Class40428] of  String
-
-	(name "WiMap")
-	(string_value "{Map}"))
-
-([WebInterface_ProjectKB_Class40429] of  String
-
-	(name "WiValueParameter")
-	(string_value "title{+}widefault-value"))
-
-([WebInterface_ProjectKB_Class40430] of  String
-
-	(name "WiLayer")
-	(string_value "title"))
-
-([WebInterface_ProjectKB_Class40431] of  String
-
-	(name "WiOptionParameter")
-	(string_value "title"))
-
 ([WebInterface_ProjectKB_Class405] of  Boolean
 
 	(boolean_value FALSE)
@@ -1482,6 +1393,79 @@
 
 ([WebInterface_ProjectKB_Class421] of  Property_List
 )
+
+([WebInterface_ProjectKB_Class50402] of  Property_List
+)
+
+([WebInterface_ProjectKB_Class50403] of  Property_List
+)
+
+([WebInterface_ProjectKB_Class60403] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [WebInterface_ProjectKB_Class60404])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
+([WebInterface_ProjectKB_Class60404] of  Property_List
+)
+
+([WebInterface_ProjectKB_Class60405] of  String
+
+	(name "WiServer")
+	(string_value "{Port%3A+}wiport{+}wistart-page"))
+
+([WebInterface_ProjectKB_Class60406] of  String
+
+	(name "WiTask")
+	(string_value "wiid"))
+
+([WebInterface_ProjectKB_Class60407] of  String
+
+	(name "WiClient")
+	(string_value "wiheader"))
+
+([WebInterface_ProjectKB_Class60408] of  String
+
+	(name "WiSidebar")
+	(string_value "wiside"))
+
+([WebInterface_ProjectKB_Class60409] of  String
+
+	(name "WiMap")
+	(string_value "{Map}"))
+
+([WebInterface_ProjectKB_Class60410] of  String
+
+	(name "WiValueParameter")
+	(string_value "title{+}widefault-value"))
+
+([WebInterface_ProjectKB_Class60411] of  String
+
+	(name "WiLayer")
+	(string_value "title"))
+
+([WebInterface_ProjectKB_Class60412] of  String
+
+	(name "WiOptionParameter")
+	(string_value "title"))
+
+([WebInterface_ProjectKB_Class60413] of  Map
+
+	(entries [WebInterface_ProjectKB_Class60414]))
+
+([WebInterface_ProjectKB_Class60414] of  Map_Entry
+
+	(key "WebInterface_Class120009")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "27 528 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([WebInterface_ProjectKB_Class60415] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "WebInterface_ProjectKB_Class60413")
+	(value_class "java.util.Map"))
 
 ([WebServer_ProjectKB_Class10361] of  Widget
 
@@ -1722,7 +1706,8 @@
 		[WebInterface_ProjectKB_Class396]
 		[WebInterface_ProjectKB_Class398]
 		[WebInterface_ProjectKB_Class400]
-		[WebInterface_ProjectKB_Class10367]))
+		[WebInterface_ProjectKB_Class10367]
+		[WebInterface_ProjectKB_Class30402]))
 
 ([WebServer_ProjectKB_Class40397] of  Property_List
 

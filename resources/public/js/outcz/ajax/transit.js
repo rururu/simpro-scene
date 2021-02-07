@@ -5,10 +5,10 @@ goog.require('cognitect.transit');
 goog.require('ajax.interceptors');
 goog.require('ajax.protocols');
 goog.require('ajax.util');
-ajax.transit.transit_type = (function ajax$transit$transit_type(p__9460){
-var map__9461 = p__9460;
-var map__9461__$1 = (((((!((map__9461 == null))))?(((((map__9461.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__9461.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__9461):map__9461);
-var type = cljs.core.get.call(null,map__9461__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+ajax.transit.transit_type = (function ajax$transit$transit_type(p__8700){
+var map__8701 = p__8700;
+var map__8701__$1 = (((((!((map__8701 == null))))?(((((map__8701.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8701.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8701):map__8701);
+var type = cljs.core.get.call(null,map__8701__$1,new cljs.core.Keyword(null,"type","type",1174270348));
 var or__4047__auto__ = type;
 if(cljs.core.truth_(or__4047__auto__)){
 return or__4047__auto__;
@@ -40,8 +40,8 @@ return cognitect.transit.write.call(null,writer,params);
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_request_format = (function ajax$transit$transit_request_format(var_args){
-var G__9464 = arguments.length;
-switch (G__9464) {
+var G__8704 = arguments.length;
+switch (G__8704) {
 case 0:
 return ajax.transit.transit_request_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -90,8 +90,8 @@ return cognitect.transit.read.call(null,reader,ajax.protocols._body.call(null,re
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_response_format = (function ajax$transit$transit_response_format(var_args){
-var G__9467 = arguments.length;
-switch (G__9467) {
+var G__8707 = arguments.length;
+switch (G__8707) {
 case 0:
 return ajax.transit.transit_response_format.cljs$core$IFn$_invoke$arity$0();
 

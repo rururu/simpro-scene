@@ -1,4 +1,4 @@
-; Tue Jan 26 14:29:08 MSK 2021
+; Sun Feb 07 23:37:24 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -15,7 +15,7 @@
 
 ([BrigBern_Class10006] of  CloFunction
 
-	(source "(try\n  (let [url (osm-api-url bbx kind kind-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println (.getMessage e))\n    (try\n      (let [url (osm-api-url bbx kind kind-type)\n             ;;_ (println :URL url)\n             jsn (json/read-str (slurp url) :key-fn keyword)]\n          jsn)\n      (catch Exception e\n        (println (.getMessage e))\n        nil))\n    nil))")
+	(source "(try\n  (let [url (osm-api-url bbx kind kind-type)\n         ;;_ (println :URL url)\n         jsn (json/read-str (slurp url) :key-fn keyword)]\n      jsn)\n  (catch Exception e\n    (println (.getMessage e))\n    (try\n      (def URL (osm-api-url bbx kind kind-type))\n      (def DATA (slurp URL))   \n      (json/read-str DATA :key-fn keyword)\n      (catch Exception e\n        (println (.getMessage e))\n        nil))\n    nil))")
 	(title "osm-data [bbx kind kind-type]"))
 
 ([BrigBern_Class13] of  CloFunction
@@ -263,7 +263,7 @@
 
 ([OSMData_Class10003] of  CloFunction
 
-	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map fmk-node (star-points noi)))\n  (println \"Fill node slot!\"))")
+	(source "(if-let [noi (sv inst \"node\")]\n  (ssvs inst \"nodes\" (map fmk-nodes (star-points noi)))\n  (println \"Fill node slot!\"))")
 	(title "connected-nodes [hm inst]"))
 
 ([OSMData_Class10004] of  CloFunction
@@ -378,7 +378,9 @@
 	(cloNamespace [OSMData_Class40132])
 	(cloVars
 		[OSMData_Class30005]
-		[OSMData_Class20000])
+		[OSMData_Class20000]
+		[OSMData_Class90001]
+		[OSMData_Class90000])
 	(title "OSM Functions"))
 
 ([OSMData_Class40132] of  CloNamespace
@@ -474,15 +476,25 @@
 	(source "(let [xy1 [(sv e \"x\") (sv e \"y\")]\n      xy2 [(sv e \"x2\") (sv e \"y2\")]]\n  (if (< (f/simple-dist xy xy1)\n          (f/simple-dist xy xy2))\n    [\"FORWARD\" xy2]\n    [\"BACKWARD\" xy1]))")
 	(title "edge-dir-cont [xy e]"))
 
+([OSMData_Class90000] of  CloVar
+
+	(source "nil")
+	(title "DATA"))
+
+([OSMData_Class90001] of  CloVar
+
+	(source "nil")
+	(title "URL"))
+
 ([OSMData_Class90034] of  CloFunction
 
-	(source "(pe/qt-do-query \"Node\" (f/bbx xy rad))")
+	(source "(let [[w s e n] (f/bbx xy rad)]\n  (filter #(let [xi (sv % \"x\") yi (sv % \"y\")]\n               (and (> xi w) (> yi s) (< xi e) (< yi n))) (cls-instances \"Node\")))")
 	(title "find-nodes [xy rad]"))
 
 ([OSMData_Class90038] of  CloFunction
 
-	(source "(if-let [noi (first (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (show-node nil noi)\n      (println \"Find Node\" (sv noi \"label\")))\n    noi)\n  (mk-node xy))")
-	(title "fmk-node [xy]"))
+	(source "(if-let [nis (seq (find-nodes xy (get-radius)))]\n  (do \n    (when (is-show?)\n      (doseq [ni nis]\n        (show-node nil ni)\n        (println \"Find Node\" (sv ni \"label\"))))\n    nis)\n  [(mk-node xy)])")
+	(title "fmk-nodes [xy]"))
 
 ([OSMRoads_Class100006] of  Tagvalue
 

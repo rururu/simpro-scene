@@ -1,14 +1,12 @@
 (ns czm.core
 (:require
   [geo.calc :as geo]))
-
 (def VIEWER (js/Cesium.Viewer. 
   "cesiumContainer" 
   #js{:imageryProvider (js/Cesium.createWorldImagery)
         :terrainProvider (js/Cesium.createWorldTerrain)
         :animation false
         :shouldAnimate true}))
-(def CZML-URL "http://localhost:4444/czml")
 (def CZML-SRC (js/Cesium.CzmlDataSource.))
 (def CAMERA (volatile! {:view 0
                :pitch 0
@@ -63,10 +61,10 @@
         (def ALT (int (+ sh alt))))
       (fly-control lat lon ALT head pitch roll per)))))
 
-(defn init-3D-view []
+(defn init-3D-view [url]
   (.add (.-dataSources VIEWER) CZML-SRC)
-(.addEventListener (js/EventSource. CZML-URL) "czml" cz-processor false)
-(println [:INIT-3D-VIEW CZML-URL]))
+(.addEventListener (js/EventSource. url) "czml" cz-processor false)
+(println [:INIT-3D-VIEW url]))
 
 (defn hig-ray [lat lon bea dis step alt]
   (let [ray (geo/ray lat lon bea dis step)]

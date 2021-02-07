@@ -23,6 +23,7 @@
   {:state (eva/empty-state)
    :value nil}))
 (def RESPONSE (volatile! {}))
+(def PORT 8421)
 (defn repeater
   ([func time-out]
   (go (while true
@@ -163,7 +164,7 @@
 (left-controls))
 
 (defn on-load []
-  (czm/init-3D-view)
+  (czm/init-3D-view (str "http://0.0.0.0/" PORT))
 (repeater receive-vehicle 1000)
 (show-controls))
 
