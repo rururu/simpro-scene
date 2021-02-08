@@ -1,4 +1,4 @@
-; Sun Jan 31 19:52:38 MSK 2021
+; Mon Feb 08 18:27:38 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -384,7 +384,7 @@
 	(label "owm1:precipitation")
 	(localCacheRootDir "data/tiles/owm1/precipitation")
 	(prettyName "OWM1.0 Precipitation")
-	(rootDir "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74")
+	(rootDir "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class80001] of  MapTileLayer
@@ -395,7 +395,7 @@
 	(label "owm1:pressure")
 	(localCacheRootDir "data/tiles/owm1/pressure")
 	(prettyName "OWM1.0 Pressure")
-	(rootDir "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74")
+	(rootDir "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class80002] of  MapTileLayer
@@ -406,7 +406,7 @@
 	(label "owm1:wind_speed")
 	(localCacheRootDir "data/tiles/owm1/wind_speed")
 	(prettyName "OWM1.0 Wind speed")
-	(rootDir "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74")
+	(rootDir "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class80003] of  MapTileLayer
@@ -417,7 +417,7 @@
 	(label "owm1:temperature")
 	(localCacheRootDir "data/tiles/owm1/temperature")
 	(prettyName "OWM1.0 Temperature")
-	(rootDir "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74")
+	(rootDir "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class80004] of  MapTileLayer
@@ -428,7 +428,7 @@
 	(label "owm1:clouds")
 	(localCacheRootDir "data/tiles/owm1/clouds")
 	(prettyName "OWM1.0 Clouds")
-	(rootDir "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74")
+	(rootDir "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=")
 	(tileFactory "com.bbn.openmap.dataAccess.mapTile.ServerMapTileFactory"))
 
 ([igis_Class9] of  Menu

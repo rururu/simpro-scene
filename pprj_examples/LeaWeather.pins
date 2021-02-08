@@ -1,4 +1,4 @@
-; Sun Jan 31 18:10:08 MSK 2021
+; Mon Feb 08 18:25:51 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19,13 +19,6 @@
 	(source "(let [{:keys [operation number1 number2]} params\n                     res ((resolve (symbol operation))\n                            (read-string number1)\n                            (read-string number2))]\n  ;; (println :RESULT res)\n  (asp/pump-in (@ws/SYS :CHAN) \n    {:event :popup\n      :html (str \"<h1>\" res \"</h1>\")}))")
 	(title "calculator [params]"))
 
-([LeaWeather_Class10000] of  WiLayer
-
-	(title "OpenStreetMap")
-	(wiattributes "{:maxZoom 20\n  :attribution \"Ru, OpenStreetMap &copy;\"}")
-	(wilayer-type Tile)
-	(wisource "http://{s}.tile.osm.org/{z}/{x}/{y}.png"))
-
 ([LeaWeather_Class10001] of  WiServer
 
 	(cloNamespace [LeaWeather_Class9])
@@ -35,48 +28,6 @@
 	(wibut-upd-start-page "Update Start Page/wint.server/update-start-page")
 	(wiport "8421")
 	(wistart-page "resources/public/leawea.html"))
-
-([LeaWeather_Class10002] of  WiLayer
-
-	(title "WM1.0 Clouds")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
-
-([LeaWeather_Class10003] of  WiLayer
-
-	(title "WM1.0 Precipitation")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
-
-([LeaWeather_Class10004] of  WiLayer
-
-	(title "WM1.0 Pressure")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
-
-([LeaWeather_Class10005] of  WiLayer
-
-	(title "WM1.0 Wind speed")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
-
-([LeaWeather_Class10006] of  WiLayer
-
-	(title "WM1.0 Temperature")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
-
-([LeaWeather_Class10007] of  WiLayer
-
-	(title "WM2")
-	(wiattributes "{}")
-	(wilayer-type Tile)
-	(wisource "http://maps.openweathermap.org/maps/2.0/weather/TA2/%7Bz%7D/%7Bx%7D/%7By%7D?appid=7c32384234ecad86afe81b6c5e81cc74"))
 
 ([LeaWeather_Class11] of  CloFunction
 
@@ -129,14 +80,6 @@
 ([LeaWeather_Class6] of  WiMap
 
 	(wicenter "[60.0 30.0]")
-	(wilayers
-		[WebInterface_Class50003]
-		[LeaWeather_Class10000]
-		[LeaWeather_Class10002]
-		[LeaWeather_Class10003]
-		[LeaWeather_Class10004]
-		[LeaWeather_Class10006]
-		[LeaWeather_Class10005])
 	(wizoom 8))
 
 ([LeaWeather_Class8] of  CloProgram

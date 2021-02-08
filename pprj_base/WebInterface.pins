@@ -1,4 +1,4 @@
-; Mon Feb 01 18:05:00 MSK 2021
+; Mon Feb 08 18:21:46 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -213,35 +213,35 @@
 	(title "OWM1.0 Temperature")
 	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
 	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+	(wisource "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid="))
 
 ([WebInterface_Class120016] of  WiLayer
 
 	(title "OWM1.0 Wind speed")
 	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
 	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+	(wisource "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid="))
 
 ([WebInterface_Class120017] of  WiLayer
 
 	(title "OWM1.0 Clouds")
 	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
 	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+	(wisource "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid="))
 
 ([WebInterface_Class120018] of  WiLayer
 
 	(title "OWM1.0 Precipitation")
 	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
 	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+	(wisource "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid="))
 
 ([WebInterface_Class120019] of  WiLayer
 
 	(title "OWM1.0 Pressure")
 	(wiarguments "{:options {:maxZoom 20\n                  :attribution \"Ru, OpenWeatherMap &copy;\"}}")
 	(wilayer-type Tile)
-	(wisource "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=7c32384234ecad86afe81b6c5e81cc74"))
+	(wisource "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid="))
 
 ([WebInterface_Class120020] of  WiLayer
 
