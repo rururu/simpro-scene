@@ -81,6 +81,7 @@ Movement along the ready part of the railroad from Menton to Ventimiglia.](https
 Building of the part from Ventimiglia to Bordighera using Expert System of shortest path on a graph and OSM data server.](https://youtu.be/IIz0UDpqncE)
 32. [NiceSPb Lesson 3. Part III.
 Addition of the movement scenario on the  part from Ventimiglia to Bordighera and movement along.](https://youtu.be/aYAiik0Q4xE)
+33. [Warszawa - Terespol](https://youtu.be/UbH6sWYChr0)
 
 TO BE CONTINUED
 
