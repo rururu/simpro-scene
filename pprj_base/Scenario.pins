@@ -1,4 +1,4 @@
-; Fri Jan 29 13:13:27 MSK 2021
+; Mon Feb 15 11:51:24 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -265,8 +265,8 @@
 		[ScenarioN_Class520007]
 		[ScenarioN_Class520008])
 	(rules
-		[ScenarioN_Class520010]
-		[ScenarioN_Class530011]))
+		[ScenarioN_Class530011]
+		[ScenarioN_Class520010]))
 
 ([PolyMovingN] of  ActionClass
 
@@ -1580,6 +1580,11 @@
 	(salience 0)
 	(title "s:JoinDone"))
 
+([Scenario_Class570000] of  CloFunction
+
+	(source ";; begins point sequence from northest point\n;; and arrange it clockwise\n(let [pts (if islla?\n              (partition 2 pts)\n              pts)]\n  (loop [pp pts N -90 K -1]\n    (if (seq pp)\n      (if (> (ffirst pp) N)\n        (recur (rest pp) (ffirst pp) (inc K))\n        (recur (rest pp) N K))\n      (let [pp (concat (drop K pts) (take K pts))\n            pp (if (> (second (last pp)) (second (first pp)))\n                  (cons (first pp) (reverse (rest pp)))\n                  pp)]\n        (if islla?\n          (flatten pp)\n          pp)))))")
+	(title "canon-point-seq [pts islla?]"))
+
 ([Scenario_Class570001] of  Rule
 
 	(lhs "?na (NoAction status \"START\"\n	title ?tit\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
@@ -1631,6 +1636,30 @@
 	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"SetScale\"))\n(let [scl (a/vv ?scl ?run)]\n  (if (a/worth? scl)\n    (do (-> (ru.igis.omtab.OpenMapTab/getMapBean)\n            (.setScale (float (read-string scl))))\n       (retract ?ss)\n       (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?ss status\"FAILED\")))")
 	(salience 0)
 	(title "a:SetScale"))
+
+([Scenario_Class590001] of  CloFuncall
+
+	(source "(def pts [[80 33] [86 34 [87 31] [89 30] [88 29] [85 27] [40 26] [34 28] [30 30] [41 31] [55 32]])"))
+
+([Scenario_Class590002] of  CloFuncall
+
+	(source "(def pts [[80 33] [86 34] [87 31] [89 30] [88 29] [85 27] [40 26] [34 28] [30 30] [41 31] [55 32]])"))
+
+([Scenario_Class590003] of  CloFuncall
+
+	(source "(count pts)"))
+
+([Scenario_Class590004] of  CloFuncall
+
+	(source "(canon-point-seq pts)"))
+
+([Scenario_Class590005] of  CloFuncall
+
+	(source "(a/canon-point-seq pts)"))
+
+([Scenario_Class590006] of  CloFuncall
+
+	(source "(a/canon-point-seq (a/canon-point-seq pts))"))
 
 ([Scenario_Class590013] of  Rule
 
@@ -1872,6 +1901,34 @@
 
 	(title "p")
 	(value "0"))
+
+([Scenario_Class720000] of  CloFuncall
+
+	(source "(partition 2 [1 2 3 4 5  6 7 8 9 0])"))
+
+([Scenario_Class720001] of  CloFuncall
+
+	(source "(flatten (partition 2 [1 2 3 4 5  6 7 8 9 0]))"))
+
+([Scenario_Class720002] of  CloFuncall
+
+	(source "(in-ns 'poly.moving)"))
+
+([Scenario_Class720003] of  CloFuncall
+
+	(source "(canon-point-seq pts false)"))
+
+([Scenario_Class720004] of  CloFuncall
+
+	(source "(def pts2 (flatten pts))"))
+
+([Scenario_Class720005] of  CloFuncall
+
+	(source "pts2"))
+
+([Scenario_Class720006] of  CloFuncall
+
+	(source "(canon-point-seq pts2 true)"))
 
 ([Scenario_Class80000] of  Rule
 
@@ -2500,6 +2557,7 @@
 ([ScenarioN_Class510000] of  CloProgram
 
 	(cloFunctions
+		[Scenario_Class570000]
 		[ScenarioN_Class510001]
 		[ScenarioN_Class510002]
 		[ScenarioN_Class510003]
@@ -2564,7 +2622,7 @@
 
 ([ScenarioN_Class520008] of  CloFunction
 
-	(source "(try\n  (let [llaj (.getLLPoints mob)\n         llas (map #(ProjMath/degToRad %) (OMTPoly/getLLPoints (svs obs \"points\")))\n         lenj (alength llaj)\n         lens (count llas)\n         fin (+ ?t tim)\n         att {:period tim :finish fin}]\n    (.putAttribute mob \"PM-PARAMS\"\n      (cond\n         (> lenj lens) (assoc att :sta-points (vec llaj) :fin-points (reppp llas lens lenj))\n         (< lenj lens) (assoc att :sta-points (reppp llaj lenj lens) :fin-points llas)\n         (= lenj lens) (assoc att :sta-points (vec llaj) :fin-points llas)))\n     1)\n(catch Exception ex\n  (println ex)\n  -1))")
+	(source "(try\n  (let [llaj (.getLLPoints mob)\n         llaj (canon-point-seq llaj true)\n         llas (OMTPoly/getLLPoints (svs obs \"points\"))\n         llas (canon-point-seq llas true)\n         llas (map #(ProjMath/degToRad %) llas)\n         lenj (count llaj)\n         lens (count llas)\n         fin (+ ?t tim)\n         att {:period tim :finish fin}]\n    (.putAttribute mob \"PM-PARAMS\"\n      (cond\n         (> lenj lens) (assoc att :sta-points (vec llaj) :fin-points (reppp llas lens lenj))\n         (< lenj lens) (assoc att :sta-points (reppp llaj lenj lens) :fin-points llas)\n         (= lenj lens) (assoc att :sta-points (vec llaj) :fin-points llas)))\n     1)\n(catch Exception ex\n  (println ex)\n  -1))")
 	(title "pm-start [mob obs tim ?t]"))
 
 ([ScenarioN_Class520009] of  CloNamespace

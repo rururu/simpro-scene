@@ -1,4 +1,4 @@
-; Mon Feb 08 18:27:38 MSK 2021
+; Sat Feb 13 21:03:58 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -64,6 +64,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot localCacheRootDir
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot imageReaderLoaders
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -611,6 +615,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot geotiff
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot vendorspecificvalues
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -671,6 +679,10 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot west
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot imageFilePath
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
