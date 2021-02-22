@@ -6,7 +6,7 @@
   protege/unicode_panel {:local/root "lib_ext/unicode_panel-3.5.0.jar"}
   protege/JGo {:local/root "lib_ext/JGo-3.5.0.jar"}
   protege/JGoLayout {:local/root "lib_ext/JGoLayout-3.5.0.jar"}
-  protege/ClojureTab {:local/root "lib/ClojureTab-1.5.0.jar"}
+  protege/ClojureTab {:local/root "lib/ClojureTab-1.5.jar"}
   protege/ProtegeExtensions {:local/root "lib/ProtegeExtensions.jar"}
   OpenMapTab {:local/root "lib/OpenMapTab-5.2.1.jar"}
   org.openmap-java/openmap {:local/root "lib_ext/openmap.jar"}

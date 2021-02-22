@@ -117,7 +117,7 @@
   true a))
 
 (defn mapob-vv [?obj ?run]
-  (OMT/getMapOb (vv ?obj ?run)))
+  (OMT/getOrAdd (vv ?obj ?run)))
 
 (defn meeting-point
   ([mot mob spd radius]

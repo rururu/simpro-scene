@@ -51,7 +51,7 @@ See examples.
 5. [Get started: Map Inspector](https://youtu.be/QoTo5qYyJdQ)
 6. [Get started: Drawing Polygons](https://youtu.be/7P8Q9n0jLVM)
 7. [Tsunami](https://youtu.be/pkF8BE74JAk)
-8. [Shuffle Europe](https://youtu.be/Jh6r9ytpkKQ)
+8. [Shuffle Europe](https://youtu.be/lTEdW-i04bA)
 9. [France Roads](https://youtu.be/IvKkSpa8x9Y)
 10. [France Roads: Stress test "Blue"](https://youtu.be/zp6VdtKYLtc)
 11. [France Roads: Stress test "Three colors"](https://youtu.be/x20pMyq5GV0)

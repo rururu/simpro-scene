@@ -1,4 +1,4 @@
-; Mon Feb 15 11:51:24 MSK 2021
+; Mon Feb 22 10:47:41 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -261,21 +261,17 @@
 
 ([PolyMoving] of  ActionClass
 
-	(functions
-		[ScenarioN_Class520007]
-		[ScenarioN_Class520008])
+	(functions [Scenario_Class730006])
 	(rules
-		[ScenarioN_Class530011]
-		[ScenarioN_Class520010]))
+		[Scenario_Class730005]
+		[Scenario_Class730004]))
 
 ([PolyMovingN] of  ActionClass
 
-	(functions
-		[ScenarioN_Class530014]
-		[ScenarioN_Class530015])
 	(rules
-		[ScenarioN_Class530012]
-		[ScenarioN_Class530013]))
+		[Scenario_Class730002]
+		[Scenario_Class730003]
+		[Scenario_Class730001]))
 
 ([Position] of  ActionClass
 
@@ -430,10 +426,6 @@
 		[ScenarioN_Class460005]
 		[ScenarioN_Class460000]
 		[ScenarioN_Class520001]
-		[ScenarioN_Class530013]
-		[ScenarioN_Class530012]
-		[ScenarioN_Class520010]
-		[ScenarioN_Class530011]
 		[ScenarioN_Class580002]
 		[ScenarioN_Class580001]
 		[ScenarioN_Class660000]
@@ -454,7 +446,12 @@
 		[Scenario_Class610001]
 		[Scenario_Class620000]
 		[Scenario_Class700000]
-		[Scenario_Class570001])
+		[Scenario_Class570001]
+		[Scenario_Class730001]
+		[Scenario_Class730002]
+		[Scenario_Class730003]
+		[Scenario_Class730004]
+		[Scenario_Class730005])
 	(templates
 		[Action]
 		[Arrive]
@@ -869,7 +866,7 @@
 
 ([Scenario_Class240000] of  CloFunction
 
-	(source "(if (empty? nacts)\n  (rete.core/assert-frame\n    ['Action 'status \"DONE\"\n	'parent pid\n	'instance ain\n	'next_actions nacts])\n  (s/start-tasks-actions nacts pid run))")
+	(source "(cond\n  (= nacts :?) \n  nil\n  (empty? nacts)\n  (rete.core/assert-frame\n    ['Action 'status \"DONE\"\n	'parent pid\n	'instance ain\n	'next_actions nacts])\n  true\n  (s/start-tasks-actions nacts pid run))")
 	(title "start-next [nacts pid ain run]"))
 
 ([Scenario_Class250000] of  Rule
@@ -1637,30 +1634,6 @@
 	(salience 0)
 	(title "a:SetScale"))
 
-([Scenario_Class590001] of  CloFuncall
-
-	(source "(def pts [[80 33] [86 34 [87 31] [89 30] [88 29] [85 27] [40 26] [34 28] [30 30] [41 31] [55 32]])"))
-
-([Scenario_Class590002] of  CloFuncall
-
-	(source "(def pts [[80 33] [86 34] [87 31] [89 30] [88 29] [85 27] [40 26] [34 28] [30 30] [41 31] [55 32]])"))
-
-([Scenario_Class590003] of  CloFuncall
-
-	(source "(count pts)"))
-
-([Scenario_Class590004] of  CloFuncall
-
-	(source "(canon-point-seq pts)"))
-
-([Scenario_Class590005] of  CloFuncall
-
-	(source "(a/canon-point-seq pts)"))
-
-([Scenario_Class590006] of  CloFuncall
-
-	(source "(a/canon-point-seq (a/canon-point-seq pts))"))
-
 ([Scenario_Class590013] of  Rule
 
 	(lhs "?fv (FlightView status \"START\"\n	title ?tit\n	object ?obj\n	scale ?scl\n	delay ?del\n	run ?run)\n(Clock time ?t)\n(not FlightView)")
@@ -1902,33 +1875,55 @@
 	(title "p")
 	(value "0"))
 
-([Scenario_Class720000] of  CloFuncall
+([Scenario_Class730000] of  ShareOnto
 
-	(source "(partition 2 [1 2 3 4 5  6 7 8 9 0])"))
+	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
+	(but-del-fil "Delete Filtered Instances/share.onto/delfil")
+	(but-del-unref "Delete Unreferenced/share.onto/delete-unref")
+	(but-find-unref "Find Unreferenced/share.onto/find-unref")
+	(but-load-prj "Load Source Project/share.onto/load-src-prj")
+	(but-shal-copy "Shallow Copy Instances/share.onto/shal-copy")
+	(source-project "DefaultKnowledgeBase(ScenarioN)"))
 
-([Scenario_Class720001] of  CloFuncall
+([Scenario_Class730001] of  Rule
 
-	(source "(flatten (partition 2 [1 2 3 4 5  6 7 8 9 0]))"))
+	(lhs "?pmn (PolyMovingN status \"REPEAT\"\n	title ?tit\n	object ?obj\n	mapob ?mpb\n	time ?tim\n	clock ?clk\n	run ?run\n	instance ?ain\n	parent ?pid \n	next_actions ?nacts)\n(Clock time ?t (> ?t ?clk))\n(not PolyMoving status \"REPEAT\"\n	title ?tit\n	object ?mob\n	run ?run\n	(= (a/mapob-vv ?obj ?run) ?mob))")
+	(rhs "(let [rmpb (rest ?mpb)]\n  (if (empty?(rest rmpb))\n    (do (retract ?pmn)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (do (asser PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer (first rmpb)\n	observer2 (second rmpb)\n	time ?tim\n	run ?run)\n      (modify ?pmn mapob rmpb\n	clock ?t))))")
+	(salience 0)
+	(title "a:PolyMovingNRepeat"))
 
-([Scenario_Class720002] of  CloFuncall
+([Scenario_Class730002] of  Rule
 
-	(source "(in-ns 'poly.moving)"))
+	(lhs "?pmn (PolyMovingN status \"START\"\n	title ?tit\n	object ?obj\n	mapob ?mpb\n	kit ?kit\n	time ?tim\n	default ?def\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println (str \"Action started: \" ?tit \" PolyMovingN\"))\n(let [kit (a/vv ?kit ?run)\n      col (if kit (protege.core/svs kit \"collection\") [])\n      mpb (concat ?mpb col)]\n  (asser PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer (first mpb)\n	observer2 (second mpb)\n	time ?tim\n	default ?def\n	run ?run)\n  (modify ?pmn status \"START2\"\n	mapob mpb\n	clock ?t))")
+	(salience 0)
+	(title "a:PolyMovingNStart"))
 
-([Scenario_Class720003] of  CloFuncall
+([Scenario_Class730003] of  Rule
 
-	(source "(canon-point-seq pts false)"))
+	(lhs "?pmn (PolyMovingN status \"START2\"\n	title ?tit\n	object ?obj\n	run ?run)\n(PolyMoving status \"REPEAT\"\n	title ?tit\n	object ?mob\n	run ?run\n	(= (a/mapob-vv ?obj ?run) ?mob))")
+	(rhs "(modify ?pmn status \"REPEAT\")")
+	(salience 0)
+	(title "a:PolyMovingNStart2"))
 
-([Scenario_Class720004] of  CloFuncall
+([Scenario_Class730004] of  Rule
 
-	(source "(def pts2 (flatten pts))"))
+	(lhs "(Clock time ?t)\n?pmr (PolyMoving status \"REPEAT\"\n	observer ?pm\n	instance ?ain\n	parent ?pid\n	run ?run \n	next_actions ?nacts\n                      (not (.isMoving ?pm)))")
+	(rhs "(retract ?pmr)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "a:PolyMovingRepeat"))
 
-([Scenario_Class720005] of  CloFuncall
+([Scenario_Class730005] of  Rule
 
-	(source "pts2"))
+	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	observer2 ?obs2\n	time ?tim\n	default ?def\n	run ?run)")
+	(rhs "(println (str \"Action started: \" ?tit \" PolyMoving\"))\n(protege.core/ssvs ?obj \"points\" (protege.core/svs ?obs \"points\"))\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       mos2 (a/mapob-vv ?obs2 ?run)\n       tim (a/vv ?tim ?run)\n       def (a/vv ?def ?run)\n       pmm (ru.igis.omtab.PolyMovingManager/getPolyMovingManager)]\n  (if (and (some? mob) (some? mos) (some? mos2) (a/worth? tim) pmm)\n    (do (if (some? def)\n           (let [def (read-string def)]\n             (when (not= (.getTimerDelay pmm) def)\n               (.setDefaultTimerDelay pmm def)\n               (.resetTimer pmm def))))\n      (modify ?pm status \"REPEAT\"\n	object mob\n	observer (poly.moving/poly-mover mob mos2 (a/to-be tim) pmm)))\n    (modify ?pm status \"FAILED\")))")
+	(salience 0)
+	(title "a:PolyMovingStart"))
 
-([Scenario_Class720006] of  CloFuncall
+([Scenario_Class730006] of  CloFunction
 
-	(source "(canon-point-seq pts2 true)"))
+	(source "(let [llab (.getLLPoints mob)\n      llas (.getLLPoints mos)\n      llab (canon-point-seq llab true)\n      llas (canon-point-seq llas true)\n      lenb (count llab)\n      lens (count llas)\n      llab (into-array Double/TYPE llab)\n      llas (into-array Double/TYPE llas)\n      omp (.getLocationMarker mob)\n      tim (/ tim 3600)]\n  (cond\n    (> lenb lens) (.addMovingPoly pmm omp llab (into-array Double/TYPE (reppp llas lens lenb)) tim)\n    (< lenb lens) (.addMovingPoly pmm omp (into-array Double/TYPE (reppp llab lenb lens)) llas tim)\n    (= lenb lens) (.addMovingPoly pmm omp llab llas tim)))")
+	(title "poly-mover [mob mos tim pmm]"))
 
 ([Scenario_Class80000] of  Rule
 
@@ -2081,8 +2076,8 @@
 
 ([ScenarioN_Class170002] of  Rule
 
-	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	thing ?thg\n	seed ?sed\n	number ?num\n	rename ?ren\n	rename-slot ?rns\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       thg (a/vv ?thg ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       rr (cond\n            thg\n            (a/any-collection thg)\n            mo\n            (or (seq ?mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
+	(lhs "?lr (LoadResource status \"START\"\n	title ?tit\n	object ?obj\n	resource ?res\n	mapob ?mos\n	kit ?kit\n	thing ?thg\n	seed ?sed\n	number ?num\n	rename ?ren\n	rename-slot ?rns\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"LoadResource\"))\n(let [mo (a/mapob-vv ?obj ?run)\n       thg (a/vv ?thg ?run)\n       sed (a/vv ?sed ?run)\n       num (a/vv ?num ?run)\n       kit (a/vv ?kit ?run)\n       mos (concat ?mos (protege.core/svs kit \"collection\"))\n       rr (cond\n            thg\n            (a/any-collection thg)\n            mo\n            (or (seq mos) \n               (and sed num (a/worth? ?rns)\n                 (let [nms (.getName ?rns)\n                        nam (protege.core/sv sed nms)\n                        stp (protege.core/typ sed)\n                        rng (range 1 (inc (read-string num)))]\n                   (for [i rng] \n                     (let [nsv (str nam i)\n                            c (or (protege.core/fifos stp nms nsv)\n                                 (.shallowCopy sed nil nil))]\n                       (if (protege.core/is? ?ren)\n	   (protege.core/ssv c nms nsv)) \n                       c))))))]\n  (if (seq rr)\n    (do (.putAttribute mo (protege.core/sv ?res \"title\") (vec (cons 0 rr)))\n      (retract ?lr)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (modify ?lr status \"FAILED\")))")
 	(salience 0)
 	(title "a:LoadResource"))
 
@@ -2468,7 +2463,7 @@
 
 ([ScenarioN_Class40001] of  CloFunction
 
-	(source "(OMT/getMapOb (vv ?obj ?run))")
+	(source "(OMT/getOrAdd (vv ?obj ?run))")
 	(title "mapob-vv [?obj ?run]"))
 
 ([ScenarioN_Class410000] of  CloVar
@@ -2564,10 +2559,7 @@
 		[ScenarioN_Class510004]
 		[ScenarioN_Class510005]
 		[ScenarioN_Class510006]
-		[ScenarioN_Class520007]
-		[ScenarioN_Class520008]
-		[ScenarioN_Class530015]
-		[ScenarioN_Class530014]
+		[Scenario_Class730006]
 		[ScenarioN_Class520000]
 		[ScenarioN_Class550004])
 	(cloNamespace [ScenarioN_Class520009])
@@ -2615,63 +2607,15 @@
 	(salience 0)
 	(title "a:RetractObjects"))
 
-([ScenarioN_Class520007] of  CloFunction
-
-	(source "(try\n  (let [att (.getAttribute mob \"PM-PARAMS\")\n         finis (att :finish)]\n    (if (> ?t finis)\n        0\n        (let [llas (att :sta-points)\n               llaf (att :fin-points)\n               peri (att :period)\n               rest (- finis ?t)\n               ratio (/ (- peri rest) peri)\n               ipp (step-poly ratio llas llaf)\n               arr (double-array ipp)]\n           (.. mob (getLocationMarker) (setLocation arr (OMGraphic/RADIANS)))\n           1)))\n(catch Exception ex\n  (println ex)\n  -1))")
-	(title "pm-repeat [mob ?t]"))
-
-([ScenarioN_Class520008] of  CloFunction
-
-	(source "(try\n  (let [llaj (.getLLPoints mob)\n         llaj (canon-point-seq llaj true)\n         llas (OMTPoly/getLLPoints (svs obs \"points\"))\n         llas (canon-point-seq llas true)\n         llas (map #(ProjMath/degToRad %) llas)\n         lenj (count llaj)\n         lens (count llas)\n         fin (+ ?t tim)\n         att {:period tim :finish fin}]\n    (.putAttribute mob \"PM-PARAMS\"\n      (cond\n         (> lenj lens) (assoc att :sta-points (vec llaj) :fin-points (reppp llas lens lenj))\n         (< lenj lens) (assoc att :sta-points (reppp llaj lenj lens) :fin-points llas)\n         (= lenj lens) (assoc att :sta-points (vec llaj) :fin-points llas)))\n     1)\n(catch Exception ex\n  (println ex)\n  -1))")
-	(title "pm-start [mob obs tim ?t]"))
-
 ([ScenarioN_Class520009] of  CloNamespace
 
 	(source "(:use\n  protege.core)\n(:import \n  ru.igis.omtab.OMT\n  com.bbn.openmap.omGraphics.OMGraphic\n  com.bbn.openmap.proj.GreatCircle\n  com.bbn.openmap.proj.ProjMath\n  ru.igis.omtab.OMTPoly)")
 	(title "poly.moving"))
 
-([ScenarioN_Class520010] of  Rule
-
-	(lhs "?pm (PolyMoving status \"REPEAT\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	time ?tim\n	run ?run\n	parent ?pid\n	instance ?ain\n	next_actions ?nacts)\n\n(Clock time ?t)")
-	(rhs "(if-let [mob (a/mapob-vv ?obj ?run)]\n  (let [re (poly.moving/pm-repeat mob ?t)]\n    (cond\n      (< re 0) (modify ?pm status \"FAILED\")\n      (= re 0) (do (retract ?pm)\n                       (s/start-next ?nacts ?pid ?ain ?run))))\n  (modify ?pm status \"FAILED\"))")
-	(salience 0)
-	(title "a:PolyMovingRepeat"))
-
 ([ScenarioN_Class520024] of  CloFunction
 
 	(source "(println \"Directive: Listen MapOb Events\")\n(ru.igis.omtab.OMT/addActionListener\n  (proxy [java.awt.event.ActionListener] []\n    (actionPerformed [evt] \n      (sim/mapob-event evt))))")
 	(title "Listen MapOb Events"))
-
-([ScenarioN_Class530011] of  Rule
-
-	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	time ?tim\n	run ?run)\n(Clock time ?t)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"PolyMoving\"))\n(let [mob (a/mapob-vv ?obj ?run)\n       obs (a/vv ?obs ?run)\n       tim (a/vv ?tim ?run)]\n  (if (or (nil? mob)\n            (a/null? obs)\n            (a/null? tim)\n            (< (poly.moving/pm-start mob obs (a/to-be tim) ?t) 0))\n      (modify ?pm status \"FAILED\")\n      (modify ?pm status \"REPEAT\")))")
-	(salience 0)
-	(title "a:PolyMovingStart"))
-
-([ScenarioN_Class530012] of  Rule
-
-	(lhs "?pmn (PolyMovingN status \"START\"\n	title ?tit\n	mapob ?mpb\n	time ?tim\n	run ?run)\n(Clock time ?t)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"PolyMovingN\"))\n(let [tim (a/vv ?tim ?run)]\n  (if (or (empty? ?mpb)\n            (a/null? tim)\n            (< (poly.moving/pm-start-n ?mpb (a/to-be tim) ?t) 0))\n      (modify ?pmn status \"FAILED\")\n      (modify ?pmn status \"REPEAT\"\n	N 1\n	time (a/to-be tim))))")
-	(salience 0)
-	(title "a:PolyMovingNStart"))
-
-([ScenarioN_Class530013] of  Rule
-
-	(lhs "?pmn (PolyMovingN status \"REPEAT\"\n	title ?tit\n	mapob ?mpb\n	N ?n\n	time ?tim\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)\n\n(Clock time ?t)")
-	(rhs "(let [re (poly.moving/pm-repeat-n ?mpb ?tim ?n ?t)]\n  (cond\n      (< re 0) (modify ?pmn status \"FAILED\")\n      (= re 0) (let [nxt (inc ?n)]\n	(if (>= nxt (count ?mpb))\n	  (do (retract ?pmn)\n	     (s/start-next ?nacts ?pid ?ain ?run))\n	  (modify ?pmn N nxt)))))")
-	(salience 0)
-	(title "a:PolyMovingNRepeat"))
-
-([ScenarioN_Class530014] of  CloFunction
-
-	(source "(let [mm (into [] ?mpb)\n       len (count mm)]\n  (if (> len 1)\n      (pm-start (OMT/getOrAdd (first mm)) (second mm) (/ tim len) ?t)\n      -1))")
-	(title "pm-start-n [?mpb tim ?t]"))
-
-([ScenarioN_Class530015] of  CloFunction
-
-	(source "(let [mm (into [] ?mpb)\n       len (count mm)\n       fst (OMT/getMapOb (first mm))\n       nxt (inc ?n)\n       rep (pm-repeat fst ?t)]\n   (if (and (= rep 0)(< nxt len))\n       (pm-start fst (nth mm nxt) (/ tim len) ?t))\n   rep)")
-	(title "pm-repeat-n [?mpb tim ?n ?t]"))
 
 ([ScenarioN_Class540004] of  %3AINSTANCE-ANNOTATION
 

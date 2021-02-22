@@ -1,4 +1,4 @@
-; Mon Feb 15 11:51:24 MSK 2021
+; Mon Feb 22 10:47:41 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,6 +71,11 @@
 	(multislot functions
 		(type INSTANCE)
 ;+		(allowed-classes CloFunction)
+		(create-accessor read-write))
+	(single-slot observer2
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb Variable)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
@@ -307,6 +312,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Entry Variable)
 		(create-accessor read-write))
+	(single-slot clock
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot initial_tasks
 		(type INSTANCE)
 ;+		(allowed-classes Task Decision)
@@ -479,6 +488,10 @@
 ;+		(allowed-classes Decision Task Join)
 ;+		(inverse-slot join_tasks)
 		(create-accessor read-write))
+	(single-slot default
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot locationFile
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -626,6 +639,11 @@
 	(multislot collection
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING)
+		(create-accessor read-write))
+	(single-slot kit
+		(type INSTANCE)
+;+		(allowed-classes Kit Variable)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot event
 		(type INSTANCE)
@@ -1541,9 +1559,18 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot observer2
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot observer
 		(type INSTANCE)
 ;+		(allowed-classes MapOb Variable %3ATHING NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot default
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot object
@@ -1559,12 +1586,26 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot kit
+		(type INSTANCE)
+;+		(allowed-classes Kit Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot mapob
 		(type INSTANCE)
 ;+		(allowed-classes MapOb)
 		(create-accessor read-write))
-	(single-slot N
-		(type INTEGER)
+	(single-slot default
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING MapOb NavOb)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot clock
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -2111,6 +2152,11 @@
 (defclass LoadResource
 	(is-a Resource)
 	(role concrete)
+	(single-slot kit
+		(type INSTANCE)
+;+		(allowed-classes Kit Variable)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot rename
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
@@ -2399,6 +2445,14 @@
 	(role concrete)
 	(multislot points
 		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Kit
+	(is-a Artefact)
+	(role concrete)
+	(multislot collection
+		(type INSTANCE)
+;+		(allowed-classes %3ATHING)
 		(create-accessor read-write)))
 
 (defclass NetCom
