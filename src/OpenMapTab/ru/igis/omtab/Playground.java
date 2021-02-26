@@ -114,7 +114,7 @@ public class Playground extends MMLGraphicLoader {
             	((NavOb)omg).move(currentTime);
             }
             if(omg instanceof Link)
-            	((Link)omg).updateLink();;
+            	((Link)omg).updateLink();
             omg.generate(p);
         }
 
@@ -282,7 +282,6 @@ public class Playground extends MMLGraphicLoader {
     	MapOb mo = mapObsMap.get(inst);
     	if(mo != null){
     		removeMapOb(mo, kbdelete);
-    		fireMOEvent (mo, REMOVED);
     		return mo;
     	}
     	return null;
@@ -304,6 +303,7 @@ public class Playground extends MMLGraphicLoader {
 			if (kbdelete)
 				OpenMapTab.kb.deleteInstance(inst);
 		}
+		fireMOEvent (mo, REMOVED);
 	}
     
 	private void offTowAndDeleteTows(MapOb mo) {
@@ -327,7 +327,7 @@ public class Playground extends MMLGraphicLoader {
         super.setProperties(prefix, props);
         String realPrefix = PropUtils.getScopedPropertyPrefix(prefix);
         scenario = props.getProperty(realPrefix + Ontology.S_SCENARIO);
-        pgid = new Integer(props.getProperty(realPrefix + Ontology.S_PLAYGROUND_INDEX));
+        pgid = Integer.parseInt(props.getProperty(realPrefix + Ontology.S_PLAYGROUND_INDEX));
     }
     
     /**

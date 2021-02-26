@@ -45,6 +45,7 @@ public class RunaControlPanel extends OMToolComponent {
         jSpinner = new JSpinner(jSpinnerModel);
         jTextFieldClock = new javax.swing.JTextField();
         jCheckBoxRunTimer = new javax.swing.JCheckBox();
+        jCheckBoxPolySmallStep = new javax.swing.JCheckBox();
         jLabelTimeScale = new javax.swing.JLabel();
         jPanelTimeScale = new javax.swing.JPanel();
         jButtonTSUp = new javax.swing.JButton();
@@ -52,6 +53,15 @@ public class RunaControlPanel extends OMToolComponent {
         jButtonRunScenario = new javax.swing.JButton();
         jButtonControlObject = new javax.swing.JButton();
         jButtonCommand = new javax.swing.JButton();
+
+        jCheckBoxPolySmallStep.setToolTipText("Poly Small Step");
+        jCheckBoxPolySmallStep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jCheckBoxPolySmallStepActionPerformed(evt);
+            }
+        });
+
+        add(jCheckBoxPolySmallStep);
 
         jSpinner.setToolTipText("Seconds on Timer Tick");
         jSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -157,13 +167,28 @@ public class RunaControlPanel extends OMToolComponent {
     }//GEN-LAST:event_jButtonCommandActionPerformed
 
     private void jSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTimerStateChanged
-    	OMT.setUpdateInterval((int)getSliderInterval());
+    	int interval = (int)getSliderInterval();
+    	OMT.setUpdateInterval(interval);
+        if(jCheckBoxPolySmallStep.isSelected()) {
+        	PolyMovingManager pmm = PolyMovingManager.getPolyMovingManager();
+        	pmm.resetTimer(interval);
+        }
     }//GEN-LAST:event_jSliderTimerStateChanged
 
     private void jCheckBoxRunTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRunTimerActionPerformed
     	OMT.setUpdateInterval((int)getSliderInterval());
         OMT.setTimerRunning(jCheckBoxRunTimer.isSelected(),false);
+        jCheckBoxPolySmallStepActionPerformed(evt);
     }//GEN-LAST:event_jCheckBoxRunTimerActionPerformed
+
+    private void jCheckBoxPolySmallStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRunTimerActionPerformed
+    	PolyMovingManager pmm = PolyMovingManager.getPolyMovingManager();
+        if(jCheckBoxPolySmallStep.isSelected()) {
+        	pmm.resetTimer((int)getSliderInterval());
+        } else {
+        	pmm.resetTimer(pmm.getDefaultTimerDelay());
+        };
+    }//GEN-LAST:event_jCheckBoxPolySmallStepActionPerformed
 
     private void jButtonTSUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTSUpActionPerformed
         if(den<2)
@@ -171,6 +196,8 @@ public class RunaControlPanel extends OMToolComponent {
         else
             den = den / 2;
         OMT.setTimeScale(num+":"+den);
+    	PolyMovingManager pmm = PolyMovingManager.getPolyMovingManager();
+    	pmm.setTimeScale(Clock.getTimeScale());
     }//GEN-LAST:event_jButtonTSUpActionPerformed
 
     private void jButtonTSDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTSDownActionPerformed
@@ -179,6 +206,8 @@ public class RunaControlPanel extends OMToolComponent {
         else
             num = num / 2;
         OMT.setTimeScale(num+":"+den);
+    	PolyMovingManager pmm = PolyMovingManager.getPolyMovingManager();
+    	pmm.setTimeScale(Clock.getTimeScale());
     }//GEN-LAST:event_jButtonTSDownActionPerformed
 
     private void jButtonRunScenarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunScenarioActionPerformed
@@ -269,6 +298,7 @@ public class RunaControlPanel extends OMToolComponent {
     private javax.swing.JButton jButtonTSDown;
     private javax.swing.JButton jButtonTSUp;
     private javax.swing.JCheckBox jCheckBoxRunTimer;
+    private javax.swing.JCheckBox jCheckBoxPolySmallStep;
     private javax.swing.JLabel jLabelTimeScale;
     private javax.swing.JPanel jPanelTimeScale;
     private javax.swing.SpinnerNumberModel jSpinnerModel;

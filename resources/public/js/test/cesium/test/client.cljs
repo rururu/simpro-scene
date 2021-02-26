@@ -1,35 +1,30 @@
 (ns cesium.test.client
 (:require 
-  [cesium.base.client :refer
+  [cesium.client :refer
     [add-imagery-by-asset-id
      add-terrain
      camera-home
      clock-settings
      load-data
+     start-event-processing
+     look-at
+     add-orbit-button
+     mouse-move
+     PORT
      VIEWER
      CLOCK
      SCENE
      CAMERA
      CANVAS
      HOME-VIEW
-     CLOCK-SET]]))
-(def tHOME-VIEW {:longitude -73.998114468289017509
-  :latitude 40.674512895646692812
-  :height 2631.082799425431
-  :heading 7.1077496389876024807
-  :pitch -31.987223091598949054
-  :roll 0.025883251314954971306})
+     CLOCK-SET
+     EVENT-DEBUG]]))
 (defn init-client []
-  ;;(add-imagery-by-asset-id 3954 VIEWER)
-(add-terrain #js{:requestVertexNormals true} VIEWER)
+  (add-terrain nil VIEWER)
 (camera-home CAMERA HOME-VIEW)
-(clock-settings CLOCK CLOCK-SET VIEWER)
-(load-data :GeoJSON "earth-coastlines-1km.geo.json" nil VIEWER #(println :D %))
-(load-data :KML "2012_Earthquakes_Mag5.kml" #js{
-                          :camera CAMERA
-                          :canvas CANVAS
-                          :clampToGround true} VIEWER #(println :D %))
-(load-data :CZML "data/sampleFlight.czml" nil VIEWER #(println :D %)))
+(start-event-processing PORT VIEWER)
+(add-orbit-button CAMERA)
+(mouse-move))
 
 
 (enable-console-print!)

@@ -1,4 +1,4 @@
-; Wed Jun 10 12:48:06 MSK 2020
+; Fri Feb 26 22:33:04 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,22 +7,19 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(single-slot page
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot port
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot butt-stop-cs-server
 		(type STRING)
-		(default "Stop/cesium.server/stop-server")
+		(default "Stop Server/cesium.server/stop-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot butt-start-cs-server
 		(type STRING)
-		(default "Start/cesium.server/start-server")
+		(default "Start Server/cesium.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-start-cs-client
+		(type STRING)
+		(default "Start Client/cesium.server/start-client")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -31,19 +28,16 @@
 	(role concrete)
 	(single-slot butt-stop-cs-server
 		(type STRING)
-		(default "Stop/cesium.server/stop-server")
+		(default "Stop Server/cesium.server/stop-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot butt-start-cs-server
 		(type STRING)
-		(default "Start/cesium.server/start-server")
+		(default "Start Server/cesium.server/start-server")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot page
+	(single-slot but-start-cs-client
 		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot port
-		(type INTEGER)
+		(default "Start Client/cesium.server/start-client")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

@@ -72,8 +72,8 @@ public class OMTPoint extends MapOb {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LATITUDE),latitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_OVAL),new Boolean(oval));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_POINT_RADIUS),new Integer(radius));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_OVAL),Boolean.getBoolean(oval));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_POINT_RADIUS),Integer.parseInt(radius));
                 return new OMTPoint(inst);
             }
         }

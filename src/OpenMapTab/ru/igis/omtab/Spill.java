@@ -112,10 +112,10 @@ public class Spill extends OMTSpline {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FILL_COLOR),fcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_N),new Integer(N));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),new Float(speed));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),new Float(radius));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DAMPING),new Float(damping));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_N),Integer.parseInt(N));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),Float.valueOf(speed));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),Float.valueOf(radius));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_DAMPING),Float.valueOf(damping));
                 return new Spill(inst);
             }
         }

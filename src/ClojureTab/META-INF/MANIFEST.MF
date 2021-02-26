@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+
+Name: clojuretab.ClojureTab
+Tab-Widget: True
+
+Name: clojuretab.ClojureActionButton
+Slot-Widget: True
+
+Name: clojuretab.TabbedSlot
+Slot-Widget: True
+
+Name: clojuretab.MenuItemInserter
+Project-Plugin: True
+
+

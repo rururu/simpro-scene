@@ -1,4 +1,4 @@
-; Mon May 04 20:59:35 MSK 2020
+; Fri Feb 26 22:50:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,4 +6,10 @@
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(multislot page
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot port
+;+		(type ANY)
+		(create-accessor read-write)))

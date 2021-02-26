@@ -39,5 +39,8 @@ public interface Ontology {
     public static final String EXTEND_TYPES = "cloExtendTypes";
     public static final String EXTEND_PROTOCOLS = "cloExtendProtocols";
     public static final String FIELDS = "fields";
+    public static final String OPTIONS = "options";
+    public static final String KEYWORD = "keyword";
+    public static final String ARGUMENT = "argument";
     public static final String DOC_SLOT = "documentation";
 }

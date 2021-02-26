@@ -87,12 +87,12 @@ public class OMTText extends MapOb {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TEXT_COLOR),tcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TEXT),text);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FONT_NAME),fontName);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_X),new Integer(x));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_Y),new Integer(y));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FONT_SIZE),new Integer(fontSize));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_BOLD),new Boolean(bold));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ITALIC),new Boolean(italic));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),new Float(angle));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_X),Integer.parseInt(x));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_Y),Integer.parseInt(y));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FONT_SIZE),Integer.parseInt(fontSize));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_BOLD),Boolean.getBoolean(bold));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ITALIC),Boolean.getBoolean(italic));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),Float.valueOf(angle));
                 return new OMTText(inst);
             }
         }

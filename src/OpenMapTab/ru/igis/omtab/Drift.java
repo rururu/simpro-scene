@@ -98,11 +98,11 @@ public class Drift extends Spill {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FILL_COLOR),fcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_N),new Integer(N));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),new Float(speed));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),new Float(radius));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED2),new Float(speed2));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_COURSE),new Integer(course));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_N),Integer.parseInt(N));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),Float.valueOf(speed));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),Float.valueOf(radius));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED2),Float.valueOf(speed2));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_COURSE),Float.valueOf(course));
                 return new Drift(inst);
             }
         }

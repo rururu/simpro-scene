@@ -7,7 +7,6 @@ package clojuretab;
 
 import edu.stanford.smi.protege.model.Instance;
 import edu.stanford.smi.protege.model.KnowledgeBase;
-import edu.stanford.smi.protege.model.Slot;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -86,10 +85,10 @@ public class ProgramGenerator {
     public void generateProgram(Writer wr) throws IOException{
         genNamespace(wr);
         genVars(wr);
-        genFuncs(wr);
         genProtos(wr);
         genTypesRecs(wr, types, "deftype");
         genTypesRecs(wr, recs, "defrecord");
+        genFuncs(wr);
         genExtendes(wr, exprotos, "extend-protocol");
         genExtendes(wr, extypes, "extend-type");
     }
@@ -101,7 +100,7 @@ public class ProgramGenerator {
     private void genNamespace(Writer wr) throws IOException{
         String nsc = (String) namespace.getOwnSlotValue(kb.getSlot(Ontology.TITLE));
         String src = (String) namespace.getOwnSlotValue(kb.getSlot(Ontology.SOURCE));
-        wr.write("(ns "+nsc+"\n"+(src==null ? "" : src)+")\n\n");
+        wr.write("(ns "+nsc+"\n"+(src==null ? "" : src)+")\n");
     }
 
     private void genVars(Writer wr) throws IOException{
@@ -116,25 +115,30 @@ public class ProgramGenerator {
 	private void genTypesRecs(Writer wr, Collection<Instance> whom, String what) throws IOException{
         for (Instance instance : whom) {
             String nam = (String) instance.getOwnSlotValue(kb.getSlot(Ontology.TITLE));
-            Collection<Instance> fls = instance.getOwnSlotValues(kb.getSlot(Ontology.FIELDS));
-            Collection<Instance> ims = instance.getOwnSlotValues(kb.getSlot(Ontology.IMPLEMENTATIONS));
+            Collection<String> fls = instance.getOwnSlotValues(kb.getSlot(Ontology.FIELDS));
+            Collection<Instance> ops = instance.getOwnSlotValues(kb.getSlot(Ontology.OPTIONS));
+            Collection<Instance> pts = instance.getOwnSlotValues(kb.getSlot(Ontology.PROTOCOLS));
             wr.write("("+what+" "+nam+" [");
-            for (Instance inst : fls) {
-                Slot slot = (Slot) inst;
-                wr.write(slot.getName()+" ");
+            for (String fld : fls) {
+                wr.write(fld+" ");
             }
             wr.write("]\n");
-            for (Instance inst : ims) {
-                String pro = (String) inst.getOwnSlotValue(kb.getSlot(Ontology.TITLE));
-                wr.write("\t"+pro+"\n");
-                Collection<Instance> fns = inst.getOwnSlotValues(kb.getSlot(Ontology.FUNCTIONS));
+            for (Instance opt : ops) {
+            	String kw = (String) opt.getOwnSlotValue(kb.getSlot(Ontology.KEYWORD));
+            	String ar = (String) opt.getOwnSlotValue(kb.getSlot(Ontology.ARGUMENT));
+            	wr.write("\t"+kw+" "+ar+"\n");
+            }
+            for (Instance ptc : pts) {
+            	String tit = (String) ptc.getOwnSlotValue(kb.getSlot(Ontology.TITLE));
+                wr.write("\t"+tit+"\n");
+                Collection<Instance> fns = ptc.getOwnSlotValues(kb.getSlot(Ontology.FUNCTIONS));
                 for (Instance ins : fns) {
                     String sig = (String) ins.getOwnSlotValue(kb.getSlot(Ontology.TITLE));
                     String src = (String) ins.getOwnSlotValue(kb.getSlot(Ontology.SOURCE));
                     wr.write("\t("+sig+" "+src+")\n");
                 }
             }
-            wr.write(")\n\n");
+            wr.write(")\n");
         }
     }
 
@@ -154,7 +158,7 @@ public class ProgramGenerator {
                     wr.write("\t("+sig+" "+src+")\n");
                 }
             }
-            wr.write(")\n\n");
+            wr.write(")\n");
         }
     }
 

@@ -150,7 +150,7 @@ public abstract class RepeatAction implements ActionListener {
         name = (String)instance.getOwnSlotValue(kb.getSlot(Ontology.S_LABEL));
         String pgis = (String)instance.getOwnSlotValue(kb.getSlot(Ontology.S_PLAYGROUND_INDEX));
         if(pgis != null)
-        	pgid = new Integer(pgis);
+        	pgid = Integer.parseInt(pgis);
         String interval = (String)instance.getOwnSlotValue(kb.getSlot(Ontology.S_INTERVAL));
         int ltsv = (Integer)instance.getOwnSlotValue(kb.getSlot(Ontology.S_LIFETIME));
         int prd = (Integer)instance.getOwnSlotValue(kb.getSlot(Ontology.S_PERIOD));

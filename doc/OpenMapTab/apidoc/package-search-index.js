@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.igis.omtab"},{"l":"ru.igis.omtab.gui"},{"l":"ru.igis.omtab.menu"},{"l":"ru.igis.omtab.plugin"},{"l":"ru.igis.omtab.ra"}]

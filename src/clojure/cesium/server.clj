@@ -1,15 +1,17 @@
 (ns cesium.server
+(:use protege.core)
 (:require [ring.adapter.jetty :as jetty]
               [ring.util.response :as r]
               [compojure.core :refer [defroutes GET]]
               [compojure.handler :as handler]
               [compojure.route :as route]
               [clojure.core.async :refer [chan alts!! put!]]
-              [czml.generator :refer :all]))
-(def defoncePORT (defonce PORT 4442))
-(def defonceROOT (defonce ROOT (str (System/getProperty "user.dir") "/resources/public/")))
-(def defoncePAGE (defonce PAGE "test.html"))
-(def defonceSERV (defonce SERV nil))
+              [czml.generator :refer :all])
+(:import java.awt.Desktop
+             java.net.URI))
+(def PORT 8448)
+(def ROOT (str (System/getProperty "user.dir") "/resources/public/"))
+(def SERV nil)
 (def defonceEVT-CHAN (defonce EVT-CHAN (chan)))
 (def DOC "{\"id\":\"document\",\"version\":\"1.0\"}")
 (defn clj->js-str [obj]
@@ -94,9 +96,16 @@
          (r/header "Access-Control-Allow-Origin" "*")
          (r/header "Content-Type" "text/event-stream;charset=utf-8"))))
 
+(defn find-page []
+  (if-let [clm (fainst (cls-instances "ClsMain") nil)]
+  (if-let [htm (first (svs clm "html"))]
+    (str (sv htm "store-in") "/" (sv htm "title") ".html")
+    (do (println :PAGE-NOT-FOUND) nil))
+  (do (println :ClsMain-NOT-FOUND) nil)))
+
 (defn init-server []
   (defroutes app-routes
-  (GET "/" [] (slurp (str ROOT PAGE)))
+  (GET "/" [] (slurp (find-page)))
   (GET "/event" [] (event-response))
   (route/files "/" (do (println [:ROOT ROOT]) {:root ROOT}))
   (route/resources "/")
@@ -107,16 +116,11 @@
 
 (defn start-server
   ([]
-  (start-server PORT))
-([port]
   (if (nil? SERV)
     (init-server))
-  (def SERV (jetty/run-jetty APP {:port port :join? false})))
+  (def SERV (jetty/run-jetty APP {:port PORT :join? false})))
 ([hm inst]
-  (let [mp (into {} hm)]
-    (def PORT (mp "port"))
-    (def PAGE (mp "page"))
-    (start-server))))
+  (start-server)))
 
 (defn stop-server
   ([]
@@ -126,4 +130,11 @@
     (println "Server stopped!")))
 ([hm inst]
   (stop-server)))
+
+(defn start-client
+  ([]
+  (if-let [serv SERV]
+    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://0.0.0.0:" PORT))))))
+([hm inst]
+  (start-client)))
 

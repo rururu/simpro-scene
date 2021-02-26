@@ -22,8 +22,8 @@ import javax.swing.JMenuItem;
  * @author ru
  */
 public class MenuItemInserter extends AbstractProjectPlugin {
-    
-    String namespace = "menu.item";
+	
+	String namespace = "menu.item";
 
     public void afterCreate(Project prjct) {
         // do nothing
@@ -37,35 +37,62 @@ public class MenuItemInserter extends AbstractProjectPlugin {
         // do nothing
     }
 
-    public void afterShow(ProjectView pv, ProjectToolBar ptb, ProjectMenuBar pmb) {
-        JMenu tMenu = pmb.getMenu(1);
-        AbstractAction cwAction = new AbstractAction("Clojure Work") {
-          /**
+	public void afterShow(ProjectView pv, ProjectToolBar ptb, ProjectMenuBar pmb) {
+		JMenu tMenu = pmb.getMenu(1);
+
+		AbstractAction cwAction = new AbstractAction("(clojure-work)") {
+
+			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
-		public void actionPerformed(ActionEvent event) {
-              String function = "clojure-work";
-                try {
-                    if (!ClojureTab.isInit()) {
-                        ClojureTab.initClojure();
-                    }
-                    if (!ClojureTab.isReplrun()) {
-                        ClojureTab.startRepl();
-                    }
-                    ClojureActionButton.loadProgram("protege.core");
-                    ClojureActionButton.loadProgram(namespace);
-                    ClojureTab.invoke(namespace, function);
-                } catch (Exception ex) {
-                    Logger.getLogger(ClojureActionButton.class.getName()).log(Level.SEVERE, null, ex);
-                }
-          }
-        };
+			public void actionPerformed(ActionEvent event) {
+				String function = "clojure-work";
+				try {
+					if (!ClojureTab.isInit()) {
+						ClojureTab.initClojure();
+					}
+					if (!ClojureTab.isReplrun()) {
+						ClojureTab.startRepl();
+					}
+					ClojureActionButton.loadProgram("protege.core");
+					ClojureActionButton.loadProgram(namespace);
+					ClojureTab.invoke(namespace, function);
+				} catch (Exception ex) {
+					Logger.getLogger(ClojureActionButton.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		};
 
-        tMenu.add(new JMenuItem(cwAction));
+		AbstractAction ttAction = new AbstractAction("(t/tst)") {
 
-    }
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent event) {
+				try {
+					if (!ClojureTab.isInit()) {
+						ClojureTab.initClojure();
+					}
+					if (!ClojureTab.isReplrun()) {
+						ClojureTab.startRepl();
+					}
+					ClojureActionButton.loadProgram("protege.core");
+					ClojureActionButton.loadProgram("t");
+					ClojureTab.invoke("t", "tst");
+				} catch (Exception ex) {
+					Logger.getLogger(ClojureActionButton.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		};
+
+		tMenu.add(new JMenuItem(ttAction));
+		tMenu.add(new JMenuItem(cwAction));
+
+	}
 
     public void beforeSave(Project prjct) {
         // do nothing

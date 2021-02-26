@@ -1,11 +1,11 @@
-; Mon May 04 20:59:35 MSK 2020
+; Fri Feb 26 22:50:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([CesiumWorkshop2_Class0] of  ClsMain
 
-	(asset-path "js/workshop2")
+	(asset-path "js/cezium/workshop2")
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions
 		[CesiumWorkshop2_Class8]
@@ -26,22 +26,28 @@
 	(css [CesiumWorkshop2_Class1])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-workshop2-client))")
 	(html [CesiumWorkshop2_Class2])
-	(output-dir "resources/public/js/workshop2")
-	(output-to "resources/public/js/workshop2.js")
+	(output-dir "resources/public/js/cezium/workshop2")
+	(output-to "resources/public/js/cezium/workshop2.js")
 	(required [CesiumBase_Class0])
-	(store-in "src/cljs")
-	(title "Workshop Client"))
+	(store-in "src/cljs/cezium")
+	(title "Workshop2 Client"))
 
 ([CesiumWorkshop2_Class1] of  CSS
 
 	(source ".backdrop {\n    display: inline-block;\n    background: rgba(42, 42, 42, 0.7);\n    border-radius: 5px;\n    border: 1px solid #444;\n    padding: 5px 10px;\n    color: #fff;\n    line-height: 150%;\n    font-size: small;\n}\n\n#heightSliderLabel, #heightValue {\n    vertical-align: top;\n}\n\n.backdrop a:link, .backdrop a:visited, .backdrop a:hover {\n    color: #fff\n}\n\n.loadingIndicator {\n    display: none;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    margin-top: -33px;\n    margin-left: -33px;\n    width: 66px;\n    height: 66px;\n    background: url(Source/Images/ajax-loader.gif) center no-repeat;\n}\n\n.cover {\n    display: none;\n    position: absolute;\n    background-color: rgba(0, 0, 0, 0.75);\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n}\n\n#menu {\n    position: absolute;\n    left: 10px;\n    top: 10px;\n}\n\n.nowrap {\n    white-space: nowrap;\n}\n\nhtml, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n\nbutton.cesium-infoBox-camera {\n    display: none;\n}\n\n#3DTiles {\n    padding-top: 10px;\n}")
-	(store-in "resources/public/css")
+	(store-in "resources/public//cezium/css")
 	(title "workshop2"))
 
 ([CesiumWorkshop2_Class10] of  CloVar
 
 	(source "(.add (.-entities VIEWER) (js/Cesium.Entity.))")
 	(title "Neighborhoods"))
+
+([CesiumWorkshop2_Class10000] of  CesiumServer
+
+	(but-start-cs-client "Start Client/cesium.server/start-client")
+	(butt-start-cs-server "Start Server/cesium.server/start-server")
+	(butt-stop-cs-server "Stop Server/cesium.server/stop-server"))
 
 ([CesiumWorkshop2_Class11] of  CloFunction
 
@@ -75,9 +81,15 @@
 
 ([CesiumWorkshop2_Class2] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>New York City</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/workshop2.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n        <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <!-- Some input elements for our app. -->\n        <div class=\"backdrop\" id=\"menu\">\n            <h2>Sample NYC Geocaches</h2>\n            <span><strong>Camera Mode</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"freeMode\" name=\"source\" type=\"radio\" checked/>\n                <label for=\"freeMode\">Free</label>\n            </div>\n            <div class=\"nowrap\">\n                <input id=\"droneMode\" name=\"source\" type=\"radio\"/>\n                <label for=\"droneMode\">Drone View</label>\n            </div>\n            <br>\n            <span><strong>3d Tile Styling</strong></span>\n            <div class=\"nowrap\">\n                <select id=\"tileStyle\">\n                    <option value=\"none\">None</option>\n                    <option value=\"height\">Height</option>\n                    <option value=\"transparent\">Transparent</option>\n                </select>\n            </div>\n            <br>\n            <span><strong>Display Options</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"shadows\" type=\"checkbox\"/>\n                <label for=\"shadows\">Shadows</label>\n            </div>\n\n            <div class=\"nowrap\">\n                <input id=\"neighborhoods\" type=\"checkbox\" checked/>\n                <label for=\"neighborhoods\">Neighborhoods</label>\n            </div>\n            <br>\n        </div>\n        <div id=\"loadingIndicator\" class=\"cover\">\n            <div id=\"loadingIcon\" class=\"loadingIndicator\"></div>\n        </div>\n\n        <!-- Our app code. -->\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/workshop2.js\"></script>\n\n    </body>\n</html>")
-	(store-in "resources/public")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>New York City</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"cezium/css/workshop2.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n        <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <!-- Some input elements for our app. -->\n        <div class=\"backdrop\" id=\"menu\">\n            <h2>Sample NYC Geocaches</h2>\n            <span><strong>Camera Mode</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"freeMode\" name=\"source\" type=\"radio\" checked/>\n                <label for=\"freeMode\">Free</label>\n            </div>\n            <div class=\"nowrap\">\n                <input id=\"droneMode\" name=\"source\" type=\"radio\"/>\n                <label for=\"droneMode\">Drone View</label>\n            </div>\n            <br>\n            <span><strong>3d Tile Styling</strong></span>\n            <div class=\"nowrap\">\n                <select id=\"tileStyle\">\n                    <option value=\"none\">None</option>\n                    <option value=\"height\">Height</option>\n                    <option value=\"transparent\">Transparent</option>\n                </select>\n            </div>\n            <br>\n            <span><strong>Display Options</strong></span>\n            <div class=\"nowrap\">\n                <input id=\"shadows\" type=\"checkbox\"/>\n                <label for=\"shadows\">Shadows</label>\n            </div>\n\n            <div class=\"nowrap\">\n                <input id=\"neighborhoods\" type=\"checkbox\" checked/>\n                <label for=\"neighborhoods\">Neighborhoods</label>\n            </div>\n            <br>\n        </div>\n        <div id=\"loadingIndicator\" class=\"cover\">\n            <div id=\"loadingIcon\" class=\"loadingIndicator\"></div>\n        </div>\n\n        <!-- Our app code. -->\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/cezium/workshop2.js\"></script>\n\n    </body>\n</html>")
+	(store-in "resources/public/cezium")
 	(title "workshop2"))
+
+([CesiumWorkshop2_Class20000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [CesiumWorkshop2_Class0])
+	(%3ACREATION-TIMESTAMP "2021.02.26 20:48:57.998 MSK")
+	(%3ACREATOR "ru"))
 
 ([CesiumWorkshop2_Class3] of  CloFunction
 
@@ -86,24 +98,17 @@
 
 ([CesiumWorkshop2_Class4] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     KML-DS\n     EVENT-URL\n     EVENT-DEBUG]])")
-	(title "cesium.workshop2.client"))
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     PORT\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     CZML-DS\n     KML-DS\n     EVENT-DEBUG]])")
+	(title "workshop2.client"))
 
 ([CesiumWorkshop2_Class5] of  CloVar
 
 	(source "{:longitude -73.998114468289017509\n  :latitude 40.674512895646692812\n  :height 2631.082799425431\n  :heading 7.1077496389876024807\n  :pitch -31.987223091598949054\n  :roll 0.025883251314954971306}")
 	(title "W2-HOME-VIEW"))
 
-([CesiumWorkshop2_Class6] of  CesiumServer
-
-	(butt-start-cs-server "Start/cesium.server/start-server")
-	(butt-stop-cs-server "Stop/cesium.server/stop-server")
-	(page "workshop2.html")
-	(port 4448))
-
 ([CesiumWorkshop2_Class7] of  CloVar
 
-	(source "{:animate true\n  :start \"2017-07-11T16:00:00Z\"\n  :stop \"2017-07-11T16:20:00Z\"\n  :current \"2017-07-11T16:00:00Z\"\n  :mult 2}")
+	(source "{:animate true\n  :step \"SYSTEM_CLOCK\"\n  :range \"UNBOUNDED\"\n  :start \"2017-07-11T16:00:00Z\"\n  :stop \"2017-07-11T16:20:00Z\"\n  :current \"2017-07-11T16:00:00Z\"\n  :mult 2}")
 	(title "W2-CLOCK-SET"))
 
 ([CesiumWorkshop2_Class8] of  CloFunction

@@ -1,4 +1,4 @@
-; Wed Jun 10 12:48:06 MSK 2020
+; Fri Feb 26 22:33:04 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,7 @@
 	(height 100)
 	(is_hidden FALSE)
 	(name ":ANNOTATION-TEXT")
+	(property_list [CesiumBase_ProjectKB_Class10397])
 	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
 	(width 200)
 	(x 0)
@@ -20,24 +21,35 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumBase_ProjectKB_Class396]
-		[CesiumBase_ProjectKB_Class397]
-		[CesiumBase_ProjectKB_Class398]))
+		[CesiumBase_ProjectKB_Class10398]
+		[CesiumBase_ProjectKB_Class10399]))
 
-([CesiumBase_ProjectKB_Class396] of  String
+([CesiumBase_ProjectKB_Class10396] of  Property_List
 
-	(name "CesiumServer")
-	(string_value "port{+}page"))
+	(name "layout properties"))
 
-([CesiumBase_ProjectKB_Class397] of  String
+([CesiumBase_ProjectKB_Class10397] of  Property_List
+)
+
+([CesiumBase_ProjectKB_Class10398] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumBase_ProjectKB_Class398] of  String
+([CesiumBase_ProjectKB_Class10399] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
+
+([CesiumBase_ProjectKB_Class10400] of  Map
+)
+
+([CesiumBase_ProjectKB_Class10401] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "CesiumBase_ProjectKB_Class10400")
+	(value_class "java.util.Map"))
 
 ([CesiumServer_ProjectKB_Class10403] of  Widget
 
@@ -52,8 +64,7 @@
 		[CesiumServer_ProjectKB_Class10405]
 		[CesiumServer_ProjectKB_Class10406]
 		[CesiumServer_ProjectKB_Class10408]
-		[CesiumServer_ProjectKB_Class10410]
-		[CesiumServer_ProjectKB_Class10412]))
+		[CesiumServer_ProjectKB_Class10410]))
 
 ([CesiumServer_ProjectKB_Class10405] of  Property_List
 
@@ -68,7 +79,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 0)
-	(y 180))
+	(y 120))
 
 ([CesiumServer_ProjectKB_Class10407] of  Property_List
 )
@@ -82,7 +93,7 @@
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 0)
-	(y 120))
+	(y 0))
 
 ([CesiumServer_ProjectKB_Class10409] of  Property_List
 )
@@ -91,28 +102,14 @@
 
 	(height 60)
 	(is_hidden FALSE)
-	(name "page")
+	(name "but-start-cs-client")
 	(property_list [CesiumServer_ProjectKB_Class10411])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
 	(x 0)
 	(y 60))
 
 ([CesiumServer_ProjectKB_Class10411] of  Property_List
-)
-
-([CesiumServer_ProjectKB_Class10412] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "port")
-	(property_list [CesiumServer_ProjectKB_Class10413])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([CesiumServer_ProjectKB_Class10413] of  Property_List
 )
 
 ([CesiumWorshop_ProjectKB_Class37] of  String
@@ -199,40 +196,13 @@
 		[ANNOTATED_INSTANCE_WIDGET]
 		[CREATOR_WIDGET]
 		[CREATION_TIMESTAMP_WIDGET]
-		[ANNOTATION_TEXT_WIDGET]))
+		[ANNOTATION_TEXT_WIDGET]
+		[CesiumBase_ProjectKB_Class10396]))
 
 ([INSTANCES_TAB] of  Widget
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_501071_Class392] of  Map
-
-	(entries
-		[KB_501071_Class393]
-		[KB_501071_Class394]
-		[KB_501071_Class395]))
-
-([KB_501071_Class393] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_501071_Class394] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_501071_Class395] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_851107_Class0] of  String
 
@@ -240,7 +210,9 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_851107_Class1] of  Map
-)
+
+	(entries [CesiumBase_ProjectKB_Class10401])
+	(referenced_maps [CesiumBase_ProjectKB_Class10400]))
 
 ([KB_851107_Class13] of  Property_List
 
@@ -333,6 +305,34 @@
 
 	(name "instances_file_name")
 	(string_value "CesiumBase.pins"))
+
+([KB_911976_Class392] of  Map
+
+	(entries
+		[KB_911976_Class393]
+		[KB_911976_Class394]
+		[KB_911976_Class395]))
+
+([KB_911976_Class393] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_911976_Class394] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_911976_Class395] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

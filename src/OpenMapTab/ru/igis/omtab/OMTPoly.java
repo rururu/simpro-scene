@@ -87,8 +87,8 @@ public class OMTPoly extends MapOb  implements Container{
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FILL_COLOR),fcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_IS_POLYGON),new Boolean(ispolygon));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RELATIVE),new Boolean(relative));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_IS_POLYGON),Boolean.getBoolean(ispolygon));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RELATIVE),Boolean.getBoolean(relative));
                 inst.setOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_POINTS),points);
                 return new OMTPoly(inst);
             }
@@ -278,7 +278,7 @@ public class OMTPoly extends MapOb  implements Container{
         float[] dash = null;
         float dashphase = 0.0f;
         if(lineWidth != null)
-        	width = new Float(lineWidth).floatValue();
+        	width = Float.valueOf(lineWidth).floatValue();
         if(dashPattern != null)
         	dash = BasicStrokeEditorMenu.stringToDashArray(dashPattern);
         if(capDecoration != null){

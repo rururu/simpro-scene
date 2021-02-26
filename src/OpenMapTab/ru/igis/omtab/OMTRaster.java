@@ -84,7 +84,7 @@ public class OMTRaster extends MapOb {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LABEL),label);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LATITUDE),latitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),new Float(start));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),Float.valueOf(start));
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_URL),url);
                 return new OMTRaster(inst);
             }

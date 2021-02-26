@@ -1,4 +1,4 @@
-; Mon May 04 20:59:35 MSK 2020
+; Fri Feb 26 22:50:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,7 @@
 	(height 100)
 	(is_hidden FALSE)
 	(name ":ANNOTATION-TEXT")
+	(property_list [CesiumWorkshop2_ProjectKB_Class475])
 	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
 	(width 200)
 	(x 0)
@@ -20,9 +21,34 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 )
 
+([CesiumWorkshop2_ProjectKB_Class10481] of  Map
+
+	(entries [CesiumWorkshop2_ProjectKB_Class10482]))
+
+([CesiumWorkshop2_ProjectKB_Class10482] of  Map_Entry
+
+	(key "CesiumWorkshop2_Class20000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "482 673 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([CesiumWorkshop2_ProjectKB_Class10483] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "CesiumWorkshop2_ProjectKB_Class10481")
+	(value_class "java.util.Map"))
+
 ([CesiumWorkshop2_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
+
+([CesiumWorkshop2_ProjectKB_Class474] of  Property_List
+
+	(name "layout properties"))
+
+([CesiumWorkshop2_ProjectKB_Class475] of  Property_List
+)
 
 ([CesiumWorkshop2_ProjectKB_Class476] of  Widget
 
@@ -104,40 +130,13 @@
 		[ANNOTATED_INSTANCE_WIDGET]
 		[CREATOR_WIDGET]
 		[CREATION_TIMESTAMP_WIDGET]
-		[ANNOTATION_TEXT_WIDGET]))
+		[ANNOTATION_TEXT_WIDGET]
+		[CesiumWorkshop2_ProjectKB_Class474]))
 
 ([INSTANCES_TAB] of  Widget
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_418735_Class472] of  Map
-
-	(entries
-		[KB_418735_Class473]
-		[KB_418735_Class474]
-		[KB_418735_Class475]))
-
-([KB_418735_Class473] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_418735_Class474] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_418735_Class475] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_721859_Class0] of  String
 
@@ -145,7 +144,9 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_721859_Class1] of  Map
-)
+
+	(entries [CesiumWorkshop2_ProjectKB_Class10483])
+	(referenced_maps [CesiumWorkshop2_ProjectKB_Class10481]))
 
 ([KB_721859_Class13] of  Property_List
 
@@ -238,6 +239,46 @@
 
 	(name "instances_file_name")
 	(string_value "CesiumWorkshop2.pins"))
+
+([KB_833521_Class475] of  Map
+
+	(entries
+		[KB_833521_Class476]
+		[KB_833521_Class478]
+		[KB_833521_Class479]
+		[KB_833521_Class480])
+	(referenced_maps [KB_833521_Class477]))
+
+([KB_833521_Class476] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_833521_Class477] of  Map
+)
+
+([KB_833521_Class478] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "KB_833521_Class477")
+	(value_class "java.util.Map"))
+
+([KB_833521_Class479] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_833521_Class480] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

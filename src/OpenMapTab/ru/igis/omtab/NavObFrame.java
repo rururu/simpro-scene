@@ -17,6 +17,8 @@ package ru.igis.omtab;
 
 import java.util.Map;
 
+import ru.igis.omtab.gui.FlightControl;
+
 /**
  * GUI to control movement of Navigating object by hand
  * @author srp
@@ -59,6 +61,8 @@ public class NavObFrame extends javax.swing.JFrame {
         jTextFieldVerticalSpeed = new javax.swing.JTextField();
         jButtonAttr = new javax.swing.JButton();
         jButtonMission = new javax.swing.JButton();
+        jLabelFlight = new javax.swing.JLabel("Flight");
+        jButtonControl = new javax.swing.JButton();
 
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
@@ -69,7 +73,7 @@ public class NavObFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanelCoordinates.setLayout(new java.awt.GridLayout(7, 1));
+        jPanelCoordinates.setLayout(new java.awt.GridLayout(8, 1));
 
         jLabelLat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanelCoordinates.add(jLabelLat);
@@ -94,7 +98,6 @@ public class NavObFrame extends javax.swing.JFrame {
         jPanelCoordinates.add(jTextFieldLon);
 
         jLabelAltitude.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelAltitude.setToolTipText("");
         jPanelCoordinates.add(jLabelAltitude);
 
         jTextFieldAltitude.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +108,6 @@ public class NavObFrame extends javax.swing.JFrame {
         jPanelCoordinates.add(jTextFieldAltitude);
 
         jLabelCourse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCourse.setToolTipText("");
         jPanelCoordinates.add(jLabelCourse);
 
         jTextFieldCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +137,18 @@ public class NavObFrame extends javax.swing.JFrame {
         });
         jPanelCoordinates.add(jTextFieldVerticalSpeed);
 
+        jLabelFlight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanelCoordinates.add(jLabelFlight);
+
+        jButtonControl.setText("Control");
+        jButtonControl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonControlActionPerformed(evt);
+            }
+        });
+
+        jPanelCoordinates.add(jButtonControl);
+        
         jButtonAttr.setText("Attributes");
         jButtonAttr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +171,10 @@ public class NavObFrame extends javax.swing.JFrame {
 
         pack();
     }//GEN-END:initComponents
+
+    private void jButtonControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMissionActionPerformed
+    	FlightControl.instance(navOb);
+    }//GEN-LAST:event_jButtonMissionActionPerformed
 
     private void jButtonMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMissionActionPerformed
     	navOb.execMission();
@@ -258,12 +276,14 @@ public class NavObFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAttr;
     private javax.swing.JButton jButtonMission;
+    private javax.swing.JButton jButtonControl;
     private javax.swing.JLabel jLabelCourse;
     private javax.swing.JLabel jLabelAltitude;
     private javax.swing.JLabel jLabelLat;
     private javax.swing.JLabel jLabelLon;
     private javax.swing.JLabel jLabelSpeed;
     private javax.swing.JLabel jLabelVerticalSpeed;
+    private javax.swing.JLabel jLabelFlight;
     private javax.swing.JPanel jPanelCoordinates;
     private javax.swing.JTextField jTextFieldCourse;
     private javax.swing.JTextField jTextFieldAltitude;

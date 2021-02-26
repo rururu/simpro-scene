@@ -62,7 +62,7 @@ public class OMT extends MapHandlerChild {
 	    	int pgi = -1;
 	    	String pgids = (String) inst.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_PLAYGROUND_INDEX));
 	    	if(pgids != null)
-	    		pgi = new Integer(pgids);
+	    		pgi = Integer.parseInt(pgids);
 	    	else
 	    		pgi = 0;
 	    	MapOb mo = playgrounds[pgi].addMapOb(inst);

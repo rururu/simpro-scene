@@ -1,4 +1,4 @@
-; Wed Jun 10 12:48:06 MSK 2020
+; Fri Feb 26 22:33:04 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,6 +22,7 @@
 		[CesiumBase_Class110002])
 	(cloNamespace [CesiumBase_Class1])
 	(cloVars
+		[CesiumBase_Class120000]
 		[CesiumBase_Class10002]
 		[CesiumBase_Class10005]
 		[CesiumBase_Class10004]
@@ -31,7 +32,6 @@
 		[CesiumBase_Class10008]
 		[CesiumBase_Class30001]
 		[CesiumBase_Class60001]
-		[CesiumBase_Class30002]
 		[CesiumBase_Class30003]
 		[CesiumBase_Class40002]
 		[CesiumBase_Class110001])
@@ -103,7 +103,7 @@
 
 ([CesiumBase_Class10009] of  ClsMain
 
-	(asset-path "js/test")
+	(asset-path "js/cezium/test")
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions [CesiumBase_Class20003])
 	(cloNamespace [CesiumBase_Class10010])
@@ -111,27 +111,27 @@
 	(css [CesiumBase_Class10012])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-client))")
 	(html [CesiumBase_Class10011])
-	(output-dir "resources/public/js/test")
-	(output-to "resources/public/js/test.js")
+	(output-dir "resources/public/js/cezium/test")
+	(output-to "resources/public/js/cezium/test.js")
 	(required [CesiumBase_Class0])
-	(store-in "src/cljs/test")
+	(store-in "src/cljs/cezium")
 	(title "Test Client"))
 
 ([CesiumBase_Class10010] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     mouse-move\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-URL\n     EVENT-DEBUG]])")
-	(title "cesium.testclient"))
+	(source "(:require \n  [cesium.client :refer\n    [add-imagery-by-asset-id\n     add-terrain\n     camera-home\n     clock-settings\n     load-data\n     start-event-processing\n     look-at\n     add-orbit-button\n     mouse-move\n     PORT\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     CLOCK-SET\n     EVENT-DEBUG]])")
+	(title "test.client"))
 
 ([CesiumBase_Class10011] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Cesium</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <div id=\"mouse-pos\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/test.js\"></script>\n    </body>\n</html>")
-	(store-in "resources/public")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Cesium</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"cezium/css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <div id=\"mouse-pos\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/cezium/test.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public/cezium")
 	(title "test"))
 
 ([CesiumBase_Class10012] of  CSS
 
 	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n#mouse-pos {\n  position: absolute;\n  left: 0;\n  top: 5%;\n  width: 100%;\n  text-align: center;\n  color:yellow\n}")
-	(store-in "resources/public/css")
+	(store-in "resources/public/cezium/css")
 	(title "test"))
 
 ([CesiumBase_Class110000] of  CloFunction
@@ -159,6 +159,27 @@
 	(source "(send-clj-funcall \n  `(cesium.client/clock-settings \n     ~'cesium.client.CLOCK \n     ~(cs :animate)\n     ~(cs :start)\n     ~(cs :stop)\n     ~(cs :current)\n     ~(cs :mult)\n     ~(cs :step)\n     ~(cs :range)\n     ~'cesium.client.VIEWER))")
 	(title "send-clock [cs]"))
 
+([CesiumBase_Class120000] of  CloVar
+
+	(source "8448")
+	(title "PORT"))
+
+([CesiumBase_Class120001] of  CloFunction
+
+	(source "(if-let [clm (fainst (cls-instances \"ClsMain\") nil)]\n  (if-let [htm (first (svs clm \"html\"))]\n    (str (sv htm \"store-in\") \"/\" (sv htm \"title\") \".html\")\n    (do (println :PAGE-NOT-FOUND) nil))\n  (do (println :ClsMain-NOT-FOUND) nil))")
+	(title "find-page []"))
+
+([CesiumBase_Class120002] of  CloFunction
+
+	(source "([]\n  (if-let [serv SERV]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://0.0.0.0:\" PORT))))))\n([hm inst]\n  (start-client))")
+	(title "start-client"))
+
+([CesiumBase_Class120003] of  CesiumServer
+
+	(but-start-cs-client "Start Client/cesium.server/start-client")
+	(butt-start-cs-server "Start Server/cesium.server/start-server")
+	(butt-stop-cs-server "Stop Server/cesium.server/stop-server"))
+
 ([CesiumBase_Class20000] of  CloFunction
 
 	(source "(let [cosphi1 (js/Math.cos phi1)\n       sinphi1 (js/Math.sin phi1)\n       cosaz (js/Math.cos az)\n       sinaz (js/Math.sin az)\n       sinc (js/Math.sin c)\n       cosc (js/Math.cos c)\n       phi2 (js/Math.asin (+ (* sinphi1 cosc) (* cosphi1 sinc cosaz)))\n       lam2 (+ (js/Math.atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]\n  [lam2 phi2])")
@@ -176,7 +197,7 @@
 
 ([CesiumBase_Class20003] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)\n(mouse-move)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing PORT VIEWER)\n(add-orbit-button CAMERA)\n(mouse-move)")
 	(title "init-client []"))
 
 ([CesiumBase_Class20005] of  CloFunction
@@ -191,18 +212,13 @@
 
 ([CesiumBase_Class30000] of  CloFunction
 
-	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))\n          (js-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :JS data))\n               (js/eval data)))]\n  (let [es (js/EventSource. EVENT-URL)]\n    (.add (.-dataSources viewer) CZML-DS)\n    (.add (.-dataSources viewer) KML-DS)\n    (.addEventListener es \"czml\" cz-processor false)\n    (.addEventListener es \"kml\" km-processor false)\n    (.addEventListener es \"js\" js-processor false)))")
-	(title "start-event-processing [viewer]"))
+	(source "(letfn [(cz-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :CZML data))\n               (.process CZML-DS (js/JSON.parse data))))\n          (km-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :KML data))\n               (.load KML-DS (.parseFromString (js/DOMParser.) data \"text/xml\"))))\n          (js-processor [e]\n             (let [data (.-data e)]\n               (if EVENT-DEBUG\n                 (println :JS data))\n               (js/eval data)))]\n  (let [es (js/EventSource. (str \"http://0.0.0.0:\" port \"/event\"))]\n    (.add (.-dataSources viewer) CZML-DS)\n    (.add (.-dataSources viewer) KML-DS)\n    (.addEventListener es \"czml\" cz-processor false)\n    (.addEventListener es \"kml\" km-processor false)\n    (.addEventListener es \"js\" js-processor false)))")
+	(title "start-event-processing [port viewer]"))
 
 ([CesiumBase_Class30001] of  CloVar
 
 	(source "(js/Cesium.CzmlDataSource.)")
 	(title "CZML-DS"))
-
-([CesiumBase_Class30002] of  CloVar
-
-	(source "\"http://localhost:4448/event\"")
-	(title "EVENT-URL"))
 
 ([CesiumBase_Class30003] of  CloVar
 
@@ -248,13 +264,6 @@
 
 	(source "(str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},{\\\"id\\\":\\\"\" id \"\\\",\\\"rectangle\\\":{\\\"coordinates\\\":{\\\"wsenDegrees\\\":[\" w \",\" s \",\" e \",\" n \"]},\\\"material\\\":{\\\"image\\\":{\\\"image\\\":{\\\"uri\\\":\\\"\" uri \"\\\"},\\\"color\\\":{\\\"rgba\\\":[255,255,255,\" (int (* trans 255)) \"]}}}}}]\")")
 	(title "add-image [id uri [w s e n] trans]"))
-
-([CesiumBase_Class30010] of  CesiumServer
-
-	(butt-start-cs-server "Start/cesium.server/start-server")
-	(butt-stop-cs-server "Stop/cesium.server/stop-server")
-	(page "test.html")
-	(port 4448))
 
 ([CesiumBase_Class40000] of  CloFunction
 
@@ -359,14 +368,15 @@
 		[CesiumBase_Class110000]
 		[CesiumServer_Class10003]
 		[CesiumServer_Class10001]
+		[CesiumBase_Class120001]
 		[CesiumWorshop_Class10005]
 		[CesiumWorshop_Class10010]
-		[CesiumWorshop_Class10011])
+		[CesiumWorshop_Class10011]
+		[CesiumBase_Class120002])
 	(cloNamespace [CesiumWorshop_Class10004])
 	(cloVars
-		[CesiumWorshop_Class10006]
+		[CesiumBase_Class120000]
 		[CesiumWorshop_Class10007]
-		[CesiumWorshop_Class10008]
 		[CesiumWorshop_Class10009]
 		[CesiumServer_Class10002]
 		[CesiumServer_Class10005])
@@ -374,37 +384,27 @@
 
 ([CesiumWorshop_Class10004] of  CloNamespace
 
-	(source "(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [clojure.core.async :refer [chan alts!! put!]]\n              [czml.generator :refer :all])")
+	(source "(:use protege.core)\n(:require [ring.adapter.jetty :as jetty]\n              [ring.util.response :as r]\n              [compojure.core :refer [defroutes GET]]\n              [compojure.handler :as handler]\n              [compojure.route :as route]\n              [clojure.core.async :refer [chan alts!! put!]]\n              [czml.generator :refer :all])\n(:import java.awt.Desktop\n             java.net.URI)")
 	(title "cesium.server"))
 
 ([CesiumWorshop_Class10005] of  CloFunction
 
-	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (str ROOT PAGE)))\n  (GET \"/event\" [] (event-response))\n  (route/files \"/\" (do (println [:ROOT ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Cesium Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (find-page)))\n  (GET \"/event\" [] (event-response))\n  (route/files \"/\" (do (println [:ROOT ROOT]) {:root ROOT}))\n  (route/resources \"/\")\n  (route/not-found \"Cesium Server: Not Found!\"))\n\n(defonce APP\n  (handler/site app-routes))")
 	(title "init-server []"))
-
-([CesiumWorshop_Class10006] of  CloVar
-
-	(source "(defonce PORT 4442)")
-	(title "defoncePORT"))
 
 ([CesiumWorshop_Class10007] of  CloVar
 
-	(source "(defonce ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\"))")
-	(title "defonceROOT"))
-
-([CesiumWorshop_Class10008] of  CloVar
-
-	(source "(defonce PAGE \"test.html\")")
-	(title "defoncePAGE"))
+	(source "(str (System/getProperty \"user.dir\") \"/resources/public/\")")
+	(title "ROOT"))
 
 ([CesiumWorshop_Class10009] of  CloVar
 
-	(source "(defonce SERV nil)")
-	(title "defonceSERV"))
+	(source "nil")
+	(title "SERV"))
 
 ([CesiumWorshop_Class10010] of  CloFunction
 
-	(source "([]\n  (start-server PORT))\n([port]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port port :join? false})))\n([hm inst]\n  (let [mp (into {} hm)]\n    (def PORT (mp \"port\"))\n    (def PAGE (mp \"page\"))\n    (start-server)))")
+	(source "([]\n  (if (nil? SERV)\n    (init-server))\n  (def SERV (jetty/run-jetty APP {:port PORT :join? false})))\n([hm inst]\n  (start-server))")
 	(title "start-server"))
 
 ([CesiumWorshop_Class10011] of  CloFunction

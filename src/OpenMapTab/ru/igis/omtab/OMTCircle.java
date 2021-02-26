@@ -82,7 +82,7 @@ public class OMTCircle extends MapOb  implements Container{
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FILL_COLOR),fcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),new Float(radius));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),Float.valueOf(radius));
                 return new OMTCircle(inst);
             }
         }

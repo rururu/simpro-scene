@@ -27,17 +27,17 @@ import edu.stanford.smi.protege.model.*;
  * @author Ru
  */
 public class NavOb extends OMTRaster {
-    
+
     /**
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
      * one arc minute in radians
-     */    
+     */
     public static final String MAP_ERROR = "Error while mapToProtege from navob ";
-    
+
     private double speed;		// speed under control in knots
     private double veticalSpeed;// vertical speed under control in m/s
     private int course;			// course under control in degrees
@@ -47,7 +47,7 @@ public class NavOb extends OMTRaster {
     private NavObFrame navObFrame;
     private Collection<Tow> tows;
     OMScalingIcon omsi;
-    
+
     private CopyOnWriteArrayList<double[]> route;
     private int nextPointIndex;
     private double lastPosTime;
@@ -57,7 +57,8 @@ public class NavOb extends OMTRaster {
     private double lastAzi;
     private boolean keepRoute;
     private double rad_hrs;		// speed in radians per hour
-    
+    private double ortodromic;     // perpetual motion flag
+
     /** Creates a new instance of MapOb */
     public NavOb(){
     }
@@ -66,11 +67,11 @@ public class NavOb extends OMTRaster {
      * Constructor that creates Navigating object from Protege Instance
      * @param instance - Instance of this Navigating object
      * @throws Exception -
-     */    
+     */
     public NavOb(Instance instance) throws Exception {
         super(instance);
      }
-    
+
     /**
      * Fabric method that creates Navigating Object from String parameters
      * @param label -
@@ -83,7 +84,7 @@ public class NavOb extends OMTRaster {
      * @param url - path to Navigating Object Image Icon file
      * @throws Exception -
      * @return - created new Navigating Object
-     */    
+     */
     public static NavOb createNavOb(
         String label,
         String type,
@@ -102,20 +103,20 @@ public class NavOb extends OMTRaster {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_TYPE),type);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LATITUDE),latitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ALTITUDE),new Integer(altitude));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_COURSE),new Integer(course));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),new Float(speed));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ALTITUDE),Integer.parseInt(altitude));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_COURSE),Integer.parseInt(course));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),Float.valueOf(speed));
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_URL),url);
                 return new NavOb(inst);
             }
         }
         return null;
     }
-    
+
     /**
      * Set Latitude from String
      * @param dmlat - latitude string in form "degrees minutes"
-     */    
+     */
     public void setLatitude(String dmlat){
         try{
             setLatitude(getDeg(dmlat));
@@ -125,7 +126,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set Longitude from String
      * @param dmlon - longitude string in form "degrees minutes"
-     */    
+     */
     public void setLongitude(String dmlon){
         try{
             setLongitude(getDeg(dmlon));
@@ -135,7 +136,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set Course from String
      * @param course - course in form "degrees"
-     */    
+     */
     public void setCourse(String course){
         try{
             setCourse(Integer.parseInt(course));
@@ -144,7 +145,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set Altitude from String
      * @param altitude - course in form "meters"
-     */    
+     */
     public void setAltitude(String altitude){
         try{
             setAltitude(Integer.parseInt(altitude));
@@ -153,7 +154,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set Speed from String
      * @param speed - speed in form "knots"
-     */    
+     */
     public void setSpeed(String speed){
         try{
             setSpeed(Float.parseFloat(speed));
@@ -162,7 +163,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set Vertical Speed from String
      * @param vspeed - Vertical Speed in m/s
-     */    
+     */
     public void setVerticalSpeed(String vspeed){
         try{
             setVerticalSpeed(Double.parseDouble(vspeed));
@@ -197,17 +198,17 @@ public class NavOb extends OMTRaster {
     /**
      * Set Latitude from double
      * @param deglat - latitude in degrees
-     */    
+     */
 	public void setLatitude(double deglat) {
 		if (deglat > -90f && deglat < 90f) {
 			setLocation(deglat, lon);
 		}
 	}
-    
+
     /**
      * Set Longitude from double
      * @param deglon - longitude in degrees
-     */    
+     */
 	public void setLongitude(double deglon) {
 		if (deglon > -180f && deglon < 180f) {
 			setLocation(lat, deglon);
@@ -216,13 +217,12 @@ public class NavOb extends OMTRaster {
     /**
      * Set Course from int
      * @param deg - course in degrees
-     */    
-	public void setCourse(int deg) {
+     */
+	public synchronized void setCourse(int deg) {
 		if (nextPointIndex > 0) {
 			if (speed > 0) {
-				// 24 hours way
-				double[] ohw = position(lat, lon, (double) deg, speed * 24);
-				goRoute(ohw);
+				initRoute();
+				ortodromic = Math.toRadians(deg);
 			}
 		}
 		setCourse0(deg);
@@ -248,25 +248,20 @@ public class NavOb extends OMTRaster {
     /**
      * Set Speed from double
      * @param knots - speed in knots (nautical miles per hour)
-     */    
-	public void setSpeed(double knots) {
-		if (nextPointIndex > 0) {
-			// if we are standing in the end of route and start
-			if (speed == 0 && nextPointIndex == route.size() && knots > 0) {
-				// 24 hours way
-				double[] ohw = position(lat, lon, (double) course, knots * 24);
-				goRoute(ohw);
-			// if we are start or change speed
-			} else if (knots > 0 && knots != speed) { 
+     */
+	public synchronized void setSpeed(double knots) {
+		if (nextPointIndex > 0 && knots > 0) {
+			// if we are in the end of route
+			if (nextPointIndex == route.size()) {
+				initRoute();
+				ortodromic = Math.toRadians(course);
+				// if we are in the middle of the route
+			} else if (nextPointIndex < route.size()) {
 				speed = 0; // first of all stop
-				double latrad = Math.toRadians(lat);
-				double lonrad = Math.toRadians(lon);
-				double[] here = new double[] {latrad, lonrad};
-				// insert new point here and go from it
-				route.add(nextPointIndex, here);
+				lastLat = Math.toRadians(lat);
+				lastLon = Math.toRadians(lon);
+				route.add(nextPointIndex, new double[] { lastLat, lastLon });
 				nextPointIndex++;
-				lastLat = latrad;
-				lastLon = lonrad;
 				lastPosTime = Clock.getCurrentTime();
 				lastLeg = -1;
 			}
@@ -293,7 +288,7 @@ public class NavOb extends OMTRaster {
     /**
      * Set VerticalSpeed from int
      * @param vspeed - VerticalSpeed in meters per second
-     */    
+     */
 	public void setVerticalSpeed(double vspeed) {
 		if (veticalSpeed != vspeed) {
 			veticalSpeed = vspeed;
@@ -304,7 +299,7 @@ public class NavOb extends OMTRaster {
 			}
 		}
 	}
-	
+
     /**
      * Method for setting altitude of this object
      * @param altitude - Alitude in meters
@@ -323,27 +318,27 @@ public class NavOb extends OMTRaster {
     /**
      * Return current course
      * @return - current course in degrees
-     */    
+     */
     public int getCourse(){ // returns deg
         return course;
     }
-    
+
     /**
      * Return current speed
      * @return - current speed in knots
-     */    
+     */
     public double getSpeed(){ // returns knots
         return speed;
     }
-    
+
     /**
      * Return current vertical speed
      * @return - current vertical speed in meters per second
-     */    
+     */
     public double getVerticalSpeed(){ // returns meters per second
         return veticalSpeed;
     }
-    
+
     /**
      * Method for altitude of this object
      * @return Altitude in meters
@@ -351,20 +346,22 @@ public class NavOb extends OMTRaster {
 	public int getAltitude() {
 		return (int) altitude;
 	}
-	
+
     /**
      * Move this object for one step.
      * Simultaneously move objects that this object is towing
      * @param currentTime - Current Time in hours
-     */    
-	public void move(double currentTime) {
+     */
+	protected synchronized void move(double currentTime) {
 		if (speed > 0) {
 			boolean stop_route = false;
 			double eltime = currentTime - lastPosTime;
 			double way = rad_hrs * eltime;
-			if (lastLeg > 0 && way < lastLeg) {
-				double[] pos = GreatCircle.sphericalBetween(lastLat, lastLon,
-						way, lastAzi, 1);
+			if (ortodromic > 0) {
+				double[] pos = GreatCircle.sphericalBetween(lastLat, lastLon, way, ortodromic, 1);
+				super.setLocation(Math.toDegrees(pos[2]), Math.toDegrees(pos[3]));
+			} else if (lastLeg > 0 && way < lastLeg) {
+				double[] pos = GreatCircle.sphericalBetween(lastLat, lastLon, way, lastAzi, 1);
 				super.setLocation(Math.toDegrees(pos[2]), Math.toDegrees(pos[3]));
 			} else {
 				double[] llci = along(lastLat, lastLon, nextPointIndex, way);
@@ -373,19 +370,27 @@ public class NavOb extends OMTRaster {
 				lastAzi = llci[2];
 				nextPointIndex = (int) llci[3];
 				super.setLocation(Math.toDegrees(lastLat), Math.toDegrees(lastLon));
-				int crs = (int) Math.toDegrees(lastAzi);
+				int crs = (int) Math.round(Math.toDegrees(lastAzi));
 				if (crs < 0)
 					crs += 360;
 				if (crs != course)
 					setCourse0(crs);
 				lastPosTime = currentTime;
 				if (nextPointIndex == route.size()) {
-					stop_route = true;
-					setSpeed0(0);
-					if (!keepRoute)
-						initRoute();
-					else
-						lastLeg = -1;
+					if(ortodromic > 0) {
+						System.out.println("R0 "+route.size());
+						double[] nextPoint = GreatCircle.sphericalBetween(lastLat, lastLon, Math.PI / 90, ortodromic, 1);
+						route.add(new double[] {nextPoint[2], nextPoint[2]});
+						System.out.println("R1 "+route.size()+Math.toDegrees(nextPoint[2])+" "+Math.toDegrees(nextPoint[3]));
+						lastLeg = GreatCircle.sphericalDistance(lastLat, lastLon, nextPoint[0], nextPoint[1]);
+					} else {
+						stop_route = true;
+						setSpeed0(0);
+						if (!keepRoute)
+							initRoute();
+						else
+							lastLeg = -1;
+					}
 				} else {
 					double[] nextPount = route.get(nextPointIndex);
 					lastLeg = GreatCircle.sphericalDistance(lastLat, lastLon, nextPount[0], nextPount[1]);
@@ -435,22 +440,22 @@ public class NavOb extends OMTRaster {
 			}
 		}
 	}
-    
+
     /**
      * Create NavObFrame for this object to control it
-     */    
+     */
     public void control(){
         navObFrame = new NavObFrame(this);
         navObFrame.pack();
-        navObFrame.setSize(200,220);
+        navObFrame.setSize(200,250);
         navObFrame.setVisible(true);
         updateNavObFrame();
     }
-    
+
     /**
      * Update NavObFrame by refreshing its fields: latitude,
      * longitude, course, speed
-     */    
+     */
     public void updateNavObFrame(){
         if(navObFrame!=null){
             navObFrame.setLat(getLatitudeDM());
@@ -461,12 +466,12 @@ public class NavOb extends OMTRaster {
             navObFrame.setVerticalSpeed(getVerticalSpeed());
         }
     }
-    
+
     /**
      * Setting main attributies of this object from slot values of
      * corresponding Protege Instance
      * @param instance - Protege Instance representing this Navigating Object
-     */    
+     */
     public void mapFromProtege(Instance instance) {
         // create route
         initRoute();
@@ -480,7 +485,7 @@ public class NavOb extends OMTRaster {
         fromSlotURL(instance);
         fromSlotICON_SCALE(instance);
     }
-    
+
     protected void fromSlotICON_SCALE(Instance instance){
         Instance is = (Instance) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ICON_SCALE));
         if(is!=null && directImage!=null){
@@ -512,12 +517,12 @@ public class NavOb extends OMTRaster {
     }
     protected void fromSlotSPEED(Instance instance){
         Float spd = (Float)instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED));
-        if(spd!=null) 
+        if(spd!=null)
             setSpeed(spd.doubleValue());
     }
     protected void fromSlotVSPEED(Instance instance){
         Float vsp = (Float) instance.getOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_VERTICAL_SPEED));
-        if(vsp!=null) 
+        if(vsp!=null)
             setVerticalSpeed(vsp.floatValue());
     }
     @SuppressWarnings("unchecked")
@@ -545,20 +550,20 @@ public class NavOb extends OMTRaster {
      * Returning Back to Protege changed attributies of this
      * Navigatin object
      * @param instance - Protege Instance describing this object
-     */    
+     */
     public void mapToProtege(Instance instance) {
 		super.mapToProtege(instance);
 		// set back coordinates
 //    	mapLatToProtege(instance);
 //    	mapLonToProtege(instance);
         // set back course and speed
-        Integer course = new Integer(getCourse());
+        Integer course = Integer.valueOf(getCourse());
        	instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_COURSE),course);
-        Integer alt = new Integer(getAltitude());
+        Integer alt = Integer.valueOf(getAltitude());
        	instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ALTITUDE),alt);
-        Float speed = new Float(getSpeed());
+        Float speed = (float) getSpeed();
        	instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_SPEED),speed);
-        Float vspeed = new Float(getVerticalSpeed());
+        Float vspeed = (float) getVerticalSpeed();
        	instance.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_VERTICAL_SPEED),vspeed);
 		// set back tow objects
         if(tows!=null)
@@ -583,27 +588,27 @@ public class NavOb extends OMTRaster {
 //    }
     /**
      * Call RuNA method execMission with this object as argument
-     */    
+     */
     public void execMission(){
         OMT.execMission(this);
     }
-    
+
     /**
      * Add new Tow object to this object.
      * Set its course and coordinates to those of this object
      * @param tow - Tow object
-     */    
+     */
 	public synchronized void addTow(Tow tow){
         if(tows==null)
             tows = Collections.synchronizedList(new ArrayList<Tow>());
         tows.add(tow);
         tow.turn(getCourse(), getSpeed(), lat, lon);
     }
-    
+
     /**
      * Remove Tow object for Map Object from this Navigating Object
      * @param mo - Map Object on tow just now
-     */    
+     */
     public synchronized void removeTow(MapOb mo){
         if(tows!=null)
             for(Iterator<Tow> i=tows.iterator();i.hasNext();){
@@ -615,13 +620,13 @@ public class NavOb extends OMTRaster {
                 }
             }
     }
-    
+
     /**
      * Put Map Object on tow in new position relative to this object
      * that is defined by angle
      * @param mo - Map object on tow
      * @param a - angle in degrees
-     */    
+     */
     public void setTowAngle(MapOb mo,double a){
         if(tows!=null)
             for(Iterator<Tow> i=tows.iterator();i.hasNext();){
@@ -632,13 +637,13 @@ public class NavOb extends OMTRaster {
                 }
             }
     }
-    
+
     /**
      * Put Map Object on tow in new position relative to this object
      * that is defined by distance
      * @param mo - Map Object on tow
      * @param d - distance in nautical miles
-     */    
+     */
     public void setTowDistance(MapOb mo,double d){
         if(tows!=null)
             for(Iterator<Tow> i=tows.iterator();i.hasNext();){
@@ -649,32 +654,32 @@ public class NavOb extends OMTRaster {
                 }
             }
     }
-    
+
     /**
      * Remove all tows at once
-     */    
+     */
     public synchronized void clearTows(){
     	if(tows != null)
     		tows.clear();
     }
-    
+
     /**
      * Return all current tows
      * @return - Collection of current tows
-     */    
+     */
     public Collection<Tow> getTows(){
         return tows;
     }
 
 	/**
-     * Get Map Object on tow by this navob 
+     * Get Map Object on tow by this navob
      * Both objects must be on a map
-     * @param mo - Map Object 
+     * @param mo - Map Object
      * @param angle - tow angle
      * @param distance - tow distance
      * @param relative - if tow relative to this navov course
      * @return true if success
-     */    
+     */
     public boolean onTow(MapOb mo, double angle, double distance, boolean relative)
     {
     	if(mo.getWhoTows() != null)
@@ -688,11 +693,11 @@ public class NavOb extends OMTRaster {
     	else
     		return false;
     }
-       
+
     /**
      * Return type of this object
      * @return - String containing type
-     */    
+     */
     public Object getType(){
         return type;
     }
@@ -734,13 +739,13 @@ public class NavOb extends OMTRaster {
 				System.out.println(MAP_ERROR+getName());
 			}
 	}
-	
+
     /**
      * Check if point abaft the beam
      * @param lat - latitude of point in degrees
      * @param lon - longitude of point in degrees
      * @return true if abaft
-     */    
+     */
 	public boolean abaft(double lat, double lon)
 	{
 		double bear = bearingsDeg(lat, lon);
@@ -752,7 +757,7 @@ public class NavOb extends OMTRaster {
      * Check if Map Object abaft the beam
      * @param mo - Map Object
      * @return true if abaft
-     */    
+     */
 	public boolean abaft(MapOb mo)
 	{
 		double bear = bearingsDeg(mo);
@@ -766,7 +771,7 @@ public class NavOb extends OMTRaster {
      * @param lon - longitude of point in degrees
      * @param radius - radius in nautical miles
      * @return true if near
-     */    
+     */
 	public boolean near(double lat, double lon, double radius)
 	{
 		double dist = distanceNM(lat, lon);
@@ -778,24 +783,24 @@ public class NavOb extends OMTRaster {
      * @param mo - Map Object
      * @param radius - radius in nautical miles
      * @return true if near
-     */    
+     */
 	public boolean near(MapOb mo, double radius)
 	{
 		double dist = distanceNM(mo);
 		return ( dist < radius );
 	}
-	
+
 	private void initRoute() {
         route = new CopyOnWriteArrayList<double[]>();
         route.add(new double[]{ Math.toRadians(lat), Math.toRadians(lon) });
         nextPointIndex = 1;
         lastLeg = -1;
 	}
-	
+
 	/**
      * Set further route for this NavOb
      * @param iwp - instance with slot "points"
-     */    
+     */
 	@SuppressWarnings("unchecked")
 	public void goRoute(Instance iwp)
 	{
@@ -804,7 +809,7 @@ public class NavOb extends OMTRaster {
 	/**
      * Set further route for this NavOb
      * @param points - points of route {"lat_deg lat_min lon_deg lon_min"}
-     */    
+     */
 	public void goRoute(Collection<String> points)
 	{
 		CopyOnWriteArrayList<double[]> alrte = new CopyOnWriteArrayList<double[]>();
@@ -822,7 +827,7 @@ public class NavOb extends OMTRaster {
      * Set further route for this NavOb
      * @param lat - latitude of single route point
      * @param lon - longitude of single route point
-     */    
+     */
 	public void goRoute(double lat, double lon)
 	{
 		goRoute(new double[]{lat, lon});
@@ -830,7 +835,7 @@ public class NavOb extends OMTRaster {
 	/**
      * Set further route for this NavOb
      * @param poly - OMTPoly whose points would be route
-     */    
+     */
 	public void goRoute(OMTPoly poly)
 	{
 		goRouteRad(poly.getLLPoints());
@@ -845,7 +850,7 @@ public class NavOb extends OMTRaster {
 	/**
      * Set further route for this NavOb
      * @param lla - LatLonArray (deg) of route points
-     */    
+     */
 	public void goRouteRad(double[] lla)
 	{
 		CopyOnWriteArrayList<double[]> alrte = new CopyOnWriteArrayList<double[]>();
@@ -859,21 +864,18 @@ public class NavOb extends OMTRaster {
 	/**
      * Set further route for this NavOb
      * @param rte - route in radians
-     */    
-	private void goRouteRad(CopyOnWriteArrayList<double[]> rte) {
+     */
+	private synchronized void goRouteRad(CopyOnWriteArrayList<double[]> rte) {
 		if (rte.size() > 0) {
+			ortodromic = -1;
 			double spd = speed;
 			speed = 0;
 			route.removeAll(route.subList(nextPointIndex, route.size()));
-			double latrad = Math.toRadians(lat);
-			double lonrad = Math.toRadians(lon);
-			if (spd > 0) {
-				route.add(nextPointIndex, new double[] {latrad, lonrad});
-				nextPointIndex++;
-			}
+			lastLat = Math.toRadians(lat);
+			lastLon = Math.toRadians(lon);
+			route.add(nextPointIndex, new double[] { lastLat, lastLon });
+			nextPointIndex++;
 			route.addAll(rte);
-			lastLat = latrad;
-			lastLon = lonrad;
 			lastPosTime = Clock.getCurrentTime();
 			lastLeg = -1;
 			speed = spd;
@@ -882,17 +884,16 @@ public class NavOb extends OMTRaster {
 			}
 		}
 	}
+
 	/**
      * Stop this NavOb and cut further route
-     */    
+     */
 	public void stopRoute() {
 		setSpeed0(0);
-		route.removeAll(route.subList(nextPointIndex, route.size()));
-		route.add(nextPointIndex, new double[] { Math.toRadians(lat), Math.toRadians(lon) });
-		nextPointIndex++;
-		lastLat = Math.toRadians(lat);
-		lastLon = Math.toRadians(lon);
-		lastPosTime = Clock.getCurrentTime();
+		if (!keepRoute)
+			initRoute();
+		else
+			route.removeAll(route.subList(nextPointIndex, route.size()));
 	}
 	/**
      * Put log point of route as points of
@@ -902,17 +903,17 @@ public class NavOb extends OMTRaster {
 	public void putLog(OMTPoly poly, int length) {
 		poly.setLLPoints(log(length));
 	}
-	
+
 	/**
      * Put log point of route as points of
      * @param poly - Instance of class "OMTPoly"
      * @param length - number of points from NavOb (-1 - all points)
      */
 	public void putLog(Instance poly, int length) {
-		poly.setOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_POINTS), 
+		poly.setOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_POINTS),
 				OMTPoly.getDMPoints(log(length)));
 	}
-	
+
 	/**
      * Put rest of route as points of
      * @param poly - OMTPoly
@@ -920,7 +921,7 @@ public class NavOb extends OMTRaster {
 	public void putRestOfRoute(OMTPoly poly) {
 		poly.setLLPoints(restOfRoute());
 	}
-	
+
 	/**
      * Log point of route
      * @param length - number of points from NavOb (-1 - all points)
@@ -953,7 +954,7 @@ public class NavOb extends OMTRaster {
 			return ProjMath.arrayRadToDeg(llp);
 		} else
 			return null;
-	}	
+	}
     /**
      * Relative point on some bearing and distance from given point
      * @param lat - latitude of given point (degrees)
@@ -1007,7 +1008,7 @@ public class NavOb extends OMTRaster {
 		this.keepRoute = keepRoute;
 	}
 	/**
-     * Calculate a route along the Great Circle 
+     * Calculate a route along the Great Circle
      * @param from_lat - latitude of initial point
      * @param from_lon - longitude of initial point
      * @param to_lat - latitude of destination point
@@ -1026,4 +1027,9 @@ public class NavOb extends OMTRaster {
 			return Arrays.copyOfRange(gc, 2, gc.length);
 		}
 	}
+
+	public boolean isOrtodromic() {
+		return ortodromic > 0;
+	}
+	
 }

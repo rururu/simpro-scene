@@ -78,7 +78,7 @@ public class OMTSpline extends OMTPoly {
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_FILL_COLOR),fcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_IS_POLYGON),new Boolean(ispolygon));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_IS_POLYGON),Boolean.getBoolean(ispolygon));
                 inst.setOwnSlotValues(OpenMapTab.kb.getSlot(Ontology.S_POINTS),points);
                 return new OMTSpline(inst);
             }

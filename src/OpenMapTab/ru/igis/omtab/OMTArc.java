@@ -88,9 +88,9 @@ public class OMTArc extends MapOb implements Container{
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LATITUDE),latitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LONGITUDE),longitude);
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_LINE_COLOR),lcolor);
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),new Float(radius));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),new Float(start));
-                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_EXTENT),new Float(extent));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_RADIUS),Float.valueOf(radius));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ANGLE),Float.valueOf(start));
+                inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_EXTENT),Float.valueOf(extent));
                 inst.setOwnSlotValue(OpenMapTab.kb.getSlot(Ontology.S_ARC_TYPE),type);
                 return new OMTArc(inst);
             }
