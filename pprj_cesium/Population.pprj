@@ -1,4 +1,4 @@
-; Tue May 26 21:58:56 MSK 2020
+; Sat Feb 27 14:45:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,7 @@
 	(height 100)
 	(is_hidden FALSE)
 	(name ":ANNOTATION-TEXT")
+	(property_list [Population_ProjectKB_Class614])
 	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
 	(width 200)
 	(x 0)
@@ -19,7 +20,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [Population_ProjectKB_Class609]))
+	(properties [Population_ProjectKB_Class615]))
 
 ([CLSES_TAB] of  Widget
 
@@ -226,35 +227,48 @@
 		[ANNOTATED_INSTANCE_WIDGET]
 		[CREATOR_WIDGET]
 		[CREATION_TIMESTAMP_WIDGET]
-		[ANNOTATION_TEXT_WIDGET]))
+		[ANNOTATION_TEXT_WIDGET]
+		[Population_ProjectKB_Class613]))
 
 ([INSTANCES_TAB] of  Widget
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_112617_Class605] of  Map
+([KB_438742_Class607] of  Map
 
 	(entries
-		[KB_112617_Class606]
-		[KB_112617_Class607]
-		[KB_112617_Class608]))
+		[KB_438742_Class608]
+		[KB_438742_Class610]
+		[KB_438742_Class611]
+		[KB_438742_Class612])
+	(referenced_maps [KB_438742_Class609]))
 
-([KB_112617_Class606] of  Map_Entry
+([KB_438742_Class608] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_112617_Class607] of  Map_Entry
+([KB_438742_Class609] of  Map
+)
+
+([KB_438742_Class610] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "KB_438742_Class609")
+	(value_class "java.util.Map"))
+
+([KB_438742_Class611] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_112617_Class608] of  Map_Entry
+([KB_438742_Class612] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -267,7 +281,9 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_978313_Class1] of  Map
-)
+
+	(entries [Population_ProjectKB_Class618])
+	(referenced_maps [Population_ProjectKB_Class616]))
 
 ([KB_978313_Class13] of  Property_List
 
@@ -440,10 +456,35 @@
 	(x 0)
 	(y 60))
 
-([Population_ProjectKB_Class609] of  String
+([Population_ProjectKB_Class613] of  Property_List
+
+	(name "layout properties"))
+
+([Population_ProjectKB_Class614] of  Property_List
+)
+
+([Population_ProjectKB_Class615] of  String
 
 	(name "City")
 	(string_value "title"))
+
+([Population_ProjectKB_Class616] of  Map
+
+	(entries [Population_ProjectKB_Class617]))
+
+([Population_ProjectKB_Class617] of  Map_Entry
+
+	(key "Population_Class20001")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "495 678 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([Population_ProjectKB_Class618] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "Population_ProjectKB_Class616")
+	(value_class "java.util.Map"))
 
 ([PROJECT] of  Project
 

@@ -116,3 +116,44 @@
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
   [s elt]))
 
+(defn point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [iR iG iB iA] size doc?]
+  (let [epo (iso8601abs (* s1 1000))
+      epof (iso8601abs (* s2 1000))
+      s (str
+  "{\"id\":\""
+    id 
+  "\",\"availability\":\""
+    epo "/" epof
+  "\",\"position\":{\"epoch\":\""
+    epo
+  "\",\"cartographicDegrees\":["
+    0
+  ","
+    lo1
+  ","
+    la1
+  ","
+    h1
+  ","
+    (- s2 s1)
+  ","
+    lo2
+  ","
+    la2
+  ","
+    h2
+  "]},\"point\":{\"color\":{\"rgba\":["
+    iR
+  ","
+    iG
+  ","
+    iB
+  ","
+    iA
+  "]},\"pixelSize\":"
+    size
+  "}}")]
+  (if doc?
+    (str "[{\"id\":\"document\",\"version\":\"1.0\"}," s "]")
+    s)))
+

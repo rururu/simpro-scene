@@ -1,9 +1,6 @@
 (ns mas.world.hiitolanjoki
 (:use
   protege.core)
-(:require
-  [cesium.server :as cs]
-  [czml.generator :as cg])
 (:import
   java.net.URL
   java.awt.Color

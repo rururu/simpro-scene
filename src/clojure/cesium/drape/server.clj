@@ -84,7 +84,7 @@
   (if-let [place (first (selection mp "places"))]
     (let [height (sv place "height")]
       (when (> FLAG-COUNT 0)
-        (send-czml (delete-points (inc FLAG-COUNT)))
+        (send-czml (delete-points "" (inc FLAG-COUNT)))
         (def FLAG-COUNT 0))
       (fly-to place
               180

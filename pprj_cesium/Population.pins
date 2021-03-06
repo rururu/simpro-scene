@@ -1,4 +1,4 @@
-; Tue May 26 21:58:56 MSK 2020
+; Sat Feb 27 14:45:26 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6170,3 +6170,15 @@
 ([Population_Class10004] of  CloFuncall
 
 	(source "(send-js \"cesium.client.EVENT_DEBUG=true\")"))
+
+([Population_Class20000] of  CesiumServer
+
+	(but-start-cs-client "Start Client/cesium.server/start-client")
+	(butt-start-cs-server "Start Server/cesium.server/start-server")
+	(butt-stop-cs-server "Stop Server/cesium.server/stop-server"))
+
+([Population_Class20001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [CesiumBase_Class10009])
+	(%3ACREATION-TIMESTAMP "2021.02.27 14:45:21.009 MSK")
+	(%3ACREATOR "ru"))

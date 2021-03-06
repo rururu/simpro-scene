@@ -1,4 +1,4 @@
-; Sun May 17 18:14:34 MSK 2020
+; Sat Feb 27 14:12:43 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,10 +7,16 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(multislot page
+;+		(type ANY)
+		(create-accessor read-write))
 	(single-slot but-tour-add-flag
 		(type STRING)
 		(default "Add Flag/cesium.drape.server/tour-add-flag")
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot port
+;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot but-tour-drape-place
 		(type STRING)

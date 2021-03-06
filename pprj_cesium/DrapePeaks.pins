@@ -1,37 +1,61 @@
-; Sun May 17 18:14:34 MSK 2020
+; Sat Feb 27 14:12:43 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
 ([DrapePeaks_Class0] of  ClsMain
 
-	(asset-path "js/drape")
+	(asset-path "js/cezium/drape")
 	(butt-build "Build/cljs.compile/build")
 	(cloFunctions [DrapePeaks_Class2])
 	(cloNamespace [DrapePeaks_Class1])
 	(compiler-options "{:verbose false}")
-	(css [CesiumBase_Class10012])
+	(css [DrapePeaks_Class60000])
 	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-drape))")
 	(html [DrapePeaks_Class3])
-	(output-dir "resources/public/js/drape")
-	(output-to "resources/public/js/drape.js")
+	(output-dir "resources/public/js/cezium/drape")
+	(output-to "resources/public/js/cezium/drape.js")
 	(required [CesiumBase_Class0])
-	(store-in "src/cljs/")
+	(store-in "src/cljs/cezium")
 	(title "Drape Client"))
 
 ([DrapePeaks_Class1] of  CloNamespace
 
-	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     EVENT-DEBUG\n     EVENT-URL]])")
-	(title "cesium.drape.client"))
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     PORT\n     VIEWER\n     CAMERA\n     HOME-VIEW\n     EVENT-DEBUG]])")
+	(title "drape.client"))
 
 ([DrapePeaks_Class10000] of  CloFunction
 
 	(source "(let [[lat lon] (if (and (vector lat) (vector lon))\n                       [(degminsec-to-deg lat) (degminsec-to-deg lon)]\n                       [lat lon])]\n  [(- lon deviation) (- lat deviation) (+ lon deviation) (+ lat deviation)])")
 	(title "calculate-wsen [[lat lon] deviation]"))
 
+([DrapePeaks_Class100002] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/en_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class100003] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/fi_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class100004] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/ru_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class100005] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/it_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class100006] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/gb_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
+([DrapePeaks_Class100007] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/cs_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
+
 ([DrapePeaks_Class2] of  CloFunction
 
-	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing VIEWER)\n(add-orbit-button CAMERA)")
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HOME-VIEW)\n(start-event-processing PORT VIEWER)\n(add-orbit-button CAMERA)")
 	(title "init-drape []"))
 
 ([DrapePeaks_Class20000] of  CloProgram
@@ -62,8 +86,8 @@
 
 ([DrapePeaks_Class3] of  HTML
 
-	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Drape Peaks</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/drape.js\"></script>\n    </body>\n</html>")
-	(store-in "resources/public")
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Drape Peaks</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"cezium/css/drape.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/cezium/drape.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public/cezium")
 	(title "drape"))
 
 ([DrapePeaks_Class30000] of  Tour
@@ -105,18 +129,11 @@
 	(country "Holland")
 	(source "data/flags/hl_flag.png"))
 
-([DrapePeaks_Class4] of  CesiumServer
-
-	(butt-start-cs-server "Start/cesium.server/start-server")
-	(butt-stop-cs-server "Stop/cesium.server/stop-server")
-	(page "drape.html")
-	(port 4448))
-
 ([DrapePeaks_Class40000] of  Selector
 
 	(but-drape "Drape Peak/cesium.drape/drape-peak")
-	(flag [DrapePeaks_Class40033])
-	(peak [DrapePeaks_Class40007])
+	(flag [DrapePeaks_Class40019])
+	(peak [DrapePeaks_Class40008])
 	(transparency 0.5))
 
 ([DrapePeaks_Class40007] of  Peak
@@ -257,10 +274,28 @@
 	(source "(cond \n  (> az Math/PI) (- az (* 2 Math/PI))\n  (< az (- Math/PI)) (+ az (* 2 Math/PI))\n  true az)")
 	(title "normaz [az]"))
 
+([DrapePeaks_Class60000] of  CSS
+
+	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n#mouse-pos {\n  position: absolute;\n  left: 0;\n  top: 5%;\n  width: 100%;\n  text-align: center;\n  color:yellow\n}")
+	(store-in "resources/public/cezium/css")
+	(title "drape"))
+
 ([DrapePeaks_Class60001] of  Flag
 
 	(country "Sweden")
 	(source "data/flags/sw_flag.png"))
+
+([DrapePeaks_Class70000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [DrapePeaks_Class0])
+	(%3ACREATION-TIMESTAMP "2021.02.27 12:12:41.090 MSK")
+	(%3ACREATOR "ru"))
+
+([DrapePeaks_Class70001] of  CesiumServer
+
+	(but-start-cs-client "Start Client/cesium.server/start-client")
+	(butt-start-cs-server "Start Server/cesium.server/start-server")
+	(butt-stop-cs-server "Stop Server/cesium.server/stop-server"))
 
 ([DrapePeaks_Class70002] of  CloFunction
 
@@ -269,7 +304,7 @@
 
 ([DrapePeaks_Class70003] of  CloFunction
 
-	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (let [height (sv place \"height\")]\n      (when (> FLAG-COUNT 0)\n        (send-czml (delete-points (inc FLAG-COUNT)))\n        (def FLAG-COUNT 0))\n      (fly-to place\n              180\n              4000\n              (or height 1000)\n              (if height 0 -15)))))")
+	(source "(let [mp (into {} hm)]\n  (if-let [place (first (selection mp \"places\"))]\n    (let [height (sv place \"height\")]\n      (when (> FLAG-COUNT 0)\n        (send-czml (delete-points \"\" (inc FLAG-COUNT)))\n        (def FLAG-COUNT 0))\n      (fly-to place\n              180\n              4000\n              (or height 1000)\n              (if height 0 -15)))))")
 	(title "tour-goto-selected [hm inst]"))
 
 ([DrapePeaks_Class70004] of  CloFunction
@@ -282,6 +317,10 @@
 	(latitude "[40 39 40]")
 	(longitude "[-73 -56 -38]")
 	(title "New York City"))
+
+([DrapePeaks_Class90001] of  CloFuncall
+
+	(source "(cesium.server/send-czml (czml.generator/add-image \"flag\" \"data/flags/ch_flag.png\" (cesium.drape.server/calculate-wsen [[27 59 17] [86 55 31]] 0.01) 128))"))
 
 ([DrapePeaks_Class90002] of  Place
 

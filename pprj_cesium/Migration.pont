@@ -1,4 +1,4 @@
-; Fri Jul 03 19:53:01 MSK 2020
+; Sat Feb 27 13:40:04 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -37,9 +37,15 @@
 		(type INSTANCE)
 ;+		(allowed-classes WalkRoute)
 		(create-accessor read-write))
+	(multislot page
+;+		(type ANY)
+		(create-accessor read-write))
 	(single-slot roll
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot port
+;+		(type ANY)
 		(create-accessor read-write))
 	(single-slot direct
 		(type SYMBOL)

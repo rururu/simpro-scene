@@ -138,3 +138,16 @@
 ([hm inst]
   (start-client)))
 
+(defn restart-clock [start-mil scl]
+  (let [start (iso8601abs start-mil)
+       stop (iso8601abs (+ start-mil 3600000))
+       mult (int scl)
+       cs {:animate true
+              :start start
+              :stop stop
+              :current start
+              :mult mult
+              :step "SYSTEM_CLOCK_MULTIPLIER"
+              :range "UNBOUNDED"}]
+  (send-clock cs)))
+

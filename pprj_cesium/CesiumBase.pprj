@@ -1,4 +1,4 @@
-; Fri Feb 26 22:33:04 MSK 2021
+; Sat Mar 06 23:05:05 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,8 +21,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumBase_ProjectKB_Class10398]
-		[CesiumBase_ProjectKB_Class10399]))
+		[CesiumBase_ProjectKB_Class438]
+		[CesiumBase_ProjectKB_Class439]))
 
 ([CesiumBase_ProjectKB_Class10396] of  Property_List
 
@@ -31,24 +31,32 @@
 ([CesiumBase_ProjectKB_Class10397] of  Property_List
 )
 
-([CesiumBase_ProjectKB_Class10398] of  String
+([CesiumBase_ProjectKB_Class438] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumBase_ProjectKB_Class10399] of  String
+([CesiumBase_ProjectKB_Class439] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([CesiumBase_ProjectKB_Class10400] of  Map
-)
+([CesiumBase_ProjectKB_Class440] of  Map
 
-([CesiumBase_ProjectKB_Class10401] of  Map_Entry
+	(entries [CesiumBase_ProjectKB_Class441]))
+
+([CesiumBase_ProjectKB_Class441] of  Map_Entry
+
+	(key "CesiumBase_Class140000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "487 682 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([CesiumBase_ProjectKB_Class442] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "CesiumBase_ProjectKB_Class10400")
+	(value "CesiumBase_ProjectKB_Class440")
 	(value_class "java.util.Map"))
 
 ([CesiumServer_ProjectKB_Class10403] of  Widget
@@ -211,8 +219,8 @@
 
 ([KB_851107_Class1] of  Map
 
-	(entries [CesiumBase_ProjectKB_Class10401])
-	(referenced_maps [CesiumBase_ProjectKB_Class10400]))
+	(entries [CesiumBase_ProjectKB_Class442])
+	(referenced_maps [CesiumBase_ProjectKB_Class440]))
 
 ([KB_851107_Class13] of  Property_List
 
@@ -306,28 +314,28 @@
 	(name "instances_file_name")
 	(string_value "CesiumBase.pins"))
 
-([KB_911976_Class392] of  Map
+([KB_931211_Class394] of  Map
 
 	(entries
-		[KB_911976_Class393]
-		[KB_911976_Class394]
-		[KB_911976_Class395]))
+		[KB_931211_Class395]
+		[KB_931211_Class396]
+		[KB_931211_Class397]))
 
-([KB_911976_Class393] of  Map_Entry
+([KB_931211_Class395] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_911976_Class394] of  Map_Entry
+([KB_931211_Class396] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_911976_Class395] of  Map_Entry
+([KB_931211_Class397] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")

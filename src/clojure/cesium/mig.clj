@@ -17,13 +17,7 @@
   sim.io.geo.ShapeFileImporter
   sim.util.geo.AttributeValue
   com.vividsolutions.jts.geom.Coordinate
-  com.vividsolutions.jts.geom.GeometryFactory
-  ec.util.MersenneTwisterFast
-  sim.util.distribution.Normal
-  sim.util.distribution.Uniform))
-(def MTF (MersenneTwisterFast.))
-(def NORMAL (Normal. 0.0 0.0 MTF))
-(def UNIFORM (Uniform. MTF))
+  com.vividsolutions.jts.geom.GeometryFactory))
 (def LAKES (volatile! {}))
 (def RIVERS (volatile! {}))
 (def H-JOKI {:layer "Hiitolanjoki Rivers"
@@ -43,6 +37,7 @@
  [29.912 61.180]
  [29.888 61.179]])
 (def GeomFACTORY (GeometryFactory.))
+(def POINTS (volatile! {}))
 (def DTREE [[:N [:W :S] [:E :S]]
  [:S [:W :N] [:E :N]]
  [:W [:N :E] [:S :E]]
@@ -59,27 +54,9 @@
  :NE [1 1]
  :SW [-1 -1]
  :SE [1 -1]})
-(def TRACES (volatile! {}))
-(defn show-points
-  ([pts label]
-  (show-points pts label nil))
-([pts label color]
-  (let [pts2 (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)
-         lins (fifos "OMTPoly" "label" label)]
-    (if color
-      (ssv lins "lineColor" color))
-    (ssvs lins "points" pts2)
-    (dotimes [i (count pts)]
-      (let [pins (foc "OMTPoint" "label" (str label i))]
-        (ssv pins "latitude" (MapOb/getDegMin (second (nth pts i))))
-        (ssv pins "longitude" (MapOb/getDegMin (first (nth pts i))))
-        (ssv pins "lineColor" color)
-        (if-let [mo (OMT/getMapOb pins)]
-          (OMT/removeMapOb mo false))
-        (OMT/getOrAdd pins)))
-   (if-let [mo (OMT/getMapOb lins)]
-     (OMT/removeMapOb mo false))
-    (OMT/getOrAdd lins))))
+(defn set-points [pts inst]
+  (let [pts (map #(str (MapOb/getDegMin (second %)) " " (MapOb/getDegMin (first %))) pts)]
+  (ssvs inst "points" pts)))
 
 (defn simple-dist [[lo1 la1] [lo2 la2]]
   (+ (Math/abs (- lo1 lo2)) (Math/abs (- la1 la2))))
@@ -214,7 +191,7 @@
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! TRACES assoc id pts)
+  (vswap! POINTS assoc id pts)
   (cs/send-czml czml)
   [elt wps]))
 
@@ -250,7 +227,7 @@
        func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
        mils (+ (Clock/getClock) 2000)
        [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! TRACES assoc id pth)
+  (vswap! POINTS assoc id pth)
   (cs/send-czml czml)
   [elt wps]))
 
@@ -272,8 +249,7 @@
   [(Clock/getClock) (Clock/getTimeScale)])
 
 (defn look [age look]
-  (let [look (if (string? look) (read-string look) look)
-       [c s] (condp = age
+  (let [[c s] (condp = age
                  "child" [[0 255 0 255] 5]
                  "young" [[255 255 0 255] 7]
                  "adult" [[255 94 1 255] 9]
@@ -320,54 +296,13 @@
                      (MapOb/getDeg (str lag " " lam))])
     (svs poli "points"))))
 
-(defn rand-double [distro]
-  (condp = (first distro)
-  :L (rand-nth (rest distro))
-  :N (.nextDouble NORMAL (second distro) (first (nnext distro)))
-  :U (.nextDoubleFromTo UNIFORM (second distro) (first (nnext distro)))))
-
-(defn covered-by [lon lat geoms]
-  (let [pnt (.createPoint GeomFACTORY (Coordinate. lon lat))]
-  (some #(.coveredBy pnt %) geoms)))
-
-(defn next-point [^double lon ^double lat ^double dis ^double dir]
-  (let [llp (GreatCircle/sphericalBetween (Math/toRadians lat) (Math/toRadians lon) (Math/toRadians dis) (Math/toRadians dir))]
-  [(.getLongitude llp) (.getLatitude llp)]))
-
-(defn next-covered-point [[lon lat] r-direct r-step geoms]
-  (loop [i 0]
-  (if (< i 10)
-    (let [dir (rand-double r-direct)
-           stp (rand-double r-step)
-           [lon2 lat2] (next-point lon lat stp dir)]
-      (if (covered-by lon2 lat2 geoms)
-        [lon2 lat2]
-        (recur (inc i))))
-    [lon lat])))
-
-(defn next-covered-points [lon lat r-direct r-step geoms n]
-  (loop [i n pts [[lon lat]]]
-  (if (> i 0)
-    (recur (dec i) 
-      (conj pts (next-covered-point (last pts) r-direct r-step geoms)))
-    pts)))
-
-(defn next-random-way [id look [lon lat] r-direct r-step r-knots geoms n sec]
-  (let [color (look :color)
-       size (look :size)
-       height (look :height)
-       pth (next-covered-points lon lat r-direct r-step geoms n)
-       pts (insert-height pth height)
-       func-dist #(com.bbn.openmap.proj.GreatCircle/sphericalDistance %1 %2 %3 %4)
-       mils (* sec 1000)
-       knots (rand-double r-knots)
-       [czml elt] (cg/add-point-flight id pts knots mils "RELATIVE_TO_GROUND" color size func-dist)]
-  (vswap! TRACES assoc id (concat (@TRACES id) pth))
-  {:start (first pth)
-    :finish (last pth)
-    :czml czml
-    :time elt}))
-
-(defn init-area [are]
-  (:geoms (lake-map are)))
+(defn rwrw []
+  (def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p0"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p1"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p2"))
+(def pts (random-by-waypoints (reverse (walk-route-waypoints "Sempelejarvi")) 1000 200 0.002))
+(set-points pts (fifos "OMTPoly" "label" "p3")))
 

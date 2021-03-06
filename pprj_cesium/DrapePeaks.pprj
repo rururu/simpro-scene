@@ -1,4 +1,4 @@
-; Sun May 17 18:14:34 MSK 2020
+; Sat Feb 27 14:12:43 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,6 +12,7 @@
 	(height 100)
 	(is_hidden FALSE)
 	(name ":ANNOTATION-TEXT")
+	(property_list [DrapePeaks_ProjectKB_Class20481])
 	(widget_class_name "edu.stanford.smi.protege.widget.YellowStickyWidget")
 	(width 200)
 	(x 0)
@@ -20,11 +21,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[DrapePeaks_ProjectKB_Class30476]
-		[DrapePeaks_ProjectKB_Class30477]
-		[DrapePeaks_ProjectKB_Class40478]
-		[DrapePeaks_ProjectKB_Class40479]
-		[DrapePeaks_ProjectKB_Class50480]))
+		[DrapePeaks_ProjectKB_Class30481]
+		[DrapePeaks_ProjectKB_Class30482]
+		[DrapePeaks_ProjectKB_Class30483]
+		[DrapePeaks_ProjectKB_Class30484]
+		[DrapePeaks_ProjectKB_Class30485]))
 
 ([CLSES_TAB] of  Widget
 
@@ -234,6 +235,13 @@
 ([DrapePeaks_ProjectKB_Class20479] of  Property_List
 )
 
+([DrapePeaks_ProjectKB_Class20480] of  Property_List
+
+	(name "layout properties"))
+
+([DrapePeaks_ProjectKB_Class20481] of  Property_List
+)
+
 ([DrapePeaks_ProjectKB_Class20486] of  Widget
 
 	(is_hidden FALSE)
@@ -340,16 +348,6 @@
 ([DrapePeaks_ProjectKB_Class20500] of  Property_List
 )
 
-([DrapePeaks_ProjectKB_Class30476] of  String
-
-	(name "Tour")
-	(string_value "title"))
-
-([DrapePeaks_ProjectKB_Class30477] of  String
-
-	(name "Place")
-	(string_value "title"))
-
 ([DrapePeaks_ProjectKB_Class30478] of  Boolean
 
 	(boolean_value FALSE)
@@ -360,19 +358,52 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
 
-([DrapePeaks_ProjectKB_Class37] of  String
+([DrapePeaks_ProjectKB_Class30481] of  String
 
-	(name "SearchTab_Query"))
+	(name "Tour")
+	(string_value "title"))
 
-([DrapePeaks_ProjectKB_Class40478] of  String
+([DrapePeaks_ProjectKB_Class30482] of  String
+
+	(name "Place")
+	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class30483] of  String
 
 	(name "Selector")
 	(string_value "{Peak+selector}"))
 
-([DrapePeaks_ProjectKB_Class40479] of  String
+([DrapePeaks_ProjectKB_Class30484] of  String
 
 	(name "Peak")
 	(string_value "title"))
+
+([DrapePeaks_ProjectKB_Class30485] of  String
+
+	(name "Flag")
+	(string_value "country"))
+
+([DrapePeaks_ProjectKB_Class30486] of  Map
+
+	(entries [DrapePeaks_ProjectKB_Class30487]))
+
+([DrapePeaks_ProjectKB_Class30487] of  Map_Entry
+
+	(key "DrapePeaks_Class70000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "490 673 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([DrapePeaks_ProjectKB_Class30488] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "DrapePeaks_ProjectKB_Class30486")
+	(value_class "java.util.Map"))
+
+([DrapePeaks_ProjectKB_Class37] of  String
+
+	(name "SearchTab_Query"))
 
 ([DrapePeaks_ProjectKB_Class40480] of  Widget
 
@@ -463,11 +494,6 @@
 ([DrapePeaks_ProjectKB_Class485] of  Property_List
 )
 
-([DrapePeaks_ProjectKB_Class50480] of  String
-
-	(name "Flag")
-	(string_value "country"))
-
 ([DrapePeaks_ProjectKB_Class50484] of  Property_List
 )
 
@@ -521,12 +547,53 @@
 		[ANNOTATED_INSTANCE_WIDGET]
 		[CREATOR_WIDGET]
 		[CREATION_TIMESTAMP_WIDGET]
-		[ANNOTATION_TEXT_WIDGET]))
+		[ANNOTATION_TEXT_WIDGET]
+		[DrapePeaks_ProjectKB_Class20480]))
 
 ([INSTANCES_TAB] of  Widget
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_151043_Class475] of  Map
+
+	(entries
+		[KB_151043_Class476]
+		[KB_151043_Class478]
+		[KB_151043_Class479]
+		[KB_151043_Class480])
+	(referenced_maps [KB_151043_Class477]))
+
+([KB_151043_Class476] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_151043_Class477] of  Map
+)
+
+([KB_151043_Class478] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "KB_151043_Class477")
+	(value_class "java.util.Map"))
+
+([KB_151043_Class479] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_151043_Class480] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_305706_Class0] of  String
 
@@ -534,7 +601,9 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_305706_Class1] of  Map
-)
+
+	(entries [DrapePeaks_ProjectKB_Class30488])
+	(referenced_maps [DrapePeaks_ProjectKB_Class30486]))
 
 ([KB_305706_Class13] of  Property_List
 
@@ -627,34 +696,6 @@
 
 	(name "instances_file_name")
 	(string_value "DrapePeaks.pins"))
-
-([KB_696377_Class472] of  Map
-
-	(entries
-		[KB_696377_Class473]
-		[KB_696377_Class474]
-		[KB_696377_Class475]))
-
-([KB_696377_Class473] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_696377_Class474] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_696377_Class475] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
