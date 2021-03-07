@@ -1,4 +1,4 @@
-; Sat Mar 06 23:05:05 MSK 2021
+; Sun Mar 07 20:47:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,8 +21,8 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CesiumBase_ProjectKB_Class438]
-		[CesiumBase_ProjectKB_Class439]))
+		[CesiumBase_ProjectKB_Class10404]
+		[CesiumBase_ProjectKB_Class10405]))
 
 ([CesiumBase_ProjectKB_Class10396] of  Property_List
 
@@ -31,32 +31,32 @@
 ([CesiumBase_ProjectKB_Class10397] of  Property_List
 )
 
-([CesiumBase_ProjectKB_Class438] of  String
+([CesiumBase_ProjectKB_Class10404] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([CesiumBase_ProjectKB_Class439] of  String
+([CesiumBase_ProjectKB_Class10405] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([CesiumBase_ProjectKB_Class440] of  Map
+([CesiumBase_ProjectKB_Class10406] of  Map
 
-	(entries [CesiumBase_ProjectKB_Class441]))
+	(entries [CesiumBase_ProjectKB_Class10407]))
 
-([CesiumBase_ProjectKB_Class441] of  Map_Entry
+([CesiumBase_ProjectKB_Class10407] of  Map_Entry
 
 	(key "CesiumBase_Class140000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "487 682 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([CesiumBase_ProjectKB_Class442] of  Map_Entry
+([CesiumBase_ProjectKB_Class10408] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "CesiumBase_ProjectKB_Class440")
+	(value "CesiumBase_ProjectKB_Class10406")
 	(value_class "java.util.Map"))
 
 ([CesiumServer_ProjectKB_Class10403] of  Widget
@@ -212,6 +212,34 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_643635_Class395] of  Map
+
+	(entries
+		[KB_643635_Class396]
+		[KB_643635_Class397]
+		[KB_643635_Class398]))
+
+([KB_643635_Class396] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_643635_Class397] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_643635_Class398] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_851107_Class0] of  String
 
 	(name "factory_class_name")
@@ -219,8 +247,8 @@
 
 ([KB_851107_Class1] of  Map
 
-	(entries [CesiumBase_ProjectKB_Class442])
-	(referenced_maps [CesiumBase_ProjectKB_Class440]))
+	(entries [CesiumBase_ProjectKB_Class10408])
+	(referenced_maps [CesiumBase_ProjectKB_Class10406]))
 
 ([KB_851107_Class13] of  Property_List
 
@@ -313,34 +341,6 @@
 
 	(name "instances_file_name")
 	(string_value "CesiumBase.pins"))
-
-([KB_931211_Class394] of  Map
-
-	(entries
-		[KB_931211_Class395]
-		[KB_931211_Class396]
-		[KB_931211_Class397]))
-
-([KB_931211_Class395] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_931211_Class396] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_931211_Class397] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([LAYOUT_PROPERTIES] of  Property_List
 

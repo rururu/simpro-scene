@@ -1,4 +1,4 @@
-; Sat Mar 06 23:05:05 MSK 2021
+; Sun Mar 07 20:47:06 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -182,8 +182,8 @@
 
 ([CesiumBase_Class130000] of  CloFunction
 
-	(source "(let [epo (iso8601abs (* s1 1000))\n      epof (iso8601abs (* s2 1000))\n      s (str\n  \"{\\\"id\\\":\\\"\"\n    id \n  \"\\\",\\\"availability\\\":\\\"\"\n    epo \"/\" epof\n  \"\\\",\\\"position\\\":{\\\"epoch\\\":\\\"\"\n    epo\n  \"\\\",\\\"cartographicDegrees\\\":[\"\n    0\n  \",\"\n    lo1\n  \",\"\n    la1\n  \",\"\n    h1\n  \",\"\n    (- s2 s1)\n  \",\"\n    lo2\n  \",\"\n    la2\n  \",\"\n    h2\n  \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":[\"\n    iR\n  \",\"\n    iG\n  \",\"\n    iB\n  \",\"\n    iA\n  \"]},\\\"pixelSize\\\":\"\n    size\n  \"}}\")]\n  (if doc?\n    (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\" s \"]\")\n    s))")
-	(title "point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [iR iG iB iA] size doc?]"))
+	(source "(let [epo (iso8601abs (* s1 1000))\n      epof (iso8601abs (* s2 1000))\n      s (str\n  \"{\\\"id\\\":\\\"\"\n    id \n  \"\\\",\\\"availability\\\":\\\"\"\n    epo \"/\" epof\n  \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n    epo \"\\\",\" lo1 \",\" la1 \",\"  h1 \",\\\"\"\n    epof \"\\\",\" lo2 \",\" la2 \",\" h2\n  \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":[\"\n    iR \",\" iG \",\" iB \",\" iA\n  \"]},\\\"pixelSize\\\":\"\n    size\n  \"}}\")]\n  (if doc?\n    (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\" s \"]\")\n    s))")
+	(title "point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [[iR iG iB iA] size] doc?]"))
 
 ([CesiumBase_Class140000] of  %3AINSTANCE-ANNOTATION
 
@@ -196,97 +196,10 @@
 	(source "(let [start (iso8601abs start-mil)\n       stop (iso8601abs (+ start-mil 3600000))\n       mult (int scl)\n       cs {:animate true\n              :start start\n              :stop stop\n              :current start\n              :mult mult\n              :step \"SYSTEM_CLOCK_MULTIPLIER\"\n              :range \"UNBOUNDED\"}]\n  (send-clock cs))")
 	(title "restart-clock [start-mil scl]"))
 
-([CesiumBase_Class140012] of  CloFuncall
+([CesiumBase_Class150000] of  CloFunction
 
-	(source "(cesium.server/send-clock-interval 0 120 1.0)"))
-
-([CesiumBase_Class140013] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 0 120 10.0)"))
-
-([CesiumBase_Class140014] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 0 120 0.0)"))
-
-([CesiumBase_Class140015] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 0 120 8.0)"))
-
-([CesiumBase_Class140016] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 0 8.0)"))
-
-([CesiumBase_Class140017] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 100000000 8.0)"))
-
-([CesiumBase_Class140018] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 100000000 4.0)"))
-
-([CesiumBase_Class140019] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 1000 4.0)"))
-
-([CesiumBase_Class140020] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 1000000 4.0)"))
-
-([CesiumBase_Class140021] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 10000000000 4.0)"))
-
-([CesiumBase_Class140022] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 1615050609635 4.0)"))
-
-([CesiumBase_Class140023] of  CloFuncall
-
-	(source "(cesium.server/send-clock-interval 16150506096350 4.0)"))
-
-([CesiumBase_Class140024] of  CloFuncall
-
-	(source "(do (cesium.server/reset-clock 0 1.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 0 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140025] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 1.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 0 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140026] of  CloFuncall
-
-	(source "(cesium.server/send-czml (czml.generator/point-move \"p1\" 0 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)"))
-
-([CesiumBase_Class140027] of  CloFuncall
-
-	(source "(czml.generator/point-move \"p1\" 0 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)"))
-
-([CesiumBase_Class140028] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 1.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 20 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140029] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 2.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 20 120 [[30 60 15000] [31 61 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140030] of  CloFuncall
-
-	(source "(cesium.server/restart-clock 0 2.0)"))
-
-([CesiumBase_Class140031] of  CloFuncall
-
-	(source "(cesium.server/restart-clock 0 1.0)"))
-
-([CesiumBase_Class140032] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 1.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 20 120 [[30.0 60.0 15000] [31.0 61.0 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140033] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 1.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 20 120 [[30 60 1500] [31 61 1500]] [255 0 0 255] 10 true)))"))
-
-([CesiumBase_Class140034] of  CloFuncall
-
-	(source "(do (cesium.server/restart-clock 0 4.0)(cesium.server/send-czml (czml.generator/point-move \"p1\" 20 120 [[30 60 1500] [31 61 1500]] [255 0 0 255] 10 true)))"))
+	(source "(let [[[lR lG lB lA] lW [fR fG fB fA]] poly-view\n       point-view (or point-view [[0 0 0 0] 0])\n       pns (for [i (range (count pts1))] (str id i))\n       pts (map #(point-move %1 s1 s2  [%2 %3] point-view false) pns pts1 pts2)\n       pts (apply str (interpose \",\" pts))\n       refs (map #(str \"\\\"\" % \"#position\\\"\") pns)\n       refs (apply str (interpose \",\" refs))\n       epo (iso8601abs (* s1 1000))\n       epof (iso8601abs (* s2 1000))\n       poly (str\n  \"{\\\"id\\\":\\\"\"\n    id\n  \"\\\",\\\"name\\\":\\\"\"\n    name\n  \"\\\",\\\"availability\\\":\\\"\"\n    epo \"/\" epof\n  \"\\\",\\\"polygon\\\":{\\\"positions\\\":{\\\"epoch\\\":\\\"\"\n    epo\n  \"\\\",\\\"references\\\":[\"\n    refs\n  \"]},\\\"perPositionHeight\\\":true,\\\"material\\\":{\\\"solidColor\\\":{\\\"color\\\":{\\\"rgba\\\": [\"\n    fR \",\" fG \",\" fB \",\" fA\n  \"]}}},\\\"outline\\\":true,\\\"outlineColor\\\":{\\\"rgba\\\":[\"\n    lR \",\" lG \",\" lB \",\" lA\n  \"]},\\\"outlineWidth\\\":\"\n    lW\n  \"}}\")\n       doc \"{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"}\"]\n  (str \"[\" doc \",\" pts \",\" poly \"]\"))")
+	(title "poly-move [id name s1 s2 pts1 pts2 poly-view point-view]"))
 
 ([CesiumBase_Class20000] of  CloFunction
 
@@ -345,7 +258,8 @@
 		[CesiumBase_Class30009]
 		[CesiumBase_Class90000]
 		[CesiumBase_Class100001]
-		[CesiumBase_Class130000])
+		[CesiumBase_Class130000]
+		[CesiumBase_Class150000])
 	(cloNamespace [CesiumBase_Class30005])
 	(title "CZML Generator"))
 

@@ -116,7 +116,7 @@
                 "\"},\"point\":{\"color\":{\"rgba\":" rgba "},\"pixelSize\":" size ",\"heightReference\":\"" height-ref "\"}}]")]
   [s elt]))
 
-(defn point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [iR iG iB iA] size doc?]
+(defn point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [[iR iG iB iA] size] doc?]
   (let [epo (iso8601abs (* s1 1000))
       epof (iso8601abs (* s2 1000))
       s (str
@@ -124,36 +124,46 @@
     id 
   "\",\"availability\":\""
     epo "/" epof
-  "\",\"position\":{\"epoch\":\""
-    epo
-  "\",\"cartographicDegrees\":["
-    0
-  ","
-    lo1
-  ","
-    la1
-  ","
-    h1
-  ","
-    (- s2 s1)
-  ","
-    lo2
-  ","
-    la2
-  ","
-    h2
+  "\",\"position\":{\"cartographicDegrees\":[\""
+    epo "\"," lo1 "," la1 ","  h1 ",\""
+    epof "\"," lo2 "," la2 "," h2
   "]},\"point\":{\"color\":{\"rgba\":["
-    iR
-  ","
-    iG
-  ","
-    iB
-  ","
-    iA
+    iR "," iG "," iB "," iA
   "]},\"pixelSize\":"
     size
   "}}")]
   (if doc?
     (str "[{\"id\":\"document\",\"version\":\"1.0\"}," s "]")
     s)))
+
+(defn poly-move [id name s1 s2 pts1 pts2 poly-view point-view]
+  (let [[[lR lG lB lA] lW [fR fG fB fA]] poly-view
+       point-view (or point-view [[0 0 0 0] 0])
+       pns (for [i (range (count pts1))] (str id i))
+       pts (map #(point-move %1 s1 s2  [%2 %3] point-view false) pns pts1 pts2)
+       pts (apply str (interpose "," pts))
+       refs (map #(str "\"" % "#position\"") pns)
+       refs (apply str (interpose "," refs))
+       epo (iso8601abs (* s1 1000))
+       epof (iso8601abs (* s2 1000))
+       poly (str
+  "{\"id\":\""
+    id
+  "\",\"name\":\""
+    name
+  "\",\"availability\":\""
+    epo "/" epof
+  "\",\"polygon\":{\"positions\":{\"epoch\":\""
+    epo
+  "\",\"references\":["
+    refs
+  "]},\"perPositionHeight\":true,\"material\":{\"solidColor\":{\"color\":{\"rgba\": ["
+    fR "," fG "," fB "," fA
+  "]}}},\"outline\":true,\"outlineColor\":{\"rgba\":["
+    lR "," lG "," lB "," lA
+  "]},\"outlineWidth\":"
+    lW
+  "}}")
+       doc "{\"id\":\"document\",\"version\":\"1.0\"}"]
+  (str "[" doc "," pts "," poly "]")))
 
