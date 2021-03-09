@@ -1,4 +1,4 @@
-; Mon Feb 22 10:47:41 MSK 2021
+; Tue Mar 09 18:24:16 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1250,6 +1250,129 @@
 	(x 0)
 	(y 120))
 
+([KB_295668_Class2276] of  Map
+
+	(entries
+		[KB_295668_Class2277]
+		[KB_295668_Class2279]
+		[KB_295668_Class2284]
+		[KB_295668_Class2285]
+		[KB_295668_Class2291]
+		[KB_295668_Class2292])
+	(referenced_maps
+		[KB_295668_Class2278]
+		[KB_295668_Class2280]
+		[KB_295668_Class2286]))
+
+([KB_295668_Class2277] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_295668_Class2278] of  Map
+)
+
+([KB_295668_Class2279] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_295668_Class2278")
+	(value_class "java.util.Map"))
+
+([KB_295668_Class2280] of  Map
+
+	(entries
+		[KB_295668_Class2281]
+		[KB_295668_Class2282]
+		[KB_295668_Class2283]))
+
+([KB_295668_Class2281] of  Map_Entry
+
+	(key "Algorithm_Class80012")
+	(key_class "java.lang.String")
+	(value "70 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2282] of  Map_Entry
+
+	(key "Algorithm_Class80004")
+	(key_class "java.lang.String")
+	(value "70 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2283] of  Map_Entry
+
+	(key "Algorithm_Class100003")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2284] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_295668_Class2280")
+	(value_class "java.util.Map"))
+
+([KB_295668_Class2285] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_295668_Class2286] of  Map
+
+	(entries
+		[KB_295668_Class2287]
+		[KB_295668_Class2288]
+		[KB_295668_Class2289]
+		[KB_295668_Class2290]))
+
+([KB_295668_Class2287] of  Map_Entry
+
+	(key "Algorithm_Class80001")
+	(key_class "java.lang.String")
+	(value "120 70 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2288] of  Map_Entry
+
+	(key "Algorithm_Class90003")
+	(key_class "java.lang.String")
+	(value "220 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2289] of  Map_Entry
+
+	(key "Algorithm_Class90004")
+	(key_class "java.lang.String")
+	(value "120 370 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2290] of  Map_Entry
+
+	(key "Algorithm_Class90002")
+	(key_class "java.lang.String")
+	(value "70 220 60 60")
+	(value_class "java.awt.Rectangle"))
+
+([KB_295668_Class2291] of  Map_Entry
+
+	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
+	(key_class "java.lang.String")
+	(value "KB_295668_Class2286")
+	(value_class "java.util.Map"))
+
+([KB_295668_Class2292] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
 ([KB_337263_Instance_0] of  String
 
 	(name "factory_class_name")
@@ -1580,129 +1703,6 @@
 
 ([KB_809827_Class1017] of  Property_List
 )
-
-([KB_907447_Class2276] of  Map
-
-	(entries
-		[KB_907447_Class2277]
-		[KB_907447_Class2279]
-		[KB_907447_Class2284]
-		[KB_907447_Class2285]
-		[KB_907447_Class2291]
-		[KB_907447_Class2292])
-	(referenced_maps
-		[KB_907447_Class2280]
-		[KB_907447_Class2286]
-		[KB_907447_Class2278]))
-
-([KB_907447_Class2277] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_907447_Class2278] of  Map
-)
-
-([KB_907447_Class2279] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class0.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_907447_Class2278")
-	(value_class "java.util.Map"))
-
-([KB_907447_Class2280] of  Map
-
-	(entries
-		[KB_907447_Class2281]
-		[KB_907447_Class2282]
-		[KB_907447_Class2283]))
-
-([KB_907447_Class2281] of  Map_Entry
-
-	(key "Algorithm_Class80012")
-	(key_class "java.lang.String")
-	(value "70 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2282] of  Map_Entry
-
-	(key "Algorithm_Class80004")
-	(key_class "java.lang.String")
-	(value "70 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2283] of  Map_Entry
-
-	(key "Algorithm_Class100003")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2284] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80003.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_907447_Class2280")
-	(value_class "java.util.Map"))
-
-([KB_907447_Class2285] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_907447_Class2286] of  Map
-
-	(entries
-		[KB_907447_Class2287]
-		[KB_907447_Class2288]
-		[KB_907447_Class2289]
-		[KB_907447_Class2290]))
-
-([KB_907447_Class2287] of  Map_Entry
-
-	(key "Algorithm_Class80001")
-	(key_class "java.lang.String")
-	(value "120 70 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2288] of  Map_Entry
-
-	(key "Algorithm_Class90003")
-	(key_class "java.lang.String")
-	(value "220 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2289] of  Map_Entry
-
-	(key "Algorithm_Class90004")
-	(key_class "java.lang.String")
-	(value "120 370 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2290] of  Map_Entry
-
-	(key "Algorithm_Class90002")
-	(key_class "java.lang.String")
-	(value "70 220 60 60")
-	(value_class "java.awt.Rectangle"))
-
-([KB_907447_Class2291] of  Map_Entry
-
-	(key "InstanceGraphWidget.Algorithm_Class80000.flow-chart")
-	(key_class "java.lang.String")
-	(value "KB_907447_Class2286")
-	(value_class "java.util.Map"))
-
-([KB_907447_Class2292] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([KB_909161_Class746] of  Widget
 

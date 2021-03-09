@@ -5,9 +5,8 @@
 (def ii (cls-instances "PolyMoving"))
 (println (count ii)))
 
-(defn pmu [i]
-  (let [ob (sv i "object")
-      os (sv i "observer")]
-  (ssv i "observer2" os)
-  (ssv i "observer" ob)))
+(defn lla>lolahs [lla h]
+  (let [lls (map #(Math/toDegrees %) lla)
+       lls (partition 2 lls)]
+  (map #(list (second %) (first %) h) lls)))
 

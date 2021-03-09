@@ -1,7 +1,51 @@
-; Tue Mar 09 18:53:11 MSK 2021
+; Tue Mar 09 21:41:23 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([CesiumShuffleEurope_Class0] of  RuleSet
+
+	(rules
+		[Scenario_Class150001]
+		[CesiumShuffleEurope_Class10000]
+		[CesiumShuffleEurope_Class10001]
+		[CesiumShuffleEurope_Class10002]
+		[CesiumShuffleEurope_Class10003])
+	(templates
+		[Action]
+		[PutOffMap]
+		[PolyMoving]
+		[PolyMovingN]
+		[Clock])
+	(title "CesiumPolyMovingActionExecutor"))
+
+([CesiumShuffleEurope_Class10000] of  Rule
+
+	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	observer2 ?obs2\n	time ?tim\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println (str \"Action started: \" ?tit \" PolyMoving\"))\n(protege.core/ssvs ?obj \"points\" (protege.core/svs ?obs \"points\"))\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       mos2 (a/mapob-vv ?obs2 ?run)\n       tim (a/vv ?tim ?run)]\n  (if (and (some? mob) (some? mos) (some? mos2) (a/worth? tim))\n    (let [[lla1 lla2] (poly.moving/equalize-polys mos mos2)\n           llhs1 (t/lla>lolahs lla1 1500)\n           llhs2 (t/lla>lolahs lla2 1500)\n      (println :LL1 (count llhs1) (first llhs1))\n      (println :LL2 (count llhs2) (first llhs2))\n      (modify ?pm status \"REPEAT\"\n	object mob\n	time (a/to-be ?t tim)))\n    (modify ?pm status \"FAILED\")))")
+	(salience 0)
+	(title "cpm:PolyMovingStart"))
+
+([CesiumShuffleEurope_Class10001] of  Rule
+
+	(lhs "?pmr (PolyMoving status \"REPEAT\"\n	time ?tim\n	instance ?ain\n	parent ?pid\n	run ?run \n	next_actions ?nacts)\n(Clock time ?t (> ?t ?tim))")
+	(rhs "(retract ?pmr)\n(s/start-next ?nacts ?pid ?ain ?run)")
+	(salience 0)
+	(title "cpm:PolyMovingRepeat"))
+
+([CesiumShuffleEurope_Class10002] of  Rule
+
+	(lhs "?pmn (PolyMovingN status \"START\"\n	title ?tit\n	object ?obj\n	mapob ?mpb\n	kit ?kit\n	time ?tim\n	default ?def\n	run ?run)\n(Clock time ?t)")
+	(rhs "(println (str \"Action started: \" ?tit \" PolyMovingN\"))\n(let [kit (a/vv ?kit ?run)\n      col (if kit (protege.core/svs kit \"collection\") [])\n      mpb (concat ?mpb col)]\n  (asser PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer (first mpb)\n	observer2 (second mpb)\n	time ?tim\n	run ?run)\n  (modify ?pmn status \"REPEAT\"\n	clock ?t))")
+	(salience 0)
+	(title "cpm:PolyMovingNStart"))
+
+([CesiumShuffleEurope_Class10003] of  Rule
+
+	(lhs "?pmn (PolyMovingN status \"REPEAT\"\n	title ?tit\n	object ?obj\n	mapob ?mpb\n	time ?tim\n	clock ?clk\n	run ?run\n	instance ?ain\n	parent ?pid \n	next_actions ?nacts)\n(Clock time ?t (> ?t ?clk))\n(not PolyMoving status \"REPEAT\"\n	title ?tit\n	object ?mob\n	run ?run\n	(= (a/mapob-vv ?obj ?run) ?mob))")
+	(rhs "(let [rmpb (rest ?mpb)]\n  (if (empty?(rest rmpb))\n    (do (retract ?pmn)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (do (asser PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer (first rmpb)\n	observer2 (second rmpb)\n	time ?tim\n	run ?run)\n      (modify ?pmn mapob rmpb\n	clock ?t))))")
+	(salience 0)
+	(title "cpm:PolyMovingNRepeat"))
 
 ([Functional_Class0] of  %3AINSTANCE-ANNOTATION
 
@@ -5171,7 +5215,7 @@
 	(mode run)
 	(rule-sets
 		[ScenarioN_Class550030]
-		[Scenario_Class100006]
+		[CesiumShuffleEurope_Class0]
 		[Scenario_Class250011]
 		[Scenario_Class17]
 		[Scenario_Class340000])
@@ -5465,8 +5509,8 @@
 
 ([ShuffleEurope_Class30005] of  CloFunction
 
-	(source "(let [ob (sv i \"object\")\n      os (sv i \"observer\")]\n  (ssv i \"observer2\" os)\n  (ssv i \"observer\" ob))")
-	(title "pmu [i]"))
+	(source "(let [lls (map #(Math/toDegrees %) lla)\n       lls (partition 2 lls)]\n  (map #(list (second %) (first %) h) lls))")
+	(title "lla>lolahs [lla h]"))
 
 ([ShuffleEurope_Class4] of  %3AINSTANCE-ANNOTATION
 

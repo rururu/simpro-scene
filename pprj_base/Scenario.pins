@@ -1,4 +1,4 @@
-; Mon Feb 22 10:47:41 MSK 2021
+; Tue Mar 09 18:24:16 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -945,7 +945,8 @@
 		[Exception]
 		[TDecision]
 		[Hard]
-		[SignalControl])
+		[SignalControl]
+		[SendSignal])
 	(title "DecisionExecutor"))
 
 ([Scenario_Class260000] of  Rule
@@ -1875,6 +1876,11 @@
 	(title "p")
 	(value "0"))
 
+([Scenario_Class720000] of  CloFunction
+
+	(source "(let [llab (.getLLPoints mob)\n      llas (.getLLPoints mos)\n      llab (canon-point-seq llab true)\n      llas (canon-point-seq llas true)\n      lenb (count llab)\n      lens (count llas)\n      llab (into-array Double/TYPE llab)\n      llas (into-array Double/TYPE llas)]\n  (cond\n    (= lenb lens) [llab llas]\n    (> lenb lens) [llab (into-array Double/TYPE (reppp llas lens lenb))]\n    (< lenb lens) [(into-array Double/TYPE (reppp llab lenb lens)) llas]))")
+	(title "equalize-polys [mob mos]"))
+
 ([Scenario_Class730000] of  ShareOnto
 
 	(but-deep-copy "Deep Copy Instance/share.onto/deep-copy")
@@ -1922,7 +1928,7 @@
 
 ([Scenario_Class730006] of  CloFunction
 
-	(source "(let [llab (.getLLPoints mob)\n      llas (.getLLPoints mos)\n      llab (canon-point-seq llab true)\n      llas (canon-point-seq llas true)\n      lenb (count llab)\n      lens (count llas)\n      llab (into-array Double/TYPE llab)\n      llas (into-array Double/TYPE llas)\n      omp (.getLocationMarker mob)\n      tim (/ tim 3600)]\n  (cond\n    (> lenb lens) (.addMovingPoly pmm omp llab (into-array Double/TYPE (reppp llas lens lenb)) tim)\n    (< lenb lens) (.addMovingPoly pmm omp (into-array Double/TYPE (reppp llab lenb lens)) llas tim)\n    (= lenb lens) (.addMovingPoly pmm omp llab llas tim)))")
+	(source "(let [[llab llas] (equalize-polys mob mos)]\n  (.addMovingPoly pmm (.getLocationMarker mob) llab llas (/ tim 3600)))")
 	(title "poly-mover [mob mos tim pmm]"))
 
 ([Scenario_Class80000] of  Rule
@@ -2559,6 +2565,7 @@
 		[ScenarioN_Class510004]
 		[ScenarioN_Class510005]
 		[ScenarioN_Class510006]
+		[Scenario_Class720000]
 		[Scenario_Class730006]
 		[ScenarioN_Class520000]
 		[ScenarioN_Class550004])

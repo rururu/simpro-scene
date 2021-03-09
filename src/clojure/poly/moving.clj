@@ -83,7 +83,7 @@
          poi (GreatCircle/sphericalBetween p1 l1 dis azi 1)]
     (lazy-cat [(aget poi 2)] [(aget poi 3)] (step-poly ratio llas2 llaf2)) )))
 
-(defn poly-mover [mob mos tim pmm]
+(defn equalize-polys [mob mos]
   (let [llab (.getLLPoints mob)
       llas (.getLLPoints mos)
       llab (canon-point-seq llab true)
@@ -91,13 +91,15 @@
       lenb (count llab)
       lens (count llas)
       llab (into-array Double/TYPE llab)
-      llas (into-array Double/TYPE llas)
-      omp (.getLocationMarker mob)
-      tim (/ tim 3600)]
+      llas (into-array Double/TYPE llas)]
   (cond
-    (> lenb lens) (.addMovingPoly pmm omp llab (into-array Double/TYPE (reppp llas lens lenb)) tim)
-    (< lenb lens) (.addMovingPoly pmm omp (into-array Double/TYPE (reppp llab lenb lens)) llas tim)
-    (= lenb lens) (.addMovingPoly pmm omp llab llas tim))))
+    (= lenb lens) [llab llas]
+    (> lenb lens) [llab (into-array Double/TYPE (reppp llas lens lenb))]
+    (< lenb lens) [(into-array Double/TYPE (reppp llab lenb lens)) llas])))
+
+(defn poly-mover [mob mos tim pmm]
+  (let [[llab llas] (equalize-polys mob mos)]
+  (.addMovingPoly pmm (.getLocationMarker mob) llab llas (/ tim 3600))))
 
 (defn latlon-to-degmin [llv]
   (let [pts (map #(ru.igis.omtab.MapOb/getDegMin %) llv)
