@@ -1,4 +1,4 @@
-; Tue Mar 09 21:41:23 MSK 2021
+; Wed Mar 10 20:15:58 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -22,7 +22,7 @@
 ([CesiumShuffleEurope_Class10000] of  Rule
 
 	(lhs "?pm (PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer ?obs\n	observer2 ?obs2\n	time ?tim\n	run ?run)\n(Clock time ?t)")
-	(rhs "(println (str \"Action started: \" ?tit \" PolyMoving\"))\n(protege.core/ssvs ?obj \"points\" (protege.core/svs ?obs \"points\"))\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       mos2 (a/mapob-vv ?obs2 ?run)\n       tim (a/vv ?tim ?run)]\n  (if (and (some? mob) (some? mos) (some? mos2) (a/worth? tim))\n    (let [[lla1 lla2] (poly.moving/equalize-polys mos mos2)\n           llhs1 (t/lla>lolahs lla1 1500)\n           llhs2 (t/lla>lolahs lla2 1500)\n      (println :LL1 (count llhs1) (first llhs1))\n      (println :LL2 (count llhs2) (first llhs2))\n      (modify ?pm status \"REPEAT\"\n	object mob\n	time (a/to-be ?t tim)))\n    (modify ?pm status \"FAILED\")))")
+	(rhs "(println (str \"Action started: \" ?tit \" PolyMoving\"))\n(protege.core/ssvs ?obj \"points\" (protege.core/svs ?obs \"points\"))\n(let [mob (a/mapob-vv ?obj ?run)\n       mos (a/mapob-vv ?obs ?run)\n       mos2 (a/mapob-vv ?obs2 ?run)\n       tim (a/vv ?tim ?run)]\n  (if (and (some? mob) (some? mos) (some? mos2) (a/worth? tim))\n    (let [[lla1 lla2] (poly.moving/equalize-polys mos mos2)\n           llhs1 (t/lla>lolahs lla1 80000)\n           llhs2 (t/lla>lolahs lla2 80000)\n           tobe (a/to-be ?t tim)\n           pnam (.getName mob)\n           linc (t/line-rgba mob)\n           filc (t/fill-rgba mob)\n           pview [linc 3 filc]\n           czml (czml.generator/poly-move\n                    pnam pnam ?t tobe llhs1 llhs2 pview nil)]\n      (cesium.server/send-czml czml)\n      (modify ?pm status \"REPEAT\"\n	object mob\n	time tobe))\n    (modify ?pm status \"FAILED\")))")
 	(salience 0)
 	(title "cpm:PolyMovingStart"))
 
@@ -46,6 +46,77 @@
 	(rhs "(let [rmpb (rest ?mpb)]\n  (if (empty?(rest rmpb))\n    (do (retract ?pmn)\n      (s/start-next ?nacts ?pid ?ain ?run))\n    (do (asser PolyMoving status \"START\"\n	title ?tit\n	object ?obj\n	observer (first rmpb)\n	observer2 (second rmpb)\n	time ?tim\n	run ?run)\n      (modify ?pmn mapob rmpb\n	clock ?t))))")
 	(salience 0)
 	(title "cpm:PolyMovingNRepeat"))
+
+([CesiumShuffleEurope_Class20000] of  Directive
+
+	(source "(cesium.server/start-server)\n(cesium.server/start-client)")
+	(title "Start Cesium Server and Client"))
+
+([CesiumShuffleEurope_Class20001] of  CesiumState
+
+	(status "START")
+	(time1 2))
+
+([CesiumShuffleEurope_Class20002] of  CesiumCamera
+
+	(heading "0")
+	(height "6000000")
+	(latitude "30.0")
+	(longitude "10.0")
+	(pitch "-70")
+	(roll "0")
+	(status "START"))
+
+([CesiumShuffleEurope_Class30000] of  CloFunction
+
+	(source "(let [[a r g b] (vec (map (fn [[x y]] (Integer/parseInt (str x y) 16)) (partition 2 hex-color)))]\n  [r g b a])")
+	(title "to-rgba [hex-color]"))
+
+([CesiumShuffleEurope_Class30001] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Italy\")"))
+
+([CesiumShuffleEurope_Class30002] of  CloFuncall
+
+	(source "(.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
+
+([CesiumShuffleEurope_Class30003] of  CloFuncall
+
+	(source "(.geLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\")))"))
+
+([CesiumShuffleEurope_Class30004] of  CloFuncall
+
+	(source "(.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\")))"))
+
+([CesiumShuffleEurope_Class30005] of  CloFuncall
+
+	(source "(.getGeen (.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))))"))
+
+([CesiumShuffleEurope_Class30006] of  CloFuncall
+
+	(source "(.getGreen (.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))))"))
+
+([CesiumShuffleEurope_Class30007] of  CloFunction
+
+	(source "(let [lm (.getLocationMarker mo)\n      clr (.getLineColor lm)]\n  [(.getRed clr) (.getGreen clr) (.getBlue clr) (.getAlpha clr)])")
+	(title "line-rgba [mo]"))
+
+([CesiumShuffleEurope_Class30008] of  CloFuncall
+
+	(source "(line-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
+
+([CesiumShuffleEurope_Class30009] of  CloFuncall
+
+	(source "(t/line-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
+
+([CesiumShuffleEurope_Class30010] of  CloFunction
+
+	(source "(let [lm (.getLocationMarker mo)\n      clr (.getFillColor lm)]\n  [(.getRed clr) (.getGreen clr) (.getBlue clr) (.getAlpha clr)])")
+	(title "fill-rgba [mo]"))
+
+([CesiumShuffleEurope_Class30011] of  CloFuncall
+
+	(source "(t/fill-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
 
 ([Functional_Class0] of  %3AINSTANCE-ANNOTATION
 
@@ -5151,7 +5222,9 @@
 		[Scenario_Class120024]
 		[Scenario_Class220003]
 		[Scenario_Class250008]
-		[ScenarioN_Class510000])
+		[ScenarioN_Class510000]
+		[CesiumWorshop_Class10003]
+		[ShuffleEurope_Class30002])
 	(title "SE Programs"))
 
 ([ShuffleEurope_Class1] of  %3AINSTANCE-ANNOTATION
@@ -5212,9 +5285,13 @@
 	(butt-fire "Fire/ru.rules/fire-all-rules")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
+	(facts
+		[CesiumShuffleEurope_Class20000]
+		[CesiumShuffleEurope_Class20002]
+		[CesiumShuffleEurope_Class20001])
 	(mode run)
 	(rule-sets
-		[ScenarioN_Class550030]
+		[CesiumScenario_Class0]
 		[CesiumShuffleEurope_Class0]
 		[Scenario_Class250011]
 		[Scenario_Class17]
@@ -5493,7 +5570,10 @@
 
 	(cloFunctions
 		[ShuffleEurope_Class30004]
-		[ShuffleEurope_Class30005])
+		[ShuffleEurope_Class30005]
+		[CesiumShuffleEurope_Class30000]
+		[CesiumShuffleEurope_Class30007]
+		[CesiumShuffleEurope_Class30010])
 	(cloNamespace [ShuffleEurope_Class30003])
 	(title "Test"))
 

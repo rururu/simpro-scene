@@ -1,0 +1,42 @@
+; Wed Mar 10 17:46:09 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CesiumScenario_Class0] of  RuleSet
+
+	(rules
+		[ScenarioN_Class550032]
+		[ScenarioN_Class550033]
+		[ScenarioN_Class550031]
+		[CesiumScenario_Class6]
+		[CesiumScenario_Class7]
+		[CesiumScenario_Class8])
+	(templates
+		[Clock]
+		[Directive]
+		[MapObEvent]
+		[CesiumCamera]
+		[CesiumState])
+	(title "CesiumSimulator"))
+
+([CesiumScenario_Class6] of  Rule
+
+	(lhs "?acc (CesiumState status \"REPEAT\"\n	time-scale ?scl\n	time1 ?t1\n	N ?n)\n(Clock time ?t2 (> ?t2 ?n))")
+	(rhs "(when (some? cesium.server/SERV)\n  (let [clk (* ?t2 1000)\n        scl (ru.igis.omtab.Clock/getTimeScale)]\n    (if (not= ?scl scl)\n      (do (cesium.server/restart-clock clk scl)\n        (modify ?acc time-scale scl\n	N (+ ?t2 ?t1)))\n      (modify ?acc N (+ ?t2 ?t1)))))")
+	(salience 0)
+	(title "sim:AdjustCZClockRepeat"))
+
+([CesiumScenario_Class7] of  Rule
+
+	(lhs "?acc (CesiumState status \"START\"\n	time1 ?t1)\n(Clock time ?t2)")
+	(rhs "(when  (some? cesium.server/SERV)\n  (modify ?acc status \"REPEAT\"\n	N (+ ?t2 ?t1)))")
+	(salience 0)
+	(title "sim:AdjustCZClockStart"))
+
+([CesiumScenario_Class8] of  Rule
+
+	(lhs "?cc (CesiumCamera status \"START\" \n	latitude ?lat \n	longitude ?lon \n	height ?hgt \n	heading ?hdg\n	pitch ?ptc\n	roll ?rol)")
+	(rhs "(when (some? cesium.server/SERV)\n  (cesium.server/send-camera ?lon ?lat ?hgt ?hdg ?ptc ?rol)\n  (modify ?cc status \"DONE\"))")
+	(salience 0)
+	(title "sim:CesiumCameraPosition"))

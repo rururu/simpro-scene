@@ -82,6 +82,7 @@ Building of the part from Ventimiglia to Bordighera using Expert System of short
 32. [NiceSPb Lesson 3. Part III.
 Addition of the movement scenario on the  part from Ventimiglia to Bordighera and movement along.](https://youtu.be/aYAiik0Q4xE)
 33. [Warszawa - Terespol](https://youtu.be/UbH6sWYChr0)
+34. [Shuffle Europe with Cesium](https://youtu.be/XDxqNsnIWMI)
 
 TO BE CONTINUED
 
