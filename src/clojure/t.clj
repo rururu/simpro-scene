@@ -1,9 +1,10 @@
 (ns t
-(:use protege.core))
+(:use protege.core)
+(:require [vlaaad.reveal :as reveal]))
 (defn tst []
   (println :TST)
-(def ii (cls-instances "PolyMoving"))
-(println (count ii)))
+(System/setProperty "vlaaad.reveal.prefs" "{:theme :light}")
+(add-tap (reveal/ui)))
 
 (defn lla>lolahs [lla h]
   (let [lls (map #(Math/toDegrees %) lla)

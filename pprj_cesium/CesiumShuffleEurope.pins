@@ -1,4 +1,4 @@
-; Wed Mar 10 20:15:58 MSK 2021
+; Sat Apr 03 11:15:38 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -72,51 +72,15 @@
 	(source "(let [[a r g b] (vec (map (fn [[x y]] (Integer/parseInt (str x y) 16)) (partition 2 hex-color)))]\n  [r g b a])")
 	(title "to-rgba [hex-color]"))
 
-([CesiumShuffleEurope_Class30001] of  CloFuncall
-
-	(source "(ru.igis.omtab.OMT/getMapOb \"Italy\")"))
-
-([CesiumShuffleEurope_Class30002] of  CloFuncall
-
-	(source "(.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
-
-([CesiumShuffleEurope_Class30003] of  CloFuncall
-
-	(source "(.geLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\")))"))
-
-([CesiumShuffleEurope_Class30004] of  CloFuncall
-
-	(source "(.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\")))"))
-
-([CesiumShuffleEurope_Class30005] of  CloFuncall
-
-	(source "(.getGeen (.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))))"))
-
-([CesiumShuffleEurope_Class30006] of  CloFuncall
-
-	(source "(.getGreen (.getLineColor (.getLocationMarker (ru.igis.omtab.OMT/getMapOb \"Italy\"))))"))
-
 ([CesiumShuffleEurope_Class30007] of  CloFunction
 
 	(source "(let [lm (.getLocationMarker mo)\n      clr (.getLineColor lm)]\n  [(.getRed clr) (.getGreen clr) (.getBlue clr) (.getAlpha clr)])")
 	(title "line-rgba [mo]"))
 
-([CesiumShuffleEurope_Class30008] of  CloFuncall
-
-	(source "(line-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
-
-([CesiumShuffleEurope_Class30009] of  CloFuncall
-
-	(source "(t/line-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
-
 ([CesiumShuffleEurope_Class30010] of  CloFunction
 
 	(source "(let [lm (.getLocationMarker mo)\n      clr (.getFillColor lm)]\n  [(.getRed clr) (.getGreen clr) (.getBlue clr) (.getAlpha clr)])")
 	(title "fill-rgba [mo]"))
-
-([CesiumShuffleEurope_Class30011] of  CloFuncall
-
-	(source "(t/fill-rgba (ru.igis.omtab.OMT/getMapOb \"Italy\"))"))
 
 ([Functional_Class0] of  %3AINSTANCE-ANNOTATION
 
@@ -5579,12 +5543,12 @@
 
 ([ShuffleEurope_Class30003] of  CloNamespace
 
-	(source "(:use protege.core)")
+	(source "(:use protege.core)\n(:require [vlaaad.reveal :as reveal])")
 	(title "t"))
 
 ([ShuffleEurope_Class30004] of  CloFunction
 
-	(source "(println :TST)\n(def ii (cls-instances \"PolyMoving\"))\n(println (count ii))")
+	(source "(println :TST)\n(System/setProperty \"vlaaad.reveal.prefs\" \"{:theme :light}\")\n(add-tap (reveal/ui))")
 	(title "tst []"))
 
 ([ShuffleEurope_Class30005] of  CloFunction
