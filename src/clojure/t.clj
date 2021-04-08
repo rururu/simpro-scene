@@ -1,10 +1,7 @@
 (ns t
-(:use protege.core)
-(:require [vlaaad.reveal :as reveal]))
+(:use protege.core))
 (defn tst []
-  (println :TST)
-(System/setProperty "vlaaad.reveal.prefs" "{:theme :light}")
-(add-tap (reveal/ui)))
+  (println :TST))
 
 (defn lla>lolahs [lla h]
   (let [lls (map #(Math/toDegrees %) lla)

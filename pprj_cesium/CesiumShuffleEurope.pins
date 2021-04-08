@@ -1,4 +1,4 @@
-; Sat Apr 03 11:15:38 MSK 2021
+; Thu Apr 08 12:47:58 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -81,6 +81,22 @@
 
 	(source "(let [lm (.getLocationMarker mo)\n      clr (.getFillColor lm)]\n  [(.getRed clr) (.getGreen clr) (.getBlue clr) (.getAlpha clr)])")
 	(title "fill-rgba [mo]"))
+
+([CesiumShuffleEurope_Class40000] of  CloProgram
+
+	(cloFunctions [CesiumShuffleEurope_Class40002])
+	(cloNamespace [CesiumShuffleEurope_Class40001])
+	(title "Alias Reveal"))
+
+([CesiumShuffleEurope_Class40001] of  CloNamespace
+
+	(source "(:require [vlaaad.reveal :as reveal])")
+	(title "als.reveal"))
+
+([CesiumShuffleEurope_Class40002] of  CloFunction
+
+	(source "(edu.stanford.smi.protege.Application/main (into-array String []))\n(System/setProperty \"vlaaad.reveal.prefs\" \"{:theme :light}\")\n(add-tap (reveal/ui))")
+	(title "-main [& args]"))
 
 ([Functional_Class0] of  %3AINSTANCE-ANNOTATION
 
@@ -5543,12 +5559,12 @@
 
 ([ShuffleEurope_Class30003] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require [vlaaad.reveal :as reveal])")
+	(source "(:use protege.core)")
 	(title "t"))
 
 ([ShuffleEurope_Class30004] of  CloFunction
 
-	(source "(println :TST)\n(System/setProperty \"vlaaad.reveal.prefs\" \"{:theme :light}\")\n(add-tap (reveal/ui))")
+	(source "(println :TST)")
 	(title "tst []"))
 
 ([ShuffleEurope_Class30005] of  CloFunction

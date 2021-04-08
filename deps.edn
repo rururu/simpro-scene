@@ -44,13 +44,10 @@
   CloAgents {:local/root "lib/CloAgents.jar"}
   quil {:mvn/version "3.0.0"}}
   :paths ["src" "src/clojure" "classes" "resources"]
-  :aliases {:reveal {:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}}
-            :rebl        ;; for JDK 11+
-				{:extra-deps {com.cognitect/rebl {:mvn/version "0.9.242"}
-					org.openjfx/javafx-fxml     {:mvn/version "15-ea+6"}
-					org.openjfx/javafx-controls {:mvn/version "15-ea+6"}
-					org.openjfx/javafx-swing    {:mvn/version "15-ea+6"}
-					org.openjfx/javafx-base     {:mvn/version "15-ea+6"}
-					org.openjfx/javafx-web      {:mvn/version "15-ea+6"}}
-			:main-opts ["-m" "cognitect.rebl"]}}}
+  :aliases {:reveal 
+				{:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}
+				 :main-opts ["-m" "als.reveal"]}
+			:gorillanotes
+				{:extra-deps {scicloj/notespace {:mvn/version "3-beta5"}}
+				 :main-opts ["-m" "als.gorillanotes"]}}}
 

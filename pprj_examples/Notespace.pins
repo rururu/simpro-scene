@@ -1,0 +1,193 @@
+; Thu Apr 08 18:42:15 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Notespace_Class0] of  CloFuncall
+
+	(source "(require '[gorilla-notes.core :as gn])"))
+
+([Notespace_Class1] of  CloFuncall
+
+	(source "(gn/start-server!)"))
+
+([Notespace_Class10000] of  CloFunction
+
+	(source "(edu.stanford.smi.protege.Application/main (into-array String []))\n(gn/start-server!)\n(future (browse-url \"http://localhost:1903\"))\n(gn/reset-notes!)\n(gn/add-note! [:h1 \"Hello, Ru!\"])")
+	(title "-main [& args]"))
+
+([Notespace_Class2] of  CloFuncall
+
+	(source "(gn/add-note! [:h1 \"hello\"])"))
+
+([Notespace_Class20000] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/leafletmap\n    {:tile-layer leaflet-providers/Stamen-TonerLite}\n    [{:type   :view\n      :center [51.49, -0.08]\n      :zoom   12\n      :height 600\n      :width  700}\n     {:type   :rectangle\n      :bounds [[51.49, -0.08]\n               [51.5, -0.06]]}\n     {:type      :circle\n      :center    [51.505, -0.09]\n      :fillColor :blue\n      :radius    200}\n     {:type      :polygon\n      :positions [[51.515, -0.09]\n                  [51.52, -0.1]\n                  [51.52, -0.12]]\n      :color     :purple}\n     {:type      :polygon\n      :positions [[[51.51, -0.12]\n                   [51.51, -0.13]\n                   [51.53, -0.13]]\n                  [[51.51, -0.05]\n                   [51.51, -0.07]\n                   [51.53, -0.07]]]\n      :color     :purple}\n     {:type      :line\n      :positions [[51.505, -0.09]\n                  [51.51, -0.1]\n                  [51.51, -0.12]]\n      :color     :lime}\n     {:type      :line\n      :positions [[[51.5, -0.1]\n                   [51.5, -0.12]\n                   [51.52, -0.12]]\n                  [[51.5, -0.05]\n                   [51.5, -0.06]\n                   [51.52, -0.06]]]\n      :color     :lime}\n     {:type     :marker\n      :position [51.505, -0.09]}\n     {:type     :marker\n      :position [51.51, -0.12]\n      :popup    \"wow\"}\n     {:type      :circlemarker\n      :center    [51.52, -0.06]\n      :fillColor :blue\n      :radius    200\n      :popup     \"square the circle\"}]])")
+	(title "p-leaflet []"))
+
+([Notespace_Class20001] of  CloFuncall
+
+	(source "(als.gorillanotes/test)"))
+
+([Notespace_Class20002] of  CloFuncall
+
+	(source "(gn/add-note! [:h1 \"Oops!\"])"))
+
+([Notespace_Class3] of  CloFuncall
+
+	(source "(gorilla-notes.state/port)"))
+
+([Notespace_Class30000] of  CloFuncall
+
+	(source "(in-ns 'als.gorillanotes)"))
+
+([Notespace_Class30001] of  CloFuncall
+
+	(source "(test)"))
+
+([Notespace_Class4] of  CloFuncall
+
+	(source "(gorilla-notes.state/options)"))
+
+([Notespace_Class40000] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/vega\n{:description \"A simple bar chart with embedded data.\"\n :data        {:values [{:a \"A\" :b 28} {:a \"B\" :b 55} {:a \"C\" :b 43}\n                        {:a \"D\" :b 91} {:a \"E\" :b 81} {:a \"F\" :b 53}\n                        {:a \"G\" :b 19} {:a \"H\" :b 87} {:a \"I\" :b 52}]}\n :mark        :bar\n :encoding    {:x {:field :a :type :nominal :axis {:labelAngle 0}}\n               :y {:field :b :type :quantitative}}}])")
+	(title "p-vega []"))
+
+([Notespace_Class40001] of  CloFuncall
+
+	(source "(plot)"))
+
+([Notespace_Class40002] of  CloFunction
+
+	(source "(gn/add-note!\n[:div\n [:h5 \"Plot:\"]\n   (into [:ul]\n      (for [i (range 9)]\n        [:li\n         i \" \"\n         [:p/sparklinespot\n          {:data      (for [j (range 999)]\n                        (+ (* 0.2 (rand))\n                           (Math/sin (* i j))))\n           :limit     100\n           :svgWidth  100\n           :svgHeight 20}]]))])")
+	(title "p-plot []"))
+
+([Notespace_Class40003] of  CloFuncall
+
+	(source "(plot2)"))
+
+([Notespace_Class40004] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/math\n \"(ax ^2 + bx + c = 0 )\"])")
+	(title "p-math []"))
+
+([Notespace_Class40005] of  CloFuncall
+
+	(source "(quil)"))
+
+([Notespace_Class40006] of  CloFuncall
+
+	(source "(math)"))
+
+([Notespace_Class40007] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/code {:code \"(defn abcd [x] (+ x 9))\"}])")
+	(title "p-code []"))
+
+([Notespace_Class40008] of  CloFuncall
+
+	(source "(p-code)"))
+
+([Notespace_Class40009] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/dataset \n {:columnDefs [{:headerName \"a\", :field \"a\"} {:headerName \"b\", :field \"b\"}],\n   :rowData ({\"a\" 1, \"b\" 4} {\"a\" 2, \"b\" 5} {\"a\" 3, \"b\" 6})}])")
+	(title "p-dataset []"))
+
+([Notespace_Class40010] of  CloFuncall
+
+	(source "(p-dataset)"))
+
+([Notespace_Class5] of  CloNamespace
+
+	(source "(:require \n  [gorilla-notes.core :as gn]\n  [gorilla-notes.components.leaflet.providers :as leaflet-providers]\n  [clojure.java.browse :refer [browse-url]])")
+	(title "als.gorillanotes"))
+
+([Notespace_Class50000] of  CloFuncall
+
+	(source "(p-math)"))
+
+([Notespace_Class50001] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/player\n {:width  \"100%\"\n  :height \"100%\"\n  :url    \"https://www.youtube.com/watch?v=G512fvK9KXA\"}])")
+	(title "p-player []"))
+
+([Notespace_Class50002] of  CloFuncall
+
+	(source "(p-player)"))
+
+([Notespace_Class50003] of  CloFuncall
+
+	(source "(p-plot)"))
+
+([Notespace_Class50004] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/slider :x {:min 0 :max 100 :initial-value 0}])")
+	(title "p-slider []"))
+
+([Notespace_Class50005] of  CloFuncall
+
+	(source "(p-slider)"))
+
+([Notespace_Class50006] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/sci '(+ 1 2)])")
+	(title "p-sci []"))
+
+([Notespace_Class50007] of  CloFuncall
+
+	(source "(p-sci)"))
+
+([Notespace_Class50008] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/quil\n{:draw         '(fn [{:keys [circles]}]\n                 (q/background 255)\n                 (doseq [{[x y] :pos [r g b] :color} circles]\n                   (q/fill r g b)\n                   (q/ellipse x y 10 10)))\n :update-state '(fn [{:keys [width height] :as state}]\n                 (update state :circles conj {:pos   [(+ 20 (rand-int (- width 40)))\n                                                      (+ 20 (rand-int (- height 40)))]\n                                              :color (repeatedly 3 #(rand-int 250))}))\n :init         '(fn [width height]\n                 (fn []\n                   {:width   width\n                    :height  height\n                    :circles []}))}])")
+	(title "p-quil []"))
+
+([Notespace_Class50009] of  CloFuncall
+
+	(source "(p-quil)"))
+
+([Notespace_Class50010] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/html\n(str \"<h4>h4</h4>\"\n     \"<h5>h5</h5>\")])")
+	(title "p-html []"))
+
+([Notespace_Class50011] of  CloFuncall
+
+	(source "(p-html)"))
+
+([Notespace_Class50012] of  CloFunction
+
+	(source "(gn/add-note!\n[:p/markdown \"### Midje\\n\\nTests of the Midje test framework are rendered as follows:\"])")
+	(title "p-markdown []"))
+
+([Notespace_Class50013] of  CloFuncall
+
+	(source "(p-markdown)"))
+
+([Notespace_Class6] of  CloProgram
+
+	(cloFunctions
+		[Notespace_Class10000]
+		[Notespace_Class40007]
+		[Notespace_Class40004]
+		[Notespace_Class50010]
+		[Notespace_Class20000]
+		[Notespace_Class50012]
+		[Notespace_Class50008]
+		[Notespace_Class50001]
+		[Notespace_Class40002]
+		[Notespace_Class50004]
+		[Notespace_Class50006]
+		[Notespace_Class40000]
+		[Notespace_Class40009])
+	(cloNamespace [Notespace_Class5])
+	(title "Gorilla Notes"))
+
+([Notespace_Class60001] of  CloFuncall
+
+	(source "(p-vega)"))
+
+([Notespace_Class60002] of  CloFuncall
+
+	(source "(gn/add-note! \"Привет Ру!\")"))
