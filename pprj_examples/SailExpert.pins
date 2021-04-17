@@ -1,4 +1,4 @@
-; Sat Mar 16 11:02:07 MSK 2019
+; Sat Apr 17 15:03:36 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -52,10 +52,7 @@
 
 ([SailExpert_Class10000] of  CeziumControl
 
-	(but-onboard "Go on Board/pro.server/go-onboard")
-	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "h1"))
+	(onboard "Bylina"))
 
 ([SailExpert_Class100000] of  CloFuncall
 
@@ -83,6 +80,7 @@
 		[SailExpert_Class90001]
 		[SailExpert_Class270007]
 		[SailExpert_Class300000]
+		[SailExpert_Class110001]
 		[SailExpert_Class400000])
 	(instances
 		[SailExpert_Class200005]
@@ -164,7 +162,7 @@
 
 ([SailExpert_Class10010] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.Clock\n  java.awt.event.ActionListener\n  java.util.TimerTask)")
+	(source "(:use protege.core)\n(:require\n  [pro.server :as ps]\n  [rete.core :as rete])\n(:import\n  ru.igis.omtab.OMT\n  ru.igis.omtab.MapOb\n  ru.igis.omtab.Clock\n  java.awt.event.ActionListener\n  java.util.TimerTask)")
 	(title "sail.exp"))
 
 ([SailExpert_Class10016] of  CloVar
@@ -183,6 +181,11 @@
 	(speed 0.0)
 	(url "file:resources/public/img/wind1.png")
 	(verticalSpeed 0.0))
+
+([SailExpert_Class110001] of  CameraCheck
+
+	(delay 4)
+	(time "0"))
 
 ([SailExpert_Class120000] of  Rule
 
@@ -319,6 +322,14 @@
 	(salience 1)
 	(title "ss:Big Header on Beating"))
 
+([SailExpert_Class160001] of  CloFuncall
+
+	(source "(ru.igis.omtab.OMT/getMapOb \"Bylina\")"))
+
+([SailExpert_Class160002] of  CloFuncall
+
+	(source "(.getLatitude (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
+
 ([SailExpert_Class160003] of  Yacht
 
 	(altitude 0)
@@ -346,6 +357,14 @@
 	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?lab)]\n  (let [osp (.getSpeed bmo)\n         nsp (condp = ?slp\n	'RUNNING ?spd\n	'BROADREACH (* ?spd 0.8)\n	'BEAMREACH (* ?spd 0.7)\n	'CLOSEREACH (* ?spd 0.6)\n	'CLOSEHAULED (* ?spd 0.5)\n	0.0)\n         nsp (double (Math/round nsp))]\n    (if (not= nsp osp)\n      (if (= nsp 0.0)\n        (.stopRoute bmo)\n        (.setSpeed bmo nsp)))))")
 	(salience 0)
 	(title "bs:Boat Speed"))
+
+([SailExpert_Class170003] of  CloFuncall
+
+	(source "(.getCourse (ru.igis.omtab.OMT/getMapOb \"Bylina\"))"))
+
+([SailExpert_Class170004] of  CloFuncall
+
+	(source "(.setCourse (ru.igis.omtab.OMT/getMapOb \"Bylina\") 15)"))
 
 ([SailExpert_Class180000] of  Rule
 
@@ -755,7 +774,7 @@
 
 ([SailExpert_Class270000] of  CloFunction
 
-	(source "(pro.server/request {k v} false)")
+	(source "(ps/request {k v} false)")
 	(title "camera-control [bmo k v]"))
 
 ([SailExpert_Class270007] of  Wave
@@ -766,6 +785,10 @@
 ([SailExpert_Class280000] of  CloFuncall
 
 	(source "(ru.rules/f 85)"))
+
+([SailExpert_Class290000] of  CloFuncall
+
+	(source "(ru.rules/pp 'MapObEvent)"))
 
 ([SailExpert_Class30000] of  CloFuncall
 
@@ -894,16 +917,12 @@
 
 ([SailExpert_Class350008] of  CloFunction
 
-	(source "(pro.server/request {:elevation [(.getLatitude no) (.getLongitude no)]} true)\n(if-let [resp (pro.server/receive-response)]\n  (let [snd (resp :elevation)]\n    (if (> snd -7777)\n      snd)))")
+	(source "(ps/request {:elevation [(.getLatitude no) (.getLongitude no)]} true)\n(if-let [resp (ps/receive-response)]\n  (let [snd (resp :elevation)]\n    (if (> snd -7777)\n      snd)))")
 	(title "sounding [no]"))
 
 ([SailExpert_Class350009] of  CloFuncall
 
 	(source "(ru.rules/pp 'Onboard)"))
-
-([SailExpert_Class350011] of  CloFuncall
-
-	(source "(ru.rules/sp all)"))
 
 ([SailExpert_Class380004] of  NavOb
 
@@ -916,34 +935,6 @@
 	(speed 13.0)
 	(url "file:resources/public/img/tall.gif")
 	(verticalSpeed 0.0))
-
-([SailExpert_Class390004] of  CloFuncall
-
-	(source "(rete.core/frame-by-id "))
-
-([SailExpert_Class390005] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 13)"))
-
-([SailExpert_Class390006] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 13) 8)"))
-
-([SailExpert_Class390007] of  CloFuncall
-
-	(source "(type (nth (rete.core/frame-by-id 13) 8))"))
-
-([SailExpert_Class390008] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 24) 18)"))
-
-([SailExpert_Class390009] of  CloFuncall
-
-	(source "(type (nth (rete.core/frame-by-id 24) 18))"))
-
-([SailExpert_Class390010] of  CloFuncall
-
-	(source "("))
 
 ([SailExpert_Class40000] of  Rule
 
@@ -978,12 +969,12 @@
 
 ([SailExpert_Class50000] of  CloFuncall
 
-	(source "(ru.rules/pp 'Route)"))
+	(source "(println \"__________________________________________________________________________\")"))
 
 ([SailExpert_Class50001] of  Rule
 
 	(lhs "(ShoreControl delay ?del\n	shore ?sho\n	distance ?dis)\n?b (Boat label ?boat\n	course ?crs\n	elevation ?ele\n	time ?tim)\n?s (Skipper boat ?boat)\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n    (pro.server/request {:elevation [lat lon]} true)\n    (if-let [resp (pro.server/receive-response)]\n      (let [ele (resp :elevation)]\n        (println \"Elevation ahead\" ?boat ele \"previous\" ?ele)\n        (if (and (number? ele)\n              (> ele -7777) \n              (> ?ele 0) \n              (> (- ele ?ele) ?sho))\n          (do (println \"Shore ahead boat\" ?boat ele ?ele)\n            (modify ?s status 'SHORE-AHEAD))\n          (modify ?b time (+ ?t ?del)\n	elevation (if (and (number? ele) (>= ele 0))\n		ele \n		?ele))))\n      (modify ?b time (+ ?t ?del)))))")
+	(rhs "(if-let [bmo (ru.igis.omtab.OMT/getMapOb ?boat)]\n  (let [[lat lon] (.position bmo (double ?crs) ?dis)] \n    (light.pro.server/request {:elevation [lat lon]} true)\n    (if-let [resp (light.pro.server/receive-response)]\n      (let [ele (resp :elevation)]\n        (println \"Elevation ahead\" ?boat ele \"previous\" ?ele)\n        (if (and (number? ele)\n              (> ele -7777) \n              (> ?ele 0) \n              (> (- ele ?ele) ?sho))\n          (do (println \"Shore ahead boat\" ?boat ele ?ele)\n            (modify ?s status 'SHORE-AHEAD))\n          (modify ?b time (+ ?t ?del)\n	elevation (if (and (number? ele) (>= ele 0))\n		ele \n		?ele))))\n      (modify ?b time (+ ?t ?del)))))")
 	(salience 0)
 	(title "bs:Shore Check"))
 
@@ -1014,7 +1005,7 @@
 ([SailExpert_Class50007] of  Rule
 
 	(lhs "?b (Boat sail-point UNDEFINED\n	label ?boat\n	course ?crs\n	tack-angle ?taa)\n(Wind direction ?wnd)")
-	(rhs "(let [dif (sail.exp/difference ?crs ?wnd)\n       slp (cond	(> dif 168.75) 'RUNNING\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'BEAMREACH\n                        (> dif 56.25) 'CLOSEREACH\n	(> dif ?taa) 'CLOSEHAULED\n	true 'INIRONS)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b sail-point slp tack tck)\n  (println \"Boat\" ?boat \"on\" tck \"tack and\" slp))")
+	(rhs "(let [dif (sail.exp/difference ?crs ?wnd)\n       slp (cond (> dif 168.75) 'RUNNING\n	(> dif 101.25) 'BROADREACH\n	(> dif 78.74) 'BEAMREACH\n                      (> dif 56.25) 'CLOSEREACH\n	(> dif ?taa) 'CLOSEHAULED\n	true 'INIRONS)\n       tck (if (> ?wnd ?crs)\n	(if (< (- ?wnd ?crs) 180)\n	  'STARBOARD\n	  'PORT)\n	(if (< (- ?crs ?wnd) 180)\n	  'PORT\n	  'STARBOARD))]\n  (modify ?b sail-point slp tack tck)\n  (println \"Boat\" ?boat \"on\" tck \"tack and\" slp))")
 	(salience 0)
 	(title "bs:Boat Sail Point"))
 

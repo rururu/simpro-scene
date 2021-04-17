@@ -62,7 +62,7 @@
 
 (defn init-3D-view [url]
   (.add (.-dataSources VIEWER) CZML-SRC)
-(.addEventListener (js/EventSource. url) "czml" cz-processor false)
+(.addEventListener (js/EventSource. (str url "/czml")) "czml" cz-processor false)
 (println [:INIT-3D-VIEW url]))
 
 (defn hig-ray [lat lon bea dis step alt]

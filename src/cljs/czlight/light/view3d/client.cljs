@@ -134,19 +134,19 @@
 (set-html! "view-sld" 
   "<input type='range' style='width:150px' id='roll-vals'
                min='-180' value='0' max='180'
-               oninput='javascript:view3d.client.view(this.value)'>")
+               oninput='javascript:light.view3d.client.view(this.value)'>")
 (set-html! "pitch" "Pitch:")
 (set-html! "pitch-fld" 0)
 (set-html! "pitch-sld" 
   "<input type='range' style='width:150px' id='pitch-vals'
                min='-90' value='0' max='90'
-               oninput='javascript:view3d.client.pitch(this.value)'>")
+               oninput='javascript:light.view3d.client.pitch(this.value)'>")
 (set-html! "roll" "Roll:")
 (set-html! "roll-fld" 0)
 (set-html! "roll-sld" 
   "<input type='range' style='width:150px' id='roll-vals'
                min='-180' value='0' max='180'
-               oninput='javascript:view3d.client.roll(this.value)'>"))
+               oninput='javascript:light.view3d.client.roll(this.value)'>"))
 
 (defn right-controls []
   (set-html! "vehicle" "<h4>Vehicle</h4>")
@@ -164,7 +164,7 @@
 (left-controls))
 
 (defn on-load []
-  (czm/init-3D-view (str "http://0.0.0.0/" PORT))
+  (czm/init-3D-view (str "http://0.0.0.0:" PORT))
 (repeater receive-vehicle 1000)
 (show-controls))
 

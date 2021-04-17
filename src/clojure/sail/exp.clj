@@ -1,6 +1,7 @@
 (ns sail.exp
 (:use protege.core)
 (:require
+  [pro.server :as ps]
   [rete.core :as rete])
 (:import
   ru.igis.omtab.OMT
@@ -47,7 +48,7 @@
     (- mid dev))))
 
 (defn camera-control [bmo k v]
-  (pro.server/request {k v} false))
+  (ps/request {k v} false))
 
 (defn boat-heel [boat sail-point tack view]
   (let [view (cond
@@ -70,8 +71,8 @@
       (sail.exp/camera-control bmo :roll 0)))))
 
 (defn sounding [no]
-  (pro.server/request {:elevation [(.getLatitude no) (.getLongitude no)]} true)
-(if-let [resp (pro.server/receive-response)]
+  (ps/request {:elevation [(.getLatitude no) (.getLongitude no)]} true)
+(if-let [resp (ps/receive-response)]
   (let [snd (resp :elevation)]
     (if (> snd -7777)
       snd))))

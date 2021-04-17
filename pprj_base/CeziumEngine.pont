@@ -1,4 +1,4 @@
-; Tue Dec 08 19:59:59 MSK 2020
+; Sat Apr 17 14:28:07 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -41,6 +41,10 @@
 (defclass MapObEvent
 	(is-a CeziumEngine+Ontology)
 	(role concrete)
+	(single-slot status
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot object
 		(type INSTANCE)
 ;+		(allowed-classes %3ATHING MapOb NavOb)

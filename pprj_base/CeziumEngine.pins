@@ -1,4 +1,4 @@
-; Tue Dec 08 19:59:59 MSK 2020
+; Sat Apr 17 14:28:07 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10,13 +10,13 @@
 
 ([CeziumEngine_Class1] of  CloFunction
 
-	(source "(doseq[pg (OMT/getPlaygrounds)]\n  (let [al (proxy [ActionListener] []\n	(actionPerformed [evt] \n	  ;;(println :OMT-GEN-EVT evt)\n  	(rete/assert-frame ['MapObEvent 'status (.getActionCommand evt) 'object (.getSource evt)])))]\n    (.addActionListener pg al)\n    (vswap! EVT-LISTENERS assoc pg al)))")
+	(source "(doseq[pg (OMT/getPlaygrounds)]\n  (let [al (proxy [ActionListener] []\n	(actionPerformed [evt] \n	  ;; (println :OMT-GEN-EVT evt)\n  	(rete/assert-frame ['MapObEvent 'status (.getActionCommand evt) 'object (.getSource evt)])))]\n    (.addActionListener pg al)\n    (vswap! EVT-LISTENERS assoc pg al)))")
 	(title "start-evt-listen []"))
 
 ([CeziumEngine_Class10000] of  Rule
 
-	(lhs "?moe (MapObEvent status ?sts\n	object ?obj)")
-	(rhs ";;(println :MapObEvent ?sts ?obj)\n(retract ?moe)")
+	(lhs "?moe (MapObEvent object ?obj)")
+	(rhs "(retract ?moe)")
 	(salience -10)
 	(title "sim:RetractMapObEvent"))
 
@@ -122,7 +122,7 @@
 ([CeziumEngine_Class20002] of  Rule
 
 	(lhs "(CZMLGenerator delay ?del)\n?onb (Onboard label ?lab\n	time ?tim\n	(number? ?tim))\n(Clock time ?t (> ?t ?tim))")
-	(rhs "(let [onb (deref pro.server/ONBOARD)\n       fut (+ ?t ?del)]\n  (if (not= onb ?lab)\n    (modify ?onb time fut label onb)\n    (modify ?onb time fut)))")
+	(rhs "(let [onb (deref light.pro.server/ONBOARD)\n       fut (+ ?t ?del)]\n  (if (not= onb ?lab)\n    (modify ?onb time fut label onb)\n    (modify ?onb time fut)))")
 	(salience 0)
 	(title "czm:Check Onboard"))
 

@@ -1,4 +1,4 @@
-; Sat Mar 16 11:02:07 MSK 2019
+; Sat Apr 17 15:03:36 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -136,7 +136,7 @@
 
 (defclass SailExpert+Onto
 	(is-a USER)
-	(role concrete))
+	(role abstract))
 
 (defclass Boat
 	(is-a SailExpert+Onto)
@@ -405,5 +405,18 @@
 		(create-accessor read-write))
 	(single-slot boat
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass CameraCheck
+	(is-a SailExpert+Onto)
+	(role concrete)
+	(single-slot time
+		(type STRING)
+		(default "0")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot delay
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

@@ -1,4 +1,4 @@
-; Sat Apr 17 20:01:36 MSK 2021
+; Mon Feb 25 18:03:09 MSK 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -18,89 +18,6 @@
 	(y 0))
 
 ([BROWSER_SLOT_NAMES] of  Property_List
-
-	(properties
-		[CeziumEngineLight_ProjectKB_Class11407]
-		[CeziumEngineLight_ProjectKB_Class11408]
-		[CeziumEngineLight_ProjectKB_Class11409]))
-
-([Cezium_ProjectKB_Class1636] of  Widget
-
-	(is_hidden FALSE)
-	(name "CZMLGenerator")
-	(property_list [Cezium_ProjectKB_Class1637])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Cezium_ProjectKB_Class1637] of  Property_List
-
-	(properties
-		[Cezium_ProjectKB_Class1638]
-		[Cezium_ProjectKB_Class1639]
-		[Cezium_ProjectKB_Class1641]))
-
-([Cezium_ProjectKB_Class1638] of  Property_List
-
-	(name "layout properties"))
-
-([Cezium_ProjectKB_Class1639] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "visibility")
-	(property_list [Cezium_ProjectKB_Class1640])
-	(widget_class_name "edu.stanford.smi.protege.widget.FloatFieldWidget")
-	(width 100)
-	(x 0)
-	(y 0))
-
-([Cezium_ProjectKB_Class1640] of  Property_List
-)
-
-([Cezium_ProjectKB_Class1641] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "delay")
-	(property_list [Cezium_ProjectKB_Class1642])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
-	(x 100)
-	(y 0))
-
-([Cezium_ProjectKB_Class1642] of  Property_List
-)
-
-([Cezium_ProjectKB_Class1644] of  Widget
-
-	(is_hidden FALSE)
-	(name "CZMLSpan")
-	(property_list [Cezium_ProjectKB_Class1645])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([Cezium_ProjectKB_Class1645] of  Property_List
-
-	(properties
-		[Cezium_ProjectKB_Class1646]
-		[Cezium_ProjectKB_Class1651]
-		[CeziumEngine_ProjectKB_Class1690]
-		[CeziumEngine_ProjectKB_Class11636]))
-
-([Cezium_ProjectKB_Class1646] of  Property_List
-
-	(name "layout properties"))
-
-([Cezium_ProjectKB_Class1651] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "options")
-	(property_list [Cezium_ProjectKB_Class1652])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextAreaWidget")
-	(width 200)
-	(x 0)
-	(y 60))
-
-([Cezium_ProjectKB_Class1652] of  Property_List
 )
 
 ([Cezium_ProjectKB_Class359] of  Widget
@@ -166,8 +83,7 @@
 		[Cezium_ProjectKB_Class451]
 		[Cezium_ProjectKB_Class453]
 		[Cezium_ProjectKB_Class455]
-		[Cezium_ProjectKB_Class457]
-		[CeziumEngineLight_ProjectKB_Class1407]))
+		[Cezium_ProjectKB_Class457]))
 
 ([Cezium_ProjectKB_Class450] of  Property_List
 
@@ -182,7 +98,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 60))
+	(y 120))
 
 ([Cezium_ProjectKB_Class452] of  Property_List
 )
@@ -209,7 +125,7 @@
 	(property_list [Cezium_ProjectKB_Class456])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 200)
+	(x 0)
 	(y 60))
 
 ([Cezium_ProjectKB_Class456] of  Property_List
@@ -223,141 +139,10 @@
 	(property_list [Cezium_ProjectKB_Class458])
 	(widget_class_name "clojuretab.ClojureActionButton")
 	(width 200)
-	(x 200)
-	(y 120))
-
-([Cezium_ProjectKB_Class458] of  Property_List
-)
-
-([CeziumEngine_ProjectKB_Class11636] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "object")
-	(property_list [CeziumEngine_ProjectKB_Class11637])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([CeziumEngine_ProjectKB_Class11637] of  Property_List
-
-	(properties
-		[CeziumEngine_ProjectKB_Class11638]
-		[CeziumEngine_ProjectKB_Class11639]))
-
-([CeziumEngine_ProjectKB_Class11638] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([CeziumEngine_ProjectKB_Class11639] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([CeziumEngine_ProjectKB_Class1636] of  Widget
-
-	(is_hidden FALSE)
-	(name "Onboard")
-	(property_list [CeziumEngine_ProjectKB_Class1637])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([CeziumEngine_ProjectKB_Class1637] of  Property_List
-
-	(properties
-		[CeziumEngine_ProjectKB_Class1638]
-		[CeziumEngine_ProjectKB_Class1639]
-		[CeziumEngine_ProjectKB_Class1641]
-		[CeziumEngine_ProjectKB_Class1643]))
-
-([CeziumEngine_ProjectKB_Class1638] of  Property_List
-
-	(name "layout properties"))
-
-([CeziumEngine_ProjectKB_Class1639] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "label")
-	(property_list [CeziumEngine_ProjectKB_Class1640])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([CeziumEngine_ProjectKB_Class1640] of  Property_List
-)
-
-([CeziumEngine_ProjectKB_Class1641] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "time")
-	(property_list [CeziumEngine_ProjectKB_Class1642])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 120))
-
-([CeziumEngine_ProjectKB_Class1642] of  Property_List
-)
-
-([CeziumEngine_ProjectKB_Class1643] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "view")
-	(property_list [CeziumEngine_ProjectKB_Class1644])
-	(widget_class_name "edu.stanford.smi.protege.widget.IntegerFieldWidget")
-	(width 100)
-	(x 0)
-	(y 60))
-
-([CeziumEngine_ProjectKB_Class1644] of  Property_List
-)
-
-([CeziumEngine_ProjectKB_Class1690] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "time")
-	(property_list [CeziumEngine_ProjectKB_Class1691])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
 	(x 0)
 	(y 180))
 
-([CeziumEngine_ProjectKB_Class1691] of  Property_List
-)
-
-([CeziumEngineLight_ProjectKB_Class11407] of  String
-
-	(name "CZMLGenerator")
-	(string_value "{CZMLGenerator+vis+}visibility{+del+}delay"))
-
-([CeziumEngineLight_ProjectKB_Class11408] of  String
-
-	(name "Onboard")
-	(string_value "label"))
-
-([CeziumEngineLight_ProjectKB_Class11409] of  String
-
-	(name "CZMLSpan")
-	(string_value "object"))
-
-([CeziumEngineLight_ProjectKB_Class1407] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "but-start-client")
-	(property_list [CeziumEngineLight_ProjectKB_Class1408])
-	(widget_class_name "clojuretab.ClojureActionButton")
-	(width 200)
-	(x 200)
-	(y 0))
-
-([CeziumEngineLight_ProjectKB_Class1408] of  Property_List
+([Cezium_ProjectKB_Class458] of  Property_List
 )
 
 ([CLSES_TAB] of  Widget
@@ -401,6 +186,34 @@
 
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_292509_Class1434] of  Map
+
+	(entries
+		[KB_292509_Class1435]
+		[KB_292509_Class1436]
+		[KB_292509_Class1437]))
+
+([KB_292509_Class1435] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_292509_Class1436] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_292509_Class1437] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_377789_Class0] of  String
 
@@ -495,40 +308,12 @@
 ([KB_377789_Class35] of  String
 
 	(name "classes_file_name")
-	(string_value "CeziumEngineLight.pont"))
+	(string_value "Cezium.pont"))
 
 ([KB_377789_Class36] of  String
 
 	(name "instances_file_name")
-	(string_value "CeziumEngineLight.pins"))
-
-([KB_499147_Class1403] of  Map
-
-	(entries
-		[KB_499147_Class1404]
-		[KB_499147_Class1405]
-		[KB_499147_Class1406]))
-
-([KB_499147_Class1404] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_499147_Class1405] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([KB_499147_Class1406] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
+	(string_value "Cezium.pins"))
 
 ([KB_684256_Class1343] of  Widget
 
@@ -663,11 +448,8 @@
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
-		[Cezium_ProjectKB_Class1636]
 		[Cezium_ProjectKB_Class448]
-		[CeziumEngine_ProjectKB_Class1636]
 		[STANDARD_FACET_FORM_WIDGET]
-		[Cezium_ProjectKB_Class1644]
 		[KB_684256_Class1343])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
@@ -675,7 +457,7 @@
 	(default_slot_metaclass ":STANDARD-SLOT")
 	(included_projects
 		"igis.pprj"
-		"Clojure.pprj")
+		"ShareOnto.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
