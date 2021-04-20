@@ -13,9 +13,7 @@
   (last (seq (.split url "/")))))
 
 (defn send-event [typ dat]
-  ;; (println [:CZ-EVT typ dat])
-;; (println)
-(asp/pump-in CZ-CHAN [typ (.trim dat)]))
+  (asp/pump-in CZ-CHAN [typ (.trim dat)]))
 
 (defn events []
   (let [evt-hr (fn [[typ dat]]

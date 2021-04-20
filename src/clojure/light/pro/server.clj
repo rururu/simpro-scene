@@ -6,7 +6,7 @@
               [compojure.handler :as handler]
               [compojure.route :as route]
               [cognitect.transit :as t]
-              [cesium.core :as czs]
+              [light.cesium.core :as czs]
               [clojure.core.async :as async :refer [chan alts!! put!]])
 (:import [java.io 
                ByteArrayOutputStream

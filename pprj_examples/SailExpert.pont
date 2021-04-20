@@ -1,4 +1,4 @@
-; Sat Apr 17 15:03:36 MSK 2021
+; Mon Apr 19 19:57:01 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -147,7 +147,6 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
-		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot course
@@ -224,7 +223,6 @@
 		(create-accessor read-write))
 	(single-slot time
 		(type INTEGER)
-		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot radius
@@ -337,7 +335,6 @@
 	(role concrete)
 	(single-slot time
 		(type INTEGER)
-		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot big-oscillation
@@ -394,7 +391,6 @@
 	(role concrete)
 	(single-slot time
 		(type INTEGER)
-		(default 0)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot slope
@@ -412,8 +408,7 @@
 	(is-a SailExpert+Onto)
 	(role concrete)
 	(single-slot time
-		(type STRING)
-		(default "0")
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot delay

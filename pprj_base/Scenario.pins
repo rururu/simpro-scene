@@ -1,4 +1,4 @@
-; Tue Mar 09 18:24:16 MSK 2021
+; Mon Apr 19 17:55:27 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1758,7 +1758,7 @@
 ([Scenario_Class610001] of  Rule
 
 	(lhs "?cam (Camera status \"START\"\n	title ?tit\n	object ?obj\n	view ?vie\n	pitch ?pit\n	roll ?rol\n	parent ?pid\n	instance ?ain\n	run ?run\n	next_actions ?nacts)")
-	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"Camera\"))\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let [vie (a/vv ?vie ?run)\n         pit (a/vv ?pit ?run)\n         rol (a/vv ?rol ?run)\n         cam (if (a/worth? vie) {:view vie} {})\n         cam (if (a/worth? pit) (assoc cam :pitch pit) cam)\n         cam (if (a/worth? rol) (assoc cam :roll rol) cam)]\n    (clojuretab.ClojureTab/invoke \n	\"pro.server\" \n	\"go-onboard\"\n	(.getName mo))\n    (.putAttribute mo \"CAMERA\" cam)\n    (retract ?cam)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?cam status \"FAILED\"))")
+	(rhs "(if s/TRACE (println \"Action started:\" ?tit \"Camera\"))\n(if-let [mo (a/mapob-vv ?obj ?run)]\n  (let [vie (a/vv ?vie ?run)\n         pit (a/vv ?pit ?run)\n         rol (a/vv ?rol ?run)\n         cam (if (a/worth? vie) {:view vie} {})\n         cam (if (a/worth? pit) (assoc cam :pitch pit) cam)\n         cam (if (a/worth? rol) (assoc cam :roll rol) cam)]\n    (clojuretab.ClojureTab/invoke \n	\"light.pro.server\" \n	\"go-onboard\"\n	(.getName mo))\n    (.putAttribute mo \"CAMERA\" cam)\n    (retract ?cam)\n    (s/start-next ?nacts ?pid ?ain ?run))\n  (modify ?cam status \"FAILED\"))")
 	(salience 0)
 	(title "a:Camera"))
 

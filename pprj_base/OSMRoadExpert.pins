@@ -1,4 +1,4 @@
-; Sat Feb 06 20:18:05 MSK 2021
+; Mon Apr 19 17:30:53 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -99,6 +99,7 @@
 		[Scenario_Class250011]
 		[Scenario_Class17]
 		[Scenario_Class340000]
+		[CeziumEngineLight_Class40004]
 		[NiceSPb_Class220007])
 	(steps 1)
 	(title "OSMRoadExpertRun"))
@@ -750,6 +751,9 @@
 		[Scenario_Class220003]
 		[Scenario_Class250008]
 		[ScenarioN_Class510000]
+		[Cezium_Class40000]
+		[Cezium_Class30043]
+		[Cezium_Class30026]
 		[PyongyangSPb_Class50010]
 		[OSMData_Class40131]
 		[BrigBern_Class7]

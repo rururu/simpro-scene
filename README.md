@@ -65,7 +65,7 @@ See examples.
 19. [Glacier Express: Above Bever - Preda tunnel](https://youtu.be/WJ3YZqWyFJ4)
 20. [From Raster to Vector](https://youtu.be/LKaAVBDUyTU)
 21. [Sailing Expert: Race with 3D models of yachts](https://youtu.be/VG87r7_gVz8)
-22. [Landing on aircraft carrier](https://youtu.be/gkRWfLXRaoo)
+22. [Landing on aircraft carrier](https://youtu.be/2T-CAy3tg04)
 23. [Multi-agent system based on MASON and Clojure. Lesson 1](https://youtu.be/2mJ2EarlK7s) (See https://cs.gmu.edu/~eclab/projects/mason/)
 24. [MAS Lesson 2. GeoMASON. Campus World](https://youtu.be/1QyRsYgDq6I) (See https://cs.gmu.edu/~eclab/projects/mason/extensions/geomason/)
 25. [MAS Lesson 3. GeoMASON. WaterWorld](https://youtu.be/5qlE8I2V6FU)

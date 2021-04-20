@@ -1,12 +1,17 @@
-; Tue Dec 08 21:35:09 MSK 2020
+; Mon Apr 19 18:34:43 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([AircraftCarrier_Class0] of  CeziumControl
+
+	(onboard "i1"))
 
 ([AircraftCarrier_Class10000] of  NavOb
 
 	(altitude 0)
 	(course 0)
+	(description "{:gltf-url \"models/air_carrier/111.glb\"}")
 	(label "ac1")
 	(latitude "0 0")
 	(longitude "0 0")
@@ -25,6 +30,7 @@
 
 	(altitude 0)
 	(course 0)
+	(description "{:gltf-url \"models/idf-_plain/scene.gltf\"}")
 	(label "i1")
 	(latitude "0 0")
 	(longitude "0 0")
@@ -89,6 +95,68 @@
 	(object [AircraftCarrier_Class10007])
 	(title "Plane On Deck"))
 
+([AircraftCarrier_Class120000] of  CZMLSpan
+
+	(object [AircraftCarrier_Class80000])
+	(options
+		[AircraftCarrier_Class120001]
+		[AircraftCarrier_Class120002])
+	(time 0))
+
+([AircraftCarrier_Class120001] of  Option
+
+	(argument "\"models/low_poly_helicopter/scene.gltf\"")
+	(keyword ":gltf-url"))
+
+([AircraftCarrier_Class120002] of  Option
+
+	(argument "0.02")
+	(keyword ":model-scale"))
+
+([AircraftCarrier_Class120003] of  CZMLSpan
+
+	(object [AircraftCarrier_Class20005])
+	(options
+		[AircraftCarrier_Class120001]
+		[AircraftCarrier_Class120002])
+	(time 0))
+
+([AircraftCarrier_Class120004] of  CZMLSpan
+
+	(object [AircraftCarrier_Class10001])
+	(options
+		[AircraftCarrier_Class120005]
+		[AircraftCarrier_Class120006])
+	(time 0))
+
+([AircraftCarrier_Class120005] of  Option
+
+	(argument "\"models/idf-_plain/scene.gltf\"")
+	(keyword ":gltf-url"))
+
+([AircraftCarrier_Class120006] of  Option
+
+	(argument "0.2")
+	(keyword ":model-scale"))
+
+([AircraftCarrier_Class120007] of  CZMLSpan
+
+	(object [AircraftCarrier_Class10000])
+	(options
+		[AircraftCarrier_Class120008]
+		[AircraftCarrier_Class120009])
+	(time 0))
+
+([AircraftCarrier_Class120008] of  Option
+
+	(argument "\"models/air_carrier/111.glb\"")
+	(keyword ":gltf-url"))
+
+([AircraftCarrier_Class120009] of  Option
+
+	(argument "0.6")
+	(keyword ":model-scale"))
+
 ([AircraftCarrier_Class2] of  Openmap
 
 	(components
@@ -120,13 +188,15 @@
 	(Latitude "62.444")
 	(layers
 		[igis_Class40012]
+		[NiceSPb_Class160726]
+		[NiceSPb_Class160727]
 		[igis_Class1]
 		[igis_Class40011])
 	(Longitude "6.0")
 	(Scale "130000")
 	(startUpLayers
 		[igis_Class40012]
-		[igis_Class1]
+		[NiceSPb_Class160726]
 		[igis_Class40011]))
 
 ([AircraftCarrier_Class20000] of  Context
@@ -171,14 +241,20 @@
 	(butt-retr-inss "Retract Instances/ru.rules/retr-inss")
 	(butt-run "Run/ru.rules/run-engine")
 	(butt-step "Step/ru.rules/step-engine")
-	(instances [AircraftCarrier_Class80001])
+	(facts
+		[AircraftCarrier_Class50002]
+		[AircraftCarrier_Class120000]
+		[AircraftCarrier_Class120003]
+		[AircraftCarrier_Class120004]
+		[AircraftCarrier_Class120007])
 	(mode run)
 	(rule-sets
 		[Scenario_Class100006]
 		[Scenario_Class250011]
 		[Scenario_Class17]
 		[Scenario_Class340000]
-		[ScenarioN_Class550030])
+		[ScenarioN_Class550030]
+		[CeziumEngineLight_Class40004])
 	(steps 1)
 	(title "AC Run"))
 
@@ -192,6 +268,7 @@
 
 	(altitude 0)
 	(course 0)
+	(description "{:gltf-url \"models/helicopter/scene.gltf\"}")
 	(label "h1")
 	(latitude "0 0")
 	(longitude "0 0")
@@ -205,12 +282,6 @@
 	(%3AANNOTATED-INSTANCE [AircraftCarrier_Class2])
 	(%3ACREATION-TIMESTAMP "2019.03.02 13:25:10.138 MSK")
 	(%3ACREATOR "ru"))
-
-([AircraftCarrier_Class30000] of  CZMLSpan
-
-	(object [AircraftCarrier_Class10000])
-	(options "{:gltf-url \"models/air_carrier/111.glb\"\n :model-scale 0.6}")
-	(time "0"))
 
 ([AircraftCarrier_Class30001] of  ObjectPair
 
@@ -281,13 +352,6 @@
 	(%3ACREATION-TIMESTAMP "2019.03.09 14:55:52.866 MSK")
 	(%3ACREATOR "ru"))
 
-([AircraftCarrier_Class30013] of  CeziumControl
-
-	(but-onboard "Go on Board/pro.server/go-onboard")
-	(but-start-serv "Start Cesium Server/pro.server/start-server")
-	(but-stop-serv "Stop Cesium Server/pro.server/stop-server")
-	(onboard "h1"))
-
 ([AircraftCarrier_Class40000] of  Task
 
 	(final_actions [AircraftCarrier_Class50000])
@@ -300,40 +364,16 @@
 		[AircraftCarrier_Class50000])
 	(title "Prepare 3D View"))
 
-([AircraftCarrier_Class40001] of  CZMLSpan
-
-	(object [AircraftCarrier_Class10001])
-	(options "{:gltf-url \"models/idf-_plain/scene.gltf\"\n :model-scale 0.2}")
-	(time "0"))
-
-([AircraftCarrier_Class40002] of  CZMLSpan
-
-	(object [AircraftCarrier_Class20005])
-	(options "{:gltf-url \"models/helicopter/scene.gltf\"}")
-	(time "0"))
-
 ([AircraftCarrier_Class40003] of  AssertObjects
 
-	(collection
-		[AircraftCarrier_Class30000]
-		[AircraftCarrier_Class40001]
-		[AircraftCarrier_Class40002]
-		[AircraftCarrier_Class50006])
+	(collection [AircraftCarrier_Class50006])
 	(next_actions [AircraftCarrier_Class50000])
 	(title "Init 3D Models"))
-
-([AircraftCarrier_Class40004] of  CloFuncall
-
-	(source "(ru.rules/f 31)"))
 
 ([AircraftCarrier_Class50000] of  AssertObjects
 
 	(collection [AircraftCarrier_Class50002])
 	(title "Init 3D Generation"))
-
-([AircraftCarrier_Class50001] of  CloFuncall
-
-	(source "(ru.rules/f 24)"))
 
 ([AircraftCarrier_Class50002] of  CZMLGenerator
 
@@ -375,69 +415,14 @@
 ([AircraftCarrier_Class50006] of  Onboard
 
 	(label "h1")
-	(time "0")
+	(time 0)
 	(view 0))
-
-([AircraftCarrier_Class50007] of  CloFuncall
-
-	(source "(ru.rules/f 14)"))
-
-([AircraftCarrier_Class60000] of  CloFuncall
-
-	(source "(ru.rules/f 41)"))
-
-([AircraftCarrier_Class70000] of  CloFuncall
-
-	(source "(ru.rules/f 18)"))
-
-([AircraftCarrier_Class70001] of  CloFuncall
-
-	(source "(ru.rules/f 54)"))
-
-([AircraftCarrier_Class70002] of  CloFuncall
-
-	(source "(ru.rules/f 55)"))
-
-([AircraftCarrier_Class70003] of  CloFuncall
-
-	(source "(ru.rules/f 20)"))
-
-([AircraftCarrier_Class70004] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 55)"))
-
-([AircraftCarrier_Class70005] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 55) 4)"))
-
-([AircraftCarrier_Class70006] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 55) 5)"))
-
-([AircraftCarrier_Class70007] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 55) 7)"))
-
-([AircraftCarrier_Class70008] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 55) 8)"))
-
-([AircraftCarrier_Class70009] of  CloFuncall
-
-	(source "(type (nth (rete.core/frame-by-id 55) 8))"))
-
-([AircraftCarrier_Class70010] of  CloFuncall
-
-	(source "(type (nth (rete.core/frame-by-id 55) 2))"))
-
-([AircraftCarrier_Class70011] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 55) 2)"))
 
 ([AircraftCarrier_Class80000] of  NavOb
 
 	(altitude 0)
 	(course 0)
+	(description "{:gltf-url \"models/helicopter/scene.gltf\"}")
 	(label "h2")
 	(latitude "0 0")
 	(longitude "0 0")
@@ -445,25 +430,3 @@
 	(speed 0.0)
 	(url "file:resources/public/img/helr.gif")
 	(verticalSpeed 0.0))
-
-([AircraftCarrier_Class80001] of  CZMLSpan
-
-	(object [AircraftCarrier_Class80000])
-	(options "{:gltf-url \"models/low_poly_helicopter/scene.gltf\"\n :model-scale 0.02}")
-	(time "0"))
-
-([AircraftCarrier_Class90000] of  CloFuncall
-
-	(source "(ru.rules/pp 'Onboard)"))
-
-([AircraftCarrier_Class90001] of  CloFuncall
-
-	(source "(rete.core/frame-by-id 19)"))
-
-([AircraftCarrier_Class90002] of  CloFuncall
-
-	(source "(nth (rete.core/frame-by-id 19) 6)"))
-
-([AircraftCarrier_Class90003] of  CloFuncall
-
-	(source "(type (nth (rete.core/frame-by-id 19) 6))"))

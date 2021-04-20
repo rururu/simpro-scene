@@ -502,7 +502,7 @@
 	(default_slot_metaclass ":STANDARD-SLOT")
 	(included_projects
 		"CesiumBase.pprj"
-		"file:/home/ru/clojure/simpro-scene/pprj_base/CSVImpExp.pprj")
+		"../pprj_base/CSVImpExp.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])

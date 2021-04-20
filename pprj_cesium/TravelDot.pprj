@@ -15251,8 +15251,8 @@
 	(default_slot_metaclass ":STANDARD-SLOT")
 	(included_projects
 		"CesiumBase.pprj"
-		"file:/home/ru/clojure/simpro-scene/pprj_base/GeneralDoc.pprj"
-		"file:/home/ru/clojure/simpro-scene/pprj_base/Scenario.pprj")
+		"../pprj_base/GeneralDoc.pprj"
+		"../pprj_base/Scenario.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
