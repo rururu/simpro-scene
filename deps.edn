@@ -47,6 +47,7 @@
   :aliases {:reveal 
 				{:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}
 				 :main-opts ["-m" "als.reveal"]}
+			:telnet {:extra-deps {clj-telnet/clj-telnet {:mvn/version "0.7.0"}}}
 			:gorillanotes
 				{:extra-deps {scicloj/notespace {:mvn/version "3-beta5"}}
 				 :main-opts ["-m" "als.gorillanotes"]}}}
