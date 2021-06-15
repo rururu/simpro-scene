@@ -1,4 +1,4 @@
-; Sun Mar 07 20:47:06 MSK 2021
+; Fri Jun 11 15:55:58 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -171,7 +171,7 @@
 
 ([CesiumBase_Class120002] of  CloFunction
 
-	(source "([]\n  (if-let [serv SERV]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://0.0.0.0:\" PORT))))))\n([hm inst]\n  (start-client))")
+	(source "([]\n  (if-let [serv SERV]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://localhost:\" PORT))))))\n([hm inst]\n  (start-client))")
 	(title "start-client"))
 
 ([CesiumBase_Class120003] of  CesiumServer
@@ -184,12 +184,6 @@
 
 	(source "(let [epo (iso8601abs (* s1 1000))\n      epof (iso8601abs (* s2 1000))\n      s (str\n  \"{\\\"id\\\":\\\"\"\n    id \n  \"\\\",\\\"availability\\\":\\\"\"\n    epo \"/\" epof\n  \"\\\",\\\"position\\\":{\\\"cartographicDegrees\\\":[\\\"\"\n    epo \"\\\",\" lo1 \",\" la1 \",\"  h1 \",\\\"\"\n    epof \"\\\",\" lo2 \",\" la2 \",\" h2\n  \"]},\\\"point\\\":{\\\"color\\\":{\\\"rgba\\\":[\"\n    iR \",\" iG \",\" iB \",\" iA\n  \"]},\\\"pixelSize\\\":\"\n    size\n  \"}}\")]\n  (if doc?\n    (str \"[{\\\"id\\\":\\\"document\\\",\\\"version\\\":\\\"1.0\\\"},\" s \"]\")\n    s))")
 	(title "point-move [id s1 s2 [[lo1 la1 h1] [lo2 la2 h2]] [[iR iG iB iA] size] doc?]"))
-
-([CesiumBase_Class140000] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATED-INSTANCE [CesiumBase_Class10009])
-	(%3ACREATION-TIMESTAMP "2021.03.06 18:53:00.401 MSK")
-	(%3ACREATOR "ru"))
 
 ([CesiumBase_Class140008] of  CloFunction
 
