@@ -1,0 +1,231 @@
+; Sun Dec 05 20:39:37 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot solidColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot material
+		(type INSTANCE)
+;+		(allowed-classes Material)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cartographicDegrees
+		(type INSTANCE)
+;+		(allowed-classes Array)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot availability
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot outlineWidth
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot semiMajorAxis
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot position
+		(type INSTANCE)
+;+		(allowed-classes Position)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot semiMinorAxis
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot outlineColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot rgba
+		(type INSTANCE)
+;+		(allowed-classes Array)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot epoch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot packets
+		(type INSTANCE)
+;+		(allowed-classes Packet)
+		(create-accessor read-write))
+	(single-slot version
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pixelSize
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Document
+	(is-a USER)
+	(role concrete)
+	(multislot packets
+		(type INSTANCE)
+;+		(allowed-classes Packet)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot version
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Packet
+	(is-a USER)
+	(role concrete)
+	(single-slot position
+		(type INSTANCE)
+;+		(allowed-classes Position)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot availability
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+		(type INSTANCE)
+;+		(allowed-classes Object)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Property
+	(is-a USER)
+	(role abstract))
+
+(defclass Position
+	(is-a Property)
+	(role concrete)
+	(single-slot epoch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot cartographicDegrees
+		(type INSTANCE)
+;+		(allowed-classes Array)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Color
+	(is-a Property)
+	(role concrete)
+	(single-slot rgba
+		(type INSTANCE)
+;+		(allowed-classes Array)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Material
+	(is-a Property)
+	(role concrete)
+	(single-slot solidColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Array
+	(is-a Property)
+	(role concrete)
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot values
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass Object
+	(is-a USER)
+	(role abstract))
+
+(defclass Point
+	(is-a Object)
+	(role concrete)
+	(single-slot outlineColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pixelSize
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot outlineWidth
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Ellipse
+	(is-a Object)
+	(role concrete)
+	(single-slot material
+		(type INSTANCE)
+;+		(allowed-classes Material)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot height
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot semiMajorAxis
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot semiMinorAxis
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

@@ -6,3 +6,6 @@ pom.xml.asc
 .hgignore
 .hg/
 protege.properties
+logs
+data/tiles
+

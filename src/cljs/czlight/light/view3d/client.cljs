@@ -74,6 +74,15 @@
     (vswap! czm/CAMERA assoc :roll deg)
     (set-html! "roll-fld" deg))))
 
+(defn zoom [mode]
+  (condp = mode
+  1 (czm/zoom-in)
+  -1 (czm/zoom-out)
+  0 (czm/zoom-no)))
+
+(defn zoom_amount [amount]
+  (czm/zoom-amount amount))
+
 (defn response-request []
   (let [resp @RESPONSE]
   (when (not (empty? resp))
@@ -125,6 +134,9 @@
                          :handler vehicle-hr
                          :error-handler error-handler}))
 
+(defn elev [vev]
+  (vswap! VEHICLE assoc :view-elevation (num-val vev)))
+
 (defn left-controls []
   (set-html! "camera" "<h4>Camera</h4>")
 (set-html! "onboard" "Onboard:")
@@ -146,7 +158,11 @@
 (set-html! "roll-sld" 
   "<input type='range' style='width:150px' id='roll-vals'
                min='-180' value='0' max='180'
-               oninput='javascript:light.view3d.client.roll(this.value)'>"))
+               oninput='javascript:light.view3d.client.roll(this.value)'>")
+(set-html! "elev" "Elevation:")
+(set-html! "elev-fld" 
+  "<input value='4' style='width:144px' id='input-elev'
+                     onchange='javascript:light.view3d.client.elev(this.value)'>"))
 
 (defn right-controls []
   (set-html! "vehicle" "<h4>Vehicle</h4>")
@@ -159,9 +175,25 @@
 (set-html! "altitude" "Altitude:")
 (set-html! "altitude-fld" ""))
 
+(defn middle-controls []
+  (set-html! "zoom-up" 
+  "<img src='img/binB.png' width='24' height='24' id='zup' 
+    onclick='javascript:light.view3d.client.zoom(1);'>")
+(set-html! "zoom-dn" 
+  "<img src='img/binS.png' width='24' height='24' id='zdn'
+    onclick='javascript:light.view3d.client.zoom(-1);'>")
+(set-html! "zoom-no" 
+  "<img src='img/binN.png' width='24' height='24' id='zno'
+    onclick='javascript:light.view3d.client.zoom(0);'>")
+(set-html! "zoom-amount" 
+  "<input type='range' style='width:150px' id='zfa'
+               min='10' value='200' max='10000'
+               oninput='javascript:light.view3d.client.zoom_amount(this.value)'>"))
+
 (defn show-controls []
   (right-controls)
-(left-controls))
+(left-controls)
+(middle-controls))
 
 (defn on-load []
   (czm/init-3D-view (str "http://0.0.0.0:" PORT))

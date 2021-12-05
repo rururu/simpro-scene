@@ -44,12 +44,17 @@
 (defn mp-vehicle-request []
   (if-let [onb @ONBOARD]
   (if-let [mo (OMT/getMapOb onb)]
-    (let [p {:vehicle
-                {:name onb
-                 :coord [(.getLatitude mo) (.getLongitude mo)]
-                 :altitude (.getAltitude mo)
-                 :speed (.getSpeed mo)
-                 :course (.getCourse mo)}}]
+    (let [desc (.getDescription mo)
+          ops (if desc 
+                  (read-string desc) 
+                  {})
+          p {:vehicle
+               (merge ops
+                 {:name onb
+                  :coord [(.getLatitude mo) (.getLongitude mo)]
+                  :altitude (.getAltitude mo)
+                  :speed (.getSpeed mo)
+                  :course (.getCourse mo)})}]
       (if-let [req @REQUEST]
         (do (vreset! REQUEST nil)
               (assoc p :request req))
@@ -165,7 +170,7 @@
 (defn start-client
   ([]
   (if-let [serv SERV]
-    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://0.0.0.0:" PORT))))))
+    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://localhost:" PORT))))))
 ([hm inst]
   (start-client)))
 

@@ -1,0 +1,1 @@
+{:output-to "resources/public/js/cezium/PointData.js", :output-dir "resources/public/js/cezium/PointData", :asset-path "js/cezium/PointData", :main "data.point", :verbose false}

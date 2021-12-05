@@ -14,6 +14,8 @@
                :roll 0}))
 (def MAX-UPGROUND 100)
 (def ALT 0)
+(def ZOOM 0)
+(def ZOOM-AMOUNT 200)
 (defn norm-crs [x]
   (cond
    (> x 360) (- x 360)
@@ -88,4 +90,21 @@
        losec (for [bea (range start end bea-step)]
                   (los-end lat lon bea dist dist-step alt))]
   (cons [(geo/radians lat) (geo/radians lon) alt] losec)))
+
+(defn zoom-in []
+  (.zoomIn (.-camera VIEWER) ZOOM-AMOUNT)
+(def ZOOM (inc ZOOM)))
+
+(defn zoom-out []
+  (when (> ZOOM 0)
+  (.zoomOut (.-camera VIEWER) ZOOM-AMOUNT)
+  (def ZOOM (dec ZOOM))))
+
+(defn zoom-no []
+  (while (> ZOOM 0)
+  (.zoomOut (.-camera VIEWER) ZOOM-AMOUNT)
+  (def ZOOM (dec ZOOM))))
+
+(defn zoom-amount [amount]
+  (def ZOOM-AMOUNT amount))
 

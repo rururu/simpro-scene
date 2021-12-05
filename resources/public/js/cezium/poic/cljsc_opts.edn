@@ -1,0 +1,1 @@
+{:output-to "resources/public/js/cezium/poic.js", :output-dir "resources/public/js/cezium/poic", :asset-path "js/cezium/poic", :main "poic.client", :verbose false}

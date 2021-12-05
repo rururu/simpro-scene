@@ -1,0 +1,113 @@
+; Sun Dec 05 18:22:19 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([PointData_Class0] of  CloProgram
+
+	(cloFunctions [PointData_Class6])
+	(cloNamespace [PointData_Class1])
+	(cloVars [PointData_Class2])
+	(title "Point Data"))
+
+([PointData_Class1] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n  [cesium.server :as cs])")
+	(title "data.point"))
+
+([PointData_Class10000] of  ClsMain
+
+	(asset-path "js/cezium/PointData")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions [PointData_Class10004])
+	(cloNamespace [PointData_Class20000])
+	(cloVars
+		[PointData_Class20001]
+		[PointData_Class30000])
+	(compiler-options "{:verbose false}")
+	(css [PointData_Class10003])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init-client))")
+	(html [PointData_Class10002])
+	(output-dir "resources/public/js/cezium/PointData")
+	(output-to "resources/public/js/cezium/PointData.js")
+	(required [CesiumBase_Class0])
+	(store-in "src/cljs/cezium")
+	(title "PointData Client"))
+
+([PointData_Class10001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PointData_Class10000])
+	(%3ACREATION-TIMESTAMP "2021.12.04 20:39:04.787 MSK")
+	(%3ACREATOR "ru"))
+
+([PointData_Class10002] of  HTML
+
+	(source "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <!-- Use correct character set. -->\n        <meta charset=\"utf-8\">\n        <!-- Tell IE to use the latest, best version. -->\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <!-- Make the app on mobile take up the full browser screen and disable user scaling. -->\n        <meta name=\"viewport\"\n            content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\">\n        <title>Cesium</title>\n        <!-- The Cesium library. -->\n        <script src=\"Cesium/Cesium.js\"></script>\n        <link href=\"Cesium/Widgets/widgets.css\" rel=\"stylesheet\">\n        <!-- Style our app. -->\n        <link rel=\"stylesheet\" href=\"cezium/css/test.css\" media=\"screen\">\n        <style>\n          @import url(Cesium/Widgets/widgets.css);\n        </style>\n    </head>\n    <body>\n       <!-- A container for the Cesium Viewer to live in. -->\n        <div id=\"cesiumContainer\"></div>\n        <div id=\"mouse-pos\"></div>\n        <script>\n          // Grant your CesiumJS app access to your ion assets\n          // This is your actual default access token, you can copy/paste this directly into your app code\n          Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwN2EzYzEyNS1mMmNlLTRlYjEtYjRiMS04OTliNjhkZjI4NzQiLCJpZCI6MzY0MCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTUzODQxODg5OH0.E2p7oe8fLJOtyawv0uT9zBZw4oyKZ6Vt3CZsE0FKeJw';\n        </script>\n        <script src=\"js/cezium/PointData.js\"></script>\n    </body>\n</html>")
+	(store-in "resources/public/cezium")
+	(title "PointData"))
+
+([PointData_Class10003] of  CSS
+
+	(source "html, body, #cesiumContainer {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n    font-family: sans-serif;\n    background: #000;\n}\n#mouse-pos {\n  position: absolute;\n  left: 0;\n  top: 5%;\n  width: 100%;\n  text-align: center;\n  color:yellow\n}")
+	(store-in "resources/public/cezium/css")
+	(title "PointData"))
+
+([PointData_Class10004] of  CloFunction
+
+	(source "(add-terrain nil VIEWER)\n(camera-home CAMERA HEL-VIEW)\n(start-event-processing PORT VIEWER)\n(add-orbit-button CAMERA)\n(mouse-move)\n(clock-settings CLOCK HEL-CLOCK-SET VIEWER)")
+	(title "init-client []"))
+
+([PointData_Class2] of  CloVar
+
+	(source "\"[\n{\n\\\"id\\\":\\\"document\\\",\n\\\"name\\\":\\\"CZMLCircle-TimeDynamic\\\",\n\\\"version\\\":\\\"1.0\\\"\n},\n{\n\\\"id\\\":\\\"Circle1\\\",\n\\\"availability\\\":\\\"2012-08-04T16:00:00Z/2012-08-04T16:05:00Z\\\",\n\\\"position\\\":{\n\\\"epoch\\\":\\\"2012-08-04T16:00:00Z\\\",\n\\\"cartographicDegrees\\\":[\n0,\n25,\n60.2,\n0,\n300,\n25,\n61.2,\n0\n]\n},\n\\\"ellipse\\\":{\n\\\"semiMinorAxis\\\":4000.0,\n\\\"semiMajorAxis\\\":4000.0,\n\\\"heightReference\\\":\\\"CLAMP_TO_GROUND\\\",\n\\\"material\\\":{\n\\\"solidColor\\\":{\n\\\"color\\\":{\n\\\"rgba\\\":[\\\"2012-08-04T16:00:00Z\\\",255,0,20,128,\n\\\"2012-08-04T16:01:00Z\\\",255,255,0,128,\n\\\"2012-08-04T16:02:00Z\\\",0,255,0,128,\n\\\"2012-08-04T16:03:00Z\\\",0,0,255,128,\n\\\"2012-08-04T16:04:00Z\\\",0,255,0,128,\n\\\"2012-08-04T16:05:00Z\\\",255,255,0,128,\n\\\"2012-08-04T16:06:00Z\\\",255,0,0,128\n]\n}\n}\n}\n}\n},\n{\n\\\"id\\\":\\\"Circle2\\\",\n\\\"availability\\\":\\\"2012-08-04T16:00:00Z/2012-08-04T16:05:00Z\\\",\n\\\"position\\\":{\n\\\"epoch\\\":\\\"2012-08-04T16:00:00Z\\\",\n\\\"cartographicDegrees\\\":[\n0,\n25,\n60.2,\n0,\n300,\n25,\n61.2,\n0\n]\n},\n\\\"ellipse\\\":{\n\\\"semiMinorAxis\\\":3800.0,\n\\\"semiMajorAxis\\\":3800.0,\n\\\"heightReference\\\":\\\"CLAMP_TO_GROUND\\\",\n\\\"material\\\":{\n\\\"solidColor\\\":{\n\\\"color\\\":{\n\\\"rgba\\\":[\\\"2012-08-04T16:00:00Z\\\",255,0,20,255,\n\\\"2012-08-04T16:01:00Z\\\",255,255,0,255,\n\\\"2012-08-04T16:02:00Z\\\",0,255,0,255,\n\\\"2012-08-04T16:03:00Z\\\",0,0,255,255,\n\\\"2012-08-04T16:04:00Z\\\",0,255,0,255,\n\\\"2012-08-04T16:05:00Z\\\",255,255,0,255,\n\\\"2012-08-04T16:06:00Z\\\",255,0,0,255\n]\n}\n}\n}\n}\n}\n]\"")
+	(title "CZML"))
+
+([PointData_Class20000] of  CloNamespace
+
+	(source "(:require \n  [cesium.client :refer\n    [add-terrain\n     camera-home\n     start-event-processing\n     add-orbit-button\n     mouse-move\n     clock-settings\n     PORT\n     VIEWER\n     CLOCK\n     SCENE\n     CAMERA\n     CANVAS\n     HOME-VIEW\n     EVENT-DEBUG]])")
+	(title "data.point"))
+
+([PointData_Class20001] of  CloVar
+
+	(source "{:latitude 60.0\n  :longitude 25.0\n  :height 8848\n  :heading 0\n  :pitch -15\n  :roll 0}")
+	(title "HEL-VIEW"))
+
+([PointData_Class20002] of  CloFuncall
+
+	(source "(in-ns 'data.point)"))
+
+([PointData_Class20003] of  CloFuncall
+
+	(source "(test)"))
+
+([PointData_Class20004] of  CloFuncall
+
+	(source "CZML"))
+
+([PointData_Class3] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms [PointData_Class0])
+	(title "Point Data Programs"))
+
+([PointData_Class30000] of  CloVar
+
+	(source "{:animate true\n  :start \"2012-08-04T16:00:00Z\"\n  :stop \"2012-08-04T16:06:00Z\"\n  :current \"2020-08-08T16:00:00Z\"\n  :mult 4\n  :step \"SYSTEM_CLOCK_MULTIPLIER\"\n  :range \"LOOP_STOP\"}")
+	(title "HEL-CLOCK-SET"))
+
+([PointData_Class4] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [PointData_Class3])
+	(%3ACREATION-TIMESTAMP "2021.12.04 20:03:17.635 MSK")
+	(%3ACREATOR "ru"))
+
+([PointData_Class5] of  CloProgram
+
+	(cloFunctions [Clojure_Class300000])
+	(cloNamespace [Clojure_Class300001])
+	(title "PD CW"))
+
+([PointData_Class6] of  CloFunction
+
+	(source "(cs/send-czml CZML)")
+	(title "test []"))

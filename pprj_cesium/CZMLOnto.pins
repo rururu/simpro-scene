@@ -1,0 +1,116 @@
+; Sun Dec 05 20:39:37 MSK 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CZMLOnto_Class30] of  Document
+
+	(id "document")
+	(name "CZML Point - Time Dynamic")
+	(packets [CZMLOnto_Class31])
+	(version "1.0"))
+
+([CZMLOnto_Class31] of  Packet
+
+	(availability "2012-08-04T16:00:00Z/2012-08-04T16:05:00Z")
+	(id "point")
+	(object [CZMLOnto_Class34])
+	(position [CZMLOnto_Class32]))
+
+([CZMLOnto_Class32] of  Position
+
+	(cartographicDegrees [CZMLOnto_Class33])
+	(epoch "2012-08-04T16:00:00Z"))
+
+([CZMLOnto_Class33] of  Array
+
+	(name "В Северной Америке")
+	(values
+		"0, -70, 20, 150000"
+		"100, -80, 44, 150000"
+		"200, -90, 18, 150000"
+		"300, -98, 52, 150000"))
+
+([CZMLOnto_Class34] of  Point
+
+	(color [CZMLOnto_Class35])
+	(outlineColor [CZMLOnto_Class36])
+	(outlineWidth "3")
+	(pixelSize "15"))
+
+([CZMLOnto_Class35] of  Color
+
+	(rgba [CZMLOnto_Class38]))
+
+([CZMLOnto_Class36] of  Color
+
+	(rgba [CZMLOnto_Class37]))
+
+([CZMLOnto_Class37] of  Array
+
+	(name "Point Outline Color")
+	(values "255, 0, 0, 128"))
+
+([CZMLOnto_Class38] of  Array
+
+	(name "Point Color")
+	(values
+		"0, 255, 0, 0, 255"
+		"50, 255, 255, 0, 255"
+		"100, 0, 255, 0, 255"
+		"150, 0, 0, 255, 255"
+		"200, 0, 255, 0, 255"
+		"250, 255, 255, 0, 255"))
+
+([CZMLOnto_Class39] of  Document
+
+	(id "document")
+	(name "CZML Circle - Time Dynamic")
+	(packets [CZMLOnto_Class40])
+	(version "1.0"))
+
+([CZMLOnto_Class40] of  Packet
+
+	(availability "2012-08-04T16:00:00Z/2012-08-04T16:05:00Z")
+	(id "Circle1")
+	(object [CZMLOnto_Class43])
+	(position [CZMLOnto_Class41]))
+
+([CZMLOnto_Class41] of  Position
+
+	(cartographicDegrees [CZMLOnto_Class42])
+	(epoch "2012-08-04T16:00:00Z"))
+
+([CZMLOnto_Class42] of  Array
+
+	(name "Circle1 positions")
+	(values
+		"0, 25, 60.2, 150000"
+		"300, 25, 61.2, 150000"))
+
+([CZMLOnto_Class43] of  Ellipse
+
+	(height "0")
+	(material [CZMLOnto_Class45])
+	(semiMajorAxis "40000.0")
+	(semiMinorAxis "40000.0"))
+
+([CZMLOnto_Class45] of  Material
+
+	(solidColor [CZMLOnto_Class46]))
+
+([CZMLOnto_Class46] of  Color
+
+	(rgba [CZMLOnto_Class47]))
+
+([CZMLOnto_Class47] of  Array
+
+	(name "Circle1 color")
+	(values
+		"\"2012-08-04T16:00:00Z\", 255, 0, 20, 255"
+		"\"2012-08-04T16:01:00Z\", 255, 255, 0, 255"
+		"\"2012-08-04T16:02:00Z\", 0, 255, 0, 255"
+		"\"2012-08-04T16:03:00Z\", 0, 0, 255, 255"
+		"\"2012-08-04T16:04:00Z\", 0, 255, 0, 255"
+		"\"2012-08-04T16:05:00Z\", 255, 255, 0, 255"
+		"\"2012-08-04T16:06:00Z\", 255, 0, 0, 255"))

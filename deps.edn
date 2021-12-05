@@ -1,6 +1,6 @@
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.1"}
-  protege {:local/root "lib_ext/protege-3.5.0.jar"}
+  protege/protege {:local/root "lib_ext/protege-3.5.0.jar"}
   protege/standard-extensions {:local/root "lib_ext/standard-extensions-3.5.0.jar"}
   protege/looks {:local/root "lib_ext/looks-3.5.0.jar"}
   protege/unicode_panel {:local/root "lib_ext/unicode_panel-3.5.0.jar"}
@@ -8,41 +8,41 @@
   protege/JGoLayout {:local/root "lib_ext/JGoLayout-3.5.0.jar"}
   protege/ClojureTab {:local/root "lib/ClojureTab-1.5.jar"}
   protege/ProtegeExtensions {:local/root "lib/ProtegeExtensions.jar"}
-  OpenMapTab {:local/root "lib/OpenMapTab-5.2.1.jar"}
+  OpenMapTab/OpenMapTab {:local/root "lib/OpenMapTab-5.2.1.jar"}
   org.openmap-java/openmap {:local/root "lib_ext/openmap.jar"}
-  rete {:mvn/version "5.3.0-SNAPSHOT"}
+  rete/rete {:mvn/version "5.3.0-SNAPSHOT"}
   org.clojure/clojurescript {:mvn/version "1.10.439"}
   org.clojure/core.async {:mvn/version "0.4.490"}
-  ring {:mvn/version "1.7.1"}
-  compojure {:mvn/version "1.6.1"}
-  cljs-ajax {:mvn/version "0.8.0"}
+  ring/ring {:mvn/version "1.7.1"}
+  compojure/compojure {:mvn/version "1.6.1"}
+  cljs-ajax/cljs-ajax {:mvn/version "0.8.0"}
   com.cognitect/transit-clj {:mvn/version "0.8.313"}
   com.cognitect/transit-cljs {:mvn/version "0.8.256"}
-  hiccup {:mvn/version "1.0.5"}
-  clj-json {:mvn/version "0.5.3"}
-  clj-time {:mvn/version "0.15.0"}
-  clojure-csv {:mvn/version "2.0.1"}
-  semantic-csv {:mvn/version "0.2.1-alpha1"}
-  seesaw {:mvn/version "1.5.0"}
-  GeographicLib {:local/root "lib_ext/GeographicLib-Java-1.42.jar"}
-  mason {:local/root "lib_mas/mason.20.jar"}
-  batik {:local/root "lib_mas/batik-all-1.9.jar"}
-  bsh {:local/root "lib_mas/bsh-2.0b4.jar"}
-  itext {:local/root "lib_mas/itext-1.2.jar"}
-  jcommons {:local/root "lib_mas/jcommon-1.0.21.jar"}
-  jfreechart {:local/root "lib_mas/jfreechart-1.0.17.jar"}
-  jmf {:local/root "lib_mas/jmf.jar"}
-  portfolio {:local/root "lib_mas/portfolio.jar"}
-  surfaceplotter {:local/root "lib_mas/surfaceplotter-2.0.2-20131206.230546-631.jar"}
-  geomason {:local/root "lib_mas/geomason-1.6.jar"}
-  jts {:local/root "lib_mas/jts-1.13.jar"}
+  hiccup/hiccup {:mvn/version "1.0.5"}
+  clj-json/clj-json {:mvn/version "0.5.3"}
+  clj-time/clj-time {:mvn/version "0.15.0"}
+  clojure-csv/clojure-csv {:mvn/version "2.0.1"}
+  semantic-csv/semantic-csv {:mvn/version "0.2.1-alpha1"}
+  seesaw/seesaw {:mvn/version "1.5.0"}
+  GeographicLib/GeographicLib {:local/root "lib_ext/GeographicLib-Java-1.42.jar"}
+  mason/mason {:local/root "lib_mas/mason.20.jar"}
+  batik/batik {:local/root "lib_mas/batik-all-1.9.jar"}
+  bsh/bsh {:local/root "lib_mas/bsh-2.0b4.jar"}
+  itext/itext {:local/root "lib_mas/itext-1.2.jar"}
+  jcommons/jcommons {:local/root "lib_mas/jcommon-1.0.21.jar"}
+  jfreechart/jfreechart {:local/root "lib_mas/jfreechart-1.0.17.jar"}
+  jmf/jmf {:local/root "lib_mas/jmf.jar"}
+  portfolio/portfolio {:local/root "lib_mas/portfolio.jar"}
+  surfaceplotter/surfaceplotter {:local/root "lib_mas/surfaceplotter-2.0.2-20131206.230546-631.jar"}
+  geomason/geomason {:local/root "lib_mas/geomason-1.6.jar"}
+  jts/jts {:local/root "lib_mas/jts-1.13.jar"}
   javax.xml.bind/jaxb-api {:mvn/version "2.3.0"}
-  j3dcore {:local/root "lib_j3d/j3dcore.jar"}
-  j3dutils {:local/root "lib_j3d/j3dutils.jar"}
-  jogamp-fat {:local/root "lib_j3d/jogamp-fat.jar"}
-  vecmath {:local/root "lib_j3d/vecmath.jar"}
-  CloAgents {:local/root "lib/CloAgents.jar"}
-  quil {:mvn/version "3.0.0"}}
+  j3dcore/j3dcore {:local/root "lib_j3d/j3dcore.jar"}
+  j3dutils/j3dutils {:local/root "lib_j3d/j3dutils.jar"}
+  jogamp-fat/jogamp-fat {:local/root "lib_j3d/jogamp-fat.jar"}
+  vecmath/vecmath {:local/root "lib_j3d/vecmath.jar"}
+  CloAgents/CloAgents {:local/root "lib/CloAgents.jar"}
+  quil/quil {:mvn/version "3.0.0"}}
   :paths ["src" "src/clojure" "classes" "resources"]
   :aliases {:reveal 
 				{:extra-deps {vlaaad/reveal {:mvn/version "1.3.199"}}
