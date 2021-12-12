@@ -1,4 +1,4 @@
-; Sun Dec 05 18:22:19 MSK 2021
+; Sun Dec 12 20:55:28 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,8 +71,8 @@
 
 ([KB_059757_Class1] of  Map
 
-	(entries [PointData_ProjectKB_Class10489])
-	(referenced_maps [PointData_ProjectKB_Class10486]))
+	(entries [PointData_ProjectKB_Class779])
+	(referenced_maps [PointData_ProjectKB_Class776]))
 
 ([KB_059757_Class13] of  Property_List
 
@@ -166,40 +166,40 @@
 	(name "instances_file_name")
 	(string_value "PointData.pins"))
 
-([KB_966257_Class476] of  Map
+([KB_157676_Class767] of  Map
 
 	(entries
-		[KB_966257_Class477]
-		[KB_966257_Class479]
-		[KB_966257_Class480]
-		[KB_966257_Class481])
-	(referenced_maps [KB_966257_Class478]))
+		[KB_157676_Class768]
+		[KB_157676_Class770]
+		[KB_157676_Class771]
+		[KB_157676_Class772])
+	(referenced_maps [KB_157676_Class769]))
 
-([KB_966257_Class477] of  Map_Entry
+([KB_157676_Class768] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_966257_Class478] of  Map
+([KB_157676_Class769] of  Map
 )
 
-([KB_966257_Class479] of  Map_Entry
+([KB_157676_Class770] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "KB_966257_Class478")
+	(value "KB_157676_Class769")
 	(value_class "java.util.Map"))
 
-([KB_966257_Class480] of  Map_Entry
+([KB_157676_Class771] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_966257_Class481] of  Map_Entry
+([KB_157676_Class772] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -285,33 +285,6 @@
 	(x 0)
 	(y 60))
 
-([PointData_ProjectKB_Class10486] of  Map
-
-	(entries
-		[PointData_ProjectKB_Class10487]
-		[PointData_ProjectKB_Class10488]))
-
-([PointData_ProjectKB_Class10487] of  Map_Entry
-
-	(key "PointData_Class10001")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "483 665 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([PointData_ProjectKB_Class10488] of  Map_Entry
-
-	(key "PointData_Class4")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "4 402 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([PointData_ProjectKB_Class10489] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "PointData_ProjectKB_Class10486")
-	(value_class "java.util.Map"))
-
 ([PointData_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
@@ -368,6 +341,48 @@
 ([PointData_ProjectKB_Class491] of  Property_List
 )
 
+([PointData_ProjectKB_Class773] of  Widget
+
+	(is_hidden FALSE)
+	(name ":UNDEFINED")
+	(property_list [PointData_ProjectKB_Class774])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([PointData_ProjectKB_Class774] of  Property_List
+
+	(properties [PointData_ProjectKB_Class775]))
+
+([PointData_ProjectKB_Class775] of  Property_List
+
+	(name "layout properties"))
+
+([PointData_ProjectKB_Class776] of  Map
+
+	(entries
+		[PointData_ProjectKB_Class777]
+		[PointData_ProjectKB_Class778]))
+
+([PointData_ProjectKB_Class777] of  Map_Entry
+
+	(key "PointData_Class10001")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "483 665 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([PointData_ProjectKB_Class778] of  Map_Entry
+
+	(key "PointData_Class4")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "4 402 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([PointData_ProjectKB_Class779] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "PointData_ProjectKB_Class776")
+	(value_class "java.util.Map"))
+
 ([PROJECT] of  Project
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
@@ -375,13 +390,15 @@
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[STANDARD_FACET_FORM_WIDGET]
-		[PAL_FORM_WIDGET])
+		[PAL_FORM_WIDGET]
+		[STANDARD_FACET_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
-	(included_projects "CesiumBase.pprj")
+	(included_projects
+		"CesiumBase.pprj"
+		"CZMLOnto.pprj")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])

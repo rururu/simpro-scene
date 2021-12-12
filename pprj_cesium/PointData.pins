@@ -1,4 +1,4 @@
-; Sun Dec 05 18:22:19 MSK 2021
+; Sun Dec 12 20:55:28 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12,7 +12,7 @@
 
 ([PointData_Class1] of  CloNamespace
 
-	(source "(:use protege.core)\n(:require\n  [cesium.server :as cs])")
+	(source "(:use protege.core)\n(:require\n  [cesium.server :as cs]\n  [czml.onto :as czo])")
 	(title "data.point"))
 
 ([PointData_Class10000] of  ClsMain
@@ -80,14 +80,12 @@
 
 	(source "(test)"))
 
-([PointData_Class20004] of  CloFuncall
-
-	(source "CZML"))
-
 ([PointData_Class3] of  WorkingPrograms
 
 	(butt-load-progs "Load Programs/protege.core/ldns")
-	(cloPrograms [PointData_Class0])
+	(cloPrograms
+		[PointData_Class0]
+		[CZMLOnto_Class0])
 	(title "Point Data Programs"))
 
 ([PointData_Class30000] of  CloVar
@@ -101,13 +99,69 @@
 	(%3ACREATION-TIMESTAMP "2021.12.04 20:03:17.635 MSK")
 	(%3ACREATOR "ru"))
 
+([PointData_Class40000] of  CloFuncall
+
+	(source "(cs/send-czml (czo/document-json (fifos \"Document\" \"name\" \"Circle2\")))"))
+
+([PointData_Class40001] of  CloFuncall
+
+	(source "(cs/send-czml (czo/document-json (fifos \"Document\" \"name\" \"CZML Circle - Time Dynamic\")))"))
+
 ([PointData_Class5] of  CloProgram
 
 	(cloFunctions [Clojure_Class300000])
 	(cloNamespace [Clojure_Class300001])
 	(title "PD CW"))
 
+([PointData_Class50000] of  CloFuncall
+
+	(source "(czo/document-json (fifos \"Document\" \"name\" \"CZML Circle - Time Dynamic\"))"))
+
+([PointData_Class50001] of  CloFuncall
+
+	(source "(cs/send-clock"))
+
+([PointData_Class50002] of  CloFuncall
+
+	(source "(cs/send-clock {:animate true :start \"2020-12-11T00:00:00Z\" :stop \"2020-12-14T00:00:00Z\" :current \"2020-12-11T00:00:00Z\" :mult 1000})"))
+
+([PointData_Class50003] of  CloFuncall
+
+	(source "(cs/send-clock {:animate true :start \"2020-12-11T00:00:00Z\" :stop \"2020-12-14T00:00:00Z\" :current \"2020-12-11T00:00:00Z\" :mult 1000 :step \"SYSTEM_CLOCK_MULTIPLIER\" :range \"LOOP_STOP\"})"))
+
+([PointData_Class50004] of  CloFuncall
+
+	(source "(czo/document-json (fifos \"Document\" \"name\" \"Circle2\"))"))
+
 ([PointData_Class6] of  CloFunction
 
 	(source "(cs/send-czml CZML)")
 	(title "test []"))
+
+([PointData_Class60000] of  CloFuncall
+
+	(source "(cs/send-czml (czo/document-json (fifos \"Document\" \"name\" \"Circle3\")))"))
+
+([PointData_Class60001] of  CloFuncall
+
+	(source "(cs/send-clock {:animate true :start \"2012-08-04T16:00:00Z\" :stop \"2012-08-04T16:06:00Z\" :current \"2020-12-11T00:00:00Z\" :mult 4 :step \"SYSTEM_CLOCK_MULTIPLIER\" :range \"LOOP_STOP\"})"))
+
+([PointData_Class60002] of  Document
+
+	(id "document")
+	(name "Circle3")
+	(packets [PointData_Class60003])
+	(version "1.0"))
+
+([PointData_Class60003] of  Packet
+
+	(availability "2012-08-04T16:00:00Z/2012-08-04T16:05:00Z")
+	(id "Circ3")
+	(position [PointData_Class60004]))
+
+([PointData_Class60004] of  Position
+
+	(cartographicDegrees
+		"0, 25, 60.1, 0"
+		"0, 25, 60.1, 0")
+	(epoch "2012-08-04T16:00:00Z"))

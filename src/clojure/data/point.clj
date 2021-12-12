@@ -1,7 +1,8 @@
 (ns data.point
 (:use protege.core)
 (:require
-  [cesium.server :as cs]))
+  [cesium.server :as cs]
+  [czml.onto :as czo]))
 (def CZML "[
 {
 \"id\":\"document\",

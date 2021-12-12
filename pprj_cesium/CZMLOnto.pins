@@ -1,116 +1,155 @@
-; Sun Dec 05 20:39:37 MSK 2021
+; Sun Dec 12 20:54:46 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-([CZMLOnto_Class30] of  Document
+([CZMLOnto_Class0] of  CloProgram
+
+	(cloFunctions
+		[CZMLOnto_Class2]
+		[CZMLOnto_Class20000]
+		[CZMLOnto_Class20006]
+		[CZMLOnto_Class5]
+		[CZMLOnto_Class10009]
+		[CZMLOnto_Class11]
+		[CZMLOnto_Class16]
+		[CZMLOnto_Class20]
+		[CZMLOnto_Class30006]
+		[CZMLOnto_Class30026]
+		[CZMLOnto_Class30000]
+		[CZMLOnto_Class30003])
+	(cloNamespace [CZMLOnto_Class1])
+	(cloVars
+		[CZMLOnto_Class10010]
+		[CZMLOnto_Class30004])
+	(title "CZML Onto Programs"))
+
+([CZMLOnto_Class1] of  CloNamespace
+
+	(source "(:use protege.core)\n(:require\n   [clojure.data.json :as json])\n(:import java.util.Calendar\n  edu.stanford.smi.protege.model.Instance\n  edu.stanford.smi.protege.model.ValueType)")
+	(title "czml.onto"))
+
+([CZMLOnto_Class10000] of  CloFuncall
+
+	(source "(in-ns 'czml.onto)"))
+
+([CZMLOnto_Class10002] of  CloFuncall
+
+	(source "(document-map (fifos \"Document\" \"name\" \"Circle2\"))"))
+
+([CZMLOnto_Class10009] of  CloFunction
+
+	(source "(if (.getAllowsMultipleValues slt)\n  (if (= (.getValueType slt) ValueType/STRING)\n    (read-string (str \"[\" (apply str (interpose \",\" (.getOwnSlotValues pki slt))) \"]\"))\n    (vec (map (fn [x] (packet-map x )) (.getOwnSlotValues pki slt))))\n  (packet-map (.getOwnSlotValue pki slt)))")
+	(title "keyword-val [pki slt]"))
+
+([CZMLOnto_Class10010] of  CloVar
+
+	(source "(declare packet-map)")
+	(title "DECLARE"))
+
+([CZMLOnto_Class11] of  CloFunction
+
+	(source ";; packet to map\n;; p - instance\n(if (instance? Instance p)\n  (let [typ (.getDirectType p)\n         sls (.getTemplateSlots typ)\n         mp (apply hash-map \n                 (mapcat\n                   #(let [v (keyword-val p %)]\n                        (if (if (seqable? v) \n                              (not (empty? v))\n                              (some? v))\n                          (list (keyword (.getName %)) v)))\n                   sls))]\n    mp)\n  p)")
+	(title "packet-map [p]"))
+
+([CZMLOnto_Class16] of  CloFunction
+
+	(source ";; document instance to map\n(let [mp (packet-map doci)]\n  (vec (cons (dissoc mp :packets) (mp :packets))))")
+	(title "document-map [doci]"))
+
+([CZMLOnto_Class2] of  CloFunction
+
+	(source "(let [cld (Calendar/getInstance)\n       mil (.getTimeInMillis cld)\n       _ (.setTimeInMillis cld (+ mil (* sec 1000)))\n        yar (.get cld Calendar/YEAR )\n        mon (inc (.get cld Calendar/MONTH))\n        dat (.get cld Calendar/DATE)\n        hor (.get cld Calendar/HOUR_OF_DAY)\n        min (.get cld Calendar/MINUTE)\n        sec (.get cld Calendar/SECOND)]\n    (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601futt [sec]"))
+
+([CZMLOnto_Class20] of  CloFunction
+
+	(source "(json/write-str (document-map doci))")
+	(title "document-json [doci]"))
+
+([CZMLOnto_Class20000] of  CloFunction
+
+	(source "(let [[d m y] (.split dmy \"\\\\.\")\n       cld (Calendar/getInstance)\n       _ (.set cld (read-string y) (dec (read-string m)) (read-string d) 0 0 0)\n       yar (.get cld Calendar/YEAR )\n       mon (inc (.get cld Calendar/MONTH))\n       dat (.get cld Calendar/DATE)\n       hor (.get cld Calendar/HOUR_OF_DAY)\n       min (.get cld Calendar/MINUTE)\n       sec (.get cld Calendar/SECOND)]\n  (format \"%04d-%02d-%02dT%02d:%02d:%02dZ\" yar mon dat hor min sec))")
+	(title "iso8601dmy [dmy]"))
+
+([CZMLOnto_Class20006] of  CloFunction
+
+	(source "(letfn [(up [v]\n             (if (== v 0)\n               0\n               (int (/ (* v 255) 0.333))))\n           (dn [v]\n             (if (== v 0.333)\n               0\n               (int (/ (* (- 0.333 v) 255) 0.333))))\n           (red-yel [v]\n             [255 (up v) 0])\n           (yel-gre [v]\n             [(dn v) 255 0])\n           (gre-blu [v]\n             [0 (dn v) (up v)])] \n  (cond\n     (<= v 0.333) (red-yel v)\n     (<= v 0.666) (yel-gre (- v 0.333))\n     (<= v 1.000) (gre-blu (- v 0.666))))")
+	(title "colgen-rgb [v]"))
+
+([CZMLOnto_Class30000] of  CloFunction
+
+	(source "(vec\n(map\n    #(let [d (iso8601dmy %1)\n              nv (norm %2 bounds)\n              [r g b] (colgen-rgb nv)]\n          (str \"\\\"\" d \"\\\", \" r \", \" g \", \" b \", \" alpha))\n    dates\n    values))")
+	(title "date-value-colors [dates values bounds alpha]"))
+
+([CZMLOnto_Class30003] of  CloFunction
+
+	(source "(let [fre (iso8601dmy from)\n       toe (iso8601dmy to)\n       ava (str fre \"/\" toe)\n       crd [(str \"\\\"\" fre \"\\\", \" lon \", \" lat \", \" 0)\n             (str \"\\\"\" toe \"\\\", \" lon \", \" lat \", \" 0)]\n       sma (str(inorm (norm value1 bounds1) CIRC-BND))\n       coi (crin \"Color\")\n       sci (crin \"SolidColor\")\n       mti (crin \"Material\")\n       eli (crin \"Ellipse\")\n       poi (crin \"Position\")\n       pki (crin \"Packet\")]\n  (ssvs coi \"rgba\" (date-value-colors dates2 values2 bounds2 alpha))\n  (ssv sci \"color\" coi)\n  (ssv mti \"solidColor\" sci) \n  (ssv eli \"semiMinorAxis\" sma)\n  (ssv eli \"semiMajorAxis\" sma)\n  (ssv eli \"heightReference\" \"CLAMP_TO_GROUND\")\n  (ssv eli \"material\" mti)\n  (ssvs poi \"cartographicDegrees\" crd)\n  (ssv pki \"id\" id)\n  (ssv pki \"availability\" ava)\n  (ssv pki \"position\" poi)\n  (ssv pki \"ellipse\" eli)\n  pki)")
+	(title "date-value-circle-pki [id [from to] [lon lat] value1 bounds1 dates2 values2 bounds2 alpha]"))
+
+([CZMLOnto_Class30004] of  CloVar
+
+	(source "[4000.0 40000.0]")
+	(title "CIRC-BND"))
+
+([CZMLOnto_Class30006] of  CloFunction
+
+	(source "(double (/ (- value minval) (- maxval minval)))")
+	(title "norm [value [minval maxval]]"))
+
+([CZMLOnto_Class30026] of  CloFunction
+
+	(source "(+ minval (* value (- maxval minval)))")
+	(title "inorm [value [minval maxval]]"))
+
+([CZMLOnto_Class30104] of  Document
 
 	(id "document")
-	(name "CZML Point - Time Dynamic")
-	(packets [CZMLOnto_Class31])
+	(name "Circle2")
+	(packets [CZMLOnto_Class60005])
 	(version "1.0"))
 
-([CZMLOnto_Class31] of  Packet
+([CZMLOnto_Class40003] of  CloFuncall
 
-	(availability "2012-08-04T16:00:00Z/2012-08-04T16:05:00Z")
-	(id "point")
-	(object [CZMLOnto_Class34])
-	(position [CZMLOnto_Class32]))
+	(source "(date-value-circle-pki \"C2\" [\"11.12.2020\" \"14.12.2020\"] [25.0 60.0] 330 [100 400] [\"11.12.2020\" \"12.12.2020\" \"13.12.2020\" \"14.12.2020\"] [123 168 215 280] [100 300] 200)"))
 
-([CZMLOnto_Class32] of  Position
+([CZMLOnto_Class5] of  CloFunction
 
-	(cartographicDegrees [CZMLOnto_Class33])
-	(epoch "2012-08-04T16:00:00Z"))
+	(source "(when-let [p (fifos \"Packet\" \"id\" id)]\n  (.show *prj* p)\n  p)")
+	(title "find-packet [id]"))
 
-([CZMLOnto_Class33] of  Array
+([CZMLOnto_Class60000] of  Color
 
-	(name "В Северной Америке")
-	(values
-		"0, -70, 20, 150000"
-		"100, -80, 44, 150000"
-		"200, -90, 18, 150000"
-		"300, -98, 52, 150000"))
+	(rgba
+		"\"2020-12-11T00:00:00Z\", 255, 88, 0, 200"
+		"\"2020-12-12T00:00:00Z\", 249, 255, 0, 200"
+		"\"2020-12-13T00:00:00Z\", 69, 255, 0, 200"
+		"\"2020-12-14T00:00:00Z\", 0, 75, 179, 200"))
 
-([CZMLOnto_Class34] of  Point
+([CZMLOnto_Class60001] of  SolidColor
 
-	(color [CZMLOnto_Class35])
-	(outlineColor [CZMLOnto_Class36])
-	(outlineWidth "3")
-	(pixelSize "15"))
+	(color [CZMLOnto_Class60000]))
 
-([CZMLOnto_Class35] of  Color
+([CZMLOnto_Class60002] of  Material
 
-	(rgba [CZMLOnto_Class38]))
+	(solidColor [CZMLOnto_Class60001]))
 
-([CZMLOnto_Class36] of  Color
+([CZMLOnto_Class60003] of  Ellipse
 
-	(rgba [CZMLOnto_Class37]))
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60002])
+	(semiMajorAxis "31600.000000000004")
+	(semiMinorAxis "31600.000000000004"))
 
-([CZMLOnto_Class37] of  Array
+([CZMLOnto_Class60004] of  Position
 
-	(name "Point Outline Color")
-	(values "255, 0, 0, 128"))
+	(cartographicDegrees
+		"\"2020-12-11T00:00:00Z\", 25.0, 60.0, 0"
+		"\"2020-12-14T00:00:00Z\", 25.0, 60.0, 0"))
 
-([CZMLOnto_Class38] of  Array
+([CZMLOnto_Class60005] of  Packet
 
-	(name "Point Color")
-	(values
-		"0, 255, 0, 0, 255"
-		"50, 255, 255, 0, 255"
-		"100, 0, 255, 0, 255"
-		"150, 0, 0, 255, 255"
-		"200, 0, 255, 0, 255"
-		"250, 255, 255, 0, 255"))
-
-([CZMLOnto_Class39] of  Document
-
-	(id "document")
-	(name "CZML Circle - Time Dynamic")
-	(packets [CZMLOnto_Class40])
-	(version "1.0"))
-
-([CZMLOnto_Class40] of  Packet
-
-	(availability "2012-08-04T16:00:00Z/2012-08-04T16:05:00Z")
-	(id "Circle1")
-	(object [CZMLOnto_Class43])
-	(position [CZMLOnto_Class41]))
-
-([CZMLOnto_Class41] of  Position
-
-	(cartographicDegrees [CZMLOnto_Class42])
-	(epoch "2012-08-04T16:00:00Z"))
-
-([CZMLOnto_Class42] of  Array
-
-	(name "Circle1 positions")
-	(values
-		"0, 25, 60.2, 150000"
-		"300, 25, 61.2, 150000"))
-
-([CZMLOnto_Class43] of  Ellipse
-
-	(height "0")
-	(material [CZMLOnto_Class45])
-	(semiMajorAxis "40000.0")
-	(semiMinorAxis "40000.0"))
-
-([CZMLOnto_Class45] of  Material
-
-	(solidColor [CZMLOnto_Class46]))
-
-([CZMLOnto_Class46] of  Color
-
-	(rgba [CZMLOnto_Class47]))
-
-([CZMLOnto_Class47] of  Array
-
-	(name "Circle1 color")
-	(values
-		"\"2012-08-04T16:00:00Z\", 255, 0, 20, 255"
-		"\"2012-08-04T16:01:00Z\", 255, 255, 0, 255"
-		"\"2012-08-04T16:02:00Z\", 0, 255, 0, 255"
-		"\"2012-08-04T16:03:00Z\", 0, 0, 255, 255"
-		"\"2012-08-04T16:04:00Z\", 0, 255, 0, 255"
-		"\"2012-08-04T16:05:00Z\", 255, 255, 0, 255"
-		"\"2012-08-04T16:06:00Z\", 255, 0, 0, 255"))
+	(availability "2020-12-11T00:00:00Z/2020-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60003])
+	(id "C2")
+	(position [CZMLOnto_Class60004]))

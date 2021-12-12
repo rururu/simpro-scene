@@ -1,4 +1,4 @@
-; Sun Dec 05 20:39:37 MSK 2021
+; Sun Dec 12 20:54:46 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,18 +20,17 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[CZMLOnto_ProjectKB_Class251]
-		[CZMLOnto_ProjectKB_Class252]
-		[CZMLOnto_ProjectKB_Class253]
-		[CZMLOnto_ProjectKB_Class254]
-		[CZMLOnto_ProjectKB_Class255]
-		[CZMLOnto_ProjectKB_Class256]
-		[CZMLOnto_ProjectKB_Class257]
-		[CZMLOnto_ProjectKB_Class258]
-		[CZMLOnto_ProjectKB_Class259]))
+		[CZMLOnto_ProjectKB_Class40415]
+		[CZMLOnto_ProjectKB_Class40416]
+		[CZMLOnto_ProjectKB_Class40417]
+		[CZMLOnto_ProjectKB_Class40418]
+		[CZMLOnto_ProjectKB_Class40419]
+		[CZMLOnto_ProjectKB_Class40420]
+		[CZMLOnto_ProjectKB_Class40421]))
 
 ([CLSES_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.ClsesTab"))
 
 ([CREATION_TIMESTAMP_WIDGET] of  Widget
@@ -41,6 +40,15 @@
 ([CREATOR_WIDGET] of  Widget
 
 	(name ":CREATOR"))
+
+([CZMLOnto_ProjectKB_Class1] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [CZMLOnto_ProjectKB_Class2])
+	(widget_class_name "ru.igis.omtab.OpenMapTab"))
+
+([CZMLOnto_ProjectKB_Class10] of  Property_List
+)
 
 ([CZMLOnto_ProjectKB_Class100] of  Widget
 
@@ -52,7 +60,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
 	(width 400)
 	(x 0)
-	(y 0))
+	(y 60))
 
 ([CZMLOnto_ProjectKB_Class101] of  Property_List
 
@@ -86,6 +94,29 @@
 		[CZMLOnto_ProjectKB_Class192]
 		[CZMLOnto_ProjectKB_Class193]))
 
+([CZMLOnto_ProjectKB_Class10396] of  Widget
+
+	(is_hidden FALSE)
+	(name "Material")
+	(property_list [CZMLOnto_ProjectKB_Class10397])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([CZMLOnto_ProjectKB_Class10397] of  Property_List
+
+	(properties
+		[CZMLOnto_ProjectKB_Class20398]
+		[CZMLOnto_ProjectKB_Class20399]))
+
+([CZMLOnto_ProjectKB_Class10398] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([CZMLOnto_ProjectKB_Class10399] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
+
 ([CZMLOnto_ProjectKB_Class104] of  Widget
 
 	(height 60)
@@ -95,7 +126,34 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 200)
-	(y 240))
+	(y 300))
+
+([CZMLOnto_ProjectKB_Class10400] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "ellipse")
+	(property_list [CZMLOnto_ProjectKB_Class10401])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 500))
+
+([CZMLOnto_ProjectKB_Class10401] of  Property_List
+
+	(properties
+		[CZMLOnto_ProjectKB_Class10402]
+		[CZMLOnto_ProjectKB_Class10403]))
+
+([CZMLOnto_ProjectKB_Class10402] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value"))
+
+([CZMLOnto_ProjectKB_Class10403] of  Boolean
+
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
 ([CZMLOnto_ProjectKB_Class105] of  Property_List
 )
@@ -108,24 +166,10 @@
 	(property_list [CZMLOnto_ProjectKB_Class107])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 0)
-	(y 300))
+	(x 200)
+	(y 360))
 
 ([CZMLOnto_ProjectKB_Class107] of  Property_List
-)
-
-([CZMLOnto_ProjectKB_Class108] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "name")
-	(property_list [CZMLOnto_ProjectKB_Class109])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 10))
-
-([CZMLOnto_ProjectKB_Class109] of  Property_List
 )
 
 ([CZMLOnto_ProjectKB_Class110] of  String
@@ -263,145 +307,6 @@
 	(string_value "Create a new instance"))
 
 ([CZMLOnto_ProjectKB_Class137] of  String
-
-	(name ":Add:Instance:Dialog:Title")
-	(string_value "Select an already existing instance"))
-
-([CZMLOnto_ProjectKB_Class138] of  String
-
-	(name "tooltip_text"))
-
-([CZMLOnto_ProjectKB_Class139] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Insert:At:Current:Selection"))
-
-([CZMLOnto_ProjectKB_Class140] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Select:New:Insertions"))
-
-([CZMLOnto_ProjectKB_Class141] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Create:Form:For:New:Instances"))
-
-([CZMLOnto_ProjectKB_Class142] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Subwidget:Selection:Enabled"))
-
-([CZMLOnto_ProjectKB_Class143] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Summary:Panel"))
-
-([CZMLOnto_ProjectKB_Class144] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Number:Of:Subordinates"))
-
-([CZMLOnto_ProjectKB_Class145] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Subordinate:Browser:Keys"))
-
-([CZMLOnto_ProjectKB_Class146] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Use:Separators:Between:Subwidgets"))
-
-([CZMLOnto_ProjectKB_Class147] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Comtain:In:Vertical:Direction"))
-
-([CZMLOnto_ProjectKB_Class148] of  Integer
-
-	(integer_value 10)
-	(name ":Size:Of:Space:Between:Subwidgets"))
-
-([CZMLOnto_ProjectKB_Class149] of  Integer
-
-	(integer_value 1)
-	(name ":Prototype:Depth"))
-
-([CZMLOnto_ProjectKB_Class150] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Create:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class151] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Add:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class152] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:View:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class153] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Remove:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class154] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Delete:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class155] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Prototype:Button"))
-
-([CZMLOnto_ProjectKB_Class156] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Move:Instance:Buttons"))
-
-([CZMLOnto_ProjectKB_Class157] of  String
-
-	(name ":Create:Instance:Button:Tooltip")
-	(string_value "Create a new instance"))
-
-([CZMLOnto_ProjectKB_Class158] of  String
-
-	(name ":Add:Instance:Button:Tooltip")
-	(string_value "Select an already existing instance"))
-
-([CZMLOnto_ProjectKB_Class159] of  String
-
-	(name ":View:Instance:Button:Tooltip")
-	(string_value "View the selected instance"))
-
-([CZMLOnto_ProjectKB_Class160] of  String
-
-	(name ":Remove:Instance:Button:Tooltip")
-	(string_value "Remove the selected instance(s)"))
-
-([CZMLOnto_ProjectKB_Class161] of  String
-
-	(name ":Delete:Instance:Button:Tooltip")
-	(string_value "Delete the selected instance(s) from the knowledge base"))
-
-([CZMLOnto_ProjectKB_Class162] of  String
-
-	(name ":Prototype:Button:Tooltip")
-	(string_value "Create a new instance which is a duplicate of the selected instance"))
-
-([CZMLOnto_ProjectKB_Class163] of  String
-
-	(name ":Move:Instance:Buttons:Tooltip")
-	(string_value "Move the selected instance"))
-
-([CZMLOnto_ProjectKB_Class164] of  String
-
-	(name ":Create:Instance:Dialog:Title")
-	(string_value "Create a new instance"))
-
-([CZMLOnto_ProjectKB_Class165] of  String
 
 	(name ":Add:Instance:Dialog:Title")
 	(string_value "Select an already existing instance"))
@@ -556,194 +461,147 @@
 
 	(properties
 		[CZMLOnto_ProjectKB_Class196]
-		[CZMLOnto_ProjectKB_Class197]))
+		[CZMLOnto_ProjectKB_Class398]))
 
 ([CZMLOnto_ProjectKB_Class196] of  Property_List
 
 	(name "layout properties"))
 
-([CZMLOnto_ProjectKB_Class197] of  Widget
+([CZMLOnto_ProjectKB_Class2] of  Property_List
+)
 
-	(height 240)
+([CZMLOnto_ProjectKB_Class20398] of  Property_List
+
+	(name "layout properties"))
+
+([CZMLOnto_ProjectKB_Class20399] of  Widget
+
+	(height 340)
 	(is_hidden FALSE)
-	(label "Rgba")
-	(name "rgba")
-	(property_list [CZMLOnto_ProjectKB_Class198])
+	(label "SolidColor")
+	(name "solidColor")
+	(property_list [CZMLOnto_ProjectKB_Class20400])
 	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
 	(width 340)
 	(x 0)
 	(y 0))
 
-([CZMLOnto_ProjectKB_Class198] of  Property_List
+([CZMLOnto_ProjectKB_Class20400] of  Property_List
 
 	(properties
-		[CZMLOnto_ProjectKB_Class201]
-		[CZMLOnto_ProjectKB_Class202]
-		[CZMLOnto_ProjectKB_Class203]
-		[CZMLOnto_ProjectKB_Class204]
-		[CZMLOnto_ProjectKB_Class205]
-		[CZMLOnto_ProjectKB_Class206]
-		[CZMLOnto_ProjectKB_Class207]
-		[CZMLOnto_ProjectKB_Class208]
-		[CZMLOnto_ProjectKB_Class209]
-		[CZMLOnto_ProjectKB_Class210]
-		[CZMLOnto_ProjectKB_Class211]
-		[CZMLOnto_ProjectKB_Class212]
-		[CZMLOnto_ProjectKB_Class213]
-		[CZMLOnto_ProjectKB_Class214]
-		[CZMLOnto_ProjectKB_Class215]
-		[CZMLOnto_ProjectKB_Class216]
-		[CZMLOnto_ProjectKB_Class217]
-		[CZMLOnto_ProjectKB_Class218]
-		[CZMLOnto_ProjectKB_Class219]
-		[CZMLOnto_ProjectKB_Class220]
-		[CZMLOnto_ProjectKB_Class221]
-		[CZMLOnto_ProjectKB_Class222]
-		[CZMLOnto_ProjectKB_Class223]
-		[CZMLOnto_ProjectKB_Class224]
-		[CZMLOnto_ProjectKB_Class225]
-		[CZMLOnto_ProjectKB_Class226]
-		[CZMLOnto_ProjectKB_Class227]
-		[CZMLOnto_ProjectKB_Class228]))
+		[CZMLOnto_ProjectKB_Class30438]
+		[CZMLOnto_ProjectKB_Class30439]
+		[CZMLOnto_ProjectKB_Class30440]
+		[CZMLOnto_ProjectKB_Class30441]
+		[CZMLOnto_ProjectKB_Class30442]
+		[CZMLOnto_ProjectKB_Class30443]
+		[CZMLOnto_ProjectKB_Class30444]
+		[CZMLOnto_ProjectKB_Class30445]
+		[CZMLOnto_ProjectKB_Class30446]
+		[CZMLOnto_ProjectKB_Class30447]
+		[CZMLOnto_ProjectKB_Class30448]
+		[CZMLOnto_ProjectKB_Class30449]
+		[CZMLOnto_ProjectKB_Class30450]
+		[CZMLOnto_ProjectKB_Class30451]
+		[CZMLOnto_ProjectKB_Class30452]
+		[CZMLOnto_ProjectKB_Class30453]
+		[CZMLOnto_ProjectKB_Class30454]
+		[CZMLOnto_ProjectKB_Class30455]
+		[CZMLOnto_ProjectKB_Class30456]
+		[CZMLOnto_ProjectKB_Class30457]
+		[CZMLOnto_ProjectKB_Class30458]
+		[CZMLOnto_ProjectKB_Class30459]
+		[CZMLOnto_ProjectKB_Class30460]
+		[CZMLOnto_ProjectKB_Class30461]
+		[CZMLOnto_ProjectKB_Class30462]
+		[CZMLOnto_ProjectKB_Class30463]
+		[CZMLOnto_ProjectKB_Class30464]
+		[CZMLOnto_ProjectKB_Class30465]))
 
-([CZMLOnto_ProjectKB_Class201] of  String
+([CZMLOnto_ProjectKB_Class20403] of  Widget
+
+	(is_hidden FALSE)
+	(name "SolidColor")
+	(property_list [CZMLOnto_ProjectKB_Class20404])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([CZMLOnto_ProjectKB_Class20404] of  Property_List
+
+	(properties
+		[CZMLOnto_ProjectKB_Class20405]
+		[CZMLOnto_ProjectKB_Class20406]))
+
+([CZMLOnto_ProjectKB_Class20405] of  Property_List
+
+	(name "layout properties"))
+
+([CZMLOnto_ProjectKB_Class20406] of  Widget
+
+	(height 340)
+	(is_hidden FALSE)
+	(label "Color")
+	(name "color")
+	(property_list [CZMLOnto_ProjectKB_Class20407])
+	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
+	(width 330)
+	(x 0)
+	(y 0))
+
+([CZMLOnto_ProjectKB_Class20407] of  Property_List
+
+	(properties
+		[CZMLOnto_ProjectKB_Class20410]
+		[CZMLOnto_ProjectKB_Class20411]
+		[CZMLOnto_ProjectKB_Class20412]
+		[CZMLOnto_ProjectKB_Class20413]
+		[CZMLOnto_ProjectKB_Class20414]
+		[CZMLOnto_ProjectKB_Class30415]
+		[CZMLOnto_ProjectKB_Class30416]
+		[CZMLOnto_ProjectKB_Class30417]
+		[CZMLOnto_ProjectKB_Class30418]
+		[CZMLOnto_ProjectKB_Class30419]
+		[CZMLOnto_ProjectKB_Class30420]
+		[CZMLOnto_ProjectKB_Class30421]
+		[CZMLOnto_ProjectKB_Class30422]
+		[CZMLOnto_ProjectKB_Class30423]
+		[CZMLOnto_ProjectKB_Class30424]
+		[CZMLOnto_ProjectKB_Class30425]
+		[CZMLOnto_ProjectKB_Class30426]
+		[CZMLOnto_ProjectKB_Class30427]
+		[CZMLOnto_ProjectKB_Class30428]
+		[CZMLOnto_ProjectKB_Class30429]
+		[CZMLOnto_ProjectKB_Class30430]
+		[CZMLOnto_ProjectKB_Class30431]
+		[CZMLOnto_ProjectKB_Class30432]
+		[CZMLOnto_ProjectKB_Class30433]
+		[CZMLOnto_ProjectKB_Class30434]
+		[CZMLOnto_ProjectKB_Class30435]
+		[CZMLOnto_ProjectKB_Class30436]
+		[CZMLOnto_ProjectKB_Class30437]))
+
+([CZMLOnto_ProjectKB_Class20410] of  String
 
 	(name "tooltip_text"))
 
-([CZMLOnto_ProjectKB_Class202] of  Boolean
+([CZMLOnto_ProjectKB_Class20411] of  Boolean
 
 	(boolean_value TRUE)
 	(name ":Insert:At:Current:Selection"))
 
-([CZMLOnto_ProjectKB_Class203] of  Boolean
+([CZMLOnto_ProjectKB_Class20412] of  Boolean
 
 	(boolean_value TRUE)
 	(name ":Select:New:Insertions"))
 
-([CZMLOnto_ProjectKB_Class204] of  Boolean
+([CZMLOnto_ProjectKB_Class20413] of  Boolean
 
 	(boolean_value TRUE)
 	(name ":Create:Form:For:New:Instances"))
 
-([CZMLOnto_ProjectKB_Class205] of  Boolean
+([CZMLOnto_ProjectKB_Class20414] of  Boolean
 
 	(boolean_value TRUE)
 	(name ":Subwidget:Selection:Enabled"))
-
-([CZMLOnto_ProjectKB_Class206] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Summary:Panel"))
-
-([CZMLOnto_ProjectKB_Class207] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Number:Of:Subordinates"))
-
-([CZMLOnto_ProjectKB_Class208] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Subordinate:Browser:Keys"))
-
-([CZMLOnto_ProjectKB_Class209] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Use:Separators:Between:Subwidgets"))
-
-([CZMLOnto_ProjectKB_Class210] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Comtain:In:Vertical:Direction"))
-
-([CZMLOnto_ProjectKB_Class211] of  Integer
-
-	(integer_value 10)
-	(name ":Size:Of:Space:Between:Subwidgets"))
-
-([CZMLOnto_ProjectKB_Class212] of  Integer
-
-	(integer_value 1)
-	(name ":Prototype:Depth"))
-
-([CZMLOnto_ProjectKB_Class213] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Create:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class214] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Add:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class215] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:View:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class216] of  Boolean
-
-	(boolean_value TRUE)
-	(name ":Display:Remove:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class217] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Delete:Instance:Button"))
-
-([CZMLOnto_ProjectKB_Class218] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Prototype:Button"))
-
-([CZMLOnto_ProjectKB_Class219] of  Boolean
-
-	(boolean_value FALSE)
-	(name ":Display:Move:Instance:Buttons"))
-
-([CZMLOnto_ProjectKB_Class220] of  String
-
-	(name ":Create:Instance:Button:Tooltip")
-	(string_value "Create a new instance"))
-
-([CZMLOnto_ProjectKB_Class221] of  String
-
-	(name ":Add:Instance:Button:Tooltip")
-	(string_value "Select an already existing instance"))
-
-([CZMLOnto_ProjectKB_Class222] of  String
-
-	(name ":View:Instance:Button:Tooltip")
-	(string_value "View the selected instance"))
-
-([CZMLOnto_ProjectKB_Class223] of  String
-
-	(name ":Remove:Instance:Button:Tooltip")
-	(string_value "Remove the selected instance(s)"))
-
-([CZMLOnto_ProjectKB_Class224] of  String
-
-	(name ":Delete:Instance:Button:Tooltip")
-	(string_value "Delete the selected instance(s) from the knowledge base"))
-
-([CZMLOnto_ProjectKB_Class225] of  String
-
-	(name ":Prototype:Button:Tooltip")
-	(string_value "Create a new instance which is a duplicate of the selected instance"))
-
-([CZMLOnto_ProjectKB_Class226] of  String
-
-	(name ":Move:Instance:Buttons:Tooltip")
-	(string_value "Move the selected instance"))
-
-([CZMLOnto_ProjectKB_Class227] of  String
-
-	(name ":Create:Instance:Dialog:Title")
-	(string_value "Create a new instance"))
-
-([CZMLOnto_ProjectKB_Class228] of  String
-
-	(name ":Add:Instance:Dialog:Title")
-	(string_value "Select an already existing instance"))
 
 ([CZMLOnto_ProjectKB_Class229] of  Widget
 
@@ -759,7 +617,8 @@
 		[CZMLOnto_ProjectKB_Class232]
 		[CZMLOnto_ProjectKB_Class234]
 		[CZMLOnto_ProjectKB_Class236]
-		[CZMLOnto_ProjectKB_Class240]))
+		[CZMLOnto_ProjectKB_Class240]
+		[CZMLOnto_ProjectKB_Class30501]))
 
 ([CZMLOnto_ProjectKB_Class231] of  Property_List
 
@@ -807,95 +666,577 @@
 ([CZMLOnto_ProjectKB_Class237] of  Property_List
 )
 
-([CZMLOnto_ProjectKB_Class238] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "material")
-	(property_list [CZMLOnto_ProjectKB_Class239])
-	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([CZMLOnto_ProjectKB_Class239] of  Property_List
-)
-
 ([CZMLOnto_ProjectKB_Class240] of  Widget
 
-	(height 60)
+	(height 420)
 	(is_hidden FALSE)
+	(label "Material")
 	(name "material")
 	(property_list [CZMLOnto_ProjectKB_Class241])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
+	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
+	(width 380)
+	(x 200)
+	(y 0))
 
 ([CZMLOnto_ProjectKB_Class241] of  Property_List
 
 	(properties
-		[CZMLOnto_ProjectKB_Class242]
-		[CZMLOnto_ProjectKB_Class243]))
+		[CZMLOnto_ProjectKB_Class30473]
+		[CZMLOnto_ProjectKB_Class30474]
+		[CZMLOnto_ProjectKB_Class30475]
+		[CZMLOnto_ProjectKB_Class30476]
+		[CZMLOnto_ProjectKB_Class30477]
+		[CZMLOnto_ProjectKB_Class30478]
+		[CZMLOnto_ProjectKB_Class30479]
+		[CZMLOnto_ProjectKB_Class30480]
+		[CZMLOnto_ProjectKB_Class30481]
+		[CZMLOnto_ProjectKB_Class30482]
+		[CZMLOnto_ProjectKB_Class30483]
+		[CZMLOnto_ProjectKB_Class30484]
+		[CZMLOnto_ProjectKB_Class30485]
+		[CZMLOnto_ProjectKB_Class30486]
+		[CZMLOnto_ProjectKB_Class30487]
+		[CZMLOnto_ProjectKB_Class30488]
+		[CZMLOnto_ProjectKB_Class30489]
+		[CZMLOnto_ProjectKB_Class30490]
+		[CZMLOnto_ProjectKB_Class30491]
+		[CZMLOnto_ProjectKB_Class30492]
+		[CZMLOnto_ProjectKB_Class30493]
+		[CZMLOnto_ProjectKB_Class30494]
+		[CZMLOnto_ProjectKB_Class30495]
+		[CZMLOnto_ProjectKB_Class30496]
+		[CZMLOnto_ProjectKB_Class30497]
+		[CZMLOnto_ProjectKB_Class30498]
+		[CZMLOnto_ProjectKB_Class30499]
+		[CZMLOnto_ProjectKB_Class30500]))
 
-([CZMLOnto_ProjectKB_Class242] of  Boolean
+([CZMLOnto_ProjectKB_Class3] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [CZMLOnto_ProjectKB_Class4])
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
+
+([CZMLOnto_ProjectKB_Class30415] of  Boolean
 
 	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
+	(name ":Display:Summary:Panel"))
 
-([CZMLOnto_ProjectKB_Class243] of  Boolean
+([CZMLOnto_ProjectKB_Class30416] of  Boolean
 
 	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
+	(name ":Display:Number:Of:Subordinates"))
 
-([CZMLOnto_ProjectKB_Class251] of  String
+([CZMLOnto_ProjectKB_Class30417] of  Boolean
 
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
 
-([CZMLOnto_ProjectKB_Class252] of  String
+([CZMLOnto_ProjectKB_Class30418] of  Boolean
 
-	(name "Point")
-	(string_value "{Point}"))
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
 
-([CZMLOnto_ProjectKB_Class253] of  String
+([CZMLOnto_ProjectKB_Class30419] of  Boolean
 
-	(name "Document")
-	(string_value "name"))
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
 
-([CZMLOnto_ProjectKB_Class254] of  String
+([CZMLOnto_ProjectKB_Class30420] of  Integer
 
-	(name "Ellipse")
-	(string_value "{Ellipse}"))
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
 
-([CZMLOnto_ProjectKB_Class255] of  String
+([CZMLOnto_ProjectKB_Class30421] of  Integer
 
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
+	(integer_value 1)
+	(name ":Prototype:Depth"))
 
-([CZMLOnto_ProjectKB_Class256] of  String
+([CZMLOnto_ProjectKB_Class30422] of  Boolean
 
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
 
-([CZMLOnto_ProjectKB_Class257] of  String
+([CZMLOnto_ProjectKB_Class30423] of  Boolean
 
-	(name "Array")
-	(string_value "name"))
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
 
-([CZMLOnto_ProjectKB_Class258] of  String
+([CZMLOnto_ProjectKB_Class30424] of  Boolean
 
-	(name "Packet")
-	(string_value "object"))
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
 
-([CZMLOnto_ProjectKB_Class259] of  String
+([CZMLOnto_ProjectKB_Class30425] of  Boolean
 
-	(name "Position")
-	(string_value "{Position}"))
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30426] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30427] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([CZMLOnto_ProjectKB_Class30428] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([CZMLOnto_ProjectKB_Class30429] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30430] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30431] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30432] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([CZMLOnto_ProjectKB_Class30433] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([CZMLOnto_ProjectKB_Class30434] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30435] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30436] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30437] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30438] of  String
+
+	(name "tooltip_text"))
+
+([CZMLOnto_ProjectKB_Class30439] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Insert:At:Current:Selection"))
+
+([CZMLOnto_ProjectKB_Class30440] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Select:New:Insertions"))
+
+([CZMLOnto_ProjectKB_Class30441] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Create:Form:For:New:Instances"))
+
+([CZMLOnto_ProjectKB_Class30442] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Subwidget:Selection:Enabled"))
+
+([CZMLOnto_ProjectKB_Class30443] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Summary:Panel"))
+
+([CZMLOnto_ProjectKB_Class30444] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Number:Of:Subordinates"))
+
+([CZMLOnto_ProjectKB_Class30445] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
+
+([CZMLOnto_ProjectKB_Class30446] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
+
+([CZMLOnto_ProjectKB_Class30447] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
+
+([CZMLOnto_ProjectKB_Class30448] of  Integer
+
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
+
+([CZMLOnto_ProjectKB_Class30449] of  Integer
+
+	(integer_value 1)
+	(name ":Prototype:Depth"))
+
+([CZMLOnto_ProjectKB_Class30450] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30451] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30452] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30453] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30454] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30455] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([CZMLOnto_ProjectKB_Class30456] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([CZMLOnto_ProjectKB_Class30457] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30458] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30459] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30460] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([CZMLOnto_ProjectKB_Class30461] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([CZMLOnto_ProjectKB_Class30462] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30463] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30464] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30465] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30473] of  String
+
+	(name "tooltip_text"))
+
+([CZMLOnto_ProjectKB_Class30474] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Insert:At:Current:Selection"))
+
+([CZMLOnto_ProjectKB_Class30475] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Select:New:Insertions"))
+
+([CZMLOnto_ProjectKB_Class30476] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Create:Form:For:New:Instances"))
+
+([CZMLOnto_ProjectKB_Class30477] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Subwidget:Selection:Enabled"))
+
+([CZMLOnto_ProjectKB_Class30478] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Summary:Panel"))
+
+([CZMLOnto_ProjectKB_Class30479] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Number:Of:Subordinates"))
+
+([CZMLOnto_ProjectKB_Class30480] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
+
+([CZMLOnto_ProjectKB_Class30481] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
+
+([CZMLOnto_ProjectKB_Class30482] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
+
+([CZMLOnto_ProjectKB_Class30483] of  Integer
+
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
+
+([CZMLOnto_ProjectKB_Class30484] of  Integer
+
+	(integer_value 1)
+	(name ":Prototype:Depth"))
+
+([CZMLOnto_ProjectKB_Class30485] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30486] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30487] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30488] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30489] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([CZMLOnto_ProjectKB_Class30490] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([CZMLOnto_ProjectKB_Class30491] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([CZMLOnto_ProjectKB_Class30492] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30493] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30494] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30495] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([CZMLOnto_ProjectKB_Class30496] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([CZMLOnto_ProjectKB_Class30497] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30498] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([CZMLOnto_ProjectKB_Class30499] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([CZMLOnto_ProjectKB_Class30500] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([CZMLOnto_ProjectKB_Class30501] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "heightReference")
+	(property_list [CZMLOnto_ProjectKB_Class30502])
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([CZMLOnto_ProjectKB_Class30502] of  Property_List
+)
 
 ([CZMLOnto_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
+
+([CZMLOnto_ProjectKB_Class396] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "point")
+	(property_list [CZMLOnto_ProjectKB_Class397])
+	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 560))
+
+([CZMLOnto_ProjectKB_Class397] of  Property_List
+
+	(properties
+		[CZMLOnto_ProjectKB_Class10398]
+		[CZMLOnto_ProjectKB_Class10399]))
+
+([CZMLOnto_ProjectKB_Class398] of  Widget
+
+	(height 280)
+	(is_hidden FALSE)
+	(name "rgba")
+	(property_list [CZMLOnto_ProjectKB_Class399])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 290)
+	(x 0)
+	(y 0))
+
+([CZMLOnto_ProjectKB_Class399] of  Property_List
+)
+
+([CZMLOnto_ProjectKB_Class4] of  Property_List
+)
+
+([CZMLOnto_ProjectKB_Class400] of  Widget
+
+	(height 290)
+	(is_hidden FALSE)
+	(name "cartographicDegrees")
+	(property_list [CZMLOnto_ProjectKB_Class401])
+	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
+	(width 320)
+	(x 0)
+	(y 60))
+
+([CZMLOnto_ProjectKB_Class401] of  Property_List
+)
+
+([CZMLOnto_ProjectKB_Class402] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "heightReference")
+	(property_list [CZMLOnto_ProjectKB_Class403])
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 200)
+	(x 0)
+	(y 360))
+
+([CZMLOnto_ProjectKB_Class403] of  Property_List
+)
+
+([CZMLOnto_ProjectKB_Class40415] of  String
+
+	(name "Point")
+	(string_value "{Point}"))
+
+([CZMLOnto_ProjectKB_Class40416] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([CZMLOnto_ProjectKB_Class40417] of  String
+
+	(name "Document")
+	(string_value "name"))
+
+([CZMLOnto_ProjectKB_Class40418] of  String
+
+	(name "Ellipse")
+	(string_value "{Ellipse}"))
+
+([CZMLOnto_ProjectKB_Class40419] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([CZMLOnto_ProjectKB_Class40420] of  String
+
+	(name "Packet")
+	(string_value "id"))
+
+([CZMLOnto_ProjectKB_Class40421] of  String
+
+	(name "Position")
+	(string_value "{Position}"))
+
+([CZMLOnto_ProjectKB_Class418] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "epoch")
+	(property_list [CZMLOnto_ProjectKB_Class419])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([CZMLOnto_ProjectKB_Class419] of  Property_List
+)
 
 ([CZMLOnto_ProjectKB_Class44] of  Widget
 
@@ -917,32 +1258,11 @@
 
 	(name "layout properties"))
 
-([CZMLOnto_ProjectKB_Class47] of  Widget
+([CZMLOnto_ProjectKB_Class5] of  Widget
 
-	(height 60)
-	(is_hidden FALSE)
-	(name "packets")
-	(property_list [CZMLOnto_ProjectKB_Class48])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 180))
-
-([CZMLOnto_ProjectKB_Class48] of  Property_List
-
-	(properties
-		[CZMLOnto_ProjectKB_Class49]
-		[CZMLOnto_ProjectKB_Class50]))
-
-([CZMLOnto_ProjectKB_Class49] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([CZMLOnto_ProjectKB_Class50] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
+	(is_hidden TRUE)
+	(property_list [CZMLOnto_ProjectKB_Class6])
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
 
 ([CZMLOnto_ProjectKB_Class51] of  Widget
 
@@ -1008,6 +1328,9 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-View References to Value"))
 
+([CZMLOnto_ProjectKB_Class6] of  Property_List
+)
+
 ([CZMLOnto_ProjectKB_Class60] of  Boolean
 
 	(boolean_value FALSE)
@@ -1027,7 +1350,8 @@
 		[CZMLOnto_ProjectKB_Class67]
 		[CZMLOnto_ProjectKB_Class71]
 		[CZMLOnto_ProjectKB_Class73]
-		[CZMLOnto_ProjectKB_Class75]))
+		[CZMLOnto_ProjectKB_Class396]
+		[CZMLOnto_ProjectKB_Class10400]))
 
 ([CZMLOnto_ProjectKB_Class66] of  Property_List
 
@@ -1041,7 +1365,7 @@
 	(name "position")
 	(property_list [CZMLOnto_ProjectKB_Class68])
 	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
-	(width 410)
+	(width 340)
 	(x 0)
 	(y 120))
 
@@ -1077,6 +1401,12 @@
 		[CZMLOnto_ProjectKB_Class136]
 		[CZMLOnto_ProjectKB_Class137]))
 
+([CZMLOnto_ProjectKB_Class7] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [CZMLOnto_ProjectKB_Class8])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
 ([CZMLOnto_ProjectKB_Class71] of  Widget
 
 	(height 60)
@@ -1086,7 +1416,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
 	(x 0)
-	(y 60))
+	(y 0))
 
 ([CZMLOnto_ProjectKB_Class72] of  Property_List
 )
@@ -1099,38 +1429,11 @@
 	(property_list [CZMLOnto_ProjectKB_Class74])
 	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
 	(width 200)
-	(x 200)
+	(x 0)
 	(y 60))
 
 ([CZMLOnto_ProjectKB_Class74] of  Property_List
 )
-
-([CZMLOnto_ProjectKB_Class75] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "object")
-	(property_list [CZMLOnto_ProjectKB_Class76])
-	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 0))
-
-([CZMLOnto_ProjectKB_Class76] of  Property_List
-
-	(properties
-		[CZMLOnto_ProjectKB_Class77]
-		[CZMLOnto_ProjectKB_Class78]))
-
-([CZMLOnto_ProjectKB_Class77] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value"))
-
-([CZMLOnto_ProjectKB_Class78] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
 
 ([CZMLOnto_ProjectKB_Class79] of  Widget
 
@@ -1139,12 +1442,15 @@
 	(property_list [CZMLOnto_ProjectKB_Class80])
 	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
 
+([CZMLOnto_ProjectKB_Class8] of  Property_List
+)
+
 ([CZMLOnto_ProjectKB_Class80] of  Property_List
 
 	(properties
 		[CZMLOnto_ProjectKB_Class81]
 		[CZMLOnto_ProjectKB_Class82]
-		[CZMLOnto_ProjectKB_Class84]))
+		[CZMLOnto_ProjectKB_Class400]))
 
 ([CZMLOnto_ProjectKB_Class81] of  Property_List
 
@@ -1164,81 +1470,11 @@
 ([CZMLOnto_ProjectKB_Class83] of  Property_List
 )
 
-([CZMLOnto_ProjectKB_Class84] of  Widget
-
-	(height 350)
-	(is_hidden FALSE)
-	(label "CartographicDegrees")
-	(name "cartographicDegrees")
-	(property_list [CZMLOnto_ProjectKB_Class85])
-	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
-	(width 340)
-	(x 0)
-	(y 60))
-
-([CZMLOnto_ProjectKB_Class85] of  Property_List
-
-	(properties
-		[CZMLOnto_ProjectKB_Class138]
-		[CZMLOnto_ProjectKB_Class139]
-		[CZMLOnto_ProjectKB_Class140]
-		[CZMLOnto_ProjectKB_Class141]
-		[CZMLOnto_ProjectKB_Class142]
-		[CZMLOnto_ProjectKB_Class143]
-		[CZMLOnto_ProjectKB_Class144]
-		[CZMLOnto_ProjectKB_Class145]
-		[CZMLOnto_ProjectKB_Class146]
-		[CZMLOnto_ProjectKB_Class147]
-		[CZMLOnto_ProjectKB_Class148]
-		[CZMLOnto_ProjectKB_Class149]
-		[CZMLOnto_ProjectKB_Class150]
-		[CZMLOnto_ProjectKB_Class151]
-		[CZMLOnto_ProjectKB_Class152]
-		[CZMLOnto_ProjectKB_Class153]
-		[CZMLOnto_ProjectKB_Class154]
-		[CZMLOnto_ProjectKB_Class155]
-		[CZMLOnto_ProjectKB_Class156]
-		[CZMLOnto_ProjectKB_Class157]
-		[CZMLOnto_ProjectKB_Class158]
-		[CZMLOnto_ProjectKB_Class159]
-		[CZMLOnto_ProjectKB_Class160]
-		[CZMLOnto_ProjectKB_Class161]
-		[CZMLOnto_ProjectKB_Class162]
-		[CZMLOnto_ProjectKB_Class163]
-		[CZMLOnto_ProjectKB_Class164]
-		[CZMLOnto_ProjectKB_Class165]))
-
-([CZMLOnto_ProjectKB_Class88] of  Widget
+([CZMLOnto_ProjectKB_Class9] of  Widget
 
 	(is_hidden FALSE)
-	(name "Array")
-	(property_list [CZMLOnto_ProjectKB_Class89])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
-
-([CZMLOnto_ProjectKB_Class89] of  Property_List
-
-	(properties
-		[CZMLOnto_ProjectKB_Class90]
-		[CZMLOnto_ProjectKB_Class91]
-		[CZMLOnto_ProjectKB_Class108]))
-
-([CZMLOnto_ProjectKB_Class90] of  Property_List
-
-	(name "layout properties"))
-
-([CZMLOnto_ProjectKB_Class91] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "values")
-	(property_list [CZMLOnto_ProjectKB_Class92])
-	(widget_class_name "edu.stanford.smi.protege.widget.StringListWidget")
-	(width 200)
-	(x 0)
-	(y 70))
-
-([CZMLOnto_ProjectKB_Class92] of  Property_List
-)
+	(property_list [CZMLOnto_ProjectKB_Class10])
+	(widget_class_name "clojuretab.ClojureTab"))
 
 ([CZMLOnto_ProjectKB_Class93] of  Widget
 
@@ -1254,7 +1490,9 @@
 		[CZMLOnto_ProjectKB_Class96]
 		[CZMLOnto_ProjectKB_Class100]
 		[CZMLOnto_ProjectKB_Class104]
-		[CZMLOnto_ProjectKB_Class106]))
+		[CZMLOnto_ProjectKB_Class106]
+		[CZMLOnto_ProjectKB_Class402]
+		[CZMLOnto_ProjectKB_Class418]))
 
 ([CZMLOnto_ProjectKB_Class95] of  Property_List
 
@@ -1269,7 +1507,7 @@
 	(widget_class_name "edu.stanford.smi.protege.widget.InstanceFieldWidget")
 	(width 200)
 	(x 0)
-	(y 240))
+	(y 300))
 
 ([CZMLOnto_ProjectKB_Class97] of  Property_List
 
@@ -1289,6 +1527,7 @@
 
 ([FORMS_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.FormsTab"))
 
 ([INSTANCE_ANNOTATION_FORM_WIDGET] of  Widget
@@ -1312,7 +1551,36 @@
 
 ([INSTANCES_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
+
+([KB_599949_Class392] of  Map
+
+	(entries
+		[KB_599949_Class393]
+		[KB_599949_Class394]
+		[KB_599949_Class395]))
+
+([KB_599949_Class393] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_599949_Class394] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([KB_599949_Class395] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([KB_760646_Class0] of  String
 
@@ -1320,18 +1588,6 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_760646_Class1] of  Map
-)
-
-([KB_760646_Class10] of  Property_List
-)
-
-([KB_760646_Class11] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_760646_Class12])
-	(widget_class_name "clojuretab.ClojureTab"))
-
-([KB_760646_Class12] of  Property_List
 )
 
 ([KB_760646_Class13] of  Property_List
@@ -1367,9 +1623,6 @@
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Move up"))
 
-([KB_760646_Class2] of  Map
-)
-
 ([KB_760646_Class20] of  Boolean
 
 	(boolean_value FALSE)
@@ -1403,12 +1656,6 @@
 ([KB_760646_Class29] of  Property_List
 )
 
-([KB_760646_Class3] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_760646_Class4])
-	(widget_class_name "ru.igis.omtab.OpenMapTab"))
-
 ([KB_760646_Class30] of  Property_List
 )
 
@@ -1435,33 +1682,6 @@
 	(name "instances_file_name")
 	(string_value "CZMLOnto.pins"))
 
-([KB_760646_Class4] of  Property_List
-)
-
-([KB_760646_Class5] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_760646_Class6])
-	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
-
-([KB_760646_Class6] of  Property_List
-)
-
-([KB_760646_Class7] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_760646_Class8])
-	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
-
-([KB_760646_Class8] of  Property_List
-)
-
-([KB_760646_Class9] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_760646_Class10])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -1474,6 +1694,7 @@
 	(display_hidden_classes TRUE)
 	(display_multi_parent_class_icon TRUE)
 	(is_readonly FALSE)
+	(tabbed_instance_form_layout FALSE)
 	(undo_enabled TRUE)
 	(update_modification_slots FALSE))
 
@@ -1548,18 +1769,21 @@
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[CZMLOnto_ProjectKB_Class194]
-		[CZMLOnto_ProjectKB_Class88]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[CZMLOnto_ProjectKB_Class44]
 		[CZMLOnto_ProjectKB_Class229]
-		[STANDARD_FACET_FORM_WIDGET]
 		[PAL_FORM_WIDGET]
 		[CZMLOnto_ProjectKB_Class64]
-		[CZMLOnto_ProjectKB_Class79])
+		[CZMLOnto_ProjectKB_Class10396]
+		[CZMLOnto_ProjectKB_Class79]
+		[CZMLOnto_ProjectKB_Class20403]
+		[STANDARD_FACET_FORM_WIDGET])
 	(default_cls_metaclass ":STANDARD-CLASS")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
+	(included_projects "../pprj_base/Clojure.pprj")
+	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
 	(property_map [KB_760646_Class1])
@@ -1569,15 +1793,22 @@
 		[SLOTS_TAB]
 		[FORMS_TAB]
 		[INSTANCES_TAB]
-		[QUERIES_TAB]))
+		[QUERIES_TAB]
+		[CZMLOnto_ProjectKB_Class9]
+		[CZMLOnto_ProjectKB_Class3]
+		[CZMLOnto_ProjectKB_Class5]
+		[CZMLOnto_ProjectKB_Class1]
+		[CZMLOnto_ProjectKB_Class7]))
 
 ([QUERIES_TAB] of  Widget
 
+	(is_hidden TRUE)
 	(property_list [KB_760646_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
 
 ([SLOTS_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.SlotsTab"))
 
 ([SOURCES] of  Property_List

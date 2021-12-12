@@ -1,4 +1,4 @@
-; Sun Dec 05 20:39:37 MSK 2021
+; Sun Dec 12 20:54:46 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9,7 +9,7 @@
 	(role abstract)
 	(single-slot solidColor
 		(type INSTANCE)
-;+		(allowed-classes Color)
+;+		(allowed-classes SolidColor)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot material
@@ -17,10 +17,8 @@
 ;+		(allowed-classes Material)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot cartographicDegrees
-		(type INSTANCE)
-;+		(allowed-classes Array)
-;+		(cardinality 0 1)
+	(multislot cartographicDegrees
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot name_
 		(type STRING)
@@ -33,9 +31,6 @@
 	(single-slot outlineWidth
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot values
-		(type STRING)
 		(create-accessor read-write))
 	(single-slot color
 		(type INSTANCE)
@@ -55,6 +50,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot ellipse
+		(type INSTANCE)
+;+		(allowed-classes Ellipse)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot semiMinorAxis
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -64,19 +64,23 @@
 ;+		(allowed-classes Color)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot object
+	(single-slot heightReference
+		(type SYMBOL)
+		(allowed-values CLAMP_TO_GROUND RELATIVE_TO_GROUND NONE)
+		(default NONE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot point
 		(type INSTANCE)
-;+		(allowed-classes Object)
+;+		(allowed-classes Point)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot height
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot rgba
-		(type INSTANCE)
-;+		(allowed-classes Array)
-;+		(cardinality 0 1)
+	(multislot rgba
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot epoch
 		(type STRING)
@@ -123,6 +127,11 @@
 ;+		(allowed-classes Position)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot point
+		(type INSTANCE)
+;+		(allowed-classes Point)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot id
 		(type STRING)
 ;+		(cardinality 0 1)
@@ -131,9 +140,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot object
+	(single-slot ellipse
 		(type INSTANCE)
-;+		(allowed-classes Object)
+;+		(allowed-classes Ellipse)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -148,19 +157,15 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot cartographicDegrees
-		(type INSTANCE)
-;+		(allowed-classes Array)
-;+		(cardinality 0 1)
+	(multislot cartographicDegrees
+		(type STRING)
 		(create-accessor read-write)))
 
 (defclass Color
 	(is-a Property)
 	(role concrete)
-	(single-slot rgba
-		(type INSTANCE)
-;+		(allowed-classes Array)
-;+		(cardinality 0 1)
+	(multislot rgba
+		(type STRING)
 		(create-accessor read-write)))
 
 (defclass Material
@@ -168,19 +173,17 @@
 	(role concrete)
 	(single-slot solidColor
 		(type INSTANCE)
-;+		(allowed-classes Color)
+;+		(allowed-classes SolidColor)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Array
+(defclass SolidColor
 	(is-a Property)
 	(role concrete)
-	(single-slot name_
-		(type STRING)
+	(single-slot color
+		(type INSTANCE)
+;+		(allowed-classes Color)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot values
-		(type STRING)
 		(create-accessor read-write)))
 
 (defclass Object
@@ -190,9 +193,19 @@
 (defclass Point
 	(is-a Object)
 	(role concrete)
+	(single-slot epoch
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot outlineColor
 		(type INSTANCE)
 ;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heightReference
+		(type SYMBOL)
+		(allowed-values CLAMP_TO_GROUND RELATIVE_TO_GROUND NONE)
+		(default NONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot color
@@ -215,6 +228,12 @@
 	(single-slot material
 		(type INSTANCE)
 ;+		(allowed-classes Material)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heightReference
+		(type SYMBOL)
+		(allowed-values CLAMP_TO_GROUND RELATIVE_TO_GROUND NONE)
+		(default NONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot height
