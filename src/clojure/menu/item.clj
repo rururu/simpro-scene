@@ -8,5 +8,9 @@
     (when (seq pins)
       (println (str " 1." i " " (sv (first pins) "title") " = " (ClojureTab/loadProgram (first pins)) ))
       (recur (inc i) (rest pins))))
-  (println "  Annotated instance of WorkingPrograms not found!")))
+  (println "  Annotated instance of WorkingPrograms not found!"))
+(println "Init Point Data view...")
+(ClojureTab/invoke "cesium.server" "start-server")
+(ClojureTab/invoke "cesium.server" "start-client")
+(ClojureTab/invoke "data.point" "init" "data.point/S-FINLAND"))
 

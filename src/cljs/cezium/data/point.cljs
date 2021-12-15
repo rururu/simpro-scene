@@ -29,7 +29,7 @@
   :step "SYSTEM_CLOCK_MULTIPLIER"
   :range "LOOP_STOP"})
 (defn init-client []
-  (add-terrain nil VIEWER)
+  ;;(add-terrain nil VIEWER)
 (camera-home CAMERA HEL-VIEW)
 (start-event-processing PORT VIEWER)
 (add-orbit-button CAMERA)

@@ -11,79 +11,79 @@ cesium.client.VIEWER.dataSources.add(ds);
 
 var vals = ds.entities.values;
 var ebbs = cljs.core.filter.call(null,((function (vals){
-return (function (p1__18944_SHARP_){
-return Cesium.defined(p1__18944_SHARP_.billboard);
+return (function (p1__1320_SHARP_){
+return Cesium.defined(p1__1320_SHARP_.billboard);
 });})(vals))
 ,vals);
-var seq__18945 = cljs.core.seq.call(null,ebbs);
-var chunk__18946 = null;
-var count__18947 = (0);
-var i__18948 = (0);
+var seq__1321 = cljs.core.seq.call(null,ebbs);
+var chunk__1322 = null;
+var count__1323 = (0);
+var i__1324 = (0);
 while(true){
-if((i__18948 < count__18947)){
-var ebb = cljs.core._nth.call(null,chunk__18946,i__18948);
+if((i__1324 < count__1323)){
+var ebb = cljs.core._nth.call(null,chunk__1322,i__1324);
 ebb.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
 
 ebb.label = null;
 
 ebb.billboard.distanceDisplayCondition = (new Cesium.DistanceDisplayCondition(10.0,20000.0));
 
-var pos_18949 = ebb.position.getValue(Cesium.JulianDate.now());
-var pos_18950__$1 = Cesium.Cartographic.fromCartesian(pos_18949);
-var lat_18951 = Cesium.Math.toDegrees(pos_18950__$1.latitude);
-var lon_18952 = Cesium.Math.toDegrees(pos_18950__$1.longitude);
-var desc_18953 = ["<table class=\"cesium-infoBox-defaultTable cesium-infoBox-defaultTable-lighter\"><tbody>","<tr><th>Longitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lon_18952.toFixed((5))),"</td></tr>","<tr><th>Latitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lat_18951.toFixed((5))),"</td></tr>","</tbody></table>"].join('');
-ebb.description = desc_18953;
+var pos_1325 = ebb.position.getValue(Cesium.JulianDate.now());
+var pos_1326__$1 = Cesium.Cartographic.fromCartesian(pos_1325);
+var lat_1327 = Cesium.Math.toDegrees(pos_1326__$1.latitude);
+var lon_1328 = Cesium.Math.toDegrees(pos_1326__$1.longitude);
+var desc_1329 = ["<table class=\"cesium-infoBox-defaultTable cesium-infoBox-defaultTable-lighter\"><tbody>","<tr><th>Longitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lon_1328.toFixed((5))),"</td></tr>","<tr><th>Latitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lat_1327.toFixed((5))),"</td></tr>","</tbody></table>"].join('');
+ebb.description = desc_1329;
 
 
-var G__18954 = seq__18945;
-var G__18955 = chunk__18946;
-var G__18956 = count__18947;
-var G__18957 = (i__18948 + (1));
-seq__18945 = G__18954;
-chunk__18946 = G__18955;
-count__18947 = G__18956;
-i__18948 = G__18957;
+var G__1330 = seq__1321;
+var G__1331 = chunk__1322;
+var G__1332 = count__1323;
+var G__1333 = (i__1324 + (1));
+seq__1321 = G__1330;
+chunk__1322 = G__1331;
+count__1323 = G__1332;
+i__1324 = G__1333;
 continue;
 } else {
-var temp__5735__auto__ = cljs.core.seq.call(null,seq__18945);
+var temp__5735__auto__ = cljs.core.seq.call(null,seq__1321);
 if(temp__5735__auto__){
-var seq__18945__$1 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__18945__$1)){
-var c__4461__auto__ = cljs.core.chunk_first.call(null,seq__18945__$1);
-var G__18958 = cljs.core.chunk_rest.call(null,seq__18945__$1);
-var G__18959 = c__4461__auto__;
-var G__18960 = cljs.core.count.call(null,c__4461__auto__);
-var G__18961 = (0);
-seq__18945 = G__18958;
-chunk__18946 = G__18959;
-count__18947 = G__18960;
-i__18948 = G__18961;
+var seq__1321__$1 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__1321__$1)){
+var c__4461__auto__ = cljs.core.chunk_first.call(null,seq__1321__$1);
+var G__1334 = cljs.core.chunk_rest.call(null,seq__1321__$1);
+var G__1335 = c__4461__auto__;
+var G__1336 = cljs.core.count.call(null,c__4461__auto__);
+var G__1337 = (0);
+seq__1321 = G__1334;
+chunk__1322 = G__1335;
+count__1323 = G__1336;
+i__1324 = G__1337;
 continue;
 } else {
-var ebb = cljs.core.first.call(null,seq__18945__$1);
+var ebb = cljs.core.first.call(null,seq__1321__$1);
 ebb.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
 
 ebb.label = null;
 
 ebb.billboard.distanceDisplayCondition = (new Cesium.DistanceDisplayCondition(10.0,20000.0));
 
-var pos_18962 = ebb.position.getValue(Cesium.JulianDate.now());
-var pos_18963__$1 = Cesium.Cartographic.fromCartesian(pos_18962);
-var lat_18964 = Cesium.Math.toDegrees(pos_18963__$1.latitude);
-var lon_18965 = Cesium.Math.toDegrees(pos_18963__$1.longitude);
-var desc_18966 = ["<table class=\"cesium-infoBox-defaultTable cesium-infoBox-defaultTable-lighter\"><tbody>","<tr><th>Longitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lon_18965.toFixed((5))),"</td></tr>","<tr><th>Latitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lat_18964.toFixed((5))),"</td></tr>","</tbody></table>"].join('');
-ebb.description = desc_18966;
+var pos_1338 = ebb.position.getValue(Cesium.JulianDate.now());
+var pos_1339__$1 = Cesium.Cartographic.fromCartesian(pos_1338);
+var lat_1340 = Cesium.Math.toDegrees(pos_1339__$1.latitude);
+var lon_1341 = Cesium.Math.toDegrees(pos_1339__$1.longitude);
+var desc_1342 = ["<table class=\"cesium-infoBox-defaultTable cesium-infoBox-defaultTable-lighter\"><tbody>","<tr><th>Longitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lon_1341.toFixed((5))),"</td></tr>","<tr><th>Latitude</th><td>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lat_1340.toFixed((5))),"</td></tr>","</tbody></table>"].join('');
+ebb.description = desc_1342;
 
 
-var G__18967 = cljs.core.next.call(null,seq__18945__$1);
-var G__18968 = null;
-var G__18969 = (0);
-var G__18970 = (0);
-seq__18945 = G__18967;
-chunk__18946 = G__18968;
-count__18947 = G__18969;
-i__18948 = G__18970;
+var G__1343 = cljs.core.next.call(null,seq__1321__$1);
+var G__1344 = null;
+var G__1345 = (0);
+var G__1346 = (0);
+seq__1321 = G__1343;
+chunk__1322 = G__1344;
+count__1323 = G__1345;
+i__1324 = G__1346;
 continue;
 }
 } else {
@@ -98,83 +98,83 @@ cesium.client.VIEWER.dataSources.add(ds);
 
 var vals = ds.entities.values;
 var epls = cljs.core.filter.call(null,((function (vals){
-return (function (p1__18971_SHARP_){
-return Cesium.defined(p1__18971_SHARP_.polygon);
+return (function (p1__1347_SHARP_){
+return Cesium.defined(p1__1347_SHARP_.polygon);
 });})(vals))
 ,vals);
-var seq__18972 = cljs.core.seq.call(null,epls);
-var chunk__18973 = null;
-var count__18974 = (0);
-var i__18975 = (0);
+var seq__1348 = cljs.core.seq.call(null,epls);
+var chunk__1349 = null;
+var count__1350 = (0);
+var i__1351 = (0);
 while(true){
-if((i__18975 < count__18974)){
-var epl = cljs.core._nth.call(null,chunk__18973,i__18975);
+if((i__1351 < count__1350)){
+var epl = cljs.core._nth.call(null,chunk__1349,i__1351);
 epl.name = epl.properties.neighborhood;
 
 epl.polygon.material = Cesium.Color.fromRandom(({"red": 0.1, "maximumGreen": 0.5, "minimumBlue": 0.5, "alpha": 0.6}));
 
 epl.polygon.classificationType = Cesium.ClassificationType.TERRAIN;
 
-var poss_18976 = epl.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
-var cntr_18977 = Cesium.BoundingSphere.fromPoints(poss_18976).center;
-var cntr_18978__$1 = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(cntr_18977);
-epl.position = cntr_18978__$1;
+var poss_1352 = epl.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
+var cntr_1353 = Cesium.BoundingSphere.fromPoints(poss_1352).center;
+var cntr_1354__$1 = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(cntr_1353);
+epl.position = cntr_1354__$1;
 
 epl.parent = workshop2.client.Neighborhoods;
 
 epl.label = ({"text": epl.name, "showBackground": true, "scale": 0.6, "horizontalOrigin": Cesium.HorizontalOrigin.CENTER, "verticalOrigin": Cesium.VerticalOrigin.BOTTOM, "distanceDisplayCondition": (new Cesium.DistanceDisplayCondition(10.0,8000.0)), "disableDepthTestDistance": 100.0});
 
 
-var G__18979 = seq__18972;
-var G__18980 = chunk__18973;
-var G__18981 = count__18974;
-var G__18982 = (i__18975 + (1));
-seq__18972 = G__18979;
-chunk__18973 = G__18980;
-count__18974 = G__18981;
-i__18975 = G__18982;
+var G__1355 = seq__1348;
+var G__1356 = chunk__1349;
+var G__1357 = count__1350;
+var G__1358 = (i__1351 + (1));
+seq__1348 = G__1355;
+chunk__1349 = G__1356;
+count__1350 = G__1357;
+i__1351 = G__1358;
 continue;
 } else {
-var temp__5735__auto__ = cljs.core.seq.call(null,seq__18972);
+var temp__5735__auto__ = cljs.core.seq.call(null,seq__1348);
 if(temp__5735__auto__){
-var seq__18972__$1 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__18972__$1)){
-var c__4461__auto__ = cljs.core.chunk_first.call(null,seq__18972__$1);
-var G__18983 = cljs.core.chunk_rest.call(null,seq__18972__$1);
-var G__18984 = c__4461__auto__;
-var G__18985 = cljs.core.count.call(null,c__4461__auto__);
-var G__18986 = (0);
-seq__18972 = G__18983;
-chunk__18973 = G__18984;
-count__18974 = G__18985;
-i__18975 = G__18986;
+var seq__1348__$1 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__1348__$1)){
+var c__4461__auto__ = cljs.core.chunk_first.call(null,seq__1348__$1);
+var G__1359 = cljs.core.chunk_rest.call(null,seq__1348__$1);
+var G__1360 = c__4461__auto__;
+var G__1361 = cljs.core.count.call(null,c__4461__auto__);
+var G__1362 = (0);
+seq__1348 = G__1359;
+chunk__1349 = G__1360;
+count__1350 = G__1361;
+i__1351 = G__1362;
 continue;
 } else {
-var epl = cljs.core.first.call(null,seq__18972__$1);
+var epl = cljs.core.first.call(null,seq__1348__$1);
 epl.name = epl.properties.neighborhood;
 
 epl.polygon.material = Cesium.Color.fromRandom(({"red": 0.1, "maximumGreen": 0.5, "minimumBlue": 0.5, "alpha": 0.6}));
 
 epl.polygon.classificationType = Cesium.ClassificationType.TERRAIN;
 
-var poss_18987 = epl.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
-var cntr_18988 = Cesium.BoundingSphere.fromPoints(poss_18987).center;
-var cntr_18989__$1 = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(cntr_18988);
-epl.position = cntr_18989__$1;
+var poss_1363 = epl.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
+var cntr_1364 = Cesium.BoundingSphere.fromPoints(poss_1363).center;
+var cntr_1365__$1 = Cesium.Ellipsoid.WGS84.scaleToGeodeticSurface(cntr_1364);
+epl.position = cntr_1365__$1;
 
 epl.parent = workshop2.client.Neighborhoods;
 
 epl.label = ({"text": epl.name, "showBackground": true, "scale": 0.6, "horizontalOrigin": Cesium.HorizontalOrigin.CENTER, "verticalOrigin": Cesium.VerticalOrigin.BOTTOM, "distanceDisplayCondition": (new Cesium.DistanceDisplayCondition(10.0,8000.0)), "disableDepthTestDistance": 100.0});
 
 
-var G__18990 = cljs.core.next.call(null,seq__18972__$1);
-var G__18991 = null;
-var G__18992 = (0);
-var G__18993 = (0);
-seq__18972 = G__18990;
-chunk__18973 = G__18991;
-count__18974 = G__18992;
-i__18975 = G__18993;
+var G__1366 = cljs.core.next.call(null,seq__1348__$1);
+var G__1367 = null;
+var G__1368 = (0);
+var G__1369 = (0);
+seq__1348 = G__1366;
+chunk__1349 = G__1367;
+count__1350 = G__1368;
+i__1351 = G__1369;
 continue;
 }
 } else {
@@ -251,18 +251,18 @@ city.style = sty_default;
 
 return tile_sty.addEventListener("change",((function (city,load_indi,sty_default,sty_transp,sty_height,tile_sty,hoff){
 return (function (e){
-var pred__18994 = cljs.core._EQ_;
-var expr__18995 = tile_sty.options.item(tile_sty.selectedIndex).value;
-if(cljs.core.truth_(pred__18994.call(null,"none",expr__18995))){
+var pred__1370 = cljs.core._EQ_;
+var expr__1371 = tile_sty.options.item(tile_sty.selectedIndex).value;
+if(cljs.core.truth_(pred__1370.call(null,"none",expr__1371))){
 return city.style = sty_default;
 } else {
-if(cljs.core.truth_(pred__18994.call(null,"height",expr__18995))){
+if(cljs.core.truth_(pred__1370.call(null,"height",expr__1371))){
 return city.style = sty_height;
 } else {
-if(cljs.core.truth_(pred__18994.call(null,"transparent",expr__18995))){
+if(cljs.core.truth_(pred__1370.call(null,"transparent",expr__1371))){
 return city.style = sty_transp;
 } else {
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__18995)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(expr__1371)].join('')));
 }
 }
 }
@@ -329,8 +329,8 @@ cesium.client.load_data.call(null,new cljs.core.Keyword(null,"KML","KML",1829561
 
 cesium.client.load_data.call(null,new cljs.core.Keyword(null,"GeoJSON","GeoJSON",33508860),"data/sampleNeighborhoods.geojson",({"clampToGround": true}),cesium.client.VIEWER,workshop2.client.geojson_adjustment);
 
-cesium.client.load_data.call(null,new cljs.core.Keyword(null,"CZML","CZML",-1539311408),"data/sampleFlight.czml",null,cesium.client.VIEWER,(function (p1__18997_SHARP_){
-return workshop2.client.drone_flight.call(null,p1__18997_SHARP_.entities.getById("Aircraft/Aircraft1"));
+cesium.client.load_data.call(null,new cljs.core.Keyword(null,"CZML","CZML",-1539311408),"data/sampleFlight.czml",null,cesium.client.VIEWER,(function (p1__1373_SHARP_){
+return workshop2.client.drone_flight.call(null,p1__1373_SHARP_.entities.getById("Aircraft/Aircraft1"));
 }));
 
 workshop2.client.add_3D_tileset.call(null,(75343));

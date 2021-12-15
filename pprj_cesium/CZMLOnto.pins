@@ -1,4 +1,4 @@
-; Sun Dec 12 20:54:46 MSK 2021
+; Wed Dec 15 17:27:33 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8,6 +8,7 @@
 	(cloFunctions
 		[CZMLOnto_Class2]
 		[CZMLOnto_Class20000]
+		[CZMLOnto_Class50002]
 		[CZMLOnto_Class20006]
 		[CZMLOnto_Class5]
 		[CZMLOnto_Class10009]
@@ -17,11 +18,19 @@
 		[CZMLOnto_Class30006]
 		[CZMLOnto_Class30026]
 		[CZMLOnto_Class30000]
-		[CZMLOnto_Class30003])
+		[CZMLOnto_Class30003]
+		[CZMLOnto_Class40001]
+		[CZMLOnto_Class40000]
+		[CZMLOnto_Class70004]
+		[CZMLOnto_Class70005]
+		[CZMLOnto_Class80008]
+		[CZMLOnto_Class50001]
+		[CZMLOnto_Class80012])
 	(cloNamespace [CZMLOnto_Class1])
 	(cloVars
 		[CZMLOnto_Class10010]
-		[CZMLOnto_Class30004])
+		[CZMLOnto_Class30004]
+		[CZMLOnto_Class70006])
 	(title "CZML Onto Programs"))
 
 ([CZMLOnto_Class1] of  CloNamespace
@@ -33,13 +42,9 @@
 
 	(source "(in-ns 'czml.onto)"))
 
-([CZMLOnto_Class10002] of  CloFuncall
-
-	(source "(document-map (fifos \"Document\" \"name\" \"Circle2\"))"))
-
 ([CZMLOnto_Class10009] of  CloFunction
 
-	(source "(if (.getAllowsMultipleValues slt)\n  (if (= (.getValueType slt) ValueType/STRING)\n    (read-string (str \"[\" (apply str (interpose \",\" (.getOwnSlotValues pki slt))) \"]\"))\n    (vec (map (fn [x] (packet-map x )) (.getOwnSlotValues pki slt))))\n  (packet-map (.getOwnSlotValue pki slt)))")
+	(source "(if (not= (.getName slt) \"title\")\n  (if (.getAllowsMultipleValues slt)\n    (if (= (.getValueType slt) ValueType/STRING)\n      (read-string (str \"[\" (apply str (interpose \",\" (.getOwnSlotValues pki slt))) \"]\"))\n      (vec (map (fn [x] (packet-map x )) (.getOwnSlotValues pki slt))))\n    (packet-map (.getOwnSlotValue pki slt))))")
 	(title "keyword-val [pki slt]"))
 
 ([CZMLOnto_Class10010] of  CloVar
@@ -84,8 +89,8 @@
 
 ([CZMLOnto_Class30003] of  CloFunction
 
-	(source "(let [fre (iso8601dmy from)\n       toe (iso8601dmy to)\n       ava (str fre \"/\" toe)\n       crd [(str \"\\\"\" fre \"\\\", \" lon \", \" lat \", \" 0)\n             (str \"\\\"\" toe \"\\\", \" lon \", \" lat \", \" 0)]\n       sma (str(inorm (norm value1 bounds1) CIRC-BND))\n       coi (crin \"Color\")\n       sci (crin \"SolidColor\")\n       mti (crin \"Material\")\n       eli (crin \"Ellipse\")\n       poi (crin \"Position\")\n       pki (crin \"Packet\")]\n  (ssvs coi \"rgba\" (date-value-colors dates2 values2 bounds2 alpha))\n  (ssv sci \"color\" coi)\n  (ssv mti \"solidColor\" sci) \n  (ssv eli \"semiMinorAxis\" sma)\n  (ssv eli \"semiMajorAxis\" sma)\n  (ssv eli \"heightReference\" \"CLAMP_TO_GROUND\")\n  (ssv eli \"material\" mti)\n  (ssvs poi \"cartographicDegrees\" crd)\n  (ssv pki \"id\" id)\n  (ssv pki \"availability\" ava)\n  (ssv pki \"position\" poi)\n  (ssv pki \"ellipse\" eli)\n  pki)")
-	(title "date-value-circle-pki [id [from to] [lon lat] value1 bounds1 dates2 values2 bounds2 alpha]"))
+	(source "(let [fre (iso8601dmy from)\n       toe (iso8601dmy to)\n       ava (str fre \"/\" toe)\n       crd [(str \"\\\"\" fre \"\\\", \" lon \", \" lat \", \" 0)\n             (str \"\\\"\" toe \"\\\", \" lon \", \" lat \", \" 0)]\n       sma (str (inorm (norm value1 bounds1) CIRC-BND))\n       coi (foc \"Color\" \"title\" id)\n       sci (foc \"SolidColor\" \"title\" id)\n       mti (foc \"Material\" \"title\" id)\n       eli (foc \"Ellipse\" \"title\" id)\n       poi (foc \"Position\" \"title\" id)\n       pki (foc \"Packet\" \"title\" id)]\n  (ssv coi \"title\" id)\n  (ssvs coi \"rgba\" (date-value-colors dates2 values2 bounds2 alpha))\n  (ssv sci \"title\" id)\n  (ssv sci \"color\" coi)\n  (ssv mti \"title\" id)\n  (ssv mti \"solidColor\" sci) \n  (ssv eli \"title\" id)\n  (ssv eli \"semiMinorAxis\" sma)\n  (ssv eli \"semiMajorAxis\" sma)\n  (ssv eli \"heightReference\" \"CLAMP_TO_GROUND\")\n  (ssv eli \"material\" mti)\n  (ssv poi \"title\" id)\n  (ssvs poi \"cartographicDegrees\" crd)\n  (ssv pki \"id\" id)\n  (ssv pki \"availability\" ava)\n  (ssv pki \"position\" poi)\n  (ssv pki \"ellipse\" eli)\n  pki)")
+	(title "mk-circle-pki [id [from to] [lon lat] value1 bounds1 dates2 values2 bounds2 alpha]"))
 
 ([CZMLOnto_Class30004] of  CloVar
 
@@ -102,54 +107,3444 @@
 	(source "(+ minval (* value (- maxval minval)))")
 	(title "inorm [value [minval maxval]]"))
 
-([CZMLOnto_Class30104] of  Document
+([CZMLOnto_Class40000] of  CloFunction
 
-	(id "document")
-	(name "Circle2")
-	(packets [CZMLOnto_Class60005])
-	(version "1.0"))
+	(source "(let [dates2 (map first data-values2)\n      values2 (map second data-values2)\n      value3 (* value1 0.75)\n      value4 (* value1 0.5)\n      value5 (* value1 0.25)\n      rwi (foc \"Row\" \"title\" name)\n      pks [(mk-label-pki (str name \"-lab\") from-to lon-lat value1 bounds1 label 0.5 [255 255 0 255])\n             (mk-circle-pki (str name \"-circ1\") from-to lon-lat value1 bounds1 dates2 values2 bounds2 100)\n             (mk-circle-pki (str name \"-circ2\") from-to lon-lat value3 bounds1 dates2 values2 bounds2 150)\n             (mk-circle-pki (str name \"-circ3\") from-to lon-lat value4 bounds1 dates2 values2 bounds2 200)\n             (mk-circle-pki (str name \"-circ4\") from-to lon-lat value5 bounds1 dates2 values2 bounds2 255)]]\n  (ssvs rwi \"packets\" pks)\n  rwi)")
+	(title "mk-row [name from-to lon-lat label value1 bounds1 bounds2 data-values2]"))
 
-([CZMLOnto_Class40003] of  CloFuncall
+([CZMLOnto_Class40001] of  CloFunction
 
-	(source "(date-value-circle-pki \"C2\" [\"11.12.2020\" \"14.12.2020\"] [25.0 60.0] 330 [100 400] [\"11.12.2020\" \"12.12.2020\" \"13.12.2020\" \"14.12.2020\"] [123 168 215 280] [100 300] 200)"))
+	(source "(let [fre (iso8601dmy from)\n       toe (iso8601dmy to)\n       ava (str fre \"/\" toe)\n       sma (inorm (norm value1 bounds1) CIRC-BND)\n       rad (/ sma 1852 60.) ;; degrees\n       lat (+ lat rad) ;; label above circle\n       crd [(str \"\\\"\" fre \"\\\", \" lon \", \" lat \", \" 0)\n             (str \"\\\"\" toe \"\\\", \" lon \", \" lat \", \" 0)]\n       rgba [(str \"\\\"\" fre \"\\\", \" r \", \" g \", \" b \", \" alpha)\n               (str \"\\\"\" toe \"\\\", \" r \", \" g \", \" b \", \" alpha)]\n       coi (foc \"Color\" \"title\" id)\n       lab (foc \"Label\" \"title\" id)\n       poi (foc \"Position\" \"title\" id)\n       pki (foc \"Packet\" \"title\" id)]\n  (ssv coi \"title\" id)\n  (ssvs coi \"rgba\" rgba)\n  (ssv lab \"title\" id)\n  (ssv lab \"text\" text)\n  (ssv lab \"fillColor\" coi)\n  (ssv lab \"heightReference\" \"CLAMP_TO_GROUND\")\n  (ssv lab \"scale\" (float scale))\n  (ssv poi \"title\" id)\n  (ssvs poi \"cartographicDegrees\" crd)\n  (ssv pki \"id\" id)\n  (ssv pki \"availability\" ava)\n  (ssv pki \"position\" poi)\n  (ssv pki \"label\" lab)\n  pki)")
+	(title "mk-label-pki [id [from to] [lon lat] value1 bounds1 text scale [r g b alpha]]"))
 
 ([CZMLOnto_Class5] of  CloFunction
 
 	(source "(when-let [p (fifos \"Packet\" \"id\" id)]\n  (.show *prj* p)\n  p)")
 	(title "find-packet [id]"))
 
-([CZMLOnto_Class60000] of  Color
+([CZMLOnto_Class50000] of  CloFuncall
+
+	(source "(mk-table-doc \"SFin\" TABLE)"))
+
+([CZMLOnto_Class50001] of  CloFunction
+
+	(source "(let [bounds1 (calc-bounds1 table)\n       bounds2 (calc-bounds2 table)\n       from-to (calc-from-to table)]\n  (loop [i 1 tab table rows []]\n    (if (empty? tab)\n      (let [tbi (foc \"Table\" \"title\" name)]\n        (ssvs tbi \"rows\" rows)\n        tbi)\n      (let [[lon lat lab v1 & dv2s] (first tab)\n              row (mk-row (str name i) from-to [lon lat] lab v1 bounds1 bounds2 dv2s)]\n        (recur (inc i) (rest tab) (conj rows row))))))")
+	(title "mk-table [name table]"))
+
+([CZMLOnto_Class50002] of  CloFunction
+
+	(source "(let [[d1 m1 y1] (.split dmy1 \"\\\\.\")\n       cld1 (Calendar/getInstance)\n       [d2 m2 y2] (.split dmy2 \"\\\\.\")\n       cld2 (Calendar/getInstance)]\n  (.set cld1 (read-string y1) (dec (read-string m1)) (read-string d1) 0 0 0)\n  (.set cld2 (read-string y2) (dec (read-string m2)) (read-string d2) 0 0 0)\n  (.before cld1 cld2))")
+	(title "before [dmy1 dmy2]"))
+
+([CZMLOnto_Class60380] of  Document
+
+	(id "document")
+	(name "SFin")
+	(packets
+		[CZMLOnto_Class60385]
+		[CZMLOnto_Class60391]
+		[CZMLOnto_Class60397]
+		[CZMLOnto_Class60403]
+		[CZMLOnto_Class60409]
+		[CZMLOnto_Class60414]
+		[CZMLOnto_Class60420]
+		[CZMLOnto_Class60426]
+		[CZMLOnto_Class60432]
+		[CZMLOnto_Class60438]
+		[CZMLOnto_Class60443]
+		[CZMLOnto_Class60449]
+		[CZMLOnto_Class60455]
+		[CZMLOnto_Class60461]
+		[CZMLOnto_Class60467]
+		[CZMLOnto_Class60472]
+		[CZMLOnto_Class60478]
+		[CZMLOnto_Class60484]
+		[CZMLOnto_Class60490]
+		[CZMLOnto_Class60496]
+		[CZMLOnto_Class60501]
+		[CZMLOnto_Class60507]
+		[CZMLOnto_Class60513]
+		[CZMLOnto_Class60519]
+		[CZMLOnto_Class60525]
+		[CZMLOnto_Class60530]
+		[CZMLOnto_Class60536]
+		[CZMLOnto_Class60542]
+		[CZMLOnto_Class60548]
+		[CZMLOnto_Class60554]
+		[CZMLOnto_Class60559]
+		[CZMLOnto_Class60565]
+		[CZMLOnto_Class60571]
+		[CZMLOnto_Class60577]
+		[CZMLOnto_Class60583]
+		[CZMLOnto_Class60588]
+		[CZMLOnto_Class60594]
+		[CZMLOnto_Class60600]
+		[CZMLOnto_Class60606]
+		[CZMLOnto_Class60612]
+		[CZMLOnto_Class60617]
+		[CZMLOnto_Class60623]
+		[CZMLOnto_Class60629]
+		[CZMLOnto_Class60635]
+		[CZMLOnto_Class60641]
+		[CZMLOnto_Class60646]
+		[CZMLOnto_Class60652]
+		[CZMLOnto_Class60658]
+		[CZMLOnto_Class60664]
+		[CZMLOnto_Class60670]
+		[CZMLOnto_Class60675]
+		[CZMLOnto_Class60681]
+		[CZMLOnto_Class60687]
+		[CZMLOnto_Class60693]
+		[CZMLOnto_Class60699]
+		[CZMLOnto_Class60704]
+		[CZMLOnto_Class60710]
+		[CZMLOnto_Class60716]
+		[CZMLOnto_Class60722]
+		[CZMLOnto_Class60728]
+		[CZMLOnto_Class60733]
+		[CZMLOnto_Class60739]
+		[CZMLOnto_Class60745]
+		[CZMLOnto_Class60751]
+		[CZMLOnto_Class60757]
+		[CZMLOnto_Class60762]
+		[CZMLOnto_Class60768]
+		[CZMLOnto_Class60774]
+		[CZMLOnto_Class60780]
+		[CZMLOnto_Class60786]
+		[CZMLOnto_Class60791]
+		[CZMLOnto_Class60797]
+		[CZMLOnto_Class60803]
+		[CZMLOnto_Class60809]
+		[CZMLOnto_Class60815]
+		[CZMLOnto_Class60820]
+		[CZMLOnto_Class60826]
+		[CZMLOnto_Class60832]
+		[CZMLOnto_Class60838]
+		[CZMLOnto_Class60844])
+	(version "1.0"))
+
+([CZMLOnto_Class60381] of  Row
+
+	(packets
+		[CZMLOnto_Class60385]
+		[CZMLOnto_Class60391]
+		[CZMLOnto_Class60397]
+		[CZMLOnto_Class60403]
+		[CZMLOnto_Class60409])
+	(title "SFin1"))
+
+([CZMLOnto_Class60382] of  Color
 
 	(rgba
-		"\"2020-12-11T00:00:00Z\", 255, 88, 0, 200"
-		"\"2020-12-12T00:00:00Z\", 249, 255, 0, 200"
-		"\"2020-12-13T00:00:00Z\", 69, 255, 0, 200"
-		"\"2020-12-14T00:00:00Z\", 0, 75, 179, 200"))
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin1-lab"))
 
-([CZMLOnto_Class60001] of  SolidColor
+([CZMLOnto_Class60383] of  Label
 
-	(color [CZMLOnto_Class60000]))
-
-([CZMLOnto_Class60002] of  Material
-
-	(solidColor [CZMLOnto_Class60001]))
-
-([CZMLOnto_Class60003] of  Ellipse
-
+	(fillColor [CZMLOnto_Class60382])
 	(heightReference CLAMP_TO_GROUND)
-	(material [CZMLOnto_Class60002])
-	(semiMajorAxis "31600.000000000004")
-	(semiMinorAxis "31600.000000000004"))
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Helsinki")
+	(title "SFin1-lab")
+	(verticalOrigin CENTER))
 
-([CZMLOnto_Class60004] of  Position
+([CZMLOnto_Class60384] of  Position
 
 	(cartographicDegrees
-		"\"2020-12-11T00:00:00Z\", 25.0, 60.0, 0"
-		"\"2020-12-14T00:00:00Z\", 25.0, 60.0, 0"))
+		"\"2021-12-11T00:00:00Z\", 24.939, 60.52797120230382, 0"
+		"\"2021-12-14T00:00:00Z\", 24.939, 60.52797120230382, 0")
+	(title "SFin1-lab"))
 
-([CZMLOnto_Class60005] of  Packet
+([CZMLOnto_Class60385] of  Packet
 
-	(availability "2020-12-11T00:00:00Z/2020-12-14T00:00:00Z")
-	(ellipse [CZMLOnto_Class60003])
-	(id "C2")
-	(position [CZMLOnto_Class60004]))
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin1-lab")
+	(label [CZMLOnto_Class60383])
+	(position [CZMLOnto_Class60384]))
+
+([CZMLOnto_Class60386] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 63, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 104, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 246, 8, 100")
+	(title "SFin1-circ1"))
+
+([CZMLOnto_Class60387] of  SolidColor
+
+	(color [CZMLOnto_Class60386])
+	(title "SFin1-circ1"))
+
+([CZMLOnto_Class60388] of  Material
+
+	(solidColor [CZMLOnto_Class60387])
+	(title "SFin1-circ1"))
+
+([CZMLOnto_Class60389] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60388])
+	(semiMajorAxis "40000.0")
+	(semiMinorAxis "40000.0")
+	(title "SFin1-circ1"))
+
+([CZMLOnto_Class60390] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.939, 60.168, 0"
+		"\"2021-12-14T00:00:00Z\", 24.939, 60.168, 0")
+	(title "SFin1-circ1"))
+
+([CZMLOnto_Class60391] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60389])
+	(id "SFin1-circ1")
+	(position [CZMLOnto_Class60390]))
+
+([CZMLOnto_Class60392] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 63, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 104, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 246, 8, 150")
+	(title "SFin1-circ2"))
+
+([CZMLOnto_Class60393] of  SolidColor
+
+	(color [CZMLOnto_Class60392])
+	(title "SFin1-circ2"))
+
+([CZMLOnto_Class60394] of  Material
+
+	(solidColor [CZMLOnto_Class60393])
+	(title "SFin1-circ2"))
+
+([CZMLOnto_Class60395] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60394])
+	(semiMajorAxis "30840.579710144928")
+	(semiMinorAxis "30840.579710144928")
+	(title "SFin1-circ2"))
+
+([CZMLOnto_Class60396] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.939, 60.168, 0"
+		"\"2021-12-14T00:00:00Z\", 24.939, 60.168, 0")
+	(title "SFin1-circ2"))
+
+([CZMLOnto_Class60397] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60395])
+	(id "SFin1-circ2")
+	(position [CZMLOnto_Class60396]))
+
+([CZMLOnto_Class60398] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 63, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 104, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 246, 8, 200")
+	(title "SFin1-circ3"))
+
+([CZMLOnto_Class60399] of  SolidColor
+
+	(color [CZMLOnto_Class60398])
+	(title "SFin1-circ3"))
+
+([CZMLOnto_Class60400] of  Material
+
+	(solidColor [CZMLOnto_Class60399])
+	(title "SFin1-circ3"))
+
+([CZMLOnto_Class60401] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60400])
+	(semiMajorAxis "21681.159420289856")
+	(semiMinorAxis "21681.159420289856")
+	(title "SFin1-circ3"))
+
+([CZMLOnto_Class60402] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.939, 60.168, 0"
+		"\"2021-12-14T00:00:00Z\", 24.939, 60.168, 0")
+	(title "SFin1-circ3"))
+
+([CZMLOnto_Class60403] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60401])
+	(id "SFin1-circ3")
+	(position [CZMLOnto_Class60402]))
+
+([CZMLOnto_Class60404] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 63, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 104, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 246, 8, 255")
+	(title "SFin1-circ4"))
+
+([CZMLOnto_Class60405] of  SolidColor
+
+	(color [CZMLOnto_Class60404])
+	(title "SFin1-circ4"))
+
+([CZMLOnto_Class60406] of  Material
+
+	(solidColor [CZMLOnto_Class60405])
+	(title "SFin1-circ4"))
+
+([CZMLOnto_Class60407] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60406])
+	(semiMajorAxis "12521.739130434782")
+	(semiMinorAxis "12521.739130434782")
+	(title "SFin1-circ4"))
+
+([CZMLOnto_Class60408] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.939, 60.168, 0"
+		"\"2021-12-14T00:00:00Z\", 24.939, 60.168, 0")
+	(title "SFin1-circ4"))
+
+([CZMLOnto_Class60409] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60407])
+	(id "SFin1-circ4")
+	(position [CZMLOnto_Class60408]))
+
+([CZMLOnto_Class60410] of  Row
+
+	(packets
+		[CZMLOnto_Class60414]
+		[CZMLOnto_Class60420]
+		[CZMLOnto_Class60426]
+		[CZMLOnto_Class60432]
+		[CZMLOnto_Class60438])
+	(title "SFin2"))
+
+([CZMLOnto_Class60411] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin2-lab"))
+
+([CZMLOnto_Class60412] of  Label
+
+	(fillColor [CZMLOnto_Class60411])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Turku")
+	(title "SFin2-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60413] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.266, 60.65241858912157, 0"
+		"\"2021-12-14T00:00:00Z\", 22.266, 60.65241858912157, 0")
+	(title "SFin2-lab"))
+
+([CZMLOnto_Class60414] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin2-lab")
+	(label [CZMLOnto_Class60412])
+	(position [CZMLOnto_Class60413]))
+
+([CZMLOnto_Class60415] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 43, 211, 100"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 168, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 100")
+	(title "SFin2-circ1"))
+
+([CZMLOnto_Class60416] of  SolidColor
+
+	(color [CZMLOnto_Class60415])
+	(title "SFin2-circ1"))
+
+([CZMLOnto_Class60417] of  Material
+
+	(solidColor [CZMLOnto_Class60416])
+	(title "SFin2-circ1"))
+
+([CZMLOnto_Class60418] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60417])
+	(semiMajorAxis "22492.753623188408")
+	(semiMinorAxis "22492.753623188408")
+	(title "SFin2-circ1"))
+
+([CZMLOnto_Class60419] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.266, 60.45, 0"
+		"\"2021-12-14T00:00:00Z\", 22.266, 60.45, 0")
+	(title "SFin2-circ1"))
+
+([CZMLOnto_Class60420] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60418])
+	(id "SFin2-circ1")
+	(position [CZMLOnto_Class60419]))
+
+([CZMLOnto_Class60421] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 43, 211, 150"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 168, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 150")
+	(title "SFin2-circ2"))
+
+([CZMLOnto_Class60422] of  SolidColor
+
+	(color [CZMLOnto_Class60421])
+	(title "SFin2-circ2"))
+
+([CZMLOnto_Class60423] of  Material
+
+	(solidColor [CZMLOnto_Class60422])
+	(title "SFin2-circ2"))
+
+([CZMLOnto_Class60424] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60423])
+	(semiMajorAxis "17710.144927536232")
+	(semiMinorAxis "17710.144927536232")
+	(title "SFin2-circ2"))
+
+([CZMLOnto_Class60425] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.266, 60.45, 0"
+		"\"2021-12-14T00:00:00Z\", 22.266, 60.45, 0")
+	(title "SFin2-circ2"))
+
+([CZMLOnto_Class60426] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60424])
+	(id "SFin2-circ2")
+	(position [CZMLOnto_Class60425]))
+
+([CZMLOnto_Class60427] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 43, 211, 200"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 168, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 200")
+	(title "SFin2-circ3"))
+
+([CZMLOnto_Class60428] of  SolidColor
+
+	(color [CZMLOnto_Class60427])
+	(title "SFin2-circ3"))
+
+([CZMLOnto_Class60429] of  Material
+
+	(solidColor [CZMLOnto_Class60428])
+	(title "SFin2-circ3"))
+
+([CZMLOnto_Class60430] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60429])
+	(semiMajorAxis "12927.536231884058")
+	(semiMinorAxis "12927.536231884058")
+	(title "SFin2-circ3"))
+
+([CZMLOnto_Class60431] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.266, 60.45, 0"
+		"\"2021-12-14T00:00:00Z\", 22.266, 60.45, 0")
+	(title "SFin2-circ3"))
+
+([CZMLOnto_Class60432] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60430])
+	(id "SFin2-circ3")
+	(position [CZMLOnto_Class60431]))
+
+([CZMLOnto_Class60433] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 43, 211, 255"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 168, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 255")
+	(title "SFin2-circ4"))
+
+([CZMLOnto_Class60434] of  SolidColor
+
+	(color [CZMLOnto_Class60433])
+	(title "SFin2-circ4"))
+
+([CZMLOnto_Class60435] of  Material
+
+	(solidColor [CZMLOnto_Class60434])
+	(title "SFin2-circ4"))
+
+([CZMLOnto_Class60436] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60435])
+	(semiMajorAxis "8144.927536231884")
+	(semiMinorAxis "8144.927536231884")
+	(title "SFin2-circ4"))
+
+([CZMLOnto_Class60437] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.266, 60.45, 0"
+		"\"2021-12-14T00:00:00Z\", 22.266, 60.45, 0")
+	(title "SFin2-circ4"))
+
+([CZMLOnto_Class60438] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60436])
+	(id "SFin2-circ4")
+	(position [CZMLOnto_Class60437]))
+
+([CZMLOnto_Class60439] of  Row
+
+	(packets
+		[CZMLOnto_Class60443]
+		[CZMLOnto_Class60449]
+		[CZMLOnto_Class60455]
+		[CZMLOnto_Class60461]
+		[CZMLOnto_Class60467])
+	(title "SFin3"))
+
+([CZMLOnto_Class60440] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin3-lab"))
+
+([CZMLOnto_Class60441] of  Label
+
+	(fillColor [CZMLOnto_Class60440])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Tampere")
+	(title "SFin3-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60442] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 23.77, 61.64168375747332, 0"
+		"\"2021-12-14T00:00:00Z\", 23.77, 61.64168375747332, 0")
+	(title "SFin3-lab"))
+
+([CZMLOnto_Class60443] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin3-lab")
+	(label [CZMLOnto_Class60441])
+	(position [CZMLOnto_Class60442]))
+
+([CZMLOnto_Class60444] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 225, 255, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 177, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 22, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 69, 0, 100")
+	(title "SFin3-circ1"))
+
+([CZMLOnto_Class60445] of  SolidColor
+
+	(color [CZMLOnto_Class60444])
+	(title "SFin3-circ1"))
+
+([CZMLOnto_Class60446] of  Material
+
+	(solidColor [CZMLOnto_Class60445])
+	(title "SFin3-circ1"))
+
+([CZMLOnto_Class60447] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60446])
+	(semiMajorAxis "16521.73913043478")
+	(semiMinorAxis "16521.73913043478")
+	(title "SFin3-circ1"))
+
+([CZMLOnto_Class60448] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 23.77, 61.493, 0"
+		"\"2021-12-14T00:00:00Z\", 23.77, 61.493, 0")
+	(title "SFin3-circ1"))
+
+([CZMLOnto_Class60449] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60447])
+	(id "SFin3-circ1")
+	(position [CZMLOnto_Class60448]))
+
+([CZMLOnto_Class60450] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 225, 255, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 177, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 22, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 69, 0, 150")
+	(title "SFin3-circ2"))
+
+([CZMLOnto_Class60451] of  SolidColor
+
+	(color [CZMLOnto_Class60450])
+	(title "SFin3-circ2"))
+
+([CZMLOnto_Class60452] of  Material
+
+	(solidColor [CZMLOnto_Class60451])
+	(title "SFin3-circ2"))
+
+([CZMLOnto_Class60453] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60452])
+	(semiMajorAxis "13231.884057971014")
+	(semiMinorAxis "13231.884057971014")
+	(title "SFin3-circ2"))
+
+([CZMLOnto_Class60454] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 23.77, 61.493, 0"
+		"\"2021-12-14T00:00:00Z\", 23.77, 61.493, 0")
+	(title "SFin3-circ2"))
+
+([CZMLOnto_Class60455] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60453])
+	(id "SFin3-circ2")
+	(position [CZMLOnto_Class60454]))
+
+([CZMLOnto_Class60456] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 225, 255, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 177, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 22, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 69, 0, 200")
+	(title "SFin3-circ3"))
+
+([CZMLOnto_Class60457] of  SolidColor
+
+	(color [CZMLOnto_Class60456])
+	(title "SFin3-circ3"))
+
+([CZMLOnto_Class60458] of  Material
+
+	(solidColor [CZMLOnto_Class60457])
+	(title "SFin3-circ3"))
+
+([CZMLOnto_Class60459] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60458])
+	(semiMajorAxis "9942.028985507248")
+	(semiMinorAxis "9942.028985507248")
+	(title "SFin3-circ3"))
+
+([CZMLOnto_Class60460] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 23.77, 61.493, 0"
+		"\"2021-12-14T00:00:00Z\", 23.77, 61.493, 0")
+	(title "SFin3-circ3"))
+
+([CZMLOnto_Class60461] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60459])
+	(id "SFin3-circ3")
+	(position [CZMLOnto_Class60460]))
+
+([CZMLOnto_Class60462] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 225, 255, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 177, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 22, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 69, 0, 255")
+	(title "SFin3-circ4"))
+
+([CZMLOnto_Class60463] of  SolidColor
+
+	(color [CZMLOnto_Class60462])
+	(title "SFin3-circ4"))
+
+([CZMLOnto_Class60464] of  Material
+
+	(solidColor [CZMLOnto_Class60463])
+	(title "SFin3-circ4"))
+
+([CZMLOnto_Class60465] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60464])
+	(semiMajorAxis "6652.173913043478")
+	(semiMinorAxis "6652.173913043478")
+	(title "SFin3-circ4"))
+
+([CZMLOnto_Class60466] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 23.77, 61.493, 0"
+		"\"2021-12-14T00:00:00Z\", 23.77, 61.493, 0")
+	(title "SFin3-circ4"))
+
+([CZMLOnto_Class60467] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60465])
+	(id "SFin3-circ4")
+	(position [CZMLOnto_Class60466]))
+
+([CZMLOnto_Class60468] of  Row
+
+	(packets
+		[CZMLOnto_Class60472]
+		[CZMLOnto_Class60478]
+		[CZMLOnto_Class60484]
+		[CZMLOnto_Class60490]
+		[CZMLOnto_Class60496])
+	(title "SFin4"))
+
+([CZMLOnto_Class60469] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin4-lab"))
+
+([CZMLOnto_Class60470] of  Label
+
+	(fillColor [CZMLOnto_Class60469])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Espoo")
+	(title "SFin4-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60471] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.656, 60.377160140232256, 0"
+		"\"2021-12-14T00:00:00Z\", 24.656, 60.377160140232256, 0")
+	(title "SFin4-lab"))
+
+([CZMLOnto_Class60472] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin4-lab")
+	(label [CZMLOnto_Class60470])
+	(position [CZMLOnto_Class60471]))
+
+([CZMLOnto_Class60473] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 239, 15, 100"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 180, 255, 0, 100")
+	(title "SFin4-circ1"))
+
+([CZMLOnto_Class60474] of  SolidColor
+
+	(color [CZMLOnto_Class60473])
+	(title "SFin4-circ1"))
+
+([CZMLOnto_Class60475] of  Material
+
+	(solidColor [CZMLOnto_Class60474])
+	(title "SFin4-circ1"))
+
+([CZMLOnto_Class60476] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60475])
+	(semiMajorAxis "19130.434782608696")
+	(semiMinorAxis "19130.434782608696")
+	(title "SFin4-circ1"))
+
+([CZMLOnto_Class60477] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.656, 60.205, 0"
+		"\"2021-12-14T00:00:00Z\", 24.656, 60.205, 0")
+	(title "SFin4-circ1"))
+
+([CZMLOnto_Class60478] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60476])
+	(id "SFin4-circ1")
+	(position [CZMLOnto_Class60477]))
+
+([CZMLOnto_Class60479] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 239, 15, 150"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 180, 255, 0, 150")
+	(title "SFin4-circ2"))
+
+([CZMLOnto_Class60480] of  SolidColor
+
+	(color [CZMLOnto_Class60479])
+	(title "SFin4-circ2"))
+
+([CZMLOnto_Class60481] of  Material
+
+	(solidColor [CZMLOnto_Class60480])
+	(title "SFin4-circ2"))
+
+([CZMLOnto_Class60482] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60481])
+	(semiMajorAxis "15188.405797101448")
+	(semiMinorAxis "15188.405797101448")
+	(title "SFin4-circ2"))
+
+([CZMLOnto_Class60483] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.656, 60.205, 0"
+		"\"2021-12-14T00:00:00Z\", 24.656, 60.205, 0")
+	(title "SFin4-circ2"))
+
+([CZMLOnto_Class60484] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60482])
+	(id "SFin4-circ2")
+	(position [CZMLOnto_Class60483]))
+
+([CZMLOnto_Class60485] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 239, 15, 200"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 180, 255, 0, 200")
+	(title "SFin4-circ3"))
+
+([CZMLOnto_Class60486] of  SolidColor
+
+	(color [CZMLOnto_Class60485])
+	(title "SFin4-circ3"))
+
+([CZMLOnto_Class60487] of  Material
+
+	(solidColor [CZMLOnto_Class60486])
+	(title "SFin4-circ3"))
+
+([CZMLOnto_Class60488] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60487])
+	(semiMajorAxis "11246.376811594204")
+	(semiMinorAxis "11246.376811594204")
+	(title "SFin4-circ3"))
+
+([CZMLOnto_Class60489] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.656, 60.205, 0"
+		"\"2021-12-14T00:00:00Z\", 24.656, 60.205, 0")
+	(title "SFin4-circ3"))
+
+([CZMLOnto_Class60490] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60488])
+	(id "SFin4-circ3")
+	(position [CZMLOnto_Class60489]))
+
+([CZMLOnto_Class60491] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 239, 15, 255"
+		"\"2021-12-12T00:00:00Z\", 22, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 180, 255, 0, 255")
+	(title "SFin4-circ4"))
+
+([CZMLOnto_Class60492] of  SolidColor
+
+	(color [CZMLOnto_Class60491])
+	(title "SFin4-circ4"))
+
+([CZMLOnto_Class60493] of  Material
+
+	(solidColor [CZMLOnto_Class60492])
+	(title "SFin4-circ4"))
+
+([CZMLOnto_Class60494] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60493])
+	(semiMajorAxis "7304.347826086956")
+	(semiMinorAxis "7304.347826086956")
+	(title "SFin4-circ4"))
+
+([CZMLOnto_Class60495] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.656, 60.205, 0"
+		"\"2021-12-14T00:00:00Z\", 24.656, 60.205, 0")
+	(title "SFin4-circ4"))
+
+([CZMLOnto_Class60496] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60494])
+	(id "SFin4-circ4")
+	(position [CZMLOnto_Class60495]))
+
+([CZMLOnto_Class60497] of  Row
+
+	(packets
+		[CZMLOnto_Class60501]
+		[CZMLOnto_Class60507]
+		[CZMLOnto_Class60513]
+		[CZMLOnto_Class60519]
+		[CZMLOnto_Class60525])
+	(title "SFin5"))
+
+([CZMLOnto_Class60498] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin5-lab"))
+
+([CZMLOnto_Class60499] of  Label
+
+	(fillColor [CZMLOnto_Class60498])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Pori")
+	(title "SFin5-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60500] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.806, 61.502081030039335, 0"
+		"\"2021-12-14T00:00:00Z\", 21.806, 61.502081030039335, 0")
+	(title "SFin5-lab"))
+
+([CZMLOnto_Class60501] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin5-lab")
+	(label [CZMLOnto_Class60499])
+	(position [CZMLOnto_Class60500]))
+
+([CZMLOnto_Class60502] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 151, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 113, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 145, 0, 100")
+	(title "SFin5-circ1"))
+
+([CZMLOnto_Class60503] of  SolidColor
+
+	(color [CZMLOnto_Class60502])
+	(title "SFin5-circ1"))
+
+([CZMLOnto_Class60504] of  Material
+
+	(solidColor [CZMLOnto_Class60503])
+	(title "SFin5-circ1"))
+
+([CZMLOnto_Class60505] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60504])
+	(semiMajorAxis "8231.884057971016")
+	(semiMinorAxis "8231.884057971016")
+	(title "SFin5-circ1"))
+
+([CZMLOnto_Class60506] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.806, 61.428, 0"
+		"\"2021-12-14T00:00:00Z\", 21.806, 61.428, 0")
+	(title "SFin5-circ1"))
+
+([CZMLOnto_Class60507] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60505])
+	(id "SFin5-circ1")
+	(position [CZMLOnto_Class60506]))
+
+([CZMLOnto_Class60508] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 151, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 113, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 145, 0, 150")
+	(title "SFin5-circ2"))
+
+([CZMLOnto_Class60509] of  SolidColor
+
+	(color [CZMLOnto_Class60508])
+	(title "SFin5-circ2"))
+
+([CZMLOnto_Class60510] of  Material
+
+	(solidColor [CZMLOnto_Class60509])
+	(title "SFin5-circ2"))
+
+([CZMLOnto_Class60511] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60510])
+	(semiMajorAxis "7014.492753623188")
+	(semiMinorAxis "7014.492753623188")
+	(title "SFin5-circ2"))
+
+([CZMLOnto_Class60512] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.806, 61.428, 0"
+		"\"2021-12-14T00:00:00Z\", 21.806, 61.428, 0")
+	(title "SFin5-circ2"))
+
+([CZMLOnto_Class60513] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60511])
+	(id "SFin5-circ2")
+	(position [CZMLOnto_Class60512]))
+
+([CZMLOnto_Class60514] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 151, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 113, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 145, 0, 200")
+	(title "SFin5-circ3"))
+
+([CZMLOnto_Class60515] of  SolidColor
+
+	(color [CZMLOnto_Class60514])
+	(title "SFin5-circ3"))
+
+([CZMLOnto_Class60516] of  Material
+
+	(solidColor [CZMLOnto_Class60515])
+	(title "SFin5-circ3"))
+
+([CZMLOnto_Class60517] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60516])
+	(semiMajorAxis "5797.101449275362")
+	(semiMinorAxis "5797.101449275362")
+	(title "SFin5-circ3"))
+
+([CZMLOnto_Class60518] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.806, 61.428, 0"
+		"\"2021-12-14T00:00:00Z\", 21.806, 61.428, 0")
+	(title "SFin5-circ3"))
+
+([CZMLOnto_Class60519] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60517])
+	(id "SFin5-circ3")
+	(position [CZMLOnto_Class60518]))
+
+([CZMLOnto_Class60520] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 151, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 113, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 145, 0, 255")
+	(title "SFin5-circ4"))
+
+([CZMLOnto_Class60521] of  SolidColor
+
+	(color [CZMLOnto_Class60520])
+	(title "SFin5-circ4"))
+
+([CZMLOnto_Class60522] of  Material
+
+	(solidColor [CZMLOnto_Class60521])
+	(title "SFin5-circ4"))
+
+([CZMLOnto_Class60523] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60522])
+	(semiMajorAxis "4579.710144927536")
+	(semiMinorAxis "4579.710144927536")
+	(title "SFin5-circ4"))
+
+([CZMLOnto_Class60524] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.806, 61.428, 0"
+		"\"2021-12-14T00:00:00Z\", 21.806, 61.428, 0")
+	(title "SFin5-circ4"))
+
+([CZMLOnto_Class60525] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60523])
+	(id "SFin5-circ4")
+	(position [CZMLOnto_Class60524]))
+
+([CZMLOnto_Class60526] of  Row
+
+	(packets
+		[CZMLOnto_Class60530]
+		[CZMLOnto_Class60536]
+		[CZMLOnto_Class60542]
+		[CZMLOnto_Class60548]
+		[CZMLOnto_Class60554])
+	(title "SFin6"))
+
+([CZMLOnto_Class60527] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin6-lab"))
+
+([CZMLOnto_Class60528] of  Label
+
+	(fillColor [CZMLOnto_Class60527])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Hämeenlinna")
+	(title "SFin6-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60529] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.462, 61.056733871725044, 0"
+		"\"2021-12-14T00:00:00Z\", 24.462, 61.056733871725044, 0")
+	(title "SFin6-lab"))
+
+([CZMLOnto_Class60530] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin6-lab")
+	(label [CZMLOnto_Class60528])
+	(position [CZMLOnto_Class60529]))
+
+([CZMLOnto_Class60531] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 48, 255, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 174, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 0, 170, 84, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 0, 255, 100")
+	(title "SFin6-circ1"))
+
+([CZMLOnto_Class60532] of  SolidColor
+
+	(color [CZMLOnto_Class60531])
+	(title "SFin6-circ1"))
+
+([CZMLOnto_Class60533] of  Material
+
+	(solidColor [CZMLOnto_Class60532])
+	(title "SFin6-circ1"))
+
+([CZMLOnto_Class60534] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60533])
+	(semiMajorAxis "7304.347826086956")
+	(semiMinorAxis "7304.347826086956")
+	(title "SFin6-circ1"))
+
+([CZMLOnto_Class60535] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.462, 60.991, 0"
+		"\"2021-12-14T00:00:00Z\", 24.462, 60.991, 0")
+	(title "SFin6-circ1"))
+
+([CZMLOnto_Class60536] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60534])
+	(id "SFin6-circ1")
+	(position [CZMLOnto_Class60535]))
+
+([CZMLOnto_Class60537] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 48, 255, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 174, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 0, 170, 84, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 0, 255, 150")
+	(title "SFin6-circ2"))
+
+([CZMLOnto_Class60538] of  SolidColor
+
+	(color [CZMLOnto_Class60537])
+	(title "SFin6-circ2"))
+
+([CZMLOnto_Class60539] of  Material
+
+	(solidColor [CZMLOnto_Class60538])
+	(title "SFin6-circ2"))
+
+([CZMLOnto_Class60540] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60539])
+	(semiMajorAxis "6318.840579710144")
+	(semiMinorAxis "6318.840579710144")
+	(title "SFin6-circ2"))
+
+([CZMLOnto_Class60541] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.462, 60.991, 0"
+		"\"2021-12-14T00:00:00Z\", 24.462, 60.991, 0")
+	(title "SFin6-circ2"))
+
+([CZMLOnto_Class60542] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60540])
+	(id "SFin6-circ2")
+	(position [CZMLOnto_Class60541]))
+
+([CZMLOnto_Class60543] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 48, 255, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 174, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 0, 170, 84, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 0, 255, 200")
+	(title "SFin6-circ3"))
+
+([CZMLOnto_Class60544] of  SolidColor
+
+	(color [CZMLOnto_Class60543])
+	(title "SFin6-circ3"))
+
+([CZMLOnto_Class60545] of  Material
+
+	(solidColor [CZMLOnto_Class60544])
+	(title "SFin6-circ3"))
+
+([CZMLOnto_Class60546] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60545])
+	(semiMajorAxis "5333.333333333333")
+	(semiMinorAxis "5333.333333333333")
+	(title "SFin6-circ3"))
+
+([CZMLOnto_Class60547] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.462, 60.991, 0"
+		"\"2021-12-14T00:00:00Z\", 24.462, 60.991, 0")
+	(title "SFin6-circ3"))
+
+([CZMLOnto_Class60548] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60546])
+	(id "SFin6-circ3")
+	(position [CZMLOnto_Class60547]))
+
+([CZMLOnto_Class60549] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 48, 255, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 174, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 0, 170, 84, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 0, 255, 255")
+	(title "SFin6-circ4"))
+
+([CZMLOnto_Class60550] of  SolidColor
+
+	(color [CZMLOnto_Class60549])
+	(title "SFin6-circ4"))
+
+([CZMLOnto_Class60551] of  Material
+
+	(solidColor [CZMLOnto_Class60550])
+	(title "SFin6-circ4"))
+
+([CZMLOnto_Class60552] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60551])
+	(semiMajorAxis "4347.826086956522")
+	(semiMinorAxis "4347.826086956522")
+	(title "SFin6-circ4"))
+
+([CZMLOnto_Class60553] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 24.462, 60.991, 0"
+		"\"2021-12-14T00:00:00Z\", 24.462, 60.991, 0")
+	(title "SFin6-circ4"))
+
+([CZMLOnto_Class60554] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60552])
+	(id "SFin6-circ4")
+	(position [CZMLOnto_Class60553]))
+
+([CZMLOnto_Class60555] of  Row
+
+	(packets
+		[CZMLOnto_Class60559]
+		[CZMLOnto_Class60565]
+		[CZMLOnto_Class60571]
+		[CZMLOnto_Class60577]
+		[CZMLOnto_Class60583])
+	(title "SFin7"))
+
+([CZMLOnto_Class60556] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin7-lab"))
+
+([CZMLOnto_Class60557] of  Label
+
+	(fillColor [CZMLOnto_Class60556])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Kouvola")
+	(title "SFin7-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60558] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.705, 60.941037635250055, 0"
+		"\"2021-12-14T00:00:00Z\", 26.705, 60.941037635250055, 0")
+	(title "SFin7-lab"))
+
+([CZMLOnto_Class60559] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin7-lab")
+	(label [CZMLOnto_Class60557])
+	(position [CZMLOnto_Class60558]))
+
+([CZMLOnto_Class60560] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 63, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 177, 0, 100")
+	(title "SFin7-circ1"))
+
+([CZMLOnto_Class60561] of  SolidColor
+
+	(color [CZMLOnto_Class60560])
+	(title "SFin7-circ1"))
+
+([CZMLOnto_Class60562] of  Material
+
+	(solidColor [CZMLOnto_Class60561])
+	(title "SFin7-circ1"))
+
+([CZMLOnto_Class60563] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60562])
+	(semiMajorAxis "8115.942028985507")
+	(semiMinorAxis "8115.942028985507")
+	(title "SFin7-circ1"))
+
+([CZMLOnto_Class60564] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.705, 60.868, 0"
+		"\"2021-12-14T00:00:00Z\", 26.705, 60.868, 0")
+	(title "SFin7-circ1"))
+
+([CZMLOnto_Class60565] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60563])
+	(id "SFin7-circ1")
+	(position [CZMLOnto_Class60564]))
+
+([CZMLOnto_Class60566] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 63, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 177, 0, 150")
+	(title "SFin7-circ2"))
+
+([CZMLOnto_Class60567] of  SolidColor
+
+	(color [CZMLOnto_Class60566])
+	(title "SFin7-circ2"))
+
+([CZMLOnto_Class60568] of  Material
+
+	(solidColor [CZMLOnto_Class60567])
+	(title "SFin7-circ2"))
+
+([CZMLOnto_Class60569] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60568])
+	(semiMajorAxis "6927.536231884058")
+	(semiMinorAxis "6927.536231884058")
+	(title "SFin7-circ2"))
+
+([CZMLOnto_Class60570] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.705, 60.868, 0"
+		"\"2021-12-14T00:00:00Z\", 26.705, 60.868, 0")
+	(title "SFin7-circ2"))
+
+([CZMLOnto_Class60571] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60569])
+	(id "SFin7-circ2")
+	(position [CZMLOnto_Class60570]))
+
+([CZMLOnto_Class60572] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 63, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 177, 0, 200")
+	(title "SFin7-circ3"))
+
+([CZMLOnto_Class60573] of  SolidColor
+
+	(color [CZMLOnto_Class60572])
+	(title "SFin7-circ3"))
+
+([CZMLOnto_Class60574] of  Material
+
+	(solidColor [CZMLOnto_Class60573])
+	(title "SFin7-circ3"))
+
+([CZMLOnto_Class60575] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60574])
+	(semiMajorAxis "5739.130434782609")
+	(semiMinorAxis "5739.130434782609")
+	(title "SFin7-circ3"))
+
+([CZMLOnto_Class60576] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.705, 60.868, 0"
+		"\"2021-12-14T00:00:00Z\", 26.705, 60.868, 0")
+	(title "SFin7-circ3"))
+
+([CZMLOnto_Class60577] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60575])
+	(id "SFin7-circ3")
+	(position [CZMLOnto_Class60576]))
+
+([CZMLOnto_Class60578] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 75, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 221, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 63, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 177, 0, 255")
+	(title "SFin7-circ4"))
+
+([CZMLOnto_Class60579] of  SolidColor
+
+	(color [CZMLOnto_Class60578])
+	(title "SFin7-circ4"))
+
+([CZMLOnto_Class60580] of  Material
+
+	(solidColor [CZMLOnto_Class60579])
+	(title "SFin7-circ4"))
+
+([CZMLOnto_Class60581] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60580])
+	(semiMajorAxis "4550.724637681159")
+	(semiMinorAxis "4550.724637681159")
+	(title "SFin7-circ4"))
+
+([CZMLOnto_Class60582] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.705, 60.868, 0"
+		"\"2021-12-14T00:00:00Z\", 26.705, 60.868, 0")
+	(title "SFin7-circ4"))
+
+([CZMLOnto_Class60583] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60581])
+	(id "SFin7-circ4")
+	(position [CZMLOnto_Class60582]))
+
+([CZMLOnto_Class60584] of  Row
+
+	(packets
+		[CZMLOnto_Class60588]
+		[CZMLOnto_Class60594]
+		[CZMLOnto_Class60600]
+		[CZMLOnto_Class60606]
+		[CZMLOnto_Class60612])
+	(title "SFin8"))
+
+([CZMLOnto_Class60585] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin8-lab"))
+
+([CZMLOnto_Class60586] of  Label
+
+	(fillColor [CZMLOnto_Class60585])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Lappeenranta")
+	(title "SFin8-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60587] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 28.189, 61.12282066130362, 0"
+		"\"2021-12-14T00:00:00Z\", 28.189, 61.12282066130362, 0")
+	(title "SFin8-lab"))
+
+([CZMLOnto_Class60588] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin8-lab")
+	(label [CZMLOnto_Class60586])
+	(position [CZMLOnto_Class60587]))
+
+([CZMLOnto_Class60589] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 16, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 0, 151, 103, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 106, 148, 100")
+	(title "SFin8-circ1"))
+
+([CZMLOnto_Class60590] of  SolidColor
+
+	(color [CZMLOnto_Class60589])
+	(title "SFin8-circ1"))
+
+([CZMLOnto_Class60591] of  Material
+
+	(solidColor [CZMLOnto_Class60590])
+	(title "SFin8-circ1"))
+
+([CZMLOnto_Class60592] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60591])
+	(semiMajorAxis "7536.231884057972")
+	(semiMinorAxis "7536.231884057972")
+	(title "SFin8-circ1"))
+
+([CZMLOnto_Class60593] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 28.189, 61.055, 0"
+		"\"2021-12-14T00:00:00Z\", 28.189, 61.055, 0")
+	(title "SFin8-circ1"))
+
+([CZMLOnto_Class60594] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60592])
+	(id "SFin8-circ1")
+	(position [CZMLOnto_Class60593]))
+
+([CZMLOnto_Class60595] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 16, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 0, 151, 103, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 106, 148, 150")
+	(title "SFin8-circ2"))
+
+([CZMLOnto_Class60596] of  SolidColor
+
+	(color [CZMLOnto_Class60595])
+	(title "SFin8-circ2"))
+
+([CZMLOnto_Class60597] of  Material
+
+	(solidColor [CZMLOnto_Class60596])
+	(title "SFin8-circ2"))
+
+([CZMLOnto_Class60598] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60597])
+	(semiMajorAxis "6492.753623188406")
+	(semiMinorAxis "6492.753623188406")
+	(title "SFin8-circ2"))
+
+([CZMLOnto_Class60599] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 28.189, 61.055, 0"
+		"\"2021-12-14T00:00:00Z\", 28.189, 61.055, 0")
+	(title "SFin8-circ2"))
+
+([CZMLOnto_Class60600] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60598])
+	(id "SFin8-circ2")
+	(position [CZMLOnto_Class60599]))
+
+([CZMLOnto_Class60601] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 16, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 0, 151, 103, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 106, 148, 200")
+	(title "SFin8-circ3"))
+
+([CZMLOnto_Class60602] of  SolidColor
+
+	(color [CZMLOnto_Class60601])
+	(title "SFin8-circ3"))
+
+([CZMLOnto_Class60603] of  Material
+
+	(solidColor [CZMLOnto_Class60602])
+	(title "SFin8-circ3"))
+
+([CZMLOnto_Class60604] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60603])
+	(semiMajorAxis "5449.27536231884")
+	(semiMinorAxis "5449.27536231884")
+	(title "SFin8-circ3"))
+
+([CZMLOnto_Class60605] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 28.189, 61.055, 0"
+		"\"2021-12-14T00:00:00Z\", 28.189, 61.055, 0")
+	(title "SFin8-circ3"))
+
+([CZMLOnto_Class60606] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60604])
+	(id "SFin8-circ3")
+	(position [CZMLOnto_Class60605]))
+
+([CZMLOnto_Class60607] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 16, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 0, 151, 103, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 106, 148, 255")
+	(title "SFin8-circ4"))
+
+([CZMLOnto_Class60608] of  SolidColor
+
+	(color [CZMLOnto_Class60607])
+	(title "SFin8-circ4"))
+
+([CZMLOnto_Class60609] of  Material
+
+	(solidColor [CZMLOnto_Class60608])
+	(title "SFin8-circ4"))
+
+([CZMLOnto_Class60610] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60609])
+	(semiMajorAxis "4405.797101449275")
+	(semiMinorAxis "4405.797101449275")
+	(title "SFin8-circ4"))
+
+([CZMLOnto_Class60611] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 28.189, 61.055, 0"
+		"\"2021-12-14T00:00:00Z\", 28.189, 61.055, 0")
+	(title "SFin8-circ4"))
+
+([CZMLOnto_Class60612] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60610])
+	(id "SFin8-circ4")
+	(position [CZMLOnto_Class60611]))
+
+([CZMLOnto_Class60613] of  Row
+
+	(packets
+		[CZMLOnto_Class60617]
+		[CZMLOnto_Class60623]
+		[CZMLOnto_Class60629]
+		[CZMLOnto_Class60635]
+		[CZMLOnto_Class60641])
+	(title "SFin9"))
+
+([CZMLOnto_Class60614] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin9-lab"))
+
+([CZMLOnto_Class60615] of  Label
+
+	(fillColor [CZMLOnto_Class60614])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Kotka")
+	(title "SFin9-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60616] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.942, 60.52038671341075, 0"
+		"\"2021-12-14T00:00:00Z\", 26.942, 60.52038671341075, 0")
+	(title "SFin9-lab"))
+
+([CZMLOnto_Class60617] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin9-lab")
+	(label [CZMLOnto_Class60615])
+	(position [CZMLOnto_Class60616]))
+
+([CZMLOnto_Class60618] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 75, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 145, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 100")
+	(title "SFin9-circ1"))
+
+([CZMLOnto_Class60619] of  SolidColor
+
+	(color [CZMLOnto_Class60618])
+	(title "SFin9-circ1"))
+
+([CZMLOnto_Class60620] of  Material
+
+	(solidColor [CZMLOnto_Class60619])
+	(title "SFin9-circ1"))
+
+([CZMLOnto_Class60621] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60620])
+	(semiMajorAxis "6376.811594202898")
+	(semiMinorAxis "6376.811594202898")
+	(title "SFin9-circ1"))
+
+([CZMLOnto_Class60622] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.942, 60.463, 0"
+		"\"2021-12-14T00:00:00Z\", 26.942, 60.463, 0")
+	(title "SFin9-circ1"))
+
+([CZMLOnto_Class60623] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60621])
+	(id "SFin9-circ1")
+	(position [CZMLOnto_Class60622]))
+
+([CZMLOnto_Class60624] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 75, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 145, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 150")
+	(title "SFin9-circ2"))
+
+([CZMLOnto_Class60625] of  SolidColor
+
+	(color [CZMLOnto_Class60624])
+	(title "SFin9-circ2"))
+
+([CZMLOnto_Class60626] of  Material
+
+	(solidColor [CZMLOnto_Class60625])
+	(title "SFin9-circ2"))
+
+([CZMLOnto_Class60627] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60626])
+	(semiMajorAxis "5623.188405797102")
+	(semiMinorAxis "5623.188405797102")
+	(title "SFin9-circ2"))
+
+([CZMLOnto_Class60628] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.942, 60.463, 0"
+		"\"2021-12-14T00:00:00Z\", 26.942, 60.463, 0")
+	(title "SFin9-circ2"))
+
+([CZMLOnto_Class60629] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60627])
+	(id "SFin9-circ2")
+	(position [CZMLOnto_Class60628]))
+
+([CZMLOnto_Class60630] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 75, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 145, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 200")
+	(title "SFin9-circ3"))
+
+([CZMLOnto_Class60631] of  SolidColor
+
+	(color [CZMLOnto_Class60630])
+	(title "SFin9-circ3"))
+
+([CZMLOnto_Class60632] of  Material
+
+	(solidColor [CZMLOnto_Class60631])
+	(title "SFin9-circ3"))
+
+([CZMLOnto_Class60633] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60632])
+	(semiMajorAxis "4869.565217391304")
+	(semiMinorAxis "4869.565217391304")
+	(title "SFin9-circ3"))
+
+([CZMLOnto_Class60634] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.942, 60.463, 0"
+		"\"2021-12-14T00:00:00Z\", 26.942, 60.463, 0")
+	(title "SFin9-circ3"))
+
+([CZMLOnto_Class60635] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60633])
+	(id "SFin9-circ3")
+	(position [CZMLOnto_Class60634]))
+
+([CZMLOnto_Class60636] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 75, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 145, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 255")
+	(title "SFin9-circ4"))
+
+([CZMLOnto_Class60637] of  SolidColor
+
+	(color [CZMLOnto_Class60636])
+	(title "SFin9-circ4"))
+
+([CZMLOnto_Class60638] of  Material
+
+	(solidColor [CZMLOnto_Class60637])
+	(title "SFin9-circ4"))
+
+([CZMLOnto_Class60639] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60638])
+	(semiMajorAxis "4115.942028985507")
+	(semiMinorAxis "4115.942028985507")
+	(title "SFin9-circ4"))
+
+([CZMLOnto_Class60640] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 26.942, 60.463, 0"
+		"\"2021-12-14T00:00:00Z\", 26.942, 60.463, 0")
+	(title "SFin9-circ4"))
+
+([CZMLOnto_Class60641] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60639])
+	(id "SFin9-circ4")
+	(position [CZMLOnto_Class60640]))
+
+([CZMLOnto_Class60642] of  Row
+
+	(packets
+		[CZMLOnto_Class60646]
+		[CZMLOnto_Class60652]
+		[CZMLOnto_Class60658]
+		[CZMLOnto_Class60664]
+		[CZMLOnto_Class60670])
+	(title "SFin10"))
+
+([CZMLOnto_Class60643] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin10-lab"))
+
+([CZMLOnto_Class60644] of  Label
+
+	(fillColor [CZMLOnto_Class60643])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Iisalmi")
+	(title "SFin10-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60645] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.196, 63.60121409417682, 0"
+		"\"2021-12-14T00:00:00Z\", 27.196, 63.60121409417682, 0")
+	(title "SFin10-lab"))
+
+([CZMLOnto_Class60646] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin10-lab")
+	(label [CZMLOnto_Class60644])
+	(position [CZMLOnto_Class60645]))
+
+([CZMLOnto_Class60647] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 98, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 35, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 111, 255, 0, 100")
+	(title "SFin10-circ1"))
+
+([CZMLOnto_Class60648] of  SolidColor
+
+	(color [CZMLOnto_Class60647])
+	(title "SFin10-circ1"))
+
+([CZMLOnto_Class60649] of  Material
+
+	(solidColor [CZMLOnto_Class60648])
+	(title "SFin10-circ1"))
+
+([CZMLOnto_Class60650] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60649])
+	(semiMajorAxis "4579.710144927536")
+	(semiMinorAxis "4579.710144927536")
+	(title "SFin10-circ1"))
+
+([CZMLOnto_Class60651] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.196, 63.56, 0"
+		"\"2021-12-14T00:00:00Z\", 27.196, 63.56, 0")
+	(title "SFin10-circ1"))
+
+([CZMLOnto_Class60652] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60650])
+	(id "SFin10-circ1")
+	(position [CZMLOnto_Class60651]))
+
+([CZMLOnto_Class60653] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 98, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 35, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 111, 255, 0, 150")
+	(title "SFin10-circ2"))
+
+([CZMLOnto_Class60654] of  SolidColor
+
+	(color [CZMLOnto_Class60653])
+	(title "SFin10-circ2"))
+
+([CZMLOnto_Class60655] of  Material
+
+	(solidColor [CZMLOnto_Class60654])
+	(title "SFin10-circ2"))
+
+([CZMLOnto_Class60656] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60655])
+	(semiMajorAxis "4275.36231884058")
+	(semiMinorAxis "4275.36231884058")
+	(title "SFin10-circ2"))
+
+([CZMLOnto_Class60657] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.196, 63.56, 0"
+		"\"2021-12-14T00:00:00Z\", 27.196, 63.56, 0")
+	(title "SFin10-circ2"))
+
+([CZMLOnto_Class60658] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60656])
+	(id "SFin10-circ2")
+	(position [CZMLOnto_Class60657]))
+
+([CZMLOnto_Class60659] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 98, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 35, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 111, 255, 0, 200")
+	(title "SFin10-circ3"))
+
+([CZMLOnto_Class60660] of  SolidColor
+
+	(color [CZMLOnto_Class60659])
+	(title "SFin10-circ3"))
+
+([CZMLOnto_Class60661] of  Material
+
+	(solidColor [CZMLOnto_Class60660])
+	(title "SFin10-circ3"))
+
+([CZMLOnto_Class60662] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60661])
+	(semiMajorAxis "3971.014492753623")
+	(semiMinorAxis "3971.014492753623")
+	(title "SFin10-circ3"))
+
+([CZMLOnto_Class60663] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.196, 63.56, 0"
+		"\"2021-12-14T00:00:00Z\", 27.196, 63.56, 0")
+	(title "SFin10-circ3"))
+
+([CZMLOnto_Class60664] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60662])
+	(id "SFin10-circ3")
+	(position [CZMLOnto_Class60663]))
+
+([CZMLOnto_Class60665] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 155, 255, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 98, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 35, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 111, 255, 0, 255")
+	(title "SFin10-circ4"))
+
+([CZMLOnto_Class60666] of  SolidColor
+
+	(color [CZMLOnto_Class60665])
+	(title "SFin10-circ4"))
+
+([CZMLOnto_Class60667] of  Material
+
+	(solidColor [CZMLOnto_Class60666])
+	(title "SFin10-circ4"))
+
+([CZMLOnto_Class60668] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60667])
+	(semiMajorAxis "3666.6666666666665")
+	(semiMinorAxis "3666.6666666666665")
+	(title "SFin10-circ4"))
+
+([CZMLOnto_Class60669] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.196, 63.56, 0"
+		"\"2021-12-14T00:00:00Z\", 27.196, 63.56, 0")
+	(title "SFin10-circ4"))
+
+([CZMLOnto_Class60670] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60668])
+	(id "SFin10-circ4")
+	(position [CZMLOnto_Class60669]))
+
+([CZMLOnto_Class60671] of  Row
+
+	(packets
+		[CZMLOnto_Class60675]
+		[CZMLOnto_Class60681]
+		[CZMLOnto_Class60687]
+		[CZMLOnto_Class60693]
+		[CZMLOnto_Class60699])
+	(title "SFin11"))
+
+([CZMLOnto_Class60672] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin11-lab"))
+
+([CZMLOnto_Class60673] of  Label
+
+	(fillColor [CZMLOnto_Class60672])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Lieksa")
+	(title "SFin11-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60674] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 30.028, 63.352997120230384, 0"
+		"\"2021-12-14T00:00:00Z\", 30.028, 63.352997120230384, 0")
+	(title "SFin11-lab"))
+
+([CZMLOnto_Class60675] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin11-lab")
+	(label [CZMLOnto_Class60673])
+	(position [CZMLOnto_Class60674]))
+
+([CZMLOnto_Class60676] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 62, 192, 100"
+		"\"2021-12-12T00:00:00Z\", 0, 87, 167, 100"
+		"\"2021-12-13T00:00:00Z\", 0, 182, 72, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 252, 2, 100")
+	(title "SFin11-circ1"))
+
+([CZMLOnto_Class60677] of  SolidColor
+
+	(color [CZMLOnto_Class60676])
+	(title "SFin11-circ1"))
+
+([CZMLOnto_Class60678] of  Material
+
+	(solidColor [CZMLOnto_Class60677])
+	(title "SFin11-circ1"))
+
+([CZMLOnto_Class60679] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60678])
+	(semiMajorAxis "4000.0")
+	(semiMinorAxis "4000.0")
+	(title "SFin11-circ1"))
+
+([CZMLOnto_Class60680] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 30.028, 63.317, 0"
+		"\"2021-12-14T00:00:00Z\", 30.028, 63.317, 0")
+	(title "SFin11-circ1"))
+
+([CZMLOnto_Class60681] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60679])
+	(id "SFin11-circ1")
+	(position [CZMLOnto_Class60680]))
+
+([CZMLOnto_Class60682] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 62, 192, 150"
+		"\"2021-12-12T00:00:00Z\", 0, 87, 167, 150"
+		"\"2021-12-13T00:00:00Z\", 0, 182, 72, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 252, 2, 150")
+	(title "SFin11-circ2"))
+
+([CZMLOnto_Class60683] of  SolidColor
+
+	(color [CZMLOnto_Class60682])
+	(title "SFin11-circ2"))
+
+([CZMLOnto_Class60684] of  Material
+
+	(solidColor [CZMLOnto_Class60683])
+	(title "SFin11-circ2"))
+
+([CZMLOnto_Class60685] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60684])
+	(semiMajorAxis "3840.5797101449275")
+	(semiMinorAxis "3840.5797101449275")
+	(title "SFin11-circ2"))
+
+([CZMLOnto_Class60686] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 30.028, 63.317, 0"
+		"\"2021-12-14T00:00:00Z\", 30.028, 63.317, 0")
+	(title "SFin11-circ2"))
+
+([CZMLOnto_Class60687] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60685])
+	(id "SFin11-circ2")
+	(position [CZMLOnto_Class60686]))
+
+([CZMLOnto_Class60688] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 62, 192, 200"
+		"\"2021-12-12T00:00:00Z\", 0, 87, 167, 200"
+		"\"2021-12-13T00:00:00Z\", 0, 182, 72, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 252, 2, 200")
+	(title "SFin11-circ3"))
+
+([CZMLOnto_Class60689] of  SolidColor
+
+	(color [CZMLOnto_Class60688])
+	(title "SFin11-circ3"))
+
+([CZMLOnto_Class60690] of  Material
+
+	(solidColor [CZMLOnto_Class60689])
+	(title "SFin11-circ3"))
+
+([CZMLOnto_Class60691] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60690])
+	(semiMajorAxis "3681.159420289855")
+	(semiMinorAxis "3681.159420289855")
+	(title "SFin11-circ3"))
+
+([CZMLOnto_Class60692] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 30.028, 63.317, 0"
+		"\"2021-12-14T00:00:00Z\", 30.028, 63.317, 0")
+	(title "SFin11-circ3"))
+
+([CZMLOnto_Class60693] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60691])
+	(id "SFin11-circ3")
+	(position [CZMLOnto_Class60692]))
+
+([CZMLOnto_Class60694] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 62, 192, 255"
+		"\"2021-12-12T00:00:00Z\", 0, 87, 167, 255"
+		"\"2021-12-13T00:00:00Z\", 0, 182, 72, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 252, 2, 255")
+	(title "SFin11-circ4"))
+
+([CZMLOnto_Class60695] of  SolidColor
+
+	(color [CZMLOnto_Class60694])
+	(title "SFin11-circ4"))
+
+([CZMLOnto_Class60696] of  Material
+
+	(solidColor [CZMLOnto_Class60695])
+	(title "SFin11-circ4"))
+
+([CZMLOnto_Class60697] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60696])
+	(semiMajorAxis "3521.7391304347825")
+	(semiMinorAxis "3521.7391304347825")
+	(title "SFin11-circ4"))
+
+([CZMLOnto_Class60698] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 30.028, 63.317, 0"
+		"\"2021-12-14T00:00:00Z\", 30.028, 63.317, 0")
+	(title "SFin11-circ4"))
+
+([CZMLOnto_Class60699] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60697])
+	(id "SFin11-circ4")
+	(position [CZMLOnto_Class60698]))
+
+([CZMLOnto_Class60700] of  Row
+
+	(packets
+		[CZMLOnto_Class60704]
+		[CZMLOnto_Class60710]
+		[CZMLOnto_Class60716]
+		[CZMLOnto_Class60722]
+		[CZMLOnto_Class60728])
+	(title "SFin12"))
+
+([CZMLOnto_Class60701] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin12-lab"))
+
+([CZMLOnto_Class60702] of  Label
+
+	(fillColor [CZMLOnto_Class60701])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Vaasa")
+	(title "SFin12-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60703] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.615, 63.1602121743304, 0"
+		"\"2021-12-14T00:00:00Z\", 21.615, 63.1602121743304, 0")
+	(title "SFin12-lab"))
+
+([CZMLOnto_Class60704] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin12-lab")
+	(label [CZMLOnto_Class60702])
+	(position [CZMLOnto_Class60703]))
+
+([CZMLOnto_Class60705] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 100"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 100")
+	(title "SFin12-circ1"))
+
+([CZMLOnto_Class60706] of  SolidColor
+
+	(color [CZMLOnto_Class60705])
+	(title "SFin12-circ1"))
+
+([CZMLOnto_Class60707] of  Material
+
+	(solidColor [CZMLOnto_Class60706])
+	(title "SFin12-circ1"))
+
+([CZMLOnto_Class60708] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60707])
+	(semiMajorAxis "7246.376811594203")
+	(semiMinorAxis "7246.376811594203")
+	(title "SFin12-circ1"))
+
+([CZMLOnto_Class60709] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.615, 63.095, 0"
+		"\"2021-12-14T00:00:00Z\", 21.615, 63.095, 0")
+	(title "SFin12-circ1"))
+
+([CZMLOnto_Class60710] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60708])
+	(id "SFin12-circ1")
+	(position [CZMLOnto_Class60709]))
+
+([CZMLOnto_Class60711] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 150"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 150")
+	(title "SFin12-circ2"))
+
+([CZMLOnto_Class60712] of  SolidColor
+
+	(color [CZMLOnto_Class60711])
+	(title "SFin12-circ2"))
+
+([CZMLOnto_Class60713] of  Material
+
+	(solidColor [CZMLOnto_Class60712])
+	(title "SFin12-circ2"))
+
+([CZMLOnto_Class60714] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60713])
+	(semiMajorAxis "6275.36231884058")
+	(semiMinorAxis "6275.36231884058")
+	(title "SFin12-circ2"))
+
+([CZMLOnto_Class60715] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.615, 63.095, 0"
+		"\"2021-12-14T00:00:00Z\", 21.615, 63.095, 0")
+	(title "SFin12-circ2"))
+
+([CZMLOnto_Class60716] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60714])
+	(id "SFin12-circ2")
+	(position [CZMLOnto_Class60715]))
+
+([CZMLOnto_Class60717] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 200"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 200")
+	(title "SFin12-circ3"))
+
+([CZMLOnto_Class60718] of  SolidColor
+
+	(color [CZMLOnto_Class60717])
+	(title "SFin12-circ3"))
+
+([CZMLOnto_Class60719] of  Material
+
+	(solidColor [CZMLOnto_Class60718])
+	(title "SFin12-circ3"))
+
+([CZMLOnto_Class60720] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60719])
+	(semiMajorAxis "5304.347826086956")
+	(semiMinorAxis "5304.347826086956")
+	(title "SFin12-circ3"))
+
+([CZMLOnto_Class60721] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.615, 63.095, 0"
+		"\"2021-12-14T00:00:00Z\", 21.615, 63.095, 0")
+	(title "SFin12-circ3"))
+
+([CZMLOnto_Class60722] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60720])
+	(id "SFin12-circ3")
+	(position [CZMLOnto_Class60721]))
+
+([CZMLOnto_Class60723] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 255"
+		"\"2021-12-13T00:00:00Z\", 130, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 0, 0, 255")
+	(title "SFin12-circ4"))
+
+([CZMLOnto_Class60724] of  SolidColor
+
+	(color [CZMLOnto_Class60723])
+	(title "SFin12-circ4"))
+
+([CZMLOnto_Class60725] of  Material
+
+	(solidColor [CZMLOnto_Class60724])
+	(title "SFin12-circ4"))
+
+([CZMLOnto_Class60726] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60725])
+	(semiMajorAxis "4333.333333333333")
+	(semiMinorAxis "4333.333333333333")
+	(title "SFin12-circ4"))
+
+([CZMLOnto_Class60727] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 21.615, 63.095, 0"
+		"\"2021-12-14T00:00:00Z\", 21.615, 63.095, 0")
+	(title "SFin12-circ4"))
+
+([CZMLOnto_Class60728] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60726])
+	(id "SFin12-circ4")
+	(position [CZMLOnto_Class60727]))
+
+([CZMLOnto_Class60729] of  Row
+
+	(packets
+		[CZMLOnto_Class60733]
+		[CZMLOnto_Class60739]
+		[CZMLOnto_Class60745]
+		[CZMLOnto_Class60751]
+		[CZMLOnto_Class60757])
+	(title "SFin13"))
+
+([CZMLOnto_Class60730] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin13-lab"))
+
+([CZMLOnto_Class60731] of  Label
+
+	(fillColor [CZMLOnto_Class60730])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Mikkeli")
+	(title "SFin13-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60732] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.272, 61.7459084108054, 0"
+		"\"2021-12-14T00:00:00Z\", 27.272, 61.7459084108054, 0")
+	(title "SFin13-lab"))
+
+([CZMLOnto_Class60733] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin13-lab")
+	(label [CZMLOnto_Class60731])
+	(position [CZMLOnto_Class60732]))
+
+([CZMLOnto_Class60734] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 100"
+		"\"2021-12-12T00:00:00Z\", 130, 255, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 100")
+	(title "SFin13-circ1"))
+
+([CZMLOnto_Class60735] of  SolidColor
+
+	(color [CZMLOnto_Class60734])
+	(title "SFin13-circ1"))
+
+([CZMLOnto_Class60736] of  Material
+
+	(solidColor [CZMLOnto_Class60735])
+	(title "SFin13-circ1"))
+
+([CZMLOnto_Class60737] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60736])
+	(semiMajorAxis "6434.782608695652")
+	(semiMinorAxis "6434.782608695652")
+	(title "SFin13-circ1"))
+
+([CZMLOnto_Class60738] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.272, 61.688, 0"
+		"\"2021-12-14T00:00:00Z\", 27.272, 61.688, 0")
+	(title "SFin13-circ1"))
+
+([CZMLOnto_Class60739] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60737])
+	(id "SFin13-circ1")
+	(position [CZMLOnto_Class60738]))
+
+([CZMLOnto_Class60740] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 150"
+		"\"2021-12-12T00:00:00Z\", 130, 255, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 150")
+	(title "SFin13-circ2"))
+
+([CZMLOnto_Class60741] of  SolidColor
+
+	(color [CZMLOnto_Class60740])
+	(title "SFin13-circ2"))
+
+([CZMLOnto_Class60742] of  Material
+
+	(solidColor [CZMLOnto_Class60741])
+	(title "SFin13-circ2"))
+
+([CZMLOnto_Class60743] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60742])
+	(semiMajorAxis "5666.666666666666")
+	(semiMinorAxis "5666.666666666666")
+	(title "SFin13-circ2"))
+
+([CZMLOnto_Class60744] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.272, 61.688, 0"
+		"\"2021-12-14T00:00:00Z\", 27.272, 61.688, 0")
+	(title "SFin13-circ2"))
+
+([CZMLOnto_Class60745] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60743])
+	(id "SFin13-circ2")
+	(position [CZMLOnto_Class60744]))
+
+([CZMLOnto_Class60746] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 200"
+		"\"2021-12-12T00:00:00Z\", 130, 255, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 200")
+	(title "SFin13-circ3"))
+
+([CZMLOnto_Class60747] of  SolidColor
+
+	(color [CZMLOnto_Class60746])
+	(title "SFin13-circ3"))
+
+([CZMLOnto_Class60748] of  Material
+
+	(solidColor [CZMLOnto_Class60747])
+	(title "SFin13-circ3"))
+
+([CZMLOnto_Class60749] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60748])
+	(semiMajorAxis "4898.550724637681")
+	(semiMinorAxis "4898.550724637681")
+	(title "SFin13-circ3"))
+
+([CZMLOnto_Class60750] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.272, 61.688, 0"
+		"\"2021-12-14T00:00:00Z\", 27.272, 61.688, 0")
+	(title "SFin13-circ3"))
+
+([CZMLOnto_Class60751] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60749])
+	(id "SFin13-circ3")
+	(position [CZMLOnto_Class60750]))
+
+([CZMLOnto_Class60752] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 255"
+		"\"2021-12-12T00:00:00Z\", 130, 255, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 255")
+	(title "SFin13-circ4"))
+
+([CZMLOnto_Class60753] of  SolidColor
+
+	(color [CZMLOnto_Class60752])
+	(title "SFin13-circ4"))
+
+([CZMLOnto_Class60754] of  Material
+
+	(solidColor [CZMLOnto_Class60753])
+	(title "SFin13-circ4"))
+
+([CZMLOnto_Class60755] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60754])
+	(semiMajorAxis "4130.434782608696")
+	(semiMinorAxis "4130.434782608696")
+	(title "SFin13-circ4"))
+
+([CZMLOnto_Class60756] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.272, 61.688, 0"
+		"\"2021-12-14T00:00:00Z\", 27.272, 61.688, 0")
+	(title "SFin13-circ4"))
+
+([CZMLOnto_Class60757] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60755])
+	(id "SFin13-circ4")
+	(position [CZMLOnto_Class60756]))
+
+([CZMLOnto_Class60758] of  Row
+
+	(packets
+		[CZMLOnto_Class60762]
+		[CZMLOnto_Class60768]
+		[CZMLOnto_Class60774]
+		[CZMLOnto_Class60780]
+		[CZMLOnto_Class60786])
+	(title "SFin14"))
+
+([CZMLOnto_Class60759] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin14-lab"))
+
+([CZMLOnto_Class60760] of  Label
+
+	(fillColor [CZMLOnto_Class60759])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Seinäjoki")
+	(title "SFin14-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60761] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.85, 62.85064708214647, 0"
+		"\"2021-12-14T00:00:00Z\", 22.85, 62.85064708214647, 0")
+	(title "SFin14-lab"))
+
+([CZMLOnto_Class60762] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin14-lab")
+	(label [CZMLOnto_Class60760])
+	(position [CZMLOnto_Class60761]))
+
+([CZMLOnto_Class60763] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 100"
+		"\"2021-12-12T00:00:00Z\", 0, 68, 186, 100"
+		"\"2021-12-13T00:00:00Z\", 0, 132, 122, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 195, 59, 100")
+	(title "SFin14-circ1"))
+
+([CZMLOnto_Class60764] of  SolidColor
+
+	(color [CZMLOnto_Class60763])
+	(title "SFin14-circ1"))
+
+([CZMLOnto_Class60765] of  Material
+
+	(solidColor [CZMLOnto_Class60764])
+	(title "SFin14-circ1"))
+
+([CZMLOnto_Class60766] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60765])
+	(semiMajorAxis "7072.463768115942")
+	(semiMinorAxis "7072.463768115942")
+	(title "SFin14-circ1"))
+
+([CZMLOnto_Class60767] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.85, 62.787, 0"
+		"\"2021-12-14T00:00:00Z\", 22.85, 62.787, 0")
+	(title "SFin14-circ1"))
+
+([CZMLOnto_Class60768] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60766])
+	(id "SFin14-circ1")
+	(position [CZMLOnto_Class60767]))
+
+([CZMLOnto_Class60769] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 150"
+		"\"2021-12-12T00:00:00Z\", 0, 68, 186, 150"
+		"\"2021-12-13T00:00:00Z\", 0, 132, 122, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 195, 59, 150")
+	(title "SFin14-circ2"))
+
+([CZMLOnto_Class60770] of  SolidColor
+
+	(color [CZMLOnto_Class60769])
+	(title "SFin14-circ2"))
+
+([CZMLOnto_Class60771] of  Material
+
+	(solidColor [CZMLOnto_Class60770])
+	(title "SFin14-circ2"))
+
+([CZMLOnto_Class60772] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60771])
+	(semiMajorAxis "6144.927536231884")
+	(semiMinorAxis "6144.927536231884")
+	(title "SFin14-circ2"))
+
+([CZMLOnto_Class60773] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.85, 62.787, 0"
+		"\"2021-12-14T00:00:00Z\", 22.85, 62.787, 0")
+	(title "SFin14-circ2"))
+
+([CZMLOnto_Class60774] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60772])
+	(id "SFin14-circ2")
+	(position [CZMLOnto_Class60773]))
+
+([CZMLOnto_Class60775] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 200"
+		"\"2021-12-12T00:00:00Z\", 0, 68, 186, 200"
+		"\"2021-12-13T00:00:00Z\", 0, 132, 122, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 195, 59, 200")
+	(title "SFin14-circ3"))
+
+([CZMLOnto_Class60776] of  SolidColor
+
+	(color [CZMLOnto_Class60775])
+	(title "SFin14-circ3"))
+
+([CZMLOnto_Class60777] of  Material
+
+	(solidColor [CZMLOnto_Class60776])
+	(title "SFin14-circ3"))
+
+([CZMLOnto_Class60778] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60777])
+	(semiMajorAxis "5217.391304347826")
+	(semiMinorAxis "5217.391304347826")
+	(title "SFin14-circ3"))
+
+([CZMLOnto_Class60779] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.85, 62.787, 0"
+		"\"2021-12-14T00:00:00Z\", 22.85, 62.787, 0")
+	(title "SFin14-circ3"))
+
+([CZMLOnto_Class60780] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60778])
+	(id "SFin14-circ3")
+	(position [CZMLOnto_Class60779]))
+
+([CZMLOnto_Class60781] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 0, 5, 249, 255"
+		"\"2021-12-12T00:00:00Z\", 0, 68, 186, 255"
+		"\"2021-12-13T00:00:00Z\", 0, 132, 122, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 195, 59, 255")
+	(title "SFin14-circ4"))
+
+([CZMLOnto_Class60782] of  SolidColor
+
+	(color [CZMLOnto_Class60781])
+	(title "SFin14-circ4"))
+
+([CZMLOnto_Class60783] of  Material
+
+	(solidColor [CZMLOnto_Class60782])
+	(title "SFin14-circ4"))
+
+([CZMLOnto_Class60784] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60783])
+	(semiMajorAxis "4289.855072463768")
+	(semiMinorAxis "4289.855072463768")
+	(title "SFin14-circ4"))
+
+([CZMLOnto_Class60785] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 22.85, 62.787, 0"
+		"\"2021-12-14T00:00:00Z\", 22.85, 62.787, 0")
+	(title "SFin14-circ4"))
+
+([CZMLOnto_Class60786] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60784])
+	(id "SFin14-circ4")
+	(position [CZMLOnto_Class60785]))
+
+([CZMLOnto_Class60787] of  Row
+
+	(packets
+		[CZMLOnto_Class60791]
+		[CZMLOnto_Class60797]
+		[CZMLOnto_Class60803]
+		[CZMLOnto_Class60809]
+		[CZMLOnto_Class60815])
+	(title "SFin15"))
+
+([CZMLOnto_Class60788] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin15-lab"))
+
+([CZMLOnto_Class60789] of  Label
+
+	(fillColor [CZMLOnto_Class60788])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Kuopio")
+	(title "SFin15-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60790] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.674, 62.98329704406257, 0"
+		"\"2021-12-14T00:00:00Z\", 27.674, 62.98329704406257, 0")
+	(title "SFin15-lab"))
+
+([CZMLOnto_Class60791] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin15-lab")
+	(label [CZMLOnto_Class60789])
+	(position [CZMLOnto_Class60790]))
+
+([CZMLOnto_Class60792] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 255, 63, 0, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 126, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 255, 189, 0, 100")
+	(title "SFin15-circ1"))
+
+([CZMLOnto_Class60793] of  SolidColor
+
+	(color [CZMLOnto_Class60792])
+	(title "SFin15-circ1"))
+
+([CZMLOnto_Class60794] of  Material
+
+	(solidColor [CZMLOnto_Class60793])
+	(title "SFin15-circ1"))
+
+([CZMLOnto_Class60795] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60794])
+	(semiMajorAxis "10144.927536231884")
+	(semiMinorAxis "10144.927536231884")
+	(title "SFin15-circ1"))
+
+([CZMLOnto_Class60796] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.674, 62.892, 0"
+		"\"2021-12-14T00:00:00Z\", 27.674, 62.892, 0")
+	(title "SFin15-circ1"))
+
+([CZMLOnto_Class60797] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60795])
+	(id "SFin15-circ1")
+	(position [CZMLOnto_Class60796]))
+
+([CZMLOnto_Class60798] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 255, 63, 0, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 126, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 255, 189, 0, 150")
+	(title "SFin15-circ2"))
+
+([CZMLOnto_Class60799] of  SolidColor
+
+	(color [CZMLOnto_Class60798])
+	(title "SFin15-circ2"))
+
+([CZMLOnto_Class60800] of  Material
+
+	(solidColor [CZMLOnto_Class60799])
+	(title "SFin15-circ2"))
+
+([CZMLOnto_Class60801] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60800])
+	(semiMajorAxis "8449.27536231884")
+	(semiMinorAxis "8449.27536231884")
+	(title "SFin15-circ2"))
+
+([CZMLOnto_Class60802] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.674, 62.892, 0"
+		"\"2021-12-14T00:00:00Z\", 27.674, 62.892, 0")
+	(title "SFin15-circ2"))
+
+([CZMLOnto_Class60803] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60801])
+	(id "SFin15-circ2")
+	(position [CZMLOnto_Class60802]))
+
+([CZMLOnto_Class60804] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 255, 63, 0, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 126, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 255, 189, 0, 200")
+	(title "SFin15-circ3"))
+
+([CZMLOnto_Class60805] of  SolidColor
+
+	(color [CZMLOnto_Class60804])
+	(title "SFin15-circ3"))
+
+([CZMLOnto_Class60806] of  Material
+
+	(solidColor [CZMLOnto_Class60805])
+	(title "SFin15-circ3"))
+
+([CZMLOnto_Class60807] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60806])
+	(semiMajorAxis "6753.623188405798")
+	(semiMinorAxis "6753.623188405798")
+	(title "SFin15-circ3"))
+
+([CZMLOnto_Class60808] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.674, 62.892, 0"
+		"\"2021-12-14T00:00:00Z\", 27.674, 62.892, 0")
+	(title "SFin15-circ3"))
+
+([CZMLOnto_Class60809] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60807])
+	(id "SFin15-circ3")
+	(position [CZMLOnto_Class60808]))
+
+([CZMLOnto_Class60810] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 255, 63, 0, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 126, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 189, 0, 255")
+	(title "SFin15-circ4"))
+
+([CZMLOnto_Class60811] of  SolidColor
+
+	(color [CZMLOnto_Class60810])
+	(title "SFin15-circ4"))
+
+([CZMLOnto_Class60812] of  Material
+
+	(solidColor [CZMLOnto_Class60811])
+	(title "SFin15-circ4"))
+
+([CZMLOnto_Class60813] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60812])
+	(semiMajorAxis "5057.971014492754")
+	(semiMinorAxis "5057.971014492754")
+	(title "SFin15-circ4"))
+
+([CZMLOnto_Class60814] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 27.674, 62.892, 0"
+		"\"2021-12-14T00:00:00Z\", 27.674, 62.892, 0")
+	(title "SFin15-circ4"))
+
+([CZMLOnto_Class60815] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60813])
+	(id "SFin15-circ4")
+	(position [CZMLOnto_Class60814]))
+
+([CZMLOnto_Class60816] of  Row
+
+	(packets
+		[CZMLOnto_Class60820]
+		[CZMLOnto_Class60826]
+		[CZMLOnto_Class60832]
+		[CZMLOnto_Class60838]
+		[CZMLOnto_Class60844])
+	(title "SFin16"))
+
+([CZMLOnto_Class60817] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 255, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 255, 255, 0, 255")
+	(title "SFin16-lab"))
+
+([CZMLOnto_Class60818] of  Label
+
+	(fillColor [CZMLOnto_Class60817])
+	(heightReference CLAMP_TO_GROUND)
+	(horizontalOrigin CENTER)
+	(scale 0.5)
+	(text "Joensuu")
+	(title "SFin16-lab")
+	(verticalOrigin CENTER))
+
+([CZMLOnto_Class60819] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 29.757, 62.66690745088219, 0"
+		"\"2021-12-14T00:00:00Z\", 29.757, 62.66690745088219, 0")
+	(title "SFin16-lab"))
+
+([CZMLOnto_Class60820] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(id "SFin16-lab")
+	(label [CZMLOnto_Class60818])
+	(position [CZMLOnto_Class60819]))
+
+([CZMLOnto_Class60821] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 100"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 100"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 100")
+	(title "SFin16-circ1"))
+
+([CZMLOnto_Class60822] of  SolidColor
+
+	(color [CZMLOnto_Class60821])
+	(title "SFin16-circ1"))
+
+([CZMLOnto_Class60823] of  Material
+
+	(solidColor [CZMLOnto_Class60822])
+	(title "SFin16-circ1"))
+
+([CZMLOnto_Class60824] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60823])
+	(semiMajorAxis "7768.115942028984")
+	(semiMinorAxis "7768.115942028984")
+	(title "SFin16-circ1"))
+
+([CZMLOnto_Class60825] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 29.757, 62.597, 0"
+		"\"2021-12-14T00:00:00Z\", 29.757, 62.597, 0")
+	(title "SFin16-circ1"))
+
+([CZMLOnto_Class60826] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60824])
+	(id "SFin16-circ1")
+	(position [CZMLOnto_Class60825]))
+
+([CZMLOnto_Class60827] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 150"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 150"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 150")
+	(title "SFin16-circ2"))
+
+([CZMLOnto_Class60828] of  SolidColor
+
+	(color [CZMLOnto_Class60827])
+	(title "SFin16-circ2"))
+
+([CZMLOnto_Class60829] of  Material
+
+	(solidColor [CZMLOnto_Class60828])
+	(title "SFin16-circ2"))
+
+([CZMLOnto_Class60830] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60829])
+	(semiMajorAxis "6666.666666666666")
+	(semiMinorAxis "6666.666666666666")
+	(title "SFin16-circ2"))
+
+([CZMLOnto_Class60831] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 29.757, 62.597, 0"
+		"\"2021-12-14T00:00:00Z\", 29.757, 62.597, 0")
+	(title "SFin16-circ2"))
+
+([CZMLOnto_Class60832] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60830])
+	(id "SFin16-circ2")
+	(position [CZMLOnto_Class60831]))
+
+([CZMLOnto_Class60833] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 200"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 200"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 200")
+	(title "SFin16-circ3"))
+
+([CZMLOnto_Class60834] of  SolidColor
+
+	(color [CZMLOnto_Class60833])
+	(title "SFin16-circ3"))
+
+([CZMLOnto_Class60835] of  Material
+
+	(solidColor [CZMLOnto_Class60834])
+	(title "SFin16-circ3"))
+
+([CZMLOnto_Class60836] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60835])
+	(semiMajorAxis "5565.217391304348")
+	(semiMinorAxis "5565.217391304348")
+	(title "SFin16-circ3"))
+
+([CZMLOnto_Class60837] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 29.757, 62.597, 0"
+		"\"2021-12-14T00:00:00Z\", 29.757, 62.597, 0")
+	(title "SFin16-circ3"))
+
+([CZMLOnto_Class60838] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60836])
+	(id "SFin16-circ3")
+	(position [CZMLOnto_Class60837]))
+
+([CZMLOnto_Class60839] of  Color
+
+	(rgba
+		"\"2021-12-11T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-12T00:00:00Z\", 0, 5, 249, 255"
+		"\"2021-12-13T00:00:00Z\", 255, 0, 0, 255"
+		"\"2021-12-14T00:00:00Z\", 0, 5, 249, 255")
+	(title "SFin16-circ4"))
+
+([CZMLOnto_Class60840] of  SolidColor
+
+	(color [CZMLOnto_Class60839])
+	(title "SFin16-circ4"))
+
+([CZMLOnto_Class60841] of  Material
+
+	(solidColor [CZMLOnto_Class60840])
+	(title "SFin16-circ4"))
+
+([CZMLOnto_Class60842] of  Ellipse
+
+	(heightReference CLAMP_TO_GROUND)
+	(material [CZMLOnto_Class60841])
+	(semiMajorAxis "4463.768115942029")
+	(semiMinorAxis "4463.768115942029")
+	(title "SFin16-circ4"))
+
+([CZMLOnto_Class60843] of  Position
+
+	(cartographicDegrees
+		"\"2021-12-11T00:00:00Z\", 29.757, 62.597, 0"
+		"\"2021-12-14T00:00:00Z\", 29.757, 62.597, 0")
+	(title "SFin16-circ4"))
+
+([CZMLOnto_Class60844] of  Packet
+
+	(availability "2021-12-11T00:00:00Z/2021-12-14T00:00:00Z")
+	(ellipse [CZMLOnto_Class60842])
+	(id "SFin16-circ4")
+	(position [CZMLOnto_Class60843]))
+
+([CZMLOnto_Class60845] of  Table
+
+	(rows
+		[CZMLOnto_Class60381]
+		[CZMLOnto_Class60410]
+		[CZMLOnto_Class60439]
+		[CZMLOnto_Class60468]
+		[CZMLOnto_Class60497]
+		[CZMLOnto_Class60526]
+		[CZMLOnto_Class60555]
+		[CZMLOnto_Class60584]
+		[CZMLOnto_Class60613]
+		[CZMLOnto_Class60642]
+		[CZMLOnto_Class60671]
+		[CZMLOnto_Class60700]
+		[CZMLOnto_Class60729]
+		[CZMLOnto_Class60758]
+		[CZMLOnto_Class60787]
+		[CZMLOnto_Class60816])
+	(title "SFin"))
+
+([CZMLOnto_Class70004] of  CloFunction
+
+	(source "(let [nn (for [[lon lat lab v1 & dv2s] table] v1)]\n  [(apply min nn) (apply max nn)])")
+	(title "calc-bounds1 [table]"))
+
+([CZMLOnto_Class70005] of  CloFunction
+
+	(source "(let [nn (apply concat (for [dv (for [[lon lat lab v1 & dv2s] table] dv2s)] (map second dv)))]\n  [(apply min nn) (apply max nn)])")
+	(title "calc-bounds2 [table]"))
+
+([CZMLOnto_Class70006] of  CloVar
+
+	(source "[[24.939 60.168 \"Helsinki\" 632 [\"11.12.2021\" 10] [\"12.12.2021\" 35 ] [\"13.12.2021\" 64] [\"14.12.2021\" 82]]\n [22.266 60.450 \"Turku\" 330 [\"11.12.2021\" 114] [\"12.12.2021\" 77] [\"13.12.2021\" 54 ] [\"14.12.2021\" 0]]\n [23.770 61.493 \"Tampere\" 227 [\"11.12.2021\" 45] [\"12.12.2021\" 28] [\"13.12.2021\" 77] [\"14.12.2021\" 11]]\n [24.656 60.205 \"Espoo\" 272 [\"11.12.2021\" 83] [\"12.12.2021\" 77] [\"13.12.2021\" 60] [\"14.12.2021\" 52]]\n [21.806 61.428 \"Pori\" 84 [\"11.12.2021\" 12] [\"12.12.2021\" 24] [\"13.12.2021\" 18] [\"14.12.2021\" 23]]\n [24.462 60.991 \"Hämeenlinna\" 68 [\"11.12.2021\" 73] [\"12.12.2021\" 53] [\"13.12.2021\" 94] [\"14.12.2021\" 121]]\n [26.705 60.868 \"Kouvola\" 82 [\"11.12.2021\" 12] [\"12.12.2021\" 35] [\"13.12.2021\" 10] [\"14.12.2021\" 28]]\n [28.189 61.055 \"Lappeenranta\" 72 [\"11.12.2021\" 56] [\"12.12.2021\" 78] [\"13.12.2021\" 97] [\"14.12.2021\" 104]]\n [26.942 60.463 \"Kotka\" 52 [\"11.12.2021\" 0] [\"12.12.2021\" 12] [\"13.12.2021\" 23] [\"14.12.2021\" 0]]\n [27.196 63.560 \"Iisalmi\" 21 [\"11.12.2021\" 56] [\"12.12.2021\" 65] [\"13.12.2021\" 75] [\"14.12.2021\" 63]]\n [30.028 63.317 \"Lieksa\" 11 [\"11.12.2021\" 111] [\"12.12.2021\" 107] [\"13.12.2021\" 92] [\"14.12.2021\" 81]]\n [21.615 63.095 \"Vaasa\" 67 [\"11.12.2021\" 0] [\"12.12.2021\" 120] [\"13.12.2021\" 60] [\"14.12.2021\" 0]]\n [27.272 61.688 \"Mikkeli\" 53 [\"11.12.2021\" 120] [\"12.12.2021\" 60] [\"13.12.2021\" 0] [\"14.12.2021\" 120]]\n [22.850 62.787 \"Seinäjoki\" 64 [\"11.12.2021\" 120] [\"12.12.2021\" 110] [\"13.12.2021\" 100] [\"14.12.2021\" 90]]\n [27.674 62.892 \"Kuopio\" 117 [\"11.12.2021\" 0] [\"12.12.2021\" 10] [\"13.12.2021\" 20] [\"14.12.2021\" 30]]\n [29.757 62.597 \"Joensuu\" 76 [\"11.12.2021\" 0] [\"12.12.2021\" 120] [\"13.12.2021\" 0] [\"14.12.2021\" 120]]]")
+	(title "TABLE"))
+
+([CZMLOnto_Class80008] of  CloFunction
+
+	(source "(let [dd (apply concat (for [dv (for [[lon lat lab v1 & dv2s] table] dv2s)] (map first dv)))\n        sd (sort before dd)]\n  [(first sd) (last sd)])")
+	(title "calc-from-to [table]"))
+
+([CZMLOnto_Class80012] of  CloFunction
+
+	(source "(let [dci (foc \"Document\" \"name\" name)\n      tab (mk-table name table)\n      rws (svs tab \"rows\")\n      pks (map #(svs % \"packets\") rws)\n      pks (apply concat pks)]\n  (ssv dci \"id\" \"document\")\n  (ssv dci \"version\" \"1.0\")\n  (ssvs dci \"packets\" pks)\n  dci)")
+	(title "mk-table-doc [name table]"))

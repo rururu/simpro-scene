@@ -1,4 +1,4 @@
-; Sun Dec 12 20:55:28 MSK 2021
+; Wed Dec 15 14:55:38 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -71,8 +71,8 @@
 
 ([KB_059757_Class1] of  Map
 
-	(entries [PointData_ProjectKB_Class779])
-	(referenced_maps [PointData_ProjectKB_Class776]))
+	(entries [PointData_ProjectKB_Class10910])
+	(referenced_maps [PointData_ProjectKB_Class10907]))
 
 ([KB_059757_Class13] of  Property_List
 
@@ -166,40 +166,346 @@
 	(name "instances_file_name")
 	(string_value "PointData.pins"))
 
-([KB_157676_Class767] of  Map
+([KB_853323_Class469] of  Widget
+
+	(is_hidden FALSE)
+	(name "Point")
+	(property_list [KB_853323_Class470])
+	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+
+([KB_853323_Class470] of  Property_List
+
+	(properties
+		[KB_853323_Class471]
+		[KB_853323_Class472]
+		[KB_853323_Class476]
+		[KB_853323_Class506]
+		[KB_853323_Class508]
+		[KB_853323_Class510]
+		[KB_853323_Class512]
+		[PointData_ProjectKB_Class907]))
+
+([KB_853323_Class471] of  Property_List
+
+	(name "layout properties"))
+
+([KB_853323_Class472] of  Widget
+
+	(height 240)
+	(is_hidden FALSE)
+	(label "OutlineColor")
+	(name "outlineColor")
+	(property_list [KB_853323_Class473])
+	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
+	(width 250)
+	(x 250)
+	(y 60))
+
+([KB_853323_Class473] of  Property_List
+
+	(properties
+		[PointData_ProjectKB_Class785]
+		[PointData_ProjectKB_Class786]
+		[PointData_ProjectKB_Class787]
+		[PointData_ProjectKB_Class788]
+		[PointData_ProjectKB_Class789]
+		[PointData_ProjectKB_Class790]
+		[PointData_ProjectKB_Class791]
+		[PointData_ProjectKB_Class792]
+		[PointData_ProjectKB_Class793]
+		[PointData_ProjectKB_Class794]
+		[PointData_ProjectKB_Class795]
+		[PointData_ProjectKB_Class796]
+		[PointData_ProjectKB_Class797]
+		[PointData_ProjectKB_Class798]
+		[PointData_ProjectKB_Class799]
+		[PointData_ProjectKB_Class800]
+		[PointData_ProjectKB_Class801]
+		[PointData_ProjectKB_Class802]
+		[PointData_ProjectKB_Class803]
+		[PointData_ProjectKB_Class804]
+		[PointData_ProjectKB_Class805]
+		[PointData_ProjectKB_Class806]
+		[PointData_ProjectKB_Class807]
+		[PointData_ProjectKB_Class808]
+		[PointData_ProjectKB_Class809]
+		[PointData_ProjectKB_Class810]
+		[PointData_ProjectKB_Class811]
+		[PointData_ProjectKB_Class812]))
+
+([KB_853323_Class476] of  Widget
+
+	(height 240)
+	(is_hidden FALSE)
+	(label "Color")
+	(name "color")
+	(property_list [KB_853323_Class477])
+	(widget_class_name "edu.stanford.smi.protegex.widget.contains.ContainsWidget")
+	(width 250)
+	(x 0)
+	(y 60))
+
+([KB_853323_Class477] of  Property_List
+
+	(properties
+		[KB_853323_Class478]
+		[KB_853323_Class479]
+		[KB_853323_Class480]
+		[KB_853323_Class481]
+		[KB_853323_Class482]
+		[KB_853323_Class483]
+		[KB_853323_Class484]
+		[KB_853323_Class485]
+		[KB_853323_Class486]
+		[KB_853323_Class487]
+		[KB_853323_Class488]
+		[KB_853323_Class489]
+		[KB_853323_Class490]
+		[KB_853323_Class491]
+		[KB_853323_Class492]
+		[KB_853323_Class493]
+		[KB_853323_Class494]
+		[KB_853323_Class495]
+		[KB_853323_Class496]
+		[KB_853323_Class497]
+		[KB_853323_Class498]
+		[KB_853323_Class499]
+		[KB_853323_Class500]
+		[KB_853323_Class501]
+		[KB_853323_Class502]
+		[KB_853323_Class503]
+		[KB_853323_Class504]
+		[KB_853323_Class505]))
+
+([KB_853323_Class478] of  String
+
+	(name "tooltip_text"))
+
+([KB_853323_Class479] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Insert:At:Current:Selection"))
+
+([KB_853323_Class480] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Select:New:Insertions"))
+
+([KB_853323_Class481] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Create:Form:For:New:Instances"))
+
+([KB_853323_Class482] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Subwidget:Selection:Enabled"))
+
+([KB_853323_Class483] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Summary:Panel"))
+
+([KB_853323_Class484] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Number:Of:Subordinates"))
+
+([KB_853323_Class485] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
+
+([KB_853323_Class486] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
+
+([KB_853323_Class487] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
+
+([KB_853323_Class488] of  Integer
+
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
+
+([KB_853323_Class489] of  Integer
+
+	(integer_value 1)
+	(name ":Prototype:Depth"))
+
+([KB_853323_Class490] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
+
+([KB_853323_Class491] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
+
+([KB_853323_Class492] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
+
+([KB_853323_Class493] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([KB_853323_Class494] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([KB_853323_Class495] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([KB_853323_Class496] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([KB_853323_Class497] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([KB_853323_Class498] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([KB_853323_Class499] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([KB_853323_Class500] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([KB_853323_Class501] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([KB_853323_Class502] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([KB_853323_Class503] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([KB_853323_Class504] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([KB_853323_Class505] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([KB_853323_Class506] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "pixelSize")
+	(property_list [KB_853323_Class507])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 50)
+	(y 300))
+
+([KB_853323_Class507] of  Property_List
+)
+
+([KB_853323_Class508] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "outlineWidth")
+	(property_list [KB_853323_Class509])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 250)
+	(y 300))
+
+([KB_853323_Class509] of  Property_List
+)
+
+([KB_853323_Class510] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "heightReference")
+	(property_list [KB_853323_Class511])
+	(widget_class_name "edu.stanford.smi.protege.widget.ComboBoxWidget")
+	(width 200)
+	(x 160)
+	(y 360))
+
+([KB_853323_Class511] of  Property_List
+)
+
+([KB_853323_Class512] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "epoch")
+	(property_list [KB_853323_Class513])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 0))
+
+([KB_853323_Class513] of  Property_List
+)
+
+([KB_960531_Class901] of  Map
 
 	(entries
-		[KB_157676_Class768]
-		[KB_157676_Class770]
-		[KB_157676_Class771]
-		[KB_157676_Class772])
-	(referenced_maps [KB_157676_Class769]))
+		[KB_960531_Class902]
+		[KB_960531_Class904]
+		[KB_960531_Class905]
+		[KB_960531_Class906])
+	(referenced_maps [KB_960531_Class903]))
 
-([KB_157676_Class768] of  Map_Entry
+([KB_960531_Class902] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_157676_Class769] of  Map
+([KB_960531_Class903] of  Map
 )
 
-([KB_157676_Class770] of  Map_Entry
+([KB_960531_Class904] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "KB_157676_Class769")
+	(value "KB_960531_Class903")
 	(value_class "java.util.Map"))
 
-([KB_157676_Class771] of  Map_Entry
+([KB_960531_Class905] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_157676_Class772] of  Map_Entry
+([KB_960531_Class906] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -285,6 +591,33 @@
 	(x 0)
 	(y 60))
 
+([PointData_ProjectKB_Class10907] of  Map
+
+	(entries
+		[PointData_ProjectKB_Class10908]
+		[PointData_ProjectKB_Class10909]))
+
+([PointData_ProjectKB_Class10908] of  Map_Entry
+
+	(key "PointData_Class10001")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "483 665 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([PointData_ProjectKB_Class10909] of  Map_Entry
+
+	(key "PointData_Class4")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "4 402 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([PointData_ProjectKB_Class10910] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "PointData_ProjectKB_Class10907")
+	(value_class "java.util.Map"))
+
 ([PointData_ProjectKB_Class37] of  String
 
 	(name "SearchTab_Query"))
@@ -341,52 +674,164 @@
 ([PointData_ProjectKB_Class491] of  Property_List
 )
 
-([PointData_ProjectKB_Class773] of  Widget
+([PointData_ProjectKB_Class785] of  String
 
+	(name "tooltip_text"))
+
+([PointData_ProjectKB_Class786] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Insert:At:Current:Selection"))
+
+([PointData_ProjectKB_Class787] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Select:New:Insertions"))
+
+([PointData_ProjectKB_Class788] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Create:Form:For:New:Instances"))
+
+([PointData_ProjectKB_Class789] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Subwidget:Selection:Enabled"))
+
+([PointData_ProjectKB_Class790] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Summary:Panel"))
+
+([PointData_ProjectKB_Class791] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Number:Of:Subordinates"))
+
+([PointData_ProjectKB_Class792] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Subordinate:Browser:Keys"))
+
+([PointData_ProjectKB_Class793] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Use:Separators:Between:Subwidgets"))
+
+([PointData_ProjectKB_Class794] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Comtain:In:Vertical:Direction"))
+
+([PointData_ProjectKB_Class795] of  Integer
+
+	(integer_value 10)
+	(name ":Size:Of:Space:Between:Subwidgets"))
+
+([PointData_ProjectKB_Class796] of  Integer
+
+	(integer_value 1)
+	(name ":Prototype:Depth"))
+
+([PointData_ProjectKB_Class797] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Create:Instance:Button"))
+
+([PointData_ProjectKB_Class798] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Add:Instance:Button"))
+
+([PointData_ProjectKB_Class799] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:View:Instance:Button"))
+
+([PointData_ProjectKB_Class800] of  Boolean
+
+	(boolean_value TRUE)
+	(name ":Display:Remove:Instance:Button"))
+
+([PointData_ProjectKB_Class801] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Delete:Instance:Button"))
+
+([PointData_ProjectKB_Class802] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Prototype:Button"))
+
+([PointData_ProjectKB_Class803] of  Boolean
+
+	(boolean_value FALSE)
+	(name ":Display:Move:Instance:Buttons"))
+
+([PointData_ProjectKB_Class804] of  String
+
+	(name ":Create:Instance:Button:Tooltip")
+	(string_value "Create a new instance"))
+
+([PointData_ProjectKB_Class805] of  String
+
+	(name ":Add:Instance:Button:Tooltip")
+	(string_value "Select an already existing instance"))
+
+([PointData_ProjectKB_Class806] of  String
+
+	(name ":View:Instance:Button:Tooltip")
+	(string_value "View the selected instance"))
+
+([PointData_ProjectKB_Class807] of  String
+
+	(name ":Remove:Instance:Button:Tooltip")
+	(string_value "Remove the selected instance(s)"))
+
+([PointData_ProjectKB_Class808] of  String
+
+	(name ":Delete:Instance:Button:Tooltip")
+	(string_value "Delete the selected instance(s) from the knowledge base"))
+
+([PointData_ProjectKB_Class809] of  String
+
+	(name ":Prototype:Button:Tooltip")
+	(string_value "Create a new instance which is a duplicate of the selected instance"))
+
+([PointData_ProjectKB_Class810] of  String
+
+	(name ":Move:Instance:Buttons:Tooltip")
+	(string_value "Move the selected instance"))
+
+([PointData_ProjectKB_Class811] of  String
+
+	(name ":Create:Instance:Dialog:Title")
+	(string_value "Create a new instance"))
+
+([PointData_ProjectKB_Class812] of  String
+
+	(name ":Add:Instance:Dialog:Title")
+	(string_value "Select an already existing instance"))
+
+([PointData_ProjectKB_Class907] of  Widget
+
+	(height 60)
 	(is_hidden FALSE)
-	(name ":UNDEFINED")
-	(property_list [PointData_ProjectKB_Class774])
-	(widget_class_name "edu.stanford.smi.protege.widget.FormWidget"))
+	(name "title")
+	(property_list [PointData_ProjectKB_Class908])
+	(widget_class_name "edu.stanford.smi.protege.widget.TextFieldWidget")
+	(width 200)
+	(x 0)
+	(y 420))
 
-([PointData_ProjectKB_Class774] of  Property_List
-
-	(properties [PointData_ProjectKB_Class775]))
-
-([PointData_ProjectKB_Class775] of  Property_List
-
-	(name "layout properties"))
-
-([PointData_ProjectKB_Class776] of  Map
-
-	(entries
-		[PointData_ProjectKB_Class777]
-		[PointData_ProjectKB_Class778]))
-
-([PointData_ProjectKB_Class777] of  Map_Entry
-
-	(key "PointData_Class10001")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "483 665 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([PointData_ProjectKB_Class778] of  Map_Entry
-
-	(key "PointData_Class4")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "4 402 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([PointData_ProjectKB_Class779] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "PointData_ProjectKB_Class776")
-	(value_class "java.util.Map"))
+([PointData_ProjectKB_Class908] of  Property_List
+)
 
 ([PROJECT] of  Project
 
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
+		[KB_853323_Class469]
 		[STANDARD_CLASS_FORM_WIDGET]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]

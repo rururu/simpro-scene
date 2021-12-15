@@ -1,4 +1,4 @@
-; Sun Dec 12 20:54:46 MSK 2021
+; Wed Dec 15 17:27:33 MSK 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,6 +7,11 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot label
+		(type INSTANCE)
+;+		(allowed-classes Label)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot solidColor
 		(type INSTANCE)
 ;+		(allowed-classes SolidColor)
@@ -28,8 +33,20 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot horizontalOrigin
+		(type SYMBOL)
+		(allowed-values LEFT CENTER RIGHT)
+		(default CENTER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot outlineWidth
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verticalOrigin
+		(type SYMBOL)
+		(allowed-values BASELINE BOTTOM CENTER TOP)
+		(default CENTER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot color
@@ -39,6 +56,15 @@
 		(create-accessor read-write))
 	(single-slot semiMajorAxis
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot rows
+		(type INSTANCE)
+;+		(allowed-classes Row)
+		(create-accessor read-write))
+	(single-slot fillColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot position
@@ -70,6 +96,10 @@
 		(default NONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot point
 		(type INSTANCE)
 ;+		(allowed-classes Point)
@@ -94,37 +124,30 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot scale
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot pixelSize
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Document
+(defclass CZMLOnto
 	(is-a USER)
-	(role concrete)
-	(multislot packets
-		(type INSTANCE)
-;+		(allowed-classes Packet)
-		(create-accessor read-write))
-	(single-slot id
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot name_
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot version
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role abstract))
 
 (defclass Packet
-	(is-a USER)
+	(is-a CZMLOnto)
 	(role concrete)
 	(single-slot position
 		(type INSTANCE)
 ;+		(allowed-classes Position)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot label
+		(type INSTANCE)
+;+		(allowed-classes Label)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot point
@@ -147,8 +170,12 @@
 		(create-accessor read-write)))
 
 (defclass Property
-	(is-a USER)
-	(role abstract))
+	(is-a CZMLOnto)
+	(role abstract)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Position
 	(is-a Property)
@@ -187,8 +214,12 @@
 		(create-accessor read-write)))
 
 (defclass Object
-	(is-a USER)
-	(role abstract))
+	(is-a CZMLOnto)
+	(role abstract)
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Point
 	(is-a Object)
@@ -236,15 +267,90 @@
 		(default NONE)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot height
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot semiMajorAxis
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot semiMinorAxis
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Label
+	(is-a Object)
+	(role concrete)
+	(single-slot text
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot heightReference
+		(type SYMBOL)
+		(allowed-values CLAMP_TO_GROUND RELATIVE_TO_GROUND NONE)
+		(default NONE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot scale
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot horizontalOrigin
+		(type SYMBOL)
+		(allowed-values LEFT CENTER RIGHT)
+		(default CENTER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot fillColor
+		(type INSTANCE)
+;+		(allowed-classes Color)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verticalOrigin
+		(type SYMBOL)
+		(allowed-values BASELINE BOTTOM CENTER TOP)
+		(default CENTER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Document
+	(is-a CZMLOnto)
+	(role concrete)
+	(multislot packets
+		(type INSTANCE)
+;+		(allowed-classes Packet)
+		(create-accessor read-write))
+	(single-slot id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot version
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Row "Row: [LabelPackInst, Circ1PackInst, Circ2PackInst]"
+	(is-a CZMLOnto)
+	(role concrete)
+	(multislot packets
+		(type INSTANCE)
+;+		(allowed-classes Packet)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Table
+	(is-a CZMLOnto)
+	(role concrete)
+	(multislot rows
+		(type INSTANCE)
+;+		(allowed-classes Row)
+		(create-accessor read-write))
+	(single-slot title
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))

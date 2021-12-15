@@ -82,6 +82,30 @@
 }
 }
 ]")
-(defn test []
+(def S-FINLAND {:longitude 25.363
+ :latitude 62.0
+ :height 1000000
+ :heading 0
+ :pitch -90
+ :roll 0
+ :animate true
+ :start (czo/iso8601dmy "11.12.2021")
+ :stop (czo/iso8601dmy "14.12.2021")
+ :current "1952-08-08T16:00:00Z"
+ :mult 20000
+ :step "SYSTEM_CLOCK_MULTIPLIER"
+ :range "LOOP_STOP"})
+(defn tst []
   (cs/send-czml CZML))
+
+(defn init [m]
+  (let [m (if (string? m) (load-string m) m)]
+  (cs/send-camera 
+    (m :longitude) 
+    (m :latitude)
+    (m :height)
+    (m :heading)
+    (m :pitch)
+    (m :roll))
+  (cs/send-clock (merge m {:current (czo/iso8601futt 0)}))))
 
