@@ -2,7 +2,6 @@
 (:import 
   (java.awt Color Dimension)
   (javax.swing JPanel JFrame)))
-
 (def PANEL nil)
 (def FIGURES (volatile! {}))
 (defn remove-figure [id]

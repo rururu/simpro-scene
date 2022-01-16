@@ -1,4 +1,4 @@
-; Mon Feb 08 18:25:51 MSK 2021
+; Sun Jan 16 22:01:26 MSK 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -16,8 +16,14 @@
 
 ([LeaWeather_Class10] of  CloFunction
 
-	(source "(let [{:keys [operation number1 number2]} params\n                     res ((resolve (symbol operation))\n                            (read-string number1)\n                            (read-string number2))]\n  ;; (println :RESULT res)\n  (asp/pump-in (@ws/SYS :CHAN) \n    {:event :popup\n      :html (str \"<h1>\" res \"</h1>\")}))")
+	(source "(let [{:keys [operation number1 number2]} params\n                     res ((resolve (symbol operation))\n                            (read-string number1)\n                            (read-string number2))]\n  ;;(println :RESULT res)\n  (asp/pump-in (@ws/SYS :CHAN) \n    {:event :popup\n      :html (str \"<h1>\" res \"</h1>\")}))")
 	(title "calculator [params]"))
+
+([LeaWeather_Class10000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [LeaWeather_Class10001])
+	(%3ACREATION-TIMESTAMP "2022.01.16 21:27:30.264 MSK")
+	(%3ACREATOR "ru"))
 
 ([LeaWeather_Class10001] of  WiServer
 
@@ -58,10 +64,40 @@
 		[LeaWeather_Class4]
 		[LeaWeather_Class5]))
 
+([LeaWeather_Class20000] of  CloProgram
+
+	(cloFunctions [Clojure_Class300000])
+	(cloNamespace [Clojure_Class300001])
+	(title "LeaWeather CW"))
+
+([LeaWeather_Class20001] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [LeaWeather_Class0])
+	(%3ACREATION-TIMESTAMP "2022.01.16 21:27:53.257 MSK")
+	(%3ACREATOR "ru"))
+
 ([LeaWeather_Class3] of  WiValueParameter
 
 	(title "number1")
 	(widefault-value "4"))
+
+([LeaWeather_Class30000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [LeaWeather_Class0])
+	(%3ACREATION-TIMESTAMP "2022.01.16 21:56:08.246 MSK")
+	(%3ACREATOR "ru"))
+
+([LeaWeather_Class30001] of  WorkingPrograms
+
+	(butt-load-progs "Load Programs/protege.core/ldns")
+	(cloPrograms [LeaWeather_Class8])
+	(title "LeaWeather Working Programs"))
+
+([LeaWeather_Class30002] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [LeaWeather_Class30001])
+	(%3ACREATION-TIMESTAMP "2022.01.16 21:52:43.061 MSK")
+	(%3ACREATOR "ru"))
 
 ([LeaWeather_Class4] of  WiValueParameter
 

@@ -115,8 +115,7 @@
           (spit spg src))))))
 
 (defn start-page []
-  (if-let [ws (first (cls-instances "WiServer"))]
-  (sv ws "wistart-page")))
+  (or (@SYS :PAGE) (println "Start page not defined!")))
 
 (defn request [params]
   (println [:POST params])
@@ -182,6 +181,7 @@
     (when (nil? (@SYS :SERVER))
       (vswap! SYS assoc :SERVER 
         (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))
+      (vswap! SYS assoc :PAGE (sv inst "wistart-page"))
       (vswap! SYS assoc :BUSY nil)))))
 
 (defn stop-server [hm inst]

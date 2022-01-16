@@ -1,4 +1,4 @@
-; Mon Feb 08 18:21:46 MSK 2021
+; Sun Jan 16 21:47:32 MSK 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -647,7 +647,7 @@
 
 ([WebServer_Class40012] of  CloFunction
 
-	(source "(let [mp (into {} hm)\n       nsi (mp \"cloNamespace\")\n       port (mp \"wiport\")]\n  (if (nil? (@SYS :NAMESPACE))\n    (vswap! SYS assoc :NAMESPACE (sv nsi \"title\")))\n  (when (nil? (@SYS :APP))\n    (defapp)\n    (when (nil? (@SYS :SERVER))\n      (vswap! SYS assoc :SERVER \n        (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))\n      (vswap! SYS assoc :BUSY nil))))")
+	(source "(let [mp (into {} hm)\n       nsi (mp \"cloNamespace\")\n       port (mp \"wiport\")]\n  (if (nil? (@SYS :NAMESPACE))\n    (vswap! SYS assoc :NAMESPACE (sv nsi \"title\")))\n  (when (nil? (@SYS :APP))\n    (defapp)\n    (when (nil? (@SYS :SERVER))\n      (vswap! SYS assoc :SERVER \n        (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))\n      (vswap! SYS assoc :PAGE (sv inst \"wistart-page\"))\n      (vswap! SYS assoc :BUSY nil))))")
 	(title "start-server [hm inst]"))
 
 ([WebServer_Class40013] of  CloVar
@@ -662,7 +662,7 @@
 
 ([WebServer_Class40015] of  CloFunction
 
-	(source "(if-let [ws (first (cls-instances \"WiServer\"))]\n  (sv ws \"wistart-page\"))")
+	(source "(or (@SYS :PAGE) (println \"Start page not defined!\"))")
 	(title "start-page []"))
 
 ([WebServer_Class40016] of  CloFunction
