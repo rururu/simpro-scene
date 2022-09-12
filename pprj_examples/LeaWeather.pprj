@@ -1,4 +1,4 @@
-; Sun Jan 16 22:01:26 MSK 2022
+; Sun Jan 16 22:38:34 MSK 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,7 +20,7 @@
 
 ([BROWSER_SLOT_NAMES] of  Property_List
 
-	(properties [LeaWeather_ProjectKB_Class1636]))
+	(properties [LeaWeather_ProjectKB_Class1628]))
 
 ([CLSES_TAB] of  Widget
 
@@ -72,8 +72,8 @@
 
 ([KB_229549_Class1] of  Map
 
-	(entries [LeaWeather_ProjectKB_Class1644])
-	(referenced_maps [LeaWeather_ProjectKB_Class1637]))
+	(entries [LeaWeather_ProjectKB_Class1637])
+	(referenced_maps [LeaWeather_ProjectKB_Class1629]))
 
 ([KB_229549_Class13] of  Property_List
 
@@ -167,48 +167,48 @@
 	(name "instances_file_name")
 	(string_value "LeaWeather.pins"))
 
-([KB_486116_Class1620] of  Map
+([KB_430657_Class1621] of  Map
 
 	(entries
-		[KB_486116_Class1621]
-		[KB_486116_Class1624]
-		[KB_486116_Class1625]
-		[KB_486116_Class1626])
-	(referenced_maps [KB_486116_Class1622]))
+		[KB_430657_Class1622]
+		[KB_430657_Class1625]
+		[KB_430657_Class1626]
+		[KB_430657_Class1627])
+	(referenced_maps [KB_430657_Class1623]))
 
-([KB_486116_Class1621] of  Map_Entry
+([KB_430657_Class1622] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_486116_Class1622] of  Map
+([KB_430657_Class1623] of  Map
 
-	(entries [KB_486116_Class1623]))
+	(entries [KB_430657_Class1624]))
 
-([KB_486116_Class1623] of  Map_Entry
+([KB_430657_Class1624] of  Map_Entry
 
 	(key "WebInterface_Class120009")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "27 528 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([KB_486116_Class1624] of  Map_Entry
+([KB_430657_Class1625] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "KB_486116_Class1622")
+	(value "KB_430657_Class1623")
 	(value_class "java.util.Map"))
 
-([KB_486116_Class1625] of  Map_Entry
+([KB_430657_Class1626] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_486116_Class1626] of  Map_Entry
+([KB_430657_Class1627] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -320,68 +320,76 @@
 ([LeaWeather_ProjectKB_Class1624] of  Property_List
 )
 
-([LeaWeather_ProjectKB_Class1636] of  String
+([LeaWeather_ProjectKB_Class1628] of  String
 
 	(name "WiTask")
 	(string_value "title"))
 
-([LeaWeather_ProjectKB_Class1637] of  Map
+([LeaWeather_ProjectKB_Class1629] of  Map
 
 	(entries
-		[LeaWeather_ProjectKB_Class1638]
-		[LeaWeather_ProjectKB_Class1639]
-		[LeaWeather_ProjectKB_Class1640]
-		[LeaWeather_ProjectKB_Class1641]
-		[LeaWeather_ProjectKB_Class1642]
-		[LeaWeather_ProjectKB_Class1643]))
+		[LeaWeather_ProjectKB_Class1630]
+		[LeaWeather_ProjectKB_Class1631]
+		[LeaWeather_ProjectKB_Class1632]
+		[LeaWeather_ProjectKB_Class1633]
+		[LeaWeather_ProjectKB_Class1634]
+		[LeaWeather_ProjectKB_Class1635]
+		[LeaWeather_ProjectKB_Class1636]))
 
-([LeaWeather_ProjectKB_Class1638] of  Map_Entry
+([LeaWeather_ProjectKB_Class1630] of  Map_Entry
 
 	(key "LeaWeather_Class30000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "25 25 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1639] of  Map_Entry
+([LeaWeather_ProjectKB_Class1631] of  Map_Entry
 
 	(key "LeaWeather_Class13")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "7 347 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1640] of  Map_Entry
+([LeaWeather_ProjectKB_Class1632] of  Map_Entry
 
 	(key "LeaWeather_Class12")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "5 289 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1641] of  Map_Entry
+([LeaWeather_ProjectKB_Class1633] of  Map_Entry
 
 	(key "LeaWeather_Class20001")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "49 327 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1642] of  Map_Entry
+([LeaWeather_ProjectKB_Class1634] of  Map_Entry
 
 	(key "LeaWeather_Class30002")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "8 404 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1643] of  Map_Entry
+([LeaWeather_ProjectKB_Class1635] of  Map_Entry
 
 	(key "LeaWeather_Class10000")
 	(key_class "edu.stanford.smi.protege.model.Frame")
 	(value "9 297 202 123")
 	(value_class "java.awt.Rectangle"))
 
-([LeaWeather_ProjectKB_Class1644] of  Map_Entry
+([LeaWeather_ProjectKB_Class1636] of  Map_Entry
+
+	(key "LeaWeather_Class40000")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "25 25 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([LeaWeather_ProjectKB_Class1637] of  Map_Entry
 
 	(key "InstanceDisplay.yellow_stickies")
 	(key_class "java.lang.String")
-	(value "LeaWeather_ProjectKB_Class1637")
+	(value "LeaWeather_ProjectKB_Class1629")
 	(value_class "java.util.Map"))
 
 ([LeaWeather_ProjectKB_Class21624] of  Widget

@@ -157,11 +157,23 @@
     ;;(vswap! SYS assoc :BUSY true)
     (write-transit resp))))
 
+(defn response-models []
+  (if (@SYS :BUSY) 
+  (write-transit "BUSY")
+  (let [resp [:div [:p "Аварийный поиск"]
+                       [:p "Поиск в районе"]
+                       [:p "Поиск на рубеже"]
+                       [:p "Поиск по вызову"]
+                       [:p "Восстановление контакта"]]]
+    ;;(vswap! SYS assoc :BUSY true)
+    (write-transit resp))))
+
 (defn defapp []
   (defroutes app-routes
   (GET "/" [] (slurp (start-page)))
   (POST "/" [& params] (request params))
   (GET "/map" [] (response-map))
+  (GET "/models" [] (response-models))
   (GET "/events" [] (response-events))
   (route/files "/" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))
   (route/resources "/")

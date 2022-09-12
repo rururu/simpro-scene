@@ -1,0 +1,85 @@
+; Mon Sep 12 21:19:47 MSK 2022
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([CesiumTester_Class0] of  CloProgram
+
+	(cloFunctions
+		[CesiumTester_Class10003]
+		[CesiumTester_Class20000]
+		[CesiumTester_Class30001]
+		[CesiumTester_Class30002]
+		[CesiumTester_Class30006])
+	(cloNamespace [CesiumTester_Class10001])
+	(cloVars [CesiumTester_Class10002])
+	(title "CZMLTests"))
+
+([CesiumTester_Class1] of  ClsMain
+
+	(asset-path "js/cezium/test")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions [CesiumBase_Class20003])
+	(cloNamespace [CesiumBase_Class10010])
+	(compiler-options "{:verbose false}")
+	(css [CesiumBase_Class10012])
+	(epilogue "(enable-console-print!)\n(def EVENT-DEBUG true)\n(set! (.-onload js/window) (init-client))")
+	(html [CesiumBase_Class10011])
+	(output-dir "resources/public/js/cezium/test")
+	(output-to "resources/public/js/cezium/test.js")
+	(required [CesiumBase_Class0])
+	(store-in "src/cljs/cezium")
+	(title "CZMLTester"))
+
+([CesiumTester_Class10001] of  CloNamespace
+
+	(source "(:require\n  [cesium.server :as cs]\n  [czml.generator :as cg])")
+	(title "czml.tests"))
+
+([CesiumTester_Class10002] of  CloVar
+
+	(source "\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAADLXpUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHjarZVpsuwmDEb/s4osAU0ILQczVGUHWX4+sPsO/W5SlVeBboNlIQkdYaf5158r/YFGOdek5rVEKRlNQ4MbJjXfzXMmzpQDc3pkz0jtuzzps4iu7w9ecq5vhvgeZDvAnPQxVJ4HJBD/4LlE9ayf917usevLoGQh0SQNE8WVpfIRnbmcq21LWz3ONvNr8V7OQpmCXvL0eIeNPWnvCxConIT8FG3mT/ltqD0P5G3BS/5q5Vin45S+yHaO3rP/u8lPZ1tfknlw3wrf5MNfS+621qhrzaOgTUtC7ZRzRx+7p0fxQhxyqqqgO/6GuZ8e6BVb78A/cs9XyhdughhZXaQ0qNGiecZOHWEpT3aMzB2gtqyKc3C/se9Oiz1JyJAKmJ0noKvwRyx0/Mb2B2cVngdBkwnG6BTAl57eBb/bvxlaq+8U0Tlr7fwRF+8kI4yNfV+hBQi0npzayS+le8jv7S5RhdpOc8UGW75uE5fRTXXXkxy2ki1BVZ9KJh8fNa7wbQiGBARyITEqOA7MToQ8VvBpiJxF+QIBsmQ8ECWrSAGcug9uwxqno8vGtxivF4AwKeJAE9IAS9W0qGtFCbVkYmpmxdyqhbUiRYuVUrzs91RzcXXz4u7Vw1uVqtVqqV5rjdqCQ/AasxQlPGpEtAanTRtsNeg3CC6+5NLLrnL5Va+4Wkf5dO3WS/dee/Q2eMjQYWmU4aOOGG3SRClNnTbL9FlnzLZQa0uWLltl+aorVvugRs8R/kbtndy/U6OHGh9QW88/qUHs/jIBVRjZzECMlUDcNwEUNG9muZIqb3KbWQ6WJGKMKG3DGbSJgaBOYlv0we6T3D9yS8juf+XGP5FLG93/QS5tdF/I/crtB2pjn8N+iN2nEDnFO1tw/Poa2FkbucCbXNiRNNx3L0s6gHlvXWefqxePeUUPTEP6cOqBvKIgpXHvo3Cj6GUC2NVq1iU4dj2vhtQhLnyDYTdE6sB2WqFAxE0CQTB1c2499T7n/llEnfhiO2MRdkFUWzVktayswxW7u3zMiGkGr4ygBtwUX9gqPgbpb7sT0yUUWcYNAAAABHNCSVQICAgIfAhkiAAAAMtJREFUGJVtjy0OwkAQhb8lLRhqV66qIKnkBkgMJ+AEBA6B4AIcAY1omiBJqCdVJAhUZU0rSPlNFlF2syWMmsx8894bwbdWSa2Puc/+/DAjRoMe25kvAIQLAQzVi9+Dct0X3iqpNcByogGIM7snqNKmmV+1d8x9hurFvyryCwAS6BiLOHsTZ29rG1QpUoX2yAMw+QCbzag9ixOosAHd4EGVtiFX0SyfxYmbjFpAV0YAdMp1X7gPuBCAVCH5ZiwspKY7bVSNCsD9sBAAH3u8YrUl0+X6AAAAAElFTkSuQmCC\"")
+	(title "BLUE-BALL-URI"))
+
+([CesiumTester_Class10003] of  CloFunction
+
+	(source "(cs/send-czml (cg/add-image \"ev1\" BLUE-BALL-URI [86.92 27.98 86.93 27.99] 200))")
+	(title "bburi-to-Everest []"))
+
+([CesiumTester_Class2] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [CesiumTester_Class1])
+	(%3ACREATION-TIMESTAMP "2022.09.12 13:55:16.595 MSK")
+	(%3ACREATOR "ru"))
+
+([CesiumTester_Class20000] of  CloFunction
+
+	(source "(let [tim K\n      del N]\n (dotimes [i tim]\n   (cs/send-czml (slurp path))\n   (println (- tim i))\n   (Thread/sleep (* N 1000))))")
+	(title "pump-czml-Ktimes-Nsec-delay [K N path]"))
+
+([CesiumTester_Class30001] of  CloFunction
+
+	(source "(pump-czml-Ktimes-Nsec-delay 120 1 path)")
+	(title "pump-czml120t1sec [path]"))
+
+([CesiumTester_Class30002] of  CloFunction
+
+	(source "(pump-czml-Ktimes-Nsec-delay 120 4 path)")
+	(title "pump-czml120t4sec [path]"))
+
+([CesiumTester_Class30004] of  CloFuncall
+
+	(source "(czml.tests/pump-czml120t1sec \"/home/ru/clips/Agents/png/hm.json\")"))
+
+([CesiumTester_Class30005] of  CloFuncall
+
+	(source "(czml.tests/pump-czml120t4sec \"/home/ru/clips/Agents/png/hm.json\")"))
+
+([CesiumTester_Class30006] of  CloFunction
+
+	(source "(pump-czml-Ktimes-Nsec-delay 30 4 path)")
+	(title "pump-czml30t4sec [path]"))
+
+([CesiumTester_Class30007] of  CloFuncall
+
+	(source "(czml.tests/pump-czml30t4sec \"/home/ru/clips/Agents/png/hm.json\")"))

@@ -5,10 +5,10 @@ goog.require('cognitect.transit');
 goog.require('ajax.interceptors');
 goog.require('ajax.protocols');
 goog.require('ajax.util');
-ajax.transit.transit_type = (function ajax$transit$transit_type(p__8705){
-var map__8706 = p__8705;
-var map__8706__$1 = (((((!((map__8706 == null))))?(((((map__8706.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__8706.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__8706):map__8706);
-var type = cljs.core.get.call(null,map__8706__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+ajax.transit.transit_type = (function ajax$transit$transit_type(p__23992){
+var map__23993 = p__23992;
+var map__23993__$1 = (((((!((map__23993 == null))))?(((((map__23993.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__23993.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__23993):map__23993);
+var type = cljs.core.get.call(null,map__23993__$1,new cljs.core.Keyword(null,"type","type",1174270348));
 var or__4047__auto__ = type;
 if(cljs.core.truth_(or__4047__auto__)){
 return or__4047__auto__;
@@ -40,8 +40,8 @@ return cognitect.transit.write.call(null,writer,params);
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_request_format = (function ajax$transit$transit_request_format(var_args){
-var G__8709 = arguments.length;
-switch (G__8709) {
+var G__23996 = arguments.length;
+switch (G__23996) {
 case 0:
 return ajax.transit.transit_request_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -90,8 +90,8 @@ return cognitect.transit.read.call(null,reader,ajax.protocols._body.call(null,re
  * :handlers Custom Transit handlers (refer to Transit documentation)
  */
 ajax.transit.transit_response_format = (function ajax$transit$transit_response_format(var_args){
-var G__8712 = arguments.length;
-switch (G__8712) {
+var G__23999 = arguments.length;
+switch (G__23999) {
 case 0:
 return ajax.transit.transit_response_format.cljs$core$IFn$_invoke$arity$0();
 

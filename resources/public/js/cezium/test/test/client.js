@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.10.439 {}
+// Compiled by ClojureScript 1.11.4 {:optimizations :none}
 goog.provide('test.client');
 goog.require('cljs.core');
 goog.require('cesium.client');
@@ -14,6 +14,7 @@ cesium.client.add_orbit_button.call(null,cesium.client.CAMERA);
 return cesium.client.mouse_move.call(null);
 });
 cljs.core.enable_console_print_BANG_.call(null);
-window.onload = test.client.init_client.call(null);
+cesium.client.EVENT_DEBUG = true;
+(window.onload = test.client.init_client.call(null));
 
 //# sourceMappingURL=client.js.map

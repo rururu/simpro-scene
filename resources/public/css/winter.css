@@ -1,0 +1,39 @@
+#header {
+  position: fixed;
+  top:0px;
+  left:20%;
+  right:20%;
+  padding:5px;
+  z-index:100;
+  font-size: 25px;
+}
+#MAP {
+  position: absolute;
+  top: 40px;
+  bottom: 30px;
+  left: 20%;
+  right: 20%;
+  z-index: -1;
+}
+#zoom {
+  position: fixed;
+  bottom:40px;
+  left:32%;
+  z-index:100;
+}
+#acc-left {
+  position: fixed;
+  top:0px;
+  left:0;
+  right:80%;
+  padding:5px;
+  z-index:100;
+}
+#acc-right {
+  position: fixed;
+  top:0px;
+  left:80%;
+  right:0;
+  padding:5px;
+  z-index:100;
+}

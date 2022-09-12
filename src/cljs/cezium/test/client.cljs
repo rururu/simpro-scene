@@ -28,4 +28,5 @@
 
 
 (enable-console-print!)
+(def EVENT-DEBUG true)
 (set! (.-onload js/window) (init-client))

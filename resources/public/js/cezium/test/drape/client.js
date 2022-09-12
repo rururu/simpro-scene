@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.10.439 {}
+// Compiled by ClojureScript 1.11.4 {:optimizations :none}
 goog.provide('drape.client');
 goog.require('cljs.core');
 goog.require('cesium.client');
@@ -12,6 +12,6 @@ cesium.client.start_event_processing.call(null,cesium.client.PORT,cesium.client.
 return cesium.client.add_orbit_button.call(null,cesium.client.CAMERA);
 });
 cljs.core.enable_console_print_BANG_.call(null);
-window.onload = drape.client.init_drape.call(null);
+(window.onload = drape.client.init_drape.call(null));
 
 //# sourceMappingURL=client.js.map

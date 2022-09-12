@@ -1,4 +1,4 @@
-; Sun Jan 16 22:01:26 MSK 2022
+; Sun Jan 16 22:38:34 MSK 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -103,6 +103,12 @@
 
 	(title "number2")
 	(widefault-value "6"))
+
+([LeaWeather_Class40000] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [LeaWeather_Class10001])
+	(%3ACREATION-TIMESTAMP "2022.01.16 22:38:20.471 MSK")
+	(%3ACREATOR "ru"))
 
 ([LeaWeather_Class5] of  WiOptionParameter
 
