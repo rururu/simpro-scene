@@ -1,0 +1,1 @@
+["^ ","~$damaged",["^ ","~:row",8,"~:col",1,"~:fixed-arities",["~#set",[4]],"~:name","^0","~:ns","~$bd","~:top-ns","^7","~:arities",["^ ","~i4",["^ ","~:ret","~:seq","~:arglist-str","[?typ ?lat ?lon ?rad]"]]],"~:filename","/home/ru/clojure/simpro-scene/src/clojure/bd.clj"]

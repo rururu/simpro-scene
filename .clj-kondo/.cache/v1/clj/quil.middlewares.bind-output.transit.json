@@ -1,0 +1,1 @@
+["^ ","~$bind-output",["^ ","~:row",4,"~:col",1,"~:fixed-arities",["~#set",[1]],"~:name","^0","~:ns","~$quil.middlewares.bind-output","~:top-ns","^7"],"~:filename","/home/ru/.m2/repository/quil/quil/3.0.0/quil-3.0.0.jar:quil/middlewares/bind_output.clj"]

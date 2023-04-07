@@ -1,0 +1,1 @@
+{:output-to "resources/public/js/just_leaflet.js", :output-dir "resources/public/js/just_leaflet", :asset-path "js/just_leaflet", :main "leaflet.client", :verbose false}

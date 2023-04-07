@@ -1,0 +1,1 @@
+{:output-to "resources/public/js/rea-simple.js", :output-dir "resources/public/js/rea-simple", :asset-path "js/rea-simple", :main "rea.simple", :verbose false}

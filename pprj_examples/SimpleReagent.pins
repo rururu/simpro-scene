@@ -1,0 +1,223 @@
+; Thu Oct 20 18:14:08 MSK 2022
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([SimpleReagent_Class0] of  ClsMain
+
+	(asset-path "js/rea-simple")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[SimpleReagent_Class5]
+		[SimpleReagent_Class6]
+		[SimpleReagent_Class7]
+		[SimpleReagent_Class8]
+		[SimpleReagent_Class9])
+	(cloNamespace [SimpleReagent_Class1])
+	(cloVars
+		[SimpleReagent_Class2]
+		[SimpleReagent_Class3]
+		[SimpleReagent_Class4])
+	(compiler-options "{:verbose false}")
+	(css [SimpleReagent_Class10003])
+	(html [SimpleReagent_Class10])
+	(output-dir "resources/public/js/rea-simple")
+	(output-to "resources/public/js/rea-simple.js")
+	(store-in "src/cljs/reagent")
+	(title "Simple Reagent"))
+
+([SimpleReagent_Class1] of  CloNamespace
+
+	(source "(:require \n  [reagent.core :as r]\n  [reagent.dom :as rdom]\n  [clojure.string :as str])")
+	(title "rea.simple"))
+
+([SimpleReagent_Class10] of  HTML
+
+	(source "<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Simple eagent Example</title>\n    <link rel=\"stylesheet\" href=\"css/simple-reagent.css\">\n  </head>\n  <body>\n    <div id=\"app\">\n      <h1>Reagent example app – see README.md</h1>\n    </div>\n    <script src=\"js/rea-simple.js\"></script>\n    <script>\n      rea.simple.run();\n    </script>\n  </body>\n</html>")
+	(store-in "resources/public")
+	(title "simple-reagent"))
+
+([SimpleReagent_Class10000] of  ClsMain
+
+	(asset-path "js/rea-simplemui")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[SimpleReagent_Class5]
+		[SimpleReagent_Class10006]
+		[SimpleReagent_Class10007]
+		[SimpleReagent_Class10004])
+	(cloNamespace [SimpleReagent_Class10001])
+	(cloVars
+		[SimpleReagent_Class10009]
+		[SimpleReagent_Class10010]
+		[SimpleReagent_Class10011])
+	(compiler-options "{:verbose false}")
+	(html [SimpleReagent_Class10002])
+	(output-dir "resources/public/js/rea-simplemui")
+	(output-to "resources/public/js/rea-simplemui.js")
+	(store-in "src/cljs/reagent")
+	(title "Simple Material-UI"))
+
+([SimpleReagent_Class10001] of  CloNamespace
+
+	(source "(:require-macros\n  [reagent-mui.util :refer [react-component]])\n(:require \n  [reagent.core :as r]\n  [reagent.dom :as rdom]\n  [reagent-mui.material.css-baseline :refer [css-baseline]]\n  [reagent-mui.colors :as colors]\n  [reagent-mui.styles :as styles]\n  [reagent-mui.material.text-field :refer [text-field]])")
+	(title "rea.simplemui"))
+
+([SimpleReagent_Class10002] of  HTML
+
+	(source "<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Simple eagent Example</title>\n  </head>\n  <body>\n    <div id=\"app\">\n      <h1>Reagent  Material UI example app – see README.md</h1>\n    </div>\n    <script src=\"js/rea-simplemui.js\"></script>\n    <script>\n      rea.simplemui.run();\n    </script>\n  </body>\n</html>")
+	(store-in "resources/public")
+	(title "simple-reagent-mui"))
+
+([SimpleReagent_Class10003] of  CSS
+
+	(source "div, h1, input {\n    font-family: HelveticaNeue, Helvetica;\n    color: #777;\n}\n\n.example-clock {\n    font-size: 128px;\n    line-height: 1.2em;\n    font-family: HelveticaNeue-UltraLight, Helvetica;\n}\n\n@media (max-width: 768px) {\n    .example-clock {\n        font-size: 64px;\n    }\n}\n\n.color-input, .color-input input {\n    font-size: 24px;\n    line-height: 1.5em;\n}")
+	(store-in "resources/public/css")
+	(title "simple-reagent"))
+
+([SimpleReagent_Class10004] of  CloFunction
+
+	(source "(rdom/render [main] (js/document.getElementById \"app\"))")
+	(title "run []"))
+
+([SimpleReagent_Class10005] of  CloFunction
+
+	(source "[:div\n   [greeting \"Simple Material UI\"]\n   [clock]\n   [color-input]]")
+	(title "simple-example-mui []"))
+
+([SimpleReagent_Class10006] of  CloFunction
+
+	(source "(.. e -target -value)")
+	(title "event-value [e]"))
+
+([SimpleReagent_Class10007] of  CloFunction
+
+	(source "[:div\n   [greeting \"Точное время\"]\n   [text-field\n    {:value @text-state\n     :label \"Text input\"\n     :placeholder \"Placeholder\"\n     :helper-text \"Helper text\"\n     :class (:text-field CLASSES)\n     :on-change (fn [e] (reset! text-state (event-value e)))}]]")
+	(title "main []"))
+
+([SimpleReagent_Class10009] of  CloVar
+
+	(source "{:palette {:primary   colors/purple\n               :secondary colors/green}}")
+	(title "CUSTOM-TEME"))
+
+([SimpleReagent_Class10010] of  CloVar
+
+	(source "(let [prefix \"rmui-example\"]\n  {:root (str prefix \"-root\")\n    :text-field (str prefix \"-text-field\")})")
+	(title "CLASSES"))
+
+([SimpleReagent_Class10011] of  CloVar
+
+	(source "(defonce text-state (r/atom \"foobar\"))")
+	(title "TEXT-STATE"))
+
+([SimpleReagent_Class10012] of  ClsMain
+
+	(asset-path "js/rea-simplemui2")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[SimpleReagent_Class10015]
+		[SimpleReagent_Class10016]
+		[SimpleReagent_Class10018]
+		[SimpleReagent_Class10019]
+		[SimpleReagent_Class10020])
+	(cloNamespace [SimpleReagent_Class10013])
+	(cloVars
+		[SimpleReagent_Class10014]
+		[SimpleReagent_Class10017])
+	(compiler-options "{:verbose false}")
+	(html [SimpleReagent_Class10021])
+	(output-dir "resources/public/js/rea-simplemui2")
+	(output-to "resources/public/js/rea-simplemui2.js")
+	(store-in "src/cljs/reagent")
+	(title "Simple Material-UI 2"))
+
+([SimpleReagent_Class10013] of  CloNamespace
+
+	(source "(:require [reagent-material-ui.core :as ui])")
+	(title "rea.simplemui2"))
+
+([SimpleReagent_Class10014] of  CloVar
+
+	(source "reagent/as-element")
+	(title "EL"))
+
+([SimpleReagent_Class10015] of  CloFunction
+
+	(source "[ui/FontIcon {:className \"material-icons\"} name]")
+	(title "icon [name]"))
+
+([SimpleReagent_Class10016] of  CloFunction
+
+	(source "(aget ui/colors name)")
+	(title "color [name]"))
+
+([SimpleReagent_Class10017] of  CloVar
+
+	(source "(defonce theme-defaults \n  {:muiTheme (ui/getMuiTheme\n                       (-> ui/darkBaseTheme\n                         (js->clj :keywordize-keys true)\n                         (update :palette merge {:primary1Color (color \"amber500\")\n                                                            :primary2Color (color \"amber700\")})\n                         clj->js))})")
+	(title "THEME-DEFAULTS"))
+
+([SimpleReagent_Class10018] of  CloFunction
+
+	(source "(let [is-open? (atom false)\n        close #(reset! is-open? false)]\n    (fn []\n      [:div\n       [ui/AppBar {:title \"yipgo\" :onLeftIconButtonTouchTap #(reset! is-open? true)}]\n       [ui/Drawer {:open @is-open? :docked false}\n        [ui/List\n         [ui/ListItem {:leftIcon (EL [:i.material-icons \"home\"])\n                            :on-click (fn []\n                                          (accountant/navigate! \"/\")\n                                          (close))}\n          \"Home\"]\n         [ui/Divider]\n         (for [[doc details] @(rf/subscribe [:docs.list.by-name])]\n           ^{:key doc} [ui/ListItem {:secondaryText \"Something something\"\n                                     :rightIconButton (EL [ui/IconMenu {:iconButtonElement (el [ui/IconButton {:touch true} [icon \"more_vert\"]])}\n                                                                    [ui/MenuItem \"Delete\"]])\n                                     :onTouchTap (fn []\n                                                   ;; some action or another, then close the menu\n                                                   (close))}\n                              doc])]\n         [new-doc-modal close]]])))")
+	(title "simple-nav []"))
+
+([SimpleReagent_Class10019] of  CloFunction
+
+	(source "[ui/MuiThemeProvider THEME-DEFAULTS\n   [:div\n    [simple-nav]\n    [:div\n     [:h2 \"Welcome to a simple, example application.\"]]]]")
+	(title "home-page []"))
+
+([SimpleReagent_Class10020] of  CloFunction
+
+	(source "(rdom/render [home-page] (js/document.getElementById \"app\"))")
+	(title "run []"))
+
+([SimpleReagent_Class10021] of  HTML
+
+	(source "<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Simple eagent Example</title>\n  </head>\n  <body>\n    <div id=\"app\">\n      <h1>Reagent  Material UI 2 example app – see README.md</h1>\n    </div>\n    <script src=\"js/rea-simplemui2.js\"></script>\n    <script>\n      rea.simplemui2.run();\n    </script>\n  </body>\n</html>")
+	(title "simple-reagentmui2"))
+
+([SimpleReagent_Class11] of  CSS
+
+	(source "div, h1, input {\n    font-family: HelveticaNeue, Helvetica;\n    color: #777;\n}\n\n.example-clock {\n    font-size: 128px;\n    line-height: 1.2em;\n    font-family: HelveticaNeue-UltraLight, Helvetica;\n}\n\n@media (max-width: 768px) {\n    .example-clock {\n        font-size: 64px;\n    }\n}\n\n.color-input, .color-input input {\n    font-size: 24px;\n    line-height: 1.5em;\n}")
+	(store-in "resources/public/css")
+	(title "simple-reagent-mui"))
+
+([SimpleReagent_Class2] of  CloVar
+
+	(source "(defonce timer (r/atom (js/Date.)))")
+	(title "TIMER"))
+
+([SimpleReagent_Class3] of  CloVar
+
+	(source "(defonce time-color (r/atom \"#080\"))")
+	(title "TIME-COLOR"))
+
+([SimpleReagent_Class4] of  CloVar
+
+	(source "(defonce time-updater (js/setInterval\n  #(reset! timer (js/Date.)) 1000))")
+	(title "TIME-UPDATER"))
+
+([SimpleReagent_Class5] of  CloFunction
+
+	(source "[:h1 message]")
+	(title "greeting [message]"))
+
+([SimpleReagent_Class6] of  CloFunction
+
+	(source "(let [time-str (-> @timer .toTimeString (str/split \" \") first)]\n    [:div.example-clock\n    {:style {:color @time-color}}\n    time-str])")
+	(title "clock []"))
+
+([SimpleReagent_Class7] of  CloFunction
+
+	(source "[:div.color-input\n \"Digits color: \"\n [:input {:type \"text\"\n             :value @time-color\n             :on-change #(reset! time-color (-> % .-target .-value))}]]")
+	(title "color-input []"))
+
+([SimpleReagent_Class8] of  CloFunction
+
+	(source "[:div\n   [greeting \"Точное время\"]\n   [clock]\n   [color-input]]")
+	(title "simple-example []"))
+
+([SimpleReagent_Class9] of  CloFunction
+
+	(source "(rdom/render [simple-example] (js/document.getElementById \"app\"))")
+	(title "run []"))
