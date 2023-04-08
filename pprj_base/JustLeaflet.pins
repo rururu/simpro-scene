@@ -1,27 +1,52 @@
-; Fri Apr 07 13:23:57 MSK 2023
+; Fri Apr 07 19:53:19 MSK 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
+
+([JustLeaflet_Class0] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       src (mp \"source\")]\n  (asp/pump-in (@SYS :CHAN) (read-string src)))")
+	(title "send-event [hm ins]"))
+
+([JustLeaflet_Class1] of  Event
+
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :marker\n :title \"m1\"\n :coord [60 30]\n :course 225\n :speed 22\n :url \"img/tanker.gif\"\n :icon-size [16 16]\n :draggable true}")
+	(title "Send Marker"))
 
 ([JustLeaflet_Class10] of  CloFuncall
 
 	(source "(in-ns 'leaflet.server)"))
 
+([JustLeaflet_Class10000] of  CloFuncall
+
+	(source "(let [{:keys [event] :as evt} {:event :marker :title \"pedic\" :type \"kook\"}] (println :EVT evt))"))
+
+([JustLeaflet_Class10001] of  CloFuncall
+
+	(source "(let [{:keys [event] :as evt} {:event :marker :title \"pedic\" :type \"kook\"}] (println event :EVT evt))"))
+
 ([JustLeaflet_Class11] of  CloFuncall
 
 	(source "SYS"))
 
-([JustLeaflet_Class3] of  Response
-)
+([JustLeaflet_Class20000] of  Event
 
-([JustLeaflet_Class4] of  Response
-)
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :time-run \n :time-run true}")
+	(title "Send Time-run"))
 
-([JustLeaflet_Class5] of  Response
-)
+([JustLeaflet_Class20001] of  Event
 
-([JustLeaflet_Class6] of  Response
-)
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :move\n :title \"m1\"\n :coord nil\n :course 315\n :speed 10}")
+	(title "Send Move"))
+
+([JustLeaflet_Class20002] of  Event
+
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :popup\n :lat 60.1\n :lon 30.1\n :html \"<h1> Popup </h1> This is popup\"}")
+	(title "Send Popup"))
 
 ([JustLeaflet_Class8] of  Map
 
@@ -233,7 +258,7 @@
 
 ([WebInterface_Class30015] of  CloFunction
 
-	(source "(let [{:keys [title coord course speed url icon-size draggable]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [[lat lon] coord\n           pos (js/L.LatLng. lat lon)\n           ico (js/L.icon #js{:iconUrl url :iconSize (or (clj->js icon-size) #js[32, 32])})\n           ops #js{:title title\n                         :icon ico \n                         :rotationAngle course\n                         :rotationOrigin \"center center\"\n                         :draggable (or (clj->js draggable) true)}\n            mrk (js/L.marker. pos ops)]\n       (vswap! OBJECTS assoc title mrk)\n       (if speed\n         (vswap! MOVERS assoc title\n           (mvo/create-mover [lat lon] course speed mrk)))\n       (.addTo mrk MAP)\n       mrk)))")
+	(source "(let [{:keys [title coord course speed url icon-size draggable]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [[lat lon] coord\n           pos (js/L.LatLng. lat lon)\n           ico (js/L.icon #js{:iconUrl url :iconSize (or (clj->js icon-size) #js[32, 32])})\n           ops #js{:title title\n                         :icon ico \n                         :rotationAngle course\n                         :rotationOrigin \"center center\"\n                         :draggable (or (clj->js draggable) true)}\n            mrk (js/L.marker. pos ops)]\n       (vswap! OBJECTS assoc title mrk)\n       (if speed\n         (vswap! MOVERS assoc title\n           (mvo/create-mover [lat lon] course speed mrk)))\n       (.addTo mrk @MAP)\n       mrk)))")
 	(title "add-marker [params]"))
 
 ([WebInterface_Class30016] of  CloDocumentation
@@ -283,7 +308,7 @@
 
 ([WebInterface_Class50001] of  CloFunction
 
-	(source "(let [{:keys [lat lon html]} params\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter MAP))]\n  (.addLayer @MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent html))))")
+	(source "(let [{:keys [lat lon html]} params\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter @MAP))]\n  (.addLayer @MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent html))))")
 	(title "add-popup [params]"))
 
 ([WebInterface_Class6] of  CloFunction
@@ -348,7 +373,7 @@
 
 ([WebInterface_Class70029] of  CloFunction
 
-	(source "(let [{:keys [title type coord options]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [ops (clj->js options)\n           crd (clj->js coord)\n           lay (condp = type\n                   :polyline (js/L.polyline. crd ops)\n                   :polygon (js/L.polygon. crd ops)\n                   :rectangle (js/L.rectangle. crd ops)\n                   :circle (js/L.circle. crd ops)\n                   :circle-marker (js/L.circleMarker. crd ops)\n                   nil)]\n         (when lay\n           (vswap! OBJECTS assoc title lay)\n           (.addTo lay MAP)))))")
+	(source "(let [{:keys [title type coord options]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [ops (clj->js options)\n           crd (clj->js coord)\n           lay (condp = type\n                   :polyline (js/L.polyline. crd ops)\n                   :polygon (js/L.polygon. crd ops)\n                   :rectangle (js/L.rectangle. crd ops)\n                   :circle (js/L.circle. crd ops)\n                   :circle-marker (js/L.circleMarker. crd ops)\n                   nil)]\n         (when lay\n           (vswap! OBJECTS assoc title lay)\n           (.addTo lay @MAP)))))")
 	(title "add-path [params]"))
 
 ([WebInterface_Class8] of  CloFunction
@@ -388,7 +413,7 @@
 
 ([WebInterface_Class90003] of  CloVar
 
-	(source "false")
+	(source "true")
 	(title "DEBUG"))
 
 ([WebInterface_Class90004] of  CloFunction
@@ -435,7 +460,8 @@
 		[WebServer_Class40009]
 		[WebServer_Class40012]
 		[WebServer_Class40014]
-		[WebInterface_Class110001])
+		[WebInterface_Class110001]
+		[JustLeaflet_Class0])
 	(cloNamespace [WebServer_Class4])
 	(cloVars [WebServer_Class40013])
 	(title "Leaflet Server"))
@@ -447,7 +473,7 @@
 
 ([WebServer_Class4] of  CloNamespace
 
-	(source "(:use\n  protege.core)\n(:require\n  [cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET POST]]\n  [compojure.route :as route]\n  [compojure.handler :as handler]\n  [async.proc :as asp])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab\n  java.awt.Desktop\n  java.net.URI)")
+	(source "(:use\n  protege.core)\n(:require\n  [cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET]]\n  [compojure.route :as route]\n  [compojure.handler :as handler]\n  [async.proc :as asp])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab\n  java.awt.Desktop\n  java.net.URI)")
 	(title "leaflet.server"))
 
 ([WebServer_Class40000] of  CloFunction

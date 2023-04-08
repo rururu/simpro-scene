@@ -4,7 +4,7 @@
 (:require
   [cognitect.transit :as t]
   [ring.adapter.jetty :as jetty]
-  [compojure.core :refer [defroutes GET POST]]
+  [compojure.core :refer [defroutes GET]]
   [compojure.route :as route]
   [compojure.handler :as handler]
   [async.proc :as asp])
@@ -98,4 +98,9 @@
 ([hm inst]
   (if-let [port (sv inst "jlport")]
     (start-client (read-string port)))))
+
+(defn send-event [hm ins]
+  (let [mp (into {} hm)
+       src (mp "source")]
+  (asp/pump-in (@SYS :CHAN) (read-string src))))
 

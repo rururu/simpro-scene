@@ -10,7 +10,7 @@
 (def MOVERS (volatile! {}))
 (def DATA nil)
 (def T-SCALE 1.0)
-(def DEBUG true)
+(def DEBUG false)
 (defn by-id [id]
   (.getElementById js/document id))
 
@@ -92,7 +92,7 @@
                    nil)]
          (when lay
            (vswap! OBJECTS assoc title lay)
-           (.addTo lay @MAP))))))
+           (.addTo lay MAP))))))
 
 (defn add-marker [params]
   (let [{:keys [title coord course speed url icon-size draggable]} params]
@@ -112,14 +112,14 @@
        (if speed
          (vswap! MOVERS assoc title
            (mvo/create-mover [lat lon] course speed mrk)))
-       (.addTo mrk @MAP)
+       (.addTo mrk MAP)
        mrk))))
 
 (defn add-popup [params]
   (let [{:keys [lat lon html]} params
        pos (if (and lat lon)
                #js[lat lon]
-               (.getCenter @MAP))]
+               (.getCenter MAP))]
   (.addLayer @MAP (-> (js/L.popup. #js{})
                              (.setLatLng pos)
                              (.setContent html)))))
@@ -196,10 +196,3 @@
   (mvo/move m))
 (js/setTimeout move-markers TO-MOVE))
 
-
-(enable-console-print!)
-(set! (.-onload js/window) (init))
-(request-events)
-(mvo/set-timeout-hrs TO-MOVE T-SCALE)
-(move-markers)
-(println "Epilogue done..")
