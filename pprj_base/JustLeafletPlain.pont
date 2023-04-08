@@ -1,0 +1,93 @@
+; Sat Apr 08 14:15:17 MSK 2023
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot jlbut-client
+		(type STRING)
+		(default "Strat Client/leaflet_plain.server/start-client")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlstart-page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot but-send-event
+		(type STRING)
+		(default "Send Response/leaflet_plain.server/send-event")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlbut-start
+		(type STRING)
+		(default "Start Server/leaflet_plain.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlport
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlbut-stop
+		(type STRING)
+		(default "Stop Server/leaflet_plain.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass JLServer
+	(is-a USER)
+	(role concrete)
+	(single-slot jlbut-client
+		(type STRING)
+		(default "Strat Client/leaflet_plain.server/start-client")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlport
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlstart-page
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlbut-stop
+		(type STRING)
+		(default "Stop Server/leaflet_plain.server/stop-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot jlbut-start
+		(type STRING)
+		(default "Start Server/leaflet_plain.server/start-server")
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Event
+	(is-a USER)
+	(role concrete)
+	(single-slot but-send-event
+		(type STRING)
+		(default "Send Response/leaflet_plain.server/send-event")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Map
+	(is-a USER)
+	(role concrete)
+	(single-slot source
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))

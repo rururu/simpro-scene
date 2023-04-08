@@ -2,7 +2,7 @@
 (:use
   protege.core)
 (:require
-  [cognitect.transit :as t]
+  ;;[cognitect.transit :as t]
   [ring.adapter.jetty :as jetty]
   [compojure.core :refer [defroutes GET]]
   [compojure.route :as route]
@@ -49,8 +49,9 @@
 
 (defn response-events []
   (let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]
-  ;; (println :EVT evt)
-  (write-transit evt)))
+  ;;(println :EVT evt)
+  ;;(write-transit evt))
+  (str evt)))
 
 (defn response-map []
   (if (@SYS :BUSY) 
@@ -59,7 +60,8 @@
                   (read-string (sv mapi "source"))
                   {})]
     ;;(vswap! SYS assoc :BUSY true)
-    (write-transit resp))))
+    ;;(write-transit resp)))
+    (str resp))))
 
 (defn defapp []
   (defroutes app-routes
@@ -94,7 +96,7 @@
 (defn start-client
   ([port]
   (if-let [serv (@SYS :SERVER)]
-    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://0.0.0.0:" port))))))
+    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str "http://localhost:" port))))))
 ([hm inst]
   (if-let [port (sv inst "jlport")]
     (start-client (read-string port)))))

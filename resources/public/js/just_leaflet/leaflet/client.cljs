@@ -165,6 +165,11 @@
                       :error-handler error-handler})
 (js/setTimeout request-events TO-EVENTS))
 
+(defn zoom-display []
+  (let [zoom (.getZoom @MAP)]
+  (println :ZOOM zoom)
+  (set-html! "zoom" (str "zoom " zoom))))
+
 (defn map-hr [resp]
   (let [mp (read-transit resp)]
   (println :Map)
@@ -172,14 +177,13 @@
     (let [blms (apply merge (map create-layer (mp :base)))
           olms (apply merge (map create-layer (mp :overlay)))
           flay (second (first  blms)) 
-          lctl (js/L.control.layers (clj->js blms) (clj->js olms))
-          fzoom (fn [] (set-html! "zoom" (str "zoom " (.getZoom @MAP))))]
+          lctl (js/L.control.layers (clj->js blms) (clj->js olms))]
       (.addTo flay @MAP)
       (.setView @MAP (clj->js (mp :center)) (mp :zoom))
       (.addTo (js/L.control.mousePosition.) @MAP)
       (.addTo lctl @MAP)
-      (fzoom)
-      (.on @MAP "zoomend" fzoom))
+      (zoom-display)
+      (.on @MAP "zoomend" zoom-display))
     (add-popup {:html (str "<h1>" mp "</h1>")}))))
 
 (defn request-map []

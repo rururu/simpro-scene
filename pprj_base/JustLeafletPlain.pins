@@ -1,0 +1,627 @@
+; Sat Apr 08 14:15:17 MSK 2023
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([JustLeaflet_Class0] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       src (mp \"source\")]\n  (asp/pump-in (@SYS :CHAN) (read-string src)))")
+	(title "send-event [hm ins]"))
+
+([JustLeaflet_Class10] of  CloFuncall
+
+	(source "(in-ns 'leaflet.server)"))
+
+([JustLeaflet_Class10000] of  CloFuncall
+
+	(source "(let [{:keys [event] :as evt} {:event :marker :title \"pedic\" :type \"kook\"}] (println :EVT evt))"))
+
+([JustLeaflet_Class10001] of  CloFuncall
+
+	(source "(let [{:keys [event] :as evt} {:event :marker :title \"pedic\" :type \"kook\"}] (println event :EVT evt))"))
+
+([JustLeaflet_Class11] of  CloFuncall
+
+	(source "SYS"))
+
+([JustLeaflet_Class30000] of  CloFunction
+
+	(source "(let [zoom (.getZoom @MAP)]\n  (println :ZOOM zoom)\n  (set-html! \"zoom\" (str \"zoom \" zoom)))")
+	(title "zoom-display []"))
+
+([JustLeaflet_Class8] of  Map
+
+	(source "{:base [{:type :Tile\n             :title \"Watercolor\"\n             :source \"http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, OpenStreet, Stamen &copy;\"}}}\n           {:type :Tile\n             :title \"OpenStreetMap\"\n             :source \"http://{s}.tile.osm.org/{z}/{x}/{y}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, OpenStreetMap &copy;\"}}}\n            {:type :Tile\n             :title \"Google Terrain\"\n             :source \"http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}\"\n             :arguments {:options {:maxZoom 20\n                                              :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"Google Streets\"\n             :source \"http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}\"\n             :arguments {:options {:maxZoom 20\n                                              :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"Google Satellite\"\n             :source \"http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}\"\n             :arguments {:options {:maxZoom 20\n                                              :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"Google Hybrid\"\n             :source \"http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}\"\n             :arguments {:options {:maxZoom 20\n                                              :subdomains [\"mt0\" \"mt1\" \"mt2\" \"mt3\"]\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"ArcGIS National Geographic\"\n             :source \"http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"ArcGIS Satellite\"\n             :source \"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"ArcGIS Streets\"\n             :source \"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, ESRI &copy;\"}}}\n            {:type :Tile\n             :title \"ArcGIS Topo\"\n             :source \"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png\"\n             :arguments {:options {:maxZoom 20\n                                              :attribution \"Ru, ESRI &copy;\"}}}]\n :zoom 8\n :center [60 30]\n}")
+	(title "Map1"))
+
+([JustLeaflet_Class9] of  %3AINSTANCE-ANNOTATION
+
+	(%3AANNOTATED-INSTANCE [JustLeaflet_Class8])
+	(%3ACREATION-TIMESTAMP "2023.04.07 12:12:36.415 MSK")
+	(%3ACREATOR "ru"))
+
+([JustLeafletPlain_Class0] of  JLServer
+
+	(jlbut-client "Strat Client/leaflet_plain.server/start-client")
+	(jlbut-start "Start Server/leaflet_plain.server/start-server")
+	(jlbut-stop "Stop Server/leaflet_plain.server/stop-server")
+	(jlport "8888")
+	(jlstart-page "resources/public/just_leaflet_plain.html"))
+
+([JustLeafletPlain_Class10000] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :marker\n :title \"m1\"\n :coord [60 30]\n :course 225\n :speed 22\n :url \"img/tanker.gif\"\n :icon-size [16 16]\n :draggable true}")
+	(title "Send Marker"))
+
+([JustLeafletPlain_Class10001] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :move\n :title \"m1\"\n :coord nil\n :course 270\n :speed 10}")
+	(title "Send Move"))
+
+([JustLeafletPlain_Class10002] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :path\n :title \"Polygon1\"\n :type :polygon\n :coord [[60.1 29.9][60.1 30.1][59.9 30.1][59.9 29.9]]\n :options {:color \"#3388ff\"\n               :fill \"#4488ee\"\n               :fillOpacity 0.3}}")
+	(title "Send Polygon"))
+
+([JustLeafletPlain_Class10003] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :popup\n :lat 60.1\n :lon 30.1\n :html \"<h1> Popup </h1> This is popup\"}")
+	(title "Send Popup"))
+
+([JustLeafletPlain_Class10004] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :remove\n :title \"Polygon1\"}")
+	(title "Remove"))
+
+([JustLeafletPlain_Class10005] of  Event
+
+	(but-send-event "Send Response/leaflet_plain.server/send-event")
+	(source "{:event :time-run \n :time-run true}")
+	(title "Send Time-run"))
+
+([Leaflet_Class0] of  HTML
+
+	(source "<!DOCTYPE html>\n<html>\n<head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/just_leaflet_plain.css\" />\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.rotatedMarker.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n</head>\n<body>\n   <div id=\"map\"/>\n   <div id=\"zoom\"/>\n   <script src=\"js/just_leaflet_plain.js\"></script>\n</body>\n</html>")
+	(store-in "resources/public")
+	(title "just_leaflet_plain"))
+
+([Leaflet_Class1] of  CSS
+
+	(source "#map {\n    position: absolute;\n    top: 0px;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    z-index: -1;\n}\n#zoom {\n  position:fixed;\n  bottom:10px;\n  left:170px;\n  padding:5px;\n  z-index:100;\n}")
+	(store-in "resources/public/css")
+	(title "just_leaflet_plain"))
+
+([Leaflet_Class2] of  CloFunction
+
+	(source "(let [{:keys [status status-text]} resp]\n  (println \"AJAX ERROR:\" status status-text))")
+	(title "error-handler [resp]"))
+
+([WebInterface_Class0] of  ClsRequired
+
+	(cloFunctions
+		[WebInterface_Class30004]
+		[WebInterface_Class30005]
+		[WebInterface_Class30006]
+		[WebInterface_Class30007]
+		[WebInterface_Class30017]
+		[WebInterface_Class30018]
+		[WebInterface_Class30019]
+		[WebInterface_Class30008]
+		[WebInterface_Class30009]
+		[WebInterface_Class30020]
+		[WebInterface_Class30011]
+		[WebInterface_Class90001]
+		[WebInterface_Class30010]
+		[WebInterface_Class70001]
+		[WebInterface_Class70006])
+	(cloNamespace [WebInterface_Class20001])
+	(cloVars
+		[WebInterface_Class20002]
+		[WebInterface_Class30003]
+		[WebInterface_Class70005]
+		[WebInterface_Class50000])
+	(documentation [WebInterface_Class30016])
+	(title "Moving Program"))
+
+([WebInterface_Class1] of  CloProgram
+
+	(cloFunctions
+		[WebInterface_Class3]
+		[WebInterface_Class4]
+		[WebInterface_Class5]
+		[WebInterface_Class6]
+		[WebInterface_Class7]
+		[WebInterface_Class8]
+		[WebInterface_Class9]
+		[WebInterface_Class10010]
+		[WebInterface_Class10011]
+		[WebInterface_Class10012])
+	(cloNamespace [WebInterface_Class2])
+	(title "Async Processing"))
+
+([WebInterface_Class10000] of  CloFunction
+
+	(source "(println :Layer lmp)\n(let [tit (lmp :title)\n       typ (lmp :type)\n       src (lmp :source)\n       arg (lmp :arguments)\n       ops (or (arg :options) {})\n       ops (clj->js ops)]\n  (condp = typ\n    :GeoJSON {tit (L.GeoJSON.AJAX. src (clj->js arg))}\n    :Tile {tit (L.tileLayer src ops)}\n    :TileWMS {tit  (L.tileLayer.wms src ops)}\n    :ImageOverlay {tit (L.imageOverlay src (let [[[w s][e n]] (arg :imageBounds)]\n                                                                     (L.latLngBounds (L.latLng w s) (L.latLng e n))))}\n    :VideoOverlay {tit (L.videoOverlay src (let [[[w s][e n]] (arg :videoBounds)]\n                                                                   (L.latLngBounds (L.latLng w s) (L.latLng e n))))}\n    (js/alert (str \"Unknown layer class \" (lmp :type)))))")
+	(title "create-layer [lmp]"))
+
+([WebInterface_Class100002] of  CloFunction
+
+	(source "(let [{:keys [title tug bear dist]} params]\n  (if-let [mov (@MOVERS tug)]\n    (if-let [obj (@OBJECTS title)]\n      (do\n        (vswap! mov assoc-in [:tows obj]\n          [(* (/ dist 60) mvo/PID180) (* bear mvo/PID180)])\n        (if-let [mov (@MOVERS title)]\n          (vswap! MOVERS dissoc title)))\n      (js/alert \"Object \" title \" on tow of \" tug \" is missing!\"))\n    (js/alert \"Tug \"\" for object \"\" on tow  is missing!\")))")
+	(title "add-tow [params]"))
+
+([WebInterface_Class10010] of  CloFunction
+
+	(source "(chan)")
+	(title "mk-chan []"))
+
+([WebInterface_Class10011] of  CloFunction
+
+	(source "(close! chn)")
+	(title "close-chan [chn]"))
+
+([WebInterface_Class10012] of  CloFunction
+
+	(source "(go (<! (timeout time))\n  (func))")
+	(title "delayer [func time]"))
+
+([WebInterface_Class11] of  CloFunction
+
+	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;;(println :EVT evt)\n  ;;(write-transit evt))\n  (str evt))")
+	(title "response-events []"))
+
+([WebInterface_Class110001] of  CloFunction
+
+	(source "([port]\n  (if-let [serv (@SYS :SERVER)]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://localhost:\" port))))))\n([hm inst]\n  (if-let [port (sv inst \"jlport\")]\n    (start-client (read-string port))))")
+	(title "start-client"))
+
+([WebInterface_Class120009] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATION-TIMESTAMP "2021.02.01 01:28:34.618 MSK")
+	(%3ACREATOR "ru"))
+
+([WebInterface_Class15] of  CloFunction
+
+	(source "(GET \"/events\" {:handler events-hr\n                      :error-handler error-handler})\n(js/setTimeout request-events TO-EVENTS)")
+	(title "request-events []"))
+
+([WebInterface_Class16] of  CloFunction
+
+	(source "(doseq [{:keys [event] :as evt} (rdr/read-string resp)]\n  (if DEBUG (println [:EVENTS-HR evt]))\n  (condp = event\n    :path (add-path evt)\n    :marker (add-marker evt)\n    :popup (add-popup evt)\n    :remove (remove-layer evt)\n    :time-scale (set-time-scale evt)\n    :time-run (set-time-run evt)\n    :move (move-control evt)\n    :tow (add-tow evt)\n    :endtow (remove-tow evt)\n    :debug (set-debug evt)\n    (js/alert \"Unknown event: \" [event evt])))")
+	(title "events-hr [resp]"))
+
+([WebInterface_Class2] of  CloNamespace
+
+	(source "(:require \n  [clojure.core.async :refer [chan alts!! put! <! <!! go timeout close!]])")
+	(title "async.proc"))
+
+([WebInterface_Class20000] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Function add-marker</b><br><br>Argument is a map of parameters (keys):<br><br><b>:mode</b> - :create (default) or :update 60 <br><b>:title</b> - unic name of marker object<br><b>:coord </b>- coordinates in a form [latitude (degrees) longitude (degrees)]<br><b>:url </b>- icon url<br><b>:icon-size</b> - icon size in a form [width (pixels) height (pixels)], <i>optional</i>, default [32 32]<br><b>:course</b> - course (degrees), <i>optional</i>, no default<br><b>:speed </b>- speed (knots - nautical miles per hour), <i>optional</i>, no default<br><b>:draggable</b> - draggable by mouse, <i>optional</i>, default true<br><br><u>Note: coord, course and speed must be updated through calling functions:</u><br>- (mvo.move/set-coord mvo crd),<br>- (mvo.move/set-course mvo crs),<br>- (mvo.move/set-speed mvo spd), respectively.<br><br><br></body>\n</html>")
+	(title "Function add-marker"))
+
+([WebInterface_Class20001] of  CloNamespace
+
+	(title "mvo.move"))
+
+([WebInterface_Class20002] of  CloVar
+
+	(source "(/ Math.PI 180)")
+	(title "PID180"))
+
+([WebInterface_Class3] of  CloFunction
+
+	(source "([func time-out]\n  (go (while true\n           (func)\n           (<! (timeout time-out)))))\n([func param time-out]\n  (go (while true\n           (func param)\n           (<! (timeout time-out)))))")
+	(title "repeater"))
+
+([WebInterface_Class30000] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          Wint Client<br>      <br>      Function add-marker <a href=\"internalLink\">@'WebInterface_Class20000'</a>&#160;</body>\n</html>")
+	(title "Wint Client"))
+
+([WebInterface_Class30003] of  CloVar
+
+	(source "(/ Math.PI 10800)")
+	(title "NMRAD"))
+
+([WebInterface_Class30004] of  CloFunction
+
+	(source "(let [cosphi1 (js/Math.cos phi1)\n       sinphi1 (js/Math.sin phi1)\n       cosaz (js/Math.cos az)\n       sinaz (js/Math.sin az)\n       sinc (js/Math.sin c)\n       cosc (js/Math.cos c)\n       phi2 (js/Math.asin (+ (* sinphi1 cosc) (* cosphi1 sinc cosaz)))\n       lam2 (+ (js/Math.atan2 (* sinc sinaz) (- (* cosphi1 cosc) (* sinphi1 sinc cosaz))) lambda0)]\n  [phi2 lam2])")
+	(title "spherical-between-js [phi1 lambda0 c az]"))
+
+([WebInterface_Class30005] of  CloFunction
+
+	(source "(let [ldiff (- lambda lambda0)\n       cosphi (js/Math.cos phi)]\n  (js/Math.atan2 (* cosphi (js.Math.sin ldiff))\n                      (- (* (js/Math.cos phi1) (js/Math.sin phi)) \n                          (* (js/Math.sin phi1) cosphi (js/Math.cos ldiff)))))")
+	(title "spherical-azimuth-js [phi1 lambda0 phi lambda]"))
+
+([WebInterface_Class30006] of  CloFunction
+
+	(source "(let [fi1 (* la1 PID180)\n       ld1 (* lo1 PID180)\n       fi2 (* la2 PID180)\n       ld2 (* lo2 PID180)\n       rad (spherical-azimuth-js fi1 ld1 fi2 ld2)\n       deg (/ rad PID180)]\n  (cond\n    (< deg 0) (+ deg 360.0)\n    (> deg 360.0) (- deg 360.0)\n    true deg))")
+	(title "bear-deg-js [[la1 lo1] [la2 lo2]]"))
+
+([WebInterface_Class30007] of  CloFunction
+
+	(source "(vswap! mvo assoc\n  :phi-tur (* lat PID180)\n  :lam-tur (* lon PID180)\n  :dir (* crs PID180)\n  :rdh (* spd NMRAD)\n  :elt-tur 0.0)")
+	(title "set-turn-point [mvo [lat lon] crs spd]"))
+
+([WebInterface_Class30008] of  CloFunction
+
+	(source "(let [mv @mvo]\n  (set-turn-point mvo (get-coord mv) crs (get-speed mv))\n  (.setRotationAngle (mv :marker) crs))")
+	(title "set-course [mvo crs]"))
+
+([WebInterface_Class30009] of  CloFunction
+
+	(source "(let [mv @mvo]\n  (set-turn-point mvo (get-coord mv) (get-course mv) spd))")
+	(title "set-speed [mvo spd]"))
+
+([WebInterface_Class30010] of  CloFunction
+
+	(source "(if TIME-RUN\n  (let [mv @mvo\n         elt (+ (mv :elt-tur) TIMEOUT-HRS)\n         way (* (mv :rdh) elt)\n         [phi lam] (spherical-between-js (mv :phi-tur) (mv :lam-tur) way (mv :dir))\n         pos (js/L.LatLng. (/ phi PID180) (/ lam PID180))]\n    (.setLatLng (mv :marker) pos)\n    (doseq [twd (mv :tows)]\n       (tow twd phi lam (get-course mv)))\n    (vswap! mvo assoc :elt-tur elt)))")
+	(title "move [mvo]"))
+
+([WebInterface_Class30011] of  CloFunction
+
+	(source "(let [mvo (volatile! {:marker mrk})]\n  (set-turn-point mvo crd crs spd)\n  mvo)")
+	(title "create-mover [crd crs spd mrk]"))
+
+([WebInterface_Class30014] of  CloVar
+
+	(source "(volatile! {})")
+	(title "MOVERS"))
+
+([WebInterface_Class30015] of  CloFunction
+
+	(source "(let [{:keys [title coord course speed url icon-size draggable]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [[lat lon] coord\n           pos (js/L.LatLng. lat lon)\n           ico (js/L.icon #js{:iconUrl url :iconSize (or (clj->js icon-size) #js[32, 32])})\n           ops #js{:title title\n                         :icon ico \n                         :rotationAngle course\n                         :rotationOrigin \"center center\"\n                         :draggable (or (clj->js draggable) true)}\n            mrk (js/L.marker. pos ops)]\n       (vswap! OBJECTS assoc title mrk)\n       (if speed\n         (vswap! MOVERS assoc title\n           (mvo/create-mover [lat lon] course speed mrk)))\n       (.addTo mrk @MAP)\n       mrk)))")
+	(title "add-marker [params]"))
+
+([WebInterface_Class30016] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n    <b>Mover</b><br><br>Mover is a map of keys:<br><br><b>:phi-tur</b> - latitude of turnung point (TP) in radians<br><b>:lam-tur</b> - longitude of TP in radians<br><b>:dir</b> - direction (course in radians)<br><b>:rdh</b> - radians per hour (speed)<br><b>:elt-tur</b> - elapsed time from TP in hours</body>\n</html>")
+	(title "Mover"))
+
+([WebInterface_Class30017] of  CloFunction
+
+	(source "(let [ll (.getLatLng (mv :marker))]\n  [(.-lat ll) (.-lng ll)])")
+	(title "get-coord [mv]"))
+
+([WebInterface_Class30018] of  CloFunction
+
+	(source "(/ (mv :dir) PID180)")
+	(title "get-course [mv]"))
+
+([WebInterface_Class30019] of  CloFunction
+
+	(source "(/ (mv :rdh) NMRAD)")
+	(title "get-speed [mv]"))
+
+([WebInterface_Class30020] of  CloFunction
+
+	(source "(let [mv @mvo\n       [lat lon] crd]\n  (set-turn-point mvo crd (get-course mv) (get-speed mv))\n  (.setLatLng (mv :marker) (js/L.LatLng. lat lon)))")
+	(title "set-coord [mvo crd]"))
+
+([WebInterface_Class4] of  CloFunction
+
+	(source "(when (not= @status \"RUN\") \n  (vreset! status \"RUN\")\n  (go (do \n          (while (and (= @status \"RUN\")\n                            (proc-fn))\n                (<! (timeout time-out)))\n          (if (instance? clojure.lang.IFn final-fun) (final-fun))\n          (vreset! status \"STOP\")))\n  @status)")
+	(title "start-process [status proc-fn time-out final-fun]"))
+
+([WebInterface_Class40000] of  CloVar
+
+	(source "2000")
+	(title "TO-EVENTS"))
+
+([WebInterface_Class5] of  CloFunction
+
+	(source "(vreset! status \"FINISH\")")
+	(title "stop-process [status]"))
+
+([WebInterface_Class50000] of  CloVar
+
+	(source "false")
+	(title "TIME-RUN"))
+
+([WebInterface_Class50001] of  CloFunction
+
+	(source "(let [{:keys [lat lon html]} params\n       pos (if (and lat lon)\n               #js[lat lon]\n               (.getCenter @MAP))]\n  (.addLayer @MAP (-> (js/L.popup. #js{})\n                             (.setLatLng pos)\n                             (.setContent html))))")
+	(title "add-popup [params]"))
+
+([WebInterface_Class6] of  CloFunction
+
+	(source "(= @status \"RUN\")")
+	(title "running? [status]"))
+
+([WebInterface_Class60001] of  CloVar
+
+	(source "(volatile! {})")
+	(title "OBJECTS"))
+
+([WebInterface_Class7] of  CloFunction
+
+	(source "(put! chn val)")
+	(title "pump-in [chn val]"))
+
+([WebInterface_Class70000] of  CloFunction
+
+	(source "(if-let [tit (params :title)]\n  (do\n    (when-let [lay (@OBJECTS tit)]\n      (.remove lay)\n      (vswap! OBJECTS dissoc tit))\n    (if-let [mov (@MOVERS tit)]\n      (vswap! MOVERS dissoc tit))))")
+	(title "remove-layer [params]"))
+
+([WebInterface_Class70001] of  CloFunction
+
+	(source "(def TIME-RUN bool)")
+	(title "set-time-run [bool]"))
+
+([WebInterface_Class70002] of  CloVar
+
+	(source "200")
+	(title "TO-MOVE"))
+
+([WebInterface_Class70003] of  CloFunction
+
+	(source "(doseq [[n m] @MOVERS]\n  (mvo/move m))\n(js/setTimeout move-markers TO-MOVE)")
+	(title "move-markers []"))
+
+([WebInterface_Class70005] of  CloVar
+
+	(source "0")
+	(title "TIMEOUT-HRS"))
+
+([WebInterface_Class70006] of  CloFunction
+
+	(source "(def TIMEOUT-HRS (* (/ timeout-mcec 3600000) time-scale))")
+	(title "set-timeout-hrs [timeout-mcec time-scale]"))
+
+([WebInterface_Class70011] of  CloVar
+
+	(source "1.0")
+	(title "T-SCALE"))
+
+([WebInterface_Class70012] of  CloFunction
+
+	(source "(def T-SCALE (params :time-scale))\n(mvo/set-timeout-hrs TO-MOVE T-SCALE)")
+	(title "set-time-scale [params]"))
+
+([WebInterface_Class70015] of  CloFunction
+
+	(source "(let [{:keys [title coord course speed]} params]\n  (when-let [mv (@MOVERS title)]\n    (if coord\n      (mvo/set-coord mv coord))\n    (if course\n      (mvo/set-course mv course))\n    (if speed\n      (mvo/set-speed mv speed))))")
+	(title "move-control [params]"))
+
+([WebInterface_Class70029] of  CloFunction
+
+	(source "(let [{:keys [title type coord options]} params]\n  (when title\n    (if (@OBJECTS title)\n      (remove-layer params))\n    (let [ops (clj->js options)\n           crd (clj->js coord)\n           lay (condp = type\n                   :polyline (js/L.polyline. crd ops)\n                   :polygon (js/L.polygon. crd ops)\n                   :rectangle (js/L.rectangle. crd ops)\n                   :circle (js/L.circle. crd ops)\n                   :circle-marker (js/L.circleMarker. crd ops)\n                   nil)]\n         (when lay\n           (vswap! OBJECTS assoc title lay)\n           (.addTo lay @MAP)))))")
+	(title "add-path [params]"))
+
+([WebInterface_Class8] of  CloFunction
+
+	(source "(loop [[bit ch] (alts!! [chn] :default :none) bits []]\n  (if (= bit :none)\n    bits\n    (recur (alts!! [chn] :default :none) (conj bits bit))))")
+	(title "pump-out [chn]"))
+
+([WebInterface_Class80000] of  CloFunction
+
+	(source "(set! (.-innerHTML (.getElementById js/document id)) html)")
+	(title "set-html! [id html]"))
+
+([WebInterface_Class80003] of  CloVar
+
+	(source "nil")
+	(title "DATA"))
+
+([WebInterface_Class9] of  CloFunction
+
+	(source "(loop [out []]\n  (if (empty? out)\n    (recur (<!! chn))\n    out))")
+	(title "one-out [chn]"))
+
+([WebInterface_Class90000] of  CloFunction
+
+	(source "(let [{:keys [title tug]} params]\n  (if-let [mov (@MOVERS tug)]\n    (if-let [obj (@OBJECTS title)]\n      (vswap! mov assoc :tows\n        (dissoc (@mov :tows) obj)))))")
+	(title "remove-tow [params]"))
+
+([WebInterface_Class90001] of  CloFunction
+
+	(source "(let [[phi2 lam2] (spherical-between-js phi lam rd az)\n       pos2 (js/L.LatLng. (/ phi2 PID180) (/ lam2 PID180))]\n  (.setLatLng cmk pos2)\n  (if (instance? js/L.Marker cmk)\n    (.setRotationAngle cmk crs)))")
+	(title "tow [[cmk [rd az]] phi lam crs]"))
+
+([WebInterface_Class90002] of  CloFunction
+
+	(source "(mvo/set-time-run (params :time-run))")
+	(title "set-time-run [params]"))
+
+([WebInterface_Class90003] of  CloVar
+
+	(source "true")
+	(title "DEBUG"))
+
+([WebInterface_Class90004] of  CloFunction
+
+	(source "(def DEBUG (params :debug))")
+	(title "set-debug [params]"))
+
+([WebServer_Class10000] of  HTML
+
+	(source "<!DOCTYPE html>\n<html>\n<head>\n<TITLE>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/wint.css\" />\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.rotatedMarker.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"js/heatmap.js\"></script>\n  <script src=\"js/leaflet-heatmap.js\"></script>\n</head>\n<body>\n<SIDEBARS>\n<HEADER>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <div id=\"zoom\"/>\n   <script src=\"js/wic.js\"></script>\n</body>\n</html>")
+	(store-in "resources/public")
+	(title "wint"))
+
+([WebServer_Class10001] of  CSS
+
+	(source "#header {\n  position: fixed;\n  top:0px;\n  left:20%;\n  right:20%;\n  padding:5px;\n  z-index:100;\n  font-size: 25px;\n}\n#MAP {\n  position: absolute;\n  top: 40px;\n  bottom: 30px;\n  left: 20%;\n  right: 20%;\n  z-index: -1;\n}\n#zoom {\n  position: fixed;\n  bottom:40px;\n  left:32%;\n  z-index:100;\n}\n#acc-left {\n  position: fixed;\n  top:0px;\n  left:0;\n  right:80%;\n  padding:5px;\n  z-index:100;\n}\n#acc-right {\n  position: fixed;\n  top:0px;\n  left:80%;\n  right:0;\n  padding:5px;\n  z-index:100;\n}")
+	(store-in "resources/public/css")
+	(title "winter"))
+
+([WebServer_Class10003] of  CloVar
+
+	(source "(volatile! nil)")
+	(title "MAP"))
+
+([WebServer_Class10004] of  CloFunction
+
+	(source "(GET \"/map\" {:handler map-hr\n                      :error-handler error-handler})")
+	(title "request-map []"))
+
+([WebServer_Class10005] of  CloFunction
+
+	(source "(vreset! MAP (js/L.map \"map\"))\n(request-map)\n(println \"MAP defined..\")")
+	(title "init []"))
+
+([WebServer_Class3] of  CloProgram
+
+	(cloFunctions
+		[WebServer_Class40015]
+		[WebServer_Class50001]
+		[WebServer_Class50002]
+		[WebInterface_Class11]
+		[WebServer_Class40003]
+		[WebServer_Class40009]
+		[WebServer_Class40012]
+		[WebServer_Class40014]
+		[WebInterface_Class110001]
+		[JustLeaflet_Class0])
+	(cloNamespace [WebServer_Class4])
+	(cloVars [WebServer_Class40013])
+	(title "Leaflet Server Plain"))
+
+([WebServer_Class30000] of  CloFunction
+
+	(source "(.getElementById js/document id)")
+	(title "by-id [id]"))
+
+([WebServer_Class4] of  CloNamespace
+
+	(source "(:use\n  protege.core)\n(:require\n  ;;[cognitect.transit :as t]\n  [ring.adapter.jetty :as jetty]\n  [compojure.core :refer [defroutes GET]]\n  [compojure.route :as route]\n  [compojure.handler :as handler]\n  [async.proc :as asp])\n(:import \n  [java.io \n    ByteArrayOutputStream\n    ByteArrayInputStream]\n  clojuretab.ClojureTab\n  java.awt.Desktop\n  java.net.URI)")
+	(title "leaflet_plain.server"))
+
+([WebServer_Class40000] of  CloFunction
+
+	(source "(GET service {:handler handler\n                      :error-handler (fn [resp]\n                                                (let [{:keys [status status-text]} resp]\n                                                  (println \"AJAX ERROR:\" status status-text)))})")
+	(title "reqserv [service handler]"))
+
+([WebServer_Class40001] of  CloFunction
+
+	(source "(let [mp (rdr/read-string resp)]\n  (println :Map)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [blms (apply merge (map create-layer (mp :base)))\n          olms (apply merge (map create-layer (mp :overlay)))\n          flay (second (first  blms)) \n          lctl (js/L.control.layers (clj->js blms) (clj->js olms))]\n      (.addTo flay @MAP)\n      (.setView @MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) @MAP)\n      (.addTo lctl @MAP)\n      (zoom-display)\n      (.on @MAP \"zoomend\" zoom-display))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
+	(title "map-hr [resp]"))
+
+([WebServer_Class40002] of  CloFunction
+
+	(source "(t/read (t/reader :json) x)")
+	(title "read-transit [x]"))
+
+([WebServer_Class40003] of  CloFunction
+
+	(source "(if (@SYS :BUSY) \n  ;;(write-transit \"BUSY\")\n  (str \"BUSY\")\n  (let [resp (if-let [mapi (fainst (cls-instances \"Map\") nil)]\n                  (read-string (sv mapi \"source\"))\n                  {})]\n    ;;(vswap! SYS assoc :BUSY true)\n    ;;(write-transit resp)))\n    (str resp)))")
+	(title "response-map []"))
+
+([WebServer_Class40004] of  CloFunction
+
+	(source "(let [baos (ByteArrayOutputStream.)\n        w    (t/writer baos :json)\n        _    (t/write w x)\n        ret  (.toString baos)]\n    (.reset baos)\n    ret)")
+	(title "write-transit [x]"))
+
+([WebServer_Class40009] of  CloFunction
+
+	(source "(defroutes app-routes\n  (GET \"/\" [] (slurp (start-page)))\n  (GET \"/map\" [] (response-map))\n  (GET \"/events\" [] (response-events))\n  (route/files \"/\" (do (println [:ROOT (@SYS :ROOT)]) {:root (@SYS :ROOT)}))\n  (route/resources \"/\")\n  (route/not-found \"Not Found\"))\n\n(vswap! SYS assoc :APP\n  (handler/site app-routes))")
+	(title "defapp []"))
+
+([WebServer_Class40012] of  CloFunction
+
+	(source "(let [mp (into {} hm)\n       port (mp \"jlport\")]\n  (when (nil? (@SYS :APP))\n    (defapp)\n    (when (nil? (@SYS :SERVER))\n      (vswap! SYS assoc :SERVER \n        (jetty/run-jetty (@SYS :APP) {:port (read-string port) :join? false}))\n      (vswap! SYS assoc :PAGE (sv inst \"jlstart-page\"))\n      (vswap! SYS assoc :BUSY nil))))")
+	(title "start-server [hm inst]"))
+
+([WebServer_Class40013] of  CloVar
+
+	(source "(defonce SYS \n  (volatile! \n   {:SERVER nil\n     :APP nil\n     :ROOT (str (System/getProperty \"user.dir\") \"/resources/public/\")\n     :CHAN (asp/mk-chan)\n     :BUSY nil}))")
+	(title "defonceSYS"))
+
+([WebServer_Class40014] of  CloFunction
+
+	(source "(when (@SYS :SERVER)\n  (.stop (@SYS :SERVER))\n  (vswap! SYS assoc :SERVER nil)\n  (vswap! SYS assoc :APP nil)\n  (println \"WebServer stopped.\"))")
+	(title "stop-server [hm inst]"))
+
+([WebServer_Class40015] of  CloFunction
+
+	(source "(or (@SYS :PAGE) (println \"Start page not defined!\"))")
+	(title "start-page []"))
+
+([WebServer_Class50001] of  CloFunction
+
+	(source "(letfn [(laymap [x]\n             (println \"Layer \" (sv x \"title\"))\n             {:type (if-let [t (sv x \"wilayer-type\")] (keyword t))\n               :title (sv x \"title\")\n               :source (sv x \"wisource\")\n               :arguments (if-let [a (sv x \"wiarguments\")] \n                                  (read-string a))})]\n  (if-let [lays (seq (svs mapi group))]\n    (vec (map laymap lays))))")
+	(title "map-layers [mapi group]"))
+
+([WebServer_Class50002] of  CloFunction
+
+	(source "(vec (map keyword (svs mapi \"wicontrols\")))")
+	(title "map-controls [mapi]"))
+
+([WebServer_Class6] of  CloNamespace
+
+	(source "(:require\n  [ajax.core :refer (GET)]\n  ;;[cognitect.transit :as t]\n  [cljs.reader :as rdr]\n  [mvo.move :as mvo])")
+	(title "leaflet_plain.client"))
+
+([Winter_Class0] of  ClsMain
+
+	(asset-path "js/just_leaflet_plain")
+	(butt-build "Build/cljs.compile/build")
+	(cloFunctions
+		[WebServer_Class30000]
+		[WebInterface_Class80000]
+		[Leaflet_Class2]
+		[WebServer_Class40000]
+		[WebInterface_Class10000]
+		[WebInterface_Class70000]
+		[WebInterface_Class90000]
+		[WebInterface_Class100002]
+		[WebInterface_Class70029]
+		[WebInterface_Class30015]
+		[WebInterface_Class50001]
+		[WebInterface_Class70012]
+		[WebInterface_Class70015]
+		[WebInterface_Class90002]
+		[WebInterface_Class90004]
+		[WebInterface_Class16]
+		[WebInterface_Class15]
+		[JustLeaflet_Class30000]
+		[WebServer_Class40001]
+		[WebServer_Class10004]
+		[WebServer_Class10005]
+		[WebInterface_Class70003])
+	(cloNamespace [WebServer_Class6])
+	(cloVars
+		[WebServer_Class10003]
+		[WebInterface_Class40000]
+		[WebInterface_Class70002]
+		[WebInterface_Class60001]
+		[WebInterface_Class30014]
+		[WebInterface_Class80003]
+		[WebInterface_Class70011]
+		[WebInterface_Class90003])
+	(compiler-options "{:verbose false}")
+	(css [Leaflet_Class1])
+	(documentation [WebInterface_Class30000])
+	(epilogue "(enable-console-print!)\n(set! (.-onload js/window) (init))\n(request-events)\n(mvo/set-timeout-hrs TO-MOVE T-SCALE)\n(move-markers)\n(println \"Epilogue done..\")")
+	(html [Leaflet_Class0])
+	(output-dir "resources/public/js/just_leaflet_plain")
+	(output-to "resources/public/js/just_leaflet_plain.js")
+	(required [WebInterface_Class0])
+	(store-in "src/cljs")
+	(title "Leaflet Client Plain"))
+
+([Winter_Class10000] of  CloDocumentation
+
+	(source "<html>\n  <head>\n    <style type=\"text/css\">\n      <!--\n        body { font-family: arial; font-size: 12pt }\n        p { font-family: arial; margin-top: 2; margin-right: 2; margin-bottom: 2; margin-left: 2 }\n      -->\n    </style>\n    \n  </head>\n  <body>\n          Start Protege with a command: &quot;clj -Areagent&quot; </body>\n</html>")
+	(title "Build usage"))
+
+([Winter_Class20002] of  CloVar
+
+	(source "(defonce MAP  (r/atom (js/L.map \"MAP\")))")
+	(title "defonceMAP"))
+
+([Winter_Class3] of  HTML
+
+	(source "<!DOCTYPE html>\n<html>\n<head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/winter.css\" />\n  <link rel=\"stylesheet\" href=\"css/winter.css\" />\n  <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css\">\n  <link rel=\"stylesheet\" href=\"css/style.css\">\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/font-awesome.min.css\"/>\n  <link rel=\"stylesheet\" href=\"sidebar/leaflet-sidebar.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"sidebar/leaflet-sidebar.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.rotatedMarker.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n  <script src=\"js/heatmap.js\"></script>\n  <script src=\"js/leaflet-heatmap.js\"></script>\n  <script src=\"https://code.jquery.com/jquery-3.6.0.js\"></script>\n  <script src=\"https://code.jquery.com/ui/1.13.1/jquery-ui.js\"></script>\n  <script>\n  $( function() {$( \"#acc-left\" ).accordion({heightStyle: \"content\"});} );\n  $( function() {$( \"#acc-right\" ).accordion({heightStyle: \"content\"});} );\n  </script>\n</head>\n<body>\n   <div id=\"header\" style=\"background:Salmon;text-align:center;\">Моделирующая станция поиска</div>\n   <div id=\"MAP\" class=\"sidebar-map\"></div>\n   <div id=\"app\"/>\n   <div id=\"zoom\"/div>\n   <script src=\"js/winter.js\"></script>\n</body>\n</html>")
+	(store-in "resources/public")
+	(title "winter"))
+
+([Winter_Class40002] of  CloVar
+
+	(source "(r/atom [])")
+	(title "MODELS"))

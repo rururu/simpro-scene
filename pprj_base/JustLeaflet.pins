@@ -1,4 +1,4 @@
-; Fri Apr 07 19:53:19 MSK 2023
+; Sat Apr 08 13:39:41 MSK 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -39,7 +39,7 @@
 ([JustLeaflet_Class20001] of  Event
 
 	(but-send-event "Send Response/leaflet.server/send-event")
-	(source "{:event :move\n :title \"m1\"\n :coord nil\n :course 315\n :speed 10}")
+	(source "{:event :move\n :title \"m1\"\n :coord nil\n :course 270\n :speed 10}")
 	(title "Send Move"))
 
 ([JustLeaflet_Class20002] of  Event
@@ -47,6 +47,23 @@
 	(but-send-event "Send Response/leaflet.server/send-event")
 	(source "{:event :popup\n :lat 60.1\n :lon 30.1\n :html \"<h1> Popup </h1> This is popup\"}")
 	(title "Send Popup"))
+
+([JustLeaflet_Class30000] of  CloFunction
+
+	(source "(let [zoom (.getZoom @MAP)]\n  (println :ZOOM zoom)\n  (set-html! \"zoom\" (str \"zoom \" zoom)))")
+	(title "zoom-display []"))
+
+([JustLeaflet_Class40000] of  Event
+
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :path\n :title \"Polygon1\"\n :type :polygon\n :coord [[60.1 29.9][60.1 30.1][59.9 30.1][59.9 29.9]]\n :options {:color \"#3388ff\"\n               :fill \"#4488ee\"\n               :fillOpacity 0.3}}")
+	(title "Send Polygon"))
+
+([JustLeaflet_Class40001] of  Event
+
+	(but-send-event "Send Response/leaflet.server/send-event")
+	(source "{:event :remove\n :title \"Polygon1\"}")
+	(title "Send Remove"))
 
 ([JustLeaflet_Class8] of  Map
 
@@ -61,13 +78,13 @@
 
 ([Leaflet_Class0] of  HTML
 
-	(source "<!DOCTYPE html>\n<html>\n<head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/leaflet.css\" />\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.rotatedMarker.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n</head>\n<body>\n   <div id=\"map\"/>\n   <div id=\"zoom\"/>\n   <script src=\"js/just_leaflet.js\"></script>\n</body>\n</html>")
+	(source "<!DOCTYPE html>\n<html>\n<head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n  <link rel=\"stylesheet\" href=\"css/just_leaflet.css\" />\n  <link rel=\"stylesheet\" href=\"css/L.Control.MousePosition.css\"/>\n  <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\"/>\n  <style>\n        html, body {\n            font: 10pt \"Helvetica Neue\", Arial, Helvetica, sans-serif;\n        }\n  </style>\n  <script src=\"leaflet/leaflet.js\"></script>\n  <script src=\"js/L.Control.MousePosition.js\"></script>\n  <script src=\"js/leaflet.rotatedMarker.js\"></script>\n  <script src=\"js/leaflet.ajax.js\"></script>\n</head>\n<body>\n   <div id=\"map\"/>\n   <div id=\"zoom\"/>\n   <script src=\"js/just_leaflet.js\"></script>\n</body>\n</html>")
 	(store-in "resources/public")
 	(title "just_leaflet"))
 
 ([Leaflet_Class1] of  CSS
 
-	(source "#header {\n  position: fixed;\n  top:0px;\n  left:20%;\n  right:20%;\n  padding:5px;\n  z-index:100;\n  font-size: 25px;\n}\n#map {\n  position: absolute;\n  top: 30px;\n  bottom: 30px;\n  z-index: -1;\n}\n#zoom {\n  position: fixed;\n  bottom:40px;\n  left:32%;\n  z-index:100;\n}")
+	(source "#map {\n    position: absolute;\n    top: 0px;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    z-index: -1;\n}\n#zoom {\n  position:fixed;\n  bottom:10px;\n  left:170px;\n  padding:5px;\n  z-index:100;\n}")
 	(store-in "resources/public/css")
 	(title "just_leaflet"))
 
@@ -154,12 +171,12 @@
 
 ([WebInterface_Class11] of  CloFunction
 
-	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;; (println :EVT evt)\n  (write-transit evt))")
+	(source "(let [evt (deref (future (asp/pump-out (@SYS :CHAN))))]\n  ;;(println :EVT evt)\n  (write-transit evt))")
 	(title "response-events []"))
 
 ([WebInterface_Class110001] of  CloFunction
 
-	(source "([port]\n  (if-let [serv (@SYS :SERVER)]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://0.0.0.0:\" port))))))\n([hm inst]\n  (if-let [port (sv inst \"jlport\")]\n    (start-client (read-string port))))")
+	(source "([port]\n  (if-let [serv (@SYS :SERVER)]\n    (invoke-later (.browse (Desktop/getDesktop) (URI/create (str \"http://localhost:\" port))))))\n([hm inst]\n  (if-let [port (sv inst \"jlport\")]\n    (start-client (read-string port))))")
 	(title "start-client"))
 
 ([WebInterface_Class120009] of  %3AINSTANCE-ANNOTATION
@@ -483,7 +500,7 @@
 
 ([WebServer_Class40001] of  CloFunction
 
-	(source "(let [mp (read-transit resp)]\n  (println :Map)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [blms (apply merge (map create-layer (mp :base)))\n          olms (apply merge (map create-layer (mp :overlay)))\n          flay (second (first  blms)) \n          lctl (js/L.control.layers (clj->js blms) (clj->js olms))\n          fzoom (fn [] (set-html! \"zoom\" (str \"zoom \" (.getZoom @MAP))))]\n      (.addTo flay @MAP)\n      (.setView @MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) @MAP)\n      (.addTo lctl @MAP)\n      (fzoom)\n      (.on @MAP \"zoomend\" fzoom))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
+	(source "(let [mp (read-transit resp)]\n  (println :Map)\n  (if (and (map? mp) (not (empty? mp)))\n    (let [blms (apply merge (map create-layer (mp :base)))\n          olms (apply merge (map create-layer (mp :overlay)))\n          flay (second (first  blms)) \n          lctl (js/L.control.layers (clj->js blms) (clj->js olms))]\n      (.addTo flay @MAP)\n      (.setView @MAP (clj->js (mp :center)) (mp :zoom))\n      (.addTo (js/L.control.mousePosition.) @MAP)\n      (.addTo lctl @MAP)\n      (zoom-display)\n      (.on @MAP \"zoomend\" zoom-display))\n    (add-popup {:html (str \"<h1>\" mp \"</h1>\")})))")
 	(title "map-hr [resp]"))
 
 ([WebServer_Class40002] of  CloFunction
@@ -564,6 +581,7 @@
 		[WebInterface_Class90004]
 		[WebInterface_Class16]
 		[WebInterface_Class15]
+		[JustLeaflet_Class30000]
 		[WebServer_Class40001]
 		[WebServer_Class10004]
 		[WebServer_Class10005]

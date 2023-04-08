@@ -21,13 +21,13 @@ var ldiff = (lambda - lambda0);
 var cosphi = Math.cos(phi);
 return Math.atan2((cosphi * js.Math.sin(ldiff)),((Math.cos(phi1) * Math.sin(phi)) - ((Math.sin(phi1) * cosphi) * Math.cos(ldiff))));
 });
-mvo.move.bear_deg_js = (function mvo$move$bear_deg_js(p__15669,p__15670){
-var vec__15671 = p__15669;
-var la1 = cljs.core.nth.call(null,vec__15671,(0),null);
-var lo1 = cljs.core.nth.call(null,vec__15671,(1),null);
-var vec__15674 = p__15670;
-var la2 = cljs.core.nth.call(null,vec__15674,(0),null);
-var lo2 = cljs.core.nth.call(null,vec__15674,(1),null);
+mvo.move.bear_deg_js = (function mvo$move$bear_deg_js(p__20790,p__20791){
+var vec__20792 = p__20790;
+var la1 = cljs.core.nth.call(null,vec__20792,(0),null);
+var lo1 = cljs.core.nth.call(null,vec__20792,(1),null);
+var vec__20795 = p__20791;
+var la2 = cljs.core.nth.call(null,vec__20795,(0),null);
+var lo2 = cljs.core.nth.call(null,vec__20795,(1),null);
 var fi1 = (la1 * mvo.move.PID180);
 var ld1 = (lo1 * mvo.move.PID180);
 var fi2 = (la2 * mvo.move.PID180);
@@ -45,10 +45,10 @@ return deg;
 }
 }
 });
-mvo.move.set_turn_point = (function mvo$move$set_turn_point(mvo__$1,p__15677,crs,spd){
-var vec__15678 = p__15677;
-var lat = cljs.core.nth.call(null,vec__15678,(0),null);
-var lon = cljs.core.nth.call(null,vec__15678,(1),null);
+mvo.move.set_turn_point = (function mvo$move$set_turn_point(mvo__$1,p__20798,crs,spd){
+var vec__20799 = p__20798;
+var lat = cljs.core.nth.call(null,vec__20799,(0),null);
+var lon = cljs.core.nth.call(null,vec__20799,(1),null);
 return cljs.core._vreset_BANG_.call(null,mvo__$1,cljs.core.assoc.call(null,cljs.core._deref.call(null,mvo__$1),new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032),(lat * mvo.move.PID180),new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490),(lon * mvo.move.PID180),new cljs.core.Keyword(null,"dir","dir",1734754661),(crs * mvo.move.PID180),new cljs.core.Keyword(null,"rdh","rdh",1247569967),(spd * mvo.move.NMRAD),new cljs.core.Keyword(null,"elt-tur","elt-tur",-1114335595),0.0));
 });
 mvo.move.get_coord = (function mvo$move$get_coord(mv){
@@ -73,9 +73,9 @@ return mvo.move.set_turn_point.call(null,mvo__$1,mvo.move.get_coord.call(null,mv
 });
 mvo.move.set_coord = (function mvo$move$set_coord(mvo__$1,crd){
 var mv = cljs.core.deref.call(null,mvo__$1);
-var vec__15681 = crd;
-var lat = cljs.core.nth.call(null,vec__15681,(0),null);
-var lon = cljs.core.nth.call(null,vec__15681,(1),null);
+var vec__20802 = crd;
+var lat = cljs.core.nth.call(null,vec__20802,(0),null);
+var lon = cljs.core.nth.call(null,vec__20802,(1),null);
 mvo.move.set_turn_point.call(null,mvo__$1,crd,mvo.move.get_course.call(null,mv),mvo.move.get_speed.call(null,mv));
 
 return mv.call(null,new cljs.core.Keyword(null,"marker","marker",865118313)).setLatLng((new L.LatLng(lat,lon)));
@@ -86,15 +86,15 @@ mvo.move.set_turn_point.call(null,mvo__$1,crd,crs,spd);
 
 return mvo__$1;
 });
-mvo.move.tow = (function mvo$move$tow(p__15684,phi,lam,crs){
-var vec__15685 = p__15684;
-var cmk = cljs.core.nth.call(null,vec__15685,(0),null);
-var vec__15688 = cljs.core.nth.call(null,vec__15685,(1),null);
-var rd = cljs.core.nth.call(null,vec__15688,(0),null);
-var az = cljs.core.nth.call(null,vec__15688,(1),null);
-var vec__15691 = mvo.move.spherical_between_js.call(null,phi,lam,rd,az);
-var phi2 = cljs.core.nth.call(null,vec__15691,(0),null);
-var lam2 = cljs.core.nth.call(null,vec__15691,(1),null);
+mvo.move.tow = (function mvo$move$tow(p__20805,phi,lam,crs){
+var vec__20806 = p__20805;
+var cmk = cljs.core.nth.call(null,vec__20806,(0),null);
+var vec__20809 = cljs.core.nth.call(null,vec__20806,(1),null);
+var rd = cljs.core.nth.call(null,vec__20809,(0),null);
+var az = cljs.core.nth.call(null,vec__20809,(1),null);
+var vec__20812 = mvo.move.spherical_between_js.call(null,phi,lam,rd,az);
+var phi2 = cljs.core.nth.call(null,vec__20812,(0),null);
+var lam2 = cljs.core.nth.call(null,vec__20812,(1),null);
 var pos2 = (new L.LatLng((phi2 / mvo.move.PID180),(lam2 / mvo.move.PID180)));
 cmk.setLatLng(pos2);
 
@@ -109,59 +109,59 @@ if(mvo.move.TIME_RUN){
 var mv = cljs.core.deref.call(null,mvo__$1);
 var elt = (mv.call(null,new cljs.core.Keyword(null,"elt-tur","elt-tur",-1114335595)) + mvo.move.TIMEOUT_HRS);
 var way = (mv.call(null,new cljs.core.Keyword(null,"rdh","rdh",1247569967)) * elt);
-var vec__15694 = mvo.move.spherical_between_js.call(null,mv.call(null,new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032)),mv.call(null,new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490)),way,mv.call(null,new cljs.core.Keyword(null,"dir","dir",1734754661)));
-var phi = cljs.core.nth.call(null,vec__15694,(0),null);
-var lam = cljs.core.nth.call(null,vec__15694,(1),null);
+var vec__20815 = mvo.move.spherical_between_js.call(null,mv.call(null,new cljs.core.Keyword(null,"phi-tur","phi-tur",-1775762032)),mv.call(null,new cljs.core.Keyword(null,"lam-tur","lam-tur",-1285200490)),way,mv.call(null,new cljs.core.Keyword(null,"dir","dir",1734754661)));
+var phi = cljs.core.nth.call(null,vec__20815,(0),null);
+var lam = cljs.core.nth.call(null,vec__20815,(1),null);
 var pos = (new L.LatLng((phi / mvo.move.PID180),(lam / mvo.move.PID180)));
 mv.call(null,new cljs.core.Keyword(null,"marker","marker",865118313)).setLatLng(pos);
 
-var seq__15697_15701 = cljs.core.seq.call(null,mv.call(null,new cljs.core.Keyword(null,"tows","tows",-857998397)));
-var chunk__15698_15702 = null;
-var count__15699_15703 = (0);
-var i__15700_15704 = (0);
+var seq__20818_20822 = cljs.core.seq.call(null,mv.call(null,new cljs.core.Keyword(null,"tows","tows",-857998397)));
+var chunk__20819_20823 = null;
+var count__20820_20824 = (0);
+var i__20821_20825 = (0);
 while(true){
-if((i__15700_15704 < count__15699_15703)){
-var twd_15705 = cljs.core._nth.call(null,chunk__15698_15702,i__15700_15704);
-mvo.move.tow.call(null,twd_15705,phi,lam,mvo.move.get_course.call(null,mv));
+if((i__20821_20825 < count__20820_20824)){
+var twd_20826 = cljs.core._nth.call(null,chunk__20819_20823,i__20821_20825);
+mvo.move.tow.call(null,twd_20826,phi,lam,mvo.move.get_course.call(null,mv));
 
 
-var G__15706 = seq__15697_15701;
-var G__15707 = chunk__15698_15702;
-var G__15708 = count__15699_15703;
-var G__15709 = (i__15700_15704 + (1));
-seq__15697_15701 = G__15706;
-chunk__15698_15702 = G__15707;
-count__15699_15703 = G__15708;
-i__15700_15704 = G__15709;
+var G__20827 = seq__20818_20822;
+var G__20828 = chunk__20819_20823;
+var G__20829 = count__20820_20824;
+var G__20830 = (i__20821_20825 + (1));
+seq__20818_20822 = G__20827;
+chunk__20819_20823 = G__20828;
+count__20820_20824 = G__20829;
+i__20821_20825 = G__20830;
 continue;
 } else {
-var temp__5804__auto___15710 = cljs.core.seq.call(null,seq__15697_15701);
-if(temp__5804__auto___15710){
-var seq__15697_15711__$1 = temp__5804__auto___15710;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__15697_15711__$1)){
-var c__5568__auto___15712 = cljs.core.chunk_first.call(null,seq__15697_15711__$1);
-var G__15713 = cljs.core.chunk_rest.call(null,seq__15697_15711__$1);
-var G__15714 = c__5568__auto___15712;
-var G__15715 = cljs.core.count.call(null,c__5568__auto___15712);
-var G__15716 = (0);
-seq__15697_15701 = G__15713;
-chunk__15698_15702 = G__15714;
-count__15699_15703 = G__15715;
-i__15700_15704 = G__15716;
+var temp__5804__auto___20831 = cljs.core.seq.call(null,seq__20818_20822);
+if(temp__5804__auto___20831){
+var seq__20818_20832__$1 = temp__5804__auto___20831;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__20818_20832__$1)){
+var c__5568__auto___20833 = cljs.core.chunk_first.call(null,seq__20818_20832__$1);
+var G__20834 = cljs.core.chunk_rest.call(null,seq__20818_20832__$1);
+var G__20835 = c__5568__auto___20833;
+var G__20836 = cljs.core.count.call(null,c__5568__auto___20833);
+var G__20837 = (0);
+seq__20818_20822 = G__20834;
+chunk__20819_20823 = G__20835;
+count__20820_20824 = G__20836;
+i__20821_20825 = G__20837;
 continue;
 } else {
-var twd_15717 = cljs.core.first.call(null,seq__15697_15711__$1);
-mvo.move.tow.call(null,twd_15717,phi,lam,mvo.move.get_course.call(null,mv));
+var twd_20838 = cljs.core.first.call(null,seq__20818_20832__$1);
+mvo.move.tow.call(null,twd_20838,phi,lam,mvo.move.get_course.call(null,mv));
 
 
-var G__15718 = cljs.core.next.call(null,seq__15697_15711__$1);
-var G__15719 = null;
-var G__15720 = (0);
-var G__15721 = (0);
-seq__15697_15701 = G__15718;
-chunk__15698_15702 = G__15719;
-count__15699_15703 = G__15720;
-i__15700_15704 = G__15721;
+var G__20839 = cljs.core.next.call(null,seq__20818_20832__$1);
+var G__20840 = null;
+var G__20841 = (0);
+var G__20842 = (0);
+seq__20818_20822 = G__20839;
+chunk__20819_20823 = G__20840;
+count__20820_20824 = G__20841;
+i__20821_20825 = G__20842;
 continue;
 }
 } else {

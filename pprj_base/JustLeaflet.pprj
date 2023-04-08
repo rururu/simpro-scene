@@ -1,4 +1,4 @@
-; Fri Apr 07 19:53:19 MSK 2023
+; Sat Apr 08 13:39:41 MSK 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -21,9 +21,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[JustLeaflet_ProjectKB_Class10441]
-		[JustLeaflet_ProjectKB_Class10442]
-		[JustLeaflet_ProjectKB_Class10443]))
+		[JustLeaflet_ProjectKB_Class406]
+		[JustLeaflet_ProjectKB_Class407]
+		[JustLeaflet_ProjectKB_Class408]))
 
 ([CLSES_TAB] of  Widget
 
@@ -68,48 +68,6 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([JustLeaflet_ProjectKB_Class10441] of  String
-
-	(name "Event")
-	(string_value "title"))
-
-([JustLeaflet_ProjectKB_Class10442] of  String
-
-	(name "Map")
-	(string_value "title"))
-
-([JustLeaflet_ProjectKB_Class10443] of  String
-
-	(name "JLServer")
-	(string_value "{Port%3A+}jlport{+}jlstart-page"))
-
-([JustLeaflet_ProjectKB_Class10444] of  Map
-
-	(entries
-		[JustLeaflet_ProjectKB_Class10445]
-		[JustLeaflet_ProjectKB_Class10446]))
-
-([JustLeaflet_ProjectKB_Class10445] of  Map_Entry
-
-	(key "JustLeaflet_Class9")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "576 17 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([JustLeaflet_ProjectKB_Class10446] of  Map_Entry
-
-	(key "WebInterface_Class120009")
-	(key_class "edu.stanford.smi.protege.model.Frame")
-	(value "27 528 202 123")
-	(value_class "java.awt.Rectangle"))
-
-([JustLeaflet_ProjectKB_Class10447] of  Map_Entry
-
-	(key "InstanceDisplay.yellow_stickies")
-	(key_class "java.lang.String")
-	(value "JustLeaflet_ProjectKB_Class10444")
-	(value_class "java.util.Map"))
-
 ([JustLeaflet_ProjectKB_Class400] of  Widget
 
 	(is_hidden TRUE)
@@ -136,6 +94,48 @@
 
 ([JustLeaflet_ProjectKB_Class405] of  Property_List
 )
+
+([JustLeaflet_ProjectKB_Class406] of  String
+
+	(name "Event")
+	(string_value "title"))
+
+([JustLeaflet_ProjectKB_Class407] of  String
+
+	(name "Map")
+	(string_value "title"))
+
+([JustLeaflet_ProjectKB_Class408] of  String
+
+	(name "JLServer")
+	(string_value "{Port%3A+}jlport{+}jlstart-page"))
+
+([JustLeaflet_ProjectKB_Class409] of  Map
+
+	(entries
+		[JustLeaflet_ProjectKB_Class410]
+		[JustLeaflet_ProjectKB_Class411]))
+
+([JustLeaflet_ProjectKB_Class410] of  Map_Entry
+
+	(key "JustLeaflet_Class9")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "576 17 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([JustLeaflet_ProjectKB_Class411] of  Map_Entry
+
+	(key "WebInterface_Class120009")
+	(key_class "edu.stanford.smi.protege.model.Frame")
+	(value "27 528 202 123")
+	(value_class "java.awt.Rectangle"))
+
+([JustLeaflet_ProjectKB_Class412] of  Map_Entry
+
+	(key "InstanceDisplay.yellow_stickies")
+	(key_class "java.lang.String")
+	(value "JustLeaflet_ProjectKB_Class409")
+	(value_class "java.util.Map"))
 
 ([JustLeaflet_ProjectKB_Class428] of  Widget
 
@@ -244,28 +244,28 @@
 ([JustLeaflet_ProjectKB_Class453] of  Property_List
 )
 
-([KB_007593_Class396] of  Map
+([KB_191999_Class396] of  Map
 
 	(entries
-		[KB_007593_Class397]
-		[KB_007593_Class398]
-		[KB_007593_Class399]))
+		[KB_191999_Class397]
+		[KB_191999_Class398]
+		[KB_191999_Class399]))
 
-([KB_007593_Class397] of  Map_Entry
+([KB_191999_Class397] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_007593_Class398] of  Map_Entry
+([KB_191999_Class398] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([KB_007593_Class399] of  Map_Entry
+([KB_191999_Class399] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
@@ -279,8 +279,8 @@
 
 ([KB_941803_Class1] of  Map
 
-	(entries [JustLeaflet_ProjectKB_Class10447])
-	(referenced_maps [JustLeaflet_ProjectKB_Class10444]))
+	(entries [JustLeaflet_ProjectKB_Class412])
+	(referenced_maps [JustLeaflet_ProjectKB_Class409]))
 
 ([KB_941803_Class10] of  Property_List
 )
